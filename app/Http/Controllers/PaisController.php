@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Persona;
+use App\Pais;
 use Illuminate\Http\Request;
-use App\Http\Requests\StorePersona;
+use App\Http\Requests\PaisStoreRequest;
 
 
 
-class PersonaController extends Controller
+class PaisController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,11 @@ class PersonaController extends Controller
      */
     public function index()
     {
-           //return Persona::all();
+       $d=datatables()->of(Pais::all())
+            ->addColumn('btn','pais.action')
+            ->toJson();
+        //dd($d);
+        return $d;
     }
 
     /**
@@ -27,7 +31,7 @@ class PersonaController extends Controller
      */
     public function create()
     {
-        return view('persona.crear');
+        return view('pais.crear');
     }
 
     /**
@@ -36,18 +40,20 @@ class PersonaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePersona $request)
+    public function store(PaisStoreRequest $request)
     {
-        dd($request->all());
+        
+        Pais::create($request->all());
+        return redirect()->back()->with('mensaje','Registro creado satisfactoriamente');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Persona  $persona
+     * @param  \App\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function show(Persona $persona)
+    public function show(Pais $pais)
     {
         //
     }
@@ -55,10 +61,10 @@ class PersonaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Persona  $persona
+     * @param  \App\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function edit(Persona $persona)
+    public function edit(Pais $pais)
     {
         //
     }
@@ -67,10 +73,10 @@ class PersonaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Persona  $persona
+     * @param  \App\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Persona $persona)
+    public function update(Request $request, Pais $pais)
     {
         //
     }
@@ -78,10 +84,10 @@ class PersonaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Persona  $persona
+     * @param  \App\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Persona $persona)
+    public function destroy(Pais $pais)
     {
         //
     }

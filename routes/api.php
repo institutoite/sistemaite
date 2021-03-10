@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Persona;
+use App\Pais;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,3 +27,10 @@ Route::get('personas',function(){
             ->toJson();
 });
 
+Route::get('paises',function(){
+    return datatables()->of(Pais::all())
+            ->addColumn('btn','pais.action')
+            ->rawColumns(['btn'])
+            ->toJson();
+
+});

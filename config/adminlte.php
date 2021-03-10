@@ -314,6 +314,23 @@ return [
               
             ],
         ],
+        [
+            'text'    => 'Pais',
+            'icon'    => 'fas fa-fw fa-location',
+            'submenu' => [
+                [
+                    'text' => 'Crear',
+                    'route'  => 'paises.create',
+                    'icon' => 'fas fa-fw fa-plus',
+                ],
+                [
+                    'text' => 'Listar',
+                    'route'  => 'paises.index',
+                    'icon' => 'fas fa-fw fa-lock',
+                ],
+              
+            ]
+        ],    
         ['header' => 'Encabezado'],
         [
             'text'       => 'important',

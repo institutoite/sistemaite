@@ -22,14 +22,28 @@ class CreatePersonasTable extends Migration
             $table->string('direccion', 120);
             $table->string('carnet', 10)->nullable()->default("0");
             $table->string('expedido', 10)->nullable()->default();
-            $table->string('genero', 1);
+            $table->string('genero', 6);
             $table->string('observacion', 250)->nullable();
             $table->string('foto', 120)->nullable();
-            $table->string('como', 120);
+            $table->string('como', 30);
             $table->unsignedInteger('persona_id')->nullable();
+            $table->unsignedInteger('pais_id')->nullable();
+            $table->unsignedInteger('ciudad_id')->nullable();
+            $table->unsignedInteger('zona_id')->nullable();
             $table->unsignedInteger('idantiguo')->nullable()->default(0);
+            
             $table->foreign('persona_id', 'fk_persona_persona1_idx')
             ->references('id')->on('personas');
+            
+            $table->foreign('pais_id', 'fk_persona_pais_idx')
+            ->references('id')->on('pais');
+
+            $table->foreign('ciudad_id', 'fk_persona_ciudad_idx')
+            ->references('id')->on('ciudads');
+            
+            $table->foreign('zona_id', 'fk_persona_zona_idx')
+            ->references('id')->on('zonas');
+
             $table->timestamps();
         });
     }

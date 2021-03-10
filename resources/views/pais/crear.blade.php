@@ -19,9 +19,9 @@
              <span class="text-center">FORMULARIO CREAR PERSONA</span>
         </div>
         <div class="card-body">
-            <form action="{{route('personas.store')}}" method="post">
+            <form action="{{route('paises.store')}}" method="post">
             @csrf
-                @include('persona.form')
+                @include('pais.form')
                 @include('include.botones')
             </form>
         </div>

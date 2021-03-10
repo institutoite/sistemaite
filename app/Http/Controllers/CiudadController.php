@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Persona;
+use App\Ciudad;
 use Illuminate\Http\Request;
-use App\Http\Requests\StorePersona;
 
-
-
-class PersonaController extends Controller
+class CiudadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +14,7 @@ class PersonaController extends Controller
      */
     public function index()
     {
-           //return Persona::all();
+        //
     }
 
     /**
@@ -27,7 +24,7 @@ class PersonaController extends Controller
      */
     public function create()
     {
-        return view('persona.crear');
+        //
     }
 
     /**
@@ -36,18 +33,18 @@ class PersonaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePersona $request)
+    public function store(Request $request)
     {
-        dd($request->all());
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Persona  $persona
+     * @param  \App\Ciudad  $ciudad
      * @return \Illuminate\Http\Response
      */
-    public function show(Persona $persona)
+    public function show(Ciudad $ciudad)
     {
         //
     }
@@ -55,10 +52,10 @@ class PersonaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Persona  $persona
+     * @param  \App\Ciudad  $ciudad
      * @return \Illuminate\Http\Response
      */
-    public function edit(Persona $persona)
+    public function edit(Ciudad $ciudad)
     {
         //
     }
@@ -67,10 +64,10 @@ class PersonaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Persona  $persona
+     * @param  \App\Ciudad  $ciudad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Persona $persona)
+    public function update(Request $request, Ciudad $ciudad)
     {
         //
     }
@@ -78,10 +75,10 @@ class PersonaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Persona  $persona
+     * @param  \App\Ciudad  $ciudad
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Persona $persona)
+    public function destroy(Ciudad $ciudad)
     {
         //
     }

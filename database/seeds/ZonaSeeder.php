@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Persona;
-class PersonaSeeder extends Seeder
+
+class ZonaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class PersonaSeeder extends Seeder
      */
     public function run()
     {
-        factory(Persona::class, 200)->create();
+        //
     }
 }

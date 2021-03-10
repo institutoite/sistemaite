@@ -16,6 +16,7 @@ $factory->define(Persona::class, function (Faker $faker) {
         'expedido'=>$faker->numberBetween($min = 55555555, $max = 99999999),
         'genero'=>"M",
         'observacion'=> $faker->text,
+        'como'=> "facebook",
         'foto'=> "foto.jpg",
         
         'idantiguo'=> $faker->numberBetween($min = 1, $max = 6000)

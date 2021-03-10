@@ -23,4 +23,12 @@ Route::get('/home',function(){
     return view('persona.index');
 });
 
+Route::get('/paises/listar',function(){
+    return view('pais.index');
+})->name('listar');
+
+
+
 Route::resource('personas', "PersonaController");
+Route::resource('paises', "PaisController");
+
