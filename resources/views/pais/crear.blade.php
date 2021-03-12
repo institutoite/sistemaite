@@ -16,7 +16,7 @@
 @section('content')
     <div class="card">
         <div class="card-header bg-secondary">
-             <span class="text-center">FORMULARIO CREAR PERSONA</span>
+             <span class="text-center">FORMULARIO CREAR PAIS</span>
         </div>
         <div class="card-body">
             <form action="{{route('paises.store')}}" method="post">

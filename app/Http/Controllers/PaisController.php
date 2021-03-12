@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pais;
 use Illuminate\Http\Request;
 use App\Http\Requests\PaisStoreRequest;
+use App\Http\Requests\PaisUpdateRequest;
 
 
 
@@ -17,11 +18,7 @@ class PaisController extends Controller
      */
     public function index()
     {
-       $d=datatables()->of(Pais::all())
-            ->addColumn('btn','pais.action')
-            ->toJson();
-        //dd($d);
-        return $d;
+      return view('pais.index');
     }
 
     /**
@@ -64,9 +61,12 @@ class PaisController extends Controller
      * @param  \App\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pais $pais)
+    public function edit($pais)
     {
-        //
+        $pais=Pais::findOrFail($pais);
+
+     
+        return view("pais.editar", ["pais" => $pais]);
     }
 
     /**
@@ -76,9 +76,16 @@ class PaisController extends Controller
      * @param  \App\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pais $pais)
+    public function update(PaisUpdateRequest $request, $id)
     {
-        //
+        
+        $pais_actualizado=Pais::findOrFail($id);
+        $pais_actualizado->nombrepais=$request->nombrepais;
+        $pais_actualizado->save();
+        $Mensaje="Se actualizó correctamente el registro, Reviselo";
+
+        return view('pais.mostrar',compact('pais_actualizado','Mensaje'));
+        
     }
 
     /**

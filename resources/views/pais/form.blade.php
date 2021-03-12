@@ -3,7 +3,7 @@
 <div class="row"> 
     <div class="input-group mb-2" >
         <label class="col-3 form-control bg-primary" for="">PAIS</label> 
-        <input  type="text" name="nombrepais" class="form-control col-9 @error('nombrepais') is-invalid @enderror" value="{{old('nombrepais',$pais_a_editar->nombrepais ?? '')}}" placeholder="Ingrese un  nombre de Pais">
+        <input  type="text" name="nombrepais" class="form-control col-9 @error('nombrepais') is-invalid @enderror" value="{{old('nombrepais',$pais->nombrepais ?? '')}}" placeholder="Ingrese un  nombre de Pais">
     </div>
 </div>
 <div class="row">
