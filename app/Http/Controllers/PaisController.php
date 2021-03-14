@@ -6,7 +6,7 @@ use App\Pais;
 use Illuminate\Http\Request;
 use App\Http\Requests\PaisStoreRequest;
 use App\Http\Requests\PaisUpdateRequest;
-
+use Alert;
 
 
 class PaisController extends Controller
@@ -18,7 +18,7 @@ class PaisController extends Controller
      */
     public function index()
     {
-      return view('pais.index');
+        return view('pais.index');
     }
 
     /**
@@ -39,7 +39,6 @@ class PaisController extends Controller
      */
     public function store(PaisStoreRequest $request)
     {
-        
         Pais::create($request->all());
         return redirect()->back()->with('mensaje','Registro creado satisfactoriamente');
     }
@@ -50,9 +49,10 @@ class PaisController extends Controller
      * @param  \App\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function show(Pais $pais)
+    public function show($id)
     {
-        //
+        $pais=Pais::findOrFail($id);
+        return view('pais.mostrar',compact('pais'));
     }
 
     /**
@@ -64,8 +64,6 @@ class PaisController extends Controller
     public function edit($pais)
     {
         $pais=Pais::findOrFail($pais);
-
-     
         return view("pais.editar", ["pais" => $pais]);
     }
 
@@ -79,12 +77,12 @@ class PaisController extends Controller
     public function update(PaisUpdateRequest $request, $id)
     {
         
-        $pais_actualizado=Pais::findOrFail($id);
-        $pais_actualizado->nombrepais=$request->nombrepais;
-        $pais_actualizado->save();
+        $pais=Pais::findOrFail($id);
+        $pais->nombrepais=$request->nombrepais;
+        $pais->save();
         $Mensaje="Se actualizó correctamente el registro, Reviselo";
 
-        return view('pais.mostrar',compact('pais_actualizado','Mensaje'));
+        return view('pais.mostrar',compact('pais','Mensaje'));
         
     }
 
@@ -94,8 +92,10 @@ class PaisController extends Controller
      * @param  \App\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pais $pais)
+    public function destroy($id)
     {
-        //
+        $pais = Pais::findOrFail($id);
+        $pais->delete();
+        return redirect()->back()->with('mensaje','Registro creado satisfactoriamente');
     }
 }

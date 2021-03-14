@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Persona;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +15,7 @@ use App\Persona;
 */
 
 Route::get('/', function () {
+    
     return view('welcome');
 });
 
@@ -27,8 +29,14 @@ Route::get('/paises/listar',function(){
     return view('pais.index');
 })->name('listar');
 
+Route::get('alerta', function () {
+    alert()->success('You have been logged out.', 'Good bye!');
+    return redirect('/');//->with('success','Este mensaje es de Sweet alert');
+});
 
 
 Route::resource('personas', "PersonaController");
 Route::resource('paises', "PaisController");
+Route::resource('ciudades', "CiudadController");
+Route::resource('zonas', "ZonaController");
 

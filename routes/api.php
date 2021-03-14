@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Persona;
 use App\Pais;
+use App\Ciudad;
+use App\Zona;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,4 +35,17 @@ Route::get('paises',function(){
             ->rawColumns(['btn'])
             ->toJson();
 
+});
+Route::get('ciudades',function(){
+    $ciudades=Ciudad::select('ciudads.id','ciudad','nombrepais')->join('pais','pais.id','=','ciudads.pais_id')->get();
+    return datatables()->of($ciudades)
+            ->addColumn('btn','ciudad.action')
+            ->rawColumns(['btn'])
+            ->toJson();
+});
+Route::get('zonas',function(){
+    return datatables()->of(Zona::all())
+            ->addColumn('btn','zona.action')
+            ->rawColumns(['btn'])
+            ->toJson();
 });

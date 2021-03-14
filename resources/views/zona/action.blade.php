@@ -9,14 +9,10 @@
 </a>
 
 <form action="{{route('paises.destroy', $id)}}" id="form{{$id}}" class="d-inline formulario" method="POST">
+    
     @csrf
-    @method("delete")
-    <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn eliminar" title="Eliminar este Pais">
+    @method('DELETE')
+    <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn eliminar" title="Eliminar este pais">
         <i class="fa fa-fw fa-trash text-danger"></i>   
     </button>
-</form>     
-
-<a href="{{route('paises.destroy', $id)}}" class="btn-accion-tabla tooltipsC mr-2" title="Ver este pais">
-    <i class="fa fa-fw fa-trash text-danger"></i> 
-</a>
-
+</form>

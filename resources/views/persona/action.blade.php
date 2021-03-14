@@ -8,7 +8,7 @@
     <i class="fa fa-fw fa-eye text-primary"></i>
 </a>
 
-<form action="{{route('personas.destroy', $id)}}" id="form{{$id}}" class="d-inline formulario" method="POST">
+<form action="{{route('personas.destroy', $id)}}" id="form{{$id}}" class="d-inline formulario eliminar" method="POST">
     @csrf
     @method("delete")
     <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn eliminar" title="Eliminar esta empresa">

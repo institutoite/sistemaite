@@ -19,6 +19,8 @@ class CreateCiudadsTable extends Migration
             $table->unsignedInteger('pais_id');
             $table->foreign('pais_id','fk_ciudad_pais')
                         ->references('id')->on('pais');
+            $table->timestamps();
+                        
         });
     }
 

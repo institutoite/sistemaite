@@ -331,6 +331,41 @@ return [
               
             ]
         ],    
+        [
+            'text'    => 'Ciudad',
+            'icon'    => 'fas fa-fw fa-location',
+            'submenu' => [
+                [
+                    'text' => 'Crear',
+                    'route'  => 'ciudades.create',
+                    'icon' => 'fas fa-fw fa-plus',
+                ],
+                [
+                    'text' => 'Listar',
+                    'route'  => 'ciudades.index',
+                    'icon' => 'fas fa-fw fa-lock',
+                ],
+              
+            ]
+        ], 
+        
+        [
+            'text'    => 'Zona',
+            'icon'    => 'fas fa-fw fa-location',
+            'submenu' => [
+                [
+                    'text' => 'Crear',
+                    'route'  => 'zonas.create',
+                    'icon' => 'fas fa-fw fa-plus',
+                ],
+                [
+                    'text' => 'Listar',
+                    'route'  => 'zonas.index',
+                    'icon' => 'fas fa-fw fa-lock',
+                ],
+              
+            ]
+        ], 
         ['header' => 'Encabezado'],
         [
             'text'       => 'important',

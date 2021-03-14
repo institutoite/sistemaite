@@ -16,27 +16,25 @@
 @section('content')
     <div class="card">
         <div class="card-header bg-secondary">
-             <span class="text-center">FORMULARIO CREAR PAIS</span>
+             <span class="text-center">FORMULARIO CREAR CIUDAD</span>
         </div>
         <div class="card-body">
-            <form action="{{route('paises.store')}}" method="post">
+            <form action="{{route('ciudades.store')}}" method="post">
             @csrf
-                @include('pais.form')
+                @include('ciudad.form')
                 @include('include.botones')
             </form>
         </div>
     </div>
-    
-    @include('sweet::alert')
 @stop
 
 @section('js')
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     
     <script>
         $(document).ready(function() {
-          swal("Hello world!");
+          
         } );
     </script>
 @stop

@@ -26,17 +26,15 @@
             </form>
         </div>
     </div>
-    
-    @include('sweet::alert')
 @stop
 
 @section('js')
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     
     <script>
         $(document).ready(function() {
-          swal("Hello world!");
+          
         } );
     </script>
 @stop
