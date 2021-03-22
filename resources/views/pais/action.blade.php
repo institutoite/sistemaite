@@ -1,22 +1,17 @@
 
 
-    <a href="{{route('paises.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-2" title="Editar este pais">
+<a href="{{route('paises.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar este pais">
     <i class="fa fa-fw fa-edit text-primary"></i>
 </a>
 
-<a href="{{route('paises.show', $id)}}" class="btn-accion-tabla tooltipsC mr-2" title="Ver este pais">
-    <i class="fa fa-fw fa-eye text-primary"></i>
+<a href="{{route('paises.show', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver este pais">
+    <i class="fa fa-fw fa-eye text-primary mostrar"></i>
 </a>
 
-<form action="{{route('paises.destroy', $id)}}" id="form{{$id}}" class="d-inline formulario" method="POST">
+<form action=""  class="d-inline formulario">
     @csrf
     @method("delete")
     <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn eliminar" title="Eliminar este Pais">
         <i class="fa fa-fw fa-trash text-danger"></i>   
     </button>
 </form>     
-
-<a href="{{route('paises.destroy', $id)}}" class="btn-accion-tabla tooltipsC mr-2" title="Ver este pais">
-    <i class="fa fa-fw fa-trash text-danger"></i> 
-</a>
-

@@ -96,6 +96,11 @@ class PaisController extends Controller
     {
         $pais = Pais::findOrFail($id);
         $pais->delete();
-        return redirect()->back()->with('mensaje','Registro creado satisfactoriamente');
+        return redirect()->back()->with('mensaje','Registro eliminado Correctamente');
+    }
+    public function eliminarPais($id) {
+        $pais = Pais::findOrFail($id);
+        $pais->delete();
+        return response()->json(['message' => 'Registro Eliminado','status'=>200]); 
     }
 }

@@ -8,26 +8,24 @@
 @section('title', 'Editar')
 
 @section('content_header')
-   
+
 @stop
 
 @section('content')
- {{-- dd($pais) --}}
     <div class="card">
         <div class="card-header bg-secondary">
-             <span class="text-center">FORMULARIO EDITAR PAIS </span>
+            <span class="text-center">FORMULARIO EDITAR PAIS </span>
         </div>
         
         <div class="card-body">
             <form action="{{route('paises.update',$pais->id)}}" method="POST">
-            {{ @method_field('PUT') }}
-            @csrf
+                {{ @method_field('PUT') }}
+                @csrf
                 @include('pais.form')
                 @include('include.botones')
             </form>
         </div>
     </div>
-    {{-- {{dd($pais->id)}} --}}
 @stop
 
 @section('js')
@@ -36,7 +34,7 @@
     
     <script>
         $(document).ready(function() {
-          
+            
         } );
     </script>
 @stop

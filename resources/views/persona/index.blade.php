@@ -7,14 +7,20 @@
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
 @stop
 
-@section('title', 'Dashboard')
+@section('title', 'Personas')
 
 @section('content_header')
     <h1 class="text-center text-primary">Buscar Cliente</h1>
 @stop
 
 @section('content')
-  
+    @isset($persona)
+        {{$persona->nombre}}
+        {{$persona->id}}
+        {{$persona->apellidop}}
+        {{$persona->apellidom}}
+    @endisset
+
     <table id="personas" class="table table-bordered table-hover table-striped">
         <thead>
             <tr>
@@ -27,9 +33,7 @@
                 <th>ACCIONES</th>
             </tr>
         </thead>
-          
     </table>
-   
 @stop
 
 @section('js')

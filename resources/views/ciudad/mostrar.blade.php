@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Pais: {{$pais->nombrepais}}</h1>
+    <h1>Ciudad: {{$ciudad->ciudad}}</h1>
 @stop
 
 @section('content')
@@ -23,7 +23,11 @@
                 <tbody>
                     <tr>
                         <td>Id</td>
-                        <td>{{$pais->id}}</td>
+                        <td>{{$ciudad->id}}</td>
+                    </tr>
+                    <tr>
+                        <td>Ciudad</td>
+                        <td>{{$ciudad->ciudad}}</td>
                     </tr>
                     <tr>
                         <td>Pais</td>
@@ -31,11 +35,11 @@
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>{{$pais->created_at}}</td>
+                        <td>{{$ciudad->created_at}}</td>
                     </tr>
                     <tr>
                         <td>Actualizado</td>
-                        <td>{{$pais->updated_at}}</td>
+                        <td>{{$ciudad->updated_at}}</td>
                     </tr>
                 </tbody>
             </table>

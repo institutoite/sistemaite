@@ -49,3 +49,7 @@ Route::get('zonas',function(){
             ->rawColumns(['btn'])
             ->toJson();
 });
+
+//Route::get('pais/{id}/ciudades','CiudadController@city_of_country');
+Route::get('pais/{id}/ciudades','CiudadController@city_of_country');
+Route::get('ciudad/{id}/zonas','ZonaController@zona_of_city');

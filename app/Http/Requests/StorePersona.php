@@ -30,26 +30,21 @@ class StorePersona extends FormRequest
 
             'fechanacimiento'=>'required',
             'direccion'=>'required|max:120',
-            'carnet'=>'required|max:120',
+            'carnet'=>'required|max:10',
 
-            'genero'=>'required|max:120',
-            'observacion'=>'required|max:8',
-            'expedido'=>'required|max:1',
-
+            'expedido'=>'required|max:10',
             'genero'=>'required|max:6',
-            'foto'=>'required|max:120',
             'observacion'=>'required|max:250|min:10',
 
             'foto'=>'nullable|max:120',
             'como'=>'required|max:30',
-            'persona_id'=>'nullable|numeric',
+            'persona_id'=>'nullable|integer',
 
-            'persona_id'=>'nullable|numeric',
-            'pais_id'=>'required|numeric',
-            'ciudad_id'=>'required|numeric',
-            'zona_id'=>'required|numeric',
+            'pais_id'=>'required|integer|not_in:0',
+            'ciudad_id'=>'required|integer|not_in:0',
+            'zona_id'=>'required|integer|not_in:0',
+
             
-
         ];
     }   
     /**
@@ -57,7 +52,7 @@ class StorePersona extends FormRequest
  *
  * @return array
  */
-public function messages()
+/*public function messages()
 {
     return [
         'nombre.required' => 'El campo Nombre es requerido',
@@ -69,5 +64,5 @@ public function messages()
         'observacion.required' => 'El campo Observácion es requerido',
         'como.required' => 'El campo ComoSeEnteró es requerido',
     ];
-}
+}*/
 }

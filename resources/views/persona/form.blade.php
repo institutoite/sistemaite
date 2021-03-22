@@ -3,7 +3,7 @@
 <div class="row"> 
     <div class="input-group mb-2" >
         <label class="col-3 form-control bg-primary" for="">Nombres</label> 
-        <input  type="text" name="nombre" class="form-control col-9 @error('nombre') is-invalid @enderror" value="{{old('nombre',$persona_a_editar->nombre ?? '')}}" placeholder="Ingrese un  nombre">
+        <input  type="text" name="nombre" class="form-control col-9 @error('nombre') is-invalid @enderror" value="{{old('nombre',$persona->nombre ?? '')}}" placeholder="Ingrese un  nombre">
     </div>
 </div>
 <div class="row">
@@ -20,7 +20,7 @@
 <div class="row"> 
     <div class="input-group mb-2" >
         <label class="col-3 form-control bg-primary " for="">ApellidoP</label> 
-        <input  type="text" name="apellidop" class="form-control @error('apellidop') is-invalid @enderror" value="{{old('apellidop',$persona_a_editar->apellidop ?? '')}}" placeholder="Ingrese  apellido Paterno(Obligatorio)">
+        <input  type="text" name="apellidop" class="form-control @error('apellidop') is-invalid @enderror" value="{{old('apellidop',$persona->apellidop ?? '')}}" placeholder="Ingrese  apellido Paterno(Obligatorio)">
     </div>
 </div>
 <div class="row">
@@ -38,7 +38,7 @@
 <div class="row"> 
     <div class="input-group mb-2" >
         <label class="col-3 form-control bg-primary" for="">ApellidoM</label> 
-        <input  type="text" name="apellidom" class="form-control @error('apellidom') is-invalid @enderror" value="{{old('apellidom',$persona_a_editar->apellidom ?? '')}}" placeholder="Ingrese su apellido Materno(Opcional)">
+        <input  type="text" name="apellidom" class="form-control @error('apellidom') is-invalid @enderror" value="{{old('apellidom',$persona->apellidom ?? '')}}" placeholder="Ingrese su apellido Materno(Opcional)">
     </div>
 </div>
 <div class="row">
@@ -53,15 +53,15 @@
 {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO  FECHA NACIMIENTO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 
 <div class="row">
-    @isset($persona_a_editar)
+    @isset($persona)
         <div class="input-group mb-2" >
             <label class="col-3 form-control bg-primary" for="">Fecha N.</label> 
-            <input  type="date" name="fechanacimiento" min="1900-01-01" class="form-control col-9 @error('fechanacimiento') is-invalid @enderror" value="{{old('fechanacimiento',$persona_a_editar->fechanacimiento->format('Y-m-d') ?? '')}}">
+            <input  type="date" name="fechanacimiento" class="form-control col-9 @error('fechanacimiento') is-invalid @enderror" value="{{old('fechanacimiento',$persona->fechanacimiento->format('Y-m-d') ?? '')}}">
         </div>
     @else
         <div class="input-group mb-2" >
             <label class="col-3 form-control bg-primary" for="">Fecha N.</label> 
-            <input  type="date" name="fechanacimiento" min="1900-01-01" class="form-control col-9 @error('fechanacimiento') is-invalid @enderror" value="{{old('fechanacimiento' ?? '')}}">
+            <input  type="date" name="fechanacimiento" class="form-control col-9 @error('fechanacimiento') is-invalid @enderror" value="{{old('fechanacimiento' ?? '')}}">
         </div>
     @endisset
 </div>
@@ -79,7 +79,7 @@
 <div class="row"> 
     <div class="input-group mb-2" >
         <label class="col-3 form-control bg-primary" for="">Dirección</label> 
-        <input  type="text" name="direccion" class="form-control col-9 @error('direccion') is-invalid @enderror" value="{{old('direccion',$persona_a_editar->direccion ?? '')}}" placeholder="Ingrese una dirección">
+        <input  type="text" name="direccion" class="form-control col-9 @error('direccion') is-invalid @enderror" value="{{old('direccion',$persona->direccion ?? '')}}" placeholder="Ingrese una dirección">
     </div>
 </div>
 
@@ -92,40 +92,100 @@
     </div>
 </div>
 
-{{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO PAIS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+{{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO  CARNET  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+
 <div class="row"> 
     <div class="input-group mb-2" >
-        <label class="col-3 form-control bg-primary" for="">Pais</label> 
-        <select class="form-control @error('pais') is-invalid @enderror"  name="pais" id="pais">
-            <option value=""> Elija un pais</option>
-                
-        </select>
+        <label class="col-3 form-control bg-primary" for="">CARNET</label> 
+        <input  type="text" name="carnet" class="form-control col-9 @error('carnet') is-invalid @enderror" value="{{old('carnet',$persona->carnet ?? '')}}" placeholder="Ingrese un numero de carnet">
     </div>
 </div>
+
 <div class="row">
     <div class="col-3"></div>
     <div class="col-9">
-        @if($errors->has('pais'))
-            <p class="text-danger"> {{ $errors->first('pais')}}</p>
+        @if($errors->has('carnet'))
+            <p class="text-danger"> {{ $errors->first('carnet')}}</p>
         @endif
     </div>
 </div>
 
-{{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO CIUDAD  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 <div class="row"> 
     <div class="input-group mb-2" >
-        <label class="col-3 form-control bg-primary" for="">ciudad?</label> 
-        <select class="form-control @error('ciudad') is-invalid @enderror"  name="ciudad" id="ciudad">
-            <option value=""> Elija una ciudad</option>
-                
+        <label class="col-3 form-control bg-primary" for="">EXPEDIDO</label> 
+        <select class="form-control @error('expedido') is-invalid @enderror"  name="expedido" id="expedido">
+            <option value=""> Elija Expedido</option>
+                <option value="SCZ" @if(old('expedido') == 'SCZ') {{'selected'}} @endif>Santa Cruz</option>
+                <option value="LPZ" @if(old('expedido') == 'LPZ') {{'selected'}} @endif>La Paz</option>
+                <option value="CBBA" @if(old('expedido') == 'CBBA') {{'selected'}} @endif>Cochabamba</option>
+
+                <option value="BEN" @if(old('expedido') == 'BEN') {{'selected'}} @endif>Beni</option>
+                <option value="TAR" @if(old('expedido') == 'TAR') {{'selected'}} @endif>Tarija</option>
+                <option value="PND" @if(old('expedido') == 'PND') {{'selected'}} @endif>Pando</option>
+
+                <option value="ORU" @if(old('expedido') == 'ORU') {{'selected'}} @endif>Oruro</option>
+                <option value="POT" @if(old('expedido') == 'POT') {{'selected'}} @endif>Potosí</option>
+                <option value="CHU" @if(old('expedido') == 'CHU') {{'selected'}} @endif>Chuquisaca</option>
         </select>
     </div>
 </div>
 <div class="row">
     <div class="col-3"></div>
     <div class="col-9">
-        @if($errors->has('ciudad'))
-            <p class="text-danger"> {{ $errors->first('ciudad')}}</p>
+        @if($errors->has('expedido'))
+            <p class="text-danger"> {{ $errors->first('expedido')}}</p>
+        @endif
+    </div>
+</div>
+
+
+{{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO PAIS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+<div class="row"> 
+    <div class="input-group mb-2" >
+        <label class="col-3 form-control bg-primary" for="">PAIS</label> 
+        <select class="form-control" data-old="{{ old('pais_id') }}" name="pais_id" id="country">
+            <option value="1" selected> Bolivia</option>
+            @foreach ($paises as $pais)
+                @isset($persona)     
+                    <option  value="{{$pais->id}}" {{$pais->id==$zona->pais_id ? 'selected':''}}>{{$pais->nombrepais}}</option>     
+                @else
+                    <option value="{{ $pais->id }}" {{ old('pais') == $pais->id ? 'selected':'' }} >{{ $pais->nombrepais }}</option>
+                @endisset 
+            @endforeach
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-9">
+        @if($errors->has('pais_id'))
+            <p class="text-danger"> {{ $errors->first('pais_id')}}</p>
+        @endif
+    </div>
+</div>
+
+
+{{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO CIUDAD  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+<div class="row"> 
+    <div class="input-group mb-2" >
+        <label class="col-3 form-control bg-primary" for="">CIUDAD</label> 
+        <select class="form-control" name="ciudad_id" id="city">
+            <option value=""> Elija una ciudad</option>
+            {{-- @foreach ($ciudades as $item)
+                @isset($zona)     
+                    <option value="{{ $item->id }}" {{ $item->id==$zona->ciudad_id ? 'selected':''}} >{{ $item->ciudad }}</option>
+                @else
+                    <option value="{{ $item->id }}" {{ old('ciudad_id') == $item->id ? 'selected':'' }} >{{ $item->ciudad }}</option>
+                @endisset 
+            @endforeach --}}
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-9">
+        @if($errors->has('ciudad_id'))
+            <p class="text-danger"> {{ $errors->first('ciudad_id')}}</p>
         @endif
     </div>
 </div>
@@ -133,22 +193,27 @@
 {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO ZONA  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 <div class="row"> 
     <div class="input-group mb-2" >
-        <label class="col-3 form-control bg-primary" for="">Zona?</label> 
-        <select class="form-control @error('zona') is-invalid @enderror"  name="zona" id="zona">
-            <option value=""> Elija una zona</option>
-                
+        <label class="col-3 form-control bg-primary" for="">ZONA</label> 
+        <select class="form-control" name="zona_id" id="zona">
+            <option value="" > Seleccione una Zona</option>
+            @foreach ($zonas as $zona)
+                @isset($persona)     
+                    <option  value="{{$zona->id}}" {{$zona->id==$zona->ciudad_id ? 'selected':''}}>{{$zona->zona}}</option>     
+                @else
+                    <option value="{{ $zona->id }}" {{ old('zona_id') == $zona->id ? 'selected':'' }} >{{ $zona->zona }}</option>
+                @endisset 
+            @endforeach
         </select>
     </div>
 </div>
 <div class="row">
     <div class="col-3"></div>
     <div class="col-9">
-        @if($errors->has('zona'))
-            <p class="text-danger"> {{ $errors->first('zona')}}</p>
+        @if($errors->has('zona_id'))
+            <p class="text-danger"> {{ $errors->first('zona_id')}}</p>
         @endif
     </div>
 </div>
-
 {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO GENERO  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 
 <div class="row"> 
@@ -157,18 +222,18 @@
         <select class="form-control" name="genero" id="genero">
             <option value=""> Elija tu género</option>
         
-            @isset($persona_a_editar)      
-                @if($persona_a_editar->genero=="MUJER")
-                    <option value="{{ $persona_a_editar->genero }}" {{ "MUJER"==$persona_a_editar->genero ? 'selected':''}} >{{ $persona_a_editar->genero }}</option>
+            @isset($persona)      
+                @if($persona->genero=="MUJER")
+                    <option value="{{ $persona->genero }}" {{ "MUJER"==$persona->genero ? 'selected':''}} >{{ $persona->genero }}</option>
                     <option value="HOMBRE">HOMBRE</option>
                 @else
-                    <option value="{{ $persona_a_editar->genero }}" {{ "HOMBRE"==$persona_a_editar->genero ? 'selected':''}} >{{ $persona_a_editar->genero }}</option>
+                    <option value="{{ $persona->genero }}" {{ "HOMBRE"==$persona->genero ? 'selected':''}} >{{ $persona->genero }}</option>
                     <option value="MUJER" >MUJER</option>
                 @endif
                 
             @else
-                <option value="MUJER" >MUJER</option>
-                <option value="HOMBRE" >HOMBRE</option>
+                <option value="MUJER" @if(old('genero') == 'MUJER') {{'selected'}} @endif>MUJER</option>
+                <option value="HOMBRE" @if(old('genero') == 'HOMBRE') {{'selected'}} @endif>HOMBRE</option>
             @endisset    
         </select>
     </div>
@@ -187,7 +252,7 @@
 <div class="row"> 
     <div class="input-group mb-2" >
         <label class="col-3 form-control bg-primary" for="">Observación</label> 
-        <textarea  placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" rows="2" class="form-control" value="{{old('obsrvacion',$persona_a_editar->observacion ?? '')}}"></textarea>
+        <textarea  placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" rows="2" class="form-control" value="{{old('observacion',$persona->observacion ?? '')}}">{{old('observacion')}}</textarea>
             
     </div>
 </div>
@@ -209,11 +274,12 @@
         <label class="col-3 form-control bg-primary" for="">Como inf?</label> 
         <select class="form-control @error('como') is-invalid @enderror"  name="como" id="como">
             <option value=""> Elija una manera</option>
-                <option value="PASANDO">Pasando por el lugar</option>
-                <option value="REFERENCIA" >Por referencia</option>
-                <option value="FACEBOOK">Facebook</option>    
-                <option value="GOOGLE" >Google</option>
-                <option value="OTRO" >Otra Forma</option>
+                <option value="PASANDO" @if(old('como') == 'PASANDO') {{'selected'}} @endif>Pasando por el lugar</option>
+                <option value="REFERENCIA" @if(old('como') == 'REFERENCIA') {{'selected'}} @endif>Por referencia</option>
+                <option value="FACEBOOK" @if(old('como') == 'FACEBOOK') {{'selected'}} @endif>Facebook</option>    
+                <option value="GOOGLE" @if(old('como') == 'GOOGLE') {{'selected'}} @endif>Google</option>
+                <option value="YOUTUBE" @if(old('como') == 'YOUTUBE') {{'selected'}} @endif>Google</option>
+                <option value="OTRO" @if(old('como') == 'OTRO') {{'selected'}} @endif>Otra Forma</option>
         </select>
     </div>
 </div>
@@ -225,7 +291,6 @@
         @endif
     </div>
 </div>
-
 
 
     

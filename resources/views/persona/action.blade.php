@@ -8,10 +8,14 @@
     <i class="fa fa-fw fa-eye text-primary"></i>
 </a>
 
-<form action="{{route('personas.destroy', $id)}}" id="form{{$id}}" class="d-inline formulario eliminar" method="POST">
+<form action=""  class="d-inline formulario eliminar">
     @csrf
     @method("delete")
-    <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn eliminar" title="Eliminar esta empresa">
+    <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn eliminar" title="Eliminar esta ciudad">
         <i class="fa fa-fw fa-trash text-danger"></i>   
     </button>
 </form> 
+
+<a href="{{route('personas.opciones', $id)}}" class="btn btn-outline-primary tooltipsC mr-2" title="ir a opciones de la persona">
+    Opciones
+</a>

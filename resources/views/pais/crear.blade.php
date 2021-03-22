@@ -10,13 +10,20 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-   
+    <div class="d-flex">
+        <h1>CREAR PAIS</h1>
+        <a href="{{route('paises.index')}}" class="ml-auto">
+            <button class="btn btn-primary">
+            Listar Paises
+        </button>
+        </a>
+    </div>
 @stop
 
 @section('content')
     <div class="card">
-        <div class="card-header bg-secondary">
-             <span class="text-center">FORMULARIO CREAR PAIS</span>
+        <div class="card-header bg-primary">
+            <span class="text-center">FORMULARIO CREAR PAIS</span>
         </div>
         <div class="card-body">
             <form action="{{route('paises.store')}}" method="post">
@@ -36,7 +43,7 @@
     
     <script>
         $(document).ready(function() {
-          swal("Hello world!");
+            
         } );
     </script>
 @stop

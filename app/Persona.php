@@ -18,7 +18,11 @@ class Persona extends Model
             'genero',
             'observacion',
             'foto',
+            'como',
             'persona_id',
+            'pais_id',
+            'ciudad_id',
+            'zona_id',
             'idantiguo'
     ];
 }

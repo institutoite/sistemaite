@@ -25,7 +25,6 @@ class PaisStoreRequest extends FormRequest
     {
         return [
             'nombrepais'=>'required|max:40|unique:pais,nombrepais',
-             
         ];
     }
 

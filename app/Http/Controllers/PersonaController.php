@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Persona;
+use App\Pais;
+use App\Ciudad;
+use App\Zona;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePersona;
 
@@ -27,7 +30,10 @@ class PersonaController extends Controller
      */
     public function create()
     {
-        return view('persona.crear');
+        $ciudades=Ciudad::get();
+        $paises=Pais::get();
+        $zonas=Zona::get();
+        return view('persona.crear',compact('ciudades','paises','zonas'));
     }
 
     /**
@@ -38,7 +44,30 @@ class PersonaController extends Controller
      */
     public function store(StorePersona $request)
     {
-        dd($request->all());
+        $persona=new Persona();
+        $persona->nombre = $request->nombre;
+        $persona->apellidop = $request->apellidop;
+        $persona->apellidom = $request->apellidom;
+
+        $persona->fechanacimiento = $request->fechanacimiento;
+        $persona->direccion = $request->direccion;
+        $persona->carnet = $request->carnet;
+
+        $persona->expedido = $request->expedido;
+        $persona->genero = $request->genero;
+        $persona->observacion = $request->observacion;
+
+        $persona->foto = $request->foto;
+        $persona->como = $request->como;
+        $persona->persona_id = $request->persona_id;
+
+        $persona->pais_id = $request->pais_id;
+        $persona->ciudad_id = $request->ciudad_id;
+        $persona->zona_id = $request->zona_id;
+
+        $persona->save();
+
+        return view('persona.index',compact('persona'));
     }
 
     /**

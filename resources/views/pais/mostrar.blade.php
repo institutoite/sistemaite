@@ -3,14 +3,19 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Pais: {{$pais->nombrepais}}</h1>
+    
+    <div class="d-flex">
+        <h1>Pais: {{$pais->nombrepais}}</h1>
+        <a href="{{route('paises.index')}}" class="ml-auto">
+            <button class="btn btn-primary">
+            Listar Paises
+        </button>
+        </a>
+        
+    </div>
 @stop
 
 @section('content')
-    @isset($Mensaje)
-        <p>{{$Mensaje}}</p>    
-    @endisset
-    
     <div class="card">
         <div class="card-body">
             <table class="table table-bordered table-striped"> 
@@ -46,10 +51,13 @@
 @stop
 
 @section('css')
-   
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script>
+        $(document).ready(function() {
+            
+        } );
+    </script>
 @stop

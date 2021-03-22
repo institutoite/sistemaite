@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PaisUpdateRequest extends FormRequest
+class ZonaUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,9 @@ class PaisUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombrepais'=>'required|max:40|unique:pais,nombrepais,'.$this->id,
+            'zona'=>'required|max:100|unique:zonas,zona',
+            'ciudad_id'=>'required|integer|not_in:0',
+            'pais_id'=>'required|integer|not_in:0',
         ];
     }
 }
