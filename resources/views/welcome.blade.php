@@ -68,12 +68,12 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Inicio</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">Entrar</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">Registrarse</a>
                         @endif
                     @endauth
                 </div>
@@ -90,7 +90,7 @@
                 </div>
             </div>
         </div>
-         <script src="{{asset('js/app.js')}}"></script>
-         @include('sweet::alert')
+<script src="{{asset('js/app.js')}}"></script>
+@include('sweet::alert')
     </body>
 </html>

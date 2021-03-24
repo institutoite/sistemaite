@@ -38,8 +38,9 @@ Route::get('personas/opciones/{id}', function ($id) {
 Route::resource('paises', "PaisController");
 Route::resource('ciudades', "CiudadController");
 Route::resource('zonas', "ZonaController");
+Route::resource('usuarios', "UserController");
+
 Route::delete('eliminar/pais/{id}','PaisController@eliminarPais')->name('eliminar.pais');
 Route::delete('eliminar/ciudad/{id}','CiudadController@eliminarCiudad')->name('eliminar.ciudad');
 Route::delete('eliminar/zona/{id}','ZonaController@eliminarZona')->name('eliminar.zona');
-
-//Route::get('zona/{id}','CiudadController@getZonas');
+Route::delete('eliminar/usuario/{id}','UserController@eliminarUsuario')->name('eliminar.usuario');

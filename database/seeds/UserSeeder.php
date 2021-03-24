@@ -12,12 +12,12 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-       //factory(User::class, 1)->create(); 
+        factory(User::class, 50)->create(); 
         DB::table('users')->insert([
             'name' => "david",
             'email' => 'david@ite.com.bo',
             'email_verified_at' => now(),
-            'password' => Crypt::encrypt('123'), // password
+            'password' => '123456789', // password
             'remember_token' => Str::random(10),
         ]);
 

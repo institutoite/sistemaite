@@ -6,6 +6,7 @@ use App\Persona;
 use App\Pais;
 use App\Ciudad;
 use App\Zona;
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,7 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('personas',function(){
-   return datatables()->of(Persona::all())
+    return datatables()->of(Persona::all())
             ->addColumn('btn','persona.action')
             ->rawColumns(['btn','foto'])
             ->toJson();
@@ -50,6 +51,14 @@ Route::get('zonas',function(){
             ->toJson();
 });
 
-//Route::get('pais/{id}/ciudades','CiudadController@city_of_country');
+Route::get('usuarios',function(){
+    return datatables()->of(User::select('id','name','email','foto')->get())
+            ->addColumn('btn','user.action')
+            ->rawColumns(['btn'])
+            ->toJson();
+});
+
+
+
 Route::get('pais/{id}/ciudades','CiudadController@city_of_country');
 Route::get('ciudad/{id}/zonas','ZonaController@zona_of_city');
