@@ -40,6 +40,8 @@ Route::resource('ciudades', "CiudadController");
 Route::resource('zonas', "ZonaController");
 Route::resource('usuarios', "UserController");
 
+Route::get('opciones/{id}','OpcionController@index')->name('opcion.index');
+
 Route::delete('eliminar/pais/{id}','PaisController@eliminarPais')->name('eliminar.pais');
 Route::delete('eliminar/ciudad/{id}','CiudadController@eliminarCiudad')->name('eliminar.ciudad');
 Route::delete('eliminar/zona/{id}','ZonaController@eliminarZona')->name('eliminar.zona');

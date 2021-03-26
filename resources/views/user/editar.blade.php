@@ -11,6 +11,8 @@
 
 @stop
 
+{{ dd($user) }}
+
 @section('content')
     <div class="card">
         <div class="card-header bg-secondary">

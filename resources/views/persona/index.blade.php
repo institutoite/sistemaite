@@ -22,7 +22,7 @@
     @endisset
 
     <table id="personas" class="table table-bordered table-hover table-striped">
-        <thead>
+        <thead class="bg-primary">
             <tr>
                 <th>ID</th>
                 <th>OLD</th>

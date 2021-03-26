@@ -24,10 +24,12 @@ class UserStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|max:64|unique:name,users,'.$this->id, 
-            'email'=>'required|max:64|unique:email,users', 
-            'password'=>'required|max:64',
-            'foto'=>'nullable|max:64', 
+            
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'foto'=>['required', 'array', 'max:120'] 
+
         ];
     }
 }

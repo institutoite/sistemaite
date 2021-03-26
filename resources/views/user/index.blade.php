@@ -49,8 +49,21 @@
                     "columns": [
                         {data: 'id'},
                         {data:'name'},
-                        {data:'email'},
-                        {data:'foto'},
+                        {
+                            data:'email',
+                        },
+                        {
+                            "name": "foto",
+                            "data": "foto",
+                            "render": function (data, type, full, meta) {
+                                console.log(data.foto);
+                                return "<img src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
+                                
+                            },
+                            "title": "Imxxge",
+                            "orderable": true,
+            
+                        },
                         {data: 'btn'},
                     ],
                     "language":{

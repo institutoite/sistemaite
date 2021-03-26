@@ -54,7 +54,7 @@ Route::get('zonas',function(){
 Route::get('usuarios',function(){
     return datatables()->of(User::select('id','name','email','foto')->get())
             ->addColumn('btn','user.action')
-            ->rawColumns(['btn'])
+            ->rawColumns(['btn','foto'])
             ->toJson();
 });
 

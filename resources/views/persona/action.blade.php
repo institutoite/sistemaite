@@ -16,6 +16,6 @@
     </button>
 </form> 
 
-<a href="{{route('personas.opciones', $id)}}" class="btn btn-outline-primary tooltipsC mr-2" title="ir a opciones de la persona">
+<a href="{{route('opcion.index', $id)}}" class="btn btn-outline-primary tooltipsC mr-2" title="ir a opciones de la persona">
     Opciones
 </a>

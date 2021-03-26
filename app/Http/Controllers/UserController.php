@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
@@ -38,8 +39,15 @@ class UserController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        User::create($request->all());
-        return redirect()->back()->with('mensaje','Registro creado satisfactoriamente');
+        $user= new User();
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->password= Hash::make($request->password);
+
+        //dd($request->foto[0]);
+        $user->foto=$request->foto[0]->store('usuarios','public');
+        $user->save();
+        //return redirect()->back()->with('mensaje','Registro creado satisfactoriamente');
     }
 
     /**
