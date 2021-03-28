@@ -69,9 +69,9 @@ return [
     'usermenu_enabled' => true,
     'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
-    'usermenu_image' => false,
-    'usermenu_desc' => false,
-    'usermenu_profile_url' => false,
+    'usermenu_image' => true,
+    'usermenu_desc' => true,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -87,8 +87,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => false,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
 
     /*
@@ -103,11 +103,11 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-primary bg-primary',
-    'classes_auth_header' => '',
-    'classes_auth_body' => 'bg-primary',
+    'classes_auth_card' => '',
+    'classes_auth_header' => 'bg-gradient-primary',
+    'classes_auth_body' => '',
     'classes_auth_footer' => '',
-    'classes_auth_icon' => '',
+    'classes_auth_icon' => 'fa-lg text-primary',
     'classes_auth_btn' => 'btn-flat btn-primary',
 
     /*
@@ -123,14 +123,14 @@ return [
     */
 
     'classes_body' => '',
-    'classes_brand' => '',
-    'classes_brand_text' => '',
+    'classes_brand' => 'bg-white',
+    'classes_brand_text' => 'text-danger',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_topnav' => 'navbar-dark navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -149,8 +149,8 @@ return [
     'sidebar_mini' => true,
     'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
-    'sidebar_collapse_remember' => false,
-    'sidebar_collapse_remember_no_transition' => true,
+    'sidebar_collapse_remember' => true,
+    'sidebar_collapse_remember_no_transition' => false,
     'sidebar_scrollbar_theme' => 'os-theme-light',
     'sidebar_scrollbar_auto_hide' => 'l',
     'sidebar_nav_accordion' => true,
@@ -227,10 +227,45 @@ return [
 
     'menu' => [
         [
-            'text' => 'Busdscar',
+            'text' => 'Buscar',
             'search' => true,
             'topnav' => true,
             'url'  => 'busqueda',
+            
+        ],
+        [
+            'text'=>"link1",
+            'topnav'=>true,
+            'url'=>'#',
+            'icon'=> 'fas fa-fw fa-home',
+            'icon_color'=>'primary',
+            
+        ],
+
+        [
+            'text'=>"link1",
+            'topnav_right'=>true,
+            'url'=>'#',
+            'icon'=> 'fas fa-fw fa-home',
+            'icon_color'=>'primary',
+            
+        ],
+
+
+        [
+            'text'=>"link1",
+            'topnav_user'=>true,
+            'url'=>'#',
+            'icon'=> 'fas fa-fw fa-home',
+            'icon_color'=>'primary',
+            
+        ],
+        [
+            'text'=>"link1",
+            'right_sidebar'=>true,
+            'url'=>'#',
+            'icon'=> 'fas fa-fw fa-home',
+            'icon_color'=>'primary',
             
         ],
         [
@@ -239,11 +274,12 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
+            'text'        => 'Paginas',
             'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-fw fa-file',
             'label'       => $cantidad,
             'label_color' => 'success',
+            'icon_color' => 'primary',
         ],
         ['header' => 'account_settings'],
         [
@@ -316,6 +352,7 @@ return [
         [
             'text'    => 'Pais',
             'icon'    => 'fas fa-fw fa-location',
+            'icon_color' => 'primary',
             'submenu' => [
                 [
                     'text' => 'Crear',
@@ -589,7 +626,7 @@ return [
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'Instituto ite',
 
     /*
     |--------------------------------------------------------------------------
@@ -604,10 +641,10 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
+    'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
-    'usermenu_image' => false,
-    'usermenu_desc' => false,
+    'usermenu_image' => true,
+    'usermenu_desc' => true,
     'usermenu_profile_url' => false,
 
     /*
