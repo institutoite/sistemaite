@@ -7,7 +7,11 @@ use App\Pais;
 use App\Ciudad;
 use App\Zona;
 use Illuminate\Http\Request;
-use App\Http\Requests\StorePersona;
+use App\Http\Requests\PersonaStoreRequest;
+use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 
 
@@ -42,7 +46,7 @@ class PersonaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePersona $request)
+    public function store(PersonaStoreRequest $request)
     {
         $persona=new Persona();
         $persona->nombre = $request->nombre;
@@ -57,13 +61,37 @@ class PersonaController extends Controller
         $persona->genero = $request->genero;
         $persona->observacion = $request->observacion;
 
-        $persona->foto = $request->foto;
+        
+        /* Guardar una imagen en storage */
+        
+        if ($request->hasFile('foto')){
+            /*$nombreImagen = time() . '_' . $request->file('foto')->getClientOriginalName();
+            //$fotillo=$request->file('foto')->storeAs('estudiantes',$nombreImagen);
+            $fotillo = Storage::disk('local')->put($nombreImagen, 'estudiantes');
+            $persona->foto=$fotillo;*/
+            $foto=$request->file('foto');
+            $nombreImagen='estudiantes/'.Str::random(20).'.jpg';
+            $imagen= Image::make($foto)->encode('jpg',75);
+            $imagen->resize(300,300,function($constraint){
+                $constraint->upsize();
+            });
+            $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
+            
+            $persona->foto = $nombreImagen;
+        }
+        
+
+
+
+
         $persona->como = $request->como;
         $persona->persona_id = $request->persona_id;
 
         $persona->pais_id = $request->pais_id;
         $persona->ciudad_id = $request->ciudad_id;
         $persona->zona_id = $request->zona_id;
+
+        //dd($request->all());
 
         $persona->save();
 

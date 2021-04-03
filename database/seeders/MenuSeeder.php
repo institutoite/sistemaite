@@ -1,8 +1,10 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
-use App\Persona;
-class PersonaSeeder extends Seeder
+
+class MenuSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +13,6 @@ class PersonaSeeder extends Seeder
      */
     public function run()
     {
-        factory(Persona::class, 50)->create();
+        //
     }
 }

@@ -1,24 +1,42 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
+
 
 use App\Persona;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Generator as Faker;
 
-$factory->define(Persona::class, function (Faker $faker) {
-    return [
-        'nombre'=> $faker->name,
-        'apellidop'=> $faker->lastName,
-        'apellidom'=> $faker->lastName,
-        'fechanacimiento'=> $faker->date($format = 'Y-m-d', $max = 'now'),
-        'direccion'=> $faker->address,
-        'carnet'=> $faker->postcode,
-        'expedido'=>$faker->numberBetween($min = 55555555, $max = 99999999),
-        'genero'=>"M",
-        'observacion'=> $faker->text,
-        'como'=> "facebook",
-        'foto'=> "foto.jpg",
-        
-        'idantiguo'=> $faker->numberBetween($min = 1, $max = 6000)
-    ];
-});
+
+class PersonaFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Persona::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'nombre' => $this->faker->name,
+            'apellidop' => $this->faker->lastName,
+            'apellidom' => $this->faker->lastName,
+            'fechanacimiento' => '2010-05-10',
+            'direccion' => $this->faker->address,
+            'carnet' => $this->faker->postcode,
+            'expedido' => $this->faker->numberBetween($min = 55555555, $max = 99999999),
+            'genero' => "M",
+            'observacion' => $this->faker->text,
+            'como' => "facebook",
+            'foto' => "estudiantes/foto.jpg",
+            'idantiguo' => 1
+        ];
+    }
+}

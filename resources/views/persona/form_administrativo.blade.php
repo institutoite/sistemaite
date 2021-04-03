@@ -74,71 +74,6 @@
     </div>
 </div>
 
-{{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO DIRECCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-
-<div class="row"> 
-    <div class="input-group mb-2" >
-        <label class="col-3 form-control bg-primary" for="">Dirección</label> 
-        <input  type="text" name="direccion" class="form-control col-9 @error('direccion') is-invalid @enderror" value="{{old('direccion',$persona->direccion ?? '')}}" placeholder="Ingrese una dirección">
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-3"></div>
-    <div class="col-9">
-        @if($errors->has('direccion'))
-            <p class="text-danger"> {{ $errors->first('direccion')}}</p>
-        @endif
-    </div>
-</div>
-
-{{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO  CARNET  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-
-<div class="row"> 
-    <div class="input-group mb-2" >
-        <label class="col-3 form-control bg-primary" for="">CARNET</label> 
-        <input  type="text" name="carnet" class="form-control col-9 @error('carnet') is-invalid @enderror" value="{{old('carnet',$persona->carnet ?? '')}}" placeholder="Ingrese un numero de carnet">
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-3"></div>
-    <div class="col-9">
-        @if($errors->has('carnet'))
-            <p class="text-danger"> {{ $errors->first('carnet')}}</p>
-        @endif
-    </div>
-</div>
-
-<div class="row"> 
-    <div class="input-group mb-2" >
-        <label class="col-3 form-control bg-primary" for="">EXPEDIDO</label> 
-        <select class="form-control @error('expedido') is-invalid @enderror"  name="expedido" id="expedido">
-            <option value=""> Elija Expedido</option>
-                <option value="SCZ" @if(old('expedido') == 'SCZ') {{'selected'}} @endif>Santa Cruz</option>
-                <option value="LPZ" @if(old('expedido') == 'LPZ') {{'selected'}} @endif>La Paz</option>
-                <option value="CBBA" @if(old('expedido') == 'CBBA') {{'selected'}} @endif>Cochabamba</option>
-
-                <option value="BEN" @if(old('expedido') == 'BEN') {{'selected'}} @endif>Beni</option>
-                <option value="TAR" @if(old('expedido') == 'TAR') {{'selected'}} @endif>Tarija</option>
-                <option value="PND" @if(old('expedido') == 'PND') {{'selected'}} @endif>Pando</option>
-
-                <option value="ORU" @if(old('expedido') == 'ORU') {{'selected'}} @endif>Oruro</option>
-                <option value="POT" @if(old('expedido') == 'POT') {{'selected'}} @endif>Potosí</option>
-                <option value="CHU" @if(old('expedido') == 'CHU') {{'selected'}} @endif>Chuquisaca</option>
-        </select>
-    </div>
-</div>
-<div class="row">
-    <div class="col-3"></div>
-    <div class="col-9">
-        @if($errors->has('expedido'))
-            <p class="text-danger"> {{ $errors->first('expedido')}}</p>
-        @endif
-    </div>
-</div>
-
-
 {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO PAIS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 <div class="row"> 
     <div class="input-group mb-2" >
@@ -214,6 +149,73 @@
         @endif
     </div>
 </div>
+
+{{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO DIRECCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+
+<div class="row"> 
+    <div class="input-group mb-2" >
+        <label class="col-3 form-control bg-primary" for="">Dirección</label> 
+        <input  type="text" name="direccion" class="form-control col-9 @error('direccion') is-invalid @enderror" value="{{old('direccion',$persona->direccion ?? '')}}" placeholder="Ingrese una dirección">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-9">
+        @if($errors->has('direccion'))
+            <p class="text-danger"> {{ $errors->first('direccion')}}</p>
+        @endif
+    </div>
+</div>
+
+{{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO  CARNET  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+
+<div class="row"> 
+    <div class="input-group mb-2" >
+        <label class="col-3 form-control bg-primary" for="">CARNET</label> 
+        <input  type="text" name="carnet" class="form-control col-9 @error('carnet') is-invalid @enderror" value="{{old('carnet',$persona->carnet ?? '')}}" placeholder="Ingrese un numero de carnet">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-9">
+        @if($errors->has('carnet'))
+            <p class="text-danger"> {{ $errors->first('carnet')}}</p>
+        @endif
+    </div>
+</div>
+
+<div class="row"> 
+    <div class="input-group mb-2" >
+        <label class="col-3 form-control bg-primary" for="">EXPEDIDO</label> 
+        <select class="form-control @error('expedido') is-invalid @enderror"  name="expedido" id="expedido">
+            <option value=""> Elija Expedido</option>
+                <option value="SCZ" @if(old('expedido') == 'SCZ') {{'selected'}} @endif>Santa Cruz</option>
+                <option value="LPZ" @if(old('expedido') == 'LPZ') {{'selected'}} @endif>La Paz</option>
+                <option value="CBBA" @if(old('expedido') == 'CBBA') {{'selected'}} @endif>Cochabamba</option>
+
+                <option value="BEN" @if(old('expedido') == 'BEN') {{'selected'}} @endif>Beni</option>
+                <option value="TAR" @if(old('expedido') == 'TAR') {{'selected'}} @endif>Tarija</option>
+                <option value="PND" @if(old('expedido') == 'PND') {{'selected'}} @endif>Pando</option>
+
+                <option value="ORU" @if(old('expedido') == 'ORU') {{'selected'}} @endif>Oruro</option>
+                <option value="POT" @if(old('expedido') == 'POT') {{'selected'}} @endif>Potosí</option>
+                <option value="CHU" @if(old('expedido') == 'CHU') {{'selected'}} @endif>Chuquisaca</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-9">
+        @if($errors->has('expedido'))
+            <p class="text-danger"> {{ $errors->first('expedido')}}</p>
+        @endif
+    </div>
+</div>
+
+
+
 {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO GENERO  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 
 <div class="row"> 
@@ -291,6 +293,40 @@
         @endif
     </div>
 </div>
+
+{{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO COMO SE ENTERO  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+
+<div class="row"> 
+    <div class="input-group mb-2" >
+        <label class="col-3 form-control bg-primary" for="">Como inf?</label> 
+        <select class="form-control @error('como') is-invalid @enderror"  name="como" id="como">
+            <option value=""> Elija una manera</option>
+                <option value="ESTUDIANTE" @if(old('como') == 'PASANDO') {{'selected'}} @endif>Pasando por el lugar</option>
+                <option value="DOCENTE" @if(old('como') == 'REFERENCIA') {{'selected'}} @endif>Por referencia</option>
+                <option value="ADMINISTRACION" @if(old('como') == 'FACEBOOK') {{'selected'}} @endif>Facebook</option>    
+                <option value="GOOGLE" @if(old('como') == 'GOOGLE') {{'selected'}} @endif>Google</option>
+                <option value="YOUTUBE" @if(old('como') == 'YOUTUBE') {{'selected'}} @endif>Google</option>
+                <option value="OTRO" @if(old('como') == 'OTRO') {{'selected'}} @endif>Otra Forma</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-9">
+        @if($errors->has('como'))
+            <p class="text-danger"> {{ $errors->first('como')}}</p>
+        @endif
+    </div>
+</div>
+{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO OCULTO CON QUE PAPEL LLEGA A ITE papel de profesor papel de practico etc ---}}
+<div class="row"> 
+    <div class="input-group mb-2" >
+        <select   name="papel" hidden>
+            <option value="administrativo"  selected >Administrativo</option>
+        </select>
+    </div>
+</div>
+
 
 
     

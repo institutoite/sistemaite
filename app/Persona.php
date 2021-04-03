@@ -2,10 +2,12 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Persona extends Model
 {
+    use HasFactory;
     protected $fillable=[
             'id',
             'nombre',
@@ -26,3 +28,7 @@ class Persona extends Model
             'idantiguo'
     ];
 }
+
+
+
+

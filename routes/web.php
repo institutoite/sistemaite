@@ -34,11 +34,16 @@ Route::get('personas/opciones/{id}', function ($id) {
     return view('persona.opciones');
 })->name('personas.opciones');
 
+Route::get('prueba', function () {
+    return view('persona.prueba');
+});
+
 
 Route::resource('paises', "PaisController");
 Route::resource('ciudades', "CiudadController");
 Route::resource('zonas', "ZonaController");
 Route::resource('usuarios', "UserController");
+Route::resource('menus', "MenuController");
 
 Route::get('opciones/{id}','OpcionController@index')->name('opcion.index');
 
@@ -46,3 +51,5 @@ Route::delete('eliminar/pais/{id}','PaisController@eliminarPais')->name('elimina
 Route::delete('eliminar/ciudad/{id}','CiudadController@eliminarCiudad')->name('eliminar.ciudad');
 Route::delete('eliminar/zona/{id}','ZonaController@eliminarZona')->name('eliminar.zona');
 Route::delete('eliminar/usuario/{id}','UserController@eliminarUsuario')->name('eliminar.usuario');
+Route::delete('eliminar/persona/{id}','PersonaController@eliminarPersona')->name('eliminar.persona');
+Route::delete('eliminar/menu/{id}','MenuController@eliminarMenu')->name('eliminar.menu');

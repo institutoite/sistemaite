@@ -1,8 +1,11 @@
 <?php
 
-use Illuminate\Database\Seeder;
+namespace Database\Seeders;
 
-class ZonaSeeder extends Seeder
+use Illuminate\Database\Seeder;
+use App\Persona;
+
+class PersonaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +14,6 @@ class ZonaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Persona::factory()->count(10)->create();
     }
 }

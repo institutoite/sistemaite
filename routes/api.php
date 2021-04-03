@@ -7,6 +7,7 @@ use App\Pais;
 use App\Ciudad;
 use App\Zona;
 use App\User;
+use App\Menu;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -57,6 +58,14 @@ Route::get('usuarios',function(){
             ->rawColumns(['btn','foto'])
             ->toJson();
 });
+
+Route::get('menus', function () {
+    return datatables()->of(Menu::get())
+        ->addColumn('btn', 'user.action')
+        ->rawColumns(['btn','icono'])
+        ->toJson();
+});
+
 
 
 
