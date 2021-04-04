@@ -33,7 +33,6 @@ class PersonaFactory extends Factory
             'carnet' => $this->faker->postcode,
             'expedido' => $this->faker->numberBetween($min = 55555555, $max = 99999999),
             'genero' => "M",
-            'observacion' => $this->faker->text,
             'como' => "facebook",
             'foto' => "estudiantes/foto.jpg",
             'idantiguo' => 1

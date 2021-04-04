@@ -15,7 +15,7 @@ class CreateCliserviciosTable extends Migration
     {
         Schema::create('cliservicios', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('requerimiento', 500)->nullable();
+            $table->string('requerimiento', 500);
             $table->timestamps();
         });
     }

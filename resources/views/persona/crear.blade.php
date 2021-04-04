@@ -16,9 +16,8 @@
         <div class="card-header p-2">
             <ul class="nav nav-pills">
                 <li class="nav-item"><a class="nav-link active" href="#estudiante" data-toggle="tab">Estudiante</a></li>
-                <li class="nav-item"><a class="nav-link" href="#practico" data-toggle="tab">Práctico</a></li>
-                <li class="nav-item"><a class="nav-link" href="#tecnico" data-toggle="tab">tecnico</a></li>
-                <li class="nav-item"><a class="nav-link" href="#fotocopia" data-toggle="tab">Fotocopoa/Impresion</a></li>
+                <li class="nav-item"><a class="nav-link" href="#tecnico" data-toggle="tab">S. Tecnico</a></li>
+                <li class="nav-item"><a class="nav-link" href="#fotocopia" data-toggle="tab">Fotocopia/Impresión</a></li>
                 <li class="nav-item"><a class="nav-link" href="#docente" data-toggle="tab">Docente</a></li>
                 <li class="nav-item"><a class="nav-link" href="#administrativo" data-toggle="tab">Administrativo</a></li>
                 <li class="nav-item"><a class="nav-link" href="#proveedor" data-toggle="tab">Proveedor</a></li>
@@ -30,12 +29,6 @@
                     <form action="{{route('personas.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
                         @csrf
                         @include('persona.form_estudiante')
-                        @include('include.botones')
-                    </form>
-                </div>
-                <div class="tab-pane" id="practico">.
-                    <form action="{{route('personas.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
-                        @include('persona.form_practico')
                         @include('include.botones')
                     </form>
                 </div>

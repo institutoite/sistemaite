@@ -106,13 +106,6 @@
             <label class="col-3 form-control bg-primary" for="">CIUDAD</label> 
             <select class="form-control" name="ciudad_id" id="city">
                 <option value=""> Elija una ciudad</option>
-                {{-- @foreach ($ciudades as $item)
-                    @isset($zona)     
-                        <option value="{{ $item->id }}" {{ $item->id==$zona->ciudad_id ? 'selected':''}} >{{ $item->ciudad }}</option>
-                    @else
-                        <option value="{{ $item->id }}" {{ old('ciudad_id') == $item->id ? 'selected':'' }} >{{ $item->ciudad }}</option>
-                    @endisset 
-                @endforeach --}}
             </select>
         </div>
     </div>
