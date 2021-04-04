@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 class CreatePersonasTable extends Migration
 {
     /**
@@ -23,7 +21,7 @@ class CreatePersonasTable extends Migration
             $table->string('carnet', 10)->nullable()->default("0");
             $table->string('expedido', 10)->nullable()->default();
             $table->string('genero', 6);
-            $table->string('observacion', 250)->nullable();
+            
             $table->string('foto', 120)->nullable();
             $table->string('como', 30);
             $table->unsignedInteger('persona_id')->nullable();

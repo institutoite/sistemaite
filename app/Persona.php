@@ -27,6 +27,23 @@ class Persona extends Model
             'zona_id',
             'idantiguo'
     ];
+
+    public function estudiante()
+    {
+        return $this->hasOne(Estudiante::class);
+    }
+    public function docente()
+    {
+        return $this->hasOne(Docente::class);
+    }
+    public function cliservicio()
+    {
+        return $this->hasOne(Cliservicio::class);
+    }
+    public function Administrativo()
+    {
+        return $this->hasOne(Estudiante::class);
+    }
 }
 
 

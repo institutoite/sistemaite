@@ -5,8 +5,12 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
     
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{asset('vendor/zoomify/zoomify.css')}}">
+
+    
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
-    <link rel="stylesheet" href="{{asset('dist/lbgalery/css/zoomify.min.css')}}">
+    <link rel="stylesheet" href="">
+    
     
 @stop
 
@@ -40,9 +44,9 @@
 @stop
 
 @section('js')
+    
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="{{asset('dist/vendor/bootstrap/js/bootstrap.js')}}"></script>
-    <script src="{{asset('dist/lbgalery/js/zoomify.min.js')}}"></script>
+
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
@@ -52,7 +56,7 @@
 
     <script>
         $(document).ready(function() {
-            
+        
             $('#personas').DataTable(
                 {
                     "serverSide": true,
@@ -70,7 +74,7 @@
                             "name": "foto",
                             "data": "foto",
                             "render": function (data, type, full, meta) {
-                                return "<img class='zoomify' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
+                                return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
                             },
                             "title": "Image",
                             "orderable": true,
@@ -84,6 +88,6 @@
                 }
             );
         } );
-        $('.zoomify').zoomify();
+        
     </script>
 @stop
