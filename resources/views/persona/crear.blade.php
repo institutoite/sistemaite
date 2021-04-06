@@ -12,63 +12,15 @@
 @stop
 
 @section('content')
-    <div class="card">
-        <div class="card-header p-2">
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link active" href="#estudiante" data-toggle="tab">Estudiante</a></li>
-                <li class="nav-item"><a class="nav-link" href="#tecnico" data-toggle="tab">S. Tecnico</a></li>
-                <li class="nav-item"><a class="nav-link" href="#fotocopia" data-toggle="tab">Fotocopia/Impresión</a></li>
-                <li class="nav-item"><a class="nav-link" href="#docente" data-toggle="tab">Docente</a></li>
-                <li class="nav-item"><a class="nav-link" href="#administrativo" data-toggle="tab">Administrativo</a></li>
-                <li class="nav-item"><a class="nav-link" href="#proveedor" data-toggle="tab">Proveedor</a></li>
-            </ul>
-        </div><!-- /.card-header -->
-        <div class="card-body">
-            <div class="tab-content">
-                <div class="active tab-pane" id="estudiante">
-                    <form action="{{route('personas.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
-                        @csrf
-                        @include('persona.form_estudiante')
-                        @include('include.botones')
-                    </form>
-                </div>
-                <div class="tab-pane" id="tecnico">
-                    <form action="{{route('personas.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
-                        @include('persona.form_tecnico')
-                        @include('include.botones')
-                    </form>
-                </div>
-                <div class="tab-pane" id="fotocopia">
-                    <form action="{{route('personas.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
-                        @include('persona.form_fotocopia')
-                        @include('include.botones')
-                    </form>
-                    
-                </div>
-                <div class="tab-pane" id="docente">
-                    <form action="{{route('personas.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
-                        @include('persona.form_docente')
-                        @include('include.botones')
-                    </form>
-                    
-                </div>
-                <div class="tab-pane" id="administrativo">
-                    <form action="{{route('personas.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
-                        @include('persona.form_administrativo')
-                        @include('include.botones')
-                    </form>
-                    
-                </div>
-                <div class="tab-pane" id="proveedor">
-                    <form action="{{route('personas.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
-                        @include('persona.form_proveedor')
-                        @include('include.botones')
-                    </form>
-                    
-                </div>
-
+    <div class="card-body">
+        <div class="tab-content">
+            <div class="active tab-pane" id="estudiante">
+                <form action="{{route('personas.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    @csrf
+                    @include('persona.form_estudiante')
+                    @include('include.botones')
+                </form>
             </div>
-        
         </div>
     </div>
 @stop
@@ -99,7 +51,9 @@
     <script>
         $(document).ready(function(){
             
-            $("#foto").fileinput();
+            $("#foto").fileinput(
+
+            );
 
 
             function cargarciudades(){
@@ -141,15 +95,3 @@
     </script>
 @stop
 
-{{-- <div class="card">
-        <div class="card-header bg-secondary">
-            <span class="text-center">FORMULARIO CREAR PERSONA</span>
-        </div>
-        <div class="card-body">
-            <form action="{{route('personas.store')}}" method="post">
-            @csrf
-                @include('persona.formestudiante')
-                @include('include.botones')
-            </form>
-        </div>
-    </div> --}}
