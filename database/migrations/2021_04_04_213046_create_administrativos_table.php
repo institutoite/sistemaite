@@ -20,9 +20,11 @@ class CreateAdministrativosTable extends Migration
             $table->tinyInteger('diasprueba');
             $table->boolean('esado');
             $table->double('sueldo');
+
             $table->unsignedInteger('persona_id');
             $table->foreign('persona_id', 'fk_persona_administrativo')
                 ->references('id')->on('personas');
+                
             $table->timestamps();
         });
     }

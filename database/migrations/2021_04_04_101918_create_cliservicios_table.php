@@ -16,6 +16,10 @@ class CreateCliserviciosTable extends Migration
         Schema::create('cliservicios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('requerimiento', 500);
+
+            $table->unsignedInteger('persona_id');
+            $table->foreign('persona_id', 'fk_persona_cliservicio')
+            ->references('id')->on('personas');
             $table->timestamps();
         });
     }

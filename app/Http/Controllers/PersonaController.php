@@ -69,18 +69,19 @@ class PersonaController extends Controller
         /* Guardar una imagen en storage si llega una foto*/
         if ($request->hasFile('foto')){
             $foto=$request->file('foto');
-            $nombreImagen=Str::random(20).'.jpg';
+            $nombreImagen='estudiantes/'.Str::random(20).'.jpg';
             /** las convertimos en jpg y la redimensionamos */
             $imagen= Image::make($foto)->encode('jpg',75);
             $imagen->resize(300,300,function($constraint){
                 $constraint->upsize();
             });
             /* las guarda en en la carpeta estudiantes  */
-            $fotillo = Storage::disk('public')->put('estudiantes/'.$nombreImagen, $imagen->stream());
+            $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
             
             $persona->foto = $nombreImagen;
         }
         $persona->como = $request->como;
+        $persona->papelinicial = $request->papel;
         $persona->persona_id = $request->persona_id;
         $persona->pais_id = $request->pais_id;
         $persona->ciudad_id = $request->ciudad_id;
@@ -147,8 +148,12 @@ class PersonaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Persona $persona)
-    {
-        //
+    {   
+        $pais=Pais::findOrFail($persona->pais_id);
+        $ciudad = Ciudad::findOrFail($persona->ciudad_id);
+        $zona = Zona::findOrFail($persona->zona_id);
+
+        return view('persona.mostrar',compact('persona','pais','ciudad','zona'));
     }
 
     /**
@@ -159,7 +164,44 @@ class PersonaController extends Controller
      */
     public function edit(Persona $persona)
     {
-        //
+        $ciudades = Ciudad::get();
+        $paises = Pais::get();
+        $zonas = Zona::get();
+        $observacion="";
+        
+        switch ($persona->papelinicial) {
+
+            case 'estudiante':
+                $estudiante=$persona->estudiante;
+                $observacion=$estudiante->requerimiento;
+                break;
+            case 'docente':
+                $docente = $persona->docente;
+                $observacion = $docente->observacion;
+                break;
+            case 'cliservicio':
+                $cliservicio = $persona->cliservicio;
+                $observacion = $cliservicio->requerimiento;
+                break;
+            case 'clicopy':
+                $clicopy = $persona->clicopy;
+                $observacion = $clicopy->requerimiento;
+                break;
+
+            case 'administrativo':
+                $administrativo = $persona->administrativo;
+                $observacion = $administrativo->requerimiento;
+                break;
+            case 'proveedor':
+                $proveedor = $persona->proveedor;
+                $observacion = $proveedor->requerimiento;
+                break;
+            default:
+                # code...
+                break;
+        }
+
+        return view("persona.editar",compact('persona','paises','ciudades','zonas','observacion'));
     }
 
     /**
@@ -171,7 +213,45 @@ class PersonaController extends Controller
      */
     public function update(Request $request, Persona $persona)
     {
-        //
+        
+        $persona->nombre = $request->nombre;
+        $persona->apellidop = $request->apellidop;
+        $persona->apellidom = $request->apellidom;
+        $persona->fechanacimiento = $request->fechanacimiento;
+        $persona->direccion = $request->direccion;
+        $persona->carnet = $request->carnet;
+        $persona->expedido = $request->expedido;
+        $persona->genero = $request->genero;
+        //$persona->observacion = $request->observacion;
+        /* Guardar una imagen en storage si llega una foto*/
+  
+        if ($request->hasFile('foto')) {
+            // verificando si exites la foto actual
+            if (Storage::disk('public')->exists($persona->foto)) {
+                // aquí la borro
+                Storage::disk('public')->delete($persona->foto);
+            }
+//       leandro bruno leaandro
+            $foto = $request->file('foto');
+            $nombreImagen = 'estudiantes/' . Str::random(20) . '.jpg';
+            /** las convertimos en jpg y la redimensionamos */
+            $imagen = Image::make($foto)->encode('jpg', 75);
+            $imagen->resize(300, 300, function ($constraint) {
+                $constraint->upsize();
+            });
+            /* las guarda en en la carpeta estudiantes  */
+            $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
+
+            $persona->foto = $nombreImagen;
+        }
+        $persona->como = $request->como;
+        $persona->papelinicial = $request->papel;
+        $persona->persona_id = $request->persona_id;
+        $persona->pais_id = $request->pais_id;
+        $persona->ciudad_id = $request->ciudad_id;
+        $persona->zona_id = $request->zona_id;
+        //dd($persona);
+        $persona->save();
     }
 
     /**
@@ -182,6 +262,11 @@ class PersonaController extends Controller
      */
     public function destroy(Persona $persona)
     {
-        //
+        //eliminarPersona
+    }
+    public function eliminarPersona($id){
+        $persona = Persona::findOrFail($id);
+        $persona->delete();
+        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
 }

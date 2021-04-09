@@ -16,9 +16,11 @@ class CreateClicopiesTable extends Migration
         Schema::create('clicopies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('requerimiento', 200);
+
             $table->unsignedInteger('persona_id');
             $table->foreign('persona_id', 'fk_persona_clicopies')
                 ->references('id')->on('personas');
+                
             $table->timestamps();
         });
     }

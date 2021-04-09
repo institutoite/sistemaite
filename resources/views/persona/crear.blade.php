@@ -15,9 +15,9 @@
     <div class="card-body">
         <div class="tab-content">
             <div class="active tab-pane" id="estudiante">
-                <form action="{{route('personas.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                <form action="{{route('personas.store')}}" id="formulario" method="post" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
                     @csrf
-                    @include('persona.form_estudiante')
+                    @include('persona.form')
                     @include('include.botones')
                 </form>
             </div>
@@ -43,18 +43,35 @@
     <!-- the main fileinput plugin file -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/fileinput.min.js"></script>
     <!-- optionally if you need a theme like font awesome theme you can include it as mentioned below -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/themes/fa/theme.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/themes/fas/theme.js"></script>
     <!-- optionally if you need translation for your language then include  locale file as mentioned below -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/locales/(lang).js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/locales/es.js"></script>
 
     
     <script>
         $(document).ready(function(){
-            
+            var url1 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg',
+        url2 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg';
+ 
             $("#foto").fileinput(
+                {
+             
+                initialPreview: [url1, url2],
+                initialPreviewAsData: true,
+                initialPreviewConfig: [
+                    
+                    {caption: "Earth.jpg", downloadUrl: url2, size: 1218822, width: "120px", key: 2}
+                ],
+                deleteUrl: "/site/file-delete",
+                overwriteInitial: true,
+                maxFileSize: 2000,
+                initialCaption: "The Moon and the Earth",
+                language:'es',
+                theme:'fas',
 
+                }
             );
-
+            $('#formulario').trigger("reset");
 
             function cargarciudades(){
                 var country_id = $('#country').val();

@@ -21,14 +21,14 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" > 
             <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-primary p-1" for="">Nombre</p> 
+                <p class="col-3 form-control bg-secondary p-1" for="">Nombre</p> 
                 <input  type="text" name="nombre" class="form-control col-9 @error('nombre') is-invalid @enderror" value="{{old('nombre',$persona->nombre ?? '')}}" placeholder="Ingrese un  nombre">
             </div>
         </div>
         {{-- %%%%%%%%%%%%%%% CAMPO APELLIDO PATERNO --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-primary p-1" for="">Paterno</p> 
+                <p class="col-3 form-control bg-secondary p-1" for="">Paterno</p> 
                 <input  type="text" name="apellidop" class="form-control @error('apellidop') is-invalid @enderror" value="{{old('apellidop',$persona->apellidop ?? '')}}" placeholder="Ingrese  apellido Paterno(Obligatorio)">
             </div>    
         </div>
@@ -61,16 +61,17 @@
     </div>
 
 {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO  FECHA NACIMIENTO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+    {{\Carbon::createFromFormat('Y-m-d', $persona->fechanacimiento)}}
     <div class="row"> 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             @isset($persona)
                 <div class="input-group mb-2" >
-                    <p class="col-3 form-control bg-primary" for="">Fecha N.</p> 
-                    <input  type="date" name="fechanacimiento" class="form-control col-9 @error('fechanacimiento') is-invalid @enderror" value="{{old('fechanacimiento',$persona->fechanacimiento->format('Y-m-d') ?? '')}}">
+                    <p class="col-3 form-control bg-secondary p-1" for="">Fecha N.</p> 
+                    <input  type="date" name="fechanacimiento" class="form-control col-9 @error('fechanacimiento') is-invalid @enderror" value="{{old('fechanacimiento',$persona->fechanacimiento ?? '')}}">
                 </div>
             @else
                 <div class="input-group mb-2" >
-                    <p class="col-3 form-control bg-primary" for="">Fecha N.</p> 
+                    <p class="col-3 form-control bg-secondary p-1" for="">Fecha N.</p> 
                     <input  type="date" name="fechanacimiento" class="form-control col-9 @error('fechanacimiento') is-invalid @enderror" value="{{old('fechanacimiento' ?? '')}}">
                 </div>
             @endisset
@@ -78,26 +79,42 @@
 {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO  CARNET  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-primary" for="">C.I.</p> 
+                <p class="col-3 form-control bg-secondary p-1" for="">C.I.</p> 
                 <input  type="text" name="carnet" class="form-control col-9 @error('carnet') is-invalid @enderror" value="{{old('carnet',$persona->carnet ?? '')}}" placeholder="Ingrese un numero de carnet">
             </div>
         </div>
 {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO  expedido del carnet  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
-                <p class="col-3 form-control bg-primary" for="">DPTO</p> 
+                <p class="col-3 form-control bg-secondary p-1" for="">DPTO</p> 
                 <select class="form-control @error('expedido') is-invalid @enderror"  name="expedido" id="expedido">
                     <option value=""> Elija Expedido</option>
-                        <option value="SCZ" @if(old('expedido') == 'SCZ') {{'selected'}} @endif>Santa Cruz</option>
-                        <option value="LPZ" @if(old('expedido') == 'LPZ') {{'selected'}} @endif>La Paz</option>
-                        <option value="CBBA" @if(old('expedido') == 'CBBA') {{'selected'}} @endif>Cochabamba</option>
+                        @isset($persona)
+                            <option value="SCZ" @if($persona->expedido == 'SCZ') {{'selected'}} @endif>Santa Cruz</option>
+                            <option value="LPZ" @if($persona->expedido == 'LPZ') {{'selected'}} @endif>La Paz</option>
+                            <option value="CBBA" @if($persona->expedido == 'CBBA') {{'selected'}} @endif>Cochabamba</option>
 
-                        <option value="BEN" @if(old('expedido') == 'BEN') {{'selected'}} @endif>Beni</option>
-                        <option value="TAR" @if(old('expedido') == 'TAR') {{'selected'}} @endif>Tarija</option>
-                        <option value="PND" @if(old('expedido') == 'PND') {{'selected'}} @endif>Pando</option>
+                            <option value="BEN" @if($persona->expedido == 'BEN') {{'selected'}} @endif>Beni</option>
+                            <option value="TAR" @if($persona->expedido == 'TAR') {{'selected'}} @endif>Tarija</option>
+                            <option value="PND" @if($persona->expedido == 'PND') {{'selected'}} @endif>Pando</option>
 
-                        <option value="ORU" @if(old('expedido') == 'ORU') {{'selected'}} @endif>Oruro</option>
-                        <option value="POT" @if(old('expedido') == 'POT') {{'selected'}} @endif>Potosí</option>
-                        <option value="CHU" @if(old('expedido') == 'CHU') {{'selected'}} @endif>Chuquisaca</option>
+                            <option value="ORU" @if($persona->expedido == 'ORU') {{'selected'}} @endif>Oruro</option>
+                            <option value="POT" @if($persona->expedido == 'POT') {{'selected'}} @endif>Potosí</option>
+                            <option value="CHU" @if($persona->expedido == 'CHU') {{'selected'}} @endif>Chuquisaca</option>
+                        @else 
+                            <option value="SCZ" @if(old('expedido') == 'SCZ') {{'selected'}} @endif>Santa Cruz</option>
+                            <option value="LPZ" @if(old('expedido') == 'LPZ') {{'selected'}} @endif>La Paz</option>
+                            <option value="CBBA" @if(old('expedido') == 'CBBA') {{'selected'}} @endif>Cochabamba</option>
+
+                            <option value="BEN" @if(old('expedido') == 'BEN') {{'selected'}} @endif>Beni</option>
+                            <option value="TAR" @if(old('expedido') == 'TAR') {{'selected'}} @endif>Tarija</option>
+                            <option value="PND" @if(old('expedido') == 'PND') {{'selected'}} @endif>Pando</option>
+
+                            <option value="ORU" @if(old('expedido') == 'ORU') {{'selected'}} @endif>Oruro</option>
+                            <option value="POT" @if(old('expedido') == 'POT') {{'selected'}} @endif>Potosí</option>
+                            <option value="CHU" @if(old('expedido') == 'CHU') {{'selected'}} @endif>Chuquisaca</option>
+                        @endisset 
+                            
+                        
                 </select> 
         </div>
         
@@ -125,8 +142,8 @@
     <div class="row"> 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-primary p-1" for="">Género</p> 
-                <select class="form-control" name="genero" id="genero">
+                <p class="col-3 form-control bg-secondary p-1 p-1" for="">Género</p> 
+                <select class="form-control @error('expedido') is-invalid @enderror" name="genero" id="genero">
                     <option value=""> Elija tu género</option>
                 
                     @isset($persona)      
@@ -148,15 +165,24 @@
         {{--%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO COMO SE INFORMO  --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-primary" for="">Como inf?</p> 
+                <p class="col-3 form-control bg-secondary p-1" for="">Como?</p> 
                 <select class="form-control @error('como') is-invalid @enderror"  name="como" id="como">
                     <option value=""> Elija una manera</option>
-                        <option value="PASANDO" @if(old('como') == 'PASANDO') {{'selected'}} @endif>Pasando por el lugar</option>
-                        <option value="REFERENCIA" @if(old('como') == 'REFERENCIA') {{'selected'}} @endif>Por referencia</option>
-                        <option value="FACEBOOK" @if(old('como') == 'FACEBOOK') {{'selected'}} @endif>Facebook</option>    
-                        <option value="GOOGLE" @if(old('como') == 'GOOGLE') {{'selected'}} @endif>Google</option>
-                        <option value="YOUTUBE" @if(old('como') == 'YOUTUBE') {{'selected'}} @endif>Google</option>
-                        <option value="OTRO" @if(old('como') == 'OTRO') {{'selected'}} @endif>Otra Forma</option>
+                        @isset($persona)
+                            <option value="PASANDO" @if($persona->como == 'PASANDO') {{'selected'}} @endif>Pasando por el lugar</option>
+                            <option value="REFERENCIA" @if($persona->como == 'REFERENCIA') {{'selected'}} @endif>Por referencia</option>
+                            <option value="FACEBOOK" @if($persona->como == 'FACEBOOK') {{'selected'}} @endif>Facebook</option>    
+                            <option value="GOOGLE" @if($persona->como == 'GOOGLE') {{'selected'}} @endif>Google</option>
+                            <option value="YOUTUBE" @if($persona->como == 'YOUTUBE') {{'selected'}} @endif>Google</option>
+                            <option value="OTRO" @if($persona->como == 'OTRO') {{'selected'}} @endif>Otra Forma</option>
+                        @else 
+                            <option value="PASANDO" @if(old('como') == 'PASANDO') {{'selected'}} @endif>Pasando por el lugar</option>
+                            <option value="REFERENCIA" @if(old('como') == 'REFERENCIA') {{'selected'}} @endif>Por referencia</option>
+                            <option value="FACEBOOK" @if(old('como') == 'FACEBOOK') {{'selected'}} @endif>Facebook</option>    
+                            <option value="GOOGLE" @if(old('como') == 'GOOGLE') {{'selected'}} @endif>Google</option>
+                            <option value="YOUTUBE" @if(old('como') == 'YOUTUBE') {{'selected'}} @endif>Google</option>
+                            <option value="OTRO" @if(old('como') == 'OTRO') {{'selected'}} @endif>Otra Forma</option>
+                        @endisset
                 </select>
             </div>
         </div>
@@ -165,16 +191,25 @@
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-primary " for="">Persona</p> 
+                <p class="col-3 form-control bg-secondary p-1 " for="">Persona</p> 
                 <select class="form-control @error('papel') is-invalid @enderror"  name="papel" id="papel">
                     <option value=""> Elija Papel</option>
-                        <option value="estudiante" @if(old('papel') == 'estudiante') {{'selected'}} @endif>Estudiante</option>
-                        <option value="docente" @if(old('papel') == 'docente') {{'selected'}} @endif>Docente</option>
-                        <option value="cliservicio" @if(old('papel') == 'cliservicio') {{'selected'}} @endif>Servicio Técnico</option>
-
-                        <option value="clicopy" @if(old('papel') == 'clicopy') {{'selected'}} @endif>Fotocopia e Impresiones</option>
-                        <option value="administrativo" @if(old('papel') == 'administrativo') {{'selected'}} @endif>Adminitrativo</option>
-                        <option value="proveedor" @if(old('papel') == 'PND') {{'proveedor'}} @endif>Proveedor</option>
+                        @isset($persona)
+                            <option value="estudiante" @if($persona->papelinicial == 'estudiante') {{'selected'}} @endif>Estudiante</option>
+                            <option value="docente" @if($persona->papelinicial == 'docente') {{'selected'}} @endif>Docente</option>
+                            <option value="cliservicio" @if($persona->papelinicial == 'cliservicio') {{'selected'}} @endif>Servicio Técnico</option>
+                            <option value="clicopy" @if($persona->papelinicial == 'clicopy') {{'selected'}} @endif>Fotocopia e Impresiones</option>
+                            <option value="administrativo" @if($persona->papelinicial == 'administrativo') {{'selected'}} @endif>Adminitrativo</option>
+                            <option value="proveedor" @if($persona->papelinicial == 'PND') {{'proveedor'}} @endif>Proveedor</option>
+                        @else 
+                            <option value="estudiante" @if(old('papel') == 'estudiante') {{'selected'}} @endif>Estudiante</option>
+                            <option value="docente" @if(old('papel') == 'docente') {{'selected'}} @endif>Docente</option>
+                            <option value="cliservicio" @if(old('papel') == 'cliservicio') {{'selected'}} @endif>Servicio Técnico</option>
+                            <option value="clicopy" @if(old('papel') == 'clicopy') {{'selected'}} @endif>Fotocopia e Impresiones</option>
+                            <option value="administrativo" @if(old('papel') == 'administrativo') {{'selected'}} @endif>Adminitrativo</option>
+                            <option value="proveedor" @if(old('papel') == 'PND') {{'proveedor'}} @endif>Proveedor</option>
+                        @endisset
+                        
                 </select>
             </div> 
         </div>
@@ -202,12 +237,12 @@
     <div class="row"> 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-primary p-1" for="">PAIS</p> 
-                <select class="form-control" data-old="{{ old('pais_id') }}" name="pais_id" id="country">
+                <p class="col-3 form-control bg-secondary p-1 p-1" for="">PAIS</p> 
+                <select class="form-control @error('pais_id') is-invalid @enderror" data-old="{{ old('pais_id') }}" name="pais_id" id="country">
                     <option value="1" selected> Bolivia</option>
                     @foreach ($paises as $pais)
                         @isset($persona)     
-                            <option  value="{{$pais->id}}" {{$pais->id==$zona->pais_id ? 'selected':''}}>{{$pais->nombrepais}}</option>     
+                            <option  value="{{$pais->id}}" {{$pais->id==$persona->pais_id ? 'selected':''}}>{{$pais->nombrepais}}</option>     
                         @else
                             <option value="{{ $pais->id }}" {{ old('pais') == $pais->id ? 'selected':'' }} >{{ $pais->nombrepais }}</option>
                         @endisset 
@@ -218,24 +253,29 @@
         {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO CIUDAD  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-primary p-1" for="">CITY</p> 
-                <select class="form-control" name="ciudad_id" id="city">
+                <p class="col-3 form-control bg-secondary p-1 p-1" for="">CITY</p> 
+                <select class="form-control @error('ciudad_id') is-invalid @enderror" name="ciudad_id" id="city">
                     <option value=""> Elija una ciudad</option>
+                        @foreach ($ciudades as $item)
+                            @isset($persona) 
+                                <option value="{{ $item->id }}" {{ $item->id==$persona->ciudad_id ? 'selected':''}} >{{ $item->ciudad }}</option>
+                            @endisset
+                        @endforeach 
                 </select>
             </div>
         </div>
         {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO ZONA  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             <div class="input-group mb-2" >
-            <p class="col-3 form-control bg-primary" for="">ZONA</p> 
-            <select class="form-control" name="zona_id" id="zona">
+            <p class="col-3 form-control bg-secondary p-1" for="">ZONA</p> 
+            <select class="form-control @error('zona_id') is-invalid @enderror" name="zona_id" id="zona">
                 <option value="" > Seleccione una Zona</option>
                 @foreach ($zonas as $zona)
                     @isset($persona)     
-                        <option  value="{{$zona->id}}" {{$zona->id==$zona->ciudad_id ? 'selected':''}}>{{$zona->zona}}</option>     
+                        <option  value="{{$zona->id}}" {{$zona->id==$persona->zona_id ? 'selected':''}}>{{$zona->zona}}</option>     
                     @else
                         <option value="{{ $zona->id }}" {{ old('zona_id') == $zona->id ? 'selected':'' }} >{{ $zona->zona }}</option>
-                    @endisset 
+                    @endisset  
                 @endforeach
             </select>
         </div>
@@ -243,73 +283,56 @@
     </div>
 
 
-     {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO DIRECCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+    {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO DIRECCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
                 @if($errors->has('direccion'))
                     <span class="text-danger"> {{ $errors->first('direccion')}}</span>
                 @endif
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm" > 
-            <div class="input-group mb-2" >
-                <p class="col-2 form-control bg-primary p-1" for="">Dirección</p> 
-                <input  type="text" name="direccion" class="form-control col-10 @error('direccion') is-invalid @enderror" value="{{old('direccion',$persona->direccion ?? '')}}" placeholder="Ingrese una dirección">
-            </div>
-        </div>
-    </div>
-
-    
-
-    {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO OBSERVACION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}} 
-    <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">
             @if($errors->has('observacion'))
                 <span class="text-danger"> {{ $errors->first('observacion')}}</span>
             @endif
         </div>
-    </div>
-    <div class="row"> 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm" >
-            <div class="input-group mb-2" >
-                <p class="col-2 form-control bg-primary" for="">Observación</p> 
-                <textarea  placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" rows="2" class="form-control @error('observacion') is-invalid @enderror" value="{{old('observacion',$persona->observacion ?? '')}}">{{old('observacion')}}</textarea>
-                    
-            </div>
-        </div>
-    </div>
-    
-
-    {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO COMO SE ENTERO  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-
-    <div class="row"> 
-        
-    </div>
-    <div class="row">
-        <div class="col-3"></div>
-        <div class="col-9">
-            
-        </div>
-    </div>
-
-
-    {{-- $$$$$$$$$$$ CAMPO REPETIR FOTOGRAFIA --}}
-<div class="row"> 
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm" >
-        <div class="input-group" >
-            <input type="file" accept=".png, .jpg, .jpeg, .gif" name="foto" id="foto" accept="image/*" data-classButton="btn btn-success" data-input="false" data-classIcon="icon-plus">                
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm">
         @if($errors->has('foto'))
             <p class="text-danger"> {{ $errors->first('foto')}}</p>
         @endif
+        </div>
     </div>
-</div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm" > 
+            <div class="input-group mb-2" >
+                <p class="col-3 form-control bg-secondary p-1" for="">Dirección</p> 
+                <input  type="text" name="direccion" class="form-control col-9 @error('direccion') is-invalid @enderror" value="{{old('direccion',$persona->direccion ?? '')}}" placeholder="Ingrese una dirección">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO OBSERVACION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}} 
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group" >
+            <div class="input-group mb-2" >
+                <textarea placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" rows="5" class="form-control @error('observacion') is-invalid @enderror" >{{old('observacion',$persona->foto ?? '')}}</textarea>
+            </div>
+        </div>
+        {{-- $$$$$$$$$$$ CAMPO REPETIR FOTOGRAFIA --}}
+        
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm" >
+                <div class="border-danger input-group p-5 text-center">
+                    <input type="file" data-initial-preview="{{isset($persona->foto) ? URL::to('/').Storage::url("$persona->foto") : URL::to('/').Storage::url("estudiantes/foto.jpeg") }}" accept=".png, .jpg, .jpeg, .gif" name="foto" id="foto" data-classButton="btn btn-success" data-input="false" data-classIcon="icon-plus">                
+                </div>
+                
+            </div>
+        
+    </div>
+
+    
+    {{-- <img src="{{URL::to('/').'/storage/'.$persona->foto}}"  width="250" height="250" alt="fsdfds">
+    <img src="{{URL::to('/').Storage::url("$persona->foto")}}" alt=""> --}}
 
 
 

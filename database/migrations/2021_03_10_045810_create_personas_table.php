@@ -24,6 +24,8 @@ class CreatePersonasTable extends Migration
             
             $table->string('foto', 120)->nullable();
             $table->string('como', 30);
+            $table->string('papelinicial', 30);
+
             $table->unsignedInteger('persona_id')->nullable();
             $table->unsignedInteger('pais_id')->nullable();
             $table->unsignedInteger('ciudad_id')->nullable();

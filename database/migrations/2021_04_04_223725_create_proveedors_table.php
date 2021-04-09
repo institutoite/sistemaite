@@ -19,9 +19,11 @@ class CreateProveedorsTable extends Migration
             $table->string('rubro', 20);
             $table->tinyInteger('comotrabaja');
             $table->boolean('frecuencia');
+
             $table->unsignedInteger('persona_id');
             $table->foreign('persona_id', 'fk_persona_proveedor')
                 ->references('id')->on('personas');
+                
             $table->timestamps();
         });
     }

@@ -28,6 +28,10 @@ class Persona extends Model
             'idantiguo'
     ];
 
+    protected $dates = [
+        'fechanacimiento', 'created_at', 'updated_at',
+    ];
+
     public function estudiante()
     {
         return $this->hasOne(Estudiante::class);

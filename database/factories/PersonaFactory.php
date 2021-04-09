@@ -32,9 +32,13 @@ class PersonaFactory extends Factory
             'direccion' => $this->faker->address,
             'carnet' => $this->faker->postcode,
             'expedido' => $this->faker->numberBetween($min = 55555555, $max = 99999999),
-            'genero' => "M",
+            'genero' =>$this->faker->randomElement(['MUJER','HOMBRE']),
+            'pais_id'=>1,
+            'ciudad_id'=>6,
+            'zona_id'=>1,
             'como' => "facebook",
             'foto' => "estudiantes/foto.jpg",
+            'papelinicial' =>'estudiante',
             'idantiguo' => 1
         ];
     }

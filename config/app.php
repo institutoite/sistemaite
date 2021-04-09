@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Intervention\Image\ImageServiceProvider::class,
+        Felixkiss\UniqueWithValidator\ServiceProvider::class,
         /*
          * Application Service Providers...
          */
