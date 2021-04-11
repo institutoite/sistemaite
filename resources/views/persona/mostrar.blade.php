@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
 @endsection
 
-
 @section('content_header')
     
 @stop
@@ -97,7 +96,7 @@
                     <tr>
                         <td>primera vez vino</td>
                         <td>{{$persona->created_at}} </td>
-                        <a href="tel:+59171039910">+55 888 - 999 111 22</a>
+                        <a href="tel:+59171039910">+59171039910</a>
                     </tr>
 
                 </tbody>
@@ -107,9 +106,6 @@
     </div>
 @stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
 
 @section('js')
     <script> console.log('Hi!'); </script>

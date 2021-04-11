@@ -34,9 +34,8 @@ Route::get('personas/opciones/{id}', function ($id) {
     return view('persona.opciones');
 })->name('personas.opciones');
 
-Route::get('prueba', function () {
-    return view('persona.prueba');
-});
+Route::put('persona/{persona}/subirfoto','PersonaController@guardarfoto')->name('guardarfoto');
+//Route::put('persona/subirfoto', 'PersonaController@guardarfoto')->name('actualizarfoto');
 
 
 Route::resource('paises', "PaisController");
@@ -53,3 +52,7 @@ Route::delete('eliminar/zona/{id}','ZonaController@eliminarZona')->name('elimina
 Route::delete('eliminar/usuario/{id}','UserController@eliminarUsuario')->name('eliminar.usuario');
 Route::delete('eliminar/persona/{id}','PersonaController@eliminarPersona')->name('eliminar.persona');
 Route::delete('eliminar/menu/{id}','MenuController@eliminarMenu')->name('eliminar.menu');
+
+Route::get('tomarfoto', function () {
+    return view('persona.tomarfoto');
+});

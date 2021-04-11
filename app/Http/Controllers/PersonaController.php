@@ -138,7 +138,7 @@ class PersonaController extends Controller
          * 
          */
 
-        return view('persona.index',compact('persona'));
+        return view('persona.tomarfoto',compact('persona'));
     }
 
     /**
@@ -252,6 +252,19 @@ class PersonaController extends Controller
         $persona->zona_id = $request->zona_id;
         //dd($persona);
         $persona->save();
+    }
+
+    public function guardarfoto(Request $request, Persona $persona){
+
+        $image = $request->imagen;  // your base64 encoded
+        $image = str_replace('data:image/png;base64,', '', $image);
+        $image = str_replace(' ', '+', $image);
+        $imageName = 'estudiantes/'.Str::random(20) . '.' . 'png';
+        Storage::disk('public')->put($imageName, base64_decode($image));
+        //Storage::put(storage_path() . '/public/App/' . $imageName, base64_decode($image));
+        $persona->foto=$imageName;
+        $persona->save();
+        return view('telefono.index',compact('persona'));
     }
 
     /**

@@ -61,13 +61,13 @@
     </div>
 
 {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO  FECHA NACIMIENTO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-    {{\Carbon::createFromFormat('Y-m-d', $persona->fechanacimiento)}}
+    {{--\Carbon::createFromFormat('Y-m-d', $persona->fechanacimiento)--}}
     <div class="row"> 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             @isset($persona)
                 <div class="input-group mb-2" >
                     <p class="col-3 form-control bg-secondary p-1" for="">Fecha N.</p> 
-                    <input  type="date" name="fechanacimiento" class="form-control col-9 @error('fechanacimiento') is-invalid @enderror" value="{{old('fechanacimiento',$persona->fechanacimiento ?? '')}}">
+                    <input  type="date" name="fechanacimiento" class="form-control col-9 @error('fechanacimiento') is-invalid @enderror" value="{{old('fechanacimiento',$persona->fechanacimiento->format('Y-m-d') ?? '')}}">
                 </div>
             @else
                 <div class="input-group mb-2" >
@@ -311,24 +311,35 @@
         </div>
     </div>
 
-
     <div class="row">
-        {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO OBSERVACION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}} 
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group" >
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm" >
             <div class="input-group mb-2" >
-                <textarea placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" rows="5" class="form-control @error('observacion') is-invalid @enderror" >{{old('observacion',$persona->foto ?? '')}}</textarea>
+                <textarea placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" rows="3" class="form-control @error('observacion') is-invalid @enderror" >{{old('observacion',$observacion ?? '')}}</textarea>
             </div>
         </div>
-        {{-- $$$$$$$$$$$ CAMPO REPETIR FOTOGRAFIA --}}
-        
+    </div>
+
+    @isset($persona)
+        <div class="row">
+            {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO OBSERVACION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}} 
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group" >
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group" >
+                    <div class="input-group mb-2" >
+                        <div class="text-center">
+                            <img with="25" height="25" src="{{URL::to('/').Storage::url("$persona->foto")}}" class="rounded img-thumbnail img-fluid border-primary border-5" alt="{{$persona->nombre}}">        
+                        </div>
+                    </div>
+                </div>     
+            </div>
+            {{-- $$$$$$$$$$$ CAMPO REPETIR FOTOGRAFIA --}}
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm" >
                 <div class="border-danger input-group p-5 text-center">
                     <input type="file" data-initial-preview="{{isset($persona->foto) ? URL::to('/').Storage::url("$persona->foto") : URL::to('/').Storage::url("estudiantes/foto.jpeg") }}" accept=".png, .jpg, .jpeg, .gif" name="foto" id="foto" data-classButton="btn btn-success" data-input="false" data-classIcon="icon-plus">                
                 </div>
-                
             </div>
-        
-    </div>
+        </div>
+    @endisset
+    
 
     
     {{-- <img src="{{URL::to('/').'/storage/'.$persona->foto}}"  width="250" height="250" alt="fsdfds">

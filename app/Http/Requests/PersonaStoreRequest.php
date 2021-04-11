@@ -24,7 +24,7 @@ class PersonaStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            "nombre" => 'unique_with:personas,apellidop,apellidom',
+            "nombre" => 'required|unique_with:personas,apellidop,apellidom',
             "apellidop" =>'required|string|max:25',
             "apellidom" => 'nullable|string|max:25',
             "fechanacimiento" =>'required|date',

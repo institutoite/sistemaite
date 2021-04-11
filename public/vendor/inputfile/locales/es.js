@@ -14,7 +14,7 @@
     $.fn.fileinputLocales['es'] = {
         fileSingle: 'archivo',
         filePlural: 'archivos',
-        browseLabel: 'Examinar &hellip;',
+        browseLabel: 'Buscar Foto',
         removeLabel: 'Quitar',
         removeTitle: 'Quitar archivos seleccionados',
         cancelLabel: 'Cancelar',
@@ -85,7 +85,7 @@
             uploadBatch: 'Datos subidos en lote',
             uploadExtra: 'Datos del formulario subidos '
         },
-        dropZoneTitle: 'Arrastre y suelte aquí los archivos &hellip;',
+        dropZoneTitle: 'Arrastre y suelte aquí la imagen &hellip;',
         dropZoneClickTitle: '<br>(o haga clic para seleccionar {files})',
         fileActionSettings: {
             removeTitle: 'Eliminar archivo',
