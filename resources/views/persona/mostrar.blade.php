@@ -96,7 +96,6 @@
                     <tr>
                         <td>primera vez vino</td>
                         <td>{{$persona->created_at}} </td>
-                        <a href="tel:+59171039910">+59171039910</a>
                     </tr>
 
                 </tbody>

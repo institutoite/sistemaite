@@ -16,15 +16,16 @@ class CreatePersonasTable extends Migration
             $table->string('nombre', 40);
             $table->string('apellidop', 25);
             $table->string('apellidom', 25)->nullable();
-            $table->date('fechanacimiento');
-            $table->string('direccion', 120);
+            $table->date('fechanacimiento')->nullable();
+            $table->string('direccion', 120)->nullable();
             $table->string('carnet', 10)->nullable()->default("0");
             $table->string('expedido', 10)->nullable()->default();
             $table->string('genero', 6);
             
             $table->string('foto', 120)->nullable();
-            $table->string('como', 30);
+            $table->string('como', 30)->nullable();
             $table->string('papelinicial', 30);
+            $table->string('telefono', 10)->nullable();
 
             $table->unsignedInteger('persona_id')->nullable();
             $table->unsignedInteger('pais_id')->nullable();

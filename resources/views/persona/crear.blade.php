@@ -1,9 +1,13 @@
 @extends('adminlte::page')
 @section('css')
-    
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+    
+
 @stop
 
 @section('title', 'Dashboard')
@@ -46,16 +50,59 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/themes/fas/theme.js"></script>
     <!-- optionally if you need translation for your language then include  locale file as mentioned below -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/locales/es.js"></script>
-
     
+    <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
+    
+    {{-- %%%%%%%%%%%%%%%%%%%%%% DATA TABLE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+        <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
+
+
     <script>
         $(document).ready(function(){
+            
+            $('#personas').DataTable(
+                {
+                    "serverSide": true,
+                    "responsive":true,
+                    "autoWidth":false,
+
+                    "ajax": "{{ url('api/referencias') }}",
+                    "columns": [
+                        {data: 'id'},
+                        {data:'idantiguo'},
+                        {data: 'nombre'},
+                        {data: 'apellidop'},
+                        {data: 'apellidom'},
+                        {
+                            "name": "foto",
+                            "data": "foto",
+                            "render": function (data, type, full, meta) {
+                                return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
+                            },
+                            "title": "Image",
+                            "orderable": true,
+            
+                        }, 
+                        {
+                            data: 'btn'
+                        },  
+                    ],
+                    "language":{
+                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    },  
+                }
+            );
+
+
             var url1 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg',
-        url2 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg';
+                url2 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg';
  
             $("#foto").fileinput(
                 {
-             
+            
                 initialPreview: [url1, url2],
                 initialPreviewAsData: true,
                 initialPreviewConfig: [
@@ -108,7 +155,17 @@
         cargarciudades();
         $('#country').on('change', cargarciudades); 
         $('#city').on('change', cargarzonas);
-    });	
+
+        $('table').on('click','#ok', seleccionar);
+
+        function seleccionar() {
+            $("#persona_id").val($(this).closest('tr').children(0).html());
+            $("#persona_id").addClass('bg-primary');
+            $('#modal-ite').modal('toggle');
+            $('#modal-ite .close').click();
+        }
+
+        });	
     </script>
 @stop
 

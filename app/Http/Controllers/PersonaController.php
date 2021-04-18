@@ -12,6 +12,7 @@ use App\Cliservicio;
 use App\Clicopy;
 use App\Docente;
 use App\Proveedor;
+use App\Telefono;
 
 
 use Illuminate\Http\Request;
@@ -82,6 +83,7 @@ class PersonaController extends Controller
         }
         $persona->como = $request->como;
         $persona->papelinicial = $request->papel;
+        $persona->telefono=$request->telefono;
         $persona->persona_id = $request->persona_id;
         $persona->pais_id = $request->pais_id;
         $persona->ciudad_id = $request->ciudad_id;
@@ -141,6 +143,24 @@ class PersonaController extends Controller
         return view('persona.tomarfoto',compact('persona'));
     }
 
+
+    public function storeContacto(Request $request,$id){
+        
+        $cliente=Persona::findOrFail($id);
+        $pariente = new Persona();
+        $pariente->nombre = $request->nombre;
+        $pariente->apellidop = $request->apellidop;
+        $pariente->genero=$request->genero;
+        $pariente->papelinicial = 'pariente';
+        
+        $pariente->save();
+
+
+        $cliente->attach($pariente->id,['telefono'=>$request->telefono,'parentesco'=>$request->parentesco]);
+        return back();
+
+    }
+
     /**
      * Display the specified resource.
      *
@@ -152,7 +172,6 @@ class PersonaController extends Controller
         $pais=Pais::findOrFail($persona->pais_id);
         $ciudad = Ciudad::findOrFail($persona->ciudad_id);
         $zona = Zona::findOrFail($persona->zona_id);
-
         return view('persona.mostrar',compact('persona','pais','ciudad','zona'));
     }
 
@@ -264,7 +283,10 @@ class PersonaController extends Controller
         //Storage::put(storage_path() . '/public/App/' . $imageName, base64_decode($image));
         $persona->foto=$imageName;
         $persona->save();
-        return view('telefono.index',compact('persona'));
+
+        $telefonos=Telefono::where('persona_id','=',$persona->id);
+
+        return view('telefono.index',compact('persona','telefonos'));
     }
 
     /**
@@ -281,5 +303,9 @@ class PersonaController extends Controller
         $persona = Persona::findOrFail($id);
         $persona->delete();
         return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
+    }
+
+    public function tomarfoto(Persona $persona){
+        return view('persona.tomarfoto', compact('persona'));
     }
 }

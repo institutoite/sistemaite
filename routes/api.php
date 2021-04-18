@@ -26,37 +26,46 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('personas',function(){
     return datatables()->of(Persona::all())
-            ->addColumn('btn','persona.action')
-            ->rawColumns(['btn','foto'])
-            ->toJson();
+        ->addColumn('btn','persona.action')
+        ->rawColumns(['btn','foto'])
+        ->toJson();
 });
+
+Route::get('referencias',function(){
+    return datatables()->of(Persona::select('id','idantiguo','nombre','apellidop','apellidom','foto'))
+        ->addColumn('btn', 'persona.actionmodal')
+        ->rawColumns(['foto','btn'])
+        ->toJson();
+});
+
+
 
 Route::get('paises',function(){
     return datatables()->of(Pais::all())
-            ->addColumn('btn','pais.action')
-            ->rawColumns(['btn'])
-            ->toJson();
+        ->addColumn('btn','pais.action')
+        ->rawColumns(['btn'])
+        ->toJson();
 
 });
 Route::get('ciudades',function(){
     $ciudades=Ciudad::select('ciudads.id','ciudad','nombrepais')->join('pais','pais.id','=','ciudads.pais_id')->get();
     return datatables()->of($ciudades)
-            ->addColumn('btn','ciudad.action')
-            ->rawColumns(['btn'])
-            ->toJson();
+        ->addColumn('btn','ciudad.action')
+        ->rawColumns(['btn'])
+        ->toJson();
 });
 Route::get('zonas',function(){
     return datatables()->of(Zona::all())
-            ->addColumn('btn','zona.action')
-            ->rawColumns(['btn'])
-            ->toJson();
+        ->addColumn('btn','zona.action')
+        ->rawColumns(['btn'])
+        ->toJson();
 });
 
 Route::get('usuarios',function(){
-    return datatables()->of(User::select('id','name','email','foto')->get())
-            ->addColumn('btn','user.action')
-            ->rawColumns(['btn','foto'])
-            ->toJson();
+    return  datatables()->of(User::select('id','name','email','foto')->get())
+        ->addColumn('btn','user.action')
+        ->rawColumns(['btn','foto'])
+        ->toJson();
 });
 
 Route::get('menus', function () {
@@ -65,6 +74,7 @@ Route::get('menus', function () {
         ->rawColumns(['btn','icono'])
         ->toJson();
 });
+
 
 
 

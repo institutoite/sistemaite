@@ -39,6 +39,7 @@ class PersonaStoreRequest extends FormRequest
             "como" =>'required|string|max:30',
             "foto" => 'nullable|file',
             "papel" =>'required|string',
+            "telefono" => 'max:8',
         ];
     }
 }

@@ -48,6 +48,17 @@ class Persona extends Model
     {
         return $this->hasOne(Estudiante::class);
     }
+
+    public function parientes()
+    {
+        return $this->belongsToMany(Persona::class, 'persona_persona', 'persona_id', 'persona_id_parentesco');
+    }
+
+    public function cliente()
+    {
+        return $this->belongsToMany(Persona::class,'persona_persona','persona_id_parentesco','persona_id')->withPivot('telefono', 'parentesco');//->withTimestamps(); //, 
+        //'telefonos', 'persona_id_parentesco', 'persona_id'
+    }
 }
 
 

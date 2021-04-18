@@ -5,8 +5,6 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
     
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{asset('vendor/zoomify/zoomify.css')}}">
-
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
     <link rel="stylesheet" href="">
     
@@ -20,12 +18,6 @@
 @stop
 
 @section('content')
-    @isset($persona)
-        {{$persona->nombre}}
-        {{$persona->id}}
-        {{$persona->apellidop}}
-        {{$persona->apellidom}}
-    @endisset
     <table id="personas" class="table table-bordered table-hover table-striped">
         <thead class="bg-primary">
             <tr>
@@ -44,7 +36,6 @@
 @section('js')
     
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>

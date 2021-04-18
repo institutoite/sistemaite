@@ -44,6 +44,12 @@ Route::resource('zonas', "ZonaController");
 Route::resource('usuarios', "UserController");
 Route::resource('menus', "MenuController");
 
+Route::resource('telefonos', "TelefonoController");
+Route::get('telefonos/{persona}', 'PersonaController@index')->name('telefono.de.persona');
+Route::post('crear/contacto/{persona}','PersonaController@storeContacto')->name('persona.storeContacto');
+
+
+
 Route::get('opciones/{id}','OpcionController@index')->name('opcion.index');
 
 Route::delete('eliminar/pais/{id}','PaisController@eliminarPais')->name('eliminar.pais');
@@ -53,6 +59,5 @@ Route::delete('eliminar/usuario/{id}','UserController@eliminarUsuario')->name('e
 Route::delete('eliminar/persona/{id}','PersonaController@eliminarPersona')->name('eliminar.persona');
 Route::delete('eliminar/menu/{id}','MenuController@eliminarMenu')->name('eliminar.menu');
 
-Route::get('tomarfoto', function () {
-    return view('persona.tomarfoto');
-});
+Route::get('tomarfoto', function () {return view('persona.tomarfoto');})->name('tomarfoto');
+Route::get('tomarfoto/{persona}', 'PersonaController@tomarfoto')->name('tomar.foto.persona');

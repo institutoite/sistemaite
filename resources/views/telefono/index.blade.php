@@ -1,29 +1,75 @@
 @extends('adminlte::page')
 
 @section('css')
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
 @stop
 
-@section('title', 'Paises')
+@section('title', 'Telefonos')
 
 @section('content_header')
-    <h1 class="text-center text-primary">Paises</h1>
-    
+    <h1 class="text-center text-primary">Telefonos</h1>
 @stop
 
 @section('content')
-    <table id="paises" name="paises" class="table table-bordered table-hover table-striped">
+{{--dd($persona)--}}
+    <div class="card">
+        <div class="card-header bg-primary">
+            <span class="text-center">FORMULARIO CREAR TELEFONOS</span>
+        </div>
+        <div class="card-body">
+            <form action="{{route('persona.storeContacto',$persona)}}" method="post">
+                // puede que la ruta post no reciba parametros
+            @csrf
+                @include('telefono.form')
+                @include('include.botones')
+            </form>
+        </div>
+    </div>
+
+    <table id="telefonos" class="table table-hover table-bordered table-striped display responsive nowrap" width="100%">
         <thead class="bg-primary">
-            <tr>
-                <th>ID</th>
-                <th>PAIS</th>
-                <th>ACCIONES</th>
-            </tr>
+        
+            <th>#</th>
+            <th>CONTACTO</th>
+            <th>PARENTESCO</th>
+            <th>NUMERO</th>
+            <th width="120px">Opciones</th>
         </thead>
+        <tbody>
+            @foreach ($telefonos as $telefono)
+                <tr>
+                    <td>{{$loop->iteration}}</td>
+                    <td>
+                    <a  href="https://api.whatsapp.com/send?phone={{$telefono->numero}}" target="_blank"> <a href="tel:{{$telefono->numero}}">{{$telefono->numero}}</a>  <i class="fab fa-whatsapp"></i>  </a>    
+                    </td>
+                    <td>
+                        {{$telefono->detalle}}
+                        
+                    </td>
+                    <td>{{$telefono->created_at}}</td>
+
+                    <td>
+                        <a href="{{route('telefono_editar', $telefono->id)}}" class="btn-accion-tabla tooltipsC mr-2" title="Editar este número">
+                            <i class="fa fa-fw fa-edit text-primary"></i>
+                        </a>
+                        {{--@can('telofemdspresa_eliminar')--}}
+                            <form action="{{route('telefono_eliminar',['id' =>$telefono->id,'persona_id'=>$persona->id])}}" id="form{{$telefono->id}}" class="d-inline formulario" method="POST">
+                                @csrf
+                                @method("delete")
+                                <button name="btn-eliminar" id="{{$telefono->id}}" type="submit" class="btn eliminar" title="Eliminar este Número">
+                                    <i class="fa fa-fw fa-trash text-danger"></i>   
+                                </button>
+
+                            </form> 
+                                <a class="btn btn-success btn-sm" href="https://api.whatsapp.com/send?phone={{$telefono->prefijo.$telefono->numero}}" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        {{--@endcan--}}
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
 @stop
 
@@ -37,22 +83,9 @@
 
     <script>
         $(document).ready(function() {
-            var tabla=$('#paises').DataTable(
-                {
-                    "serverSide": true,
-                    "responsive":true,
-                    "autoWidth":false,
-
-                    "ajax": "{{ url('api/paises') }}",
-                    "columns": [
-                        {data: 'id'},
-                        {data:'nombrepais'},
-                        {data: 'btn'},
-                    ],
-                    "language":{
-                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-                    },
-
+            var tabla=$('#telefonos').DataTable(
+                { 
+                    "language":"url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                 }
             );
 
@@ -72,7 +105,7 @@
                 }).then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: 'eliminar/pais/'+id,
+                            url: 'eliminar/telefono/'+id,
                             type: 'DELETE',
                             data:{
                                 id:id,

@@ -164,27 +164,36 @@
         </div>
         {{--%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO COMO SE INFORMO  --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
-            <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1" for="">Como?</p> 
-                <select class="form-control @error('como') is-invalid @enderror"  name="como" id="como">
-                    <option value=""> Elija una manera</option>
-                        @isset($persona)
-                            <option value="PASANDO" @if($persona->como == 'PASANDO') {{'selected'}} @endif>Pasando por el lugar</option>
-                            <option value="REFERENCIA" @if($persona->como == 'REFERENCIA') {{'selected'}} @endif>Por referencia</option>
-                            <option value="FACEBOOK" @if($persona->como == 'FACEBOOK') {{'selected'}} @endif>Facebook</option>    
-                            <option value="GOOGLE" @if($persona->como == 'GOOGLE') {{'selected'}} @endif>Google</option>
-                            <option value="YOUTUBE" @if($persona->como == 'YOUTUBE') {{'selected'}} @endif>Google</option>
-                            <option value="OTRO" @if($persona->como == 'OTRO') {{'selected'}} @endif>Otra Forma</option>
-                        @else 
-                            <option value="PASANDO" @if(old('como') == 'PASANDO') {{'selected'}} @endif>Pasando por el lugar</option>
-                            <option value="REFERENCIA" @if(old('como') == 'REFERENCIA') {{'selected'}} @endif>Por referencia</option>
-                            <option value="FACEBOOK" @if(old('como') == 'FACEBOOK') {{'selected'}} @endif>Facebook</option>    
-                            <option value="GOOGLE" @if(old('como') == 'GOOGLE') {{'selected'}} @endif>Google</option>
-                            <option value="YOUTUBE" @if(old('como') == 'YOUTUBE') {{'selected'}} @endif>Google</option>
-                            <option value="OTRO" @if(old('como') == 'OTRO') {{'selected'}} @endif>Otra Forma</option>
-                        @endisset
-                </select>
+            <div class="row">
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 input-group text-sm" >
+                    <div class="input-group" >
+                        <p class="col-3 form-control bg-secondary p-1" for="">Como?</p> 
+                        <select class="form-control @error('como') is-invalid @enderror"  name="como" id="como">
+                            <option value=""> Elija una manera</option>
+                                @isset($persona)
+                                    <option value="PASANDO" @if($persona->como == 'PASANDO') {{'selected'}} @endif>Pasando por el lugar</option>
+                                    <option value="REFERENCIA" @if($persona->como == 'REFERENCIA') {{'selected'}} @endif>Por referencia</option>
+                                    <option value="FACEBOOK" @if($persona->como == 'FACEBOOK') {{'selected'}} @endif>Facebook</option>    
+                                    <option value="GOOGLE" @if($persona->como == 'GOOGLE') {{'selected'}} @endif>Google</option>
+                                    <option value="YOUTUBE" @if($persona->como == 'YOUTUBE') {{'selected'}} @endif>Google</option>
+                                    <option value="OTRO" @if($persona->como == 'OTRO') {{'selected'}} @endif>Otra Forma</option>
+                                @else 
+                                    <option value="PASANDO" @if(old('como') == 'PASANDO') {{'selected'}} @endif>Pasando por el lugar</option>
+                                    <option value="REFERENCIA" @if(old('como') == 'REFERENCIA') {{'selected'}} @endif>Por referencia</option>
+                                    <option value="FACEBOOK" @if(old('como') == 'FACEBOOK') {{'selected'}} @endif>Facebook</option>    
+                                    <option value="GOOGLE" @if(old('como') == 'GOOGLE') {{'selected'}} @endif>Google</option>
+                                    <option value="YOUTUBE" @if(old('como') == 'YOUTUBE') {{'selected'}} @endif>Google</option>
+                                    <option value="OTRO" @if(old('como') == 'OTRO') {{'selected'}} @endif>Otra Forma</option>
+                                @endisset
+                        </select>
+                    </div>
+                </div>
+{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO REFERENCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-sm" >
+                    <input  type="text" readonly id="persona_id" name="persona_id" class="form-control @error('carnet') is-invalid @enderror" value="{{old('persona_id',$persona->persona_id ?? '')}}">
+                </div>
             </div>
+            
         </div>
 
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO OCULTO CON QUE PAPEL LLEGA A ITE papel de profesor papel de practico etc ---}}
@@ -285,32 +294,40 @@
 
     {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO DIRECCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8 input-group text-sm" >
                 @if($errors->has('direccion'))
                     <span class="text-danger"> {{ $errors->first('direccion')}}</span>
                 @endif
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">
-            @if($errors->has('observacion'))
-                <span class="text-danger"> {{ $errors->first('observacion')}}</span>
+            @if($errors->has('telefono'))
+                <span class="text-danger"> {{ $errors->first('telefono')}}</span>
             @endif
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm">
-        @if($errors->has('foto'))
-            <p class="text-danger"> {{ $errors->first('foto')}}</p>
-        @endif
         </div>
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm" > 
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 input-group text-sm" > 
             <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1" for="">Dirección</p> 
-                <input  type="text" name="direccion" class="form-control col-9 @error('direccion') is-invalid @enderror" value="{{old('direccion',$persona->direccion ?? '')}}" placeholder="Ingrese una dirección">
+                <p class="col-2 form-control bg-secondary p-1" for="">Dirección</p> 
+                <input  type="text" name="direccion" class="form-control col-10 @error('direccion') is-invalid @enderror" value="{{old('direccion',$persona->direccion ?? '')}}" placeholder="Ingrese una dirección">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm" >
+            <div class="input-group mb-2" >
+                <p class="col-3 form-control bg-secondary p-1" for="">Teléfono</p> 
+                <input class="form-control" type="tel" id="phone" name="telefono" value="{{old('telefono',$persona->telefono ?? '')}}" placeholder="teléfono de la persona">
             </div>
         </div>
     </div>
-
+    
+     <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm" >
+                @if($errors->has('observacion'))
+                    <span class="text-danger"> {{ $errors->first('observacion')}}</span>
+                @endif
+        </div>
+    </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm" >
             <div class="input-group mb-2" >
@@ -322,18 +339,25 @@
     @isset($persona)
         <div class="row">
             {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO OBSERVACION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}} 
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group" >
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group border" style="position: relative" >
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group" >
                     <div class="input-group mb-2" >
-                        <div class="text-center">
+                        <div class="text-center p-4" >
                             <img with="25" height="25" src="{{URL::to('/').Storage::url("$persona->foto")}}" class="rounded img-thumbnail img-fluid border-primary border-5" alt="{{$persona->nombre}}">        
                         </div>
                     </div>
-                </div>     
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group" >
+                    <div class="input-group mb-2" >
+                        <div class="text-center" >
+                            <a href="{{ route('tomar.foto.persona',$persona)}}"> <i class="fas fa-camera"></i> Tomar Foto </a>
+                        </div>
+                    </div>
+                </div>
             </div>
             {{-- $$$$$$$$$$$ CAMPO REPETIR FOTOGRAFIA --}}
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm" >
-                <div class="border-danger input-group p-5 text-center">
+                <div class="border-danger input-group text-center">
                     <input type="file" data-initial-preview="{{isset($persona->foto) ? URL::to('/').Storage::url("$persona->foto") : URL::to('/').Storage::url("estudiantes/foto.jpeg") }}" accept=".png, .jpg, .jpeg, .gif" name="foto" id="foto" data-classButton="btn btn-success" data-input="false" data-classIcon="icon-plus">                
                 </div>
             </div>
@@ -346,6 +370,37 @@
     <img src="{{URL::to('/').Storage::url("$persona->foto")}}" alt=""> --}}
 
 
+<div class="modal" tabindex="-1" id="modal-ite">
+    <div class="modal-dialog modal-lg modalito">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="btn btn-danger close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                
+                <table id="personas" class="table table-bordered table-hover table-striped">
+                    <thead class="bg-primary">
+                        <tr>
+                            <th>ID</th>
+                            <th>OLD</th>
+                            <th>NOMBRE</th>
+                            <th>APATERNO</th>
+                            <th>AMATERNO</th>
+                            <th>FOTO</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                pie del modal 
+            </div>
+        </div>
+    </div>
+</div>
+
+<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-ite"> presioname</button>
 
 
 
