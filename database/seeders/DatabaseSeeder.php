@@ -21,6 +21,11 @@ class DatabaseSeeder extends Seeder
             CiudadSeeder::class,
             ZonaSeeder::class,
             PersonaSeeder::class,
+            GradoSeeder::class,
+            DepartamentoSeeder::class,
+            ProvinciaSeeder::class,
+            MunicipioSeeder::class,
+
         ]);
 
         

@@ -1,0 +1,46 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateColegiosTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('colegios', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre', 80)->nullable();
+            $table->string('rue', 10)->nullable();
+            $table->string('director', 50)->nullable();
+            $table->string('direccion', 100)->nullable();
+            $table->string('telefono', 10)->nullable();
+            $table->string('celular', 10)->nullable();
+            $table->string('dependencia', 15)->nullable();
+            $table->string('nivel', 20)->nullable();
+            $table->string('turno', 15)->nullable();
+            $table->string('departamento', 15)->nullable();
+            $table->string('provincia', 45)->nullable();
+            $table->string('municipio', 50)->nullable();
+            $table->string('distrito', 20)->nullable();
+            $table->string('areageografica', 20)->nullable();
+            $table->string('unidadesecol', 45)->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('colegios');
+    }
+}

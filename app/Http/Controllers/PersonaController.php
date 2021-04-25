@@ -17,6 +17,7 @@ use App\Telefono;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonaStoreRequest;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Str;
@@ -146,18 +147,25 @@ class PersonaController extends Controller
 
     public function storeContacto(Request $request,$id){
         
-        $cliente=Persona::findOrFail($id);
-        $pariente = new Persona();
-        $pariente->nombre = $request->nombre;
-        $pariente->apellidop = $request->apellidop;
-        $pariente->genero=$request->genero;
-        $pariente->papelinicial = 'pariente';
-        
-        $pariente->save();
+        $persona=Persona::findOrFail($id);
+        $apoderado = new Persona();
+        $apoderado->nombre = $request->nombre;
+        $apoderado->apellidop = $request->apellidop;
+        $apoderado->genero=$request->genero;
+
+        $carbon = new \Carbon\Carbon();
+        $date = $carbon::createFromDate(1900, 1, 1);
 
 
-        $cliente->attach($pariente->id,['telefono'=>$request->telefono,'parentesco'=>$request->parentesco]);
-        return back();
+        $apoderado->fechanacimiento=$date;
+        $apoderado->papelinicial = 'apoderado';
+        $apoderado->telefono=$request->telefono;
+        $apoderado->papelinicial = 'apoderado';
+        $apoderado->save();
+
+        $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
+        $apoderados = $persona->apoderados;
+        return view('telefono.index',compact('persona','apoderados'));
 
     }
 
@@ -284,9 +292,11 @@ class PersonaController extends Controller
         $persona->foto=$imageName;
         $persona->save();
 
-        $telefonos=Telefono::where('persona_id','=',$persona->id);
+        $telefonos=Telefono::where('persona_id','=',$persona->id)->get();
 
-        return view('telefono.index',compact('persona','telefonos'));
+        //return redirect('/telefonos')->with('persona',$persona)->with('telefonos',$telefonos);
+        return view('telefono.crear',compact('persona'));
+        //return view->with('count', User::count());
     }
 
     /**

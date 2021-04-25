@@ -43,9 +43,20 @@ Route::resource('ciudades', "CiudadController");
 Route::resource('zonas', "ZonaController");
 Route::resource('usuarios', "UserController");
 Route::resource('menus', "MenuController");
+Route::resource('grado', "GradoController");
+Route::resource('departamentos', "DepartamentoController");
+Route::resource('provincias', "ProvinciaController");
+Route::resource('municipios', "MunicipioController");
+
 
 Route::resource('telefonos', "TelefonoController");
+Route::get('telefonos/vista/{persona}','TelefonoController@mostrarvista')->name('telefonos.persona');
+Route::get('telefono/crear/{persona}', 'TelefonoController@crear')->name('telefonos.crear');
 Route::get('telefonos/{persona}', 'PersonaController@index')->name('telefono.de.persona');
+Route::get('telefono/{persona}/{id}/editar','TelefonoController@editar')->name('telefono.editar');
+Route::put('telefono/{persona_id}/{apoderado_id}', 'TelefonoController@actualizar')->name('telefono.actualizar');
+
+
 Route::post('crear/contacto/{persona}','PersonaController@storeContacto')->name('persona.storeContacto');
 
 
@@ -57,7 +68,14 @@ Route::delete('eliminar/ciudad/{id}','CiudadController@eliminarCiudad')->name('e
 Route::delete('eliminar/zona/{id}','ZonaController@eliminarZona')->name('eliminar.zona');
 Route::delete('eliminar/usuario/{id}','UserController@eliminarUsuario')->name('eliminar.usuario');
 Route::delete('eliminar/persona/{id}','PersonaController@eliminarPersona')->name('eliminar.persona');
+Route::delete('eliminar/telefono/{persona}/{id}', 'TelefonoController@eliminarTelefono')->name('telefono.eliminar');
 Route::delete('eliminar/menu/{id}','MenuController@eliminarMenu')->name('eliminar.menu');
+Route::delete('eliminar/grado/{id}', 'GradoController@destroy')->name('eliminar.grado');
+Route::delete('eliminar/departamento/{id}', 'DepartamentoController@destroy')->name('eliminar.departamento');
+Route::delete('eliminar/provincia/{id}', 'ProvinciaController@destroy')->name('eliminar.provincia');
+Route::delete('eliminar/municipio/{id}', 'MunicipioController@destroy')->name('eliminar.municipio');
+
+
 
 Route::get('tomarfoto', function () {return view('persona.tomarfoto');})->name('tomarfoto');
 Route::get('tomarfoto/{persona}', 'PersonaController@tomarfoto')->name('tomar.foto.persona');

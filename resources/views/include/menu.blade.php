@@ -1,3 +1,4 @@
+
 <p>Gestión de acciones</p>
 <div class="row">
         <div class="col-6 col-sm-6 col-md-3">
@@ -197,15 +198,17 @@
         </a>
             <!-- /.info-box -->
     </div>
+
+    {{--dd($persona)--}}
     <div class="col-6 col-sm-6 col-md-3">
-        <a href="{{route('personas.index')}}">
+        <a href="{{route('telefonos.persona',$persona)}}">
         <div class="info-box">
             <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-hand-holding-usd"></i></i></span>
 
             <div class="info-box-content">
-                <span class="info-box-text">Realiza pagos</span>
-                <span class="info-box-number"> Pagos
-                    <small>%</small>
+                <span class="info-box-text">Teléfonos</span>
+                <span class="info-box-number"> Gestionar
+                    <small>Gestionar%</small>
                 </span>
             </div>
             <!-- /.info-box-content -->

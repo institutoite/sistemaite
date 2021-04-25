@@ -20,10 +20,8 @@
         <div class="card-body">
             <table class="table table-bordered table-striped"> 
                 <tr class="bg-primary">
-                    
                         <th>ATRIBUTO</th>
                         <th>VALOR</th>
-                    
                 </tr>
                 <tbody>
                     <tr>

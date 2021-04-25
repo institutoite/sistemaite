@@ -8,6 +8,11 @@ use App\Ciudad;
 use App\Zona;
 use App\User;
 use App\Menu;
+use App\Grado;
+use App\Departamento;
+use App\Provincia;
+use App\Municipio;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -72,6 +77,37 @@ Route::get('menus', function () {
     return datatables()->of(Menu::get())
         ->addColumn('btn', 'user.action')
         ->rawColumns(['btn','icono'])
+        ->toJson();
+});
+
+Route::get('grados', function () {
+    return datatables()->of(Grado::get())
+        ->addColumn('btn', 'grado.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+});
+
+Route::get('departamentos', function () {
+    return datatables()->of(Departamento::get())
+        ->addColumn('btn', 'departamento.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+});
+
+Route::get('provincias', function () {
+    return datatables()->of(Provincia::select('provincias.id','provincia','departamento')
+        ->join('departamentos','departamentos.id','=','provincias.departamento_id')->get())
+        ->addColumn('btn', 'provincia.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+});
+
+Route::get('municipios', function () {
+    
+    return datatables()->of( Municipio::select('municipios.id','municipio','provincia')
+        ->join('provincias','provincias.id','=','municipios.provincia_id')->get())
+        ->addColumn('btn', 'municipio.action')
+        ->rawColumns(['btn'])
         ->toJson();
 });
 

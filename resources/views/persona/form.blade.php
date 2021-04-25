@@ -209,14 +209,16 @@
                             <option value="cliservicio" @if($persona->papelinicial == 'cliservicio') {{'selected'}} @endif>Servicio Técnico</option>
                             <option value="clicopy" @if($persona->papelinicial == 'clicopy') {{'selected'}} @endif>Fotocopia e Impresiones</option>
                             <option value="administrativo" @if($persona->papelinicial == 'administrativo') {{'selected'}} @endif>Adminitrativo</option>
-                            <option value="proveedor" @if($persona->papelinicial == 'PND') {{'proveedor'}} @endif>Proveedor</option>
+                            <option value="proveedor" @if($persona->papelinicial == 'proveedor') {{'proveedor'}} @endif>Proveedor</option>
+                            <option value="apoderado" @if($persona->papelinicial == 'apoderado') {{'apoderado'}} @endif>Apoderado</option>
                         @else 
                             <option value="estudiante" @if(old('papel') == 'estudiante') {{'selected'}} @endif>Estudiante</option>
                             <option value="docente" @if(old('papel') == 'docente') {{'selected'}} @endif>Docente</option>
                             <option value="cliservicio" @if(old('papel') == 'cliservicio') {{'selected'}} @endif>Servicio Técnico</option>
                             <option value="clicopy" @if(old('papel') == 'clicopy') {{'selected'}} @endif>Fotocopia e Impresiones</option>
                             <option value="administrativo" @if(old('papel') == 'administrativo') {{'selected'}} @endif>Adminitrativo</option>
-                            <option value="proveedor" @if(old('papel') == 'PND') {{'proveedor'}} @endif>Proveedor</option>
+                            <option value="proveedor" @if(old('papel') == 'proveedor') {{'proveedor'}} @endif>Proveedor</option>
+                            <option value="proveedor" @if(old('papel') == 'apoderado') {{'apoderado'}} @endif>Apoderado</option>
                         @endisset
                         
                 </select>
@@ -377,7 +379,6 @@
                 <button class="btn btn-danger close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                
                 <table id="personas" class="table table-bordered table-hover table-striped">
                     <thead class="bg-primary">
                         <tr>

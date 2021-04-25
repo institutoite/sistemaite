@@ -10,67 +10,59 @@
 @section('title', 'Telefonos')
 
 @section('content_header')
-    <h1 class="text-center text-primary">Telefonos</h1>
+    <h1 class="text-center text-primary">Telefonos <span class="text-secondary">{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}} </span> </h1>
 @stop
 
 @section('content')
-{{--dd($persona)--}}
-    <div class="card">
-        <div class="card-header bg-primary">
-            <span class="text-center">FORMULARIO CREAR TELEFONOS</span>
-        </div>
-        <div class="card-body">
-            <form action="{{route('persona.storeContacto',$persona)}}" method="post">
-                // puede que la ruta post no reciba parametros
-            @csrf
-                @include('telefono.form')
-                @include('include.botones')
-            </form>
-        </div>
-    </div>
 
+    <a href="{{route('telefonos.crear',$persona)}}" class="btn btn-outline-secondary float-right">Crear <i class="fas fa-plus-circle "></i></a>
+    <a class="btn btn-outline-success float-right mb-3 mr-3" href="{{route('opcion.index',$persona->id)}}" target="_blank"><i class="fas fa-ellipsis-v"></i> Ir Opciones <i class="fas fa-th-list"></i></i></a>
     <table id="telefonos" class="table table-hover table-bordered table-striped display responsive nowrap" width="100%">
         <thead class="bg-primary">
         
             <th>#</th>
             <th>CONTACTO</th>
-            <th>PARENTESCO</th>
             <th>NUMERO</th>
+            <th>PARENTESCO</th>
+            <th>ACTUALIZADO</th>
             <th width="120px">Opciones</th>
         </thead>
         <tbody>
-            @foreach ($telefonos as $telefono)
+            
+            @foreach ($apoderados as $apoderado)
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>
-                    <a  href="https://api.whatsapp.com/send?phone={{$telefono->numero}}" target="_blank"> <a href="tel:{{$telefono->numero}}">{{$telefono->numero}}</a>  <i class="fab fa-whatsapp"></i>  </a>    
+                        {{$apoderado->nombre.' '.$apoderado->apellidop.' '.$apoderado->apellidom}}
                     </td>
                     <td>
-                        {{$telefono->detalle}}
-                        
+                        <a href="tel:{{$apoderado->telefono}}">{{$apoderado->pivot->telefono}}</a> 
                     </td>
-                    <td>{{$telefono->created_at}}</td>
+                    <td>
+                        {{$apoderado->pivot->parentesco}}
+                    </td>
+                                    
+                    <td>{{$apoderado->updated_at}}</td>
 
                     <td>
-                        <a href="{{route('telefono_editar', $telefono->id)}}" class="btn-accion-tabla tooltipsC mr-2" title="Editar este número">
+                        <a href="{{route('telefono.editar',['persona'=>$persona,'id'=>$apoderado->id])}}" class="btn-accion-tabla tooltipsC mr-2" title="Editar este número">
                             <i class="fa fa-fw fa-edit text-primary"></i>
-                        </a>
-                        {{--@can('telofemdspresa_eliminar')--}}
-                            <form action="{{route('telefono_eliminar',['id' =>$telefono->id,'persona_id'=>$persona->id])}}" id="form{{$telefono->id}}" class="d-inline formulario" method="POST">
-                                @csrf
-                                @method("delete")
-                                <button name="btn-eliminar" id="{{$telefono->id}}" type="submit" class="btn eliminar" title="Eliminar este Número">
-                                    <i class="fa fa-fw fa-trash text-danger"></i>   
-                                </button>
-
-                            </form> 
-                                <a class="btn btn-success btn-sm" href="https://api.whatsapp.com/send?phone={{$telefono->prefijo.$telefono->numero}}" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                        {{--@endcan--}}
+                        </a> 
+                    
+                        <form action="{{route('telefono.eliminar',['persona'=>$persona,'id'=>$apoderado->id])}}"  class="d-inline formulario" method="POST">
+                            @csrf
+                            @method("delete")
+                            <button name="btn-eliminar" type="submit" class="btn eliminar" title="Eliminar este Número">
+                                <i class="fa fa-fw fa-trash text-danger"></i>   
+                            </button>
+                        </form> 
                     </td>
                 </tr>
+
             @endforeach
         </tbody>
     </table>
+    <a class="btn btn-outline-success float-right" href="{{route('opcion.index',$persona->id)}}" target="_blank"><i class="fas fa-ellipsis-v"></i> Ir Opciones <i class="fas fa-th-list"></i></i></a>
 @stop
 
 @section('js')
@@ -83,13 +75,9 @@
 
     <script>
         $(document).ready(function() {
-            var tabla=$('#telefonos').DataTable(
-                { 
-                    "language":"url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-                }
-            );
-
+           
             $('table').on('click','.eliminar',function (e) {
+                
                 e.preventDefault(); 
                 id=$(this).parent().parent().parent().find('td').first().html();
                 Swal.fire({
@@ -104,51 +92,7 @@
                     position:'center',        
                 }).then((result) => {
                     if (result.value) {
-                        $.ajax({
-                            url: 'eliminar/telefono/'+id,
-                            type: 'DELETE',
-                            data:{
-                                id:id,
-                                _token:'{{ csrf_token() }}'
-                            },
-                            success: function(result) {
-                                tabla.ajax.reload();
-                                const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 1500,
-                                timerProgressBar: true,
-                                didOpen: (toast) => {
-                                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                }
-                                })
-                                Toast.fire({
-                                icon: 'success',
-                                title: 'Se eliminó correctamente el registro'
-                                })   
-                            },
-                            error: function (xhr, ajaxOptions, thrownError) {
-                                switch (xhr.status) {
-                                    case 500:
-                                        Swal.fire({
-                                            title: 'Custom animation with Animate.css',
-                                            showClass: {
-                                                popup: 'animate__animated animate__fadeInDown'
-                                            },
-                                            hideClass: {
-                                                popup: 'animate__animated animate__fadeOutUp'
-                                            }
-                                        })
-                                        break;
-                                
-                                    default:
-                                        break;
-                                }
-                                
-                            }
-                        });
+                        console.log($(this).parent().submit());
                     }else{
                         const Toast = Swal.mixin({
                             toast: true,

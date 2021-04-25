@@ -18,10 +18,10 @@ class PersonaPersona extends Migration
             $table->string('telefono', 10)->nullable();
             $table->string('parentesco', 10)->nullable();
             $table->unsignedInteger('persona_id');
-            $table->unsignedInteger('persona_id_parentesco');
+            $table->unsignedInteger('persona_id_apoderado');
 
             $table->foreign('persona_id')->references('id')->on('personas');
-            $table->foreign('persona_id_parentesco')->references('id')->on('personas');
+            $table->foreign('persona_id_apoderado')->references('id')->on('personas');
 
             $table->timestamps();
         });

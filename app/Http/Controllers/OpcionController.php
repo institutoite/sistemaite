@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Persona;
 
 class OpcionController extends Controller
 {
@@ -13,7 +14,8 @@ class OpcionController extends Controller
      */
     public function index($id)
     {
-        return view('opcion.index',compact('id'));
+        $persona=Persona::findOrFail($id);
+        return view('opcion.principal',compact('id','persona'));
     }
 
     /**
@@ -81,4 +83,5 @@ class OpcionController extends Controller
     {
         //
     }
+    
 }

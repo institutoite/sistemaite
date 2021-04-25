@@ -122,7 +122,7 @@
                                 switch (xhr.status) {
                                     case 500:
                                         Swal.fire({
-                                            title: 'Custom animation with Animate.css',
+                                            title: 'No se completó esta operación por que este registro está relacionado con otros registros',
                                             showClass: {
                                                 popup: 'animate__animated animate__fadeInDown'
                                             },
