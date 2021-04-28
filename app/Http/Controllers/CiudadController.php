@@ -121,7 +121,7 @@ class CiudadController extends Controller
     public function getZonas(Request $request,$id){
         //if($request->ajax()){
             $zona=Zona::zonas($id);
-            dd($zona);
+           // dd($zona);
             return response()->json($zona);
        // }
     }

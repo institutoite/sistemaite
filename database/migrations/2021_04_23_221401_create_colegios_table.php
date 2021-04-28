@@ -29,7 +29,8 @@ class CreateColegiosTable extends Migration
             $table->string('municipio', 50)->nullable();
             $table->string('distrito', 20)->nullable();
             $table->string('areageografica', 20)->nullable();
-            $table->string('unidadesecol', 45)->nullable();
+            $table->string('coordenadax', 15)->nullable();
+            $table->string('coordenaday', 15)->nullable();
             $table->timestamps();
         });
     }

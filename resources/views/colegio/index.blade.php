@@ -5,69 +5,89 @@
     
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
-    <link rel="stylesheet" href="">
 @stop
 
 @section('title', 'Personas')
 
 @section('content_header')
-    <h1 class="text-center text-primary">Buscar Cliente</h1>
+    <h1 class="text-center text-primary">Colegios</h1>
 @stop
 
 @section('content')
-    <table id="personas" class="table table-bordered table-hover table-striped">
-        <thead class="bg-primary">
-            <tr>
-                <th>ID</th>
-                <th>OLD</th>
-                <th>NOMBRE</th>
-                <th>APATERNO</th>
-                <th>AMATERNO</th>
-                <th>FOTO</th>
-                <th>ACCIONES</th>
-            </tr>
-        </thead>
-    </table>
-@stop
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
 
+                            <span id="card_title">
+                                {{ __('Colegio') }}
+                            </span>
+
+                            <div class="float-right">
+                                <a href="{{ route('colegios.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                    {{ __('Create Nuevo') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="colegios" class="table table-striped table-hover">
+                                <thead class="thead bg-primary">
+                                    <tr>
+                                        <th>No</th>
+										<th>Nombre</th>
+										<th>Rue</th>
+										<th>Telefono</th>
+										<th>Celular</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+@endsection
 @section('js')
-    
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
     <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
-    <!-- JavaScript Bundle with Popper -->
-    
-
-    <script>
+<script>
         $(document).ready(function() {
         
-        var tabla=$('#personas').DataTable(
+        var tabla=$('#colegios').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
                     "autoWidth":false,
 
-                    "ajax": "{{ url('api/personas') }}",
+                    "ajax": "{{ url('api/colegios') }}",
                     "columns": [
                         {data: 'id'},
-                        {data:'idantiguo'},
-                        {data: 'nombre'},
-                        {data: 'apellidop'},
-                        {data: 'apellidom'},
-                        {
-                            "name": "foto",
-                            "data": "foto",
-                            "render": function (data, type, full, meta) {
-                                return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
-                            },
-                            "title": "Image",
-                            "orderable": true,
-            
-                        },     
+                        {data:'nombre'},
+                        {data: 'rue'},
+                        {data: 'telefono'},
+                        {data: 'celular'},
                         {data: 'btn'},
+                    ],
+                    "columnDefs": [
+                        { responsivePriority: 1, targets: 0 },
+                        { responsivePriority: 3, targets: -1 }
                     ],
                     "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
@@ -91,7 +111,7 @@
                 }).then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: 'eliminar/persona/'+id,
+                            url: 'eliminar/colegio/'+id,
                             type: 'DELETE',
                             data:{
                                 id:id,

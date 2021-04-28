@@ -3,8 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Colegio;
+use App\Municipio;
+use App\Departamento;
+use App\Provincia;
+
 use Illuminate\Http\Request;
 
+/**
+ * Class ColegioController
+ * @package App\Http\Controllers
+ */
 class ColegioController extends Controller
 {
     /**
@@ -14,7 +22,10 @@ class ColegioController extends Controller
      */
     public function index()
     {
-        //
+        $colegios = Colegio::paginate();
+
+        return view('colegio.index', compact('colegios'))
+            ->with('i', (request()->input('page', 1) - 1) * $colegios->perPage());
     }
 
     /**
@@ -24,62 +35,84 @@ class ColegioController extends Controller
      */
     public function create()
     {
-        //
+        //$colegio = new Colegio();
+        $departamentos = Departamento::get();
+        $provincias = Provincia::get();
+        $municipios = Municipio::get();
+        return view('colegio.create', compact('municipios', 'provincias', 'departamentos'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        request()->validate(Colegio::$rules);
+
+        $colegio = Colegio::create($request->all());
+
+        return redirect()->route('colegios.index')
+            ->with('success', 'Colegio created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Colegio  $colegio
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Colegio $colegio)
+    public function show($id)
     {
-        //
+        $colegio = Colegio::find($id);
+
+        return view('colegio.show', compact('colegio'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Colegio  $colegio
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Colegio $colegio)
+    public function edit($id)
     {
-        //
+        $colegio = Colegio::find($id);
+        $departamentos = Departamento::get();
+        $provincias = Provincia::get();
+        $municipios = Municipio::where('provincia_id','=',$colegio->provincia)->get();
+        return view('colegio.edit', compact('colegio','departamentos','provincias','municipios'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Colegio  $colegio
+     * @param  \Illuminate\Http\Request $request
+     * @param  Colegio $colegio
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Colegio $colegio)
     {
-        //
+        request()->validate(Colegio::$rules);
+
+        $colegio->update($request->all());
+        //dd($colegio);
+        return redirect()->route('colegios.index')
+            ->with('success', 'Colegio updated successfully');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Colegio  $colegio
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function destroy(Colegio $colegio)
+    public function destroy($id)
     {
-        //
+        $colegio = Colegio::find($id)->delete();
+
+        return redirect()->route('colegios.index')
+            ->with('success', 'Colegio deleted successfully');
     }
 }

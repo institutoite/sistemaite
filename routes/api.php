@@ -12,6 +12,7 @@ use App\Grado;
 use App\Departamento;
 use App\Provincia;
 use App\Municipio;
+use App\Colegio;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,7 +104,6 @@ Route::get('provincias', function () {
 });
 
 Route::get('municipios', function () {
-    
     return datatables()->of( Municipio::select('municipios.id','municipio','provincia')
         ->join('provincias','provincias.id','=','municipios.provincia_id')->get())
         ->addColumn('btn', 'municipio.action')
@@ -111,9 +111,18 @@ Route::get('municipios', function () {
         ->toJson();
 });
 
+Route::get('colegios', function () {
+    return datatables()->of(Colegio::select('colegios.id', 'nombre', 'rue','telefono','celular')->get())
+        ->addColumn('btn', 'colegio.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+});
 
 
 
 
 Route::get('pais/{id}/ciudades','CiudadController@city_of_country');
 Route::get('ciudad/{id}/zonas','ZonaController@zona_of_city');
+
+Route::get('departamento/{id}/provincias', 'ProvinciaController@provincia_of_departamento');
+Route::get('provincia/{id}/municipios', 'MunicipioController@municipio_of_provincia');

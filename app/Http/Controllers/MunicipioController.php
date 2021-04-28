@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Departamento;
 use App\Municipio;
+use App\Provincia;
 use Illuminate\Http\Request;
 
 /**
@@ -32,6 +34,9 @@ class MunicipioController extends Controller
     public function create()
     {
         $municipio = new Municipio();
+        
+        //dd($departamentos);
+
         return view('municipio.create', compact('municipio'));
     }
 
@@ -105,4 +110,10 @@ class MunicipioController extends Controller
         $municipio->delete();
         return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
+    public function municipio_of_provincia(Request $request, $id)
+    {
+        if ($request->ajax()) {
+            return Municipio::where('provincia_id', $id)->get();
+        }
+    } 
 }

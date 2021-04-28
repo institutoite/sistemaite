@@ -47,6 +47,7 @@ Route::resource('grado', "GradoController");
 Route::resource('departamentos', "DepartamentoController");
 Route::resource('provincias', "ProvinciaController");
 Route::resource('municipios', "MunicipioController");
+Route::resource('colegios', "ColegioController");
 
 
 Route::resource('telefonos', "TelefonoController");
@@ -74,6 +75,7 @@ Route::delete('eliminar/grado/{id}', 'GradoController@destroy')->name('eliminar.
 Route::delete('eliminar/departamento/{id}', 'DepartamentoController@destroy')->name('eliminar.departamento');
 Route::delete('eliminar/provincia/{id}', 'ProvinciaController@destroy')->name('eliminar.provincia');
 Route::delete('eliminar/municipio/{id}', 'MunicipioController@destroy')->name('eliminar.municipio');
+Route::delete('eliminar/colegio/{id}', 'ColegioController@destroy')->name('eliminar.colegio');
 
 
 
