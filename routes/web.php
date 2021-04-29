@@ -48,6 +48,8 @@ Route::resource('departamentos', "DepartamentoController");
 Route::resource('provincias', "ProvinciaController");
 Route::resource('municipios', "MunicipioController");
 Route::resource('colegios', "ColegioController");
+Route::resource('modalidads', "ModalidadController");
+Route::resource('nivels', "NivelController");
 
 
 Route::resource('telefonos', "TelefonoController");
@@ -76,6 +78,8 @@ Route::delete('eliminar/departamento/{id}', 'DepartamentoController@destroy')->n
 Route::delete('eliminar/provincia/{id}', 'ProvinciaController@destroy')->name('eliminar.provincia');
 Route::delete('eliminar/municipio/{id}', 'MunicipioController@destroy')->name('eliminar.municipio');
 Route::delete('eliminar/colegio/{id}', 'ColegioController@destroy')->name('eliminar.colegio');
+Route::delete('eliminar/modalidad/{id}', 'ModalidadController@destroy')->name('eliminar.modalidad');
+Route::delete('eliminar/nivel/{id}', 'NivelController@destroy')->name('eliminar.nivel');
 
 
 

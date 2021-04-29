@@ -1,0 +1,28 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Observacionincripcione;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class ObservacionincripcioneFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Observacionincripcione::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            //
+        ];
+    }
+}

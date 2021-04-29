@@ -127,13 +127,13 @@
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
                 <div class="input-group mb-2" >
                     <p class="col-3 form-control bg-secondary p-1 p-1" for="">Dpto</p> 
-                    <select class="form-control @error('departamento') is-invalid @enderror" data-old="{{ old('departamento') }}" name="departamento" id="departamento">
+                    <select class="form-control @error('departamento_id') is-invalid @enderror" data-old="{{ old('departamento_id') }}" name="departamento_id" id="departamento">
                         <option value="" selected>seleccione un departamento</option>
                         @foreach ($departamentos as $departamento)
                             @isset($colegio)     
                                 <option  value="{{$colegio->departamento}}" {{$departamento->id==$colegio->departamento ? 'selected':''}}>{{$departamento->departamento}}</option>     
                             @else
-                                <option value="{{ $departamento->id }}" {{ old('departamento') == $departamento->id ? 'selected':'' }} >{{ $departamento->departamento }}</option>
+                                <option value="{{ $departamento->id }}" {{ old('departamento_id') == $departamento->id ? 'selected':'' }} >{{ $departamento->departamento }}</option>
                             @endisset 
                         @endforeach
                     </select>
@@ -143,11 +143,11 @@
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
                 <div class="input-group mb-2" >
                     <p class="col-3 form-control bg-secondary p-1 p-1" for="">provincia</p> 
-                    <select class="form-control @error('provincia_id') is-invalid @enderror" name="provincia" id="provincia">
+                    <select class="form-control @error('provincia_id') is-invalid @enderror" name="provincia_id" id="provincia">
                         <option value=""> Elija una provincia</option>
                             @foreach ($provincias as $item)
                                 @isset($colegio) 
-                                    <option value="{{ $colegio->provincia }}" {{ $item->id==$colegio->provincia ? 'selected':''}} >{{ $item->provincia }}</option>
+                                    <option value="{{ $colegio->provincia_id }}" {{ $item->id==$colegio->provincia_id ? 'selected':''}} >{{ $item->provincia }}</option>
                                 @endisset
                             @endforeach 
                     </select>
@@ -157,13 +157,13 @@
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
                 <div class="input-group mb-2" >
                 <p class="col-3 form-control bg-secondary p-1" for="">Municipio</p> 
-                <select class="form-control @error('municipio') is-invalid @enderror" name="municipio" id="municipio">
+                <select class="form-control @error('municipio_id') is-invalid @enderror" name="municipio_id" id="municipio">
                     <option value="" > Seleccione una municipio</option>
                     @foreach ($municipios as $municipio)
                         @isset($colegio)     
-                            <option  value="{{$municipio->id}}" {{$municipio->id==$colegio->municipio ? 'selected':''}}>{{$municipio->municipio.$municipio->id}}</option>     
+                            <option  value="{{$municipio->id}}" {{$municipio->id==$colegio->municipio_id ? 'selected':''}}>{{$municipio->municipio}}</option>     
                         @else
-                            <option value="{{ $municipio->id }}" {{ old('municipio') == $municipio->id ? 'selected':'' }} >{{ $municipio->municipio }}</option>
+                            <option value="{{ $municipio->id }}" {{ old('municipio_id') == $municipio->id ? 'selected':'' }} >{{ $municipio->municipio }}</option>
                         @endisset  
                     @endforeach
                 </select>

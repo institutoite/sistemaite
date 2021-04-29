@@ -1,9 +1,8 @@
-@extends('adminlte::page')
-@section('css')
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
-@stop
+@extends('layouts.app')
 
-@section('title', 'Pais Crear')
+@section('template_title')
+    Update Observacion
+@endsection
 
 @section('content')
     <section class="content container-fluid">
@@ -14,14 +13,14 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Update Municipio</span>
+                        <span class="card-title">Update Observacion</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('municipios.update', $municipio->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('observacions.update', $observacion->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('municipio.form')
+                            @include('observacion.form')
 
                         </form>
                     </div>

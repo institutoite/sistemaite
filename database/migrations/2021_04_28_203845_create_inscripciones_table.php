@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIncripcioncolegiosTable extends Migration
+class CreateInscripcionesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateIncripcioncolegiosTable extends Migration
      */
     public function up()
     {
-        Schema::create('incripcioncolegios', function (Blueprint $table) {
+        Schema::create('inscripciones', function (Blueprint $table) {
             $table->increments('id');
             $table->time('horainicio')->nullable();
             $table->time('horafin')->nullable();
@@ -30,10 +30,6 @@ class CreateIncripcioncolegiosTable extends Migration
             $table->tinyInteger('jueves')->nullable();
             $table->tinyInteger('viernes')->nullable();
             $table->tinyInteger('sabado')->nullable();
-
-            $table->integer('estudiante_id');
-            $table->unsignedInteger('modalidad_id');
-
             $table->timestamps();
         });
     }
@@ -45,6 +41,6 @@ class CreateIncripcioncolegiosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('incripcioncolegios');
+        Schema::dropIfExists('inscripciones');
     }
 }

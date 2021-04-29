@@ -13,6 +13,9 @@ use App\Departamento;
 use App\Provincia;
 use App\Municipio;
 use App\Colegio;
+use App\Modalidad;
+use App\Nivel;
+use App\Observacionincripcione;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,6 +120,22 @@ Route::get('colegios', function () {
         ->rawColumns(['btn'])
         ->toJson();
 });
+
+Route::get('modalidades', function () {
+    return datatables()->of(Modalidad::get())
+        ->addColumn('btn', 'modalidad.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+});
+
+Route::get('niveles', function () {
+    return datatables()->of(Nivel::get())
+        ->addColumn('btn', 'nivel.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+});
+
+
 
 
 

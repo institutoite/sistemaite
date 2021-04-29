@@ -63,15 +63,15 @@
                         </div>
                         <div class="form-group">
                             <strong>Departamento:</strong>
-                            {{ $colegio->departamento }}
+                            {{ $departamento->departamento }}
                         </div>
                         <div class="form-group">
                             <strong>Provincia:</strong>
-                            {{ $colegio->provincia }}
+                            {{ $provincia->provincia }}
                         </div>
                         <div class="form-group">
                             <strong>Municipio:</strong>
-                            {{ $colegio->municipio }}
+                            {{ $municipio->municipio }}
                         </div>
                         <div class="form-group">
                             <strong>Distrito:</strong>

@@ -50,10 +50,11 @@ class ColegioController extends Controller
      */
     public function store(Request $request)
     {
+        
         request()->validate(Colegio::$rules);
-
+        //dd($request->all());
         $colegio = Colegio::create($request->all());
-
+        //dd($colegio);
         return redirect()->route('colegios.index')
             ->with('success', 'Colegio created successfully.');
     }
@@ -67,8 +68,11 @@ class ColegioController extends Controller
     public function show($id)
     {
         $colegio = Colegio::find($id);
+        $departamento=Departamento::findOrFail($colegio->departamento_id);
+        $provincia = provincia::findOrFail($colegio->provincia_id);
+        $municipio = municipio::findOrFail($colegio->municipio_id);
 
-        return view('colegio.show', compact('colegio'));
+        return view('colegio.show', compact('colegio','departamento','provincia','municipio   '));
     }
 
     /**
@@ -110,9 +114,9 @@ class ColegioController extends Controller
      */
     public function destroy($id)
     {
-        $colegio = Colegio::find($id)->delete();
-
-        return redirect()->route('colegios.index')
-            ->with('success', 'Colegio deleted successfully');
+        $colegio = Colegio::findOrFail($id);
+        $colegio->delete();
+        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
+    
 }
