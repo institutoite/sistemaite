@@ -14,7 +14,7 @@
                             <span class="card-title">Show Modalidad</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('modalidads.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('modalidads.index') }}"> Atrás</a>
                         </div>
                     </div>
 
@@ -31,6 +31,10 @@
                         <div class="form-group">
                             <strong>Cargahoraria:</strong>
                             {{ $modalidad->cargahoraria }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Nivel:</strong>
+                            {{ $nivel->nivel }}
                         </div>
 
                     </div>

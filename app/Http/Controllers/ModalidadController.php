@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Modalidad;
+use App\Nivel;
+
 use Illuminate\Http\Request;
 
 /**
@@ -32,7 +34,8 @@ class ModalidadController extends Controller
     public function create()
     {
         $modalidad = new Modalidad();
-        return view('modalidad.create', compact('modalidad'));
+        $niveles=Nivel::get();
+        return view('modalidad.create', compact('modalidad','niveles'));
     }
 
     /**
@@ -60,8 +63,8 @@ class ModalidadController extends Controller
     public function show($id)
     {
         $modalidad = Modalidad::find($id);
-
-        return view('modalidad.show', compact('modalidad'));
+        $nivel=Nivel::findOrFail($modalidad->nivel_id);
+        return view('modalidad.show', compact('modalidad','nivel'));
     }
 
     /**
@@ -73,8 +76,8 @@ class ModalidadController extends Controller
     public function edit($id)
     {
         $modalidad = Modalidad::find($id);
-
-        return view('modalidad.edit', compact('modalidad'));
+        $niveles = Nivel::get();
+        return view('modalidad.edit', compact('modalidad','niveles'));
     }
 
     /**

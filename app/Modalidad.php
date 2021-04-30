@@ -33,7 +33,7 @@ class Modalidad extends Model
      *
      * @var array
      */
-    protected $fillable = ['modalidad','costo','cargahoraria'];
+    protected $fillable = ['modalidad','costo','cargahoraria','nivel_id'];
 
 
 
