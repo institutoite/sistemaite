@@ -15,21 +15,32 @@ class CreateInscripcionesTable extends Migration
     {
         Schema::create('inscripciones', function (Blueprint $table) {
             $table->increments('id');
+           
             $table->time('horainicio')->nullable();
             $table->time('horafin')->nullable();
-            $table->date('fechaini')->nullable();
-            $table->date('fechafin')->nullable();
-            $table->decimal('totalhoras', 6, 2)->nullable();
-            $table->decimal('horasxclase', 4, 2)->nullable();
-            $table->tinyInteger('vigente')->nullable();
-            $table->tinyInteger('condonado')->nullable();
-            $table->string('Objetivo', 300)->nullable();
-            $table->tinyInteger('lunes')->nullable();
-            $table->tinyInteger('martes')->nullable();
-            $table->tinyInteger('miercoles')->nullable();
-            $table->tinyInteger('jueves')->nullable();
-            $table->tinyInteger('viernes')->nullable();
-            $table->tinyInteger('sabado')->nullable();
+            $table->date('fechaini');
+            $table->date('fechafin');
+            $table->decimal('totalhoras', 6, 2);
+            $table->decimal('horasxclase', 4, 2);
+            $table->boolean('vigente');
+            
+            $table->boolean('condonado');
+            $table->string('Objetivo');
+            $table->boolean('lunes')->nullable();
+            $table->boolean('martes')->nullable();
+            $table->boolean('miercoles')->nullable();
+            $table->boolean('jueves')->nullable();
+            $table->boolean('viernes')->nullable();
+            $table->boolean('sabado')->nullable();
+
+            $table->unsignedInteger('estudiante_id');
+            $table->unsignedInteger('modalidad_id');
+
+            $table->foreign('estudiante_id', 'fk_inscripcion_estudiante1x_idx')
+                ->references('id')->on('estudiantes');
+
+            $table->foreign('modalidad_id', 'fk_inscripciones_modalidades_idx')
+                ->references('id')->on('modalidads');
             $table->timestamps();
         });
     }

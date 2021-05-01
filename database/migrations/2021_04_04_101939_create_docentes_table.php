@@ -16,11 +16,13 @@ class CreateDocentesTable extends Migration
         Schema::create('docentes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('observacion', 500);
-
+            $table->date('fecha_ingreso');
+            $table->tinyInteger('diasprueba');
+            $table->decimal('sueldo', 6, 2)->nullable();
+            $table->tinyInteger('estado')->nullable();
             $table->unsignedInteger('persona_id');
-            $table->foreign('persona_id', 'fk_persona_docente')
-            ->references('id')->on('personas');
-
+            $table->foreign('persona_id', 'fk_docente_persona_idx')
+                ->references('id')->on('personas');
             $table->timestamps();
         });
     }
