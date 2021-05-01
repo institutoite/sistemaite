@@ -5,11 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Aula extends Model
+class Tema extends Model
 {
     use HasFactory;
-    public function inscripciones()
-    {
-        return $this->belongsToMany(Inscripcione::class);
+    public function materia(){
+        return $this->belongsTo(Materia::class);
     }
 }

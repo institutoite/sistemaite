@@ -39,9 +39,9 @@ class Observacion extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function inscripcione()
+    public function observable()
     {
-        return $this->hasOne('App\Inscripcione', 'id', 'inscripcione_id');
+        return $this->morphTo();
     }
     
 

@@ -17,10 +17,9 @@ class CreateObservacionsTable extends Migration
             $table->increments('id');
             $table->string('Objetivo', 500)->nullable();
             $table->boolean('activo');
-            $table->unsignedInteger('inscripcione_id');
-            $table->foreign('inscripcione_id', 'fk_inscripciones_observaciones_idx')
-            ->references('id')->on('inscripciones');
-
+            $table->integer('observable_id')->unsigned();
+            $table->string('observable_type');
+            
             $table->timestamps();
         });
     }

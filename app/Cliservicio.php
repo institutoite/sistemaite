@@ -12,4 +12,9 @@ class Cliservicio extends Model
     {
         return $this->belongsTo(Persona::class);
     }
+
+    public function observaciones()
+    {
+        return $this->morphMany(Observacion::class, 'observable');
+    }
 }

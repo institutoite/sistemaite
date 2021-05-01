@@ -15,7 +15,7 @@ use App\Municipio;
 use App\Colegio;
 use App\Modalidad;
 use App\Nivel;
-use App\Observacionincripcione;
+use App\Inscripcione;
 
 /*
 |--------------------------------------------------------------------------
@@ -135,10 +135,12 @@ Route::get('niveles', function () {
         ->toJson();
 });
 
-
-
-
-
+Route::get('inscripciones', function () {
+    return datatables()->of(Inscripcione::get())
+        ->addColumn('btn', 'inscripcione.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+});
 
 Route::get('pais/{id}/ciudades','CiudadController@city_of_country');
 Route::get('ciudad/{id}/zonas','ZonaController@zona_of_city');

@@ -1,9 +1,6 @@
 <?php
 namespace Database\Seeders;
 use Illuminate\Database\Seeder;
-use App\Persona;
-use App\User;
-use App\Pais;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,7 +22,9 @@ class DatabaseSeeder extends Seeder
             DepartamentoSeeder::class,
             ProvinciaSeeder::class,
             MunicipioSeeder::class,
-
+            NivelSeeder::class,
+            AulaSeeder::class,
+            DocenteSeeder::class,
         ]);
 
         

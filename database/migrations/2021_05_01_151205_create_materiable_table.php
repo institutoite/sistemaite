@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableDocenteMateria extends Migration
+class CreateMateriableTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateTableDocenteMateria extends Migration
      */
     public function up()
     {
-        Schema::create('docente_materia', function (Blueprint $table) {
+        Schema::create('materiable', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('docente_id');
-            $table->unsignedInteger('materia_id');
+            $table->unsignedInteger('materiable_id');
+            $table->string('tameriable_type');
 
-            $table->foreign('docente_id', 'fk_docente_materia')->references('id')->on('docentes');
-            $table->foreign('materia_id', 'fk_doncete_materia1')->references('id')->on('materias');
+            $table->unsignedInteger('materia_id');
+            $table->foreign('materia_id')->references('id')->on('materias')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateTableDocenteMateria extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('docente_materia');
+        Schema::dropIfExists('materiable');
     }
 }

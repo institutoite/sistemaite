@@ -30,5 +30,7 @@ class PersonaSeeder extends Seeder
 
         Estudiante::create(['persona_id' => 10, 'requerimiento' => 'Esto es un requerimiento de prueba solamente']);
 
+       
+
     }
 }

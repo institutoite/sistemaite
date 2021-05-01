@@ -33,10 +33,8 @@ class CreateBilletesTable extends Migration
             $table->tinyInteger('dolares5')->nullable();
             $table->tinyInteger('dolares1')->nullable();
             
-            $table->unsignedInteger('pago_id');
-
-            $table->foreign('pago_id', 'fk_pago_billetes_idx')
-            ->references('id')->on('pagos');
+            $table->integer('pagable_id')->unsigned();
+            $table->string('pagable_type');
 
             $table->timestamps();
         });

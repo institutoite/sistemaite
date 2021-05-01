@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Clipractico extends Model
 {
     use HasFactory;
+    public function observaciones()
+    {
+        return $this->morphMany(Observacion::class, 'observable');
+    }
 }

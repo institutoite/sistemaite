@@ -50,7 +50,13 @@ Route::resource('municipios', "MunicipioController");
 Route::resource('colegios', "ColegioController");
 Route::resource('modalidads', "ModalidadController");
 Route::resource('nivels', "NivelController");
+Route::resource('inscripciones', "InscripcioneController");
 
+
+
+
+Route::get('tus_inscripciones/{id}', 'InscripcioneController@tusinscripciones')->name('tus.inscripciones');
+Route::get('listar/inscripciones/{id}', 'InscripcioneController@listar')->name('listar_inscripciones');
 
 Route::resource('telefonos', "TelefonoController");
 Route::get('telefonos/vista/{persona}','TelefonoController@mostrarvista')->name('telefonos.persona');

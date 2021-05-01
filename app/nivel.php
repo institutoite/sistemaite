@@ -31,6 +31,16 @@ class Nivel extends Model
      */
     protected $fillable = ['nivel'];
 
+  /** RELACION MUCHOS A MUCHO POLIMORFICO */
+  public function materias()
+  {
+    return $this->morphToMany('App\Materia', 'materiable');
+  }
+
+  public function modalidad()
+  {
+    return $this->belongsTo(Modalidad::class);
+  }
 
 
 }

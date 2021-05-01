@@ -2,15 +2,15 @@
 <p>Gestión de acciones</p>
 <div class="row">
         <div class="col-6 col-sm-6 col-md-3">
-            <a href="{{route('personas.index')}}">
+            <a href="{{route('listar_inscripciones',$persona->estudiante->id)}}">
             <div class="info-box bg-green elevation-2">
                 <span class="info-box-icon bg-primary elevation-2"><i class="fas fa-baby"></i></span>
 
                 <div class="info-box-content">
                     
-                        <span class="info-box-number">Guardería</span>
+                        <span class="info-box-number">Inscripciones</span>
                         <span class="info-box-number">
-                        <small>Inscripciones de Kinder y Pre-Kinder</small>
+                        <small>Inscripciones para todos los niveles</small>
                         </span>
                     
                 </div>

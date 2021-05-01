@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableTema extends Migration
+class CreateTemasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,6 +20,7 @@ class CreateTableTema extends Migration
             $table->foreign('materia_id', 'fk_tema_materia1_idx')
                 ->references('id')->on('materias');
             $table->timestamps();
+            
         });
     }
 

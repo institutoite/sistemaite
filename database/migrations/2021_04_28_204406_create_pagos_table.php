@@ -18,9 +18,9 @@ class CreatePagosTable extends Migration
             $table->decimal('monto', 6, 2);
             $table->decimal('pagocon', 6, 2);
             $table->decimal('cambio', 6, 2);
-            $table->unsignedInteger('inscripcione_id');
-            $table->foreign('inscripcione_id', 'fk_inscripciones_pagos_idx')
-            ->references('id')->on('inscripciones');
+            $table->integer('pagable_id')->unsigned();
+            $table->string('pagable_type');
+
             $table->timestamps();
         });
     }

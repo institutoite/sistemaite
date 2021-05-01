@@ -49,6 +49,12 @@ class Persona extends Model
         return $this->hasOne(Estudiante::class);
     }
 
+    /** OBSRVACIONES  */
+    public function observaciones()
+    {
+        return $this->morphMany(Observacion::class, 'observable');
+    }
+
    
     public function apoderados()
     {

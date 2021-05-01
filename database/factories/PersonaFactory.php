@@ -38,7 +38,7 @@ class PersonaFactory extends Factory
             'zona_id'=>1,
             'como' => "FACEBOOK",
             'foto' => "estudiantes/foto.jpg",
-            'papelinicial' =>'estudiante',
+            'papelinicial'=> $this->faker->randomElement(['estudiante', 'docente']),
             'idantiguo' => 1
         ];
     }

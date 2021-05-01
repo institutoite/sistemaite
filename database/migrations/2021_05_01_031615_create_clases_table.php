@@ -16,8 +16,8 @@ class CreateClasesTable extends Migration
         Schema::create('clases', function (Blueprint $table) {
             $table->increments('id');
             $table->date('fecha');
+            $table->boolean('pagado');
             $table->boolean('estado');
-            
             $table->boolean('horainicio')->nullable();
             $table->boolean('horafin')->nullable();
 

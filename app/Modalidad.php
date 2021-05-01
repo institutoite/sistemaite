@@ -35,6 +35,14 @@ class Modalidad extends Model
      */
     protected $fillable = ['modalidad','costo','cargahoraria','nivel_id'];
 
+  public function inscripcion()
+  {
+    return $this->belongsTo(Inscripcione::class);
+  }
 
+  public function nivel()
+  {
+    return $this->hasOne(Nivel::class);
+  }
 
 }
