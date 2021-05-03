@@ -36,8 +36,8 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        <th>Vigente</th>
                                         <th>Objetivo</th>
+                                        <th>Vigencia</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -61,7 +61,7 @@
     <script>
         
     $(document).ready(function() {
-     
+    
         var tabla=$('#inscripciones').DataTable(
                 {
                     "serverSide": true,
@@ -72,8 +72,8 @@
                             }, 
                     "columns": [
                         {data:'id'},
-                        {data:'horainicio'},
-                        {data:'Objetivo'},
+                        {data:'objetivo'},
+                        {data:'vigente'},
                         {data: 'btn'},
                     ],
                     "language":{

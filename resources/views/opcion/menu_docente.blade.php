@@ -1,8 +1,8 @@
 
-<p>Gestión de acciones</p>
+<p>Gestionar Docentes</p>
 <div class="row">
         <div class="col-6 col-sm-6 col-md-3">
-            <a href="{{route('listar_inscripciones',$persona->estudiante->id)}}">
+            <a href="{{route('listar_inscripciones',$persona->docente->id)}}">
             <div class="info-box bg-green elevation-2">
                 <span class="info-box-icon bg-primary elevation-2"><i class="fas fa-baby"></i></span>
 

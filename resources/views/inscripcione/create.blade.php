@@ -1,8 +1,9 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+@section('css')
+    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+@stop
 
-@section('template_title')
-    Create Inscripcione
-@endsection
+@section('title', 'Inscripcion Crear')
 
 @section('content')
     <section class="content container-fluid">
@@ -13,7 +14,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Inscripcione</span>
+                        <span class="card-title">Formulario Inscripción</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('inscripciones.store') }}"  role="form" enctype="multipart/form-data">

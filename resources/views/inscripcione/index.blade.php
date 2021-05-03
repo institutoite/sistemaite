@@ -100,7 +100,7 @@
 						{data:'horasxclase'},
 						{data:'vigente'},
 						{data:'condonado'},
-						{data:'Objetivo'},
+						{data:'objetivo'},
 						{data:'lunes'},
 						{data:'martes'},
 						{data:'miercoles'},

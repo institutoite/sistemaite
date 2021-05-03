@@ -1,4 +1,4 @@
-
+<p>Gestionar Estudiantes</p>
 <div class="row">
         <div class="col-6 col-sm-6 col-md-3">
             <a href="{{route('listar_inscripciones',$persona->estudiante->id)}}">
