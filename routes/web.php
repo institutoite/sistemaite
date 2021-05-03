@@ -70,7 +70,8 @@ Route::post('crear/contacto/{persona}','PersonaController@storeContacto')->name(
 
 
 
-Route::get('opciones/{id}','OpcionController@index')->name('opcion.index');
+Route::get('opciones/{id}','OpcionController@index')->name('opcion.principal');
+//Route::get('principal/{id}', 'OpcionController@principal')->name('opcion.index');
 
 Route::delete('eliminar/pais/{id}','PaisController@eliminarPais')->name('eliminar.pais');
 Route::delete('eliminar/ciudad/{id}','CiudadController@eliminarCiudad')->name('eliminar.ciudad');

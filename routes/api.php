@@ -30,11 +30,11 @@ use App\Inscripcione;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-
 });
 
 Route::get('personas',function(){
-    return datatables()->of(Persona::all())
+   // return datatables()->of(Persona::join('estudiantes','personas.id','=','estudiantes.persona_id')->select('personas.id','idantiguo','nombre','apellidop','apellidom','foto',)->get())
+   return datatables()->of(Persona::all())
         ->addColumn('btn','persona.action')
         ->rawColumns(['btn','foto'])
         ->toJson();
@@ -46,8 +46,6 @@ Route::get('referencias',function(){
         ->rawColumns(['foto','btn'])
         ->toJson();
 });
-
-
 
 Route::get('paises',function(){
     return datatables()->of(Pais::all())

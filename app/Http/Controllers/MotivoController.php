@@ -2,30 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Estudiante;
+use App\Motivo;
 use Illuminate\Http\Request;
-use App\Persona;
-use App\Docente;
-use App\Administrativo;
-use App\Cliservicio;
-use App\Clipractico;
-use App\Proveedor;
-use App\Clicopy;
 
-class OpcionController extends Controller
+class MotivoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        $persona=Persona::findOrFail($id);
-        return view('opcion.principal',compact('id','persona'));
+        //
     }
-
-    
 
     /**
      * Show the form for creating a new resource.
@@ -51,10 +41,10 @@ class OpcionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Motivo  $motivo
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Motivo $motivo)
     {
         //
     }
@@ -62,10 +52,10 @@ class OpcionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Motivo  $motivo
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Motivo $motivo)
     {
         //
     }
@@ -74,10 +64,10 @@ class OpcionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Motivo  $motivo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Motivo $motivo)
     {
         //
     }
@@ -85,12 +75,11 @@ class OpcionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Motivo  $motivo
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Motivo $motivo)
     {
         //
     }
-    
 }

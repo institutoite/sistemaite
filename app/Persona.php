@@ -67,6 +67,53 @@ class Persona extends Model
         //'telefonos', 'persona_id_parentesco', 'persona_id'
     }
 
+    public function isEstudiante()
+    {
+        $estudiante = Estudiante::where('persona_id', '=', $this->id)->count();
+
+        if ($estudiante > 0) {
+            $respuesta = true;
+        } else {
+            $respuesta = false;
+        }
+        return $respuesta;
+    }
+
+    public function isComputacion()
+    {
+        return Estudiante::where('persona_id', '=', $this->id)->count()>0;
+    }
+
+    public function isDocente()
+    {
+        $respuesta = Docente::where('persona_id', '=', $this->id)->count();
+        if ($respuesta > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function isClicopy()
+    {
+        $respuesta = Clicopy::where('persona_id', '=', $this->id)->count();
+        if ($respuesta > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function isCliservicio()
+    {
+        $respuesta = Cliservicio::where('persona_id', '=', $this->id)->count();
+        if ($respuesta > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
 
 

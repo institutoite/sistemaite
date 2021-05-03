@@ -1,5 +1,8 @@
 <?php
 namespace Database\Seeders;
+
+use App\Inscripcione;
+use App\Modalidad;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,6 +28,9 @@ class DatabaseSeeder extends Seeder
             NivelSeeder::class,
             AulaSeeder::class,
             DocenteSeeder::class,
+            MotivoSeeder::class,
+            ModalidadSeeder::class,
+            InscripcioneSeeder::class,
         ]);
 
         
