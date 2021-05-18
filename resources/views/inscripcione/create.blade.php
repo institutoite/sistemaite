@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
 @stop
 
-@section('title', 'Inscripcion Crear')
+@section('title', 'Inscripcion Configurar')
 
 @section('content')
     <section class="content container-fluid">

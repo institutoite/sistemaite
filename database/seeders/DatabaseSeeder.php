@@ -31,6 +31,9 @@ class DatabaseSeeder extends Seeder
             MotivoSeeder::class,
             ModalidadSeeder::class,
             InscripcioneSeeder::class,
+            DiaSeeder::class,
+            MateriaSeeder::class,
+            FeriadoSeeder::class,
         ]);
 
         

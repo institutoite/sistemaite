@@ -1,9 +1,8 @@
-@extends('layouts.app')
-
-@section('template_title')
-    Update Inscripcione
-@endsection
-
+@extends('adminlte::page')
+@section('css')
+    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+@stop
+@section('title', 'Inscripcion Configurar')
 @section('content')
     <section class="content container-fluid">
         <div class="">
@@ -13,7 +12,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Update Inscripcione</span>
+                        <span class="card-title">Actualizar Inscripcione</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('inscripciones.update', $inscripcione->id) }}"  role="form" enctype="multipart/form-data">

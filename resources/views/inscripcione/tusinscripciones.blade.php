@@ -24,7 +24,7 @@
                             </span>
 
                             <div class="float-right">
-                                <a href="{{ route('inscripciones.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('inscribir',$persona) }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                 {{ __('Inscribir') }}
                                 </a>
                             </div>
@@ -37,7 +37,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Objetivo</th>
-                                        <th>Vigencia</th>
+                                        <th>costo</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -73,7 +73,7 @@
                     "columns": [
                         {data:'id'},
                         {data:'objetivo'},
-                        {data:'vigente'},
+                        {data:'costo'},
                         {data: 'btn'},
                     ],
                     "language":{

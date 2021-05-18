@@ -24,9 +24,6 @@
     @if ($persona->isClicopy())
         @include('opcion.menu_copy')
     @endif
-    
-    
-    
 @stop   
 
 @section('js')

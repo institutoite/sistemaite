@@ -33,6 +33,7 @@ class DocenteSeeder extends Seeder
             'idantiguo' => 0,
         ]);
 
+
         Persona::create([
             'nombre' => 'Cesar',
             'apellidop' => 'Calderon',
@@ -51,6 +52,58 @@ class DocenteSeeder extends Seeder
             'idantiguo' => 0,
         ]);
 
+        Persona::create([
+            'nombre' => 'MAYLIN',
+            'apellidop' => 'RODAS',
+            'apellidom' => '',
+            'fechanacimiento' => '15-05-2015',
+            'direccion' => 'Barrio Melgar',
+            'carnet' => '456135',
+            'expedido' => 'BEN',
+            'genero' => 'MUJER',
+            'pais_id' => 1,
+            'ciudad_id' => 6,
+            'zona_id' => 1,
+            'como' => "FACEBOOK",
+            'foto' => "estudiantes/foto.jpg",
+            'papelinicial' => 'docente',
+            'idantiguo' => 0,
+        ]);
+        Persona::create([
+            'nombre' => 'LIA',
+            'apellidop' => 'CARRION',
+            'apellidom' => '',
+            'fechanacimiento' => '15-05-2015',
+            'direccion' => 'Barrio Melgar',
+            'carnet' => '456135',
+            'expedido' => 'BEN',
+            'genero' => 'MUJER',
+            'pais_id' => 1,
+            'ciudad_id' => 6,
+            'zona_id' => 1,
+            'como' => "FACEBOOK",
+            'foto' => "estudiantes/foto.jpg",
+            'papelinicial' => 'docente',
+            'idantiguo' => 0,
+        ]);
+
+        Persona::create([
+            'nombre' => 'EDUARDO',
+            'apellidop' => 'LOZA',
+            'apellidom' => '',
+            'fechanacimiento' => '15-05-2015',
+            'direccion' => 'Barrio Melgar',
+            'carnet' => '456135',
+            'expedido' => 'BEN',
+            'genero' => 'HOMBRE',
+            'pais_id' => 1,
+            'ciudad_id' => 6,
+            'zona_id' => 1,
+            'como' => "FACEBOOK",
+            'foto' => "estudiantes/foto.jpg",
+            'papelinicial' => 'docente',
+            'idantiguo' => 0,
+        ]);
         Docente::create([
             'sueldo'=>2000.00,
             'fecha_ingreso'=>'2000-10-12',
@@ -64,6 +117,27 @@ class DocenteSeeder extends Seeder
             'estado' => 'activo',
             'dias_prueba' => 1,
             'persona_id' => 12,
+        ]);
+        Docente::create([
+            'sueldo' => 1100,
+            'fecha_ingreso' => '1998-10-12',
+            'estado' => 'activo',
+            'dias_prueba' => 1,
+            'persona_id' => 13,
+        ]);
+        Docente::create([
+            'sueldo' => 1500.00,
+            'fecha_ingreso' => '1998-10-12',
+            'estado' => 'activo',
+            'dias_prueba' => 1,
+            'persona_id' => 14,
+        ]);
+        Docente::create([
+            'sueldo' => 1520.00,
+            'fecha_ingreso' => '1998-10-12',
+            'estado' => 'activo',
+            'dias_prueba' => 1,
+            'persona_id' => 15,
         ]);
     }
 }

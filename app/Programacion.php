@@ -8,6 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Programacion extends Model
 {
     use HasFactory;
+    protected $dates = [
+        'fecha','hora_ini','hora_fin', 'fecha_proximo_pago','created_at', 'updated_at',
+    ];
+
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'hora_ini', 'hora_fin', 'fecha','fecha_proximo_pago', 'habilitado', 'estado', 'docente_id', 'materia_id', 'aula_id',
+    ];
+
     public function inscripcion()
     {
         return $this->belongstTo(Inscripcione::class);

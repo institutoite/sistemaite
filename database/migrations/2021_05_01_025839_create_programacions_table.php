@@ -17,6 +17,7 @@ class CreateProgramacionsTable extends Migration
             $table->increments('id');
             $table->date('fecha');
             $table->boolean('habilitado');
+            $table->boolean('activo');
             $table->string('estado', 25);
             $table->time('hora_ini');
             $table->time('hora_fin');

@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
 @stop
 
-@section('title', 'Grado')
+@section('title', 'Grado Crear')
 
 @section('content')
    

@@ -5,14 +5,10 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
 @stop
-@section('title', 'Dashboard')
+@section('title', 'Grados')
 
-@section('content_header')
-    <h1>Grados</h1>
-@stop
 
 @section('content')
-   
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">

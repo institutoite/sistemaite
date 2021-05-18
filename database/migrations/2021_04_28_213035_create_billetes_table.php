@@ -26,15 +26,10 @@ class CreateBilletesTable extends Migration
             $table->tinyInteger('moneda50')->nullable();
             $table->tinyInteger('moneda20')->nullable();
             $table->tinyInteger('moneda10')->nullable();
-            $table->tinyInteger('dolares100')->nullable();
-            $table->tinyInteger('dolares50')->nullable();
-            $table->tinyInteger('dolares20')->nullable();
-            $table->tinyInteger('dolares10')->nullable();
-            $table->tinyInteger('dolares5')->nullable();
-            $table->tinyInteger('dolares1')->nullable();
-            
-            $table->integer('pagable_id')->unsigned();
-            $table->string('pagable_type');
+            $table->string('tipo');
+            $table->integer('pago_id')->unsigned();
+            $table->foreign('pago_id')->references('id')->on('pagos');
+
 
             $table->timestamps();
         });

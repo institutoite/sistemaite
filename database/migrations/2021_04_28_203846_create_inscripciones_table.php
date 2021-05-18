@@ -19,6 +19,8 @@ class CreateInscripcionesTable extends Migration
             $table->time('horafin')->nullable();
             $table->date('fechaini');
             $table->date('fechafin');
+            $table->date('fecha_proximo_pago')->nullable(); 
+            $table->decimal('costo', 7, 2);
             $table->decimal('totalhoras', 6, 2);
             $table->decimal('horasxclase', 4, 2);
             $table->boolean('vigente');

@@ -43,10 +43,16 @@ class Inscripcione extends Model
         'horainicio'=>'required',
         'horafin' => 'required',
 		'fechaini' => 'required',
-		'fechafin' => 'required',
 		'totalhoras' => 'required',
-		'horasxclase' => 'required',
-		'objetivo' => 'required',
+        'costo' => 'required',
+		'objetivo' => 'required|min:10',
+        'lunes' => 'nullable',
+        'martes' => 'nullable',
+        'miercoles' => 'nullable',
+        'jueves' => 'nullable',
+        'viernes' => 'nullable',
+        'sabado' => 'nullable',
+        
 		'estudiante_id' => 'required',
 		'modalidad_id' => 'required',
         'motivo_id' => 'required',
@@ -64,11 +70,30 @@ class Inscripcione extends Model
      *
      * @var array
      */
-    protected $fillable = ['horainicio','horafin','fechaini','fechafin','totalhoras','horasxclase','vigente','condonado','objetivo','lunes','martes','miercoles','jueves','viernes','sabado','estudiante_id','modalidad_id', 'motivo_id'];
+    protected $fillable = [
+                    'horainicio',
+                    'horafin',
+                    'fechaini',
+                    'fechafin',
+                    'totalhoras',
+                    'horasxclase',
+                    'vigente',
+                    'costo',
+                    'condonado',
+                    'objetivo',
+                    'lunes',
+                    'martes',
+                    'miercoles',
+                    'jueves',
+                    'viernes',
+                    'sabado',
+                    'estudiante_id',
+                    'modalidad_id',
+                    'motivo_id'];
 
     public function aulas()
     {
-        return $this->belongsToMany(Aula::class);
+        return $this->morphToMany(Aula::class, 'aulable');
     }
     
     public function docentes()
@@ -110,6 +135,11 @@ class Inscripcione extends Model
         return $this->morphToMany('App\Materia', 'materiable');
     }
 
+    /**  relacion de muchos a muchos polimorfico diable*/
+    public function dias()
+    {
+        return $this->morphToMany(Dia::class, 'diable');
+    }
     
 
 }

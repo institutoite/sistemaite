@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Persona;
 
+use Barryvdh\DomPDF\Facade as PDF;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,12 +54,26 @@ Route::resource('colegios', "ColegioController");
 Route::resource('modalidads', "ModalidadController");
 Route::resource('nivels', "NivelController");
 Route::resource('inscripciones', "InscripcioneController");
+Route::resource('pagos', "PagoController");
+Route::resource('billetes', "BilleteController");
+Route::resource('programacions', "ProgramacionController");
+Route::resource('feriados', "FeriadoController");
 
 
+Route::get('pdf', function(){
+    //$pdf = resolve('dompdf.wrapper');
+    $pdf=PDF::loadView('persona.index');
+    return $pdf->stream();
+});
 
 
 Route::get('tus_inscripciones/{id}', 'InscripcioneController@tusinscripciones')->name('tus.inscripciones');
-Route::get('listar/inscripciones/{id}', 'InscripcioneController@listar')->name('listar_inscripciones');
+Route::get('listar/inscripciones/{persona}', 'InscripcioneController@listar')->name('listar_inscripciones');
+Route::get('listar/inscripciones/crear/{persona}', 'InscripcioneController@crear')->name('inscribir');
+Route::post('inscripcion/guardar/configuracion/{id}', 'InscripcioneController@guardarconfiguracion')->name('inscripcion.guardar.configuracion');
+Route::post('inscripcion/actualizar/configuracion/{id}', 'InscripcioneController@actualizarConfiguracion')->name('inscripcion.actualizar.configuracion');
+Route::get('inscripcion/actualizar/fechapago/{fecha}/{id}', 'InscripcioneController@actualizar_fecha_proximo_pago')->name('set.fecha.proximo.pago');
+
 
 Route::resource('telefonos', "TelefonoController");
 Route::get('telefonos/vista/{persona}','TelefonoController@mostrarvista')->name('telefonos.persona');
@@ -65,10 +82,14 @@ Route::get('telefonos/{persona}', 'PersonaController@index')->name('telefono.de.
 Route::get('telefono/{persona}/{id}/editar','TelefonoController@editar')->name('telefono.editar');
 Route::put('telefono/{persona_id}/{apoderado_id}', 'TelefonoController@actualizar')->name('telefono.actualizar');
 
-
 Route::post('crear/contacto/{persona}','PersonaController@storeContacto')->name('persona.storeContacto');
 
+Route::post('pagos/realizar/{id}', 'PagoController@guardar')->name('pagos.guardar');
 
+Route::post('billetes/crear/{id}', 'BilleteController@guardar')->name('billetes.guardar');
+
+Route::get('generar/programa/{inscripcion}/{pago}', 'ProgramacionController@generarPrograma')->name('generar.programa');
+Route::get('mostrar/programa/{inscripcion}', 'ProgramacionController@mostrarPrograma')->name('mostrar.programa');
 
 Route::get('opciones/{id}','OpcionController@index')->name('opcion.principal');
 //Route::get('principal/{id}', 'OpcionController@principal')->name('opcion.index');
@@ -87,8 +108,6 @@ Route::delete('eliminar/municipio/{id}', 'MunicipioController@destroy')->name('e
 Route::delete('eliminar/colegio/{id}', 'ColegioController@destroy')->name('eliminar.colegio');
 Route::delete('eliminar/modalidad/{id}', 'ModalidadController@destroy')->name('eliminar.modalidad');
 Route::delete('eliminar/nivel/{id}', 'NivelController@destroy')->name('eliminar.nivel');
-
-
 
 Route::get('tomarfoto', function () {return view('persona.tomarfoto');})->name('tomarfoto');
 Route::get('tomarfoto/{persona}', 'PersonaController@tomarfoto')->name('tomar.foto.persona');

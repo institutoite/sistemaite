@@ -1,81 +1,186 @@
-<div class="box box-info padding-1">
-    <div class="box-body">
-        
-        <div class="form-group">
-            {{ Form::label('horainicio') }}
-            {{ Form::text('horainicio', $inscripcione->horainicio, ['class' => 'form-control' . ($errors->has('horainicio') ? ' is-invalid' : ''), 'placeholder' => 'Horainicio']) }}
-            {!! $errors->first('horainicio', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('horafin') }}
-            {{ Form::text('horafin', $inscripcione->horafin, ['class' => 'form-control' . ($errors->has('horafin') ? ' is-invalid' : ''), 'placeholder' => 'Horafin']) }}
-            {!! $errors->first('horafin', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('fechaini') }}
-            {{ Form::text('fechaini', $inscripcione->fechaini, ['class' => 'form-control' . ($errors->has('fechaini') ? ' is-invalid' : ''), 'placeholder' => 'Fechaini']) }}
-            {!! $errors->first('fechaini', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        
-        <div class="form-group">
-            {{ Form::label('totalhoras') }}
-            {{ Form::text('totalhoras', $inscripcione->totalhoras, ['class' => 'form-control' . ($errors->has('totalhoras') ? ' is-invalid' : ''), 'placeholder' => 'Totalhoras']) }}
-            {!! $errors->first('totalhoras', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('horasxclase') }}
-            {{ Form::text('horasxclase', $inscripcione->horasxclase, ['class' => 'form-control' . ($errors->has('horasxclase') ? ' is-invalid' : ''), 'placeholder' => 'Horasxclase']) }}
-            {!! $errors->first('horasxclase', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        
-        <div class="form-group">
-            {{ Form::label('objetivo') }}
-            {{ Form::text('objetivo', $inscripcione->Objetivo, ['class' => 'form-control' . ($errors->has('Objetivo') ? ' is-invalid' : ''), 'placeholder' => 'Objetivo']) }}
-            {!! $errors->first('Objetivo', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('lunes') }}
-            {{ Form::checkbox('lunes', $inscripcione->lunes, ['class' => 'form-control' . ($errors->has('lunes') ? ' is-invalid' : ''), 'placeholder' => 'Lunes']) }}
-            {!! $errors->first('lunes', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('martes') }}
-            {{ Form::checkbox('martes', $inscripcione->martes, ['class' => 'form-control' . ($errors->has('martes') ? ' is-invalid' : ''), 'placeholder' => 'Martes']) }}
-            {!! $errors->first('martes', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('miercoles') }}
-            {{ Form::checkbox('miercoles', $inscripcione->miercoles, ['class' => 'form-control' . ($errors->has('miercoles') ? ' is-invalid' : ''), 'placeholder' => 'Miercoles']) }}
-            {!! $errors->first('miercoles', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('jueves') }}
-            {{ Form::checkbox('jueves', $inscripcione->jueves, ['class' => 'form-control' . ($errors->has('jueves') ? ' is-invalid' : ''), 'placeholder' => 'Jueves']) }}
-            {!! $errors->first('jueves', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('viernes') }}
-            {{ Form::checkbox('viernes', $inscripcione->viernes, ['class' => 'form-control' . ($errors->has('viernes') ? ' is-invalid' : ''), 'placeholder' => 'Viernes']) }}
-            {!! $errors->first('viernes', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('sabado') }}
-            {{ Form::checkbox('sabado', $inscripcione->sabado, ['class' => 'form-control' . ($errors->has('sabado') ? ' is-invalid' : ''), 'placeholder' => 'Sabado']) }}
-            {!! $errors->first('sabado', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('estudiante_id') }}
-            {{ Form::text('estudiante_id', $inscripcione->estudiante_id, ['class' => 'form-control' . ($errors->has('estudiante_id') ? ' is-invalid' : ''), 'placeholder' => 'Estudiante Id']) }}
-            {!! $errors->first('estudiante_id', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('modalidad_id') }}
-            {{ Form::text('modalidad_id', $inscripcione->modalidad_id, ['class' => 'form-control' . ($errors->has('modalidad_id') ? ' is-invalid' : ''), 'placeholder' => 'Modalidad Id']) }}
-            {!! $errors->first('modalidad_id', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
+    
+    <input  type="text" name="estudiante_id"  value="{{ $persona->estudiante->id }}" hidden>    
 
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">
+            @if($errors->has('horainicio'))
+                <span class="text-danger"> {{ $errors->first('horainicio')}}</span>
+            @endif
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">    
+            @if($errors->has('horafin'))
+                <span class="text-danger"> {{ $errors->first('horafin')}}</span>
+            @endif
+        </div>  
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">    
+            @if($errors->has('fechaini'))
+                <span class="text-danger"> {{ $errors->first('fechaini')}}</span>
+            @endif
+        </div>
     </div>
+
+
+    {{-- $$$$$$$$$$$ CAMPO horainicio  --}}
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" > 
+            <div class="input-group mb-2" >
+                <p class="col-3 form-control bg-secondary p-1" for="">H. Ini</p> 
+                <input  type="time" name="horainicio" class="form-control col-9 @error('horainicio') is-invalid @enderror" value="{{old('horainicio',$ultima_inscripcion->horainicio->toTimeString() ?? '')}}" placeholder="Ingrese un  nombre">
+            </div>
+        </div>
+        {{-- %%%%%%%%%%%%%%% CAMPO HORA FIN --}}
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+            <div class="input-group mb-2" >
+                <p class="col-3 form-control bg-secondary p-1" for="">H. Fin</p> 
+                <input  type="time" name="horafin" class="form-control @error('horafin') is-invalid @enderror" value="{{old('horafin',$ultima_inscripcion->horafin->toTimeString() ?? '')}}" placeholder="Ingrese  apellido Paterno(Obligatorio)">
+            </div>    
+        </div>
+        {{-- %%%%%%%%%%%%%%% CAMPO HORA FIN --}}
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+            <div class="input-group mb-2" >
+                <p class="col-3 form-control bg-secondary p-1" for="">F. Ini</p> 
+                <input  type="date" name="fechaini" class="form-control @error('fechaini') is-invalid @enderror" value="{{old('fechaini',$ultima_inscripcion->fechaini->toDateString() ?? '')}}" placeholder="Ingrese  apellido Paterno(Obligatorio)">
+            </div>    
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">
+            @if($errors->has('modalidad_id'))
+                <span class="text-danger"> {{ $errors->first('modalidad_id')}}</span>
+            @endif
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">    
+            @if($errors->has('totalhoras'))
+                <span class="text-danger"> {{ $errors->first('totalhoras')}}</span>
+            @endif
+        </div>  
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">    
+            @if($errors->has('motivo_id'))
+                <span class="text-danger"> {{ $errors->first('motivo_id')}}</span>
+            @endif
+        </div>
+    </div>
+
+
+    <div class="row"> 
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+            <div class="input-group mb-2" >
+                <p class="col-3 form-control bg-secondary p-1 p-1" for="">Modalidad</p> 
+                <select class="form-control @error('modalidad_id') is-invalid @enderror" data-old="{{ old('modalidad_id') }}" name="modalidad_id" id="country">
+                    <option value="" > Seleccione Modalidad </option>
+                    @foreach ($modalidades as $modalidad)
+                        @isset($ultima_inscripcion)     
+                            <option  value="{{$modalidad->id}}" {{$modalidad->id==$ultima_inscripcion->modalidad_id ? 'selected':''}}>{{$modalidad->modalidad}}</option>     
+                        @else
+                            <option value="{{ $modalidad->id }}" {{ old('modalidad_id') == $modalidad->id ? 'selected':'' }} >{{ $modalidad->modalidad }}</option>
+                        @endisset 
+                    @endforeach
+                </select>
+            </div>
+            
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+            <div class="input-group mb-2" >
+                <p class="col-3 form-control bg-secondary p-1" for="">T. Hras</p> 
+                <input  type="number" name="totalhoras" class="form-control @error('totalhoras') is-invalid @enderror" value="{{old('totalhoras',$ultima_inscripcion->totalhoras ?? '')}}" placeholder="Total Horas">
+            </div>    
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+            <div class="input-group mb-2" >
+                <p class="col-3 form-control bg-secondary p-1 p-1" for="">Motivo</p> 
+                <select class="form-control @error('motivo_id') is-invalid @enderror" data-old="{{ old('motivo_id') }}" name="motivo_id" id="motivo">
+                    <option value="" > Seleccione Motivo </option>
+                    @foreach ($motivos as $motivo)
+                        @isset($ultima_inscripcion)     
+                            <option  value="{{$motivo->id}}" {{$motivo->id==$ultima_inscripcion->motivo_id ? 'selected':''}}>{{$motivo->motivo}}</option>     
+                        @else
+                            <option value="{{ $motivo->id }}" {{ old('motivo_id') == $motivo->id ? 'selected':'' }} >{{ $motivo->motivo }}</option>
+                        @endisset 
+                    @endforeach
+                </select>
+            </div>    
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">
+            @if($errors->has('costo'))
+                <span class="text-danger"> {{ $errors->first('costo')}}</span>
+            @endif
+           
+        </div>
+    </div>
+
+    <div class="row"> 
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+            <div class="input-group mb-2" >
+                <p class="col-3 form-control bg-secondary p-1 p-1" for="">Costo</p> 
+                <input type="numeric" class="form-control @error('costo') is-invalid @enderror" name="costo" value="{{old('costo',$ultima_inscripcion->costo ?? '')}}">
+            </div>    
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+            <div class="input-group mb-2" >
+                <div class="form-check p-3 btn">
+                <input class="form-check-input" type="checkbox" value="1" name="lunes" id="lunes" {{($ultima_inscripcion->lunes==1) ? 'checked':'' }}>
+                <label class="form-check-label" for="lunes">
+                    Lunes
+                </label>
+                </div>
+                <div class="form-check btn p-3">
+                    <input class="form-check-input" type="checkbox" value="1" name="martes" id="martes"  {{($ultima_inscripcion->mertes==1) ? 'checked':'' }}>
+                    <label class="form-check-label" for="martes">
+                        Martes
+                    </label>
+                </div>
+                <div class="form-check btn p-3">
+                    <input class="form-check-input" type="checkbox" value="1" name="miercoles" id="miercoles" {{($ultima_inscripcion->miercoles==1) ? 'checked':'' }}>
+                    <label class="form-check-label" for="miercoles">
+                        Miercoles
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+            <div class="form-check btn p-3">
+                <input class="form-check-input" type="checkbox" value="1" name="jueves" id="jueves" {{($ultima_inscripcion->jueves==1) ? 'checked':'' }}>
+                <label class="form-check-label" for="jueves">
+                    Jueves
+                </label>
+            </div>
+            <div class="form-check btn p-3">
+                <input class="form-check-input" type="checkbox" value="1" name="viernes" id="viernes" {{($ultima_inscripcion->viernes==1) ? 'checked':'' }}>
+                <label class="form-check-label" for="viernes">
+                    Viernes
+                </label>
+            </div>
+            <div class="form-check btn p-3">
+                <input class="form-check-input" type="checkbox" value="1" name="sabado" id="sabado" {{($ultima_inscripcion->sabado==1) ? 'checked':'' }}>
+                <label class="form-check-label" for="sabado">
+                    Sábado
+                </label>
+            </div>
+        </div>    
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">
+            @if($errors->has('objetivo'))
+                <span class="text-danger"> {{ $errors->first('objetivo')}}</span>
+            @endif
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm" >
+            <div class="input-group mb-2" >
+                <textarea name="objetivo" class="form-control @error('objetivo') is-invalid @enderror" id="" cols="30" rows="3" placeholder="Introduce el objetivo de la inscripcion">{{$ultima_inscripcion->objetivo}}</textarea>
+            </div>    
+        </div>
+    </div>
+
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
-</div>
+

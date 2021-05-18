@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMateriableTable extends Migration
+class CreateFeriadosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateMateriableTable extends Migration
      */
     public function up()
     {
-        Schema::create('materiable', function (Blueprint $table) {
+        Schema::create('feriados', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('materiable_id');
-            $table->string('tameriable_type');
-
-            $table->unsignedInteger('materia_id');
-            $table->foreign('materia_id')->references('id')->on('materias')->onDelete('cascade');
-
+            $table->date('fecha');
+            $table->string('festividad',30);
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateMateriableTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('materiable');
+        Schema::dropIfExists('feriados');
     }
 }

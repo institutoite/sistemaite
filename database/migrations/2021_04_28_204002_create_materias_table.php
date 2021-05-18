@@ -16,7 +16,6 @@ class CreateMateriasTable extends Migration
         Schema::create('materias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('materia', 25);
-            $table->unsignedBigInteger('nivel_id');
             $table->timestamps();
         });
     }

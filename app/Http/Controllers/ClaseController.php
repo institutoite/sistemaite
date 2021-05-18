@@ -82,4 +82,6 @@ class ClaseController extends Controller
     {
         //
     }
+
+    
 }

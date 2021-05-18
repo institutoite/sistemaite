@@ -101,6 +101,9 @@ class PersonaController extends Controller
                 break;
             case 'docente':
                 $docente = new Docente();
+                $docente->nombre=$persona->nombre;
+                $docente->apellidop=$persona->apellidop;
+                $docente->apellidom=$persona->apellidom;;
                 $docente->observacion = $request->observacion;
                 $docente->persona_id = $persona->id;
                 $docente->save();
