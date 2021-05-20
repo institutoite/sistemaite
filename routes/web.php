@@ -88,7 +88,7 @@ Route::post('pagos/realizar/{id}', 'PagoController@guardar')->name('pagos.guarda
 
 Route::post('billetes/crear/{id}', 'BilleteController@guardar')->name('billetes.guardar');
 
-Route::get('generar/programa/{inscripcion}/{pago}', 'ProgramacionController@generarPrograma')->name('generar.programa');
+Route::get('generar/programa/{inscripcion}', 'ProgramacionController@generarPrograma')->name('generar.programa');
 Route::get('mostrar/programa/{inscripcion}', 'ProgramacionController@mostrarPrograma')->name('mostrar.programa');
 
 Route::get('opciones/{id}','OpcionController@index')->name('opcion.principal');

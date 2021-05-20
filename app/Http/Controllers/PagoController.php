@@ -47,7 +47,7 @@ class PagoController extends Controller
         request()->validate(Pago::$rules);
 
         $pago = Pago::create($request->all());
-        dd($request->all());
+       
         return redirect()->route('pagos.index')
             ->with('success', 'Pago created successfully.');
     }

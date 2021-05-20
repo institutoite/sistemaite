@@ -208,6 +208,7 @@ class InscripcioneController extends Controller
         // para sacar los dias
         $inscripcion=Inscripcione::findOrFail($id);
         /**Adjuntando los dias correspondiente  */
+        //dd($request->aula);
         if($inscripcion->lunes){
             $inscripcion->dias()->attach([1]);
         }
@@ -227,9 +228,13 @@ class InscripcioneController extends Controller
             $inscripcion->dias()->attach([6]);
         }
         /** adjuntando los docentes correspondientes */
+           
+
+           
             $inscripcion->docentes()->attach($request->docente);
         /** adjuntando aulas a las inscripciones */
             $inscripcion->aulas()->attach($request->aula);
+            dd($inscripcion->aulas);
         /** adjuntando materias a las inscripciones*/
             $inscripcion->materias()->attach($request->materia);
             $pagos=$inscripcion->pagos();
@@ -244,11 +249,7 @@ class InscripcioneController extends Controller
         $inscripcion = Inscripcione::findOrFail($id);
         /**Adjuntando los dias correspondiente  */
         
-        
         $inscripcion->dias()->sync([]);
-
-        //dd($inscripcion->id);
-      
        
         if ($inscripcion->lunes) {
             $inscripcion->dias()->attach([1]);
@@ -269,23 +270,19 @@ class InscripcioneController extends Controller
             $inscripcion->dias()->attach([6]);
         }
 
-        
-        /** adjuntando los docentes correspondientes */
         $inscripcion->docentes()->sync([]);
-        $inscripcion->docentes()->sync($request->docente);
-        
-        /** adjuntando aulas a las inscripciones */
         $inscripcion->aulas()->sync([]);
-        $inscripcion->aulas()->sync($request->aula);
-        
-        /** adjuntando materias a las inscripciones*/
         $inscripcion->materias()->sync([]);
-        $inscripcion->materias()->sync($request->materia);
-        //dd($request->materia);
-        
-        //dd($inscripcion);
-        //$pagos = $inscripcion->pagos();
-        return redirect()->route('mostrar.programa',$inscripcion);
+        /** adjuntando los docentes correspondientes */
+        $inscripcion->docentes()->attach($request->docente);
+
+        /** adjuntando aulas a las inscripciones */
+        $inscripcion->aulas()->attach($request->aula);
+
+        /** adjuntando materias a las inscripciones*/
+        $inscripcion->materias()->attach($request->materia);
+
+        return redirect()->route('generar.programa', $inscripcion->id);   
     }
 
 

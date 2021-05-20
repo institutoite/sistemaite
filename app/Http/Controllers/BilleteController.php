@@ -95,13 +95,9 @@ class BilleteController extends Controller
         $billete_cambio->tipo = 'cambio';
         $billete_cambio->save();
 
-        
-        
         $pago=Pago::findOrFail($pago_id);
-        
         $inscripcion=Inscripcione::findOrFail($pago->pagable_id);
-        //dd($pago);
-        return redirect()->route('generar.programa',['inscripcion'=>$inscripcion->id,'pago'=>$pago->id]);                    
+        return redirect()->route('generar.programa',$inscripcion->id);                    
     }
     
     /**
