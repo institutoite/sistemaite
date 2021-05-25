@@ -1,10 +1,8 @@
-@extends('adminlte::page')
-@section('css')
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
-@stop
+@extends('layouts.app')
 
-@section('title', 'Programación')
-
+@section('template_title')
+    Clase
+@endsection
 
 @section('content')
     <div class="container-fluid">
@@ -15,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Programacion') }}
+                                {{ __('Clase') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('programacions.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('clases.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,39 +34,42 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>Nº</th>
+                                        <th>No</th>
+                                        
 										<th>Fecha</th>
-										<th>Habilitado</th>
+										<th>Pagado</th>
 										<th>Estado</th>
-										<th>Hora Ini</th>
-										<th>Hora Fin</th>
+										<th>Horainicio</th>
+										<th>Horafin</th>
 										<th>Docente Id</th>
 										<th>Materia Id</th>
 										<th>Aula Id</th>
-										<th>Inscripcion Id</th>
+										<th>Tema Id</th>
+										<th>Programacion Id</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($programacions as $programacion)
+                                    @foreach ($clases as $clase)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $programacion->fecha }}</td>
-											<td>{{ $programacion->habilitado }}</td>
-											<td>{{ $programacion->estado }}</td>
-											<td>{{ $programacion->hora_ini }}</td>
-											<td>{{ $programacion->hora_fin }}</td>
-											<td>{{ $programacion->docente_id }}</td>
-											<td>{{ $programacion->materia_id }}</td>
-											<td>{{ $programacion->aula_id }}</td>
-											<td>{{ $programacion->inscripcion_id }}</td>
+											<td>{{ $clase->fecha }}</td>
+											<td>{{ $clase->pagado }}</td>
+											<td>{{ $clase->estado }}</td>
+											<td>{{ $clase->horainicio }}</td>
+											<td>{{ $clase->horafin }}</td>
+											<td>{{ $clase->docente_id }}</td>
+											<td>{{ $clase->materia_id }}</td>
+											<td>{{ $clase->aula_id }}</td>
+											<td>{{ $clase->tema_id }}</td>
+											<td>{{ $clase->programacion_id }}</td>
 
                                             <td>
-                                                <form action="{{ route('programacions.destroy',$programacion->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('programacions.show',$programacion->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('programacions.edit',$programacion->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <form action="{{ route('clases.destroy',$clase->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('clases.show',$clase->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('clases.edit',$clase->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
@@ -81,8 +82,8 @@
                         </div>
                     </div>
                 </div>
+                {!! $clases->links() !!}
             </div>
         </div>
     </div>
 @endsection
-

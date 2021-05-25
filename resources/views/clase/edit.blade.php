@@ -1,8 +1,9 @@
-@extends('adminlte::page')
-@section('css')
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
-@stop
-@section('title', 'Inscripcion Configurar')
+@extends('layouts.app')
+
+@section('template_title')
+    Update Clase
+@endsection
+
 @section('content')
     <section class="content container-fluid">
         <div class="">
@@ -12,14 +13,14 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Actualizar Inscripcion</span>
+                        <span class="card-title">Update Clase</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('inscripciones.update', $inscripcione->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('clases.update', $clase->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('inscripcione.form')
+                            @include('clase.form')
 
                         </form>
                     </div>

@@ -17,6 +17,8 @@ use App\Telefono;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonaStoreRequest;
+use App\Inscripcione;
+use App\Observacion;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Storage;
 
@@ -95,41 +97,40 @@ class PersonaController extends Controller
             
             case 'estudiante':
                 $estudinate=new Estudiante();
-                $estudinate->requerimiento=$request->observacion;
                 $estudinate->persona_id=$persona->id;
                 $estudinate->save();
+                $obervacion=new Observacion();
+                $obervacion->observacion=$request->observacion;
+                $obervacion->activo=1;
+                $obervacion->observable_id=$persona->id;
+                $obervacion->observable_type=Inscripcione::class;
                 break;
             case 'docente':
                 $docente = new Docente();
                 $docente->nombre=$persona->nombre;
                 $docente->apellidop=$persona->apellidop;
                 $docente->apellidom=$persona->apellidom;;
-                $docente->observacion = $request->observacion;
                 $docente->persona_id = $persona->id;
                 $docente->save();
                 break;
             case 'cliservicio':
                 $cliservicio = new Cliservicio();
-                $cliservicio->requerimiento = $request->observacion;
                 $cliservicio->persona_id = $persona->id;
                 $cliservicio->save();
                 break;
             case 'clicopy':
                 $clicopy = new Clicopy();
-                $clicopy->requerimiento = $request->observacion;
                 $clicopy->persona_id = $persona->id;
                 $clicopy->save();
                 break;
 
             case 'administrativo':
                 $administrativo = new Administrativo();
-                $administrativo->observacion = $request->observacion;
                 $administrativo->persona_id = $persona->id;
                 $administrativo->save();
                 break;
             case 'proveedor':
                 $proveedor = new Proveedor();
-                $proveedor->observacion = $request->observacion;
                 $proveedor->persona_id = $persona->id;
                 $proveedor->save();
                 break;
@@ -203,36 +204,31 @@ class PersonaController extends Controller
 
             case 'estudiante':
                 $estudiante=$persona->estudiante;
-                $observacion=$estudiante->requerimiento;
                 break;
             case 'docente':
                 $docente = $persona->docente;
-                $observacion = $docente->observacion;
                 break;
             case 'cliservicio':
                 $cliservicio = $persona->cliservicio;
-                $observacion = $cliservicio->requerimiento;
+                
                 break;
             case 'clicopy':
                 $clicopy = $persona->clicopy;
-                $observacion = $clicopy->requerimiento;
                 break;
 
             case 'administrativo':
                 $administrativo = $persona->administrativo;
-                $observacion = $administrativo->requerimiento;
                 break;
             case 'proveedor':
                 $proveedor = $persona->proveedor;
-                $observacion = $proveedor->requerimiento;
                 break;
             default:
-                # code...
+                # code...ite.com.bo
                 break;
         }
 
         return view("persona.editar",compact('persona','paises','ciudades','zonas','observacion'));
-    }
+    } 
 
     /**
      * Update the specified resource in storage.

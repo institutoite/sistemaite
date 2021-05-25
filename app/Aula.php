@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Aula extends Model
 {
     use HasFactory;
-   
-    public function inscripciones()
+
+    public function sesion()
     {
-        return $this->morphedByMany(Inscripcione::class, 'aulable');
+        return $this->belongsTo(Sesion::class);
     }
 
 }

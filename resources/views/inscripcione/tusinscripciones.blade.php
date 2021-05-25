@@ -2,16 +2,11 @@
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
-    
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
 @stop
-
 @section('title', 'Mis Inscripciones')
-
-
 @section('content')
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -32,7 +27,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="inscripciones" class="table table-striped table-hover">
+                            <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
@@ -41,6 +36,41 @@
                                         <th></th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    @foreach ($inscripciones as $inscripcion)
+                                        <tr>
+                                            <td>{{ $inscripcion->id }}</td>
+                                            <td>{{ $inscripcion->objetivo }}</td>
+                                            <td>{{ $inscripcion->costo }}</td>
+                                            <th>
+                                                <a href="{{route('inscripciones.edit', $inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta inscripcione">
+                                                    <i class="fa fa-fw fa-edit text-primary"></i>
+                                                </a>
+                                                <a href="{{route('pagos.crear',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta inscripcione">
+                                                    <i class="fas fa-hand-holding-usd"></i>
+                                                </a>
+
+                                                <a href="{{route('inscripciones.show', $inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
+                                                    <i class="fa fa-fw fa-eye text-secondary mostrar"></i>
+                                                </a>
+                                                <a href="{{route('imprimir.programa',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
+                                                    <i class="fas fa-print"></i>
+                                                </a>
+
+                                                
+
+                                                <form action=""  class="d-inline formulario">
+                                                    @csrf
+                                                    @method("delete")
+                                                    <button name="btn-eliminar" id="" type="submit" class="btn eliminar" title="Eliminar esta inscripcione">
+                                                        <i class="fa fa-fw fa-trash text-danger"></i>   
+                                                    </button>
+                                                </form>     
+
+                                            </th>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -61,28 +91,6 @@
     <script>
         
     $(document).ready(function() {
-    
-        var tabla=$('#inscripciones').DataTable(
-                {
-                    "serverSide": true,
-                    "responsive":true,
-                    "autoWidth":false, 
-                    "ajax": {
-                        "url": "{{ route('tus.inscripciones',$persona->estudiante->id )}}",
-                            }, 
-                    "columns": [
-                        {data:'id'},
-                        {data:'objetivo'},
-                        {data:'costo'},
-                        {data: 'btn'},
-                    ],
-                    "language":{
-                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-                    },  
-                }
-            );
-        
-
             $('table').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
                 id=$(this).parent().parent().parent().find('td').first().html();

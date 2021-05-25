@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Programacion;
 use App\Pago;
+use App\Models\Sesion;
+use App\Dia;
 use App\Inscripcione;
-
+use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade as PDF;
+use App\Estudiante;
 
 use Illuminate\Http\Request;
 
@@ -86,101 +90,256 @@ class ProgramacionController extends Controller
     {
         //
     }
-    public function generarPrograma($inscripcion_id){
-        /** elimina toda la programaciom de esta inscripcion */
-        Programacion::where('inscripcion_id','=',$inscripcion_id)->delete();
-
-        $inscripcion=Inscripcione::findOrFail($inscripcion_id);
+    public function generarPrograma($inscripcione_id){
+        $inscripcion=Inscripcione::findOrFail($inscripcione_id);
         $costo_total=$inscripcion->costo;
         $total_horas=$inscripcion->totalhoras;
-        $horas_x_clase= $inscripcion->horainicio->floatDiffInHours($inscripcion->horafin);
         $acuenta =$inscripcion->pagos->sum('monto');
+        
         $fecha=$inscripcion->fechaini;
-        $cantidad_dias_x_semana = $inscripcion->dias->count();
-        $costo_x_clase=($costo_total/$total_horas)*$horas_x_clase;
-
-
-        $docentes = $inscripcion->docentes;
-        $materias = $inscripcion->materias;
-        $aulas = $inscripcion->aulas;
-
-       // dd($inscripcion->dias);
-
-        foreach ($inscripcion->dias as $dia) { 
-            $vector_dias[] = $dia->dia;
+        foreach ($inscripcion->sesiones as $dia) { 
+            $vector_dias[] = Dia::findOrFail($dia->dia_id)->dia;
         }
-        foreach ($inscripcion->aulas as $aula) {
-            $vector_aulas[] = $aula->id;
+        while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) {
+            $fecha->addDay();
         }
-        foreach ($inscripcion->docentes as $docente) {
-            $vector_docente[] = $docente->id;
+        $sesiones=Sesion::where('inscripcione_id','=',$inscripcione_id)->get();
+        while($total_horas>0){ 
+            foreach ($sesiones as $sesion) {
+                if ($total_horas > 0) {
+                    
+                    $programa = new Programacion();
+                    $hora_x_sesion= $sesion->horainicio->floatDiffInHours($sesion->horafin);
+                    $costo_x_sesion = ($costo_total / $total_horas) *$hora_x_sesion ;
+                    /** aqui buscar el primer dia que consinda con las sesiones */
+                    
+                    //dd($hora_x_sesion);
+                    if($total_horas>$hora_x_sesion){
+                        if ($acuenta > $costo_x_sesion) {
+                            $programa->fecha = $fecha;
+                            $programa->habilitado = true;
+                            $programa->activo = true;
+                            $programa->estado = 'indefinido';
+                            $programa->hora_ini = $sesion->horainicio;
+                            $programa->hora_fin = $sesion->horafin;
+                            $programa->horas_por_clase=$hora_x_sesion;
+                            $programa->docente_id = $sesion->docente_id;
+                            $programa->materia_id = $sesion->materia_id;
+                            $programa->aula_id = $sesion->aula_id;
+                            $programa->inscripcione_id = $inscripcion->id;
+                        } else {
+
+                            $programa->fecha = $fecha;
+                            $programa->habilitado = false;
+                            $programa->activo = true;
+                            $programa->estado = 'indefinido';
+                            $programa->hora_ini = $sesion->horainicio;
+                            $programa->hora_fin = $sesion->horafin;
+                            $programa->horas_por_clase = $hora_x_sesion;
+                            $programa->docente_id = $sesion->docente_id;
+                            $programa->materia_id = $sesion->materia_id;
+                            $programa->aula_id = $sesion->aula_id;
+                            $programa->inscripcione_id = $inscripcion->id;
+                            //dd($programa);
+                        }
+                    }else{
+                        /* en caso de que ya no alcance para una sesion completa  */
+                       // dd($total_horas);
+                        $programa->fecha = $fecha;
+                        $programa->habilitado = false;
+                        $programa->activo = true;
+                        $programa->estado = 'indefinido';
+                        $programa->hora_ini = $sesion->horainicio;
+                        $programa->hora_fin = $sesion->horainicio->addMinutes($total_horas*60);
+                        $programa->horas_por_clase = $total_horas;
+                        $programa->docente_id = $sesion->docente_id;
+                        $programa->materia_id = $sesion->materia_id;
+                        $programa->aula_id = $sesion->aula_id;
+                        $programa->inscripcione_id = $inscripcion->id;
+                    }
+                    $programa->save();
+                    $acuenta = $acuenta - $costo_x_sesion;
+                    $total_horas = $total_horas - $hora_x_sesion;
+                    $fecha->addDay();
+                    while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) {
+                        $fecha->addDay();
+                    }
+                    //dd($fecha);
+                }else{
+
+                }
+                
+                //dd($programa);
+               
+            }
         }
-        foreach ($inscripcion->materias as $materia) {
-            $vector_materia[] = $materia->id;
+        $inscripcion->fechafin = $programa->fecha;
+        if($inscripcion->pagos->sum('monto')<$inscripcion->costo){
+            return redirect()->route('mostrar.programa', $inscripcion);
+        }else{
+            return redirect()->route('imprimir.programa', $inscripcion->id);;
+        }     
+    }
+
+    public function regenerarPrograma($inscripcione_id,$unaFecha){
+        //dd($unaFecha);
+        $unaFecha= Carbon::createFromFormat('Y-m-d', $unaFecha);
+        //dd($unaFecha->isoFormat('Y-M-D'));
+        $inscripcion= Inscripcione::findOrFail($inscripcione_id);
+        
+        $horasFaltantes = Programacion::where('inscripcione_id', '=', $inscripcione_id)
+                        ->where('fecha', '>=', $unaFecha)->sum('horas_por_clase');
+        $horasPasadas = $inscripcion->totalhoras-$horasFaltantes;
+        Programacion::where('inscripcione_id', '=', $inscripcione_id)
+            ->where('fecha', '>=', $unaFecha)
+            ->delete();
+        $costo_hora=$inscripcion->costo/$inscripcion->totalhoras;
+        $acuentaTotal = $inscripcion->pagos->sum('monto');
+        $costo_horas_pasadas=$horasPasadas*$costo_hora;
+        $costo_restante=$acuentaTotal-$costo_horas_pasadas;
+        $Acuenta_para_regenerar=$acuentaTotal-$costo_horas_pasadas;
+        $fecha = $unaFecha;
+        
+        foreach ($inscripcion->sesiones as $dia) {
+            $vector_dias[] = Dia::findOrFail($dia->dia_id)->dia;
         }
 
         while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) {
             $fecha->addDay();
         }
         
-        dd($vector_docente);
-        while($total_horas>0){ 
-            $i=0;
-            while(($i < $cantidad_dias_x_semana) && ($total_horas > 0)) {
-                $programa = new Programacion();
-                if ($acuenta > $costo_x_clase) {
-                    $programa->fecha = $fecha;
-                    $programa->habilitado=true;
-                    $programa->activo=true;
-                    $programa->estado='indefinido';
-                    $programa->hora_ini=$inscripcion->horainicio;
-                    $programa->hora_fin=$inscripcion->horafin;
-                    $programa->docente_id=$vector_docente[$i];
-                    $programa->materia_id=$vector_materia[$i];
-                    $programa->aula_id=$vector_aulas[$i];
-                    $programa->inscripcion_id=$inscripcion->id;
+
+        $sesiones = Sesion::where('inscripcione_id', '=', $inscripcione_id)->get();
+
+        //dd($horasFaltantes);
+        while ($horasFaltantes > 0) {
+            foreach ($sesiones as $sesion) {
+                if ($horasFaltantes > 0) {
+
+                    $programa = new Programacion();
+                    $hora_x_sesion = $sesion->horainicio->floatDiffInHours($sesion->horafin);
+                    $costo_x_sesion = ($costo_restante / $horasFaltantes) * $hora_x_sesion;
+                    /** aqui buscar el primer dia que consinda con las sesiones */
+
+                    //dd($hora_x_sesion);
+                    if ($horasFaltantes > $hora_x_sesion) {
+                        if ($Acuenta_para_regenerar > $costo_x_sesion) {
+                            $programa->fecha = $fecha;
+                            $programa->habilitado = true;
+                            $programa->activo = true;
+                            $programa->estado = 'indefinido';
+                            $programa->hora_ini = $sesion->horainicio;
+                            $programa->hora_fin = $sesion->horafin;
+                            $programa->horas_por_clase = $hora_x_sesion;
+                            $programa->docente_id = $sesion->docente_id;
+                            $programa->materia_id = $sesion->materia_id;
+                            $programa->aula_id = $sesion->aula_id;
+                            $programa->inscripcione_id = $inscripcion->id;
+                        } else {
+                            $programa->fecha = $fecha;
+                            $programa->habilitado = false;
+                            $programa->activo = true;
+                            $programa->estado = 'indefinido';
+                            $programa->hora_ini = $sesion->horainicio;
+                            $programa->hora_fin = $sesion->horafin;
+                            $programa->horas_por_clase = $hora_x_sesion;
+                            $programa->docente_id = $sesion->docente_id;
+                            $programa->materia_id = $sesion->materia_id;
+                            $programa->aula_id = $sesion->aula_id;
+                            $programa->inscripcione_id = $inscripcion->id;
+                        }
+                    } else {
+                        /* en caso de que ya no alcance para una sesion completa  */
+                        // dd($total_horas);
+                        $programa->fecha = $fecha;
+                        $programa->habilitado = false;
+                        $programa->activo = true;
+                        $programa->estado = 'indefinido';
+                        $programa->hora_ini = $sesion->horainicio;
+                        $programa->hora_fin = $sesion->horainicio->addMinutes($horasFaltantes * 60);
+                        $programa->horas_por_clase = $horasFaltantes;
+                        $programa->docente_id = $sesion->docente_id;
+                        $programa->materia_id = $sesion->materia_id;
+                        $programa->aula_id = $sesion->aula_id;
+                        $programa->inscripcione_id = $inscripcion->id;
+                    }
+                    $programa->save();
                     
-                } else {
-                    $programa->fecha = $fecha;
-                    $programa->habilitado = false;
-                    $programa->estado = 'indefinido';
-                    $programa->activo = true;
-                    $programa->hora_ini = $inscripcion->horainicio;
-                    $programa->hora_fin = $inscripcion->horafin;
-                    $programa->docente_id = $vector_docente[$i];
-                    $programa->materia_id = $vector_materia[$i];
-                    $programa->aula_id = $vector_aulas[$i];
-                    $programa->inscripcion_id = $inscripcion->id;
-                    
-                }
-                $total_horas = $total_horas - $horas_x_clase;
-                $acuenta=$acuenta-$costo_x_clase;
-                $programa->save();
-                dd($programa);
-                $i = $i + 1;
-                $fecha->addDay();
-                while((!in_array($fecha->isoFormat('dddd'),$vector_dias))){
+                    $horasFaltantes = $horasFaltantes - $hora_x_sesion;
                     $fecha->addDay();
+                    while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) {
+                        $fecha->addDay();
+                    }
+                    //dd($fecha);
+                } else {
                 }
-                
+
+                //dd($programa);
+                $Acuenta_para_regenerar = $Acuenta_para_regenerar - $costo_x_sesion;
             }
         }
-        if($acuenta<$inscripcion->costo){
+        $inscripcion->fechafin = $programa->fecha;
+        if ($Acuenta_para_regenerar < $inscripcion->costo) {
             return redirect()->route('mostrar.programa', $inscripcion);
-        }else{
-            return "Imprimir reporte directamente";
-        }
-            
+        } else {
+            return redirect()->route('imprimir.programa', $inscripcion->id);/** llamar al metodo que muestra pdf*/
+        }    
     }
+    public function actualizarProgramaSegunPago($inscripcione_id,$pago_id){
+        $inscripcion = Inscripcione::findOrFail($inscripcione_id);
+        $total_costo=$inscripcion->costo;
+        $total_horas=$inscripcion->totalhoras;
+        $costo_por_hora=$total_costo/$total_horas;
+        $ProgramasNoPagadas = Programacion::where('inscripcione_id', '=', $inscripcione_id)
+                                        ->where('habilitado', '=', 0)
+                                        ->get();
+        $CuantoPago=Pago::findOrFail($pago_id)->monto;
+        //dd($ProgramasNoPagadas);
+        foreach ($ProgramasNoPagadas as $programa) {
+            
+            $costo_programa = $programa->hora_ini->floatDiffInHours($programa->hora_fin)*($costo_por_hora);
+            
+            if($CuantoPago>$costo_programa){
+                $programa->habilitado=1;
+                $programa->save();
+                $CuantoPago=$CuantoPago-$costo_programa;
+            }
+        }
+        //* seria recomendable que mostremos directo imprimir*//
+        return redirect()->route('mostrar.programa', $inscripcion);
+    }
+
+
+
     public function mostrarPrograma($inscripcion){
         $programacion = Programacion::join('materias', 'programacions.materia_id', '=', 'materias.id')
         ->join('aulas', 'programacions.aula_id', '=', 'aulas.id')
         ->join('docentes', 'programacions.docente_id', '=', 'docentes.id')
         ->join('personas', 'personas.id', '=', 'docentes.persona_id')
-        ->select('programacions.fecha', 'hora_ini', 'hora_fin', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado', 'programacions.inscripcion_id')
+        ->select('programacions.fecha', 'hora_ini', 'hora_fin','horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado', 'programacions.inscripcione_id')
         ->orderBy('fecha', 'asc')
-        ->where('inscripcion_id', '=', $inscripcion)->get();
-        //$programacion=Programacion::where('inscripcion_id','=',$inscripcion)->get();
-        return view('programacion.show', compact('programacion'));
+        ->where('inscripcione_id', '=', $inscripcion)->get();
+        return view('programacion.show', compact('programacion','inscripcion'));
+    }
+
+    public function imprimirPrograma($inscripcione_id){
+
+        $inscripcion=Inscripcione::findOrFail($inscripcione_id);
+        $programacion = Programacion::join('materias', 'programacions.materia_id', '=', 'materias.id')
+            ->join('aulas', 'programacions.aula_id', '=', 'aulas.id')
+            ->join('docentes', 'programacions.docente_id', '=', 'docentes.id')
+            ->join('personas', 'personas.id', '=', 'docentes.persona_id')
+            ->select('programacions.fecha', 'hora_ini', 'hora_fin', 'horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado')
+            ->orderBy('fecha', 'asc')
+            ->where('inscripcione_id', '=', $inscripcione_id)->get();
+
+        $pdf = PDF::loadView('programacion.reporte', compact('programacion'));
+
+        /**entrae a la persona al cual corresponde esta inscripcion */
+        $estudiante = Estudiante::findOrFail($inscripcion->estudiante_id);
+        $persona = $estudiante->persona;
+        $fecha_actual = Carbon::now();
+        $fecha_actual->isoFormat('DD-MM-YYYY-HH:mm:ss');
+        return $pdf->download($persona->id . '_' . $fecha_actual . '_' . $persona->nombre . '_' . $persona->apellidop . '.pdf');
     }
 }

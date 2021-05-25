@@ -1,93 +1,139 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+@section('css')
+    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+@stop
 
-@section('template_title')
-    {{ $inscripcione->name ?? 'Show Inscripcione' }}
-@endsection
-
+@section('title', 'Inscripcion Configurar')
 @section('content')
+    <section class="content container-fluid">
+        <div class="card">
+        <div class="card-body">
+            <table class="table table-bordered table-striped"> 
+                <tr class="bg-primary">
+                        <th>ATRIBUTO</th>
+                        <th>VALOR</th>
+                </tr>
+                <tbody>
+                    <tr>
+                        <td>ID</td>
+                        <td>{{$inscripcione->id}}</td>
+                    </tr>
+                    <tr>
+                        <td>FECHA INICIO</td>
+                        <td>{{$inscripcione->fechaini}}</td>
+                    </tr>
+                    <tr>
+                        <td>FECHA FIN</td>
+                        <td>{{$inscripcione->fechafin}}</td>
+                    </tr>
+                    <tr>
+                        <td>TOTAL HORAS</td>
+                        <td>{{$inscripcione->totalhoras}}</td>
+                    </tr>
+                    <tr>
+                        <td>VIGENTE</td>
+                        <td>{{($inscripcione->vigente==0) ? 'No':'Si'}}</td>
+                    </tr>
+                    <tr>
+                        <td>CONDONADO</td>
+                        <td>{{($inscripcione->condonado==0) ? 'No':'Si'}}</td>
+                    </tr>
+                    <tr>
+                        <td>OBJETIVO</td>
+                        <td>{{$inscripcione->objetivo}}</td>
+                    </tr>
+                    <tr>
+                        <td>ESTUDIANTE</td>
+                        <td>{{$inscripcione->estudiante->persona->nombre.' '.$inscripcione->estudiante->persona->apellidop.' '.$inscripcione->estudiante->persona->apellidom}}</td>
+                    </tr>
+                    <tr>
+                        <td>Modalidad</td>
+                        <td>{{$inscripcione->modalidad->modalidad}}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Creado</td>
+                        <td>{{$inscripcione->created_at}}</td>
+                    </tr>
+                    <tr>
+                        <td>Actualizado</td>
+                        <td>{{$inscripcione->updated_at}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    </section>
+
     <section class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header bg-secondary">
                         <div class="float-left">
-                            <span class="card-title">Show Inscripcione</span>
+                            <span class="card-title">Programacion de clases</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('inscripciones.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('imprimir.programa',$inscripcione) }}">Imprimir</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
-                        <div class="form-group">
-                            <strong>Horainicio:</strong>
-                            {{ $inscripcione->horainicio }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Horafin:</strong>
-                            {{ $inscripcione->horafin }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Fechaini:</strong>
-                            {{ $inscripcione->fechaini }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Fechafin:</strong>
-                            {{ $inscripcione->fechafin }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Totalhoras:</strong>
-                            {{ $inscripcione->totalhoras }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Horasxclase:</strong>
-                            {{ $inscripcione->horasxclase }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Vigente:</strong>
-                            {{ $inscripcione->vigente }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Condonado:</strong>
-                            {{ $inscripcione->condonado }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Objetivo:</strong>
-                            {{ $inscripcione->Objetivo }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Lunes:</strong>
-                            {{ $inscripcione->lunes }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Martes:</strong>
-                            {{ $inscripcione->martes }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Miercoles:</strong>
-                            {{ $inscripcione->miercoles }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Jueves:</strong>
-                            {{ $inscripcione->jueves }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Viernes:</strong>
-                            {{ $inscripcione->viernes }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Sabado:</strong>
-                            {{ $inscripcione->sabado }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Estudiante Id:</strong>
-                            {{ $inscripcione->estudiante_id }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Modalidad Id:</strong>
-                            {{ $inscripcione->modalidad_id }}
-                        </div>
+                        <table id="programacion" class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>FECHA</th>
+                                    <th>DIA</th>
+                                    <th>HORARIO</th>
+                                    <th>HORAS</th>
+                                    <th>DOC</th>
+                                    <th>MATERIA</th>
+                                    <th>AULA</th>
+                                    <th>OPCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($programacion as $programa)
+                                        @php
+                                            $hoy=Carbon\Carbon::now();
+                                            $clase="";
+                                            $claseboton="";
+                                            if($programa->fecha->isoFormat('DD/MM/YYYY')==$hoy->isoFormat('DD/MM/YYYY')){
+                                                $clase .= 'bg-primary';
+                                            }else{
+                                                if($programa->habilitado==0){
+                                                    $clase .= 'bg-danger'; 
+                                                    $claseboton .='btn btn-outline-danger';
+                                                }else{
+                                                    $claseboton .='btn btn-outline-primary';
+                                                }
+                                            }
+                                        @endphp
+                                    <tr class="{{$clase}}">
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$programa->fecha->isoFormat('DD/MM/YYYY')}}</td>
+                                        <td>{{$programa->fecha->isoFormat('dddd')}}</td>
+                                        <td>{{$programa->hora_ini->isoFormat('HH:mm').'-'.$programa->hora_fin->isoFormat('HH:mm')}}</td>
+                                        <td>{{$programa->horas_por_clase.' hras'}}</td>
+                                        <td>{{$programa->nombre}}</td>
+                                        <td>{{$programa->materia}}</td>
+                                        <td>{{$programa->aula}}</td>
+                                        <td>
+                                            <a class="{{ $claseboton }} tooltipsC mr-2" href="{{route('set.fecha.proximo.pago', ['fecha'=>$programa->fecha->isoFormat('YYYY-MM-DD'),'id'=>$programa->inscripcione_id])}}" title="Asignar esta fecha para el proximo pago">
+                                                Aceptar
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                @endforeach
+                            </tbody>
+                            <tfoot>
+
+                            </tfoot>
+                        </table>
 
                     </div>
                 </div>

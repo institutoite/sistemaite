@@ -37,7 +37,7 @@ class Modalidad extends Model
 
   public function inscripcion()
   {
-    return $this->belongsTo(Inscripcione::class);
+    return $this->hasOne(Inscripcione::class);
   }
 
   public function nivel()

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\Sesion;
+
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -40,31 +42,18 @@ class Inscripcione extends Model
 {
     
     static $rules = [
-        'horainicio'=>'required',
-        'horafin' => 'required',
 		'fechaini' => 'required',
 		'totalhoras' => 'required',
         'costo' => 'required',
 		'objetivo' => 'required|min:10',
-        'lunes' => 'nullable',
-        'martes' => 'nullable',
-        'miercoles' => 'nullable',
-        'jueves' => 'nullable',
-        'viernes' => 'nullable',
-        'sabado' => 'nullable',
-        
 		'estudiante_id' => 'required',
 		'modalidad_id' => 'required',
         'motivo_id' => 'required',
-        
     ];
-
     protected $perPage = 20;
-
     protected $dates = [
         'horainicio','horafin','fechaini','fechafin', 'created_at', 'updated_at',
     ];
-
     /**
      * Attributes that should be mass-assignable.
      *
@@ -76,30 +65,17 @@ class Inscripcione extends Model
                     'fechaini',
                     'fechafin',
                     'totalhoras',
-                    'horasxclase',
                     'vigente',
                     'costo',
                     'condonado',
                     'objetivo',
-                    'lunes',
-                    'martes',
-                    'miercoles',
-                    'jueves',
-                    'viernes',
-                    'sabado',
                     'estudiante_id',
                     'modalidad_id',
                     'motivo_id'];
 
-    public function aulas()
-    {
-        return $this->morphToMany(Aula::class, 'aulable');
-    }
     
-    public function docentes()
-    {
-        return $this->belongsToMany(Docente::class);
-    }
+    
+    
     
     
     public function estudiante()
@@ -109,13 +85,10 @@ class Inscripcione extends Model
 
     public function modalidad()
     {
-        return $this->hasOne(Modalidad::class);
+        return $this->belongsTo(Modalidad::class);
     }
 
-    public function programaciones()
-    {
-        return $this->hasMany(Programacion::class);
-    }
+    
 
     //*** copiar esto a todos los modelos que tengan observaciones  */
     public function observaciones()
@@ -128,18 +101,13 @@ class Inscripcione extends Model
     {
         return $this->morphMany(Pago::class, 'pagable');
     }
-    
-    /** RELACION MUCHOS A MUCHO POLIMORFICO */
-    public function materias()
-    {
-        return $this->morphToMany('App\Materia', 'materiable');
-    }
 
-    /**  relacion de muchos a muchos polimorfico diable*/
-    public function dias()
+    public function sesiones()
     {
-        return $this->morphToMany(Dia::class, 'diable');
+        return $this->hasMany(Sesion::class);
     }
-    
-
+    public function programaciones()
+    {
+        return $this->hasMany(Programacion::class);
+    }
 }

@@ -28,6 +28,7 @@
                                 <th>FECHA</th>
                                 <th>DIA</th>
                                 <th>HORARIO</th>
+                                <th>HRAS</th>
                                 <th>DOCENTE</th>
                                 <th>MATERIA</th>
                                 <th>AULA</th>
@@ -53,6 +54,7 @@
                                     <td>{{$programa->fecha->isoFormat('DD/MM/YYYY')}}</td>
                                     <td>{{$programa->fecha->isoFormat('dddd')}}</td>
                                     <td>{{$programa->hora_ini->isoFormat('HH:mm').'-'.$programa->hora_fin->isoFormat('HH:mm')}}</td>
+                                    <td>{{$programa->horas_por_clase}}</td>
                                     <td>{{$programa->nombre}}</td>
                                     <td>{{$programa->materia}}</td>
                                     <td>{{$programa->aula}}</td>

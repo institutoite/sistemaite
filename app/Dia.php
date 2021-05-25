@@ -11,8 +11,9 @@ class Dia extends Model
 
 
     /* aqui va todo lo que es diable solo cabiar la clase y nombre de metodo*/
-    public function inscripciones()
+
+    public function sesion()
     {
-        return $this->morphedByMany(Inscripcione::class, 'diable');
+        return $this->belongsTo(Sesion::class);
     }
 }

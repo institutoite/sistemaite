@@ -1,6 +1,6 @@
 
 
-    <a href="{{route('ciudades.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-2" title="Editar esta ciudad">
+<a href="{{route('ciudades.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-2" title="Editar esta ciudad">
     <i class="fa fa-fw fa-edit text-primary"></i>
 </a>
 

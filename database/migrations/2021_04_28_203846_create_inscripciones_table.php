@@ -15,24 +15,14 @@ class CreateInscripcionesTable extends Migration
     {
         Schema::create('inscripciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->time('horainicio')->nullable();
-            $table->time('horafin')->nullable();
             $table->date('fechaini');
             $table->date('fechafin');
             $table->date('fecha_proximo_pago')->nullable(); 
-            $table->decimal('costo', 7, 2);
+            $table->decimal('costo', 8, 2);
             $table->decimal('totalhoras', 6, 2);
-            $table->decimal('horasxclase', 4, 2);
             $table->boolean('vigente');
             $table->boolean('condonado');
             $table->string('objetivo');
-            $table->boolean('lunes')->nullable();
-            $table->boolean('martes')->nullable();
-            $table->boolean('miercoles')->nullable();
-            $table->boolean('jueves')->nullable();
-            $table->boolean('viernes')->nullable();
-            $table->boolean('sabado')->nullable();
-            
             $table->unsignedInteger('estudiante_id');
             $table->unsignedInteger('modalidad_id');
             $table->unsignedInteger('motivo_id');

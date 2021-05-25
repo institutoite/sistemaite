@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Inscripcione;;
 
-class InscripcioneSeeder extends Seeder
+class SesionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,5 +13,6 @@ class InscripcioneSeeder extends Seeder
      */
     public function run()
     {
+        //
     }
 }

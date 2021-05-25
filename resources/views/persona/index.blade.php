@@ -19,10 +19,7 @@
         <thead class="bg-primary">
             <tr>
                 <th>ID</th>
-                <th>OLD</th>
                 <th>NOMBRE</th>
-                <th>APATERNO</th>
-                <th>AMATERNO</th>
                 <th>FOTO</th>
                 <th>ACCIONES</th>
             </tr>
@@ -53,21 +50,22 @@
                     "ajax": "{{ url('api/personas') }}",
                     "columns": [
                         {data: 'id'},
-                        {data:'idantiguo'},
                         {data: 'nombre'},
-                        {data: 'apellidop'},
-                        {data: 'apellidom'},
                         {
                             "name": "foto",
                             "data": "foto",
                             "render": function (data, type, full, meta) {
                                 return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
                             },
-                            "title": "Image",
-                            "orderable": true,
+                            "title": "FOTO",
+                            "orderable": false,
             
                         },     
-                        {data: 'btn'},
+                        {
+                            "name":"btn",
+                            "data": 'btn',
+                            "orderable": false,
+                        },
                     ],
                     "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"

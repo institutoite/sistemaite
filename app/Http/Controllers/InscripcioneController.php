@@ -8,11 +8,14 @@ use App\Motivo;
 use App\Persona;
 use App\Materia;
 use App\Aula;
+use App\Models\Sesion;
+use App\Dia;
 use App\Docente;
 use App\Estudiante;
 use App\Programacion;
-use Barryvdh\DomPDF\Facade as PDF;
+
 use Carbon\Carbon;
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -69,40 +72,23 @@ class InscripcioneController extends Controller
     {
         request()->validate(Inscripcione::$rules);
         $inscripcion=new Inscripcione();
-        $inscripcion->horainicio=$request->horainicio;
-        $inscripcion->horafin=$request->horafin;
-
         $inscripcion->fechaini=$request->fechaini;
         $inscripcion->fechafin = $request->fechaini;
-        
         $inscripcion->totalhoras=$request->totalhoras;
         $inscripcion->costo=$request->costo;
-        $inscripcion->horasxclase= 2 ;
-        
         $inscripcion->vigente=1;
         $inscripcion->condonado=0;
         $inscripcion->objetivo=$request->objetivo;
-
-        
-        $inscripcion->lunes=($request->lunes) ? '1' : '0';
-        $inscripcion->martes=($request->martes) ? '1' : '0';
-        $inscripcion->miercoles=($request->miercoles) ? '1' : '0';
-        $inscripcion->jueves=($request->jueves) ? '1' : '0';
-        $inscripcion->viernes=($request->viernes) ? '1' : '0';
-        $inscripcion->sabado=($request->sabado) ? '1' : '0';
-        
         $inscripcion->estudiante_id=$request->estudiante_id;
         $inscripcion->modalidad_id=$request->modalidad_id;
         $inscripcion->motivo_id=$request->motivo_id;
         $inscripcion->save();
-        
-        //dd($inscripcion);
-
         $materias = Materia::get();
         $aulas = Aula::get();
         $docentes = Docente::get();
+        $dias = Dia::get();
         $tipo = 'guardando';
-        return view('inscripcione.configurar',compact('inscripcion','materias','aulas','docentes','tipo'));
+        return view('inscripcione.configurar',compact('inscripcion','materias','aulas','docentes','tipo','dias'));
     }
 
     /**
@@ -114,11 +100,18 @@ class InscripcioneController extends Controller
 
 
 
-    public function show($id)
+    public function show($inscripciones_id)
     {
-        $inscripcione = Inscripcione::find($id);
+        $inscripcione = Inscripcione::find($inscripciones_id);
+        $programacion = Programacion::join('materias', 'programacions.materia_id', '=', 'materias.id')
+        ->join('aulas', 'programacions.aula_id', '=', 'aulas.id')
+        ->join('docentes', 'programacions.docente_id', '=', 'docentes.id')
+        ->join('personas', 'personas.id', '=', 'docentes.persona_id')
+        ->select('programacions.fecha', 'hora_ini', 'hora_fin', 'horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado', 'programacions.inscripcione_id')
+        ->orderBy('fecha', 'asc')
+        ->where('inscripcione_id', '=', $inscripciones_id)->get();
 
-        return view('inscripcione.show', compact('inscripcione'));
+        return view('inscripcione.show', compact('inscripcione','programacion'));
     }
 
     /**
@@ -148,23 +141,16 @@ class InscripcioneController extends Controller
     {
         //dd($request->all());
         request()->validate(Inscripcione::$rules);
-        $inscripcione->horainicio = $request->horainicio;
-        $inscripcione->horafin = $request->horafin;
+        
         $inscripcione->fechaini = $request->fechaini;
         //$inscripcione->fechafin = $request->fechaini;
         $inscripcione->totalhoras = $request->totalhoras;
         $inscripcione->costo = $request->costo;
-        $inscripcione->horasxclase = $inscripcione->horafin->diffInHours($inscripcione->horainicio); 
+        
         $inscripcione->vigente = 1;
         $inscripcione->condonado = 0;
         $inscripcione->objetivo = $request->objetivo;
-        $inscripcione->lunes = ($request->lunes) ? '1' : '0';
-        $inscripcione->martes = ($request->martes) ? '1' : '0';
-        $inscripcione->miercoles = ($request->miercoles) ? '1' : '0';
-        $inscripcione->jueves = ($request->jueves) ? '1' : '0';
-        $inscripcione->viernes = ($request->viernes) ? '1' : '0';
-        $inscripcione->sabado = ($request->sabado) ? '1' : '0';
-
+        
         $inscripcione->estudiante_id = $request->estudiante_id;
         $inscripcione->modalidad_id = $request->modalidad_id;
         $inscripcione->motivo_id = $request->motivo_id;
@@ -175,8 +161,9 @@ class InscripcioneController extends Controller
         $materias = Materia::get();
         $aulas = Aula::get();
         $docentes = Docente::get();
+        $dias = Dia::get();
         $tipo='actualizando';
-        return view('inscripcione.configurar', compact('inscripcion', 'materias', 'aulas', 'docentes','tipo'));
+        return view('inscripcione.configurar', compact('inscripcion', 'materias', 'aulas', 'docentes','tipo','dias'));
     }
 
     /**
@@ -194,95 +181,62 @@ class InscripcioneController extends Controller
 
     public function listar(Persona $persona){
         $persona=Persona::findOrFail($persona->id);
-        return view('inscripcione.tusinscripciones',compact('persona'));
+        $inscripciones = Inscripcione::where('estudiante_id', '=', $persona->estudiante->id)->select('id','objetivo','costo')->get();
+        return view('inscripcione.tusinscripciones',compact('persona','inscripciones'));
     }
 
     public function tusinscripciones($id){
-        return datatables()->of(Inscripcione::where('estudiante_id','=',$id)->get()) ///
-            ->addColumn('btn', 'inscripcione.action')
-            ->rawColumns(['btn'])
-            ->toJson();
+        $inscripciones=Inscripcione::where('estudiante_id', '=', $id)->select('id', 'objetivo', 'costo')->get();
+        $persona=Estudiante::findOrFail($id)->persona;
+        return view('inscripcione.tusinscripciones',compact('inscripciones','persona'));
+        
     }
 
     public function guardarconfiguracion(Request $request,$id){
-        // para sacar los dias
         $inscripcion=Inscripcione::findOrFail($id);
-        /**Adjuntando los dias correspondiente  */
-        //dd($request->aula);
-        if($inscripcion->lunes){
-            $inscripcion->dias()->attach([1]);
+        $cuantas_sesiones=count($request->dias);
+        $i=0;
+        //dd($cuantas_sesiones);
+        while($i<$cuantas_sesiones){
+            $sesion=new Sesion();
+            $sesion->horainicio=$request->horainicio[$i];
+            $sesion->horafin=$request->horafin[$i];
+            $sesion->dia_id=$request->dias[$i];
+            $sesion->docente_id=$request->docentes[$i];
+            $sesion->materia_id=$request->materias[$i];
+            $sesion->aula_id=$request->aulas[$i];
+            $sesion->inscripcione_id=$id;
+            $sesion->save();
+            $i=$i+1;
         }
-        if($inscripcion->martes){
-            $inscripcion->dias()->attach([2]);
-        }
-        if($inscripcion->miercoles){
-            $inscripcion->dias()->attach([3]);
-        }
-        if($inscripcion->jueves){
-            $inscripcion->dias()->attach([4]);
-        }
-        if($inscripcion->viernes){
-            $inscripcion->dias()->attach([5]);
-        }
-        if($inscripcion->sabado){
-            $inscripcion->dias()->attach([6]);
-        }
-        /** adjuntando los docentes correspondientes */
-           
-
-           
-            $inscripcion->docentes()->attach($request->docente);
-        /** adjuntando aulas a las inscripciones */
-            $inscripcion->aulas()->attach($request->aula);
-            dd($inscripcion->aulas);
-        /** adjuntando materias a las inscripciones*/
-            $inscripcion->materias()->attach($request->materia);
             $pagos=$inscripcion->pagos();
         return view('pago.create',compact('inscripcion','pagos'));
     }
 
     public function actualizarConfiguracion(Request $request, $id)
     {
-        
-
-        // para sacar los dias
+        $cuantas_sesiones = count($request->dias);
+        $fecha=$request->fecha;
+        Sesion::where('inscripcione_id', '=', $id)->delete();
         $inscripcion = Inscripcione::findOrFail($id);
-        /**Adjuntando los dias correspondiente  */
-        
-        $inscripcion->dias()->sync([]);
+        if($fecha<$inscripcion->fechaini){
+            $inscripcion->fechaini=$fecha;
+        }
+        $i = 0;
+        while ($i < $cuantas_sesiones) {
+            $sesion = new Sesion();
+            $sesion->horainicio = $request->horainicio[$i];
+            $sesion->horafin = $request->horafin[$i];
+            $sesion->dia_id = $request->dias[$i];
+            $sesion->docente_id = $request->docentes[$i];
+            $sesion->materia_id = $request->materias[$i];
+            $sesion->aula_id = $request->aulas[$i];
+            $sesion->inscripcione_id = $id;
+            $sesion->save();
+            $i = $i + 1;
+        }
        
-        if ($inscripcion->lunes) {
-            $inscripcion->dias()->attach([1]);
-        }
-        if ($inscripcion->martes) {
-            $inscripcion->dias()->attach([2]);
-        }
-        if ($inscripcion->miercoles) {
-            $inscripcion->dias()->attach([3]);
-        }
-        if ($inscripcion->jueves) {
-            $inscripcion->dias()->attach([4]);
-        }
-        if ($inscripcion->viernes) {
-            $inscripcion->dias()->attach([5]);
-        }
-        if ($inscripcion->sabado) {
-            $inscripcion->dias()->attach([6]);
-        }
-
-        $inscripcion->docentes()->sync([]);
-        $inscripcion->aulas()->sync([]);
-        $inscripcion->materias()->sync([]);
-        /** adjuntando los docentes correspondientes */
-        $inscripcion->docentes()->attach($request->docente);
-
-        /** adjuntando aulas a las inscripciones */
-        $inscripcion->aulas()->attach($request->aula);
-
-        /** adjuntando materias a las inscripciones*/
-        $inscripcion->materias()->attach($request->materia);
-
-        return redirect()->route('generar.programa', $inscripcion->id);   
+        return redirect()->route('regenerar.programa', ['inscripcione'=>$inscripcion->id,'fecha'=>$fecha]);   
     }
 
 
@@ -291,26 +245,7 @@ class InscripcioneController extends Controller
         $inscripcion->fecha_proximo_pago=$fecha;
         $inscripcion->save();
 
-        /** esto tiene que ir a una ruta el cual pueda ser llamado desde cualquier lugare adena
-         * deberia de estar enb programacionController.
-         */
-
-        $programacion = Programacion::join('materias', 'programacions.materia_id', '=', 'materias.id')
-        ->join('aulas', 'programacions.aula_id', '=', 'aulas.id')
-        ->join('docentes', 'programacions.docente_id', '=', 'docentes.id')
-        ->join('personas', 'personas.id', '=', 'docentes.persona_id')
-        ->select('programacions.fecha', 'hora_ini', 'hora_fin', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado')
-        ->orderBy('fecha', 'asc')
-        ->where('inscripcion_id', '=', $id)->get();
-        
-        $pdf = PDF::loadView('programacion.reporte',compact('programacion'));
-
-        /**entrae a la persona al cual corresponde esta inscripcion */
-        $estudiante=Estudiante::findOrFail($inscripcion->estudiante_id);
-        $persona=$estudiante->persona;
-        $fecha_actual= Carbon::now();
-        $fecha_actual->isoFormat('DD-MM-YYYY-HH:mm:ss');
-        return $pdf->download($persona->id.'_'.$fecha_actual.'_'.$persona->nombre.'_'.$persona->apellidop.'.pdf');
-
+        return redirect()->route('imprimir.programa',$inscripcion->id);
     }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Inscripcione;
 use App\Models\Pago;
 use Illuminate\Http\Request;
 
@@ -51,6 +52,12 @@ class PagoController extends Controller
         return redirect()->route('pagos.index')
             ->with('success', 'Pago created successfully.');
     }
+    public function crear($inscripcion_id)
+    {
+        $inscripcion=Inscripcione::findOrFail($inscripcion_id);
+        $pagos = $inscripcion->pagos;
+        return view('pago.create', compact('inscripcion','pagos'));
+    }
 
     public function guardar(Request $request, $inscripcion_id){
 
@@ -61,9 +68,7 @@ class PagoController extends Controller
         $pago->pagable_id=$inscripcion_id;
         $pago->pagable_type='App\Inscripcione';
         $pago->save();
-
-        $tipo='pago';
-        return view('billete.create',compact('pago','tipo'));
+        return view('billete.create',compact('pago'));
     }
 
     /**

@@ -20,8 +20,7 @@
         </div>
     
     <div class="col-6 col-sm-6 col-md-3">
-        <a href="{{route('personas.index')}}">
-            <a href="{{route('personas.index')}}">
+            <a href="{{route('tus.inscripciones',$persona->estudiante->id)}}">
             <div class="info-box">
 
                 <span class="info-box-icon bg-secondary elevation-1"><i class="fab fa-amilia"></i></i></span>

@@ -9,11 +9,6 @@ class Materia extends Model
 {
     use HasFactory;
     
-    public function inscricpiones()
-    {
-        return $this->belongsToMany(Inscripcione::class);
-    }
-
     public function temas() 
     {
         return $this->hasMany(Tema::class);
@@ -29,8 +24,9 @@ class Materia extends Model
     {
         return $this->morphedByMany('App\Docente', 'materiable');
     }
-    /* realcion de muchos a muchos inversa polimorfica*/
-    public function inscripciones(){
-        return $this->morphedByMany('App\Inscripcione', 'materiable');
+    public function sesion()
+    {
+        return $this->belongsTo(Sesion::class);
     }
+
 }

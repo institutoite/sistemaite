@@ -58,6 +58,7 @@ Route::resource('pagos', "PagoController");
 Route::resource('billetes', "BilleteController");
 Route::resource('programacions', "ProgramacionController");
 Route::resource('feriados', "FeriadoController");
+Route::resource('clases', "ClaseController");
 
 
 Route::get('pdf', function(){
@@ -71,7 +72,7 @@ Route::get('tus_inscripciones/{id}', 'InscripcioneController@tusinscripciones')-
 Route::get('listar/inscripciones/{persona}', 'InscripcioneController@listar')->name('listar_inscripciones');
 Route::get('listar/inscripciones/crear/{persona}', 'InscripcioneController@crear')->name('inscribir');
 Route::post('inscripcion/guardar/configuracion/{id}', 'InscripcioneController@guardarconfiguracion')->name('inscripcion.guardar.configuracion');
-Route::post('inscripcion/actualizar/configuracion/{id}', 'InscripcioneController@actualizarConfiguracion')->name('inscripcion.actualizar.configuracion');
+Route::post('inscripcion/actualizar/configuracion/{id_inscripcion}', 'InscripcioneController@actualizarConfiguracion')->name('inscripcion.actualizar.configuracion');
 Route::get('inscripcion/actualizar/fechapago/{fecha}/{id}', 'InscripcioneController@actualizar_fecha_proximo_pago')->name('set.fecha.proximo.pago');
 
 
@@ -84,12 +85,17 @@ Route::put('telefono/{persona_id}/{apoderado_id}', 'TelefonoController@actualiza
 
 Route::post('crear/contacto/{persona}','PersonaController@storeContacto')->name('persona.storeContacto');
 
+Route::get('pago/crear/{inscripcione}','PagoController@crear')->name('pagos.crear');
 Route::post('pagos/realizar/{id}', 'PagoController@guardar')->name('pagos.guardar');
+
 
 Route::post('billetes/crear/{id}', 'BilleteController@guardar')->name('billetes.guardar');
 
-Route::get('generar/programa/{inscripcion}', 'ProgramacionController@generarPrograma')->name('generar.programa');
-Route::get('mostrar/programa/{inscripcion}', 'ProgramacionController@mostrarPrograma')->name('mostrar.programa');
+Route::get('generar/programa/{inscripcione}', 'ProgramacionController@generarPrograma')->name('generar.programa');
+Route::get('regenerar/programa/{inscripcione}/{fecha}', 'ProgramacionController@regenerarPrograma')->name('regenerar.programa');
+Route::get('mostrar/programa/{inscripcione}', 'ProgramacionController@mostrarPrograma')->name('mostrar.programa');
+Route::get('imprimir/programa/{inscripcione}', 'ProgramacionController@imprimirPrograma')->name('imprimir.programa');
+Route::get('actualizar/programa/segunpago/{inscripcione}/{pago}', 'ProgramacionController@actualizarProgramaSegunPago')->name('actualizar.programa.segun.pago');
 
 Route::get('opciones/{id}','OpcionController@index')->name('opcion.principal');
 //Route::get('principal/{id}', 'OpcionController@principal')->name('opcion.index');
@@ -111,3 +117,10 @@ Route::delete('eliminar/nivel/{id}', 'NivelController@destroy')->name('eliminar.
 
 Route::get('tomarfoto', function () {return view('persona.tomarfoto');})->name('tomarfoto');
 Route::get('tomarfoto/{persona}', 'PersonaController@tomarfoto')->name('tomar.foto.persona');
+
+/**
+* si tiene inscripción que aparesca el boton caso contrario no 
+* si tiene una inscripción que aparesca de una vez el marcado 
+* si tieene varias inscripciones vigentes que puede elegir entre las inscripciones 
+* tambien pueden haber inscripciones de colegio. 
+**/

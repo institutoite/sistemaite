@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Persona;
 use App\Estudiante;
+use App\Observacion;
 
 class PersonaSeeder extends Seeder
 {
@@ -16,19 +17,19 @@ class PersonaSeeder extends Seeder
     public function run()
     {
         Persona::factory()->count(10)->create();
-        Estudiante::create(['persona_id' => 1,'requerimiento'=>'Esto es un requerimiento de prueba solamente']);
-        Estudiante::create(['persona_id' => 2, 'requerimiento' => 'Esto es un requerimiento de prueba solamente']);
-        Estudiante::create(['persona_id' => 3, 'requerimiento' => 'Esto es un requerimiento de prueba solamente']);
+        Observacion::create(['observable_id' => 1,'activo'=>1,'observable_type'=>'App\Estudiante','observacion'=>'Esto es un requerimiento de prueba solamente']);
+        Observacion::create(['observable_id' => 2,'activo'=>1,'observable_type'=>'App\Estudiante', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
+        Observacion::create(['observable_id' => 3,'activo'=>1,'observable_type'=>'App\Estudiante', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
 
-        Estudiante::create(['persona_id' => 4, 'requerimiento' => 'Esto es un requerimiento de prueba solamente']);
-        Estudiante::create(['persona_id' => 5, 'requerimiento' => 'Esto es un requerimiento de prueba solamente']);
-        Estudiante::create(['persona_id' => 6, 'requerimiento' => 'Esto es un requerimiento de prueba solamente']);
+        Observacion::create(['observable_id' => 4,'activo'=>1,'observable_type'=>'App\Estudiante', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
+        Observacion::create(['observable_id' => 5,'activo'=>1,'observable_type'=>'App\Estudiante', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
+        Observacion::create(['observable_id' => 6,'activo'=>1,'observable_type'=>'App\Estudiante', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
 
-        Estudiante::create(['persona_id' => 7, 'requerimiento' => 'Esto es un requerimiento de prueba solamente']);
-        Estudiante::create(['persona_id' => 8, 'requerimiento' => 'Esto es un requerimiento de prueba solamente']);
-        Estudiante::create(['persona_id' => 9, 'requerimiento' => 'Esto es un requerimiento de prueba solamente']);
+        Observacion::create(['observable_id' => 7,'activo'=>1,'observable_type'=>'App\Estudiante', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
+        Observacion::create(['observable_id' => 8,'activo'=>1,'observable_type'=>'App\Estudiante', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
+        Observacion::create(['observable_id' => 9,'activo'=>1,'observable_type'=>'App\Estudiante', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
 
-        Estudiante::create(['persona_id' => 10, 'requerimiento' => 'Esto es un requerimiento de prueba solamente']);
+        Observacion::create(['observable_id' => 10,'activo'=>1,'observable_type'=>'App\Estudiante', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
 
        
 

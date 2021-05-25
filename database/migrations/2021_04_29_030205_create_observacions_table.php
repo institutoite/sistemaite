@@ -15,11 +15,10 @@ class CreateObservacionsTable extends Migration
     {
         Schema::create('observacions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('Objetivo', 500)->nullable();
+            $table->string('observacion',400)->nullable();
             $table->boolean('activo');
             $table->integer('observable_id')->unsigned();
             $table->string('observable_type');
-            
             $table->timestamps();
         });
     }

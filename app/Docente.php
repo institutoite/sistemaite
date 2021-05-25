@@ -21,14 +21,13 @@ class Docente extends Model
         return $this->morphMany(Observacion::class, 'observable');
     }
 
-    public function inscripciones()
-    {
-        return $this->belongsToMany(Inscripcione::class);
-    }
- 
     /** RELACION MUCHOS A MUCHO POLIMORFICO */
     public function materias(){
         return $this->morphToMany('App\Materia','materiable');
     }
 
+    public function sesion()
+    {
+        return $this->belongsTo(Sesion::class);
+    }
 }

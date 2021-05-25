@@ -19,3 +19,8 @@
 <a href="{{route('opcion.principal', $id)}}" class="btn btn-outline-primary tooltipsC mr-2" title="ir a opciones de la persona">
     Opciones
 </a>
+
+<a href="{{route('opcion.principal', $id)}}" class="btn btn-secondary tooltipsC mr-2" title="ir a opciones de la persona">
+    Marcar
+</a>
+

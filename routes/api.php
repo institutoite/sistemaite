@@ -16,6 +16,7 @@ use App\Colegio;
 use App\Modalidad;
 use App\Nivel;
 use App\Inscripcione;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +34,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('personas',function(){
-   // return datatables()->of(Persona::join('estudiantes','personas.id','=','estudiantes.persona_id')->select('personas.id','idantiguo','nombre','apellidop','apellidom','foto',)->get())
-   return datatables()->of(Persona::all())
+   $persona=Persona::select('id',DB::raw('concat_ws(" ",nombre,apellidop,apellidom) as nombre'),'foto');
+   //dd($persona);
+   //=Persona::join('estudiantes','personas.id','=','estudiantes.persona_id')->select('personas.id','idantiguo','nombre','apellidop','apellidom','foto',)->get())
+   return datatables()->of($persona)
         ->addColumn('btn','persona.action')
         ->rawColumns(['btn','foto'])
         ->toJson();

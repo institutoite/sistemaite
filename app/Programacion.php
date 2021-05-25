@@ -21,10 +21,7 @@ class Programacion extends Model
         'hora_ini', 'hora_fin', 'fecha','fecha_proximo_pago', 'habilitado', 'estado', 'docente_id', 'materia_id', 'aula_id',
     ];
 
-    public function inscripcion()
-    {
-        return $this->belongstTo(Inscripcione::class);
-    }
+   
 
     /** OBSRVACIONES  */
     public function observaciones()
@@ -34,5 +31,9 @@ class Programacion extends Model
     public function clases()
     {
         return $this->hasMany(Clase::class);
+    }
+    public function inscripcion()
+    {
+        return $this->belongsTo(Inscripcione::class);
     }
 }

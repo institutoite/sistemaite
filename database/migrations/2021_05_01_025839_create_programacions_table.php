@@ -21,11 +21,11 @@ class CreateProgramacionsTable extends Migration
             $table->string('estado', 25);
             $table->time('hora_ini');
             $table->time('hora_fin');
-
+            $table->double('horas_por_clase');
             $table->unsignedInteger('docente_id');
             $table->unsignedInteger('materia_id');
             $table->unsignedInteger('aula_id');
-            $table->unsignedInteger('inscripcion_id');
+            $table->unsignedInteger('inscripcione_id');
 
             $table->foreign('docente_id', 'fk_programacion_docente_idx')
                 ->references('id')->on('docentes');
@@ -36,7 +36,7 @@ class CreateProgramacionsTable extends Migration
             $table->foreign('aula_id', 'fk_programacion_aula_idx')
             ->references('id')->on('aulas');
 
-            $table->foreign('inscripcion_id', 'fk_programacion_inscripcion_idx')
+            $table->foreign('inscripcione_id', 'fk_programacion_inscripcion_idx')
             ->references('id')->on('inscripciones');
 
             $table->timestamps();
