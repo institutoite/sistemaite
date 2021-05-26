@@ -302,17 +302,20 @@ return [
                     'icon' => 'fas fa-fw fa-plus',
                 ],
                 [
-                    'text' => 'Todos',
+                    'text' => 'Estudiantes',
                     'url'  => '/home',
-                    'icon' => 'fas fa-fw fa-lock',
+                    'icon' => 'fas fa-book-reader',
                 ],
                 [
-                    'text' => 'Estudiantes',
-                    'url'  => '#',
+                    'text' => 'Todos',
+                    'url'  => 'personas.todos',
+                    'icon' => 'fas fa-users',
                 ],
                 [
                     'text' => 'Docentes',
-                    'url'  => '#',
+                    'url'  => 'personas.docentes',
+                    'icon' => 'fas fa-chalkboard-teacher',
+
                 ],
                 [
                     'text' => 'Administrativo',

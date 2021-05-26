@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clase;
+use App\Programacion;
 use Illuminate\Http\Request;
+
 
 /**
  * Class ClaseController
@@ -105,5 +107,22 @@ class ClaseController extends Controller
 
         return redirect()->route('clases.index')
             ->with('success', 'Clase deleted successfully');
+    }
+
+
+
+    public function marcadoGeneral($inscripcion_id){
+       
+            $programaciones=Programacion::join('inscripciones','inscripciones.id','=','programacions.inscripcione_id')
+                ->join('sesions','sesions.inscripcione_id','=','inscripciones.id')
+                ->join('materias','sesions.materia_id','=','materias.id')
+                ->join('aulas','sesions.aula_id','=','aulas.id')
+                ->join('docentes','sesions.docente_id','=','docentes.id')
+                ->join('personas','docentes.persona_id','=','personas.id')
+                ->where('programacions.inscripcione_id','=',$inscripcion_id)
+                ->select('programacions.id', 'fecha', 'programacions.estado', 'hora_ini', 'hora_fin', 'horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula')
+                ->get();
+
+        return view('programacion.marcadoGeneral',compact('programaciones'));
     }
 }

@@ -20,6 +20,7 @@
             <tr>
                 <th>ID</th>
                 <th>NOMBRE</th>
+                <th>INSCRPCNS</th>
                 <th>FOTO</th>
                 <th>ACCIONES</th>
             </tr>
@@ -47,10 +48,11 @@
                     "responsive":true,
                     "autoWidth":false,
 
-                    "ajax": "{{ url('api/personas') }}",
+                    "ajax": "{{ url('api/estudiantes') }}",
                     "columns": [
                         {data: 'id'},
                         {data: 'nombre'},
+                        {data: 'cantidadinscripcines'},
                         {
                             "name": "foto",
                             "data": "foto",

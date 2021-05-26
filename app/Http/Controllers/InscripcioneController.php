@@ -185,9 +185,9 @@ class InscripcioneController extends Controller
         return view('inscripcione.tusinscripciones',compact('persona','inscripciones'));
     }
 
-    public function tusinscripciones($id){
-        $inscripciones=Inscripcione::where('estudiante_id', '=', $id)->select('id', 'objetivo', 'costo')->get();
-        $persona=Estudiante::findOrFail($id)->persona;
+    public function tusinscripciones($estudiante_id){
+        $inscripciones=Inscripcione::where('estudiante_id', '=', $estudiante_id)->select('id', 'objetivo', 'costo')->get();
+        $persona=Estudiante::findOrFail($estudiante_id)->persona;
         return view('inscripcione.tusinscripciones',compact('inscripciones','persona'));
         
     }
@@ -235,7 +235,6 @@ class InscripcioneController extends Controller
             $sesion->save();
             $i = $i + 1;
         }
-       
         return redirect()->route('regenerar.programa', ['inscripcione'=>$inscripcion->id,'fecha'=>$fecha]);   
     }
 
@@ -246,6 +245,25 @@ class InscripcioneController extends Controller
         $inscripcion->save();
 
         return redirect()->route('imprimir.programa',$inscripcion->id);
+    }
+
+    public function inscripcionesVigentes($estudiante_id){
+        
+        $inscripcionesVigentes=Inscripcione::
+                                        where('estudiante_id','=',$estudiante_id)
+                                        ->where('vigente','=',1)->get();
+        $persona_id= Estudiante::findOrFail($estudiante_id)->persona->id;
+        switch ($inscripcionesVigentes->count()) {
+            case 0:
+                return redirect()->route('listar_inscripciones',$persona_id);
+                break;
+            case 1:
+                return redirect()->route('clases.marcado.general',$inscripcionesVigentes[0]);
+                break;
+            default:
+                return redirect()->route('listar_inscripciones', $persona_id);
+                break;
+        }
     }
 
 }

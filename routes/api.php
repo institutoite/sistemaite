@@ -33,8 +33,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('personas',function(){
-   $persona=Persona::select('id',DB::raw('concat_ws(" ",nombre,apellidop,apellidom) as nombre'),'foto');
+Route::get('estudiantes',function(){
+   $persona=Persona::join('estudiantes','estudiantes.persona_id','=','personas.id')
+                    ->join('inscripciones','inscripciones.estudiante_id','=','estudiantes.id')
+                    ->select('personas.id',DB::raw('concat_ws(" ",nombre,apellidop,apellidom) as nombre'), DB::raw('COUNT(inscripciones.id) as cantidadinscripcines'),'foto')->groupBy('personas.id','nombre','apellidop','apellidom','foto');
    //dd($persona);
    //=Persona::join('estudiantes','personas.id','=','estudiantes.persona_id')->select('personas.id','idantiguo','nombre','apellidop','apellidom','foto',)->get())
    return datatables()->of($persona)
@@ -57,6 +59,13 @@ Route::get('paises',function(){
         ->toJson();
 
 });
+Route::get('personas', function () {
+    $persona=Persona::select('id',DB::raw('concat_ws(" ",nombre,apellidop,apellidom) as nombre'),'foto');
+    return datatables()->of($persona)
+        ->addColumn('btn', 'persona.actiontodos')
+        ->rawColumns(['btn'])
+        ->toJson();
+})->name('personas.todos');
 Route::get('ciudades',function(){
     $ciudades=Ciudad::select('ciudads.id','ciudad','nombrepais')->join('pais','pais.id','=','ciudads.pais_id')->get();
     return datatables()->of($ciudades)

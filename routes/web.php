@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Persona;
+use Illuminate\Support\Facades\Auth;
 
-use Barryvdh\DomPDF\Facade as PDF;
 
 
 /*
@@ -25,8 +24,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home',function(){
+    return view('persona.estudiantes');
+});
+
+Route::get('personas.todos', function () {
     return view('persona.index');
 });
+
 
 Route::get('/paises/listar',function(){
     return view('pais.index');
@@ -59,16 +63,10 @@ Route::resource('billetes', "BilleteController");
 Route::resource('programacions', "ProgramacionController");
 Route::resource('feriados', "FeriadoController");
 Route::resource('clases', "ClaseController");
+Route::resource('personas', "PersonaController");
+Route::resource('telefonos', "TelefonoController");
 
-
-Route::get('pdf', function(){
-    //$pdf = resolve('dompdf.wrapper');
-    $pdf=PDF::loadView('persona.index');
-    return $pdf->stream();
-});
-
-
-Route::get('tus_inscripciones/{id}', 'InscripcioneController@tusinscripciones')->name('tus.inscripciones');
+Route::get('tus_inscripciones/{estudiante_id}', 'InscripcioneController@tusinscripciones')->name('tus.inscripciones');
 Route::get('listar/inscripciones/{persona}', 'InscripcioneController@listar')->name('listar_inscripciones');
 Route::get('listar/inscripciones/crear/{persona}', 'InscripcioneController@crear')->name('inscribir');
 Route::post('inscripcion/guardar/configuracion/{id}', 'InscripcioneController@guardarconfiguracion')->name('inscripcion.guardar.configuracion');
@@ -76,7 +74,6 @@ Route::post('inscripcion/actualizar/configuracion/{id_inscripcion}', 'Inscripcio
 Route::get('inscripcion/actualizar/fechapago/{fecha}/{id}', 'InscripcioneController@actualizar_fecha_proximo_pago')->name('set.fecha.proximo.pago');
 
 
-Route::resource('telefonos', "TelefonoController");
 Route::get('telefonos/vista/{persona}','TelefonoController@mostrarvista')->name('telefonos.persona');
 Route::get('telefono/crear/{persona}', 'TelefonoController@crear')->name('telefonos.crear');
 Route::get('telefonos/{persona}', 'PersonaController@index')->name('telefono.de.persona');
@@ -97,9 +94,24 @@ Route::get('mostrar/programa/{inscripcione}', 'ProgramacionController@mostrarPro
 Route::get('imprimir/programa/{inscripcione}', 'ProgramacionController@imprimirPrograma')->name('imprimir.programa');
 Route::get('actualizar/programa/segunpago/{inscripcione}/{pago}', 'ProgramacionController@actualizarProgramaSegunPago')->name('actualizar.programa.segun.pago');
 
+/**
+ * clases
+ */
+Route::get('programa/marcar/{inscripcine_id}', 'ClaseController@marcadoGeneral')->name('clases.marcado.general');
+Route::get('inscripciones/vigentes/{estudiante_id}', 'InscripcioneController@inscripcionesVigentes')->name('inscripciones.vigentes');
+
+
+
+
+
+
+
+
+
+
+
 Route::get('opciones/{id}','OpcionController@index')->name('opcion.principal');
 //Route::get('principal/{id}', 'OpcionController@principal')->name('opcion.index');
-
 Route::delete('eliminar/pais/{id}','PaisController@eliminarPais')->name('eliminar.pais');
 Route::delete('eliminar/ciudad/{id}','CiudadController@eliminarCiudad')->name('eliminar.ciudad');
 Route::delete('eliminar/zona/{id}','ZonaController@eliminarZona')->name('eliminar.zona');
