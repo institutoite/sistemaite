@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Inscripcione;
 use App\Models\Clase;
 use App\Programacion;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
 
 
@@ -108,21 +112,38 @@ class ClaseController extends Controller
         return redirect()->route('clases.index')
             ->with('success', 'Clase deleted successfully');
     }
-
-
-
     public function marcadoGeneral($inscripcion_id){
-       
-            $programaciones=Programacion::join('inscripciones','inscripciones.id','=','programacions.inscripcione_id')
-                ->join('sesions','sesions.inscripcione_id','=','inscripciones.id')
-                ->join('materias','sesions.materia_id','=','materias.id')
-                ->join('aulas','sesions.aula_id','=','aulas.id')
-                ->join('docentes','sesions.docente_id','=','docentes.id')
-                ->join('personas','docentes.persona_id','=','personas.id')
-                ->where('programacions.inscripcione_id','=',$inscripcion_id)
-                ->select('programacions.id', 'fecha', 'programacions.estado', 'hora_ini', 'hora_fin', 'horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula')
-                ->get();
+            //dd($inscripcion_id);
+        $programaciones=Programacion::join('inscripciones','inscripciones.id','=','programacions.inscripcione_id')//ok
+            ->join('sesions','sesions.inscripcione_id','=','inscripciones.id')
+            ->join('materias','sesions.materia_id','=','materias.id')
+            ->join('dias', 'dias.id', '=', 'sesions.dia_id')
+            ->join('aulas','sesions.aula_id','=','aulas.id')
+            ->join('docentes','sesions.docente_id','=','docentes.id')
+            ->join('personas','docentes.persona_id','=','personas.id')
+            ->where('inscripciones.id','=',$inscripcion_id)
+            ->where('dias.id','=',DB::raw("DAYOFWEEK(programacions.fecha)-1"))
+            ->select('programacions.id', 'fecha', 'programacions.estado', 'hora_ini', 'hora_fin','programacions.habilitado', 'personas.nombre','materia')
+            ->get();
+        $programacionesHoy = Programacion::join('inscripciones', 'inscripciones.id', '=', 'programacions.inscripcione_id') //ok
+        ->join('sesions', 'sesions.inscripcione_id', '=', 'inscripciones.id')
+        ->join('materias', 'sesions.materia_id', '=', 'materias.id')
+        ->join('dias', 'dias.id', '=', 'sesions.dia_id')
+        ->join('aulas', 'sesions.aula_id', '=', 'aulas.id')
+        ->join('docentes', 'sesions.docente_id', '=', 'docentes.id')
+        ->join('personas', 'docentes.persona_id', '=', 'personas.id')
+        ->where('inscripciones.id', '=', $inscripcion_id)
+        ->where('programacions.fecha', '=',DB::raw('date(now())'))
+            ->where('dias.id', '=', DB::raw("DAYOFWEEK(programacions.fecha)-1"))
+        ->select('programacions.id', 'programacions.fecha', 'programacions.estado', 'hora_ini', 'hora_fin', 'programacions.habilitado', 'personas.nombre', 'materia')
+        ->get();
 
-        return view('programacion.marcadoGeneral',compact('programaciones'));
+        $inscripcion=Inscripcione::findOrFail($inscripcion_id);
+        $pago=$inscripcion->pagos->sum('monto');
+        $faltas=Programacion::where('estado','=','FALTA')->count();
+        $presentes = Programacion::where('estado', '=', 'FINALIZADO')->count();
+        $licencias = Programacion::where('estado', '=', 'indefinido')->count();
+        
+        return view('programacion.marcadoGeneral',compact('programaciones','programacionesHoy','faltas','presentes','licencias','pago','inscripcion'));
     }
 }

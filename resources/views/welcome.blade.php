@@ -68,7 +68,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/hodme') }}">Inicio</a>
+                        <a href="{{ url('/home') }}">Inicio</a>
                     @else
                         <a href="{{ route('login') }}">Entrar</a>
 
@@ -77,7 +77,6 @@
                         @endif
                     @endauth
                 </div>
-                dsf
             @endif
 
             <div class="content">

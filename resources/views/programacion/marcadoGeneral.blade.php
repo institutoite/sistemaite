@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header bg-secondary">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
@@ -20,52 +20,77 @@
 
                             <div class="float-right">
                                 <a href="{{ route('programacions.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                    {{ __('Create New') }}
+                                    {{ __('Inicio') }}
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr>
-                                        <th>ID</th>
-										<th>Fecha</th>
-										<th>Estado</th>
-										<th>Inicio</th>
-										<th>Fin</th>
-										<th>Hras</th>
-										<th>Docente</th>
-										<th>Materia</th>
-										<th>Aula</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($programaciones as $programacion)
-                                        <tr>
-											<td>{{ $loop->iteration }}</td>
-											<td>{{ $programacion->fecha }}</td>
-											<td>{{ $programacion->estado }}</td>
-											<td>{{ $programacion->hora_ini }}</td>
-											<td>{{ $programacion->hora_fin }}</td>
-											<td>{{ $programacion->horas_por_clase }}</td>
-											<td>{{ $programacion->nombre }}</td>
-											<td>{{ $programacion->materia }}</td>
-											<td>{{ $programacion->aula }}</td>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-info"><i class="fas fa-user-graduate"></i></span>
 
-                                            <td>
-                                                <a class="btn btn-sm btn-primary " href="{{ route('programacions.show',$programacion->id) }}"><i class="fa fa-fw fa-eye"></i> </a>
-                                                <a class="btn btn-sm btn-success" href="{{ route('programacions.edit',$programacion->id) }}"><i class="fa fa-fw fa-edit"></i> </a>
-                                                <a class="btn btn-sm btn-primary " href="{{ route('programacions.show',$programacion->id) }}"><i class="fa fa-fw fa-eye"></i> </a>
-                                                <a class="btn btn-sm btn-success" href="{{ route('programacions.edit',$programacion->id) }}"><i class="fa fa-fw fa-edit"></i> </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Total Clase</span>
+                                        <span class="info-box-number">{{$inscripcion->totalhoras}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-success"><i class="far fa-star"></i></span>
+
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Asistencias</span>
+                                        <span class="info-box-number">{{$presentes}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
+
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Licencias</span>
+                                        <span class="info-box-number">{{$licencias}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12">
+                                <div class="info-box">
+                                <span class="info-box-icon bg-danger"><i class="fas fa-skull-crossbones"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Faltas</span>
+                                    <span class="info-box-number">{{$faltas}}</span>
+                                </div>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+
+                    <div class="row">
+                        
+                        <table class="table table-bordered table-hover">
+                        <tbody>
+                            <tr>
+                                <td>COSTO</td>
+                                <td>{{$inscripcion->costo}}</td>
+                                <td>SALDO</td>
+                                <td>{{$pago}}</td>
+                            </tr>
+                        </tbody>
+                    </table> 
+                    </div>
+                    
+
+                    <div class="card-body">
+                        @include('programacion.hoy')
+                        @include('programacion.futuro')
+                        @include('programacion.pasado')
+                        @include('programacion.todo')
                     </div>
                 </div>
             </div>

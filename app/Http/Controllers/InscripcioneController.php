@@ -247,18 +247,17 @@ class InscripcioneController extends Controller
         return redirect()->route('imprimir.programa',$inscripcion->id);
     }
 
-    public function inscripcionesVigentes($estudiante_id){
-        
+    public function inscripcionesVigentes($persona_id){
+        $estudiante_id=Persona::findOrFail($persona_id)->estudiante->id;
         $inscripcionesVigentes=Inscripcione::
                                         where('estudiante_id','=',$estudiante_id)
                                         ->where('vigente','=',1)->get();
-        $persona_id= Estudiante::findOrFail($estudiante_id)->persona->id;
         switch ($inscripcionesVigentes->count()) {
             case 0:
                 return redirect()->route('listar_inscripciones',$persona_id);
                 break;
             case 1:
-                return redirect()->route('clases.marcado.general',$inscripcionesVigentes[0]);
+                return redirect()->route('clases.marcado.general',$inscripcionesVigentes[0]->id);
                 break;
             default:
                 return redirect()->route('listar_inscripciones', $persona_id);

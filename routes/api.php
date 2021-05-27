@@ -36,7 +36,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('estudiantes',function(){
    $persona=Persona::join('estudiantes','estudiantes.persona_id','=','personas.id')
                     ->join('inscripciones','inscripciones.estudiante_id','=','estudiantes.id')
-                    ->select('personas.id',DB::raw('concat_ws(" ",nombre,apellidop,apellidom) as nombre'), DB::raw('COUNT(inscripciones.id) as cantidadinscripcines'),'foto')->groupBy('personas.id','nombre','apellidop','apellidom','foto');
+                    ->select('personas.id',DB::raw('concat_ws(" ",nombre,apellidop,apellidom) as nombre'), DB::raw('COUNT(inscripciones.vigente) as cantidadinscripcines'),'foto')->groupBy('personas.id','nombre','apellidop','apellidom','foto');
    //dd($persona);
    //=Persona::join('estudiantes','personas.id','=','estudiantes.persona_id')->select('personas.id','idantiguo','nombre','apellidop','apellidom','foto',)->get())
    return datatables()->of($persona)
