@@ -1,12 +1,43 @@
 @extends('adminlte::page')
 @section('css')
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
 @section('title', 'Programación')
 
+@if ($dias_que_faltan_para_pagar<0)
+    @php $clase="dias-negativos" @endphp
+@else
+    @if ($dias_que_faltan_para_pagar==0)
+        @php
+            $clase="dias0";
+        @endphp
+    @else
+        @switch($dias_que_faltan_para_pagar)
+            @case(1)
+                @php $clase="dias1"; @endphp
+                @break
+            @case(2)
+                @php $clase="dias2"; @endphp
+                @break
+            @case(3)
+                @php $clase="dias3"; @endphp
+                @break
+            @case(4)
+                @php $clase="dias4"; @endphp
+                @break
+            @case(5)
+                @php $clase="dias5"; @endphp
+                @break
+            @default
+                @php $clase="bg-success"; @endphp 
+        @endswitch
+    @endif
+@endif
 
 @section('content')
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -25,7 +56,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container-fluid">
+                    <div class="container-fluid mt-2">
                         <div class="row">
                             <div class="col-md-3 col-sm-6 col-12">
                                 <div class="info-box">
@@ -70,22 +101,52 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        
-                        <table class="table table-bordered table-hover">
-                        <tbody>
-                            <tr>
-                                <td>COSTO</td>
-                                <td>{{$inscripcion->costo}}</td>
-                                <td>SALDO</td>
-                                <td>{{$pago}}</td>
-                            </tr>
-                        </tbody>
-                    </table> 
-                    </div>
                     
+                    <div class="container-fluid">
+                        <div class="row ml-1 mr-1">
+                            
+                            @if ($inscripcion->costo==$pago)
+                                @php $clasetabla="bg-success text-white" @endphp
+                            @else
+                                @if ($pago>0)
+                                    @php $clasetabla="bg-warning text-white" @endphp
+                                @else 
+                                    @php $clasetabla="dias-negativos text-white" @endphp
+                                @endif
+                            @endif
 
+                            <table class="table table-bordered table-hover table-striped col-5">
+                                <tbody class="{{$clasetabla}}" >    
+                                    <tr class="">
+                                        <td><strong>COSTO</strong></td>
+                                        <td><strong>{{'Bs. '. floor($inscripcion->costo)}}</strong></td>
+                                    </tr>
+                                    <tr class="">
+                                        <td><strong>PAGOS</strong></td>
+                                        <td><strong>{{'Bs. '.$pago }}</strong></td>
+                                    </tr>
+                                    <tr class="">
+                                        <td><strong>DEBE</strong></td>
+                                        <td> <strong>Bs. {{$inscripcion->costo-$pago}}</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table> 
+                            
+                            <div class="col-6 text-center">
+                                <div class="circulo {{$clase}}">
+                                    @if ($dias_que_faltan_para_pagar==0)
+                                        <h1>HOY TOCA PAGAR</h1>
+                                    @endif
+                                    @if ($dias_que_faltan_para_pagar>0)
+                                        <h2>Faltan <br> {{$dias_que_faltan_para_pagar}}  dias</h2>
+                                    @else
+                                        <h2>Tenía que haber pagado hace:: <br> {{$dias_que_faltan_para_pagar}} dias</h2>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
                     <div class="card-body">
                         @include('programacion.hoy')
                         @include('programacion.futuro')

@@ -52,7 +52,7 @@ class Inscripcione extends Model
     ];
     protected $perPage = 20;
     protected $dates = [
-        'horainicio','horafin','fechaini','fechafin', 'created_at', 'updated_at',
+        'horainicio','fecha_proximo_pago','horafin','fechaini','fechafin', 'created_at', 'updated_at',
     ];
     /**
      * Attributes that should be mass-assignable.

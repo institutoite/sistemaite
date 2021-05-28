@@ -1,5 +1,5 @@
-<div class="card card-light border-primary collapsed-card">
-    <div class="card-header">
+<div class="card collapsed-card">
+    <div class="card-header {{$clase}}">
         <h3 class="card-title text-secondary">CLASES VENCIDAS O PASADAS</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>

@@ -1,5 +1,5 @@
-<div class="card card-success">
-    <div class="card-header">
+<div class="card">
+    <div class="card-header {{$clase}}">
         <h3 class="card-title">CLASE CORRESPONDIENTE AL DIA DE HOY</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -35,7 +35,7 @@
             </div>
         </div>
     @else 
-        <div class="alert alert-danger text-center">
+        <div class="text-center">
             <h1 class="text-danger"> HOY NO TIENE CLASES</h1>
         </div>
     @endif

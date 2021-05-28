@@ -16,3 +16,65 @@
 .azul_suave{
     background-color: rgba(55,95,122,0.3);
 }
+
+.dias-negativos{
+    
+    background-color: #610B0B;
+    font-weight: bold;
+    color: #FA5858;
+}
+.dias0{
+    background-color: #FF0000;
+    font-weight: bold;
+    color: white;
+}
+.dias1{
+    background-color: #FE2E2E;
+    font-weight: bold;
+    color: white;
+}
+.dias2{
+    background-color: #FA5858;
+    font-weight: bold;
+    color: white;
+}
+.dias3{
+    background-color: #F78181;
+    font-weight: bold;
+    color: #FF0000;
+}
+.dias4{
+    background-color: #F5A9A9;
+    font-weight: bold;
+    color: #FF0000;
+}
+.dias5{
+    background-color: #F6CECE;
+    font-weight: bold;
+    color: #FF0000;
+}
+.rojo6{
+    background-color: #F8E0E0;
+    font-weight: bold;
+    color: #FF0000;
+}
+.circulo {
+	width: 9rem;
+	height: 9rem;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+    margin:0px auto;
+    padding:3%
+}
+
+.circulo > h2 {
+	font-family: sans-serif;
+	color: white;
+	font-size: 1.4rem;
+	font-weight: bold;
+}
+
+

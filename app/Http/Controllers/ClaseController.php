@@ -138,12 +138,15 @@ class ClaseController extends Controller
         ->select('programacions.id', 'programacions.fecha', 'programacions.estado', 'hora_ini', 'hora_fin', 'programacions.habilitado', 'personas.nombre', 'materia')
         ->get();
 
+
         $inscripcion=Inscripcione::findOrFail($inscripcion_id);
+        $dias_que_faltan_para_pagar= $inscripcion->fecha_proximo_pago->diffInDays(now());
+        
         $pago=$inscripcion->pagos->sum('monto');
         $faltas=Programacion::where('estado','=','FALTA')->count();
         $presentes = Programacion::where('estado', '=', 'FINALIZADO')->count();
         $licencias = Programacion::where('estado', '=', 'indefinido')->count();
         
-        return view('programacion.marcadoGeneral',compact('programaciones','programacionesHoy','faltas','presentes','licencias','pago','inscripcion'));
+        return view('programacion.marcadoGeneral',compact('programaciones','programacionesHoy','faltas','presentes','licencias','pago','inscripcion', 'dias_que_faltan_para_pagar'));
     }
 }
