@@ -27,7 +27,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $programacion->fecha->isoFormat('D-MM-Y') }}</td>
-                            <td>{{ $programacion->estado }}</td>
+                            
                             <td>{{ $programacion->hora_ini->isoFormat('HH:mm')}}</td>
                             <td>{{ $programacion->hora_fin->isoFormat('HH:mm') }}</td>
                             <td>{{ $programacion->nombre }}</td>
@@ -46,12 +46,4 @@
     </div>
 </div>
 
-
-<<table class="table table-light">
-    <tbody>
-        <tr>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
 

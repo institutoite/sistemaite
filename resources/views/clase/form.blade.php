@@ -1,59 +1,51 @@
-<div class="box box-info padding-1">
-    <div class="box-body">
-        
-        <div class="form-group">
-            {{ Form::label('fecha') }}
-            {{ Form::text('fecha', $clase->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
-            {!! $errors->first('fecha', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('pagado') }}
-            {{ Form::text('pagado', $clase->pagado, ['class' => 'form-control' . ($errors->has('pagado') ? ' is-invalid' : ''), 'placeholder' => 'Pagado']) }}
-            {!! $errors->first('pagado', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('estado') }}
-            {{ Form::text('estado', $clase->estado, ['class' => 'form-control' . ($errors->has('estado') ? ' is-invalid' : ''), 'placeholder' => 'Estado']) }}
-            {!! $errors->first('estado', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('horainicio') }}
-            {{ Form::text('horainicio', $clase->horainicio, ['class' => 'form-control' . ($errors->has('horainicio') ? ' is-invalid' : ''), 'placeholder' => 'Horainicio']) }}
-            {!! $errors->first('horainicio', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('horafin') }}
-            {{ Form::text('horafin', $clase->horafin, ['class' => 'form-control' . ($errors->has('horafin') ? ' is-invalid' : ''), 'placeholder' => 'Horafin']) }}
-            {!! $errors->first('horafin', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('docente_id') }}
-            {{ Form::text('docente_id', $clase->docente_id, ['class' => 'form-control' . ($errors->has('docente_id') ? ' is-invalid' : ''), 'placeholder' => 'Docente Id']) }}
-            {!! $errors->first('docente_id', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('materia_id') }}
-            {{ Form::text('materia_id', $clase->materia_id, ['class' => 'form-control' . ($errors->has('materia_id') ? ' is-invalid' : ''), 'placeholder' => 'Materia Id']) }}
-            {!! $errors->first('materia_id', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('aula_id') }}
-            {{ Form::text('aula_id', $clase->aula_id, ['class' => 'form-control' . ($errors->has('aula_id') ? ' is-invalid' : ''), 'placeholder' => 'Aula Id']) }}
-            {!! $errors->first('aula_id', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('tema_id') }}
-            {{ Form::text('tema_id', $clase->tema_id, ['class' => 'form-control' . ($errors->has('tema_id') ? ' is-invalid' : ''), 'placeholder' => 'Tema Id']) }}
-            {!! $errors->first('tema_id', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('programacion_id') }}
-            {{ Form::text('programacion_id', $clase->programacion_id, ['class' => 'form-control' . ($errors->has('programacion_id') ? ' is-invalid' : ''), 'placeholder' => 'Programacion Id']) }}
-            {!! $errors->first('programacion_id', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
+{{-- {{dd($programa->fecha->isoFormat('DD-MM-YYYY'))}} --}}
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 input-group text-sm" > 
+    <div class="input-group mb-2" >
+        <input class="form-control" type="date" name="fecha" value="{{$programa->fecha->isoFormat('YYYY-MM-DD')}}">
+    </div>
+</div>
 
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 input-group text-sm" > 
+    <div class="input-group mb-2" >
+        <input class="form-control" type="time" name="horainicio" value="{{$hora_inicio}}">
     </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 input-group text-sm" > 
+    <div class="input-group mb-2" >
+        <input class="form-control" type="time" name="horafin" value="{{$hora_fin}}">
     </div>
+</div>
+
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 input-group text-sm" > 
+    <div class="input-group mb-2" >
+        <select class="form-control mb-3" name="docente_id" id="docente_id">
+            @foreach ($docentes as $docente)
+                <option value="{{$docente->id}}" {{($docente->id==$programa->docente_id) ? 'selected':''}} >{{$docente->nombre.' '.$docente->apellidop}}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 input-group text-sm" > 
+    <div class="input-group mb-2" >
+        <select class="form-control mb-3" name="materia_id" id="materia_id">
+            @foreach ($materias as $materia)
+                <option value="{{$materia->id}}" {{($materia->id==$programa->materia_id) ? 'selected':''}} >{{$materia->materia}}</option>
+            @endforeach
+            
+        </select>
+    </div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 input-group text-sm" > 
+    <div class="input-group mb-2" >
+        <select class="form-control mb-3" name="aula_id" id="aula_id">
+            @foreach ($aulas as $aula)
+                <option value="{{$aula->id}}" {{($aula->id==$programa->aula_id) ? 'selected':''}}>{{$aula->aula}}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
+<div class="box-footer mt20">
+    <button type="submit" class="btn btn-primary">Submit</button>
 </div>

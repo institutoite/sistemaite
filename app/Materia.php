@@ -28,5 +28,9 @@ class Materia extends Model
     {
         return $this->belongsTo(Sesion::class);
     }
+    public function clases()
+    {
+        return $this->hasMany(Clase::class);
+    }
 
 }

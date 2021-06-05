@@ -51,6 +51,7 @@ class Programacion extends Model
      * @var array
      */
     protected $fillable = ['fecha','habilitado','estado','hora_ini','hora_fin','docente_id','materia_id','aula_id','inscripcion_id'];
+    protected $dates = ['fecha','hora_ini','hora_fin'];
 
 
     /**

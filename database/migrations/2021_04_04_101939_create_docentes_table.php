@@ -15,6 +15,7 @@ class CreateDocentesTable extends Migration
     {
         Schema::create('docentes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre',90);
             $table->date('fecha_ingreso');
             $table->tinyInteger('dias_prueba');
             $table->decimal('sueldo', 6, 2)->nullable();

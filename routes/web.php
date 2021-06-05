@@ -25,7 +25,7 @@ Auth::routes();
 
 Route::get('/home',function(){
     return view('persona.estudiantes');
-});
+})->name('inicio');
 
 Route::get('personas.todos', function () {
     return view('persona.index');
@@ -65,6 +65,21 @@ Route::resource('feriados', "FeriadoController");
 Route::resource('clases', "ClaseController");
 Route::resource('personas', "PersonaController");
 Route::resource('telefonos', "TelefonoController");
+
+
+Route::get('marcar/asistencia/', 'ClaseController@marcado')->name('marcado');
+Route::get('clase/crear', 'ClaseController@crear')->name('clase.crear');
+Route::get('clase/marcar/rapido/{programacion_id}', 'ClaseController@marcadoRapido')->name('marcado.presente.rapido');
+Route::get('clase/marcar/normal/{programacion_id}', 'ProgramacionController@marcadoNormal')->name('marcado.presente.normal');
+Route::post('programa/marcar/clase/guardar/rapido/', 'ClaseController@marcadoGeneral')->name('ok');
+Route::post('/clase/guardar/normal/{progrmacion_id}', 'ClaseController@guardar')->name('clases.guardar');
+Route::get('clases/presentes/ahorita', 'ClaseController@clasesPresentes')->name('clases.presente');
+
+Route::get('ajax',function(){
+    return view('clase.ajax');
+});
+
+
 
 Route::get('tus_inscripciones/{estudiante_id}', 'InscripcioneController@tusinscripciones')->name('tus.inscripciones');
 Route::get('listar/inscripciones/{persona}', 'InscripcioneController@listar')->name('listar_inscripciones');

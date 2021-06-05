@@ -5,7 +5,8 @@
     
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
-    <link rel="stylesheet" href="">
+    
+   
 @stop
 
 @section('title', 'Personas')
@@ -15,12 +16,19 @@
 @stop
 
 @section('content')
+    
+    
+    @if (session('mensaje'))
+        <div class="mensaje">
+
+        </div>
+    @endif
+
     <table id="personas" class="table table-bordered table-hover table-striped">
         <thead class="bg-primary text-center">
             <tr>
                 <th>ID</th>
                 <th>NOMBRE</th>
-                <th>INSCRPCNS</th>
                 <th>FOTO</th>
                 <th>ACCIONES</th>
             </tr>
@@ -36,12 +44,22 @@
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
     <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
-    <!-- JavaScript Bundle with Popper -->
     
+    @if (session('mensaje')=='MarcadoCorrectamente')
+        <script>
+            Swal.fire({
+                position: 'bottom-start',
+                icon: 'success',
+                title: 'Marcado Correctamente',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        </script>
+    @endif
 
     <script>
-        $(document).ready(function() {
         
+        $(document).ready(function() {
         var tabla=$('#personas').DataTable(
                 {
                     "serverSide": true,
@@ -52,7 +70,6 @@
                     "columns": [
                         {data: 'id'},
                         {data: 'nombre'},
-                        {data: 'cantidadinscripcines'},
                         {
                             "name": "foto",
                             "data": "foto",
@@ -155,7 +172,7 @@
                     }
                 })
             });
-        } );
+        });
         
     </script>
 @stop

@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
+use App\Tema;
 class TemaSeeder extends Seeder
 {
     /**
@@ -13,6 +13,14 @@ class TemaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Tema::create(['tema'=>'Suma de Naturales','materia_id'=>1]);
+        Tema::create(['tema'=>'Resta de Naturales','materia_id'=>1]);
+        Tema::create(['tema'=>'Multiplicación de Naturales','materia_id'=>1]);
+        Tema::create(['tema'=>'División de Naturales','materia_id'=>1]);
+
+        Tema::create(['tema' => 'Factor de Conversiones', 'materia_id' => 2]);
+        Tema::create(['tema' => 'Despeje', 'materia_id' => 2]);
+        Tema::create(['tema' => 'Notacion científica', 'materia_id' => 2]);
+        Tema::create(['tema' => 'Movimiento rectilineo uniformemente variado MRUV', 'materia_id' => 1]);
     }
 }

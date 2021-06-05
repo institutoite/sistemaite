@@ -1,6 +1,7 @@
 <?php
 namespace Database\Seeders;
 
+use App\Estudiante;
 use App\Inscripcione;
 use App\Modalidad;
 use Illuminate\Database\Seeder;
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
             CiudadSeeder::class,
             ZonaSeeder::class,
             PersonaSeeder::class,
+            EstudianteSeeder::class,
             GradoSeeder::class,
             DepartamentoSeeder::class,
             ProvinciaSeeder::class,
@@ -33,6 +35,7 @@ class DatabaseSeeder extends Seeder
             DiaSeeder::class,
             MateriaSeeder::class,
             FeriadoSeeder::class,
+            TemaSeeder::class,
         ]);
 
         

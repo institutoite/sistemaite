@@ -17,6 +17,12 @@
                             <span class="card-title">Programacion de clases</span>
                         </div>
                         <div class="float-right">
+                            {{$persona->nombre.' '.$persona->apellidop}}
+
+                            <a href="{{route('inscripciones.vigentes', $persona->id)}}" class="btn btn-secondary tooltipsC mr-2" title="ir a opciones de la persona">
+                                Marcar
+                            </a> 
+
                             <a class="btn btn-primary" href="{{ route('imprimir.programa',$inscripcion) }}">Imprimir</a>
                         </div>
                     </div>

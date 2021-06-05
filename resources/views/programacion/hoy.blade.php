@@ -8,31 +8,57 @@
     
     @if ($programacionesHoy->count()>0)
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped table-hover">
+            
+                <table id="tabla_hoy" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>FECHA</th>
+                            <th>HORA</th>
+                            <th>DOCENTE</th>
+                            <th>MATERIA</th>
+                            <th>ESTADO</th>
+                            <th>ITE</th>
+
+                            <th>OPCIONES</th>
+                        </tr>
+                    </thead>
+
                     <tbody>
                         
                         @foreach ($programacionesHoy as $programacion)
-                            
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
+                            @if ($programacion->estado=='PRESENTE')
+                                @php
+                                    $clase="text-success";
+                                @endphp 
+                            @else
+                                @php
+                                    $clase="text-warning";
+                                @endphp
+                            @endif    
+
+                            <tr class="{{$clase}}" >
+                                
                                 <td>{{ $programacion->fecha->isoFormat('D-MM-Y') }}</td>
-                                <td>{{ $programacion->estado }}</td>
-                                <td>{{ $programacion->hora_ini->isoFormat('HH:mm')}}</td>
-                                <td>{{ $programacion->hora_fin->isoFormat('HH:mm') }}</td>
+                                <td>{{ $programacion->hora_ini->isoFormat('HH:mm').'-'.$programacion->hora_fin->isoFormat('HH:mm')}}</td>
                                 <td>{{ $programacion->nombre }}</td>
                                 <td>{{ $programacion->materia }}</td>
+                                <td><strong>{{ $programacion->estado }}</strong></td>
                                 <td>
-                                    <a class="text-secondary" href="{{ route('programacions.show',$programacion->id) }}"><i class="fas fa-tasks"></i> </a>
-                                    <a class="text-danger" href="{{ route('programacions.edit',$programacion->id) }}"><i class="fas fa-file-powerpoint"></i> </a>
-                                    <a class="text-warning" href="{{ route('programacions.show',$programacion->id) }}"><i class="fas fa-fingerprint"></i></a>
-                                    <a class="text-success" href="{{ route('programacions.edit',$programacion->id) }}"><i class="fa fa-fw fa-edit"></i> </a>
+                                    @if ($programacion->estado=='PRESENTE')
+                                        <i class="fas fa-toggle-on fa-3x"></i>    
+                                    @else
+                                        <i class="fas fa-toggle-off fa-3x"></i>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a id="marcar" href="{{route('marcado.presente.rapido',$programacion->id)}}" class="btn btn-primary text-white" ><i class="fas fa-bolt"></i> </a>   
+                                    <a id="marcar" href="{{route('marcado.presente.normal',$programacion->id)}}" class="btn btn-secondary text-white marcar_hoy"><i class="fas fa-user-edit"></i></a>   
+                                    
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-            </div>
         </div>
     @else 
         <div class="text-center">

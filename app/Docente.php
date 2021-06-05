@@ -10,7 +10,19 @@ class Docente extends Model
 {
     use HasFactory;
 
-    
+
+    protected $fillable = [
+        'fecha_ingreso',
+        'dias_prueba',
+        'nombre',
+        'sueldo',
+        'estado',
+        'persona_id',
+    ];
+    protected $dates = [
+        'fecha_ingreso',
+    ];
+
 
     public function persona()
     {
@@ -29,5 +41,9 @@ class Docente extends Model
     public function sesion()
     {
         return $this->belongsTo(Sesion::class);
+    }
+    public function clases()
+    {
+        return $this->hasMany(Clase::class);
     }
 }

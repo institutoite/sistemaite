@@ -2,6 +2,10 @@ sugerecias
 que se pueda marcar despues de la clase
 una inscricion para hermanos hermanos
 calificar al estudiante cuando termine la inscripcion calificable
+boton imprimir pdf formulario para registro rapido 
+programar subir archivos documentos digitales
+
+
 
 
 

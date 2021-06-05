@@ -1,10 +1,15 @@
 @extends('adminlte::page')
 @section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
 @section('title', 'Programación')
+
+
 
 @if ($dias_que_faltan_para_pagar<0)
     @php $clase="dias-negativos" @endphp
@@ -135,19 +140,22 @@
                             <div class="col-6 text-center">
                                 <div class="circulo {{$clase}}">
                                     @if ($dias_que_faltan_para_pagar==0)
-                                        <h1>HOY TOCA PAGAR</h1>
-                                    @endif
-                                    @if ($dias_que_faltan_para_pagar>0)
-                                        <h2>Faltan <br> {{$dias_que_faltan_para_pagar}}  dias</h2>
+                                        <span>PAGA HOY</span> <br>
                                     @else
-                                        <h2>Tenía que haber pagado hace:: <br> {{$dias_que_faltan_para_pagar}} dias</h2>
+                                        @if ($dias_que_faltan_para_pagar>0)
+                                            <h2>Faltan <br> {{$dias_que_faltan_para_pagar}}  días</h2><br>
+                                        @else
+                                            <p> Ya Hace<br> {{$dias_que_faltan_para_pagar}} días</p>
+                                        @endif
                                     @endif
+                                
                                 </div>
                             </div>
                             
                         </div>
                     </div>
                     <div class="card-body">
+                        <div class="success"></div>
                         @include('programacion.hoy')
                         @include('programacion.futuro')
                         @include('programacion.pasado')
@@ -157,5 +165,46 @@
             </div>
         </div>
     </div>
+    
 @endsection
 
+@section('js')
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
+    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $('#tabla_hoy').dataTable({
+                "responsive":true,
+                "searching":false,
+                "paging":   false,
+                "autoWidth":false,
+                "ordering": false,
+                "info":     false,
+                "columnDefs": [
+                    { responsivePriority: 1, targets: 0 },  
+                    { responsivePriority: 2, targets: -1 }
+                ],
+            });
+        })
+
+
+
+    </script>
+
+@endsection
+
+{{-- $('#tabla_hoy').on('click','tr',function() {
+                // var row=$(this); 
+                // var id=row.data('id');
+                // console.log(row);
+                // var id= row.find("td").eq(0).html(); 
+                // var fecha= row.find("td").eq(1).html(); 
+                // var horaInicio= row.find("td").eq(2).html(); 
+                // var horaFin= row.find("td").eq(3).html();   
+                } --}}

@@ -11,4 +11,8 @@ class Tema extends Model
     public function materia(){
         return $this->belongsTo(Materia::class);
     }
+    public function clases()
+    {
+        return $this->hasMany(Clase::class);
+    }
 }

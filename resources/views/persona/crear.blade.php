@@ -68,11 +68,9 @@
                     "serverSide": true,
                     "responsive":true,
                     "autoWidth":false,
-
                     "ajax": "{{ url('api/referencias') }}",
                     "columns": [
                         {data: 'id'},
-                        {data:'idantiguo'},
                         {data: 'nombre'},
                         {data: 'apellidop'},
                         {data: 'apellidom'},

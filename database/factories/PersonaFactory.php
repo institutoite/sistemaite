@@ -39,7 +39,6 @@ class PersonaFactory extends Factory
             'como' => "FACEBOOK",
             'foto' => "estudiantes/foto.jpg",
             'papelinicial'=> $this->faker->randomElement(['estudiante', 'docente']),
-            'idantiguo' => 1
         ];
     }
 }

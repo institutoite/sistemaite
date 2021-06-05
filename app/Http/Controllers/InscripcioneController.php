@@ -247,6 +247,8 @@ class InscripcioneController extends Controller
         return redirect()->route('imprimir.programa',$inscripcion->id);
     }
 
+    
+
     public function inscripcionesVigentes($persona_id){
         $estudiante_id=Persona::findOrFail($persona_id)->estudiante->id;
         $inscripcionesVigentes=Inscripcione::

@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Programacion;
 use App\Pago;
+use App\Docente;
 use App\Models\Sesion;
+use App\Aula;
 use App\Dia;
 use App\Inscripcione;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Estudiante;
-
+use App\Materia;
+use App\Persona;
 use Illuminate\Http\Request;
 
 class ProgramacionController extends Controller
@@ -177,6 +180,8 @@ class ProgramacionController extends Controller
         if($inscripcion->pagos->sum('monto')<$inscripcion->costo){
             return redirect()->route('mostrar.programa', $inscripcion);
         }else{
+            $inscripcion->fecha_proximo_pago=$fecha;
+            $inscripcion->save();
             return redirect()->route('imprimir.programa', $inscripcion->id);;
         }     
     }
@@ -282,6 +287,8 @@ class ProgramacionController extends Controller
         if ($Acuenta_para_regenerar < $inscripcion->costo) {
             return redirect()->route('mostrar.programa', $inscripcion);
         } else {
+            $inscripcion->fecha_proximo_pago = $fecha;
+            $inscripcion->save();
             return redirect()->route('imprimir.programa', $inscripcion->id);/** llamar al metodo que muestra pdf*/
         }    
     }
@@ -319,7 +326,8 @@ class ProgramacionController extends Controller
         ->select('programacions.fecha', 'hora_ini', 'hora_fin','horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado', 'programacions.inscripcione_id')
         ->orderBy('fecha', 'asc')
         ->where('inscripcione_id', '=', $inscripcion)->get();
-        return view('programacion.show', compact('programacion','inscripcion'));
+        $persona=Persona::findOrFail(Inscripcione::findOrFail($inscripcion)->estudiante->persona_id);
+        return view('programacion.show', compact('programacion','inscripcion','persona'));
     }
 
     public function imprimirPrograma($inscripcione_id){
@@ -342,4 +350,35 @@ class ProgramacionController extends Controller
         $fecha_actual->isoFormat('DD-MM-YYYY-HH:mm:ss');
         return $pdf->download($persona->id . '_' . $fecha_actual . '_' . $persona->nombre . '_' . $persona->apellidop . '.pdf');
     }
+
+    public function marcadoNormal($programacion_id){
+        $programa=Programacion::findOrFail($programacion_id);
+        $inscripcion=Inscripcione::findOrFail($programa->inscripcione_id);
+        $docentes=Docente::join('personas','personas.id','=','docentes.persona_id')
+                        ->where('docentes.estado','=','activo')
+                        ->select('docentes.id','personas.nombre','personas.apellidop')
+                        ->get(); 
+        $materias=Materia::all();
+        $aulas=Aula::all();
+        
+        $hora_inicio=Carbon::now()->isoFormat('HH:mm:ss');
+        $hora_fin = Carbon::now()->addHours($programa->hora_ini->floatDiffInHours($programa->hora_fin))->isoFormat('HH:mm:ss');
+
+        
+
+        return view('clase.create',compact('docentes','programa','inscripcion','materias','aulas','hora_inicio','hora_fin'));
+    }
+    // public function programasPresentes($inscripcion_id)
+    // {
+    //     $programas=Programacion::joint('inscripciones','programacions.inscripcione_id','=','inscripciones.id')
+    //                             ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
+    //                             ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
+    //                             ->join('clases', 'clases.programacion_id', '=', 'clases.id')
+    //                             //->join('docentes','docentes.id','=','clases.docente_id')
+    //                             ->where('programacions.fecha','clases.fecha')//que sea la clase de hoy la que se marco ahora por que puede tener muchas clases una inscripcion
+    //                             //-> y que este presente
+    //                             //en la vista podemos calcular cuanto tiempo ya va pasando 
+    //                             ->select('personas.nombre','personas.apellidop','personas.apellidom','clases.horainicio','clases.horafin',,)
+    //                             ->get();
+    // }
 }

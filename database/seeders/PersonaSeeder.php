@@ -4,8 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Persona;
-use App\Estudiante;
-use App\Observacion;
+
 
 class PersonaSeeder extends Seeder
 {
@@ -17,21 +16,94 @@ class PersonaSeeder extends Seeder
     public function run()
     {
         Persona::factory()->count(10)->create();
-        Observacion::create(['observable_id' => 1,'activo'=>1,'observable_type'=>'App\Estudiante','observacion'=>'Esto es un requerimiento de prueba solamente']);
-        Observacion::create(['observable_id' => 2,'activo'=>1,'observable_type'=>'App\Estudiante', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
-        Observacion::create(['observable_id' => 3,'activo'=>1,'observable_type'=>'App\Estudiante', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
+        Persona::create([
+            'nombre' => 'Edgar',
+            'apellidop' => 'Estrada',
+            'apellidom' => 'Callizaya',
+            'fechanacimiento' => '15-05-2015',
+            'direccion' => 'Barrio Melgar',
+            'carnet' => '456135',
+            'expedido' => 'BEN',
+            'genero' => 'HOMBRE',
+            'pais_id' => 1,
+            'ciudad_id' => 6,
+            'zona_id' => 1,
+            'como' => "FACEBOOK",
+            'foto' => "estudiantes/foto.jpg",
+            'papelinicial' => 'docente',
+            
+        ]);
 
-        Observacion::create(['observable_id' => 4,'activo'=>1,'observable_type'=>'App\Estudiante', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
-        Observacion::create(['observable_id' => 5,'activo'=>1,'observable_type'=>'App\Estudiante', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
-        Observacion::create(['observable_id' => 6,'activo'=>1,'observable_type'=>'App\Estudiante', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
 
-        Observacion::create(['observable_id' => 7,'activo'=>1,'observable_type'=>'App\Estudiante', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
-        Observacion::create(['observable_id' => 8,'activo'=>1,'observable_type'=>'App\Estudiante', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
-        Observacion::create(['observable_id' => 9,'activo'=>1,'observable_type'=>'App\Estudiante', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
+        Persona::create([
+            'nombre' => 'Cesar',
+            'apellidop' => 'Calderon',
+            'apellidom' => 'Maya',
+            'fechanacimiento' => '15-05-2015',
+            'direccion' => 'Barrio Luis Soruco Barba',
+            'carnet' => '45615535',
+            'expedido' => 'BEN',
+            'genero' => 'HOMBRE',
+            'pais_id' => 1,
+            'ciudad_id' => 6,
+            'zona_id' => 1,
+            'como' => "FACEBOOK",
+            'foto' => "estudiantes/foto.jpg",
+            'papelinicial' => 'docente',
+            
+        ]);
 
-        Observacion::create(['observable_id' => 10,'activo'=>1,'observable_type'=>'App\Estudiante', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
+        Persona::create([
+            'nombre' => 'MAYLIN',
+            'apellidop' => 'RODAS',
+            'apellidom' => '',
+            'fechanacimiento' => '15-05-2015',
+            'direccion' => 'Barrio Melgar',
+            'carnet' => '456135',
+            'expedido' => 'BEN',
+            'genero' => 'MUJER',
+            'pais_id' => 1,
+            'ciudad_id' => 6,
+            'zona_id' => 1,
+            'como' => "FACEBOOK",
+            'foto' => "estudiantes/foto.jpg",
+            'papelinicial' => 'docente',
+            
+        ]);
+        Persona::create([
+            'nombre' => 'LIA',
+            'apellidop' => 'CARRION',
+            'apellidom' => '',
+            'fechanacimiento' => '15-05-2015',
+            'direccion' => 'Barrio Melgar',
+            'carnet' => '456135',
+            'expedido' => 'BEN',
+            'genero' => 'MUJER',
+            'pais_id' => 1,
+            'ciudad_id' => 6,
+            'zona_id' => 1,
+            'como' => "FACEBOOK",
+            'foto' => "estudiantes/foto.jpg",
+            'papelinicial' => 'docente',
+            
+        ]);
 
-       
-
+        Persona::create([
+            'nombre' => 'EDUARDO',
+            'apellidop' => 'LOZA',
+            'apellidom' => '',
+            'fechanacimiento' => '15-05-2015',
+            'direccion' => 'Barrio Melgar',
+            'carnet' => '456135',
+            'expedido' => 'BEN',
+            'genero' => 'HOMBRE',
+            'pais_id' => 1,
+            'ciudad_id' => 6,
+            'zona_id' => 1,
+            'como' => "FACEBOOK",
+            'foto' => "estudiantes/foto.jpg",
+            'papelinicial' => 'docente',
+            
+        ]);
     }
 }

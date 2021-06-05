@@ -31,7 +31,6 @@ class CreatePersonasTable extends Migration
             $table->unsignedInteger('pais_id')->nullable();
             $table->unsignedInteger('ciudad_id')->nullable();
             $table->unsignedInteger('zona_id')->nullable();
-            $table->unsignedInteger('idantiguo')->nullable()->default(0);
             
             $table->foreign('persona_id', 'fk_persona_persona1_idx')
             ->references('id')->on('personas');
