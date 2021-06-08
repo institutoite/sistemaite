@@ -15,6 +15,7 @@ use App\Models\Municipio;
 use App\Models\Colegio;
 use App\Models\Modalidad;
 use App\Models\Nivel;
+use App\Models\Clase;
 use App\Models\Inscripcione;
 use Illuminate\Support\Facades\DB;
 
@@ -34,11 +35,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('estudiantes',function(){
-   $persona=Persona::join('estudiantes','estudiantes.persona_id','=','personas.id')
+    $persona=Persona::join('estudiantes','estudiantes.persona_id','=','personas.id')
                     ->select('personas.id',DB::raw('concat_ws(" ",nombre,apellidop,apellidom) as nombre'),'foto');
-   //dd($persona);
-   //=Persona::join('estudiantes','personas.id','=','estudiantes.persona_id')->select('personas.id','idantiguo','nombre','apellidop','apellidom','foto',)->get())
-   return datatables()->of($persona)
+    return datatables()->of($persona)
         ->addColumn('btn','persona.action')
         ->rawColumns(['btn','foto'])
         ->toJson();
@@ -50,6 +49,20 @@ Route::get('referencias',function(){
         ->rawColumns(['foto','btn'])
         ->toJson();
 });
+
+Route::get('presentes', function () {
+    $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
+    ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
+    ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
+    ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
+    ->select('clases.id', DB::raw('concat_ws(" ",nombre,apellidop) as nombre'), 'clases.horainicio', 'clases.horafin', 'clases.docente_id', 'clases.materia_id', 'clases.aula_id', 'clases.tema_id', 'personas.foto')->get();
+    return datatables()->of($clases)
+        ->addColumn('btn', 'clase.action_marcar')
+        ->rawColumns(['btn', 'foto'])
+        ->toJson();
+});
+
+
 
 Route::get('paises',function(){
     return datatables()->of(Pais::all())

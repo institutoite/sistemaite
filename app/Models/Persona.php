@@ -77,6 +77,29 @@ class Persona extends Model
         //'telefonos', 'persona_id_parentesco', 'persona_id'
     }
 
+    public function pais(){
+        return $this->belongsTo(Pais::class);
+    }
+
+    /**
+     * Get the ciudad that owns the Persona
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function ciudad()
+    {
+        return $this->belongsTo(Ciudad::class);
+    }
+
+    /**
+     * Get the zona that owns the Persona
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function zona()
+    {
+        return $this->belongsTo(Zona::class);
+    }
 
 
     public function isEstudiante()

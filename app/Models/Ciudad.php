@@ -12,4 +12,22 @@ class Ciudad extends Model
         'ciudad',
         'pais_id',
     ];
+    /**
+     * Get the persona associated with the Ciudad
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function persona()
+    {
+        return $this->hasOne(Persona::class);
+    }
+    /**
+     * Get all of the zonas for the Ciudad
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function zonas()
+    {
+        return $this->hasMany(Zona::class);
+    }
 }

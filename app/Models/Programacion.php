@@ -85,7 +85,7 @@ class Programacion extends Model
      */
     public function inscripcione()
     {
-        return $this->belongstTo(Inscripcione::class);
+        return $this->belongsTo(Inscripcione::class);
     }
 
     

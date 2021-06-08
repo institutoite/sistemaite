@@ -11,6 +11,16 @@ class Pais extends Model
     protected $fillable = [
         'nombrepais'
     ];
+    
+    /**
+     * Get the persona th owns the Pais
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function persona()
+    {
+        return $this->hasOne(Persona::class);
+    }
 }
 
 

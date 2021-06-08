@@ -193,10 +193,23 @@ class ClaseController extends Controller
         $clase->save();
         return redirect('/home')->with('mensaje', 'MarcadoCorrectamente');
     }
-    public function clasesPresentes(){
-        $clases=Clase::where('estado','PRESENTE')
-                    ->get();
-        return view('clase.presentes',compact('clases'));
+    public function clasesPresentes(Request $request){
+        if($request->ajax()){
+            $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
+                ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
+                ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
+                ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
+                ->join('docentes', 'clases.docente_id', '=', 'docentes.id')
+                ->join('materias', 'clases.materia_id', '=', 'materias.id')
+                ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
+                // ->join('temas', 'clases.tema_id', '=', 'temas.id')
+                // ->where('clases.estado','PRESENTE')
+                ->select('clases.id', DB::raw('concat_ws(" ",personas.nombre,personas.apellidop) as name'), 'clases.horainicio', 'clases.horafin', 'docentes.nombre', 'materias.materia', 'aulas.aula', 'clases.tema_id', 'personas.foto')->get();
+            return datatables()->of($clases)
+                ->addColumn('btn', 'clase.action_marcar')
+                ->rawColumns(['btn', 'foto'])
+                ->toJson();
+        }
     }
 
     public function finalizarClase($clase_id)

@@ -41,7 +41,7 @@ class Provincia extends Model
      */
     public function departamento()
     {
-        return $this->hasOne(Departamento::class);
+        return $this->belongsTo(Departamento::class);
     }
     
     /**

@@ -73,10 +73,13 @@ Route::get('clase/marcar/rapido/{programacion_id}', 'ClaseController@marcadoRapi
 Route::get('clase/marcar/normal/{programacion_id}', 'ProgramacionController@marcadoNormal')->name('marcado.presente.normal');
 Route::post('programa/estado/general/', 'ClaseController@marcadoGeneral')->name('programa.estado.general');
 Route::post('/clase/guardar/normal/{progrmacion_id}', 'ClaseController@guardar')->name('clases.guardar');
-Route::get('clases/presentes/ahorita', 'ClaseController@clasesPresentes')->name('clases.presente');
 
-Route::get('ajax',function(){
-    return view('clase.ajax');
+Route::get('clases/presentes/ahorita', 'ClaseController@clasesPresentes')->name('clases.presente');
+Route::get('clase/finalizar/{clase_id}', 'ClaseController@finalizarClase')->name('clases.finalizar');
+
+
+Route::get('presentes',function(){
+    return view('clase.presentes');
 });
 
 

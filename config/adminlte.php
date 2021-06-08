@@ -275,7 +275,7 @@ return [
         ],
         [
             'text'        => 'Estado Actual',
-            'url'         => 'clases/presentes/ahorita',
+            'url'         => 'presentes',
             'icon'        => 'fas fa-fw fa-file',
             'label'       => 'Ver',
             'label_color' => 'success',
