@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Inscripcione;
-use App\Modalidad;
-use App\Motivo;
-use App\Persona;
-use App\Materia;
-use App\Aula;
+use App\Models\Inscripcione;
+use App\Models\Modalidad;
+use App\Models\Motivo;
+use App\Models\Persona;
+use App\Models\Materia;
+use App\Models\Aula;
 use App\Models\Sesion;
-use App\Dia;
-use App\Docente;
-use App\Estudiante;
-use App\Programacion;
+use App\Models\Dia;
+use App\Models\Docente;
+use App\Models\Estudiante;
+use App\Models\Programacion;
+use Illuminate\Support\Facades\DB;
 
 use Carbon\Carbon;
-use DB;
+
 
 use Illuminate\Http\Request;
 
@@ -74,6 +75,7 @@ class InscripcioneController extends Controller
         $inscripcion=new Inscripcione();
         $inscripcion->fechaini=$request->fechaini;
         $inscripcion->fechafin = $request->fechaini;
+        $inscripcion->fecha_proximo_pago = $request->fechaini;
         $inscripcion->totalhoras=$request->totalhoras;
         $inscripcion->costo=$request->costo;
         $inscripcion->vigente=1;
@@ -173,16 +175,24 @@ class InscripcioneController extends Controller
      */
     public function destroy($id)
     {
-        $inscripcione = Inscripcione::find($id)->delete();
-
-        return redirect()->route('inscripciones.index')
-            ->with('success', 'Inscripcione deleted successfully');
+        $inscripcion = Inscripcione::findOrFail($id);
+        $inscripcion->delete();
+        return redirect()->action([InscripcioneController::class, 'tusinscripciones'], ['estudiante_id' => $inscripcion->estudiante_id]);
+        
     }
 
     public function listar(Persona $persona){
         $persona=Persona::findOrFail($persona->id);
-        $inscripciones = Inscripcione::where('estudiante_id', '=', $persona->estudiante->id)->select('id','objetivo','costo')->get();
-        return view('inscripcione.tusinscripciones',compact('persona','inscripciones'));
+        $inscripcionesVigentes = Inscripcione::join('pagos','pagos.pagable_id','=','inscripciones.id')
+                                        ->where('estudiante_id', '=', $persona->estudiante->id)
+                                        ->where('vigente',1)
+                                        ->select('inscripciones.id','objetivo','costo',DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= inscripciones.id) as acuenta"))
+                                        ->groupBy('inscripciones.id','objetivo','acuenta','costo')
+                                        ->get();
+        $inscripcionesOtras = Inscripcione::where('estudiante_id', '=', $persona->estudiante->id)
+                                        ->where('vigente', 0)
+                                        ->select('id', 'objetivo', 'costo')->get();
+        return view('inscripcione.tusinscripciones',compact('persona','inscripcionesVigentes','inscripcionesOtras'));
     }
 
     public function tusinscripciones($estudiante_id){
@@ -254,6 +264,9 @@ class InscripcioneController extends Controller
         $inscripcionesVigentes=Inscripcione::
                                         where('estudiante_id','=',$estudiante_id)
                                         ->where('vigente','=',1)->get();
+        $inscripcionesTodas = Inscripcione::where('estudiante_id', '=', $estudiante_id)
+                                        ->get();
+        
         switch ($inscripcionesVigentes->count()) {
             case 0:
                 return redirect()->route('listar_inscripciones',$persona_id);

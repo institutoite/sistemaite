@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Inscripcione;
+use App\Models\Inscripcione;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class InscripcioneFactory extends Factory

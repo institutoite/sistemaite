@@ -2,15 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Estudiante;
+
 use Illuminate\Http\Request;
-use App\Persona;
-use App\Docente;
-use App\Administrativo;
-use App\Cliservicio;
-use App\Clipractico;
-use App\Proveedor;
-use App\Clicopy;
+use App\Models\Persona;
 
 class OpcionController extends Controller
 {

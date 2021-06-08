@@ -48,31 +48,11 @@ class Billete extends Model
      *
      * @var array
      */
-    protected $fillable=[
-                        'billete200',
-                        'billete100',
-                        'billete50',
-                        'billete20',
-                        'billete10',
-                        'moneda5',
-                        'moneda2',
-                        'moneda1',
-                        'moneda50',
-                        'moneda20',
-                        'moneda10',
-                        'dolares100',
-                        'dolares50',
-                        'dolares20',
-                        'dolares10',
-                        'dolares5',
-                        'dolares1',
-                        'pago_id',
-                        'tipo',
-                      ];
+    protected $fillable=['corte'];
 
-  public function pago()
+  public function pagos()
   {
-    return $this->belongsTo(Pago::class);
+    return $this->morphedByMany(Pago::class, 'billetable')->withPivot('cantidad', 'tipo')->withTimestamps();
   }
 
 }

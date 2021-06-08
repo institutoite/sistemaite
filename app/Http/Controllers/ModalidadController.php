@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Modalidad;
-use App\Nivel;
+use App\Models\Modalidad;
+use App\Models\Nivel;
 
 use Illuminate\Http\Request;
 

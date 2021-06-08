@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Pais;
+use App\Models\Pais;
 
 class PaisSeeder extends Seeder
 {

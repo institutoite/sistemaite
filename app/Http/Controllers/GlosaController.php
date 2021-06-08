@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Glosa;
+use App\Models\Glosa;
 use Illuminate\Http\Request;
 
 class GlosaController extends Controller

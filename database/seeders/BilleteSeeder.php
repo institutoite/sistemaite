@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Billete;
 
 class BilleteSeeder extends Seeder
 {
@@ -13,6 +14,16 @@ class BilleteSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Billete::create(['corte' => 200]);
+        Billete::create(['corte' => 100]);
+        Billete::create(['corte' => 50]);
+        Billete::create(['corte' => 20]);
+        Billete::create(['corte' => 10]);
+        Billete::create(['corte' => 5]);
+        Billete::create(['corte' => 2]);
+        Billete::create(['corte' => 1]);
+        Billete::create(['corte' => 0.5]);
+        Billete::create(['corte' => 0.2]);
+        Billete::create(['corte' => 0.1]); 
     }
 }

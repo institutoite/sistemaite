@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Motivo;
+use App\Models\Motivo;
 use Illuminate\Http\Request;
 
 class MotivoController extends Controller

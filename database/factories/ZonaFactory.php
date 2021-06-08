@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Zona;
+use App\Models\Zona;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 

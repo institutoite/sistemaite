@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Pago;
+use App\Models\Pago;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PagoFactory extends Factory

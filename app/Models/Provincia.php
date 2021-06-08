@@ -1,0 +1,56 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * Class Provincia
+ *
+ * @property $id
+ * @property $provincia
+ * @property $departamento_id
+ * @property $created_at
+ * @property $updated_at
+ *
+ * @property Departamento $departamento
+ * @property Municipio[] $municipios
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ */
+class Provincia extends Model
+{
+    
+    static $rules = [
+		'provincia' => 'required',
+		'departamento_id' => 'required',
+    ];
+
+    protected $perPage = 20;
+
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['provincia','departamento_id'];
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function departamento()
+    {
+        return $this->hasOne(Departamento::class);
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function municipios()
+    {
+        return $this->hasMany(Municipio::class);
+    }
+    
+
+}

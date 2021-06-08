@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Motivo;
+use App\Models\Motivo;
 use Illuminate\Database\Seeder;
 
 class MotivoSeeder extends Seeder

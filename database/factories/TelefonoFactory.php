@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Telefono;
+use App\Models\Telefono;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TelefonoFactory extends Factory

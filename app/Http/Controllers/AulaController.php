@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Aula;
+use App\Models\Aula;
 use Illuminate\Http\Request;
 
 class AulaController extends Controller

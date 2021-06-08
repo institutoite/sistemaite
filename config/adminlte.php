@@ -1,6 +1,6 @@
 <?php
+use App\Models\Clase;
 
-$cantidad=52;
 
 return [
 
@@ -274,10 +274,10 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Paginas',
-            'url'         => 'admin/pages',
+            'text'        => 'Estado Actual',
+            'url'         => 'clases/presentes/ahorita',
             'icon'        => 'fas fa-fw fa-file',
-            'label'       => $cantidad,
+            'label'       => 'Ver',
             'label_color' => 'success',
             'icon_color' => 'primary',
         ],

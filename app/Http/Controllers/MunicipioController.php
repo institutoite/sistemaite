@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Departamento;
-use App\Municipio;
-use App\Provincia;
+use App\Models\Departamento;
+use App\Models\Municipio;
+use App\Models\Provincia;
 use Illuminate\Http\Request;
 
 /**

@@ -2,20 +2,20 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Persona;
-use App\Pais;
-use App\Ciudad;
-use App\Zona;
-use App\User;
-use App\Menu;
-use App\Grado;
-use App\Departamento;
-use App\Provincia;
-use App\Municipio;
-use App\Colegio;
-use App\Modalidad;
-use App\Nivel;
-use App\Inscripcione;
+use App\Models\Persona;
+use App\Models\Pais;
+use App\Models\Ciudad;
+use App\Models\Zona;
+use App\Models\User;
+use App\Models\Menu;
+use App\Models\Grado;
+use App\Models\Departamento;
+use App\Models\Provincia;
+use App\Models\Municipio;
+use App\Models\Colegio;
+use App\Models\Modalidad;
+use App\Models\Nivel;
+use App\Models\Inscripcione;
 use Illuminate\Support\Facades\DB;
 
 /*

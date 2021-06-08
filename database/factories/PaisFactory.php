@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Pais;
+use App\Models\Pais;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PaisFactory extends Factory

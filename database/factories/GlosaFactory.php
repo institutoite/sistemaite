@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Glosa;
+use App\Models\Glosa;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class GlosaFactory extends Factory

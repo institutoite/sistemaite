@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Docente;
-use App\Persona;
+use App\Models\Docente;
+
 
 class DocenteSeeder extends Seeder
 {

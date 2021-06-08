@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Programacion;
-use App\Pago;
-use App\Docente;
+use App\Models\Programacion;
+use App\Models\Pago;
+use App\Models\Docente;
 use App\Models\Sesion;
-use App\Aula;
-use App\Dia;
-use App\Inscripcione;
+use App\Models\Aula;
+use App\Models\Dia;
+use App\Models\Inscripcione;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade as PDF;
-use App\Estudiante;
-use App\Materia;
-use App\Persona;
+use App\Models\Estudiante;
+use App\Models\Materia;
+use App\Models\Persona;
 use Illuminate\Http\Request;
 
 class ProgramacionController extends Controller
@@ -94,12 +94,15 @@ class ProgramacionController extends Controller
         //
     }
     public function generarPrograma($inscripcione_id){
+        //dd($inscripcione_id);
         $inscripcion=Inscripcione::findOrFail($inscripcione_id);
         $costo_total=$inscripcion->costo;
         $total_horas=$inscripcion->totalhoras;
         $acuenta =$inscripcion->pagos->sum('monto');
         
         $fecha=$inscripcion->fechaini;
+
+        
         foreach ($inscripcion->sesiones as $dia) { 
             $vector_dias[] = Dia::findOrFail($dia->dia_id)->dia;
         }
@@ -187,9 +190,7 @@ class ProgramacionController extends Controller
     }
 
     public function regenerarPrograma($inscripcione_id,$unaFecha){
-        //dd($unaFecha);
         $unaFecha= Carbon::createFromFormat('Y-m-d', $unaFecha);
-        //dd($unaFecha->isoFormat('Y-M-D'));
         $inscripcion= Inscripcione::findOrFail($inscripcione_id);
         
         $horasFaltantes = Programacion::where('inscripcione_id', '=', $inscripcione_id)

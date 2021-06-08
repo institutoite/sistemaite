@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Licencia;
+use App\Models\Licencia;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LicenciaFactory extends Factory

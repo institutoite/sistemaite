@@ -27,20 +27,22 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table id="inscripcionesVigentes" class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
                                         <th>Objetivo</th>
+                                        <th>acuenta</th>
                                         <th>costo</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($inscripciones as $inscripcion)
+                                    @foreach ($inscripcionesVigentes as $inscripcion)
                                         <tr>
-                                            <td>{{ $inscripcion->id }}</td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $inscripcion->objetivo }}</td>
+                                            <td>{{ $inscripcion->acuenta }}</td>
                                             <td>{{ $inscripcion->costo }}</td>
                                             <th>
                                                 <a href="{{route('inscripciones.edit', $inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta inscripcione">
@@ -57,15 +59,18 @@
                                                     <i class="fas fa-print"></i>
                                                 </a>
 
-                                                
-
                                                 <form action=""  class="d-inline formulario">
                                                     @csrf
                                                     @method("delete")
                                                     <button name="btn-eliminar" id="" type="submit" class="btn eliminar" title="Eliminar esta inscripcione">
                                                         <i class="fa fa-fw fa-trash text-danger"></i>   
                                                     </button>
-                                                </form>     
+                                                </form> 
+                                                
+                                                <a href="{{route('clases.marcado.general',$inscripcion->id)}}" class="" title="Ver esta inscripcione">
+                                                    <i class="far fa-calendar-check"></i>
+                                                </a>
+
 
                                             </th>
                                         </tr>
@@ -76,6 +81,51 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="inscripcionesOtras" class="table table-striped table-hover">
+                                <thead class="thead">
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Objetivo</th>
+                                        <th>acuenta</th>
+                                        <th>costo</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($inscripcionesOtras as $inscripcion)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $inscripcion->objetivo }}</td>
+                                            <td>{{ $inscripcion->acuenta }}</td>
+                                            <td>{{ $inscripcion->costo }}</td>
+                                            <th>
+                                                
+                                                <a href="{{route('pagos.crear',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta inscripcione">
+                                                    <i class="fas fa-hand-holding-usd"></i>
+                                                </a>
+
+                                                <a href="{{route('inscripciones.show', $inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
+                                                    <i class="fa fa-fw fa-eye text-secondary mostrar"></i>
+                                                </a>
+                                                <a href="{{route('imprimir.programa',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
+                                                    <i class="fas fa-print"></i>
+                                                </a>
+
+                                                <a href="{{route('clases.marcado.general',$inscripcion->id)}}" class="" title="Ver esta inscripcione">
+                                                    <i class="far fa-calendar-check"></i>
+                                                </a>
+
+                                            </th>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
         </div>
     </div>
 @endsection
@@ -91,6 +141,23 @@
     <script>
         
     $(document).ready(function() {
+
+            $('#inscripcionesVigentes').dataTable(
+                {
+                    "language":{
+                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    },
+                    "info":     false,  
+                }
+            );
+            $('#inscripcionesOtras').dataTable({
+                "language":{
+                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    },
+                "info":     false,  
+            });
+            
+
             $('table').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
                 id=$(this).parent().parent().parent().find('td').first().html();

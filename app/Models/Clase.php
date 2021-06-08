@@ -36,17 +36,10 @@ class Clase extends Model
         return $this->belongsTo(Programacion::class);
     }
 
-    public function licencia()
-    {
-        return $this->hasOne(Licencia::class);
-    }
-
     public function docente()
     {
         return $this->belongsTo(Docente::class);
     }
-
-
     public function materia()
     {
         return $this->belongsTo(Materia::class);

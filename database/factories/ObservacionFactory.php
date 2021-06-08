@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Observacion;
+use App\Models\Observacion;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ObservacionFactory extends Factory

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Grado;
+use App\Models\Grado;
 use Illuminate\Http\Request;
 
 /**

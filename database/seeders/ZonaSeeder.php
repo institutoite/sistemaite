@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Zona;
+use App\Models\Zona;
 
 class ZonaSeeder extends Seeder
 {

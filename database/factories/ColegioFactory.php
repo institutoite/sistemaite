@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Colegio;
+use App\Models\Colegio;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ColegioFactory extends Factory

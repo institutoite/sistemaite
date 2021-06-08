@@ -179,6 +179,9 @@
     
     <script>
         $(document).ready(function() {
+
+            $('[data-toggle="tooltip"]').tooltip();   
+            
             $('#tabla_hoy').dataTable({
                 "responsive":true,
                 "searching":false,

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Telefono;
-use App\Persona;
+use App\Models\Telefono;
+use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Tema;
+use App\Models\Tema;
 class TemaSeeder extends Seeder
 {
     /**

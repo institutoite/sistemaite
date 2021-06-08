@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Incripcioncolegio;
+use App\Models\Incripcioncolegio;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class IncripcioncolegioFactory extends Factory

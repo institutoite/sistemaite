@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Grado;
+use App\Models\Grado;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class GradoFactory extends Factory

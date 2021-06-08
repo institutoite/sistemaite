@@ -18,6 +18,9 @@ class CreateLicenciasTable extends Migration
             $table->string('motivo', 80);
             $table->string('solicitante', 45);
             $table->string('parentesco', 45);
+            $table->unsignedInteger('programacion_id');
+            $table->foreign('programacion_id', 'fk_programacion_licencia_idx')
+            ->references('id')->on('programacions');
             $table->timestamps();
         });
     }

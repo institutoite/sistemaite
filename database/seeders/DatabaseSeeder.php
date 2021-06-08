@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             MateriaSeeder::class,
             FeriadoSeeder::class,
             TemaSeeder::class,
+            BilleteSeeder::class,
         ]);
 
         

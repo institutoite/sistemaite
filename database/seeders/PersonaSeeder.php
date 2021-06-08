@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Persona;
+use App\Models\Persona;
 
 
 class PersonaSeeder extends Seeder

@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Aula;
+use App\Models\Aula;
 
 class AulaSeeder extends Seeder
 {

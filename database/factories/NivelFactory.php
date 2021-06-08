@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\nivel;
+use App\Models\nivel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class NivelFactory extends Factory

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Pais;
+use App\Models\Pais;
 use Illuminate\Http\Request;
 use App\Http\Requests\PaisStoreRequest;
 use App\Http\Requests\PaisUpdateRequest;

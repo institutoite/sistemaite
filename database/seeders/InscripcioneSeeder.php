@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Inscripcione;;
 
 class InscripcioneSeeder extends Seeder
 {

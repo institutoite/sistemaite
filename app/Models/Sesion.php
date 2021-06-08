@@ -52,14 +52,14 @@ class Sesion extends Model
     }
     public function materia()
     {
-        return $this->hasOne(Materia::class);
+        return $this->belongsTo(Materia::class);
     }
     public function docente()
     {
-        return $this->hasOne(Docente::class);
+        return $this->belongsTo(Docente::class);
     }
     public function aula()
     {
-        return $this->hasOne(Aula::class);
+        return $this->belongsTo(Aula::class);
     }
 }

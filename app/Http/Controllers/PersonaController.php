@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Persona;
-use App\Pais;
-use App\Ciudad;
-use App\Estudiante;
-use App\Zona;
-use App\Administrativo;
-use App\Cliservicio;
-use App\Clicopy;
-use App\Docente;
-use App\Proveedor;
-use App\Telefono;
+use App\Models\Persona;
+use App\Models\Pais;
+use App\Models\Ciudad;
+use App\Models\Estudiante;
+use App\Models\Zona;
+use App\Models\Administrativo;
+use App\Models\Cliservicio;
+use App\Models\Clicopy;
+use App\Models\Docente;
+use App\Models\Proveedor;
+use App\Models\Telefono;
 
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonaStoreRequest;
-use App\Inscripcione;
-use App\Observacion;
+use App\Models\Inscripcione;
+use App\Models\Observacion;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Storage;
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Observacion;
+use App\Models\Observacion;
 use Illuminate\Http\Request;
 
 /**

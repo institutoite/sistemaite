@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Modalidad;
+use App\Models\Modalidad;
 use Illuminate\Database\Seeder;
 
 class ModalidadSeeder extends Seeder

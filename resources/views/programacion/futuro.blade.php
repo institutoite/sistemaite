@@ -37,10 +37,9 @@
                             <td>{{ $programacion->nombre }}</td>
                             <td>{{ $programacion->materia }}</td>
                             <td>
-                                <a class="text-secondary" href="{{ route('programacions.show',$programacion->id) }}"><i class="fas fa-tasks"></i> </a>
-                                <a class="text-danger" href="{{ route('programacions.edit',$programacion->id) }}"><i class="fas fa-file-powerpoint"></i> </a>
-                                <a class="text-warning" href="{{ route('programacions.show',$programacion->id) }}"><i class="fas fa-fingerprint"></i></a>
-                                <a class="text-success" href="{{ route('programacions.edit',$programacion->id) }}"><i class="fa fa-fw fa-edit"></i> </a>
+                                <a class="text-danger" data-toggle="tooltip" data-placement="top" title="Licencia" href="{{ route('licencias.create',$programacion->id) }}" ><i class="fas fa-ambulance"></i> </a>
+                                <a class="text-success ml-2" data-toggle="tooltip" data-placement="top" title="Adelantar Clase" href="{{route('marcado.presente.normal',$programacion->id)}}"><i class="far fa-arrow-alt-circle-right"></i></a>
+                                <a class="text-primary ml-2" data-toggle="tooltip" data-placement="top" title="Editar este programa" href="{{ route('programacions.edit',$programacion->id) }}"><i class="fas fa-edit"></i></a>
                             </td>
                             </tr>
                             @php

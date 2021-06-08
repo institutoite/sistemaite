@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Billete;
+use App\Models\Billete;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BilleteFactory extends Factory

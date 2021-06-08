@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Zona;
-use App\Ciudad;
-use App\Pais;
+use App\Models\Zona;
+use App\Models\Ciudad;
+use App\Models\Pais;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\ZonaStoreRequest;

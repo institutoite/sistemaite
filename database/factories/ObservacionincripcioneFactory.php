@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Observacionincripcione;
+use App\Models\Observacionincripcione;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ObservacionincripcioneFactory extends Factory

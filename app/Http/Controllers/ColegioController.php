@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Colegio;
-use App\Municipio;
-use App\Departamento;
-use App\Provincia;
+use App\Models\Colegio;
+use App\Models\Municipio;
+use App\Models\Departamento;
+use App\Models\Provincia;
 
 use Illuminate\Http\Request;
 

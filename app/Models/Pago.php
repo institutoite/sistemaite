@@ -39,9 +39,17 @@ class Pago extends Model
      */
     protected $fillable = ['monto','pagocon','cambio','pagable_id','pagable_type'];
 
+
   public function billetes()
   {
-    return $this->hasMany(Billete::class);
+    return $this->morphToMany(Billete::class, 'billetable');
   }
+  
+  public function pagable()
+  {
+    return $this->morphTo();
+  }
+ 
+
 
 }

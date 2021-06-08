@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Materia;
+use App\Models\Materia;
 
 class MateriaSeeder extends Seeder
 {

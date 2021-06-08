@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 
-use App\Persona;
+use App\Models\Persona;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Generator as Faker;
 

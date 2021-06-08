@@ -59,7 +59,7 @@ class Programacion extends Model
      */
     public function aula()
     {
-        return $this->hasOne('App\Aula', 'id', 'aula_id');
+        return $this->hasOne('App\Models\Aula', 'id', 'aula_id');
     }
     
     /**
@@ -77,7 +77,7 @@ class Programacion extends Model
      */
     public function docente()
     {
-        return $this->hasOne('App\Docente', 'id', 'docente_id');
+        return $this->hasOne(Docente::class);
     }
     
     /**
@@ -94,11 +94,16 @@ class Programacion extends Model
      */
     public function materia()
     {
-        return $this->hasOne('App\Materia', 'id', 'materia_id');
+        return $this->hasOne(Materia::class);
     }
     public function observaciones()
     {
         return $this->morphMany(Observacion::class, 'observable');
+    }
+
+    public function licencia(){
+        
+        return $this->belongsTo(Licencia::class);
     }
 
     

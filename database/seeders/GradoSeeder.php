@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Grado;
+use App\Models\Grado;
 
 class GradoSeeder extends Seeder
 {

@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use App\User;
+use App\Models\User;
 
 class UserSeeder extends Seeder
 {
@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
         $user->foto = Str::random(10);
         $user->save();
 
-        User::factory()->count(10)->create();
+        //User::factory()->count(10)->create();
     }
 }
 

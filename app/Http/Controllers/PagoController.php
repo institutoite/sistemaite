@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Inscripcione;
+use App\Models\Inscripcione;
 use App\Models\Pago;
 use Illuminate\Http\Request;
 
@@ -66,7 +66,7 @@ class PagoController extends Controller
         $pago->pagocon=$request->pagocon;
         $pago->cambio=$request->cambio;
         $pago->pagable_id=$inscripcion_id;
-        $pago->pagable_type='App\Inscripcione';
+        $pago->pagable_type='App\Models\Inscripcione';
         $pago->save();
         return view('billete.create',compact('pago'));
     }

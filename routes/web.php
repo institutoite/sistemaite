@@ -65,13 +65,13 @@ Route::resource('feriados', "FeriadoController");
 Route::resource('clases', "ClaseController");
 Route::resource('personas', "PersonaController");
 Route::resource('telefonos', "TelefonoController");
-
+Route::resource('licencias', 'LicenciaController');
 
 Route::get('marcar/asistencia/', 'ClaseController@marcado')->name('marcado');
 Route::get('clase/crear', 'ClaseController@crear')->name('clase.crear');
 Route::get('clase/marcar/rapido/{programacion_id}', 'ClaseController@marcadoRapido')->name('marcado.presente.rapido');
 Route::get('clase/marcar/normal/{programacion_id}', 'ProgramacionController@marcadoNormal')->name('marcado.presente.normal');
-Route::post('programa/marcar/clase/guardar/rapido/', 'ClaseController@marcadoGeneral')->name('ok');
+Route::post('programa/estado/general/', 'ClaseController@marcadoGeneral')->name('programa.estado.general');
 Route::post('/clase/guardar/normal/{progrmacion_id}', 'ClaseController@guardar')->name('clases.guardar');
 Route::get('clases/presentes/ahorita', 'ClaseController@clasesPresentes')->name('clases.presente');
 
@@ -141,6 +141,7 @@ Route::delete('eliminar/municipio/{id}', 'MunicipioController@destroy')->name('e
 Route::delete('eliminar/colegio/{id}', 'ColegioController@destroy')->name('eliminar.colegio');
 Route::delete('eliminar/modalidad/{id}', 'ModalidadController@destroy')->name('eliminar.modalidad');
 Route::delete('eliminar/nivel/{id}', 'NivelController@destroy')->name('eliminar.nivel');
+Route::delete('eliminar/inscripcion/{id}', 'InscripcioneController@destroy')->name('eliminar.nivel');
 
 Route::get('tomarfoto', function () {return view('persona.tomarfoto');})->name('tomarfoto');
 Route::get('tomarfoto/{persona}', 'PersonaController@tomarfoto')->name('tomar.foto.persona');

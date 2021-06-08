@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use SweetAlert;
 use RealRashid\SweetAlert\Facades\Alert;
-use App\Inscripcione;
+use App\Models\Inscripcione;
 use App\Models\Clase;
-use App\Programacion;
+use App\Models\Programacion;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -57,7 +57,7 @@ class ClaseController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Clase::$rules);
+        
         $clase = Clase::create($request->all());
         return redirect()->route('clases.index')
             ->with('success', 'Clase created successfully.');
@@ -117,7 +117,7 @@ class ClaseController extends Controller
      */
     public function update(Request $request, Clase $clase)
     {
-        request()->validate(Clase::$rules);
+       // request()->validate(Clase::$rules);
 
         $clase->update($request->all());
 
@@ -186,7 +186,7 @@ class ClaseController extends Controller
         $clase->docente_id      =$programa->docente_id;
         $clase->materia_id      =$programa->materia_id;
         $clase->aula_id         =$programa->aula_id;
-        $clase->tema_id         =1; // tema por defecto
+        $clase->tema_id         =1; // tema por 
         $clase->programacion_id =$programa->id;
         $programa->estado='PRESENTE';
         $programa->save();
@@ -194,42 +194,21 @@ class ClaseController extends Controller
         return redirect('/home')->with('mensaje', 'MarcadoCorrectamente');
     }
     public function clasesPresentes(){
-        $clases=Clase::get()->first();
-        dd($clases->docente);
-        foreach ($clases as $clase) {
-            dd($clase->docente->nombre);
-        }        
+        $clases=Clase::where('estado','PRESENTE')
+                    ->get();
         return view('clase.presentes',compact('clases'));
+    }
+
+    public function finalizarClase($clase_id)
+    {
+        $clase=Clase::findOrFail($clase_id);
+        $programa=$clase->programacion;
+        $programa->estado="FINALIZADO";
+        $programa->save();
+        $clase->estado="FINALIZADO";
+        $clase->save();
+        //return redirect()->action(ClaseController::class,'clasesPresentes');
     } 
 
     
 }
-
-//*
-// $clases = Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
-//     ->join('inscripciones', 'inscripciones.id', '=', 'programacions.inscripcione_id')
-//     ->join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
-//     ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
-//     //->join('docentes')
-//     ->where('clases.estado', '=', 'PRESENTE')
-//     ->select(
-//         'personas.id',
-//         'personas.nombre',
-//         'personas.apellidop',
-//         'personas.apellidom',
-//         'clases.horainicio',
-//         'clases.horafin',
-//         'clases.docente_id',
-//         'clases.materia_id',
-//         'clases.aula_id',
-//         'clases.tema_id',
-//         DB::raw('(SELECT personas.nombre FROM docentes,personas,clases WHERE docentes.persona_id=personas.id and docentes.id=clases.docente_id)as ticher'),
-//         DB::raw('(SELECT materias.materia FROM materias,clases WHERE materias.id=clases.materia_id) as materia'),
-//         DB::raw('(SELECT aulas.aula FROM aulas,clases WHERE aulas.id=clases.aula_id) as aula'),
-//         DB::raw('(SELECT temas.tema FROM temas,clases WHERE temas.id=clases.tema_id) as tema')
-//     )
-
-//     ->get();
-//
-// $clases = Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')->join('inscripciones', 'inscripciones.id', '=', 'programacions.inscripcione_id')->join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')->join('personas', 'personas.id', '=', 'estudiantes.persona_id')->where('clases.estado', 'PRESENTE')->select('personas.id', 'personas.nombre', 'personas.apellidop', 'personas.apellidom', 'clases.horainicio', 'clases.horafin', 'clases.docente_id', 'clases.materia_id', 'clases.aula_id', 'clases.tema_id')->orderBy('clases.docente_id', 'asc')->get();
-// $clases = Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')->join('inscripciones', 'inscripciones.id', '=', 'programacions.inscripcione_id')->join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')->join('personas', 'personas.id', '=', 'estudiantes.persona_id')->where('clases.estado', '=', 'PRESENTE')->select('personas.id', 'personas.nombre', 'personas.apellidop', 'personas.apellidom', 'clases.horainicio', 'clases.horafin', 'clases.docente_id', 'clases.materia_id', 'clases.aula_id', 'clases.tema_id',DB::raw('SELECT personas.nombre as ticher FROM docentes,personas,clases WHERE docentes.persona_id=personas.id and docentes.id=1'))->get();

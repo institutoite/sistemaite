@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Municipio;
+use App\Models\Municipio;
 
 class MunicipioSeeder extends Seeder
 {

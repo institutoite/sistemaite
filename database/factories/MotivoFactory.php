@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Motivo;
+use App\Models\Motivo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class MotivoFactory extends Factory
