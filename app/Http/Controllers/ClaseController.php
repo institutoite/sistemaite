@@ -203,7 +203,7 @@ class ClaseController extends Controller
                 ->join('materias', 'clases.materia_id', '=', 'materias.id')
                 ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
                 ->join('temas', 'clases.tema_id', '=', 'temas.id')
-                // ->where('clases.estado','PRESENTE')
+                ->where('clases.estado','PRESENTE')
                 ->select('clases.id', DB::raw('concat_ws(" ",personas.nombre,personas.apellidop) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombre', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto')->get();
             return datatables()->of($clases)
                 ->addColumn('btn', 'clase.action_marcar')
@@ -212,15 +212,18 @@ class ClaseController extends Controller
         }
     }
 
-    public function finalizarClase($clase_id)
+    public function finalizarClase(Request $request,$clase_id)
     {
-        $clase=Clase::findOrFail($clase_id);
-        $programa=$clase->programacion;
-        $programa->estado="FINALIZADO";
-        $programa->save();
-        $clase->estado="FINALIZADO";
-        $clase->save();
-        //return redirect()->action(ClaseController::class,'clasesPresentes');
+        if ($request->ajax()) {
+            $clase = Clase::findOrFail($clase_id);
+            $programa = $clase->programacion;
+            $programa->estado = "FINALIZADO";
+            $programa->save();
+            $clase->estado = "FINALIZADO";
+            $clase->save();
+            $mensaje = "Finalizado correctamente";
+            return response()->json($mensaje, 200);
+        }
     } 
 
     

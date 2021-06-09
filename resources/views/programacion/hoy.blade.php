@@ -51,9 +51,10 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a id="marcar" href="{{route('marcado.presente.rapido',$programacion->id)}}" class="btn btn-primary text-white" ><i class="fas fa-bolt"></i> </a>   
-                                    <a id="marcar" href="{{route('marcado.presente.normal',$programacion->id)}}" class="btn btn-secondary text-white marcar_hoy"><i class="fas fa-user-edit"></i></a>   
-                                    
+                                    @if ($programacion->estado!='FINALIZADO')
+                                        <a id="marcar" href="{{route('marcado.presente.rapido',$programacion->id)}}" class="btn btn-primary text-white" ><i class="fas fa-bolt"></i> </a>   
+                                        <a id="marcar" href="{{route('marcado.presente.normal',$programacion->id)}}" class="btn btn-secondary text-white marcar_hoy"><i class="fas fa-user-edit"></i></a>   
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
