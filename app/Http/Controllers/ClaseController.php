@@ -74,6 +74,7 @@ class ClaseController extends Controller
         $clase->docente_id=$request->docente_id;
         $clase->materia_id=$request->materia_id;
         $clase->aula_id=$request->aula_id;
+        $clase->tema_id =1;
         $clase->programacion_id=$programacion_id;
         $clase->save();
         $programa=Programacion::findOrFail($programacion_id);
@@ -212,19 +213,27 @@ class ClaseController extends Controller
         }
     }
 
-    public function finalizarClase(Request $request,$clase_id)
+    public function finalizarClase(Request $request)
     {
-        if ($request->ajax()) {
-            $clase = Clase::findOrFail($clase_id);
-            $programa = $clase->programacion;
-            $programa->estado = "FINALIZADO";
-            $programa->save();
-            $clase->estado = "FINALIZADO";
-            $clase->save();
-            $mensaje = "Finalizado correctamente";
-            return response()->json($mensaje, 200);
-        }
+        $clase = Clase::findOrFail($request->id);
+        $programa = $clase->programacion;
+        $programa->estado = "FINALIZADO";
+        $programa->save();
+        $clase->estado = "FINALIZADO";
+        $clase->save();
+        return response()->json(['message' => 'Despidete deseale el bien', 'status' => 200]);
     } 
 
     
 }
+
+/**
+ * 
+ *   if ($request->ajax()) {
+            
+            $mensaje = ['mensaje'=>"Finalizado correctamente",'id'=>$id];
+            return response('Todo salio Buien ', 200);
+        }
+        
+
+ */

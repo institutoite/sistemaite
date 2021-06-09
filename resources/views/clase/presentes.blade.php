@@ -14,6 +14,11 @@
 @stop
 
 @section('content')
+
+<div id="alerta">
+
+</div>
+
     <table id="presentes" class="table table-hover table-bordered table-striped display" width="100%">
         <thead class="">
             <tr>
@@ -43,34 +48,46 @@
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/searchbuilder/1.0.1/js/dataTables.searchBuilder.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
-    
     <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
 
     <script>
         $(document).ready(function() {
             
-            $('#tr').on('click', 'td', function() { 
-                var id_estudiante = $(this);//.closest('tr').attr('id');
+            $('table').on('click', 'a', function(e) { 
+                 e.preventDefault(); 
+                var id_estudiante =$(this).closest('tr').find('td:first-child').text();
+                var fila=$(this).closest('tr');
                 console.log(id_estudiante);
-		        // $.ajax({
-                //     url : "{{--route('clases.finalizar')--}}"",
-                //     data : { id : colocar el id sacado },
-                //     type : 'GET',
-                //     dataType : 'json',
-                //     success : function(json) {
-                //         $('<h1/>').text(json.title).appendTo('body');
-                //         $('<div class="content"/>')
-                //             .html(json.html).appendTo('body');
-                //     },
-                //     error : function(xhr, status) {
-                //         alert('Disculpe, existió un problema');
-                //     },
-                //     complete : function(xhr, status) {
-                //         alert('Petición realizada');
-                //         }
-                // });
+		        $.ajax({
+                    url : "clase/finalizar/",
+                    data : { id :id_estudiante },
+                    success : function(json) {
+                            console.log(json);
+                            fila.remove();
+                            // html="<div id='' class='alert alert-primary' role='alert'>"+ json.message +"</div>";
+                            // $('#alerta').html(html);
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                                })
+
+                                Toast.fire({
+                                icon: 'success',
+                                title: json.message
+                                })
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
 	        });
 
 
@@ -78,6 +95,7 @@
                 "createdRow": function( row, data, dataIndex){
                     var horainicio=moment(data['horainicio']).format('HH:mm');
                     var horafin=moment(data['horafin']).format('HH:mm');
+
                     $('td', row).eq(0).html('<small>'+data['id']+'</small>');
                     $('td', row).eq(1).html('<small>'+data['name']+'</small>');
                     $('td', row).eq(2).html('<small>'+horainicio+'</small>');
