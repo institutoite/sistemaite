@@ -29,3 +29,11 @@
         </div>
     </section>
 @endsection
+
+@section('js')
+    <script>
+        $(document).ready(function() {
+            //validar aqui $('#totalhoras').change()
+        });
+    </script>
+@endsection

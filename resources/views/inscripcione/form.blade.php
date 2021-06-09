@@ -85,7 +85,7 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm" >
             <div class="input-group mb-2" >
                 <p class="col-3 form-control bg-secondary p-1" for="">T. Hras</p> 
-                <input  type="number" name="totalhoras" class="form-control @error('totalhoras') is-invalid @enderror" value="{{old('totalhoras',$ultima_inscripcion->totalhoras ?? '')}}" placeholder="Total Horas">
+                <input id="totalhoras" type="number" name="totalhoras" class="form-control @error('totalhoras') is-invalid @enderror" value="{{old('totalhoras',$ultima_inscripcion->totalhoras ?? '')}}" placeholder="Total Horas">
             </div>    
         </div>
     </div>

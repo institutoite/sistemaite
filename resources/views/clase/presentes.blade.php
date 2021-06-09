@@ -38,15 +38,25 @@
 
 @section('js') 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/searchbuilder/1.0.1/js/dataTables.searchBuilder.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.0.3/js/dataTables.dateTime.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
+    <script src="//cdn.datatables.net/plug-ins/1.10.21/sorting/datetime-moment.js"></script>
     <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
 
     <script>
         $(document).ready(function() {
+            
+          
             $('#presentes').dataTable({
+                "createdRow": function( row, data, dataIndex){
+                    data['horainicio']=moment(data['horainicio']).format('LT');
+                    data['horafin']=moment(data['horafin']).format('LT');
+                },
                 "serverSide": true,
                 "ordering":false,
                 "responsive":true,

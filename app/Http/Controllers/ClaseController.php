@@ -202,9 +202,9 @@ class ClaseController extends Controller
                 ->join('docentes', 'clases.docente_id', '=', 'docentes.id')
                 ->join('materias', 'clases.materia_id', '=', 'materias.id')
                 ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
-                // ->join('temas', 'clases.tema_id', '=', 'temas.id')
+                ->join('temas', 'clases.tema_id', '=', 'temas.id')
                 // ->where('clases.estado','PRESENTE')
-                ->select('clases.id', DB::raw('concat_ws(" ",personas.nombre,personas.apellidop) as name'), 'clases.horainicio', 'clases.horafin', 'docentes.nombre', 'materias.materia', 'aulas.aula', 'clases.tema_id', 'personas.foto')->get();
+                ->select('clases.id', DB::raw('concat_ws(" ",personas.nombre,personas.apellidop) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombre', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto')->get();
             return datatables()->of($clases)
                 ->addColumn('btn', 'clase.action_marcar')
                 ->rawColumns(['btn', 'foto'])
