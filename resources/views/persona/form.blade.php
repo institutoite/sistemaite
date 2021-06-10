@@ -168,7 +168,7 @@
                 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 input-group text-sm" >
                     <div class="input-group" >
                         <p class="col-3 form-control bg-secondary p-1" for="">Como?</p> 
-                        <select class="form-control @error('como') is-invalid @enderror"  name="como" id="como">
+                        <select onchange="mostrarModal();" onfocus="this.selectedIndex = -1;" class="form-control @error('como') is-invalid @enderror"  name="como" id="como">
                             <option value=""> Elija una manera</option>
                                 @isset($persona)
                                     <option value="PASANDO" @if($persona->como == 'PASANDO') {{'selected'}} @endif>Pasando por el lugar</option>
@@ -376,6 +376,7 @@
     <div class="modal-dialog modal-lg modalito">
         <div class="modal-content">
             <div class="modal-header">
+                Seleccione la persona referenciadora
                 <button class="btn btn-danger close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -401,7 +402,6 @@
     </div>
 </div>
 
-<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-ite"> presioname</button>
 
 
 

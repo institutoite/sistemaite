@@ -234,40 +234,22 @@ return [
             
         ],
         [
-            'text'=>"link1",
+            'text'=>"Estudiantes",
             'topnav'=>true,
-            'url'=>'#',
-            'icon'=> 'fas fa-fw fa-home',
-            'icon_color'=>'primary',
-            
-        ],
-
-        [
-            'text'=>"link1",
-            'topnav_right'=>true,
-            'url'=>'#',
-            'icon'=> 'fas fa-fw fa-home',
-            'icon_color'=>'primary',
-            
-        ],
-
-
-        [
-            'text'=>"link1",
-            'topnav_user'=>true,
-            'url'=>'#',
+            'url'  => '/home',
             'icon'=> 'fas fa-fw fa-home',
             'icon_color'=>'primary',
             
         ],
         [
-            'text'=>"link1",
-            'right_sidebar'=>true,
-            'url'=>'#',
-            'icon'=> 'fas fa-fw fa-home',
-            'icon_color'=>'primary',
-            
+            'text' => "Actualidad",
+            'topnav' => true,
+            'url'    => 'presentes',
+            'icon' => 'fas fa-fw fa-home',
+            'icon_color' => 'primary',
+
         ],
+        
         [
             'text' => 'blog',
             'url'  => 'admin/blog',

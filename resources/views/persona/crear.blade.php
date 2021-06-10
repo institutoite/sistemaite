@@ -154,16 +154,25 @@
         $('#country').on('change', cargarciudades); 
         $('#city').on('change', cargarzonas);
 
-        $('table').on('click','#ok', seleccionar);
-
-        function seleccionar() {
+        $('table').on('click','#ok',selecciona);
+        function selecciona() {
             $("#persona_id").val($(this).closest('tr').children(0).html());
             $("#persona_id").addClass('bg-primary');
             $('#modal-ite').modal('toggle');
-            $('#modal-ite .close').click();
+            $('#modal-ite .close').remove();
         }
 
+        
+
         });	
+        function  mostrarModal(){
+            var ElementoSeleccionado=$('#como option:selected').val();
+                if(ElementoSeleccionado=="REFERENCIA"){
+                    $("#modal-ite").modal("show");
+                }else{
+                    $("#persona_id").val('');  
+                }
+        }
     </script>
 @stop
 
