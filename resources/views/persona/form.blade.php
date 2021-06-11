@@ -21,14 +21,14 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" > 
             <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1" for="">Nombre</p> 
+                <p class="col-3 form-control bg-secondary p-1" for=""><small>Nombre*</small></p> 
                 <input  type="text" name="nombre" class="form-control col-9 @error('nombre') is-invalid @enderror" value="{{old('nombre',$persona->nombre ?? '')}}" placeholder="Ingrese un  nombre">
             </div>
         </div>
         {{-- %%%%%%%%%%%%%%% CAMPO APELLIDO PATERNO --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1" for="">Paterno</p> 
+                <p class="col-3 form-control bg-secondary p-1" for=""><small>Paterno*</small></p> 
                 <input  type="text" name="apellidop" class="form-control @error('apellidop') is-invalid @enderror" value="{{old('apellidop',$persona->apellidop ?? '')}}" placeholder="Ingrese  apellido Paterno(Obligatorio)">
             </div>    
         </div>
@@ -66,12 +66,12 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             @isset($persona)
                 <div class="input-group mb-2" >
-                    <p class="col-3 form-control bg-secondary p-1" for="">Fecha N.</p> 
+                    <p class="col-3 form-control bg-secondary p-1" for=""><small>Fecha N*</small></p> 
                     <input  type="date" name="fechanacimiento" class="form-control col-9 @error('fechanacimiento') is-invalid @enderror" value="{{old('fechanacimiento',$persona->fechanacimiento->format('Y-m-d') ?? '')}}">
                 </div>
             @else
                 <div class="input-group mb-2" >
-                    <p class="col-3 form-control bg-secondary p-1" for="">Fecha N.</p> 
+                    <p class="col-3 form-control bg-secondary p-1" for=""><small>Fecha N*</small></p> 
                     <input  type="date" name="fechanacimiento" class="form-control col-9 @error('fechanacimiento') is-invalid @enderror" value="{{old('fechanacimiento' ?? '')}}">
                 </div>
             @endisset
@@ -80,12 +80,12 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             <div class="input-group mb-2" >
                 <p class="col-3 form-control bg-secondary p-1" for="">C.I.</p> 
-                <input  type="text" name="carnet" class="form-control col-9 @error('carnet') is-invalid @enderror" value="{{old('carnet',$persona->carnet ?? '')}}" placeholder="Ingrese un numero de carnet">
+                <input  type="number" min="100000" name="carnet" class="form-control col-9 @error('carnet') is-invalid @enderror" value="{{old('carnet',$persona->carnet ?? '')}}" placeholder="Ingrese un numero de carnet">
             </div>
         </div>
 {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO  expedido del carnet  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
-                <p class="col-3 form-control bg-secondary p-1" for="">DPTO</p> 
+                <p class="col-3 form-control bg-secondary p-1" for="">Dpto</p> 
                 <select class="form-control @error('expedido') is-invalid @enderror"  name="expedido" id="expedido">
                     <option value=""> Elija Expedido</option>
                         @isset($persona)
@@ -142,7 +142,7 @@
     <div class="row"> 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1 p-1" for="">Género</p> 
+                <p class="col-3 form-control bg-secondary p-1 p-1" for=""><small>Género*</small></p> 
                 <select class="form-control @error('expedido') is-invalid @enderror" name="genero" id="genero">
                     <option value=""> Elija tu género</option>
                 
@@ -165,11 +165,11 @@
         {{--%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO COMO SE INFORMO  --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             <div class="row">
-                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 input-group text-sm" >
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 input-group text-sm" >
                     <div class="input-group" >
-                        <p class="col-3 form-control bg-secondary p-1" for="">Como?</p> 
+                        <p class="col-3 form-control bg-secondary" for=""><small>Como*</small></p> 
                         <select onchange="mostrarModal();" onfocus="this.selectedIndex = -1;" class="form-control @error('como') is-invalid @enderror"  name="como" id="como">
-                            <option value=""> Elija una manera</option>
+                            <option value="">Como se enteró</option>
                                 @isset($persona)
                                     <option value="PASANDO" @if($persona->como == 'PASANDO') {{'selected'}} @endif>Pasando por el lugar</option>
                                     <option value="REFERENCIA" @if($persona->como == 'REFERENCIA') {{'selected'}} @endif>Por referencia</option>
@@ -189,7 +189,7 @@
                     </div>
                 </div>
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO REFERENCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-sm" >
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-sm" >
                     <input  type="text" readonly id="persona_id" name="persona_id" class="form-control @error('carnet') is-invalid @enderror" value="{{old('persona_id',$persona->persona_id ?? '')}}">
                 </div>
             </div>
@@ -200,7 +200,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1 " for="">Persona</p> 
+                <p class="col-3 form-control bg-secondary p-1 " for=""><small>Papel*</small></p> 
                 <select class="form-control @error('papel') is-invalid @enderror"  name="papel" id="papel">
                     <option value=""> Elija Papel</option>
                         @isset($persona)
@@ -248,7 +248,7 @@
     <div class="row"> 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1 p-1" for="">PAIS</p> 
+                <p class="col-3 form-control bg-secondary p-1 p-1" for=""><small>Pais*</small></p> 
                 <select class="form-control @error('pais_id') is-invalid @enderror" data-old="{{ old('pais_id') }}" name="pais_id" id="country">
                     <option value="1" selected> Bolivia</option>
                     @foreach ($paises as $pais)
@@ -264,7 +264,7 @@
         {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO CIUDAD  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1 p-1" for="">CITY</p> 
+                <p class="col-3 form-control bg-secondary p-1 p-1" for=""><small>city*</small></p> 
                 <select class="form-control @error('ciudad_id') is-invalid @enderror" name="ciudad_id" id="city">
                     <option value=""> Elija una ciudad</option>
                         @foreach ($ciudades as $item)
@@ -278,7 +278,7 @@
         {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO ZONA  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
             <div class="input-group mb-2" >
-            <p class="col-3 form-control bg-secondary p-1" for="">ZONA</p> 
+            <p class="col-3 form-control bg-secondary p-1" for=""><small>Zona*</small></p> 
             <select class="form-control @error('zona_id') is-invalid @enderror" name="zona_id" id="zona">
                 <option value="" > Seleccione una Zona</option>
                 @foreach ($zonas as $zona)
@@ -311,13 +311,13 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 input-group text-sm" > 
             <div class="input-group mb-2" >
-                <p class="col-2 form-control bg-secondary p-1" for="">Dirección</p> 
+                <p class="col-2 form-control bg-secondary p-1" for=""><small>Dirección*</small></p> 
                 <input  type="text" name="direccion" class="form-control col-10 @error('direccion') is-invalid @enderror" value="{{old('direccion',$persona->direccion ?? '')}}" placeholder="Ingrese una dirección">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm" >
             <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1" for="">Teléfono</p> 
+                <p class="col-3 form-control bg-secondary p-1" for=""><small>Teléfono</small></p> 
                 <input class="form-control" type="tel" id="phone" name="telefono" value="{{old('telefono',$persona->telefono ?? '')}}" placeholder="teléfono de la persona">
             </div>
         </div>

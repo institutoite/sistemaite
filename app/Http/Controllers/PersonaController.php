@@ -17,6 +17,8 @@ use App\Models\Telefono;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonaStoreRequest;
+use App\Http\Requests\PersonaApoderadaRequestStore;
+
 use App\Models\Inscripcione;
 use App\Models\Observacion;
 use Illuminate\Support\Facades\Date;
@@ -107,7 +109,7 @@ class PersonaController extends Controller
                 break;
             case 'docente':
                 $docente = new Docente();
-                $docente->nombre=$persona->nombre;
+                $docente->nombre=$persona->nombre+Str::substr($request->apellidop, 1, 1);
                 $docente->apellidop=$persona->apellidop;
                 $docente->apellidom=$persona->apellidom;;
                 $docente->persona_id = $persona->id;
@@ -139,17 +141,13 @@ class PersonaController extends Controller
                 break;
         }
 
-        /**
-         * en esta parte elegimos que tipo de persona eligio el usuario
-         * estudiante, docente, cliservicio, administrativo
-         * 
-         */
-
-        return view('persona.tomarfoto',compact('persona'));
+        
+        return redirect()->route('tomar.foto.persona',['persona'=>$persona]);
+        
     }
 
 
-    public function storeContacto(Request $request,$id){
+    public function storeContacto(PersonaApoderadaRequestStore $request,$id){
         
         $persona=Persona::findOrFail($id);
         $apoderado = new Persona();
@@ -169,7 +167,8 @@ class PersonaController extends Controller
 
         $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
         $apoderados = $persona->apoderados;
-        return view('telefono.index',compact('persona','apoderados'));
+        return redirect()->route('telefonos.persona',['persona'=>$persona,'apoderados'=>$apoderados])->with('mensaje','Contacto Creado Corectamente');
+        //return view('telefono.index',compact('persona','apoderados'));
 
     }
 
@@ -293,9 +292,7 @@ class PersonaController extends Controller
 
         $telefonos=Telefono::where('persona_id','=',$persona->id)->get();
 
-        //return redirect('/telefonos')->with('persona',$persona)->with('telefonos',$telefonos);
-        return view('telefono.crear',compact('persona'));
-        //return view->with('count', User::count());
+        return redirect()->Route('telefonos.crear',['persona'=>$persona]);
     }
 
     /**
@@ -315,6 +312,7 @@ class PersonaController extends Controller
     }
 
     public function tomarfoto(Persona $persona){
+
         return view('persona.tomarfoto', compact('persona'));
     }
 }

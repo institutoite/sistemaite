@@ -4,53 +4,51 @@
 
 @section('css')
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
-    {{-- <link rel="stylesheet" href="{{asset('custom/css/camara/main.css')}}"> --}}
 @endsection
 
 @section('content_header')
-    <h1 class="text-center text-primary">Tomar fotografía</h1>
+    
 @stop
 
 @section('content')
-    <div class="container border border-primary p-2">
-    <div class="row">    
-        <div class="col-1"></div>
-        <div class="col-4 p-2 border-3">
-            <video playsinline autoplay></video>
-        </div>
-        <div class="col-2"></div>
-        <div class="col-4 p-lg-4">
-            <canvas id='canvas' width="250" height="250" style='border-radius:3px; border: 1px solid rgb(243, 243, 243);'>
-                <p>Tu navegador no soporta canvas</p>
-            </canvas>
-        </div>
-        <div class="col-1"></div>
-    </div>
-    <div class="row text-center">
-        <div class="col-6">
-            <button class="btn btn-outline-primary" id="boton-tomar-foto">Tomar Foto</button>
-        </div>
-        <div class="col-6">
-            <form id='formCanvas' method='post' action='{{route('guardarfoto',$persona)}}' ENCTYPE='multipart/form-data'>
-                {{ @method_field('PUT') }}
-                @csrf
-                <button type='button' class="btn btn-primary d-none" id="boton-guardar" onclick='GuardarTrazado()'>Guardar Foto tomada</button>
-                <input type='hidden' name='imagen' id='imagen' />
-            </form>
-        </div>
-    </div>
-    </div>
-
-    <!-- creamos el form para el envio -->
-
-    <div class="row text-center">
-            <div class="col-12">
-                
-            </div>
-            
-    </div>    
     
- 
+    <div class="card">
+        <div class="card-header bg-secondary">
+            FORMULARIO TOMAR FOTO 
+        </div>
+        <div class="card-body">
+            <div class="container border border-primary p-2">
+                <div class="row">    
+                    <div class="col-1"></div>
+                    <div class="col-4 p-2 border-3 bg-gray-light" style='border-radius:3px;border: 1px solid rgb(38, 186, 165);'>
+                        <video playsinline autoplay></video>
+                    </div>
+                    <div class="col-2"></div>
+                    <div class="col-4 p-lg-4">
+                        <canvas id='canvas' width="250" height="250" style='border-radius:3px; border: 1px solid rgb(38, 186, 165);'>
+                            <p>Tu navegador no soporta canvas</p>
+                        </canvas>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-6">
+                        <button class="btn btn-outline-primary" id="boton-tomar-foto">Tomar Foto</button>
+                    </div>
+                    <div class="col-6">
+                        <form id='formCanvas' method='post' action='{{route('guardarfoto',$persona)}}' ENCTYPE='multipart/form-data'>
+                            {{ @method_field('PUT') }}
+                            @csrf
+                            <button type='button' class="btn btn-primary d-none" id="boton-guardar" onclick='GuardarTrazado()'>Guardar Foto tomada</button>
+                            <input type='hidden' name='imagen' id='imagen' />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
 @stop
 
 
@@ -69,7 +67,7 @@
             button.onclick = function() {
                 canvas.width = 100;//video.videoWidth;
                 canvas.height = 100;//video.videoHeight;
-                canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+                canvas.getContext('2d').drawImage(vid   eo, 0, 0, canvas.width, canvas.height);
                 console.log('me dieron click');   
             };
 
@@ -91,7 +89,7 @@
         navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
     
         $(document).ready(function() {
-
+            
             $('button').on('click',function (e) {
                 canvas.width =250 ;//video.videoWidth;
                 canvas.height =250 ;//video.videoHeight;

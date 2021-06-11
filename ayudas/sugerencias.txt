@@ -9,6 +9,7 @@ programar subir archivos documentos digitales
 tareas por hacer 
 
 hacer que sea responsive la ventana modal de estudaintes de referencias 
+validar gaurdar contactos de un cliente
 
 
 

@@ -16,14 +16,15 @@
 @stop
 
 @section('content')
+    
     <div class="card">
         <div class="card-header bg-primary">
             <span class="text-center">CREAR TELEFONO DE : {{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</span>
         </div>
         <div class="card-body">
-            <form action="{{route('persona.storeContacto',$persona)}}" method="post">
+            <form action="{{route('persona.storeContacto',$persona)}}" method="POST">
             @csrf
-                 <div class="row">
+                <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm">
                         @if($errors->has('nombre'))
                             <span class="text-danger"> {{ $errors->first('nombre')}}</span>
@@ -46,14 +47,14 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm" > 
                         <div class="input-group mb-2" >
-                            <p class="col-3 form-control bg-secondary p-1" for="">Nombre</p> 
+                            <p class="col-3 form-control bg-secondary p-1" for="">Nombre*</p> 
                             <input  type="text" name="nombre" class="form-control col-9 @error('nombre') is-invalid @enderror" value="{{old('nombre')}}" placeholder="Ingrese un  nombre">
                         </div>
                     </div>
                     {{-- %%%%%%%%%%%%%%% CAMPO APELLIDO PATERNO --}}
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm" >
                         <div class="input-group mb-2" >
-                            <p class="col-3 form-control bg-secondary p-1" for="">Paterno</p> 
+                            <p class="col-3 form-control bg-secondary p-1" for="">Paterno*</p> 
                             <input  type="text" name="apellidop" class="form-control @error('apellidop') is-invalid @enderror" value="{{old('apellidop')}}" placeholder="Ingrese  apellido Paterno(Obligatorio)">
                         </div>    
                     </div>
@@ -69,13 +70,18 @@
 
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
-                        @if($errors->has('genero'))
-                            <span class="text-danger"> {{ $errors->first('genero')}}</span>
+                        @if($errors->has('telefono'))
+                            <span class="text-danger"> {{ $errors->first('telefono')}}</span>
                         @endif
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
-                        @if($errors->has('como'))
-                            <span class="text-danger"> {{ $errors->first('como')}}</span>
+                        @if($errors->has('parentesco'))
+                            <span class="text-danger"> {{ $errors->first('parentesco')}}</span>
+                        @endif
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+                        @if($errors->has('genero'))
+                            <span class="text-danger"> {{ $errors->first('genero')}}</span>
                         @endif
                     </div>
                 </div>
@@ -84,8 +90,8 @@
                 <div class="row"> 
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm" >
                         <div class="input-group mb-2" >
-                            <p class="col-3 form-control bg-secondary p-1 p-1" for="">Número</p> 
-                            <input class="form-control" type="tel" id="phone" name="telefono" placeholder="introduzca un numero telefonico" pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]" value="{{old('apellidop')}}">
+                            <p class="col-3 form-control bg-secondary p-1 p-1" for="">Número*</p> 
+                            <input class="form-control" type="tel" id="phone" name="telefono" placeholder="introduzca un numero telefonico" pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]" value="{{old('telefono')}}">
                         </div>
                     </div>
                     {{--%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO COMO SE INFORMO  --}}
@@ -93,7 +99,7 @@
                     {{--dd($parentesco->parentesco)--}}
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm" >
                         <div class="input-group mb-2" >
-                            <p class="col-3 form-control bg-secondary p-1" for="">Parentesco?</p> 
+                            <p class="col-3 form-control bg-secondary p-1" for="">Papel*</p> 
                             <select class="form-control @error('parentesco') is-invalid @enderror"  name="parentesco" id="parentesco">
                                 <option value="">Grado Parentesco</option>
                                     
@@ -121,7 +127,7 @@
             {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO GENERO DEL FAMILIAR ---}}
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm" >
                     <div class="input-group mb-2" >
-                        <p class="col-3 form-control bg-secondary p-1 p-1" for="">Género</p> 
+                        <p class="col-3 form-control bg-secondary p-1 p-1" for="">Género*</p> 
                         <select class="form-control @error('expedido') is-invalid @enderror" name="genero" id="genero">
                             <option value=""> Elija tu género</option>
                         
@@ -141,8 +147,8 @@
 
 @section('js')
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     
+
     <script>
         $(document).ready(function() {
             

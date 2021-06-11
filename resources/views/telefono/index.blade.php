@@ -15,7 +15,8 @@
 
 @section('content')
 
-    <a href="{{route('telefonos.crear',$persona)}}" class="btn btn-outline-secondary float-right">Crear <i class="fas fa-plus-circle "></i></a>
+    <a href="{{route('telefonos.crear',$persona)}}" class="btn btn-outline-secondary float-right">Crear Teléfono <i class="fas fa-plus-circle "></i></a>
+    <a href="{{route('inscribir',$persona)}}" class="btn btn-outline-secondary float-right">Inscribir <i class="fas fa-plus-circle "></i></a>
     <a class="btn btn-outline-success float-right mb-3 mr-3" href="{{route('opcion.principal',$persona->id)}}" target="_blank"><i class="fas fa-ellipsis-v"></i> Ir Opciones <i class="fas fa-th-list"></i></i></a>
     <table id="telefonos" class="table table-hover table-bordered table-striped display responsive nowrap" width="100%">
         <thead class="bg-primary">
@@ -72,7 +73,19 @@
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
     <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
-
+    
+    @if (session('mensaje')=='Contacto Creado Corectamente')
+        <script>
+            Swal.fire({
+                position: 'top-start',
+                icon: 'success',
+                title: 'Contacto Guardado Correctamente',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        </script>
+        
+    @endif
     <script>
         $(document).ready(function() {
            
