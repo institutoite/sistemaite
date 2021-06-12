@@ -52,6 +52,17 @@ class TelefonoController extends Controller
         
     }
 
+    public function apoderadoExistente(Persona $persona){
+        return view('persona.existente',compact('persona'));
+    }
+    public function agregarApoderado($persona_id,$apoderado_id){
+        $persona=Persona::findOrFail($persona_id);
+        $apoderado=Persona::findOrFail($apoderado_id);
+        // tiene que llegar un parentesco
+        $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
+        $apoderados = $persona->apoderados;
+    }
+
     /**
      * Display the specified resource.
      *

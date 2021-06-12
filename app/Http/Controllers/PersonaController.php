@@ -281,8 +281,10 @@ class PersonaController extends Controller
     }
 
     public function guardarfoto(Request $request, Persona $persona){
+        //dd($request->all());
 
         $image = $request->imagen;  // your base64 encoded
+        
         $image = str_replace('data:image/png;base64,', '', $image);
         $image = str_replace(' ', '+', $image);
         $imageName = 'estudiantes/'.Str::random(20) . '.' . 'png';
@@ -290,9 +292,25 @@ class PersonaController extends Controller
         //Storage::put(storage_path() . '/public/App/' . $imageName, base64_decode($image));
         $persona->foto=$imageName;
         $persona->save();
-
-        $telefonos=Telefono::where('persona_id','=',$persona->id)->get();
-
+        return redirect()->Route('telefonos.crear',['persona'=>$persona]);
+    }
+    public function guardarfotojpg(Request $request, Persona $persona){
+        //dd($request->all());
+        
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $nombreImagen = 'estudiantes/' . Str::random(20) . '.jpg';
+            /** las convertimos en jpg y la redimensionamos */
+            $imagen = Image::make($foto)->encode('jpg', 75);
+            $imagen->resize(300, 300, function ($constraint) {
+                $constraint->upsize();
+            });
+            /* las guarda en en la carpeta estudiantes  */
+            $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
+            
+            $persona->foto = $nombreImagen;
+            $persona->save();
+        }
         return redirect()->Route('telefonos.crear',['persona'=>$persona]);
     }
 

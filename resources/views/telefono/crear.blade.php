@@ -139,7 +139,12 @@
                 </div>
             </div>
 
-                @include('include.botones')
+            <div class="row justify-content-center pt-3 p-5" >
+                    <button class="btn btn-primary mr-auto" type="submit" id="guardar">Guardar <i class="far fa-save fa-2x"></i></button>        
+                    <a class="btn btn-success" href="{{route('inscribir',$persona)}}">Inscribir<i class="fas fa-arrow-circle-right fa-2x"></i></a>
+                    <a class="btn btn-warning" href="{{route('apoderado.existente',$persona)}}">Familiar Existente<i class="fas fa-arrow-circle-right fa-2x"></i></a>
+            </div>
+
             </form>
         </div>
     </div>

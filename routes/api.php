@@ -78,6 +78,15 @@ Route::get('personas', function () {
         ->rawColumns(['btn'])
         ->toJson();
 })->name('personas.todos');
+
+Route::get('apoderados', function () {
+    $persona = Persona::select('id', DB::raw('concat_ws(" ",nombre,apellidop,apellidom) as nombre'), 'foto');
+    return datatables()->of($persona)
+        ->addColumn('btn', 'persona.actionapoderados')
+        ->rawColumns(['btn'])
+        ->toJson();
+})->name('personas.todos');
+
 Route::get('ciudades',function(){
     $ciudades=Ciudad::select('ciudads.id','ciudad','nombrepais')->join('pais','pais.id','=','ciudads.pais_id')->get();
     return datatables()->of($ciudades)

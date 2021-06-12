@@ -42,6 +42,7 @@ Route::get('personas/opciones/{id}', function ($id) {
 })->name('personas.opciones');
 
 Route::put('persona/{persona}/subirfoto','PersonaController@guardarfoto')->name('guardarfoto');
+Route::put('persona/{persona}/subirfotojpg', 'PersonaController@guardarfotojpg')->name('guardarfotojpg');
 //Route::put('persona/subirfoto', 'PersonaController@guardarfoto')->name('actualizarfoto');
 
 
@@ -74,8 +75,13 @@ Route::get('clase/marcar/normal/{programacion_id}', 'ProgramacionController@marc
 Route::post('programa/estado/general/', 'ClaseController@marcadoGeneral')->name('programa.estado.general');
 Route::post('/clase/guardar/normal/{progrmacion_id}', 'ClaseController@guardar')->name('clases.guardar');
 
+
 Route::get('clases/presentes/ahorita', 'ClaseController@clasesPresentes')->name('clases.presente');
 Route::get('clase/finalizar/', 'ClaseController@finalizarClase')->name('clases.finalizar');
+
+
+Route::get('apoderado/existente/{persona}', 'TelefonoController@apoderadoExistente')->name('apoderado.existente');
+Route::put('telefono/agregar/{persona_id}/{apoderado_id}', 'TelefonoController@agregarApoderado')->name('agregar.apoderado');
 
 
 Route::get('presentes',function(){

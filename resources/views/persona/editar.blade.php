@@ -73,28 +73,6 @@
                     showUpload: false,
                     showCancel: false,
                     
-                    
-                    // previewFileType: "image",
-                    // browseClass: "btn btn-primary",
-                    // uploadClass: "btn btn-info",
-                    // uploadLabel: "Upload",
-                    // uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> "
-                    
-                    // initialPreview: [],
-                    // dropZoneEnabled: true, 
-                    // initialPreviewAsData: true,
-                    // previewFileType: "image",
-                    // allowedFileExtensions: ["jpg", "gif","jpeg", "png"] ,        
-                    
-                    // showUpload: false,
-                    // showCancel: false,
-                    // showRemove: false,
-                    
-                    
-                    // overwriteInitial: false,
-                    // initialCaption: "Selecciona la foto",
-                    // theme:'fas',
-                    // language:'es',
                 }
             );
             $('#formulario').trigger("reset");
