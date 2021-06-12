@@ -4,6 +4,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+     {{-- <link rel="stylesheet" href="{{asset('custom/css/camara/main.css')}}"> --}}
 @endsection
 
 @section('content_header')
@@ -12,34 +13,42 @@
 
 @section('content')
     
-    <div class="container border border-primary p-2">
-        <div class="row">    
-            <div class="col-1"></div>
-            <div class="col-4 p-2 bg-gray-light" style='border-radius:3px;border: 1px solid rgb(186, 38, 129);'>
-                <video playsinline autoplay width="100%" height="100%"></video>
-            </div>
-            <div class="col-2"></div>
-            <div class="col-4 p-lg-4">
-                <canvas id='canvas' style='border-radius:3px; border: 1px solid rgb(38, 186, 165);'>
-                    
-                </canvas>
-            </div>
-            <div class="col-1"></div>
+    <div class="card">
+        <div class="card-header bg-secondary">
+            FORMULARIO TOMAR FOTO 
         </div>
-        <div class="row text-center">
-            <div class="col-6">
-                <button class="btn btn-outline-primary" id="boton-tomar-foto">Tomar Foto</button>
-            </div>
-            <div class="col-6">
-                <form id='formCanvas' method='post' action='{{route('guardarfoto',$persona)}}' ENCTYPE='multipart/form-data'>
-                    {{ @method_field('PUT') }}
-                    @csrf
-                    <button type='button' class="btn btn-primary d-none" id="boton-guardar" onclick='GuardarTrazado()'>Guardar Foto tomada</button>
-                    <input type='hidden' name='imagen' id='imagen' />
-                </form>
-            </div>
+        <div class="card-body">
+            
         </div>
     </div>
+<div class="container border border-primary p-2">
+                <div class="row">    
+                    <div class="col-1"></div>
+                    <div class="col-4 p-2">
+                        <video playsinline autoplay></video>
+                    </div>
+                    <div class="col-2"></div>
+                    <div class="col-4 p-lg-4">
+                        <canvas id='canvas' width="250" height="250">
+                            <p>Tu navegador no soporta canvas</p>
+                        </canvas>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-6">
+                        <button class="btn btn-outline-primary" id="boton-tomar-foto">Tomar Foto</button>
+                    </div>
+                    <div class="col-6">
+                        <form id='formCanvas' method='post' action='{{route('guardarfoto',$persona)}}' ENCTYPE='multipart/form-data'>
+                            {{ @method_field('PUT') }}
+                            @csrf
+                            <button type='button' class="btn btn-primary d-none" id="boton-guardar" onclick='GuardarTrazado()'>Guardar Foto tomada</button>
+                            <input type='hidden' name='imagen' id='imagen' />
+                        </form>
+                    </div>
+                </div>
+            </div>
     
 @stop
 
@@ -52,14 +61,15 @@
         const video = document.querySelector('video');
         const canvas = window.canvas = document.querySelector('canvas');
         canvas.width = 250;
-        canvas.height = 200;
+        canvas.height = 250;
         
         const button = document.querySelector('button');
             
             button.onclick = function() {
                 canvas.width = 100;//video.videoWidth;
                 canvas.height = 100;//video.videoHeight;
-                canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+                canvas.getContext('2d').drawImage(vid   eo, 0, 0, canvas.width, canvas.height);
+                console.log('me dieron click');   
             };
 
         const constraints = {
@@ -83,7 +93,7 @@
             
             $('button').on('click',function (e) {
                 canvas.width =250 ;//video.videoWidth;
-                canvas.height =200 ;//video.videoHeight;
+                canvas.height =250 ;//video.videoHeight;
                 canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
                 imagen.src = canvas.toDataURL("image/png");
                 $('#boton-guardar').removeClass('d-none');

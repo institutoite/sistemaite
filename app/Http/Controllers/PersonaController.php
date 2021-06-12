@@ -13,7 +13,7 @@ use App\Models\Clicopy;
 use App\Models\Docente;
 use App\Models\Proveedor;
 use App\Models\Telefono;
-
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonaStoreRequest;
@@ -109,9 +109,10 @@ class PersonaController extends Controller
                 break;
             case 'docente':
                 $docente = new Docente();
-                $docente->nombre=$persona->nombre+Str::substr($request->apellidop, 1, 1);
-                $docente->apellidop=$persona->apellidop;
-                $docente->apellidom=$persona->apellidom;;
+                $docente->nombre=$persona->nombre.' '.Str::substr($request->apellidop, 0, 1);
+                $docente->fecha_ingreso=Carbon::now()->isoFormat('YYYY-MM-DD');
+                $docente->dias_prueba = 2;
+                $docente->estado = 'actovo';
                 $docente->persona_id = $persona->id;
                 $docente->save();
                 break;
