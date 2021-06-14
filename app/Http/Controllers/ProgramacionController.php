@@ -12,6 +12,7 @@ use App\Models\Inscripcione;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\Estudiante;
+use App\Models\Feriado;
 use App\Models\Materia;
 use App\Models\Persona;
 use Illuminate\Http\Request;
@@ -94,15 +95,11 @@ class ProgramacionController extends Controller
         //
     }
     public function generarPrograma($inscripcione_id){
-        //dd($inscripcione_id);
         $inscripcion=Inscripcione::findOrFail($inscripcione_id);
         $costo_total=$inscripcion->costo;
         $total_horas=$inscripcion->totalhoras;
         $acuenta =$inscripcion->pagos->sum('monto');
-        
         $fecha=$inscripcion->fechaini;
-
-        
         foreach ($inscripcion->sesiones as $dia) { 
             $vector_dias[] = Dia::findOrFail($dia->dia_id)->dia;
         }
@@ -110,58 +107,25 @@ class ProgramacionController extends Controller
             $fecha->addDay();
         }
         $sesiones=Sesion::where('inscripcione_id','=',$inscripcione_id)->get();
-        while($total_horas>0){ 
+        while($total_horas>0){
             foreach ($sesiones as $sesion) {
                 if ($total_horas > 0) {
-                    
                     $programa = new Programacion();
                     $hora_x_sesion= $sesion->horainicio->floatDiffInHours($sesion->horafin);
                     $costo_x_sesion = ($costo_total / $total_horas) *$hora_x_sesion ;
-                    /** aqui buscar el primer dia que consinda con las sesiones */
-                    
-                    //dd($hora_x_sesion);
+                    $costo_hora= $costo_total / $total_horas;
                     if($total_horas>$hora_x_sesion){
                         if ($acuenta > $costo_x_sesion) {
-                            $programa->fecha = $fecha;
-                            $programa->habilitado = true;
-                            $programa->activo = true;
-                            $programa->estado = 'indefinido';
-                            $programa->hora_ini = $sesion->horainicio;
-                            $programa->hora_fin = $sesion->horafin;
-                            $programa->horas_por_clase=$hora_x_sesion;
-                            $programa->docente_id = $sesion->docente_id;
-                            $programa->materia_id = $sesion->materia_id;
-                            $programa->aula_id = $sesion->aula_id;
-                            $programa->inscripcione_id = $inscripcion->id;
+                            $this->agregarClase($programa,$fecha,$hora_x_sesion,$total_horas,$sesion,true,$inscripcion);
                         } else {
-
-                            $programa->fecha = $fecha;
-                            $programa->habilitado = false;
-                            $programa->activo = true;
-                            $programa->estado = 'indefinido';
-                            $programa->hora_ini = $sesion->horainicio;
-                            $programa->hora_fin = $sesion->horafin;
-                            $programa->horas_por_clase = $hora_x_sesion;
-                            $programa->docente_id = $sesion->docente_id;
-                            $programa->materia_id = $sesion->materia_id;
-                            $programa->aula_id = $sesion->aula_id;
-                            $programa->inscripcione_id = $inscripcion->id;
-                            //dd($programa);
+                            $this->agregarClase($programa, $fecha, $hora_x_sesion,$total_horas, $sesion, false, $inscripcion);
                         }
                     }else{
-                        /* en caso de que ya no alcance para una sesion completa  */
-                       // dd($total_horas);
-                        $programa->fecha = $fecha;
-                        $programa->habilitado = false;
-                        $programa->activo = true;
-                        $programa->estado = 'indefinido';
-                        $programa->hora_ini = $sesion->horainicio;
-                        $programa->hora_fin = $sesion->horainicio->addMinutes($total_horas*60);
-                        $programa->horas_por_clase = $total_horas;
-                        $programa->docente_id = $sesion->docente_id;
-                        $programa->materia_id = $sesion->materia_id;
-                        $programa->aula_id = $sesion->aula_id;
-                        $programa->inscripcione_id = $inscripcion->id;
+                        if ($acuenta >= $costo_hora*$total_horas) {
+                            $this->agregarClase($programa, $fecha, $hora_x_sesion,$total_horas, $sesion, true, $inscripcion);
+                        } else {
+                            $this->agregarClase($programa, $fecha, $hora_x_sesion,$total_horas, $sesion, false, $inscripcion);
+                        }
                     }
                     $programa->save();
                     $acuenta = $acuenta - $costo_x_sesion;
@@ -170,13 +134,7 @@ class ProgramacionController extends Controller
                     while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) {
                         $fecha->addDay();
                     }
-                    //dd($fecha);
-                }else{
-
                 }
-                
-                //dd($programa);
-               
             }
         }
         $inscripcion->fechafin = $programa->fecha;
@@ -188,6 +146,55 @@ class ProgramacionController extends Controller
             return redirect()->route('imprimir.programa', $inscripcion->id);;
         }     
     }
+/**
+ * Funciones de apoyo para generar clases
+ */
+    public function esFeriado($unaFecha){
+        $frecuencia=count(Feriado::where('fecha','=',$unaFecha)->get());
+        return $frecuencia>0;
+    }
+    public function siguienteSesion($unaInscripcion,$unaSesion){
+        $sesiones_de_esta_inscripcion=Sesion::where('inscripcione_id',$unaInscripcion->id)->get();
+
+        // la sesion actual el es primero consicedarar si tiene una sola sesion
+        if($unaInscripcion->id==$sesiones_de_esta_inscripcion->first()->id){
+            $respuesta = Sesion::where('id', '>', $this->id)->orderBy('id', 'asc')->first();
+        }else{
+            if ($unaInscripcion->id == $sesiones_de_esta_inscripcion->last()->id) {
+
+            }else{
+
+            }
+        }
+        
+
+    }
+    public function agregarClase(&$programa, &$fecha, &$hora_x_sesion, &$total_horas , &$sesion , $habilitado, &$inscripcion){
+        if ($total_horas > $hora_x_sesion) {
+            $programa->hora_fin = $sesion->horafin;
+            $programa->horas_por_clase = $hora_x_sesion;
+        }else{
+            $programa->hora_fin = $sesion->horainicio->addMinutes($total_horas * 60);
+            $programa->horas_por_clase = $total_horas;
+        }
+        $programa->fecha = $fecha;
+        $programa->habilitado = $habilitado;
+        $programa->activo = true;
+        $programa->estado = 'indefinido';
+        $programa->hora_ini = $sesion->horainicio;
+        
+        $programa->docente_id = $sesion->docente_id;
+        $programa->materia_id = $sesion->materia_id;
+        $programa->aula_id = $sesion->aula_id;
+        $programa->inscripcione_id = $inscripcion->id;
+
+    }
+
+
+
+
+
+
 
     public function regenerarPrograma($inscripcione_id,$unaFecha){
         $unaFecha= Carbon::createFromFormat('Y-m-d', $unaFecha);

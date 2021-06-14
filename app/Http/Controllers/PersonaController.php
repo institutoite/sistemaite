@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Persona;
-use App\Models\Pais;
+
 use App\Models\Ciudad;
 use App\Models\Estudiante;
 use App\Models\Zona;
@@ -12,15 +12,16 @@ use App\Models\Cliservicio;
 use App\Models\Clicopy;
 use App\Models\Docente;
 use App\Models\Proveedor;
-use App\Models\Telefono;
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonaStoreRequest;
+use App\Http\Requests\PersonaUpdateRequest;
 use App\Http\Requests\PersonaApoderadaRequestStore;
 
 use App\Models\Inscripcione;
 use App\Models\Observacion;
+use App\Models\Pais;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Storage;
 
@@ -98,14 +99,15 @@ class PersonaController extends Controller
         switch ($request->papel) {
             
             case 'estudiante':
-                $estudinate=new Estudiante();
-                $estudinate->persona_id=$persona->id;
-                $estudinate->save();
-                $obervacion=new Observacion();
-                $obervacion->observacion=$request->observacion;
-                $obervacion->activo=1;
-                $obervacion->observable_id=$persona->id;
-                $obervacion->observable_type=Inscripcione::class;
+                $estudiante=new Estudiante();
+                $estudiante->persona_id=$persona->id;
+                $estudiante->save();
+                $observacion=new Observacion();
+                $observacion->observacion=$request->observacion;
+                $observacion->activo=1;
+                $observacion->observable_id=$persona->id;
+                $observacion->observable_type=Persona::class;
+                $observacion->save();
                 break;
             case 'docente':
                 $docente = new Docente();
@@ -115,6 +117,15 @@ class PersonaController extends Controller
                 $docente->estado = 'actovo';
                 $docente->persona_id = $persona->id;
                 $docente->save();
+
+                $observacion = new Observacion();
+                $observacion->observacion = $request->observacion;
+                $observacion->activo = 1;
+                $observacion->observable_id = $persona->id;
+                $observacion->observable_type = Persona::class;
+                $observacion->save();
+
+
                 break;
             case 'cliservicio':
                 $cliservicio = new Cliservicio();
@@ -141,10 +152,7 @@ class PersonaController extends Controller
                 # code...
                 break;
         }
-
-        
         return redirect()->route('tomar.foto.persona',['persona'=>$persona]);
-        
     }
 
 
@@ -169,7 +177,6 @@ class PersonaController extends Controller
         $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
         $apoderados = $persona->apoderados;
         return redirect()->route('telefonos.persona',['persona'=>$persona,'apoderados'=>$apoderados])->with('mensaje','Contacto Creado Corectamente');
-        //return view('telefono.index',compact('persona','apoderados'));
 
     }
 
@@ -184,7 +191,12 @@ class PersonaController extends Controller
         $pais=Pais::findOrFail($persona->pais_id);
         $ciudad = Ciudad::findOrFail($persona->ciudad_id);
         $zona = Zona::findOrFail($persona->zona_id);
-        return view('persona.mostrar',compact('persona','pais','ciudad','zona'));
+
+        $observacion = Observacion::where('observable_id', $persona->id)
+            ->where('observable_type', Persona::class)->get()->first()->observacion;
+        $recomendado=Persona::findOrFail($persona->persona_id);    
+
+        return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion'));
     }
 
     /**
@@ -198,7 +210,8 @@ class PersonaController extends Controller
         $ciudades = Ciudad::get();
         $paises = Pais::get();
         $zonas = Zona::get();
-        $observacion="";
+        $observacion = Observacion::where('observable_id', $persona->id)
+            ->where('observable_type', Persona::class)->get()->first()->observacion;
         
         switch ($persona->papelinicial) {
 
@@ -237,9 +250,11 @@ class PersonaController extends Controller
      * @param  \App\Persona  $persona
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Persona $persona)
+    public function update(PersonaUpdateRequest $request, Persona $persona)
     {
-        
+
+        $observacion=$persona->observaciones;
+        //dd($observacion);
         $persona->nombre = $request->nombre;
         $persona->apellidop = $request->apellidop;
         $persona->apellidom = $request->apellidom;
@@ -271,13 +286,33 @@ class PersonaController extends Controller
             $persona->foto = $nombreImagen;
         }
         $persona->como = $request->como;
+
         $persona->papelinicial = $request->papel;
+        $persona->telefono = $request->telefono;
         $persona->persona_id = $request->persona_id;
         $persona->pais_id = $request->pais_id;
         $persona->ciudad_id = $request->ciudad_id;
         $persona->zona_id = $request->zona_id;
         //dd($persona);
         $persona->save();
+
+        $observacion_actual = Observacion::where('observable_id',$persona->id)
+                                ->where('observable_type',Persona::class)->get()->first();
+        
+        if($observacion_actual!=null)
+        {
+            $observacion_actual->observacion = $request->observacion;
+            $observacion_actual->save();
+            $observacion=$observacion_actual;
+        }else{
+            $observacion = new Observacion();
+            $observacion->observacion = $request->observacion;
+            $observacion->activo = 1;
+            $observacion->observable_id = $persona->id;
+            $observacion->observable_type = Persona::class;
+            $observacion->save();
+        }
+        return redirect()->Route('personas.show', ['persona' => $persona]);
     }
 
     public function guardarfoto(Request $request, Persona $persona){

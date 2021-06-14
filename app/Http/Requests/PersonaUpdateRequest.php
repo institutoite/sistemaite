@@ -23,8 +23,26 @@ class PersonaUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        $persona=$this->route('persona');
         return [
-            //
+            
+            "nombre" => 'required|unique_with:personas,apellidop,apellidom,'.$persona->id,
+            "apellidop" =>'required|string|max:25',
+            "apellidom" => 'nullable|string|max:25',
+            "fechanacimiento" =>'required|date',
+            "pais_id" => 'required|integer',
+            "ciudad_id" => 'required|integer',
+            "zona_id" => 'required|integer',
+            "direccion" => 'required|string|max:120',
+            "carnet" => 'nullable|string',
+            "expedido" => 'nullable|string',
+            "genero" => 'required|string',
+            "observacion" =>'required|string|max:250',
+            "como" =>'required|string|max:30',
+            "foto" => 'nullable|file',
+            "papel" =>'required|string',
+            "telefono" => 'max:8',
         ];
+        
     }
 }

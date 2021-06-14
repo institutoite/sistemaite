@@ -53,14 +53,28 @@ class TelefonoController extends Controller
     }
 
     public function apoderadoExistente(Persona $persona){
-        return view('persona.existente',compact('persona'));
+        $apoderados=Persona::get();
+        return view('persona.existente',compact('persona','apoderados'));
     }
     public function agregarApoderado($persona_id,$apoderado_id){
-        $persona=Persona::findOrFail($persona_id);
+        $estudiante=Persona::findOrFail($persona_id);
+        $apoderado = Persona::findOrFail($apoderado_id);
+        return view('telefono.agregarApoderado',compact('estudiante','apoderado'));
+    }
+
+    public function guardarApoderadoExistente(Request $request){
+       
+        $estudiante_id=$request->persona_id;
+        $apoderado_id=$request->apoderado_id;
+        
         $apoderado=Persona::findOrFail($apoderado_id);
-        // tiene que llegar un parentesco
+        
+        $persona=Persona::findOrFail($estudiante_id);
+        
+        $apoderado->telefono=$request->telefono;
+        $apoderado->save();
         $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
-        $apoderados = $persona->apoderados;
+        return redirect()->Route('telefonos.crear', ['persona' => $persona]);
     }
 
     /**

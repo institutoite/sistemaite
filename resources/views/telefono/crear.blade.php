@@ -10,16 +10,23 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <div class="d-flex">
-        <h1>CREAR TELEFONO</h1>
-    </div>
 @stop
 
 @section('content')
     
     <div class="card">
         <div class="card-header bg-primary">
-            <span class="text-center">CREAR TELEFONO DE : {{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</span>
+            <span class="text-center">{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</span>
+            <div class="float-right">
+                <a href="{{route('inscribir',$persona)}}" class="btn btn-success btn-sm float-right"  data-placement="left">
+                {{ __('Inscribir') }}<i class="fas fa-arrow-circle-right fa-2x"></i>
+                </a>
+            </div>
+            <div class="float-right mr-3">
+                <a href="{{route('apoderado.existente',$persona)}}" class="btn btn-warning btn-sm float-right"  data-placement="left">
+                    {{ __('Familiar Existente') }}<i class="fas fa-arrow-circle-right fa-2x"></i>
+                </a>
+            </div>
         </div>
         <div class="card-body">
             <form action="{{route('persona.storeContacto',$persona)}}" method="POST">
@@ -130,8 +137,6 @@
                         <p class="col-3 form-control bg-secondary p-1 p-1" for="">Género*</p> 
                         <select class="form-control @error('expedido') is-invalid @enderror" name="genero" id="genero">
                             <option value=""> Elija tu género</option>
-                        
-                            
                                 <option value="MUJER" @if(old('genero') == 'MUJER') {{'selected'}} @endif>MUJER</option>
                                 <option value="HOMBRE" @if(old('genero') == 'HOMBRE') {{'selected'}} @endif>HOMBRE</option> 
                         </select>
@@ -139,10 +144,8 @@
                 </div>
             </div>
 
-            <div class="row justify-content-center pt-3 p-5" >
+            <div class="row justify-content-center pt-3" >
                     <button class="btn btn-primary mr-auto" type="submit" id="guardar">Guardar <i class="far fa-save fa-2x"></i></button>        
-                    <a class="btn btn-success" href="{{route('inscribir',$persona)}}">Inscribir<i class="fas fa-arrow-circle-right fa-2x"></i></a>
-                    <a class="btn btn-warning" href="{{route('apoderado.existente',$persona)}}">Familiar Existente<i class="fas fa-arrow-circle-right fa-2x"></i></a>
             </div>
 
             </form>

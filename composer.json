@@ -31,7 +31,8 @@
         "ibex/crud-generator": "^1.3",
         "mockery/mockery": "^1.3.1",
         "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^8.5.8|^9.3.3"
+        "phpunit/phpunit": "^8.5.8|^9.3.3",
+        "spatie/laravel-web-tinker": "^1.7"
     },
     "config": {
         "optimize-autoloader": true,

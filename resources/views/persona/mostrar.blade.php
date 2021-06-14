@@ -22,7 +22,7 @@
                 </tr>
                 <tbody>
                     <tr>
-                        <td>Id</td>
+                        <td>Codigo</td>
                         <td>{{$persona->id}}</td>
                     </tr>
                     
@@ -34,6 +34,7 @@
                             <div class="text-center">
                                 
                                 <img class="rounded img-thumbnail img-fluid border-primary border-5" src="{{URL::to('/').Storage::url("$persona->foto")}}" alt="{{$persona->nombre.' '.$persona->apellidop}}"> 
+                                <p>{{$observacion}}</p>
                             </div>
                         </td>
                     </tr>
@@ -41,6 +42,7 @@
                         <td>Nombre</td>
                         <td>{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</td>
                     </tr>
+
 
                     <tr>
                         <td>fechanacimiento</td>
