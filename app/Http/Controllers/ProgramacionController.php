@@ -131,10 +131,10 @@ class ProgramacionController extends Controller
                     $acuenta = $acuenta - $costo_x_sesion;
                     $total_horas = $total_horas - $hora_x_sesion;
                     $siguiente_sesion= $this->siguienteSesion($inscripcion, $sesion);
-                    dd($siguiente_sesion);
-                    if($siguiente_sesion->dia_id!=$sesion->dia_id){
+                    
+                    if(($siguiente_sesion->dia_id!=$sesion->dia_id)||($siguiente_sesion->id== Sesion::where('inscripcione_id', $inscripcion->id)->get()->first()->id)){
                         $fecha->addDay();
-                        while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) {
+                        while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))||(esFeriado($unaFecha))) {
                             $fecha->addDay();
                         }
                     }
@@ -157,20 +157,28 @@ class ProgramacionController extends Controller
         $frecuencia=count(Feriado::where('fecha','=',$unaFecha)->get());
         return $frecuencia>0;
     }
+
+    /**
+     * esta funcion hace rotar el turno de las sesiones tipo ronda 
+     */
     public function siguienteSesion(&$unaInscripcion,&$unaSesion){
         $sesiones_de_esta_inscripcion=Sesion::where('inscripcione_id',$unaInscripcion->id)->get();
-        
         // la sesion actual el es primero consicedarar si tiene una sola sesion
         if($unaSesion->id==$sesiones_de_esta_inscripcion->last()->id){
             //$respuesta = 
             $respuesta= Sesion::where('inscripcione_id', $unaInscripcion->id)->get()->first();
         }else{
-            $respuesta=Sesion::where('inscripcione_id', '>', $unaInscripcion->id)->orderBy('id', 'asc')->first();
+            $respuesta = Sesion::where('inscripcione_id', '=', $unaSesion->inscripcione_id)->where('id', '>', $unaSesion->id)
+                        ->orderBy('id', 'asc')->first();
         }
-        dd($respuesta);
-        
         return $respuesta;
     }
+
+    public function esFeriado($unaFecha){
+        $cantidad=count(DB::table('feriados')->whereIn('fecha',$unaFecha)->get());
+        return $cantidad>0
+    }
+
     public function agregarClase(&$programa, &$fecha, &$hora_x_sesion, &$total_horas , &$sesion , $habilitado, &$inscripcion){
         if ($total_horas > $hora_x_sesion) {
             $programa->hora_fin = $sesion->horafin;
@@ -191,12 +199,6 @@ class ProgramacionController extends Controller
         $programa->inscripcione_id = $inscripcion->id;
 
     }
-
-
-
-
-
-
 
     public function regenerarPrograma($inscripcione_id,$unaFecha){
         $unaFecha= Carbon::createFromFormat('Y-m-d', $unaFecha);
