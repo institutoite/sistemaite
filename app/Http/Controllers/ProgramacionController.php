@@ -130,9 +130,13 @@ class ProgramacionController extends Controller
                     $programa->save();
                     $acuenta = $acuenta - $costo_x_sesion;
                     $total_horas = $total_horas - $hora_x_sesion;
-                    $fecha->addDay();
-                    while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) {
+                    $siguiente_sesion= $this->siguienteSesion($inscripcion, $sesion);
+                    dd($siguiente_sesion);
+                    if($siguiente_sesion->dia_id!=$sesion->dia_id){
                         $fecha->addDay();
+                        while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) {
+                            $fecha->addDay();
+                        }
                     }
                 }
             }
@@ -153,21 +157,19 @@ class ProgramacionController extends Controller
         $frecuencia=count(Feriado::where('fecha','=',$unaFecha)->get());
         return $frecuencia>0;
     }
-    public function siguienteSesion($unaInscripcion,$unaSesion){
+    public function siguienteSesion(&$unaInscripcion,&$unaSesion){
         $sesiones_de_esta_inscripcion=Sesion::where('inscripcione_id',$unaInscripcion->id)->get();
-
-        // la sesion actual el es primero consicedarar si tiene una sola sesion
-        if($unaInscripcion->id==$sesiones_de_esta_inscripcion->first()->id){
-            $respuesta = Sesion::where('id', '>', $this->id)->orderBy('id', 'asc')->first();
-        }else{
-            if ($unaInscripcion->id == $sesiones_de_esta_inscripcion->last()->id) {
-
-            }else{
-
-            }
-        }
         
-
+        // la sesion actual el es primero consicedarar si tiene una sola sesion
+        if($unaSesion->id==$sesiones_de_esta_inscripcion->last()->id){
+            //$respuesta = 
+            $respuesta= Sesion::where('inscripcione_id', $unaInscripcion->id)->get()->first();
+        }else{
+            $respuesta=Sesion::where('inscripcione_id', '>', $unaInscripcion->id)->orderBy('id', 'asc')->first();
+        }
+        dd($respuesta);
+        
+        return $respuesta;
     }
     public function agregarClase(&$programa, &$fecha, &$hora_x_sesion, &$total_horas , &$sesion , $habilitado, &$inscripcion){
         if ($total_horas > $hora_x_sesion) {
