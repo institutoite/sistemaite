@@ -3,7 +3,7 @@
         
         <div class="form-group">
             {{ Form::label('fecha') }}
-            {{ Form::text('fecha', $feriado->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
+            {{ Form::date('fecha', $feriado->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
             {!! $errors->first('fecha', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
@@ -14,6 +14,6 @@
 
     </div>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
 </div>

@@ -1,26 +1,30 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+@section('css')
+    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+@stop
+
+@section('title', 'listar Feriados')
 
 @section('template_title')
-    Feriado
+    Feriados
 @endsection
-
 @section('content')
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header bg-secondary">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
                                 {{ __('Feriado') }}
                             </span>
 
-                             <div class="float-right">
+                            <div class="float-right">
                                 <a href="{{ route('feriados.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                    {{ __('Crear Feriado') }}
                                 </a>
-                              </div>
+                            </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -52,11 +56,11 @@
 
                                             <td>
                                                 <form action="{{ route('feriados.destroy',$feriado->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('feriados.show',$feriado->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('feriados.edit',$feriado->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                    <a class="btn" href="{{ route('feriados.show',$feriado->id) }}"><i class="fa fa-fw fa-eye text-success"></i></a>
+                                                    <a class="btn" href="{{ route('feriados.edit',$feriado->id) }}"><i class="fa fa-fw fa-edit text-warning"></i></a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn"><i class="fa fa-fw fa-trash text-danger"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

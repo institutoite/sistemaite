@@ -16,6 +16,7 @@ use App\Models\Feriado;
 use App\Models\Materia;
 use App\Models\Persona;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProgramacionController extends Controller
 {
@@ -134,7 +135,7 @@ class ProgramacionController extends Controller
                     
                     if(($siguiente_sesion->dia_id!=$sesion->dia_id)||($siguiente_sesion->id== Sesion::where('inscripcione_id', $inscripcion->id)->get()->first()->id)){
                         $fecha->addDay();
-                        while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))||(esFeriado($unaFecha))) {
+                        while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))||($this->esFeriado($fecha))) {
                             $fecha->addDay();
                         }
                     }
@@ -154,8 +155,9 @@ class ProgramacionController extends Controller
  * Funciones de apoyo para generar clases
  */
     public function esFeriado($unaFecha){
-        $frecuencia=count(Feriado::where('fecha','=',$unaFecha)->get());
-        return $frecuencia>0;
+        //$frecuencia=count(Feriado::where('fecha','=',$unaFecha)->get());
+        $cantidad = count(DB::table('feriados')->whereIn('fecha', [$unaFecha])->get());
+        return $cantidad>0;
     }
 
     /**
@@ -174,10 +176,7 @@ class ProgramacionController extends Controller
         return $respuesta;
     }
 
-    public function esFeriado($unaFecha){
-        $cantidad=count(DB::table('feriados')->whereIn('fecha',$unaFecha)->get());
-        return $cantidad>0
-    }
+ 
 
     public function agregarClase(&$programa, &$fecha, &$hora_x_sesion, &$total_horas , &$sesion , $habilitado, &$inscripcion){
         if ($total_horas > $hora_x_sesion) {
@@ -199,6 +198,17 @@ class ProgramacionController extends Controller
         $programa->inscripcione_id = $inscripcion->id;
 
     }
+                                
+                            
+                       // tengo que verificar si existe     
+                            
+                            
+                            
+                            // $programa->horas_por_clase = $hora_x_sesion;
+                            // $programa->docente_id = $sesion->docente_id;
+                            // $programa->materia_id = $sesion->materia_id;
+                            // $programa->aula_id = $sesion->aula_id;
+                            // $programa->inscripcione_id = $inscripcion->id;
 
     public function regenerarPrograma($inscripcione_id,$unaFecha){
         $unaFecha= Carbon::createFromFormat('Y-m-d', $unaFecha);
@@ -207,7 +217,7 @@ class ProgramacionController extends Controller
         $horasFaltantes = Programacion::where('inscripcione_id', '=', $inscripcione_id)
                         ->where('fecha', '>=', $unaFecha)->sum('horas_por_clase');
         $horasPasadas = $inscripcion->totalhoras-$horasFaltantes;
-        Programacion::where('inscripcione_id', '=', $inscripcione_id)
+        Programacion::where('inscripcione_id', '=', $inscripcione_id) 
             ->where('fecha', '>=', $unaFecha)
             ->delete();
         $costo_hora=$inscripcion->costo/$inscripcion->totalhoras;
@@ -241,17 +251,7 @@ class ProgramacionController extends Controller
                     //dd($hora_x_sesion);
                     if ($horasFaltantes > $hora_x_sesion) {
                         if ($Acuenta_para_regenerar > $costo_x_sesion) {
-                            $programa->fecha = $fecha;
-                            $programa->habilitado = true;
-                            $programa->activo = true;
-                            $programa->estado = 'indefinido';
-                            $programa->hora_ini = $sesion->horainicio;
-                            $programa->hora_fin = $sesion->horafin;
-                            $programa->horas_por_clase = $hora_x_sesion;
-                            $programa->docente_id = $sesion->docente_id;
-                            $programa->materia_id = $sesion->materia_id;
-                            $programa->aula_id = $sesion->aula_id;
-                            $programa->inscripcione_id = $inscripcion->id;
+                            $this->agregarClase($programa, $fecha, $hora_x_sesion, $horasFaltantes, $sesion, true, $inscripcion);
                         } else {
                             $programa->fecha = $fecha;
                             $programa->habilitado = false;

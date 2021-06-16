@@ -1,7 +1,12 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+@section('css')
+    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+@stop
+
+@section('title', 'Departamento Crear')
 
 @section('template_title')
-    Create Feriado
+    Crear Departamento
 @endsection
 
 @section('content')
@@ -12,7 +17,7 @@
                 @includeif('partials.errors')
 
                 <div class="card card-default">
-                    <div class="card-header">
+                    <div class="card-header bg-secondary">
                         <span class="card-title">Create Feriado</span>
                     </div>
                     <div class="card-body">
@@ -28,3 +33,4 @@
         </div>
     </section>
 @endsection
+
