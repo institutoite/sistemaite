@@ -92,7 +92,7 @@
                                     <th>DOC</th>
                                     <th>MATERIA</th>
                                     <th>AULA</th>
-                                    <th>OPCIONES</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -121,11 +121,7 @@
                                         <td>{{$programa->nombre}}</td>
                                         <td>{{$programa->materia}}</td>
                                         <td>{{$programa->aula}}</td>
-                                        <td>
-                                            <a class="{{ $claseboton }} tooltipsC mr-2" href="{{route('set.fecha.proximo.pago', ['fecha'=>$programa->fecha->isoFormat('YYYY-MM-DD'),'id'=>$programa->inscripcione_id])}}" title="Asignar esta fecha para el proximo pago">
-                                                Aceptar
-                                            </a>
-                                        </td>
+                                    
                                     </tr>
 
                                 @endforeach

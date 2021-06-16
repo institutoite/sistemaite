@@ -100,6 +100,7 @@ class ProgramacionController extends Controller
         $costo_total=$inscripcion->costo;
         $total_horas=$inscripcion->totalhoras;
         $acuenta =$inscripcion->pagos->sum('monto');
+
         $fecha=$inscripcion->fechaini;
         foreach ($inscripcion->sesiones as $dia) { 
             $vector_dias[] = Dia::findOrFail($dia->dia_id)->dia;
@@ -107,14 +108,16 @@ class ProgramacionController extends Controller
         while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) {
             $fecha->addDay();
         }
+        
         $sesiones=Sesion::where('inscripcione_id','=',$inscripcione_id)->get();
         while($total_horas>0){
             foreach ($sesiones as $sesion) {
                 if ($total_horas > 0) {
                     $programa = new Programacion();
                     $hora_x_sesion= $sesion->horainicio->floatDiffInHours($sesion->horafin);
-                    $costo_x_sesion = ($costo_total / $total_horas) *$hora_x_sesion ;
+                    $costo_x_sesion = ($costo_total / $inscripcion->totalhoras) *$hora_x_sesion ;
                     $costo_hora= $costo_total / $total_horas;
+                    
                     if($total_horas>$hora_x_sesion){
                         if ($acuenta > $costo_x_sesion) {
                             $this->agregarClase($programa,$fecha,$hora_x_sesion,$total_horas,$sesion,true,$inscripcion);
@@ -124,12 +127,14 @@ class ProgramacionController extends Controller
                     }else{
                         if ($acuenta >= $costo_hora*$total_horas) {
                             $this->agregarClase($programa, $fecha, $hora_x_sesion,$total_horas, $sesion, true, $inscripcion);
+                            
                         } else {
                             $this->agregarClase($programa, $fecha, $hora_x_sesion,$total_horas, $sesion, false, $inscripcion);
                         }
                     }
                     $programa->save();
                     $acuenta = $acuenta - $costo_x_sesion;
+                    
                     $total_horas = $total_horas - $hora_x_sesion;
                     $siguiente_sesion= $this->siguienteSesion($inscripcion, $sesion);
                     
@@ -142,6 +147,7 @@ class ProgramacionController extends Controller
                 }
             }
         }
+        
         $inscripcion->fechafin = $programa->fecha;
         if($inscripcion->pagos->sum('monto')<$inscripcion->costo){
             return redirect()->route('mostrar.programa', $inscripcion);
@@ -163,7 +169,7 @@ class ProgramacionController extends Controller
     /**
      * esta funcion hace rotar el turno de las sesiones tipo ronda 
      */
-    public function siguienteSesion(&$unaInscripcion,&$unaSesion){
+    public function siguienteSesion($unaInscripcion,$unaSesion){
         $sesiones_de_esta_inscripcion=Sesion::where('inscripcione_id',$unaInscripcion->id)->get();
         // la sesion actual el es primero consicedarar si tiene una sola sesion
         if($unaSesion->id==$sesiones_de_esta_inscripcion->last()->id){
@@ -178,7 +184,7 @@ class ProgramacionController extends Controller
 
  
 
-    public function agregarClase(&$programa, &$fecha, &$hora_x_sesion, &$total_horas , &$sesion , $habilitado, &$inscripcion){
+    public function agregarClase(&$programa, &$fecha, $hora_x_sesion, &$total_horas , &$sesion , $habilitado, &$inscripcion){
         if ($total_horas > $hora_x_sesion) {
             $programa->hora_fin = $sesion->horafin;
             $programa->horas_por_clase = $hora_x_sesion;
@@ -196,19 +202,7 @@ class ProgramacionController extends Controller
         $programa->materia_id = $sesion->materia_id;
         $programa->aula_id = $sesion->aula_id;
         $programa->inscripcione_id = $inscripcion->id;
-
     }
-                                
-                            
-                       // tengo que verificar si existe     
-                            
-                            
-                            
-                            // $programa->horas_por_clase = $hora_x_sesion;
-                            // $programa->docente_id = $sesion->docente_id;
-                            // $programa->materia_id = $sesion->materia_id;
-                            // $programa->aula_id = $sesion->aula_id;
-                            // $programa->inscripcione_id = $inscripcion->id;
 
     public function regenerarPrograma($inscripcione_id,$unaFecha){
         $unaFecha= Carbon::createFromFormat('Y-m-d', $unaFecha);
@@ -216,6 +210,7 @@ class ProgramacionController extends Controller
         
         $horasFaltantes = Programacion::where('inscripcione_id', '=', $inscripcione_id)
                         ->where('fecha', '>=', $unaFecha)->sum('horas_por_clase');
+        $total_horas=$horasFaltantes;                
         $horasPasadas = $inscripcion->totalhoras-$horasFaltantes;
         Programacion::where('inscripcione_id', '=', $inscripcione_id) 
             ->where('fecha', '>=', $unaFecha)
@@ -245,7 +240,7 @@ class ProgramacionController extends Controller
 
                     $programa = new Programacion();
                     $hora_x_sesion = $sesion->horainicio->floatDiffInHours($sesion->horafin);
-                    $costo_x_sesion = ($costo_restante / $horasFaltantes) * $hora_x_sesion;
+                    $costo_x_sesion = ($costo_restante / $total_horas) * $hora_x_sesion;
                     /** aqui buscar el primer dia que consinda con las sesiones */
 
                     //dd($hora_x_sesion);
@@ -253,46 +248,34 @@ class ProgramacionController extends Controller
                         if ($Acuenta_para_regenerar > $costo_x_sesion) {
                             $this->agregarClase($programa, $fecha, $hora_x_sesion, $horasFaltantes, $sesion, true, $inscripcion);
                         } else {
-                            $programa->fecha = $fecha;
-                            $programa->habilitado = false;
-                            $programa->activo = true;
-                            $programa->estado = 'indefinido';
-                            $programa->hora_ini = $sesion->horainicio;
-                            $programa->hora_fin = $sesion->horafin;
-                            $programa->horas_por_clase = $hora_x_sesion;
-                            $programa->docente_id = $sesion->docente_id;
-                            $programa->materia_id = $sesion->materia_id;
-                            $programa->aula_id = $sesion->aula_id;
-                            $programa->inscripcione_id = $inscripcion->id;
+                            $this->agregarClase($programa, $fecha, $hora_x_sesion, $horasFaltantes, $sesion, false, $inscripcion);
                         }
                     } else {
-                        /* en caso de que ya no alcance para una sesion completa  */
-                        // dd($total_horas);
-                        $programa->fecha = $fecha;
-                        $programa->habilitado = false;
-                        $programa->activo = true;
-                        $programa->estado = 'indefinido';
-                        $programa->hora_ini = $sesion->horainicio;
-                        $programa->hora_fin = $sesion->horainicio->addMinutes($horasFaltantes * 60);
-                        $programa->horas_por_clase = $horasFaltantes;
-                        $programa->docente_id = $sesion->docente_id;
-                        $programa->materia_id = $sesion->materia_id;
-                        $programa->aula_id = $sesion->aula_id;
-                        $programa->inscripcione_id = $inscripcion->id;
+                        if ($Acuenta_para_regenerar >= $costo_hora * $horasFaltantes) {
+                            $this->agregarClase($programa, $fecha, $hora_x_sesion, $horasFaltantes, $sesion, true, $inscripcion);
+                        } else {
+                            $this->agregarClase($programa, $fecha, $hora_x_sesion, $horasFaltantes, $sesion, false, $inscripcion);
+                        }
                     }
                     $programa->save();
-                    
-                    $horasFaltantes = $horasFaltantes - $hora_x_sesion;
-                    $fecha->addDay();
-                    while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) {
-                        $fecha->addDay();
-                    }
-                    //dd($fecha);
-                } else {
-                }
 
-                //dd($programa);
-                $Acuenta_para_regenerar = $Acuenta_para_regenerar - $costo_x_sesion;
+                    $Acuenta_para_regenerar = $Acuenta_para_regenerar - $costo_x_sesion;
+                    $horasFaltantes = $horasFaltantes - $hora_x_sesion;
+                    $siguiente_sesion = $this->siguienteSesion($inscripcion, $sesion);
+
+                    if (($siguiente_sesion->dia_id != $sesion->dia_id) || ($siguiente_sesion->id == Sesion::where('inscripcione_id', $inscripcion->id)->get()->first()->id)) {
+                        $fecha->addDay();
+                        while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) {
+                            $fecha->addDay();
+                        }
+                    }
+
+
+                    
+                    
+                    
+                } 
+                //$Acuenta_para_regenerar = $Acuenta_para_regenerar - $costo_x_sesion;
             }
         }
         $inscripcion->fechafin = $programa->fecha;
@@ -349,7 +332,7 @@ class ProgramacionController extends Controller
             ->join('aulas', 'programacions.aula_id', '=', 'aulas.id')
             ->join('docentes', 'programacions.docente_id', '=', 'docentes.id')
             ->join('personas', 'personas.id', '=', 'docentes.persona_id')
-            ->select('programacions.fecha', 'hora_ini', 'hora_fin', 'horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado')
+            ->select('programacions.fecha', 'hora_ini','programacions.habilitado', 'hora_fin', 'horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado')
             ->orderBy('fecha', 'asc')
             ->where('inscripcione_id', '=', $inscripcione_id)->get();
 

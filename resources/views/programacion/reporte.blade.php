@@ -13,12 +13,7 @@
     
     <div class="row">
         <div class="col-md-12">
-            
             <div class="card">
-                
-               
-                
-                
                 <div class="card-body">
                     <br><br><br><br><br><br>
                     <table class="table-fill">
@@ -29,14 +24,12 @@
                                 <th>DIA</th>
                                 <th>HORARIO</th>
                                 <th>HRAS</th>
-                                <th>DOCENTE</th>
-                                <th>MATERIA</th>
-                                <th>AULA</th>
+                                <th>DOCENTE/MATERIA/AULA</th>
+                                <th>PAGO</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($programacion as $programa)
-
                                     @php
                                     echo $programa->materia;
                                         $hoy=Carbon\Carbon::now();
@@ -55,9 +48,17 @@
                                     <td>{{$programa->fecha->isoFormat('dddd')}}</td>
                                     <td>{{$programa->hora_ini->isoFormat('HH:mm').'-'.$programa->hora_fin->isoFormat('HH:mm')}}</td>
                                     <td>{{$programa->horas_por_clase}}</td>
-                                    <td>{{$programa->nombre}}</td>
-                                    <td>{{$programa->materia}}</td>
-                                    <td>{{$programa->aula}}</td>
+                                    <td>{{$programa->nombre.'/'.$programa->materia.'/'.$programa->aula}}</td>
+                                    <td>
+                                        @php
+                                            if($programa->habilitado==1){
+                                                echo "<img width='20' height='20' src='dist/image/check3.png' alt=''>";
+                                            }else{
+                                                echo "<img width='20' height='20' src='dist/image/x.png' alt=''>";
+                                            }
+                                        @endphp
+                                         
+                                    </td>
                                 </tr>
 
                             @endforeach
