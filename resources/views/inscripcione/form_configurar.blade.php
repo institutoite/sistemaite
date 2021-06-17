@@ -40,12 +40,12 @@
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm" >
             <div class="input-group mb-2" >
-                <input type="time" class="form-control" name="horainicio" id="horainicio">
+                <input type="time" class="form-control is-invalid hora" name="horainicio" id="horainicio">
             </div>    
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm" >
             <div class="input-group mb-2" >
-                <input type="time" class="form-control" name="horafin" id="horafin">
+                <input type="time" class="form-control is-invalid hora" name="horafin" id="horafin">
             </div>    
         </div>
 
