@@ -28,6 +28,10 @@ class Materia extends Model
     {
         return $this->hasOne(Sesion::class);
     }
+    public function programacion()
+    {
+        return $this->hasOne(Programacion::class);
+    }
     public function clases()
     {
         return $this->hasMany(Clase::class);

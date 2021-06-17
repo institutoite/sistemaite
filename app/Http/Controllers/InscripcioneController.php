@@ -165,7 +165,8 @@ class InscripcioneController extends Controller
         $docentes = Docente::get();
         $dias = Dia::get();
         $tipo='actualizando';
-        return view('inscripcione.configurar', compact('inscripcion', 'materias', 'aulas', 'docentes','tipo','dias'));
+        $programacion=$inscripcione->programaciones;
+        return view('inscripcione.configurar', compact('inscripcion', 'materias', 'aulas', 'docentes','tipo','dias','programacion'));
     }
 
     /**

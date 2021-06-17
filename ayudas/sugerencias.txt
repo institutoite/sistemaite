@@ -10,7 +10,7 @@ tareas por hacer
 
 hacer que sea responsive la ventana modal de estudaintes de referencias 
 validar gaurdar contactos de un cliente
-
+Falta editar persona sale un error
 
 
 

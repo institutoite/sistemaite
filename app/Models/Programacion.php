@@ -70,16 +70,6 @@ class Programacion extends Model
         return $this->hasMany(Clase::class);
     }
 
-
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function docente()
-    {
-        return $this->hasOne(Docente::class);
-    }
-    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -94,7 +84,11 @@ class Programacion extends Model
      */
     public function materia()
     {
-        return $this->hasOne(Materia::class);
+        return $this->belongsTo(Materia::class);
+    }
+    public function docente()
+    {
+        return $this->belongsTo(Docente::class);
     }
     public function observaciones()
     {

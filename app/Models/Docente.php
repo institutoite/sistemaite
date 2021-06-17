@@ -38,12 +38,18 @@ class Docente extends Model
         return $this->morphToMany(Materia::class,'materiable');
     }
 
-    public function sesion()
+    public function sesion() 
     {
         return $this->hasOne(Sesion::class);
-    }
+    } 
     public function clases()
     {
-        return $this->hasMany(Clase::class);
+        return $this->hasMany(Clase::class); 
     }
+
+    public function programacion()
+    {
+        return $this->hasOne(Programacion::class); 
+    }
+
 }

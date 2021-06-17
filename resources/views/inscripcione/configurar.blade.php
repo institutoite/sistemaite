@@ -22,12 +22,8 @@
                         @if ($tipo=='actualizando')
                             <form method="POST" id="formulario" action="{{ route('inscripcion.actualizar.configuracion',$inscripcion->id)}}"  role="form" enctype="multipart/form-data">       
                                 @csrf                                           
-                                {{-- <div class="row"> --}}
-                                    {{-- <div class="alert alert-warning col-6">Indica desde cuando quieres actualizar </div> 
-                                    <div class="col-6 pt-1"></div> --}}
-                                    <input class="form-control border-warning" name="fecha" type="date">
-                                {{-- </div> --}}
-                                <div class="card-tools text-lg-center">
+                                <input id="fecha" class="form-control border-warning mb-3" name="fecha" value="{{$inscripcion->fechaini->format('Y-m-d')}}" type="date">
+                                <div class="card-tools text-lg-center mt-4">                                                   
                                     <input id="boton-aceptar" class="btn btn-primary p-2 pl-5 pr-5" type="submit" value="Guardar Cambios">
                                 </div>
                             </form>
@@ -45,14 +41,31 @@
             </div>
         </div>
     </section>
+    @include('programacion.registros')
 @endsection
 
 @section('js')
     <script>
         $(document).ready(function() {
+           
+            $('#horainicio').blur(function() {
+                console.log("ya me dejaron");
+                console.log($(this).val());
+                if($('#horainicio').val()==''){
+                    $('#horainicio').addClass('is-invalid');
+                    
+                }else{
+                    $(this).addClass('is-valid');
+                    $(this).css("background-color", "#FFFFCC");
+                }    
+            });
+            
+            
+
+
             $("#boton").click(function(){
                 var $html="<div class='row'><div class='col-xs-12 col-sm-6 col-md-3 col-lg-2 input-group text-sm'>";
-                    $html+="<select class='form-control' name='dias[]' value="+$("#dia").val()+">"+ $("#dia").html() +"</option>  </select></div>";
+                    $html+="<select class='form-control' id='dias' name='dias[]' value="+$("#dia").val()+">"+ $("#dia").html() +"</option>  </select></div>";
                     $html+="<div class='col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm'>"
                     $html+="<select class='form-control' name='materias[]' value="+$("#materia").val()+">"+ $("#materia").html() +"</select></div>";
                     $html+="<div class='col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm'>"
@@ -64,7 +77,11 @@
                     
                     $html+="<div class='col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm'>"
                     $html+="<input type='time' class='form-control' name='horafin[]' id='horafin' value="+ $('#horafin').val() +"></div>";
-    	            $("#boton-aceptar").before("<div class='alert alert-primary alert-dismissible fade show' role='alert'> "+$html+"<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span> </button></div>");
+    	            
+                  
+                        $("#fecha").after("<div class='alert alert-primary alert-dismissible fade show' role='alert'> "+$html+"<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span> </button></div>");
+                    
+                    
 	        }); 
         });
     </script>
