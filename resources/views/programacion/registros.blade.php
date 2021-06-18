@@ -3,7 +3,7 @@
             <div class="card">
                 <div class="card-body">
                     
-                    <table class="table table-bordered table-hover">
+                    <table id="table-registros" class="table table-bordered table-hover">
                         <thead class="bg-secondary">
                             <tr>
                                 <th>#</th>

@@ -27,28 +27,35 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group">
-            <table class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Nº</th>
-                        <th>Monto</th>
-                        <th>PagoCon</th>
-                        <th>Cambio</th>
-                        <th>Fecha</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($pagos as $pago)
-                        <tr>
-                            <td>{{ $loop->index }}</td>
-                            <td>{{ $pago->monto }}</td>
-                            <td>{{ $pago->pagocon }}</td>
-                            <td>{{ $pago->cambio }}</td>
-                            <td>{{ $pago->created_at }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="card">
+                <div class="card-header">
+                    PAGOS DE ESTA INSCRIPCION
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nº</th>
+                                <th>Monto</th>
+                                <th>PagoCon</th>
+                                <th>Cambio</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($pagos as $pago)
+                                <tr>
+                                    <td>{{ $loop->index }}</td>
+                                    <td>{{ $pago->monto }}</td>
+                                    <td>{{ $pago->pagocon }}</td>
+                                    <td>{{ $pago->cambio }}</td>
+                                    <td>{{ $pago->created_at }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </section>
     

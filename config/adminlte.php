@@ -1,6 +1,4 @@
 <?php
-use App\Models\Clase;
-
 
 return [
 
@@ -47,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Instituto</b>ite',
+    'logo' => '<b>Instituto</b>ITE',
     'logo_img' => 'vendor/adminlte/dist/img/solologo.png',
     'logo_img_class' => 'brand-image img-circle',
     'logo_img_xl' => 'vendor/adminlte/dist/img/logo.png',
@@ -65,10 +63,9 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
-
     'usermenu_enabled' => true,
     'usermenu_header' => true,
-    'usermenu_header_class' => 'bg-primary',
+    'usermenu_header_class' => 'bg-success',
     'usermenu_image' => true,
     'usermenu_desc' => true,
     'usermenu_profile_url' => true,
@@ -103,12 +100,12 @@ return [
     |
     */
 
-    'classes_auth_card' => '',
-    'classes_auth_header' => 'bg-gradient-primary',
+    'classes_auth_card' => 'bg-secondary',
+    'classes_auth_header' => 'bg-gradient-navy',
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
-    'classes_auth_icon' => 'fa-lg text-primary',
-    'classes_auth_btn' => 'btn-flat btn-primary',
+    'classes_auth_icon' => 'fa-lg text-success',
+    'classes_auth_btn' => 'btn-secondary',
 
     /*
     |--------------------------------------------------------------------------
@@ -146,6 +143,9 @@ return [
     |
     */
 
+    //'sidebar_mini' => 'lg',
+   
+
     'sidebar_mini' => true,
     'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
@@ -167,6 +167,8 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
+
+   
 
     'right_sidebar' => true,
     'right_sidebar_icon' => 'fas fa-cogs',
@@ -196,6 +198,8 @@ return [
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
     'profile_url' => false,
+
+  
 
     /*
     |--------------------------------------------------------------------------
@@ -231,15 +235,15 @@ return [
             'search' => true,
             'topnav' => true,
             'url'  => 'busqueda',
-            
+
         ],
         [
-            'text'=>"Estudiantes",
-            'topnav'=>true,
+            'text' => "Estudiantes",
+            'topnav' => true,
             'url'  => '/home',
-            'icon'=> 'fas fa-fw fa-home',
-            'icon_color'=>'primary',
-            
+            'icon' => 'fas fa-fw fa-home',
+            'icon_color' => 'primary',
+
         ],
         [
             'text' => "Actualidad",
@@ -249,7 +253,6 @@ return [
             'icon_color' => 'primary',
 
         ],
-        
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -264,161 +267,96 @@ return [
             'icon_color' => 'primary',
         ],
         ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'Persona',
-            'icon'    => 'fas fa-fw fa-user',
-            'submenu' => [
-                [
-                    'text' => 'Crear',
-                    'route'  => 'personas.create',
-                    'icon' => 'fas fa-fw fa-plus',
-                ],
-                [
-                    'text' => 'Estudiantes',
-                    'url'  => '/home',
-                    'icon' => 'fas fa-book-reader',
-                ],
-                [
-                    'text' => 'Todos',
-                    'url'  => 'personas.todos',
-                    'icon' => 'fas fa-users',
-                ],
-                [
-                    'text' => 'Docentes',
-                    'url'  => 'personas.docentes',
-                    'icon' => 'fas fa-chalkboard-teacher',
+            [
+                'text'    => 'Persona',
+                'icon'    => 'fas fa-fw fa-user',
+                'submenu' => [
+                    [
+                        'text' => 'Crear',
+                        'route'  => 'personas.create',
+                        'icon' => 'fas fa-fw fa-plus',
+                    ],
+                    [
+                        'text' => 'Estudiantes',
+                        'url'  => '/home',
+                        'icon' => 'fas fa-book-reader',
+                    ],
+                    [
+                        'text' => 'Todos',
+                        'url'  => 'personas.todos',
+                        'icon' => 'fas fa-users',
+                    ],
+                    [
+                        'text' => 'Docentes',
+                        'url'  => 'personas.docentes',
+                        'icon' => 'fas fa-chalkboard-teacher',
 
-                ],
-                [
-                    'text' => 'Administrativo',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'Mantexnimiento',
-                    'url'  => '#',
-                ],
+                    ],
+                    [
+                        'text' => 'Administrativo',
+                        'url'  => '#',
+                    ],
+                    [
+                        'text' => 'Mantexnimiento',
+                        'url'  => '#',
+                    ],
+                    [
+                        'text'    => 'Persona',
+                        'icon'    => 'fas fa-fw fa-user',
+                        'submenu' => [
+                            [
+                                'text' => 'Crear',
+                                'route'  => 'personas.create',
+                                'icon' => 'fas fa-fw fa-plus',
+                            ],
+                            [
+                                'text' => 'Estudiantes',
+                                'url'  => '/home',
+                                'icon' => 'fas fa-book-reader',
+                            ],
+                            [
+                                'text' => 'Todos',
+                                'url'  => 'personas.todos',
+                                'icon' => 'fas fa-users',
+                            ],
+                            [
+                                'text' => 'Docentes',
+                                'url'  => 'personas.docentes',
+                                'icon' => 'fas fa-chalkboard-teacher',
 
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
+                            ],
+                            [
+                                'text' => 'Administrativo',
+                                'url'  => '#',
+                            ],
+                            [
+                                'text' => 'Mantexnimiento',
+                                'url'  => '#',
+                            ],
+                            [
+                                'text' => 'level_one',
+                                'url'  => '#',
                             ],
                         ],
+                
                     ],
                 ],
-            ],
+        ],
+        ['header' => 'labels'],
+        [
+            'text'       => 'important',
+            'icon_color' => 'red',
+            'url'        => '#',
         ],
         [
-            'text'    => 'Pais',
-            'icon'    => 'fas fa-fw fa-location',
-            'icon_color' => 'primary',
-            'submenu' => [
-                [
-                    'text' => 'Crear',
-                    'route'  => 'paises.create',
-                    'icon' => 'fas fa-fw fa-plus',
-                ],
-                [
-                    'text' => 'Listar',
-                    'route'  => 'paises.index',
-                    'icon' => 'fas fa-fw fa-lock',
-                ],
-            ]
-        ],
-        
-        
-        [
-            'text'    => 'Ciudasd',
-            'icon'    => 'fas fa-fw fa-location',
-            'class'   => 'bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Crear',
-                    'route'  => 'ciudades.create',
-                    'icon' => 'fas fa-fw fa-plus',
-                ],
-                [
-                    'text' => 'Listar',
-                    'route'  => 'ciudades.index',
-                    'icon' => 'fas fa-fw fa-lock',
-                ],
-            ]
-        ], 
-        
-        [
-            'text' => 'Zona',
-            'icon'    => 'fas fa-fw fa-location',
-            'submenu' => [
-                [
-                    'text' => 'Crear',
-                    'route'  => 'zonas.create',
-                    'icon' => 'fas fa-fw fa-plus',
-                ],
-                [
-                    'text' => 'Listar',
-                    'route'  => 'zonas.index',
-                    'icon' => 'fas fa-fw fa-lock',
-                ],
-            ]
-        ], 
-     
-        [
-            'text'    => 'Usuario',
-            'icon'    => 'fas fa-fw fa-location',
-            'submenu' => [
-                [
-                    'text' => 'Crear',
-                    'route'  => 'usuarios.create',
-                    'icon' => 'fas fa-fw fa-plus',
-                ],
-                [
-                    'text' => 'Listar',
-                    'route'  => 'usuarios.index',
-                    'icon' => 'fas fa-fw fa-lock',
-                ],
-            ]
+            'text'       => 'warning',
+            'icon_color' => 'yellow',
+            'url'        => '#',
         ],
         [
-            'text'    => 'Menu',
-            'icon'    => 'fas fa-fw fa-list',
-            'submenu' => [
-                [
-                    'text' => 'Crear',
-                    'route'  => 'menus.create',
-                    'icon' => 'fas fa-fw fa-plus',
-                ],
-                [
-                    'text' => 'Listar',
-                    'route'  => 'menus.index',
-                    'icon' => 'fas fa-fw fa-lock',
-                ],
-            ]
+            'text'       => 'information',
+            'icon_color' => 'cyan',
+            'url'        => '#',
         ],
     ],
 
@@ -452,7 +390,7 @@ return [
     | Here we can modify the plugins used inside the admin panel.
     |
     | For detailed instructions you can look the plugins section here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Other-Configuration
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Plugins-Configuration
     |
     */
 

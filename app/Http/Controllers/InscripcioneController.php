@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ConfigurarionInscripcionRequest;
 use App\Models\Inscripcione;
 use App\Models\Modalidad;
 use App\Models\Motivo;
@@ -90,7 +91,8 @@ class InscripcioneController extends Controller
         $docentes = Docente::get();
         $dias = Dia::get();
         $tipo = 'guardando';
-        return view('inscripcione.configurar',compact('inscripcion','materias','aulas','docentes','tipo','dias'));
+        $programacion=$inscripcion->programaciones;
+        return view('inscripcione.configurar',compact('inscripcion','materias','aulas','docentes','tipo','dias', 'programacion'));
     }
 
     /**
@@ -203,11 +205,12 @@ class InscripcioneController extends Controller
         
     }
 
-    public function guardarconfiguracion(Request $request,$id){
+    public function guardarconfiguracion(ConfigurarionInscripcionRequest $request,$id){
+        dd($id);
         $inscripcion=Inscripcione::findOrFail($id);
         $cuantas_sesiones=count($request->dias);
         $i=0;
-        //dd($cuantas_sesiones);
+        dd($request->all());
         while($i<$cuantas_sesiones){
             $sesion=new Sesion();
             $sesion->horainicio=$request->horainicio[$i];
@@ -226,6 +229,7 @@ class InscripcioneController extends Controller
 
     public function actualizarConfiguracion(Request $request, $id)
     {
+        dd();
         $cuantas_sesiones = count($request->dias);
         $fecha=$request->fecha;
         Sesion::where('inscripcione_id', '=', $id)->delete();

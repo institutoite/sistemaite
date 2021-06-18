@@ -1,12 +1,8 @@
 @extends('adminlte::auth.auth-page', ['auth_type' => 'login'])
 
 @section('adminlte_css_pre')
-    {{-- <link rel="stylesheet" href="{{ asset('vendor/icheck-bootstrap/icheck-bootstrap.min.css') }}"> --}}
-    
+    <link rel="stylesheet" href="{{ asset('vendor/icheck-bootstrap/icheck-bootstrap.min.css') }}">
 @stop
-@section('css')
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
-@endsection
 
 @php( $login_url = View::getSection('login_url') ?? config('adminlte.login_url', 'login') )
 @php( $register_url = View::getSection('register_url') ?? config('adminlte.register_url', 'register') )
@@ -22,7 +18,6 @@
     @php( $password_reset_url = $password_reset_url ? url($password_reset_url) : '' )
 @endif
 
-{{-- @section('auth_header', __('adminlte::adminlte.login_message')) --}}
 @section('auth_header', __('adminlte::adminlte.login_message'))
 
 @section('auth_body')
@@ -32,7 +27,7 @@
         {{-- Email field --}}
         <div class="input-group mb-3">
             <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}" autofocus>
+                   value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}" autofocus>
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-envelope {{ config('adminlte.classes_auth_icon', '') }}"></span>
@@ -48,7 +43,7 @@
         {{-- Password field --}}
         <div class="input-group mb-3">
             <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
-                placeholder="{{ __('adminlte::adminlte.password') }}">
+                   placeholder="{{ __('adminlte::adminlte.password') }}">
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-lock {{ config('adminlte.classes_auth_icon', '') }}"></span>
@@ -70,7 +65,7 @@
                 </div>
             </div>
             <div class="col-5">
-                <button type=submit class="btn btn-primary">  {{-- config('adminlte.classes_auth_btn', 'btn-flat btn-primary') --}}
+                <button type=submit class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
                     <span class="fas fa-sign-in-alt"></span>
                     {{ __('adminlte::adminlte.sign_in') }}
                 </button>
