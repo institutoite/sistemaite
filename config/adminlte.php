@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Instituto</b>ITE',
+    'logo' => '<b>Instituto</b>ite',
     'logo_img' => 'vendor/adminlte/dist/img/solologo.png',
     'logo_img_class' => 'brand-image img-circle',
     'logo_img_xl' => 'vendor/adminlte/dist/img/logo.png',
@@ -63,12 +63,15 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
+
     'usermenu_enabled' => true,
-    'usermenu_header' => true,
-    'usermenu_header_class' => 'bg-success',
+    'usermenu_header' => false,
+    'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => true,
     'usermenu_desc' => true,
-    'usermenu_profile_url' => true,
+    'usermenu_profile_url' => false,
+
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -82,11 +85,11 @@ return [
     |
     */
 
-    'layout_topnav' => null,
-    'layout_boxed' => null,
+    'layout_topnav' => false,
+    'layout_boxed' => false,
     'layout_fixed_sidebar' => false,
     'layout_fixed_navbar' => true,
-    'layout_fixed_footer' => null,
+    'layout_fixed_footer' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -100,12 +103,14 @@ return [
     |
     */
 
-    'classes_auth_card' => 'bg-secondary',
-    'classes_auth_header' => 'bg-gradient-navy',
-    'classes_auth_body' => '',
-    'classes_auth_footer' => '',
-    'classes_auth_icon' => 'fa-lg text-success',
-    'classes_auth_btn' => 'btn-secondary',
+    'classes_auth_card' => 'bg-gradient-dark',
+    'classes_auth_header' => '',
+    'classes_auth_body' => 'bg-gradient-dark',
+    'classes_auth_footer' => 'text-center',
+    'classes_auth_icon' => 'fa-fw text-light',
+    'classes_auth_btn' => 'btn-flat btn-light',
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -130,7 +135,6 @@ return [
     'classes_topnav' => 'navbar-dark navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
-
     /*
     |--------------------------------------------------------------------------
     | Sidebar
@@ -142,9 +146,6 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
-
-    //'sidebar_mini' => 'lg',
-   
 
     'sidebar_mini' => true,
     'sidebar_collapse' => false,
@@ -167,8 +168,6 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Layout-and-Styling-Configuration
     |
     */
-
-   
 
     'right_sidebar' => true,
     'right_sidebar_icon' => 'fas fa-cogs',
@@ -199,8 +198,6 @@ return [
     'password_email_url' => 'password/email',
     'profile_url' => false,
 
-  
-
     /*
     |--------------------------------------------------------------------------
     | Laravel Mix
@@ -230,13 +227,18 @@ return [
     */
 
     'menu' => [
-        [
-            'text' => 'Buscar',
-            'search' => true,
-            'topnav' => true,
-            'url'  => 'busqueda',
+        // Navbar items:
+        // [
+        //     'type'         => 'navbar-search',
+        //     'text'         => 'search',
+        //     'topnav_right' => true,
+        // ],
+        'CLASES & ACTUALIDAD',
+        // [
+        //     'type'         => 'fullscreen-widget',
+        //     'topnav_right' => true,
+        // ],
 
-        ],
         [
             'text' => "Estudiantes",
             'topnav' => true,
@@ -253,95 +255,443 @@ return [
             'icon_color' => 'primary',
 
         ],
+
+        // Sidebar items:
+        // [
+        //     'type' => 'sidebar-menu-search',
+        //     'text' => 'search',
+        // ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'Estado Actual',
-            'url'         => 'presentes',
-            'icon'        => 'fas fa-fw fa-file',
-            'label'       => 'Ver',
+            'text'        => 'Ver Actualidad',
+            'url'         => 'admin/pages',
+            'icon'        => 'far fa-fw fa-file',
+            'label'       => 4,
             'label_color' => 'success',
-            'icon_color' => 'primary',
         ],
-        ['header' => 'account_settings'],
-            [
-                'text'    => 'Persona',
-                'icon'    => 'fas fa-fw fa-user',
-                'submenu' => [
-                    [
-                        'text' => 'Crear',
-                        'route'  => 'personas.create',
-                        'icon' => 'fas fa-fw fa-plus',
-                    ],
-                    [
-                        'text' => 'Estudiantes',
-                        'url'  => '/home',
-                        'icon' => 'fas fa-book-reader',
-                    ],
-                    [
-                        'text' => 'Todos',
-                        'url'  => 'personas.todos',
-                        'icon' => 'fas fa-users',
-                    ],
-                    [
-                        'text' => 'Docentes',
-                        'url'  => 'personas.docentes',
-                        'icon' => 'fas fa-chalkboard-teacher',
-
-                    ],
-                    [
-                        'text' => 'Administrativo',
-                        'url'  => '#',
-                    ],
-                    [
-                        'text' => 'Mantexnimiento',
-                        'url'  => '#',
-                    ],
-                    [
-                        'text'    => 'Persona',
-                        'icon'    => 'fas fa-fw fa-user',
-                        'submenu' => [
-                            [
-                                'text' => 'Crear',
-                                'route'  => 'personas.create',
-                                'icon' => 'fas fa-fw fa-plus',
-                            ],
-                            [
-                                'text' => 'Estudiantes',
-                                'url'  => '/home',
-                                'icon' => 'fas fa-book-reader',
-                            ],
-                            [
-                                'text' => 'Todos',
-                                'url'  => 'personas.todos',
-                                'icon' => 'fas fa-users',
-                            ],
-                            [
-                                'text' => 'Docentes',
-                                'url'  => 'personas.docentes',
-                                'icon' => 'fas fa-chalkboard-teacher',
-
-                            ],
-                            [
-                                'text' => 'Administrativo',
-                                'url'  => '#',
-                            ],
-                            [
-                                'text' => 'Mantexnimiento',
-                                'url'  => '#',
-                            ],
-                            [
-                                'text' => 'level_one',
-                                'url'  => '#',
-                            ],
+        ['header' => 'ESTUDIANTES'],
+        // [
+        //     'text' => 'Perfil Usuario',
+        //     'url'  => 'user/',
+        //     'icon' => 'fas fa-fw fa-user',
+        // ],
+        
+        /**
+         * menu estudiantes
+         */
+        
+        [
+            'text'    => 'Estudiantes',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Clases Nivelacion',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'submenu' => [
+                        [
+                            'text' => 'Clases Nivelacion',
+                            'icon'    => 'fas fa-fw fa-share',
+                            'url'  => '#',
                         ],
-                
+                        [
+                            'text' => 'Clases Nivelacion',
+                            'icon'    => 'fas fa-fw fa-share',
+                            'url'  => '#',
+                        ],
+                        [
+                            'text' => 'Clases Nivelacion',
+                            'icon'    => 'fas fa-fw fa-share',
+                            'url'  => '#',
+                        ],
+                        [
+                            'text' => 'Clases Nivelacion',
+                            'icon'    => 'fas fa-fw fa-share',
+                            'url'  => '#',
+                        ],
+                        [
+                            'text' => 'Clases Nivelacion',
+                            'icon'    => 'fas fa-fw fa-share',
+                            'url'  => '#',
+                        ],
+
                     ],
                 ],
+                [
+                    'text' => 'Guardería',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Computación',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Universitarios',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+            ],
         ],
+        /**
+         *  Menu personas 
+         */
+        [
+            'text'    => 'Todos',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Personas',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Estudiantes',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Docentes',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Administrativos',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Proveedores',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Fotocopias',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+
+        /**
+         * menu docentes
+         */
+        [
+            'text'    => 'Docentes',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+
+        /**
+         * menu administrativo
+         */
+        [
+            'text'    => 'Docentes',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+
+        /**
+         * menu materias
+         */
+        [
+            'text'    => 'Materias',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+        /**
+         * menu Aulas
+         */
+        [
+            'text'    => 'Aulas',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+
+        /**
+         * menu Temas
+         */
+        [
+            'text'    => 'Temas',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+
+
+        /**
+         * menu Feriados
+         */
+        [
+            'text'    => 'Feriados',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+
+
+        /**
+         * menu Paises
+         */
+        [
+            'text'    => 'Paises',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+
+        /**
+         * menu Ciudades
+         */
+        [
+            'text'    => 'Ciudades',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+
+        /**
+         * menu Zonas
+         */
+        [
+            'text'    => 'Zonas',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+
+        /**
+         * menu Billetes
+         */
+        [
+            'text'    => 'Billetes',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+
+        /**
+         * menu Clases
+         */
+        [
+            'text'    => 'Clases',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+
+        /**
+         * menu Colegios
+         */
+        [
+            'text'    => 'Colegios',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+
+        /**
+         * menu Departamentos
+         */
+        [
+            'text'    => 'Departamentos',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+
+        /**
+         * menu Días
+         */
+        [
+            'text'    => 'Días',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+
+        
+
+
+        /**
+         * menu Reportes
+         */
+        [
+            'text'    => 'Docentes',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+
+
         ['header' => 'labels'],
         [
             'text'       => 'important',
