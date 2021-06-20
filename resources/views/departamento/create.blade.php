@@ -25,11 +25,37 @@
                             @csrf
 
                             @include('departamento.form')
-
+                           
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+     
+
+<aside class="control-sidebar control-sidebar-light">
+  <!-- Content of control sidebar goes here -->
+  <a class="btn btn-primary" href="#" data-toggle="control-sidebar">Toggle Control Sidebar</a>
+  <a class="btn btn-primary" href="#" data-toggle="control-sidebar">Toggle Control Sidebar</a>
+  <a class="btn btn-primary" href="#" data-toggle="control-sidebar">Toggle Control Sidebar</a>
+  <a class="btn btn-primary" href="#" data-toggle="control-sidebar">Toggle Control Sidebar</a>
+  <a class="btn btn-primary" href="#" data-toggle="control-sidebar">Toggle Control Sidebar</a>
+  <a class="btn btn-primary" href="#" data-toggle="control-sidebar">Toggle Control Sidebar</a>
+  <a class="btn btn-primary" href="#" data-toggle="control-sidebar">Toggle Control Sidebar</a>
+  
+</aside>
+<!-- /.control-sidebar -->
+<!-- Add the sidebar's background. This div must be placed
+  immediately after the control sidebar -->
+<div class="control-sidebar-bg">
+    
+</div>
+@endsection
+
+@section('js')
+    <script>
+
+        //$("#my-toggle-button").controlSidebar(options);
+    </script>
 @endsection

@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
-use App\Models\User;
+
 use Illuminate\Support\Facades\Hash;
-
-
+/**
+ * Class UserController
+ * @package App\Http\Controllers
+ */
 class UserController extends Controller
 {
     /**
@@ -18,7 +21,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.index');
+        $users = User::paginate();
+
+        return view('user.index', compact('users'))
+            ->with('i', (request()->input('page', 1) - 1) * $users->perPage());
     }
 
     /**
@@ -28,86 +34,98 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.crear');
+        $user = new User();
+        return view('auth.register', compact('user'));
     }
+    
+    public function crear()
+    {
+        //dd("hola");
+        //return view('vendor.adminlte.auth.register');
+        return view('user.create');
+        
+    }
+
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserStoreRequest $request)
+    public function store(Request $request)
     {
-        $user= new User();
-        $user->name=$request->name;
-        $user->email=$request->email;
-        $user->password= Hash::make($request->password);
+        request()->validate(User::$rules);
 
-        //dd($request->foto[0]);
-        $user->foto=$request->foto[0]->store('usuarios','public');
-        $user->save();
-        //return redirect()->back()->with('mensaje','Registro creado satisfactoriamente');
+        $user = User::create($request->all());
+
+        return redirect()->route('users.index')
+            ->with('success', 'User created successfully.');
+    }
+    public function guardar(UserStoreRequest $request)
+    {
+        $usuario=new User();
+        $usuario->name=$request->name;
+        $usuario->email=$request->email;
+        $usuario->password= Hash::make($request->password);
+        $usuario->save();
+        return redirect()->route('users.index')
+            ->with('success', 'User created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Pais  $pais
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $user=User::findOrFail($id);
-        return view('user.mostrar',compact('user'));
+        $user = User::find($id);
+
+        return view('user.show', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Pais  $pais
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $user=User::findOrFail($id);
-        return view("user.editar", ["user" => $user]);
+        $user = User::find($id);
+
+        return view('user.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Pais  $pais
+     * @param  \Illuminate\Http\Request $request
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(Request $request, User $user)
     {
-        
-        /*$pais=User::findOrFail($id);
-        $pais->nombrepais=$request->nombrepais;
-        $pais->save();
-        $Mensaje="Se actualizó correctamente el registro, Reviselo";
+        request()->validate(User::$rules);
 
-        return view('pais.mostrar',compact('pais','Mensaje'));*/
-        
+        $user->update($request->all());
+
+        return redirect()->route('users.index')
+            ->with('success', 'User updated successfully');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Pais  $pais
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        // $pais = Pais::findOrFail($id);
-        // $pais->delete();
-        // return redirect()->back()->with('mensaje','Registro eliminado Correctamente');
-    }
-    public function eliminarPais($id) {
-        // $pais = Pais::findOrFail($id);
-        // $pais->delete();
-        // return response()->json(['message' => 'Registro Eliminado','status'=>200]); 
+        $user = User::find($id)->delete();
+
+        return redirect()->route('users.index')
+            ->with('success', 'User deleted successfully');
     }
 }

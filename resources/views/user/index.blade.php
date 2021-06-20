@@ -16,19 +16,72 @@
 @stop
 
 @section('content')
-    <table id="usuarios" name="paises" class="table table-bordered table-hover table-striped">
-        <thead class="bg-primary">
-            <tr>
-                <th>ID</th>
-                <th>USUARIO</th>
-                <th>EMAIL</th>
-                <th>FOTO</th>
-                <th>ACCIONES</th>
-            </tr>
-        </thead>
-    </table>
-@stop
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
 
+                            <span id="card_title">
+                                {{ __('User') }}
+                            </span>
+
+                            <div class="float-right">
+                                <a href="{{route('users.crear')}}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                    {{ __('Crear nuevo usudsfario') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                    @endif
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover table-bordered">
+                                <thead class="thead">
+                                    <tr>
+                                        <th>No</th>
+										<th>Name</th>
+										<th>Email</th>
+										<th>Foto</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($users as $user)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            
+											<td>{{ $user->name }}</td>
+											<td>{{ $user->email }}</td>
+											<td>{{ $user->foto }}</td>
+
+                                            <td>
+                                                <form action="{{ route('users.destroy',$user->id) }}" method="POST">
+                                                    <a class="btn" href="{{ route('users.show',$user->id) }}"><i class="fa fa-fw fa-eye text-success"></i> </a>
+                                                    <a class="btn" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-fw fa-edit text-warning"></i> </a>
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn"><i class="fa fa-fw fa-trash text-danger"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {!! $users->links() !!}
+            </div>
+        </div>
+    </div>
+@endsection
 @section('js')
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
@@ -36,42 +89,31 @@
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
     <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
-
+    
     <script>
-        $(document).ready(function() {
-            var tabla=$('#usuarios').DataTable(
+    $(document).ready(function() {
+        var tabla=$('#zonas').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
                     "autoWidth":false,
 
-                    "ajax": "{{ url('api/usuarios') }}",
+                    "ajax": "{{ url('api/zonas') }}",
                     "columns": [
                         {data: 'id'},
-                        {data:'name'},
-                        {
-                            data:'email',
-                        },
-                        {
-                            "name": "foto",
-                            "data": "foto",
-                            "render": function (data, type, full, meta) {
-                                console.log(data.foto);
-                                return "<img src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
-                                
-                            },
-                            "title": "Imxxge",
-                            "orderable": true,
-            
-                        },
+                        {data:'zona'},
+                        {data:'ciudad_id'},
                         {data: 'btn'},
                     ],
                     "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                     },
-
+                    "headers": {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }  
                 }
             );
+        
 
             $('table').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
@@ -89,7 +131,7 @@
                 }).then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: 'eliminar/pais/'+id,
+                            url: 'eliminar/ciudad/'+id,
                             type: 'DELETE',
                             data:{
                                 id:id,
@@ -117,7 +159,7 @@
                                 switch (xhr.status) {
                                     case 500:
                                         Swal.fire({
-                                            title: 'Custom animation with Animate.css',
+                                            title: 'No se pudo eliminar el registro Codigo error:500',
                                             showClass: {
                                                 popup: 'animate__animated animate__fadeInDown'
                                             },

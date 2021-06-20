@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,7 +50,7 @@ Route::put('persona/{persona}/subirfotojpg', 'PersonaController@guardarfotojpg')
 Route::resource('paises', "PaisController");
 Route::resource('ciudades', "CiudadController");
 Route::resource('zonas', "ZonaController");
-Route::resource('usuarios', "UserController");
+//Route::resource('usuarios', "UserController");
 Route::resource('menus', "MenuController");
 Route::resource('grado', "GradoController");
 Route::resource('departamentos', "DepartamentoController");
@@ -67,6 +68,12 @@ Route::resource('clases', "ClaseController");
 Route::resource('personas', "PersonaController");
 Route::resource('telefonos', "TelefonoController");
 Route::resource('licencias', 'LicenciaController');
+Route::resource('users', 'UserController');
+
+Route::get('user/crear', "UserController@crear")->name('users.crear');
+Route::post('user/guardar', "UserController@guardar")->name('users.guardar');
+
+
 
 Route::get('marcar/asistencia/', 'ClaseController@marcado')->name('marcado');
 Route::get('clase/crear', 'ClaseController@crear')->name('clase.crear');
