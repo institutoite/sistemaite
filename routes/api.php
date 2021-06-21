@@ -79,6 +79,13 @@ Route::get('personas', function () {
         ->toJson();
 })->name('personas.todos');
 
+Route::get('usuarios', function () {
+    return datatables()->of(User::all())
+        ->addColumn('btn', 'user.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+})->name('usuarios');
+
 Route::get('apoderados', function () {
     $persona = Persona::select('id', DB::raw('concat_ws(" ",nombre,apellidop,apellidom) as nombre'), 'foto');
     return datatables()->of($persona)

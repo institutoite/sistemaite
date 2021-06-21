@@ -169,7 +169,7 @@ return [
     |
     */
 
-    'right_sidebar' => true,
+    'right_sidebar' => false,
     'right_sidebar_icon' => 'fas fa-user-graduate',
     'right_sidebar_theme' => 'dark',
     'right_sidebar_slide' => true,
@@ -237,12 +237,12 @@ return [
         //     'type'         => 'fullscreen-widget',
         //     'topnav_right' => true,
         // ],
-        
+
+
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true, // Or "topnav => true" to place on the left.
         ],
-       
         [
             'text'    => 'Actualidad',
             'icon'    => 'fas fa-user-graduate',
@@ -291,14 +291,14 @@ return [
             'icon_color' => 'primary',
 
         ],
-        [
-            'text' => "Estudiantes",
-            'topnav_right' => true,
-            'url'  => '/home',
-            'icon' => 'fas fa-fw fa-home',
-            'icon_color' => 'primary',
+        // [
+        //     'text' => "Estudiantes",
+        //     'topnav_right' => true,
+        //     'url'  => '/home',
+        //     'icon' => 'fas fa-fw fa-home',
+        //     'icon_color' => 'primary',
 
-        ],
+        // ],
         [
             'text' => "Actualidad",
             'topnav' => true,
@@ -490,7 +490,7 @@ return [
                 [
                     'text' => 'Crear',
                     'icon'    => 'fas fa-fw fa-share',
-                    'url' => 'users/crear',
+                    'route' => 'users.crear',
                 ],
                 [
                     'text' => 'Listar',
@@ -1019,23 +1019,54 @@ return [
     */
 
     'plugins' => [
+        'Jquery' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//code.jquery.com/jquery-3.5.1.js',
+                ],
+            ],
+        ],
         'Datatables' => [
             'active' => false,
             'files' => [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
+                    'location' => '//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
+                    'location' => '//cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                    'location' => '//cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css',
+                                   //
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css',
                 ],
             ],
         ],
@@ -1054,6 +1085,7 @@ return [
                 ],
             ],
         ],
+       
         'Chartjs' => [
             'active' => false,
             'files' => [

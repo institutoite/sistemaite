@@ -7,8 +7,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 /**
  * Class User
  *
@@ -57,7 +58,8 @@ class User extends Authenticatable
 
     public function adminlte_image()
     {
-        return "https://picsum.photos/300/300";
+        return URL::to('/').('/storage/'.Auth::user()->foto);// url();
+        // <td><img class='materialboxed' src="{{URL::to('/')}}/storage/{{$user->foto}}" height="50"/></td>
     }
 
     public function adminlte_desc()

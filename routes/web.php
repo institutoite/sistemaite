@@ -3,8 +3,8 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
-
+// use SweetAlert;
+use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
 /*
 |--------------------------------------------------------------------------
@@ -159,11 +159,19 @@ Route::delete('eliminar/municipio/{id}', 'MunicipioController@destroy')->name('e
 Route::delete('eliminar/colegio/{id}', 'ColegioController@destroy')->name('eliminar.colegio');
 Route::delete('eliminar/modalidad/{id}', 'ModalidadController@destroy')->name('eliminar.modalidad');
 Route::delete('eliminar/nivel/{id}', 'NivelController@destroy')->name('eliminar.nivel');
-Route::delete('eliminar/inscripcion/{id}', 'InscripcioneController@destroy')->name('eliminar.nivel');
+Route::delete('eliminar/inscripcion/{id}', 'InscripcioneController@destroy')->name('eliminar.inscripcione');
+Route::delete('eliminar/usuario/{id}', 'UserController@destroy')->name('eliminar.user');
 
 Route::get('tomarfoto', function () {return view('persona.tomarfoto');})->name('tomarfoto');
 Route::get('tomarfoto/{persona}', 'PersonaController@tomarfoto')->name('tomar.foto.persona');
 
+
+
+Route::get('s', function () {
+    //SweetAlert::success('Success Message', 'Optional Title');
+    SweetAlert::message('Message', 'Optional Title');
+    return redirect('users');
+});
 /**
 * si tiene inscripción que aparesca el boton caso contrario no 
 * si tiene una inscripción que aparesca de una vez el marcado 

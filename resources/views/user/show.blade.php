@@ -29,7 +29,7 @@
                                 <th>VALOR</th>
                             </thead>
                             <tbody>
-                                {{-- <tr>
+                                <tr>
                                     <td>NOMBRE USUARIO</td>
                                     <td>{{$user->name}}</td>
                                 </tr>
@@ -39,8 +39,8 @@
                                 </tr>
                                 <tr>
                                     <td>FOTO</td>
-                                    <td>{{$user->foto}}</td>
-                                </tr> --}}
+                                    <td><img src="{{URL::to('/').'/storage/'.$user->foto}}" alt=""></td>
+                                </tr>
                             </tbody>
                         </table>    
                     </div>

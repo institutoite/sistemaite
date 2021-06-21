@@ -1,18 +1,17 @@
 @extends('adminlte::page')
 
 @section('css')
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
 @stop
 
 @section('title', 'Usuarios')
 
+@section('plugins.Jquery', true)
+@section('plugins.Datatables', true)
+@section('plugins.Sweetalert2', true)
+
 @section('content_header')
     <h1 class="text-center text-primary">Usuarios</h1>
-    
 @stop
 
 @section('content')
@@ -29,7 +28,7 @@
 
                             <div class="float-right">
                                 <a href="{{route('users.crear')}}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                    {{ __('Crear nuevo usudsfario') }}
+                                    {{ __('Crear nuevo usuario') }}
                                 </a>
                             </div>
                         </div>
@@ -42,7 +41,7 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover table-bordered">
+                            <table id="usuarios" class="table table-striped table-hover table-bordered">
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
@@ -52,72 +51,57 @@
                                         <th></th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @foreach ($users as $user)
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $user->name }}</td>
-											<td>{{ $user->email }}</td>
-											<td>{{ $user->foto }}</td>
-
-                                            <td>
-                                                <form action="{{ route('users.destroy',$user->id) }}" method="POST">
-                                                    <a class="btn" href="{{ route('users.show',$user->id) }}"><i class="fa fa-fw fa-eye text-success"></i> </a>
-                                                    <a class="btn" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-fw fa-edit text-warning"></i> </a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn"><i class="fa fa-fw fa-trash text-danger"></i></button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                {!! $users->links() !!}
             </div>
         </div>
     </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @include('sweet::alert')
 @endsection
 @section('js')
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
-    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
-    
+   
     <script>
     $(document).ready(function() {
-        var tabla=$('#zonas').DataTable(
+        var tabla=$('#usuarios').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
                     "autoWidth":false,
 
-                    "ajax": "{{ url('api/zonas') }}",
+                    "ajax": "{{ url('api/usuarios') }}",
                     "columns": [
                         {data: 'id'},
-                        {data:'zona'},
-                        {data:'ciudad_id'},
-                        {data: 'btn'},
+                        {data: 'name'},
+                        {data: 'email'},
+                        {
+                            "name": "foto",
+                            "data": "foto",
+                            "render": function (data, type, full, meta) {
+                                return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
+                            },
+                            "title": "FOTO",
+                            "orderable": false,
+            
+                        },     
+                        {
+                            "name":"btn",
+                            "data": 'btn',
+                            "orderable": false,
+                        },
                     ],
                     "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-                    },
-                    "headers": {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }  
+                    },  
                 }
             );
-        
 
             $('table').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
                 id=$(this).parent().parent().parent().find('td').first().html();
+                console.log(id);
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",
@@ -131,7 +115,7 @@
                 }).then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: 'eliminar/ciudad/'+id,
+                            url: 'eliminar/usuario/'+id,
                             type: 'DELETE',
                             data:{
                                 id:id,
@@ -195,6 +179,7 @@
                     }
                 })
             });
-        } );
+       
+    } );
     </script>
 @stop

@@ -29,7 +29,7 @@
                         <span class="card-title">Create User</span>
                     </div>
                     <div class="card-body">
-                       <form action="{{route('users.guardar')}}" method="post">
+                       <form action="{{route('users.guardar')}}" method="post" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
                             {{ csrf_field() }}
                             @include('user.form')
                         </form>

@@ -7,7 +7,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 
+use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
+
+
 use Illuminate\Support\Facades\Hash;
+
+//use UxWeb\SweetAlert\SweetAlert as SweetAlertSweetAlert;
+
 /**
  * Class UserController
  * @package App\Http\Controllers
@@ -55,7 +63,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(User::$rules);
+        //request()->validate(User::$rules);
 
         $user = User::create($request->all());
 
@@ -68,7 +76,23 @@ class UserController extends Controller
         $usuario->name=$request->name;
         $usuario->email=$request->email;
         $usuario->password= Hash::make($request->password);
+
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $nombreImagen = 'usuarios/' . Str::random(20) . '.jpg';
+            /** las convertimos en jpg y la redimensionamos */
+            $imagen = Image::make($foto)->encode('jpg', 75);
+            $imagen->resize(160, 160, function ($constraint) {
+                $constraint->upsize();
+            });
+            /* las guarda en en la carpeta estudiantes  */
+            $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
+
+            $usuario->foto = $nombreImagen;
+
+        }
         $usuario->save();
+        
         return redirect()->route('users.index')
             ->with('success', 'User created successfully.');
     }
@@ -108,12 +132,37 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        request()->validate(User::$rules);
+        //dd($request->all());
 
-        $user->update($request->all());
+        $user->name=$request->name;
+        $user->email=$request->email;
+        if($request->password != null){
+            $user->password=$request->password;
+        }
+        if ($request->hasFile('foto')) {
+            // verificando si exites la foto actual
+            if (Storage::disk('public')->exists($user->foto)) {
+                // aquí la borro
+                Storage::disk('public')->delete($user->foto);
+            }
+            //       leandro bruno leaandro
+            $foto = $request->file('foto');
+            $nombreImagen = 'usuarios/' . Str::random(20) . '.jpg';
+            /** las convertimos en jpg y la redimensionamos */
+            $imagen = Image::make($foto)->encode('jpg', 75);
+            $imagen->resize(160, 160, function ($constraint) {
+                $constraint->upsize();
+            });
+            /* las guarda en en la carpeta correpondiente  */
+            $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
+
+            $user->foto = $nombreImagen;
+        }
+
+        $user->save();
 
         return redirect()->route('users.index')
-            ->with('success', 'User updated successfully');
+            ->with('success', 'Usuario actualizado correctamente');
     }
 
     /**
@@ -123,9 +172,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id)->delete();
-
-        return redirect()->route('users.index')
-            ->with('success', 'User deleted successfully');
+        $usuario = User::findOrFail($id);
+        $usuario->delete();
+        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
 }
