@@ -24,13 +24,12 @@ class ConfigurarionInscripcionRequest extends FormRequest
     public function rules()
     {
         return [
-            'dia'=> 'required|array',
-            'materia'=> 'required|array',
-            'docente'=> 'required|array',
-            'aula'=> 'required|array',
-            'horainicio'=>'required',
-            'horafin'=>'required',
-
+            'dias'=> 'required|array',
+            'materias'=> 'required|array',
+            'docentes'=> 'required|array',
+            'aulas'=> 'required|array',
+            'horainicio'=> 'required|array',
+            'horafin'=> 'required|array',
         ];
     }
 }

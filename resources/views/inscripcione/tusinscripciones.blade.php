@@ -30,7 +30,7 @@
                             <table id="inscripcionesVigentes" class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                        <th>#</th>
                                         <th>Objetivo</th>
                                         <th>acuenta</th>
                                         <th>costo</th>
@@ -88,7 +88,7 @@
                             <table id="inscripcionesOtras" class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                        <th>#</th>
                                         <th>Objetivo</th>
                                         <th>acuenta</th>
                                         <th>costo</th>

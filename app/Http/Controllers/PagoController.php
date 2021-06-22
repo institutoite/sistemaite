@@ -36,6 +36,8 @@ class PagoController extends Controller
         return view('pago.create', compact('pago'));
     }
 
+    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -52,20 +54,24 @@ class PagoController extends Controller
         return redirect()->route('pagos.index')
             ->with('success', 'Pago created successfully.');
     }
-    public function crear($inscripcion_id)
+    public function crear($inscripcion)
     {
-        $inscripcion=Inscripcione::findOrFail($inscripcion_id);
+        
+        $inscripcion=Inscripcione::findOrFail((int)$inscripcion);
+        
         $pagos = $inscripcion->pagos;
+        
         return view('pago.create', compact('inscripcion','pagos'));
     }
 
-    public function guardar(Request $request, $inscripcion_id){
+    public function guardar(Request $request,Inscripcione $inscripcion){
 
+        
         $pago=new Pago();
         $pago->monto=$request->monto;
         $pago->pagocon=$request->pagocon;
         $pago->cambio=$request->cambio;
-        $pago->pagable_id=$inscripcion_id;
+        $pago->pagable_id=$inscripcion->id;
         $pago->pagable_type='App\Models\Inscripcione';
         $pago->save();
         return view('billete.create',compact('pago'));

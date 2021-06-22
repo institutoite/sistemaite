@@ -10,7 +10,8 @@ use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
-
+use UxWeb\SweetAlert\SweetAlert as SweetAlert;
+use Alert;
 
 use Illuminate\Support\Facades\Hash;
 
@@ -30,7 +31,9 @@ class UserController extends Controller
     public function index()
     {
         $users = User::paginate();
-
+        //Alert::success('Success Title', 'Success Message');
+        //
+        //dd($v);
         return view('user.index', compact('users'))
             ->with('i', (request()->input('page', 1) - 1) * $users->perPage());
     }
@@ -43,6 +46,8 @@ class UserController extends Controller
     public function create()
     {
         $user = new User();
+        //SweetAlert::message('Robots are working!');
+        SweetAlert::success('Success Message', 'Optional Title');
         return view('auth.register', compact('user'));
     }
     

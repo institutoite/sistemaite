@@ -3,7 +3,7 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-// use SweetAlert;
+//use SweetAlert;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
 /*
@@ -16,6 +16,12 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('alert', function () {
+    $var=SweetAlert::success('Success Message', 'Optional Title');
+    //dd($var->);
+    return view('user.index2');
+});
 
 Route::get('/', function () {
     
@@ -37,7 +43,7 @@ Route::get('/paises/listar',function(){
     return view('pais.index');
 })->name('listar');
 
-Route::resource('personas', "PersonaController");
+
 Route::get('personas/opciones/{id}', function ($id) {
     return view('persona.opciones');
 })->name('personas.opciones');
@@ -46,7 +52,7 @@ Route::put('persona/{persona}/subirfoto','PersonaController@guardarfoto')->name(
 Route::put('persona/{persona}/subirfotojpg', 'PersonaController@guardarfotojpg')->name('guardarfotojpg');
 //Route::put('persona/subirfoto', 'PersonaController@guardarfoto')->name('actualizarfoto');
 
-
+Route::resource('personas', "PersonaController");
 Route::resource('paises', "PaisController");
 Route::resource('ciudades', "CiudadController");
 Route::resource('zonas', "ZonaController");
@@ -60,7 +66,13 @@ Route::resource('colegios', "ColegioController");
 Route::resource('modalidads', "ModalidadController");
 Route::resource('nivels', "NivelController");
 Route::resource('inscripciones', "InscripcioneController");
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       P  A  G  O  S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('pagos', "PagoController");
+Route::get('pago/crear/{inscripcione}', 'PagoController@crear')->name('pagos.crear');
+Route::post('pagos/realizar/{inscripcione}', 'PagoController@guardar')->name('pagos.guardar');
+
+
+
 Route::resource('billetes', "BilleteController");
 Route::resource('programacions', "ProgramacionController");
 Route::resource('feriados', "FeriadoController");
@@ -91,6 +103,8 @@ Route::get('apoderado/existente/{persona}', 'TelefonoController@apoderadoExisten
 Route::get('telefono/agregar/{persona_id}/{apoderado_id}', 'TelefonoController@agregarApoderado')->name('agregar.apoderado');
 Route::post('guardar/apoderado/existente', 'TelefonoController@guardarApoderadoExistente')->name('guardar.apoderado.existente');
 
+Route::get('modalidad/cosultar/', 'ModalidadController@consultar')->name('modalidad.consultar');
+
 
 
 Route::get('presentes',function(){
@@ -99,9 +113,11 @@ Route::get('presentes',function(){
 
 
 
+
+
 Route::get('tus_inscripciones/{estudiante_id}', 'InscripcioneController@tusinscripciones')->name('tus.inscripciones');
 Route::get('listar/inscripciones/{persona}', 'InscripcioneController@listar')->name('listar_inscripciones');
-Route::get('listar/inscripciones/crear/{persona}', 'InscripcioneController@crear')->name('inscribir');
+Route::get('inscripcione/crear/{persona}', 'InscripcioneController@crear')->name('inscribir');
 Route::post('inscripcion/guardar/configuracion/{id}', 'InscripcioneController@guardarconfiguracion')->name('inscripcion.guardar.configuracion');
 Route::post('inscripcion/actualizar/configuracion/{id_inscripcion}', 'InscripcioneController@actualizarConfiguracion')->name('inscripcion.actualizar.configuracion');
 Route::get('inscripcion/actualizar/fechapago/{fecha}/{id}', 'InscripcioneController@actualizar_fecha_proximo_pago')->name('set.fecha.proximo.pago');
@@ -115,8 +131,7 @@ Route::put('telefono/{persona_id}/{apoderado_id}', 'TelefonoController@actualiza
 
 Route::post('crear/contacto/{persona}','PersonaController@storeContacto')->name('persona.storeContacto');
 
-Route::get('pago/crear/{inscripcione}','PagoController@crear')->name('pagos.crear');
-Route::post('pagos/realizar/{id}', 'PagoController@guardar')->name('pagos.guardar');
+
 
 
 Route::post('billetes/crear/{id}', 'BilleteController@guardar')->name('billetes.guardar');
@@ -167,11 +182,7 @@ Route::get('tomarfoto/{persona}', 'PersonaController@tomarfoto')->name('tomar.fo
 
 
 
-Route::get('s', function () {
-    //SweetAlert::success('Success Message', 'Optional Title');
-    SweetAlert::message('Message', 'Optional Title');
-    return redirect('users');
-});
+
 /**
 * si tiene inscripción que aparesca el boton caso contrario no 
 * si tiene una inscripción que aparesca de una vez el marcado 

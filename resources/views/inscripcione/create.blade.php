@@ -4,36 +4,35 @@
 @stop
 
 @section('title', 'Inscripcion Configurar')
+@section('plugins.Jquery', true)
 
 @section('content')
-    <section class="content container-fluid">
-        <div class="row">
-            <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-secondary">
+                <span class="card-title">Formulario Inscripción</span>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ route('inscripciones.store') }}"  role="form" enctype="multipart/form-data">
+                    @csrf
 
-                @includeif('partials.errors')
+                    @include('inscripcione.form')
 
-                <div class="card card-default">
-                    <div class="card-header">
-                        <span class="card-title">Formulario Inscripción</span>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('inscripciones.store') }}"  role="form" enctype="multipart/form-data">
-                            @csrf
-
-                            @include('inscripcione.form')
-
-                        </form>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
-    </section>
 @endsection
 
 @section('js')
     <script>
         $(document).ready(function() {
-            //validar aqui $('#totalhoras').change()
+            $("#modalidad_id").change(function () {
+                var modalidad_id=$(this).val();    
+                data={modalidad_id};
+                $.get('../../modalidad/cosultar/',data,function(respuesta) {
+                    $("#costo").val(respuesta.costo);
+                    $("#totalhoras").val(respuesta.cargahoraria);
+                })
+            });
         });
     </script>
 @endsection

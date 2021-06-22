@@ -169,7 +169,9 @@ return [
         Felixkiss\UniqueWithValidator\ServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        //RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        //UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */
@@ -179,6 +181,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        
     ],
 
     /*
@@ -233,7 +236,8 @@ return [
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-        'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+       // 'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+        
     ],
 
-];
+]; 

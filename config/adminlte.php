@@ -245,38 +245,40 @@ return [
         ],
         [
             'text'    => 'Actualidad',
-            'icon'    => 'fas fa-user-graduate',
+            'icon'    => 'fas fa-record-vinyl',
             'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
 
                 [
                     'text' => 'Por materias',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => '#',
                     'classes'  => 'text-white',
 
                 ],
                 [
                     'text' => 'Por docentes',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
+
                     'url'  => '#',
                     'classes'  => 'text-white',
                 ],
                 [
                     'text' => 'Computacion',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                     'classes'  => 'text-white',
                 ],
                 [
                     'text' => 'Guardería',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                     'classes'  => 'text-white',
                 ],
                 [
                     'text' => 'Por aula',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                     'classes'  => 'text-white',
                 ],
@@ -287,7 +289,7 @@ return [
             'text' => "Estudiantes",
             'topnav' => true,
             'url'  => '/home',
-            'icon' => 'fas fa-fw fa-home',
+            'icon' => 'fas fa-record-vinyl',
             'icon_color' => 'primary',
 
         ],
@@ -329,32 +331,38 @@ return [
         [
             'text'    => 'Estudiantes',
             'icon'    => 'fas fa-user-graduate',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 
                 [
                     'text' => 'Clases Nivelacion',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'classes'  => 'text-white',
                     
                 ],
                 [
                     'text' => 'Guardería',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                     'classes'  => 'text-white',
                 ],
                 [
                     'text' => 'Computación',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                     'classes'  => 'text-white',
                 ],
                 [
                     'text' => 'Universitarios',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
+                    'classes'  => 'text-white',
+                ],
+                [
+                    'text' => 'Crear',
+                    'icon'    => 'fas fa-plus',
+                    'url'  => 'personas/create',
                     'classes'  => 'text-white',
                 ],
 
@@ -367,54 +375,54 @@ return [
          */
         [
             'text'    => 'Gestionar',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-exclamation-triangle',
+            'icon_color' => 'warning',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Un Resumen',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Ya pasaron',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Faltas',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Deudores',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Licencias',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Finalizando',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 
                 [
                     'text' => 'Empezando',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Temas pasados',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Materias pasadas',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
 
@@ -427,28 +435,28 @@ return [
          */
         [
             'text'    => 'Pagos y caja',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-donate',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Ingreso',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Egreso',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Billetes',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Detallado',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
             ],
@@ -457,44 +465,44 @@ return [
 //** %%%%%%%%%%%%%%%%%%  USUARIOS %%%%%%%%%%%%% */
         
         [
-            'text'    => 'Gestion usuarios',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'text'    => 'Usuarios',
+            'icon'    => 'fas fa-user',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Eventos',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Inscripciones',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Ingresos',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Salidas',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Cobros',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Crear',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'route' => 'users.crear',
                 ],
                 [
                     'text' => 'Listar',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'route' => 'users.index',
                 ],
             ],
@@ -503,39 +511,39 @@ return [
         
         [
             'text'    => 'Gestion clases',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-chalkboard-teacher',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Por temas',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Por Materia',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Listar todas',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
 
                 [
                     'text' => 'Notificar',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Practicos',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Detallar todos',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
 
@@ -549,28 +557,28 @@ return [
          */
         [
             'text'    => 'Gestionar Inscripciones',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-keyboard',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Un Resumen',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Computación',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Capacitación',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Guardería',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
             ],
@@ -582,28 +590,28 @@ return [
          */
         [
             'text'    => 'Observaciones',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-list-alt',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Un Resumen',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'De Nivelación',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'De Computación',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Prácticos',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
             ],
@@ -615,28 +623,28 @@ return [
          */
         [
             'text'    => 'Mensajes llamadas',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-phone',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Cumpleañeros',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Faltones',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Deudores',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Mensaje Masivo',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
             ],
@@ -648,28 +656,28 @@ return [
          */
         [
             'text'    => 'Docentes',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-address-book',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Quienes vinieron',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Pasando a..',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Ya pasó a..',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Esperando a..',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
             ],
@@ -679,18 +687,18 @@ return [
         
         [
             'text'    => 'Colegios',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Listar',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Crear',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
             ],
@@ -699,18 +707,18 @@ return [
         
         [
             'text'    => 'Feriados',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-calendar-times',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Listar',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Crear',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
             ],
@@ -720,19 +728,19 @@ return [
         
         [
             'text'    => 'Modalidades',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-star-of-david',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Listar',
-                    'icon'    => 'fas fa-fw fa-share',
-                    'url'  => '#',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'modalidads',
                 ],
                 [
                     'text' => 'Crear',
-                    'icon'    => 'fas fa-fw fa-share',
-                    'url'  => '#',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'modalidads/create',
                 ],
             ],
         ],
@@ -740,18 +748,18 @@ return [
         
         [
             'text'    => 'Grados',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fab fa-buffer', 
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Listar',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Crear',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
             ],
@@ -760,80 +768,61 @@ return [
         
         [
             'text'    => 'Materias',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-book-reader',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Listar',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Crear',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
             ],
         ],
-
-        //** %%%%%%%%%%%%%%%%%%  MENU ZONAS %%%%%%%%%%%%% */
-        
-        [
-            'text'    => 'Zonas',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-fw fa-share',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'Crear',
-                    'icon'    => 'fas fa-fw fa-share',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-
         //** %%%%%%%%%%%%%%%%%%  MENU Aulas %%%%%%%%%%%%% */
-        
+
         [
             'text'    => 'Aulas',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fab fa-angular',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Listar',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Crear',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
             ],
         ],
+       
+
+       
         //** %%%%%%%%%%%%%%%%%%  MENU Administrativos %%%%%%%%%%%%% */
         
         [
             'text'    => 'Administrativos',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-users-cog',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Listar',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Crear',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
             ],
@@ -843,18 +832,18 @@ return [
         
         [
             'text'    => 'Proveedores',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-shopping-cart',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Listar',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Crear',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
             ],
@@ -864,18 +853,18 @@ return [
         
         [
             'text'    => 'Paises',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-flag',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Listar',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Crear',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
             ],
@@ -884,18 +873,18 @@ return [
         
         [
             'text'    => 'Departamentos',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-map-marker-alt',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Listar',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Crear',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
             ],
@@ -904,18 +893,18 @@ return [
         
         [
             'text'    => 'Provincias',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-map-marker',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Listar',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Crear',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
             ],
@@ -925,18 +914,18 @@ return [
         
         [
             'text'    => 'Ciudades',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-city',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Listar',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Crear',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
             ],
@@ -945,18 +934,39 @@ return [
         
         [
             'text'    => 'Municipios',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-map-marked-alt',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Listar',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Crear',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+
+        //** %%%%%%%%%%%%%%%%%%  MENU ZONAS %%%%%%%%%%%%% */
+
+        [
+            'text'    => 'fas fa-map-marked-alt',
+            'icon'    => 'fas fa-street-view',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Crear',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
             ],
@@ -965,18 +975,18 @@ return [
         
         [
             'text'    => 'Dias',
-            'icon'    => 'fas fa-tools',
-            'icon_color' => 'white',
-            'classes'  => 'text-white bg-primary',
+            'icon'    => 'fas fa-',
+            'icon_color' => 'gray',
+            'classes'  => 'text-primary bg-dark',
             'submenu' => [
                 [
                     'text' => 'Listar',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
                 [
                     'text' => 'Crear',
-                    'icon'    => 'fas fa-fw fa-share',
+                    'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                 ],
             ],

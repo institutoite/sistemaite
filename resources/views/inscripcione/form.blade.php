@@ -2,21 +2,16 @@
     <input  type="text" name="estudiante_id"  value="{{ $persona->estudiante->id }}" hidden>    
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">
-            @if($errors->has('horainicio'))
-                <span class="text-danger"> {{ $errors->first('horainicio')}}</span>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm">
+            @if($errors->has('modalidad_id'))
+                <span class="text-danger"> {{ $errors->first('modalidad_id')}}</span>
             @endif
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">    
-            @if($errors->has('horafin'))
-                <span class="text-danger"> {{ $errors->first('horafin')}}</span>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm">    
+            @if($errors->has('costo'))
+                <span class="text-danger"> {{ $errors->first('costo')}}</span>
             @endif
         </div>  
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">    
-            @if($errors->has('fechaini'))
-                <span class="text-danger"> {{ $errors->first('fechaini')}}</span>
-            @endif
-        </div>
     </div>
 
 
@@ -25,7 +20,7 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm" >
             <div class="input-group mb-2" >
                 <p class="col-3 form-control bg-secondary p-1 p-1" for="">Modalidad</p> 
-                <select class="form-control @error('modalidad_id') is-invalid @enderror" data-old="{{ old('modalidad_id') }}" name="modalidad_id" id="country">
+                <select class="form-control @error('modalidad_id') is-invalid @enderror" data-old="{{ old('modalidad_id') }}" name="modalidad_id" id="modalidad_id">
                     <option value="" > Seleccione Modalidad </option>
                     @foreach ($modalidades as $modalidad)
                         @isset($ultima_inscripcion)     
@@ -40,47 +35,32 @@
         {{-- %%%%%%%%%%%%%%% CAMPO HORA FIN --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm" >
             <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1" for="">F. Ini</p> 
-                <input  type="date" name="fechaini" class="form-control @error('fechaini') is-invalid @enderror" value="{{ old('fechaini', $ultima_inscripcion->fechaini->format('Y-m-d') ?? '')}}">
-                                                                                                                        
+                <p class="col-3 form-control bg-secondary p-1 p-1" for="">Costo</p> 
+                <input type="numeric" class="form-control @error('costo') is-invalid @enderror" name="costo" id="costo" value="{{old('costo',$ultima_inscripcion->costo ?? '')}}">
             </div>    
         </div>
     </div>
+
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">
-            @if($errors->has('modalidad_id'))
-                <span class="text-danger"> {{ $errors->first('modalidad_id')}}</span>
+         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm">    
+            @if($errors->has('fechaini'))
+                <span class="text-danger"> {{ $errors->first('fechaini')}}</span>
             @endif
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">    
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm">
             @if($errors->has('totalhoras'))
                 <span class="text-danger"> {{ $errors->first('totalhoras')}}</span>
             @endif
-        </div>  
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">    
-            @if($errors->has('motivo_id'))
-                <span class="text-danger"> {{ $errors->first('motivo_id')}}</span>
-            @endif
         </div>
-    </div>
-
-
-    
-
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">
-            @if($errors->has('costo'))
-                <span class="text-danger"> {{ $errors->first('costo')}}</span>
-            @endif
-           
-        </div>
+        
     </div>
 
     <div class="row"> 
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm" >
+         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm" >
             <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1 p-1" for="">Costo</p> 
-                <input type="numeric" class="form-control @error('costo') is-invalid @enderror" name="costo" value="{{old('costo',$ultima_inscripcion->costo ?? '')}}">
+                <p class="col-3 form-control bg-secondary p-1" for="">F. Ini</p> 
+                <input  type="date" name="fechaini" class="form-control @error('fechaini') is-invalid @enderror" value="{{ old('fechaini', $ultima_inscripcion->fechaini->format('Y-m-d') ?? '')}}">
+                                                                                                                        
             </div>    
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm" >
@@ -91,8 +71,17 @@
         </div>
     </div>
 
+
+
+     <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">
+            @if($errors->has('motivo_id'))
+                <span class="text-danger"> {{ $errors->first('motivo_id')}}</span>
+            @endif
+        </div>
+    </div>
     <div class="row"> 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 input-group text-sm" >
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm" >
             <div class="input-group mb-2" >
                 <p class="col-3 form-control bg-secondary p-1 p-1" for="">Motivo</p> 
                 <select class="form-control @error('motivo_id') is-invalid @enderror" data-old="{{ old('motivo_id') }}" name="motivo_id" id="motivo">
@@ -126,7 +115,7 @@
         </div>
     </div>
 
-    <div class="box-footer mt20">
+    <div class="box-footer mt20 text-center">
         <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
 

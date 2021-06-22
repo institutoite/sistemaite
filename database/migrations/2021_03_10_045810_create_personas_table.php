@@ -26,6 +26,7 @@ class CreatePersonasTable extends Migration
             $table->string('como', 30)->nullable();
             $table->string('papelinicial', 30);
             $table->string('telefono', 10)->nullable();
+            $table->tinyInteger('votos')->nullable()->unsigned();
             
             $table->unsignedInteger('persona_id')->nullable();// persona que referenció
             $table->unsignedInteger('pais_id')->nullable();

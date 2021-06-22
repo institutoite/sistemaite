@@ -67,6 +67,14 @@ class ModalidadController extends Controller
         return view('modalidad.show', compact('modalidad','nivel'));
     }
 
+    public function consultar(Request $request)
+    {   
+        
+        if($request->ajax()){
+            $modalidad = Modalidad::findOrFail($request->modalidad_id);
+            return response()->json($modalidad, 200);
+        }
+    }
     /**
      * Show the form for editing the specified resource.
      *

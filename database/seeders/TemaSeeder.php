@@ -13,7 +13,7 @@ class TemaSeeder extends Seeder
      */
     public function run()
     {
-        Tema::create(['tema'=>'Suma de Naturales','materia_id'=>1]);
+        Tema::create(['tema'=>'Sin Definir','materia_id'=>1]);
         Tema::create(['tema'=>'Resta de Naturales','materia_id'=>1]);
         Tema::create(['tema'=>'Multiplicación de Naturales','materia_id'=>1]);
         Tema::create(['tema'=>'División de Naturales','materia_id'=>1]);

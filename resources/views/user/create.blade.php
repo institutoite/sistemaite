@@ -22,7 +22,15 @@
         <div class="row">
             <div class="col-md-12">
 
-                @includeif('partials.errors')
+                @if (Session::has('success'))
+                  <script>
+                      console.log("llega success");
+                  </script>
+                    <div class="alert alert-primary" role="alert">
+                        <h4 class="alert-heading">Header</h4>
+                        {{$message}}
+                    </div>
+                @endif
 
                 <div class="card card-default">
                     <div class="card-header bg-secondary">
@@ -37,5 +45,10 @@
                 </div>
             </div>
         </div>
+
     </section>
+    
+@endsection
+@section('js')
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @endsection
