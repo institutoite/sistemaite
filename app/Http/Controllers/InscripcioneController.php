@@ -222,9 +222,22 @@ class InscripcioneController extends Controller
         
     }
 
-    public function guardarconfiguracion(ConfigurarionInscripcionRequest $request,$id){
-        
-        $inscripcion=Inscripcione::findOrFail($id);
+    public function guardarconfiguracion(Request $request,$id){
+        var_dump($request);
+        exit();
+        $validado=$request->validate([
+            'dias' => 'required',
+            'materias' => 'required',
+            'docentes' => 'required',
+            'aulas' => 'required',
+            'horainicio' => 'required',
+            'horafin' => 'required',
+        ]);
+
+
+        dd($validado);
+
+        $inscripcion=Inscripcione::find($id);
         $cuantas_sesiones=count($request->dias);
         $i=0;
         

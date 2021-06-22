@@ -19,11 +19,11 @@
                             <button id="botonplus" class="btn btn-primary d-none" type="button">Agregar <i class="fas fa-plus-square"></i></button>
                         </div>
                     </div>
-                    {{($tipo)}}
+                   
                     <div class="card-body">
                         @include('inscripcione.form_configurar')
                         @if ($tipo=='actualizando')
-                        por aqui actualizando
+                       
                             <form method="POST" id="formulario" action="{{ route('inscripcion.actualizar.configuracion',$inscripcion->id)}}"  role="form" enctype="multipart/form-data">       
                                 @csrf                                           
                                 <input id="fecha" class="form-control border-warning mb-3" name="fecha" value="{{$inscripcion->fechaini->format('Y-m-d')}}" type="date">
@@ -36,7 +36,7 @@
                             </form>
                         @endif
                         @if ($tipo=='guardando')
-                        hola guardando
+                       
                             <form method="POST" id="formulario" action="{{ route('inscripcion.guardar.configuracion',$inscripcion->id)}}"  role="form" enctype="multipart/form-data">       
                                 @csrf
                                 <div id="sesiones" style="opacity: '0.1';width:200px;">
@@ -98,11 +98,13 @@
 
             $("#botonplus").click(function(){
                 cantida_sesiones=cantida_sesiones+1;
+                
                 if(cantida_sesiones>0){
                     $("#boton-aceptar").removeClass('d-none');
+                    console.log(cantida_sesiones);
                 }
                 var $html="<div class='row'><div class='col-xs-12 col-sm-6 col-md-3 col-lg-2 input-group text-sm'>";
-                    $html+="<select class='form-control' id='dias' name='dias[]' value="+$("#dia").val()+">"+ $("#dia").html() +"</option>  </select></div>";
+                    $html+="<select class='form-control' name='dias[]' value="+$("#dia").val()+">"+ $("#dia").html() +"</option>  </select></div>";
                     $html+="<div class='col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm'>"
                     $html+="<select class='form-control' name='materias[]' value="+$("#materia").val()+">"+ $("#materia").html() +"</select></div>";
                     $html+="<div class='col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm'>"
@@ -110,10 +112,10 @@
                     $html+="<div class='col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm'>"
                     $html+="<select class='form-control' name='aulas[]' value="+$("#aula").val()+">"+ $("#aula").html() +"</select></div>";
                     $html+="<div class='col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm'>"
-                    $html+="<input type='time' class='form-control' name='horainicio[]' id='horainicio' value="+ $('#horainicio').val() +"></div>";
+                    $html+="<input type='time' class='form-control' name='horainicio[]' value="+ $('#horainicio').val() +"></div>";
                     
                     $html+="<div class='col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm'>"
-                    $html+="<input type='time' class='form-control' name='horafin[]' id='horafin' value="+ $('#horafin').val() +"></div>";
+                    $html+="<input type='time' class='form-control' name='horafin[]' value="+ $('#horafin').val() +"></div>";
                     
                     $("#sesiones").append("<div class='alert alert-success alert-dismissible fade show' role='alert'> "+$html+"<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span> </button></div>");
 
@@ -128,8 +130,16 @@
                     });
                    
                 }); 
-            $("div").on('click','.close .alert',function() {
+            $("body").on('click','div .alert',function() {
                 cantida_sesiones=cantida_sesiones-1;
+                //console.log(cantida_sesiones);
+                if(cantida_sesiones==0){
+                    $("#boton-aceptar").addClass('d-none');
+                    
+                }
+                if(cantida_sesiones==1){
+                    $("#boton-aceptar").removeClass('d-none');
+                }
                 console.log(cantida_sesiones);
             });
 
