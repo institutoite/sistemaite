@@ -1092,12 +1092,6 @@ return [
                     'asset' => false,
                     'location' => '//cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css',
                 ],
-                [
-                    'type' => 'css',
-                    'asset' => true,
-                    'location' => 'bootstrap/css/bootstrap.css',
-
-                ],
             ],
         ],
         

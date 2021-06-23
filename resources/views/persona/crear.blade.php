@@ -14,7 +14,7 @@
 @section('content')
     <div class="card">
         <div class="card-header bg-secondary">
-            FORMULARIO CREAR PERSONAS
+            FORMULARIO CREAR PERSONAS X
         </div>
         <div class="card-body">
             <div class="tab-content">

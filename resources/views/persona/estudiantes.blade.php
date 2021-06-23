@@ -12,7 +12,7 @@
 @section('title', 'Personas')
 
 @section('content_header')
-    <h1 class="text-center text-primary">Buscar Cliente</h1>
+ 
 @stop
 
 @section('content')
@@ -24,16 +24,23 @@
         </div>
     @endif
 
-    <table id="personas" class="table table-bordered table-hover table-striped">
-        <thead class="bg-primary text-center">
-            <tr>
-                <th>ID</th>
-                <th>NOMBRE</th>
-                <th>FOTO</th>
-                <th>ACCIONES</th>
-            </tr>
-        </thead>
-    </table>
+    <div class="card">
+        <div class="card-header">
+            Header <a class="btn btn-secondary float-right" href="{{route('personas.create')}}">Crear Estudiante</a>
+        </div>
+        <div class="card-body">
+            <table id="personas" class="table table-bordered table-hover table-striped">
+                <thead class="bg-primary text-center">
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>FOTO</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
 @stop
 
 @section('js')
