@@ -1,8 +1,4 @@
-@extends('layouts.app')
 
-@section('template_title')
-    Update Feriado
-@endsection
 
 @section('content')
     <section class="content container-fluid">

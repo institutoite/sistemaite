@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PagoStoreRequest;
 use App\Models\Inscripcione;
 use App\Models\Pago;
 use Illuminate\Http\Request;
@@ -64,9 +65,9 @@ class PagoController extends Controller
         return view('pago.create', compact('inscripcion','pagos'));
     }
 
-    public function guardar(Request $request,Inscripcione $inscripcion){
+    public function guardar(PagoStoreRequest $request,$inscripcion_id){
 
-        
+        $inscripcion=Inscripcione::findOrFail($inscripcion_id);
         $pago=new Pago();
         $pago->monto=$request->monto;
         $pago->pagocon=$request->pagocon;

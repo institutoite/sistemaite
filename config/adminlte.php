@@ -1034,8 +1034,18 @@ return [
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//code.jquery.com/jquery-3.5.1.js',
+                ],
+            ],
+        ],
+        'Steepfocus' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'dist/js/steepfocus.js',
                 ],
             ],
         ],
@@ -1063,10 +1073,14 @@ return [
                     'location' => '//cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js',
                 ],
                 [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/searchbuilder/1.0.1/js/dataTables.searchBuilder.min.js',
+                ],
+                [
                     'type' => 'css',
                     'asset' => false,
                     'location' => '//cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css',
-                                   //
                 ],
                 [
                     'type' => 'css',
@@ -1078,8 +1092,16 @@ return [
                     'asset' => false,
                     'location' => '//cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css',
                 ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'bootstrap/css/bootstrap.css',
+
+                ],
             ],
         ],
+        
+
         'Select2' => [
             'active' => false,
             'files' => [
@@ -1095,7 +1117,8 @@ return [
                 ],
             ],
         ],
-       
+
+        
         'Chartjs' => [
             'active' => false,
             'files' => [

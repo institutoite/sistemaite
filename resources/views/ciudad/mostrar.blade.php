@@ -48,12 +48,3 @@
     </div>
     
 @stop
-
-@section('css')
-   
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
-@stop
-
-@section('js')
-    <script> console.log('Hi!'); </script>
-@stop

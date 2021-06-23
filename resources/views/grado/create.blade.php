@@ -1,9 +1,4 @@
 @extends('adminlte::page')
-@section('css')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
-@stop
-
 @section('title', 'Grado Crear')
 
 @section('content')

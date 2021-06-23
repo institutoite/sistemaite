@@ -1,8 +1,6 @@
 @extends('adminlte::page')
 @section('css')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
-    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
+<link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
 @stop
 
 @section('title', 'Grado')
@@ -25,7 +23,7 @@
                         </div>
                          <div class="card">
                             <div class="card-header bg-secondary">
-                                PAGOS {{$pago->cambio}} Bs.
+                                CAMBIO {{$pago->cambio}} Bs.
                             </div>
                             <div class="card-body border border-3 border-secondary azul_suave">
                                 @include('billete.formcambio')

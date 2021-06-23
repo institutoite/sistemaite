@@ -16,7 +16,7 @@
                     <div class="card-header bg-secondary">
                         <span class="card-title">Configurar Inscripcion</span>
                         <div class="card-tools">
-                            <button id="botonplus" class="btn btn-primary d-none" type="button">Agregar <i class="fas fa-plus-square"></i></button>
+                            <button id="botonplus" class="btn btn-primary d-none" type="button">Agregar  Sesiones<i class="fas fa-plus-square"></i></button>
                         </div>
                     </div>
                    
@@ -39,12 +39,19 @@
                        
                             <form method="POST" id="formulario" action="{{ route('inscripcion.guardar.configuracion',$inscripcion->id)}}"  role="form" enctype="multipart/form-data">       
                                 @csrf
-                                <div id="sesiones" style="opacity: '0.1';width:200px;">
-
+                                <div class="card">
+                                    <div id="titulosesion" class="card-header bg-warning">
+                                        
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="sesiones" style="opacity: '0.1';width:200px;" class="p-3 ">
+                                        </div>
+                                        <div class="card-tools text-lg-center">
+                                            <input id="boton-aceptar" class="btn btn-primary p-2 pl-5  d-none pr-5" type="submit" value="Guardar Cambios">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-tools text-lg-center">
-                                    <input id="boton-aceptar" class="btn btn-primary p-2 pl-5  d-none pr-5" type="submit" value="Guardar Cambios">
-                                </div>
+                                
                             </form>
                         @endif
                     </div>
@@ -70,6 +77,9 @@
         $(document).ready(function() {
             
             let cantida_sesiones=0;
+
+             $("#titulosesion").html("<h4>Tine: "+cantida_sesiones+" sesiones por semana para esta inscripción</h4>");
+
             $('#horainicio').blur(function() {
                 if(($('#horainicio').val()=='')||(($('#horafin').val()<=$('#horainicio').val()))){
                     $('#horainicio').addClass('is-invalid');
@@ -128,19 +138,33 @@
                     var ultimaAlerta=$("div .alert").last().animate({
                         
                     });
+
+                    $("#titulosesion").html("<h4>Tine: "+cantida_sesiones+" sesiones por semana para esta inscripción</h4>");
+                     if(cantida_sesiones==0){
+                    $("#boton-aceptar").addClass('d-none');
+                    $("#titulosesion").addClass('bg-warning');
+                }
+                if(cantida_sesiones==1){
+                    $("#boton-aceptar").removeClass('d-none');
+                    $("#titulosesion").removeClass('bg-warning');
+                    $("#titulosesion").addClass('bg-success');
+                }
                    
                 }); 
-            $("body").on('click','div .alert',function() {
+            $("body").on('click','div .alert .close',function() {
                 cantida_sesiones=cantida_sesiones-1;
                 //console.log(cantida_sesiones);
                 if(cantida_sesiones==0){
                     $("#boton-aceptar").addClass('d-none');
-                    
+                    $("#titulosesion").addClass('bg-warning');
                 }
                 if(cantida_sesiones==1){
                     $("#boton-aceptar").removeClass('d-none');
+                    $("#titulosesion").removeClass('bg-warning');
+                    $("#titulosesion").addClass('bg-success');
                 }
                 console.log(cantida_sesiones);
+                $("#titulosesion").html("<h4>Tine: "+cantida_sesiones+" sesiones por semana para esta inscripción </h4>");
             });
 
                 //** data-table

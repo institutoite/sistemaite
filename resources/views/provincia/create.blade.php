@@ -29,3 +29,7 @@
         </div>
     </section>
 @endsection
+@section('js')
+<script src="{{asset('dist/js/steepfocus.js') }}"></script>
+    
+@endsection

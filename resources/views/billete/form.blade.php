@@ -19,7 +19,10 @@
 
     {{-- $$$$$$$$$$$ GRUPO BILLETES BOLIVIANOS --}}
     <div>
-        <label for="">BILLETES PAGOS (Bs.)</label>
+        <label for="">BILLETES PAGOS (Bs.)</label> 
+        <div class="bg-prymary">
+
+        </div>
     </div>
     <div class="row p-3">
         {{-- $$$$$$$$$$$ GRUPO BILLETES 200 BOLIVIANOS --}}

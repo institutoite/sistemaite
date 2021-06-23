@@ -1,24 +1,16 @@
 @extends('adminlte::page')
-
 @section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
-@stop
+@endsection
 
 @section('title', 'Estudiantes Presentes')
 
 @section('content_header')
     
 @stop
+@section('plugins.Datatables',true)
 
 @section('content')
-
-<div id="alerta">
-
-</div>
-
     <table id="presentes" class="table table-hover table-bordered table-striped display" width="100%">
         <thead class="">
             <tr>
@@ -42,15 +34,7 @@
 @stop
 
 @section('js') 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/searchbuilder/1.0.1/js/dataTables.searchBuilder.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
-    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
-
     <script>
         $(document).ready(function() {
             

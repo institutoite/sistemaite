@@ -8,7 +8,6 @@
 @section('plugins.Datatables', true)
 
 
-
 @section('content')
 {{-- {{ dd($tipo) }} --}}
 
@@ -22,7 +21,6 @@
                         <span class="card-title">Create Pago</span>
                     </div>
                     <div class="card-body">
-                      
                         <form method="POST" action="{{ route('pagos.guardar',['inscripcione'=>$inscripcion->id])}}">
                             @csrf
                             @include('pago.form')
@@ -72,7 +70,6 @@
 @section('js')
     <script>
         $(document).ready(function(){
-                   //** data-table
                 $('#pagos').dataTable({
                 "responsive":true,
                 "searching":false,
@@ -89,6 +86,14 @@
                     },  
             });
 
+            $('#pagocon').change(function(){
+                $('#cambio').val($(this).val()-$('#monto').val());
+            });
+            $('#monto').change(function(){
+                $('#cambio').val($('#pagocon').val()-$('#monto').val());
+            });
+
         });
     </script>    
 @endsection
+ {{-- monto pagocon cambio --}}
