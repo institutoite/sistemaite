@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Observacion;
 use Illuminate\Database\Seeder;
 use App\Models\Persona;
 
@@ -16,6 +17,17 @@ class PersonaSeeder extends Seeder
     public function run()
     {
         Persona::factory()->count(10)->create();
+        $a=1;
+        while ($a <= 10) {
+            $observacion=new Observacion();
+            $observacion->observacion ="Esto es una observacion creada desde Seeder";
+            $observacion->activo = 1;
+            $observacion->observable_id = $a;
+            $observacion->observable_type = "App\Models\Persona";
+            $observacion->save();
+            $a=$a+1;
+        }
+        
         Persona::create([
             'nombre' => 'Edgar',
             'apellidop' => 'Estrada',

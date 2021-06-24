@@ -50,6 +50,8 @@ class BilleteController extends Controller
 
         request()->validate(Billete::$rules);
 
+        
+
         $billete = Billete::create($request->all());
 
         return redirect()->route('billetes.index')
@@ -58,7 +60,11 @@ class BilleteController extends Controller
 
     public function guardar(Request $request,$pago_id)
     {
-        
+        dd($request->all());
+        $monto= $request->billete200*200+ $request->billete100*100+ $request->billete50*50+ $request->billete20*20+
+                $request->billete10*10+ $request->moneda5*5+ $request->moneda*2+ $request->moneda*1+ $request->moneda50*0.5+ $request->moneda*0.2;
+                
+
         $vector_cantidad_billetes=[];
         if($request->billete200!=null){
             $vector_cantidad_billetes['1']= $request->billete200;

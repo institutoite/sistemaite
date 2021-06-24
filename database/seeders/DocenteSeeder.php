@@ -56,5 +56,7 @@ class DocenteSeeder extends Seeder
             'dias_prueba' => 1,
             'persona_id' => 15,
         ]);
+
+        
     }
 }

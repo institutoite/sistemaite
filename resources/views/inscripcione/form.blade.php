@@ -59,8 +59,13 @@
          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm" >
             <div class="input-group mb-2" >
                 <p class="col-3 form-control bg-secondary p-1" for="">F. Ini</p> 
-                <input  type="date" name="fechaini" class="form-control @error('fechaini') is-invalid @enderror" value="{{ old('fechaini', $ultima_inscripcion->fechaini->format('Y-m-d') ?? '')}}">
-                                                                                                                        
+                @isset($ultima_inscripcion)
+                    <input  type="date" name="fechaini" class="form-control @error('fechaini') is-invalid @enderror" value="{{ old('fechaini', $ultima_inscripcion->fechaini->format('Y-m-d') ?? '')}}">    
+                @else
+                    <input  type="date" name="fechaini" class="form-control @error('fechaini') is-invalid @enderror" value="{{ old('fechaini' ?? '')}}">
+                @endif
+                
+
             </div>    
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm" >

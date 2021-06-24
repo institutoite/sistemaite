@@ -106,7 +106,7 @@ class PersonaController extends Controller
                 $observacion->observacion=$request->observacion;
                 $observacion->activo=1;
                 $observacion->observable_id=$persona->id;
-                $observacion->observable_type=Persona::class;
+                $observacion->observable_type="App\Models\Persona";
                 $observacion->save();
                 break;
             case 'docente':
@@ -122,7 +122,7 @@ class PersonaController extends Controller
                 $observacion->observacion = $request->observacion;
                 $observacion->activo = 1;
                 $observacion->observable_id = $persona->id;
-                $observacion->observable_type = Persona::class;
+                $observacion->observable_type = "App\Models\Persona";
                 $observacion->save();
 
 
