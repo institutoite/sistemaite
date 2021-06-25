@@ -1,0 +1,103 @@
+if(key==8){
+    playerTeclaBackspace.play();
+}
+if(key==9){
+    playerTeclaTab.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+
+if(key==16){
+    playerTeclaShift.play();
+}
+if(key==17){
+    playerTeclaControl.play();
+}
+
+if(key==20){
+    playerTeclaBloqMayus.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+if(key==10){
+    playerTeclaIntro.play();
+}
+
+
