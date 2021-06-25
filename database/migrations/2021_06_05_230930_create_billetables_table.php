@@ -14,6 +14,7 @@ class CreateBilletablesTable extends Migration
     public function up()
     {
         Schema::create('billetables', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('billete_id');
             $table->unsignedInteger('billetable_id');
             $table->string('billetable_type', 30);

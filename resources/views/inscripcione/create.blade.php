@@ -23,9 +23,22 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('/vendors/ckeditor/ckeditor.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     <script>
+        ClassicEditor
+            .create( document.querySelector( '#objetivo' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+
+    <script>
+
+
         $(document).ready(function() {
+            
+
+
             $("#modalidad_id").change(function () {
                 var modalidad_id=$(this).val();    
                 data={modalidad_id};
