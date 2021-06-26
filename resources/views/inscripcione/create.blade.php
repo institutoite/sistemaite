@@ -24,6 +24,7 @@
 
 @section('js')
     <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+    
     <script>
         ClassicEditor
             .create( document.querySelector( '#objetivo' ) )

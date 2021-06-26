@@ -112,14 +112,14 @@
     </div>
 
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm" >
-            <div class="input-group mb-2" >
+ 
                 <textarea name="objetivo" class="form-control @error('objetivo') is-invalid @enderror" id="objetivo" cols="30" rows="3" row="6" placeholder="Introduce el objetivo de la inscripcion">{{ old('objetivo') ?? $ultima_inscripcion->objetivo ?? '' }}</textarea>
+    {{-- <div id="toolbar-container"></div>
+    <div id="editor" name="objetivo">
 
-            </div>    
-        </div>
-    </div>
+    </div> --}}
+
+    
 
     <div class="box-footer mt20 text-center">
         <button type="submit" class="btn btn-primary">Guardar</button>
