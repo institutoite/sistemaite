@@ -38,4 +38,9 @@ class Grado extends Model
     return $this->belongsToMany(Estudiante::class);
   }
 
+  public function userable()
+  {
+    return $this->morphOne('App\Models\Userable', 'userable');
+  }
+
 }

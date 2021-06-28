@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 @section('css')
-    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
+    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+
 @stop
 
 @section('title', 'Programación')

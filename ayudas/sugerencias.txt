@@ -20,7 +20,9 @@ que se cambien de campo cuando se presiona enter
 en todos los formularios 
 validar los formularios antes de guardar o actualizar 
 
+crear el crud para motivos por el que viene a clase o a inscribirse
 
+que todos los mostrar tengan quien hizo el registro correpondiente
 
 
 

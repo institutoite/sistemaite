@@ -35,4 +35,9 @@ class Zona extends Model
     public static function zonas($id){
         return Zona::where('ciudad_id','=',$id)->get();
     }
+
+    public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
+    }
 }

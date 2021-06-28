@@ -54,5 +54,9 @@ class Billete extends Model
   {
     return $this->morphedByMany(Pago::class, 'billetable')->withPivot('cantidad', 'tipo')->withTimestamps();
   }
+  public function userable()
+  {
+    return $this->morphOne('App\Models\Userable', 'userable');
+  }
 
 }

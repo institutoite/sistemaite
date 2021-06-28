@@ -62,4 +62,6 @@ class Sesion extends Model
     {
         return $this->belongsTo(Aula::class);
     }
+
+    
 }

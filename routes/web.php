@@ -72,9 +72,12 @@ Route::resource('pagos', "PagoController");
 Route::get('pago/crear/{inscripcione}', 'PagoController@crear')->name('pagos.crear');
 Route::post('pagos/realizar/{inscripcione}', 'PagoController@guardar')->name('pagos.guardar');
 
-
-
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       B  I  L  L  E  T  E  S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('billetes', "BilleteController");
+Route::get('billetes/crear/{pago}', "BilleteController@crear")->name('billete.crear');
+Route::post('billetes/crear/{pago}', 'BilleteController@guardar')->name('billetes.guardar');
+
+
 Route::resource('programacions', "ProgramacionController");
 Route::resource('feriados', "FeriadoController");
 Route::resource('clases', "ClaseController");
@@ -135,7 +138,7 @@ Route::post('crear/contacto/{persona}','PersonaController@storeContacto')->name(
 
 
 
-Route::post('billetes/crear/{id}', 'BilleteController@guardar')->name('billetes.guardar');
+
 
 Route::get('generar/programa/{inscripcione}', 'ProgramacionController@generarPrograma')->name('generar.programa');
 Route::get('regenerar/programa/{inscripcione}/{fecha}', 'ProgramacionController@regenerarPrograma')->name('regenerar.programa');

@@ -1030,7 +1030,7 @@ return [
 
     'plugins' => [
         'Jquery' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',

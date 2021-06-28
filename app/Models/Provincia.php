@@ -51,6 +51,11 @@ class Provincia extends Model
     {
         return $this->hasMany(Municipio::class);
     }
+
+    public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
+    }
     
 
 }

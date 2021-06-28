@@ -17,4 +17,8 @@ class Cliservicio extends Model
     {
         return $this->morphMany(Observacion::class, 'observable');
     }
+    public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
+    }
 }

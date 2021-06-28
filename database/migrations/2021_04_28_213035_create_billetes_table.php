@@ -16,7 +16,7 @@ class CreateBilletesTable extends Migration
         Schema::create('billetes', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedDouble('corte');
-            
+            $table->timestamps();
         });
     }
 

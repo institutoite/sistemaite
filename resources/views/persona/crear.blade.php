@@ -1,12 +1,11 @@
 @extends('adminlte::page')
 @section('css')
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
     
 
 @stop
 
-@section('title', 'Dashboard')
+@section('title', 'Crear Persona')
 
 @section('content_header')
 @stop
@@ -32,8 +31,7 @@
 @stop
 
 @section('js')
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="{{asset('dist/js/steepfocus.js') }}"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/plugins/piexif.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/plugins/sortable.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -44,46 +42,23 @@
     
     <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
     
-    {{-- %%%%%%%%%%%%%%%%%%%%%% DATA TABLE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-        <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-        <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-        <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+    {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% CKEDITOR --}}
+    <script>
+        ClassicEditor
+            .create( document.querySelector('#observacion'))
+            .catch( error => {
+                console.error(error);
+            } );
+    </script>
+    {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% FIN CKEDITOR --}}
+
 
 
     <script>
         $(document).ready(function(){
             
-            $('#personas').DataTable(
-                {
-                    "serverSide": true,
-                    "responsive":true,
-                    "autoWidth":false,
-                    "ajax": "{{ url('api/referencias') }}",
-                    "columns": [
-                        {data: 'id'},
-                        {data: 'nombre'},
-                        {data: 'apellidop'},
-                        {data: 'apellidom'},
-                        {
-                            "name": "foto",
-                            "data": "foto",
-                            "render": function (data, type, full, meta) {
-                                return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
-                            },
-                            "title": "Image",
-                            "orderable": true,
-            
-                        }, 
-                        {
-                            data: 'btn'
-                        },  
-                    ],
-                    "language":{
-                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-                    },  
-                }
-            );
+      
 
 
             var url1 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg',

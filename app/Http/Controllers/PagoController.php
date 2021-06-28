@@ -6,6 +6,7 @@ use App\Http\Requests\PagoStoreRequest;
 use App\Models\Inscripcione;
 use App\Models\Pago;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class PagoController
@@ -69,13 +70,17 @@ class PagoController extends Controller
 
         $inscripcion=Inscripcione::findOrFail($inscripcion_id);
         $pago=new Pago();
+        
         $pago->monto=$request->monto;
         $pago->pagocon=$request->pagocon;
         $pago->cambio=$request->cambio;
         $pago->pagable_id=$inscripcion->id;
         $pago->pagable_type='App\Models\Inscripcione';
         $pago->save();
-        return view('billete.create',compact('pago'));
+        //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   %%%%%%%%%%%%%%%%*/
+        $pago->userable()->create(['user_id' => Auth::user()->id]); 
+
+        return redirect()->route('billete.crear',['pago'=>$pago]);
     }
 
     /**

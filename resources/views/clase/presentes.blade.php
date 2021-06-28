@@ -17,8 +17,6 @@
                 <th>#</th>
                 <th>ESTUDIANTE</th>
                 <th>HORARIO</th>
-
-                <th>TIEMPO</th>
                 <th>MATERIA</th>
                 <th>AULA</th>
 
@@ -82,8 +80,7 @@
 
                     $('td', row).eq(0).html('<small>'+data['id']+'</small>');
                     $('td', row).eq(1).html('<small>'+data['name']+'</small>');
-                    $('td', row).eq(2).html('<small>'+horainicio+'</small>');
-                    $('td', row).eq(3).html('<small>'+horafin+'</small>');
+                    $('td', row).eq(2).html('<small>'+horainicio+'-'+horafin+'</small>');
                     $('td', row).eq(4).html('<small>'+data['nombre']+'</small>');
                     $('td', row).eq(5).html('<small>'+data['materia']+'</small>');
                     $('td', row).eq(6).html('<small>'+data['aula']+'</small>');
@@ -100,7 +97,6 @@
                         {data: 'id'},
                         {data: 'name'},
                         {data: 'horainicio'},
-                        {data:'horafin'},
                         {data:'nombre'},
                         {data:'materia'},
                         {data:'aula'},
@@ -120,7 +116,7 @@
                 "ajax": "{{ url('clases/presentes/ahorita') }}",
                 "columnDefs": [
                     { responsivePriority: 1, targets: 0 },  
-                    { responsivePriority: 2, targets: 9 }
+                    { responsivePriority: 2, targets: 8 }
                 ],
                 "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"

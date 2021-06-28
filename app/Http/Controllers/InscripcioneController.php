@@ -16,6 +16,8 @@ use App\Models\Estudiante;
 use App\Models\Programacion;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Auth;
+
 use Carbon\Carbon;
 
 
@@ -34,11 +36,9 @@ class InscripcioneController extends Controller
      */
     public function index()
     {
-       $inscripciones = Inscripcione::paginate();
-
+        $inscripciones = Inscripcione::paginate();
         return view('inscripcione.index', compact('inscripciones'))
-           ->with('i', (request()->input('page', 1) - 1) * $inscripciones->perPage());
-         return "hola soy el index";
+            ->with('i', (request()->input('page', 1) - 1) * $inscripciones->perPage());
     }
 
     /**
@@ -88,6 +88,8 @@ class InscripcioneController extends Controller
         $inscripcion->modalidad_id=$request->modalidad_id;
         $inscripcion->motivo_id=$request->motivo_id;
         $inscripcion->save();
+        //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   %%%%%%%%%%%%%%%%*/
+        $inscripcion->userable()->create(['user_id'=>Auth::user()->id]);
 
         //dd($inscripcion);
         $materias = Materia::get();

@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\ToSweetAlert;
 use UxWeb\SweetAlert\SweetAlert as SweetAlertSweetAlert;
 
@@ -77,6 +78,9 @@ class ClaseController extends Controller
         $clase->tema_id =1;
         $clase->programacion_id=$programacion_id;
         $clase->save();
+
+        $clase->userable()->create(['user_id' => Auth::user()->id]);
+
         $programa=Programacion::findOrFail($programacion_id);
         $programa->estado = 'PRESENTE';
         $programa->save();

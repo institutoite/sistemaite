@@ -37,6 +37,11 @@ class BilleteController extends Controller
         $tipo='pago';
         return view('billete.create', compact('tipo'));
     }
+    public function crear($pago)
+    {
+        $pago=Pago::findOrFail($pago);
+        return view('billete.create', compact('pago'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -46,14 +51,8 @@ class BilleteController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
-
         request()->validate(Billete::$rules);
-
-        
-
         $billete = Billete::create($request->all());
-
         return redirect()->route('billetes.index')
             ->with('success', 'Billete created successfully.');
     }
@@ -67,9 +66,9 @@ class BilleteController extends Controller
         $cambioBilletes = $request->billetecambio200 * 200 + $request->billetecambio100 * 100 + $request->billetecambio50 * 50 + $request->billetecambio20 * 20 +
             $request->billetecambio10 * 10 + $request->monedacambio5 * 5 + $request->monedacambio2 * 2 + $request->monedacambio1 + $request->monedacambio50 * 0.5 + $request->monedacambio20 * 0.2;
         
-        if($pago->pagocon!=($montoBilletes+$cambioBilletes)){
-            //return view('inscripcione.create',compact());
-            return "Algo Esta mal";
+        if(($pago->monto!=$montoBilletes)||($pago->cambio!=$cambioBilletes)){
+            $mensaje="La cantidad de Billetes es incorrecta: ";
+            return back()->withInput()->with(['mensaje'=>$mensaje,'monto'=>$montoBilletes,'cambio'=>$cambioBilletes]);
         }else{
             $vector_cantidad_billetes=[];
             if($request->billete200 != 0){ $vector_cantidad_billetes['1']= $request->billete200;}
@@ -100,13 +99,11 @@ class BilleteController extends Controller
             if($request->monedacambio50   != 0){ $vector_cantidad_billetes_cambio['9']= $request->monedacambio50;}
             if($request->monedacambio20   != 0){ $vector_cantidad_billetes_cambio['10']= $request->monedacambio20;}
             
-            $pago=Pago::findOrFail($pago_id);
-            foreach ($vector_cantidad_billetes as $key => $value) {
-                $pago->billetes()->attach($key,['cantidad'=>$vector_cantidad_billetes_cambio[$key],'tipo'=>'cambio']);
+            foreach ($vector_cantidad_billetes_cambio as $key => $val) {
+                $pago->billetes()->attach($key,['cantidad'=>$val,'tipo'=>'cambio']);
             }
-            
             $inscripcion = Inscripcione::findOrFail($pago->pagable_id);
-            if ($inscripcion->pagos->count() == 1) {
+            if ($inscripcion->programaciones->count() == 0) {
                 return redirect()->route('generar.programa', $inscripcion->id);
             } else {
                 return redirect()->route('actualizar.programa.segun.pago', ['inscripcione' => $inscripcion->id, 'pago' => $pago_id]);

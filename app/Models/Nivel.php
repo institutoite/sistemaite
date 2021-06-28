@@ -42,5 +42,9 @@ class Nivel extends Model
     return $this->hasOne(Modalidad::class);
   }
 
+  public function userable()
+  {
+    return $this->morphOne('App\Models\Userable', 'userable');
+  }
 
 }

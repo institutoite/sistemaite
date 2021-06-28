@@ -36,5 +36,9 @@ class Materia extends Model
     {
         return $this->hasMany(Clase::class);
     }
+    public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
+    }
 
 }

@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Glosa extends Model
 {
     use HasFactory;
+    
 }

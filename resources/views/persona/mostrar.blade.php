@@ -11,6 +11,7 @@
 @stop
 
 @section('content')
+{{-- {{dd($persona)}} --}}
     <div class="card">
         <div class="card-body">
             <table class="table table-bordered table-striped"> 
@@ -88,8 +89,12 @@
                     </tr>
                     
                     <tr>
+                        
                         <td>Recomendado por</td>
-                        <td>{{$persona->persona_id}} </td>
+                        @isset($recomendado)
+                            <td> <a href="{{route('personas.show',$recomendado)}}">{{$recomendado->nombre.' '.$recomendado->apellidop}}</a> </td>
+                        @endisset
+                            
                     </tr>
                     <tr>
                         <td>Actualizado</td>

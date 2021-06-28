@@ -9,9 +9,27 @@
     <section class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
+                @if(Session::has('mensaje'))
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">{{ Auth::user()->name }}!  favor corregir el o los siguientes errores</h4> 
+                            {{session('mensaje')}}
+                            <ol>
+                                @if(session('monto')!=$pago->monto)
+                                    <li><strong>PAGO: </strong> Monto enviado en billetes es <strong>Bs. {{session('monto')}}</strong>  sin enbargo se pago:<strong>Bs. {{$pago->monto}}</strong></li>    
+                                @endif
+                                
+                                @if(session('cambio')!=$pago->cambio)
+                                    <li><strong>CAMBIO: </strong>Cambio enviado en billetes es <strong>Bs. {{session('cambio')}}</strong>   sin embargo el cambio debiera ser: <strong>Bs. {{$pago->cambio}}</strong> </li>
+                                @endif
 
-                @includeif('partials.errors')
-                    <form method="POST" action="{{ route('billetes.guardar', $pago->id)}}" role="form" enctype="multipart/form-data">
+                                
+                            </ol>
+                    </div>
+                @endif        
+                    
+                   
+                        
+                    <form method="POST" action="{{ route('billetes.guardar', $pago)}}" role="form" enctype="multipart/form-data">
                         @csrf
                         <div class="card">
                             <div class="card-header bg-primary">

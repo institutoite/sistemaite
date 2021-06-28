@@ -51,5 +51,9 @@ class Docente extends Model
     {
         return $this->hasOne(Programacion::class); 
     }
+    public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
+    }
 
 }

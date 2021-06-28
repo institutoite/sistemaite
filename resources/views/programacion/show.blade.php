@@ -1,5 +1,9 @@
 @extends('adminlte::page')
-@section('title', 'Programacion')
+@section('css')
+    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+@endsection
+
+@section('title', 'Programacionx')
 
 @section('plugins.Datatables',true)
 
@@ -15,7 +19,7 @@
                         <div class="float-right">
                             {{$persona->nombre.' '.$persona->apellidop}}
 
-                            <a href="{{route('clases.marcado.general', $persona->estudiante->id)}}" class="btn btn-success tooltipsC mr-2" title="ir a opciones de la persona">
+                            <a href="{{route('clases.marcado.general', $inscripcion)}}" class="btn btn-success tooltipsC mr-2" title="ir a opciones de la persona">
                                 Marcar 
                             </a> 
 

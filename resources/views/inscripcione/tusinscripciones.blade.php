@@ -41,7 +41,7 @@
                                     @foreach ($inscripcionesVigentes as $inscripcion)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $inscripcion->objetivo }}</td>
+                                            <td>{!! $inscripcion->objetivo !!}</td>
                                             <td>{{ $inscripcion->acuenta }}</td>
                                             <td>{{ $inscripcion->costo }}</td>
                                             <th>
@@ -167,7 +167,9 @@
                                     @foreach ($inscripciones as $inscripcion)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $inscripcion->objetivo }}</td>
+                                            <td>
+                                                {!! $inscripcion->objetivo !!}
+                                            </td>
                                             <td>{{ $inscripcion->acuenta }}</td>
                                             <td>{{ $inscripcion->costo }}</td>
                                             <th>

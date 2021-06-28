@@ -33,6 +33,10 @@ class Feriado extends Model
      */
     protected $fillable = ['fecha','festividad'];
 
+    public function userable()
+    {
+      return $this->morphOne('App\Models\Userable', 'userable');
+    }
 
 
 }

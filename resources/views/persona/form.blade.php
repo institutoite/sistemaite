@@ -330,13 +330,8 @@
                 @endif
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm" >
-            <div class="input-group mb-2" >
-                <textarea placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" rows="3" class="form-control @error('observacion') is-invalid @enderror" >{{old('observacion',$observacion ?? '')}}</textarea>
-            </div>
-        </div>
-    </div>
+    
+                <textarea placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" >{{old('observacion',$observacion ?? '')}}</textarea>
 
     @isset($persona)
         <div class="row">
@@ -368,8 +363,6 @@
     
 
     
-    {{-- <img src="{{URL::to('/').'/storage/'.$persona->foto}}"  width="250" height="250" alt="fsdfds">
-    <img src="{{URL::to('/').Storage::url("$persona->foto")}}" alt=""> --}}
 
 
 <div class="modal" tabindex="-1" id="modal-ite">

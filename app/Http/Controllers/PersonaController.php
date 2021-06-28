@@ -22,6 +22,7 @@ use App\Http\Requests\PersonaApoderadaRequestStore;
 use App\Models\Inscripcione;
 use App\Models\Observacion;
 use App\Models\Pais;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Storage;
 
@@ -95,6 +96,8 @@ class PersonaController extends Controller
         $persona->ciudad_id = $request->ciudad_id;
         $persona->zona_id = $request->zona_id;
         $persona->save();
+        //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A    P E R S O N A   %%%%%%%%%%%%%%%%*/
+        $persona->userable()->create(['user_id'=>Auth::user()->id]);
         //dd($request->papel);
         switch ($request->papel) {
             
@@ -102,12 +105,16 @@ class PersonaController extends Controller
                 $estudiante=new Estudiante();
                 $estudiante->persona_id=$persona->id;
                 $estudiante->save();
+                //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  E S T U D I A N T E   %%%%%%%%%%%%%%%%*/
+                $estudiante->userable()->create(['user_id' => Auth::user()->id]);
                 $observacion=new Observacion();
                 $observacion->observacion=$request->observacion;
                 $observacion->activo=1;
                 $observacion->observable_id=$persona->id;
                 $observacion->observable_type="App\Models\Persona";
                 $observacion->save();
+                //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  O B S E R V A C I O N   %%%%%%%%%%%%%%%%*/
+                $observacion->userable()->create(['user_id' => Auth::user()->id]);
                 break;
             case 'docente':
                 $docente = new Docente();
@@ -117,36 +124,50 @@ class PersonaController extends Controller
                 $docente->estado = 'actovo';
                 $docente->persona_id = $persona->id;
                 $docente->save();
-
+                //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  D O C E N T E   %%%%%%%%%%%%%%%%*/
+                $docente->userable()->create(['user_id' => Auth::user()->id]);
+                
                 $observacion = new Observacion();
                 $observacion->observacion = $request->observacion;
                 $observacion->activo = 1;
                 $observacion->observable_id = $persona->id;
                 $observacion->observable_type = "App\Models\Persona";
                 $observacion->save();
-
+                //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  O B S E R V A C I O N   %%%%%%%%%%%%%%%%*/
+                $observacion->userable()->create(['user_id' => Auth::user()->id]);
 
                 break;
             case 'cliservicio':
                 $cliservicio = new Cliservicio();
                 $cliservicio->persona_id = $persona->id;
                 $cliservicio->save();
+
+                //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   C L I S E R V I C I O   %%%%%%%%%%%%%%%%*/
+                $cliservicio->userable()->create(['user_id' => Auth::user()->id]);
                 break;
             case 'clicopy':
                 $clicopy = new Clicopy();
                 $clicopy->persona_id = $persona->id;
                 $clicopy->save();
+                //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   C L I C O P Y   %%%%%%%%%%%%%%%%*/
+                $clicopy->userable()->create(['user_id' => Auth::user()->id]);
                 break;
 
             case 'administrativo':
                 $administrativo = new Administrativo();
                 $administrativo->persona_id = $persona->id;
                 $administrativo->save();
+
+                //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   A D M I N I S T V R V A V T I V O  %%%%%%%%%%%%%%%%*/
+                $administrativo->userable()->create(['user_id' => Auth::user()->id]);
                 break;
             case 'proveedor':
                 $proveedor = new Proveedor();
                 $proveedor->persona_id = $persona->id;
                 $proveedor->save();
+
+                //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   P R O V E E D O R    %%%%%%%%%%%%%%%%*/
+                $proveedor->userable()->create(['user_id' => Auth::user()->id]);
                 break;
             default:
                 # code...
@@ -192,11 +213,13 @@ class PersonaController extends Controller
         $ciudad = Ciudad::findOrFail($persona->ciudad_id);
         $zona = Zona::findOrFail($persona->zona_id);
 
+        
         $observacion = Observacion::where('observable_id', $persona->id)
             ->where('observable_type', Persona::class)->get()->first()->observacion;
-        $recomendado=Persona::findOrFail($persona->persona_id);    
-
-        return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion'));
+        
+        $recomendado=Persona::find($persona->persona_id);    
+        //dd($recomendado);
+        return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion','recomendado'));
     }
 
     /**

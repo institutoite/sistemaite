@@ -21,6 +21,10 @@ class Pais extends Model
     {
         return $this->hasOne(Persona::class);
     }
+    public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
+    }
 }
 
 

@@ -45,4 +45,9 @@ class Modalidad extends Model
     return $this->belongsTo(Nivel::class);
   }
 
+  public function userable()
+  {
+    return $this->morphOne('App\Models\Userable', 'userable');
+  }
+
 }

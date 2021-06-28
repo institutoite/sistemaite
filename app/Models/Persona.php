@@ -102,6 +102,12 @@ class Persona extends Model
     }
 
 
+    public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
+    }
+    
+
     public function isEstudiante()
     {
         $estudiante = Estudiante::where('persona_id', '=', $this->id)->count();

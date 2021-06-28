@@ -18,7 +18,7 @@
                 
                 <div class="card card-default">
                     <div class="card-header bg-secondary">
-                        <span class="card-title">Create Pago</span>
+                        <span class="card-title">Crear Pago</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('pagos.guardar',['inscripcione'=>$inscripcion->id])}}">
@@ -63,8 +63,6 @@
             </div>
         </div>
     </section>
-    
-  
 @endsection
 
 @section('js')
@@ -96,4 +94,3 @@
         });
     </script>    
 @endsection
- {{-- monto pagocon cambio --}}

@@ -42,6 +42,9 @@ class Municipio extends Model
     {
         return $this->hasOne(Provincia::class);
     }
-    
+  public function userable()
+  {
+    return $this->morphOne('App\Models\Userable', 'userable');
+  }
 
 }

@@ -52,4 +52,9 @@ class Clase extends Model
     {
         return $this->belongsTo(Tema::class);
     }
+
+    public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
+    }
 }

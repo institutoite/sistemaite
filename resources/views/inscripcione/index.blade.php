@@ -1,11 +1,10 @@
 @extends('adminlte::page')
 @section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
-    
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
 @stop
+
+@section('pugins.Sweetalert2',true)
+@section('pugins.Datatables',true)
 
 @section('title', 'Mis Inscripciones')
 @section('content')
@@ -20,9 +19,9 @@
                                 {{ __('Inscripcione') }}
                             </span>
 
-                             <div class="float-right">
+                            <div class="float-right">
                                 <a href="{{ route('inscripciones.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                    {{ __('Nueva Inscripción') }}
                                 </a>
                             </div>
                         </div>
@@ -72,16 +71,7 @@
     </div>
 @endsection
 @section('js')
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
-    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
-    
     <script>
-        
     $(document).ready(function() {
      
         var tabla=$('#inscripciones').DataTable(

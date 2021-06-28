@@ -16,4 +16,5 @@ class Dia extends Model
     {
         return $this->belongsTo(Sesion::class);
     }
+    
 }
