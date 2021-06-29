@@ -34,25 +34,17 @@
 @stop
 
 @section('js') 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script> --}}
+
+    <script src="{{asset('dist/js/moment.min.js')}}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script>
-
-        let d=moment.duration();
-        //console.log(d);
-        var x = new moment("19:00",'HH:mm')
-        var y = new moment('23:00','HH:mm')
-        var a = moment.duration(3, 'd');
-            var b = moment.duration(2, 'd');
-        console.log(y.subtract(x).hours());
-
-
+        
+        console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
+        console.log(moment().format('LTS'));
         $(document).ready(function() {
             
-            var x = moment("19:00 PM");
-            var y = moment("18:00 PM");
-           
-                console.log(duration);
-            
+              
             $('table').on('click', 'a', function(e) { 
                 e.preventDefault(); 
                 var id_estudiante =$(this).closest('tr').find('td:first-child').text();
@@ -92,19 +84,24 @@
 
             $('#presentes').dataTable({
                 "createdRow": function( row, data, dataIndex){
-                    var horainicio=moment(data['horainicio']).format('HH:mm A');
-                    var horafin=moment(data['horafin']).format('HH:mm A');
-                    //var ahorita=moment().format('HH:mm');
-                    //var duration = moment(horainicio).from(horafin);
+                    var horainicio=moment.duration(data['horainicio']);
+                    var horafin=moment.duration(data['horafin']);
                     
+                    let hinicio=moment(data['horainicio']);
+                    let hfin=moment(data['horafin']);
+                    let ahora=moment();
+                    //console.log(hinicio.hour());
+                    console.log(hinicio.format('LT'));
+                    console.log(hfin.format('LT'))
+                    console.log(hfin.from(ahora));
+                    console.log(hfin.diff(ahora,'minutes'));
 
+                    //console.log(moment.duration(moment(),'minutes').locale('es').humanize());
                     $('td', row).eq(0).html('<small>'+data['id']+'</small>');
                     $('td', row).eq(1).html('<small>'+data['name']+'</small>');
-                    $('td', row).eq(2).html('<small>'+horainicio+'-'+horafin+'</small>');
-                    // $('td', row).eq(3).html('<small>'+ moment(horafin).from(horainicio).format('HH:mm') +'</small>');
-                    // $('td', row).eq(3).html('<small>'+ ahorita.diff(horainicio,'hours') +'</small>');
-                    //$('td', row).eq(3).html('<small>'+  moment.duration(horafin.diff(horainicio)).as('hours') +'</small>');
-                                                        // moment.duration(exitHour.diff(entryHour)).asHours();
+                    $('td', row).eq(2).html('<small>'+moment(data['horainicio']).format('HH:mm')+'-'+moment(data['horafin']).format('HH:mm')+'</small>');
+                    //$('td', row).eq(3).html('<small>'+ moment.duration(horafin.subtract(moment.duration()),'minutes').humanize() +'</small>');
+                    $('td', row).eq(3).html('<small>'+ hfin.from(ahora)+'('+hfin.diff(ahora,'minutes')+')</small>');
                     $('td', row).eq(4).html('<small>'+data['nombre']+'</small>');
                     $('td', row).eq(5).html('<small>'+data['materia']+'</small>');
                     $('td', row).eq(6).html('<small>'+data['aula']+'</small>');
