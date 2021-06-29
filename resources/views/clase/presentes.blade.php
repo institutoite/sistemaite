@@ -9,6 +9,8 @@
     
 @stop
 @section('plugins.Datatables',true)
+@section('plugins.Jquery',true)
+
 
 @section('content')
     <table id="presentes" class="table table-hover table-bordered table-striped display" width="100%">
@@ -34,10 +36,25 @@
 @section('js') 
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script>
+
+        let d=moment.duration();
+        //console.log(d);
+        var x = new moment("19:00",'HH:mm')
+        var y = new moment('23:00','HH:mm')
+        var a = moment.duration(3, 'd');
+            var b = moment.duration(2, 'd');
+        console.log(y.subtract(x).hours());
+
+
         $(document).ready(function() {
             
+            var x = moment("19:00 PM");
+            var y = moment("18:00 PM");
+           
+                console.log(duration);
+            
             $('table').on('click', 'a', function(e) { 
-                 e.preventDefault(); 
+                e.preventDefault(); 
                 var id_estudiante =$(this).closest('tr').find('td:first-child').text();
                 var fila=$(this).closest('tr');
                 console.log(id_estudiante);
@@ -75,18 +92,32 @@
 
             $('#presentes').dataTable({
                 "createdRow": function( row, data, dataIndex){
-                    var horainicio=moment(data['horainicio']).format('HH:mm');
-                    var horafin=moment(data['horafin']).format('HH:mm');
+                    var horainicio=moment(data['horainicio']).format('HH:mm A');
+                    var horafin=moment(data['horafin']).format('HH:mm A');
+                    //var ahorita=moment().format('HH:mm');
+                    //var duration = moment(horainicio).from(horafin);
+                    
 
                     $('td', row).eq(0).html('<small>'+data['id']+'</small>');
                     $('td', row).eq(1).html('<small>'+data['name']+'</small>');
                     $('td', row).eq(2).html('<small>'+horainicio+'-'+horafin+'</small>');
+                    // $('td', row).eq(3).html('<small>'+ moment(horafin).from(horainicio).format('HH:mm') +'</small>');
+                    // $('td', row).eq(3).html('<small>'+ ahorita.diff(horainicio,'hours') +'</small>');
+                    //$('td', row).eq(3).html('<small>'+  moment.duration(horafin.diff(horainicio)).as('hours') +'</small>');
+                                                        // moment.duration(exitHour.diff(entryHour)).asHours();
                     $('td', row).eq(4).html('<small>'+data['nombre']+'</small>');
                     $('td', row).eq(5).html('<small>'+data['materia']+'</small>');
                     $('td', row).eq(6).html('<small>'+data['aula']+'</small>');
                     $('td', row).eq(7).html('<small>'+data['tema']+'</small>');
+              
+                
 
                 },
+                // "drawCallback":function(settings){
+                //     var api = this.api();
+                //     $(api.column(3).footer()).html('<p>hola como estas</p>');
+                // },
+                
                 "serverSide": true,
                 "ordering":false,
                 "responsive":true,
@@ -97,6 +128,7 @@
                         {data: 'id'},
                         {data: 'name'},
                         {data: 'horainicio'},
+                        {data: 'horafin'},
                         {data:'nombre'},
                         {data:'materia'},
                         {data:'aula'},
