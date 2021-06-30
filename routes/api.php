@@ -55,6 +55,8 @@ Route::get('presentes', function () {
     ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
     ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
     ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
+    // ->where('clases.estado','=','PRESENTE')
+    // ->where('clases.fecha','=',Carbon\Carbon::now()->isoFormat('Y-M-D'))
     ->select('clases.id', DB::raw('concat_ws(" ",nombre,apellidop) as nombre'), 'clases.horainicio', 'clases.horafin', 'clases.docente_id', 'clases.materia_id', 'clases.aula_id', 'clases.tema_id', 'personas.foto')->get();
     return datatables()->of($clases)
         ->addColumn('btn', 'clase.action_marcar')

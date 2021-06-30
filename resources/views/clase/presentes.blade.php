@@ -8,8 +8,9 @@
 @section('content_header')
     
 @stop
+{{-- @section('plugins.Jquery',true) --}}
 @section('plugins.Datatables',true)
-@section('plugins.Jquery',true)
+
 
 
 @section('content')
@@ -31,17 +32,18 @@
         </thead>
         
     </table>
-    
+    @include('clase.modalmostrar');    
 @stop
 
 @section('js') 
     <script src="{{asset('dist/js/moment.min.js')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
         
         $(document).ready(function() {
             
-            $('table').on('click', 'a .', function(e) { 
+            $('table').on('click', 'a .finalizar', function(e) { 
                 e.preventDefault(); 
                 var id_estudiante =$(this).closest('tr').find('td:first-child').text();
                 var fila=$(this).closest('tr');
@@ -127,6 +129,39 @@
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                 },  
             });
+
+            $('table').on('click', 'a .mostrar', function(e) {
+                e.preventDefault(); 
+                var id_clase =$(this).closest('tr').find('td:first-child').text();
+                //var fila=$(this).closest('tr').html();
+                //console.log("clase_id:"+id_clase);
+                $.ajax({
+                    url : "clase/mostrar/",
+                    data : { id :id_clase },
+                    success : function(json) {
+                        console.log(json);
+                        $("#modal-mostrar").modal("show");
+                        $html="";
+                        $html+="<tr><td>NOMBRE</td>"+"<td>"+json.nombre+' '+json.apellidop+' '+json.apellidom+"</td></tr>";
+                        $html+="<tr><td>NOMBRE</td>"+"<td>"+json.aula+"</td></tr>";
+                        $html+="<tr><td>NOMBRE</td>"+"<td>"+json.materia+"</td></tr>";
+                        $html+="<tr><td>NOMBRE</td>"+"<td>"+json.tema+"</td></tr>";
+                        $html+="<tr><td>NOMBRE</td>"+"<td>"+json.foto+"</td></tr>";
+
+                        $html+="<tr><td>NOMBRE</td>"+"<td><img src="+"{{URL::to('/')}}/storage/"+json.foto+ " height='150'/></td></tr>";
+                        $html+="<tr><td>NOMBRE</td>"+"<td>"+json.created_at+"</td></tr>";
+                        $html+="<tr><td>NOMBRE</td>"+"<td>"+moment(json.updated_at)+"</td></tr>";
+                        $("#tabla-modal").append($html);
+
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+                
+
+            });
+            
         } );
     </script>
 @stop

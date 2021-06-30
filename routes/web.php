@@ -89,9 +89,10 @@ Route::resource('feriados', "FeriadoController");
 Route::resource('clases', "ClaseController");
 Route::get('clase/editar/{clase}',"ClaseController@editar")->name('clase.editar');
 Route::get('clase/actualizar/{clase}',"ClaseController@actualizar")->name('clase.actualizar');
-Route::get('clase/mostrar/{clase}',"ClaseController@mostrar")->name('clase.mostrar');
+Route::get('clase/mostrar/',"ClaseController@mostrar")->name('clase.mostrar');
 Route::get('clase/listar',"ClaseController@index")->name('clase.index');
 Route::get('clase/finalizar/', 'ClaseController@finalizarClase')->name('clases.finalizar');
+Route::get('clases/presentes/ahorita', 'ClaseController@clasesPresentes')->name('clases.presente');
 
 
 
@@ -113,7 +114,7 @@ Route::post('programa/estado/general/', 'ClaseController@marcadoGeneral')->name(
 Route::post('/clase/guardar/normal/{progrmacion_id}', 'ClaseController@guardar')->name('clases.guardar');
 
 
-Route::get('clases/presentes/ahorita', 'ClaseController@clasesPresentes')->name('clases.presente');
+
 
 
 

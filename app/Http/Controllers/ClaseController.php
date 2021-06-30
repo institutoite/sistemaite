@@ -99,6 +99,19 @@ class ClaseController extends Controller
 
         return view('clase.show', compact('clase'));
     }
+    public function mostrar(Request $request)
+    {
+        $clase = Clase::join('materias','clases.materia_id','materias.id')
+                        ->join('aulas', 'clases.aula_id', 'aulas.id')
+                        ->join('temas', 'clases.tema_id', 'temas.id')
+                        ->join('docentes', 'clases.docente_id', 'docentes.id')
+                        ->join('personas', 'docentes.persona_id', 'personas.id')
+                        ->select('clases.id','fecha','clases.estado','horainicio','horafin','personas.nombre'
+                                ,'personas.apellidop','personas.apellidom','personas.foto','materias.materia','aulas.aula','temas.tema',
+                            'clases.created_at','clases.updated_at')->get()->first();
+        return response()->json($clase);
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -209,6 +222,7 @@ class ClaseController extends Controller
                 ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
                 ->join('temas', 'clases.tema_id', '=', 'temas.id')
                 ->where('clases.estado','PRESENTE')
+                ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
                 ->select('clases.id', DB::raw('concat_ws(" ",personas.nombre,personas.apellidop) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombre', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto')->get();
             return datatables()->of($clases)
                 ->addColumn('btn', 'clase.action_marcar')
