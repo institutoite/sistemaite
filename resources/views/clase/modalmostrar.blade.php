@@ -14,13 +14,13 @@
                         </tr>
                     </thead>
                     <tbody id="tabla-modal">
-                        
+                        {{-- se carga datos con ajax --}}
                     </tbody>
                 </table>
 
             </div>
             <div class="modal-footer">
-                pie del modal 
+                <button class="btn btn-primary" type="button">Aceptar</button>
             </div>
         </div>
     </div>

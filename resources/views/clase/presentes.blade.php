@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 @section('css')
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+    <link href="{{asset('dist/css/zoomify.min.css')}}" rel="stylesheet">
 @endsection
 
 @section('title', 'Estudiantes Presentes')
@@ -32,17 +33,21 @@
         </thead>
         
     </table>
-    @include('clase.modalmostrar');    
+    @include('clase.modalmostrar')  
 @stop
 
-@section('js') 
+
+{{-- %%%%%%%%%%%%%%%%%%%%%%% inicio seccion JS --}}
+@section('js')  
     <script src="{{asset('dist/js/moment.min.js')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{{asset('dist/js/zoomify.min.js')}}"></script>
     <script>
         
         $(document).ready(function() {
-            
+            $('.zoomify').zoomify();
+
             $('table').on('click', 'a .finalizar', function(e) { 
                 e.preventDefault(); 
                 var id_estudiante =$(this).closest('tr').find('td:first-child').text();
@@ -85,9 +90,24 @@
                     let hinicio=moment(data['horainicio']);
                     let hfin=moment(data['horafin']);
                     let ahora=moment();
+                    let minutosRestantantes=hfin.diff(ahora,'minutes');
+                        
+                        if(minutosRestantantes<-10){
+                            $(row).addClass('bg-danger');
+                        }
+                        if((minutosRestantantes<0)&&(minutosRestantantes>=-10)){
+                            $(row).addClass('table-danger');
+                        }
+                        if((minutosRestantantes>0)&&(minutosRestantantes<15)){
+                            $(row).addClass('table-warning');
+                        }
+                        if(minutosRestantantes>15){
+                            $(row).addClass('table-success');
+                        }
 
                     $('td', row).eq(6).html(moment(data['horainicio']).format('HH:mm')+'-'+moment(data['horafin']).format('HH:mm'));
                     $('td', row).eq(7).html( hfin.from(ahora)+'('+hfin.diff(ahora,'minutes'));
+
 
                 },
                 
@@ -110,7 +130,7 @@
                             "name": "foto",
                             "data": "foto",
                             "render": function (data, type, full, meta) {
-                                return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
+                                return "<img class='materialboxed img-thumbnail zoomify' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
                             },
                             "title": "FOTO",
                             "orderable": false,
@@ -133,24 +153,25 @@
             $('table').on('click', 'a .mostrar', function(e) {
                 e.preventDefault(); 
                 var id_clase =$(this).closest('tr').find('td:first-child').text();
-                //var fila=$(this).closest('tr').html();
-                //console.log("clase_id:"+id_clase);
+                var fila=$(this).closest('tr');
+                console.log("fila:"+fila);
                 $.ajax({
                     url : "clase/mostrar/",
                     data : { id :id_clase },
                     success : function(json) {
-                        console.log(json);
                         $("#modal-mostrar").modal("show");
+                        $("#tabla-modal").empty();
                         $html="";
-                        $html+="<tr><td>NOMBRE</td>"+"<td>"+json.nombre+' '+json.apellidop+' '+json.apellidom+"</td></tr>";
-                        $html+="<tr><td>NOMBRE</td>"+"<td>"+json.aula+"</td></tr>";
-                        $html+="<tr><td>NOMBRE</td>"+"<td>"+json.materia+"</td></tr>";
-                        $html+="<tr><td>NOMBRE</td>"+"<td>"+json.tema+"</td></tr>";
-                        $html+="<tr><td>NOMBRE</td>"+"<td>"+json.foto+"</td></tr>";
+                        $html+="<tr><td>DOCENTE</td>"+"<td>"+json.nombre+' '+json.apellidop+' '+json.apellidom+"</td></tr>";
+                        $html+="<tr><td>ESTUDIANTE</td>"+"<td>"+fila.find('td').eq(1).html()+"</td></tr>";
+                        $html+="<tr><td>AULA</td>"+"<td>"+json.aula+"</td></tr>";
+                        $html+="<tr><td>MATERIA</td>"+"<td>"+json.materia+"</td></tr>";
+                        $html+="<tr><td>TEMA</td>"+"<td>"+json.tema+"</td></tr>";
+                        $html+="<tr><td>FOTO DOCENTE</td>"+"<td>"+fila.find('td').eq(8).html()+"</td></tr>";
 
-                        $html+="<tr><td>NOMBRE</td>"+"<td><img src="+"{{URL::to('/')}}/storage/"+json.foto+ " height='150'/></td></tr>";
-                        $html+="<tr><td>NOMBRE</td>"+"<td>"+json.created_at+"</td></tr>";
-                        $html+="<tr><td>NOMBRE</td>"+"<td>"+moment(json.updated_at)+"</td></tr>";
+                        $html+="<tr><td>FOTO ESTUDIANTE</td>"+"<td><img  src="+"{{URL::to('/')}}/storage/"+json.foto+ " height='150'/></td></tr>";
+                        $html+="<tr><td>CREADO</td>"+"<td>"+json.created_at+"</td></tr>";
+                        $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.updated_at)+"</td></tr>";
                         $("#tabla-modal").append($html);
 
                     },
@@ -165,3 +186,5 @@
         } );
     </script>
 @stop
+
+{{-- %%%%%%%%%%fin seccion JS --}}
