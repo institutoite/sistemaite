@@ -67,6 +67,11 @@ Route::resource('colegios', "ColegioController");
 Route::resource('modalidads', "ModalidadController");
 Route::resource('nivels', "NivelController");
 Route::resource('inscripciones', "InscripcioneController");
+
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       E S T D U D I A N T E S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+Route::get('/hoy','EstdudianteController@hoy')->name('estudiantes.hoy');
+
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       P  A  G  O  S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('pagos', "PagoController");
 Route::get('pago/crear/{inscripcione}', 'PagoController@crear')->name('pagos.crear');
@@ -80,7 +85,16 @@ Route::post('billetes/crear/{pago}', 'BilleteController@guardar')->name('billete
 
 Route::resource('programacions', "ProgramacionController");
 Route::resource('feriados', "FeriadoController");
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  C L A S E S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('clases', "ClaseController");
+Route::get('clase/editar/{clase}',"ClaseController@editar")->name('clase.editar');
+Route::get('clase/actualizar/{clase}',"ClaseController@actualizar")->name('clase.actualizar');
+Route::get('clase/mostrar/{clase}',"ClaseController@mostrar")->name('clase.mostrar');
+Route::get('clase/listar',"ClaseController@index")->name('clase.index');
+Route::get('clase/finalizar/', 'ClaseController@finalizarClase')->name('clases.finalizar');
+
+
+
 Route::resource('personas', "PersonaController");
 Route::resource('telefonos', "TelefonoController");
 Route::resource('licencias', 'LicenciaController');
@@ -100,7 +114,7 @@ Route::post('/clase/guardar/normal/{progrmacion_id}', 'ClaseController@guardar')
 
 
 Route::get('clases/presentes/ahorita', 'ClaseController@clasesPresentes')->name('clases.presente');
-Route::get('clase/finalizar/', 'ClaseController@finalizarClase')->name('clases.finalizar');
+
 
 
 Route::get('apoderado/existente/{persona}', 'TelefonoController@apoderadoExistente')->name('apoderado.existente');

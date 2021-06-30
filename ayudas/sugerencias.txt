@@ -23,6 +23,8 @@ validar los formularios antes de guardar o actualizar
 crear el crud para motivos por el que viene a clase o a inscribirse
 
 que todos los mostrar tengan quien hizo el registro correpondiente
+registro rapido de posibles clientes 
 
+mostrar la vista hoy con los estudiante presentes faltantes por llegar etc
 
 

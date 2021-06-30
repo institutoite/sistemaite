@@ -293,19 +293,19 @@ return [
             'icon_color' => 'primary',
 
         ],
-        // [
-        //     'text' => "Estudiantes",
-        //     'topnav_right' => true,
-        //     'url'  => '/home',
-        //     'icon' => 'fas fa-fw fa-home',
-        //     'icon_color' => 'primary',
-
-        // ],
         [
             'text' => "Actualidad",
             'topnav' => true,
             'url'    => 'presentes',
             'icon' => 'fas fa-fw fa-home',
+            'icon_color' => 'primary',
+
+        ],
+        [
+            'text' => "Hoy",
+            'topnav' => true,
+            'url'  => '/hoy',
+            'icon' => 'fas fa-record-vinyl',
             'icon_color' => 'primary',
 
         ],

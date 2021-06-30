@@ -18,14 +18,15 @@
             <tr>
                 <th>#</th>
                 <th>ESTUDIANTE</th>
-                <th>HORARIO</th>
                 <th>MATERIA</th>
                 <th>AULA</th>
+                <th>TEMA</th>
 
-                <th>TEMA</th>
-                <th>TEMA</th>
-                <th>TEMA</th>
-                <th></th>
+                <th>DOCENTE</th>
+                <th>HORARIO</th>
+                <th>TIEMPO</th>
+                <th>FOTO</th>
+                <th>ACTION</th>
             </tr>
         </thead>
         
@@ -34,30 +35,22 @@
 @stop
 
 @section('js') 
-    {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script> --}}
-
     <script src="{{asset('dist/js/moment.min.js')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script>
         
-        console.log(moment().format('MMMM Do YYYY, h:mm:ss a'));
-        console.log(moment().format('LTS'));
         $(document).ready(function() {
             
-              
-            $('table').on('click', 'a', function(e) { 
+            $('table').on('click', 'a .', function(e) { 
                 e.preventDefault(); 
                 var id_estudiante =$(this).closest('tr').find('td:first-child').text();
                 var fila=$(this).closest('tr');
-                console.log(id_estudiante);
 		        $.ajax({
                     url : "clase/finalizar/",
                     data : { id :id_estudiante },
                     success : function(json) {
                             console.log(json);
                             fila.remove();
-                            // html="<div id='' class='alert alert-primary' role='alert'>"+ json.message +"</div>";
-                            // $('#alerta').html(html);
                             const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
@@ -90,30 +83,11 @@
                     let hinicio=moment(data['horainicio']);
                     let hfin=moment(data['horafin']);
                     let ahora=moment();
-                    //console.log(hinicio.hour());
-                    console.log(hinicio.format('LT'));
-                    console.log(hfin.format('LT'))
-                    console.log(hfin.from(ahora));
-                    console.log(hfin.diff(ahora,'minutes'));
 
-                    //console.log(moment.duration(moment(),'minutes').locale('es').humanize());
-                    $('td', row).eq(0).html('<small>'+data['id']+'</small>');
-                    $('td', row).eq(1).html('<small>'+data['name']+'</small>');
-                    $('td', row).eq(2).html('<small>'+moment(data['horainicio']).format('HH:mm')+'-'+moment(data['horafin']).format('HH:mm')+'</small>');
-                    //$('td', row).eq(3).html('<small>'+ moment.duration(horafin.subtract(moment.duration()),'minutes').humanize() +'</small>');
-                    $('td', row).eq(3).html('<small>'+ hfin.from(ahora)+'('+hfin.diff(ahora,'minutes')+')</small>');
-                    $('td', row).eq(4).html('<small>'+data['nombre']+'</small>');
-                    $('td', row).eq(5).html('<small>'+data['materia']+'</small>');
-                    $('td', row).eq(6).html('<small>'+data['aula']+'</small>');
-                    $('td', row).eq(7).html('<small>'+data['tema']+'</small>');
-              
-                
+                    $('td', row).eq(6).html(moment(data['horainicio']).format('HH:mm')+'-'+moment(data['horafin']).format('HH:mm'));
+                    $('td', row).eq(7).html( hfin.from(ahora)+'('+hfin.diff(ahora,'minutes'));
 
                 },
-                // "drawCallback":function(settings){
-                //     var api = this.api();
-                //     $(api.column(3).footer()).html('<p>hola como estas</p>');
-                // },
                 
                 "serverSide": true,
                 "ordering":false,
@@ -124,12 +98,12 @@
                 "columns": [
                         {data: 'id'},
                         {data: 'name'},
+                        {data: 'materia'},
+                        {data: 'aula'},
+                        {data: 'tema'},
+                        {data: 'nombre'},
                         {data: 'horainicio'},
                         {data: 'horafin'},
-                        {data:'nombre'},
-                        {data:'materia'},
-                        {data:'aula'},
-                        {data:'tema'},
                         {
                             "name": "foto",
                             "data": "foto",
@@ -140,7 +114,9 @@
                             "orderable": false,
             
                         },  
-                        {data: 'btn'},
+                        {   
+                            "data": "btn"
+                        },
                     ],
                 "ajax": "{{ url('clases/presentes/ahorita') }}",
                 "columnDefs": [
