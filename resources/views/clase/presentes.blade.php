@@ -1,7 +1,14 @@
 @extends('adminlte::page')
 @section('css')
+    
+
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
-    <link href="{{asset('dist/css/zoomify.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
+
+    {{-- <link href="{{asset('dist/lbgalery/css/galery.css')}}" rel="stylesheet"> --}}
+    
+    
 @endsection
 
 @section('title', 'Estudiantes Presentes')
@@ -9,7 +16,7 @@
 @section('content_header')
     
 @stop
-{{-- @section('plugins.Jquery',true) --}}
+@section('plugins.Jquery',true)
 @section('plugins.Datatables',true)
 
 
@@ -32,7 +39,7 @@
             </tr>
         </thead>
         
-    </table>
+    </table >
     @include('clase.modalmostrar')  
 @stop
 
@@ -42,12 +49,17 @@
     <script src="{{asset('dist/js/moment.min.js')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="{{asset('dist/js/zoomify.min.js')}}"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{{asset('dist/js/zoomify.js')}}"></script>
+    
     <script>
         
         $(document).ready(function() {
-            $('.zoomify').zoomify();
 
+            let x=$('.zoomify').zoomify();
+                console.log(x);
+                
             $('table').on('click', 'a .finalizar', function(e) { 
                 e.preventDefault(); 
                 var id_estudiante =$(this).closest('tr').find('td:first-child').text();
@@ -130,7 +142,7 @@
                             "name": "foto",
                             "data": "foto",
                             "render": function (data, type, full, meta) {
-                                return "<img class='materialboxed img-thumbnail zoomify' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
+                                return "<div><img class='img-thumbnail zoomify' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/></div>";
                             },
                             "title": "FOTO",
                             "orderable": false,
@@ -184,6 +196,7 @@
             });
             
         } );
+        
     </script>
 @stop
 

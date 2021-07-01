@@ -1034,8 +1034,9 @@ return [
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => true,
-                    'location' => '//code.jquery.com/jquery-3.5.1.js',
+                    'asset' => false,
+                    'location' => '//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js',
+                    
                 ],
             ],
         ],
