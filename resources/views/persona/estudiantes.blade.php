@@ -5,11 +5,12 @@
     
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
-    
+    <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
    
 @stop
 
 @section('title', 'Personas')
+@section('plugins.Sweetalert2',true)
 
 @section('content_header')
  
@@ -52,7 +53,8 @@
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
-    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
+    
+    
 
     
     @if (session('mensaje')=='MarcadoCorrectamente')
@@ -73,9 +75,6 @@
 
         var tabla=$('#personas').DataTable(
                 {
-                    // "createdRow": function( row, data, dataIndex){
-                    //     $('td', row).eq(2).html("<div><img src='dist/image/x.png' class='zoomify' width='30'></div>");
-                    // },
                     "serverSide": true,
                     "responsive":true,
                     "autoWidth":false,
@@ -108,26 +107,18 @@
             );
             
             $('table').on('click','.zoomify',function (e){
-                //console.log($(this).attr('src'));
-                // Swal.fire({
-                //     showCloseButton: true,
-                // title: '<strong>HTML <u>example</u></strong>',
-                // icon: 'info',
-                // imageUrl:$(this).attr('src'),
-                // confirmButtonColor: "#", 
-                // imageHeight:600,
-                // imageAlt:"Alt de la imagen"
-                // })
                 Swal.fire({
                     title: 'Codigo: '+ $(this).closest('tr').find('td').eq(0).text(),
                     text: $(this).closest('tr').find('td').eq(1).text(),
                     imageUrl: $(this).attr('src'),
                     imageWidth: 400,
                     showCloseButton:true,
-                    confirmButtonColor:'#ff0000',
+                    confirmButtonColor:'#26baa5',
+                    icon: 'success',
                     imageHeight:400,
                     imageAlt: 'Custom image',
-                    type:'info',
+                    confirmButtonText:"Aceptar",
+                    
                 })
             });
 

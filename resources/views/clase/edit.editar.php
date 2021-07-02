@@ -1,10 +1,8 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
-@section('title', 'Editar Clase')
-
-@section('content_header')
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-@stop
+@section('template_title')
+    Update Clase
+@endsection
 
 @section('content')
     <section class="content container-fluid">
@@ -17,16 +15,14 @@
                     <div class="card-header">
                         <span class="card-title">Update Clase</span>
                     </div>
-                    {{-- {{dd($clase)}} --}}
                     <div class="card-body">
-                        <form method="POST" action="{{ route('clases.update', $clase) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('clases.update', $clase->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
                             @include('clase.form')
 
                         </form>
-                        
                     </div>
                 </div>
             </div>

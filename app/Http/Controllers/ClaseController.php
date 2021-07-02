@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aula;
 use SweetAlert;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Inscripcione;
 use App\Models\Clase;
+use App\Models\Docente;
+use App\Models\Materia;
 use App\Models\Programacion;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -106,6 +109,10 @@ class ClaseController extends Controller
                         ->join('temas', 'clases.tema_id', 'temas.id')
                         ->join('docentes', 'clases.docente_id', 'docentes.id')
                         ->join('personas', 'docentes.persona_id', 'personas.id')
+                        // ->join('programacions','clases.programacion_id','programacions.id')
+                        // ->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
+                        // ->join('estudiantes','inscripciones.estudiante_id','estudiantes.id')
+                        // ->join('personas','estudiantes.persona_id','personas.id')
                         ->select('clases.id','fecha','clases.estado','horainicio','horafin','personas.nombre'
                                 ,'personas.apellidop','personas.apellidom','personas.foto','materias.materia','aulas.aula','temas.tema',
                             'clases.created_at','clases.updated_at')->get()->first();
@@ -121,10 +128,31 @@ class ClaseController extends Controller
      */
     public function edit($id)
     {
+        
         $clase = Clase::find($id);
+        $docentes = Docente::join('personas', 'personas.id', '=', 'docentes.persona_id')
+        ->where('docentes.estado', '=', 'activo')
+            ->select('docentes.id', 'personas.nombre', 'personas.apellidop')
+            ->get();
+        $programa=$clase->programacion;
+        $inscripcion=$programa->inscripcione;
+        
+        $materias=Materia::join('sesions','sesions.materia_id','=','materias.id')
+                            ->where('sesions.inscripcione_id',$inscripcion->id)
+                            ->get();
+        $aulas = Aula::all();
 
-        return view('clase.edit', compact('clase'));
+        $hora_inicio = $clase->hora_inicio;
+        $hora_fin = $clase->hora_fin;
+   
+
+/** enviar los datos a la ventana edicion de clases */
+
+
+        //return view('clase.edit', compact('clase'));
+        return view('clase.edit', compact('docentes','clase', 'programa', 'inscripcion', 'materias', 'aulas', 'hora_inicio', 'hora_fin'));
     }
+   
 
     /**
      * Update the specified resource in storage.

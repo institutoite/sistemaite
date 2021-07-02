@@ -2,9 +2,10 @@
 @section('css')
     
 
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
 
     {{-- <link href="{{asset('dist/lbgalery/css/galery.css')}}" rel="stylesheet"> --}}
     
@@ -18,6 +19,7 @@
 @stop
 @section('plugins.Jquery',true)
 @section('plugins.Datatables',true)
+@section('plugins.Sweetalert2',true)
 
 
 
@@ -49,16 +51,11 @@
     <script src="{{asset('dist/js/moment.min.js')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="{{asset('dist/js/zoomify.js')}}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
     <script>
         
         $(document).ready(function() {
-
-            let x=$('.zoomify').zoomify();
-                console.log(x);
                 
             $('table').on('click', 'a .finalizar', function(e) { 
                 e.preventDefault(); 
@@ -93,6 +90,32 @@
                 });
 	        });
 
+            $('table').on('click','.zoomify',function (e){
+                console.log($(this).attr('src'));
+                Swal.fire({
+                    title: 'Estudiantex: '+ $(this).closest('tr').find('td').eq(1).text(),
+                    text: 'Materia:'+$(this).closest('tr').find('td').eq(2).text(),
+                    imageUrl: $(this).attr('src'),
+                    imageWidth: 400,
+                    imageHeight:400,
+                    showCloseButton:true,
+                    confirmButtonColor:'#26baa5',
+                    confirmButtonText:"Aceptar",
+                    
+                })
+            });
+            $('table').on('click','.zoom',function (e){
+                Swal.fire({
+                    imageWidth: 400,
+                    imageHeight:400,
+                    imageUrl: $(this).attr('src'),
+                    showCloseButton:true,
+                    confirmButtonColor:'#26baa5',
+                    confirmButtonText:"Aceptar",
+                    
+                })
+            });
+
 
             $('#presentes').dataTable({
                 "createdRow": function( row, data, dataIndex){
@@ -120,8 +143,6 @@
                     
                     $('td', row).eq(6).html(moment(data['horainicio']).format('HH:mm')+'-'+moment(data['horafin']).format('HH:mm'));
                     $('td', row).eq(7).html( hfin.from(ahora)+'('+hfin.diff(ahora,'minutes'));
-                    
-
 
                 },
                 
@@ -181,9 +202,9 @@
                         $html+="<tr><td>AULA</td>"+"<td>"+json.aula+"</td></tr>";
                         $html+="<tr><td>MATERIA</td>"+"<td>"+json.materia+"</td></tr>";
                         $html+="<tr><td>TEMA</td>"+"<td>"+json.tema+"</td></tr>";
-                        $html+="<tr><td>FOTO DOCENTE</td>"+"<td>"+fila.find('td').eq(8).html()+"</td></tr>";
+                        $html+="<tr><td>FOTO ESTUDIANTE</td>"+"<td>"+fila.find('td').eq(8).html()+"</td></tr>";
 
-                        $html+="<tr><td>FOTO ESTUDIANTE</td>"+"<td><img  src="+"{{URL::to('/')}}/storage/"+json.foto+ " height='150'/></td></tr>";
+                        $html+="<tr><td>FOTO DOCENTE</td>"+"<td><img class='zoom'  src="+"{{URL::to('/')}}/storage/"+json.foto+ " height='150'/></td></tr>";
                         $html+="<tr><td>CREADO</td>"+"<td>"+json.created_at+"</td></tr>";
                         $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.updated_at)+"</td></tr>";
                         $("#tabla-modal").append($html);

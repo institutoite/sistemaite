@@ -1,5 +1,5 @@
 
-<a href="{{route('clase.editar', $id)}}" class="btn-accion-tabla tooltipsC mr-1 editar" title="Editar esta clase">
+<a href="{{route('clases.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-1 editar" title="Editar esta clase">
     <i class="fa fa-fw fa-edit text-success"></i>
 </a>
 

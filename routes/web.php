@@ -70,7 +70,7 @@ Route::resource('inscripciones', "InscripcioneController");
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       E S T D U D I A N T E S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-Route::get('/hoy','EstdudianteController@hoy')->name('estudiantes.hoy');
+Route::get('/hoy','EstudianteController@hoy')->name('estudiantes.hoy');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       P  A  G  O  S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('pagos', "PagoController");
@@ -87,7 +87,7 @@ Route::resource('programacions', "ProgramacionController");
 Route::resource('feriados', "FeriadoController");
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  C L A S E S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('clases', "ClaseController");
-Route::get('clase/editar/{clase}',"ClaseController@editar")->name('clase.editar');
+Route::get('clase/editar/{clase}',"ClaseController@edit")->name('clase.editar');
 Route::get('clase/actualizar/{clase}',"ClaseController@actualizar")->name('clase.actualizar');
 Route::get('clase/mostrar/',"ClaseController@mostrar")->name('clase.mostrar');
 Route::get('clase/listar',"ClaseController@index")->name('clase.index');
