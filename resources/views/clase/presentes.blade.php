@@ -117,8 +117,10 @@
                             $(row).addClass('table-success');
                         }
 
+                    
                     $('td', row).eq(6).html(moment(data['horainicio']).format('HH:mm')+'-'+moment(data['horafin']).format('HH:mm'));
                     $('td', row).eq(7).html( hfin.from(ahora)+'('+hfin.diff(ahora,'minutes'));
+                    
 
 
                 },

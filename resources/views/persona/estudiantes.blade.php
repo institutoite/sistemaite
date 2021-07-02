@@ -26,9 +26,11 @@
 
     <div class="card">
         <div class="card-header">
-            Header <a class="btn btn-secondary float-right" href="{{route('personas.create')}}">Crear Estudiante</a>
+            Header X <a class="btn btn-secondary float-right" href="{{route('personas.create')}}">Crear Estudiante</a>
         </div>
+
         <div class="card-body">
+            
             <table id="personas" class="table table-bordered table-hover table-striped">
                 <thead class="bg-primary text-center">
                     <tr>
@@ -51,6 +53,7 @@
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
     <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
+
     
     @if (session('mensaje')=='MarcadoCorrectamente')
         <script>
@@ -67,8 +70,12 @@
     <script>
         
         $(document).ready(function() {
+
         var tabla=$('#personas').DataTable(
                 {
+                    // "createdRow": function( row, data, dataIndex){
+                    //     $('td', row).eq(2).html("<div><img src='dist/image/x.png' class='zoomify' width='30'></div>");
+                    // },
                     "serverSide": true,
                     "responsive":true,
                     "autoWidth":false,
@@ -81,7 +88,7 @@
                             "name": "foto",
                             "data": "foto",
                             "render": function (data, type, full, meta) {
-                                return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
+                                return "<img class='materialboxed zoomify' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
                             },
                             "title": "FOTO",
                             "orderable": false,
@@ -93,11 +100,38 @@
                             "orderable": false,
                         },
                     ],
+
                     "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                     },  
                 }
             );
+            
+            $('table').on('click','.zoomify',function (e){
+                //console.log($(this).attr('src'));
+                // Swal.fire({
+                //     showCloseButton: true,
+                // title: '<strong>HTML <u>example</u></strong>',
+                // icon: 'info',
+                // imageUrl:$(this).attr('src'),
+                // confirmButtonColor: "#", 
+                // imageHeight:600,
+                // imageAlt:"Alt de la imagen"
+                // })
+                Swal.fire({
+                    title: 'Codigo: '+ $(this).closest('tr').find('td').eq(0).text(),
+                    text: $(this).closest('tr').find('td').eq(1).text(),
+                    imageUrl: $(this).attr('src'),
+                    imageWidth: 400,
+                    showCloseButton:true,
+                    confirmButtonColor:'#ff0000',
+                    imageHeight:400,
+                    imageAlt: 'Custom image',
+                    type:'info',
+                })
+            });
+
+            
 
             $('table').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
