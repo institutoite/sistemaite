@@ -1,8 +1,10 @@
-@extends('layouts.app')
 
-@section('template_title')
-    Create Programacion
-@endsection
+@extends('adminlte::page')
+@section('css')
+    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+@stop
+
+@section('title', 'Programación')
 
 @section('content')
     <section class="content container-fluid">

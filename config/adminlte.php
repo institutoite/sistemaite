@@ -66,7 +66,7 @@ return [
 
     'usermenu_enabled' => true,
     'usermenu_header' => true,
-    'usermenu_header_class' => 'bg-primary',
+    'usermenu_header_class' => 'bg-secondary',
     'usermenu_image' => true,
     'usermenu_desc' => true,
     'usermenu_profile_url' => true,
@@ -130,7 +130,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-light elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-dark navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -247,7 +247,7 @@ return [
             'text'    => 'Actualidad',
             'icon'    => 'fas fa-record-vinyl',
             'icon_color' => 'white',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
 
                 [
@@ -332,7 +332,7 @@ return [
             'text'    => 'Estudiantes',
             'icon'    => 'fas fa-user-graduate',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 
                 [
@@ -377,7 +377,7 @@ return [
             'text'    => 'Gestionar',
             'icon'    => 'fas fa-exclamation-triangle',
             'icon_color' => 'warning',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Un Resumen',
@@ -437,7 +437,7 @@ return [
             'text'    => 'Pagos y caja',
             'icon'    => 'fas fa-donate',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Ingreso',
@@ -468,7 +468,7 @@ return [
             'text'    => 'Usuarios',
             'icon'    => 'fas fa-user',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Eventos',
@@ -513,7 +513,7 @@ return [
             'text'    => 'Gestion clases',
             'icon'    => 'fas fa-chalkboard-teacher',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Por temas',
@@ -559,7 +559,7 @@ return [
             'text'    => 'Gestionar Inscripciones',
             'icon'    => 'fas fa-keyboard',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Un Resumen',
@@ -592,7 +592,7 @@ return [
             'text'    => 'Observaciones',
             'icon'    => 'fas fa-list-alt',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Un Resumen',
@@ -625,7 +625,7 @@ return [
             'text'    => 'Mensajes llamadas',
             'icon'    => 'fas fa-phone',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Cumpleañeros',
@@ -658,7 +658,7 @@ return [
             'text'    => 'Docentes',
             'icon'    => 'fas fa-address-book',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Quienes vinieron',
@@ -689,7 +689,7 @@ return [
             'text'    => 'Colegios',
             'icon'    => 'fas fa-house-user',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -709,7 +709,7 @@ return [
             'text'    => 'Feriados',
             'icon'    => 'fas fa-calendar-times',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -730,7 +730,7 @@ return [
             'text'    => 'Modalidades',
             'icon'    => 'fas fa-star-of-david',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -750,7 +750,7 @@ return [
             'text'    => 'Grados',
             'icon'    => 'fab fa-buffer', 
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -770,7 +770,7 @@ return [
             'text'    => 'Materias',
             'icon'    => 'fas fa-book-reader',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -790,7 +790,7 @@ return [
             'text'    => 'Aulas',
             'icon'    => 'fab fa-angular',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -813,7 +813,7 @@ return [
             'text'    => 'Administrativos',
             'icon'    => 'fas fa-users-cog',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -834,7 +834,7 @@ return [
             'text'    => 'Proveedores',
             'icon'    => 'fas fa-shopping-cart',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -855,7 +855,7 @@ return [
             'text'    => 'Paises',
             'icon'    => 'fas fa-flag',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -875,7 +875,7 @@ return [
             'text'    => 'Departamentos',
             'icon'    => 'fas fa-map-marker-alt',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -895,7 +895,7 @@ return [
             'text'    => 'Provincias',
             'icon'    => 'fas fa-map-marker',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -916,7 +916,7 @@ return [
             'text'    => 'Ciudades',
             'icon'    => 'fas fa-city',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -936,7 +936,7 @@ return [
             'text'    => 'Municipios',
             'icon'    => 'fas fa-map-marked-alt',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -957,7 +957,7 @@ return [
             'text'    => 'fas fa-map-marked-alt',
             'icon'    => 'fas fa-street-view',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -977,7 +977,7 @@ return [
             'text'    => 'Dias',
             'icon'    => 'fas fa-',
             'icon_color' => 'gray',
-            'classes'  => 'text-primary bg-dark',
+            'classes'  => 'text-primary bg-Light',
             'submenu' => [
                 [
                     'text' => 'Listar',

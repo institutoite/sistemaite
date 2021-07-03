@@ -70,7 +70,10 @@ class ProgramacionController extends Controller
      */
     public function edit(Programacion $programacion)
     {
-        //
+        $docentes=Docente::all();
+        $materias=Materia::all();
+        $aulas=Aula::all();
+        return view('programacion.edit',compact('programacion','docentes','materias','aulas'));
     }
 
     /**

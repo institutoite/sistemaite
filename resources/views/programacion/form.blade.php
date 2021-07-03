@@ -1,20 +1,48 @@
+
+<div class="row">
+    {{-- %%%%%%%%%%%%%%%%%%%%%%% C A M P O   F E C H A  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}} 
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" > 
+        <div class="form-floating mb-3">
+            <input type="date" class="form-control" id="floatingInput" placeholder="Fecha">
+            <label for="floatingInput">Fecha</label>
+        </div>
+    </div>
+    {{-- %%%%%%%%%%%%%%% C A M P O  H O R A  I N I C I O   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+        <div class="form-floating mb-3">
+            <input  type="time" name="hora_ini" class="form-control @error('hora_ini') is-invalid @enderror" value="{{old('hora_ini',$programacion->horaini ?? '')}}">
+            <label for="floatingInput">dfsdfd</label>
+        </div>    
+    </div>
+    {{-- %%%%%%%%%%%%%%%%%%%%%%% C A M P O   H O R A  F I N  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+        <div class="form-floating mb-3">
+            <input  type="time" name="hora_fin" class="form-control @error('hora_fin') is-invalid @enderror" value="{{old('hora_fin',$programacion->horafin ?? '')}}">
+            <label for="floatingInput">dfsdfd</label>
+        </div>  
+    </div>
+</div>
+
+{{ Form::text('estado', $programacion->estado, ['class' => 'form-control' . ($errors->has('estado') ? ' is-invalid' : ''), 'placeholder' => 'Estado']) }}
+{!! $errors->first('estado', '<div class="invalid-feedback">:message</p>') !!}
+{{ Form::text('habilitado', $programacion->habilitado, ['class' => 'form-control' . ($errors->has('habilitado') ? ' is-invalid' : ''), 'placeholder' => 'Habilitado']) }}
+                    {!! $errors->first('habilitado', '<div class="invalid-feedback">:message</p>') !!}
+{{ Form::date('fecha', $programacion->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
+            {!! $errors->first('fecha', '<div class="invalid-feedback">:message</p>') !!}
+
 <div class="box box-info padding-1">
     <div class="box-body">
-        
         <div class="form-group">
             {{ Form::label('fecha') }}
-            {{ Form::text('fecha', $programacion->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
-            {!! $errors->first('fecha', '<div class="invalid-feedback">:message</p>') !!}
         </div>
+
         <div class="form-group">
             {{ Form::label('habilitado') }}
-            {{ Form::text('habilitado', $programacion->habilitado, ['class' => 'form-control' . ($errors->has('habilitado') ? ' is-invalid' : ''), 'placeholder' => 'Habilitado']) }}
-            {!! $errors->first('habilitado', '<div class="invalid-feedback">:message</p>') !!}
+            
         </div>
         <div class="form-group">
             {{ Form::label('estado') }}
-            {{ Form::text('estado', $programacion->estado, ['class' => 'form-control' . ($errors->has('estado') ? ' is-invalid' : ''), 'placeholder' => 'Estado']) }}
-            {!! $errors->first('estado', '<div class="invalid-feedback">:message</p>') !!}
+            
         </div>
         <div class="form-group">
             {{ Form::label('hora_ini') }}

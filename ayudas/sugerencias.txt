@@ -27,4 +27,7 @@ registro rapido de posibles clientes
 
 mostrar la vista hoy con los estudiante presentes faltantes por llegar etc
 
+para hacer formularios interesantes estamos descargando bootstrap 5
+compilar el archivo sass
+
 

@@ -1,8 +1,12 @@
-@extends('layouts.app')
 
-@section('template_title')
-    Update Programacion
-@endsection
+@extends('adminlte::page')
+@section('css')
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/adminlte.css')}}">
+
+@stop
+
+@section('title', 'Programación')
 
 @section('content')
     <section class="content container-fluid">
@@ -24,8 +28,20 @@
 
                         </form>
                     </div>
-                </div>
+                </div> 
             </div>
         </div>
     </section>
 @endsection
+{{--     
+    $table->date('fecha');
+    $table->boolean('habilitado');
+    $table->boolean('activo');
+    $table->string('estado', 25);
+    $table->time('hora_ini');
+    $table->time('hora_fin');
+    $table->double('horas_por_clase');
+    $table->unsignedInteger('docente_id');
+    $table->unsignedInteger('materia_id');
+    $table->unsignedInteger('aula_id');
+    $table->unsignedInteger('inscripcione_id'); --}}

@@ -71,7 +71,7 @@
                                         <td>{{$programa->aula}}</td>
                                         <td>
                                             <a class="{{ $claseboton }} tooltipsC mr-2" href="{{route('set.fecha.proximo.pago', ['fecha'=>$programa->fecha->isoFormat('YYYY-MM-DD'),'id'=>$programa->inscripcione_id])}}" title="Asignar esta fecha para el proximo pago">
-                                                Aceptar
+                                                Pagará
                                             </a>
                                         </td>
                                     </tr>
@@ -94,9 +94,14 @@
         $(document).ready(function(){
             $('#programacion').DataTable(
                 {
+                    "iDisplayLength" : 25,
+
                     "language":{
                             "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json",
-                    }
+                    },
+                    "drawCallback": function( settings ) {
+                        $('ul.pagination').addClass("pagination-sm");
+                    },
                 }
             );
         } );
