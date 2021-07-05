@@ -85,7 +85,21 @@ class ProgramacionController extends Controller
      */
     public function update(Request $request, Programacion $programacion)
     {
-        //
+        //dd($request->activo);
+        $hora_inicio=Carbon::create($request->hora_ini);
+        $hora_fin=Carbon::create($request->hora_fin);
+        $programacion->fecha            =$request->fecha;
+        $programacion->activo           =$request->activo;
+        $programacion->estado           =$request->estado;
+        $programacion->hora_fin         =$request->hora_fin;
+        $programacion->hora_ini         =$request->hora_ini;
+        $programacion->horas_por_clase  = $hora_inicio->floatDiffInHours($hora_fin);
+        $programacion->docente_id       =$request->docente_id;
+        $programacion->materia_id       =$request->materia_id;
+        $programacion->aula_id          =$request->aula_id;
+        $programacion->inscripcione_id  =$request->inscripcione_id;
+        $programacion->save();
+
     }
 
     /**
@@ -198,7 +212,7 @@ class ProgramacionController extends Controller
         $programa->fecha = $fecha;
         $programa->habilitado = $habilitado;
         $programa->activo = true;
-        $programa->estado = 'indefinido';
+        $programa->estado = 'INDEFINIDO';
         $programa->hora_ini = $sesion->horainicio;
         
         $programa->docente_id = $sesion->docente_id;
@@ -290,28 +304,33 @@ class ProgramacionController extends Controller
             return redirect()->route('imprimir.programa', $inscripcion->id);/** llamar al metodo que muestra pdf*/
         }    
     }
-    public function actualizarProgramaSegunPago($inscripcione_id,$pago_id){
+    public function actualizarProgramaSegunPago($inscripcione_id){
         $inscripcion = Inscripcione::findOrFail($inscripcione_id);
         $total_costo=$inscripcion->costo;
         $total_horas=$inscripcion->totalhoras;
         $costo_por_hora=$total_costo/$total_horas;
-        $ProgramasNoPagadas = Programacion::where('inscripcione_id', '=', $inscripcione_id)
-                                        ->where('habilitado', '=', 0)
+        $programas = Programacion::where('inscripcione_id', '=', $inscripcione_id)
                                         ->get();
-        $CuantoPago=Pago::findOrFail($pago_id)->monto;
+        $acuentaTotal=$inscripcion->pagos->sum->monto;
+        $TotalPagado=$acuentaTotal;
         //dd($ProgramasNoPagadas);
-        foreach ($ProgramasNoPagadas as $programa) {
-            
+        foreach ($programas as $programa) {
             $costo_programa = $programa->hora_ini->floatDiffInHours($programa->hora_fin)*($costo_por_hora);
-            
-            if($CuantoPago>$costo_programa){
+            if($acuentaTotal>$costo_programa){
                 $programa->habilitado=1;
                 $programa->save();
-                $CuantoPago=$CuantoPago-$costo_programa;
+                $acuentaTotal=$acuentaTotal-$costo_programa;
             }
         }
-        //* seria recomendable que mostremos directo imprimir*//
-        return redirect()->route('mostrar.programa', $inscripcion);
+
+        if ($TotalPagado < $inscripcion->costo) {
+            return redirect()->route('mostrar.programa', $inscripcion);
+        } else {
+            $inscripcion->fecha_proximo_pago = $inscripcion->programaciones->last()->fecha->isoFormat('Y-M-D');
+            $inscripcion->save();
+            return redirect()->route('imprimir.programa', $inscripcion->id);
+            
+        }    
     }
 
 
@@ -366,17 +385,4 @@ class ProgramacionController extends Controller
 
         return view('clase.create',compact('docentes','programa','inscripcion','materias','aulas','hora_inicio','hora_fin'));
     }
-    // public function programasPresentes($inscripcion_id)
-    // {
-    //     $programas=Programacion::joint('inscripciones','programacions.inscripcione_id','=','inscripciones.id')
-    //                             ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
-    //                             ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
-    //                             ->join('clases', 'clases.programacion_id', '=', 'clases.id')
-    //                             //->join('docentes','docentes.id','=','clases.docente_id')
-    //                             ->where('programacions.fecha','clases.fecha')//que sea la clase de hoy la que se marco ahora por que puede tener muchas clases una inscripcion
-    //                             //-> y que este presente
-    //                             //en la vista podemos calcular cuanto tiempo ya va pasando 
-    //                             ->select('personas.nombre','personas.apellidop','personas.apellidom','clases.horainicio','clases.horafin',,)
-    //                             ->get();
-    // }
 }

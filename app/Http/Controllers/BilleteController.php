@@ -62,7 +62,7 @@ class BilleteController extends Controller
         //dd($request->all());
         $pago = Pago::findOrFail($pago_id);
         $montoBilletes= $request->billete200*200+ $request->billete100*100+ $request->billete50*50+ $request->billete20*20+
-                $request->billete10*10+ $request->moneda5*5+ $request->moneda*2+ $request->moneda*1+ $request->moneda50*0.5+ $request->moneda*0.2;
+                $request->billete10*10+ $request->moneda5*5+ $request->moneda2*2+ $request->moneda1*1+ $request->moneda50*0.5+ $request->moneda20*0.2;
         $cambioBilletes = $request->billetecambio200 * 200 + $request->billetecambio100 * 100 + $request->billetecambio50 * 50 + $request->billetecambio20 * 20 +
             $request->billetecambio10 * 10 + $request->monedacambio5 * 5 + $request->monedacambio2 * 2 + $request->monedacambio1 + $request->monedacambio50 * 0.5 + $request->monedacambio20 * 0.2;
         

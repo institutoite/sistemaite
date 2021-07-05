@@ -75,7 +75,11 @@ Route::get('/hoy','EstudianteController@hoy')->name('estudiantes.hoy');
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       P  A  G  O  S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('pagos', "PagoController");
 Route::get('pago/crear/{inscripcione}', 'PagoController@crear')->name('pagos.crear');
+Route::get('pago/mostrar/{pago}', 'PagoController@mostrar')->name('pagos.mostrar');
+Route::get('pago/editar/{pago}', 'PagoController@editar')->name('pagos.editar');
 Route::post('pagos/realizar/{inscripcione}', 'PagoController@guardar')->name('pagos.guardar');
+
+
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       B  I  L  L  E  T  E  S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('billetes', "BilleteController");
@@ -159,7 +163,7 @@ Route::get('generar/programa/{inscripcione}', 'ProgramacionController@generarPro
 Route::get('regenerar/programa/{inscripcione}/{fecha}', 'ProgramacionController@regenerarPrograma')->name('regenerar.programa');
 Route::get('mostrar/programa/{inscripcione}', 'ProgramacionController@mostrarPrograma')->name('mostrar.programa');
 Route::get('imprimir/programa/{inscripcione}', 'ProgramacionController@imprimirPrograma')->name('imprimir.programa');
-Route::get('actualizar/programa/segunpago/{inscripcione}/{pago}', 'ProgramacionController@actualizarProgramaSegunPago')->name('actualizar.programa.segun.pago');
+Route::get('actualizar/programa/segunpago/{inscripcione}', 'ProgramacionController@actualizarProgramaSegunPago')->name('actualizar.programa.segun.pago');
 
 /**
  * clases

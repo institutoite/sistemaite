@@ -52,7 +52,7 @@ class Billete extends Model
 
   public function pagos()
   {
-    return $this->morphedByMany(Pago::class, 'billetable')->withPivot('cantidad', 'tipo')->withTimestamps();
+    return $this->morphedByMany(Pago::class, 'billetable');
   }
   public function userable()
   {

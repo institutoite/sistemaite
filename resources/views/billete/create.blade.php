@@ -6,7 +6,7 @@
 @section('title', 'Grado')
 
 @section('content')
-    <section class="content container-fluid">
+    <section class="content container-fluid pt-3">
         <div class="row">
             <div class="col-md-12">
                 @if(Session::has('mensaje'))

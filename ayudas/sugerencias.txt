@@ -1,10 +1,11 @@
-sugerecias 
-que se pueda marcar despues de la clase
-una inscricion para hermanos hermanos
-calificar al estudiante cuando termine la inscripcion calificable
-boton imprimir pdf formulario para registro rapido 
-programar subir archivos documentos digitales
 
+que se pueda marcar despues de la clase
+
+calificar al estudiante cuando termine la inscripcion calificable
+
+boton imprimir pdf formulario para registro rapido
+
+programar subir archivos documentos digitales
 
 tareas por hacer 
 
@@ -12,8 +13,8 @@ hacer que sea responsive la ventana modal de estudaintes de referencias
 validar gaurdar contactos de un cliente
 Falta editar persona sale un error
 
-Que el cambio se escriba solo en pagos 
-Cuando se inscribe que se elija el costo y la carga horaria
+
+
 en pagos que se vea el acuenta total y lo adeudado 
 agregar a las modalidades mes de 1.5 horas de lunes a vienres 30 horas
 que se cambien de campo cuando se presiona enter 

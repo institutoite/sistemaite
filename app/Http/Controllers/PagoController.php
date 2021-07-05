@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PagoStoreRequest;
 use App\Models\Inscripcione;
 use App\Models\Pago;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -60,10 +61,11 @@ class PagoController extends Controller
     {
         
         $inscripcion=Inscripcione::findOrFail((int)$inscripcion);
-        
         $pagos = $inscripcion->pagos;
+        $acuenta= $inscripcion->pagos->sum->monto;
+        $saldo=$inscripcion->costo-$acuenta;
         
-        return view('pago.create', compact('inscripcion','pagos'));
+        return view('pago.create', compact('inscripcion','pagos','acuenta','saldo'));
     }
 
     public function guardar(PagoStoreRequest $request,$inscripcion_id){
@@ -94,6 +96,21 @@ class PagoController extends Controller
         $pago = Pago::find($id);
 
         return view('pago.show', compact('pago'));
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function mostrar($pago_id)
+    {
+        $pago = Pago::find($pago_id);
+        $billetes=$pago->billetes;
+        $user=User::find($pago->userable->user_id);
+        $data=['pago'=>$pago,'user'=>$user,'billetes'=>$billetes];
+
+        return response()->json($data);
     }
 
     /**

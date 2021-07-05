@@ -1,82 +1,114 @@
-
 <div class="row">
     {{-- %%%%%%%%%%%%%%%%%%%%%%% C A M P O   F E C H A  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}} 
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" > 
-        <div class="form-floating mb-3">
-            <input type="date" class="form-control" id="floatingInput" placeholder="Fecha">
+        <div class="form-floating mb-3 text-gray">
+            <input type="date" name='fecha' class="form-control texto-plomo" id="floatingInput" placeholder="fecha" value="{{old('fecha',$programacion->fecha->isoFormat('YYYY-MM-DD') ?? '')}}">
             <label for="floatingInput">Fecha</label>
         </div>
     </div>
     {{-- %%%%%%%%%%%%%%% C A M P O  H O R A  I N I C I O   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-        <div class="form-floating mb-3">
-            <input  type="time" name="hora_ini" class="form-control @error('hora_ini') is-invalid @enderror" value="{{old('hora_ini',$programacion->horaini ?? '')}}">
-            <label for="floatingInput">dfsdfd</label>
+        <div class="form-floating mb-3 text-gray">
+            <input  type="time" name="hora_ini" class="form-control @error('hora_ini') is-invalid @enderror" value="{{old('hora_ini',$programacion->hora_ini->isoFormat('HH:mm') ?? '')}}">
+            <label for="floatingInput">Hora inicio</label>
         </div>    
     </div>
     {{-- %%%%%%%%%%%%%%%%%%%%%%% C A M P O   H O R A  F I N  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-        <div class="form-floating mb-3">
-            <input  type="time" name="hora_fin" class="form-control @error('hora_fin') is-invalid @enderror" value="{{old('hora_fin',$programacion->horafin ?? '')}}">
-            <label for="floatingInput">dfsdfd</label>
+        <div class="form-floating mb-3 text-gray">
+            <input  type="time" name="hora_fin" class="form-control @error('hora_fin') is-invalid @enderror" value="{{old('hora_fin',$programacion->hora_fin->isoFormat('HH:mm') ?? '')}}">
+            <label for="floatingInput">Hora fin</label>
         </div>  
     </div>
 </div>
 
-{{ Form::text('estado', $programacion->estado, ['class' => 'form-control' . ($errors->has('estado') ? ' is-invalid' : ''), 'placeholder' => 'Estado']) }}
-{!! $errors->first('estado', '<div class="invalid-feedback">:message</p>') !!}
-{{ Form::text('habilitado', $programacion->habilitado, ['class' => 'form-control' . ($errors->has('habilitado') ? ' is-invalid' : ''), 'placeholder' => 'Habilitado']) }}
-                    {!! $errors->first('habilitado', '<div class="invalid-feedback">:message</p>') !!}
-{{ Form::date('fecha', $programacion->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
-            {!! $errors->first('fecha', '<div class="invalid-feedback">:message</p>') !!}
-
-<div class="box box-info padding-1">
-    <div class="box-body">
-        <div class="form-group">
-            {{ Form::label('fecha') }}
+<div class="row">
+    {{-- %%%%%%%%%%%%%%%%%%%%%%% C A M P O   E S T A D O  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}} 
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" > 
+        <div class="form-floating mb-3">
+            <select class="form-control @error('estado') is-invalid @enderror"  name="estado" id="estado">
+                <option value=""> Elija estado</option>
+                    @isset($programacion)
+                        <option value="PRESENTE" @if($programacion->estado == 'PRESENTE') {{'selected'}} @endif>PRESENTE</option>
+                        <option value="FINALIZADO" @if($programacion->estado == 'FINALIZADO') {{'selected'}} @endif>FINALIZADO</option>
+                        <option value="INDEFINIDO" @if($programacion->estado == 'INDEFINIDO') {{'selected'}} @endif>INDEFINIDO</option>
+                    @else 
+                        <option value="PRESENTE" @if(old('habilitado') == 'PRESENTE') {{'selected'}} @endif>PRESENTE</option>
+                        <option value="FINALIZADO" @if(old('habilitado') == 'FINALIZADO') {{'selected'}} @endif>FINALIZADO</option>
+                        <option value="INDEFINIDO" @if(old('habilitado') == 'INDEFINIDO') {{'selected'}} @endif>INDEFINIDO</option>
+                    @endisset
+                    
+            </select>
+            <label for="floatingInput">Elija estado</label>
         </div>
-
-        <div class="form-group">
-            {{ Form::label('habilitado') }}
-            
-        </div>
-        <div class="form-group">
-            {{ Form::label('estado') }}
-            
-        </div>
-        <div class="form-group">
-            {{ Form::label('hora_ini') }}
-            {{ Form::text('hora_ini', $programacion->hora_ini, ['class' => 'form-control' . ($errors->has('hora_ini') ? ' is-invalid' : ''), 'placeholder' => 'Hora Ini']) }}
-            {!! $errors->first('hora_ini', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('hora_fin') }}
-            {{ Form::text('hora_fin', $programacion->hora_fin, ['class' => 'form-control' . ($errors->has('hora_fin') ? ' is-invalid' : ''), 'placeholder' => 'Hora Fin']) }}
-            {!! $errors->first('hora_fin', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('docente_id') }}
-            {{ Form::text('docente_id', $programacion->docente_id, ['class' => 'form-control' . ($errors->has('docente_id') ? ' is-invalid' : ''), 'placeholder' => 'Docente Id']) }}
-            {!! $errors->first('docente_id', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('materia_id') }}
-            {{ Form::text('materia_id', $programacion->materia_id, ['class' => 'form-control' . ($errors->has('materia_id') ? ' is-invalid' : ''), 'placeholder' => 'Materia Id']) }}
-            {!! $errors->first('materia_id', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('aula_id') }}
-            {{ Form::text('aula_id', $programacion->aula_id, ['class' => 'form-control' . ($errors->has('aula_id') ? ' is-invalid' : ''), 'placeholder' => 'Aula Id']) }}
-            {!! $errors->first('aula_id', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('inscripcion_id') }}
-            {{ Form::text('inscripcion_id', $programacion->inscripcion_id, ['class' => 'form-control' . ($errors->has('inscripcion_id') ? ' is-invalid' : ''), 'placeholder' => 'Inscripcion Id']) }}
-            {!! $errors->first('inscripcion_id', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-
     </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">Submit</button>
+    {{-- %%%%%%%%%%%%%%% C A M P O  H O R A  H A B I L I T A D O   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+        <div class="form-floating mb-3 text-gray">
+            <select class="form-control @error('activo') is-invalid @enderror"  name="activo" id="activo">
+                    <option value=""> Elija habilitación</option>
+                        @isset($programacion)
+                            <option value="1" @if($programacion->activo == 1) {{'selected'}} @endif>Pagado</option>
+                            <option value="0" @if($programacion->activo == 0) {{'selected'}} @endif>No Pagada</option>
+                        @else 
+                            <option value="1" @if(old('activo') == 1) {{'selected'}} @endif>Pagada</option>
+                            <option value="0" @if(old('activo') == 0) {{'selected'}} @endif>No Pagada</option>
+                        @endisset
+                        
+                </select>
+            <label for="floatingInput">Elija estado de pago</label>
+        </div>    
+    </div>
+    
+</div>
+
+{{-- %%%%%%%%%%%%%%% C A M P O  I N S C R I P C I O N   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+<input  type="text" hidden readonly name="inscripcione_id" class="form-control @error('inscripcione_id') is-invalid @enderror" value="{{old('inscripcione_id',$programacion->inscripcione_id ?? '')}}">
+
+<div class="row">
+    {{-- %%%%%%%%%%%%%%%%%%%%%%% C A M P O   D O C E N T E %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}} 
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" > 
+        <div class="form-floating mb-3">
+            <select class="form-control @error('docente_id') is-invalid @enderror" data-old="{{ old('docente_id') }}" name="docente_id" id="docente_id">
+                @foreach ($docentes as $docente)
+                    @isset($programacion)     
+                        <option  value="{{$docente->id}}" {{$docente->id==$programacion->docente_id ? 'selected':''}}>{{$docente->nombre}}</option>     
+                    @else
+                        <option value="{{ $docente->id }}" {{ old('docente_id') == $docente->id ? 'selected':'' }} >{{ $docente->nombre }}</option>
+                    @endisset 
+                @endforeach
+            </select>
+            <label for="floatingInput">Elija Docente</label>
+        </div>
+    </div>
+    {{-- %%%%%%%%%%%%%%% C A M P O  H O R A  M A T E R I A   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+        <div class="form-floating mb-3 text-gray">
+            <select class="form-control @error('materia_id') is-invalid @enderror" data-old="{{ old('materia_id') }}" name="materia_id" id="materia_id">
+                @foreach ($materias as $materia)
+                    @isset($programacion)     
+                        <option  value="{{$materia->id}}" {{$materia->id==$programacion->materia_id ? 'selected':''}}>{{$materia->materia}}</option>     
+                    @else
+                        <option value="{{ $materia->id }}" {{ old('docente_id') == $materia->id ? 'selected':'' }} >{{ $materia->materia }}</option>
+                    @endisset 
+                @endforeach
+            </select>
+            <label for="floatingInput">Elija Materia</label>
+        </div>    
+    </div>
+     {{-- %%%%%%%%%%%%%%% C A M P O  H O R A  A U L A    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+        <div class="form-floating mb-3 text-gray">
+            <select class="form-control @error('aula_id') is-invalid @enderror" data-old="{{ old('aula_id') }}" name="aula_id" id="aula_id">
+                @foreach ($aulas as $aula)
+                    @isset($programacion)     
+                        <option  value="{{$aula->id}}" {{$aula->id==$programacion->aula_id ? 'selected':''}}>{{$aula->aula}}</option>     
+                    @else
+                        <option value="{{ $aula->id }}" {{ old('aula_id') == $aula->id ? 'selected':'' }} >{{ $aula->aula }}</option>
+                    @endisset 
+                @endforeach
+            </select>
+            <label for="floatingInput">Seleccione Aula</label>
+        </div>    
     </div>
 </div>

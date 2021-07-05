@@ -77,4 +77,9 @@
 	font-weight: bold;
 }
 
+.texto-plomo:label{
+    color: gray;
+    font-weight: 900;
+}
+
 

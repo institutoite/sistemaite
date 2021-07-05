@@ -1,7 +1,7 @@
-
-    <div class="row justify-content-center pt-3" >
-        <button type="submit" id="guardar" class="btn btn-primary centrado btn-lg">Guardar <i class="far fa-save fa-2x"></i></button>        
+<div class="container-fluid h-100"> 
+    <div class="row w-100 align-items-center">
+        <div class="col text-center">
+            <button type="submit" id="guardar" class="btn btn-primary text-white btn-lg">Guardar <i class="far fa-save"></i></button>        
+        </div>	
     </div>
-
-
-
+</div>
