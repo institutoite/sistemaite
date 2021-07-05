@@ -3,21 +3,21 @@
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" > 
         <div class="form-floating mb-3 text-gray">
             <input type="date" name='fecha' class="form-control texto-plomo" id="floatingInput" placeholder="fecha" value="{{old('fecha',$programacion->fecha->isoFormat('YYYY-MM-DD') ?? '')}}">
-            <label for="floatingInput">Fecha</label>
+            <label for="fecha">Fecha</label>
         </div>
     </div>
     {{-- %%%%%%%%%%%%%%% C A M P O  H O R A  I N I C I O   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
         <div class="form-floating mb-3 text-gray">
             <input  type="time" name="hora_ini" class="form-control @error('hora_ini') is-invalid @enderror" value="{{old('hora_ini',$programacion->hora_ini->isoFormat('HH:mm') ?? '')}}">
-            <label for="floatingInput">Hora inicio</label>
+            <label for="hora_ini">Hora inicio</label>
         </div>    
     </div>
     {{-- %%%%%%%%%%%%%%%%%%%%%%% C A M P O   H O R A  F I N  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
         <div class="form-floating mb-3 text-gray">
             <input  type="time" name="hora_fin" class="form-control @error('hora_fin') is-invalid @enderror" value="{{old('hora_fin',$programacion->hora_fin->isoFormat('HH:mm') ?? '')}}">
-            <label for="floatingInput">Hora fin</label>
+            <label for="hora_fin">Hora fin</label>
         </div>  
     </div>
 </div>
@@ -25,7 +25,7 @@
 <div class="row">
     {{-- %%%%%%%%%%%%%%%%%%%%%%% C A M P O   E S T A D O  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}} 
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" > 
-        <div class="form-floating mb-3">
+        <div class="form-floating mb-3"> 
             <select class="form-control @error('estado') is-invalid @enderror"  name="estado" id="estado">
                 <option value=""> Elija estado</option>
                     @isset($programacion)
@@ -39,7 +39,7 @@
                     @endisset
                     
             </select>
-            <label for="floatingInput">Elija estado</label>
+            <label for="estado">Elija estado</label>
         </div>
     </div>
     {{-- %%%%%%%%%%%%%%% C A M P O  H O R A  H A B I L I T A D O   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
@@ -56,7 +56,7 @@
                         @endisset
                         
                 </select>
-            <label for="floatingInput">Elija estado de pago</label>
+            <label for="activo">Elija estado de pago</label>
         </div>    
     </div>
     
@@ -78,7 +78,7 @@
                     @endisset 
                 @endforeach
             </select>
-            <label for="floatingInput">Elija Docente</label>
+            <label for="docente_id">Elija Docente</label>
         </div>
     </div>
     {{-- %%%%%%%%%%%%%%% C A M P O  H O R A  M A T E R I A   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
@@ -93,7 +93,7 @@
                     @endisset 
                 @endforeach
             </select>
-            <label for="floatingInput">Elija Materia</label>
+            <label for="materia_id">Elija Materia</label>
         </div>    
     </div>
      {{-- %%%%%%%%%%%%%%% C A M P O  H O R A  A U L A    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
@@ -108,7 +108,7 @@
                     @endisset 
                 @endforeach
             </select>
-            <label for="floatingInput">Seleccione Aula</label>
+            <label for="aula_id">Seleccione Aula</label>
         </div>    
     </div>
 </div>

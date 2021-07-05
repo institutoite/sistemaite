@@ -1,5 +1,8 @@
 
 @extends('adminlte::page')
+@section('css')
+     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+@endsection
 
 @section('title', 'Dashboard')
 
@@ -8,28 +11,23 @@
 @stop
 @section('content')
     <section class="content container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-
-
-                <div class="card card-default">
-                    <div class="card-header bg-primary">
-                        <span class="card-title">Create Clase</span>
-                    </div>
-                    <div class="card-body">
-                        <div class="alert alert-primary" role="alert">
-                            <h4 class="alert-heading">Objetivo</h4>
-                            {{ $inscripcion->objetivo }}
-                        </div>
-                        <form method="POST" action="{{ route('clases.guardar',$programa->id) }}"  role="form" enctype="multipart/form-data">
-                            @csrf
-                            <div class="row">
-                                @include('clase.form')    
-                            </div>
-                            
-                        </form>
-                    </div>
+       
+        <div class="card card-default">
+            <div class="card-header bg-primary">
+                <span class="card-title">Create Clase</span>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-primary" role="alert">
+                    <h4 class="alert-heading">Objetivo</h4>
+                    {!! $inscripcion->objetivo !!}
                 </div>
+                <form method="POST" action="{{ route('clases.guardar',$programa->id) }}"  role="form" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        @include('clase.form')    
+                    </div>
+                    @include('include.botones')
+                </form>
             </div>
         </div>
     </section>
