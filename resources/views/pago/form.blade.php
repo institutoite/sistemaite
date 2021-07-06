@@ -62,7 +62,3 @@
         
             {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO APELLIDO MATERNO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
             
-     
-    <div class="box-footer mt20 text-center">
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>

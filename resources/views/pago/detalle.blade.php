@@ -12,105 +12,62 @@
 
 @section('content')
 {{-- {{ dd($tipo) }} --}}
-
-
     <section class="content container-fluid pt-3">
         <div class="row">
-            <div class="col-md-7">
-                <div class="card card-default">
-                    <div class="card-header bg-secondary">
-                        <span class="card-title">Crear Pago</span>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('pagos.guardar',['inscripcione'=>$inscripcion->id])}}">
-                            @csrf
-                            @include('pago.form')
-                            @include('include.botones')
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-5">
-                <table class="table table-bordered table-striped table-hover">
-                    <thead class="bg-success">
-                        <tr>
-                            <th>Atributo</th>
-                            <th>Valor</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Acuenta</strong></td>
-                            <td><strong>{{ $acuenta }} Bs.</strong></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Saldo</strong></td>
-                            <td><strong>{{$saldo}} Bs.</strong></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Costo Total</strong></td>
-                            <td><strong>{{$inscripcion->costo}} Bs.</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a class="btn btn-secondary" href="{{route('pagos.detallar',$inscripcion->id)}}">Detallar Pagos</a>
-            </div>
-        </div>
-    <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="card card-default">
-                    <div class="card-header">
-                        PAGOS DE ESTA INSCRIPCION
-                    </div>
-                    <div class="card-body">
-                        <table  id="pagos" class="table table-bordered table-striped table-hover">
-                            <thead class="bg-primary">
-                                <tr>
-                                    <th>Nº</th>
-                                    <th>Monto</th>
-                                    <th>PagoCon</th>
-                                    <th>Cambio</th>
-                                    <th>Usuario</th>
-                                    <th>Fecha</th>
-                                    <th>Opciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($pagos as $pago)
-                                    <tr id="{{$pago->id}}">
-                                        <td>{{ $loop->index+1 }}</td>
-                                        <td>{{ $pago->monto }}</td>
-                                        <td>{{ $pago->pagocon }}</td>
-                                        <td>{{ $pago->cambio }}</td>
-                                        <td>{{ App\Models\User::find($pago->userable->user_id)->name }}</td>
-                                        <td>{{ $pago->created_at }}</td>
-                                        <td>
-                                            {{-- {{route('pagos.editar', $pago)}} --}}
-                                            <a href="" class="btn-accion-tabla tooltipsC mr-2 editar" title="Editar esta pago">
-                                                <i class="fa fa-fw fa-edit text-primary"></i>
-                                            </a>
-
-                                            <a href="" class="mostrar btn-accion-tabla tooltipsC mr-2" title="Ver este pago">
-                                                <i class="fa fa-fw fa-eye text-primary"></i>
-                                            </a>
-
-                                            <form action=""  class="d-inline formulario eliminar">
-                                                @csrf
-                                                @method("delete")
-                                                <button name="btn-eliminar"  type="submit" class="btn eliminar" title="Eliminar este pago">
-                                                    <i class="fa fa-fw fa-trash text-danger"></i>   
-                                                </button>
-                                            </form> 
-                                        </td>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="card card-default">
+                        <div class="card-header">
+                            PAGOS DE ESTA INSCRIPCION
+                        </div>
+                        <div class="card-body">
+                            <table  id="pagos" class="table table-bordered table-striped table-hover">
+                                <thead class="bg-primary">
+                                    <tr>
+                                        <th>Nº</th>
+                                        <th>Monto</th>
+                                        <th>PagoCon</th>
+                                        <th>Cambio</th>
+                                        <th>Usuario</th>
+                                        <th>Fecha</th>
+                                        <th>Opciones</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        
+                                </thead>
+                                <tbody>
+                                    @foreach ($pagos as $pago)
+                                        <tr id="{{$pago->id}}">
+                                            <td>{{ $loop->index+1 }}</td>
+                                            <td>{{ $pago->monto }}</td>
+                                            <td>{{ $pago->pagocon }}</td>
+                                            <td>{{ $pago->cambio }}</td>
+                                            <td>{{ App\Models\User::find($pago->userable->user_id)->name }}</td>
+                                            <td>{{ $pago->created_at }}</td>
+                                            <td>
+                                                {{-- {{route('pagos.editar', $pago)}} --}}
+                                                <a href="" class="btn-accion-tabla tooltipsC mr-2 editar" title="Editar esta pago">
+                                                    <i class="fa fa-fw fa-edit text-primary"></i>
+                                                </a>
+
+                                                <a href="" class="mostrar btn-accion-tabla tooltipsC mr-2" title="Ver este pago">
+                                                    <i class="fa fa-fw fa-eye text-primary"></i>
+                                                </a>
+
+                                                <form action=""  class="d-inline formulario eliminar">
+                                                    @csrf
+                                                    @method("delete")
+                                                    <button name="btn-eliminar"  type="submit" class="btn eliminar" title="Eliminar este pago">
+                                                        <i class="fa fa-fw fa-trash text-danger"></i>   
+                                                    </button>
+                                                </form> 
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
     @include('pago.modalmostrar')
 @endsection

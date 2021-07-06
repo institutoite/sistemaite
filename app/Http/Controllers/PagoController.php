@@ -27,6 +27,19 @@ class PagoController extends Controller
         return view('pago.index', compact('pagos'))
             ->with('i', (request()->input('page', 1) - 1) * $pagos->perPage());
     }
+    public function detallar($inscripcion_id)
+    {
+        $pagos=Pago::where('pagable_id','=',$inscripcion_id)->get();
+        $inscripcion = Inscripcione::findOrFail((int)$inscripcion);
+        $pagos = $inscripcion->pagos;
+        $acuenta = $inscripcion->pagos->sum->monto;
+        $saldo = $inscripcion->costo - $acuenta;
+
+        return view('pago.create', compact('inscripcion', 'pagos', 'acuenta', 'saldo'));
+
+        
+        return view('pago.detalle', compact('pagos'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -108,10 +121,12 @@ class PagoController extends Controller
         $pago = Pago::find($pago_id);
         $billetes=$pago->billetes;
         $user=User::find($pago->userable->user_id);
+
         $data=['pago'=>$pago,'user'=>$user,'billetes'=>$billetes];
 
         return response()->json($data);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -124,6 +139,12 @@ class PagoController extends Controller
         $pago = Pago::find($id);
 
         return view('pago.edit', compact('pago'));
+    }
+    public function editar($pago_id)
+    {
+        $pago = Pago::find($pago_id);
+        return response()->json($pago);
+
     }
 
     /**
@@ -142,6 +163,13 @@ class PagoController extends Controller
         return redirect()->route('pagos.index')
             ->with('success', 'Pago updated successfully');
     }
+
+    public function actualizar(PagoStoreRequest $request, Pago $pago)
+    {
+        $pago->update($request->all());
+        response()->json($pago);
+    }
+
 
     /**
      * @param int $id

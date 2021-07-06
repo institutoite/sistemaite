@@ -77,7 +77,9 @@ Route::resource('pagos', "PagoController");
 Route::get('pago/crear/{inscripcione}', 'PagoController@crear')->name('pagos.crear');
 Route::get('pago/mostrar/{pago}', 'PagoController@mostrar')->name('pagos.mostrar');
 Route::get('pago/editar/{pago}', 'PagoController@editar')->name('pagos.editar');
+Route::get('pagos/inscripcion/{inscripcione}', 'PagoController@detallar')->name('pagos.detallar');
 Route::post('pagos/realizar/{inscripcione}', 'PagoController@guardar')->name('pagos.guardar');
+Route::put('pago/actualizar/{pago}', "PagoController@actualizar")->name('pagos.actualizar');
 
 
 
