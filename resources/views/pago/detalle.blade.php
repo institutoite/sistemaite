@@ -1,12 +1,12 @@
 @extends('adminlte::page')
 @section('css')
-     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
 @section('title', 'Pais Crear')
 @section('plugins.Jquery', true)
-@section('plugins.SweetAlert2', true)
+@section('plugins.Sweetalert2', true)
 @section('plugins.Datatables', true)
 
 
@@ -16,10 +16,15 @@
         <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="card card-default">
-                        <div class="card-header">
-                            PAGOS DE ESTA INSCRIPCION
+                        <div class="card-header bg-secondary">
+                            Estudiante:{{$inscripcion->estudiante->persona->nombre}}
                         </div>
+
                         <div class="card-body">
+                            <div class="alert alert-primary" role="alert">
+                                <h4 class="alert-heading">Objetivo</h4>
+                                {!!$inscripcion->objetivo!!}
+                            </div>
                             <table  id="pagos" class="table table-bordered table-striped table-hover">
                                 <thead class="bg-primary">
                                     <tr>
@@ -43,7 +48,7 @@
                                             <td>{{ $pago->created_at }}</td>
                                             <td>
                                                 {{-- {{route('pagos.editar', $pago)}} --}}
-                                                <a href="" class="btn-accion-tabla tooltipsC mr-2 editar" title="Editar esta pago">
+                                                <a href="{{route('pago.editar',$pago->id)}}" class="btn-accion-tabla tooltipsC mr-2 editar" title="Editar esta pago">
                                                     <i class="fa fa-fw fa-edit text-primary"></i>
                                                 </a>
 
@@ -54,7 +59,7 @@
                                                 <form action=""  class="d-inline formulario eliminar">
                                                     @csrf
                                                     @method("delete")
-                                                    <button name="btn-eliminar"  type="submit" class="btn eliminar" title="Eliminar este pago">
+                                                    <button name="btn-eliminar" id="eliminar{{$pago->id}}"  type="submit" class="btn eliminar" title="Eliminar este pago">
                                                         <i class="fa fa-fw fa-trash text-danger"></i>   
                                                     </button>
                                                 </form> 
@@ -108,6 +113,7 @@
 /*%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PAGO CON AJAX EN MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.mostrar', function(e) {
                 e.preventDefault(); 
+
                 var pago_id =$(this).closest('tr').attr('id');
                 var fila=$(this).closest('tr');
                 //console.log(pago_id);
@@ -153,61 +159,89 @@
                     },
                 });
             });
-/*%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN MOSTRAR MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-/*%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO EDIATAR MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('table').on('click', '.editar', function(e) {
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR PAGO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
-                var pago_id =$(this).closest('tr').attr('id');
+                let id=$(this).attr('id');
+                console.log(id);
+                Swal.fire({
+                    title: 'Estas seguro(a) de eliminar este registro?',
+                    text: "Si eliminas el registro no lo podras recuperar jamás!",
+                    //icon: 'info',
+                    showCancelButton: true,
+                    showConfirmButton:true,
+                    confirmButtonColor: '#25ff80',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Eliminar..!',
+                    position:'center',        
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: 'eliminar/pago/'+id,
+                            type: 'DELETE',
+                            data:{
+                                id:id,
+                                _token:'{{ csrf_token() }}'
+                            },
+                            success: function(result) {
+                                tabla.ajax.reload();
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 1500,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                                })
+                                Toast.fire({
+                                icon: 'success',
+                                title: 'Se eliminó correctamente el registro'
+                                })   
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                switch (xhr.status) {
+                                    case 500:
+                                        Swal.fire({
+                                            title: 'No se completó esta operación por que este registro está relacionado con otros registros',
+                                            showClass: {
+                                                popup: 'animate__animated animate__fadeInDown'
+                                            },
+                                            hideClass: {
+                                                popup: 'animate__animated animate__fadeOutUp'
+                                            }
+                                        })
+                                        break;
+                                
+                                    default:
+                                        break;
+                                }
+                                
+                            }
+                        });
+                    }else{
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 4000,
+                            timerProgressBar: true,
+                            onOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
 
-                    
-                   // var fila=$(this).closest('tr').addClass('bg-success');
-
-                
-                $.ajax({
-                    url : "../../pago/editar/"+pago_id,
-                    success : function(json) {
-                        $("#modal-editar").modal("show");
-                        console.log(json);
-
-                    },
-                    error : function(xhr, status) {
-                        alert('Disculpe, existió un problema');
-                    },
-                });
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'No se eliminó el registro'
+                        })
+                    }
+                })
             });
-
-            $('#pagos tbody').on( 'click', 'tr', function () {
-                if ( $(this).hasClass('table-secondary') ) {
-                    $(this).removeClass('table-secondary');
-                }
-                else {
-                    tabla.$('tr.table-secondary').removeClass('table-secondary');
-                    $(this).addClass('table-secondary');
-                }
-                console.log("click");
-            } );
-/*%%%%%%%%%%%%%%%%%%%%%%%%%%% SUBMIT EN FORMULARIO EDITAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $(document).on("submit", "#form-editar", function(event){
-                event.preventDefault(); //Se cancela el evento "submit"
-                let pago_id= $("#pago_id").val();
-                let monto=$("input[name='monto']").val();
-                console.log(monto);
-                $.ajax({
-                    url : "../../pago/actualizar/"+pago_id,
-                    data :{
-                        monto:monto
-                    },
-                    success : function(json) {
-                        console.log(json);
-                    },
-                    error : function(xhr, status) {
-                        alert('Disculpe, existió un problema');
-                    },
-                });
-            });
-
-/*%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO ELIMINAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-
+            
 
         });
     </script>    

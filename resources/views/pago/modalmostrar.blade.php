@@ -49,9 +49,6 @@
                 </table>
 
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" type="button">Aceptar</button>
-            </div>
         </div>
     </div>
 </div>
@@ -67,7 +64,7 @@
             </div>
             <div class="modal-editar-pago">
                 <div class="container p-4">
-                    <form method="POST" action="{{ route('pagos.actualizar',['pago'=>$pago])}}" id="form-editar">
+                    {{-- <form method="POST" action="{{ route('pagos.actualizar')}}" id="form-editar">
                         {{ @method_field('PUT') }}
                         @csrf
                             @include('pago.formeditar')
@@ -78,7 +75,7 @@
                                     </div>	
                                 </div>
                             </div>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
             <div class="modal-footer text-gray">

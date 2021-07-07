@@ -1,8 +1,11 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('template_title')
-    {{ $departamento->name ?? 'Show Departamento' }}
-@endsection
+@section('title', 'Departamentos')
+
+@section('content_header')
+    <h1>Departamentos</h1>
+@stop
+
 
 @section('content')
     <section class="content container-fluid">

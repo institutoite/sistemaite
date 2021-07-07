@@ -29,16 +29,12 @@ class PagoController extends Controller
     }
     public function detallar($inscripcion_id)
     {
-        $pagos=Pago::where('pagable_id','=',$inscripcion_id)->get();
-        $inscripcion = Inscripcione::findOrFail((int)$inscripcion);
-        $pagos = $inscripcion->pagos;
-        $acuenta = $inscripcion->pagos->sum->monto;
-        $saldo = $inscripcion->costo - $acuenta;
-
-        return view('pago.create', compact('inscripcion', 'pagos', 'acuenta', 'saldo'));
-
-        
-        return view('pago.detalle', compact('pagos'));
+            $pagos=Pago::where('pagable_id','=',$inscripcion_id)->get();
+            $inscripcion = Inscripcione::findOrFail($inscripcion_id);
+            $pagos = $inscripcion->pagos;
+            $acuenta = $inscripcion->pagos->sum->monto;
+            $saldo = $inscripcion->costo - $acuenta;
+        return view('pago.detalle', compact('inscripcion', 'pagos', 'acuenta', 'saldo'));
     }
 
     /**
@@ -143,8 +139,8 @@ class PagoController extends Controller
     public function editar($pago_id)
     {
         $pago = Pago::find($pago_id);
-        return response()->json($pago);
-
+        $inscripcion=$pago->pagable; 
+        return view('pago.edit',compact('pago','inscripcion'));
     }
 
     /**
@@ -157,17 +153,15 @@ class PagoController extends Controller
     public function update(Request $request, Pago $pago)
     {
         request()->validate(Pago::$rules);
-
         $pago->update($request->all());
-
-        return redirect()->route('pagos.index')
-            ->with('success', 'Pago updated successfully');
+       
+        return response()->json($pago); 
     }
 
     public function actualizar(PagoStoreRequest $request, Pago $pago)
     {
         $pago->update($request->all());
-        response()->json($pago);
+        return redirect()->route('billete.crear', ['pago' => $pago]); 
     }
 
 
@@ -179,8 +173,7 @@ class PagoController extends Controller
     public function destroy($id)
     {
         $pago = Pago::find($id)->delete();
-
-        return redirect()->route('pagos.index')
-            ->with('success', 'Pago deleted successfully');
+        $pago->delete();
+        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
 }

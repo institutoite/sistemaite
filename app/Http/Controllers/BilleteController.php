@@ -59,7 +59,7 @@ class BilleteController extends Controller
 
     public function guardar(Request $request,$pago_id)
     {
-        //dd($request->all());
+        
         $pago = Pago::findOrFail($pago_id);
         $montoBilletes= $request->billete200*200+ $request->billete100*100+ $request->billete50*50+ $request->billete20*20+
                 $request->billete10*10+ $request->moneda5*5+ $request->moneda2*2+ $request->moneda1*1+ $request->moneda50*0.5+ $request->moneda20*0.2;
@@ -81,12 +81,12 @@ class BilleteController extends Controller
             if($request->moneda1    != 0){ $vector_cantidad_billetes['8']= $request->moneda1;}
             if($request->moneda50   != 0){ $vector_cantidad_billetes['9']= $request->moneda50;}
             if($request->moneda20   != 0){ $vector_cantidad_billetes['10']= $request->moneda20;}
-            
-            
+
+            $pago->billetes()->detach();
             foreach ($vector_cantidad_billetes as $key => $value) {
                 $pago->billetes()->attach($key,['cantidad'=>$value,'tipo'=>'pago']);
             }
-
+            //dd($request->all());
             $vector_cantidad_billetes_cambio=[];
             if($request->billetecambio200 != 0){ $vector_cantidad_billetes_cambio['1']= $request->billetecambio200;}
             if($request->billetecambio100 != 0){ $vector_cantidad_billetes_cambio['2']= $request->billetecambio100;}

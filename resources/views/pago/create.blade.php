@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 @section('css')
-     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
@@ -53,66 +53,18 @@
                         </tr>
                     </tbody>
                 </table>
-                <a class="btn btn-secondary" href="{{route('pagos.detallar',$inscripcion->id)}}">Detallar Pagos</a>
-            </div>
-        </div>
-    <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="card card-default">
-                    <div class="card-header">
-                        PAGOS DE ESTA INSCRIPCION
-                    </div>
-                    <div class="card-body">
-                        <table  id="pagos" class="table table-bordered table-striped table-hover">
-                            <thead class="bg-primary">
-                                <tr>
-                                    <th>Nº</th>
-                                    <th>Monto</th>
-                                    <th>PagoCon</th>
-                                    <th>Cambio</th>
-                                    <th>Usuario</th>
-                                    <th>Fecha</th>
-                                    <th>Opciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($pagos as $pago)
-                                    <tr id="{{$pago->id}}">
-                                        <td>{{ $loop->index+1 }}</td>
-                                        <td>{{ $pago->monto }}</td>
-                                        <td>{{ $pago->pagocon }}</td>
-                                        <td>{{ $pago->cambio }}</td>
-                                        <td>{{ App\Models\User::find($pago->userable->user_id)->name }}</td>
-                                        <td>{{ $pago->created_at }}</td>
-                                        <td>
-                                            {{-- {{route('pagos.editar', $pago)}} --}}
-                                            <a href="" class="btn-accion-tabla tooltipsC mr-2 editar" title="Editar esta pago">
-                                                <i class="fa fa-fw fa-edit text-primary"></i>
-                                            </a>
-
-                                            <a href="" class="mostrar btn-accion-tabla tooltipsC mr-2" title="Ver este pago">
-                                                <i class="fa fa-fw fa-eye text-primary"></i>
-                                            </a>
-
-                                            <form action=""  class="d-inline formulario eliminar">
-                                                @csrf
-                                                @method("delete")
-                                                <button name="btn-eliminar"  type="submit" class="btn eliminar" title="Eliminar este pago">
-                                                    <i class="fa fa-fw fa-trash text-danger"></i>   
-                                                </button>
-                                            </form> 
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        
+                <div class="container-fluid h-100"> 
+                    <div class="row w-100 align-items-center">
+                        <div class="col text-center">
+                            <a class="btn btn-secondary" href="{{route('pagos.detallar',$inscripcion->id)}}">Detallar Pagos</a>
+                        </div>	
                     </div>
                 </div>
+
+                
             </div>
         </div>
     </section>
-    @include('pago.modalmostrar')
 @endsection
 
 @section('js')
@@ -147,111 +99,6 @@
             $('#monto').change(function(){
                 $('#cambio').val($('#pagocon').val()-$('#monto').val());
             });
-            
-/*%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PAGO CON AJAX EN MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('table').on('click', '.mostrar', function(e) {
-                e.preventDefault(); 
-                var pago_id =$(this).closest('tr').attr('id');
-                var fila=$(this).closest('tr');
-                //console.log(pago_id);
-                $.ajax({
-                    url : "../../pago/mostrar/"+pago_id,
-                    
-                    success : function(json) {
-                        //console.log(json);
-                        $("#modal-mostrar").modal("show");
-                        $("#tabla-modal").empty();
-                        $("#tabla-pago").empty();
-                        $("#tabla-cambio").empty();
-                        $html="";
-                        $html+="<tr><td>Monto</td>"+"<td>Bs. "+json.pago.monto+"</td></tr>";
-                        $html+="<tr><td>Pago Con</td>"+"<td>Bs. "+json.pago.pagocon+"</td></tr>";
-                        $html+="<tr><td>Cambio</td>"+"<td>Bs. "+json.pago.cambio+"</td></tr>";
-                        $html+="<tr><td>Fecha y hora Pago</td>"+"<td>"+moment(json.pago.created_at).format('LLLL')+"</td></tr>";
-                        $html+="<tr><td>Ultima Actualizacion</td>"+"<td>"+moment(json.pago.updated_at).format('LLLL')+"</td></tr>";
-                        $("#tabla-modal").append($html);    
-                        
-                        $htmlBilletesPago="";
-                        $htmlBilletesCambio="";
-                        $sumaPago=0;
-                        $sumaCambio=0;
-                        for (let j in json.billetes) {
-                            if(json.billetes[j].pivot.tipo=='pago'){
-                                $htmlBilletesPago+="<tr><td>Corte de Bs. "+json.billetes[j].corte+"</td>"+"<td>"+json.billetes[j].pivot.cantidad+"</td><td>"+ json.billetes[j].pivot.tipo +"</td><td>Bs. "+  json.billetes[j].pivot.cantidad*json.billetes[j].corte +"</td></tr>";
-                                $sumaPago+=json.billetes[j].corte*json.billetes[j].pivot.cantidad;
-                                
-                            }else{
-                                $htmlBilletesCambio+="<tr><td>Corte de Bs. "+json.billetes[j].corte+"</td>"+"<td>"+json.billetes[j].pivot.cantidad+"</td><td>"+ json.billetes[j].pivot.tipo +"</td><td>Bs. "+  json.billetes[j].pivot.cantidad*json.billetes[j].corte +"</td></tr>";
-                                $sumaCambio+=json.billetes[j].corte*json.billetes[j].pivot.cantidad;
-                            }
-                        }
-                        $htmlBilletesPago+="<tr><td colspan='3'>T&nbsp;&nbsp;O&nbsp;&nbsp;T&nbsp;&nbsp;A&nbsp;&nbsp;L&nbsp;&nbsp;&nbsp;&nbsp;P&nbsp;&nbsp;A&nbsp;&nbsp;G&nbsp;&nbsp;O&nbsp;&nbsp; </td>"+"<td>Bs. "+$sumaPago+"</td></tr>";
-                        $htmlBilletesCambio+="<tr><td colspan='3'>T&nbsp;&nbsp;O&nbsp;&nbsp;T&nbsp;&nbsp;A&nbsp;&nbsp;L&nbsp;&nbsp;&nbsp;&nbsp;C&nbsp;&nbsp;A&nbsp;&nbsp;M&nbsp;&nbsp;B&nbsp;&nbsp;I&nbsp;&nbsp;O&nbsp;&nbsp;</td>"+"<td>Bs. "+$sumaCambio+"</td></tr>";
-                        $("#tabla-pago").append($htmlBilletesPago);
-                        $("#tabla-cambio").append($htmlBilletesCambio);
-
-                    },
-                    error : function(xhr, status) {
-                        alert('Disculpe, existió un problema');
-                    },
-                });
-            });
-/*%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN MOSTRAR MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-/*%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO EDIATAR MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('table').on('click', '.editar', function(e) {
-                e.preventDefault(); 
-                var pago_id =$(this).closest('tr').attr('id');
-
-                    
-                   // var fila=$(this).closest('tr').addClass('bg-success');
-
-                
-                $.ajax({
-                    url : "../../pago/editar/"+pago_id,
-                    success : function(json) {
-                        $("#modal-editar").modal("show");
-                        console.log(json);
-
-                    },
-                    error : function(xhr, status) {
-                        alert('Disculpe, existió un problema');
-                    },
-                });
-            });
-
-            $('#pagos tbody').on( 'click', 'tr', function () {
-                if ( $(this).hasClass('table-secondary') ) {
-                    $(this).removeClass('table-secondary');
-                }
-                else {
-                    tabla.$('tr.table-secondary').removeClass('table-secondary');
-                    $(this).addClass('table-secondary');
-                }
-                console.log("click");
-            } );
-/*%%%%%%%%%%%%%%%%%%%%%%%%%%% SUBMIT EN FORMULARIO EDITAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $(document).on("submit", "#form-editar", function(event){
-                event.preventDefault(); //Se cancela el evento "submit"
-                let pago_id= $("#pago_id").val();
-                let monto=$("input[name='monto']").val();
-                console.log(monto);
-                $.ajax({
-                    url : "../../pago/actualizar/"+pago_id,
-                    data :{
-                        monto:monto
-                    },
-                    success : function(json) {
-                        console.log(json);
-                    },
-                    error : function(xhr, status) {
-                        alert('Disculpe, existió un problema');
-                    },
-                });
-            });
-
-/*%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO ELIMINAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-
-
         });
     </script>    
 @endsection
