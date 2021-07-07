@@ -201,6 +201,7 @@ Route::delete('eliminar/modalidad/{id}', 'ModalidadController@destroy')->name('e
 Route::delete('eliminar/nivel/{id}', 'NivelController@destroy')->name('eliminar.nivel');
 Route::delete('eliminar/inscripcion/{id}', 'InscripcioneController@destroy')->name('eliminar.inscripcione');
 Route::delete('eliminar/usuario/{id}', 'UserController@destroy')->name('eliminar.user');
+Route::delete('eliminar/pago/{pago}', 'PagoController@destroy')->name('eliminar.user');
 
 Route::get('tomarfoto', function () {return view('persona.tomarfoto');})->name('tomarfoto');
 Route::get('tomarfoto/{persona}', 'PersonaController@tomarfoto')->name('tomar.foto.persona');

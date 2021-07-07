@@ -170,10 +170,11 @@ class PagoController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy($pago_id)
     {
-        $pago = Pago::find($id)->delete();
-        $pago->delete();
+        $pago = Pago::find($pago_id);
+        $pago->billetes()->detach();
+        $pago->delete();    
         return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
 }
