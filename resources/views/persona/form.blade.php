@@ -1,15 +1,15 @@
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             @if($errors->has('nombre'))
                 <span class="text-danger"> {{ $errors->first('nombre')}}</span>
             @endif
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">    
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             @if($errors->has('apellidop'))
                 <span class="text-danger"> {{ $errors->first('apellidop')}}</span>
             @endif
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             @if($errors->has('apellidom'))
                 <span class="text-danger"> {{ $errors->first('apellidom')}}</span>
             @endif
@@ -17,43 +17,45 @@
     </div>
 
 
-    {{-- $$$$$$$$$$$ CAMPO NOMBRE INICIO --}}
+    {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO NOMBRE %%%%%%%%%%%%%%%%%%%%%% --}}
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" > 
-            <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1" for=""><small>Nombre*</small></p> 
-                <input  type="text" name="nombre" class="form-control col-9 @error('nombre') is-invalid @enderror" value="{{old('nombre',$persona->nombre ?? '')}}" placeholder="Ingrese un  nombre">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" > 
+            <div class="form-floating mb-3 text-gray">
+                <input  type="text" name="nombre" class="form-control @error('nombre') is-invalid @enderror" value="{{old('nombre',$persona->nombre ?? '')}}">
+                <label for="nombre">nombre</label>
             </div>
         </div>
+
         {{-- %%%%%%%%%%%%%%% CAMPO APELLIDO PATERNO --}}
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
-            <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1" for=""><small>Paterno*</small></p> 
-                <input  type="text" name="apellidop" class="form-control @error('apellidop') is-invalid @enderror" value="{{old('apellidop',$persona->apellidop ?? '')}}" placeholder="Ingrese  apellido Paterno(Obligatorio)">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+            <div class="form-floating mb-3 text-gray">
+                <input  type="text" name="apellidop" class="form-control @error('apellidop') is-invalid @enderror" value="{{old('apellidop',$persona->apellidop ?? '')}}">
+                <label for="apellidop">apellidop</label>
             </div>    
         </div>
         {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO APELLIDO MATERNO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
-            <div class="input-group mb-2" >
-            <p class="col-3 form-control bg-secondary text-sm p-1" for="">Materno</p> 
-            <input  type="text" name="apellidom" class="form-control @error('apellidom') is-invalid @enderror" value="{{old('apellidom',$persona->apellidom ?? '')}}" placeholder="Ingrese su apellido Materno(Opcional)">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+            <div class="form-floating mb-3 text-gray">
+            <input  type="text" name="apellidom" class="form-control @error('apellidom') is-invalid @enderror" value="{{old('apellidom',$persona->apellidom ?? '')}}">
+            <label for="apellidom">apellidom</label>
             </div>
         </div>
+
     </div>
 
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             @if($errors->has('fechanacimiento'))
                 <span class="text-danger"> {{ $errors->first('fechanacimiento')}}</span>
             @endif
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             @if($errors->has('carnet'))
                 <span class="text-danger"> {{ $errors->first('carnet')}}</span>
             @endif
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             @if($errors->has('expedido'))
                 <span class="text-danger"> {{ $errors->first('expedido')}}</span>
             @endif
@@ -63,29 +65,30 @@
 {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO  FECHA NACIMIENTO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
     {{--\Carbon::createFromFormat('Y-m-d', $persona->fechanacimiento)--}}
     <div class="row"> 
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             @isset($persona)
-                <div class="input-group mb-2" >
-                    <p class="col-3 form-control bg-secondary p-1" for=""><small>Fecha N*</small></p> 
-                    <input  type="date" name="fechanacimiento" class="form-control col-9 @error('fechanacimiento') is-invalid @enderror" value="{{old('fechanacimiento',$persona->fechanacimiento->format('Y-m-d') ?? '')}}">
+                <div class="form-floating mb-3 text-gray">
+                    <input  type="date" name="fechanacimiento" class="form-control @error('fechanacimiento') is-invalid @enderror" value="{{old('fechanacimiento',$persona->fechanacimiento->format('Y-m-d') ?? '')}}">
+                    <label for="fechanacimiento">fechanacimiento</label>
                 </div>
             @else
-                <div class="input-group mb-2" >
-                    <p class="col-3 form-control bg-secondary p-1" for=""><small>Fecha N*</small></p> 
-                    <input  type="date" name="fechanacimiento" class="form-control col-9 @error('fechanacimiento') is-invalid @enderror" value="{{old('fechanacimiento' ?? '')}}">
+                <div class="form-floating mb-3 text-gray">
+                    <input  type="date" name="fechanacimiento" class="form-control @error('fechanacimiento') is-invalid @enderror" value="{{old('fechanacimiento' ?? '')}}">
+                    <label for="fechanacimiento">fechanacimiento</label>
                 </div>
             @endisset
         </div>
 {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO  CARNET  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
-            <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1" for="">C.I.</p> 
-                <input  type="number" min="100000" name="carnet" class="form-control col-9 @error('carnet') is-invalid @enderror" value="{{old('carnet',$persona->carnet ?? '')}}" placeholder="Ingrese un numero de carnet">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+            <div class="form-floating mb-3 text-gray">
+                <input  type="number" min="100000" name="carnet" class="form-control @error('carnet') is-invalid @enderror" value="{{old('carnet',$persona->carnet ?? '')}}">
+                <label for="carnet">carnet</label>
             </div>
         </div>
+
 {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO  expedido del carnet  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
-                <p class="col-3 form-control bg-secondary p-1" for="">Dpto</p> 
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+            <div class="form-floating mb-3 text-gray">
                 <select class="form-control @error('expedido') is-invalid @enderror"  name="expedido" id="expedido">
                     <option value=""> Elija Expedido</option>
                         @isset($persona)
@@ -116,22 +119,23 @@
                             
                         
                 </select> 
-        </div>
+                <label for="expedido">Elija departamento de expedido</label>
+            </div>
         
+        </div>
     </div>
-
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             @if($errors->has('genero'))
                 <span class="text-danger"> {{ $errors->first('genero')}}</span>
             @endif
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             @if($errors->has('como'))
                 <span class="text-danger"> {{ $errors->first('como')}}</span>
             @endif
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             @if($errors->has('papel'))
                 <span class="text-danger"> {{ $errors->first('papel')}}</span>
             @endif
@@ -140,12 +144,10 @@
     {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO GENERO  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 
     <div class="row"> 
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
-            <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1 p-1" for=""><small>Género*</small></p> 
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+            <div class="form-floating mb-3 text-gray">
                 <select class="form-control @error('expedido') is-invalid @enderror" name="genero" id="genero">
                     <option value=""> Elija tu género</option>
-                
                     @isset($persona)      
                         @if($persona->genero=="MUJER")
                             <option value="{{ $persona->genero }}" {{ "MUJER"==$persona->genero ? 'selected':''}} >{{ $persona->genero }}</option>
@@ -160,14 +162,15 @@
                         <option value="HOMBRE" @if(old('genero') == 'HOMBRE') {{'selected'}} @endif>HOMBRE</option>
                     @endisset    
                 </select>
+                <label for="genero">Elija género*</label>
             </div>
         </div>
+
         {{--%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO COMO SE INFORMO  --}}
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             <div class="row">
-                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 input-group text-sm" >
-                    <div class="input-group" >
-                        <p class="col-3 form-control bg-secondary" for=""><small>Como*</small></p> 
+                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" >
+                    <div class="form-floating mb-3 text-gray">
                         <select onchange="mostrarModal();" onfocus="this.selectedIndex = -1;" class="form-control @error('como') is-invalid @enderror"  name="como" id="como">
                             <option value="">Como se enteró</option>
                                 @isset($persona)
@@ -186,11 +189,15 @@
                                     <option value="OTRO" @if(old('como') == 'OTRO') {{'selected'}} @endif>Otra Forma</option>
                                 @endisset
                         </select>
+                        <label for="como">como</label>
                     </div>
                 </div>
-{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO REFERENCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-sm" >
-                    <input  type="text" readonly id="persona_id" name="persona_id" class="form-control @error('carnet') is-invalid @enderror" value="{{old('persona_id',$persona->persona_id ?? '')}}">
+                {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO REFERENCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
+                    <div class="form-floating mb-3 text-gray">
+                        <input  type="text" readonly id="persona_id" name="persona_id" class="form-control @error('carnet') is-invalid @enderror" value="{{old('persona_id',$persona->persona_id ?? '')}}">
+                    </div>
+                    <label for=""></label>  
                 </div>
             </div>
             
@@ -198,9 +205,8 @@
 
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO OCULTO CON QUE PAPEL LLEGA A ITE papel de profesor papel de practico etc ---}}
 
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
-            <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1 " for=""><small>Papel*</small></p> 
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+            <div class="form-floating mb-3 text-gray">
                 <select class="form-control @error('papel') is-invalid @enderror"  name="papel" id="papel">
                     <option value=""> Elija Papel</option>
                         @isset($persona)
@@ -220,24 +226,24 @@
                             <option value="proveedor" @if(old('papel') == 'proveedor') {{'proveedor'}} @endif>Proveedor</option>
                             <option value="proveedor" @if(old('papel') == 'apoderado') {{'apoderado'}} @endif>Apoderado</option>
                         @endisset
-                        
                 </select>
+                <label for="papel">papel*</label>
             </div> 
         </div>
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             @if($errors->has('pais_id'))
                 <span class="text-danger"> {{ $errors->first('pais_id')}}</span>
             @endif
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             @if($errors->has('ciudad_id'))
                 <span class="text-danger"> {{ $errors->first('ciudad_id')}}</span>
             @endif
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             @if($errors->has('zona_id'))
                 <span class="text-danger"> {{ $errors->first('zona_id')}}</span>
             @endif
@@ -246,9 +252,8 @@
 
     {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO PAIS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
     <div class="row"> 
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
-            <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1 p-1" for=""><small>Pais*</small></p> 
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+            <div class="form-floating mb-3 text-gray">
                 <select class="form-control @error('pais_id') is-invalid @enderror" data-old="{{ old('pais_id') }}" name="pais_id" id="country">
                     <option value="1" selected> Bolivia</option>
                     @foreach ($paises as $pais)
@@ -259,12 +264,13 @@
                         @endisset 
                     @endforeach
                 </select>
+                <label for="pais">Elija pais*</label>
             </div>
         </div>
+
         {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO CIUDAD  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
-            <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1 p-1" for=""><small>city*</small></p> 
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+            <div class="form-floating mb-3 text-gray">
                 <select class="form-control @error('ciudad_id') is-invalid @enderror" name="ciudad_id" id="city">
                     <option value=""> Elija una ciudad</option>
                         @foreach ($ciudades as $item)
@@ -273,12 +279,13 @@
                             @endisset
                         @endforeach 
                 </select>
+                <label for="pais">Elija Ciudad*</label>
             </div>
         </div>
+
         {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO ZONA  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
-            <div class="input-group mb-2" >
-            <p class="col-3 form-control bg-secondary p-1" for=""><small>Zona*</small></p> 
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+            <div class="form-floating mb-3 text-gray">
             <select class="form-control @error('zona_id') is-invalid @enderror" name="zona_id" id="zona">
                 <option value="" > Seleccione una Zona</option>
                 @foreach ($zonas as $zona)
@@ -289,19 +296,21 @@
                     @endisset  
                 @endforeach
             </select>
+            <label for="zona_id">Elija zona*</label>
         </div>
         </div>
+
     </div>
 
 
     {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO DIRECCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8 input-group text-sm" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-8" >
                 @if($errors->has('direccion'))
                     <span class="text-danger"> {{ $errors->first('direccion')}}</span>
                 @endif
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             @if($errors->has('telefono'))
                 <span class="text-danger"> {{ $errors->first('telefono')}}</span>
             @endif
@@ -309,22 +318,24 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 input-group text-sm" > 
-            <div class="input-group mb-2" >
-                <p class="col-2 form-control bg-secondary p-1" for=""><small>Dirección*</small></p> 
-                <input  type="text" name="direccion" class="form-control col-10 @error('direccion') is-invalid @enderror" value="{{old('direccion',$persona->direccion ?? '')}}" placeholder="Ingrese una dirección">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" > 
+            <div class="form-floating mb-3 text-gray">
+                <input  type="text" name="direccion" class="form-control @error('direccion') is-invalid @enderror" value="{{old('direccion',$persona->direccion ?? '')}}" >
+                <label for="direccion">Dirección*</label>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm" >
-            <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1" for=""><small>Teléfono</small></p> 
-                <input class="form-control" type="tel" id="phone" name="telefono" value="{{old('telefono',$persona->telefono ?? '')}}" placeholder="teléfono de la persona">
+
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+            <div class="form-floating mb-3 text-gray">
+                <input class="form-control" type="tel" id="phone" name="telefono" value="{{old('telefono',$persona->telefono ?? '')}}">
+                <label for="telefono">Telefono*</label>
             </div>
         </div>
+
     </div>
     
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm" >
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
                 @if($errors->has('observacion'))
                     <span class="text-danger"> {{ $errors->first('observacion')}}</span>
                 @endif
@@ -338,14 +349,14 @@
             {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO OBSERVACION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}} 
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group border" style="position: relative" >
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group" >
-                    <div class="input-group mb-2" >
+                    <div class="form-floating mb-3 text-gray">
                         <div class="text-center p-4" >
                             <img with="25" height="25" src="{{URL::to('/').Storage::url("$persona->foto")}}" class="rounded img-thumbnail img-fluid border-primary border-5" alt="{{$persona->nombre}}">        
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group" >
-                    <div class="input-group mb-2" >
+                    <div class="form-floating mb-3 text-gray">
                         <div class="text-center" >
                             <a href="{{ route('tomar.foto.persona',$persona)}}"> <i class="fas fa-camera"></i> Tomar Foto </a>
                         </div>
@@ -353,12 +364,14 @@
                 </div>
             </div>
             {{-- $$$$$$$$$$$ CAMPO REPETIR FOTOGRAFIA --}}
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm" >
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
                 <div class="border-danger input-group text-center">
                     <input type="file" data-initial-preview="{{isset($persona->foto) ? URL::to('/').Storage::url("$persona->foto") : URL::to('/').Storage::url("estudiantes/foto.jpeg") }}" accept=".png, .jpg, .jpeg, .gif" name="foto" id="foto" data-classButton="btn btn-success" data-input="false" data-classIcon="icon-plus">                
+
                 </div>
             </div>
         </div>
+
     @endisset
     
 

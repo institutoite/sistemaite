@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GuardarApoderadoExistenteRequest;
 use App\Models\Telefono;
 use App\Models\Persona;
 use Illuminate\Http\Request;
@@ -57,13 +58,15 @@ class TelefonoController extends Controller
         return view('persona.existente',compact('persona','apoderados'));
     }
     public function agregarApoderado($persona_id,$apoderado_id){
+
         $estudiante=Persona::findOrFail($persona_id);
         $apoderado = Persona::findOrFail($apoderado_id);
         return view('telefono.agregarApoderado',compact('estudiante','apoderado'));
     }
 
-    public function guardarApoderadoExistente(Request $request){
+    public function guardarApoderadoExistente(GuardarApoderadoExistenteRequest $request){
        
+        //dd($request->all());
         $estudiante_id=$request->persona_id;
         $apoderado_id=$request->apoderado_id;
         

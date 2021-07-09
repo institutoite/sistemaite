@@ -1,10 +1,6 @@
 @extends('adminlte::page')
 
 @section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
 @stop
 
 @section('title', 'Telefonos')
@@ -78,7 +74,7 @@
         <script>
             Swal.fire({
                 position: 'top-start',
-                icon: 'success',
+                type: 'success',
                 title: 'Contacto Guardado Correctamente',
                 showConfirmButton: false,
                 timer: 1500
@@ -96,7 +92,7 @@
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",
-                    icon: 'question',
+                    type: 'question',
                     showCancelButton: true,
                     showConfirmButton:true,
                     confirmButtonColor: '#25ff80',
@@ -120,7 +116,7 @@
                         })
 
                         Toast.fire({
-                            icon: 'error',
+                            type: 'error',
                             title: 'No se eliminó el registro'
                         })
                     }

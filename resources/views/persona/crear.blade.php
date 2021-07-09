@@ -1,33 +1,33 @@
 @extends('adminlte::page')
 @section('css')
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
-    
-
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
 @stop
 
 @section('title', 'Crear Persona')
 
-@section('content_header')
-@stop
+@section('plugins.Jquery', true)
+@section('plugins.Datatables', true)
 
 @section('content')
-    <div class="card">
-        <div class="card-header bg-secondary">
-            FORMULARIO CREAR PERSONAS X
-        </div>
-        <div class="card-body">
-            <div class="tab-content">
-                <div class="active tab-pane" id="estudiante">
-                    <form action="{{route('personas.store')}}" id="formulario" method="post" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
-                        @csrf
-                        @include('persona.form')
-                        @include('include.botones')
-                    </form>
+    <div class="pt-4">
+        <div class="card">
+            <div class="card-header bg-secondary">
+                FORMULARIO CREAR PERSONAS X
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="estudiante">
+                        <form action="{{route('personas.store')}}" id="formulario" method="post" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
+                            @csrf
+                            @include('persona.form')
+
+                            @include('include.botones')
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-   
 @stop
 
 @section('js')
@@ -58,7 +58,37 @@
     <script>
         $(document).ready(function(){
             
-      
+            $('#personas').DataTable(
+                {
+                    "serverSide": true,
+                    "responsive":true,
+                    "autoWidth":false,
+                    "ajax": "{{ url('api/referencias') }}",
+                    "columns": [
+                        {data: 'id'},
+                       
+                        {data: 'nombre'},
+                        {data: 'apellidop'},
+                        {data: 'apellidom'},
+                        {
+                            "name": "foto",
+                            "data": "foto",
+                            "render": function (data, type, full, meta) {
+                                return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
+                            },
+                            "title": "Image",
+                            "orderable": true,
+            
+                        }, 
+                        {
+                            data: 'btn'
+                        },  
+                    ],
+                    "language":{
+                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    },  
+                }
+            );
 
 
             var url1 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg',

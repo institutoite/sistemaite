@@ -78,12 +78,15 @@
 @endsection
 
 @section('js')
-    <script src="{{asset('dist/js/moment.min.js')}}"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
-    {{-- 0 --}}
+
+    <script src="{{asset('dist/js/moment.js')}}"></script>
+    
+   
     <script>
         $(document).ready(function(){
+            
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATA TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+           //moment.locale(); 
         var tabla=$('#pagos').dataTable({
                 "responsive":true,
                 "searching":false,
@@ -160,12 +163,13 @@
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR PAGO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
-                let id=$(this).closest('tr').attr('id');
+                let fila=$(this).closest('tr');
+                let id=fila.attr('id');
                 //console.log(id);
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",
-                    icon: 'info',
+                    type: 'info',
                     showCancelButton: true,
                     showConfirmButton:true,
                     confirmButtonColor: '#25ff80',
@@ -182,22 +186,19 @@
                                 _token:'{{csrf_token()}}'
                             },
                             success: function(result) {
-                                //tabla.ajax.reload();
+                              
+                                fila.remove().draw;
                                 const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
                                 showConfirmButton: false,
-                                timer: 1500,
-                                timerProgressBar: true,
-                                didOpen: (toast) => {
-                                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                }
+                                timer: 3000,
                                 })
+
                                 Toast.fire({
-                                    icon: 'success',
-                                    title: result.menssge,
-                                })   
+                                type: 'success',
+                                title: 'Signed in successfully'
+                                })
                             },
                             error: function (xhr, ajaxOptions, thrownError) {
                                 switch (xhr.status) {
@@ -233,7 +234,7 @@
                         })
 
                         Toast.fire({
-                            icon: 'error',
+                            type: 'error',
                             title: 'No se eliminó el registro'
                         })
                     }

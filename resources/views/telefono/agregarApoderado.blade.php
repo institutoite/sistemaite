@@ -1,3 +1,4 @@
+
 @extends('adminlte::page')
 
 @section('css')
@@ -25,6 +26,13 @@
                         <div class="input-group mb-2" >
                             <p class="col-3 form-control bg-secondary p-1" for="">Teléfono</p> 
                             <input class="form-control" type="text" name="telefono" value="{{$apoderado->telefono}}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                                @if($errors->has('telefono'))
+                                    <span class="text-danger"> {{ $errors->first('telefono')}}</span>
+                                @endif
                         </div>
                     </div>
 
@@ -59,6 +67,13 @@
                                         <option value="OTRO" @if(old('parentesco') == 'OTRO') {{'selected'}} @endif>OTRO</option>
                                     @endisset
                             </select>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                                @if($errors->has('parentesco'))
+                                    <span class="text-danger"> {{ $errors->first('parentesco')}}</span>
+                                @endif
                         </div>
                     </div>
                     @include('include.botones')

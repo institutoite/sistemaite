@@ -1,21 +1,19 @@
 @extends('adminlte::page')
 @section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
-    
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
 @stop
 
 @section('title', 'Apoderado')
+@section('plugins.Jquery', true)
+@section('plugins.SweetAlert', true)
+@section('plugins.Datatables', true)
+
 
 @section('content_header')
     <h1 class="text-center text-primary">Buscar apoderado</h1>
 @stop
 
 @section('content')
-{{-- {{dd($persona)}} --}}
     <table id="apoderados" class="table table-bordered table-hover table-striped">
         <thead class="bg-primary text-center">
 
@@ -31,7 +29,7 @@
                 <tr>
                     <td>{{$apoderado->id}}</td>
                     <td>{{$apoderado->nombre}}</td>
-                    <td>{{$apoderado->foto}}</td>
+                    <td><img width="100" class="img-thumbnail" src="{{URL::to('/').'/'.'storage/'.$apoderado->foto}}" alt=""></td>
                     <td>
                         <a href="{{route('agregar.apoderado',['persona_id'=>$persona->id,'apoderado_id'=>$apoderado->id])}}" class="btn btn-outline-primary" title="ir a opciones de la persona">
                             Seleccionar<i class="fas fa-user-check"></i>
@@ -45,12 +43,7 @@
 
 @section('js')
     
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
-    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
+   
     <!-- JavaScript Bundle with Popper -->
     
 
