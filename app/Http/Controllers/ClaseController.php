@@ -109,6 +109,7 @@ class ClaseController extends Controller
                         ->join('temas', 'clases.tema_id', 'temas.id')
                         ->join('docentes', 'clases.docente_id', 'docentes.id')
                         ->join('personas', 'docentes.persona_id', 'personas.id')
+                        ->where('clases.id',$request->id)
                         // ->join('programacions','clases.programacion_id','programacions.id')
                         // ->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
                         // ->join('estudiantes','inscripciones.estudiante_id','estudiantes.id')

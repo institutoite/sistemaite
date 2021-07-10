@@ -304,7 +304,19 @@ class ProgramacionController extends Controller
             return redirect()->route('imprimir.programa', $inscripcion->id);/** llamar al metodo que muestra pdf*/
         }    
     }
+
+    public function deshabilitarTodoProgramas($inscripcione_id){
+        $programas=Programacion::where('inscripcione_id', $inscripcione_id)->get();
+        foreach ($programas as $programa) {
+            $programa->habilitado=0;
+            $programa->save();
+        }
+    }
+
+
+
     public function actualizarProgramaSegunPago($inscripcione_id){
+        
         $inscripcion = Inscripcione::findOrFail($inscripcione_id);
         $total_costo=$inscripcion->costo;
         $total_horas=$inscripcion->totalhoras;
@@ -313,7 +325,12 @@ class ProgramacionController extends Controller
                                         ->get();
         $acuentaTotal=$inscripcion->pagos->sum->monto;
         $TotalPagado=$acuentaTotal;
-        //dd($ProgramasNoPagadas);
+
+
+        
+
+        $this->deshabilitarTodoProgramas($inscripcione_id);
+        //dd($acuentaTotal);
         foreach ($programas as $programa) {
             $costo_programa = $programa->hora_ini->floatDiffInHours($programa->hora_fin)*($costo_por_hora);
             if($acuentaTotal>$costo_programa){

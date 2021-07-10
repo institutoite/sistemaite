@@ -205,8 +205,8 @@
                         $html+="<tr><td>FOTO ESTUDIANTE</td>"+"<td>"+fila.find('td').eq(8).html()+"</td></tr>";
 
                         $html+="<tr><td>FOTO DOCENTE</td>"+"<td><img class='zoom'  src="+"{{URL::to('/')}}/storage/"+json.foto+ " height='150'/></td></tr>";
-                        $html+="<tr><td>CREADO</td>"+"<td>"+json.created_at+"</td></tr>";
-                        $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.updated_at)+"</td></tr>";
+                        $html+="<tr><td>CREADO</td>"+"<td>"+moment(json.created_at).format('LLLL')+"</td></tr>";
+                        $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.updated_at).format('LLLL')+"</td></tr>";
                         $("#tabla-modal").append($html);
 
                     },

@@ -14,12 +14,12 @@
         </div>  
     </div>
 
+    
 
     {{-- $$$$$$$$$$$ CAMPO horainicio  --}}
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm" >
-            <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1 p-1" for="">Modalidad</p> 
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+            <div class="form-floating mb-3 text-gray">
                 <select class="form-control @error('modalidad_id') is-invalid @enderror" data-old="{{ old('modalidad_id') }}" name="modalidad_id" id="modalidad_id">
                     <option value="" > Seleccione Modalidad </option>
                     @foreach ($modalidades as $modalidad)
@@ -30,14 +30,16 @@
                         @endisset 
                     @endforeach
                 </select>
+                <label for="modalidad_id">Elija modalidad</label>
             </div>
         </div>
         {{-- %%%%%%%%%%%%%%% CAMPO HORA FIN --}}
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm" >
-            <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1 p-1" for="">Costo</p> 
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+            <div class="form-floating mb-3 text-gray">
                 <input type="numeric" class="form-control @error('costo') is-invalid @enderror" name="costo" id="costo" value="{{old('costo',$ultima_inscripcion->costo ?? '')}}">
-            </div>    
+                <label for="costo">Ingrese Costo</label>    
+            </div>
+            
         </div>
     </div>
 
@@ -56,22 +58,21 @@
     </div>
 
     <div class="row"> 
-         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm" >
-            <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1" for="">F. Ini</p> 
+         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+            <div class="form-floating mb-3 text-gray">
                 @isset($ultima_inscripcion)
                     <input  type="date" name="fechaini" class="form-control @error('fechaini') is-invalid @enderror" value="{{ old('fechaini', $ultima_inscripcion->fechaini->format('Y-m-d') ?? '')}}">    
                 @else
                     <input  type="date" name="fechaini" class="form-control @error('fechaini') is-invalid @enderror" value="{{ old('fechaini' ?? '')}}">
                 @endif
-                
+                <label for="fechaini">Fecha Inicio</label>  
 
             </div>    
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm" >
-            <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1" for="">T. Hras</p> 
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+            <div class="form-floating mb-3 text-gray">
                 <input id="totalhoras" type="number" name="totalhoras" class="form-control @error('totalhoras') is-invalid @enderror" value="{{old('totalhoras',$ultima_inscripcion->totalhoras ?? '')}}" placeholder="Total Horas">
+                <label for="totalhoras">Ingrese Total Horas</label>  
             </div>    
         </div>
     </div>
@@ -79,16 +80,15 @@
 
 
      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             @if($errors->has('motivo_id'))
                 <span class="text-danger"> {{ $errors->first('motivo_id')}}</span>
             @endif
         </div>
     </div>
     <div class="row"> 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm" >
-            <div class="input-group mb-2" >
-                <p class="col-3 form-control bg-secondary p-1 p-1" for="">Motivo</p> 
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+            <div class="form-floating mb-3 text-gray">
                 <select class="form-control @error('motivo_id') is-invalid @enderror" data-old="{{ old('motivo_id') }}" name="motivo_id" id="motivo">
                     <option value="" > Seleccione Motivo </option>
                     @foreach ($motivos as $motivo)
@@ -99,12 +99,13 @@
                         @endisset 
                     @endforeach
                 </select>
+                 <label for="motivo">Elija el motivo de las clases</label>  
             </div>    
         </div>
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             @if($errors->has('objetivo'))
                 <span class="text-danger"> {{ $errors->first('objetivo')}}</span>
             @endif
@@ -120,8 +121,3 @@
     </div> --}}
 
     
-
-    <div class="box-footer mt20 text-center">
-        <button type="submit" class="btn btn-primary">Guardar</button>
-    </div>
-

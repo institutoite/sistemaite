@@ -30,24 +30,35 @@
                     </div>
                 </div>
             </div>
-            <div class="col-5">
+            
+            @php
+                if($saldo>0){
+                    $clase="bg-danger";
+                    $texto="text-danger";
+                }else{
+                    $clase="bg-success";
+                    $texto="text-success";
+                }
+            @endphp
+            
+            <div class="col-md-5">
                 <table class="table table-bordered table-striped table-hover">
-                    <thead class="bg-success">
+                    <thead class="{{$clase}}">
                         <tr>
                             <th>Atributo</th>
                             <th>Valor</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr class="{{$texto}}">
                             <td><strong>Acuenta</strong></td>
                             <td><strong>{{ $acuenta }} Bs.</strong></td>
                         </tr>
-                        <tr>
+                        <tr class="{{$texto}}">
                             <td><strong>Saldo</strong></td>
                             <td><strong>{{$saldo}} Bs.</strong></td>
                         </tr>
-                        <tr>
+                        <tr class="{{$texto}}">
                             <td><strong>Costo Total</strong></td>
                             <td><strong>{{$inscripcion->costo}} Bs.</strong></td>
                         </tr>
@@ -56,12 +67,11 @@
                 <div class="container-fluid h-100"> 
                     <div class="row w-100 align-items-center">
                         <div class="col text-center">
-                            <a class="btn btn-secondary" href="{{route('pagos.detallar',$inscripcion->id)}}">Detallar Pagos</a>
+                            <a class="btn btn-secondary {{$clase}}" href="{{route('pagos.detallar',$inscripcion->id)}}">Detallar Pagos</a>
                         </div>	
                     </div>
                 </div>
 
-                
             </div>
         </div>
     </section>

@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
-@section('title', 'Pais Crear')
+@section('title', 'Detalle pagos')
 @section('plugins.Jquery', true)
 @section('plugins.Sweetalert2', true)
 @section('plugins.Datatables', true)
@@ -80,7 +80,8 @@
 @section('js')
 
     <script src="{{asset('dist/js/moment.js')}}"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
    
     <script>
         $(document).ready(function(){
@@ -186,7 +187,6 @@
                                 _token:'{{csrf_token()}}'
                             },
                             success: function(result) {
-                              
                                 fila.remove().draw;
                                 const Toast = Swal.mixin({
                                 toast: true,
@@ -241,6 +241,9 @@
                 })
             });
             
+            $('.close').on('click',function() {
+                $('#modal-mostrar').close
+            })
 
         });
     </script>    

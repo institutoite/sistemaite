@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 @section('css')
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @endsection
 
 @section('title', 'Programacionx')
@@ -9,8 +10,7 @@
 
 @section('content')
     <section class="content container-fluid">
-        <div class="row">
-            <div class="col-md-12">
+        <div class="row pt-4">
                 <div class="card">
                     <div class="card-header bg-secondary">
                         <div class="float-left">
@@ -19,11 +19,11 @@
                         <div class="float-right">
                             {{$persona->nombre.' '.$persona->apellidop}}
 
-                            <a href="{{route('clases.marcado.general', $inscripcion)}}" class="btn btn-success tooltipsC mr-2" title="ir a opciones de la persona">
+                            <a href="{{route('clases.marcado.general', $inscripcion)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
                                 Marcar 
                             </a> 
 
-                            <a class="btn btn-primary" href="{{ route('imprimir.programa',$inscripcion) }}">Imprimir</a>
+                            <a class="btn btn-primary text-white" href="{{ route('imprimir.programa',$inscripcion) }}">Imprimir</a>
                         </div>
                     </div>
 
@@ -47,20 +47,30 @@
                                 @foreach ($programacion as $programa)
                                         @php
                                             $hoy=Carbon\Carbon::now();
-                                            $clase="";
-                                            $claseboton="";
-                                            if($programa->fecha->isoFormat('DD/MM/YYYY')==$hoy->isoFormat('DD/MM/YYYY')){
-                                                $clase .= 'bg-primary';
-                                            }else{
+                                            $claseFila="";
+                                            $claseBoton="";
+                                            $claseHoy="";
+                                            $claseBotonHoy="";
+                                            
                                                 if($programa->habilitado==0){
-                                                    $clase .= 'bg-danger'; 
-                                                    $claseboton .='btn btn-outline-danger';
+                                                    if($programa->fecha->isoFormat('DD/MM/YYYY')==$hoy->isoFormat('DD/MM/YYYY')){
+                                                        $claseHoy.="bg-secondary";
+                                                        $claseBotonHoy.="btn btn-secondary";
+                                                    }else{
+                                                        $claseFila.="bg-danger";
+                                                        $claseBoton.="btn btn-danger";
+                                                    }
                                                 }else{
-                                                    $claseboton .='btn btn-outline-primary';
+                                                    if($programa->fecha->isoFormat('DD/MM/YYYY')==$hoy->isoFormat('DD/MM/YYYY')){
+                                                        $claseHoy.="bg-primary";
+                                                        $claseBotonHoy.="btn btn-secondary";
+                                                    }else{
+                                                        $claseFila.="";
+                                                        $claseBoton.="btn btn-primary text-white";
+                                                    }
                                                 }
-                                            }
                                         @endphp
-                                    <tr class="{{$clase}}">
+                                    <tr class="{{$claseFila.' '.$claseHoy}}">
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$programa->fecha->isoFormat('DD/MM/YYYY')}}</td>
                                         <td>{{$programa->fecha->isoFormat('dddd')}}</td>
@@ -70,7 +80,7 @@
                                         <td>{{$programa->materia}}</td>
                                         <td>{{$programa->aula}}</td>
                                         <td>
-                                            <a class="{{ $claseboton }} tooltipsC mr-2" href="{{route('set.fecha.proximo.pago', ['fecha'=>$programa->fecha->isoFormat('YYYY-MM-DD'),'id'=>$programa->inscripcione_id])}}" title="Asignar esta fecha para el proximo pago">
+                                            <a class="{{ $claseBoton.' '.$claseBotonHoy }} tooltipsC mr-2" href="{{route('set.fecha.proximo.pago', ['fecha'=>$programa->fecha->isoFormat('YYYY-MM-DD'),'id'=>$programa->inscripcione_id])}}" title="Asignar esta fecha para el proximo pago">
                                                 Pagará
                                             </a>
                                         </td>
@@ -86,7 +96,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 @endsection
 @section('js')

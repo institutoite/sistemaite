@@ -3,9 +3,10 @@
 <div class="modal" tabindex="-1" id="modal-mostrar">
     <div class="modal-dialog modal-lg modalito">
         <div class="modal-content">
-            <div class="modal-header bg-secondary">
+            <div class="modal-header">
                 MOSTRANDO UN PAGO
-                <button class="btn btn-danger close" data-dismiss="modal">&times;</button>
+                {{-- <button class="btn btn-danger close" data-dismiss="modal">&times;</button> --}}
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <table id="estudiante" class="table table-bordered table-hover table-striped">
@@ -44,12 +45,16 @@
                         </tr>
                     </thead>
                     <tbody id="tabla-cambio">
-                        {{-- se carga datos con ajax --}}
+                        
                     </tbody>
                 </table>
 
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger text-white" data-bs-dismiss="modal">cerrar &times;</button>
+            </div>
         </div>
+        
     </div>
 </div>
 
@@ -60,7 +65,7 @@
         <div class="modal-content">
             <div class="modal-header bg-primary">
                 EDITAR PAGO
-                <button class="btn btn-danger close" data-dismiss="modal">&times;</button>
+                <button class="btn btn-danger close" data-dismiss="modal"></button>
             </div>
             <div class="modal-editar-pago">
                 <div class="container p-4">

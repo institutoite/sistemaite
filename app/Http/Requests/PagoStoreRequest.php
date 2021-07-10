@@ -24,8 +24,8 @@ class PagoStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'monto'=>'required',
-            'pagocon'=>'required',
+            'monto'=> 'required|numeric|min:0',
+            'pagocon'=> 'required|numeric|min:0',
             'cambio'=>'required|numeric|min:0',
         ];
     }
