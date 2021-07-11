@@ -1036,6 +1036,12 @@ return [
                     'location' => '//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js',
                     
                 ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//code.jquery.com/ui/1.12.1/jquery-ui.js',
+                    
+                ],
             ],
         ],
         'Steepfocus' => [

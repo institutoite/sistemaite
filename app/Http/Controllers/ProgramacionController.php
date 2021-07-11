@@ -61,6 +61,16 @@ class ProgramacionController extends Controller
     {
         //
     }
+    public function mostrar(Request $request)
+    {       
+        $programacion=Programacion::findOrFail($request->id);
+        $observaciones=$programacion->observaciones;
+        $docente=$programacion->docente;
+        $materia=$programacion->materia;
+        $aula=$programacion->aula;
+        $data=['programacion'=>$programacion, 'observaciones'=>$observaciones,'docente'=>$docente, 'materia' => $materia, 'aula' => $aula];
+        return response()->json($data);
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -86,6 +96,23 @@ class ProgramacionController extends Controller
     public function update(Request $request, Programacion $programacion)
     {
         //dd($request->activo);
+        $arrayObservable= [
+            'observacion' => 'Se editó los valores anteriores son' .
+                'Hora Inicio= ' . $programacion->hora_ini . ' ' .
+                'Hora Fin= ' . $programacion->hora_fin . ' ' .
+                'Fecha = ' . $programacion->fecha . ' ' .
+                'Estado = ' . $programacion->estado . ' ' .
+                'activo = ' . $programacion->activo . ' ' .
+                'horas por clase= ' . $programacion->horas_por_clase . ' ' .
+                'Docente id=' . $programacion->docente_id . ' ' .
+                'Materia id=' . $programacion->materia_id . ' ' .
+                'Aula id=' . $programacion->aula_id . ' ',
+            'activo' => 1,
+            'observable_id' => $programacion->id,
+            'observable_tipe' => Programacion::class,
+        ];
+        
+        $programacion->observaciones()->create($arrayObservable);
         $hora_inicio=Carbon::create($request->hora_ini);
         $hora_fin=Carbon::create($request->hora_fin);
         $programacion->fecha            =$request->fecha;
@@ -99,6 +126,8 @@ class ProgramacionController extends Controller
         $programacion->aula_id          =$request->aula_id;
         $programacion->inscripcione_id  =$request->inscripcione_id;
         $programacion->save();
+
+        return redirect()->route('clases.marcado.general', $programacion->inscripcione_id);
 
     }
 
@@ -325,21 +354,19 @@ class ProgramacionController extends Controller
                                         ->get();
         $acuentaTotal=$inscripcion->pagos->sum->monto;
         $TotalPagado=$acuentaTotal;
-
-
-        
-
+        // dd($acuentaTotal);
         $this->deshabilitarTodoProgramas($inscripcione_id);
-        //dd($acuentaTotal);
+        //dd($programas);
         foreach ($programas as $programa) {
             $costo_programa = $programa->hora_ini->floatDiffInHours($programa->hora_fin)*($costo_por_hora);
+          
+            $P=Programacion::findOrFail($programa->id);
             if($acuentaTotal>$costo_programa){
-                $programa->habilitado=1;
-                $programa->save();
+                $P->habilitado=1;
+                $P->save();
                 $acuentaTotal=$acuentaTotal-$costo_programa;
             }
         }
-
         if ($TotalPagado < $inscripcion->costo) {
             return redirect()->route('mostrar.programa', $inscripcion);
         } else {

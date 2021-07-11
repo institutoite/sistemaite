@@ -1,11 +1,12 @@
 @extends('adminlte::page')
 @section('css')
     <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
-   
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
 @stop
 
 @section('title', 'Personas')
 @section('plugins.Sweetalert2',true)
+@section('plugins.Datatables',true)
 
 @section('content_header')
  

@@ -1,7 +1,15 @@
 @extends('adminlte::page')
 @section('css')
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 @section('title', 'Mis Inscripciones')
+
+@section('plugins.Jquery',true)
+@section('plugins.SweetAlert2',true)
+@section('plugins.Datatables',true)
+
+
 @section('content')
     <div class="container-fluid pt-4">
         <div class="row">
@@ -199,12 +207,7 @@
 @endsection
 @section('js')
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
-    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
+   
     
     <script>
         

@@ -1,12 +1,15 @@
 @extends('adminlte::page')
 @section('css')
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 
 @stop
 
 @section('title', 'Programación')
-@section('plugins.Datatable', true)
 
+@section('plugins.Jquery', true)
+@section('plugins.Sweetalert2', true)
+@section('plugins.Datatables', true)
 
 
 
@@ -159,6 +162,7 @@
                         @include('programacion.futuro')
                         @include('programacion.pasado')
                         @include('programacion.todo')
+                        @include('programacion.modales')
                     </div>
                 </div>
             </div>
@@ -168,12 +172,11 @@
 @endsection
 
 @section('js')
-    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
-
             $('[data-toggle="tooltip"]').tooltip();   
-            
             $('#tabla_hoy').dataTable({
                 "responsive":true,
                 "searching":false,
@@ -186,6 +189,46 @@
                     { responsivePriority: 2, targets: -1 }
                 ],
             });
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('#futuro').on('click', '.mostrar', function(e) {
+                e.preventDefault(); 
+                // var id_programacion =$(this).closest('tr').find('td:first-child').text();
+                let id_programacion =$(this).closest('tr').attr('id');
+                //var fila=$(this).json;
+                console.log(id_programacion);
+                $.ajax({
+                    url : "../../programacion/mostrar/",
+                    data : { id :id_programacion },
+                    success : function(json) {
+                        console.log(json);
+                        $("#modal-mostrar").modal("show");
+                        $("#tabla-mostrar").empty();
+                        $html="";
+                        $html+="<tr><td>DOCENTE</td>"+"<td>"+json.programacion.fecha+"</td></tr>";
+                        $html+="<tr><td>ESTUDIANTE</td>"+"<td>"+(json.programacion.habilitado==1) ? 'Habilitado' :'Deshabilitado'+"</td></tr>";
+                        $html+="<tr><td>ESTUDIANTE</td>"+"<td>"+(json.programacion.activo==1) ? 'Activo' :'Desactivado'+"</td></tr>";
+                        $html+="<tr><td>AULA</td>"+"<td>"+json.programacion.estado+"</td></tr>";
+                        $html+="<tr><td>MATERIA</td>"+"<td>"+json.programacion.hora_ini+"</td></tr>";
+                        $html+="<tr><td>MATERIA</td>"+"<td>"+json.programacion.hora_fin+"</td></tr>";
+                        $html+="<tr><td>MATERIA</td>"+"<td>"+json.programacion.horas_por_clase+"</td></tr>";
+                        $html+="<tr><td>MATERIA</td>"+"<td>"+json.docente.nombre+"</td></tr>";
+                        $html+="<tr><td>MATERIA</td>"+"<td>"+json.materia.materia+"</td></tr>";
+                        $html+="<tr><td>MATERIA</td>"+"<td>"+json.aula.aula+"</td></tr>";
+                        $sumaCambio=0;
+                        for (let j in json.observaciones) {
+                            $html+="<tr><td>MATERIA</td>"+"<td>"+json.observaciones[j].observacion+"</td></tr>";
+                        }
+                        $("#tabla-mostrar").append($html);
+
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+                
+
+            });
+
         })
 
 
@@ -193,13 +236,3 @@
     </script>
 
 @endsection
-
-{{-- $('#tabla_hoy').on('click','tr',function() {
-                // var row=$(this); 
-                // var id=row.data('id');
-                // console.log(row);
-                // var id= row.find("td").eq(0).html(); 
-                // var fecha= row.find("td").eq(1).html(); 
-                // var horaInicio= row.find("td").eq(2).html(); 
-                // var horaFin= row.find("td").eq(3).html();   
-                } --}}

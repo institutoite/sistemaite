@@ -184,7 +184,7 @@
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                 },  
             });
-
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MOSTRAR CLASE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', 'a .mostrar', function(e) {
                 e.preventDefault(); 
                 var id_clase =$(this).closest('tr').find('td:first-child').text();

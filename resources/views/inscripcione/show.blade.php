@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 @section('css')
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
 @section('title', 'Inscripcion Configurar')
@@ -99,20 +100,30 @@
                                 @foreach ($programacion as $programa)
                                         @php
                                             $hoy=Carbon\Carbon::now();
-                                            $clase="";
-                                            $claseboton="";
-                                            if($programa->fecha->isoFormat('DD/MM/YYYY')==$hoy->isoFormat('DD/MM/YYYY')){
-                                                $clase .= 'bg-primary';
-                                            }else{
+                                            $claseFila="";
+                                            $claseBoton="";
+                                            $claseHoy="";
+                                            $claseBotonHoy="";
+                                            
                                                 if($programa->habilitado==0){
-                                                    $clase .= 'bg-danger'; 
-                                                    $claseboton .='btn btn-outline-danger';
+                                                    if($programa->fecha->isoFormat('DD/MM/YYYY')==$hoy->isoFormat('DD/MM/YYYY')){
+                                                        $claseHoy.="bg-secondary";
+                                                        
+                                                    }else{
+                                                        $claseFila.="bg-danger";
+                                                       
+                                                    }
                                                 }else{
-                                                    $claseboton .='btn btn-outline-primary';
+                                                    if($programa->fecha->isoFormat('DD/MM/YYYY')==$hoy->isoFormat('DD/MM/YYYY')){
+                                                        $claseHoy.="bg-primary";
+                                                      
+                                                    }else{
+                                                        $claseFila.="";
+                                                        
+                                                    }
                                                 }
-                                            }
                                         @endphp
-                                    <tr class="{{$clase}}">
+                                    <tr class="{{$claseFila.' '.$claseHoy}}">
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$programa->fecha->isoFormat('DD/MM/YYYY')}}</td>
                                         <td>{{$programa->fecha->isoFormat('dddd')}}</td>

@@ -33,7 +33,7 @@ class Observacion extends Model
      *
      * @var array
      */
-    protected $fillable = ['Objetivo','activo','inscripcione_id'];
+    protected $fillable = ['observacion','activo','observable_id','observable_type'];
 
 
     /**

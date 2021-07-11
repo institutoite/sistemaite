@@ -7,16 +7,16 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover">
-                <thead class="thead">
+            <table id="futuro" class="table table-hover table-striped">
+                <thead class="thead bg-secondary">
                     <tr>
                         <th>ID</th>
                         <th>Fecha</th>
                         <th>Estado</th>
-                        <th>Inicio</th>
-                        <th>Fin</th>
+                        <th>Horario</th>
                         <th>Docente</th>
                         <th>Materia</th>
+                        <th>Aula</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
@@ -28,18 +28,20 @@
                                     
                     @foreach ($programaciones as $programacion)
                         @if ($programacion->fecha> Carbon\Carbon::now())
-                            <tr>
+                            <tr id="{{$programacion->id}}">
                             <td>{{ $contador }}</td>
                             <td>{{ $programacion->fecha->isoFormat('D-MM-Y') }}</td>
-                            <td>{{ $programacion->estado }}</td>
-                            <td>{{ $programacion->hora_ini->isoFormat('HH:mm')}}</td>
-                            <td>{{ $programacion->hora_fin->isoFormat('HH:mm') }}</td>
-                            <td>{{ $programacion->nombre }}</td>
-                            <td>{{ $programacion->materia }}</td>
+                            <td>{{ $programacion->fecha->isoFormat('dddd') }}</td>
+                            
+                            <td>{{ $programacion->hora_ini->isoFormat('HH:mm').'-'.$programacion->hora_fin->isoFormat('HH:mm')}}</td>
+                            <td>{{ $programacion->docente->persona->nombre }}</td>
+                            <td>{{ $programacion->materia->materia }}</td>
+                            <td>{{ $programacion->aula->aula }}</td>
                             <td>
-                                <a class="text-danger" data-toggle="tooltip" data-placement="top" title="Licencia" href="{{ route('licencias.create',$programacion->id) }}" ><i class="fas fa-ambulance"></i> </a>
-                                <a class="text-success ml-2" data-toggle="tooltip" data-placement="top" title="Adelantar Clase" href="{{route('marcado.presente.normal',$programacion->id)}}"><i class="far fa-arrow-alt-circle-right"></i></a>
-                                <a class="text-primary ml-2" data-toggle="tooltip" data-placement="top" title="Editar este programa" href="{{ route('programacions.edit',$programacion->id) }}"><i class="fas fa-edit"></i></a>
+                                <a href="{{ route('licencias.create',$programacion->id) }}" class="text-danger" data-toggle="tooltip" data-placement="top" title="Licencia"><i class="fas fa-ambulance"></i> </a>
+                                <a href="{{route('marcado.presente.normal',$programacion->id)}}" class="text-success ml-2" data-toggle="tooltip" data-placement="top" title="Adelantar Clase"><i class="far fa-arrow-alt-circle-right"></i></a>
+                                <a href="{{ route('programacions.edit',$programacion->id) }}" class="text-primary ml-2" data-toggle="tooltip" data-placement="top" title="Editar este programa"><i class="fas fa-edit"></i></a>
+                                <a href="" id="promostrar{{$programacion->id}}" class="text-secondary ml-2 mostrar" data-toggle="tooltip" data-placement="top" title="Ver este programa"><i class="fas fa-eye"></i></a>
                             </td>
                             </tr>
                             @php

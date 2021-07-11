@@ -89,7 +89,7 @@ Route::get('billetes/crear/{pago}', "BilleteController@crear")->name('billete.cr
 Route::post('billetes/crear/{pago}', 'BilleteController@guardar')->name('billetes.guardar');
 
 
-Route::resource('programacions', "ProgramacionController");
+
 Route::resource('feriados', "FeriadoController");
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  C L A S E S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('clases', "ClaseController");
@@ -115,7 +115,7 @@ Route::post('user/guardar', "UserController@guardar")->name('users.guardar');
 Route::get('marcar/asistencia/', 'ClaseController@marcado')->name('marcado');
 Route::get('clase/crear', 'ClaseController@crear')->name('clase.crear');
 Route::get('clase/marcar/rapido/{programacion_id}', 'ClaseController@marcadoRapido')->name('marcado.presente.rapido');
-Route::get('clase/marcar/normal/{programacion_id}', 'ProgramacionController@marcadoNormal')->name('marcado.presente.normal');
+
 Route::post('programa/estado/general/', 'ClaseController@marcadoGeneral')->name('programa.estado.general');
 Route::post('/clase/guardar/normal/{progrmacion_id}', 'ClaseController@guardar')->name('clases.guardar');
 
@@ -152,7 +152,7 @@ Route::get('telefonos/vista/{persona}','TelefonoController@mostrarvista')->name(
 Route::get('telefono/crear/{persona}', 'TelefonoController@crear')->name('telefonos.crear');
 Route::get('telefonos/{persona}', 'PersonaController@index')->name('telefono.de.persona');
 Route::get('telefono/{persona}/{id}/editar','TelefonoController@editar')->name('telefono.editar');
-Route::put('telefono/{persona_id}/{apoderado_id}', 'TelefonoController@actualizar')->name('telefono.actualizar');
+Route::put('telefono/{persona_id}/{apoderaçdo_id}', 'TelefonoController@actualizar')->name('telefono.actualizar');
 
 Route::post('crear/contacto/{persona}','PersonaController@storeContacto')->name('persona.storeContacto');
 
@@ -160,13 +160,15 @@ Route::post('crear/contacto/{persona}','PersonaController@storeContacto')->name(
 
 
 
-
+/** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% P R O G R A M A C I O N   C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::resource('programacions', "ProgramacionController");
 Route::get('generar/programa/{inscripcione}', 'ProgramacionController@generarPrograma')->name('generar.programa');
+Route::get('programacion/mostrar/', "ProgramacionController@mostrar")->name('programacion.mostrar');
 Route::get('regenerar/programa/{inscripcione}/{fecha}', 'ProgramacionController@regenerarPrograma')->name('regenerar.programa');
 Route::get('mostrar/programa/{inscripcione}', 'ProgramacionController@mostrarPrograma')->name('mostrar.programa');
 Route::get('imprimir/programa/{inscripcione}', 'ProgramacionController@imprimirPrograma')->name('imprimir.programa');
 Route::get('actualizar/programa/segunpago/{inscripcione}', 'ProgramacionController@actualizarProgramaSegunPago')->name('actualizar.programa.segun.pago');
-
+Route::get('clase/marcar/normal/{programacion_id}', 'ProgramacionController@marcadoNormal')->name('marcado.presente.normal');
 /**
  * clases
  */
