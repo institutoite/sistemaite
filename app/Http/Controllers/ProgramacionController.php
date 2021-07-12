@@ -86,6 +86,18 @@ class ProgramacionController extends Controller
         return view('programacion.edit',compact('programacion','docentes','materias','aulas'));
     }
 
+     public function editar(Request $request)
+    {
+        $programacion=Programacion::findOrFail($request->id);
+        $docentes=Docente::all();
+        $materias=Materia::all();
+        $aulas=Aula::all();
+        //return view('programacion.edit',compact('programacion','docentes','materias','aulas'));
+        $data=['programacion'=>$programacion,'docentes'=>$docentes,'materias'=>$materias,'aulas'=>$aulas];
+        return response()->json($data);
+
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -128,6 +140,43 @@ class ProgramacionController extends Controller
         $programacion->save();
 
         return redirect()->route('clases.marcado.general', $programacion->inscripcione_id);
+
+    }
+    public function actualizar(Request $request)
+    {
+        $programacion=Programacion::findOrFail($request->programacion_id);
+        $arrayObservable= [
+            'observacion' => 'Se editó los valores anteriores son' .
+                'Hora Inicio= ' . $programacion->hora_ini . ' ' .
+                'Hora Fin= ' . $programacion->hora_fin . ' ' .
+                'Fecha = ' . $programacion->fecha . ' ' .
+                'Estado = ' . $programacion->estado . ' ' .
+                'activo = ' . $programacion->activo . ' ' .
+                'horas por clase= ' . $programacion->horas_por_clase . ' ' .
+                'Docente id=' . $programacion->docente_id . ' ' .
+                'Materia id=' . $programacion->materia_id . ' ' .
+                'Aula id=' . $programacion->aula_id . ' ',
+            'activo' => 1,
+            'observable_id' => $programacion->id,
+            'observable_tipe' => Programacion::class,
+        ];
+        $programacion->observaciones()->create($arrayObservable);
+
+        $hora_inicio=Carbon::create($request->hora_ini);
+        $hora_fin=Carbon::create($request->hora_fin);
+        $programacion->fecha            =$request->fecha;
+        $programacion->activo           =$request->activo;
+        $programacion->estado           =$request->estado;
+        $programacion->hora_fin         =$request->hora_fin;
+        $programacion->hora_ini         =$request->hora_ini;
+        $programacion->horas_por_clase  = $hora_inicio->floatDiffInHours($hora_fin);
+        $programacion->docente_id       =$request->docente_id;
+        $programacion->materia_id       =$request->materia_id;
+        $programacion->aula_id          =$request->aula_id;
+        $programacion->inscripcione_id  =$request->inscripcione_id;
+        $programacion->save();
+
+        return response()->json();
 
     }
 

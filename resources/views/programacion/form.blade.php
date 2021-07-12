@@ -63,7 +63,7 @@
 </div>
 
 {{-- %%%%%%%%%%%%%%% C A M P O  I N S C R I P C I O N   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-<input  type="text" hidden readonly name="inscripcione_id" class="form-control @error('inscripcione_id') is-invalid @enderror" value="{{old('inscripcione_id',$programacion->inscripcione_id ?? '')}}">
+<input  type="text" hidden readonly name="inscripcione_id"  value="{{old('inscripcione_id',$programacion->inscripcione_id ?? '')}}">
 
 <div class="row">
     {{-- %%%%%%%%%%%%%%%%%%%%%%% C A M P O   D O C E N T E %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}} 
