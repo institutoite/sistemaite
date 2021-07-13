@@ -203,16 +203,26 @@
                 "searching":true,
                 "paging":   true,
                 "autoWidth":true,
+                "createdRow": function( row, data, dataIndex ) {
+                    debugger;
+                    for(var i=0; i < d.results.length; ++i) {
+                        if(data.ID == d.results[i].UnterpunktvonId){
+                            $(row).children('td:first').addClass( 'details-control' );
+                            var td = $('td', row).eq(0);
+                            var tr = td.closest('tr');
+                            var nRow = this.api().row( tr );
+                            nRow.child(format ( d.results[i] ));
+                        }
+                    }
+                },
                 "ordering": true,
                 "info":     true,
                 "language":{
-                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-                 }, 
+                    "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                }, 
                 "ajax" : {
                     'url' : "{{ route('programaciones.hoy',['inscripcion'=>$inscripcion->id])}}",
                     "dataSrc": '',
-                   
-                    
                 },
                 "columns": [
                         {"data": "id"},
@@ -222,7 +232,6 @@
                         {"data": "hora_fin"},
                         {"data": "habilitado"},
                     ],
-                
             });
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/

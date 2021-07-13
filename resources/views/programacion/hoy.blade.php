@@ -19,11 +19,7 @@
                             <th>MATERIA</th>
                         </tr>
                     </thead>
-
-                    {{-- <tbody id="programas-hoy">
-                        
-                       
-                    </tbody> --}}
+                    {{-- es llenado desde ajax --}}
                 </table>
         </div>
 </div>
