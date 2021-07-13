@@ -70,6 +70,14 @@ class ProgramacionController extends Controller
         $aula=$programacion->aula;
         $data=['programacion'=>$programacion, 'observaciones'=>$observaciones,'docente'=>$docente, 'materia' => $materia, 'aula' => $aula];
         return response()->json($data);
+
+        $programacion=Programacion::findOrFail($request->id);
+        $observaciones=$programacion->observaciones;
+        $docente=$programacion->docente;
+        $materia=$programacion->materia;
+        $aula=$programacion->aula;
+        $data=['programacion'=>$programacion, 'observaciones'=>$observaciones,'docente'=>$docente, 'materia' => $materia, 'aula' => $aula];
+        return response()->json($data);
     }
 
     /**
@@ -88,6 +96,7 @@ class ProgramacionController extends Controller
 
      public function editar(Request $request)
     {
+        //return response()->json(['id'=>1]);
         $programacion=Programacion::findOrFail($request->id);
         $docentes=Docente::all();
         $materias=Materia::all();
@@ -176,7 +185,13 @@ class ProgramacionController extends Controller
         $programacion->inscripcione_id  =$request->inscripcione_id;
         $programacion->save();
 
-        return response()->json();
+        $docente=$programacion->docente;
+        $materia=$programacion->materia;
+        $aula=$programacion->aula;
+
+        $data=["programacion"=>$programacion,"docente"=>$docente,"materia"=>$materia,"aula"=>$aula];
+        
+        return response()->json($data);
 
     }
 

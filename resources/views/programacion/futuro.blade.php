@@ -12,7 +12,6 @@
                     <tr>
                         <th>ID</th>
                         <th>Fecha</th>
-                        <th>Estado</th>
                         <th>Horario</th>
                         <th>Docente</th>
                         <th>Materia</th>
@@ -30,8 +29,7 @@
                         @if ($programacion->fecha> Carbon\Carbon::now())
                             <tr id="{{$programacion->id}}">
                             <td>{{ $contador }}</td>
-                            <td>{{ $programacion->fecha->isoFormat('D-MM-Y') }}</td>
-                            <td>{{ $programacion->fecha->isoFormat('dddd') }}</td>
+                            <td>{{ $programacion->fecha->isoFormat('D-MM-Y dddd') }}</td>
                             
                             <td>{{ $programacion->hora_ini->isoFormat('HH:mm').'-'.$programacion->hora_fin->isoFormat('HH:mm')}}</td>
                             <td>{{ $programacion->docente->persona->nombre }}</td>

@@ -32,7 +32,7 @@
                                 @endphp 
                             @else
                                 @php
-                                    $clase="text-warning";
+                                    $clase="text-dark";
                                 @endphp
                             @endif    
 

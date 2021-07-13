@@ -177,7 +177,22 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
     <script>
+        ( function ( $ ) {
+            'use strict';
+            $.fn.addTempClass = function ( className, expire, callback ) {
+                className || ( className = '' );
+                expire || ( expire = 2000 );
+                return this.each( function () {
+                    $( this ).addClass( className ).delay( expire ).queue( function () {
+                        $( this ).removeClass( className ).clearQueue();
+                        callback && callback();
+                    } );
+                } );
+            };
+        } ( jQuery ) );
+
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();   
             $('#tabla_hoy').dataTable({
@@ -192,19 +207,7 @@
                     { responsivePriority: 2, targets: -1 }
                 ],
             });
-        let tablafuturo=$('#futuro').dataTable({
-                "responsive":true,
-                "searching":true,
-                "paging":   true,
-                "autoWidth":false,
-                "ordering": false,
-                "info":     false,
-                
-                "columnDefs": [
-                    { responsivePriority: 1, targets: 0 },  
-                    { responsivePriority: 2, targets: -1 }
-                ],
-            });
+        
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('#futuro').on('click', '.mostrar', function(e) {
                 e.preventDefault(); 
@@ -404,10 +407,7 @@
                 });
 
                 $.ajax({
-                    
                     url : "../../programacion/actualizar/",
-
-                    //data: $('#formulario-editar').serialize(),
                     data:{
                             hora_ini:$hora_inicio,
                             hora_fin:$hora_fin,
@@ -424,14 +424,23 @@
                         },
                     
                     success : function(json) {
+                        let programacion_actualizar=$('#programacion_id').val();
+                        console.log(programacion_actualizar);
+                        $('#'+programacion_actualizar+' td:nth-child(2)').text(moment(json.programacion.fecha).format('D-M-Y dddd'));
+                        $('#'+programacion_actualizar+' td:nth-child(3)').text(moment(json.programacion.hora_ini).format('HH:mm')+'-'+moment(json.programacion.hora_fin).format('HH:mm'));
+                        $('#'+programacion_actualizar+' td:nth-child(4)').text(json.docente.nombre);
+                        $('#'+programacion_actualizar+' td:nth-child(5)').text(json.materia.materia);
+                        $('#'+programacion_actualizar+' td:nth-child(6)').text(json.aula.aula);
                         $('#modal-editar').modal('hide');
-                        $('#futuro').DataTable().fnStandingRedraw();;
+                        $("#"+programacion_actualizar).addTempClass( 'bg-success', 3000 );
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
                     },
                 });
             });
+
+            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ADELANTAR PRO */
         });
 </script>
 
