@@ -49,9 +49,8 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header bg-secondary">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-
+                    <div class="card-header">
+                        <div>
                             <span id="card_title">
                                 {{ __('Programacion') }}
                             </span>
@@ -61,7 +60,7 @@
                                     {{ __('Inicio') }}
                                 </a>
                             </div>
-                        </div>
+                        
                     </div>
                     <div class="container-fluid mt-2">
                         <div class="row">
@@ -179,6 +178,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
     <script>
+    /*%%%%%%%%%%%%%%%%%%%%%%  funcion que agrega clase por tiempo x y luego lo destruye %%%%%%%%%%%*/
         ( function ( $ ) {
             'use strict';
             $.fn.addTempClass = function ( className, expire, callback ) {
@@ -192,22 +192,39 @@
                 } );
             };
         } ( jQuery ) );
-
+         /*%%%%%%%%%%%%%%%%%%%%%%  CODIGO QUE SE CARGA DESPUES DE CARGAR LA PAGINA %%%%%%%%%%%*/
         $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip();   
+            $('[data-toggle="tooltip"]').tooltip();  
+            
+
+
             $('#tabla_hoy').dataTable({
                 "responsive":true,
-                "searching":false,
-                "paging":   false,
-                "autoWidth":false,
-                "ordering": false,
-                "info":     false,
-                "columnDefs": [
-                    { responsivePriority: 1, targets: 0 },  
-                    { responsivePriority: 2, targets: -1 }
-                ],
+                "searching":true,
+                "paging":   true,
+                "autoWidth":true,
+                "ordering": true,
+                "info":     true,
+                "language":{
+                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                 }, 
+                "ajax" : {
+                    'url' : "{{ route('programaciones.hoy',['inscripcion'=>$inscripcion->id])}}",
+                    "dataSrc": '',
+                   
+                    
+                },
+                "columns": [
+                        {"data": "id"},
+                        {"data": "fecha"},
+                        {"data": "estado"},
+                        {"data": "hora_ini"},
+                        {"data": "hora_fin"},
+                        {"data": "habilitado"},
+                    ],
+                
             });
-        
+
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('#futuro').on('click', '.mostrar', function(e) {
                 e.preventDefault(); 
@@ -433,6 +450,8 @@
                         $('#'+programacion_actualizar+' td:nth-child(6)').text(json.aula.aula);
                         $('#modal-editar').modal('hide');
                         $("#"+programacion_actualizar).addTempClass( 'bg-success', 3000 );
+                        $('#tabla_hoy').draw();
+                        
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');

@@ -80,6 +80,15 @@ class ProgramacionController extends Controller
         return response()->json($data);
     }
 
+    public function programacionesHoy(Request $request){
+
+        $programacion=Programacion::where('inscripcione_id',$request->inscripcion)
+                                    ->where('fecha','=', Carbon::now()->isoFormat('Y-M-D'))
+                                    ->select('id','fecha','estado','hora_ini','hora_fin','habilitado')
+                                    ->get();
+        return response()->json($programacion);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -185,20 +185,9 @@ class ClaseController extends Controller
             ->with('success', 'Clase deleted successfully');
     }
     public function marcadoGeneral($inscripcion_id){
-        //dd($inscripcion_id);
-        // $programaciones=Programacion::join('inscripciones','inscripciones.id','=','programacions.inscripcione_id')//ok
-        //     ->join('sesions','sesions.inscripcione_id','=','inscripciones.id')
-        //     ->join('materias','programacions.materia_id','=','materias.id')
-        //     ->join('dias', 'dias.id', '=', 'sesions.dia_id')
-        //     ->join('aulas','programacions.aula_id','=','aulas.id')
-        //     ->join('docentes','programacions.docente_id','=','docentes.id')
-        //     ->join('personas','docentes.persona_id','=','personas.id')
-        //     ->where('inscripciones.id','=',$inscripcion_id)
-        //     ->where('dias.id','=',DB::raw("DAYOFWEEK(programacions.fecha)-1"))
-        //     ->select('programacions.id', 'fecha', 'programacions.estado', 'hora_ini', 'hora_fin','programacions.habilitado', 'personas.nombre','materia')
-        //     ->get();
+       
+        
         $programaciones=Programacion::where('inscripcione_id', '=', $inscripcion_id)->get();
-        //return  response()->json($programaciones);
         $programacionesHoy = Programacion::join('inscripciones', 'inscripciones.id', '=', 'programacions.inscripcione_id') //ok
         ->join('sesions', 'sesions.inscripcione_id', '=', 'inscripciones.id')
         ->join('materias', 'sesions.materia_id', '=', 'materias.id')
@@ -221,7 +210,7 @@ class ClaseController extends Controller
         $finalizados = Programacion::where('estado', '=', 'FINALIZADO')->count();
         $licencias = Programacion::where('estado', '=', 'LICENCIA')->count();
          
-        return view('programacion.marcadoGeneral',compact('programaciones', 'programacionesHoy', 'faltas', 'presentes', 'licencias', 'pago', 'inscripcion', 'dias_que_faltan_para_pagar'));
+        return view('programacion.marcadoGeneral',compact('programaciones', 'faltas', 'presentes', 'licencias', 'pago', 'inscripcion', 'dias_que_faltan_para_pagar'));
         //return redirect()->route('clases.marcado.general',$inscripcion_id)->with('programaciones', 'programacionesHoy', 'faltas', 'presentes', 'licencias', 'pago', 'inscripcion','dias_que_faltan_para_pagar');
     }
     
