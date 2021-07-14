@@ -13,10 +13,12 @@
                         <tr>
                             <th>ID</th>
                             <th>FECHA</th>
-                            <th>HORA</th>
+                            <th>H INI</th>
+                            <th>H FIN</th>
                             <th>DOCENTE</th>
                             <th>MATERIA</th>
-                            <th>MATERIA</th>
+                            <th>AULA</th>
+                            <th>Opciones</th>
                         </tr>
                     </thead>
                     {{-- es llenado desde ajax --}}

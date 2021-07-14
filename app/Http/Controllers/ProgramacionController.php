@@ -81,13 +81,16 @@ class ProgramacionController extends Controller
     }
 
     public function programacionesHoy(Request $request){
-
-        $programacion=Programacion::where('inscripcione_id',$request->inscripcion)
-                                    ->where('fecha','=', Carbon::now()->isoFormat('Y-M-D'))
-                                    ->select('id','fecha','estado','hora_ini','hora_fin','habilitado')
-                                    ->get();
+        $programacion=Programacion::join('docentes','docentes.id','=','programacions.docente_id')
+                    ->join('materias','materias.id','=','programacions.materia_id')
+                    ->join('aulas','aulas.id','=','programacions.aula_id')
+                    ->where('inscripcione_id',$request->inscripcion)
+                    ->where('fecha','=', Carbon::now()->isoFormat('Y-M-D'))
+                    ->select('programacions.id','fecha','hora_ini','hora_fin','docentes.nombre','materias.materia','aulas.aula')
+                    ->get();
         return response()->json($programacion);
     }
+                       
 
     /**
      * Show the form for editing the specified resource.

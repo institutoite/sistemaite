@@ -204,16 +204,11 @@
                 "paging":   true,
                 "autoWidth":true,
                 "createdRow": function( row, data, dataIndex ) {
-                    debugger;
-                    for(var i=0; i < d.results.length; ++i) {
-                        if(data.ID == d.results[i].UnterpunktvonId){
-                            $(row).children('td:first').addClass( 'details-control' );
-                            var td = $('td', row).eq(0);
-                            var tr = td.closest('tr');
-                            var nRow = this.api().row( tr );
-                            nRow.child(format ( d.results[i] ));
-                        }
-                    }
+                    console.log(data);
+                    $('td', row).eq(1).html(moment(data['fecha']).format('D-M-Y'));
+                    $('td', row).eq(2).html(moment(data['hora_ini']).format('HH:mm'));
+                    $('td', row).eq(3).html(moment(data['hora_fin']).format('HH:mm'));
+
                 },
                 "ordering": true,
                 "info":     true,
@@ -227,10 +222,22 @@
                 "columns": [
                         {"data": "id"},
                         {"data": "fecha"},
-                        {"data": "estado"},
                         {"data": "hora_ini"},
                         {"data": "hora_fin"},
-                        {"data": "habilitado"},
+                        {"data": "nombre"},
+                        {"data": "materia"},
+                        {"data": "aula"},
+                        {
+                            "name": "opciones",
+                            "render": function (data, type, full, meta) {
+                               let htlma="<a id='marcar' href="{{route('marcado.presente.rapido',$programacion->id)}}" class="btn btn-primary text-white" ><i class="fas fa-bolt"></i> </a>   
+                                <a id="marcar" href="{{route('marcado.presente.normal',$programacion->id)}}" class="btn btn-secondary text-white marcar_hoy"><i class="fas fa-user-edit"></i></a>   
+                                return ;
+                            },
+                            "title": "OpCIONES",
+                            "orderable": false,
+            
+                        },  
                     ],
             });
 
