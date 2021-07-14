@@ -230,9 +230,9 @@
                         {
                             "name": "opciones",
                             "render": function (data, type, full, meta) {
-                               let htlma="<a id='marcar' href="{{route('marcado.presente.rapido',$programacion->id)}}" class="btn btn-primary text-white" ><i class="fas fa-bolt"></i> </a>   
-                                <a id="marcar" href="{{route('marcado.presente.normal',$programacion->id)}}" class="btn btn-secondary text-white marcar_hoy"><i class="fas fa-user-edit"></i></a>   
-                                return ;
+                                let htlma="<a id='marcar' href='{{route('marcado.presente.rapido',"+data['id']+")}}' class='btn btn-primary text-white' ><i class='fas fa-bolt'></i> </a>";   
+                                    htlma+="<a id='marcar' href='{{route('marcado.presente.normal',"+data['id']+")}}' class='btn btn-secondary text-white marcar_hoy'><i class='fas fa-user-edit'></i></a>"; 
+                                return htlma;
                             },
                             "title": "OpCIONES",
                             "orderable": false,
@@ -466,7 +466,7 @@
                         $('#'+programacion_actualizar+' td:nth-child(6)').text(json.aula.aula);
                         $('#modal-editar').modal('hide');
                         $("#"+programacion_actualizar).addTempClass( 'bg-success', 3000 );
-                        $('#tabla_hoy').draw();
+                        $('#tabla_hoy').DataTable().ajax.reload();
                         
                     },
                     error : function(xhr, status) {
