@@ -195,9 +195,6 @@
          /*%%%%%%%%%%%%%%%%%%%%%%  CODIGO QUE SE CARGA DESPUES DE CARGAR LA PAGINA %%%%%%%%%%%*/
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();  
-            
-
-
             $('#tabla_hoy').dataTable({
                 "responsive":true,
                 "searching":true,
@@ -205,9 +202,9 @@
                 "autoWidth":true,
                 "createdRow": function( row, data, dataIndex ) {
                     console.log(data);
-                    $('td', row).eq(1).html(moment(data['fecha']).format('D-M-Y'));
-                    $('td', row).eq(2).html(moment(data['hora_ini']).format('HH:mm'));
-                    $('td', row).eq(3).html(moment(data['hora_fin']).format('HH:mm'));
+                    $('td', row).eq(0).html(moment(data['fecha']).format('D-M-Y'));
+                    $('td', row).eq(1).html(moment(data['hora_ini']).format('HH:mm'));
+                    $('td', row).eq(2).html(moment(data['hora_fin']).format('HH:mm'));
 
                 },
                 "ordering": true,
@@ -218,26 +215,19 @@
                 "ajax" : {
                     'url' : "{{ route('programaciones.hoy',['inscripcion'=>$inscripcion->id])}}",
                     "dataSrc": '',
+                    // "success":function(json){
+                    //     console.log(json.data);
+                    // }
                 },
                 "columns": [
-                        {"data": "id"},
+                        // {"data": "id"},
                         {"data": "fecha"},
                         {"data": "hora_ini"},
                         {"data": "hora_fin"},
                         {"data": "nombre"},
                         {"data": "materia"},
                         {"data": "aula"},
-                        {
-                            "name": "opciones",
-                            "render": function (data, type, full, meta) {
-                                let htlma="<a id='marcar' href='{{route('marcado.presente.rapido',"+data['id']+")}}' class='btn btn-primary text-white' ><i class='fas fa-bolt'></i> </a>";   
-                                    htlma+="<a id='marcar' href='{{route('marcado.presente.normal',"+data['id']+")}}' class='btn btn-secondary text-white marcar_hoy'><i class='fas fa-user-edit'></i></a>"; 
-                                return htlma;
-                            },
-                            "title": "OpCIONES",
-                            "orderable": false,
-            
-                        },  
+                        {"data": "action", name: "action", orderable: false, searchable: false}
                     ],
             });
 

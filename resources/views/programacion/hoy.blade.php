@@ -11,7 +11,7 @@
                 <table id="tabla_hoy" class="table table-bordered table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            {{-- <th>ID</th> --}}
                             <th>FECHA</th>
                             <th>H INI</th>
                             <th>H FIN</th>

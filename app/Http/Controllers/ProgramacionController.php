@@ -17,6 +17,7 @@ use App\Models\Materia;
 use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\DataTables;
 
 class ProgramacionController extends Controller
 {
@@ -88,9 +89,19 @@ class ProgramacionController extends Controller
                     ->where('fecha','=', Carbon::now()->isoFormat('Y-M-D'))
                     ->select('programacions.id','fecha','hora_ini','hora_fin','docentes.nombre','materias.materia','aulas.aula')
                     ->get();
-        return response()->json($programacion);
+        // return datatables()->of($programacion)
+        //         ->addColumn('btn', "<a href='#'>x</a>")
+        //         ->rawColumns(['btn'])
+        //         ->toJson();
+        //$users = User::select(['id', 'name', 'email', 'password', 'created_at', 'updated_at']);
+
+        return DataTables::of($programacion)
+            ->addColumn('action', function ($programa) {
+                return "<a href='' class='btn btn-xs btn-primary'><i class='glyphicon glyphicon-edit'></i> Edit</a>";
+            })
+            ->make(true);
+        //return response()->json($programacion);
     }
-                       
 
     /**
      * Show the form for editing the specified resource.
