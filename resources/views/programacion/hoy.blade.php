@@ -15,9 +15,11 @@
                             <th>FECHA</th>
                             <th>H INI</th>
                             <th>H FIN</th>
+
                             <th>DOCENTE</th>
                             <th>MATERIA</th>
                             <th>AULA</th>
+                            
                             <th>Opciones</th>
                         </tr>
                     </thead>

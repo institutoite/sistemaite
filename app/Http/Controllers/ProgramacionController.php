@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Programacion;
 use App\Models\Pago;
+
 use App\Models\Docente;
 use App\Models\Sesion;
 use App\Models\Aula;
@@ -17,6 +18,7 @@ use App\Models\Materia;
 use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
 
 class ProgramacionController extends Controller
@@ -82,24 +84,19 @@ class ProgramacionController extends Controller
     }
 
     public function programacionesHoy(Request $request){
+
+        //return response()->json(['id'=>$request->id]);
         $programacion=Programacion::join('docentes','docentes.id','=','programacions.docente_id')
                     ->join('materias','materias.id','=','programacions.materia_id')
                     ->join('aulas','aulas.id','=','programacions.aula_id')
                     ->where('inscripcione_id',$request->inscripcion)
                     ->where('fecha','=', Carbon::now()->isoFormat('Y-M-D'))
-                    ->select('programacions.id','fecha','hora_ini','hora_fin','docentes.nombre','materias.materia','aulas.aula')
-                    ->get();
-        // return datatables()->of($programacion)
-        //         ->addColumn('btn', "<a href='#'>x</a>")
-        //         ->rawColumns(['btn'])
-        //         ->toJson();
-        //$users = User::select(['id', 'name', 'email', 'password', 'created_at', 'updated_at']);
-
+                    ->select('programacions.id','fecha','hora_ini','hora_fin','programacions.estado','docentes.nombre','materias.materia','aulas.aula');
         return DataTables::of($programacion)
-            ->addColumn('action', function ($programa) {
-                return "<a href='' class='btn btn-xs btn-primary'><i class='glyphicon glyphicon-edit'></i> Edit</a>";
-            })
-            ->make(true);
+                ->addColumn('btn','programacion.actions')
+                ->rawColumns(['btn'])
+                ->toJson();
+
         //return response()->json($programacion);
     }
 

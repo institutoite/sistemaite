@@ -51,20 +51,6 @@
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
     
     
-
-    
-    @if (session('mensaje')=='MarcadoCorrectamente')
-        <script>
-            Swal.fire({
-                position: 'bottom-start',
-                icon: 'success',
-                title: 'Marcado Correctamente',
-                showConfirmButton: false,
-                timer: 1500
-            });
-        </script>
-    @endif
-
     <script>
         
         $(document).ready(function() {

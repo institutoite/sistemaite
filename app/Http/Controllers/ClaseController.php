@@ -229,7 +229,7 @@ class ClaseController extends Controller
         $programa->estado='PRESENTE';
         $programa->save();
         $clase->save();
-        return redirect('/home')->with('mensaje', 'MarcadoCorrectamente');
+        return redirect()->route('clases.presente')->with('mensaje', 'MarcadoCorrectamente');
     }
     public function clasesPresentes(Request $request){
         if($request->ajax()){
@@ -253,6 +253,7 @@ class ClaseController extends Controller
 
     public function finalizarClase(Request $request)
     {
+        //return response()->json(['id'=>$request->id]);
         $clase = Clase::findOrFail($request->id);
         $programa = $clase->programacion;
         $programa->estado = "FINALIZADO";

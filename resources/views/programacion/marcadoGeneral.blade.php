@@ -177,6 +177,18 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
+    @if (session('mensaje')=='MarcadoCorrectamente')
+        <script>
+            Swal.fire({
+                position: 'bottom-start',
+                icon: 'success',
+                title: 'Marcado Correctamente',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        </script>
+    @endif
+
     <script>
     /*%%%%%%%%%%%%%%%%%%%%%%  funcion que agrega clase por tiempo x y luego lo destruye %%%%%%%%%%%*/
         ( function ( $ ) {
@@ -199,13 +211,26 @@
                 "responsive":true,
                 "searching":true,
                 "paging":   true,
-                "autoWidth":true,
+                "autoWidth":false,
                 "createdRow": function( row, data, dataIndex ) {
-                    console.log(data);
+                    if(data['estado']=="PRESENTE"){
+                        $(row).addClass('text-success')
+                    }
+                    if(data['estado']=="FINALIZADO"){
+                        $(row).addClass('text-danger')
+                    }
+                    if(data['estado']=="INDEFINIDO"){
+                        $(row).addClass('text-dark')
+                    }
+
+                    $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
+
                     $('td', row).eq(0).html(moment(data['fecha']).format('D-M-Y'));
                     $('td', row).eq(1).html(moment(data['hora_ini']).format('HH:mm'));
                     $('td', row).eq(2).html(moment(data['hora_fin']).format('HH:mm'));
 
+
+                    
                 },
                 "ordering": true,
                 "info":     true,
@@ -214,7 +239,6 @@
                 }, 
                 "ajax" : {
                     'url' : "{{ route('programaciones.hoy',['inscripcion'=>$inscripcion->id])}}",
-                    "dataSrc": '',
                     // "success":function(json){
                     //     console.log(json.data);
                     // }
@@ -224,14 +248,20 @@
                         {"data": "fecha"},
                         {"data": "hora_ini"},
                         {"data": "hora_fin"},
+
                         {"data": "nombre"},
                         {"data": "materia"},
                         {"data": "aula"},
-                        {"data": "action", name: "action", orderable: false, searchable: false}
+
+                        {"data": "btn"},
                     ],
+                "columnDefs": [
+                    { responsivePriority: 1, targets: 0 },  
+                    { responsivePriority: 2, targets: -1 }
+                ],
             });
 
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+    /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('#futuro').on('click', '.mostrar', function(e) {
                 e.preventDefault(); 
                 // var id_programacion =$(this).closest('tr').find('td:first-child').text();
@@ -269,6 +299,43 @@
             });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
+                /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR FINALIZADO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('#tabla_hoy').on('click', '.finalizado', function(e) {
+                e.preventDefault(); 
+                // var id_programacion =$(this).closest('tr').find('td:first-child').text();
+                let id_programacion =$(this).closest('tr').attr('id');
+                //var fila=$(this).json;
+                console.log(id_programacion);
+                //mostrar aqui la clase con quien pasos que tema materia y todas las observaciones de la clase a que hora se fue etc.
+                // $.ajax({
+                //     url : "../../programacion/mostrar/",
+                //     data : { id :id_programacion },
+                //     success : function(json) {
+                //         console.log(json);
+                //         $("#modal-mostrar").modal("show");
+                //         $("#tabla-mostrar").empty();
+                //         $html="";
+                //         $html+="<tr><td>Fecha</td>"+"<td>"+moment(json.programacion.fecha).format('dddd')+' '+moment(json.programacion.fecha).format('LL')+"</td></tr>";
+                //         $html+="<tr><td>Hora Inicio</td>"+"<td>"+moment(json.programacion.hora_ini).format('HH:mm:ss')+"</td></tr>";
+                //         $html+="<tr><td>Hora Fin</td>"+"<td>"+moment(json.programacion.hora_fin).format('HH:mm:ss')+"</td></tr>";
+                //         $html+="<tr><td>Horas por clase</td>"+"<td>"+json.programacion.horas_por_clase+"</td></tr>";
+                //         $html+="<tr><td>Estado Pago</td>"+"<td>"+(json.programacion.habilitado==1) ? 'Pagado' :'Impaga'+"</td></tr>";
+                //         $html+="<tr><td>Estado Activo</td>"+"<td>"+(json.programacion.activo==1) ? 'Activo' :'Desactivado'+"</td></tr>";
+                //         $html+="<tr><td>Estado</td>"+"<td>"+json.programacion.estado+"</td></tr>";
+                //         $html+="<tr><td>Docente</td>"+"<td>"+json.docente.nombre+"</td></tr>";
+                //         $html+="<tr><td>Materia</td>"+"<td>"+json.materia.materia+"</td></tr>";
+                //         $html+="<tr><td>Aula</td>"+"<td>"+json.aula.aula+"</td></tr>";
+                //         $sumaCambio=0;
+                //         for (let j in json.observaciones) {
+                //             $html+="<tr><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td></tr>";
+                //         }
+                //         $("#tabla-mostrar").append($html);
+                //     },
+                //     error : function(xhr, status) {
+                //         alert('Disculpe, existió un problema');
+                //     },
+                // });
+            });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO MOSTRAR EDITAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('#futuro').on('click', '.editar', function(e) {
                 e.preventDefault(); 
