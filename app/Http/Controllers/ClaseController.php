@@ -120,7 +120,7 @@ class ClaseController extends Controller
         return response()->json($clase);
     }
 
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -229,7 +229,7 @@ class ClaseController extends Controller
         $programa->estado='PRESENTE';
         $programa->save();
         $clase->save();
-        return redirect()->route('clases.presente')->with('mensaje', 'MarcadoCorrectamente');
+        return redirect()->route('clase.presentes')->with('mensaje', 'MarcadoCorrectamente');
     }
     public function clasesPresentes(Request $request){
         if($request->ajax()){

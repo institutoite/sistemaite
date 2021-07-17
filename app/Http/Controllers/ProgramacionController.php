@@ -71,15 +71,16 @@ class ProgramacionController extends Controller
         $docente=$programacion->docente;
         $materia=$programacion->materia;
         $aula=$programacion->aula;
-        $data=['programacion'=>$programacion, 'observaciones'=>$observaciones,'docente'=>$docente, 'materia' => $materia, 'aula' => $aula];
+        $clases=$programacion->clases;
+        $data=['programacion'=>$programacion, 'observaciones'=>$observaciones,'docente'=>$docente, 'materia' => $materia, 'aula' => $aula,'clases'=>$clases];
         return response()->json($data);
-
+    }
+    public function mostrarClases(Request $request)
+    {       
         $programacion=Programacion::findOrFail($request->id);
+        $clases=$programacion->clases;
         $observaciones=$programacion->observaciones;
-        $docente=$programacion->docente;
-        $materia=$programacion->materia;
-        $aula=$programacion->aula;
-        $data=['programacion'=>$programacion, 'observaciones'=>$observaciones,'docente'=>$docente, 'materia' => $materia, 'aula' => $aula];
+        $data=['observaciones'=>$observaciones,'clases'=>$clases];
         return response()->json($data);
     }
 

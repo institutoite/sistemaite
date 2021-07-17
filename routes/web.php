@@ -134,7 +134,7 @@ Route::get('modalidad/cosultar/', 'ModalidadController@consultar')->name('modali
 
 Route::get('presentes',function(){
     return view('clase.presentes');
-});
+})->name('clase.presentes');
 
 
 
