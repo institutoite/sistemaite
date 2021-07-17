@@ -38,3 +38,5 @@ QUE EL O ELLA NO ES UN ESTUDIANTE
 CUANDO SE EDITAR UNA PROGRAMACION SE QUEDA EN BLANCO HAY QUE REDIRECT 
 
 AL PARENCER 
+
+cuando le demos finalizar una clases que guarde la hora que se fue 

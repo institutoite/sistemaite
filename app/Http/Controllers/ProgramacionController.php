@@ -76,11 +76,21 @@ class ProgramacionController extends Controller
         return response()->json($data);
     }
     public function mostrarClases(Request $request)
-    {       
-        $programacion=Programacion::findOrFail($request->id);
-        $clases=$programacion->clases;
-        $observaciones=$programacion->observaciones;
-        $data=['observaciones'=>$observaciones,'clases'=>$clases];
+    {
+        $programacion = Programacion::findOrFail($request->id);
+        $observaciones = $programacion->observaciones;
+        $docente = $programacion->docente;
+        $materia = $programacion->materia;
+        $aula = $programacion->aula;
+        $clases=Programacion::join('clases','programacions.id','clases.programacion_id')
+                    ->join('docentes','docentes.id','programacions.docente_id')
+                    ->join('materias','materias.id','programacions.materia_id')
+                    ->join('aulas','aulas.id','programacions.aula_id')
+                    ->join('temas','temas.id','clases.tema_id')
+                    ->where('programacions.id',$request->id)
+                    ->select('clases.id','clases.fecha','clases.estado','clases.horainicio','clases.horafin','docentes.nombre','materias.materia', 'aulas.aula','temas.tema')
+                    ->get();
+        $data = ['programacion' => $programacion, 'observaciones' => $observaciones, 'docente' => $docente, 'materia' => $materia, 'aula' => $aula, 'clases' => $clases];
         return response()->json($data);
     }
 
@@ -174,6 +184,7 @@ class ProgramacionController extends Controller
     }
     public function actualizar(Request $request)
     {
+        //return response()->json($request->all());
         $programacion=Programacion::findOrFail($request->programacion_id);
         $arrayObservable= [
             'observacion' => 'Se editó los valores anteriores son' .

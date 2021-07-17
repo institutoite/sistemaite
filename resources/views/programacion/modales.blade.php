@@ -33,7 +33,7 @@
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%% M O D A L   P A R A  M O S T R A R   U N A   P R O G R A M A C I O CON SUS CLASES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%--}}
 
 <div class="modal" tabindex="-1" id="modal-mostrar-clase">
-    <div class="modal-dialog modal-lg modalito">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-primary">
                 DETALLE DE LA CLASE
@@ -41,14 +41,41 @@
             </div>
             <div class="modal-editar-pago">
                 <div class="container p-4">
-                    <table id="cambio" class="table table-bordered table-hover table-striped">
+                    <table id="programacion" class="table table-bordered table-hover table-striped">
                         <thead class="bg-primary">
                             <tr>
                                 <th>ATRIBUTO</th>
                                 <th>VALOR</th>
                             </tr>
                         </thead>
-                        <tbody id="tabla-mostrar-clase">
+                        <tbody id="tabla-mostrar-programacion">
+                            
+                        </tbody>
+                    </table>
+                    <table id="observaciones" class="table table-bordered table-hover table-striped">
+                        <thead class="bg-primary">
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-mostrar-observaciones">
+                            
+                        </tbody>
+                    </table>
+                    <table id="clases" class="table table-bordered table-hover table-striped">
+                        <thead class="bg-primary">
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                                <th>HoraIni</th>
+                                <th>HoraFin</th>
+                                <th>Docente</th>
+                                <th>Materia</th>
+                                <th>Aula</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-mostrar-clases">
                             
                         </tbody>
                     </table>
@@ -62,7 +89,7 @@
 </div>
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%% M O D A L   P A R A   E D I T A R %$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 <div class="modal" tabindex="-1" id="modal-editar">
-    <div class="modal-dialog modal-lg modalito">
+    <div class="modal-dialog modal-xl modalito">
         <div class="modal-content">
             <div class="modal-header bg-    primary">
                 EDITAR PROGRAMACION
@@ -73,13 +100,60 @@
                     <div class="card-header bg-primary">
                         <span class="card-title">Actualizar Programacion</span>
                     </div>
-                    {{-- {{dd($programacion->habilitado)}} --}}
                     <div class="card-body">
                         {{-- <form method="POST" action="{{ route('programacions.update', $programacion->id) }}"  role="form" enctype="multipart/form-data"> --}}
                         <form id="formulario-editar" method="POST" action="{{route('programacion.actualizar')}}">
                             @csrf
                             {{-- @include('programacion.form') --}}
                             @include('include.botones')
+                        </form>
+                    </div>
+                </div> 
+            </div>
+           
+        </div>
+    </div>
+</div>
+{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%% M O D A L   P A R A  A G R E G A R O B S E R V A C I O N   A LA P R O G R A MA C I O N %$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+<div class="modal" tabindex="-1" id="modal-gregar-observacion">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-    primary">
+                AGREGAR OBSERVACION A ESTA PROGRAMACION
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card card-primary">
+                    <div class="card-header bg-primary">
+                        <span class="card-title">Agregar Observaciónx</span>
+                    </div>
+                    <div class="card-body">
+                        <form id="formulario-guardar-observacion" method="POST" action="{{route('programacion.actualizar')}}">
+                            @csrf
+                            
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                                <div class="form-floating mb-3 text-gray">
+                                    <input  type="text" name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" value="{{old('observacion')}}">
+                                    <label for="observacion">Observación</label>
+                                </div>  
+                            </div>
+                            
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                                <div class="form-floating mb-3 text-gray">
+                                    <input  type="number"  name="id_programacion" id="id_programacion" class="form-control">
+                                    <label for="id_programacion">Id Programacion</label>
+                                </div>  
+                            </div>
+                            
+                            <div class="container-fluid h-100 mt-3"> 
+                                <div class="row w-100 align-items-center">
+                                    <div class="col text-center">
+                                        <button id="guardar-observacion" class="btn btn-primary text-white btn-lg">Guardar <i class="far fa-save"></i></button>        
+                                    </div>	
+                                </div>
+                            </div>
+
+                            
                         </form>
                     </div>
                 </div> 

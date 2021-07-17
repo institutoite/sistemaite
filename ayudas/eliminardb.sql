@@ -16,3 +16,8 @@ DROP TABLE `administrativos`, `billetes`, `feriados`,`clicopies`, `cliservicios`
  DROP TABLE `aulas`, `billetables`, `ciudads`, `dias`, `docentes`, `estudiantes`, `inscripciones`, `materias`, `modalidads`, `motivos`, `nivels`, `pais`, `personas`, `userables`, `users`, `zonas`;
  DROP TABLE `ciudads`, `estudiantes`, `pais`, `personas`, `zonas`;
  DROP TABLE `ciudads`, `pais`;
+
+
+
+ DROP TABLE `aulas`, `billetables`, `ciudads`, `dias`, `docentes`, `estudiantes`, `inscripciones`, `materias`, `modalidads`, `motivos`, `nivels`, `pais`, `personas`, `userables`, `users`, `zonas`;
+ 

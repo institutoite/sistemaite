@@ -164,6 +164,7 @@ Route::post('crear/contacto/{persona}','PersonaController@storeContacto')->name(
 Route::resource('programacions', "ProgramacionController");
 Route::get('generar/programa/{inscripcione}', 'ProgramacionController@generarPrograma')->name('generar.programa');
 Route::get('programacion/mostrar/', "ProgramacionController@mostrar")->name('programacion.mostrar');
+Route::get('programacion/mostrar/clases', "ProgramacionController@mostrarClases")->name('programacion.mostrar.clases');
 Route::get('programacion/hoy/{inscripcion}', "ProgramacionController@programacionesHoy")->name('programaciones.hoy');
 Route::get('programacion/editar/', "ProgramacionController@editar")->name('programacion.editar');
 Route::get('programacion/actualizar/', "ProgramacionController@actualizar")->name('programacion.actualizar');

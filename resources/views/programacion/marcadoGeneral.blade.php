@@ -298,40 +298,79 @@
                 });
             });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-
-                /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR FINALIZADO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('#tabla_hoy').on('click', '.finalizado', function(e) {
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA FORMULARIO AGREGAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('#tabla_hoy').on('click', '.observacion', function(e) {
                 e.preventDefault(); 
-                // var id_programacion =$(this).closest('tr').find('td:first-child').text();
-                let id_programacion =$(this).closest('tr').attr('id');
-                //var fila=$(this).json;
+                let id_programacion=$(this).closest('tr').attr('id');
                 console.log(id_programacion);
+                $html="";
+                $html+="<input type='text' name='fecha' class='form-control' id='fecha' "; 
+                $html+="value=\'"+ id_programacion +"'\>";
+                $("#formulario-guardar-observacion").append($html);
+                $("#modal-gregar-observacion").modal("show");
+            });
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BOTON GUARDAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('#guardar-observacion').on('click', function(e) {
+                e.preventDefault();
                 $.ajax({
-                    url : "../../programacion/mostrar/",
+                    url : "../../guardar/observacion",
                     data : { id :id_programacion },
                     success : function(json) {
-                        console.log(json.clases[0].docente);
+                        console.log(json);
+                       
+
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+                
+            });
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR FINALIZADO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('#tabla_hoy').on('click', '.finalizado', function(e) {
+                e.preventDefault(); 
+                let id_programacion =$(this).closest('tr').attr('id');
+                $.ajax({
+                    url : "../../programacion/mostrar/clases",
+                    data : { id :id_programacion },
+                    success : function(json) {
+                        console.log(json);
                         $("#modal-mostrar-clase").modal("show");
                         $("#tabla-mostrar-clase").empty();
                         $html="";
-                        $html+="<tr><td>Fecha</td>"+"<td>"+moment(json.programacion.fecha).format('dddd')+' '+moment(json.programacion.fecha).format('LL')+"</td></tr>";
+                        $html+="<tr><td>Hora Inicio</td>"+"<td>"+moment(json.programacion.fecha).format('LLLL')+"</td></tr>";
                         $html+="<tr><td>Hora Inicio</td>"+"<td>"+moment(json.programacion.hora_ini).format('HH:mm:ss')+"</td></tr>";
                         $html+="<tr><td>Hora Fin</td>"+"<td>"+moment(json.programacion.hora_fin).format('HH:mm:ss')+"</td></tr>";
-                        $html+="<tr><td>Horas por clase</td>"+"<td>"+json.programacion.horas_por_clase+"</td></tr>";
+                            
+                        $html+="<tr><td>Horas por clase</td>"+"<td>"+json.programacion.horas_por_clase +"</td></tr>";
                         $html+="<tr><td>Estado Pago</td>"+"<td>"+(json.programacion.habilitado==1) ? 'Pagado' :'Impaga'+"</td></tr>";
                         $html+="<tr><td>Estado Activo</td>"+"<td>"+(json.programacion.activo==1) ? 'Activo' :'Desactivado'+"</td></tr>";
+
                         $html+="<tr><td>Estado</td>"+"<td>"+json.programacion.estado+"</td></tr>";
-                        $html+="<tr><td>Docente</td>"+"<td>"+json.docente.nombre+"</td></tr>";
-                        $html+="<tr><td>Materia</td>"+"<td>"+json.materia.materia+"</td></tr>";
-                        $html+="<tr><td>Aula</td>"+"<td>"+json.aula.aula+"</td></tr>";
-                        $sumaCambio=0;
+                        
+                        $html+="<tr><td>Materia</td>"+"<td>"+json.programacion.docente.nombre+"</td></tr>";
+                        $html+="<tr><td>Materia</td>"+"<td>"+json.programacion.materia.materia+"</td></tr>";
+                        $html+="<tr><td>Aula</td>"+"<td>"+json.programacion.aula.aula+"</td></tr>";
+                        $("#tabla-mostrar-programacion").append($html);
+
+                        $htmlObservaciones="";
                         for (let j in json.observaciones) {
-                            $html+="<tr><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td></tr>";
+                            $htmlObservaciones+="<tr><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td></tr>";
                         }
+                        $("#tabla-mostrar-observaciones").append($htmlObservaciones);
+
+                        $htmlClases="";
                         for (let j in json.clases) {
-                            $html+="<tr><td>Historia-"+ j +"</td>"+"<td>"+json.clases[j].fecha+"</td></tr>";
+                            $htmlClases+="<tr><td>"+ moment(json.clases[j].fecha).format('LL') +"</td>";
+                            $htmlClases+="<td>"+json.clases[j].estado+"</td>";
+                            $htmlClases+="<td>"+json.clases[j].horainicio+"</td>";
+                            $htmlClases+="<td>"+json.clases[j].horafin+"</td>";
+                            $htmlClases+="<td>"+json.clases[j].nombre+"</td>";
+                            $htmlClases+="<td>"+json.clases[j].materia+"</td>";
+                            $htmlClases+="<td>"+json.clases[j].aula+"</td></tr>";
+                            $htmlClases+="<tr><td colspan='7'>"+json.clases[j].tema+"</td></tr>";
                         }
-                        $("#tabla-mostrar-clase").append($html);
+                        $("#tabla-mostrar-clases").append($htmlClases);
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
@@ -516,8 +555,9 @@
                         },
                     
                     success : function(json) {
+                        console.log(json);
                         let programacion_actualizar=$('#programacion_id').val();
-                        console.log(programacion_actualizar);
+                        
                         $('#'+programacion_actualizar+' td:nth-child(2)').text(moment(json.programacion.fecha).format('D-M-Y dddd'));
                         $('#'+programacion_actualizar+' td:nth-child(3)').text(moment(json.programacion.hora_ini).format('HH:mm')+'-'+moment(json.programacion.hora_fin).format('HH:mm'));
                         $('#'+programacion_actualizar+' td:nth-child(4)').text(json.docente.nombre);
