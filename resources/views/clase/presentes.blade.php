@@ -3,7 +3,7 @@
     
 
     
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
 
@@ -24,25 +24,32 @@
 
 
 @section('content')
-    <table id="presentes" class="table table-hover table-bordered table-striped display" width="100%">
-        <thead class="">
-            <tr>
-                <th>#</th>
-                <th>ESTUDIANTE</th>
-                <th>MATERIA</th>
-                <th>AULA</th>
-                <th>TEMA</th>
+    <div class="content pt-4">
+        <div class="card">
+            <div class="card-header bg-secondary">
+                ESTUDIANTES PRESENTES AHORITA
+            </div>
+            <div class="card-body">
+                <table id="presentes" class="table table-hover table-bordered table-striped display" width="100%">
+                    <thead class="bg-primary">
+                        <tr>
+                            <th>ESTUDIANTE</th>
+                            <th>MATERIA</th>
+                            <th>AULA</th>
+                            <th>DOCENTE</th>
+                            <th>HORARIO</th>
+                            <th>TIEMPO</th>
+                            <th>FOTO</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                </table >
+            </div>
+        </div>
+    </div>
+    @include('clase.modalmostrar') 
+    @include('clase.modaleditar') 
 
-                <th>DOCENTE</th>
-                <th>HORARIO</th>
-                <th>TIEMPO</th>
-                <th>FOTO</th>
-                <th>ACTION</th>
-            </tr>
-        </thead>
-        
-    </table >
-    @include('clase.modalmostrar')  
 @stop
 
 
@@ -59,9 +66,9 @@
                 
             $('#presentes').on('click', '.finalizar', function(e) { 
                 e.preventDefault(); 
-                var id_estudiante =$(this).closest('tr').find('td:first-child').text();
-                var fila=$(this).closest('tr');
-                console.log('click');
+                var id_estudiante =$(this).closest('tr').attr('id');
+                var           fila=$(this).closest('tr');
+                console.log(id_estudiante);
 		        $.ajax({
                     url : "clase/finalizar/",
                     data : { id :id_estudiante },
@@ -73,15 +80,10 @@
                                 position: 'top-end',
                                 showConfirmButton: false,
                                 timer: 3000,
-                                timerProgressBar: true,
-                                didOpen: (toast) => {
-                                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                }
                                 })
 
                                 Toast.fire({
-                                icon: 'success',
+                                type: 'success',
                                 title: json.message
                                 })
                     },
@@ -90,6 +92,13 @@
                     },
                 });
 	        });
+
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA FORMULARIO AGREGAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.editar', function(e) {
+                e.preventDefault(); 
+                let id_clase=$(this).closest('tr').attr('id');
+                $("#modal-editar").modal("show");
+            });
 
             $('table').on('click','.zoomify',function (e){
                 console.log($(this).attr('src'));
@@ -118,7 +127,7 @@
             });
 
 
-            $('#presentes').dataTable({
+            let tablaPresentes=$('#presentes').dataTable({
                 "createdRow": function( row, data, dataIndex){
                     var horainicio=moment.duration(data['horainicio']);
                     var horafin=moment.duration(data['horafin']);
@@ -129,36 +138,35 @@
                     let minutosRestantantes=hfin.diff(ahora,'minutes');
                         
                         if(minutosRestantantes<-10){
-                            $(row).addClass('bg-danger');
+                            $(row).addClass('text-bold text-danger');
                         }
-                        if((minutosRestantantes<0)&&(minutosRestantantes>=-10)){
-                            $(row).addClass('table-danger');
+                        if((minutosRestantantes<=0)&&(minutosRestantantes>=-10)){
+                            $(row).addClass('text-danger');
                         }
-                        if((minutosRestantantes>0)&&(minutosRestantantes<15)){
-                            $(row).addClass('table-warning');
+                        if((minutosRestantantes>=0)&&(minutosRestantantes<15)){
+                            $(row).addClass('text-warning');
                         }
                         if(minutosRestantantes>15){
-                            $(row).addClass('table-success');
+                            $(row).addClass('text-success');
                         }
-
+                    $(row).attr('id',data['id']);
                     
-                    $('td', row).eq(6).html(moment(data['horainicio']).format('HH:mm')+'-'+moment(data['horafin']).format('HH:mm'));
-                    $('td', row).eq(7).html( hfin.from(ahora)+'('+hfin.diff(ahora,'minutes'));
+                    $('td', row).eq(4).html(moment(data['horainicio']).format('HH:mm')+'-'+moment(data['horafin']).format('HH:mm'));
+                    $('td', row).eq(5).html( hfin.from(ahora)+'('+hfin.diff(ahora,'minutes'));
 
                 },
                 
                 "serverSide": true,
-                "ordering":false,
+                "ordering":true,
                 "responsive":true,
-                "paging":   false,
-                "info":     false,
+                "paging":   true,
+                "info":     true,
                 "autoWidth":false,
                 "columns": [
-                        {data: 'id'},
                         {data: 'name'},
                         {data: 'materia'},
                         {data: 'aula'},
-                        {data: 'tema'},
+                        
                         {data: 'nombre'},
                         {data: 'horainicio'},
                         {data: 'horafin'},
@@ -179,7 +187,7 @@
                 "ajax": "{{ url('clases/presentes/ahorita') }}",
                 "columnDefs": [
                     { responsivePriority: 1, targets: 0 },  
-                    { responsivePriority: 2, targets: 8 },
+                    { responsivePriority: 2, targets: 7 },
                     { responsivePriority: 3, targets: -1 },
                 ],
                 "language":{
@@ -220,6 +228,10 @@
 
             });
             
+            setInterval(function(){
+                $('#presentes').DataTable().ajax.reload();
+		    },60000);
+
         } );
         
     </script>

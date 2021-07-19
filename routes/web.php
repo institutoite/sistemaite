@@ -99,7 +99,9 @@ Route::get('clase/mostrar/',"ClaseController@mostrar")->name('clase.mostrar');
 Route::get('clase/listar',"ClaseController@index")->name('clase.index');
 Route::get('clase/finalizar/', 'ClaseController@finalizarClase')->name('clases.finalizar');
 Route::get('clases/presentes/ahorita', 'ClaseController@clasesPresentes')->name('clases.presente');
-
+Route::get('presentes', function () {
+    return view('clase.presentes');
+})->name('clase.presentes');
 
 
 Route::resource('personas', "PersonaController");
@@ -132,9 +134,7 @@ Route::get('modalidad/cosultar/', 'ModalidadController@consultar')->name('modali
 
 
 
-Route::get('presentes',function(){
-    return view('clase.presentes');
-})->name('clase.presentes');
+
 
 
 
@@ -173,6 +173,8 @@ Route::get('mostrar/programa/{inscripcione}', 'ProgramacionController@mostrarPro
 Route::get('imprimir/programa/{inscripcione}', 'ProgramacionController@imprimirPrograma')->name('imprimir.programa');
 Route::get('actualizar/programa/segunpago/{inscripcione}', 'ProgramacionController@actualizarProgramaSegunPago')->name('actualizar.programa.segun.pago');
 Route::get('clase/marcar/normal/{programacion_id}', 'ProgramacionController@marcadoNormal')->name('marcado.presente.normal');
+Route::get('guardar/observacion/programacion', 'ProgramacionController@guardarObservacion')->name('guardar.observacion.programacion');
+
 /**
  * clases
  */

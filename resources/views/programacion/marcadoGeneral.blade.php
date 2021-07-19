@@ -299,32 +299,38 @@
             });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA FORMULARIO AGREGAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('#tabla_hoy').on('click', '.observacion', function(e) {
+            $('table').on('click', '.observacion', function(e) {
                 e.preventDefault(); 
                 let id_programacion=$(this).closest('tr').attr('id');
-                console.log(id_programacion);
-                $html="";
-                $html+="<input type='text' name='fecha' class='form-control' id='fecha' "; 
-                $html+="value=\'"+ id_programacion +"'\>";
-                $("#formulario-guardar-observacion").append($html);
+                $("#id_programacion").val(id_programacion);
                 $("#modal-gregar-observacion").modal("show");
             });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BOTON GUARDAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('#guardar-observacion').on('click', function(e) {
                 e.preventDefault();
+                let observacion=$("#observacion").val();
+                let id_observacion=$("#id_programacion").val();
+                
                 $.ajax({
-                    url : "../../guardar/observacion",
-                    data : { id :id_programacion },
+                    url : "../../guardar/observacion/programacion",
+                    data : $("#formulario-guardar-observacion").serialize(),
                     success : function(json) {
-                        console.log(json);
-                       
-
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            })
+                            Toast.fire({
+                            type: 'success',
+                            title: "Guardado corectamente: "+ json.observacion,
+                            })
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
                     },
                 });
-                
+                $("#modal-gregar-observacion").modal("hide");
             });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR FINALIZADO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('#tabla_hoy').on('click', '.finalizado', function(e) {

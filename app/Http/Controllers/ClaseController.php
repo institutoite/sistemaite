@@ -87,7 +87,7 @@ class ClaseController extends Controller
         $programa=Programacion::findOrFail($programacion_id);
         $programa->estado = 'PRESENTE';
         $programa->save();
-        return redirect('/home')->with('mensaje', 'MarcadoCorrectamente');  
+        return redirect()->route('clase.presentes');
     }
     
     /**

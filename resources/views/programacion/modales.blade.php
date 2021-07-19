@@ -118,14 +118,14 @@
 <div class="modal" tabindex="-1" id="modal-gregar-observacion">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <div class="modal-header bg-    primary">
-                AGREGAR OBSERVACION A ESTA PROGRAMACION
+            <div class="modal-header bg-primary">
+                MODAL OBSERVACION DE PROGRAMACION
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="card card-primary">
-                    <div class="card-header bg-primary">
-                        <span class="card-title">Agregar Observaciónx</span>
+                    <div class="card-header bg-secondary">
+                        <span class="card-title">Agregar Observación</span>
                     </div>
                     <div class="card-body">
                         <form id="formulario-guardar-observacion" method="POST" action="{{route('programacion.actualizar')}}">
@@ -140,8 +140,7 @@
                             
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
                                 <div class="form-floating mb-3 text-gray">
-                                    <input  type="number"  name="id_programacion" id="id_programacion" class="form-control">
-                                    <label for="id_programacion">Id Programacion</label>
+                                    <input  type="number" hidden name="id_programacion" id="id_programacion" class="form-control">
                                 </div>  
                             </div>
                             

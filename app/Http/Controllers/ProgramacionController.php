@@ -15,6 +15,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\Estudiante;
 use App\Models\Feriado;
 use App\Models\Materia;
+use App\Models\Observacion;
 use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -188,18 +189,18 @@ class ProgramacionController extends Controller
         $programacion=Programacion::findOrFail($request->programacion_id);
         $arrayObservable= [
             'observacion' => 'Se editó los valores anteriores son' .
-                'Hora Inicio= ' . $programacion->hora_ini . ' ' .
-                'Hora Fin= ' . $programacion->hora_fin . ' ' .
-                'Fecha = ' . $programacion->fecha . ' ' .
-                'Estado = ' . $programacion->estado . ' ' .
-                'activo = ' . $programacion->activo . ' ' .
-                'horas por clase= ' . $programacion->horas_por_clase . ' ' .
-                'Docente id=' . $programacion->docente_id . ' ' .
-                'Materia id=' . $programacion->materia_id . ' ' .
-                'Aula id=' . $programacion->aula_id . ' ',
-            'activo' => 1,
-            'observable_id' => $programacion->id,
-            'observable_tipe' => Programacion::class,
+                'Hora Inicio: ' . $programacion->hora_ini . ' ' .
+                'Hora Fin: ' . $programacion->hora_fin . ' ' .
+                'Fecha : ' . $programacion->fecha . ' ' .
+                'Estado : ' . $programacion->estado . ' ' .
+                'activo : ' . $programacion->activo . ' ' .
+                'horas por clase: ' . $programacion->horas_por_clase . ' ' .
+                'Docente: ' . $programacion->docente->nombre . ' ' .
+                'Materia: ' . $programacion->materia->materia . ' ' .
+                'Aula: ' . $programacion->aula->aula,
+                'activo'=> 1,
+                'observable_id'=> $programacion->id,
+                'observable_tipe'=> Programacion::class,
         ];
         $programacion->observaciones()->create($arrayObservable);
 
@@ -524,5 +525,15 @@ class ProgramacionController extends Controller
         
 
         return view('clase.create',compact('docentes','programa','inscripcion','materias','aulas','hora_inicio','hora_fin'));
+    }
+
+    public function guardarObservacion(Request $request){
+        $observacion=new Observacion();
+        $observacion->observacion=$request->observacion;
+        $observacion->activo=1;
+        $observacion->observable_id=$request->id_programacion;
+        $observacion->observable_type= Programacion::class;
+        $observacion->save();
+        return response()->json($observacion);
     }
 }
