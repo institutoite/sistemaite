@@ -298,6 +298,7 @@
                 });
             });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+             
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA FORMULARIO AGREGAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.observacion', function(e) {
                 e.preventDefault(); 
@@ -384,7 +385,7 @@
                 });
             });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO MOSTRAR EDITAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('#futuro').on('click', '.editar', function(e) {
+            $('table').on('click', '.editar', function(e) {
                 e.preventDefault(); 
                 let id_programacion =$(this).closest('tr').attr('id');
                 console.log(id_programacion);

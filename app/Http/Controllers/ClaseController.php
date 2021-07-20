@@ -10,6 +10,7 @@ use App\Models\Clase;
 use App\Models\Docente;
 use App\Models\Materia;
 use App\Models\Programacion;
+use App\Models\Tema;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -104,6 +105,7 @@ class ClaseController extends Controller
     }
     public function mostrar(Request $request)
     {
+        
         $clase = Clase::join('materias','clases.materia_id','materias.id')
                         ->join('aulas', 'clases.aula_id', 'aulas.id')
                         ->join('temas', 'clases.tema_id', 'temas.id')
@@ -120,6 +122,25 @@ class ClaseController extends Controller
         return response()->json($clase);
     }
 
+    ///*  clase edu */
+    public function editar(Request $request){
+        $clase=Clase::findOrFail($request->id);
+        $docentes = Docente::join('personas', 'personas.id', '=', 'docentes.persona_id')
+        ->where('docentes.estado', '=', 'activo')
+            ->select('docentes.id', 'personas.nombre', 'personas.apellidop')
+            ->get();
+        $programa = $clase->programacion;
+        $inscripcion = $programa->inscripcione;
+
+        $materias = Materia::join('sesions', 'sesions.materia_id', '=', 'materias.id')
+        ->where('sesions.inscripcione_id', $inscripcion->id)
+            ->get();
+        $aulas = Aula::all();
+        $temas = Tema::all();
+        $data=['clase'=>$clase,'docentes'=>$docentes,'programa'=>$programa,'inscripcion'=>$inscripcion,'materias'=>$materias,'aulas'=>$aulas,'temas'=>$temas];
+
+        return response()->json($data);
+    }
     
     /**
      * Show the form for editing the specified resource.

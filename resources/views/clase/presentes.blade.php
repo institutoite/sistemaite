@@ -93,11 +93,140 @@
                 });
 	        });
 
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA FORMULARIO AGREGAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA FORMULARIO EDITAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.editar', function(e) {
                 e.preventDefault(); 
                 let id_clase=$(this).closest('tr').attr('id');
-                $("#modal-editar").modal("show");
+                console.log("idclase: "+id_clase);
+                $.ajax({
+                    url : "clase/editar",
+                    data : { id :id_clase },
+                    success : function(json) {
+
+                        console.log(json);
+                        // $("#modal-editar").modal("show");
+                        // $("#formulario-editar").empty();
+                        //     $html="<div class='row'>";
+                        //     $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'><div class='form-floating mb-3 text-gray'>";
+                        //     $html+="<input type='date' name='fecha' class='form-control' id='fecha' "; 
+                        //     $html+="value=\'"+moment(json.programacion.fecha).format('YYYY-MM-DD') +"'\>";
+                        //     $html+="<label for='fecha'>Fecha</label></div></div>";
+
+                        //     $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'><div class='form-floating mb-3 text-gray'>";
+                        //     $html+="<input type='time' name='hora_ini' class='form-control @error('hora_ini') is-invalid @enderror texto-plomo' id='hora_ini'"; 
+                        //     $html+="value=\'"+moment(json.programacion.hora_ini).format('HH:mm:ss') +"'\>";
+                        //     $html+="<label for='hora_ini'>hora inicio</label></div></div>";
+
+                        //     $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'><div class='form-floating mb-3 text-gray'>";
+                        //     $html+="<input type='time' name='hora_fin' class='form-control @error('hora_fin') is-invalid @enderror texto-plomo' id='hora_fin'"; 
+                        //     $html+="value=\'"+moment(json.programacion.hora_fin).format('HH:mm:ss') +"'\>";
+                        //     $html+="<label for='hora_fin'>hora Fin</label></div></div>";
+                        //     $html+="</div>";// div del row
+                            
+
+                        //     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //     $html+="<input id='inscripcione_id'  type='text' hidden readonly name='inscripcione_id' value='"+json.programacion.inscripcione_id +"'>";
+                        //     $html+="<input id='programacion_id'  type='text' hidden readonly name='programacion_id' value='"+json.programacion.id +"'>";
+                        //     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE DOCENTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //     $html+="<div class='row'>";
+                        //     $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'>";
+                        //     $html+="<div class='form-floating mb-3 text-gray'>";
+                        //     $html+="<select class='form-control @error('docente_id') is-invalid @enderror' name='docente_id' id='docente_id'>";
+                            
+                        //     for (let j in json.docentes) {
+                        //         if(json.docentes[j].id==json.programacion.docente_id){
+                        //             $html+="<option  value='"+json.docentes[j].id +"' selected >"+json.docentes[j].nombre+"</option>";
+                        //         }else{
+                        //             $html+="<option  value='"+json.docentes[j].id +"'>"+json.docentes[j].nombre+"</option>";
+                        //         }
+                        //     }
+                        //     $html+="</select>";                
+                        //     $html+="<label for='docente_id'>Docente</label></div></div>";
+                        //     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO MATERIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+                        //     $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'>";
+                        //     $html+="<div class='form-floating mb-3 text-gray'>";
+                        //     $html+="<select class='form-control @error('materia_id') is-invalid @enderror' name='materia_id' id='materia_id'>";
+                        //     for (let j in json.materias) {
+                        //         if(json.materias[j].id==json.programacion.materia_id){
+                        //             $html+="<option  value='"+json.materias[j].id +"' selected >"+json.materias[j].materia+"</option>";
+                        //         }else{
+                        //             $html+="<option  value='"+json.materias[j].id +"'>"+json.materias[j].materia+"</option>";
+                        //         }
+                        //     }
+                        //     $html+="</select>";                
+                        //     $html+="<label for='materia_id'>Materia</label></div></div>";
+                        //     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO AULA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+                        //     $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'>";
+                        //     $html+="<div class='form-floating mb-3 text-gray'>";
+                        //     $html+="<select class='form-control @error('aula_id') is-invalid @enderror' name='aula_id' id='aula_id'>";
+                        //     for (let j in json.aulas) {
+                        //         if(json.aulas[j].id==json.programacion.aula_id){
+                        //             $html+="<option  value='"+json.aulas[j].id +"' selected >"+json.aulas[j].aula+"</option>";
+                        //         }else{
+                        //             $html+="<option  value='"+json.aulas[j].id +"'>"+json.aulas[j].aula+"</option>";
+                        //         }
+                        //     }
+                        //     $html+="</select>";                
+                        //     $html+="<label for='aula_id'>Aula</label></div></div>";
+                        //     $html+="</div>";// fin de row
+
+                        //     $html+="<div class='row'>";
+                        //     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO ESTADO EN VENTANA MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                            
+                        //     $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-6'>";
+                        //     $html+="<div class='form-floating mb-3 text-gray'>";
+                        //     $html+="<select class='form-control @error('estado') is-invalid @enderror'  name='estado' id='estado'>";
+                        //     $html+="<option value=''> Elija estado</option>";
+                        //     if(json.programacion.estado == 'INDEFINIDO'){
+                        //         $html+="<option value='INDEFINIDO'"+" selected>INDEFINIDO</option>";
+                        //     }else{
+                        //         $html+="<option value='INDEFINIDO'>INDEFINIDO</option>";
+                        //     }
+                        //     if(json.programacion.estado == 'PRESENTE'){
+                        //         $html+="<option value='PRESENTE'"+" selected>PRESENTE</option>";
+                        //     }else{
+                        //         $html+="<option value='PRESENTE'>PRESENTE</option>";
+                        //     }
+                        //     if(json.programacion.estado == 'FINALIZADO'){
+                        //         $html+="<option value='FINALIZADO'"+" selected>FINALIZADO</option>";
+                        //     }else{
+                        //         $html+="<option value='FINALIZADO'>FINALIZADO</option>";
+                        //     }
+                        //     $html+="</select>";                
+                        //     $html+="<label for='estado'>Estado</label></div></div>";
+                        // // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO ACTIVO EN VENTANA MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        //     $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-6   '>";
+                        //     $html+="<div class='form-floating mb-3 text-gray'>";
+                        //     $html+="<select class='form-control @error('activo') is-invalid @enderror'  name='activo' id='activo'>";
+                        //     $html+="<option value=''> Elija activo</option>";
+                        //     if(json.programacion.activo == 1){
+                        //         $html+="<option value='1'"+" selected>Activo</option>";
+                        //     }else{
+                        //         $html+="<option value='1'>Activo</option>";
+                        //     }
+                        //     if(json.programacion.activo == 0){
+                        //         $html+="<option value='0'"+" selected>Inactivo</option>";
+                        //     }else{
+                        //         $html+="<option value='0'>Inactivo</option>";
+                        //     }
+                        //     $html+="</select>";                
+                        //     $html+="<label for='activo'>activo</label></div></div>";
+
+                        //     $html+="</div>";// div del row
+                            
+                        //     $html+="<div class='container-fluid h-100 mt-3'>"; 
+                        //     $html+="<div class='row w-100 align-items-center'>";
+                        //     $html+="<div class='col text-center'>";
+                        //     $html+="<button type='submit' id='guardar' class='btn btn-primary text-white btn-lg'>Guardar <i class='far fa-save'></i></button> ";       
+                        //     $html+="</div>";
+                        //     $html+="</div>";
+                        //     $html+="</div>";
+                        
+                        //     $("#formulario-editar").append($html);
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },  
+                });
             });
 
             $('table').on('click','.zoomify',function (e){
@@ -197,13 +326,14 @@
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MOSTRAR CLASE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', 'a .mostrar', function(e) {
                 e.preventDefault(); 
-                var id_clase =$(this).closest('tr').find('td:first-child').text();
+                var id_clase =$(this).closest('tr').attr('id');
                 var fila=$(this).closest('tr');
-                console.log("fila:"+fila);
+                console.log("ID:"+id_clase);
                 $.ajax({
                     url : "clase/mostrar/",
                     data : { id :id_clase },
                     success : function(json) {
+                        console.log(json);
                         $("#modal-mostrar").modal("show");
                         $("#tabla-modal").empty();
                         $html="";

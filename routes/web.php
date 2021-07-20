@@ -94,6 +94,7 @@ Route::resource('feriados', "FeriadoController");
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  C L A S E S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('clases', "ClaseController");
 Route::get('clase/editar/{clase}',"ClaseController@edit")->name('clase.editar');
+Route::get('clase/editar',"ClaseController@editar")->name('clase.editar.ajax'); /* editar mediante ajax desde presentes */
 Route::get('clase/actualizar/{clase}',"ClaseController@actualizar")->name('clase.actualizar');
 Route::get('clase/mostrar/',"ClaseController@mostrar")->name('clase.mostrar');
 Route::get('clase/listar',"ClaseController@index")->name('clase.index');
