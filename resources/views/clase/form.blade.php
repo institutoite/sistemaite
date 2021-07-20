@@ -1,5 +1,3 @@
-{{-- {{dd($programa->fecha->isoFormat('DD-MM-YYYY'))}} --}}
-
 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" > 
     <div class="form-floating mb-3">
         <input class="form-control" type="date" name="fecha" value="{{$programa->fecha->isoFormat('YYYY-MM-DD')}}">

@@ -1,27 +1,23 @@
 @extends('adminlte::page')
 @section('css')
-    
-
-    
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
-    <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
 
-    {{-- <link href="{{asset('dist/lbgalery/css/galery.css')}}" rel="stylesheet"> --}}
-    
-    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.1.1/dist/select2-bootstrap-5-theme.min.css" />
+    <!-- Or for RTL support -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.1.1/dist/select2-bootstrap-5-theme.rtl.min.css" />
+    <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
 @endsection
 
 @section('title', 'Estudiantes Presentes')
-
 @section('content_header')
     
 @stop
 @section('plugins.Jquery',true)
 @section('plugins.Datatables',true)
 @section('plugins.Sweetalert2',true)
-
-
+@section('plugins.Select2',true)
 
 @section('content')
     <div class="content pt-4">
@@ -57,13 +53,22 @@
 @section('js')  
      <script src="{{asset('dist/js/moment.js')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         
         $(document).ready(function() {
-                
+            
+            $("#tema").select2({
+                dropdownParent: $("#modal-editar"),
+                placeholder: "Seleccione un tema",
+                theme: "bootstrap-5",
+                containerCssClass: "select2--large", // For Select2 v4.0
+                selectionCssClass: "select2--large", // For Select2 v4.1
+                dropdownCssClass: "select2--large",
+            });
+
             $('#presentes').on('click', '.finalizar', function(e) { 
                 e.preventDefault(); 
                 var id_estudiante =$(this).closest('tr').attr('id');
@@ -102,133 +107,115 @@
                     url : "clase/editar",
                     data : { id :id_clase },
                     success : function(json) {
+                            console.log(json);
+                            $("#modal-editar").modal("show");
+                            $("#inputs-creados").empty();
+                                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE DOCENTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-                        console.log(json);
-                        // $("#modal-editar").modal("show");
-                        // $("#formulario-editar").empty();
-                        //     $html="<div class='row'>";
-                        //     $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'><div class='form-floating mb-3 text-gray'>";
-                        //     $html+="<input type='date' name='fecha' class='form-control' id='fecha' "; 
-                        //     $html+="value=\'"+moment(json.programacion.fecha).format('YYYY-MM-DD') +"'\>";
-                        //     $html+="<label for='fecha'>Fecha</label></div></div>";
 
-                        //     $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'><div class='form-floating mb-3 text-gray'>";
-                        //     $html+="<input type='time' name='hora_ini' class='form-control @error('hora_ini') is-invalid @enderror texto-plomo' id='hora_ini'"; 
-                        //     $html+="value=\'"+moment(json.programacion.hora_ini).format('HH:mm:ss') +"'\>";
-                        //     $html+="<label for='hora_ini'>hora inicio</label></div></div>";
 
-                        //     $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'><div class='form-floating mb-3 text-gray'>";
-                        //     $html+="<input type='time' name='hora_fin' class='form-control @error('hora_fin') is-invalid @enderror texto-plomo' id='hora_fin'"; 
-                        //     $html+="value=\'"+moment(json.programacion.hora_fin).format('HH:mm:ss') +"'\>";
-                        //     $html+="<label for='hora_fin'>hora Fin</label></div></div>";
-                        //     $html+="</div>";// div del row
+                            $html="<div id='inputs-creados'>";
+                            $html+="<div class='row'>";
+                            $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'>";
+                            $html+="<div class='form-floating mb-3 text-gray'>";
+                            $html+="<select class='form-control @error('docente_id') is-invalid @enderror' name='docente_id' id='docente_id'>";
                             
+                            for (let j in json.docentes) {
+                                if(json.docentes[j].id==json.clase.docente_id){
+                                    $html+="<option  value='"+json.docentes[j].id +"' selected >"+json.docentes[j].nombre+"</option>";
+                                }else{
+                                    $html+="<option  value='"+json.docentes[j].id +"'>"+json.docentes[j].nombre+"</option>";
+                                }
+                            }
+                            $html+="</select>";                
+                            $html+="<label for='docente_id'>Docente</label></div></div>";
+                            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO MATERIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+                            $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'>";
+                            $html+="<div class='form-floating mb-3 text-gray'>";
+                            $html+="<select class='form-control @error('materia_id') is-invalid @enderror' name='materia_id' id='materia_id'>";
+                            for (let k in json.materias) {
+                                if(json.materias[k].id==json.clase.materia_id){
+                                    $html+="<option  value='"+json.materias[k].id +"' selected >"+json.materias[k].materia+"</option>";
+                                }else{
+                                    $html+="<option  value='"+json.materias[k].id +"'>"+json.materias[k].materia+"</option>";
+                                }
+                            }
+                            $html+="</select>";                
+                            $html+="<label for='materia_id'>Materia</label></div></div>";
+                            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO AULA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+                            $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'>";
+                            $html+="<div class='form-floating mb-3 text-gray'>";
+                            $html+="<select class='form-control @error('aula_id') is-invalid @enderror' name='aula_id' id='aula_id'>";
+                            for (let m in json.aulas) {
+                                if(json.aulas[m].id==json.clase.aula_id){
+                                    $html+="<option  value='"+json.aulas[m].id +"' selected >"+json.aulas[m].aula+"</option>";
+                                }else{
+                                    $html+="<option  value='"+json.aulas[m].id +"'>"+json.aulas[m].aula+"</option>";
+                                }
+                            }
+                            $html+="</select>";                
+                            $html+="<label for='aula_id'>Aula</label></div></div>";
+                            $html+="</div>";// fin de row
+                            $html+="<input id='clase_id'  type='text' hidden readonly name='clase_id' value='"+json.clase.id +"'>";
+                            $html+="</div>";
+                            $("#inputs").after($html);
+                            $htmltemas="";
+                            for (let n in json.temas) {
+                                if(json.temas[n].id==json.clase.tema_id){
+                                    $htmltemas+="<option  value='"+json.temas[n].id +"' selected >"+json.temas[n].tema+"</option>";
+                                }else{
+                                    $htmltemas+="<option  value='"+json.temas[n].id +"'>"+json.temas[n].tema+"</option>";
+                                }
+                            }
+                            $('#tema').empty();
 
-                        //     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                        //     $html+="<input id='inscripcione_id'  type='text' hidden readonly name='inscripcione_id' value='"+json.programacion.inscripcione_id +"'>";
-                        //     $html+="<input id='programacion_id'  type='text' hidden readonly name='programacion_id' value='"+json.programacion.id +"'>";
-                        //     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE DOCENTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                        //     $html+="<div class='row'>";
-                        //     $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'>";
-                        //     $html+="<div class='form-floating mb-3 text-gray'>";
-                        //     $html+="<select class='form-control @error('docente_id') is-invalid @enderror' name='docente_id' id='docente_id'>";
-                            
-                        //     for (let j in json.docentes) {
-                        //         if(json.docentes[j].id==json.programacion.docente_id){
-                        //             $html+="<option  value='"+json.docentes[j].id +"' selected >"+json.docentes[j].nombre+"</option>";
-                        //         }else{
-                        //             $html+="<option  value='"+json.docentes[j].id +"'>"+json.docentes[j].nombre+"</option>";
-                        //         }
-                        //     }
-                        //     $html+="</select>";                
-                        //     $html+="<label for='docente_id'>Docente</label></div></div>";
-                        //     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO MATERIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-                        //     $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'>";
-                        //     $html+="<div class='form-floating mb-3 text-gray'>";
-                        //     $html+="<select class='form-control @error('materia_id') is-invalid @enderror' name='materia_id' id='materia_id'>";
-                        //     for (let j in json.materias) {
-                        //         if(json.materias[j].id==json.programacion.materia_id){
-                        //             $html+="<option  value='"+json.materias[j].id +"' selected >"+json.materias[j].materia+"</option>";
-                        //         }else{
-                        //             $html+="<option  value='"+json.materias[j].id +"'>"+json.materias[j].materia+"</option>";
-                        //         }
-                        //     }
-                        //     $html+="</select>";                
-                        //     $html+="<label for='materia_id'>Materia</label></div></div>";
-                        //     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO AULA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-                        //     $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'>";
-                        //     $html+="<div class='form-floating mb-3 text-gray'>";
-                        //     $html+="<select class='form-control @error('aula_id') is-invalid @enderror' name='aula_id' id='aula_id'>";
-                        //     for (let j in json.aulas) {
-                        //         if(json.aulas[j].id==json.programacion.aula_id){
-                        //             $html+="<option  value='"+json.aulas[j].id +"' selected >"+json.aulas[j].aula+"</option>";
-                        //         }else{
-                        //             $html+="<option  value='"+json.aulas[j].id +"'>"+json.aulas[j].aula+"</option>";
-                        //         }
-                        //     }
-                        //     $html+="</select>";                
-                        //     $html+="<label for='aula_id'>Aula</label></div></div>";
-                        //     $html+="</div>";// fin de row
-
-                        //     $html+="<div class='row'>";
-                        //     // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO ESTADO EN VENTANA MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                            
-                        //     $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-6'>";
-                        //     $html+="<div class='form-floating mb-3 text-gray'>";
-                        //     $html+="<select class='form-control @error('estado') is-invalid @enderror'  name='estado' id='estado'>";
-                        //     $html+="<option value=''> Elija estado</option>";
-                        //     if(json.programacion.estado == 'INDEFINIDO'){
-                        //         $html+="<option value='INDEFINIDO'"+" selected>INDEFINIDO</option>";
-                        //     }else{
-                        //         $html+="<option value='INDEFINIDO'>INDEFINIDO</option>";
-                        //     }
-                        //     if(json.programacion.estado == 'PRESENTE'){
-                        //         $html+="<option value='PRESENTE'"+" selected>PRESENTE</option>";
-                        //     }else{
-                        //         $html+="<option value='PRESENTE'>PRESENTE</option>";
-                        //     }
-                        //     if(json.programacion.estado == 'FINALIZADO'){
-                        //         $html+="<option value='FINALIZADO'"+" selected>FINALIZADO</option>";
-                        //     }else{
-                        //         $html+="<option value='FINALIZADO'>FINALIZADO</option>";
-                        //     }
-                        //     $html+="</select>";                
-                        //     $html+="<label for='estado'>Estado</label></div></div>";
-                        // // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO ACTIVO EN VENTANA MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                        //     $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-6   '>";
-                        //     $html+="<div class='form-floating mb-3 text-gray'>";
-                        //     $html+="<select class='form-control @error('activo') is-invalid @enderror'  name='activo' id='activo'>";
-                        //     $html+="<option value=''> Elija activo</option>";
-                        //     if(json.programacion.activo == 1){
-                        //         $html+="<option value='1'"+" selected>Activo</option>";
-                        //     }else{
-                        //         $html+="<option value='1'>Activo</option>";
-                        //     }
-                        //     if(json.programacion.activo == 0){
-                        //         $html+="<option value='0'"+" selected>Inactivo</option>";
-                        //     }else{
-                        //         $html+="<option value='0'>Inactivo</option>";
-                        //     }
-                        //     $html+="</select>";                
-                        //     $html+="<label for='activo'>activo</label></div></div>";
-
-                        //     $html+="</div>";// div del row
-                            
-                        //     $html+="<div class='container-fluid h-100 mt-3'>"; 
-                        //     $html+="<div class='row w-100 align-items-center'>";
-                        //     $html+="<div class='col text-center'>";
-                        //     $html+="<button type='submit' id='guardar' class='btn btn-primary text-white btn-lg'>Guardar <i class='far fa-save'></i></button> ";       
-                        //     $html+="</div>";
-                        //     $html+="</div>";
-                        //     $html+="</div>";
-                        
-                        //     $("#formulario-editar").append($html);
+                            $("#tema").append($htmltemas);
+                             
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
                     },  
                 });
+               
             });
+            /* %%%%%%%%%%%%%%%%%%%%%%%%%  A P L I C A R  S E L E C T 2  A L   S E L E C T  T E M A   %%%%%%%%%%%%%%%%%%%%%%%%% */
 
+            // $('#country').on('change', cargarciudades); 
+
+            /* %%%%%%%%%%%%%%%%%%%%%%% CARGAR TEMAS A SELECT DEPENDIENTE DE MATERIA_ID */
+            //$('#materia').on('change',cargarTemas);
+            //$("#materia").trigger("change");
+            $("#formulario-editar-clase").on("change","#materia_id", function() {
+                $.ajax({
+                    url:'temas/'+$("#materia_id").val(),
+                    success: function(json) {
+                           
+                            $htmlTemas="<option value=''>Elija un tema</option>";
+                            var id_tema=$("#tema_id").val();
+                            for (let temas_j in json) {
+                                console.log(json[temas_j]);
+                                if(json[temas_j].id==id_tema){
+                                    $htmlTemas+="<option  value='"+json[temas_j].id +"' selected >"+json[temas_j].tema+"</option>";
+                                }else{
+                                    $htmlTemas+="<option  value='"+json[temas_j].id +"'>"+json[temas_j].tema+"</option>";
+                                }
+                            }
+                        //$htmlTemas="<option>"+ json.tema +"</option>";
+                        
+                        $("#tema").empty();
+                        $("#tema").append($htmlTemas);
+                        
+                    },
+                    error: function() {
+                        console.log("No se ha podido obtener la información");
+                       
+                    }
+                });
+            });
+            
+        
+            
+            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  zomify %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
             $('table').on('click','.zoomify',function (e){
                 console.log($(this).attr('src'));
                 Swal.fire({

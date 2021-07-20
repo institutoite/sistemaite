@@ -72,6 +72,10 @@ Route::resource('inscripciones', "InscripcioneController");
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       E S T D U D I A N T E S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('/hoy','EstudianteController@hoy')->name('estudiantes.hoy');
 
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  T E M A S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+Route::get('temas/{materia_id}','TemaController@listar')->name('tamas.listar');
+
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       P  A  G  O  S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('pagos', "PagoController");
 Route::get('pago/crear/{inscripcione}', 'PagoController@crear')->name('pagos.crear');

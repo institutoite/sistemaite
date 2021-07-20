@@ -132,9 +132,7 @@ class ClaseController extends Controller
         $programa = $clase->programacion;
         $inscripcion = $programa->inscripcione;
 
-        $materias = Materia::join('sesions', 'sesions.materia_id', '=', 'materias.id')
-        ->where('sesions.inscripcione_id', $inscripcion->id)
-            ->get();
+        $materias = Materia::all();
         $aulas = Aula::all();
         $temas = Tema::all();
         $data=['clase'=>$clase,'docentes'=>$docentes,'programa'=>$programa,'inscripcion'=>$inscripcion,'materias'=>$materias,'aulas'=>$aulas,'temas'=>$temas];

@@ -16,6 +16,12 @@ class TemaController extends Controller
     {
         //
     }
+    public function listar($materia_id)
+    {
+        $temas=Tema::where('materia_id',$materia_id)->get();
+        
+        return response()->json($temas);
+    }
 
     /**
      * Show the form for creating a new resource.
