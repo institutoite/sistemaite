@@ -190,6 +190,12 @@ class ClaseController extends Controller
         return redirect()->route('clases.index')
             ->with('success', 'Clase updated successfully');
     }
+    public function actualizar(Request $request, Clase $clase)
+    {
+        
+        $clase->update($request->all());
+        return response()->json(['mensaje'=>'La clase ha sido actualizada correctamente']);
+    }
 
     /**
      * @param int $id

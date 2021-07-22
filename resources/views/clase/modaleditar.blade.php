@@ -17,37 +17,31 @@
                             <div class="row" id="inputs">
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" > 
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" type="date" name="fecha" value="">
+                                        <input class="form-control" type="date" name="fecha" id="fecha" value="">
                                         <label for="fecha">Fecha</label>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" > 
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" type="time" name="horainicio" value="">
+                                        <input class="form-control" type="time" name="horainicio" id="horainicio" value="">
                                         <label for="horainicio">Hora Inicio</label>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" > 
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" type="time" name="horafin" value="">
+                                        <input class="form-control" type="time" name="horafin" id="horafin" value="">
                                         <label for="horafin">Hora Fin</label>
                                     </div>
                                 </div>
                             </div>
                             
                             <select class="form-control" name="tema" id="tema">
-                                
+                                {{-- se cargan los opction desde Ajax  presentes.blade--}}
                             </select>
-                        
-                            
-
-                            
-
-                            
                             <div class="container-fluid h-100 mt-3"> 
                                 <div class="row w-100 align-items-center">
                                     <div class="col text-center">
-                                        <button id="guardar-observacion" class="btn btn-primary text-white btn-lg">Guardar <i class="far fa-save"></i></button>        
+                                        <button id="actualizar-clase" class="btn btn-primary text-white btn-lg">Guardar <i class="far fa-save"></i></button>        
                                     </div>	
                                 </div>
                             </div>

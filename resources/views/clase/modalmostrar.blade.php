@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 MOSTRANDO UNA CLASE
-                <button class="btn btn-danger close" data-dismiss="modal">&times;</button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <table id="estudiante" class="table table-bordered table-hover table-striped">
@@ -20,8 +20,8 @@
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" type="button">Aceptar</button>
-            </div>
+                <button type="button" class="btn btn-primary text-white" data-bs-dismiss="modal" aria-label="Close">Aceptar</button>
+            </div>  
         </div>
     </div>
 </div>

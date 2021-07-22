@@ -107,12 +107,14 @@
                     url : "clase/editar",
                     data : { id :id_clase },
                     success : function(json) {
-                            console.log(json);
                             $("#modal-editar").modal("show");
                             $("#inputs-creados").empty();
                                 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE DOCENTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+                            $("#fecha").val(moment(json.clase.fecha).format('YYYY-MM-DD'));
+                            $("#horainicio").val(moment(json.clase.horainicio).format('HH:mm'));
+                            $("#horafin").val(moment(json.clase.horafin).format('HH:mm'));
 
                             $html="<div id='inputs-creados'>";
                             $html+="<div class='row'>";
@@ -168,9 +170,7 @@
                                 }
                             }
                             $('#tema').empty();
-
                             $("#tema").append($htmltemas);
-                             
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
@@ -178,18 +178,13 @@
                 });
                
             });
-            /* %%%%%%%%%%%%%%%%%%%%%%%%%  A P L I C A R  S E L E C T 2  A L   S E L E C T  T E M A   %%%%%%%%%%%%%%%%%%%%%%%%% */
 
-            // $('#country').on('change', cargarciudades); 
 
-            /* %%%%%%%%%%%%%%%%%%%%%%% CARGAR TEMAS A SELECT DEPENDIENTE DE MATERIA_ID */
-            //$('#materia').on('change',cargarTemas);
-            //$("#materia").trigger("change");
+            /* %%%%  C A R G A   L OS   O P C TI O N   C O N   A J A X  A L S E L E C T  T E M A   %%%%%%%%%%%%%%%%%%%%%%%%% */
             $("#formulario-editar-clase").on("change","#materia_id", function() {
                 $.ajax({
                     url:'temas/'+$("#materia_id").val(),
                     success: function(json) {
-                           
                             $htmlTemas="<option value=''>Elija un tema</option>";
                             var id_tema=$("#tema_id").val();
                             for (let temas_j in json) {
@@ -207,8 +202,58 @@
                         
                     },
                     error: function() {
-                        console.log("No se ha podido obtener la información");
-                       
+                        Swal.fire({
+                        type: 'error',
+                        title: 'Ocurrio un Error',
+                        text: 'Saque una captura para mostrar al servicio Técnico!',
+                        })
+                    }
+                });
+            });
+
+            /* %%%%%%% ACTUALIZA LA CLASE EN LA BASE DE DATOS %%%%%%%%%%%%%%%%%%%%%% */
+            $("#actualizar-clase").on("click", function(e) {
+                e.preventDefault();
+                console.log("diste click");
+
+                $.ajax({
+                    url:'clase/actualizar/'+$("#clase_id").val(),
+                    data : { 
+                        fecha :$("#fecha").val(),
+                        horainicio :$("#horainicio").val(),
+                        horafin :$("#horafin").val(),
+                        docente_id :$("#docente_id").val(),
+                        materia_id :$("#docente_id").val(),
+                        aula_id :$("#aula_id").val(),
+                        tema_id :$("#tema_id").val(),
+                    },
+                    success: function(response) {
+                            $("#modal-editar").modal("hide");
+                            
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-center',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                                })
+
+                                Toast.fire({
+                                type: 'success',
+                                title: response.mensaje
+                                })
+                            $('#presentes').DataTable().ajax.reload();
+                    },
+                    error: function() {
+                        Swal.fire({
+                        type: 'error',
+                        title: 'Ocurrio un Error',
+                        text: 'Saque una captura para mostrar al servicio Técnico!',
+                        })
                     }
                 });
             });
@@ -294,7 +339,6 @@
                             },
                             "title": "FOTO",
                             "orderable": false,
-            
                         },  
                         {   
                             "data": "btn"
