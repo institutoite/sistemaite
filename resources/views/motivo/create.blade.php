@@ -12,14 +12,14 @@
 
 
 @section('content')
-    <section class="content container-fluid">
+    <section class="content container-fluid pt-4">
         <div class="row">
             <div class="col-md-12">
 
                 @includeif('partials.errors')
 
                 <div class="card card-default">
-                    <div class="card-header">
+                    <div class="card-header bg-primary">
                         <span class="card-title">Create Motivo</span>
                     </div>
                     <div class="card-body">

@@ -21,7 +21,7 @@ class CreateDocentesTable extends Migration
             $table->decimal('sueldo', 6, 2)->nullable();
             $table->string('estado');
             $table->unsignedInteger('persona_id');
-            $table->foreign('persona_id', 'fk_docente_persona_idx')
+            $table->foreign('persona_id')
                 ->references('id')->on('personas');
             $table->timestamps();
         });

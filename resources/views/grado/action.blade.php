@@ -1,17 +1,16 @@
 
-
-<a href="{{route('grado.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar este grado">
+<a class="btn-accion-tabla tooltipsC mr-2 editar" title="Editar este motivo">
     <i class="fa fa-fw fa-edit text-primary"></i>
 </a>
 
-<a href="{{route('grado.show', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver este grado">
-    <i class="fa fa-fw fa-eye text-secondary mostrar"></i>
+<a href="" class="btn-accion-tabla tooltipsC mr-2 mostrar" title="Ver este motivo">
+    <i class="fa fa-fw fa-eye text-primary"></i>
 </a>
 
-<form action=""  class="d-inline formulario">
+<form action=""  class="d-inline formulario eliminar">
     @csrf
     @method("delete")
-    <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn eliminar" title="Eliminar este grado">
+    <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn eliminar" title="Eliminar este motivo">
         <i class="fa fa-fw fa-trash text-danger"></i>   
     </button>
-</form>     
+</form> 

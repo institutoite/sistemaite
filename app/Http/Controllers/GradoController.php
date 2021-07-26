@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grado;
+use App\Models\Nivel;
+use App\Models\Userable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class GradoController
@@ -31,8 +34,8 @@ class GradoController extends Controller
      */
     public function create()
     {
-        $grado = new Grado();
-        return view('grado.create', compact('grado'));
+        $niveles = Nivel::all();
+        return view('grado.create', compact('niveles'));
     }
 
     /**
@@ -43,10 +46,21 @@ class GradoController extends Controller
      */
     public function store(Request $request)
     {
+        
         request()->validate(Grado::$rules);
-
-        $grado = Grado::create($request->all());
-
+        $grado=new Grado();
+        $grado->grado=$request->grado;
+        $grado->nivel_id=$request->nivel_id;
+        $grado->save();
+        
+        
+        $user = Auth::user();
+        $userable = new Userable();
+        $userable->user_id = $user->id;
+        $userable->userable_id = $grado->id;
+        $userable->userable_type = Grado::class;
+        $userable->save();
+        
         return redirect()->route('grados.index')
             ->with('success', 'Grado created successfully.');
     }

@@ -20,8 +20,8 @@ class Grado extends Model
 {
     
     static $rules = [
-		'grado' => 'required',
-		'nivel' => 'required',
+		'grado' => 'required|min:5|max:30|unique:grados',
+		'nivel_id' => 'required',
     ];
 
     protected $perPage = 20;

@@ -79,7 +79,7 @@
 
 
 
-     <div class="row">
+    <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             @if($errors->has('motivo_id'))
                 <span class="text-danger"> {{ $errors->first('motivo_id')}}</span>

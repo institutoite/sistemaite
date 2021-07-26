@@ -729,13 +729,13 @@ return [
                 [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'grados',
                     'classes'  => 'text-dark',
                 ],
                 [
                     'text' => 'Crear',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'grados/create',
                     'classes'  => 'text-dark',
                 ],
             ],

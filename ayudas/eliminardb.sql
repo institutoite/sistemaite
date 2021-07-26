@@ -1,52 +1,63 @@
-DROP TABLE `administrativos`,
+  drop table `administrativos`;
+  drop table `aulables`;
+  drop table `billetables`;
+  drop table `billetes`;
+  drop table `clicopies`;
+  drop table `cliservicios`;
+  drop table `colegios`;
+  drop table `diables`;
+  drop table `docentes`;
+  drop table `failed_jobs`;
+  drop table `feriados`;
+  drop table `glosas`;
+  drop table `grados`;
+  drop table `licencias`;
+  drop table `materiables`;
+  drop table `menus`;
+  drop table `migrations`;
+  drop table `model_has_permissions`;
+  drop table `model_has_roles`;
+  drop table `municipios`;
+  drop table `observacions`;
+  drop table `pagos`;
+  drop table `password_resets`;
+  drop table `persona_persona`;
+  drop table `proveedors`;
+  drop table `provincias`;
+  drop table `role_has_permissions`;
+  drop table `sesions`;
+  drop table `telefonos`;
+  drop table `userables`;
+  drop table `users`;
 
+  drop table `clases`;
+  drop table `departamentos`;
+  drop table `dias`;
+  drop table `permissions`;
+  drop table `programacions`;
+  drop table `roles`;
+  drop table `temas`;
+  drop table `aulas`;
 
- `aulables`,
- `billetables`,
- `billetes`,
- `clicopies`,
- `cliservicios`,
- `colegios`,
- `diables`,
- `docentes`,
- `failed_jobs`,
- `feriados`,
- `glosas`,
- `grados`,
- `licencias`,
- `materiables`,
- `menus`,
- `migrations`,
- `model_has_permissions`,
- `model_has_roles`,
- `municipios`,
- `observacions`,
- `pagos`,
- `password_resets`,
- `persona_persona`,
- `proveedors`,
- `provincias`,
- `role_has_permissions`,
- `sesions`,
- `telefonos`,
- `userables`,
- `users`;
+  drop table `inscripciones`;
+  drop table `materias`;
+  drop table `modalidads`;
+  drop table `motivos`;
+  drop table `nivels`;
+  drop table `personas`
+  drop table `estudiantes`;
+  drop table `docentes`;
+  drop table `personas`;
+  drop table `zonas`;
+  drop table `ciudads`;
+  drop table `pais`;
+  
 
- DROP TABLE 
-  `clases`,
-  `departamentos`,
-  `dias`,
-  `permissions`,
-  `programacions`,
-  `roles`,
-  `temas`;
-DROP TABLE `aulas`,
- `docentes`,
- `inscripciones`,
- `materias`,
- `modalidads`,
- `motivos`,
- `nivels`;
+  drop table `personas`;
+  drop table `zonas`;
+  drop table `ciudads`;
+  drop table `pais`;
 
- DROP TABLE  `estudiantes`, `personas`, `zonas`;
- DROP TABLE `ciudads`, `pais`;
+  'limpia base de datos
+  
+  
