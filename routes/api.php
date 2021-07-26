@@ -17,6 +17,7 @@ use App\Models\Modalidad;
 use App\Models\Nivel;
 use App\Models\Clase;
 use App\Models\Inscripcione;
+use App\Models\Motivo;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -42,6 +43,21 @@ Route::get('estudiantes',function(){
         ->rawColumns(['btn','foto'])
         ->toJson();
 });
+
+Route::get('motivos', function () {
+    return datatables()->of(Motivo::all())
+        ->addColumn('btn', 'motivo.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+});
+Route::get('grados', function () {
+    //$grados=Grado::join()
+    return datatables()->of(Motivo::all())
+        ->addColumn('btn', 'motivo.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+});
+
 
 Route::get('referencias',function(){
     return datatables()->of(Persona::select('id','nombre','apellidop','apellidom','foto'))

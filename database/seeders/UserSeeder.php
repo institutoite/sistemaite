@@ -17,10 +17,10 @@ class UserSeeder extends Seeder
     public function run()
     {
         $user = new User();
-        $user->name = 'david';
+        $user->name = 'David';
         $user->email = 'adonias@ite.com.bo';
         $user->password = Hash::make('123456789');
-        $user->foto = Str::random(10);
+        $user->foto = "estudiantes/foto.jpg";
         $user->save();
 
         //User::factory()->count(10)->create();

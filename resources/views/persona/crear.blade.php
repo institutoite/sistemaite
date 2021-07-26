@@ -12,7 +12,7 @@
     <div class="pt-4">
         <div class="card">
             <div class="card-header bg-secondary">
-                FORMULARIO CREAR PERSONAS X
+                FORMULARIO CREAR PERSONAS
             </div>
             <div class="card-body">
                 <div class="tab-content">

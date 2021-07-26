@@ -71,10 +71,11 @@ class User extends Authenticatable
     {
         return "Perfil";
     }
-    public function userable()
+    public function user()
     {
-        return $this->morphOne('App\Models\Userable', 'userable');
+        return $this->belongsTo(User::class);
     }
+    
 
 
 }

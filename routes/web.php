@@ -109,6 +109,23 @@ Route::get('presentes', function () {
 })->name('clase.presentes');
 
 
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  M O T I V O S %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::resource('grados', GradoController::class);
+Route::get('grado/mostrar/', "GradoController@mostrar")->name("grado.mostrar");
+Route::get('grado/editar/', "GradoController@editar")->name("grado.editar");
+Route::get('grado/actualizar/', "GradoController@actualizar")->name("grado.actualizar");
+Route::delete('eliminar/grado/{grado}', 'GradoController@destroy')->name('eliminar.grado');
+
+    
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  M O T I V O S %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::resource('motivos', "MotivoController");
+Route::get('motivo/mostrar/', "MotivoController@mostrar")->name("motivo.mostrar");
+Route::get('motivo/editar/', "MotivoController@editar")->name("motivo.editar");
+Route::get('motivo/actualizar/', "MotivoController@actualizar")->name("motivo.actualizar");
+Route::delete('eliminar/motivo/{motivo}', 'MotivoController@destroy')->name('eliminar.motivo');
+
+
 Route::resource('personas', "PersonaController");
 Route::resource('telefonos', "TelefonoController");
 Route::resource('licencias', 'LicenciaController');

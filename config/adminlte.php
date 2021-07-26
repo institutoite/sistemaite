@@ -989,6 +989,28 @@ return [
                 ],
             ],
         ],
+        //** %%%%%%%%%%%%%%%%%%  MENU MOTIVOS %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Motivos',
+            'icon'    => 'fas fa-prescription-bottle fa-2x',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'motivos',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Crear',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'motivos/create',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
 
     ],
 

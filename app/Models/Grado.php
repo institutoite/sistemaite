@@ -33,14 +33,6 @@ class Grado extends Model
      */
     protected $fillable = ['grado','nivel'];
 
-  public function estudiantes()
-  {
-    return $this->belongsToMany(Estudiante::class);
-  }
 
-  public function userable()
-  {
-    return $this->morphOne('App\Models\Userable', 'userable');
-  }
 
 }

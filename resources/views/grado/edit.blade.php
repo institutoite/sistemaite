@@ -1,8 +1,4 @@
-@extends('adminlte::page')
-@section('css')
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
-@stop
-@section('title', 'Grado Editar')
+@extends('layouts.app')
 
 @section('template_title')
     Update Grado
@@ -16,11 +12,11 @@
                 @includeif('partials.errors')
 
                 <div class="card card-default">
-                    <div class="card-header bg-primary">
-                        <span class="card-title">Actualizar Grado</span>
+                    <div class="card-header">
+                        <span class="card-title">Update Grado</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('grado.update', $grado->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('grados.update', $grado->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 

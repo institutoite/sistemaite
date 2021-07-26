@@ -35,7 +35,7 @@
                             <div class="text-center">
                                 
                                 <img class="rounded img-thumbnail img-fluid border-primary border-5" src="{{URL::to('/').Storage::url("$persona->foto")}}" alt="{{$persona->nombre.' '.$persona->apellidop}}"> 
-                                <p>{{$observacion}}</p>
+                                <p>{!!$observacion!!}</p>
                             </div>
                         </td>
                     </tr>
@@ -51,15 +51,15 @@
                     </tr>
                     <tr>
                         <td>Carnet</td>
-                        <td>{{$persona->carnet}} </td>
-                    </tr>
-                    <tr>
-                        <td>Expedido</td>
-                        <td>{{$persona->expedido}} </td>
+                        <td>{{$persona->carnet." ".$persona->expedido}} </td>
                     </tr>
                     <tr>
                         <td>Género</td>
                         <td>{{$persona->genero}} </td>
+                    </tr>
+                    <tr>
+                        <td>Teléfono</td>
+                        <td>{{$persona->telefono}} </td>
                     </tr>
                     <tr>
                         <td>Pais</td>
@@ -114,5 +114,5 @@
 
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    
 @stop

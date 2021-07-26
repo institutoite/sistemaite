@@ -1,5 +1,5 @@
 
-que se pueda marcar despues de la clase
+que se pueda marcar despues de la clase trabajar en programacion pasada o vencida
 
 calificar al estudiante cuando termine la inscripcion calificable
 
@@ -9,19 +9,18 @@ programar subir archivos documentos digitales
 
 tareas por hacer 
 
-hacer que sea responsive la ventana modal de estudaintes de referencias 
-validar gaurdar contactos de un cliente
-Falta editar persona sale un error
+%%%%%%%%%%%  hacer que sea responsive la ventana modal de estudaintes de referencias
+%%%%%%%%%%%  validar gaurdar contactos de un cliente
+%%%%%%%%%%%  Falta editar persona sale un error
 
 
 
-en pagos que se vea el acuenta total y lo adeudado 
-agregar a las modalidades mes de 1.5 horas de lunes a vienres 30 horas
-que se cambien de campo cuando se presiona enter 
-en todos los formularios 
-validar los formularios antes de guardar o actualizar 
+%%%%%%%%%%%     en pagos que se vea el acuenta total y lo adeudado 
+%%%%%%%%%%%     agregar a las modalidades mes de 1.5 horas de lunes a vienres 30 horas
+%%%%%%%%%%%     que se cambien de campo cuando se presiona enter en todos los formularios 
+                validar los formularios antes de guardar o actualizar 
 
-crear el crud para motivos por el que viene a clase o a inscribirse
+%% crear el crud para motivos por el que viene a clase o a inscribirse
 
 que todos los mostrar tengan quien hizo el registro correpondiente
 registro rapido de posibles clientes 

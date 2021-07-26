@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $grado->name ?? 'Show Grado' }}
+    {{ $motivo->name ?? 'Show Motivo' }}
 @endsection
 
 @section('content')
@@ -11,22 +11,18 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Show Grado</span>
+                            <span class="card-title">Show Motivo</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('grados.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('motivos.index') }}"> Back</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Grado:</strong>
-                            {{ $grado->grado }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Nivel:</strong>
-                            {{ $grado->nivel }}
+                            <strong>Motivo:</strong>
+                            {{ $motivo->motivo }}
                         </div>
 
                     </div>

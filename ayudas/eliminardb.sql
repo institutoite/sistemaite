@@ -1,23 +1,52 @@
-DROP TABLE `administrativos`, `billetes`, `feriados`,`clicopies`, `cliservicios`, 
-`colegios`, `failed_jobs`, `glosas`, `grados`, 
-`licencias`, `materiables`, `menus`, `migrations`, `municipios`, 
-`observacions`, `pagos`, `password_resets`, `persona_persona`, 
-`proveedors`, `provincias`, `telefonos`,`users`,`clases`, `departamentos`, 
-`programacions`, `temas`,`aulables`, 
-`model_has_permissions`, `model_has_roles`, 
-`role_has_permissions`,`permissions`, `roles`,`diables`,`sesions`;
+DROP TABLE `administrativos`,
 
- DROP TABLE `aulas`, `dias`, `docentes`, 
- `inscripciones`, `materias`, `modalidads`, 
- `motivos`, `nivels`;
- DROP TABLE `estudiantes`,`personas`, `zonas`;
- DROP TABLE `ciudads`, `pais`,`billetables`,`userables`;
 
- DROP TABLE `aulas`, `billetables`, `ciudads`, `dias`, `docentes`, `estudiantes`, `inscripciones`, `materias`, `modalidads`, `motivos`, `nivels`, `pais`, `personas`, `userables`, `users`, `zonas`;
- DROP TABLE `ciudads`, `estudiantes`, `pais`, `personas`, `zonas`;
+ `aulables`,
+ `billetables`,
+ `billetes`,
+ `clicopies`,
+ `cliservicios`,
+ `colegios`,
+ `diables`,
+ `docentes`,
+ `failed_jobs`,
+ `feriados`,
+ `glosas`,
+ `grados`,
+ `licencias`,
+ `materiables`,
+ `menus`,
+ `migrations`,
+ `model_has_permissions`,
+ `model_has_roles`,
+ `municipios`,
+ `observacions`,
+ `pagos`,
+ `password_resets`,
+ `persona_persona`,
+ `proveedors`,
+ `provincias`,
+ `role_has_permissions`,
+ `sesions`,
+ `telefonos`,
+ `userables`,
+ `users`;
+
+ DROP TABLE 
+  `clases`,
+  `departamentos`,
+  `dias`,
+  `permissions`,
+  `programacions`,
+  `roles`,
+  `temas`;
+DROP TABLE `aulas`,
+ `docentes`,
+ `inscripciones`,
+ `materias`,
+ `modalidads`,
+ `motivos`,
+ `nivels`;
+
+ DROP TABLE  `estudiantes`, `personas`, `zonas`;
  DROP TABLE `ciudads`, `pais`;
-
-
-
- DROP TABLE `aulas`, `billetables`, `ciudads`, `dias`, `docentes`, `estudiantes`, `inscripciones`, `materias`, `modalidads`, `motivos`, `nivels`, `pais`, `personas`, `userables`, `users`, `zonas`;
- 

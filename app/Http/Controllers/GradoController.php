@@ -47,8 +47,8 @@ class GradoController extends Controller
 
         $grado = Grado::create($request->all());
 
-        return redirect()->route('grado.index')
-            ->with('success', 'Se guardó correctamente');
+        return redirect()->route('grados.index')
+            ->with('success', 'Grado created successfully.');
     }
 
     /**
@@ -59,7 +59,7 @@ class GradoController extends Controller
      */
     public function show($id)
     {
-        $grado = Grado::findOrFail($id);
+        $grado = Grado::find($id);
 
         return view('grado.show', compact('grado'));
     }
@@ -72,7 +72,7 @@ class GradoController extends Controller
      */
     public function edit($id)
     {
-        $grado = Grado::findOrFail($id);
+        $grado = Grado::find($id);
 
         return view('grado.edit', compact('grado'));
     }
@@ -90,8 +90,8 @@ class GradoController extends Controller
 
         $grado->update($request->all());
 
-        return redirect()->route('grado.index')
-            ->with('success', 'Grado actualizado correctamente');
+        return redirect()->route('grados.index')
+            ->with('success', 'Grado updated successfully');
     }
 
     /**
@@ -101,11 +101,9 @@ class GradoController extends Controller
      */
     public function destroy($id)
     {
-        // $grado = Grado::findOrFail($id)->delete();
-        // return redirect()->route('grado.index')
-        //     ->with('success', 'Grado deleted successfully');
-        $grado = Grado::findOrFail($id);
-        $grado->delete();
-        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
+        $grado = Grado::find($id)->delete();
+
+        return redirect()->route('grados.index')
+            ->with('success', 'Grado deleted successfully');
     }
 }

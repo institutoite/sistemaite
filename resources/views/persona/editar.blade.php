@@ -9,14 +9,17 @@
 @stop
 
 @section('content')
-    <div class="card-body">
-        <div class="tab-content">
-            <div class="active tab-pane" id="estudiante">
+    <div class="container pt-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                EDITAR PERSONA
+            </div>
+            <div class="card-body">
                 <form action="{{route('personas.update',$persona)}}" id="formulario" method="POST" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
-                    {{ @method_field('PUT') }}
-                    @csrf
-                    @include('persona.form')
-                    @include('include.botones')
+                        {{ @method_field('PUT') }}
+                        @csrf
+                        @include('persona.form')
+                        @include('include.botones')
                 </form>
             </div>
         </div>
