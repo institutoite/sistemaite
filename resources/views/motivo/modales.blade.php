@@ -61,7 +61,7 @@
                             @csrf
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" > 
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" type="motivo" name="motivo" id="motivo" value="">
+                                    <input class="form-control" type="text" name="motivo" id="motivo" value="">
                                     <label for="motivo">Motivo</label>
                                 </div>
                             </div>

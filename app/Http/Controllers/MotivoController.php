@@ -85,7 +85,7 @@ class MotivoController extends Controller
     }
     public function mostrar(Request $request)
     {
-        $motivo = Motivo::find($request->id);
+        $motivo = Motivo::findOrFail($request->id);
         $user = User::findOrFail($motivo->userable->user_id);
 
         $data=['motivo'=>$motivo,'user'=>$user];
@@ -98,12 +98,7 @@ class MotivoController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $motivo = Motivo::find($id);
 
-        return view('motivo.edit', compact('motivo'));
-    }
     public function editar(Request $request)
     {
         $motivo = Motivo::find($request->id);
@@ -117,21 +112,7 @@ class MotivoController extends Controller
      * @param  Motivo $motivo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Motivo $motivo)
-    {
-        request()->validate(Motivo::$rules);
-
-        $motivo->update($request->all());
-
-        return redirect()->route('motivos.index')
-            ->with('success', 'Motivo updated successfully');
-    }
-
-
-
-
-
-    //%%%%%%%%%%%%%%%%%%%%%%%%%%%  u p d a t e %%%%%%%%%%%%%%%%%%%
+      //%%%%%%%%%%%%%%%%%%%%%%%%%%%  u p d a t e %%%%%%%%%%%%%%%%%%%
     public function actualizar(Request $request)
     {
         $validator = Validator::make($request->all(), [

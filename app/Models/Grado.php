@@ -31,8 +31,15 @@ class Grado extends Model
      *
      * @var array
      */
-    protected $fillable = ['grado','nivel'];
+    protected $fillable = ['grado','nivel_id','grado_id'];
 
-
+  public function nivel()
+  {
+    return $this->belongsTo(Nivel::class);
+  }
+  public function userable()
+  {
+    return $this->morphOne('App\Models\Userable', 'userable');
+  }
 
 }

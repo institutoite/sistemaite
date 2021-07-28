@@ -59,7 +59,7 @@ Route::resource('ciudades', "CiudadController");
 Route::resource('zonas', "ZonaController");
 //Route::resource('usuarios', "UserController");
 Route::resource('menus', "MenuController");
-Route::resource('grado', "GradoController");
+//Route::resource('grado', "GradoController");
 Route::resource('departamentos', "DepartamentoController");
 Route::resource('provincias', "ProvinciaController");
 Route::resource('municipios', "MunicipioController");
@@ -110,14 +110,14 @@ Route::get('presentes', function () {
 
 
 
-/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  M O T I V O S %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  G R A D O S  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('grados', GradoController::class);
 Route::get('grado/mostrar/', "GradoController@mostrar")->name("grado.mostrar");
 Route::get('grado/editar/', "GradoController@editar")->name("grado.editar");
 Route::get('grado/actualizar/', "GradoController@actualizar")->name("grado.actualizar");
 Route::delete('eliminar/grado/{grado}', 'GradoController@destroy')->name('eliminar.grado');
 
-    
+
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  M O T I V O S %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('motivos', "MotivoController");
 Route::get('motivo/mostrar/', "MotivoController@mostrar")->name("motivo.mostrar");

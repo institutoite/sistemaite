@@ -51,10 +51,12 @@
             </div>
         </div>
     </div>
-    @include('motivo.modales')
+    @include('grado.modales')
 @endsection
 
 @section('js')
+    <script src="{{asset('dist/js/moment.js')}}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> 
     
@@ -108,7 +110,7 @@
                     $(row).attr('id',data['id']); 
                     $('td', row).eq(0).html(fila++);
                 },
-                "ajax": "{{ url('api/grados') }}",
+                "ajax": "{{ url('api/grados')}}",
                 "columns": [
                     {data: 'id'},
                     {data: 'grado'},
@@ -129,22 +131,24 @@
             });
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('#motivos').on('click', '.mostrar', function(e) {
+            $('#grados').on('click', '.mostrar', function(e) {
                 e.preventDefault(); 
-                let id_motivo =$(this).closest('tr').attr('id');
-                //var fila=$(this).json;
+                let id_grado =$(this).closest('tr').attr('id');
+                console.log(id_grado);
                 $.ajax({
-                    url : "motivo/mostrar/",
-                    data : { id :id_motivo },
+                    url : "grado/mostrar/",
+                    data : { id :id_grado },
                     success : function(json) {
+                        // console.log(json);
                         $("#modal-mostrar").modal("show");
                         $("#tabla-mostrar").empty();
                         $html="";
-                        $html+="<tr><td>ID</td>"+"<td>"+ json.motivo.id +"</td></tr>";
-                        $html+="<tr><td>MOTIVO</td>"+"<td>"+json.motivo.motivo+"</td></tr>";
+                        $html+="<tr><td>ID</td>"+"<td>"+ json.grado.id +"</td></tr>";
+                        $html+="<tr><td>GRADO</td>"+"<td>"+json.grado.grado+"</td></tr>";
+                        $html+="<tr><td>NIVEL</td>"+"<td>"+json.nivel.nivel+"</td></tr>";
                         $html+="<tr><td>CREADO POR </td>"+"<td>"+json.user.name+"</td></tr>";
-                        $html+="<tr><td>CREADO</td>"+"<td>"+ moment(json.motivo.created_at).format('LLLL') +"</td></tr>";
-                        $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.motivo.updated_at).format('LLLL')+"</td></tr>";
+                        $html+="<tr><td>CREADO </td>"+"<td>"+ moment(json.grado.created_at).format('LLLL') +"</td></tr>";
+                        $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.grado.updated_at).format('LLLL')+"</td></tr>";
                         $("#tabla-mostrar").append($html);
                     },
                     error : function(xhr, status) {
@@ -160,17 +164,25 @@
              /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO MOSTRAR EDITAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.editar', function(e) {
                 e.preventDefault(); 
-                let id_motivo =$(this).closest('tr').attr('id');
-                $("#error_motivo").empty();
+                let id_grado =$(this).closest('tr').attr('id');
+                    $("#error_motivo").empty();
+
                     $.ajax({
-                    url : "motivo/editar/",
-                    data : { id :id_motivo },
+                    url : "grado/editar/",
+                    data : { id :id_grado },
                     success : function(json) {
+                        console.log(json);
                         $("#modal-editar").modal("show");
                         $("#formulario-editar").empty();
                             $html="<div class='row'>";
-                            $("#motivo").val(json.motivo);
-                            $("#motivo_id").val(json.id);
+                            $("#grado").val(json.grado.grado);
+                            $("#grado_id").val(json.grado.id);
+                            
+                            $htmlNiveles="";
+                            for (let j in json.niveles) {
+                                $htmlNiveles+="<option value='"+ json.niveles[j].id +"'>"+json.niveles[j].nivel+"</option>";
+                            }
+                            $("#nivel_id").append($htmlNiveles);    
                             $("#formulario-editar").append($html);
                     },
                     error : function(xhr, status) {
@@ -183,11 +195,13 @@
                 });
             });
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR ENVIO DE FORMULARIO PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $(document).on("submit","#formulario-editar-motivo",function(e){
+            $(document).on("submit","#formulario-editar-grado",function(e){
                 e.preventDefault();//detenemos el envio
             
-                $motivo=$('#motivo').val();
-                $motivo_id=$('#motivo_id').val();
+                $grado=$('#grado').val();
+                $nivel_id=$('#nivel_id').val();
+                $grado_id=$('#grado_id').val();
+                console.log($grado_id);
                 var token = $("input[name=_token]").val();
                 $.ajaxSetup({
                 headers: {
@@ -195,16 +209,19 @@
                     }
                 });
                 $.ajax({
-                    url : "motivo/actualizar/",
+                    url : "grado/actualizar/",
                     headers:{'X-CSRF-TOKEN':token},
                     data:{
-                            motivo:$motivo,
-                            id:$motivo_id,
+                            grado:$grado,
+                            nivel_id:$nivel_id,
                             token:token,
+                            grado_id:$grado_id,
                         },
                     success : function(json) {
+                        console.log(json.error.length);
+                        
                         if(json.error){
-                        $("#error_motivo").html(json.error);
+                           
                         }else{
                             $("#modal-editar").modal("hide");
                             $('#motivos').DataTable().ajax.reload();
@@ -221,7 +238,7 @@
                         } 
                     },
                     error:function(jqXHR,estado,error){
-                        
+                        //console.log(jqXHR);
                     },
                 });
             });

@@ -29,7 +29,7 @@ class Nivel extends Model
      *
      * @var array
      */
-    protected $fillable = ['nivel'];
+    protected $fillable = ['nivel','created_at'];
 
   /** RELACION MUCHOS A MUCHO POLIMORFICO */
   public function materias()
@@ -45,6 +45,10 @@ class Nivel extends Model
   public function userable()
   {
     return $this->morphOne('App\Models\Userable', 'userable');
+  }
+  public function grados()
+  {
+    return $this->hasMany(Nivel::class);
   }
 
 }

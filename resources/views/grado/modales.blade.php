@@ -3,12 +3,12 @@
     <div class="modal-dialog modal-lg modalito">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                MOSTRAR MOTIVO
+                MOSTRAR GRADO
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-editar-pago">
                 <div class="container p-4">
-                    <table id="cambio" class="table table-bordered table-hover table-striped">
+                    <table id="tabla" class="table table-bordered table-hover table-striped">
                         <thead class="bg-primary">
                             <tr>
                                 <th>ATRIBUTO</th>
@@ -16,7 +16,7 @@
                             </tr>
                         </thead>
                         <tbody id="tabla-mostrar">
-                            
+                            {{-- llenado con ajax --}}
                         </tbody>
                     </table>
                 </div>
@@ -33,7 +33,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                MODAL EDITAR MOTIVO
+                MODAL EDITAR GRADO
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -44,33 +44,39 @@
 
                 <div class="card card-primary">
                     <div class="card-header bg-secondary">
-                        <span class="card-title">Editar Motivo</span>
+                        <span class="card-title">Editar Grado</span>
                     </div>
                     <div class="card-body">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
-                        <form id="formulario-editar-motivo">
+                        <form id="formulario-editar-grado">
                             @csrf
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" > 
-                                <div class="form-floating mb-3">
-                                    <input class="form-control" type="motivo" name="motivo" id="motivo" value="">
-                                    <label for="motivo">Motivo</label>
-                                </div>
-                            </div>
-                             <div class="row">
+                            <div class="row">
                                 <div class="col-3"></div>
                                 <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" >
-                                    <span class="text-danger" id="error_motivo"></span>
+                                    <span class="text-danger" id="error_grado"></span>
                                 </div>
                             </div>  
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" > 
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" type="text" name="grado" id="grado" value="">
+                                    <label for="grado">Grado</label>
+                                </div>
+                            </div>
+                            <input hidden class="form-control" type="text" name="grado_id" id="grado_id">
+                            <div class="row">
+                                <div class="col-3"></div>
+                                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" >
+                                    <span class="text-danger" id="error_grado"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" > 
+                                <div class="form-floating mb-3">
+                                    <select class="form-control" name="nivel_id" id="nivel_id">
+                                        <option value="">Seleccione un nivel</option>
+                                    </select>
+                                    <label for="nivel_id">Selecciona un nivel</label>
+                                </div>
+                            </div>
+                            
                             <input class="form-control" type="text" hidden name="motivo_id" id="motivo_id">
                             <div class="container-fluid h-100 mt-3"> 
                                 <div class="row w-100 align-items-center">

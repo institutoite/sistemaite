@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grado;
+use App\Models\User;
 use App\Models\Nivel;
 use App\Models\Userable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Validator;
 /**
  * Class GradoController
  * @package App\Http\Controllers
@@ -71,24 +72,26 @@ class GradoController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function mostrar(Request $request)
     {
-        $grado = Grado::find($id);
-
-        return view('grado.show', compact('grado'));
+        $grado = Grado::findOrFail($request->id);
+        $user = User::findOrFail($grado->userable->user_id);
+        $nivel=Nivel::findOrFail($grado->nivel_id);
+        $data = ['grado' => $grado, 'user' => $user,'nivel'=>$nivel];
+        return response()->json($data);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editar(Request $request)
     {
-        $grado = Grado::find($id);
-
-        return view('grado.edit', compact('grado'));
+        $grado = Grado::find($request->id);
+        $niveles=Nivel::get();
+        $data = ['grado' => $grado, 'niveles' => $niveles];
+        return response()->json($data);
     }
 
     /**
@@ -98,14 +101,25 @@ class GradoController extends Controller
      * @param  Grado $grado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Grado $grado)
+    public function actualizar(Request $request)
     {
-        request()->validate(Grado::$rules);
 
-        $grado->update($request->all());
-
-        return redirect()->route('grados.index')
-            ->with('success', 'Grado updated successfully');
+        //return response()->json(['ok'=>2]);
+        $validator = Validator::make($request->all(), [
+            'grado' => ['required','min:5','max:30','unique:grados,grado,'.$request->grado_id],  /* https://laraveles.com/foro/viewtopic.php?id=6764 */
+            'nivel_id' => ['required'], 
+        ]);
+        //return response()->json($validator->passes());
+        
+        if ($validator->passes()) {
+            $grado = Grado::findOrFail($request->grado_id);
+            $grado->grado = $request->grado;
+            $grado->nivel_id = $request->nivel_id;
+            $grado->save();
+            return response()->json(['grado' => $grado]);
+        } else {
+            return response()->json(['error' => $validator->errors()->first()]);
+        }
     }
 
     /**
@@ -116,7 +130,6 @@ class GradoController extends Controller
     public function destroy($id)
     {
         $grado = Grado::find($id)->delete();
-
         return redirect()->route('grados.index')
             ->with('success', 'Grado deleted successfully');
     }

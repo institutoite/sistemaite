@@ -51,8 +51,10 @@ Route::get('motivos', function () {
         ->toJson();
 });
 Route::get('grados', function () {
-    //$grados=Grado::join()
-    return datatables()->of(Motivo::all())
+    $grados=Grado::join('nivels','nivels.id','=','grados.nivel_id')
+                ->select('grados.id','grado','nivel')->get();
+
+    return datatables()->of($grados)
         ->addColumn('btn', 'motivo.action')
         ->rawColumns(['btn'])
         ->toJson();
@@ -140,12 +142,12 @@ Route::get('menus', function () {
         ->toJson();
 });
 
-Route::get('grados', function () {
-    return datatables()->of(Grado::get())
-        ->addColumn('btn', 'grado.action')
-        ->rawColumns(['btn'])
-        ->toJson();
-});
+// Route::get('grados', function () {
+//     return datatables()->of(Grado::get())
+//         ->addColumn('btn', 'grado.action')
+//         ->rawColumns(['btn'])
+//         ->toJson();
+// });
 
 Route::get('departamentos', function () {
     return datatables()->of(Departamento::get())
