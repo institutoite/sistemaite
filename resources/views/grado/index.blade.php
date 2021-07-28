@@ -218,30 +218,24 @@
                             grado_id:$grado_id,
                         },
                     success : function(json) {
-                        console.log(json.error.length);
-                        
-                        if(json.error){
-                           
+                        //console.log(json.error)
+                        if($.isEmptyObject(json.error)){
+                          console.log("Todo esta bien");
                         }else{
-                            $("#modal-editar").modal("hide");
-                            $('#motivos').DataTable().ajax.reload();
-                            const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 1500,
-                                })
-                                Toast.fire({
-                                type: 'success',
-                                title: 'Se eliminó correctamente el registro'
-                            })   
-                        } 
+                            printErrorMsg(json);
+                        }                        
                     },
                     error:function(jqXHR,estado,error){
                         //console.log(jqXHR);
                     },
                 });
             });
+
+            function printErrorMsg (errores) {
+                console.log(errores);
+                $("#error").text(errores.error);
+                
+            }
             
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  M O T I V O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
             $('#motivos').on('click','.eliminar',function (e) {

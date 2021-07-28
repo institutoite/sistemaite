@@ -12,15 +12,6 @@
             <label for="grado">Ingrese un grado</label>
         </div>
     </div>
-</div> 
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        @if($errors->has('nivel_id'))
-            <span class="text-danger"> {{ $errors->first('nivel_id')}}</span>
-        @endif
-    </div>
-</div>
-<div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
         <div class="form-floating mb-3 text-gray">
             <select class="form-control @error('nivel_id') is-invalid @enderror" data-old="{{ old('nivel_id') }}" name="nivel_id" id="nivel_id">
