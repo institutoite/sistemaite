@@ -218,22 +218,31 @@
                             grado_id:$grado_id,
                         },
                     success : function(json) {
-                        //console.log(json.error)
                         if($.isEmptyObject(json.error)){
-                          console.log("Todo esta bien");
+                            $("#message-error").addClass("d-none");
+                            $("#modal-editar").modal("hide");
+                            $('#grados').DataTable().ajax.reload();
                         }else{
-                            printErrorMsg(json);
+                            $("#message-error").removeClass("d-none");
+                            imprimeErrores(json);
+
                         }                        
                     },
                     error:function(jqXHR,estado,error){
-                        //console.log(jqXHR);
+                        
                     },
                 });
             });
 
-            function printErrorMsg (errores) {
-                console.log(errores);
-                $("#error").text(errores.error);
+            function imprimeErrores(errores) {
+                $htmlErrores="";
+                for (let j in errores) {
+                    for (let k in errores[j]) {
+                        $htmlErrores+="<li>"+errores[j][k]+" x "+"</li>";
+                    }
+                }
+                $("#error").append($htmlErrores);
+                
                 
             }
             

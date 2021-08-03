@@ -13,31 +13,25 @@
 @stop
 
 @section('content')
-    
-    
-    @if (session('mensaje'))
-        <div class="mensaje">
+    <div class="pt-4">
+        <div class="card">
+            <div class="card-header bg-primary">
+                Lista de Estudiantes <a class="btn btn-secondary float-right" href="{{route('personas.create')}}">Crear Estudiante</a>
+            </div>
 
-        </div>
-    @endif
-
-    <div class="card">
-        <div class="card-header">
-            Header X <a class="btn btn-secondary float-right" href="{{route('personas.create')}}">Crear Estudiante</a>
-        </div>
-
-        <div class="card-body">
-            
-            <table id="personas" class="table table-bordered table-hover table-striped">
-                <thead class="bg-primary text-center">
-                    <tr>
-                        <th>ID</th>
-                        <th>NOMBRE</th>
-                        <th>FOTO</th>
-                        <th>ACCIONES</th>
-                    </tr>
-                </thead>
-            </table>
+            <div class="card-body">
+                
+                <table id="personas" class="table table-bordered table-hover table-striped">
+                    <thead class="bg-primary text-center">
+                        <tr>
+                            <th>ID</th>
+                            <th>NOMBRE</th>
+                            <th>FOTO</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
 @stop

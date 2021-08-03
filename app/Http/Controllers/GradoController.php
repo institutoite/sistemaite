@@ -118,7 +118,7 @@ class GradoController extends Controller
             $grado->save();
             return response()->json(['grado' => $grado]);
         } else {
-            return response()->json(['error' => $validator->errors()->first()]);
+            return response()->json(['error' => $validator->errors()->all()]);
         }
     }
 

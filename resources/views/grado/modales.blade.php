@@ -38,11 +38,12 @@
             </div>
 
             <div class="modal-body">
-                gfdgfd
-                    <div id='message-error' class="alert alert-danger danger text-danger" role='alert'>
+                    <div id='message-error' class="alert alert-danger danger text-danger d-none" role='alert'>
                         <div class="alert alert-danger">
                             <h4 class="alert-heading">Error</h4>
-                            <span id="error"></span>
+                            <ul id="error">
+                                
+                            </ul>
                         </div>
                     </div>
 

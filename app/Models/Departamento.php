@@ -31,8 +31,6 @@ class Departamento extends Model
      * @var array
      */
     protected $fillable = ['departamento'];
-
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -40,10 +38,9 @@ class Departamento extends Model
     {
         return $this->hasMany(Provincia::class);
     }
-  public function userable()
-  {
-    return $this->morphOne('App\Models\Userable', 'userable');
-  }
-    
+    public function userable()
+    {
+      return $this->morphOne('App\Models\Userable', 'userable');
+    }
 
 }

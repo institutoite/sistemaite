@@ -145,11 +145,11 @@
                     <p class="col-3 form-control bg-secondary p-1 p-1" for="">provincia</p> 
                     <select class="form-control @error('provincia_id') is-invalid @enderror" name="provincia_id" id="provincia">
                         <option value=""> Elija una provincia</option>
-                            @foreach ($provincias as $item)
+                            {{-- @foreach ($provincias as $item)
                                 @isset($colegio) 
                                     <option value="{{ $colegio->provincia_id }}" {{ $item->id==$colegio->provincia_id ? 'selected':''}} >{{ $item->provincia }}</option>
                                 @endisset
-                            @endforeach 
+                            @endforeach  --}}
                     </select>
                 </div>
             </div>

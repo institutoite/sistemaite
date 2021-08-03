@@ -42,4 +42,10 @@ class Grado extends Model
     return $this->morphOne('App\Models\Userable', 'userable');
   }
 
+  public function estudiantes()
+  {
+    return $this->belongsToMany(Estudiante::class)->withPivot('anio')->withTimestamps();
+  }
+  
+
 }
