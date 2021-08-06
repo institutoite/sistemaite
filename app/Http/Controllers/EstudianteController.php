@@ -81,4 +81,9 @@ class EstudianteController extends Controller
     {
         //
     }
+    public function historia($estudiante_id)
+    {
+        return view('estudiantes.historiaacademica');
+    }
+
 }

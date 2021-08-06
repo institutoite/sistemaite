@@ -39,3 +39,6 @@ CUANDO SE EDITAR UNA PROGRAMACION SE QUEDA EN BLANCO HAY QUE REDIRECT
 AL PARENCER 
 
 cuando le demos finalizar una clases que guarde la hora que se fue 
+
+file:///C:/Users/ite/Downloads/AdminLTE-3.1.0/AdminLTE-3.1.0/pages/UI/buttons.html botones hermosos
+

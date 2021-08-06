@@ -71,6 +71,7 @@ Route::resource('inscripciones', "InscripcioneController");
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       E S T D U D I A N T E S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('/hoy','EstudianteController@hoy')->name('estudiantes.hoy');
+Route::get('/historial/{estudiante}','EstudianteController@historia')->name('estudiante.historia');
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  T E M A S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
