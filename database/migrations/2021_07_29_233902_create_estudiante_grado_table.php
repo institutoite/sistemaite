@@ -13,7 +13,7 @@ class CreateEstudianteGradoTable extends Migration
      */
     public function up()
     {
-        Schema::table('estudiante_grado', function (Blueprint $table) {
+        Schema::create('estudiante_grado', function (Blueprint $table) {
             $table->unsignedInteger('estudiante_id');
             $table->foreign('estudiante_id')
                 ->references('id')
@@ -26,7 +26,7 @@ class CreateEstudianteGradoTable extends Migration
             $table->foreign('colegio_id')
                 ->references('id')
                 ->on('colegios');
-            $table->
+            $table->string('anio',5)->nullable();
             $table->timestamps();
         });
     }

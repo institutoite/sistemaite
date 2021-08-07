@@ -44,7 +44,7 @@ class Grado extends Model
 
   public function estudiantes()
   {
-    return $this->belongsToMany(Estudiante::class)->withPivot('anio')->withTimestamps();
+    return $this->belongsToMany(Estudiante::class);
   }
   
 

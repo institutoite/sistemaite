@@ -1,7 +1,8 @@
 @extends('adminlte::page')
 @section('css')
-    <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
+    
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
 @stop
 
 @section('title', 'Personas')
@@ -16,7 +17,7 @@
     <div class="pt-4">
         <div class="card">
             <div class="card-header bg-primary">
-                Lista de Estudiantes <a class="btn btn-secondary float-right" href="{{route('personas.create')}}">Crear Estudiante</a>
+                Lista de Estudiantes <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('personas.create')}}">Crear Estudiante</a>
             </div>
 
             <div class="card-body">

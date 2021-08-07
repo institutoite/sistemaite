@@ -15,13 +15,9 @@ class Estudiante extends Model
     }
 
     public function grados(){
-        return $this->belongsToMany(Grado::class);
+        return $this->belongsToMany(Grado::class)->withPivot('anio', 'colegio_id')->withTimestamps();
     }
-    public function colegios()
-    {
-        return $this->belongsToMany(Colegio::class);
-    }
-
+    
     public function inscripciones(){
         return $this->hasMany(Inscripcione::class);
     }

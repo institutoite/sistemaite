@@ -16,7 +16,9 @@ class OpcionController extends Controller
     public function index($id)
     {
         $persona=Persona::findOrFail($id);
-        return view('opcion.principal',compact('id','persona'));
+        $estudiante=$persona->estudiante;
+        $grados= $estudiante->grados;
+        return view('opcion.principal',compact('id','persona', 'grados'));
     }
 
     

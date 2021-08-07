@@ -44,7 +44,7 @@
   drop table `modalidads`;
   drop table `motivos`;
   drop table `nivels`;
-  drop table `personas`
+  drop table `personas`;
   drop table `estudiantes`;
   drop table `docentes`;
   drop table `personas`;
@@ -57,7 +57,5 @@
   drop table `zonas`;
   drop table `ciudads`;
   drop table `pais`;
-
-  'limpia base de datos
   
   

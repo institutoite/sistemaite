@@ -9,6 +9,7 @@
 @section('content')
     @if ($persona->isEstudiante())
         @include('opcion.menu_estudiante')
+        y
     @endif
     @if ($persona->isDocente())
         @include('opcion.menu_docente')
@@ -16,6 +17,7 @@
     
     @if ($persona->isComputacion())
         @include('opcion.menu_computacion')
+        x
     @endif
 
     @if ($persona->isCliservicio())

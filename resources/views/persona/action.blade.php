@@ -1,10 +1,10 @@
 
 
-<a href="{{route('personas.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-2" title="Editar esta persona">
+<a href="{{route('personas.edit', $id)}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Editar esta persona">
     <i class="fa fa-fw fa-edit text-primary"></i>
 </a>
 
-<a href="{{route('personas.show', $id)}}" class="btn-accion-tabla tooltipsC mr-2" title="Ver esta persona">
+<a href="{{route('personas.show', $id)}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Ver esta persona">
     <i class="fa fa-fw fa-eye text-primary"></i>
 </a>
 
@@ -16,11 +16,11 @@
     </button>
 </form> 
 
-<a href="{{route('opcion.principal', $id)}}" class="btn btn-outline-primary tooltipsC mr-2" title="ir a opciones de la persona">
+<a href="{{route('opcion.principal', $id)}}" class="btn btn-primary text-white tooltipsC btn-sm mr-2" title="ir a opciones de la persona">
     Opciones
 </a>
 
-<a href="{{route('inscripciones.vigentes', $id)}}" class="btn btn-secondary tooltipsC mr-2" title="ir a opciones de la persona">
+<a href="{{route('inscripciones.vigentes', $id)}}" class="btn btn-secondary tooltipsC btn-sm mr-2" title="ir a opciones de la persona">
     Marcar
 </a> 
 
