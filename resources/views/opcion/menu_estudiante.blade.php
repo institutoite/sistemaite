@@ -104,19 +104,93 @@
 
         </div>
     @else
-    <ul>
+        <div class="timeline">
         @foreach ($grados as $grado)
-            
+            <div class="time-label">
+                <span class="bg-secondary">{{$grado->pivot->anio}}</span>
+            </div>
+
+            <!-- timeline item -->
+            <div>
+                <i class="fas fa-school bg-primary"></i>
+                <div class="timeline-item">
+                    <span class="time"><i class="fas fa-clock"></i>{{Carbon\Carbon::now()}}</span>
+                    @php
+                        $colegio=App\Models\Colegio::find($grado->pivot->colegio_id)
+                    @endphp
+                    <h3 class="timeline-header"><a href="#">{{'Colegio:'.$colegio->nombre.', Grado:'.$grado->grado}}</a> </h3>
+                    <div class="timeline-body">
+                        <div class="card card-primary collapsed-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Mostrar Colegio detallado</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead class="table-primary">
+                                            <tr>
+                                                <th>Atributo</th>
+                                                <th>Valor</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Nombre</td>
+                                                <td>{{$colegio->nombre}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Director</td>
+                                                <td>{{$colegio->director}}</td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td>Direccion</td>
+                                                <td>{{$colegio->direccion}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Telefono</td>
+                                                <td>{{$colegio->telefono}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Celular</td>
+                                                <td>{{$colegio->direccion}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Dependencia</td>
+                                                <td>{{$colegio->dependencia}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nivel</td>
+                                                <td>{{$colegio->nivel}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Turno</td>
+                                                <td>{{$colegio->turno}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Area Geográfica</td>
+                                                <td>{{$colegio->areageografica}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         @endforeach
-    </ul>
+        <div>
+            <i class="fas fa-clock bg-gray"></i>
+        </div>
+        </div>
     @endif
 @else
-    Aqui registrar grado e intentar actualizar telefonos 
-    {{dd($grados)}}
+
 @endif
-
-
-
 
 
 
