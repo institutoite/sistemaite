@@ -1,5 +1,6 @@
-@if ($grados->last()!=null)
-    @if ($grados->last()->pivot->anio==Carbon\Carbon::now()->isoFormat('Y'))
+
+@if ($grados->first()!=null)
+    @if ($grados->first()->pivot->anio==Carbon\Carbon::now()->isoFormat('Y'))
         <div class="pt-4">
             <div class="card">
                 <div class="card-header bg-primary">
@@ -105,6 +106,16 @@
         </div>
     @else
         <div class="timeline">
+            <!-- timeline item -->
+            <div>
+                <i class="fas fa-plus bg-success"></i>
+                <div class="timeline-item">
+                    <div class="timeline-footer">
+                        <a class="btn btn-success btn-sm" id="crear">Nueva Gestión</a>
+                    </div>
+                </div>
+            </div>
+            <!-- END timeline item -->
         @foreach ($grados as $grado)
             <div class="time-label">
                 <span class="bg-secondary">{{$grado->pivot->anio}}</span>
@@ -128,7 +139,6 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive">
                                     <table class="table table-bordered table-hover table-striped">
                                         <thead class="table-primary">
                                             <tr>
@@ -176,16 +186,13 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         @endforeach
-        <div>
-            <i class="fas fa-clock bg-gray"></i>
-        </div>
+        
         </div>
     @endif
 @else

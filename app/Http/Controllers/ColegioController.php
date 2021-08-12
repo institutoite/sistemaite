@@ -27,6 +27,11 @@ class ColegioController extends Controller
         return view('colegio.index', compact('colegios'))
             ->with('i', (request()->input('page', 1) - 1) * $colegios->perPage());
     }
+    public function todos()
+    {
+        $colegios=Colegio::all();
+        return response()->json($colegios);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -67,12 +72,12 @@ class ColegioController extends Controller
      */
     public function show($id)
     {
-        $colegio = Colegio::find($id);
-        $departamento=Departamento::findOrFail($colegio->departamento_id);
-        $provincia = provincia::findOrFail($colegio->provincia_id);
-        $municipio = municipio::findOrFail($colegio->municipio_id);
+        // $colegio = Colegio::find($id);
+        // $departamento=Departamento::findOrFail($colegio->departamento_id);
+        // $provincia = provincia::findOrFail($colegio->provincia_id);
+        // $municipio = municipio::findOrFail($colegio->municipio_id);
 
-        return view('colegio.show', compact('colegio','departamento','provincia','municipio   '));
+       // return view('colegio.show', compact('colegio','departamento','provincia','municipio'));
     }
 
     /**

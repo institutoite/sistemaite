@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\User;
 use App\Models\Nivel;
@@ -28,6 +29,11 @@ class GradoController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $grados->perPage());
     }
 
+    public function gradosAunNoCursados($estudiante_id){
+        $estudiante=Estudiante::findOrFail($estudiante_id);
+        $grados=Grado::whereNotIn('grado',$estudiante->grados->pluck('grado'))->get();
+        return response()->json($grados);
+    }
     /**
      * Show the form for creating a new resource.
      *

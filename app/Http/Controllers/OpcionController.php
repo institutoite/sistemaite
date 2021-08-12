@@ -17,7 +17,7 @@ class OpcionController extends Controller
     {
         $persona=Persona::findOrFail($id);
         $estudiante=$persona->estudiante;
-        $grados= $estudiante->grados;
+        $grados= $estudiante->grados()->orderBy('anio','desc')->get();
         return view('opcion.principal',compact('id','persona', 'grados'));
     }
 

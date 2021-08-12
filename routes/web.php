@@ -63,7 +63,11 @@ Route::resource('menus', "MenuController");
 Route::resource('departamentos', "DepartamentoController");
 Route::resource('provincias', "ProvinciaController");
 Route::resource('municipios', "MunicipioController");
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% C O L E G I O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('colegios', "ColegioController");
+Route::get('colegio/all', 'ColegioController@todos');
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  F I N   C O L E G I O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
 Route::resource('modalidads', "ModalidadController");
 Route::resource('nivels', "NivelController");
 Route::resource('inscripciones', "InscripcioneController");
@@ -113,6 +117,9 @@ Route::get('presentes', function () {
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  G R A D O S  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('grados', GradoController::class);
+Route::get('grados/no/cursados/{estudiante}','GradoController@gradosAunNoCursados')->name('grados.no.cursados');
+
+
 Route::get('grado/mostrar/', "GradoController@mostrar")->name("grado.mostrar");
 Route::get('grado/editar/', "GradoController@editar")->name("grado.editar");
 Route::get('grado/actualizar/', "GradoController@actualizar")->name("grado.actualizar");

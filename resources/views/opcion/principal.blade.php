@@ -5,13 +5,14 @@
 @stop
 
 @section('title', 'Menus')
-
+@section('plugins.Jquery', true)
+@section('plugins.Sweetalert2', true)
+@section('plugins.Datatables', true)
 
 @section('content')
     <div class="container pt-4">
         @if ($persona->isEstudiante())
             @include('opcion.menu_estudiante')
-            y
         @endif
         @if ($persona->isDocente())
             @include('opcion.menu_docente')
@@ -19,7 +20,6 @@
         
         @if ($persona->isComputacion())
             @include('opcion.menu_computacion')
-            x
         @endif
 
         @if ($persona->isCliservicio())
@@ -29,24 +29,72 @@
             @include('opcion.menu_copy')
         @endif
     </div>
+    @include('opcion.modales')
 @stop   
 
 @section('js')
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="{{asset('dist/js/moment.js')}}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> 
     
     <script>
-        function iniciarMap(){
-            var coord = {lat:-17.802041,lng:-63.136210};
-            var map = new google.maps.Map(document.getElementById('map'),{
-            zoom: 10,
-            center: coord
+        $(document).ready(function() {
+            $("#crear").on("click", function(){
+                $("#modal-crear-gestion").modal("show");
+                $.ajax({
+                    url : "../colegio/all",
+                    success : function(json) {
+                        $("#colegio_id").empty();
+                        //console.log(json);
+                        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  C A M P O  C O L E G I O S %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        htmlcolegio="";
+                        $.each( json, function( key, value ) {
+                            htmlcolegio="<option value='"+ value.id +"''>"+ value.nombre +"</option>"
+                        });
+                        $("#colegio_id").append(htmlcolegio);
+                    },
+                    error : function(xhr, status) {
+                        console.log(xhr);
+                        Swal.fire({
+                        type: 'error',
+                        title: 'Ocurrio un Error',
+                        text: 'Saque una captura para mostrar al servicio Técnico!',
+                        })
+                    },  
+                });
+                $.ajax({
+                    url : "../grados/no/cursados/{{$id}}",
+                    success : function(json) {
+                        //$("#grado_id").empty();
+                        console.log(json);
+                        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  C A M P O  C O L E G I O S %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        htmlgrado="";
+                        $.each( json, function( key, value ) {
+                            htmlgrado="<option value='"+ value.id +"''>"+ value.grado +"</option>"
+                        });
+                        $("#grado_id").append(htmlgrado);
+
+                        htmlanio="";
+                        anioActual=moment
+                        $.each( json, function( key, value ) {
+                            htmlanio="<option value='"+ value.id +"''>"+ value.grado +"</option>"
+                        });
+                        $("#anio").append(htmlanio);
+
+
+                    },
+                    error : function(xhr, status) {
+                        //console.log(xhr);
+                        Swal.fire({
+                        type: 'error',
+                        title: 'Ocurrio un Error',
+                        text: 'Saque una captura para mostrar al servicio Técnico!',
+                        })
+                    },  
+                });
             });
-            var marker = new google.maps.Marker({
-            position: coord,
-            map: map
-            });
-        }
-    
+        });
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
 @stop
