@@ -14,46 +14,55 @@ class GradoSeeder extends Seeder
      */
     public function run()
     {
-        // Grado::create(['grado' => 'guarderia','nivel'=>'Guardería']);
-
-        // Grado::create(['grado' => 'Nidito', 'nivel' => 'Inicial']);
-        // Grado::create(['grado' => 'Pre Kinder','nivel'=>'Inicial']);
-        // Grado::create(['grado' => 'Kinder','nivel'=>'Inicial']);
+        Grado::create(['grado' => 'guarderia','nivel_id'=>1]);
+        Grado::create(['grado' => 'Nidito', 'nivel_id' =>1 ]);
+        Grado::create(['grado' => 'Pre Kinder','nivel_id'=>2]);
+        Grado::create(['grado' => 'Kinder','nivel_id'=>2]);
         
-        // Grado::create(['grado' => 'Primero primaria','nivel'=>'Primaria']);
-        // Grado::create(['grado' => 'Segundo primaria','nivel'=>'Primaria']);
-        // Grado::create(['grado' => 'Tercero primaria','nivel'=>'Primaria']);
-        // Grado::create(['grado' => 'Cuarto primaria','nivel'=>'Primaria']);
-        // Grado::create(['grado' => 'Quinto primaria','nivel'=>'Primaria']);
-        // Grado::create(['grado' => 'Sexto primaria','nivel'=>'Primaria']);
+        Grado::create(['grado' => 'Primero primaria','nivel_id'=>3]);
+        Grado::create(['grado' => 'Segundo primaria','nivel_id'=>3]);
+        Grado::create(['grado' => 'Tercero primaria','nivel_id'=>3]);
+        Grado::create(['grado' => 'Cuarto primaria','nivel_id'=>3]);
+        Grado::create(['grado' => 'Quinto primaria','nivel_id'=>3]);
+        Grado::create(['grado' => 'Sexto primaria','nivel_id'=>3]);
 
-        // Grado::create(['grado' => 'Primero Secundaria', 'nivel' => 'Secundaria']);
-        // Grado::create(['grado' => 'Segundo Secundaria', 'nivel' => 'Secundaria']);
-        // Grado::create(['grado' => 'Tercero Secundaria', 'nivel' => 'Secundaria']);
-        // Grado::create(['grado' => 'Cuarto Secundaria', 'nivel' => 'Secundaria']);
-        // Grado::create(['grado' => 'Quinto Secundaria', 'nivel' => 'Secundaria']);
-        // Grado::create(['grado' => 'Sexto Secundaria', 'nivel' => 'Secundaria']);
+        Grado::create(['grado' => 'Primero Secundaria', 'nivel_id' => 4]);
+        Grado::create(['grado' => 'Segundo Secundaria', 'nivel_id' => 4]);
+        Grado::create(['grado' => 'Tercero Secundaria', 'nivel_id' => 4]);
+        Grado::create(['grado' => 'Cuarto Secundaria', 'nivel_id' => 4]);
+        Grado::create(['grado' => 'Quinto Secundaria', 'nivel_id' => 4]);
+        Grado::create(['grado' => 'Sexto Secundaria', 'nivel_id' => 4]);
 
-        // Grado::create(['grado' => 'Bachiller en Humanidades', 'nivel' => 'Pre Universitario']);
+        Grado::create(['grado' => 'pre-universitario', 'nivel_id' =>5]);
+        Grado::create(['grado' => 'colegio militar', 'nivel_id' => 5]);
+        Grado::create(['grado' => 'escuela policiaca', 'nivel_id' => 5]);
         
-        // Grado::create(['grado' => 'Primer Semestre', 'nivel' => 'Universitario']);
-        // Grado::create(['grado' => 'Segundo Semestre', 'nivel' => 'Universitario']);
-        // Grado::create(['grado' => 'Tercer Semestre', 'nivel' => 'Universitario']);
-        // Grado::create(['grado' => 'Cuarto Semestre', 'nivel' => 'Universitario']);
-        // Grado::create(['grado' => 'Quinto Semestre', 'nivel' => 'Universitario']);
-        // Grado::create(['grado' => 'Sexto Semestre', 'nivel' => 'Universitario']);
-        // Grado::create(['grado' => 'Septimo Semestre', 'nivel' => 'Universitario']);
-        // Grado::create(['grado' => 'Octavo Semestre', 'nivel' => 'Universitario']);
-        // Grado::create(['grado' => 'Noveno Semestre', 'nivel' => 'Universitario']);
-        // Grado::create(['grado' => 'Decimo Semestre', 'nivel' => 'Universitario']);
-        
-        // Grado::create(['grado' => 'Primer Año', 'nivel' => 'Universitario']);
-        // Grado::create(['grado' => 'Segundo Año', 'nivel' => 'Universitario']);
-        // Grado::create(['grado' => 'Tercer Año', 'nivel' => 'Universitario']);
-        // Grado::create(['grado' => 'Cuarto Año', 'nivel' => 'Universitario']);
-        // Grado::create(['grado' => 'Quinto Año', 'nivel' => 'Universitario']);
-        // Grado::create(['grado' => 'Sexto Año', 'nivel' => 'Universitario']);
+        Grado::create(['grado' => 'Primer Semestre Institutos', 'nivel_id' =>6]);
+        Grado::create(['grado' => 'Segundo Semestre Institutos', 'nivel_id' =>6]);
+        Grado::create(['grado' => 'Tercer Semestre Institutos', 'nivel_id' =>6]);
+        Grado::create(['grado' => 'Cuarto Semestre Institutos', 'nivel_id' =>6]);
+        Grado::create(['grado' => 'Quinto Semestre Institutos', 'nivel_id' =>6]);
+        Grado::create(['grado' => 'Sexto Semestre Institutos', 'nivel_id' =>6]);
 
-        // Grado::create(['grado' => 'Profesional', 'nivel' => 'Profesional']);
+        Grado::create(['grado' => 'Primer Año Institutos', 'nivel_id' => 6]);
+        Grado::create(['grado' => 'Segundo Año Institutos', 'nivel_id' => 6]);
+        Grado::create(['grado' => 'Tercer Año Institutos', 'nivel_id' => 6]);
+
+        Grado::create(['grado' => 'Primer Semestre Universidad', 'nivel_id' => 7]);
+        Grado::create(['grado' => 'Segundo Semestre Universidad', 'nivel_id' => 7]);
+        Grado::create(['grado' => 'Tercer Semestre Universidad', 'nivel_id' => 7]);
+        Grado::create(['grado' => 'Cuarto Semestre Universidad', 'nivel_id' => 7]);
+        Grado::create(['grado' => 'Quinto Semestre Universidad', 'nivel_id' => 7]);
+        Grado::create(['grado' => 'Sexto Semestre Universidad', 'nivel_id' => 7]);
+        Grado::create(['grado' => 'Septimo Semestre Universidad', 'nivel_id' =>7 ]);
+        Grado::create(['grado' => 'Octavo Semestre Universidad', 'nivel_id' =>7 ]);
+        Grado::create(['grado' => 'Noveno Semestre Universidad', 'nivel_id' =>7 ]);
+        Grado::create(['grado' => 'Decimo Semestre Universidad', 'nivel_id' =>7 ]);
+        
+       
+        Grado::create(['grado' => 'Proyecto Grado', 'nivel_id' =>8 ]);
+        Grado::create(['grado' => 'Maestría', 'nivel_id' => 8]);
+        Grado::create(['grado' => 'Diplomado', 'nivel_id' =>8]);
+        Grado::create(['grado' => 'Profesional', 'nivel_id' => 8]);
     }
 }

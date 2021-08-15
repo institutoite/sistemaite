@@ -44,18 +44,21 @@
                                 </div>
 
                                 {{-- %%%%%%%%%%%%%%% C A M P O  ESTUDIANTE ID%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-                                <input type="text" hidden value="{{$id}}">
+                                <input type="text" hidden id="estudiante_id" value="{{$id}}">
                             </div>
                             <div class="container-fluid h-100 mt-3"> 
                                 <div class="row w-100 align-items-center">
                                     <div class="col text-center">
-                                        <button id="guardar-observacioxn" class="btn btn-primary text-white btn-lg">Guardar <i class="far fa-save"></i></button>        
+                                        <button id="guardar" class="btn btn-primary text-white btn-lg">Guardar <i class="far fa-save"></i></button>        
                                     </div>	
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div> 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger text-white" data-bs-dismiss="modal">cerrar &times;</button>
             </div>
            
         </div>

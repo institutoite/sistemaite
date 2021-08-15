@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
+use App\models\Colegio;
 class ColegioSeeder extends Seeder
 {
     /**
@@ -13,6 +13,6 @@ class ColegioSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Colegio::factory()->count(10)->create();
     }
 }

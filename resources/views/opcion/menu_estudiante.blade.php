@@ -196,7 +196,20 @@
         </div>
     @endif
 @else
-
+    <div class="timeline">
+        <!-- timeline item -->
+        <div>
+            <i class="fas fa-plus bg-success"></i>
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <span class="info-box-text">No tiene ningun grado registrado</span>
+                </div>
+                <div class="timeline-footer">
+                    <a class="btn btn-success btn-sm" id="crear">Nueva Gestión</a>
+                </div>
+            </div>
+        </div>
+    </div>
 @endif
 
 

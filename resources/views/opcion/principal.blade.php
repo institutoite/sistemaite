@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 @section('css')
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('custom/css/mapa.css')}}">
 @stop
 
@@ -51,7 +51,7 @@
                         //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  C A M P O  C O L E G I O S %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                         htmlcolegio="";
                         $.each( json, function( key, value ) {
-                            htmlcolegio="<option value='"+ value.id +"''>"+ value.nombre +"</option>"
+                            htmlcolegio+="<option value='"+ value.id +"''>"+ value.nombre +"</option>"
                         });
                         $("#colegio_id").append(htmlcolegio);
                     },
@@ -67,23 +67,23 @@
                 $.ajax({
                     url : "../grados/no/cursados/{{$id}}",
                     success : function(json) {
-                        //$("#grado_id").empty();
-                        console.log(json);
-                        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  C A M P O  C O L E G I O S %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        $("#grado_id").empty();
+                       //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  C A M P O  G R A D O S %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
                         htmlgrado="";
                         $.each( json, function( key, value ) {
-                            htmlgrado="<option value='"+ value.id +"''>"+ value.grado +"</option>"
+                            htmlgrado+="<option value='"+ value.id +"''>"+ value.grado +"</option>"
                         });
                         $("#grado_id").append(htmlgrado);
 
                         htmlanio="";
-                        anioActual=moment
-                        $.each( json, function( key, value ) {
-                            htmlanio="<option value='"+ value.id +"''>"+ value.grado +"</option>"
-                        });
+                        var anio=moment().format('y')-15; 
+                       //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  C A M P O  A Ñ O S  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+                       while(anio<=moment().format('y')) {
+                            htmlanio+="<option value='"+ anio +"''>"+ anio +"</option>"
+                            anio++;
+                        }
+                        $("#anio").empty();
                         $("#anio").append(htmlanio);
-
-
                     },
                     error : function(xhr, status) {
                         //console.log(xhr);
@@ -95,6 +95,29 @@
                     },  
                 });
             });
+            $("#guardar").on('click', function(e){
+                e.preventDefault();
+                    var estudiante_id=$("#estudiante_id").val();
+                    var grado_id=$("#grado_id").val();
+                    var colegio_id=$("#colegio_id").val();
+                    var anio=$("#anio").val();
+                    console.log(estudiante_id);
+                // $.ajax({
+                //     url : "/guardar/gestion",
+                //     data:{
+                //         estudiante_id:estudiante_id,
+                //         grado_id:grado.id,
+                //         colegio_id:grado.id,
+                //         anio:anio,
+                //     },
+                //     success : function(json) {
+                //         $("#grado_id").empty();
+                //     },
+                //     error : function(xhr, status) {
+
+                //     },  
+                // });
+            })
         });
     </script>
 @stop

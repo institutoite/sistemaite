@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 /**
  * Class Colegio
@@ -32,6 +34,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Colegio extends Model
 {
+    use HasFactory;
     
     static $rules = [
     ];
