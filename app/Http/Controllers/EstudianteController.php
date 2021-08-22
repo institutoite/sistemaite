@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estudiante;
 use Illuminate\Http\Request;
 
 class EstudianteController extends Controller
@@ -83,7 +84,14 @@ class EstudianteController extends Controller
     }
     public function historia($estudiante_id)
     {
-        return view('estudiantes.historiaacademica');
+        // $grados=Estudiante::findOrFail($estudiante_id)->grados;
+        $grados=Estudiante::join('estudiante_grado','estudiantes.id','=','estudiante_grado.estudiante_id')
+                        ->join('grados','grados.id','=','estudiante_grado.grado_id')
+                        ->join('colegios','colegios.id','=','estudiante_grado.colegio_id')
+                        ->select('estudiantes.id','colegio_id','colegios.nombre','grados.grado','anio')
+                        ->orderBy('anio', 'desc')
+                        ->get();
+        return view('estudiantes.historiaacademica',compact('grados','estudiante_id'));
     }
 
 }

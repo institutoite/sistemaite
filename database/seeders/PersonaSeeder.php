@@ -16,9 +16,9 @@ class PersonaSeeder extends Seeder
      */
     public function run()
     {
-        Persona::factory()->count(10)->create();
+        Persona::factory()->count(30)->create();
         $a=1;
-        while ($a <= 10) {
+        while ($a <= 30) {
             $observacion=new Observacion();
             $observacion->observacion ="Esto es una observacion creada desde Seeder";
             $observacion->activo = 1;

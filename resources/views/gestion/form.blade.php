@@ -1,4 +1,4 @@
-<div class="row">
+ <div class="row">
     {{-- %%%%%%%%%%%%%%%%%%%%%%% C A M P O   G R A D O  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
         <div class="form-floating mb-3 text-gray">
@@ -28,11 +28,4 @@
     </div>
     {{-- %%%%%%%%%%%%%%% C A M P O  ESTUDIANTE ID %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
     <input type="text" id="persona_id" value="{{$id}}">
-</div>
-<div class="container-fluid h-100 mt-3"> 
-    <div class="row w-100 align-items-center">
-        <div class="col text-center">
-            <button id="guardar" class="btn btn-primary text-white btn-lg">Guardar <i class="far fa-save"></i></button>        
-        </div>	
-    </div>
 </div>

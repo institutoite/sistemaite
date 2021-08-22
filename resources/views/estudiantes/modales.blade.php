@@ -43,7 +43,7 @@
                                     </div>    
                                 </div>
                                 {{-- %%%%%%%%%%%%%%% C A M P O  ESTUDIANTE ID %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-                                <input type="text" id="persona_id" value="{{$id}}">
+                                <input type="text" id="persona_id" value="{{$estudiante_id}}">
                             </div>
                             <div class="container-fluid h-100 mt-3"> 
                                 <div class="row w-100 align-items-center">

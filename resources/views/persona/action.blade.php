@@ -16,10 +16,11 @@
     </button>
 </form> 
 
-<a href="{{route('opcion.principal', $id)}}" class="btn btn-primary text-white tooltipsC btn-sm mr-2" title="ir a opciones de la persona">
+<a href="{{route('opcion.principal', App\Models\Persona::findOrFail($id)->estudiante->id)}}" class="btn btn-primary text-white tooltipsC btn-sm mr-2" title="ir a opciones de la persona">
     Opciones
 </a>
 
+{{-- hay que enviar el estudiante no la persona --}}
 <a href="{{route('inscripciones.vigentes', $id)}}" class="btn btn-secondary tooltipsC btn-sm mr-2" title="ir a opciones de la persona">
     Marcar
 </a> 

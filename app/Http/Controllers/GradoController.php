@@ -6,6 +6,7 @@ use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\User;
 use App\Models\Nivel;
+use App\Models\Persona;
 use App\Models\Userable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,11 +30,14 @@ class GradoController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $grados->perPage());
     }
 
-    public function gradosAunNoCursados($estudiante_id){
-        $estudiante=Estudiante::findOrFail($estudiante_id);
+    public function gradosAunNoCursados($persona_id){
+
+        $estudiante=Persona::findOrFail($persona_id)->estudiante;
         $grados=Grado::whereNotIn('grado',$estudiante->grados->pluck('grado'))->get();
         return response()->json($grados);
     }
+
+    
     /**
      * Show the form for creating a new resource.
      *

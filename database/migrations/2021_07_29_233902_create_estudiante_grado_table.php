@@ -14,6 +14,7 @@ class CreateEstudianteGradoTable extends Migration
     public function up()
     {
         Schema::create('estudiante_grado', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('estudiante_id');
             $table->foreign('estudiante_id')
                 ->references('id')

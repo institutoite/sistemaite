@@ -10,7 +10,7 @@
 @section('plugins.Datatables', true)
 
 @section('content')
-    <div class="container pt-4">
+    <div class="container pt-4" id="container">
         @if ($persona->isEstudiante())
             @include('opcion.menu_estudiante')
         @endif
@@ -95,29 +95,70 @@
                     },  
                 });
             });
-            $("#guardar").on('click', function(e){
+            $(document).on("submit","#formulario-guardar-gestion",function(e){
                 e.preventDefault();
-                    var estudiante_id=$("#estudiante_id").val();
+                    var persona_id=$("#persona_id").val();
                     var grado_id=$("#grado_id").val();
                     var colegio_id=$("#colegio_id").val();
                     var anio=$("#anio").val();
-                    console.log(estudiante_id);
-                // $.ajax({
-                //     url : "/guardar/gestion",
-                //     data:{
-                //         estudiante_id:estudiante_id,
-                //         grado_id:grado.id,
-                //         colegio_id:grado.id,
-                //         anio:anio,
-                //     },
-                //     success : function(json) {
-                //         $("#grado_id").empty();
-                //     },
-                //     error : function(xhr, status) {
+                    var token = $("input[name=_token]").val();
+                $.ajaxSetup({
+                headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url : "../guardar/gestion",
+                    headers:{'X-CSRF-TOKEN':token},
+                    data:{
+                        persona_id:persona_id,
+                        grado_id:grado_id,
+                        colegio_id:colegio_id,
+                        anio:anio,
+                        token:token,
+                    },
+                    success : function(json) {
+                        console.log(json);
+                        /*%%%%%%%%% un item de timeline %%%%%%%%%*/
+                        
+                        var htmlitem="";
+                         $.each( json, function( key, value ) {
+                            
+                            htmlitem+="<div class='timeline' id='time_line'>";
+                                htmlitem+="<div class='time-label'>";
+                                    htmlitem+="<span class='bg-secondary'>"+ value.pivot.anio +"</span>";
+                                htmlitem+="</div>";
+                                htmlitem+="<div>";
+                                    htmlitem+="<i class='fas fa-school bg-primary'></i>";
+                                    htmlitem+="<div class='timeline-item'>";
+                                        htmlitem+="<span class='time'><i class='fas fa-clock'></i>{{Carbon\Carbon::now()}}</span>";
+                                        htmlitem+="<h3 class='timeline-header'><a href='#'>Titulo de la tabla</a> </h3>";
+                                        htmlitem+="<div class='timeline-body'>";
+                                            htmlitem+="<div class='card card-primary collapsed-card'>";
+                                                htmlitem+="<div class='card-header'>";
+                                                    htmlitem+="<h3 class='card-title'>Mostrar Colegio detallado</h3>";
+                                                    htmlitem+="<div class='card-tools'>";
+                                                        htmlitem+="<button type='button' class='btn btn-tool' data-card-widget='collapse'><i class='fas fa-plus'></i></button>";
+                                                    htmlitem+="</div>";
+                                                htmlitem+="</div>";
+                                                htmlitem+="<div class='card-body'>";
+                                                htmlitem+="</div>";
+                                            htmlitem+="</div>";
+                                        htmlitem+="</div>";
+                                    htmlitem+="</div>";
+                                htmlitem+="</div>";
+                            htmlitem+="</div>";
+                        });
+                        $('#gestiones').empty();
+                        $('#gestiones').after(htmlitem);
+                    },
+                    error : function(xhr, status) {
 
-                //     },  
-                // });
-            })
+                    },  
+                });
+            });
+
+
         });
     </script>
 @stop

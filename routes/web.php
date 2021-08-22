@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GradoController;
 use Illuminate\Support\Facades\Auth;
 //use SweetAlert;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
@@ -76,6 +77,8 @@ Route::resource('inscripciones', "InscripcioneController");
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       E S T D U D I A N T E S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('/hoy','EstudianteController@hoy')->name('estudiantes.hoy');
 Route::get('/historial/{estudiante}','EstudianteController@historia')->name('estudiante.historia');
+//Route::get('/historial/{estudiante}','EstudianteController@historia')->name('estudiante.historia');
+
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  T E M A S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -118,12 +121,19 @@ Route::get('presentes', function () {
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  G R A D O S  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('grados', GradoController::class);
 Route::get('grados/no/cursados/{estudiante}','GradoController@gradosAunNoCursados')->name('grados.no.cursados');
+Route::get('/guardar/gestion',[GradoController::class,'agregarGrado'])->name('agregar.grado');
 
 
 Route::get('grado/mostrar/', "GradoController@mostrar")->name("grado.mostrar");
 Route::get('grado/editar/', "GradoController@editar")->name("grado.editar");
 Route::get('grado/actualizar/', "GradoController@actualizar")->name("grado.actualizar");
 Route::delete('eliminar/grado/{grado}', 'GradoController@destroy')->name('eliminar.grado');
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  G R A D O S  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::get('gestiones/{estudiante}', [GestionController::class,'index'])->name('gestion.index');
+Route::post('gestiones/guardar', [GestionController::class,'store'])->name('gestion.store');
+
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  M O T I V O S %%%%%%%%%%%%%%%%%%%%%%%%%%*/

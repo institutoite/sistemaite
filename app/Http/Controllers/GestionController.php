@@ -2,48 +2,31 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
+use App\Models\Grado;
 use App\Models\Estudiante;
-use Carbon\Carbon;
 
-class OpcionController extends Controller
+
+class GestionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        $estudiante=Estudiante::findOrFail($id);
-        if(!is_null($estudiante->grados()->first())) 
-        $anioUltimo = $estudiante->grados()->orderBy('anio', 'desc')->get()->first()->pivot->anio;
-        
-        if (empty($anioUltimo)) {
-            return view('gestion.create', compact('id', 'estudiante'));
-        } else {
-            if ($anioUltimo != Carbon::now()->isoFormat('Y')) {
-                return view('gestion.create', compact('id', 'estudiante'));
-            } else {
-                
-                $persona = $estudiante->persona;
-                $grados = $estudiante->grados;
-                return view('opcion.principal', compact('id','persona','grados','estudiante'));
-            }
-        }
+        //
     }
-
-    
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Estudiante $estudiante)
     {
-        //
+        return view('gestion.create',compact('estudiante'))
     }
 
     /**
@@ -54,9 +37,14 @@ class OpcionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $estudiante = Estudiante::findOrFail($request->estudiante_id);
+        $estudiante->grados()->attach($request->grado_id, ['colegio_id' => $request->colegio_id, 'anio' => $request->anio]);
+        $grados = Grado::whereNotIn('grado', $estudiante->grados->pluck('grado'))->get();
+        // enviar a listarTrelefonosDeEsta Persona
+        //return response()->json($estudiante->grados);
     }
 
+    
     /**
      * Display the specified resource.
      *
@@ -101,5 +89,4 @@ class OpcionController extends Controller
     {
         //
     }
-    
 }
