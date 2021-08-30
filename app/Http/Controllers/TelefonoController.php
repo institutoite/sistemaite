@@ -26,6 +26,11 @@ class TelefonoController extends Controller
         }
     }
 
+    public function telefonoPersona(Persona $persona){
+        
+        Telefono::select('id', 'numero', 'parentesco')->where('persona_id', '=', $persona->id);
+    }
+
     public function mostrarvista(Persona $persona){
     
         $apoderados= $persona->apoderados;

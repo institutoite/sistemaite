@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Colegio;
 use Illuminate\Http\Request;
 use App\Models\Estudiante;
 use Carbon\Carbon;
+
+use App\Http\Controllers\GradoController;
 
 class OpcionController extends Controller
 {
@@ -14,27 +16,44 @@ class OpcionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index($estudiante_id)
     {
-        $estudiante=Estudiante::findOrFail($id);
-        if(!is_null($estudiante->grados()->first())) 
-        $anioUltimo = $estudiante->grados()->orderBy('anio', 'desc')->get()->first()->pivot->anio;
         
+        $estudiante=Estudiante::findOrFail($estudiante_id);
+        if(!is_null($estudiante->grados()->first())){ 
+            $anioUltimo = $estudiante->grados()->orderBy('anio', 'desc')->get()->first()->pivot->anio;
+        }
+        $colegios=Colegio::all();
+        
+        $objetoGrado = new GradoController();
+        $grados = $objetoGrado->gradosAunNoCursados($estudiante_id);
+        
+        $colegios=Colegio::all();
+        
+        $gestiones = Estudiante::join('estudiante_grado', 'estudiantes.id', '=', 'estudiante_grado.estudiante_id')
+        ->join('grados', 'grados.id', '=', 'estudiante_grado.grado_id')
+        ->join('colegios', 'colegios.id', '=', 'estudiante_grado.colegio_id')
+        ->where('estudiante_id','=',$estudiante_id)
+        ->select('estudiante_grado.id', 'colegio_id', 'colegios.nombre', 'grados.grado', 'anio')
+        ->orderBy('anio', 'desc')
+        ->get();
+        
+        // dd($grados);
+            // dd($gestiones);
         if (empty($anioUltimo)) {
-            return view('gestion.create', compact('id', 'estudiante'));
+            //return view('gestion.create', compact('estudiante','grados','colegios','gestiones'));
+            return redirect()->route('gestion.index',$estudiante_id);
         } else {
             if ($anioUltimo != Carbon::now()->isoFormat('Y')) {
-                return view('gestion.create', compact('id', 'estudiante'));
+                return redirect()->route('gestion.index',$estudiante_id);
             } else {
                 
                 $persona = $estudiante->persona;
                 $grados = $estudiante->grados;
-                return view('opcion.principal', compact('id','persona','grados','estudiante'));
+                return view('opcion.principal', compact('persona','grados','estudiante'));
             }
         }
     }
-
-    
 
     /**
      * Show the form for creating a new resource.

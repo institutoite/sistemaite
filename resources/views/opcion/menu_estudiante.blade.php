@@ -5,12 +5,12 @@
     <div class="card-body">
         <div class="row text-center">
             <div class="col-6 col-xs-4 col-sm-4 col-md-3 col-lg-2">
-                <a class="btn btn-app text-green">
+                <a class="btn btn-app text-green" href="{{route('tus.inscripciones',$estudiante->id)}}">
                     <i class="fas fa-edit"></i> Inscripción
                 </a>
             </div>
             <div class="col-6 col-xs-4 col-sm-4 col-md-3 col-lg-2">
-                <a class="btn btn-app text-warning">
+                <a class="btn btn-app text-warning" href="{{route('gestion.index',$estudiante->id)}}">
                     <i class="fas fa-play"></i> Gestiones
                 </a>
             </div>

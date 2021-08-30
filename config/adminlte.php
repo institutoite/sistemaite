@@ -686,13 +686,13 @@ return [
                 [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'feriados',
                     'classes'  => 'text-dark',
                 ],
                 [
                     'text' => 'Crear',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'feriados/create',
                     'classes'  => 'text-dark',
                 ],
             ],
@@ -751,13 +751,13 @@ return [
                 [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'materias',
                     'classes'  => 'text-dark',
                 ],
                 [
                     'text' => 'Crear',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'materias/create',
                     'classes'  => 'text-dark',
                 ],
             ],

@@ -168,31 +168,30 @@
                     $("#error_motivo").empty();
 
                     $.ajax({
-                    url : "grado/editar/",
-                    data : { id :id_grado },
-                    success : function(json) {
-                        console.log(json);
-                        $("#modal-editar").modal("show");
-                        $("#formulario-editar").empty();
-                            $html="<div class='row'>";
-                            $("#grado").val(json.grado.grado);
-                            $("#grado_id").val(json.grado.id);
-                            
-                            $htmlNiveles="";
-                            for (let j in json.niveles) {
-                                $htmlNiveles+="<option value='"+ json.niveles[j].id +"'>"+json.niveles[j].nivel+"</option>";
-                            }
-                            $("#nivel_id").append($htmlNiveles);    
-                            $("#formulario-editar").append($html);
-                    },
-                    error : function(xhr, status) {
-                        Swal.fire({
-                        type: 'error',
-                        title: 'Ocurrio un Error',
-                        text: 'Saque una captura para mostrar al servicio Técnico!',
-                        })
-                    },  
-                });
+                        url : "grado/editar/",
+                        data : { id :id_grado },
+                        success : function(json) {
+                            console.log(json);
+                            $("#modal-editar").modal("show");
+                            $("#formulario-editar").empty();
+                                $html="<div class='row'>";
+                                $("#grado").val(json.grado.grado);
+                                $("#grado_id").val(json.grado.id);
+                                $htmlNiveles="";
+                                for (let j in json.niveles) {
+                                    $htmlNiveles+="<option value='"+ json.niveles[j].id +"'>"+json.niveles[j].nivel+"</option>";
+                                }
+                                $("#nivel_id").append($htmlNiveles);    
+                                $("#formulario-editar").append($html);
+                        },
+                        error : function(xhr, status) {
+                            Swal.fire({
+                            type: 'error',
+                            title: 'Ocurrio un Error',
+                            text: 'Saque una captura para mostrar al servicio Técnico!',
+                            })
+                        },  
+                    });
             });
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR ENVIO DE FORMULARIO PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $(document).on("submit","#formulario-editar-grado",function(e){

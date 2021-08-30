@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Colegio;
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\User;
@@ -30,11 +31,10 @@ class GradoController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $grados->perPage());
     }
 
-    public function gradosAunNoCursados($persona_id){
-
-        $estudiante=Persona::findOrFail($persona_id)->estudiante;
+    public function gradosAunNoCursados($estudiante_id){
+        $estudiante=Estudiante::findOrFail($estudiante_id);
         $grados=Grado::whereNotIn('grado',$estudiante->grados->pluck('grado'))->get();
-        return response()->json($grados);
+        return $grados;
     }
 
     
@@ -46,7 +46,10 @@ class GradoController extends Controller
     public function create()
     {
         $niveles = Nivel::all();
-        return view('grado.create', compact('niveles'));
+        $grados = Grado::all();
+        $colegios = Colegio::all();
+        
+        return view('grado.create', compact('niveles','grados','colegios'));
     }
 
     /**

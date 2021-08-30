@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GradoController;
+use App\Http\Controllers\GestionController;
 use Illuminate\Support\Facades\Auth;
 //use SweetAlert;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
@@ -119,7 +120,10 @@ Route::get('presentes', function () {
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  G R A D O S  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
-Route::resource('grados', GradoController::class);
+//Route::resource('grados', [GradoController::class]);
+Route::get('grados',[GradoController::class,'index'])->name('grados.index');
+Route::get('grados/create',[GradoController::class,'create'])->name('grados.create');
+Route::get('grados/store',[GradoController::class,'store'])->name('grados.store');
 Route::get('grados/no/cursados/{estudiante}','GradoController@gradosAunNoCursados')->name('grados.no.cursados');
 Route::get('/guardar/gestion',[GradoController::class,'agregarGrado'])->name('agregar.grado');
 
@@ -130,11 +134,14 @@ Route::get('grado/actualizar/', "GradoController@actualizar")->name("grado.actua
 Route::delete('eliminar/grado/{grado}', 'GradoController@destroy')->name('eliminar.grado');
 
 
-/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  G R A D O S  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  G E S T I O N E S  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('gestiones/{estudiante}', [GestionController::class,'index'])->name('gestion.index');
 Route::post('gestiones/guardar', [GestionController::class,'store'])->name('gestion.store');
+Route::get('gestion/editar/', [GestionController::class,'editar'])->name('gestion.editar');
+Route::get('gestion/create/{estudiante}', [GestionController::class,'create'])->name('gestion.create');
+Route::get('gestion/actualizar', [GestionController::class, 'actualizar'])->name("gestion.actualizar");
 
-
+// Route::get('gestiones/editar78', [GestionController::class, 'edition'])->name('gestion.editar');
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  M O T I V O S %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('motivos', "MotivoController");
@@ -142,7 +149,6 @@ Route::get('motivo/mostrar/', "MotivoController@mostrar")->name("motivo.mostrar"
 Route::get('motivo/editar/', "MotivoController@editar")->name("motivo.editar");
 Route::get('motivo/actualizar/', "MotivoController@actualizar")->name("motivo.actualizar");
 Route::delete('eliminar/motivo/{motivo}', 'MotivoController@destroy')->name('eliminar.motivo');
-
 
 Route::resource('personas', "PersonaController");
 Route::resource('telefonos', "TelefonoController");
@@ -152,8 +158,6 @@ Route::resource('users', 'UserController');
 Route::get('user/crear', "UserController@crear")->name('users.crear');
 Route::post('user/guardar', "UserController@guardar")->name('users.guardar');
 
-
-
 Route::get('marcar/asistencia/', 'ClaseController@marcado')->name('marcado');
 Route::get('clase/crear', 'ClaseController@crear')->name('clase.crear');
 Route::get('clase/marcar/rapido/{programacion_id}', 'ClaseController@marcadoRapido')->name('marcado.presente.rapido');
@@ -161,24 +165,10 @@ Route::get('clase/marcar/rapido/{programacion_id}', 'ClaseController@marcadoRapi
 Route::post('programa/estado/general/', 'ClaseController@marcadoGeneral')->name('programa.estado.general');
 Route::post('/clase/guardar/normal/{progrmacion_id}', 'ClaseController@guardar')->name('clases.guardar');
 
-
-
-
-
-
 Route::get('apoderado/existente/{persona}', 'TelefonoController@apoderadoExistente')->name('apoderado.existente');
 Route::get('telefono/agregar/{persona_id}/{apoderado_id}', 'TelefonoController@agregarApoderado')->name('agregar.apoderado');
 Route::post('guardar/apoderado/existente', 'TelefonoController@guardarApoderadoExistente')->name('guardar.apoderado.existente');
-
 Route::get('modalidad/cosultar/', 'ModalidadController@consultar')->name('modalidad.consultar');
-
-
-
-
-
-
-
-
 
 Route::get('tus_inscripciones/{estudiante_id}', 'InscripcioneController@tusinscripciones')->name('tus.inscripciones');
 Route::get('listar/inscripciones/{persona}', 'InscripcioneController@listar')->name('listar_inscripciones');
@@ -187,18 +177,12 @@ Route::post('inscripcion/guardar/configuracion/{id}', 'InscripcioneController@gu
 Route::post('inscripcion/actualizar/configuracion/{id_inscripcion}', 'InscripcioneController@actualizarConfiguracion')->name('inscripcion.actualizar.configuracion');
 Route::get('inscripcion/actualizar/fechapago/{fecha}/{id}', 'InscripcioneController@actualizar_fecha_proximo_pago')->name('set.fecha.proximo.pago');
 
-
 Route::get('telefonos/vista/{persona}','TelefonoController@mostrarvista')->name('telefonos.persona');
 Route::get('telefono/crear/{persona}', 'TelefonoController@crear')->name('telefonos.crear');
 Route::get('telefonos/{persona}', 'PersonaController@index')->name('telefono.de.persona');
 Route::get('telefono/{persona}/{id}/editar','TelefonoController@editar')->name('telefono.editar');
 Route::put('telefono/{persona_id}/{apoderaçdo_id}', 'TelefonoController@actualizar')->name('telefono.actualizar');
-
 Route::post('crear/contacto/{persona}','PersonaController@storeContacto')->name('persona.storeContacto');
-
-
-
-
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% P R O G R A M A C I O N   C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('programacions', "ProgramacionController");

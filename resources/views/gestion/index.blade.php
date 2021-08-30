@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+   
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
@@ -8,6 +9,7 @@
 @section('plugins.Jquery', true)
 @section('plugins.Sweetalert2', true)
 @section('plugins.Datatables', true)
+@section('plugins.Select2',true)
 
 @section('content')
     <div class="container-fluid pt-4">
@@ -24,34 +26,53 @@
                             </span>
 
                             <div class="float-right">
-                                <a href="{{ route('grados.create') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
-                                    {{ __('Create Grado') }}
+                                {{-- {{dd($estudiante)}} --}}
+                                <a href="{{ route('gestion.create',$estudiante) }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
+                                    {{ __('Create Gestión') }}
                                 </a>
                             </div>
                         </div>
                     </div>
                     
-
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="grados" class="table table-striped table-hover table-borderless">
-                                <thead class="">
-                                    <tr>
-                                        <th>No</th>
-										<th>Grado</th>
-										<th>Nivel</th>
-                                        <th>Opciones</th>
+                        <table id="gestiones" class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>COLEGIO</th>
+                                    <th>GRADO</th>
+                                    <th>GESTION</th>
+                                    <th>OPCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($gestiones as $gestion)
+                                    <tr id="{{$gestion->id}}">
+                                        <td>{{$gestion->nombre}} </td>
+                                        <td>{{$gestion->grado}} </td>
+                                        <td>{{$gestion->anio}} </td>
+                                        <td>
+                                            <a class="editar" href="">
+                                                <i class="fa fa-fw fa-edit text-primary"></i>
+                                            </a>
+                                            <form action=""  class="d-inline formulario eliminar">
+                                                @csrf
+                                                @method("delete")
+                                                <button name="btn-eliminar" id="{{$gestion->id}}" type="submit" class="btn eliminar" title="Eliminar este motivo">
+                                                    <i class="fa fa-fw fa-trash text-danger"></i>   
+                                                </button>
+                                            </form> 
+                                        </td>
                                     </tr>
-                                </thead>
-                            {{-- se carga con ajax --}}
-                            </table>
-                        </div>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
     </div>
-    @include('grado.modales')
+    @include('gestion.modales')
 @endsection
 
 @section('js')
@@ -59,6 +80,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> 
+    
     
     {{-- %%%%%%%%%%%%%% muestra el ok de la insersion de datos %%%%%%%%%%%%%%%%% --}}
     @if ($message = Session::get('success'))
@@ -97,34 +119,16 @@
         } ( jQuery ) );
 
         $(document).ready(function() {
+            
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATA TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             let fila=1;
-            $('#grados').dataTable({
+            $('#gestiones').dataTable({
                 "responsive":true,
                 "searching":true,
                 "paging":   true,
                 "autoWidth":false,
                 "ordering": true,
                 "info":     true,
-                "createdRow": function( row, data, dataIndex ) {
-                    $(row).attr('id',data['id']); 
-                    $('td', row).eq(0).html(fila++);
-                },
-                "ajax": "{{ url('api/grados')}}",
-                "columns": [
-                    {data: 'id'},
-                    {data: 'grado'},
-                    {data: 'nivel'},
-                    {
-                        "name":"btn",
-                        "data": 'btn',
-                        "orderable": false,
-                    },
-                ],
-                "columnDefs": [
-                    { responsivePriority: 1, targets: 0 },  
-                    { responsivePriority: 2, targets: -1 }
-                ],
                 "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                 },
@@ -164,26 +168,66 @@
              /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO MOSTRAR EDITAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.editar', function(e) {
                 e.preventDefault(); 
-                let id_grado =$(this).closest('tr').attr('id');
-                    $("#error_motivo").empty();
+                let id_gestion =$(this).closest('tr').attr('id');
+                let estudiante_id="{{$estudiante->id}}";
+
+                console.log(estudiante_id);
+                    //$("#error_motivo").empty();
 
                     $.ajax({
-                    url : "grado/editar/",
-                    data : { id :id_grado },
+                    url : "../gestion/editar",
+                    data : { id_gestion : id_gestion },
                     success : function(json) {
                         console.log(json);
                         $("#modal-editar").modal("show");
-                        $("#formulario-editar").empty();
-                            $html="<div class='row'>";
-                            $("#grado").val(json.grado.grado);
-                            $("#grado_id").val(json.grado.id);
+                        // $("#formulario-editar").empty();
+                        //     $html="<div class='row'>";
+                        //     $("#grado").val(json.grado.grado);
+                        //     $("#grado_id").val(json.grado.id);
                             
-                            $htmlNiveles="";
-                            for (let j in json.niveles) {
-                                $htmlNiveles+="<option value='"+ json.niveles[j].id +"'>"+json.niveles[j].nivel+"</option>";
+                            $htmlColegios="";
+                            for (let j in json.colegios) {
+                                console.log(json.gestion[0].colegio_id);
+                                if(json.colegios[j].id==json.gestion[0].colegio_id)
+                                {
+                                    $htmlColegios+="<option value='"+ json.colegios[j].id +"' selected>"+json.colegios[j].nombre+"</option>";
+                                }
+                                else{
+                                    $htmlColegios+="<option value='"+ json.colegios[j].id +"'>"+json.colegios[j].nombre+"</option>";
+                                }
                             }
-                            $("#nivel_id").append($htmlNiveles);    
-                            $("#formulario-editar").append($html);
+                            $htmlGrados="";
+                            for (let k in json.grados) {
+                                console.log(json.gestion[0].grado_id);
+                                if(json.grados[k].id==json.gestion[0].grado_id)
+                                {
+                                    $htmlGrados+="<option value='"+ json.grados[k].id +"' selected>"+json.grados[k].grado+"</option>";
+                                }
+                                else{
+                                    $htmlGrados+="<option value='"+ json.grados[k].id +"'>"+json.grados[k].grado+"</option>";
+                                }
+                            }
+
+                            $("#estudiante_id").val("{{$estudiante->id}}");
+
+                            $htmlAnios="";
+                            inicio=json.gestion[0].anio-12;
+                            fin=inicio+24;
+                    
+                            console.log(inicio+'-'+fin);
+                            for (var m=inicio; m<fin; m++) {
+                                if(m==json.gestion[0].anio)
+                                {
+                                    $htmlAnios+="<option value='"+ m +"' selected>"+m+"</option>";
+                                }
+                                else{
+                                    $htmlAnios+="<option value='"+ m +"'>"+m+"</option>";
+                                }
+                            }
+                            $("#colegio_id").append($htmlColegios);    
+                            $("#grado_id").append($htmlGrados);    
+                            $("#anio").append($htmlAnios);    
+                        //     $("#formulario-editar").append($html);
                     },
                     error : function(xhr, status) {
                         Swal.fire({
@@ -198,10 +242,10 @@
             $(document).on("submit","#formulario-editar-grado",function(e){
                 e.preventDefault();//detenemos el envio
             
-                $grado=$('#grado').val();
-                $nivel_id=$('#nivel_id').val();
                 $grado_id=$('#grado_id').val();
-                console.log($grado_id);
+                $colegio_id=$('#colegio_id').val();
+                $anio=$('#anio').val();
+                $estudiante_id=$('#estudiante_id').val();
                 var token = $("input[name=_token]").val();
                 $.ajaxSetup({
                 headers: {
@@ -209,15 +253,18 @@
                     }
                 });
                 $.ajax({
-                    url : "grado/actualizar/",
+                    url : "../gestion/actualizar",
+                    type: 'get',
                     headers:{'X-CSRF-TOKEN':token},
                     data:{
-                            grado:$grado,
-                            nivel_id:$nivel_id,
-                            token:token,
                             grado_id:$grado_id,
+                            colegio_id:$colegio_id,
+                            token:token,
+                            anio:$anio,
+                            estudiante_id:$estudiante_id,
                         },
                     success : function(json) {
+                        console.log(json);
                         if($.isEmptyObject(json.error)){
                             $("#message-error").addClass("d-none");
                             $("#modal-editar").modal("hide");
@@ -225,7 +272,6 @@
                         }else{
                             $("#message-error").removeClass("d-none");
                             imprimeErrores(json);
-
                         }                        
                     },
                     error:function(jqXHR,estado,error){
