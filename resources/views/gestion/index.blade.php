@@ -129,6 +129,7 @@
                 "autoWidth":false,
                 "ordering": true,
                 "info":     true,
+                "order": [[ 2, "desc" ]],
                 "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                 },

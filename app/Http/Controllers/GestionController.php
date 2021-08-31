@@ -8,6 +8,7 @@ use App\Models\Grado;
 use App\Models\Estudiante;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 
 class GestionController extends Controller
@@ -51,7 +52,16 @@ class GestionController extends Controller
         //dd($estudiante);
         $colegios = Colegio::all();
         $grados = Grado::all();
-        return view('gestion.create',compact('estudiante','colegios','grados'));
+        
+        $gestion = Estudiante::join('estudiante_grado', 'estudiantes.id', '=', 'estudiante_grado.estudiante_id')
+        ->join('grados', 'grados.id', '=', 'estudiante_grado.grado_id')
+        ->join('colegios', 'colegios.id', '=', 'estudiante_grado.colegio_id')
+        ->where('estudiante_id', '=', $estudiante->id)
+        ->select('colegio_id', 'colegios.nombre', 'grados.grado', 'anio')
+        ->orderBy('anio', 'desc')
+        ->get()->first();
+
+        return view('gestion.create',compact('estudiante','colegios','grados','gestion'));
     }
 
     /**
@@ -66,7 +76,11 @@ class GestionController extends Controller
         $estudiante = Estudiante::findOrFail($request->estudiante_id);
         $estudiante->grados()->attach($request->grado_id, ['colegio_id' => $request->colegio_id, 'anio' => $request->anio]);
         $grados = Grado::whereNotIn('grado', $estudiante->grados->pluck('grado'))->get();
-        return redirect()->route('telefonos.persona',$estudiante->persona);
+        if($request->anio==Carbon::now()->isoFormat('Y')){
+            return redirect()->route('telefonos.persona',$estudiante->persona);
+        }else{
+            return redirect()->route('gestion.index',$estudiante->id);
+        }
     }
 
     
