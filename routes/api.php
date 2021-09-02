@@ -43,6 +43,14 @@ Route::get('estudiantes',function(){
         ->rawColumns(['btn','foto'])
         ->toJson();
 });
+Route::get('docentes',function(){
+    $persona=Persona::join('docentes','docentes.persona_id','=','personas.id')
+                    ->select('docentes.id',DB::raw('concat_ws(" ",personas.nombre,personas.apellidop,personas.apellidom) as nombre'),'foto');
+    return datatables()->of($persona)
+        ->addColumn('btn','docente.action')
+        ->rawColumns(['btn','foto'])
+        ->toJson();
+});
 
 Route::get('motivos', function () {
     return datatables()->of(Motivo::all())

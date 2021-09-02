@@ -621,6 +621,35 @@ return [
          *  Menu personas 
          */
         [
+            'text'    => 'Personas',
+            'icon'    => 'fas fa-address-book',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Estudiantes',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => '/home',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Docentes',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'docentes',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Administrativos',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'administrativos',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        /**
+         * Menú  Docentes  
+         */
+        [
             'text'    => 'Docentes',
             'icon'    => 'fas fa-address-book',
             'icon_color' => 'secondary',

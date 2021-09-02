@@ -14,9 +14,15 @@
         <div class="card-header bg-primary">
             <span class="text-center">{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</span>
             <div class="float-right">
-                <a href="{{route('inscribir',$persona)}}" class="btn btn-success btn-sm float-right"  data-placement="left">
-                {{ __('Inscribir') }}<i class="fas fa-arrow-circle-right fa-2x"></i>
-                </a>
+                
+                @isset($persona->estudiante)
+                    <a href="{{route('inscribir',$persona)}}" class="btn btn-success btn-sm float-right"  data-placement="left">
+                    {{ __('Inscribir') }}<i class="fas fa-arrow-circle-right fa-2x"></i>
+                    </a>
+                @endisset
+                    
+                
+
             </div>
             <div class="float-right mr-3">
                 <a href="{{route('apoderado.existente',$persona)}}" class="btn btn-warning btn-sm float-right"  data-placement="left">
