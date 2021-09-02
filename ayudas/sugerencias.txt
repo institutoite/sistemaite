@@ -20,15 +20,15 @@ tareas por hacer
 %%%%%%%%%%%     que se cambien de campo cuando se presiona enter en todos los formularios 
                 validar los formularios antes de guardar o actualizar 
 
-%% crear el crud para motivos por el que viene a clase o a inscribirse
+%%%%%%%%%%%     en crear el crud para motivos por el que viene a clase o a inscribirse
 
 que todos los mostrar tengan quien hizo el registro correpondiente
+
 registro rapido de posibles clientes 
 
 mostrar la vista hoy con los estudiante presentes faltantes por llegar etc
 
-para hacer formularios interesantes estamos descargando bootstrap 5
-compilar el archivo sass
+%%%%%%%%%% para hacer formularios interesantes estamos descargando bootstrap 5 compilar el archivo sass
 
 
 CUANDO SE REGISTRA PROFESOR QUE TENGA LA OPCION FINALIZAR AL REGISTRAR TELEFONOS  Y QUE NO SE VEA EL BOTON INSCRIBIR YA 
