@@ -63,7 +63,7 @@ Route::resource('zonas', "ZonaController");
 Route::resource('menus', "MenuController");
 //Route::resource('grado', "GradoController");
 Route::resource('departamentos', "DepartamentoController");
-Route::resource('provincias', "ProvinciaController");
+Route::resource('provincias', "ProvinciºaController");
 Route::resource('municipios', "MunicipioController");
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% C O L E G I O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('colegios', "ColegioController");
@@ -143,6 +143,8 @@ Route::post('gestiones/guardar', [GestionController::class,'store'])->name('gest
 Route::get('gestion/editar/', [GestionController::class,'editar'])->name('gestion.editar');
 Route::get('gestion/create/{estudiante}', [GestionController::class,'create'])->name('gestion.create');
 Route::get('gestion/actualizar', [GestionController::class, 'actualizar'])->name("gestion.actualizar");
+Route::delete('eliminar/gestion/{gestion}', [GestionController::class, 'destroy'])->name('eliminar.gestion');
+
 
 // Route::get('gestiones/editar78', [GestionController::class, 'edition'])->name('gestion.editar');
 
@@ -218,7 +220,10 @@ Route::get('inscripciones/vigentes/{estudiante_id}', 'InscripcioneController@ins
 
 
 
-Route::get('opciones/{id}','OpcionController@index')->name('opcion.principal');
+Route::get('opciones/{persona}','OpcionController@index')->name('opcion.principal');
+Route::get('opciones/docentes/{persona}','OpcionController@docentes')->name('opcion.docentes');
+
+
 //Route::get('principal/{id}', 'OpcionController@principal')->name('opcion.index');
 Route::delete('eliminar/pais/{id}','PaisController@eliminarPais')->name('eliminar.pais');
 Route::delete('eliminar/ciudad/{id}','CiudadController@eliminarCiudad')->name('eliminar.ciudad');

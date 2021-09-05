@@ -22,6 +22,16 @@ tareas por hacer
 
 %%%%%%%%%%%     en crear el crud para motivos por el que viene a clase o a inscribirse
 
+
+
+
+AGREGAR OBERVACIONES A LOS DOCENTES PARA NO GENERAN NULL EL VER EDITAR
+
+
+
+
+
+
 que todos los mostrar tengan quien hizo el registro correpondiente
 
 registro rapido de posibles clientes 

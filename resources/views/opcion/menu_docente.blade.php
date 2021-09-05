@@ -1,76 +1,57 @@
 
-<p>Gestionar Docentes</p>
-<div class="row">
-        <div class="col-6 col-sm-6 col-md-3">
-            <a href="{{route('listar_inscripciones',$persona->docente->id)}}">
-            <div class="info-box bg-green elevation-2">
-                <span class="info-box-icon bg-primary elevation-2"><i class="fas fa-baby"></i></span>
 
-                <div class="info-box-content">
-                    
-                        <span class="info-box-number">Inscripciones</span>
-                        <span class="info-box-number">
-                        <small>Inscripciones para todos los niveles</small>
-                        </span>
-                    
-                </div>
-                <!-- /.info-box-content -->
+<div class="card">
+    <div class="card-header bg-primary">
+        <h3 class="card-title">DOCENTE: <strong>{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</strong></h3>
+    </div>
+    <div class="card-body">
+        <div class="row text-center">
+            <div class="col-6 col-xs-4 col-sm-4 col-md-3 col-lg-2">
+                <a class="btn btn-app text-green">
+                    <i class="fas fa-edit"></i>DATOS
+                </a>
             </div>
-            </a>
-                <!-- /.info-box -->
+            <div class="col-6 col-xs-4 col-sm-4 col-md-3 col-lg-2">
+                <a class="btn btn-app text-fuchsia" href="{{ route('telefonos.persona',$persona)}}">
+                    <i class="fas fa-phone"></i> Telefonos
+                </a>
+            </div>
+            <div class="col-6 col-xs-4 col-sm-4 col-md-3 col-lg-2">
+                <a class="btn btn-app text-fuchsia">
+                    <i class="fas fa-pause"></i> Prácticos
+                </a>
+            </div>
+            <div class="col-6 col-xs-4 col-sm-4 col-md-3 col-lg-2">
+                <a class="btn btn-app text-indigo">
+                    <i class="fas fa-save"></i> Pagos
+                </a>
+            </div>
+            <div class="col-6 col-xs-4 col-sm-4 col-md-3 col-lg-2">
+                <a class="btn btn-app text-pink">
+                    <i class="fas fa-save"></i> clases
+                </a>
+            </div>
+            <div class="col-6 col-xs-4 col-sm-4 col-md-3 col-lg-2">
+                <a class="btn btn-app text-purple">
+                    <i class="fas fa-save"></i> Modalidades
+                </a>
+            </div>
+            <div class="col-6 col-xs-4 col-sm-4 col-md-3 col-lg-2">
+                <a class="btn btn-app">
+                    <i class="fas fa-save text-teal"></i> Niveles
+                </a>
+            </div>
+            <div class="col-6 col-xs-4 col-sm-4 col-md-3 col-lg-2">
+                <a class="btn btn-app text-red">
+                    <i class="fas fa-save"></i> Observaciones
+                </a>
+            </div>
+            <div class="col-6 col-xs-4 col-sm-4 col-md-3 col-lg-2">
+                <a class="btn btn-app text-secondary">
+                    <i class="fas fa-save"></i> Familiares
+                </a>
+            </div>
         </div>
-    
-    <div class="col-6 col-sm-6 col-md-3">
-        <a href="{{route('personas.index')}}">
-            <a href="{{route('personas.index')}}">
-            <div class="info-box">
-
-                <span class="info-box-icon bg-secondary elevation-1"><i class="fab fa-amilia"></i></i></span>
-
-                <div class="info-box-content">
-                    <span class="info-box-text">Inicial</span>
-                    <span class="info-box-number"> 10
-                        <small>%</small>
-                    </span>
-                </div>
-                <!-- /.info-box-content -->
-                </div>
-            </a>
-            <!-- /.info-box -->
-        </a>
-    </div>
-    <div class="col-6 col-sm-6 col-md-3">
-        <a href="{{route('personas.index')}}">
-        <div class="info-box">
-
-            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-user-graduate"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">Primaria</span>
-                <span class="info-box-number"> 10
-                    <small>%</small>
-                </span>
-            </div>
-            <!-- /.info-box-content -->
-            </div>
-        </a>
-            <!-- /.info-box -->
-    </div>
-    <div class="col-6 col-sm-6 col-md-3">
-        <a href="{{route('personas.index')}}">
-        <div class="info-box">
-
-            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-school"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">Secundaria</span>
-                <span class="info-box-number"> 10
-                    <small>%</small>
-                </span>
-            </div>
-            <!-- /.info-box-content -->
-            </div>
-        </a>
-            <!-- /.info-box -->
     </div>
 </div>
+

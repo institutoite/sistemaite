@@ -8,6 +8,7 @@ use App\Models\Estudiante;
 use Carbon\Carbon;
 
 use App\Http\Controllers\GradoController;
+use App\Models\Persona;
 
 class OpcionController extends Controller
 {
@@ -53,6 +54,11 @@ class OpcionController extends Controller
                 return view('opcion.principal', compact('persona','grados','estudiante'));
             }
         }
+    }
+
+    public function docentes($persona){
+        $persona=Persona::findOrFail($persona);
+        return view('opcion.principal', compact('persona'));
     }
 
     /**

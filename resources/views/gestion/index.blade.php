@@ -14,7 +14,7 @@
 @section('content')
     <div class="container-fluid pt-4">
         <div class="row">
-           
+            {{-- {{dd($estudiante)}} --}}
             <div class="col-sm-12">
 
                 <div class="card">
@@ -54,7 +54,7 @@
                                             <a class="editar" href="">
                                                 <i class="fa fa-fw fa-edit text-primary"></i>
                                             </a>
-                                            <form action=""  class="d-inline formulario eliminar">
+                                            <form action=""  class="d-inline formulario">
                                                 @csrf
                                                 @method("delete")
                                                 <button name="btn-eliminar" id="{{$gestion->id}}" type="submit" class="btn eliminar" title="Eliminar este motivo">
@@ -80,7 +80,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> 
-    
     
     {{-- %%%%%%%%%%%%%% muestra el ok de la insersion de datos %%%%%%%%%%%%%%%%% --}}
     @if ($message = Session::get('success'))
@@ -136,10 +135,10 @@
             });
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('#grados').on('click', '.mostrar', function(e) {
+            $('#gestiones').on('click', '.mostrar', function(e) {
                 e.preventDefault(); 
                 let id_grado =$(this).closest('tr').attr('id');
-                console.log(id_grado);
+                //console.log(id_grado);
                 $.ajax({
                     url : "grado/mostrar/",
                     data : { id :id_grado },
@@ -172,23 +171,17 @@
                 let id_gestion =$(this).closest('tr').attr('id');
                 let estudiante_id="{{$estudiante->id}}";
 
-                console.log(estudiante_id);
+                //console.log(estudiante_id);
                     //$("#error_motivo").empty();
 
                     $.ajax({
                     url : "../gestion/editar",
                     data : { id_gestion : id_gestion },
                     success : function(json) {
-                        console.log(json);
+                        
                         $("#modal-editar").modal("show");
-                        // $("#formulario-editar").empty();
-                        //     $html="<div class='row'>";
-                        //     $("#grado").val(json.grado.grado);
-                        //     $("#grado_id").val(json.grado.id);
-                            
                             $htmlColegios="";
                             for (let j in json.colegios) {
-                                console.log(json.gestion[0].colegio_id);
                                 if(json.colegios[j].id==json.gestion[0].colegio_id)
                                 {
                                     $htmlColegios+="<option value='"+ json.colegios[j].id +"' selected>"+json.colegios[j].nombre+"</option>";
@@ -199,7 +192,6 @@
                             }
                             $htmlGrados="";
                             for (let k in json.grados) {
-                                console.log(json.gestion[0].grado_id);
                                 if(json.grados[k].id==json.gestion[0].grado_id)
                                 {
                                     $htmlGrados+="<option value='"+ json.grados[k].id +"' selected>"+json.grados[k].grado+"</option>";
@@ -210,12 +202,10 @@
                             }
 
                             $("#estudiante_id").val("{{$estudiante->id}}");
-
+                            $("#gestion_id").val("{{$gestion->id}}");
                             $htmlAnios="";
                             inicio=json.gestion[0].anio-12;
                             fin=inicio+24;
-                    
-                            console.log(inicio+'-'+fin);
                             for (var m=inicio; m<fin; m++) {
                                 if(m==json.gestion[0].anio)
                                 {
@@ -228,7 +218,6 @@
                             $("#colegio_id").append($htmlColegios);    
                             $("#grado_id").append($htmlGrados);    
                             $("#anio").append($htmlAnios);    
-                        //     $("#formulario-editar").append($html);
                     },
                     error : function(xhr, status) {
                         Swal.fire({
@@ -242,7 +231,7 @@
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR ENVIO DE FORMULARIO PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $(document).on("submit","#formulario-editar-grado",function(e){
                 e.preventDefault();//detenemos el envio
-            
+                $gestion_id=$('#gestion_id').val();
                 $grado_id=$('#grado_id').val();
                 $colegio_id=$('#colegio_id').val();
                 $anio=$('#anio').val();
@@ -262,10 +251,11 @@
                             colegio_id:$colegio_id,
                             token:token,
                             anio:$anio,
+                            gestion_id:$gestion_id,
                             estudiante_id:$estudiante_id,
                         },
                     success : function(json) {
-                        console.log(json);
+                        
                         if($.isEmptyObject(json.error)){
                             $("#message-error").addClass("d-none");
                             $("#modal-editar").modal("hide");
@@ -294,9 +284,10 @@
             }
             
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  M O T I V O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-            $('#motivos').on('click','.eliminar',function (e) {
+            $('#gestiones').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
-                 var id_motivo =$(this).closest('tr').attr('id');
+                 var id_gestion =$(this).closest('tr').attr('id');
+                 console.log(id_gestion);
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",
@@ -310,13 +301,14 @@
                 }).then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: 'eliminar/motivo/'+id_motivo,
+                            url: '../eliminar/gestion/'+id_gestion,
                             type: 'DELETE',
                             data:{
                                 _token:'{{ csrf_token() }}'
                             },
                             success: function(result) {
-                                $('#motivos').DataTable().ajax.reload();
+                                console.log(result);
+                                $("#"+result.ok).closest('tr').remove();
                                 const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',

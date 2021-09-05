@@ -32,7 +32,6 @@ class TelefonoController extends Controller
     }
 
     public function mostrarvista(Persona $persona){
-    
         $apoderados= $persona->apoderados;
         return view('telefono.index',compact('persona','apoderados'));
     }

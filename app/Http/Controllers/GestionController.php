@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Colegio;
 use Illuminate\Http\Request;
 use App\Models\Grado;
+use App\Models\Gestion;
 use App\Models\Estudiante;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -119,7 +120,7 @@ class GestionController extends Controller
      */
     public function actualizar(Request $request)
     {
-        return response()->json($request->all());
+        //return response()->json($request->all());
         $validator = Validator::make($request->all(), [
             'grado_id' => ['required'],  
             'colegio_id' => ['required'],
@@ -128,20 +129,23 @@ class GestionController extends Controller
         //return response()->json($validator->passes());
 
         if ($validator->passes()) {
+            // $datos = [
+            //     "colegio_id" => $request->colegio_id,
+            //     "anio" => $request->anio,
+            // ];
+            //Estudiante::findOrFail($request->estudiante_id)->grados()->updateExistingPivot($request->grado_id, $datos);
 
-            $datos = [
-                "colegio_id" => $request->arbitro_id,
-                "anio" => $request->fecha,
-            ];
-            Estudiante::findOrFail($request->estudiante_id)->grados()->updateExistingPivot($request->grado_id, $datos);
-            return response()->json(['gestion_id' =>2]);
+            $gestion=Gestion::findOrFail($request->gestion_id);
+            $gestion->colegio_id=$request->colegio_id;
+            $gestion->grado_id=$request->grado_id;
+            $gestion->anio=$request->anio;
+            $gestion->estudiante_id=$request->estudiante_id;
+            $gestion->save();
+
+            return response()->json(['gestion_id' => $request->gestion_id]);
         } else {
             return response()->json(['error' => $validator->errors()->all()]);
         }
-        // $affected = DB::update(
-        //     'update users set votes = 100 where name = ?',
-        //     ['Anita']
-        // );
     }
 
     /**
@@ -150,8 +154,9 @@ class GestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_gestion)
     {
-        //
+        Gestion::findOrFail($id_gestion)->delete();
+        return response()->json(['ok'=>$id_gestion]);
     }
 }

@@ -1,5 +1,3 @@
-
-
 <a href="{{route('personas.edit', $id)}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Editar esta persona">
     <i class="fa fa-fw fa-edit text-primary"></i>
 </a>
@@ -24,6 +22,7 @@
 <a href="{{route('inscripciones.vigentes', $id)}}" class="btn btn-secondary tooltipsC btn-sm mr-2" title="ir a opciones de la persona">
     Marcar
 </a> 
+
 
 
 

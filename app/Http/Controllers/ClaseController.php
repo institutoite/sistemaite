@@ -205,7 +205,6 @@ class ClaseController extends Controller
     public function destroy($id)
     {
         $clase = Clase::find($id)->delete();
-
         return redirect()->route('clases.index')
             ->with('success', 'Clase deleted successfully');
     }

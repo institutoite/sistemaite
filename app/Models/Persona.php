@@ -112,7 +112,6 @@ class Persona extends Model
     public function isEstudiante()
     {
         $estudiante = Estudiante::where('persona_id', '=', $this->id)->count();
-
         if ($estudiante > 0) {
             $respuesta = true;
         } else {

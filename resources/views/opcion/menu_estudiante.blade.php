@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header bg-primary">
-        <h3 class="card-title">OPCIONES CLASES DE CAPACITACION</h3>
+        <h3 class="card-title">ESTUDIANTE: <strong>{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</strong></h3>
     </div>
     <div class="card-body">
         <div class="row text-center">
@@ -15,8 +15,8 @@
                 </a>
             </div>
             <div class="col-6 col-xs-4 col-sm-4 col-md-3 col-lg-2">
-                <a class="btn btn-app text-fuchsia">
-                    <i class="fas fa-pause"></i> Prácticos
+                <a class="btn btn-app text-fuchsia" href="{{ route('telefonos.persona',$estudiante->persona) }}">
+                    <i class="fas fa-phone"></i> Telefonos
                 </a>
             </div>
             <div class="col-6 col-xs-4 col-sm-4 col-md-3 col-lg-2">

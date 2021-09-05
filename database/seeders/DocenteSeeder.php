@@ -22,7 +22,7 @@ class DocenteSeeder extends Seeder
             'nombre'=>'Edgar E',
             'estado'=>'activo',
             'dias_prueba'=>2,
-            'persona_id'=>11,
+            'persona_id'=>31,
             ]);
         Docente::create([
             'sueldo' => 2000.00,
@@ -30,7 +30,7 @@ class DocenteSeeder extends Seeder
             'nombre' => 'Cesar C',
             'estado' => 'activo',
             'dias_prueba' => 1,
-            'persona_id' => 12,
+            'persona_id' => 32,
         ]);
         Docente::create([
             'sueldo' => 1100,
@@ -38,7 +38,7 @@ class DocenteSeeder extends Seeder
             'nombre' => 'Mailyn R',
             'estado' => 'activo',
             'dias_prueba' => 1,
-            'persona_id' => 13,
+            'persona_id' => 33,
         ]);
         Docente::create([
             'sueldo' => 1500.00,
@@ -46,7 +46,7 @@ class DocenteSeeder extends Seeder
             'nombre' => 'Lia C',
             'estado' => 'activo',
             'dias_prueba' => 1,
-            'persona_id' => 14,
+            'persona_id' => 34,
         ]);
         Docente::create([
             'sueldo' => 1520.00,
@@ -54,8 +54,10 @@ class DocenteSeeder extends Seeder
             'nombre' => 'Eduardo L',
             'estado' => 'activo',
             'dias_prueba' => 1,
-            'persona_id' => 15,
+            'persona_id' => 35,
         ]);
+
+    
 
         
     }

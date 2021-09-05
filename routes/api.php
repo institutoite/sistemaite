@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Persona;
+use App\Models\Docente;
 use App\Models\Pais;
 use App\Models\Ciudad;
 use App\Models\Zona;
@@ -44,9 +45,10 @@ Route::get('estudiantes',function(){
         ->toJson();
 });
 Route::get('docentes',function(){
-    $persona=Persona::join('docentes','docentes.persona_id','=','personas.id')
-                    ->select('docentes.id',DB::raw('concat_ws(" ",personas.nombre,personas.apellidop,personas.apellidom) as nombre'),'foto');
-    return datatables()->of($persona)
+    $docentes=Persona::join('docentes','docentes.persona_id','=','personas.id')
+        ->select('personas.id',DB::raw('concat_ws(" ",personas.nombre,personas.apellidop,personas.apellidom) as nombre'),'foto');
+        //->where('personas.papelinicial','=','docente');
+    return datatables()->of($docentes)
         ->addColumn('btn','docente.action')
         ->rawColumns(['btn','foto'])
         ->toJson();

@@ -11,9 +11,16 @@
 
 @section('content')
 
+    @if ($persona->isEstudiante())
+        <a href="{{route('inscribir',$persona)}}" class="btn btn-outline-secondary float-right">Inscribir <i class="fas fa-plus-circle "></i></a>
+        <a class="btn btn-outline-success float-right mb-3 mr-3" href="{{route('opcion.principal',$persona->id)}}"><i class="fas fa-ellipsis-v"></i> Ir Opciones <i class="fas fa-th-list"></i></i></a>
+    @endif
     <a href="{{route('telefonos.crear',$persona)}}" class="btn btn-outline-secondary float-right">Crear Teléfono <i class="fas fa-plus-circle "></i></a>
-    <a href="{{route('inscribir',$persona)}}" class="btn btn-outline-secondary float-right">Inscribir <i class="fas fa-plus-circle "></i></a>
-    <a class="btn btn-outline-success float-right mb-3 mr-3" href="{{route('opcion.principal',$persona->id)}}" target="_blank"><i class="fas fa-ellipsis-v"></i> Ir Opciones <i class="fas fa-th-list"></i></i></a>
+    
+    @if ($persona->isDocente())
+        <a class="btn btn-outline-success float-right mb-3 mr-3" href="{{route('opcion.docentes',$persona->id)}}"><i class="fas fa-ellipsis-v"></i> Ir Opciones <i class="fas fa-th-list"></i></i></a>
+    @endif
+    
     <table id="telefonos" class="table table-hover table-bordered table-striped display responsive nowrap" width="100%">
         <thead class="bg-primary">
         

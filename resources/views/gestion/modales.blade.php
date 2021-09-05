@@ -79,7 +79,8 @@
                             </div>
                             
                             {{-- {{-- <input hidden class="form-control" type="text" name="grado_id" id="grado_id"> --}}
-                            <input class="form-control" type="text" name="estudiante_id" id="estudiante_id">
+                            <input class="form-control" type="text" hidden name="estudiante_id" id="estudiante_id">
+                            <input class="form-control" type="text" hidden name="gestion_id" id="gestion_id">
                             <div class="container-fluid h-100 mt-3"> 
                                 <div class="row w-100 align-items-center">
                                     <div class="col text-center">
