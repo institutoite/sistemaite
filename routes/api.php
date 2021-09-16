@@ -47,9 +47,17 @@ Route::get('estudiantes',function(){
 Route::get('docentes',function(){
     $docentes=Persona::join('docentes','docentes.persona_id','=','personas.id')
         ->select('personas.id',DB::raw('concat_ws(" ",personas.nombre,personas.apellidop,personas.apellidom) as nombre'),'foto');
-        //->where('personas.papelinicial','=','docente');
     return datatables()->of($docentes)
         ->addColumn('btn','docente.action')
+        ->rawColumns(['btn','foto'])
+        ->toJson();
+});
+
+Route::get('administrativos',function(){
+    $administrativos=Persona::join('administrativos','administrativos.persona_id','=','personas.id')
+        ->select('personas.id',DB::raw('concat_ws(" ",personas.nombre,personas.apellidop,personas.apellidom) as nombre'),'foto');
+    return datatables()->of($administrativos)
+        ->addColumn('btn','administrativo.action')
         ->rawColumns(['btn','foto'])
         ->toJson();
 });

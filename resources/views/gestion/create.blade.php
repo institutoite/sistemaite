@@ -14,7 +14,6 @@
 
 
 @section('content')
-
     <section class="content container-fluid pt-4">
         <div class="row">
             <div class="col-md-12">
@@ -22,6 +21,15 @@
                 <div class="card card-default">
                     @if ($gestion)
                         <div class="card-header bg-primary">{{$gestion->nombre.'|'.$gestion->grado.'|'.$gestion->anio}}
+                            <a href="{{ route('gestion.index',$estudiante) }}" class="btn btn-secondary btn-sm float-right text-white"  data-placement="left">
+                                        {{ __('Listar Gestiones') }}
+                                    </a>
+                        </div>
+                    @else
+                        @php
+                            $persona=$estudiante->persona;
+                        @endphp
+                        <div class="card-header bg-primary">{{ $persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom }} <strong>Aun no tiene Gestiones</strong>
                             <a href="{{ route('gestion.index',$estudiante) }}" class="btn btn-secondary btn-sm float-right text-white"  data-placement="left">
                                         {{ __('Listar Gestiones') }}
                                     </a>

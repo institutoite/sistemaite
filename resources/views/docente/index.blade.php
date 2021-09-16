@@ -80,10 +80,11 @@
             $('table').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
                 id=$(this).parent().parent().parent().find('td').first().html();
+                console.log(id)
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",
-                    icon: 'question',
+                    type: 'question',
                     showCancelButton: true,
                     showConfirmButton:true,
                     confirmButtonColor: '#25ff80',
@@ -100,20 +101,16 @@
                                 _token:'{{ csrf_token() }}'
                             },
                             success: function(result) {
+                                //console.log(result);
                                 tabla.ajax.reload();
                                 const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
                                 showConfirmButton: false,
                                 timer: 1500,
-                                timerProgressBar: true,
-                                didOpen: (toast) => {
-                                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                }
                                 })
                                 Toast.fire({
-                                icon: 'success',
+                                type: 'success',
                                 title: 'Se eliminó correctamente el registro'
                                 })   
                             },
@@ -143,7 +140,7 @@
                             position: 'top-end',
                             showConfirmButton: false,
                             timer: 4000,
-                            timerProgressBar: true,
+                           //type
                             onOpen: (toast) => {
                                 toast.addEventListener('mouseenter', Swal.stopTimer)
                                 toast.addEventListener('mouseleave', Swal.resumeTimer)
@@ -151,7 +148,7 @@
                         })
 
                         Toast.fire({
-                            icon: 'error',
+                            type: 'error',
                             title: 'No se eliminó el registro'
                         })
                     }

@@ -17,6 +17,9 @@
         @if ($persona->isDocente())
             @include('opcion.menu_docente')
         @endif
+        @if ($persona->isAdministrativo())
+            @include('opcion.menu_administrativo')
+        @endif
         
         @if ($persona->isComputacion())
             @include('opcion.menu_computacion')

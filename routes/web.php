@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GradoController;
 use App\Http\Controllers\GestionController;
+use App\Http\Controllers\OpcionController;
 use Illuminate\Support\Facades\Auth;
 //use SweetAlert;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
@@ -27,15 +28,18 @@ Route::get('alert', function () {
 });
 
 Route::get('/', function () {
-    
     return view('welcome');
+});
+Route::get('/ninacos', function () {
+    return view('ninaco.index');
 });
 
 Auth::routes();
 
+
 Route::get('/home',function(){
     return view('persona.estudiantes');
-})->name('inicio');
+})->name('inicio')->middleware('auth');
 
 Route::get('personas.todos', function () {
     return view('persona.index');
@@ -81,8 +85,15 @@ Route::get('/historial/{estudiante}','EstudianteController@historia')->name('est
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       D O C E N T E S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('docentes','DocenteController@index')->name('estudiante.index');
-Route::get('/historial/{estudiante}','EstudianteController@historia')->name('estudiante.historia');
+Route::get('opciones/docentes/{persona}',[OpcionController::class,'docentes'])->name('opcion.docentes');
+Route::delete('eliminar/docente/{docente}', 'DocenteController@destroy')->name('eliminar.docente');
 
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       A D M I N I S T R AT I V O S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+Route::get('administrativos','AdministrativoController@index')->name('administrativo.index');
+Route::get('opciones/administrativos/{persona}',[OpcionController::class,'administrativos'])->name('opcion.administrativos');
+//Route::get('opciones/docentes/{persona}','OpcionController@docentes')->name('opcion.docentes');
+//Route::delete('eliminar/docente/{docente}', 'DocenteController@destroy')->name('eliminar.docente');
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  T E M A S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -144,6 +155,9 @@ Route::get('gestion/editar/', [GestionController::class,'editar'])->name('gestio
 Route::get('gestion/create/{estudiante}', [GestionController::class,'create'])->name('gestion.create');
 Route::get('gestion/actualizar', [GestionController::class, 'actualizar'])->name("gestion.actualizar");
 Route::delete('eliminar/gestion/{gestion}', [GestionController::class, 'destroy'])->name('eliminar.gestion');
+
+
+
 
 
 // Route::get('gestiones/editar78', [GestionController::class, 'edition'])->name('gestion.editar');
@@ -221,7 +235,6 @@ Route::get('inscripciones/vigentes/{estudiante_id}', 'InscripcioneController@ins
 
 
 Route::get('opciones/{persona}','OpcionController@index')->name('opcion.principal');
-Route::get('opciones/docentes/{persona}','OpcionController@docentes')->name('opcion.docentes');
 
 
 //Route::get('principal/{id}', 'OpcionController@principal')->name('opcion.index');
@@ -255,3 +268,9 @@ Route::get('tomarfoto/{persona}', 'PersonaController@tomarfoto')->name('tomar.fo
 * si tieene varias inscripciones vigentes que puede elegir entre las inscripciones 
 * tambien pueden haber inscripciones de colegio. 
 **/
+
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route Hooks - Do not delete//
+	Route::view('ninacos', 'livewire.ninacos.index')->middleware('auth');

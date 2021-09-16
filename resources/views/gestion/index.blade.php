@@ -202,7 +202,9 @@
                             }
 
                             $("#estudiante_id").val("{{$estudiante->id}}");
+                            
                             $("#gestion_id").val("{{$gestion->id}}");
+                            
                             $htmlAnios="";
                             inicio=json.gestion[0].anio-12;
                             fin=inicio+24;

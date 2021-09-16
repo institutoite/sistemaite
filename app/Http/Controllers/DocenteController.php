@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Docente;
+use App\Models\Persona;
 use Illuminate\Http\Request;
 
 class DocenteController extends Controller
@@ -34,7 +36,7 @@ class DocenteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //se guarda como persona
     }
 
     /**
@@ -45,7 +47,7 @@ class DocenteController extends Controller
      */
     public function show($id)
     {
-        //
+        //se muestra comoo persona
     }
 
     /**
@@ -56,7 +58,7 @@ class DocenteController extends Controller
      */
     public function edit($id)
     {
-        //
+        //se edita como persona
     }
 
     /**
@@ -68,7 +70,7 @@ class DocenteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //se actaliza como persona
     }
 
     /**
@@ -79,6 +81,10 @@ class DocenteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $docente = Persona::findOrFail($id)->docente;
+        $docente->delete();
+        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
 }
+
+

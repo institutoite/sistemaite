@@ -135,6 +135,16 @@ class Persona extends Model
         }
     }
 
+    public function isAdministrativo()
+    {
+        $respuesta = Administrativo::where('persona_id', '=', $this->id)->count();
+        if ($respuesta > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function isClicopy()
     {
         $respuesta = Clicopy::where('persona_id', '=', $this->id)->count();

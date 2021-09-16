@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
             TemaSeeder::class,
             BilleteSeeder::class,
             ColegioSeeder::class,
+            AdministrativoSeeder::class,
             ObservacionSeeder::class,
         ]);
 

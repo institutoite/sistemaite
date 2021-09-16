@@ -43,9 +43,11 @@ class OpcionController extends Controller
             // dd($gestiones);
         if (empty($anioUltimo)) {
             //return view('gestion.create', compact('estudiante','grados','colegios','gestiones'));
-            return redirect()->route('gestion.index',$estudiante_id);
+            //dd("Empty: ".$estudiante_id);
+            return redirect()->route('gestion.create',$estudiante_id);
         } else {
             if ($anioUltimo != Carbon::now()->isoFormat('Y')) {
+                //dd("Empty: " . $estudiante_id);
                 return redirect()->route('gestion.index',$estudiante_id);
             } else {
                 
@@ -57,6 +59,10 @@ class OpcionController extends Controller
     }
 
     public function docentes($persona){
+        $persona=Persona::findOrFail($persona);
+        return view('opcion.principal', compact('persona'));
+    }
+    public function administrativos($persona){
         $persona=Persona::findOrFail($persona);
         return view('opcion.principal', compact('persona'));
     }
