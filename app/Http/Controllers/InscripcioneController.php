@@ -13,6 +13,8 @@ use App\Models\Sesion;
 use App\Models\Dia;
 use App\Models\Docente;
 use App\Models\Estudiante;
+use App\Models\Gestion;
+use App\Models\Grado;
 use App\Models\Programacion;
 use Illuminate\Support\Facades\DB;
 
@@ -60,9 +62,19 @@ class InscripcioneController extends Controller
         $modalidades = Modalidad::all();
         $motivos = Motivo::all();
         $ultima_inscripcion=Inscripcione::where('estudiante_id','=',$persona->id)->orderBy('id','desc')->first();
-        //desde el menu puede enviar el objeto persona a create:
-        //dd($ultima_inscripcion);
-        return view('inscripcione.create', compact('modalidades', 'motivos','persona','ultima_inscripcion'));
+        $ultima_grado_id=Gestion::where('estudiante_id',$persona->estudiante->id)->orderBy('id', 'desc')->first()->grado_id;
+
+        $ultimo_nivel=Grado::findOrFail($ultima_grado_id)->nivel_id;
+        $modalidades = Modalidad::where('nivel_id', '=', $ultimo_nivel)->get();
+        if($ultimo_nivel==1){
+            return view('inscripcione.guarderia.create', compact('modalidades', 'motivos','persona','ultima_inscripcion'));
+        }
+        if ($ultimo_nivel == 2) {
+            return view('inscripcione.create', compact('modalidades', 'motivos', 'persona', 'ultima_inscripcion'));
+        }
+        
+        
+        
     }
 
 
@@ -98,7 +110,8 @@ class InscripcioneController extends Controller
         $dias = Dia::get();
         $tipo = 'guardando';
         $programacion=$inscripcion->programaciones;
-        return view('inscripcione.configurar',compact('inscripcion','materias','aulas','docentes','tipo','dias', 'programacion'));
+
+        return view('inscripcione.configurar',compact('inscripcion','materias','aulas','docentes','tipo','dias', 'programacion'));        
     }
 
     /**
