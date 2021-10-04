@@ -14,15 +14,15 @@ class NivelSeeder extends Seeder
      */
     public function run()
     {
-        Nivel::create(['nivel' => 'Guardería']);
-        Nivel::create(['nivel' => 'Inicial']);
-        Nivel::create(['nivel' => 'Primaria']);
+        Nivel::create(['nivel' => 'GUARDERIA']);
+        Nivel::create(['nivel' => 'INICIAL']);
+        Nivel::create(['nivel' => 'PRIMARIA']);
         
-        Nivel::create(['nivel' => 'Secundaria']);
-        Nivel::create(['nivel' => 'PreUniversitario']);
-        Nivel::create(['nivel' => 'Instituto']);
+        Nivel::create(['nivel' => 'SECUNDARIA']);
+        Nivel::create(['nivel' => 'PREUNIVERSITARIO']);
+        Nivel::create(['nivel' => 'INSTITUTO']);
         
-        Nivel::create(['nivel' => 'Universitario']);
-        Nivel::create(['nivel' => 'Profesionales']);
+        Nivel::create(['nivel' => 'UNIVERSITARIO']);
+        Nivel::create(['nivel' => 'PROFESIONAL']);
     }
 }

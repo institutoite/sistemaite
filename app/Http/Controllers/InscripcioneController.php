@@ -15,6 +15,7 @@ use App\Models\Docente;
 use App\Models\Estudiante;
 use App\Models\Gestion;
 use App\Models\Grado;
+use App\Models\Nivel;
 use App\Models\Programacion;
 use Illuminate\Support\Facades\DB;
 
@@ -66,7 +67,9 @@ class InscripcioneController extends Controller
 
         $ultimo_nivel=Grado::findOrFail($ultima_grado_id)->nivel_id;
         $modalidades = Modalidad::where('nivel_id', '=', $ultimo_nivel)->get();
+        
         if($ultimo_nivel==1){
+            //dd($ultimo_nivel);
             return view('inscripcione.guarderia.create', compact('modalidades', 'motivos','persona','ultima_inscripcion'));
         }
         if ($ultimo_nivel == 2) {
@@ -86,6 +89,7 @@ class InscripcioneController extends Controller
      */
     public function store(Request $request)
     {
+        $datos=$request->all();
         request()->validate(Inscripcione::$rules);
         $inscripcion=new Inscripcione();
         $inscripcion->fechaini=$request->fechaini;
@@ -103,15 +107,43 @@ class InscripcioneController extends Controller
         //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   %%%%%%%%%%%%%%%%*/
         $inscripcion->userable()->create(['user_id'=>Auth::user()->id]);
 
-        //dd($inscripcion);
+        $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
+
         $materias = Materia::get();
         $aulas = Aula::get();
         $docentes = Docente::get();
         $dias = Dia::get();
         $tipo = 'guardando';
-        $programacion=$inscripcion->programaciones;
+        $programacion = $inscripcion->programaciones;
 
-        return view('inscripcione.configurar',compact('inscripcion','materias','aulas','docentes','tipo','dias', 'programacion'));        
+
+        if ($nivel->nivel=='GUARDERIA'){
+            return view('inscripcione.configurar', compact('datos','nivel','inscripcion', 'materias', 'aulas', 'docentes', 'tipo', 'dias', 'programacion')); 
+        }
+        // if ($modalidad->nivel == 'INICIAL') {
+            
+        // }
+        // if ($modalidad->nivel == 'PRIMARIA') {
+            
+        // }
+        // if ($modalidad->nivel == 'SECUNDARIA') {
+            
+        // }
+        // if ($modalidad->nivel == 'PREUNIVERSITARIO') {
+            
+        // }
+        // if ($modalidad->nivel == 'UNIVERSITARIO') {
+            
+        // }
+        // if ($modalidad->nivel == 'PROFESIONAL') {
+            
+        // }
+
+
+        //dd($inscripcion);
+       
+
+       //return view('inscripcione.configurar',compact('inscripcion','materias','aulas','docentes','tipo','dias', 'programacion'));        
     }
 
     /**
