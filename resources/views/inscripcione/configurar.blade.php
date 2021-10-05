@@ -60,9 +60,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div id="sesiones" class="p-3">
-                                            @if($nivel->nivel == 'GUARDERIA')
-                                                @include('inscripcione.guarderia.config')
-                                            @endif
+                                            
                                         </div>
                                         <div class="card-tools text-lg-center">
                                             <input id="boton-aceptar" class="btn btn-primary p-2 pl-5  d-none pr-5" type="submit" value="Guardar Cambios">
