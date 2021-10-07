@@ -107,9 +107,8 @@ class InscripcioneController extends Controller
         //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   %%%%%%%%%%%%%%%%*/
         $inscripcion->userable()->create(['user_id'=>Auth::user()->id]);
 
-        $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
-
-        $materias = Materia::get();
+        $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id)->first();
+        $materias = $nivel->materias;
         $aulas = Aula::get();
         $docentes = Docente::get();
         $dias = Dia::get();
@@ -117,6 +116,8 @@ class InscripcioneController extends Controller
         $programacion = $inscripcion->programaciones;
 
 
+        dd($nivel->materias);
+        
         if ($nivel->nivel=='GUARDERIA'){
             return view('inscripcione.configurar', compact('datos','nivel','inscripcion', 'materias', 'aulas', 'docentes', 'tipo', 'dias', 'programacion')); 
         }

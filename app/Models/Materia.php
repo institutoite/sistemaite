@@ -16,7 +16,7 @@ class Materia extends Model
 
     /* realcion de muchos a muchos inversa polimorfica*/
     public function niveles(){
-        return $this->morphedByMany(Materia::class,'materiable');
+        return $this->morphedByMany(Nivel::class,'materiable');
     }
 
     /* realcion de muchos a muchos inversa polimorfica*/
