@@ -34,7 +34,7 @@ class Nivel extends Model
   /** RELACION MUCHOS A MUCHO POLIMORFICO */
   public function materias()
   {
-    return $this->morphToMany("App\Models\Materia", 'materiable');
+    return $this->morphToMany("App\Models\Materia", 'materiable'); 
   }
 
   public function modalidad()
