@@ -17,6 +17,8 @@ class CreateTableMateriables extends Migration
             $table->unsignedInteger('materiable_id');
             $table->string('materiable_type',35);
             $table->unsignedInteger('materia_id');
+            $table->foreign('materia_id')->references('id')->on('materias');
+            
         });
     }
 
