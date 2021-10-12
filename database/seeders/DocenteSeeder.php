@@ -43,7 +43,7 @@ class DocenteSeeder extends Seeder
         Docente::create([
             'sueldo' => 1500.00,
             'fecha_ingreso' => '1998-10-12',
-            'nombre' => 'Lia C',
+            'nombre' => 'Victor Z',
             'estado' => 'activo',
             'dias_prueba' => 1,
             'persona_id' => 34,
@@ -57,7 +57,12 @@ class DocenteSeeder extends Seeder
             'persona_id' => 35,
         ]);
 
-    
+        Docente::find(1)->niveles()->attach(1,[4,5,6,7]);
+        Docente::find(2)->niveles()->attach(1,[3,4,5,6,7]);
+        Docente::find(3)->niveles()->attach(1,[2,3,4,5]);
+        Docente::find(3)->niveles()->attach(1,[3,4,5,6,7]);
+
+
 
         
     }

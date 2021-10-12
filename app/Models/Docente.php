@@ -37,6 +37,15 @@ class Docente extends Model
     public function materias(){
         return $this->morphToMany(Materia::class,'materiable');
     }
+    /** RELACION MUCHOS A MUCHO POLIMORFICO */
+    // public function docentes(){
+    //     return $this->morphToMany(Docente::class,'nivelable');
+    // }
+    /** RELACION MUCHOS A MUCHO POLIMORFICO */
+    public function niveles()
+    {
+        return $this->morphToMany("App\Models\Nivel", 'nivelable');
+    }
 
     public function sesion() 
     {

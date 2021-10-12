@@ -8,6 +8,7 @@
  
     <section class="content container-fluid">
         <div class="row">
+            @isset($datos)
             <table class="table table-dark">
                 <thead class="thead-light">
                     <tr>
@@ -23,6 +24,7 @@
                     <tr><td>COSTO</td><td>{{$datos['costo']}}</td></tr>
                 </tbody>
             </table>
+            @endisset
         </div>
         <div class="row">
             <div class="col-md-12">

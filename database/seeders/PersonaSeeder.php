@@ -83,11 +83,11 @@ class PersonaSeeder extends Seeder
             
         ]);
         Persona::create([
-            'nombre' => 'LIA',
-            'apellidop' => 'CARRION',
+            'nombre' => 'VICTOR',
+            'apellidop' => 'SOLIZ',
             'apellidom' => '',
             'fechanacimiento' => '15-05-2015',
-            'direccion' => 'Barrio Melgar',
+            'direccion' => 'Barrio Warnes',
             'carnet' => '456135',
             'expedido' => 'BEN',
             'genero' => 'MUJER',

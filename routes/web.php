@@ -60,6 +60,7 @@ Route::put('persona/{persona}/subirfotojpg', 'PersonaController@guardarfotojpg')
 //Route::put('persona/subirfoto', 'PersonaController@guardarfoto')->name('actualizarfoto');
 
 Route::resource('personas', "PersonaController");
+
 Route::resource('paises', "PaisController");
 Route::resource('ciudades', "CiudadController");
 Route::resource('zonas', "ZonaController");
@@ -67,7 +68,7 @@ Route::resource('zonas', "ZonaController");
 Route::resource('menus', "MenuController");
 //Route::resource('grado', "GradoController");
 Route::resource('departamentos', "DepartamentoController");
-Route::resource('provincias', "ProvinciºaController");
+Route::resource('provincias', "ProvinciaController");
 Route::resource('municipios', "MunicipioController");
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% C O L E G I O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('colegios', "ColegioController");
@@ -98,6 +99,11 @@ Route::get('opciones/administrativos/{persona}',[OpcionController::class,'admini
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  T E M A S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('temas/{materia_id}','TemaController@listar')->name('tamas.listar');
+
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  M A T E R I A S    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+Route::resource('materias', "MateriaController");
+
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       P  A  G  O  S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('pagos', "PagoController");

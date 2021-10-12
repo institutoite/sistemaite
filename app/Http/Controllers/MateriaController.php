@@ -14,7 +14,8 @@ class MateriaController extends Controller
      */
     public function index()
     {
-        //
+        $materias=Materia::all();
+        return view('materia.index',compact('materias'));
     }
 
     /**
@@ -24,7 +25,7 @@ class MateriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('materia.create');
     }
 
     /**
@@ -35,7 +36,14 @@ class MateriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $materia= new Materia();
+        $materia->materia=$request->materia;
+        $materia->save();
+    
+        foreach (array_keys($request->niveles) as $key) {
+            $materia->niveles()->attach($key,['materia_id'=>$materia->id]);
+        }
     }
 
     /**

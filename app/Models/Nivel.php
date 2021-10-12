@@ -31,6 +31,12 @@ class Nivel extends Model
      */
     protected $fillable = ['nivel','created_at'];
 
+  /* realcion de muchos a muchos inversa polimorfica*/
+  public function docentes()
+  {
+    return $this->morphedByMany(Docente::class, 'nivelable');
+  }
+
   /** RELACION MUCHOS A MUCHO POLIMORFICO */
   public function materias()
   {
