@@ -14,6 +14,10 @@ class MateriaSeeder extends Seeder
      */
     public function run()
     {
+        
+        
+        
+        
         Materia::create(['materia'=>'MATEMATICA']);
         Materia::create(['materia'=>'FISICA']);
         Materia::create(['materia'=>'QUIMICA']);
@@ -42,5 +46,9 @@ class MateriaSeeder extends Seeder
         Materia::create(['materia'=>'CAMTASIA']);
         Materia::create(['materia'=>'EXCEL INTERMEDIO']);
         Materia::create(['materia'=>'EXCEL AVANZADO']);
+        
+        Materia::find(1)->niveles()->attach(1, ['materia_id' => 1]);
     }
+
+        
 }

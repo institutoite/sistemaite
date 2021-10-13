@@ -57,10 +57,28 @@ class DocenteSeeder extends Seeder
             'persona_id' => 35,
         ]);
 
-        Docente::find(1)->niveles()->attach(1,[4,5,6,7]);
-        Docente::find(2)->niveles()->attach(1,[3,4,5,6,7]);
-        Docente::find(3)->niveles()->attach(1,[2,3,4,5]);
-        Docente::find(3)->niveles()->attach(1,[3,4,5,6,7]);
+        Docente::find(1)->niveles()->attach(1, ['nivel_id' => 4]);
+        Docente::find(1)->niveles()->attach(1, ['nivel_id' => 5]);
+        Docente::find(1)->niveles()->attach(1, ['nivel_id' => 6]);
+        Docente::find(1)->niveles()->attach(1, ['nivel_id' => 7]);
+
+        Docente::find(2)->niveles()->attach(1, ['nivel_id' => 3]);
+        Docente::find(2)->niveles()->attach(1, ['nivel_id' => 4]);
+        Docente::find(2)->niveles()->attach(1, ['nivel_id' => 5]);
+        Docente::find(2)->niveles()->attach(1, ['nivel_id' => 6]);
+        Docente::find(2)->niveles()->attach(1, ['nivel_id' => 7]);
+        
+        Docente::find(3)->niveles()->attach(1, ['nivel_id' => 2]);
+        Docente::find(3)->niveles()->attach(1, ['nivel_id' => 3]);
+        Docente::find(3)->niveles()->attach(1, ['nivel_id' => 4]);
+        Docente::find(3)->niveles()->attach(1, ['nivel_id' => 5]);
+        
+        Docente::find(4)->niveles()->attach(1, ['nivel_id' => 3]);
+        Docente::find(4)->niveles()->attach(1, ['nivel_id' => 4]);
+        Docente::find(4)->niveles()->attach(1, ['nivel_id' => 5]);
+        Docente::find(4)->niveles()->attach(1, ['nivel_id' => 6]);
+        Docente::find(4)->niveles()->attach(1, ['nivel_id' => 7]);
+        
 
 
 
