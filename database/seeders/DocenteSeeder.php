@@ -68,6 +68,7 @@ class DocenteSeeder extends Seeder
         Docente::find(2)->niveles()->attach(1, ['nivel_id' => 6]);
         Docente::find(2)->niveles()->attach(1, ['nivel_id' => 7]);
         
+        Docente::find(3)->niveles()->attach(1, ['nivel_id' => 1]);
         Docente::find(3)->niveles()->attach(1, ['nivel_id' => 2]);
         Docente::find(3)->niveles()->attach(1, ['nivel_id' => 3]);
         Docente::find(3)->niveles()->attach(1, ['nivel_id' => 4]);
@@ -78,10 +79,6 @@ class DocenteSeeder extends Seeder
         Docente::find(4)->niveles()->attach(1, ['nivel_id' => 5]);
         Docente::find(4)->niveles()->attach(1, ['nivel_id' => 6]);
         Docente::find(4)->niveles()->attach(1, ['nivel_id' => 7]);
-        
-
-
-
-        
+        Docente::find(4)->niveles()->attach(1, ['nivel_id' => 8]);
     }
 }

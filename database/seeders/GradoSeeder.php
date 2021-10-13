@@ -59,7 +59,6 @@ class GradoSeeder extends Seeder
         Grado::create(['grado' => 'Noveno Semestre Universidad', 'nivel_id' =>7 ]);
         Grado::create(['grado' => 'Decimo Semestre Universidad', 'nivel_id' =>7 ]);
         
-       
         Grado::create(['grado' => 'Proyecto Grado', 'nivel_id' =>8 ]);
         Grado::create(['grado' => 'Maestría', 'nivel_id' => 8]);
         Grado::create(['grado' => 'Diplomado', 'nivel_id' =>8]);

@@ -89,6 +89,7 @@ class InscripcioneController extends Controller
     {
         //dd($request->all());
         request()->validate(Inscripcione::$rules);
+        $datos=$request->all();
         $inscripcion=new Inscripcione();
         $inscripcion->fechaini=$request->fechaini;
         $inscripcion->fechafin = $request->fechaini;
@@ -96,7 +97,7 @@ class InscripcioneController extends Controller
         $inscripcion->totalhoras=$request->totalhoras;
         $inscripcion->costo=$request->costo;
         $inscripcion->vigente=1;
-        $inscripcion->condonado=0;
+        $inscripcion->condonado=0; 
         $inscripcion->objetivo=$request->objetivo;
         $inscripcion->estudiante_id=$request->estudiante_id;
         $inscripcion->modalidad_id=$request->modalidad_id;
