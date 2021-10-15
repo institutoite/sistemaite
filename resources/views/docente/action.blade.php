@@ -20,6 +20,7 @@
 <a href="{{route('opcion.docentes', $id)}}" class="btn btn-primary text-white tooltipsC btn-sm mr-2" title="ir a opciones de la persona">
     Opciones
 </a>
+
 @endisset
 
 

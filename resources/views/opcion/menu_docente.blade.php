@@ -33,7 +33,7 @@
             </div>
             <div class="col-6 col-xs-4 col-sm-4 col-md-3 col-lg-2">
                 <a class="btn btn-app text-purple">
-                    <i class="fas fa-save"></i> Modalidades
+                    <i class="fas fa-chalkboard-teacher"></i>Capacidades 
                 </a>
             </div>
             <div class="col-6 col-xs-4 col-sm-4 col-md-3 col-lg-2">

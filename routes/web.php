@@ -20,7 +20,6 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-
 Route::get('alert', function () {
     $var=SweetAlert::success('Success Message', 'Optional Title');
     //dd($var->);
