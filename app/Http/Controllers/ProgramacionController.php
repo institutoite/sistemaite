@@ -15,6 +15,8 @@ use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\Estudiante;
 use App\Models\Feriado;
 use App\Models\Materia;
+use App\Models\Modalidad;
+use App\Models\Nivel;
 use App\Models\Observacion;
 use App\Models\Persona;
 use Illuminate\Http\Request;
@@ -239,11 +241,13 @@ class ProgramacionController extends Controller
         //
     }
     public function generarPrograma($inscripcione_id){
+
+
         $inscripcion=Inscripcione::findOrFail($inscripcione_id);
+        dd(Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id));
         $costo_total=$inscripcion->costo;
         $total_horas=$inscripcion->totalhoras;
         $acuenta =$inscripcion->pagos->sum('monto');
-
         $fecha=$inscripcion->fechaini;
         foreach ($inscripcion->sesiones as $dia) { 
             $vector_dias[] = Dia::findOrFail($dia->dia_id)->dia;

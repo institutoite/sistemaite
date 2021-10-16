@@ -1,8 +1,10 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\Docente;
+use App\Models\Nivel;
 use App\Models\Persona;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class DocenteController extends Controller
 {
@@ -83,6 +85,23 @@ class DocenteController extends Controller
         $docente->delete();
         return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
+
+    public function configurar_niveles($persona){
+        $Persona= Persona::findOrFail($persona);
+        $idsNivelesDocente=Arr::pluck($Persona->docente->niveles, 'id');
+        $nivelesTodos=Arr::pluck(Nivel::select('id')->get(),'id');
+        $nivelesFaltantes=collect($nivelesTodos)->diff($idsNivelesDocente);
+        $nivelesFaltantes=Nivel::whereIn('id',$nivelesFaltantes)->get();
+        $nivelesDocente=Nivel::whereIn('id',$idsNivelesDocente)->get();
+        return view('docente.niveles',compact('nivelesDocente','nivelesFaltantes','Persona'));
+    }
+
+    public function GuardarConfigurarNiveles(Request $request,$docente) {
+        $docente = Persona::findOrFail($docente)->docente;
+        $docente->niveles()->sync(array_keys($request->niveles));
+        return redirect()->route('docentes.gestionar.niveles',$docente->persona->id);
+    } 
+
 }
 
 

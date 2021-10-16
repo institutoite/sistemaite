@@ -85,6 +85,8 @@ Route::get('/historial/{estudiante}','EstudianteController@historia')->name('est
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       D O C E N T E S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('docentes','DocenteController@index')->name('estudiante.index');
+Route::get('docentes/niveles/{persona}', 'DocenteController@configurar_niveles')->name('docentes.gestionar.niveles');
+Route::post('docentes/niveles/configurar/{docente}', 'DocenteController@GuardarConfigurarNiveles')->name('docentes.niveles.configurar');
 Route::get('opciones/docentes/{persona}',[OpcionController::class,'docentes'])->name('opcion.docentes');
 Route::delete('eliminar/docente/{docente}', 'DocenteController@destroy')->name('eliminar.docente');
 
