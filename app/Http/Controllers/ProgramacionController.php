@@ -244,7 +244,8 @@ class ProgramacionController extends Controller
 
 
         $inscripcion=Inscripcione::findOrFail($inscripcione_id);
-        dd(Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id));
+        $nivel=(Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id)->nivel);
+        
         $costo_total=$inscripcion->costo;
         $total_horas=$inscripcion->totalhoras;
         $acuenta =$inscripcion->pagos->sum('monto');
@@ -257,52 +258,57 @@ class ProgramacionController extends Controller
         }
         
         $sesiones=Sesion::where('inscripcione_id','=',$inscripcione_id)->get();
-        while($total_horas>0){
-            foreach ($sesiones as $sesion) {
-                if ($total_horas > 0) {
-                    $programa = new Programacion();
-                    $hora_x_sesion= $sesion->horainicio->floatDiffInHours($sesion->horafin);
-                    $costo_x_sesion = ($costo_total / $inscripcion->totalhoras) *$hora_x_sesion ;
-                    $costo_hora= $costo_total / $total_horas;
-                    
-                    if($total_horas>$hora_x_sesion){
-                        if ($acuenta > $costo_x_sesion) {
-                            $this->agregarClase($programa,$fecha,$hora_x_sesion,$total_horas,$sesion,true,$inscripcion);
-                        } else {
-                            $this->agregarClase($programa, $fecha, $hora_x_sesion,$total_horas, $sesion, false, $inscripcion);
+        
+        if ($nivel == "GUARDERIA") {
+            $this->GenerarPrograma_de_guarderia($inscripcione_id,$vector_dias,$costo_total,$total_horas,$acuenta,$fecha);
+            //dd($nivel);
+        } else{
+            while($total_horas>0){
+                foreach ($sesiones as $sesion) {
+                    if ($total_horas > 0) {
+                        $programa = new Programacion();
+                        $hora_x_sesion= $sesion->horainicio->floatDiffInHours($sesion->horafin);
+                        $costo_x_sesion = ($costo_total / $inscripcion->totalhoras) *$hora_x_sesion ;
+                        $costo_hora= $costo_total / $total_horas;
+                        
+                        if($total_horas>$hora_x_sesion){
+                            if ($acuenta > $costo_x_sesion) {
+                                $this->agregarClase($programa,$fecha,$hora_x_sesion,$total_horas,$sesion,true,$inscripcion);
+                            } else {
+                                $this->agregarClase($programa, $fecha, $hora_x_sesion,$total_horas, $sesion, false, $inscripcion);
+                            }
+                        }else{
+                            if ($acuenta >= $costo_hora*$total_horas) {
+                                $this->agregarClase($programa, $fecha, $hora_x_sesion,$total_horas, $sesion, true, $inscripcion);
+                                
+                            } else {
+                                $this->agregarClase($programa, $fecha, $hora_x_sesion,$total_horas, $sesion, false, $inscripcion);
+                            }
                         }
-                    }else{
-                        if ($acuenta >= $costo_hora*$total_horas) {
-                            $this->agregarClase($programa, $fecha, $hora_x_sesion,$total_horas, $sesion, true, $inscripcion);
-                            
-                        } else {
-                            $this->agregarClase($programa, $fecha, $hora_x_sesion,$total_horas, $sesion, false, $inscripcion);
-                        }
-                    }
-                    $programa->save();
-                    $acuenta = $acuenta - $costo_x_sesion;
-                    
-                    $total_horas = $total_horas - $hora_x_sesion;
-                    $siguiente_sesion= $this->siguienteSesion($inscripcion, $sesion);
-                    
-                    if(($siguiente_sesion->dia_id!=$sesion->dia_id)||($siguiente_sesion->id== Sesion::where('inscripcione_id', $inscripcion->id)->get()->first()->id)){
-                        $fecha->addDay();
-                        while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))||($this->esFeriado($fecha))) {
+                        $programa->save();
+                        $acuenta = $acuenta - $costo_x_sesion;
+                        
+                        $total_horas = $total_horas - $hora_x_sesion;
+                        $siguiente_sesion= $this->siguienteSesion($inscripcion, $sesion);
+                        
+                        if(($siguiente_sesion->dia_id!=$sesion->dia_id)||($siguiente_sesion->id== Sesion::where('inscripcione_id', $inscripcion->id)->get()->first()->id)){
                             $fecha->addDay();
+                            while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))||($this->esFeriado($fecha))) {
+                                $fecha->addDay();
+                            }
                         }
                     }
                 }
             }
+            $inscripcion->fechafin = $programa->fecha;
+            if ($inscripcion->pagos->sum('monto') < $inscripcion->costo) {
+                return redirect()->route('mostrar.programa', $inscripcion);
+            } else {
+                $inscripcion->fecha_proximo_pago = $fecha;
+                $inscripcion->save();
+                return redirect()->route('imprimir.programa', $inscripcion->id);;
+            }   
         }
-        
-        $inscripcion->fechafin = $programa->fecha;
-        if($inscripcion->pagos->sum('monto')<$inscripcion->costo){
-            return redirect()->route('mostrar.programa', $inscripcion);
-        }else{
-            $inscripcion->fecha_proximo_pago=$fecha;
-            $inscripcion->save();
-            return redirect()->route('imprimir.programa', $inscripcion->id);;
-        }     
     }
 /**
  * Funciones de apoyo para generar clases
@@ -329,7 +335,6 @@ class ProgramacionController extends Controller
         return $respuesta;
     }
 
- 
 
     public function agregarClase(&$programa, &$fecha, $hora_x_sesion, &$total_horas , &$sesion , $habilitado, &$inscripcion){
         if ($total_horas > $hora_x_sesion) {
@@ -460,7 +465,6 @@ class ProgramacionController extends Controller
         //dd($programas);
         foreach ($programas as $programa) {
             $costo_programa = $programa->hora_ini->floatDiffInHours($programa->hora_fin)*($costo_por_hora);
-          
             $P=Programacion::findOrFail($programa->id);
             if($acuentaTotal>$costo_programa){
                 $P->habilitado=1;
@@ -540,4 +544,49 @@ class ProgramacionController extends Controller
         $observacion->save();
         return response()->json($observacion);
     }
+
+    public function GenerarPrograma_de_guarderia($inscripcione_id, $vector_dias, $costo_total, $total_horas, $acuenta, $fecha){
+        $inscripcion = Inscripcione::findOrFail($inscripcione_id);
+        $sesiones = Sesion::where('inscripcione_id', '=', $inscripcione_id)->get();
+        while ($fecha<$inscripcion->fechaini->addMonth()) {
+            foreach ($sesiones as $sesion) {
+                $programa = new Programacion();
+                $hora_x_sesion = $sesion->horainicio->floatDiffInHours($sesion->horafin);
+                $costo_x_sesion = ($costo_total / $inscripcion->totalhoras) * $hora_x_sesion;
+
+                $costo_hora = $costo_total / $total_horas;
+                //dd($costo_hora);
+                if ($total_horas > $hora_x_sesion) {
+                    if ($acuenta > $costo_x_sesion) {
+                        $this->agregarClase($programa, $fecha, $hora_x_sesion, $total_horas, $sesion, true, $inscripcion);
+                    } else {
+                        $this->agregarClase($programa, $fecha, $hora_x_sesion, $total_horas, $sesion, false, $inscripcion);
+                    }
+                } else {
+                    if ($acuenta >= $costo_hora * $total_horas) {
+                        $this->agregarClase($programa, $fecha, $hora_x_sesion, $total_horas, $sesion, true, $inscripcion);
+                    } else {
+                        $this->agregarClase($programa, $fecha, $hora_x_sesion, $total_horas, $sesion, false, $inscripcion);
+                    }
+                }
+                $programa->save();
+                $acuenta = $acuenta - $costo_x_sesion;
+
+                //$total_horas = $total_horas - $hora_x_sesion;
+                $siguiente_sesion = $this->siguienteSesion($inscripcion, $sesion);
+
+                if (($siguiente_sesion->dia_id != $sesion->dia_id) || ($siguiente_sesion->id == Sesion::where('inscripcione_id', $inscripcion->id)->get()->first()->id)) {
+                    $fecha->addDay();
+                    while ((!in_array($fecha->isoFormat('dddd'), $vector_dias)) || ($this->esFeriado($fecha))) {
+                        $fecha->addDay();
+                    }
+                }
+                if ($fecha >= $inscripcion->fechaini->addMonth()) {
+                    break;
+                }
+                
+            }
+        }
+    }
+
 }

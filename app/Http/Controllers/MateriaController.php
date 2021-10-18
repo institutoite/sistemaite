@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Materia;
+use App\Models\Nivel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class MateriaController extends Controller
 {
@@ -90,4 +92,23 @@ class MateriaController extends Controller
     {
         //
     }
+
+    public function configurar_niveles($materia)
+    {
+        $Materia = Materia::findOrFail($materia);
+        $idsNivelesMateria = Arr::pluck($Materia->niveles, 'id');
+        $nivelesTodos = Arr::pluck(Nivel::select('id')->get(), 'id');
+        $nivelesFaltantes = collect($nivelesTodos)->diff($idsNivelesMateria);
+        $nivelesFaltantes = Nivel::whereIn('id', $nivelesFaltantes)->get();
+        $nivelesMateria = Nivel::whereIn('id', $idsNivelesMateria)->get();
+        return view('materia.nivel', compact('nivelesMateria', 'nivelesFaltantes', 'Materia'));
+    }
+
+    public function GuardarConfigurarNiveles(Request $request, $mate)
+    {
+        $materia = Materia::findOrFail($mate);
+        $materia->niveles()->sync(array_keys($request->niveles));
+        return redirect()->route('materias.gestionar.niveles', $materia->id);
+    } 
+
 }

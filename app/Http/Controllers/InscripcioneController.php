@@ -87,14 +87,17 @@ class InscripcioneController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
         request()->validate(Inscripcione::$rules);
         $datos=$request->all();
         $inscripcion=new Inscripcione();
         $inscripcion->fechaini=$request->fechaini;
         $inscripcion->fechafin = $request->fechaini;
         $inscripcion->fecha_proximo_pago = $request->fechaini;
-        $inscripcion->totalhoras=$request->totalhoras;
+        if(!is_null($request->horas_total)){
+            $inscripcion->totalhoras=$request->horas_total;
+        }else{
+            $inscripcion->totalhoras = $request->totalhoras;
+        }
         $inscripcion->costo=$request->costo;
         $inscripcion->vigente=1;
         $inscripcion->condonado=0; 
@@ -103,9 +106,9 @@ class InscripcioneController extends Controller
         $inscripcion->modalidad_id=$request->modalidad_id;
         $inscripcion->motivo_id=$request->motivo_id;
         $inscripcion->save();
+        //dd($inscripcion);
         //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   %%%%%%%%%%%%%%%%*/
         $inscripcion->userable()->create(['user_id'=>Auth::user()->id]);
-
         $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
         $materias = $nivel->materias;
         $aulas = Aula::get();
@@ -113,8 +116,6 @@ class InscripcioneController extends Controller
         $dias = Dia::get();
         $tipo = 'guardando';    
         $programacion = $inscripcion->programaciones;
-
-
         if ($nivel->nivel=='GUARDERIA'){
             return view('inscripcione.configurar', compact('datos','nivel','inscripcion', 'materias', 'aulas', 'docentes', 'tipo', 'dias', 'programacion')); 
         }else{

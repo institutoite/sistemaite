@@ -38,7 +38,6 @@
             </div>
             <div class="col-6 col-xs-4 col-sm-4 col-md-3 col-lg-2">
                 <a class="btn btn-app" href="{{route('docentes.gestionar.niveles',$persona)}}">
-
                     <i class="fas fa-save text-teal"></i> Niveles
                 </a>
             </div>
