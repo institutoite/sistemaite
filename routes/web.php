@@ -216,6 +216,7 @@ Route::post('crear/contacto/{persona}','PersonaController@storeContacto')->name(
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% P R O G R A M A C I O N   C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('programacions', "ProgramacionController");
 Route::get('generar/programa/{inscripcione}', 'ProgramacionController@generarPrograma')->name('generar.programa');
+Route::get('generar/programa/guarderia/{inscripcione}', 'ProgramacionController@generarProgramaGuarderia')->name('generar.programa.guarderia');
 Route::get('programacion/mostrar/', "ProgramacionController@mostrar")->name('programacion.mostrar');
 Route::get('programacion/mostrar/clases', "ProgramacionController@mostrarClases")->name('programacion.mostrar.clases');
 Route::get('programacion/hoy/{inscripcion}', "ProgramacionController@programacionesHoy")->name('programaciones.hoy');

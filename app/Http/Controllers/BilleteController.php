@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Inscripcione;
 use App\Models\Billete;
+use App\Models\Modalidad;
 use App\Models\Pago;
 use Illuminate\Http\Request;
 
@@ -104,8 +105,14 @@ class BilleteController extends Controller
             }
             $inscripcion = Inscripcione::findOrFail($pago->pagable_id);
             if ($inscripcion->programaciones->count() == 0) {
-                return redirect()->route('generar.programa', $inscripcion->id);
+                $nivel=Modalidad::findOrFail($inscripcion->modalidad_id)->nivel->nivel;
+                if($nivel=="GUARDERIA"){
+                    return redirect()->route('generar.programa.guarderia', $inscripcion->id);
+                }else {
+                    return redirect()->route('generar.programa', $inscripcion->id);
+                }
             } else {
+                
                 return redirect()->route('actualizar.programa.segun.pago', ['inscripcione' => $inscripcion->id, 'pago' => $pago_id]);
             }
         }
