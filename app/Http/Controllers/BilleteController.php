@@ -107,6 +107,7 @@ class BilleteController extends Controller
             if ($inscripcion->programaciones->count() == 0) {
                 $nivel=Modalidad::findOrFail($inscripcion->modalidad_id)->nivel->nivel;
                 if($nivel=="GUARDERIA"){
+                    
                     return redirect()->route('generar.programa.guarderia', $inscripcion->id);
                 }else {
                     return redirect()->route('generar.programa', $inscripcion->id);

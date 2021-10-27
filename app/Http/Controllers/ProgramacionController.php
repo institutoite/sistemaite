@@ -240,11 +240,14 @@ class ProgramacionController extends Controller
     {
         //
     }
+
+    /***********************************************************************************************
+     * 
+     *                             G E N E R A R  P R O G R A M A  
+     * 
+     ***********************************************************************************************/
     public function generarPrograma($inscripcione_id){
-
-
         $inscripcion=Inscripcione::findOrFail($inscripcione_id);
-        $nivel=(Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id)->nivel);
         
         $costo_total=$inscripcion->costo;
         $total_horas=$inscripcion->totalhoras;
@@ -256,13 +259,7 @@ class ProgramacionController extends Controller
         while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) {
             $fecha->addDay();
         }
-        
         $sesiones=Sesion::where('inscripcione_id','=',$inscripcione_id)->get();
-        
-        if ($nivel == "GUARDERIA") {
-            $this->GenerarPrograma_de_guarderia($inscripcione_id,$vector_dias,$costo_total,$total_horas,$acuenta,$fecha);
-            //dd($nivel);
-        } else{
             while($total_horas>0){
                 foreach ($sesiones as $sesion) {
                     if ($total_horas > 0) {
@@ -308,7 +305,7 @@ class ProgramacionController extends Controller
                 $inscripcion->save();
                 return redirect()->route('imprimir.programa', $inscripcion->id);;
             }   
-        }
+        
     }
 
 /***********************************************************************************************
@@ -320,7 +317,7 @@ class ProgramacionController extends Controller
     public function generarProgramaGuarderia($inscripcione_id)
     {
         $inscripcion = Inscripcione::findOrFail($inscripcione_id);
-        $nivel = (Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id)->nivel);
+        //dd($inscripcion);
 
         $costo_total = $inscripcion->costo;
         $total_horas = $inscripcion->totalhoras;
@@ -372,7 +369,14 @@ class ProgramacionController extends Controller
                 }
             }
         }
-        return redirect()->route('mostrar.programa', $inscripcion->id);
+        $inscripcion->fechafin = $programa->fecha;
+        if ($inscripcion->pagos->sum('monto') < $inscripcion->costo) {
+            return redirect()->route('mostrar.programa', $inscripcion);
+        } else {
+            $inscripcion->fecha_proximo_pago = $fecha;
+            $inscripcion->save();
+            return redirect()->route('imprimir.programa', $inscripcion->id);;
+        }   
     }
 /**
  * Funciones de apoyo para generar clases
