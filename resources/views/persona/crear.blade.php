@@ -57,15 +57,39 @@
 
     <script>
         $(document).ready(function(){
+             $('#personas').DataTable(
+                {
+                    "serverSide": true,
+                    "responsive":true,
+                    "autoWidth":false,
+                    "ajax": "{{ url('api/referencias') }}",
+                    "columns": [
+                        {data: 'id'},
+                        {data: 'nombre'},
+                        {data: 'apellidop'},
+                        {data: 'apellidom'},
+                        {
+                            "name": "foto",
+                            "data": "foto",
+                            "render": function (data, type, full, meta) {
+                                return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
+                            },
+                            "title": "Image",
+                            "orderable": true,
             
-       
-
+                        }, 
+                        {
+                            data: 'btn'
+                        },  
+                    ],
+                    "language":{
+                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    },  
+                });
             var url1 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg',
                 url2 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg';
- 
             $("#foto").fileinput(
                 {
-            
                 initialPreview: [url1, url2],
                 initialPreviewAsData: true,
                 initialPreviewConfig: [
@@ -125,9 +149,6 @@
             $('#modal-ite').modal('toggle');
             $('#modal-ite .close').remove();
         }
-
-        
-
         });	
         function  mostrarModal(){
             var ElementoSeleccionado=$('#como option:selected').val();

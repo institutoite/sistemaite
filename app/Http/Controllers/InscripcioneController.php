@@ -60,15 +60,21 @@ class InscripcioneController extends Controller
 
     public function crear(Persona $persona)
     {
-        $modalidades = Modalidad::all();
+        
         $motivos = Motivo::all();
         $ultima_inscripcion=Inscripcione::where('estudiante_id','=',$persona->id)->orderBy('id','desc')->first();
 
         //$ultima_grado_id=Gestion::where('estudiante_id',$persona->estudiante->id)->orderBy('id', 'desc')->first()->grado_id;
         //$ultimo_nivel=Nivel::findOrFail($ultima_grado_id);
-        //$modalidades = Modalidad::where('nivel_id', '=', $ultimo_nivel)->get();        
-        $ultimo_nivel=Nivel::findOrFail(Modalidad::findOrFail($ultima_inscripcion->modalidad_id)->nivel_id);
+        //$modalidades = Modalidad::where('nivel_id', '=', $ultimo_nivel)->get();
+        if($ultima_inscripcion!=null)        
+            $ultimo_nivel=Nivel::findOrFail(Modalidad::findOrFail($ultima_inscripcion->modalidad_id)->nivel_id);
+        else {
+            $ultimo_nivel=$persona->estudiante->grados->first()->nivel;
+        }
         
+        $modalidades = $ultimo_nivel->modalidades;
+        // dd($modalidades);
         if($ultimo_nivel->nivel=='GUARDERIA'){
             return view('inscripcione.guarderia.create', compact('modalidades', 'motivos','persona','ultima_inscripcion'));
         }
@@ -136,11 +142,8 @@ class InscripcioneController extends Controller
         // if ($nivel->nivel=='PROFESIONAL') {
             
         // }
-
-
         //dd($inscripcion);
        
-
        //return view('inscripcione.configurar',compact('inscripcion','materias','aulas','docentes','tipo','dias', 'programacion'));        
     }
 
@@ -259,16 +262,14 @@ class InscripcioneController extends Controller
         $inscripcionesVigentes = Inscripcione::join('pagos', 'pagos.pagable_id', '=', 'inscripciones.id')
         ->where('estudiante_id', '=', $persona->estudiante->id)
             ->where('vigente', 1)
-            ->select('inscripciones.id', 'objetivo', 'costo', DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= inscripciones.id) as acuenta"))
-            ->groupBy('inscripciones.id', 'objetivo', 'acuenta', 'costo')
+            ->select('inscripciones.id','vigente', 'objetivo', 'costo', DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= inscripciones.id) as acuenta"))
+            ->groupBy('inscripciones.id', 'vigente','objetivo', 'acuenta', 'costo')
             ->get();
         $inscripcionesOtras = Inscripcione::where('estudiante_id', '=', $persona->estudiante->id)
             ->where('vigente', 0)
             ->select('id', 'objetivo', 'costo')->get();
         //dd($inscripciones);
         return view('inscripcione.tusinscripciones',compact('inscripciones','persona','inscripcionesVigentes','inscripcionesOtras'));
-
-        
     }
 
     public function guardarconfiguracion(Request $request,$id){

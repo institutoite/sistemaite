@@ -47,6 +47,10 @@ class Persona extends Model
     {
         return $this->hasOne(Estudiante::class);
     }
+    public function computacion()
+    {
+        return $this->hasOne(Computacion::class);
+    }
     public function docente()
     {
         return $this->hasOne(Docente::class);

@@ -210,6 +210,7 @@
                         @isset($persona)
                             <option value="estudiante" @if($persona->papelinicial == 'estudiante') {{'selected'}} @endif>Estudiante</option>
                             <option value="docente" @if($persona->papelinicial == 'docente') {{'selected'}} @endif>Docente</option>
+                            <option value="computacion" @if($persona->papelinicial == 'computacion') {{'computacion'}} @endif>Computacion</option>
                             <option value="cliservicio" @if($persona->papelinicial == 'cliservicio') {{'selected'}} @endif>Servicio Técnico</option>
                             <option value="clicopy" @if($persona->papelinicial == 'clicopy') {{'selected'}} @endif>Fotocopia e Impresiones</option>
                             <option value="administrativo" @if($persona->papelinicial == 'administrativo') {{'selected'}} @endif>Adminitrativo</option>
@@ -218,6 +219,7 @@
                         @else 
                             <option value="estudiante" @if(old('papel') == 'estudiante') {{'selected'}} @endif>Estudiante</option>
                             <option value="docente" @if(old('papel') == 'docente') {{'selected'}} @endif>Docente</option>
+                            <option value="computacion" @if(old('papel') == 'computacion') {{'computacion'}} @endif>Computacion</option>
                             <option value="cliservicio" @if(old('papel') == 'cliservicio') {{'selected'}} @endif>Servicio Técnico</option>
                             <option value="clicopy" @if(old('papel') == 'clicopy') {{'selected'}} @endif>Fotocopia e Impresiones</option>
                             <option value="administrativo" @if(old('papel') == 'administrativo') {{'selected'}} @endif>Adminitrativo</option>
@@ -380,7 +382,7 @@
     <div class="modal-dialog modal-lg modalito">
         <div class="modal-content">
             <div class="modal-header">
-                Seleccione la persona referenciadora
+                Seleccione la persona referenciadorax
                 <button class="btn btn-danger close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">

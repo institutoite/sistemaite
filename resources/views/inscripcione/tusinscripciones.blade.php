@@ -43,7 +43,16 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($inscripcionesVigentes as $inscripcion)
-                                        <tr>
+                                    @php
+                                        if($inscripcion->vigente==1){
+                                            $clase="bg-primary";
+                                        }else{
+                                            $clase="bg-secondary";
+                                        }
+
+                                    @endphp
+
+                                        <tr class="{{$clase}}">
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{!! $inscripcion->objetivo !!}</td>
                                             <td>{{ $inscripcion->acuenta }}</td>

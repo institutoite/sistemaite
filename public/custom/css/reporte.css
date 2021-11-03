@@ -6,6 +6,9 @@ body {
   font-family: helvetica, arial, sans-serif, Montserrat;
   text-rendering: optimizeLegibility;
 }
+body {
+  margin: 0;
+}
 
 div.table-title {
    display: block;
@@ -25,6 +28,7 @@ div.table-title {
 }
 
 
+
 /*** Table Styles **/
 
 .table-fill {
@@ -34,16 +38,23 @@ div.table-title {
   margin: auto;
   width: 100%;
 }
+
+
+.table{
+  border:1px solid #C1C3D1;
+  position:absolute;
+}
  
 th {
   color:#39393a;;
   border:1px solid #9ea7af;
   
-  font-size:16px;
+  font-size:14px;
   font-weight: bold;
 
   text-align:center;
   vertical-align:middle;
+  background-color:gray;
 }
 
 th:first-child {
@@ -70,11 +81,11 @@ tr:last-child {
   border-bottom:none;
 }
  
-tr:nth-child(odd) td {
+.table tr:nth-child(odd) td {
   background:#EBEBEB;
 }
  
-tr:nth-child(odd):hover td {
+.table tr:nth-child(odd):hover td {
   background:#4E5066;
 }
 
@@ -96,6 +107,7 @@ td {
   border-left: 1px solid #C1C3D1;
   border-top: 1px solid #C1C3D1;
   border-bottom: 1px solid #C1C3D1;
+  width: auto;
 }
 
 td:last-child {
@@ -125,3 +137,77 @@ td.text-center {
 td.text-right {
   text-align: right;
 }
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  E N C A B E Z A D O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+
+.titulos{
+  letter-spacing:0.2em;
+  color: #375f7a;
+}
+
+.cuadros { 
+  width: 25%; 
+  padding: 10px;
+  float:left;
+  height:10%;
+  color:gray;
+  font-size: 0.7em;
+}
+.logo { 
+  width: 20%;
+  float: left;
+  height:10%;
+}
+.divencabezado{
+  position: relative;
+  
+}
+.divtabla{
+  top: 23%;
+  position: absolute;
+}
+
+hr {
+  height: 3px;
+  background-color: #26baa5;
+  top: 8.5%;
+  width: 100%;
+  position: absolute;
+  border:none;
+  margin: none;
+}
+.inscripcion{
+  top:7.2%; 
+  font-size:1em;
+  position: absolute;
+  float: right;
+}
+.datos{
+  top:14.5%;
+  position: absolute;
+
+}
+.personal{
+  float:left;
+  width: 40%;
+}
+.inscripciondata{
+  float:left;
+  width: 20%;
+}
+.academico{
+  float:left;
+  width: 40%;
+}
+.cuadrosdatos { 
+  float:left;
+  height:8.5%;
+  padding-left: 0.5em;;
+  color:gray;
+  font-size: 0.8em;
+  border-left: solid 0.05em #26bbaa;
+}
+
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  C E N T R A R  T E X T O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+

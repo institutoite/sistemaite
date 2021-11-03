@@ -16,13 +16,10 @@
             <div class="float-right">
                 
                 @isset($persona->estudiante)
-                    <a href="{{route('inscribir',$persona)}}" class="btn btn-success btn-sm float-right"  data-placement="left">
+                    <a href="{{route('opcion.principal', $persona->estudiante->id)}}" class="btn btn-success btn-sm float-right"  data-placement="left">
                     {{ __('Inscribir') }}<i class="fas fa-arrow-circle-right fa-2x"></i>
                     </a>
                 @endisset
-                    
-                
-
             </div>
             <div class="float-right mr-3">
                 <a href="{{route('apoderado.existente',$persona)}}" class="btn btn-warning btn-sm float-right"  data-placement="left">

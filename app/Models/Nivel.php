@@ -43,9 +43,9 @@ class Nivel extends Model
     return $this->morphToMany("App\Models\Materia", 'materiable'); 
   }
 
-  public function modalidad()
+  public function modalidades()
   {
-    return $this->hasOne(Modalidad::class);
+    return $this->hasMany(Modalidad::class);
   }
 
   public function userable()

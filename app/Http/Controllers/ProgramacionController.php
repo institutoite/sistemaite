@@ -11,7 +11,7 @@ use App\Models\Aula;
 use App\Models\Dia;
 use App\Models\Inscripcione;
 use Carbon\Carbon;
-use Barryvdh\DomPDF\Facade as PDF;
+// use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\Estudiante;
 use App\Models\Feriado;
 use App\Models\Materia;
@@ -19,10 +19,15 @@ use App\Models\Modalidad;
 use App\Models\Nivel;
 use App\Models\Observacion;
 use App\Models\Persona;
+use App\Models\Colegio;
+use App\Models\User;
+use App\Models\Grado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
+use App\Http\Controllers\PDFController;
+use PDF;
 
 class ProgramacionController extends Controller
 {
@@ -559,7 +564,7 @@ class ProgramacionController extends Controller
     }
 
     public function imprimirPrograma($inscripcione_id){
-
+         
         $inscripcion=Inscripcione::findOrFail($inscripcione_id);
         $programacion = Programacion::join('materias', 'programacions.materia_id', '=', 'materias.id')
             ->join('aulas', 'programacions.aula_id', '=', 'aulas.id')
@@ -569,14 +574,20 @@ class ProgramacionController extends Controller
             ->orderBy('fecha', 'asc')
             ->where('inscripcione_id', '=', $inscripcione_id)->get();
 
-        $pdf = PDF::loadView('programacion.reporte', compact('programacion'));
 
-        /**entrae a la persona al cual corresponde esta inscripcion */
         $estudiante = Estudiante::findOrFail($inscripcion->estudiante_id);
         $persona = $estudiante->persona;
+        $colegio=Colegio::find($estudiante->grados->last()->pivot->colegio_id);
+        $usuario=User::find($inscripcion->userable->user_id);
+        $modalidad=$inscripcion->modalidad;
+        $nivel=Nivel::findOrFail($estudiante->grados->last()->nivel_id);
+        $grado=Grado::findOrFail($estudiante->grados->last()->pivot->grado_id);
+        $dompdf = PDF::loadView('programacion.reporte', compact('grado','nivel','modalidad','usuario','programacion','persona','estudiante','persona','colegio','inscripcion'));
+        /**entrae a la persona al cual corresponde esta inscripcion */
         $fecha_actual = Carbon::now();
         $fecha_actual->isoFormat('DD-MM-YYYY-HH:mm:ss');
-        return $pdf->download($persona->id . '_' . $fecha_actual . '_' . $persona->nombre . '_' . $persona->apellidop . '.pdf');
+        $dompdf->setPaper('letter','portrait');
+        return $dompdf->download($persona->id . '_' . $fecha_actual . '_' . $persona->nombre . '_' . $persona->apellidop . '.pdf');
     }
 
     public function marcadoNormal($programacion_id){
