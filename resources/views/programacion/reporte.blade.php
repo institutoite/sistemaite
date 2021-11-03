@@ -58,7 +58,7 @@
         <div class="inscripciondata cuadrosdatos " >
             <span class="titulos"> <strong> INSCRIPCION</strong> </span><br>
             <span>{{$modalidad->modalidad}}</span>
-            <span>{{$inscripcion->totalhroas}}</span><br>
+            <span>{{$inscripcion->totalhoras}}</span><br>
             <span>{{$nivel->nivel}}</span><br>
             <span>Usuario:{{$usuario->name}}</span>
         </div>

@@ -12,4 +12,8 @@ class Computacion extends Model
     {
         return $this->belongsTo(Persona::class);
     }
+    public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
+    }
 }

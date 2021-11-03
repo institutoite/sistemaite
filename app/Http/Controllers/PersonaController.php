@@ -21,6 +21,7 @@ use App\Http\Requests\PersonaApoderadaRequestStore;
 
 use App\Models\Inscripcione;
 use App\Models\Observacion;
+use App\Models\Computacion;
 use App\Models\Pais;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
@@ -116,6 +117,22 @@ class PersonaController extends Controller
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  O B S E R V A C I O N   %%%%%%%%%%%%%%%%*/
                 $observacion->userable()->create(['user_id' => Auth::user()->id]);
                 break;
+            case 'computacion':
+                $computacion=new Computacion();
+                $computacion->persona_id=$persona->id;
+                $computacion->save();
+                
+                //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  E S T U D I A N T E   %%%%%%%%%%%%%%%%*/
+                $computacion->userable()->create(['user_id' => Auth::user()->id]);
+                $observacion=new Observacion();
+                $observacion->observacion=$request->observacion;
+                $observacion->activo=1;
+                $observacion->observable_id=$persona->id;
+                $observacion->observable_type="App\Models\Persona";
+                $observacion->save();
+                //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  O B S E R V A C I O N   %%%%%%%%%%%%%%%%*/
+                $observacion->userable()->create(['user_id' => Auth::user()->id]);
+                break;         
             case 'docente':
                 $docente = new Docente();
                 $docente->nombre=$persona->nombre.' '.Str::substr($request->apellidop, 0, 1);
