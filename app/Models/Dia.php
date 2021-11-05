@@ -16,5 +16,9 @@ class Dia extends Model
     {
         return $this->belongsTo(Sesion::class);
     }
+    public function sesioncom()
+    {
+        return $this->belongsTo(Sesion::class);
+    }
     
 }

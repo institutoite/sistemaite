@@ -52,3 +52,6 @@ cuando le demos finalizar una clases que guarde la hora que se fue
 
 file:///C:/Users/ite/Downloads/AdminLTE-3.1.0/AdminLTE-3.1.0/pages/UI/buttons.html botones hermosos
 
+
+
+agregar nivel_id a motivos ya que los motivos dependen del nivel

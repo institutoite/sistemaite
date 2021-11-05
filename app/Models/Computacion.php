@@ -16,4 +16,12 @@ class Computacion extends Model
     {
         return $this->morphOne('App\Models\Userable', 'userable');
     }
+    public function carreras()
+    {
+        return $this->belongsToMany('App\Models\Carrera');
+    }
+    public function asignaturas()
+    {
+        return $this->belongsToMany('App\Models\Asignatura');
+    }
 }

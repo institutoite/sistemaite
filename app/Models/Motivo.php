@@ -45,6 +45,13 @@ class Motivo extends Model
     {
         return $this->morphOne('App\Models\Userable', 'userable');
     }
+    public function niveles()
+    {
+        return $this->morphToMany("App\Models\Nivel", 'nivelable');
+    }
     
+    public function matriculacion(){
+        return $this->belongsTo("App\Models\Matriculacion");
+    }
 
 }
