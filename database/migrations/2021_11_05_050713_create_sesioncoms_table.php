@@ -17,17 +17,15 @@ class CreateSesioncomsTable extends Migration
             $table->increments('id');
             $table->time('horainicio');
             $table->time('horafin');
-            $table->unsignedInteger('inscripcione_id');
+            $table->unsignedInteger('matriculacion_id');
             $table->unsignedInteger('dia_id');
             $table->unsignedInteger('docente_id');
-            $table->unsignedInteger('materia_id');
             $table->unsignedInteger('aula_id');
 
-            $table->foreign('inscripcione_id','fk_inscripcione_sesion')->references('id')->on('inscripciones');
-            $table->foreign('dia_id','fk_dia_sesion')->references('id')->on('dias');
-            $table->foreign('docente_id','fk_docente_sesion')->references('id')->on('docentes');
-            $table->foreign('materia_id','fk_materia_sesion')->references('id')->on('materias');
-            $table->foreign('aula_id','fk_aula_sesion')->references('id')->on('aulas');
+            $table->foreign('matriculacion_id','fk_matriculacion_sesioncom')->references('id')->on('matriculacions');
+            $table->foreign('dia_id','fk_dia_seseoncom')->references('id')->on('dias');
+            $table->foreign('docente_id','fk_docente_sesioncom')->references('id')->on('docentes');
+            $table->foreign('aula_id','fk_aula_sesioncom')->references('id')->on('aulas');
             $table->timestamps();
         });
     }

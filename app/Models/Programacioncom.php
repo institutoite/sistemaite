@@ -23,15 +23,16 @@ class Programacioncom extends Model
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
 
-     /**
+    /**
       * Get the user that owns the Programacioncom
       *
       * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
       */
-     public function matriculacion()
-     {
-         return $this->belongsTo(Matriculacion::class);
-     }
+    public function matriculacion()
+    {
+        return $this->belongsTo(Matriculacion::class);
+    }
+    
     
 
 }

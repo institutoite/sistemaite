@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Matriculacion extends Model
 {
     use HasFactory;
-    protected $table="asignatura_computacion";
     
-
     public function motivo()
     {
         return $this->hasOne('App\Models\Motivo');

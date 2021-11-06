@@ -58,7 +58,7 @@ class Docente extends Model
 
     public function programacion()
     {
-        return $this->hasOne(Programacion::class); 
+        return $this->belongsTo(Programacion::class); 
     }
     public function userable()
     {
