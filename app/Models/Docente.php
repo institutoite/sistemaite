@@ -64,9 +64,16 @@ class Docente extends Model
     {
         return $this->morphOne('App\Models\Userable', 'userable');
     }
-      public function sesioncom()
+    
+    public function sesioncom()
     {
         return $this->belongsTo(Sesion::class);
     }
+
+    public function programacioncom()
+    {
+        return $this->hasOne(Programacioncom::class);
+    }
+    
 
 }

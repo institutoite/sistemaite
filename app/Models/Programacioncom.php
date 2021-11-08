@@ -15,7 +15,7 @@ class Programacioncom extends Model
         */
     public function docente()
     {
-        return $this->hasOne(Docente::class);
+        return $this->belongsTo(Docente::class);
     }
     /**
      * Get all of the matriculacion for the Programacioncom
