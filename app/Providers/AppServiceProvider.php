@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //Schema::defaultStringLength(191);
         date_default_timezone_set('America/La_Paz');
+        Paginator::useBootstrap();
     }
 }

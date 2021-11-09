@@ -37,14 +37,10 @@
     @endif
 
 
-    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}"> --}}
 
-    {{-- Livewire Styles --}}
-    @if(config('adminlte.livewire'))
-        @if(app()->version() >= 7)
-            @livewireStyles
-        @endif
-    @endif
+   
+  
 
     {{-- Custom Stylesheets (post AdminLTE) --}}
     @yield('adminlte_css')
@@ -72,6 +68,8 @@
         <meta name="msapplication-TileImage" content="{{ asset('favicon/ms-icon-144x144.png') }}">
     @endif
     
+    {{-- Livewire Styles --}}
+   @livewireStyles
 </head>
 
 <body class="@yield('classes_body')" @yield('body_data')>
@@ -94,14 +92,11 @@
     @endif
 
     {{-- Livewire Script --}}
-    @if(config('adminlte.livewire'))
-        @if(app()->version() >= 7)
-            @livewireScripts
-        @endif
-    @endif
+    
+    
 
     {{-- Custom Scripts --}}
-    
+    @livewireScripts
     @yield('adminlte_js')
     @include('sweet::alert')
 </body>

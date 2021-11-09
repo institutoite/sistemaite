@@ -1,20 +1,16 @@
 @extends('adminlte::page')
 @section('css')
-    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
-@stop
+    
+@endsection
 
-@section('title', 'Motivos Create')
-@section('plugins.Jquery', true)
-@section('plugins.Sweetalert2', true)
-@section('plugins.Datatables', true)
-
+@section('title', 'Carreras')
 
 @section('content')
 
-   @livewire('carrera-compone9t')
+   @livewire('carrera-componet')
     
 @endsection
 
 @section('js')
-    
+     
 @endsection
