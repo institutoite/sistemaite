@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+use App\Models\Carrera;
 class CarreraSeeder extends Seeder
 {
     /**
@@ -13,6 +14,6 @@ class CarreraSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Carrera::factory()->count(150)->create();
     }
 }

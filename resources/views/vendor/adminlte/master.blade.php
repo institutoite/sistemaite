@@ -36,12 +36,13 @@
         <link rel="stylesheet" href="{{ mix(config('adminlte.laravel_mix_css_path', 'css/app.css')) }}">
     @endif
 
+
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+
     {{-- Livewire Styles --}}
     @if(config('adminlte.livewire'))
         @if(app()->version() >= 7)
             @livewireStyles
-        @else
-            <livewire:styles/>
         @endif
     @endif
 
@@ -96,8 +97,6 @@
     @if(config('adminlte.livewire'))
         @if(app()->version() >= 7)
             @livewireScripts
-        @else
-            <livewire:scripts/>
         @endif
     @endif
 
@@ -105,7 +104,6 @@
     
     @yield('adminlte_js')
     @include('sweet::alert')
-    
 </body>
 
 </html>

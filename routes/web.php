@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CarreraController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GradoController;
 use App\Http\Controllers\GestionController;
@@ -167,7 +168,8 @@ Route::get('gestion/actualizar', [GestionController::class, 'actualizar'])->name
 Route::delete('eliminar/gestion/{gestion}', [GestionController::class, 'destroy'])->name('eliminar.gestion');
 
 
-
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  C A R R E R A S   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::get('carreras', [CarreraController::class, 'index'])->name('carrea.index');
 
 
 // Route::get('gestiones/editar78', [GestionController::class, 'edition'])->name('gestion.editar');

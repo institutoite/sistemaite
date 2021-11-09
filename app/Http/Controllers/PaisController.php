@@ -18,7 +18,7 @@ class PaisController extends Controller
      */
     public function index()
     {
-        return view('pais.index');
+        
     }
 
     /**

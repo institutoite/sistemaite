@@ -15,8 +15,7 @@ class CreateCarrerasTable extends Migration
     {
         Schema::create('carreras', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('carrera', 50);
-            $table->boolean('vigente'); // si no termina sigue vigente
+            $table->string('carrera', 150);
             $table->timestamps();
         });
     }

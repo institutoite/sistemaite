@@ -41,6 +41,8 @@ class DatabaseSeeder extends Seeder
             AdministrativoSeeder::class,
             ObservacionSeeder::class,
             ComputacionSeeder::class,
+            CarreraSeeder::class,
+
         ]);
 
         

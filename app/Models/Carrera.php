@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Carrera extends Model
 {
     use HasFactory;
+
+
+    protected $fillable = [
+        'carrera'
+    ];
+
     public function compuptaciones()
     {
         return $this->belongsToMany('App\Models\Computacion');

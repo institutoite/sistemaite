@@ -22,7 +22,7 @@ class CarreraFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'carrera'=>$this->faker->name,
         ];
     }
 }
