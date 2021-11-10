@@ -16,6 +16,11 @@ class CarreraController extends Controller
     {
         return view('livewire.carrera.index');
     }
+    public function listar()
+    {
+        
+        return view('livewire.carreer.index');
+    }
 
     /**
      * Show the form for creating a new resource.
