@@ -1,16 +1,22 @@
 @extends('adminlte::page')
 @section('css')
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endsection
 
 @section('title', 'Carreras')
 
 @section('content')
-
-   @livewire('mostrar-carreras')
-    
+<div class="mt-3">
+    <div class="card">
+        <div class="card-header bg-secondary">
+            Lista de carreras
+        </div>
+        <div class="card-body">
+           @livewire('mostrar-carreras')
+        </div>
+    </div>
+</div>   
 @endsection
 
 @section('js')
-     
+
 @endsection

@@ -24,7 +24,7 @@
         "laravel/ui": "^3.0",
         "livewire/livewire": "^2.7",
         "mediconesystems/livewire-datatables": "^0.6.4",
-        "rappasoft/laravel-livewire-tables": "^1.14",
+        "rappasoft/laravel-livewire-tables": "^1.20",
         "realrashid/sweet-alert": "^4.0",
         "spatie/laravel-permission": "^4.0",
         "uxweb/sweet-alert": "^2.0",
