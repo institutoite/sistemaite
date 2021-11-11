@@ -633,6 +633,12 @@ return [
                     'classes'  => 'text-dark',
                 ],
                 [
+                    'text' => 'Computacion',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'computaciones',
+                    'classes'  => 'text-dark',
+                ],
+                [
                     'text' => 'Docentes',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'docentes',
@@ -644,6 +650,7 @@ return [
                     'url'  => 'administrativos',
                     'classes'  => 'text-dark',
                 ],
+               
             ],
         ],
         /**

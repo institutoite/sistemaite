@@ -87,7 +87,7 @@ Route::get('/hoy','EstudianteController@hoy')->name('estudiantes.hoy');
 Route::get('/historial/{estudiante}','EstudianteController@historia')->name('estudiante.historia');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       D O C E N T E S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-Route::get('docentes','DocenteController@index')->name('estudiante.index');
+Route::get('docentes','DocenteController@index')->name('docentes.index');
 Route::get('docentes/niveles/{persona}', 'DocenteController@configurar_niveles')->name('docentes.gestionar.niveles');
 Route::post('docentes/niveles/configurar/{docente}', 'DocenteController@GuardarConfigurarNiveles')->name('docentes.niveles.configurar');
 Route::get('opciones/docentes/{persona}',[OpcionController::class,'docentes'])->name('opcion.docentes');
@@ -97,8 +97,12 @@ Route::delete('eliminar/docente/{docente}', 'DocenteController@destroy')->name('
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       A D M I N I S T R AT I V O S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('administrativos','AdministrativoController@index')->name('administrativo.index');
 Route::get('opciones/administrativos/{persona}',[OpcionController::class,'administrativos'])->name('opcion.administrativos');
-//Route::get('opciones/docentes/{persona}','OpcionController@docentes')->name('opcion.docentes');
-//Route::delete('eliminar/docente/{docente}', 'DocenteController@destroy')->name('eliminar.docente');
+
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       COMPUTACIONES         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+Route::get('computaciones','ComputacionController@index')->name('computacion.index');
+Route::get('opciones/computacion/{persona}',[OpcionController::class,'coputacion'])->name('opcion.computacion');
+
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  T E M A S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -272,7 +276,8 @@ Route::delete('eliminar/modalidad/{id}', 'ModalidadController@destroy')->name('e
 Route::delete('eliminar/nivel/{id}', 'NivelController@destroy')->name('eliminar.nivel');
 Route::delete('eliminar/inscripcion/{id}', 'InscripcioneController@destroy')->name('eliminar.inscripcione');
 Route::delete('eliminar/usuario/{id}', 'UserController@destroy')->name('eliminar.user');
-Route::delete('eliminar/pago/{pago}', 'PagoController@destroy')->name('eliminar.user');
+Route::delete('eliminar/pago/{pago}', 'PagoController@destroy')->name('eliminar.pago');
+Route::delete('eliminar/computacion/{computacion}', 'ComputacionController@destroy')->name('eliminar.computacion');
 
 Route::get('tomarfoto', function () {return view('persona.tomarfoto');})->name('tomarfoto');
 Route::get('tomarfoto/{persona}', 'PersonaController@tomarfoto')->name('tomar.foto.persona');

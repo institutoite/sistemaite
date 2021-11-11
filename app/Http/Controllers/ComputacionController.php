@@ -14,7 +14,7 @@ class ComputacionController extends Controller
      */
     public function index()
     {
-        //
+        return view('computacion.index');
     }
 
     /**
@@ -80,6 +80,18 @@ class ComputacionController extends Controller
      */
     public function destroy(Computacion $computacion)
     {
-        //
+      
+        $computacion->delete();
+        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
+    }
+
+    public function agregar_carrera($estudiante){
+        $Estudiante= Persona::findOrFail($persona);
+        $idsNivelesDocente=Arr::pluck($Persona->docente->niveles, 'id');
+        $nivelesTodos=Arr::pluck(Nivel::select('id')->get(),'id');
+        $nivelesFaltantes=collect($nivelesTodos)->diff($idsNivelesDocente);
+        $nivelesFaltantes=Nivel::whereIn('id',$nivelesFaltantes)->get();
+        $nivelesDocente=Nivel::whereIn('id',$idsNivelesDocente)->get();
+        return view('docente.niveles',compact('nivelesDocente','nivelesFaltantes','Persona'));
     }
 }
