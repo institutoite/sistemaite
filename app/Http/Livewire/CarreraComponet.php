@@ -42,7 +42,6 @@ class CarreraComponet extends Component
 
     public function update(){
         $this->validate(['carrera'=>'required']);
-
         $Carrera=Carrera::findOrFail($this->carrera_id);
         $Carrera->carrera=$this->carrera;
         $Carrera->save();

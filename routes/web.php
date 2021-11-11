@@ -171,9 +171,10 @@ Route::delete('eliminar/gestion/{gestion}', [GestionController::class, 'destroy'
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  C A R R E R A S   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
-Route::get('carreras', [CarreraController::class, 'index'])->name('carrea.index');
+Route::get('carreras', [CarreraController::class, 'index'])->name('carrera.index');
+Route::get('carreras/show/{carrera}', [CarreraController::class, 'show'])->name('carrera.show');
 Route::get('carreers', [CarreraController::class, 'listar'])->name('carreers.index');
-//Route::get('carreers', [CarreraController::class, 'listar'])->name('carreers.index');
+Route::get('carreers/editar', [CarreraController::class, 'edit'])->name('carrera.edit');
 
 
 // Route::get('gestiones/editar78', [GestionController::class, 'edition'])->name('gestion.editar');

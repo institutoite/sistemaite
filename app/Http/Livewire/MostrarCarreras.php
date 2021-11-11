@@ -10,6 +10,8 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class MostrarCarreras extends DataTableComponent
 {
+    
+
     public function columns(): array
     {
         return [
@@ -33,5 +35,10 @@ class MostrarCarreras extends DataTableComponent
     {
         return Carrera::query();
     }
+    public function redirectToModel(string $name, array $parameters = [], $absolute = true): void
+    {
+        $this->redirectRoute($name, $parameters, $absolute);
+    }
+
     
 }

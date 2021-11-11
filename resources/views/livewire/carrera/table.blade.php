@@ -1,4 +1,4 @@
-<table class="table table-light">
+<table class="table table-bordered table-striped">
     <thead class="thead-light">
         <tr>
             <th>#</th>
@@ -12,12 +12,15 @@
                 <td>{{$carrera->id}}</td>
                 <td>{{$carrera->carrera}}</td>
                 <td>
-                    <button wire:click="editar({{$carrera->id}})" class="btn btn-primary">
-                        Editar
-                    </button>
-                    <button wire:click="delete({{ $carrera->id }})" class="btn btn-danger">
-                        Eliminar
-                    </button>
+                    <a wire:click="editar({{$carrera->id}})" class="">
+                        <i class="fa fa-fw fa-edit text-primary"></i>
+                    </a>
+                    <a wire:click="show({{$carrera->id}})" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Ver esta persona">
+                        <i class="fa fa-fw fa-eye text-primary"></i>
+                    </a>
+                    <a wire:click="delete({{ $carrera->id }})">
+                        <i class="fa fa-fw fa-trash text-danger"></i>   
+                    </a>
                 </td>
             </tr>
         @endforeach
@@ -26,3 +29,6 @@
     
 </table>
 {{ $carreras->links() }}
+
+
+

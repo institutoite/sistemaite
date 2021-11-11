@@ -13,4 +13,5 @@
         <i class="fa fa-fw fa-trash text-danger"></i>   
     </button>
 </form> 
+<a href="#" wire:click.stop.prevent="redirectToModel('carrera.edit', [{{ $carrera->id }}])" class="font-medium">Editar</a>
 

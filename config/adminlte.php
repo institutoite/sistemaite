@@ -951,6 +951,28 @@ return [
                 ],
             ],
         ],
+        //** %%%%%%%%%%%%%%%%%%  MENU CARRERAS %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Carreras',
+            'icon'    => 'fas fa-map-marked-alt',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'carreras',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Listar Carreers',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'carreers',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
         //** %%%%%%%%%%%%%%%%%%  MENU MUNICIPIOS %%%%%%%%%%%%% */
         
         [
