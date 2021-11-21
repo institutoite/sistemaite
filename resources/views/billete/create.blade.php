@@ -27,8 +27,6 @@
                     </div>
                 @endif        
                     
-                   
-                        
                     <form method="POST" action="{{ route('billetes.guardar', $pago)}}" role="form" enctype="multipart/form-data">
                         @csrf
                         <div class="card">
@@ -37,6 +35,7 @@
                             </div>
                             <div class="card-body border border-3 border-primary turqueza_suave">
                                 @include('billete.form')
+                                
                             </div>
                         </div>
                          <div class="card">

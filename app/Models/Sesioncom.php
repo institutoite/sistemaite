@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Sesioncom extends Model
 {
     use HasFactory;
-     public function matriculacion()
+    protected $dates = [
+        'horainicio', 'horafin','created_at', 'updated_at',
+    ];
+
+    public function matriculacion()
     {
         return $this->belongsTo('App\Models\Matriculacion');
     }

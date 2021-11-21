@@ -980,6 +980,38 @@ return [
                 ],
             ],
         ],
+        //** %%%%%%%%%%%%%%%%%%  MENU ASIGNATURAS %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Asignaturas',
+            'icon'    => 'fas fa-map-marked-alt',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'asignaturas',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        //** %%%%%%%%%%%%%%%%%%  MENU NIVELES %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Niveles',
+            'icon'    => 'fas fa-map-marked-alt',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'nivels',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
         //** %%%%%%%%%%%%%%%%%%  MENU MUNICIPIOS %%%%%%%%%%%%% */
         
         [

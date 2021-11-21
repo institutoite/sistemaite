@@ -19,7 +19,7 @@ class CreatePagosTable extends Migration
             $table->decimal('pagocon', 6, 2);
             $table->decimal('cambio', 6, 2);
             $table->unsignedInteger('pagable_id');
-            $table->string('pagable_type');
+            $table->string('pagable_type',30);
 
             $table->timestamps();
         });

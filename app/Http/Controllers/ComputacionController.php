@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Computacion;
+use App\Models\Persona;
+use App\Models\Carrera;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class ComputacionController extends Controller
 {
@@ -80,18 +83,26 @@ class ComputacionController extends Controller
      */
     public function destroy(Computacion $computacion)
     {
-      
         $computacion->delete();
         return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
 
-    public function agregar_carrera($estudiante){
-        $Estudiante= Persona::findOrFail($persona);
-        $idsNivelesDocente=Arr::pluck($Persona->docente->niveles, 'id');
-        $nivelesTodos=Arr::pluck(Nivel::select('id')->get(),'id');
-        $nivelesFaltantes=collect($nivelesTodos)->diff($idsNivelesDocente);
-        $nivelesFaltantes=Nivel::whereIn('id',$nivelesFaltantes)->get();
-        $nivelesDocente=Nivel::whereIn('id',$idsNivelesDocente)->get();
-        return view('docente.niveles',compact('nivelesDocente','nivelesFaltantes','Persona'));
+    public function mostrar_carreras($persona){
+        
+        $Persona= Persona::findOrFail($persona);
+        $idsCarreras=Arr::pluck($Persona->computacion->carreras, 'id');
+        $CarrerasTodos=Arr::pluck(Carrera::select('id')->get(),'id');
+        $CarrerasFaltantes=collect($CarrerasTodos)->diff($idsCarreras);
+        $CarrerasFaltantes=Carrera::whereIn('id',$CarrerasFaltantes)->get();
+        $CarrerasComputacion=Carrera::whereIn('id',$idsCarreras)->get();
+        return view('computacion.carrerasconfig',compact('CarrerasComputacion','CarrerasFaltantes','Persona'));
     }
+
+    public function GuardarNuevaCarrera(Request $request,$computacion) {
+        
+        $computacion = Persona::findOrFail($computacion)->computacion;
+        $computacion->carreras()->attach(array_keys($request->carreras));
+
+        return redirect()->route('configuracion.gestionar.carreras',$computacion->persona->id);
+    } 
 }

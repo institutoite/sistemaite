@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComputacionCarreraTable extends Migration
+class CreateCarreraComputacionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateComputacionCarreraTable extends Migration
      */
     public function up()
     {
-        Schema::create('computacion_carrera', function (Blueprint $table) {
+        Schema::create('carrera_computacion', function (Blueprint $table) {
             $table->unsignedInteger('computacion_id');
             $table->foreign('computacion_id')
                 ->references('id')
@@ -33,6 +33,6 @@ class CreateComputacionCarreraTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('computacion_carrera');
+        Schema::dropIfExists('carrera_computacion');
     }
 }

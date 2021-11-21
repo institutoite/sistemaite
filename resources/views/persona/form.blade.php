@@ -63,7 +63,6 @@
     </div>
 
 {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO  FECHA NACIMIENTO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-    {{--\Carbon::createFromFormat('Y-m-d', $persona->fechanacimiento)--}}
     <div class="row"> 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             @isset($persona)
@@ -367,7 +366,6 @@
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
                 <div class="border-danger input-group text-center">
                     <input type="file" data-initial-preview="{{isset($persona->foto) ? URL::to('/').Storage::url("$persona->foto") : URL::to('/').Storage::url("estudiantes/foto.jpeg") }}" accept=".png, .jpg, .jpeg, .gif" name="foto" id="foto" data-classButton="btn btn-success" data-input="false" data-classIcon="icon-plus">                
-
                 </div>
             </div>
         </div>

@@ -22,7 +22,6 @@
                             <div class="row">
                                 <div class="col-6">
                                     @foreach ($nivelesDocente as $nivel)
-                                        
                                         <div class="form-check form-switch mb-3">
                                             <input class="form-check-input" type="checkbox" name="niveles[{{$nivel->id}}]"  checked id="{{$nivel->nivel}}">
                                             <label class="form-check-label" for="{{$nivel->id}}">{{$nivel->nivel}}</label>

@@ -42,6 +42,7 @@ class DatabaseSeeder extends Seeder
             ObservacionSeeder::class,
             ComputacionSeeder::class,
             CarreraSeeder::class,
+            AsignaturaSeeder::class,
 
         ]);
 

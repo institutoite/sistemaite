@@ -8,12 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Matriculacion extends Model
 {
     use HasFactory;
-    
+
+    protected $dates = [
+        'fechaini','fechafin','created_at', 'updated_at',
+    ];
+
     public function motivo()
     {
         return $this->hasOne('App\Models\Motivo');
     }
-    public function sesionecoms()
+    public function sesionescoms()
     {
         return $this->hasMany('App\Models\Sesioncom');
     }
@@ -21,4 +25,15 @@ class Matriculacion extends Model
     {
         return $this->hasMany('App\Models\Programacioncom');
     }
+    
+    public function computacion()
+    {
+        return $this->belongsTo("App\Models\Computacion");
+    }
+    public function pagos()
+    {
+        return $this->morphMany(Pago::class, 'pagable');
+    }
+    
+
 }

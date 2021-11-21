@@ -124,27 +124,6 @@ class InscripcioneController extends Controller
         }else{
             return view('inscripcione.configurar', compact('nivel','inscripcion', 'materias', 'aulas', 'docentes', 'tipo', 'dias', 'programacion')); 
         }
-        
-        // if ($nivel->nivel=='INICIAL') {
-            
-        // }
-        // if ($nivel->nivel=='PRIMARIA') {
-            
-        // }
-        // if ($nivel->nivel=='SECUNDARIA') {
-        // }
-        // if ($nivel->nivel=='PREUNIVERSITARIO') {
-            
-        // }
-        // if ($nivel->nivel=='UNIVERSITARIO') {
-            
-        // }
-        // if ($nivel->nivel=='PROFESIONAL') {
-            
-        // }
-        //dd($inscripcion);
-       
-       //return view('inscripcione.configurar',compact('inscripcion','materias','aulas','docentes','tipo','dias', 'programacion'));        
     }
 
     /**

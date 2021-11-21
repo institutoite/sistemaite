@@ -16,6 +16,10 @@ class CreateAsignaturasTable extends Migration
         Schema::create('asignaturas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('asignatura', 50);
+            $table->unsignedInteger('carrera_id');
+            $table->foreign('carrera_id')
+                ->references('id')
+                ->on('carreras');
             $table->timestamps();
         });
     }

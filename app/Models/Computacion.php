@@ -24,4 +24,9 @@ class Computacion extends Model
     {
         return $this->belongsToMany('App\Models\Asignatura');
     }
+
+    public function matriculaciones()
+    {
+        return $this->hasMany(Matriculacion::class);
+    }
 }

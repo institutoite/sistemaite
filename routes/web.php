@@ -2,10 +2,21 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarreraController;
+use App\Http\Controllers\MatriculacionController;
+use App\Http\Controllers\AsignaturaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GradoController;
 use App\Http\Controllers\GestionController;
 use App\Http\Controllers\OpcionController;
+use App\Http\Controllers\PagocomController;
+use App\Http\Controllers\ProgramacioncomController;
+
+
+
+use App\Http\Controllers\ProductoController;
+
+
+
 use Illuminate\Support\Facades\Auth;
 //use SweetAlert;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
@@ -75,8 +86,8 @@ Route::resource('municipios', "MunicipioController");
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% C O L E G I O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('colegios', "ColegioController");
 Route::get('colegio/all', 'ColegioController@todos');
-/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  F I N   C O L E G I O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  F I N   C O L E G I O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('modalidads', "ModalidadController");
 Route::resource('nivels', "NivelController");
 Route::resource('inscripciones', "InscripcioneController");
@@ -101,8 +112,9 @@ Route::get('opciones/administrativos/{persona}',[OpcionController::class,'admini
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       COMPUTACIONES         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('computaciones','ComputacionController@index')->name('computacion.index');
-Route::get('opciones/computacion/{persona}',[OpcionController::class,'coputacion'])->name('opcion.computacion');
-
+Route::get('computacion/carreras/{persona}', 'ComputacionController@mostrar_carreras')->name('configuracion.gestionar.carreras');
+Route::get('opciones/computacion/{persona}',[OpcionController::class,'computacion'])->name('opcion.computacion');
+Route::post('computacion/carreras/configurar/{persona}', 'ComputacionController@GuardarNuevaCarrera')->name('computacion.carreras.guardar');
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  T E M A S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -125,12 +137,25 @@ Route::get('pagos/inscripcion/{inscripcione}', 'PagoController@detallar')->name(
 Route::post('pagos/realizar/{inscripcione}', 'PagoController@guardar')->name('pagos.guardar');
 Route::patch('pago/actualizar/{pago}', "PagoController@actualizar")->name('pago.actualizar');
 
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       P  A  G  O  S  COMPUTACION         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+Route::get('pagocom/crear/{matriculacion}', 'PagocomController@crear')->name('pagocom.crear');
+Route::get('pagocom/mostrar/{pagocom}', 'PagocomController@mostrar')->name('pagocom.mostrar');
+Route::get('pagocom/editar/{pagocom}', 'PagocomController@editar')->name('pagocom.editar');
+Route::get('pagocom/inscripcion/{matriculacion}', 'PagocomController@detallar')->name('pagocom.detallar');
+Route::post('pagocom/realizar/{matriculacion}', 'PagocomController@guardar')->name('pagocom.guardar');
+Route::patch('pagocom/actualizar/{pagocom}', "PagocomController@actualizar")->name('pagcom.actualizar');
+
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       B  I  L  L  E  T  E  S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('billetes', "BilleteController");
 Route::get('billetes/crear/{pago}', "BilleteController@crear")->name('billete.crear');
-Route::post('billetes/crear/{pago}', 'BilleteController@guardar')->name('billetes.guardar');
+Route::post('billetes/guardar/{pago}', 'BilleteController@guardar')->name('billetes.guardar');
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       BILLETES COMPUTACION       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+//Route::get('billetes', [BilleteController::class,'index']);
+Route::get('billetecom/crear/{pago}', "BilletecomController@crear")->name('billetecom.crear');
+Route::post('billetecom/guardar/{pago}', 'BilletecomController@guardar')->name('billetecom.guardar');
 
 
 
@@ -158,7 +183,6 @@ Route::get('grados/store',[GradoController::class,'store'])->name('grados.store'
 Route::get('grados/no/cursados/{estudiante}','GradoController@gradosAunNoCursados')->name('grados.no.cursados');
 Route::get('/guardar/gestion',[GradoController::class,'agregarGrado'])->name('agregar.grado');
 
-
 Route::get('grado/mostrar/', "GradoController@mostrar")->name("grado.mostrar");
 Route::get('grado/editar/', "GradoController@editar")->name("grado.editar");
 Route::get('grado/actualizar/', "GradoController@actualizar")->name("grado.actualizar");
@@ -176,9 +200,23 @@ Route::delete('eliminar/gestion/{gestion}', [GestionController::class, 'destroy'
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  C A R R E R A S   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('carreras', [CarreraController::class, 'index'])->name('carrera.index');
+Route::get('carrera/create',[CarreraController::class,'create'])->name('carrera.create');
 Route::get('carreras/show/{carrera}', [CarreraController::class, 'show'])->name('carrera.show');
-Route::get('carreers', [CarreraController::class, 'listar'])->name('carreers.index');
-Route::get('carreers/editar', [CarreraController::class, 'edit'])->name('carrera.edit');
+Route::post('carrera/guardar',[CarreraController::class,'store'])->name('carrera.store');
+Route::get('carrera/mostrar/{carrera}', [CarreraController::class,'show'])->name("carrera.show");
+Route::get('carrera/editar/{carrera}', [CarreraController::class,'edit'])->name("carrera.edit");
+Route::get('carrera/actualizar/{carrera}', [CarreraController::class,'update'])->name("carrera.update");
+Route::delete('eliminar/carrera/{carrera}', [CarreraController::class,'destroy'])->name('carrera.destroy');
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MATRICULACION   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::get('matriculacion/create/{computacion}',[MatriculacionController::class,'create'])->name('matriculacion.create');
+Route::get('miscarreras/{computacion}', [MatriculacionController::class, 'misCarreras'])->name('miscarreras.listar');
+Route::get('carrerasajax/{computacion}', [MatriculacionController::class, 'CarrerasComptacion'])->name('miscarrerasajax');
+Route::post('matriculacion/guardar',[MatriculacionController::class,'store'])->name('matriculacion.store');
+Route::post('matriculacion/guardar/configuracion/{matriculaciocion}', 'MatriculacionController@guardarconfiguracion')->name('matriculacion.guardar.configuracion');
+
+
 
 
 // Route::get('gestiones/editar78', [GestionController::class, 'edition'])->name('gestion.editar');
@@ -189,6 +227,15 @@ Route::get('motivo/mostrar/', "MotivoController@mostrar")->name("motivo.mostrar"
 Route::get('motivo/editar/', "MotivoController@editar")->name("motivo.editar");
 Route::get('motivo/actualizar/', "MotivoController@actualizar")->name("motivo.actualizar");
 Route::delete('eliminar/motivo/{motivo}', 'MotivoController@destroy')->name('eliminar.motivo');
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  ASIGNATURAS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::get('asignaturas', [AsignaturaController::class,'index'])->name('asignatura.index');
+Route::get('asignatura/create',[AsignaturaController::class,'create'])->name('asignatura.create');
+Route::post('asignatura/guardar',[AsignaturaController::class,'store'])->name('asignatura.store');
+Route::get('asignatura/mostrar/{asignatura}', [AsignaturaController::class,'show'])->name("asignatura.show");
+Route::get('asignatura/editar/{asignatura}', [AsignaturaController::class,'edit'])->name("asignatura.edit");
+Route::get('asignatura/actualizar/{asignatura}', [AsignaturaController::class,'update'])->name("asignatura.update");
+Route::delete('eliminar/asignatura/{asignatura}', [AsignaturaController::class,'destroy'])->name('asignatura.destroy');
 
 Route::resource('personas', "PersonaController");
 Route::resource('telefonos', "TelefonoController");
@@ -240,6 +287,21 @@ Route::get('actualizar/programa/segunpago/{inscripcione}', 'ProgramacionControll
 Route::get('clase/marcar/normal/{programacion_id}', 'ProgramacionController@marcadoNormal')->name('marcado.presente.normal');
 Route::get('guardar/observacion/programacion', 'ProgramacionController@guardarObservacion')->name('guardar.observacion.programacion');
 
+
+/** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% P R O G R A M A C I O N  COMPUTACION  C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::get('generar/programacioncom/{matriculacion}',[ProgramacioncomController::class,'generarPrograma'])->name('generar.programacioncom');
+Route::get('programacioncom/mostrar/{matriculacion}', [ProgramacioncomController::class,'mostrar'])->name('programacioncom.mostrar');
+Route::get('programacioncom/mostrar/clases', [ProgramacioncomController::class,'mostrarClases'])->name('programacioncom.mostrar.clases');
+Route::get('programacioncom/hoy/{inscripcion}', [ProgramacioncomController::class,'programacioncomesHoy'])->name('programacioncomes.hoy');
+Route::get('programacioncom/editar/', [ProgramacioncomController::class,'editar'])->name('programacioncom.editar');
+Route::get('programacioncom/actualizar/', [ProgramacioncomController::class,'actualizar'])->name('programacioncom.actualizar');
+Route::get('regenerar/programa/{matriculacion}/{fecha}', [ProgramacioncomController::class,'regenerarPrograma'])->name('regenerar.programacioncom');
+Route::get('mostrar/programa/{matriculacion}', [ProgramacioncomController::class,'mostrarPrograma'])->name('mostrar.programacioncom');
+Route::get('imprimir/programa/{matriculacion}', [ProgramacioncomController::class,'imprimirPrograma'])->name('imprimir.programacioncom');
+Route::get('actualizar/programa/segunpago/{matriculacion}', [ProgramacioncomController::class,'actualizarProgramaSegunPago'])->name('actualizar.programacioncom.segun.pago');
+Route::get('clase/marcar/normal/{programacioncom_id}', [ProgramacioncomController::class,'marcadoNormal'])->name('marcado.presente.normal.programacioncom');
+Route::get('guardar/observacion/programacioncom', [ProgramacioncomController::class,'guardarObservacion'])->name('guardar.observacion.programacioncom');
+
 /**
  * clases
  */
@@ -278,13 +340,10 @@ Route::delete('eliminar/inscripcion/{id}', 'InscripcioneController@destroy')->na
 Route::delete('eliminar/usuario/{id}', 'UserController@destroy')->name('eliminar.user');
 Route::delete('eliminar/pago/{pago}', 'PagoController@destroy')->name('eliminar.pago');
 Route::delete('eliminar/computacion/{computacion}', 'ComputacionController@destroy')->name('eliminar.computacion');
+Route::delete('eliminar/carrera/{carrera}', 'CarreraController@destroy')->name('eliminar.carrera');
 
 Route::get('tomarfoto', function () {return view('persona.tomarfoto');})->name('tomarfoto');
 Route::get('tomarfoto/{persona}', 'PersonaController@tomarfoto')->name('tomar.foto.persona');
-
-
-
-
 /**
 * si tiene inscripción que aparesca el boton caso contrario no 
 * si tiene una inscripción que aparesca de una vez el marcado 
@@ -296,4 +355,4 @@ Route::get('tomarfoto/{persona}', 'PersonaController@tomarfoto')->name('tomar.fo
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Route Hooks - Do not delete//
-	Route::view('ninacos', 'livewire.ninacos.index')->middleware('auth');
+Route::view('ninacos', 'livewire.ninacos.index')->middleware('auth');

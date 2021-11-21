@@ -14,13 +14,9 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        return view('livewire.carrera.index');
+        return view('carrera.index');
     }
-    public function listar()
-    {
-        
-        return view('livewire.carreer.index');
-    }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -29,7 +25,7 @@ class CarreraController extends Controller
      */
     public function create()
     {
-        
+        return view('carrera.create');
     }
 
     /**
@@ -40,7 +36,11 @@ class CarreraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $carrera = new Carrera();
+        $carrera->carrera=$request->carrera;
+        $carrera->save();
+        return redirect()->route('carrera.index');
+        
     }
 
     /**
@@ -51,7 +51,8 @@ class CarreraController extends Controller
      */
     public function show(Carrera $carrera)
     {
-        //
+        
+        return view('carrera.show',compact('carrera'));
     }
 
     /**
@@ -62,7 +63,7 @@ class CarreraController extends Controller
      */
     public function edit(Carrera $carrera)
     {
-        //
+        return view('carrera.edit', compact('carrera'));
     }
 
     /**
@@ -74,7 +75,9 @@ class CarreraController extends Controller
      */
     public function update(Request $request, Carrera $carrera)
     {
-        //
+        $carrera->carrera=$request->carrera;
+        $carrera->save();
+        return redirect()->route('carrera.index');
     }
 
     /**
@@ -85,6 +88,7 @@ class CarreraController extends Controller
      */
     public function destroy(Carrera $carrera)
     {
-        //
+        $carrera->delete();
+        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
 }

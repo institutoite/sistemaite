@@ -19,6 +19,8 @@ use App\Models\Nivel;
 use App\Models\Clase;
 use App\Models\Inscripcione;
 use App\Models\Motivo;
+use App\Models\Asignatura;
+use App\Models\Carrera;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -170,12 +172,20 @@ Route::get('menus', function () {
         ->toJson();
 });
 
-// Route::get('grados', function () {
-//     return datatables()->of(Grado::get())
-//         ->addColumn('btn', 'grado.action')
-//         ->rawColumns(['btn'])
-//         ->toJson();
-// });
+
+Route::get('asignaturas', function () {
+    $asignaturas=Asignatura::select('asignaturas.id','asignatura','carrera')->join('carreras','carreras.id','=','asignaturas.carrera_id')->get();
+    return datatables()->of($asignaturas)
+        ->addColumn('btn', 'asignatura.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+});
+Route::get('carreras', function () {
+    return datatables()->of(Carrera::all())
+        ->addColumn('btn', 'carrera.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+});
 
 Route::get('departamentos', function () {
     return datatables()->of(Departamento::get())

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Asignatura;
+use App\Models\Carrera;
 use Illuminate\Http\Request;
+use App\Http\Requests\AsignaturaGuardarRequest;
 
 class AsignaturaController extends Controller
 {
@@ -14,7 +16,7 @@ class AsignaturaController extends Controller
      */
     public function index()
     {
-        //
+        return view('asignatura.index');
     }
 
     /**
@@ -24,7 +26,8 @@ class AsignaturaController extends Controller
      */
     public function create()
     {
-        //
+        $carreras=Carrera::all();
+        return view('asignatura.create',compact('carreras'));
     }
 
     /**
@@ -33,9 +36,13 @@ class AsignaturaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AsignaturaGuardarRequest $request)
     {
-        //
+        $asignatura= new Asignatura();
+        $asignatura->asignatura= $request->asignatura;
+        $asignatura->carrera_id= $request->carrera_id;
+        $asignatura->save();
+        return redirect()->route('asignatura.index');
     }
 
     /**
@@ -44,9 +51,10 @@ class AsignaturaController extends Controller
      * @param  \App\Models\Asignatura  $asignatura
      * @return \Illuminate\Http\Response
      */
-    public function show(Asignatura $asignatura)
+    public function show($asignatura_id)
     {
-        //
+        $asignatura=Asignatura::findOrFail($asignatura_id);
+        return view('asignatura.show',compact('asignatura'));
     }
 
     /**
@@ -55,9 +63,12 @@ class AsignaturaController extends Controller
      * @param  \App\Models\Asignatura  $asignatura
      * @return \Illuminate\Http\Response
      */
-    public function edit(Asignatura $asignatura)
+    public function edit($asignatura)
     {
-        //
+        // dd($asignatura);
+        $carreras=Carrera::all();
+        $asignatura= Asignatura::findOrFail($asignatura);
+        return view('asignatura.edit', compact('asignatura','carreras'));
     }
 
     /**
@@ -69,7 +80,10 @@ class AsignaturaController extends Controller
      */
     public function update(Request $request, Asignatura $asignatura)
     {
-        //
+        $asignatura->asignatura=$request->asignatura;
+        $asignatura->carrera_id=$request->carrera_id;
+        $asignatura->save();
+        return redirect()->route('asignatura.index');
     }
 
     /**
@@ -80,6 +94,7 @@ class AsignaturaController extends Controller
      */
     public function destroy(Asignatura $asignatura)
     {
-        //
+        $asignatura->delete();
+        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
 }

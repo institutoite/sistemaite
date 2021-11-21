@@ -33,11 +33,6 @@ class CreateMatriculacionsTable extends Migration
             $table->decimal('totalhoras', 6, 2);
             $table->boolean('vigente');
             $table->boolean('condonado');
-            $table->string('objetivo');
-            $table->unsignedInteger('motivo_id');
-            $table->foreign('motivo_id', 'fk_matriculacion_motivos_idx')
-            ->references('id')->on('motivos');
-            
             $table->timestamps();
         });
     }
