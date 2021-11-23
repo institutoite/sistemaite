@@ -31,8 +31,9 @@
                             <td>{{ $contador }}</td>
                             <td>{{ $programacion->fecha->isoFormat('D-MM-Y dddd') }}</td>
                             
-                            <td>{{ $programacion->horaini->isoFormat('HH:mm').'-'.$programacion->horafin->isoFormat('HH:mm')}}</td>
+                            <td>{{ $programacion->hora_ini->isoFormat('HH:mm').'-'.$programacion->hora_fin->isoFormat('HH:mm')}}</td>
                             <td>{{ $programacion->docente->persona->nombre }}</td>
+                            <td>{{ $programacion->materia->materia }}</td>
                             <td>{{ $programacion->aula->aula }}</td>
                             <td>
                                 <a href="{{ route('licencias.create',$programacion->id) }}" class="text-danger" data-toggle="tooltip" data-placement="top" title="Licencia"><i class="fas fa-ambulance"></i> </a>

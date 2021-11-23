@@ -14,6 +14,9 @@ use App\Models\Matriculacion;
 use Illuminate\Support\Arr;
 use App\Http\Requests\MatriculacionStoreRequest;
 
+
+use Illuminate\Support\Facades\Auth;
+
 class MatriculacionController extends Controller
 {
     /**
@@ -89,6 +92,7 @@ class MatriculacionController extends Controller
         $docentes = $nivel->docentes;
         $dias = Dia::get();
         $computacion=$matriculacion->computacion;
+        $matriculacion->userable()->create(['user_id'=>Auth::user()->id]);
         return view('matriculacion.configurar', compact('computacion','matriculacion', 'aulas', 'docentes','dias')); 
     }
 
@@ -154,5 +158,13 @@ class MatriculacionController extends Controller
         }
         //$pagos=$matriculacion->pagos();
         return redirect()->route('pagocom.crear',$matriculacion);
+    }
+
+    public function actualizar_fecha_proximo_pago($fecha,$matriculacion_id){
+       
+        $matriculacion=Matriculacion::findOrFail($matriculacion_id);
+        $matriculacion->fecha_proximo_pago=$fecha;
+        $matriculacion->save();
+        return redirect()->route('imprimir.programacioncom',$matriculacion->id);
     }
 }

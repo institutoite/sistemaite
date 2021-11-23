@@ -25,5 +25,9 @@ class Aula extends Model
     {
         return $this->belongsTo(Sesion::class);
     }
+    public function programacioncom()
+    {
+        return $this->hasOne(Programacioncom::class);
+    }
 
 }

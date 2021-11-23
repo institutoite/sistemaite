@@ -10,6 +10,7 @@ use App\Http\Controllers\GestionController;
 use App\Http\Controllers\OpcionController;
 use App\Http\Controllers\PagocomController;
 use App\Http\Controllers\ProgramacioncomController;
+use App\Http\Controllers\ClasecomController;
 
 
 
@@ -215,6 +216,7 @@ Route::get('miscarreras/{computacion}', [MatriculacionController::class, 'misCar
 Route::get('carrerasajax/{computacion}', [MatriculacionController::class, 'CarrerasComptacion'])->name('miscarrerasajax');
 Route::post('matriculacion/guardar',[MatriculacionController::class,'store'])->name('matriculacion.store');
 Route::post('matriculacion/guardar/configuracion/{matriculaciocion}', 'MatriculacionController@guardarconfiguracion')->name('matriculacion.guardar.configuracion');
+Route::get('matriculacion/actualizar/fechapago/{fecha}/{id}',[MatriculacionController::class,'actualizar_fecha_proximo_pago'])->name('setcom.fecha.proximo.pago');
 
 
 
@@ -292,15 +294,18 @@ Route::get('guardar/observacion/programacion', 'ProgramacionController@guardarOb
 Route::get('generar/programacioncom/{matriculacion}',[ProgramacioncomController::class,'generarPrograma'])->name('generar.programacioncom');
 Route::get('programacioncom/mostrar/{matriculacion}', [ProgramacioncomController::class,'mostrar'])->name('programacioncom.mostrar');
 Route::get('programacioncom/mostrar/clases', [ProgramacioncomController::class,'mostrarClases'])->name('programacioncom.mostrar.clases');
-Route::get('programacioncom/hoy/{inscripcion}', [ProgramacioncomController::class,'programacioncomesHoy'])->name('programacioncomes.hoy');
+Route::get('programacioncom/hoy/{matriculacion}', [ProgramacioncomController::class,'programacionescomHoy'])->name('programacioncom.hoy');
 Route::get('programacioncom/editar/', [ProgramacioncomController::class,'editar'])->name('programacioncom.editar');
 Route::get('programacioncom/actualizar/', [ProgramacioncomController::class,'actualizar'])->name('programacioncom.actualizar');
-Route::get('regenerar/programa/{matriculacion}/{fecha}', [ProgramacioncomController::class,'regenerarPrograma'])->name('regenerar.programacioncom');
-Route::get('mostrar/programa/{matriculacion}', [ProgramacioncomController::class,'mostrarPrograma'])->name('mostrar.programacioncom');
-Route::get('imprimir/programa/{matriculacion}', [ProgramacioncomController::class,'imprimirPrograma'])->name('imprimir.programacioncom');
-Route::get('actualizar/programa/segunpago/{matriculacion}', [ProgramacioncomController::class,'actualizarProgramaSegunPago'])->name('actualizar.programacioncom.segun.pago');
+Route::get('regenerar/programacom/{matriculacion}/{fecha}', [ProgramacioncomController::class,'regenerarPrograma'])->name('regenerar.programacioncom');
+Route::get('mostrar/programacom/{matriculacion}', [ProgramacioncomController::class,'mostrarProgramacom'])->name('mostrar.programacioncom');
+Route::get('imprimir/programacom/{matriculacion}', [ProgramacioncomController::class,'imprimirProgramacom'])->name('imprimir.programacioncom');
+Route::get('actualizar/programacom/segunpago/{matriculacion}', [ProgramacioncomController::class,'actualizarProgramaSegunPago'])->name('actualizar.programacioncom.segun.pago');
 Route::get('clase/marcar/normal/{programacioncom_id}', [ProgramacioncomController::class,'marcadoNormal'])->name('marcado.presente.normal.programacioncom');
 Route::get('guardar/observacion/programacioncom', [ProgramacioncomController::class,'guardarObservacion'])->name('guardar.observacion.programacioncom');
+Route::get('programacioncom/marcar/{matriculacion}', [ClasecomController::class,'marcadoGeneral'])->name('clases.marcadocom.general');
+
+
 
 /**
  * clases

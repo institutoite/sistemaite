@@ -28,9 +28,10 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $programacion->fecha->isoFormat('D-MM-Y') }}</td>
                             
-                            <td>{{ $programacion->horaini->isoFormat('HH:mm')}}</td>
-                            <td>{{ $programacion->horafin->isoFormat('HH:mm') }}</td>
+                            <td>{{ $programacion->hora_ini->isoFormat('HH:mm')}}</td>
+                            <td>{{ $programacion->hora_fin->isoFormat('HH:mm') }}</td>
                             <td>{{ $programacion->nombre }}</td>
+                            <td>{{ $programacion->materia }}</td>
                             <td>
                                 <a class="text-secondary" href="{{ route('programacions.show',$programacion->id) }}"><i class="fas fa-tasks"></i> </a>
                                 <a class="text-danger" href="{{ route('programacions.edit',$programacion->id) }}"><i class="fas fa-file-powerpoint"></i> </a>

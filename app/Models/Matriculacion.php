@@ -10,7 +10,7 @@ class Matriculacion extends Model
     use HasFactory;
 
     protected $dates = [
-        'fechaini','fechafin','created_at', 'updated_at',
+        'fechaini','fechafin','fecha_proximo_pago','created_at', 'updated_at',
     ];
 
     public function motivo()
@@ -33,6 +33,15 @@ class Matriculacion extends Model
     public function pagos()
     {
         return $this->morphMany(Pago::class, 'pagable');
+    }
+
+    public function asignatura()
+    {
+        return $this->belongsTo(Asignatura::class);
+    }
+    public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
     }
     
 

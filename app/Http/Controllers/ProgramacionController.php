@@ -103,8 +103,6 @@ class ProgramacionController extends Controller
     }
 
     public function programacionesHoy(Request $request){
-
-        //return response()->json(['id'=>$request->id]);
         $programacion=Programacion::join('docentes','docentes.id','=','programacions.docente_id')
                     ->join('materias','materias.id','=','programacions.materia_id')
                     ->join('aulas','aulas.id','=','programacions.aula_id')
@@ -115,8 +113,6 @@ class ProgramacionController extends Controller
                 ->addColumn('btn','programacion.actions')
                 ->rawColumns(['btn'])
                 ->toJson();
-
-        //return response()->json($programacion);
     }
 
     /**
@@ -248,7 +244,7 @@ class ProgramacionController extends Controller
 
     /***********************************************************************************************
      * 
-     *                             G E N E R A R  P R O G R A M A  
+     *           G E N E R A R  P R O G R A M A  
      * 
      ***********************************************************************************************/
     public function generarPrograma($inscripcione_id){
@@ -599,12 +595,8 @@ class ProgramacionController extends Controller
                         ->get(); 
         $materias=Materia::all();
         $aulas=Aula::all();
-        
         $hora_inicio=Carbon::now()->isoFormat('HH:mm:ss');
         $hora_fin = Carbon::now()->addHours($programa->hora_ini->floatDiffInHours($programa->hora_fin))->isoFormat('HH:mm:ss');
-
-        
-
         return view('clase.create',compact('docentes','programa','inscripcion','materias','aulas','hora_inicio','hora_fin'));
     }
 

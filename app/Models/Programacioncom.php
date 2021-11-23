@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Programacioncom extends Model
 {
     use HasFactory;
+    protected $dates = ['fecha','horaini','horafin'];
 
         /* Get the docente associated with the Programacioncom
         *
@@ -32,7 +33,10 @@ class Programacioncom extends Model
     {
         return $this->belongsTo(Matriculacion::class);
     }
-    
+    public function aula()
+    {
+        return $this->belongsTo('App\Models\Aula');
+    }
     
 
 }

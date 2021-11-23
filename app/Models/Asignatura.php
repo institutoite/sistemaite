@@ -13,10 +13,16 @@ class Asignatura extends Model
     {
         return $this->belongsTo('App\Models\Carrera');
     }
+    public function matriculacion()
+    {
+        return $this->hasOne(Matriculacion::class);
+    }
     public function computaciones()
     {
         return $this->belongsToMany('App\Models\Computacion');
     }
+
+
 
     
 }

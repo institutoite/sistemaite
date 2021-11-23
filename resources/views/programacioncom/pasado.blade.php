@@ -1,6 +1,6 @@
-<div class="card card-light border-primary collapsed-card">
-    <div class="card-header">
-        <h3 class="card-title text-secondary">TODAS LAS CLASES</h3> 
+<div class="card collapsed-card">
+    <div class="card-header {{$clase}}">
+        <h3 class="card-title text-secondary">CLASES VENCIDAS O PASADAS</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
             </button>
@@ -23,26 +23,26 @@
                 </thead>
                 <tbody>
                     @foreach ($programaciones as $programacion)
-                        
-                        <tr>
+                        @if ($programacion->fecha< Carbon\Carbon::now())
+                            <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $programacion->fecha->isoFormat('D-MM-Y') }}</td>
-                            
-                            <td>{{ $programacion->horaini->isoFormat('HH:mm')}}</td>
-                            <td>{{ $programacion->horafin->isoFormat('HH:mm') }}</td>
+                            <td>{{ $programacion->estado }}</td>
+                            <td>{{ $programacion->hora_ini->isoFormat('HH:mm')}}</td>
+                            <td>{{ $programacion->hora_fin->isoFormat('HH:mm') }}</td>
                             <td>{{ $programacion->nombre }}</td>
+                            <td>{{ $programacion->materia }}</td>
                             <td>
                                 <a class="text-secondary" href="{{ route('programacions.show',$programacion->id) }}"><i class="fas fa-tasks"></i> </a>
                                 <a class="text-danger" href="{{ route('programacions.edit',$programacion->id) }}"><i class="fas fa-file-powerpoint"></i> </a>
                                 <a class="text-warning" href="{{ route('programacions.show',$programacion->id) }}"><i class="fas fa-fingerprint"></i></a>
                                 <a class="text-success" href="{{ route('programacions.edit',$programacion->id) }}"><i class="fa fa-fw fa-edit"></i> </a>
                             </td>
-                        </tr>
+                            </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-
-
