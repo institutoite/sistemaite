@@ -17,6 +17,7 @@ use App\Models\Gestion;
 use App\Models\Grado;
 use App\Models\Nivel;
 use App\Models\Programacion;
+use App\Models\Matriculacion;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
@@ -247,8 +248,12 @@ class InscripcioneController extends Controller
         $inscripcionesOtras = Inscripcione::where('estudiante_id', '=', $persona->estudiante->id)
             ->where('vigente', 0)
             ->select('id', 'objetivo', 'costo')->get();
-        //dd($inscripciones);
-        return view('inscripcione.tusinscripciones',compact('inscripciones','persona','inscripcionesVigentes','inscripcionesOtras'));
+        
+        $matriculaciones=Matriculacion::where('computacion_id','=',$persona->computacion->id)->get();
+        $matriculacionesVigentes=Matriculacion::where('computacion_id','=',$persona->computacion->id)->where('vigente',1)->get();
+        $matriculacionesOtras=Matriculacion::where('computacion_id','=',$persona->computacion->id)->where('vigente',0)->get();
+
+        return view('inscripcione.tusinscripciones',compact('inscripciones','persona','inscripcionesVigentes','inscripcionesOtras','matriculaciones','matriculacionesVigentes','matriculacionesOtras'));
     }
 
     public function guardarconfiguracion(Request $request,$id){

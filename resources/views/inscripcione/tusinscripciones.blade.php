@@ -90,6 +90,65 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <table id="matriculacionesVigentes" class="table table-striped table-hover">
+                                <thead class="thead">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Objetivo</th>
+                                        <th>acuenta</th>
+                                        <th>costo</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($matriculacionesVigentes as $matriculacion)
+                                    @php
+                                        if($matriculacion->vigente==1){
+                                            $clase="bg-primary";
+                                        }else{
+                                            $clase="bg-secondary";
+                                        }
+
+                                    @endphp
+
+                                        <tr class="{{$clase}}">
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{!! $matriculacion->objetivo !!}</td>
+                                            <td>{{ $matriculacion->acuenta }}</td>
+                                            <td>{{ $matriculacion->costo }}</td>
+                                            <th>
+                                                <a href="{{route('inscripciones.edit', $matriculacion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta inscripcione">
+                                                    <i class="fa fa-fw fa-edit text-primary"></i>
+                                                </a>
+                                                <a href="{{route('pagos.crear',$matriculacion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta inscripcione">
+                                                    <i class="fas fa-hand-holding-usd"></i>
+                                                </a>
+
+                                                <a href="{{route('inscripciones.show', $matriculacion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
+                                                    <i class="fa fa-fw fa-eye text-secondary mostrar"></i>
+                                                </a>
+                                                <a href="{{route('imprimir.programa',$matriculacion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
+                                                    <i class="fas fa-print"></i>
+                                                </a>
+
+                                                <form action=""  class="d-inline formulario">
+                                                    @csrf
+                                                    @method("delete")
+                                                    <button name="btn-eliminar" id="" type="submit" class="btn eliminar" title="Eliminar esta inscripcione">
+                                                        <i class="fa fa-fw fa-trash text-danger"></i>   
+                                                    </button>
+                                                </form> 
+                                                
+                                                <a href="{{route('clases.marcado.general',$matriculacion->id)}}" class="" title="Ver esta inscripcione">
+                                                    <i class="far fa-calendar-check"></i>
+                                                </a>
+
+
+                                            </th>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -237,6 +296,27 @@
                 "info":     false,  
             });
             $('#inscripcionestodos').dataTable({
+                "language":{
+                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    },
+                "info":     false,  
+            });
+            
+            $('#matriculacionesVigentes').dataTable(
+                {
+                    "language":{
+                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    },
+                    "info":     false,  
+                }
+            );
+            $('#matriculacionesOtras').dataTable({
+                "language":{
+                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    },
+                "info":     false,  
+            });
+            $('#matriculacionestodos').dataTable({
                 "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                     },
