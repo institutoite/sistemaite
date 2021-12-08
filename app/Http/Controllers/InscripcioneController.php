@@ -249,11 +249,14 @@ class InscripcioneController extends Controller
             ->where('vigente', 0)
             ->select('id', 'objetivo', 'costo')->get();
         
-        $matriculaciones=Matriculacion::where('computacion_id','=',$persona->computacion->id)->get();
-        $matriculacionesVigentes=Matriculacion::where('computacion_id','=',$persona->computacion->id)->where('vigente',1)->get();
-        $matriculacionesOtras=Matriculacion::where('computacion_id','=',$persona->computacion->id)->where('vigente',0)->get();
-
-        return view('inscripcione.tusinscripciones',compact('inscripciones','persona','inscripcionesVigentes','inscripcionesOtras','matriculaciones','matriculacionesVigentes','matriculacionesOtras'));
+        if($persona->computacion!==null){
+            $matriculaciones=Matriculacion::where('computacion_id','=',$persona->computacion->id)->get();
+            $matriculacionesVigentes=Matriculacion::where('computacion_id','=',$persona->computacion->id)->where('vigente',1)->get();
+            $matriculacionesOtras=Matriculacion::where('computacion_id','=',$persona->computacion->id)->where('vigente',0)->get();
+            return view('inscripcione.tusinscripciones',compact('inscripciones','persona','inscripcionesVigentes','inscripcionesOtras','matriculaciones','matriculacionesVigentes','matriculacionesOtras'));
+        }else{
+            return view('inscripcione.tusinscripciones',compact('inscripciones','persona','inscripcionesVigentes','inscripcionesOtras'));
+        }    
     }
 
     public function guardarconfiguracion(Request $request,$id){
