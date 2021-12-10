@@ -64,14 +64,19 @@ class InscripcioneController extends Controller
         
         $motivos = Motivo::all();
         $ultima_inscripcion=Inscripcione::where('estudiante_id','=',$persona->id)->orderBy('id','desc')->first();
-
         //$ultima_grado_id=Gestion::where('estudiante_id',$persona->estudiante->id)->orderBy('id', 'desc')->first()->grado_id;
         //$ultimo_nivel=Nivel::findOrFail($ultima_grado_id);
         //$modalidades = Modalidad::where('nivel_id', '=', $ultimo_nivel)->get();
         if($ultima_inscripcion!=null)        
-            $ultimo_nivel=Nivel::findOrFail(Modalidad::findOrFail($ultima_inscripcion->modalidad_id)->nivel_id);
+        $ultimo_nivel=Nivel::findOrFail(Modalidad::findOrFail($ultima_inscripcion->modalidad_id)->nivel_id);
         else {
-            $ultimo_nivel=$persona->estudiante->grados->first()->nivel;
+            
+            $ultimo_grado=$persona->estudiante->grados->first();
+            if(empty($ultimo_grado->nivel)){
+                return redirect()->route('gestion.create',$persona->estudiante->id);
+            }else{
+                $ultimo_nivel=$ultimo_grado->nivel;
+            }
         }
         
         $modalidades = $ultimo_nivel->modalidades;

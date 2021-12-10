@@ -39,11 +39,8 @@ class OpcionController extends Controller
         ->orderBy('anio', 'desc')
         ->get();
         
-        // dd($grados);
-            // dd($gestiones);
+        
         if (empty($anioUltimo)) {
-            //return view('gestion.create', compact('estudiante','grados','colegios','gestiones'));
-            //dd("Empty: ".$estudiante_id);
             return redirect()->route('gestion.create',$estudiante_id);
         } else {
             if ($anioUltimo != Carbon::now()->isoFormat('Y')) {
@@ -53,7 +50,8 @@ class OpcionController extends Controller
                 
                 $persona = $estudiante->persona;
                 $grados = $estudiante->grados;
-                return view('opcion.principal', compact('persona','grados','estudiante'));
+                $basura="Basura";
+                return view('opcion.principal', compact('basura','persona','grados','estudiante'));
             }
         }
     }

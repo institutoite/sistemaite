@@ -1,35 +1,24 @@
 @extends('adminlte::page')
 @section('css')
-    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/mapa.css')}}">
 @endsection
 
 @section('title', 'Carreras')
 @section('plugins.jquery', true)
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
-@section('content')
 
-    <div class="card">
-        
-        <div class="card-header">
-            
-            <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('carrera.create')}}">Crear Carrera</a>
-            
-        </div>
-        <div class="card-body">
-            <table id="carreras" class="table table-light">
-                <thead class="thead-light">
-                    <tr>
-                        <th>#</th>
-                        <th>carrera</th>
-                        <th>Opciones</th>
-                    </tr>
-                </thead>
-            </table>
-    
-        </div>
-    </div>
-    
+@section('content')
+    <table id="carreras" class="table table-light">
+        <thead class="thead-light">
+            <tr>
+                <th>#</th>
+                <th>carrera</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+    </table>
 @endsection
 
 @section('js')
@@ -46,7 +35,7 @@
                 {
                     "serverSide": true,
                     "responsive":true,
-                    "autoWidth":false,
+                   
 
                     "ajax": "{{ url('api/carreras') }}",
                     "columns": [

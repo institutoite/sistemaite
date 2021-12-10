@@ -1,19 +1,9 @@
-@extends('adminlte::page')
-@section('css')
-    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
-    <link rel="stylesheet" href="{{asset('custom/css/mapa.css')}}">
-@stop
-
-@section('title', 'Computación')
-
-@section('content')
-
 
 
 <div class="pt-4">
     <div class="card">
         <div class="card-header bg-secondary">
-            <h3 class="card-title">ESTUDIANTE: <strong>{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</strong></h3>
+            <h3 class="card-title">OPCIONES COMPUTACION: <strong>{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</strong></h3>
         </div>
         <div class="card-body">
             <div class="row text-center">
@@ -33,10 +23,4 @@
         </div>
     </div>
 </div>
-
-@stop   
-
-@section('js')
-
-@stop
 

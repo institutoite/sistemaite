@@ -93,11 +93,11 @@
 
 
                         @isset($matriculacionesVigentes)    
-                            <div class="float-right">
+                            {{-- <div class="float-right">
                                 <a class="btn btn-app text-green" href="{{route('miscarreras.listar',$persona->computacion)}}">
-                                <i class="fas fa-edit"></i> Matricular
-                            </a>
-                            </div>
+                                    <i class="fas fa-edit"></i> Matricular
+                                </a>
+                            </div> --}}
 
                             <table id="matriculacionesVigentes" class="table table-striped table-hover">
                                 <thead class="thead">
@@ -152,8 +152,6 @@
                                                     <a href="{{route('clases.marcado.general',$matriculacion->id)}}" class="" title="Ver esta inscripcione">
                                                         <i class="far fa-calendar-check"></i>
                                                     </a>
-
-
                                                 </th>
                                             </tr>
                                         @endforeach
@@ -298,20 +296,27 @@
                     "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                     },
-                    "info":     false,  
+                    "info":     false, 
+                    "searching": false,
+                    "paging":   false,
                 }
             );
             $('#inscripcionesOtras').dataTable({
                 "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                     },
-                "info":     false,  
+                    
+                "info":     false, 
+                "searching": false,
+                "paging":   false, 
             });
             $('#inscripcionestodos').dataTable({
                 "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                     },
-                "info":     false,  
+                "info":     false, 
+                "searching": false,
+                "paging":   false,
             });
             
             $('#matriculacionesVigentes').dataTable(
@@ -319,20 +324,26 @@
                     "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                     },
-                    "info":     false,  
+                    "info":     false, 
+                    "searching": false,
+                    "paging":   false,  
                 }
             );
             $('#matriculacionesOtras').dataTable({
                 "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                     },
-                "info":     false,  
+                "info":     false, 
+                "searching": false,
+                "paging":   false,  
             });
             $('#matriculacionestodos').dataTable({
                 "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                     },
-                "info":     false,  
+                "info":     false, 
+                "searching": false,
+                "paging":   false,  
             });
             
 

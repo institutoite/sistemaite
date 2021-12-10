@@ -126,7 +126,14 @@ class Persona extends Model
 
     public function isComputacion()
     {
-        return Estudiante::where('persona_id', '=', $this->id)->count()>0;
+        $computacion = Computacion::where('persona_id', '=', $this->id)->count();
+        if ($computacion > 0) {
+            $respuesta = true;
+        } else {
+            $respuesta = false;
+        }
+        return $respuesta;
+        //return computacion::where('persona_id', '=', $this->id)->count()>0;
     }
 
     public function isDocente()

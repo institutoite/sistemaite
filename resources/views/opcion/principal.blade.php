@@ -10,6 +10,7 @@
 @section('plugins.Datatables', true)
 
 @section('content')
+
     <div class="container pt-4" id="container">
         @if ($persona->isEstudiante())
             @include('opcion.menu_estudiante')

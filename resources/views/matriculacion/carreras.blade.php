@@ -1,24 +1,21 @@
-carreras que estudia un computacion si lleva mas de una si lleva solo uno directo a matricular que
-carreras/{computacion}
-
 @extends('adminlte::page')
 @section('css')
-    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/mapa.css')}}">
 @endsection
 
-@section('title', 'Mis Carreras')
+@section('title', 'Carreras')
 @section('plugins.jquery', true)
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
 @section('content')
 
     <div class="card">
-        
         <div class="card-header">
-            {{-- Carreras que estudia {{ $computacion }} --}}
+
         </div>
         <div class="card-body">
-            <table id="carreras" class="table table-bordered table-striped table-responsive">
+            <table id="carreras" class="table table-bordered table-striped">
                 <thead class="bg-primary">
                     <tr>
                         <th>#</th>
