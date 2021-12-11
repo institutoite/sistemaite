@@ -10,6 +10,7 @@
 @section('plugins.Datatables',true)
 @section('content')
 
+    
     <div class="card">
         <div class="card-header">
 
@@ -23,6 +24,19 @@
                         <th>Opciones</th>
                     </tr>
                 </thead>
+                <tbody>
+                    @foreach ($carreras as $carrera)
+                        <tr>
+                            <td>{{$carrera->id}}</td>
+                            <td>{{$carrera->carrera}}</td>
+                            <td>
+                                <a href="{{route('matriculacion.create',$computacion)}}" class="btn btn-primary btn-lg btn-accion-tabla tooltipsC btn-sm mr-2 text-white" title="Editar esta carrera">
+                                    Matricular<i class="fa fa-fw fa-edit text-white"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
             </table>
             
         </div>
@@ -40,29 +54,29 @@
     <script>
         $(document).ready(function() {
 
-            var tabla=$('#carreras').DataTable(
-                {
-                    "serverSide": true,
-                    "responsive":true,
-                    "autoWidth":false,
+            var tabla=$('#carreras').DataTable();
+                // {
+                //     "serverSide": true,
+                //     "responsive":true,
+                //     "autoWidth":false,
 
-                    "ajax": {
-                                url: '../carrerasajax/'+"{{$computacion->id}}",
-                            },
-                    "columns": [
-                        {"data": 'id',name:"id"},
-                        {"data": "carrera",name:"carrera"},     
-                        {
-                            "name":"btn",
-                            "data": 'btn',
-                            "orderable": false,
-                        },
-                    ],
-                    "language":{
-                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-                    },  
-                }
-            );      
+                //     "ajax": {
+                //                 url: '../carrerasajax/'+"{{$computacion->id}}",
+                //             },
+                //     "columns": [
+                //         {"data": 'id',name:"id"},
+                //         {"data": "carrera",name:"carrera"},     
+                //         {
+                //             "name":"btn",
+                //             "data": 'btn',
+                //             "orderable": false,
+                //         },
+                //     ],
+                //     "language":{
+                //         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                //     },  
+                // }
+                  
         } );
         
     </script>

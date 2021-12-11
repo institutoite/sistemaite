@@ -32,7 +32,7 @@ class MatriculacionController extends Controller
     {
         $carreras=$computacion->carreras;
         if($carreras->count()>1){
-            return view('matriculacion.carreras',compact('computacion'));
+            return view('matriculacion.carreras',compact('computacion','carreras'));
         }else{
             if($carreras->count()==0){
                 return redirect()->route('configuracion.gestionar.carreras',$computacion->persona->id);
@@ -58,14 +58,13 @@ class MatriculacionController extends Controller
         return view('matriculacion.create',compact('computacion'));
     }
 
-    public function CarrerasComptacion($computacion){
-        $carreras=Computacion::findOrFail($computacion)->carreras;
-        //return response()->json(['o'=>$computacion]);
-        return datatables()->of($carreras)
-            ->addColumn('btn', 'matriculacion.action')
-            ->rawColumns(['btn'])
-            ->toJson();
-    }
+    // public function CarrerasComptacion($computacion){
+    //     $carreras=Computacion::findOrFail($computacion)->carreras;
+    //     return datatables()->of($carreras)
+    //         ->addColumn('btn', 'matriculacion.action')
+    //         ->rawColumns(['btn'])
+    //         ->toJson();
+    // }
 
     /**
      * Store a newly created resource in storage.
