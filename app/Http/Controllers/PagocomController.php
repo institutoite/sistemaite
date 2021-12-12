@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Matriculacion;
+use App\Models\Pagocom;
 use App\Models\Pago;
 use Illuminate\Support\Facades\Auth;
 
@@ -89,5 +90,16 @@ class PagocomController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function detallar($matriculacion_id){
+        //dd($matriculacion_id);
+        $pagos=Pago::where('pagable_id','=',$matriculacion_id)->get();
+        $matriculacion = Matriculacion::findOrFail($matriculacion_id);
+        $pagos = $matriculacion->pagos;
+        $acuenta = $matriculacion->pagos->sum->monto;
+        $saldo = $matriculacion->costo - $acuenta;
+        return view('pagocom.detalle', compact('matriculacion', 'pagos', 'acuenta', 'saldo'));
+
     }
 }

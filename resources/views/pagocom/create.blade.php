@@ -4,14 +4,14 @@
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
-@section('title', 'Pais Crear')
+@section('title', 'Pagocom Crear')
 @section('plugins.Jquery', true)
 @section('plugins.SweetAlert2', true)
 @section('plugins.Datatables', true)
 
 
 @section('content')
-{{-- {{ dd($tipo) }} --}}
+{{ $matriculacion->id }} 
 
 
     <section class="content container-fluid pt-3">
