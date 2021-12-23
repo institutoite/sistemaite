@@ -12,14 +12,13 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Actualizar Inscripcion</span>
+                        <span class="card-title">Actualizar Matriculación</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('inscripciones.update', $inscripcione->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('matriculacion.update', $matriculacion->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
-
-                            @include('inscripcione.form')
+                            @include('matriculacion.form')
                             @include('include.botones')
                         </form>
                     </div>

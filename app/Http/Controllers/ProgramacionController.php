@@ -429,25 +429,27 @@ class ProgramacionController extends Controller
     public function regenerarPrograma($inscripcione_id,$unaFecha){
         $unaFecha= Carbon::createFromFormat('Y-m-d', $unaFecha);
         $inscripcion= Inscripcione::findOrFail($inscripcione_id);
-        
+        $FechaDesde=$unaFecha->format('Y-m-d');
         $horasFaltantes = Programacion::where('inscripcione_id', '=', $inscripcione_id)
-                        ->where('fecha', '>=', $unaFecha)->sum('horas_por_clase');
+                        ->where('fecha', '>=', $FechaDesde)->sum('horas_por_clase');
         $total_horas=$horasFaltantes;                
         $horasPasadas = $inscripcion->totalhoras-$horasFaltantes;
+       
         Programacion::where('inscripcione_id', '=', $inscripcione_id) 
-            ->where('fecha', '>=', $unaFecha)
+            ->where('fecha', '>=', $FechaDesde)
             ->delete();
         $costo_hora=$inscripcion->costo/$inscripcion->totalhoras;
         $acuentaTotal = $inscripcion->pagos->sum('monto');
+        $CostoTotal = $inscripcion->costo;
+        
         $costo_horas_pasadas=$horasPasadas*$costo_hora;
-        $costo_restante=$acuentaTotal-$costo_horas_pasadas;
+        $costo_restante=$CostoTotal-$costo_horas_pasadas;
         $Acuenta_para_regenerar=$acuentaTotal-$costo_horas_pasadas;
         $fecha = $unaFecha;
-        
+        //dd('acuanta para generar='.$Acuenta_para_regenerar.'costoHorasPasadas='.$costo_horas_pasadas.'costorestante='.$costo_restante.'acuentaTotal='.$acuentaTotal.'CostoHora'.$costo_hora);
         foreach ($inscripcion->sesiones as $dia) {
             $vector_dias[] = Dia::findOrFail($dia->dia_id)->dia;
         }
-
         while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) {
             $fecha->addDay();
         }

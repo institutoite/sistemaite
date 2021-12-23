@@ -1,6 +1,6 @@
 {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO  FECHA NACIMIENTO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 
-    <input  type="text" hidden name="computacion_id"  value="{{$computacion->id}}">
+    <input  type="text" hidden name="computacion_id" value="{{old('computacion_id',$computacion->id ?? '')}}">
 
     <div class="row"> 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >

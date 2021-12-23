@@ -9,10 +9,10 @@
             <div class="card-body">
               <h5>  
             @guest
-				
+                hola
 				{{ __('Welcome to') }} {{ config('app.name', 'Laravel') }} !!! </br>
 				Please contact admin to get your Login Credentials or click "Login" to go to your Dashboard.
-                
+                hola comoe stas 
 			@else
 					Hi {{ Auth::user()->name }}, Welcome back to {{ config('app.name', 'Laravel') }}.
             @endif	

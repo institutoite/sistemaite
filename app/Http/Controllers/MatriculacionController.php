@@ -11,8 +11,10 @@ use App\Models\Nivel;
 use App\Models\Aula;
 use App\Models\Dia;
 use App\Models\Matriculacion;
+use App\Models\Estudiante;
 use Illuminate\Support\Arr;
 use App\Http\Requests\MatriculacionStoreRequest;
+use Illuminate\Support\Facades\DB;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -53,9 +55,15 @@ class MatriculacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Computacion $computacion)
+    public function create(Computacion $computacion,Carrera $carrera)
     {
-        return view('matriculacion.create',compact('computacion'));
+        //$asignaturas
+        //dd($carrera);
+        $asignaturas=$carrera->asignaturas;
+        $inscritas =$computacion->matriculaciones;
+        $ids=Arr::pluck($inscritas, 'asignatura_id');
+        $asignaturasFaltantes=$carrera->asignaturas->whereNotIn('id', $ids);
+        return view('matriculacion.create',compact('computacion','asignaturasFaltantes'));
     }
 
     // public function CarrerasComptacion($computacion){
@@ -114,7 +122,12 @@ class MatriculacionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $matriculacion = Matriculacion::find($id);
+        $persona=$matriculacion->computacion->persona;
+        $carrera=$matriculacion->asignatura->carrera;
+        $asignaturasFaltantes = $carrera->asignaturas;
+    
+        return view('matriculacion.edit', compact('matriculacion','persona', 'asignaturasFaltantes'));
     }
 
     /**
@@ -166,4 +179,35 @@ class MatriculacionController extends Controller
         $matriculacion->save();
         return redirect()->route('imprimir.programacioncom',$matriculacion->id);
     }
+
+
+
+
+
+
+    public function tusMatriculacionesVigentes(Request $request){
+       $persona=Estudiante::findOrFail($request->estudiante_id)->persona;
+       $computacion=$persona->computacion;
+       if($computacion!==null){
+           
+           $matriculacionesVigentes=Matriculacion::join('pagos','pagos.pagable_id','=','matriculacions.id')
+           ->join('asignaturas','asignaturas.id','=','matriculacions.asignatura_id')        
+           ->where('computacion_id','=',2)->where('vigente',1)
+           ->select('matriculacions.id','vigente','costo','asignatura',DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= matriculacions.id) as acuenta"))
+           ->groupBy('matriculacions.id', 'vigente', 'costo','asignatura','acuenta')->get();
+           
+        }
+        //dd($matriculacionesVigentes);
+         return datatables()->of($matriculacionesVigentes)
+                            ->addColumn('btn', 'inscripcione.actiontusmatriculacion')
+                            ->rawColumns(['btn'])
+                            ->toJson();
+        
+        
+    }
+
+    public function imprimirProgramacom(){
+        
+    }
+
 }

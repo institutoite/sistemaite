@@ -55,6 +55,7 @@ class PersonaController extends Controller
         $paises=Pais::get();
         $zonas=Zona::get();
         return view('persona.crear',compact('ciudades','paises','zonas'));
+        
     }
 
     /**

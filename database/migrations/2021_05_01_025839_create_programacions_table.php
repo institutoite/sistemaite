@@ -37,7 +37,7 @@ class CreateProgramacionsTable extends Migration
             ->references('id')->on('aulas');
 
             $table->foreign('inscripcione_id', 'fk_programacion_inscripcion_idx')
-            ->references('id')->on('inscripciones');
+            ->references('id')->on('inscripciones')->onDelete('cascade');
 
             $table->timestamps();
         });

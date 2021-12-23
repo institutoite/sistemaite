@@ -31,7 +31,7 @@
                             <td>{{ $contador }}</td>
                             <td>{{ $programacion->fecha->isoFormat('D-MM-Y dddd') }}</td>
                             
-                            <td>{{ $programacion->horaini->isoFormat('HH:mm').'-'.$programacion->horafin->isoFormat('HH:mm')}}</td>
+                            <td>{{ $programacion->hora_ini->isoFormat('HH:mm').'-'.$programacion->hora_fin->isoFormat('HH:mm')}}</td>
                             <td>{{ $programacion->docente->persona->nombre }}</td>
                             <td>{{ $programacion->aula->aula }}</td>
                             <td>

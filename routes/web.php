@@ -92,6 +92,7 @@ Route::get('colegio/all', 'ColegioController@todos');
 Route::resource('modalidads', "ModalidadController");
 Route::resource('nivels', "NivelController");
 Route::resource('inscripciones', "InscripcioneController");
+// Route::resource('matriculacion', "MatriculacionController");
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       E S T D U D I A N T E S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -116,6 +117,8 @@ Route::get('computaciones','ComputacionController@index')->name('computacion.ind
 Route::get('computacion/carreras/{persona}', 'ComputacionController@mostrar_carreras')->name('configuracion.gestionar.carreras');
 Route::get('opciones/computacion/{persona}',[OpcionController::class,'computacion'])->name('opcion.computacion');
 Route::post('computacion/carreras/configurar/{persona}', 'ComputacionController@GuardarNuevaCarrera')->name('computacion.carreras.guardar');
+
+
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  T E M A S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -160,7 +163,9 @@ Route::post('billetecom/guardar/{pago}', 'BilletecomController@guardar')->name('
 
 
 
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  FERIADOS          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('feriados', "FeriadoController");
+
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  C L A S E S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('clases', "ClaseController");
 Route::get('clase/editar/{clase}',"ClaseController@edit")->name('clase.editar');
@@ -170,10 +175,12 @@ Route::get('clase/mostrar/',"ClaseController@mostrar")->name('clase.mostrar');
 Route::get('clase/listar',"ClaseController@index")->name('clase.index');
 Route::get('clase/finalizar/', 'ClaseController@finalizarClase')->name('clases.finalizar');
 Route::get('clases/presentes/ahorita', 'ClaseController@clasesPresentes')->name('clases.presente');
-Route::get('presentes', function () {
-    return view('clase.presentes');
-})->name('clase.presentes');
+Route::get('presentes', function () {return view('clase.presentes');})->name('clase.presentes');
+Route::get('programa/marcar/{inscripcine_id}', 'ClaseController@marcadoGeneral')->name('clases.marcado.general');
 
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  C L A S E S C O M         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+Route::get('programacioncom/marcar/{matriculacion}', [ClasecomController::class,'marcadoGeneral'])->name('clases.marcado.generalcom');
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  G R A D O S  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -211,12 +218,20 @@ Route::delete('eliminar/carrera/{carrera}', [CarreraController::class,'destroy']
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MATRICULACION   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
-Route::get('matriculacion/create/{computacion}',[MatriculacionController::class,'create'])->name('matriculacion.create');
+Route::get('matriculacion/create/{computacion}/{carrera}',[MatriculacionController::class,'create'])->name('matriculacion.create');
 Route::get('miscarreras/{computacion}', [MatriculacionController::class, 'misCarreras'])->name('miscarreras.listar');
 Route::get('carrerasajax/{computacion}', [MatriculacionController::class, 'CarrerasComptacion'])->name('miscarrerasajax');
 Route::post('matriculacion/guardar',[MatriculacionController::class,'store'])->name('matriculacion.store');
+
+Route::get('matriculacion/editar/{matriculacion}', [MatriculacionController::class,'edit'])->name("matriculacion.edit");
+Route::get('matriculacion/actualizar/{matriculacion}', [MatriculacionController::class,'update'])->name("matriculacion.update");
+Route::get('matriculacion/mostrar/{matriculacion}', [MatriculacionController::class,'show'])->name("matriculacion.show");
+
 Route::post('matriculacion/guardar/configuracion/{matriculaciocion}', 'MatriculacionController@guardarconfiguracion')->name('matriculacion.guardar.configuracion');
 Route::get('matriculacion/actualizar/fechapago/{fecha}/{id}',[MatriculacionController::class,'actualizar_fecha_proximo_pago'])->name('setcom.fecha.proximo.pago');
+Route::get('tusmatriculaciones', [MatriculacionController::class,'tusMatriculacionesVigentes'])->name('matriculaciones.de.estudiante');
+Route::get('tumatriculaciones', [MatriculacionController::class,'tusMatriculacionesVigentes'])->name('matriculaciones');
+// Route::get('imprimir/matriculacion/{matriculacion}',[MatriculacionController::class,'imprimir'] )->name('imprimir.matriculacion');
 
 
 
@@ -259,13 +274,21 @@ Route::get('telefono/agregar/{persona_id}/{apoderado_id}', 'TelefonoController@a
 Route::post('guardar/apoderado/existente', 'TelefonoController@guardarApoderadoExistente')->name('guardar.apoderado.existente');
 Route::get('modalidad/cosultar/', 'ModalidadController@consultar')->name('modalidad.consultar');
 
+
+
+/** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('tus_inscripciones/{estudiante_id}', 'InscripcioneController@tusinscripciones')->name('tus.inscripciones');
 Route::get('listar/inscripciones/{persona}', 'InscripcioneController@listar')->name('listar_inscripciones');
 Route::get('inscripcione/crear/{persona}', 'InscripcioneController@crear')->name('inscribir');
 Route::post('inscripcion/guardar/configuracion/{id}', 'InscripcioneController@guardarconfiguracion')->name('inscripcion.guardar.configuracion');
 Route::post('inscripcion/actualizar/configuracion/{id_inscripcion}', 'InscripcioneController@actualizarConfiguracion')->name('inscripcion.actualizar.configuracion');
 Route::get('inscripcion/actualizar/fechapago/{fecha}/{id}', 'InscripcioneController@actualizar_fecha_proximo_pago')->name('set.fecha.proximo.pago');
+Route::get('tusinscripciones', 'InscripcioneController@tusInscripcionesVigentes')->name('inscripciones.de.estudiante');
 
+
+
+
+/** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TELEFONOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('telefonos/vista/{persona}','TelefonoController@mostrarvista')->name('telefonos.persona');
 Route::get('telefono/crear/{persona}', 'TelefonoController@crear')->name('telefonos.crear');
 Route::get('telefonos/{persona}', 'PersonaController@index')->name('telefono.de.persona');
@@ -273,7 +296,7 @@ Route::get('telefono/{persona}/{id}/editar','TelefonoController@editar')->name('
 Route::put('telefono/{persona_id}/{apoderaçdo_id}', 'TelefonoController@actualizar')->name('telefono.actualizar');
 Route::post('crear/contacto/{persona}','PersonaController@storeContacto')->name('persona.storeContacto');
 
-/** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% P R O G R A M A C I O N   C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+/** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ROUTES P R O G R A M A C I O N   C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('programacions', "ProgramacionController");
 Route::get('generar/programa/{inscripcione}', 'ProgramacionController@generarPrograma')->name('generar.programa');
 Route::get('generar/programa/guarderia/{inscripcione}', 'ProgramacionController@generarProgramaGuarderia')->name('generar.programa.guarderia');
@@ -303,28 +326,16 @@ Route::get('imprimir/programacom/{matriculacion}', [ProgramacioncomController::c
 Route::get('actualizar/programacom/segunpago/{matriculacion}', [ProgramacioncomController::class,'actualizarProgramaSegunPago'])->name('actualizar.programacioncom.segun.pago');
 Route::get('clase/marcar/normal/{programacioncom_id}', [ProgramacioncomController::class,'marcadoNormal'])->name('marcado.presente.normal.programacioncom');
 Route::get('guardar/observacion/programacioncom', [ProgramacioncomController::class,'guardarObservacion'])->name('guardar.observacion.programacioncom');
-Route::get('programacioncom/marcar/{matriculacion}', [ClasecomController::class,'marcadoGeneral'])->name('clases.marcadocom.general');
-
+Route::get('inscripciones/vigentes/{estudiante_id}', 'InscripcioneController@inscripcionesVigentes')->name('inscripciones.vigentes');
 
 
 /**
  * clases
  */
-Route::get('programa/marcar/{inscripcine_id}', 'ClaseController@marcadoGeneral')->name('clases.marcado.general');
-Route::get('inscripciones/vigentes/{estudiante_id}', 'InscripcioneController@inscripcionesVigentes')->name('inscripciones.vigentes');
-
-
-
-
-
-
-
-
 
 
 
 Route::get('opciones/{persona}','OpcionController@index')->name('opcion.principal');
-
 
 //Route::get('principal/{id}', 'OpcionController@principal')->name('opcion.index');
 Route::delete('eliminar/pais/{id}','PaisController@eliminarPais')->name('eliminar.pais');

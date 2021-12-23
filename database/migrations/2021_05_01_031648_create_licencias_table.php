@@ -20,7 +20,7 @@ class CreateLicenciasTable extends Migration
             $table->string('parentesco', 45);
             $table->unsignedInteger('programacion_id');
             $table->foreign('programacion_id', 'fk_programacion_licencia_idx')
-            ->references('id')->on('programacions');
+            ->references('id')->on('programacions')->onDelete('cascade');
             $table->timestamps();
         });
     }

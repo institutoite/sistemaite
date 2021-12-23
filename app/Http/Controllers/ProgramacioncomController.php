@@ -256,7 +256,7 @@ class ProgramacioncomController extends Controller
         return view('clase.create',compact('docentes','programacioncom','matriculacion','aulas','hora_inicio','hora_fin'));
     }
 
-        public function programacionescomHoy(Request $request,$matriculacion){
+    public function programacionescomHoy(Request $request,$matriculacion){
         
         //return response()->json(['cd'=>$matriculacion]);
         $programacion=Programacion::join('docentes','docentes.id','=','programacioncoms.docente_id')
@@ -268,5 +268,37 @@ class ProgramacioncomController extends Controller
                 ->addColumn('btn','programacion.actions')
                 ->rawColumns(['btn'])
                 ->toJson();
+    }
+
+    public function actualizarProgramaSegunPago($matriculacion_id){
+        
+        $matriculacion = Matriculacion::findOrFail($matriculacion_id);
+        $total_costo=$matriculacion->costo;
+        $total_horas=$matriculacion->totalhoras;
+        $costo_por_hora=$total_costo/$total_horas;
+        $programascom = Programacioncom::where('matriculacion_id', '=', $matriculacion_id)
+                                        ->get();
+        $acuentaTotal=$matriculacion->pagos->sum->monto;
+        $TotalPagado=$acuentaTotal;
+        dd($acuentaTotal);
+        $this->deshabilitarTodoProgramas($matriculacion_id);
+        //dd($programas);
+        foreach ($programas as $programa) {
+            $costo_programa = $programa->hora_ini->floatDiffInHours($programa->hora_fin)*($costo_por_hora);
+            $P=Programacion::findOrFail($programa->id);
+            if($acuentaTotal>$costo_programa){
+                $P->habilitado=1;
+                $P->save();
+                $acuentaTotal=$acuentaTotal-$costo_programa;
+            }
+        }
+        if ($TotalPagado < $inscripcion->costo) {
+            return redirect()->route('mostrar.programa', $inscripcion);
+        } else {
+            $inscripcion->fecha_proximo_pago = $inscripcion->programaciones->last()->fecha->isoFormat('Y-M-D');
+            $inscripcion->save();
+            return redirect()->route('imprimir.programa', $inscripcion->id);
+            
+        }    
     }
 }

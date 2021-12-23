@@ -205,7 +205,8 @@ class InscripcioneController extends Controller
         $dias = Dia::get();
         $tipo='actualizando';
         $programacion=$inscripcione->programaciones;
-        return view('inscripcione.configurar', compact('inscripcion', 'materias', 'aulas', 'docentes','tipo','dias','programacion'));
+        $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcione->modalidad_id)->nivel_id);
+        return view('inscripcione.configurar', compact('nivel','inscripcion', 'materias', 'aulas', 'docentes','tipo','dias','programacion'));
     }
 
     /**
@@ -216,8 +217,10 @@ class InscripcioneController extends Controller
     public function destroy($id)
     {
         $inscripcion = Inscripcione::findOrFail($id);
-        $inscripcion->delete();
-        return redirect()->action([InscripcioneController::class, 'tusinscripciones'], ['estudiante_id' => $inscripcion->estudiante_id]);
+        //$inscripcion->delete();
+        // return redirect()->action([InscripcioneController::class, 'tusinscripciones'], ['estudiante_id' => $inscripcion->estudiante_id]);
+        // return response()->json()
+        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
         
     }
 
@@ -239,6 +242,25 @@ class InscripcioneController extends Controller
         //return redirect()->action([InscripcioneController::class, 'tusinscripciones'], ['estudiante_id' => $persona->estudiante_id]);
     }
 
+    public function tusInscripcionesVigentes(Request $request){
+        $estudiante_id=$request->estudiante_id;
+        //return response()->json(["es"=>$estudiante_id], 200, $headers);
+        $persona=Estudiante::findOrFail($estudiante_id)->persona;
+        $inscripcionesVigentes = Inscripcione::join('pagos', 'pagos.pagable_id', '=', 'inscripciones.id')
+        ->where('estudiante_id', '=', $persona->estudiante->id)
+            ->where('vigente', 1)
+            ->select('inscripciones.id','vigente', 'objetivo', 'costo', DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= inscripciones.id) as acuenta"))
+            ->groupBy('inscripciones.id', 'vigente','objetivo', 'acuenta', 'costo')
+            ->get();
+
+        return datatables()->of($inscripcionesVigentes)
+                            ->addColumn('btn', 'inscripcione.actiontusinscripciones')
+                            ->rawColumns(['btn','objetivo'])
+                            ->toJson();
+        
+    }
+    
+
     public function tusinscripciones($estudiante_id){
         
         $inscripciones=Inscripcione::where('estudiante_id', '=', $estudiante_id)->select('id', 'objetivo', 'costo')->get();
@@ -256,8 +278,14 @@ class InscripcioneController extends Controller
         
         if($persona->computacion!==null){
             $matriculaciones=Matriculacion::where('computacion_id','=',$persona->computacion->id)->get();
-            $matriculacionesVigentes=Matriculacion::where('computacion_id','=',$persona->computacion->id)->where('vigente',1)->get();
+            $matriculacionesVigentes=Matriculacion::join('pagos','pagos.pagable_id','=','matriculacions.id')
+                                                  ->join('asignaturas','asignaturas.id','=','matriculacions.asignatura_id')        
+            ->where('computacion_id','=',$persona->computacion->id)->where('vigente',1)
+            ->select('matriculacions.id','vigente','costo','asignatura',DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= matriculacions.id) as acuenta"))
+            ->groupBy('matriculacions.id', 'vigente', 'costo','asignatura','acuenta')->get();
+            //dd($matriculacionesVigentes);
             $matriculacionesOtras=Matriculacion::where('computacion_id','=',$persona->computacion->id)->where('vigente',0)->get();
+
             return view('inscripcione.tusinscripciones',compact('inscripciones','persona','inscripcionesVigentes','inscripcionesOtras','matriculaciones','matriculacionesVigentes','matriculacionesOtras'));
         }else{
             return view('inscripcione.tusinscripciones',compact('inscripciones','persona','inscripcionesVigentes','inscripcionesOtras'));
@@ -292,7 +320,7 @@ class InscripcioneController extends Controller
         $fecha=$request->fecha;
         Sesion::where('inscripcione_id', '=', $id)->delete();
         $inscripcion = Inscripcione::findOrFail($id);
-        if($fecha<$inscripcion->fechaini){
+        if($fecha<=$inscripcion->fechaini){
             $inscripcion->fechaini=$fecha;
         }
         $i = 0;

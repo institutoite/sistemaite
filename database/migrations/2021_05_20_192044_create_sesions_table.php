@@ -23,7 +23,7 @@ class CreateSesionsTable extends Migration
             $table->unsignedInteger('materia_id');
             $table->unsignedInteger('aula_id');
 
-            $table->foreign('inscripcione_id','fk_inscripcione_sesion')->references('id')->on('inscripciones');
+            $table->foreign('inscripcione_id','fk_inscripcione_sesion')->references('id')->on('inscripciones')->onDelete('cascade');
             $table->foreign('dia_id','fk_dia_sesion')->references('id')->on('dias');
             $table->foreign('docente_id','fk_docente_sesion')->references('id')->on('docentes');
             $table->foreign('materia_id','fk_materia_sesion')->references('id')->on('materias');
