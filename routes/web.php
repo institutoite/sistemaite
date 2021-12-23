@@ -130,8 +130,6 @@ Route::resource('materias', "MateriaController");
 Route::get('materias/niveles/{materia}', 'MateriaController@configurar_niveles')->name('materias.gestionar.niveles');
 Route::post('materias/niveles/configurar/{materia}', 'MateriaController@GuardarConfigurarNiveles')->name('materias.configurar.niveles.guardar');
 
-
-
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       P  A  G  O  S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('pagos', "PagoController");
 Route::get('pago/crear/{inscripcione}', 'PagoController@crear')->name('pagos.crear');
@@ -323,7 +321,7 @@ Route::get('programacioncom/actualizar/', [ProgramacioncomController::class,'act
 Route::get('regenerar/programacom/{matriculacion}/{fecha}', [ProgramacioncomController::class,'regenerarPrograma'])->name('regenerar.programacioncom');
 Route::get('mostrar/programacom/{matriculacion}', [ProgramacioncomController::class,'mostrarProgramacom'])->name('mostrar.programacioncom');
 Route::get('imprimir/programacom/{matriculacion}', [ProgramacioncomController::class,'imprimirProgramacom'])->name('imprimir.programacioncom');
-Route::get('actualizar/programacom/segunpago/{matriculacion}', [ProgramacioncomController::class,'actualizarProgramaSegunPago'])->name('actualizar.programacioncom.segun.pago');
+Route::get('actualizar/programacom/segunpago/{matriculacion}', [ProgramacioncomController::class,'actualizarProgramaSegunPagocom'])->name('actualizar.programacioncom.segun.pago');
 Route::get('clase/marcar/normal/{programacioncom_id}', [ProgramacioncomController::class,'marcadoNormal'])->name('marcado.presente.normal.programacioncom');
 Route::get('guardar/observacion/programacioncom', [ProgramacioncomController::class,'guardarObservacion'])->name('guardar.observacion.programacioncom');
 Route::get('inscripciones/vigentes/{estudiante_id}', 'InscripcioneController@inscripcionesVigentes')->name('inscripciones.vigentes');

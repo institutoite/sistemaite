@@ -270,7 +270,16 @@ class ProgramacioncomController extends Controller
                 ->toJson();
     }
 
-    public function actualizarProgramaSegunPago($matriculacion_id){
+    public function deshabilitarTodoProgramascom($matriculacion_id){
+        $programascom=Programacioncom::where('matriculacion_id', $matriculacion_id)->get();
+        foreach ($programascom as $programa) {
+            $programa->habilitado=0;
+            $programa->save();
+        }
+    }
+
+
+    public function actualizarProgramaSegunPagocom($matriculacion_id){
         
         $matriculacion = Matriculacion::findOrFail($matriculacion_id);
         $total_costo=$matriculacion->costo;
@@ -280,25 +289,31 @@ class ProgramacioncomController extends Controller
                                         ->get();
         $acuentaTotal=$matriculacion->pagos->sum->monto;
         $TotalPagado=$acuentaTotal;
-        dd($acuentaTotal);
-        $this->deshabilitarTodoProgramas($matriculacion_id);
-        //dd($programas);
+        
+        $this->deshabilitarTodoProgramascom($matriculacion_id);
+        
         foreach ($programas as $programa) {
             $costo_programa = $programa->hora_ini->floatDiffInHours($programa->hora_fin)*($costo_por_hora);
-            $P=Programacion::findOrFail($programa->id);
             if($acuentaTotal>$costo_programa){
-                $P->habilitado=1;
-                $P->save();
+                $programa->habilitado=1;
+                $programa->save();
                 $acuentaTotal=$acuentaTotal-$costo_programa;
             }
         }
-        if ($TotalPagado < $inscripcion->costo) {
-            return redirect()->route('mostrar.programa', $inscripcion);
+        if ($TotalPagado < $matriculacion->costo) {
+            return redirect()->route('mostrar.programacioncom', $inscripcion);
         } else {
             $inscripcion->fecha_proximo_pago = $inscripcion->programaciones->last()->fecha->isoFormat('Y-M-D');
             $inscripcion->save();
             return redirect()->route('imprimir.programa', $inscripcion->id);
             
         }    
+    }
+    public function deshabilitarTodoProgramas($inscripcione_id){
+        $programas=Programacion::where('inscripcione_id', $inscripcione_id)->get();
+        foreach ($programas as $programa) {
+            $programa->habilitado=0;
+            $programa->save();
+        }
     }
 }
