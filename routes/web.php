@@ -178,7 +178,7 @@ Route::get('programa/marcar/{inscripcine_id}', 'ClaseController@marcadoGeneral')
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  C L A S E S C O M         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-Route::get('programacioncom/marcar/{matriculacion}', [ClasecomController::class,'marcadoGeneral'])->name('clases.marcado.generalcom');
+Route::get('programacioncom/marcar/{matriculacion}', [ClasecomController::class,'marcadoGeneral'])->name('clases.marcadocom.general');
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  G R A D O S  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
