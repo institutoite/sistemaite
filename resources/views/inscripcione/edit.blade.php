@@ -15,7 +15,7 @@
                         <span class="card-title">Actualizar Inscripcion</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('inscripciones.update', $inscripcione->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('inscripciones.update', $inscripcione->id) }}"  role="form">
                             {{ method_field('PATCH') }}
                             @csrf
 
@@ -27,4 +27,36 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('js')
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+    
+    {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% CKEDITOR --}}
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#objetivo' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+        {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% FIN CKEDITOR --}}
+
+    <script>
+
+
+        $(document).ready(function() {
+            
+
+
+            $("#modalidad_id").change(function () {
+                var modalidad_id=$(this).val();    
+                data={modalidad_id};
+                $.get('../../modalidad/cosultar/',data,function(respuesta) {
+                    $("#costo").val(respuesta.costo);
+                    $("#totalhoras").val(respuesta.cargahoraria);
+                })
+            });
+        });
+    </script>
 @endsection

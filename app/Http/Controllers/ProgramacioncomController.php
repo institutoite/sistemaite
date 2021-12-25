@@ -271,7 +271,7 @@ class ProgramacioncomController extends Controller
     }
 
     public function deshabilitarTodoProgramascom($matriculacion_id){
-        $programascom=Programacioncom::where('matriculacion_id', $matriculacion_id)->get();
+        $programascom=Programacioncom::where('matriculacion_id','=', $matriculacion_id)->get();
         foreach ($programascom as $programa) {
             $programa->habilitado=0;
             $programa->save();
@@ -285,27 +285,35 @@ class ProgramacioncomController extends Controller
         $total_costo=$matriculacion->costo;
         $total_horas=$matriculacion->totalhoras;
         $costo_por_hora=$total_costo/$total_horas;
+        $this->deshabilitarTodoProgramascom($matriculacion_id);
         $programascom = Programacioncom::where('matriculacion_id', '=', $matriculacion_id)
                                         ->get();
         $acuentaTotal=$matriculacion->pagos->sum->monto;
         $TotalPagado=$acuentaTotal;
         
-        $this->deshabilitarTodoProgramascom($matriculacion_id);
-        
-        foreach ($programas as $programa) {
-            $costo_programa = $programa->hora_ini->floatDiffInHours($programa->hora_fin)*($costo_por_hora);
-            if($acuentaTotal>$costo_programa){
+        $cuantas=[];
+        foreach ($programascom as $programa) {
+            $costo_programa = $programa->horaini->floatDiffInHours($programa->horafin)*($costo_por_hora);
+            
+            if($TotalPagado>$costo_programa){
+               // $cuantas=$cuantas.' '.$acuentaTotal.'<br>';
                 $programa->habilitado=1;
                 $programa->save();
-                $acuentaTotal=$acuentaTotal-$costo_programa;
+                $TotalPagado=$TotalPagado-$costo_programa;
             }
+           // array_push($cuantas,$programa);
         }
+        $programascom = Programacioncom::where('matriculacion_id', '=', $matriculacion_id)
+                                        ->get();
+        //return $cuantas;
+
         if ($TotalPagado < $matriculacion->costo) {
-            return redirect()->route('mostrar.programacioncom', $inscripcion);
+            return redirect()->route('mostrar.programacioncom', $matriculacion);
         } else {
-            $inscripcion->fecha_proximo_pago = $inscripcion->programaciones->last()->fecha->isoFormat('Y-M-D');
-            $inscripcion->save();
-            return redirect()->route('imprimir.programa', $inscripcion->id);
+            //dd($matriculacion->costo);
+            $matriculacion->fecha_proximo_pago = $matriculacion->programaciones->last()->fecha->isoFormat('Y-M-D');
+            $matriculacion->save();
+            return redirect()->route('imprimir.programa', $matriculacion->id);
             
         }    
     }

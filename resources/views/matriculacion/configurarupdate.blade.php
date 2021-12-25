@@ -9,28 +9,14 @@
     <section class="content container-fluid">
         <div class="row">
            
-            {{-- <table class="table table-dark">
-                <thead class="thead-light">
-                    <tr>
-                        <th>Atribubuto</th>
-                        <th>Valor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>HORA INICIO</td><td>{{$datos['horainicio']}}</td></tr>
-                    <tr><td>HORA FIN</td><td>{{$datos['horafin']}}</td></tr>
-                    <tr><td>HORAS X DIA</td><td>{{$datos['totalhoras']}}</td></tr>
-                    <tr><td>TOTAL HORAS</td><td>{{$datos['horas_total']}}</td></tr>
-                    <tr><td>COSTO</td><td>{{$datos['costo']}}</td></tr>
-                </tbody>
-            </table> --}}
+           
             
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-default">
                     <div class="card-header bg-secondary">
-                        <span class="card-title">Configurar Inscripcion</span>
+                        <span class="card-title">Actualizar Configuracion de Matriculación </span>
                         <div class="card-tools" id="divfuera">
                             <button id="botonplus" class="btn btn-primary d-none" type="button">Agregar  Sesiones<i class="fas fa-plus-square"></i></button>
                         </div>

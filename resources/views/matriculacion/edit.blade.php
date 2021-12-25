@@ -15,7 +15,7 @@
                         <span class="card-title">Actualizar Matriculación</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('matriculacion.update', $matriculacion->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{route('matriculacion.update', $matriculacion->id) }}"  role="form">
                             {{ method_field('PATCH') }}
                             @csrf
                             @include('matriculacion.form')

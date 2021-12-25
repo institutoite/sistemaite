@@ -59,11 +59,30 @@ class InscripcioneController extends Controller
         return view('inscripcione.create', compact('modalidades','motivos'));
     }
 
+
+
+    public function UltimaInscripcion(Persona $persona){
+        return Inscripcione::where('estudiante_id','=',$persona->id)->orderBy('id','desc')->first();
+    }
+    public function UltimoNivel(Persona $persona){
+        $ultima_inscripcion=$this->UltimaInscripcion($persona);
+        if($ultima_inscripcion!=null)        
+        $ultimo_nivel=Nivel::findOrFail(Modalidad::findOrFail($ultima_inscripcion->modalidad_id)->nivel_id);
+        else {
+            
+            $ultimo_grado=$persona->estudiante->grados->first();
+            $ultimo_nivel=$ultimo_grado->nivel;
+        }
+        return $ultimo_nivel;
+    }
+        
+
+
     public function crear(Persona $persona)
     {
         
         $motivos = Motivo::all();
-        $ultima_inscripcion=Inscripcione::where('estudiante_id','=',$persona->id)->orderBy('id','desc')->first();
+        $ultima_inscripcion=$this->UltimaInscripcion($persona);
         //$ultima_grado_id=Gestion::where('estudiante_id',$persona->estudiante->id)->orderBy('id', 'desc')->first()->grado_id;
         //$ultimo_nivel=Nivel::findOrFail($ultima_grado_id);
         //$modalidades = Modalidad::where('nivel_id', '=', $ultimo_nivel)->get();
@@ -165,8 +184,10 @@ class InscripcioneController extends Controller
     {
         $inscripcione = Inscripcione::find($id);
         $persona=$inscripcione->estudiante->persona;
-        $ultima_inscripcion=$inscripcione;
-        $modalidades = Modalidad::all();
+        $ultima_inscripcion=$this->UltimaInscripcion($persona);
+        $ultimo_nivel= $this->ultimoNivel($persona);
+
+        $modalidades = $ultimo_nivel->modalidades;
         $motivos = Motivo::all();
         return view('inscripcione.edit', compact('inscripcione','persona', 'ultima_inscripcion','modalidades','motivos'));
     }
@@ -180,25 +201,18 @@ class InscripcioneController extends Controller
      */
     public function update(Request $request, Inscripcione $inscripcione)
     {
-        //dd($request->all());
         request()->validate(Inscripcione::$rules);
-        
         $inscripcione->fechaini = $request->fechaini;
-        //$inscripcione->fechafin = $request->fechaini;
         $inscripcione->totalhoras = $request->totalhoras;
         $inscripcione->costo = $request->costo;
-        
         $inscripcione->vigente = 1;
         $inscripcione->condonado = 0;
         $inscripcione->objetivo = $request->objetivo;
-        
         $inscripcione->estudiante_id = $request->estudiante_id;
         $inscripcione->modalidad_id = $request->modalidad_id;
         $inscripcione->motivo_id = $request->motivo_id;
         $inscripcione->save();
-
         $inscripcion=$inscripcione;
-
         $materias = Materia::get();
         $aulas = Aula::get();
         $docentes = Docente::get();
@@ -293,6 +307,7 @@ class InscripcioneController extends Controller
     }
 
     public function guardarconfiguracion(Request $request,$id){
+       
         $inscripcion=Inscripcione::find($id);
         $cuantas_sesiones=count($request->dias);
         $i=0;
@@ -315,7 +330,6 @@ class InscripcioneController extends Controller
 
     public function actualizarConfiguracion(Request $request, $id)
     {
-        
         $cuantas_sesiones = count($request->dias);
         $fecha=$request->fecha;
         Sesion::where('inscripcione_id', '=', $id)->delete();
@@ -336,7 +350,13 @@ class InscripcioneController extends Controller
             $sesion->save();
             $i = $i + 1;
         }
-        return redirect()->route('regenerar.programa', ['inscripcione'=>$inscripcion->id,'fecha'=>$fecha]);   
+        
+        if ($request->radioconfig=='radiodesde'){
+            return redirect()->route('regenerar.programa', ['inscripcione'=>$inscripcion->id,'fecha'=>$fecha]);   
+        }
+        if ($request->radioconfig=='radiotodo'){
+            return redirect()->route('regenerar.programa', ['inscripcione'=>$inscripcion->id,'fecha'=>$fecha,'unModo'=>'todo']);   
+        }
     }
 
 

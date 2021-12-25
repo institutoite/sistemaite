@@ -426,40 +426,39 @@ class ProgramacionController extends Controller
         $programa->inscripcione_id = $inscripcion->id;
     }
 
-    public function regenerarPrograma($inscripcione_id,$unaFecha){
+    public function EliminarTodosLosProgramas($inscripcione_id){
+        Programacion::where('inscripcione_id', '=', $inscripcione_id)->delete();
+    }
+
+    public function regenerarPrograma($inscripcione_id,$unaFecha,$unModo = 'desde'){
+        
+        if($unModo=='todo'){
+            $this->EliminarTodosLosProgramas($inscripcione_id);
+            $this->generarPrograma($inscripcione_id);
+        }
+
         $unaFecha= Carbon::createFromFormat('Y-m-d', $unaFecha);
         $inscripcion= Inscripcione::findOrFail($inscripcione_id);
         $FechaDesde=$unaFecha->format('Y-m-d');
-        $horasFaltantes = Programacion::where('inscripcione_id', '=', $inscripcione_id)
-                        ->where('fecha', '>=', $FechaDesde)->sum('horas_por_clase');
+        $horasFaltantes = Programacion::where('inscripcione_id', '=', $inscripcione_id)->where('fecha', '>=', $FechaDesde)->sum('horas_por_clase');
         $total_horas=$horasFaltantes;                
         $horasPasadas = $inscripcion->totalhoras-$horasFaltantes;
-       
-        Programacion::where('inscripcione_id', '=', $inscripcione_id) 
-            ->where('fecha', '>=', $FechaDesde)
-            ->delete();
+        Programacion::where('inscripcione_id', '=', $inscripcione_id)->where('fecha', '>=', $FechaDesde)->delete();
         $costo_hora=$inscripcion->costo/$inscripcion->totalhoras;
         $acuentaTotal = $inscripcion->pagos->sum('monto');
         $CostoTotal = $inscripcion->costo;
-        
         $costo_horas_pasadas=$horasPasadas*$costo_hora;
         $costo_restante=$CostoTotal-$costo_horas_pasadas;
         $Acuenta_para_regenerar=$acuentaTotal-$costo_horas_pasadas;
         $fecha = $unaFecha;
-        //dd('acuanta para generar='.$Acuenta_para_regenerar.'costoHorasPasadas='.$costo_horas_pasadas.'costorestante='.$costo_restante.'acuentaTotal='.$acuentaTotal.'CostoHora'.$costo_hora);
-        foreach ($inscripcion->sesiones as $dia) {
+        foreach ($inscripcion->sesiones as $dia)
             $vector_dias[] = Dia::findOrFail($dia->dia_id)->dia;
-        }
-        while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) {
+        while ((!in_array($fecha->isoFormat('dddd'), $vector_dias)))
             $fecha->addDay();
-        }
-        
-
         $sesiones = Sesion::where('inscripcione_id', '=', $inscripcione_id)->get();
         while ($horasFaltantes > 0) {
             foreach ($sesiones as $sesion) {
                 if ($horasFaltantes > 0) {
-
                     $programa = new Programacion();
                     $hora_x_sesion = $sesion->horainicio->floatDiffInHours($sesion->horafin);
                     $costo_x_sesion = ($costo_restante / $total_horas) * $hora_x_sesion;
@@ -477,24 +476,16 @@ class ProgramacionController extends Controller
                         }
                     }
                     $programa->save();
-
                     $Acuenta_para_regenerar = $Acuenta_para_regenerar - $costo_x_sesion;
                     $horasFaltantes = $horasFaltantes - $hora_x_sesion;
                     $siguiente_sesion = $this->siguienteSesion($inscripcion, $sesion);
-
                     if (($siguiente_sesion->dia_id != $sesion->dia_id) || ($siguiente_sesion->id == Sesion::where('inscripcione_id', $inscripcion->id)->get()->first()->id)) {
                         $fecha->addDay();
                         while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) {
                             $fecha->addDay();
                         }
                     }
-
-
-                    
-                    
-                    
                 } 
-                //$Acuenta_para_regenerar = $Acuenta_para_regenerar - $costo_x_sesion;
             }
         }
         $inscripcion->fechafin = $programa->fecha;
@@ -507,6 +498,7 @@ class ProgramacionController extends Controller
         }    
     }
 
+
     public function deshabilitarTodoProgramas($inscripcione_id){
         $programas=Programacion::where('inscripcione_id', $inscripcione_id)->get();
         foreach ($programas as $programa) {
@@ -514,9 +506,6 @@ class ProgramacionController extends Controller
             $programa->save();
         }
     }
-
-
-
     public function actualizarProgramaSegunPago($inscripcione_id){
         
         $inscripcion = Inscripcione::findOrFail($inscripcione_id);

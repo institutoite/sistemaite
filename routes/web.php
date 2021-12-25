@@ -35,10 +35,9 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('alert', function () {
-    $var=SweetAlert::success('Success Message', 'Optional Title');
-    //dd($var->);
-    return view('user.index2');
+Route::get('prueba',[MatriculacionController::class,'tusMatriculaciones']);
+Route::get('test',function(){
+    return "hola";
 });
 
 Route::get('/', function () {
@@ -222,14 +221,14 @@ Route::get('carrerasajax/{computacion}', [MatriculacionController::class, 'Carre
 Route::post('matriculacion/guardar',[MatriculacionController::class,'store'])->name('matriculacion.store');
 
 Route::get('matriculacion/editar/{matriculacion}', [MatriculacionController::class,'edit'])->name("matriculacion.edit");
-Route::get('matriculacion/actualizar/{matriculacion}', [MatriculacionController::class,'update'])->name("matriculacion.update");
+Route::patch('matriculacion/actualizar/{matriculacion}', [MatriculacionController::class,'update'])->name("matriculacion.update");
 Route::get('matriculacion/mostrar/{matriculacion}', [MatriculacionController::class,'show'])->name("matriculacion.show");
 
 Route::post('matriculacion/guardar/configuracion/{matriculaciocion}', 'MatriculacionController@guardarconfiguracion')->name('matriculacion.guardar.configuracion');
 Route::get('matriculacion/actualizar/fechapago/{fecha}/{id}',[MatriculacionController::class,'actualizar_fecha_proximo_pago'])->name('setcom.fecha.proximo.pago');
 Route::get('tusmatriculaciones', [MatriculacionController::class,'tusMatriculacionesVigentes'])->name('matriculaciones.de.estudiante');
-Route::get('tumatriculaciones', [MatriculacionController::class,'tusMatriculacionesVigentes'])->name('matriculaciones');
-// Route::get('imprimir/matriculacion/{matriculacion}',[MatriculacionController::class,'imprimir'] )->name('imprimir.matriculacion');
+//Route::get('tumatriculaciones', [MatriculacionController::class,'tusMatriculacionesVigentes'])->name('matriculaciones');
+//Route::get('imprimir/matriculacion/{matriculacion}',[MatriculacionController::class,'imprimir'] )->name('imprimir.matriculacion');
 
 
 
@@ -303,7 +302,7 @@ Route::get('programacion/mostrar/clases', "ProgramacionController@mostrarClases"
 Route::get('programacion/hoy/{inscripcion}', "ProgramacionController@programacionesHoy")->name('programaciones.hoy');
 Route::get('programacion/editar/', "ProgramacionController@editar")->name('programacion.editar');
 Route::get('programacion/actualizar/', "ProgramacionController@actualizar")->name('programacion.actualizar');
-Route::get('regenerar/programa/{inscripcione}/{fecha}', 'ProgramacionController@regenerarPrograma')->name('regenerar.programa');
+Route::get('regenerar/programa/{inscripcione}/{fecha}/{unModo?}', 'ProgramacionController@regenerarPrograma')->name('regenerar.programa');
 Route::get('mostrar/programa/{inscripcione}', 'ProgramacionController@mostrarPrograma')->name('mostrar.programa');
 Route::get('imprimir/programa/{inscripcione}', 'ProgramacionController@imprimirPrograma')->name('imprimir.programa');
 Route::get('actualizar/programa/segunpago/{inscripcione}', 'ProgramacionController@actualizarProgramaSegunPago')->name('actualizar.programa.segun.pago');

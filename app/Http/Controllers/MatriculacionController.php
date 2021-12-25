@@ -137,9 +137,24 @@ class MatriculacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $matriculacion_id)
     {
-        //
+        $matriculacion = Matriculacion::findOrFail($matriculacion_id);
+        $matriculacion->fechaini=$request->fechaini;
+        $matriculacion->fechafin=$request->fechaini;
+        $matriculacion->fecha_proximo_pago=$request->fechaini;
+        $matriculacion->costo=$request->costo;
+        $matriculacion->totalhoras=$request->totalhoras;
+        $matriculacion->vigente=1;
+        $matriculacion->condonado=0;
+        $matriculacion->save();
+        $nivel=Nivel::findOrFail(6);
+        $aulas = Aula::get();
+        $docentes = $nivel->docentes;
+        $dias = Dia::get();
+        $computacion=$matriculacion->computacion;
+        //$matriculacion->userable()->create(['user_id'=>Auth::user()->id]);
+        return view('matriculacion.configurarupdate', compact('computacion','matriculacion', 'aulas', 'docentes','dias'));
     }
 
     /**
@@ -181,29 +196,20 @@ class MatriculacionController extends Controller
     }
 
 
-
-
-
-
     public function tusMatriculacionesVigentes(Request $request){
-       $persona=Estudiante::findOrFail($request->estudiante_id)->persona;
-       $computacion=$persona->computacion;
-       if($computacion!==null){
-           
-           $matriculacionesVigentes=Matriculacion::join('pagos','pagos.pagable_id','=','matriculacions.id')
-           ->join('asignaturas','asignaturas.id','=','matriculacions.asignatura_id')        
-           ->where('computacion_id','=',2)->where('vigente',1)
-           ->select('matriculacions.id','vigente','costo','asignatura',DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= matriculacions.id) as acuenta"))
-           ->groupBy('matriculacions.id', 'vigente', 'costo','asignatura','acuenta')->get();
-           
+        $persona=Estudiante::findOrFail($request->estudiante_id)->persona;
+        $computacion=$persona->computacion;
+        if($computacion!==null){
+            $matriculacionesVigentes=Matriculacion::join('pagos','pagos.pagable_id','=','matriculacions.id')
+            ->join('asignaturas','asignaturas.id','=','matriculacions.asignatura_id')        
+            ->where('computacion_id','=',$computacion->id)->where('vigente',1)
+            ->select('matriculacions.id','vigente','costo','asignatura',DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= matriculacions.id) as acuenta"))
+            ->groupBy('matriculacions.id', 'vigente', 'costo','asignatura','acuenta')->get();
         }
-        //dd($matriculacionesVigentes);
-         return datatables()->of($matriculacionesVigentes)
-                            ->addColumn('btn', 'inscripcione.actiontusmatriculacion')
-                            ->rawColumns(['btn'])
-                            ->toJson();
-        
-        
+        return datatables()->of($matriculacionesVigentes)
+                ->addColumn('btn', 'inscripcione.actiontusmatriculacion')
+                ->rawColumns(['btn'])
+                ->toJson();
     }
 
     public function imprimirProgramacom(){
