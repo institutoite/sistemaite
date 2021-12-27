@@ -25,9 +25,26 @@
                     <div class="card-body">
                         {{-- @include('matriculacione.guarderia.config') --}}
                         @include('matriculacion.form_configurar')
-                            <form method="POST" id="formulario" action="{{ route('matriculacion.guardar.configuracion',$matriculacion->id)}}"  role="form" enctype="multipart/form-data">       
+                            <form method="POST" id="formulario" action="{{ route('matriculacion.actualizar.configuracion',$matriculacion->id)}}"  role="form" enctype="multipart/form-data">       
                                 @csrf
                                 <div class="card">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="radioconfig" id="radiodesde" value="radiodesde">
+                                                <label class="form-check-label text-gray" for="radiodesde">Modificar desde la fecha (de aqui en adelante)</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="radioconfig" id="radiotodo" value="radiotodo">
+                                                <label class="form-check-label text-gray" for="radiotodo">Cambiar Fecha Inicio (Todo)</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <input id="fecha" class="form-control border-warning mb-3" name="fecha" value="{{$matriculacion->fechaini->format('Y-m-d')}}" type="date">
+                                            <p id="mensajefecha" class="d-none text-gray">La fecha no es necesaria ya que lo tomara de la inscripción, esta opcion edita todas las clases</p>
+
+                                        </div>
+                                    </div>
                                     <div id="titulosesion" class="card-header bg-warning">
                                         
                                     </div>
@@ -97,11 +114,20 @@
                 }    
             });
 
-            //console.log($('input[type=time]').size);
+            $('input[type=radio][name=radioconfig]').on('change',function(){
+                if ($("#radiotodo").is(':checked')){
+                    $('#fecha').attr('readonly',true);
+                    $("#mensajefecha").removeClass('d-none');
+                }
+                if ($("#radiodesde").is(':checked')){
+                    $('#fecha').attr('readonly',false);
+                    $("#mensajefecha").addClass('d-none');
+                }
+            });
 
             $("#botonplus").click(function(){
                 cantida_sesiones=cantida_sesiones+1;
-                
+                $("#dia option[value="+ cantida_sesiones +"]").attr("selected",true);
                 if(cantida_sesiones>0){
                     $("#boton-aceptar").removeClass('d-none');
                     console.log(cantida_sesiones);

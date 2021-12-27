@@ -431,12 +431,10 @@ class ProgramacionController extends Controller
     }
 
     public function regenerarPrograma($inscripcione_id,$unaFecha,$unModo = 'desde'){
-        
         if($unModo=='todo'){
             $this->EliminarTodosLosProgramas($inscripcione_id);
             $this->generarPrograma($inscripcione_id);
         }
-
         $unaFecha= Carbon::createFromFormat('Y-m-d', $unaFecha);
         $inscripcion= Inscripcione::findOrFail($inscripcione_id);
         $FechaDesde=$unaFecha->format('Y-m-d');
@@ -481,7 +479,8 @@ class ProgramacionController extends Controller
                     $siguiente_sesion = $this->siguienteSesion($inscripcion, $sesion);
                     if (($siguiente_sesion->dia_id != $sesion->dia_id) || ($siguiente_sesion->id == Sesion::where('inscripcione_id', $inscripcion->id)->get()->first()->id)) {
                         $fecha->addDay();
-                        while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) {
+                        //while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) {
+                        while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))||($this->esFeriado($fecha))) {
                             $fecha->addDay();
                         }
                     }

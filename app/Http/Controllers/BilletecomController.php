@@ -37,6 +37,7 @@ class BilletecomController extends Controller
     {
         
       
+        
         $pago = Pago::findOrFail($pago_id);
 
         $montoBilletes= $request->billete200*200+ $request->billete100*100+ $request->billete50*50+ $request->billete20*20+
@@ -77,6 +78,8 @@ class BilletecomController extends Controller
             if($request->monedacambio1    != 0){ $vector_cantidad_billetes_cambio['8']= $request->monedacambio1;}
             if($request->monedacambio50   != 0){ $vector_cantidad_billetes_cambio['9']= $request->monedacambio50;}
             if($request->monedacambio20   != 0){ $vector_cantidad_billetes_cambio['10']= $request->monedacambio20;}
+            
+
             
             foreach ($vector_cantidad_billetes_cambio as $key => $val) {
                 $pago->billetes()->attach($key,['cantidad'=>$val,'tipo'=>'cambio']);

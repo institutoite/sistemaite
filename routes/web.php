@@ -144,7 +144,7 @@ Route::get('pagocom/mostrar/{pagocom}', 'PagocomController@mostrar')->name('pago
 Route::get('pagocom/editar/{pagocom}', 'PagocomController@editar')->name('pagocom.editar');
 Route::get('pagocom/inscripcion/{matriculacion}', 'PagocomController@detallar')->name('pagocom.detallar');
 Route::post('pagocom/realizar/{matriculacion}', 'PagocomController@guardar')->name('pagocom.guardar');
-Route::patch('pagocom/actualizar/{pagocom}', "PagocomController@actualizar")->name('pagcom.actualizar');
+Route::patch('pagocom/actualizar/{pagocom}', "PagocomController@actualizar")->name('pagocom.actualizar');
 
 
 
@@ -225,6 +225,8 @@ Route::patch('matriculacion/actualizar/{matriculacion}', [MatriculacionControlle
 Route::get('matriculacion/mostrar/{matriculacion}', [MatriculacionController::class,'show'])->name("matriculacion.show");
 
 Route::post('matriculacion/guardar/configuracion/{matriculaciocion}', 'MatriculacionController@guardarconfiguracion')->name('matriculacion.guardar.configuracion');
+Route::post('matriculacion/actualizar/configuracion/{matriculacion_id}', [MatriculacionController::class,'actualizarConfiguracion'])->name('matriculacion.actualizar.configuracion');
+
 Route::get('matriculacion/actualizar/fechapago/{fecha}/{id}',[MatriculacionController::class,'actualizar_fecha_proximo_pago'])->name('setcom.fecha.proximo.pago');
 Route::get('tusmatriculaciones', [MatriculacionController::class,'tusMatriculacionesVigentes'])->name('matriculaciones.de.estudiante');
 //Route::get('tumatriculaciones', [MatriculacionController::class,'tusMatriculacionesVigentes'])->name('matriculaciones');
@@ -311,13 +313,13 @@ Route::get('guardar/observacion/programacion', 'ProgramacionController@guardarOb
 
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% P R O G R A M A C I O N  COMPUTACION  C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-Route::get('generar/programacioncom/{matriculacion}',[ProgramacioncomController::class,'generarPrograma'])->name('generar.programacioncom');
+Route::get('generar/programacioncom/{matriculacion}',[ProgramacioncomController::class,'generarProgramacom'])->name('generar.programacioncom');
 Route::get('programacioncom/mostrar/{matriculacion}', [ProgramacioncomController::class,'mostrar'])->name('programacioncom.mostrar');
 Route::get('programacioncom/mostrar/clases', [ProgramacioncomController::class,'mostrarClases'])->name('programacioncom.mostrar.clases');
 Route::get('programacioncom/hoy/{matriculacion}', [ProgramacioncomController::class,'programacionescomHoy'])->name('programacioncom.hoy');
 Route::get('programacioncom/editar/', [ProgramacioncomController::class,'editar'])->name('programacioncom.editar');
 Route::get('programacioncom/actualizar/', [ProgramacioncomController::class,'actualizar'])->name('programacioncom.actualizar');
-Route::get('regenerar/programacom/{matriculacion}/{fecha}', [ProgramacioncomController::class,'regenerarPrograma'])->name('regenerar.programacioncom');
+Route::get('regenerar/programacom/{matriculacion}/{fecha}/{unModo?}', [ProgramacioncomController::class,'regenerarProgramacom'])->name('regenerar.programacioncom');
 Route::get('mostrar/programacom/{matriculacion}', [ProgramacioncomController::class,'mostrarProgramacom'])->name('mostrar.programacioncom');
 Route::get('imprimir/programacom/{matriculacion}', [ProgramacioncomController::class,'imprimirProgramacom'])->name('imprimir.programacioncom');
 Route::get('actualizar/programacom/segunpago/{matriculacion}', [ProgramacioncomController::class,'actualizarProgramaSegunPagocom'])->name('actualizar.programacioncom.segun.pago');

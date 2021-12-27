@@ -2,30 +2,11 @@
 @section('css')
 @stop
 
-@section('title', 'Inscripcion Crear')
+@section('title', 'Matriculación Crear')
 
 @section('content')
  
     <section class="content container-fluid">
-        <div class="row">
-           
-            {{-- <table class="table table-dark">
-                <thead class="thead-light">
-                    <tr>
-                        <th>Atribubuto</th>
-                        <th>Valor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>HORA INICIO</td><td>{{$datos['horainicio']}}</td></tr>
-                    <tr><td>HORA FIN</td><td>{{$datos['horafin']}}</td></tr>
-                    <tr><td>HORAS X DIA</td><td>{{$datos['totalhoras']}}</td></tr>
-                    <tr><td>TOTAL HORAS</td><td>{{$datos['horas_total']}}</td></tr>
-                    <tr><td>COSTO</td><td>{{$datos['costo']}}</td></tr>
-                </tbody>
-            </table> --}}
-            
-        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-default">
@@ -35,9 +16,7 @@
                             <button id="botonplus" class="btn btn-primary d-none" type="button">Agregar  Sesiones<i class="fas fa-plus-square"></i></button>
                         </div>
                     </div>
-                   
                     <div class="card-body">
-                        {{-- @include('matriculacione.guarderia.config') --}}
                         @include('matriculacion.form_configurar')
                             <form method="POST" id="formulario" action="{{ route('matriculacion.guardar.configuracion',$matriculacion->id)}}"  role="form" enctype="multipart/form-data">       
                                 @csrf
@@ -115,7 +94,7 @@
 
             $("#botonplus").click(function(){
                 cantida_sesiones=cantida_sesiones+1;
-                
+                $("#dia option[value="+ cantida_sesiones +"]").attr("selected",true);
                 if(cantida_sesiones>0){
                     $("#boton-aceptar").removeClass('d-none');
                     console.log(cantida_sesiones);
@@ -156,7 +135,7 @@
                     $("#titulosesion").addClass('bg-success');
                 }
                    
-                }); 
+            }); 
             $("body").on('click','div .alert .close',function() {
                 cantida_sesiones=cantida_sesiones-1;
                 //console.log(cantida_sesiones);

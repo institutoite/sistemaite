@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PagoStoreRequest;
 use Illuminate\Http\Request;
 use App\Models\Matriculacion;
 use App\Models\Pagocom;
@@ -64,10 +65,13 @@ class PagocomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editar($pago_id)
     {
-        //
+        $pago = Pago::find($pago_id);
+        $matriculacion=$pago->pagable; 
+        return view('pagocom.editar',compact('pago','matriculacion'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -102,4 +106,19 @@ class PagocomController extends Controller
         return view('pagocom.detalle', compact('matriculacion', 'pagos', 'acuenta', 'saldo'));
 
     }
+    public function actualizar(PagoStoreRequest $request, $pago_id)
+    {
+       // $pago->update($request->all());
+
+        //  dd($pago_id);
+        // $matriculacion=Matriculacion::findOrFail($matriculacion_id);
+        $pago=Pago::findOrFail($pago_id);
+        $pago->monto=$request->monto;
+        $pago->pagocon=$request->pagocon;
+        $pago->cambio=$request->cambio;
+        $pago->save();
+
+        return redirect()->route('billetecom.crear', ['pago'=>$pago]); 
+    }
+
 }

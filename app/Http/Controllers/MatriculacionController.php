@@ -187,6 +187,36 @@ class MatriculacionController extends Controller
         return redirect()->route('pagocom.crear',$matriculacion);
     }
 
+      public function actualizarConfiguracion(Request $request, $matriculacion_id)
+    {
+        $cuantas_sesiones = count($request->dias);
+        $fecha=$request->fecha;
+        Sesioncom::where('matriculacion_id', '=', $matriculacion_id)->delete();
+        $matriculacion = Matriculacion::findOrFail($matriculacion_id);
+        if($fecha<=$matriculacion->fechaini){
+            $matriculacion->fechaini=$fecha;
+        }
+        $i = 0;
+        while ($i < $cuantas_sesiones) {
+            $sesion = new Sesioncom();
+            $sesion->horainicio = $request->horainicio[$i];
+            $sesion->horafin = $request->horafin[$i];
+            $sesion->dia_id = $request->dias[$i];
+            $sesion->docente_id = $request->docentes[$i];
+            $sesion->aula_id = $request->aulas[$i];
+            $sesion->matriculacion_id = $matriculacion_id;
+            $sesion->save();
+            $i = $i + 1;
+        }
+        
+        if ($request->radioconfig=='radiodesde'){
+            return redirect()->route('regenerar.programacioncom', ['matriculacion'=>$matriculacion->id,'fecha'=>$fecha]);   
+        }
+        if ($request->radioconfig=='radiotodo'){
+            return redirect()->route('regenerar.programacioncom', ['matriculacion'=>$matriculacion->id,'fecha'=>$fecha,'unModo'=>'todo']);   
+        }
+    }
+
     public function actualizar_fecha_proximo_pago($fecha,$matriculacion_id){
        
         $matriculacion=Matriculacion::findOrFail($matriculacion_id);
@@ -202,9 +232,13 @@ class MatriculacionController extends Controller
         if($computacion!==null){
             $matriculacionesVigentes=Matriculacion::join('pagos','pagos.pagable_id','=','matriculacions.id')
             ->join('asignaturas','asignaturas.id','=','matriculacions.asignatura_id')        
-            ->where('computacion_id','=',$computacion->id)->where('vigente',1)
-            ->select('matriculacions.id','vigente','costo','asignatura',DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= matriculacions.id) as acuenta"))
-            ->groupBy('matriculacions.id', 'vigente', 'costo','asignatura','acuenta')->get();
+            
+            ->where('computacion_id','=',$computacion->id)
+            ->where('pagos.pagable_type','=',"App\Models\Matriculacion")
+            ->where('vigente', 1)
+
+            ->select('matriculacions.id','vigente','costo','asignatura',DB::raw('sum(pagos.monto) as acuenta'))
+            ->groupBy('matriculacions.id', 'vigente', 'costo','asignatura')->get();
         }
         return datatables()->of($matriculacionesVigentes)
                 ->addColumn('btn', 'inscripcione.actiontusmatriculacion')
@@ -217,3 +251,5 @@ class MatriculacionController extends Controller
     }
 
 }
+
+

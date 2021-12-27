@@ -206,7 +206,7 @@
             // });
             
 
-            $('table').on('click','.eliminar',function (e) {
+            $('table').on('click','.eliminarinscripcion',function (e) {
                 e.preventDefault(); 
                 id=$(this).parent().parent().parent().find('td').first().html();
                 //console.log(id);

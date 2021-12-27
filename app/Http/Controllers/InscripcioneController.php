@@ -231,7 +231,7 @@ class InscripcioneController extends Controller
     public function destroy($id)
     {
         $inscripcion = Inscripcione::findOrFail($id);
-        //$inscripcion->delete();
+        $inscripcion->delete();
         // return redirect()->action([InscripcioneController::class, 'tusinscripciones'], ['estudiante_id' => $inscripcion->estudiante_id]);
         // return response()->json()
         return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
@@ -261,10 +261,11 @@ class InscripcioneController extends Controller
         //return response()->json(["es"=>$estudiante_id], 200, $headers);
         $persona=Estudiante::findOrFail($estudiante_id)->persona;
         $inscripcionesVigentes = Inscripcione::join('pagos', 'pagos.pagable_id', '=', 'inscripciones.id')
-        ->where('estudiante_id', '=', $persona->estudiante->id)
+            ->where('estudiante_id','=',$estudiante_id)
+            ->where('pagos.pagable_type','=',"App\Models\Inscripcione")
             ->where('vigente', 1)
-            ->select('inscripciones.id','vigente', 'objetivo', 'costo', DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= inscripciones.id) as acuenta"))
-            ->groupBy('inscripciones.id', 'vigente','objetivo', 'acuenta', 'costo')
+            ->select('inscripciones.id','vigente', 'objetivo', 'costo', DB::raw('sum(pagos.monto) as acuenta'))
+            ->groupBy('inscripciones.id', 'vigente','objetivo', 'costo')
             ->get();
 
         return datatables()->of($inscripcionesVigentes)
@@ -281,9 +282,11 @@ class InscripcioneController extends Controller
 
         $persona=Estudiante::findOrFail($estudiante_id)->persona;
         $inscripcionesVigentes = Inscripcione::join('pagos', 'pagos.pagable_id', '=', 'inscripciones.id')
-        ->where('estudiante_id', '=', $persona->estudiante->id)
+            ->where('estudiante_id', '=', $persona->estudiante->id)
             ->where('vigente', 1)
-            ->select('inscripciones.id','vigente', 'objetivo', 'costo', DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= inscripciones.id) as acuenta"))
+            ->where('pagos.pagable_id', '=', 'inscripciones.id')
+            ->where('pagos.pagable_type', '=', 'App\Models\Inscripcione')
+            ->select('inscripciones.id','vigente', 'objetivo', 'costo', DB::raw("(SELECT avg(monto) FROM pagos where pagos.id = inscripciones.id and inscripciones.id=1) as acuenta"))
             ->groupBy('inscripciones.id', 'vigente','objetivo', 'acuenta', 'costo')
             ->get();
         $inscripcionesOtras = Inscripcione::where('estudiante_id', '=', $persona->estudiante->id)
@@ -295,7 +298,7 @@ class InscripcioneController extends Controller
             $matriculacionesVigentes=Matriculacion::join('pagos','pagos.pagable_id','=','matriculacions.id')
                                                   ->join('asignaturas','asignaturas.id','=','matriculacions.asignatura_id')        
             ->where('computacion_id','=',$persona->computacion->id)->where('vigente',1)
-            ->select('matriculacions.id','vigente','costo','asignatura',DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= matriculacions.id) as acuenta"))
+            ->select('matriculacions.id','vigente','costo','asignatura',DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_type='App\\Models\\Inscripcione' and pagos.pagable_id=1) as acuenta"))
             ->groupBy('matriculacions.id', 'vigente', 'costo','asignatura','acuenta')->get();
             //dd($matriculacionesVigentes);
             $matriculacionesOtras=Matriculacion::where('computacion_id','=',$persona->computacion->id)->where('vigente',0)->get();

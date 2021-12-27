@@ -47,7 +47,7 @@
                                             <td>{{ $pago->created_at }}</td>
                                             <td>
                                                 {{-- {{route('pagos.editar', $pago)}} --}}
-                                                <a href="{{route('pago.editar',$pago->id)}}" class="btn-accion-tabla tooltipsC mr-2 editar" title="Editar esta pago">
+                                                <a href="{{route('pagocom.editar',$pago->id)}}" class="btn-accion-tabla tooltipsC mr-2 editar" title="Editar esta pago">
                                                     <i class="fa fa-fw fa-edit text-primary"></i>
                                                 </a>
 

@@ -93,22 +93,17 @@ class ProgramacioncomController extends Controller
         //
     }
 
-     public function generarPrograma($matriculacion_id){
+     public function generarProgramacom($matriculacion_id){
         $matriculacion=Matriculacion::findOrFail($matriculacion_id);
-        
         $costo_total=$matriculacion->costo;
         $total_horas=$matriculacion->totalhoras;
         $acuenta =$matriculacion->pagos->sum('monto');
         $fecha=$matriculacion->fechaini;
-        foreach ($matriculacion->sesionescoms as $dia) { 
+        foreach ($matriculacion->sesionescoms as $dia)
             $vector_dias[] = Dia::findOrFail($dia->dia_id)->dia;
-        }
-        
-        while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) {
+        while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))) 
             $fecha->addDay();
-        }
         $sesiones=Sesioncom::where('matriculacion_id','=',$matriculacion_id)->get();
-        
             while($total_horas>0){
                 foreach ($sesiones as $sesion) {
                     if ($total_horas > 0) {
@@ -116,9 +111,6 @@ class ProgramacioncomController extends Controller
                         $hora_x_sesion= $sesion->horainicio->floatDiffInHours($sesion->horafin);
                         $costo_x_sesion = ($costo_total / $matriculacion->totalhoras) *$hora_x_sesion ;
                         $costo_hora= $costo_total / $total_horas;
-                        
-                        
-                        
                         if($total_horas>$hora_x_sesion){
                             if ($acuenta > $costo_x_sesion) {
                                 $this->agregarClase($programa,$fecha,$hora_x_sesion,$total_horas,$sesion,true,$matriculacion);
@@ -128,17 +120,14 @@ class ProgramacioncomController extends Controller
                         }else{
                             if ($acuenta >= $costo_hora*$total_horas) {
                                 $this->agregarClase($programa, $fecha, $hora_x_sesion,$total_horas, $sesion, true, $matriculacion);
-                                
                             } else {
                                 $this->agregarClase($programa, $fecha, $hora_x_sesion,$total_horas, $sesion, false, $matriculacion);
                             }
                         }
                         $programa->save();
                         $acuenta = $acuenta - $costo_x_sesion;
-                        
                         $total_horas = $total_horas - $hora_x_sesion;
                         $siguiente_sesion= $this->siguienteSesion($matriculacion, $sesion);
-                        
                         if(($siguiente_sesion->dia_id!=$sesion->dia_id)||($siguiente_sesion->id== Sesion::where('matriculacion_id', $matriculacion->id)->get()->first()->id)){
                             $fecha->addDay();
                             while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))||($this->esFeriado($fecha))) {
@@ -146,7 +135,6 @@ class ProgramacioncomController extends Controller
                             }
                         }
                     }
-                    
                 }
             }
             $matriculacion->fechafin = $programa->fecha;
@@ -157,9 +145,78 @@ class ProgramacioncomController extends Controller
                 $matriculacion->save();
                 return redirect()->route('imprimir.programacioncom', $matriculacion->id);;
             }   
-        
     }
-     public function agregarClase(&$programacom, &$fecha, $hora_x_sesion, &$total_horas , &$sesioncom , $habilitado, &$matriculacion){
+
+    public function EliminarTodosLosProgramascom($matriculacion_id){
+        Programacioncom::where('matriculacion_id', '=', $matriculacion_id)->delete();
+    }
+
+    public function regenerarProgramacom($matriculacion_id,$unaFecha,$unModo = 'desde'){
+        if($unModo=='todo'){
+            $this->EliminarTodosLosProgramascom($matriculacion_id);
+            $this->generarProgramacom($matriculacion_id);
+        }
+        $unaFecha= Carbon::createFromFormat('Y-m-d', $unaFecha);
+        $matriculacion= Matriculacion::findOrFail($matriculacion_id);
+        $FechaDesde=$unaFecha->format('Y-m-d');
+        $horasFaltantes = Programacioncom::where('matriculacion_id', '=', $matriculacion_id)->where('fecha', '>=', $FechaDesde)->sum('horas_por_clase');
+        $total_horas=$horasFaltantes;                
+        $horasPasadas = $matriculacion->totalhoras-$horasFaltantes;
+        Programacioncom::where('matriculacion_id', '=', $matriculacion_id)->where('fecha', '>=', $FechaDesde)->delete();
+        $costo_hora=$matriculacion->costo/$matriculacion->totalhoras;
+        $acuentaTotal = $matriculacion->pagos->sum('monto');
+        $CostoTotal = $matriculacion->costo;
+        $costo_horas_pasadas=$horasPasadas*$costo_hora;
+        $costo_restante=$CostoTotal-$costo_horas_pasadas;
+        $Acuenta_para_regenerar=$acuentaTotal-$costo_horas_pasadas;
+        $fecha = $unaFecha;
+        foreach ($matriculacion->sesionescoms as $dia)
+            $vector_dias[] = Dia::findOrFail($dia->dia_id)->dia;
+        while ((!in_array($fecha->isoFormat('dddd'), $vector_dias)))
+            $fecha->addDay();
+        $sesiones = Sesioncom::where('matriculacion_id', '=', $matriculacion_id)->get();
+        while ($horasFaltantes > 0) {
+            foreach ($sesiones as $sesion) {
+                if ($horasFaltantes > 0) {
+                    $programa = new Programacioncom();
+                    $hora_x_sesion = $sesion->horainicio->floatDiffInHours($sesion->horafin);
+                    $costo_x_sesion = ($costo_restante / $total_horas) * $hora_x_sesion;
+                    if ($horasFaltantes > $hora_x_sesion) {
+                        if ($Acuenta_para_regenerar > $costo_x_sesion) {
+                            $this->agregarClase($programa, $fecha, $hora_x_sesion, $horasFaltantes, $sesion, true, $matriculacion);
+                        } else {
+                            $this->agregarClase($programa, $fecha, $hora_x_sesion, $horasFaltantes, $sesion, false, $matriculacion);
+                        }
+                    } else {
+                        if ($Acuenta_para_regenerar >= $costo_hora * $horasFaltantes) {
+                            $this->agregarClase($programa, $fecha, $hora_x_sesion, $horasFaltantes, $sesion, true, $matriculacion);
+                        } else {
+                            $this->agregarClase($programa, $fecha, $hora_x_sesion, $horasFaltantes, $sesion, false, $matriculacion);
+                        }
+                    }
+                    $programa->save();
+                    $Acuenta_para_regenerar = $Acuenta_para_regenerar - $costo_x_sesion;
+                    $horasFaltantes = $horasFaltantes - $hora_x_sesion;
+                    $siguiente_sesion = $this->siguienteSesion($matriculacion, $sesion);
+                    if (($siguiente_sesion->dia_id != $sesion->dia_id) || ($siguiente_sesion->id == Sesioncom::where('matriculacion_id', $matriculacion->id)->get()->first()->id)) {
+                        $fecha->addDay();
+                        while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))||($this->esFeriado($fecha))) {
+                            $fecha->addDay();
+                        }
+                    }
+                } 
+            }
+        }
+        $matriculacion->fechafin = $programa->fecha;
+        if ($Acuenta_para_regenerar < $matriculacion->costo) {
+            return redirect()->route('mostrar.programacioncom', $matriculacion);
+        } else {
+            $matriculacion->fecha_proximo_pago = $fecha;
+            $matriculacion->save();
+            return redirect()->route('imprimir.programacioncom', $matriculacion->id);/** llamar al metodo que muestra pdf*/
+        }    
+    }
+    public function agregarClase(&$programacom, &$fecha, $hora_x_sesion, &$total_horas , &$sesioncom , $habilitado, &$matriculacion){
         if ($total_horas > $hora_x_sesion) {
             $programacom->horafin = $sesioncom->horafin;
             $programacom->horas_por_clase = $hora_x_sesion;
@@ -176,7 +233,6 @@ class ProgramacioncomController extends Controller
         $programacom->docente_id = $sesioncom->docente_id;
         $programacom->aula_id = $sesioncom->aula_id;
         $programacom->matriculacion_id = $matriculacion->id;
-        
     }
 
 
@@ -188,7 +244,6 @@ class ProgramacioncomController extends Controller
         $cantidad = count(DB::table('feriados')->whereIn('fecha', [$unaFecha])->get());
         return $cantidad>0;
     }
-
 
     /**
      * esta funcion hace rotar el turno de las sesiones tipo ronda 

@@ -79,6 +79,7 @@ class PagoController extends Controller
 
     public function guardar(PagoStoreRequest $request,$inscripcion_id){
 
+        
         $inscripcion=Inscripcione::findOrFail($inscripcion_id);
         $pago=new Pago();
         
@@ -140,7 +141,7 @@ class PagoController extends Controller
     {
         $pago = Pago::find($pago_id);
         $inscripcion=$pago->pagable; 
-        return view('pago.edit',compact('pago','inscripcion'));
+        return view('pago.editar',compact('pago','inscripcion'));
     }
 
     /**

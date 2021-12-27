@@ -15,7 +15,7 @@
     <form action=""  class="d-inline formulario">
         @csrf
         @method("delete")
-        <button name="btn-eliminar" id="" type="submit" class="btn eliminar" title="Eliminar esta inscripción">
+        <button name="btn-eliminar" id="" type="submit" class="btn eliminarinscripcion" title="Eliminar esta inscripción">
             <i class="fa fa-fw fa-trash text-danger"></i>   
         </button>
     </form> 
