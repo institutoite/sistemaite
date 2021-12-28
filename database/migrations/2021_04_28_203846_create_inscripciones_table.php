@@ -28,13 +28,13 @@ class CreateInscripcionesTable extends Migration
             $table->unsignedInteger('motivo_id');
 
             $table->foreign('motivo_id', 'fk_inscripcion_motivos_idx')
-            ->references('id')->on('motivos');
+            ->references('id')->on('motivos')->onDelete('cascade');
 
             $table->foreign('estudiante_id', 'fk_inscripcion_estudiante1x_idx')
-                ->references('id')->on('estudiantes');
+                ->references('id')->on('estudiantes')->onDelete('cascade');
 
             $table->foreign('modalidad_id', 'fk_inscripciones_modalidades_idx')
-                ->references('id')->on('modalidads');
+                ->references('id')->on('modalidads')->onDelete('cascade');
                 
             $table->timestamps();
         });
