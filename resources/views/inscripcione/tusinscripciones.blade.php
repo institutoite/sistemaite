@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card"> 
         <div class="card-header bg-primary" >
             <div style="display: flex; justify-content: space-between; align-items: center;">
 
@@ -54,7 +54,7 @@
                 </span>
 
                 <div class="float-right">
-                    <a href="{{ route('matriculacion.create',['computacion'=>$persona->computacion,'carrera'=>1])}}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                    <a href="{{route('miscarreras.listar',$persona->computacion)}}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                     {{ __('Matricular') }} <i class="fa fa-plus-circle text-white"></i>
                     </a>
                 </div>
