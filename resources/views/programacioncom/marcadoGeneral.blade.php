@@ -158,7 +158,7 @@
                     </div>
                     <div class="card-body">
                         <div class="success"></div>
-                        @include('programacion.hoy')
+                        @include('programacioncom.hoy')
                         {{--@include('programacion.futuro')
                         @include('programacion.pasado')
                         @include('programacion.todo')
@@ -212,26 +212,26 @@
                 "searching":true,
                 "paging":   true,
                 "autoWidth":false,
-                "createdRow": function( row, data, dataIndex ) {
-                    if(data['estado']=="PRESENTE"){
-                        $(row).addClass('text-success')
-                    }
-                    if(data['estado']=="FINALIZADO"){
-                        $(row).addClass('text-danger')
-                    }
-                    if(data['estado']=="INDEFINIDO"){
-                        $(row).addClass('text-dark')
-                    }
+                // "createdRow": function( row, data, dataIndex ) {
+                //     if(data['estado']=="PRESENTE"){
+                //         $(row).addClass('text-success')
+                //     }
+                //     if(data['estado']=="FINALIZADO"){
+                //         $(row).addClass('text-danger')
+                //     }
+                //     if(data['estado']=="INDEFINIDO"){
+                //         $(row).addClass('text-dark')
+                //     }
 
-                    $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
+                //     $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
 
-                    $('td', row).eq(0).html(moment(data['fecha']).format('D-M-Y'));
-                    $('td', row).eq(1).html(moment(data['hora_ini']).format('HH:mm'));
-                    $('td', row).eq(2).html(moment(data['hora_fin']).format('HH:mm'));
+                //     $('td', row).eq(0).html(moment(data['fecha']).format('D-M-Y'));
+                //     $('td', row).eq(1).html(moment(data['hora_ini']).format('HH:mm'));
+                //     $('td', row).eq(2).html(moment(data['hora_fin']).format('HH:mm'));
 
 
                     
-                },
+                // },
                 "ordering": true,
                 "info":     true,
                 "language":{
@@ -241,21 +241,22 @@
                                        
                     'url' : "{{ route('programacioncom.hoy',['matriculacion'=>$matriculacion->id])}}",
                     "success":function(json){
-                        console.log(json.data);
+                        console.log(json);
                     }
                 },
                 "columns": [
-                        // {"data": "id"},
+                        {"data": "id"},
                         {"data": "fecha"},
-                        {"data": "hora_ini"},
-                        {"data": "hora_fin"},
+                        {"data": "horaini"},
+                        {"data": "horafin"},
 
                         {"data": "nombre"},
-                        {"data": "materia"},
+                        {"data": "estado"},
                         {"data": "aula"},
-
                         {"data": "btn"},
                     ],
+                    // ->select('programacioncoms.id','fecha','horaini','horafin','programacioncoms.estado','docentes.nombre','aulas.aula');
+
                 "columnDefs": [
                     { responsivePriority: 1, targets: 0 },  
                     { responsivePriority: 2, targets: -1 }

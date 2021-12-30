@@ -311,18 +311,17 @@ class ProgramacioncomController extends Controller
         return view('clase.create',compact('docentes','programacioncom','matriculacion','aulas','hora_inicio','hora_fin'));
     }
 
-    public function programacionescomHoy(Request $request,$matriculacion){
-        
-        //return response()->json(['cd'=>$matriculacion]);
-        $programacion=Programacion::join('docentes','docentes.id','=','programacioncoms.docente_id')
+    public function programacionescomHoy(Request $request){
+        $programacion=Programacioncom::join('docentes','docentes.id','=','programacioncoms.docente_id')
                     ->join('aulas','aulas.id','=','programacioncoms.aula_id')
-                    ->where('matriculacion_id',$request->matriculacion_id)
+                    ->where('matriculacion_id',$request->matriculacion)
                     ->where('fecha','=', Carbon::now()->isoFormat('Y-M-D'))
                     ->select('programacioncoms.id','fecha','horaini','horafin','programacioncoms.estado','docentes.nombre','aulas.aula');
-        return DataTables::of($programacion)
-                ->addColumn('btn','programacion.actions')
+        return response()->json($programacion);
+        /*return DataTables::of($programacion)
+                ->addColumn('btn','programacioncom.actions')
                 ->rawColumns(['btn'])
-                ->toJson();
+                ->toJson();*/
     }
 
     public function deshabilitarTodoProgramascom($matriculacion_id){
