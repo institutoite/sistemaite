@@ -37,6 +37,14 @@ class Programacioncom extends Model
     {
         return $this->belongsTo('App\Models\Aula');
     }
+    public function clasescom()
+    {
+        return $this->hasMany(Clasecom::class);
+    }
+    public function observaciones()
+    {
+        return $this->morphMany(Observacion::class, 'observable');
+    }
     
 
 }

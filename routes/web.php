@@ -35,10 +35,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[MatriculacionController::class,'tusMatriculaciones']);
-Route::get('test',function(){
-    return "hola";
-});
+Route::get('prueba',[ProgramacioncomController::class,'editar'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -175,10 +172,19 @@ Route::get('clases/presentes/ahorita', 'ClaseController@clasesPresentes')->name(
 Route::get('presentes', function () {return view('clase.presentes');})->name('clase.presentes');
 Route::get('programa/marcar/{inscripcine_id}', 'ClaseController@marcadoGeneral')->name('clases.marcado.general');
 
+Route::get('marcar/asistencia/', 'ClaseController@marcado')->name('marcado');
+Route::get('clase/crear', 'ClaseController@crear')->name('clase.crear');
+Route::get('clase/marcar/rapido/{programacion_id}', 'ClaseController@marcadoRapido')->name('marcado.presente.rapido');
+Route::post('/clase/guardar/normal/{progrmacion_id}', 'ClaseController@guardar')->name('clases.guardar');
+Route::post('programa/estado/general/', 'ClaseController@marcadoGeneral')->name('programa.estado.general');
+
+
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  C L A S E S C O M         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('programacioncom/marcar/{matriculacion}', [ClasecomController::class,'marcadoGeneral'])->name('clases.marcadocom.general');
-
+Route::get('clasecom/marcar/rapido/{programacion_id}', 'ClasecomController@marcadoRapido')->name('marcadocom.presente.rapido');  // MARCADO RAPIDO COMPUTACION
+Route::get('clasescom/presentes/ahorita', 'ClasecomController@clasesPresentes')->name('clasescom.presente');
+//Route::get('clasecom/mostrar/{clase}',[ClasecomController::class,'mostrar'])->name('clasecom.mostrar');
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  G R A D O S  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 //Route::resource('grados', [GradoController::class]);
@@ -261,12 +267,7 @@ Route::resource('users', 'UserController');
 Route::get('user/crear', "UserController@crear")->name('users.crear');
 Route::post('user/guardar', "UserController@guardar")->name('users.guardar');
 
-Route::get('marcar/asistencia/', 'ClaseController@marcado')->name('marcado');
-Route::get('clase/crear', 'ClaseController@crear')->name('clase.crear');
-Route::get('clase/marcar/rapido/{programacion_id}', 'ClaseController@marcadoRapido')->name('marcado.presente.rapido');
 
-Route::post('programa/estado/general/', 'ClaseController@marcadoGeneral')->name('programa.estado.general');
-Route::post('/clase/guardar/normal/{progrmacion_id}', 'ClaseController@guardar')->name('clases.guardar');
 
 Route::get('apoderado/existente/{persona}', 'TelefonoController@apoderadoExistente')->name('apoderado.existente');
 Route::get('telefono/agregar/{persona_id}/{apoderado_id}', 'TelefonoController@agregarApoderado')->name('agregar.apoderado');
@@ -315,7 +316,7 @@ Route::get('guardar/observacion/programacion', 'ProgramacionController@guardarOb
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% P R O G R A M A C I O N  COMPUTACION  C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('generar/programacioncom/{matriculacion}',[ProgramacioncomController::class,'generarProgramacom'])->name('generar.programacioncom');
 Route::get('programacioncom/mostrar/{matriculacion}', [ProgramacioncomController::class,'mostrar'])->name('programacioncom.mostrar');
-Route::get('programacioncom/mostrar/clases', [ProgramacioncomController::class,'mostrarClases'])->name('programacioncom.mostrar.clases');
+Route::get('programacioncom/mostrar', [ProgramacioncomController::class,'mostrarClases'])->name('programacioncom.mostrar');
 Route::get('programacioncom/hoy/{matriculacion}', [ProgramacioncomController::class,'programacionescomHoy'])->name('programacioncom.hoy');
 Route::get('programacioncom/editar/', [ProgramacioncomController::class,'editar'])->name('programacioncom.editar');
 Route::get('programacioncom/actualizar/', [ProgramacioncomController::class,'actualizar'])->name('programacioncom.actualizar');
@@ -323,9 +324,10 @@ Route::get('regenerar/programacom/{matriculacion}/{fecha}/{unModo?}', [Programac
 Route::get('mostrar/programacom/{matriculacion}', [ProgramacioncomController::class,'mostrarProgramacom'])->name('mostrar.programacioncom');
 Route::get('imprimir/programacom/{matriculacion}', [ProgramacioncomController::class,'imprimirProgramacom'])->name('imprimir.programacioncom');
 Route::get('actualizar/programacom/segunpago/{matriculacion}', [ProgramacioncomController::class,'actualizarProgramaSegunPagocom'])->name('actualizar.programacioncom.segun.pago');
-Route::get('clase/marcar/normal/{programacioncom_id}', [ProgramacioncomController::class,'marcadoNormal'])->name('marcado.presente.normal.programacioncom');
+Route::get('clase/marcar/normal/{programacioncom_id}', [ProgramacioncomController::class,'marcadoNormal'])->name('marcadocom.presente.normal.programacioncom');
 Route::get('guardar/observacion/programacioncom', [ProgramacioncomController::class,'guardarObservacion'])->name('guardar.observacion.programacioncom');
 Route::get('inscripciones/vigentes/{estudiante_id}', 'InscripcioneController@inscripcionesVigentes')->name('inscripciones.vigentes');
+
 
 
 /**

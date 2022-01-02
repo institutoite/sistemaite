@@ -6,11 +6,17 @@ use App\Models\Programacioncom;
 use App\Models\Matriculacion;
 use App\Models\Persona;
 use App\Models\Dia;
+use App\Models\Clasecom;
 use App\Models\Sesioncom;
 use App\Models\User;
 use App\Models\Computacion;
+use App\Models\Nivel;
+use App\Models\Observacion;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
+
 use PDF;
 
 use Illuminate\Http\Request;
@@ -54,9 +60,18 @@ class ProgramacioncomController extends Controller
      * @param  \App\Models\Programacioncom  $programacioncom
      * @return \Illuminate\Http\Response
      */
-    public function show(Programacioncom $programacioncom)
-    {
-        //
+    public function mostrar(Request $request)
+    {   
+        //$programacioncom=Programacioncom::findOrFail(56);
+        // $programacioncom=Programacioncom::findOrFail($request->id);
+        // $observaciones=$programacioncom->observaciones;
+        // $docente=$programacioncom->docente;
+        // $aula=$programacioncom->aula;
+        // $clasescom=$programacioncom->clasescom;
+        // $asignatura=$programacioncom->matriculacion->asignatura;
+        // $data=['programacioncom'=>$programacioncom, 'observaciones'=>$observaciones,'docente'=>$docente,'asignatura' => $asignatura, 'aula' => $aula,'clasescom'=>$clasescom];
+        // return response()->json($data);
+        
     }
 
     /**
@@ -65,9 +80,15 @@ class ProgramacioncomController extends Controller
      * @param  \App\Models\Programacioncom  $programacioncom
      * @return \Illuminate\Http\Response
      */
-    public function edit(Programacioncom $programacioncom)
+    public function editar(Request $request)
     {
-        //
+
+        //$programacioncom = Programacioncom::findOrFail(37);
+        $programacioncom = Programacioncom::findOrFail($request->id);
+        $nivel = Nivel::findOrFail(6);
+        $docentes = $nivel->docentes;
+        $data=['programacioncom'=>$programacioncom,'docentes'=>$docentes];
+        return response()->json($data);
     }
 
     /**
@@ -317,11 +338,11 @@ class ProgramacioncomController extends Controller
                     ->where('matriculacion_id',$request->matriculacion)
                     ->where('fecha','=', Carbon::now()->isoFormat('Y-M-D'))
                     ->select('programacioncoms.id','fecha','horaini','horafin','programacioncoms.estado','docentes.nombre','aulas.aula');
-        return response()->json($programacion);
-        /*return DataTables::of($programacion)
+        
+        return DataTables::of($programacion)
                 ->addColumn('btn','programacioncom.actions')
                 ->rawColumns(['btn'])
-                ->toJson();*/
+                ->toJson();
     }
 
     public function deshabilitarTodoProgramascom($matriculacion_id){
@@ -377,5 +398,32 @@ class ProgramacioncomController extends Controller
             $programa->habilitado=0;
             $programa->save();
         }
+    }
+
+     public function guardarObservacion(Request $request){
+        $observacion=new Observacion();
+        $observacion->observacion=$request->observacion;
+        $observacion->activo=1;
+        $observacion->observable_id=$request->id_programacioncom;
+        $observacion->observable_type= Programacioncom::class;
+        $observacion->save();
+        return response()->json($request->all());
+    }
+    public function mostrarClases(Request $request)
+    {
+        $programacioncom = Programacioncom::findOrFail($request->id);
+        $observaciones = $programacioncom->observaciones;
+        $docente = $programacioncom->docente;
+        $materia = $programacioncom->materia;
+        $asignatura=$programacioncom->matriculacion->asignatura;
+        $aula = $programacioncom->aula;
+        $clases=Programacioncom::join('clasecoms','programacioncoms.id','clasecoms.programacioncom_id')
+                    ->join('docentes','docentes.id','programacioncoms.docente_id')
+                    ->join('aulas','aulas.id','programacioncoms.aula_id')
+                    ->where('programacioncoms.id',$request->id)
+                    ->select('clasecoms.id','clasecoms.fecha','clasecoms.estado','clasecoms.horainicio','clasecoms.horafin','docentes.nombre', 'aulas.aula')
+                    ->get();
+        $data = ['programacioncom' => $programacioncom, 'observaciones' => $observaciones, 'docente' => $docente, 'aula' => $aula, 'clasescom' => $clases,'asignatura'=>$asignatura];
+        return response()->json($data);
     }
 }

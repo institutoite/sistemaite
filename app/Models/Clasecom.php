@@ -8,4 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Clasecom extends Model
 {
     use HasFactory;
+     protected $dates = [
+        'fecha',
+        'horainicio',
+        'horafin',
+
+    ];
+
+    public function programacioncom()
+    {
+        return $this->belongsTo(Programacioncom::class);
+    }
+
+    public function docente()
+    {
+        return $this->belongsTo(Docente::class);
+    }
+     public function aula()
+    {
+        return $this->belongsTo(Aula::class);
+    }
 }

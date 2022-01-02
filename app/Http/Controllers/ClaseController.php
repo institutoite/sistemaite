@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\ToSweetAlert;
 use UxWeb\SweetAlert\SweetAlert as SweetAlertSweetAlert;
 
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
+
 /**
  * Class ClaseController
  * @package App\Http\Controllers
@@ -267,7 +270,7 @@ class ClaseController extends Controller
                 ->join('temas', 'clases.tema_id', '=', 'temas.id')
                 ->where('clases.estado','PRESENTE')
                 ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clases.id', DB::raw('concat_ws(" ",personas.nombre,personas.apellidop) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombre', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto')->get();
+                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombre', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto')->get();
             return datatables()->of($clases)
                 ->addColumn('btn', 'clase.action_marcar')
                 ->rawColumns(['btn', 'foto'])

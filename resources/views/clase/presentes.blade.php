@@ -20,16 +20,40 @@
     <div class="content pt-4">
         <div class="card">
             <div class="card-header bg-secondary">
-                ESTUDIANTES PRESENTES AHORITA
+                ESTUDIANTES DE NIVELACION PRESENTES AHORITA
             </div>
             <div class="card-body">
                 <table id="presentes" class="table table-hover table-bordered table-striped display" width="100%">
                     <thead class="bg-primary">
                         <tr>
+
+                            <th>COD</th>
                             <th>ESTUDIANTE</th>
-                            <th>MATERIA</th>
+                            {{-- <th>MATERIA</th> --}}
                             <th>AULA</th>
                             <th>DOCENTE</th>
+                            <th>HORARIO</th>
+                            <th>TIEMPO</th>
+                            <th>FOTO</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                </table >
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                ESTUDIANTES DE COMPUTACION PRESENTES AHORITA
+            </div>
+            <div class="card-body">
+                 <table id="presentescom" class="table table-hover table-bordered table-striped display" width="100%">
+                    <thead class="bg-primary">
+                        <tr>
+                            <th>COD</th>
+                            <th>ESTUDIANTE</th>
+                            <th>ASIGNATURA</th>
+                            <th>AULA</th>
+                            {{-- <th>DOCENTE</th> --}}
                             <th>HORARIO</th>
                             <th>TIEMPO</th>
                             <th>FOTO</th>
@@ -326,11 +350,12 @@
                 "ordering":true,
                 "responsive":true,
                 "paging":   true,
-                "info":     true,
+                "info":     false,
                 "autoWidth":false,
                 "columns": [
+                        {data: 'codigo'},
                         {data: 'name'},
-                        {data: 'materia'},
+                        // {data: 'materia'},
                         {data: 'aula'},
                         
                         {data: 'nombre'},
@@ -359,7 +384,7 @@
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                 },  
             });
-/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MOSTRAR CLASE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MOSTRAR CLASE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', 'a .mostrar', function(e) {
                 e.preventDefault(); 
                 var id_clase =$(this).closest('tr').attr('id');
@@ -397,10 +422,89 @@
             setInterval(function(){
                 $('#presentes').DataTable().ajax.reload();
 		    },60000);
+        /**%%%%%%%%%%%%%%%%%%%% JS PARA COMPUTACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        /**%%%%%%%%%%%%%%%%%%%% DATATABLE PRESENTESCOM INICIO %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            let tablaPresentescom=$('#presentescom').dataTable({
+                "createdRow": function( row, data, dataIndex){
+                    var horainicio=moment.duration(data['horainicio']);
+                    var horafin=moment.duration(data['horafin']);
+                    let hinicio=moment(data['horainicio']);
+                    console.log(data);
+                    let hfin=moment(data['horafin']);
+                    let ahora=moment();
+                    let minutosRestantantes=hfin.diff(ahora,'minutes');
+                    
+                        
+                        if(minutosRestantantes<-10){
+                            $(row).addClass('text-bold text-danger');
+                        }
+                        if((minutosRestantantes<=0)&&(minutosRestantantes>=-10)){
+                            $(row).addClass('text-danger');
+                        }
+                        if((minutosRestantantes>=0)&&(minutosRestantantes<15)){
+                            $(row).addClass('text-warning');
+                        }
+                        if(minutosRestantantes>15){
+                            $(row).addClass('text-success');
+                        }
+                    $(row).attr('id',data['id']);
+                    
+                    $('td', row).eq(4).html(moment(data['horainicio']).format('HH:mm')+'-'+moment(data['horafin']).format('HH:mm'));
+                    $('td', row).eq(5).html( hfin.from(ahora)+'('+hfin.diff(ahora,'minutes'));
 
-        } );
+                },
+                
+                "serverSide": true,
+                "ordering":true,
+                "responsive":true,
+                "paging":   true,
+                "info":     false,
+                "autoWidth":false,
+                "columns": [
+                        {
+                            data: 'codigo',
+                            searchable:true
+                        },
+                        {data: 'name'},
+                        {data: 'asignatura'},
+                        {data: 'aula'},
+                        
+                        // {data: 'nombre'},
+                        {data: 'horainicio'},
+                        {data: 'horafin'},
+                        {
+                            "name": "foto",
+                            "data": "foto",
+                            "render": function (data, type, full, meta) {
+                                return "<div><img class='img-thumbnail zoomify' src=\"{{URL::to('/')}}/storage/" + data + "\" width=\"75\"/></div>";
+                            },
+                            "title": "FOTO",
+                            "orderable": false,
+                        },  
+                        {   
+                            "data": "btn"
+                        },
+                    ],
+                "ajax": "{{ url('clasescom/presentes/ahorita') }}",
+                "columnDefs": [
+                    { responsivePriority: 1, targets: 0 },  
+                    { responsivePriority: 2, targets: 7 },
+                    { responsivePriority: 3, targets: -1 },
+                ],
+                "language":{
+                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                },  
+            });
+            /**%%%%%%%%%%%%%%%%%%%% DATATABLE PRESENTESCOM FIN %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+    });
+
         
+
     </script>
+
+
 @stop
+
 
 {{-- %%%%%%%%%%fin seccion JS --}}

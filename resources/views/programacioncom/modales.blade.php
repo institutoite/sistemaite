@@ -36,7 +36,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                DETALLE DE LA CLASE
+                DETALLE DE LA PROGRAMACION
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-editar-pago">
@@ -48,7 +48,7 @@
                                 <th>VALOR</th>
                             </tr>
                         </thead>
-                        <tbody id="tabla-mostrar-programacion">
+                        <tbody id="tabla-mostrar-programacioncom">
                             
                         </tbody>
                     </table>
@@ -71,7 +71,6 @@
                                 <th>HoraIni</th>
                                 <th>HoraFin</th>
                                 <th>Docente</th>
-                                <th>Materia</th>
                                 <th>Aula</th>
                             </tr>
                         </thead>
@@ -102,9 +101,9 @@
                     </div>
                     <div class="card-body">
                         {{-- <form method="POST" action="{{ route('programacions.update', $programacion->id) }}"  role="form" enctype="multipart/form-data"> --}}
-                        <form id="formulario-editar" method="POST" action="{{route('programacion.actualizar')}}">
+                        <form id="formulario-editar" method="POST" action="{{route('programacioncom.actualizar')}}">
                             @csrf
-                            {{-- @include('programacion.form') --}}
+                
                             @include('include.botones')
                         </form>
                     </div>
@@ -114,7 +113,8 @@
         </div>
     </div>
 </div>
-{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%% M O D A L   P A R A  A G R E G A R O B S E R V A C I O N   A LA P R O G R A MA C I O N %$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+`habilitado`, `activo`, `estado`, `horas_por_clase`, `docente_id`, `aula_id`, `matriculacion_id`, `created_at`, `updated_at`
+{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%% M O D A L   P A R A  A G R E G A R O B S E R V A C I O N   A LA P R O G R A MA C I O N COM %$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 <div class="modal" tabindex="-1" id="modal-gregar-observacion">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -140,7 +140,7 @@
                             
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
                                 <div class="form-floating mb-3 text-gray">
-                                    <input  type="number" hidden name="id_programacion" id="id_programacion" class="form-control">
+                                    <input  type="number" hidden name="id_programacioncom" id="id_programacioncom" class="form-control">
                                 </div>  
                             </div>
                             

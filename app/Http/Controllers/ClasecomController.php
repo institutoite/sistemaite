@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
+
+
 class ClasecomController extends Controller
 {
     /**
@@ -100,7 +104,7 @@ class ClasecomController extends Controller
         ->where('programacioncoms.fecha', '=',DB::raw('date(now())'))
             ->where('dias.id', '=', DB::raw("DAYOFWEEK(programacioncoms.fecha)-1"))
             
-        ->select('programacioncoms.id', 'programacioncoms.fecha', 'programacioncoms.estado', 'programacioncoms.horaini', 'programacioncoms.horafin', 'programacioncoms.habilitado', 'personas.nombre','programacioncoms.docente_id')
+        ->select('programacioncoms.id', 'programacioncoms.fecha', 'programacioncoms.estado','aulas.aula' ,'programacioncoms.horaini', 'programacioncoms.horafin', 'programacioncoms.habilitado', 'personas.nombre','programacioncoms.docente_id')
         ->get();
         $matriculacion=Matriculacion::findOrFail($matriculacion_id);
         $dias_que_faltan_para_pagar= $matriculacion->fecha_proximo_pago->diffInDays(now());
@@ -113,5 +117,38 @@ class ClasecomController extends Controller
          
         return view('programacioncom.marcadoGeneral',compact('programaciones', 'faltas', 'presentes', 'licencias', 'pago', 'matriculacion', 'dias_que_faltan_para_pagar'));
         //return redirect()->route('clases.marcado.general',$inscripcion_id)->with('programaciones', 'programacionesHoy', 'faltas', 'presentes', 'licencias', 'pago', 'inscripcion','dias_que_faltan_para_pagar');
+    }
+      public function marcadoRapido($programacioncom_id){
+        $programa = Programacioncom::findOrFail($programacioncom_id);
+        $clase=new Clasecom();
+        $clase->fecha           =$programa->fecha;
+        $clase->estado          ='PRESENTE';
+        $clase->horainicio      =Carbon::now()->isoFormat('HH:mm:ss');
+        $clase->horafin         =Carbon::now()->addHours($programa->horaini->floatDiffInHours($programa->horafin));
+        $clase->docente_id      =$programa->docente_id;
+        $clase->aula_id         =$programa->aula_id;
+        $clase->programacioncom_id =$programa->id;
+        $programa->estado='PRESENTE';
+        $programa->save();
+        $clase->save();
+        return redirect()->route('clase.presentes')->with('mensaje', 'MarcadoCorrectamente');
+    }
+     public function clasesPresentes(Request $request){
+        //if($request->ajax()){
+            $clasecoms =  Clasecom::join('programacioncoms', 'clasecoms.programacioncom_id', '=', 'programacioncoms.id')
+                ->join('matriculacions', 'programacioncoms.matriculacion_id', '=', 'matriculacions.id')
+                ->join('computacions', 'matriculacions.computacion_id', '=', 'computacions.id')
+                ->join('personas', 'computacions.persona_id', '=', 'personas.id')
+                ->join('docentes', 'clasecoms.docente_id', '=', 'docentes.id')
+                ->join('asignaturas', 'matriculacions.asignatura_id', '=', 'asignaturas.id')
+                ->join('aulas', 'clasecoms.aula_id', '=', 'aulas.id')
+                ->where('clasecoms.estado','PRESENTE')
+                ->where('clasecoms.fecha',Carbon::now()->isoFormat('Y-M-D'))
+                ->select('clasecoms.id','personas.id as codigo', 'personas.nombre as name','clasecoms.horainicio', 'clasecoms.horafin', 'docentes.nombre', 'asignaturas.asignatura', 'aulas.aula','personas.foto')->get();
+            return datatables()->of($clasecoms)
+                ->addColumn('btn', 'clasecom.action_marcar')
+                ->rawColumns(['btn', 'foto'])
+                ->toJson();
+        //}
     }
 }

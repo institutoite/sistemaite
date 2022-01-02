@@ -229,8 +229,6 @@
                     $('td', row).eq(1).html(moment(data['hora_ini']).format('HH:mm'));
                     $('td', row).eq(2).html(moment(data['hora_fin']).format('HH:mm'));
 
-
-                    
                 },
                 "ordering": true,
                 "info":     true,
@@ -266,15 +264,15 @@
                 e.preventDefault(); 
                 // var id_programacion =$(this).closest('tr').find('td:first-child').text();
                 let id_programacion =$(this).closest('tr').attr('id');
-                //var fila=$(this).json;
-                console.log(id_programacion);
+                console.log("click");
+                
                 $.ajax({
                     url : "../../programacion/mostrar/",
                     data : { id :id_programacion },
                     success : function(json) {
-                        console.log(json);
+                        $("#modal-mostrar").empty();
                         $("#modal-mostrar").modal("show");
-                        $("#tabla-mostrar").empty();
+                        
                         $html="";
                         $html+="<tr><td>Fecha</td>"+"<td>"+moment(json.programacion.fecha).format('dddd')+' '+moment(json.programacion.fecha).format('LL')+"</td></tr>";
                         $html+="<tr><td>Hora Inicio</td>"+"<td>"+moment(json.programacion.hora_ini).format('HH:mm:ss')+"</td></tr>";
@@ -337,13 +335,17 @@
             $('#tabla_hoy').on('click', '.finalizado', function(e) {
                 e.preventDefault(); 
                 let id_programacion =$(this).closest('tr').attr('id');
+                
                 $.ajax({
                     url : "../../programacion/mostrar/clases",
                     data : { id :id_programacion },
                     success : function(json) {
                         console.log(json);
+                        
                         $("#modal-mostrar-clase").modal("show");
-                        $("#tabla-mostrar-clase").empty();
+                        $("#tabla-mostrar-programacion").empty();
+                        $("#tabla-mostrar-observaciones").empty();
+                        $("#tabla-mostrar-clases").empty();
                         $html="";
                         $html+="<tr><td>Hora Inicio</td>"+"<td>"+moment(json.programacion.fecha).format('LLLL')+"</td></tr>";
                         $html+="<tr><td>Hora Inicio</td>"+"<td>"+moment(json.programacion.hora_ini).format('HH:mm:ss')+"</td></tr>";
@@ -368,6 +370,7 @@
 
                         $htmlClases="";
                         for (let j in json.clases) {
+                            console.log(json.clases[j]);
                             $htmlClases+="<tr><td>"+ moment(json.clases[j].fecha).format('LL') +"</td>";
                             $htmlClases+="<td>"+json.clases[j].estado+"</td>";
                             $htmlClases+="<td>"+json.clases[j].horainicio+"</td>";
@@ -388,12 +391,12 @@
             $('table').on('click', '.editar', function(e) {
                 e.preventDefault(); 
                 let id_programacion =$(this).closest('tr').attr('id');
-                console.log(id_programacion);
+                //console.log(id_programacion);
                     $.ajax({
                     url : "../../programacion/editar/",
                     data : { id :id_programacion },
                     success : function(json) {
-                        console.log(json);
+                        //console.log(json);
                         $("#modal-editar").modal("show");
                         $("#formulario-editar").empty();
                             $html="<div class='row'>";

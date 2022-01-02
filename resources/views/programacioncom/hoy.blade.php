@@ -16,8 +16,8 @@
                             <th>H INI</th>
                             <th>H FIN</th>
 
+                            <th>ESTADO</th>
                             <th>DOCENTE</th>
-                            <th>MATERIA</th>
                             <th>AULA</th>
                             
                             <th>Opciones</th>
@@ -27,4 +27,3 @@
                 </table>
         </div>
 </div>
-
