@@ -310,7 +310,7 @@
                     url : "../../guardar/observacion/programacioncom",
                     data : $("#formulario-guardar-observacion").serialize(),
                     success : function(json) {
-                            console.log(json);
+                            //console.log(json);
                         const Toast = Swal.mixin({
                             toast: true,
                             position: 'top-end',
@@ -386,12 +386,12 @@
             $('table').on('click', '.editar', function(e) {
                 e.preventDefault(); 
                 let id_programacioncom =$(this).closest('tr').attr('id');
-                console.log(id_programacioncom);
+                //console.log(id_programacioncom);
                     $.ajax({
                     url : "../../programacioncom/editar/",
                     data : { id :id_programacioncom },
                     success : function(data) {
-                        console.log(data.programacioncom);
+                        //console.log(data);
                         $("#formulario-editar").empty();
                         $("#modal-editar").modal("show");
                             $html="<div class='row'>";
@@ -413,8 +413,8 @@
                             
 
                             //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                            $html+="<input id='inscripcione_id'  type='text' hidden readonly name='inscripcione_id' value='"+data.programacioncom.matriculacion_id +"'>";
-                            $html+="<input id='programacion_id'  type='text' hidden readonly name='programacion_id' value='"+data.programacioncom.id +"'>";
+                            $html+="<input id='matriculacion_id'  type='text' hidden readonly name='inscripcione_id' value='"+data.programacioncom.matriculacion_id +"'>";
+                            $html+="<input id='programacioncom_id'  type='text' hidden readonly name='programacion_id' value='"+data.programacioncom.id +"'>";
                             //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE DOCENTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                             $html+="<div class='row'>";
                             $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'>";
@@ -432,21 +432,21 @@
                             $html+="<label for='docente_id'>Docente</label></div></div>";
 
                             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO AULA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-                            // $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'>";
-                            // $html+="<div class='form-floating mb-3 text-gray'>";
-                            // $html+="<select class='form-control @error('aula_id') is-invalid @enderror' name='aula_id' id='aula_id'>";
-                            // for (let j in json.aulas) {
-                            //     if(json.aulas[j].id==json.programacion.aula_id){
-                            //         $html+="<option  value='"+json.aulas[j].id +"' selected >"+json.aulas[j].aula+"</option>";
-                            //     }else{
-                            //         $html+="<option  value='"+json.aulas[j].id +"'>"+json.aulas[j].aula+"</option>";
-                            //     }
-                            // }
-                            // $html+="</select>";                
-                            // $html+="<label for='aula_id'>Aula</label></div></div>";
-                            // $html+="</div>";// fin de row
+                            $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'>";
+                            $html+="<div class='form-floating mb-3 text-gray'>";
+                            $html+="<select class='form-control @error('aula_id') is-invalid @enderror' name='aula_id' id='aula_id'>";
+                            for (let j in data.aulas) {
+                                if(data.aulas[j].id==data.programacioncom.aula_id){
+                                    $html+="<option  value='"+data.aulas[j].id +"' selected >"+data.aulas[j].aula+"</option>";
+                                }else{
+                                    $html+="<option  value='"+data.aulas[j].id +"'>"+data.aulas[j].aula+"</option>";
+                                }
+                            }
+                            $html+="</select>";                
+                            $html+="<label for='aula_id'>Aula</label></div></div>";
+                            $html+="</div>";// fin de row
 
-                            // $html+="<div class='row'>";
+                            $html+="<div class='row'>";
                             // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO ESTADO EN VENTANA MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                            
                             $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-6'>";
                             $html+="<div class='form-floating mb-3 text-gray'>";
@@ -518,10 +518,10 @@
                 
                 $horas_por_clase=$('#hora_por_clase').val();
                 $docente_id=$('#docente_id').val();
-                $materia_id=$('#materia_id').val();
+               
                 $aula_id=$('#aula_id').val();
-                $inscripcione_id=$('#inscripcione_id').val();
-                $programacion_id=$('#programacion_id').val();
+                $matriculacion_id=$('#matriculacion_id').val();
+                $programacioncom_id=$('#programacioncom_id').val();
                 
                 
                 $.ajaxSetup({
@@ -531,7 +531,7 @@
                 });
 
                 $.ajax({
-                    url : "../../programacion/actualizar/",
+                    url : "../../programacioncom/actualizar/",
                     data:{
                             hora_ini:$hora_inicio,
                             hora_fin:$hora_fin,
@@ -541,21 +541,21 @@
                             activo:$activo,
                             horas_por_clase:$horas_por_clase,
                             docente_id:$docente_id,
-                            materia_id:$materia_id,
+                           
                             aula_id:$aula_id,
-                            inscripcione_id:$inscripcione_id,
-                            programacion_id:$programacion_id,
+                            matriculacion_id:$matriculacion_id,
+                            programacioncom_id:$programacioncom_id,
                         },
                     
                     success : function(json) {
                         console.log(json);
-                        let programacion_actualizar=$('#programacion_id').val();
+                        let programacion_actualizar=$('#programacioncom_id').val();
                         
-                        $('#'+programacion_actualizar+' td:nth-child(2)').text(moment(json.programacion.fecha).format('D-M-Y dddd'));
-                        $('#'+programacion_actualizar+' td:nth-child(3)').text(moment(json.programacion.hora_ini).format('HH:mm')+'-'+moment(json.programacion.hora_fin).format('HH:mm'));
+                        $('#'+programacion_actualizar+' td:nth-child(2)').text(moment(json.programacioncom.fecha).format('D-M-Y dddd'));
+                        $('#'+programacion_actualizar+' td:nth-child(3)').text(moment(json.programacioncom.horaini).format('HH:mm')+'-'+moment(json.programacioncom.horafin).format('HH:mm'));
                         $('#'+programacion_actualizar+' td:nth-child(4)').text(json.docente.nombre);
-                        $('#'+programacion_actualizar+' td:nth-child(5)').text(json.materia.materia);
-                        $('#'+programacion_actualizar+' td:nth-child(6)').text(json.aula.aula);
+                        // $('#'+programacion_actualizar+' td:nth-child(5)').text(json.materia.materia);
+                        $('#'+programacion_actualizar+' td:nth-child(6)').text(json.programacioncom.aula.aula);
                         $('#modal-editar').modal('hide');
                         $("#"+programacion_actualizar).addTempClass( 'bg-success', 3000 );
                         $('#tabla_hoy').DataTable().ajax.reload();

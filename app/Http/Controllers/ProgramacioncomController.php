@@ -6,6 +6,7 @@ use App\Models\Programacioncom;
 use App\Models\Matriculacion;
 use App\Models\Persona;
 use App\Models\Dia;
+use App\Models\Aula;
 use App\Models\Clasecom;
 use App\Models\Sesioncom;
 use App\Models\User;
@@ -83,24 +84,63 @@ class ProgramacioncomController extends Controller
     public function editar(Request $request)
     {
 
-        //$programacioncom = Programacioncom::findOrFail(37);
+        //$programacioncom = Programacioncom::findOrFail(3);
         $programacioncom = Programacioncom::findOrFail($request->id);
         $nivel = Nivel::findOrFail(6);
         $docentes = $nivel->docentes;
-        $data=['programacioncom'=>$programacioncom,'docentes'=>$docentes];
+        $aulas= Aula::all();
+        $data=['programacioncom'=>$programacioncom,'docentes'=>$docentes,'aulas'=>$aulas];
         return response()->json($data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Programacioncom  $programacioncom
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Programacioncom $programacioncom)
+    public function actualizar(Request $request)
     {
-        //
+            // $request->fecha='2022';
+            // $request->activo='1';
+            // $request->estado='estado';
+            // $request->horafin='12:00:00';
+            // $request->horaini='12:30:00';
+            // $request->docente_id='1';
+            // $request->aula_id='1';
+            // $request->matriculacion_id='1';
+            // $programacioncom=Programacioncom::findOrFail(10);
+            $programacioncom=Programacioncom::findOrFail($request->programacioncom_id);
+            $arrayObservable= [
+            'observacion' => 'Se editó los valores anteriores son' .
+            'Hora Inicio: ' . $programacioncom->horaini . ' ' .
+            'Hora Fin: ' . $programacioncom->horafin . ' ' .
+            'Fecha : ' . $programacioncom->fecha . ' ' .
+                'Estado : ' . $programacioncom->estado . ' ' .
+                'activo : ' . $programacioncom->activo . ' ' .
+                'horas por clase: ' . $programacioncom->horas_por_clase . ' ' .
+                'Docente: ' . $programacioncom->docente->nombre . ' ' .
+                'Aula: ' . $programacioncom->aula->aula,
+                'activo'=> $programacioncom->activo,
+                'observable_id'=> $programacioncom->id,
+                'observable_tipe'=> Programacioncom::class,
+            ];
+            $programacioncom->observaciones()->create($arrayObservable);
+        
+           // return response()->json($request->all());
+        $horainicio=Carbon::create($request->horaini);
+        $horafin=Carbon::create($request->horafin);
+        $programacioncom->fecha            =$request->fecha;
+        $programacioncom->activo           =$request->activo;
+        $programacioncom->estado           =$request->estado;
+        $programacioncom->horafin         =$request->hora_fin;
+        $programacioncom->horaini         =$request->hora_ini;
+        $programacioncom->horas_por_clase  = $horainicio->floatDiffInHours($horafin);
+        $programacioncom->docente_id       =$request->docente_id;
+        $programacioncom->aula_id          =$request->aula_id;
+        $programacioncom->matriculacion_id  =$request->matriculacion_id;
+        $programacioncom->save();
+        
+        $docente=$programacioncom->docente;
+        
+        $data=["programacioncom"=>$programacioncom,"docente"=>$docente];
+        
+        return response()->json($data);
+
     }
 
     /**

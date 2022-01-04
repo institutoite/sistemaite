@@ -113,7 +113,6 @@
         </div>
     </div>
 </div>
-`habilitado`, `activo`, `estado`, `horas_por_clase`, `docente_id`, `aula_id`, `matriculacion_id`, `created_at`, `updated_at`
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%% M O D A L   P A R A  A G R E G A R O B S E R V A C I O N   A LA P R O G R A MA C I O N COM %$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 <div class="modal" tabindex="-1" id="modal-gregar-observacion">
     <div class="modal-dialog modal-xl">
