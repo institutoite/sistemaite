@@ -58,7 +58,7 @@
     <div class="site-navigation main_menu " id="mainmenu-area">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="assets/images/logoite.png" alt="Edutim" class="img-fluid">
                 </a>
 
@@ -173,10 +173,10 @@
                         @endguest
                     </ul>
 
-                    <ul class="header-contact-right d-none d-lg-block">
+                   <!-- <ul class="header-contact-right d-none d-lg-block">
                         <li> <a href="#" class="header-cart"><i class="fa fa-shopping-cart"></i></a></li>
                         <li><a href="#" class="header-search search_toggle"> <i class="fa fa fa-search"></i></a></li>
-                    </ul>
+                    </ul>-->
                    
                 </div> <!-- / .navbar-collapse -->
             </div> <!-- / .container -->
@@ -276,7 +276,7 @@
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-6">
                 <div class="section-heading center-heading">
-                    <h3>Aprendizaje para todos los niveles y todas las materias ¡No pares de aprender!</h3>
+                    <h4>Aprendizaje para todos los niveles y todas las materias ¡No pares de aprender!</h4>
                     
                 </div>
             </div>
@@ -354,13 +354,131 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="text-center mt-5">
-                    <p>Y muchos cursos mas </p>
                     <div class="course-btn mt-4"><a href="#" class="btn btn-main"><i class="fa fa-grip-horizontal mr-2"></i>Ver todos los cursos</a></div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<!--<section class="process section-padding mt-0">
+    <div class="process-img"></div>
+    <div class="container">
+        <div class="row align-items-center">
+             <div class="col-lg-6 col-md-12">
+              
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="section-heading">
+                    <span class="subheading"></span>
+                    <h3>Nuestros horarios</h3>
+                </div>
+
+                <div class="process-block">
+                    <i class="bi bi-calendar"></i>
+                    <div class="process-desc no-divider">
+                        <h4>Horario Super Especial</h4>
+                        <p>Lunes a Viernes 5.00 am - 6:00 am</p>
+                    </div>
+                </div>
+
+                <div class="process-block">
+                    <i class="bi bi-calendar"></i>
+                    <div class="process-desc no-divider">
+                        <h4>Turno Mañana</h4>
+                        <p>Lunes a Sábado 7:30 - 12:00</p>
+                    </div>
+                </div>
+
+                <div class="process-block ">
+                    <i class="bi bi-calendar"></i>
+                    <div class="process-desc no-divider">
+                        <h4>Turno Tarde</h4>
+                        <p>Lunes a Viernes 2:00pm - 6:30pm</p>
+                    </div>
+                </div>
+            
+                <div class="process-block ">
+                    <i class="bi bi-calendar"></i>
+                    <div class="process-desc no-divider">
+                        <h4>Turno Noche</h4>
+                        <p>Lu Ma Ju Vi 6:30pm - 21:00pm</p>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section> -->
+<!--course section start-->
+<section class="section-padding video-section" >
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-6">
+                <div class="section-heading text-center center-heading">
+                    <span class="subheading"></span>
+                    <h3>Video de presentacion</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-10">
+                <div class="video-block">
+                     <img src="assets/images/bg/office01.jpg" alt="" class="img-fluid">
+                     <a href="#" class="video-icon"><i class="fa fa-play"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--course-->
+</section>
+<!--course section end--> 
+<section class="about-section section-padding">
+    <div class="container">
+        <div class="row align-items-center">
+             <div class="col-lg-6 col-md-12">
+               <div class="about-img">
+                   <img src="assets/images/bg/2-2.png" alt="" class="img-fluid">
+               </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="section-heading">
+                    <span class="subheading"></span>
+                    <h3>Nuestros horarios</h3>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-text-block">
+                        <i class="bi bi-calendar"></i>
+                        <h4>Horario Super Especial</h4>
+                        <p>Lunes a Viernes 5.00 am - 6:00 amt</p>
+                    </div>
+
+                    <div class="about-text-block">
+                        <i class="bi bi-calendar"></i>
+                        <h4>Turno Mañana</h4>
+                        <p>Lunes a Sábado 7:30 - 12:00</p>
+                    </div>
+
+                    <div class="about-text-block">
+                        <i class="bi bi-calendar"></i>
+                        <h4>Turno Tarde</h4>
+                        <p>LLunes a Viernes 2:00pm - 6:30pm</p>
+                    </div>
+
+                    <div class="about-text-block">
+                        <i class="bi bi-calendar"></i>
+                        <h4>Turno Noche</h4>
+                        <p>Lu Ma Ju Vi 6:30pm - 21:00pm</p>
+                    </div>
+
+                    <a href="#" class="btn btn-main-2"><i class="fa fa-check mr-2"></i>more About Support</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 
 <section class="section-padding bg-grey team-2">
     <div class="container">
         <div class="row align-items-center justify-content-center">
@@ -391,13 +509,8 @@
                     </div>
                     <div class="team-info">
                         <h4>Tanvir Hasan</h4>
-                        <p>Market Researcher</p>
+                        <p>Profesor Matematica</p>
                     </div>
-                    <ul class="team-socials list-inline">
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                    </ul>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-6">
@@ -407,13 +520,8 @@
                     </div>
                     <div class="team-info">
                         <h4>Mikele John</h4>
-                        <p>Content Writter</p>
+                        <p>Profesor Fisica</p>
                     </div>
-                    <ul class="team-socials list-inline">
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -424,8 +532,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="section-heading center-heading text-center">
-                    <span class="subheading">Testimonials</span>
-                    <h3>Learn New Skills to Go Ahead for Your Career</h3>
+                    <span class="subheading">Testimonios</span>
+                    <h3>Lo que dicen nuestros estudiantes</h3>
                 </div>
             </div>
         </div>
@@ -659,63 +767,66 @@
 		<div class="row">
 			<div class="col-lg-4 mr-auto col-sm-6 col-md-6">
 				<div class="widget footer-widget mb-5 mb-lg-0">
-					<h5 class="widget-title">About Us</h5>
-					<p class="mt-3">Veniam Sequi molestias aut necessitatibus optio magni at natus accusamus.Lorem ipsum dolor sit amet, consectetur adipisicin gelit, sed do eiusmod tempor incididunt .</p>
+					<h5 class="widget-title">Nuestras Redes</h5>
+					<p class="mt-3"></p>
 					<ul class="list-inline footer-socials">
-						<li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-						<li class="list-inline-item"> <a href="#"><i class="fab fa-twitter"></i></a></li>
-						<li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
-						<li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+						<li class="list-inline-item"><a href="https://api.whatsapp.com/send?phone=59171039910&text=Tengo una pregunta"><i class="fab fa-whatsapp"></i></a></li>
+                        <li class="list-inline-item"><a href="https://www.facebook.com/institutoeducabol"><i class="fab fa-facebook-f"></i></a></li>
+						<li class="list-inline-item"> <a href="https://www.youtube.com/channel/UCbmRHfG51CGM1foo-6kzunQ"><i class="fab fa-youtube"></i></a></li>
 					</ul>
 				</div>
 			</div>
 			
 			<div class="col-lg-2 col-sm-6 col-md-6">
 				<div class="footer-widget mb-5 mb-lg-0">
-					<h5 class="widget-title">Company</h5>
+					<h5 class="widget-title">Niveles</h5>
 					<ul class="list-unstyled footer-links">
-						<li><a href="#">About us</a></li>
-						<li><a href="#">Contact us</a></li>
-						<li><a href="#">Projects</a></li>
-						<li><a href="#">Terms & Condition</a></li>
-						<li><a href="#">Privacy policy</a></li>
+						<li><a href="#">Guarderia</a></li>
+						<li><a href="#">Primaria</a></li>
+						<li><a href="#">Secundaria</a></li>
+						<li><a href="#">Pre-Universitarios</a></li>
+						<li><a href="#">Universidad</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-lg-2 col-sm-6 col-md-6">
 				<div class="footer-widget mb-5 mb-lg-0">
-					<h5 class="widget-title">Courses</h5>
+					<h5 class="widget-title">Materias</h5>
 					<ul class="list-unstyled footer-links">
-						<li><a href="#">SEO Business</a></li>
-						<li><a href="#">Digital Marketing</a></li>
-						<li><a href="#">Graphic Design</a></li>
-						<li><a href="#">Site Development</a></li>
-						<li><a href="#">Social Marketing</a></li>
+						<li><a href="#">Matemáticas</a></li>
+						<li><a href="#">Física</a></li>
+						<li><a href="#">Química</a></li>
+						<li><a href="#">Lenguaje</a></li>
+						<li><a href="#">Computación</a></li>
+                        <li><a href="#">Cálculo</a></li>
+                        <li><a href="#">Álgebra</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-lg-3 col-sm-6 col-md-6">
 				<div class="footer-widget footer-contact mb-5 mb-lg-0">
-					<h5 class="widget-title">Contact </h5>
+					<h5 class="widget-title">Contacto </h5>
 					
 					<ul class="list-unstyled">
 						<li><i class="bi bi-headphone"></i>
 							<div>
-								<strong>Phone number</strong>
-								(68) 345 5902
+								<strong>Telefono</strong>
+								71039910
 							</div>
 							
 						</li>
 						<li> <i class="bi bi-envelop"></i>
 							<div>
-								<strong>Email Address</strong>
-								info@yourdomain.com
+								<strong>Correo electronico</strong>
+								informaciones.ite@gmail.com
 							</div>
 						</li>
 						<li><i class="bi bi-location-pointer"></i>
 							<div>
-								<strong>Office Address</strong>
-								Moon Street Light Avenue
+								<strong>Direccion</strong>
+								Villa 1 de mayo avenida tres pasos al frente esquina Che Guevara 4710
+                                <br> 
+                                Santa Cruz de la Sierra, Bolivia
 							</div>
 						</li>
 					</ul>
@@ -729,12 +840,12 @@
 			<div class="row justify-content-center align-items-center">
 				<div class="col-lg-6">
 					<div class="footer-logo">
-						<img src="assets/images/logo-white.png" alt="Edutim" class="img-fluid">
+						<img src="assets/images/logoite.png" alt="Ite" class="img-fluid">
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="copyright text-lg-center">
-						<p>@ Copyright reserved to Edutim.Proudly Crafted by <a href="https://themeturn.com">Dreambuzz</a> </p>
+						<p></p>
 					</div>
 				</div>
 			</div>
