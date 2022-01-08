@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="Instituto Ite">
+  
+  <meta name="author" content="ite.com.bo">
+
+  <title>Instituto Ite</title>
+
+  <!-- Mobile Specific Meta-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="assets/vendors/bootstrap/bootstrap.css">
+  <!-- Iconfont Css -->
+  <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.css">
+  <link rel="stylesheet" href="assets/vendors/bicon/css/bicon.min.css">
+  <link rel="stylesheet" href="assets/vendors/themify/themify-icons.css">
+  <!-- animate.css -->
+  <link rel="stylesheet" href="assets/vendors/animate-css/animate.css">
+  <!-- WooCOmmerce CSS -->
+  <link rel="stylesheet" href="assets/vendors/woocommerce/woocommerce-layouts.css">
+  <link rel="stylesheet" href="assets/vendors/woocommerce/woocommerce-small-screen.css">
+  <link rel="stylesheet" href="assets/vendors/woocommerce/woocommerce.css">
+   <!-- Owl Carousel  CSS -->
+  <link rel="stylesheet" href="assets/vendors/owl/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/vendors/owl/assets/owl.theme.default.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+
+  <link href="assets/images/faviconite.ico" rel="shortcut icon">
+</head>
+
+<body id="top-header">
+
+  
+
+    
+<header>
+    <!--<div class="header-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12 col-md-12">
+                    <ul class="header-contact">
+                        <li>
+                           Ite te desea una Feliz navidad y un prospero año nuevo
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>    
+    </div>-->
+
+    <!-- Main Menu Start -->
+   
+    <div class="site-navigation main_menu " id="mainmenu-area">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets/images/logoite.png" alt="Edutim" class="img-fluid">
+                </a>
+
+                <!-- Toggler -->
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span>
+                </button>
+
+                <!-- Collapse -->
+                <div class="collapse navbar-collapse" id="navbarMenu">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item ">
+                            <a href="index-2.html" class="nav-link js-scroll-trigger">
+                                Inicio
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="about.html" class="nav-link js-scroll-trigger">
+                                Acerca de nosotros
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbar3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Cursos<i class="fa fa-angle-down"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbar3">
+                                <a class="dropdown-item " href="course-grid.html">
+                                   Course Style 1
+                               </a>
+                               <a class="dropdown-item " href="course-grid-2.html">
+                                   Course Style 2
+                               </a> 
+
+                               <a class="dropdown-item " href="course-grid-3.html">
+                                   Course Style 3
+                               </a> 
+                               <a class="dropdown-item " href="course-grid-4.html">
+                                   Course Style 4
+                               </a> 
+                               <a class="dropdown-item " href="course-grid-5.html">
+                                   Course Filter
+                               </a>
+                               <a class="dropdown-item " href="course-grid-6.html">
+                                   Course List
+                               </a>
+                                <a class="dropdown-item " href="course-single.html">
+                                   Course Details Style 1
+                               </a> 
+                               <a class="dropdown-item " href="course-single2.html">
+                                   Course Details Style Tab
+                               </a> 
+                               <a class="dropdown-item " href="course-single3.html">
+                                   Course Details Style Tab2
+                               </a> 
+                               <a class="dropdown-item " href="course-single4.html">
+                                   Course Details Classic
+                               </a> 
+                            </div>
+                        </li>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbar3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Paginas<i class="fa fa-angle-down"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbar3">
+                                <a class="dropdown-item " href="instructors.html">
+                                    Instructor
+                                </a>
+                                <a class="dropdown-item " href="login-registration.html">
+                                    Login
+                                </a>
+                                <a class="dropdown-item " href="404.html">
+                                    404
+                                </a> 
+                            </div>
+                        </li>
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item ">
+                                    <a href="{{ route('login') }}" class="nav-link">
+                                        Iniciar Sesion
+                                    </a>
+                                </li>
+                            @endif
+                            @if (Route::has('register'))
+                                <li class="nav-item ">
+                                    <a href="{{ route('register') }}" class="nav-link">
+                                        Registrate
+                                    </a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <i class="fa fa-angle-down"></i>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                    {{ __('Cerrar Sesion') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                            </li>
+                        @endguest
+                    </ul>
+
+                    <ul class="header-contact-right d-none d-lg-block">
+                        <li> <a href="#" class="header-cart"><i class="fa fa-shopping-cart"></i></a></li>
+                        <li><a href="#" class="header-search search_toggle"> <i class="fa fa fa-search"></i></a></li>
+                    </ul>
+                   
+                </div> <!-- / .navbar-collapse -->
+            </div> <!-- / .container -->
+        </nav>
+    </div>
+</header>
+
+        
+
+ <!--search overlay start-->
+ <div class="search-wrap">
+    <div class="overlay">
+        <form action="" class="search-form">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-9">
+                        <h3>Search Your keyword</h3>
+                        <input type="text" class="form-control" placeholder="Search..."/>
+                    </div>
+                    <div class="col-md-2 col-3 text-right">
+                        <div class="search_toggle toggle-wrap d-inline-block">
+                            <img class="search-close" src="assets/images/close.png" srcset="assets/images/close@2x.png 2x" alt=""/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--search overlay end-->
+
+<section class="banner">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-8">
+                <div class="banner-content center-heading">
+                    <span class="subheading">Todos los niveles</span>
+                    <h1>Guardería, Inicial, Primaria, Secundaria, Pre-Universitario, Universitario, Profesionales</h1>
+                    <a href="#" class="btn btn-main"><i class="fa fa-list-ul mr-2"></i>Contactanos </a>  
+                    <a href="#" class="btn btn-tp ">Leer mas <i class="fa fa-angle-right ml-2"></i></a>  
+                </div>
+            </div>
+        </div> <!-- / .row -->
+    </div> <!-- / .container -->
+</section>
+
+
+<section class="feature">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="bi bi-article"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h4>En que materia deseas optimizarte?</h4>
+                        <p>Aprende lo que realmente, necesitas, avanza a tu ritmo de comprensión. </p>
+                    </div>
+                </div>
+            </div>
+             <div class="col-lg-4 col-md-6">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="bi bi-badge2"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h4>Logra tus objetivos</h4>
+                        <p>No sólo clases: Apoyo académico, motivaciones, orientaciones, sobre todo mucha práctica. </p>
+                    </div>
+                </div>
+            </div>
+             <div class="col-lg-4 col-md-6">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="bi bi-graph-bar"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h4>Descubre tu potencialidad real</h4>
+                        <p>Te transformamos a una versión mejorada de ti mismo, para que seas mas productivo. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!--course section start-->
+    
+    <!--course section end-->
+
+    <!--course section start-->
+    
+    <!--course section end--> 
+<section class="section-padding category-section">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-6">
+                <div class="section-heading center-heading">
+                    <h3>Aprendizaje para todos los niveles y todas las materias ¡No pares de aprender!</h3>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row no-gutters">
+            <div class="col-lg-3 col-md-6">
+                <div class="course-category style-1">
+                   <div class="category-icon">
+                        <i class="bi bi-laptop"></i>
+                   </div>
+                    <h4><a href="#">Computacion</a></h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="course-category style-2">
+                    <div class="category-icon">
+                        <i class="bi bi-slider-range"></i>
+                    </div>
+                    <h4><a href="#">Programacion</a></h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="course-category style-3">
+                    <div class="category-icon">
+                        <i class="bi bi-bulb"></i>
+                    </div>
+                    <h4><a href="#">Diseño grafico</a></h4>
+                </div>
+            </div>
+
+             <div class="col-lg-3 col-md-6">
+                <div class="course-category style-4">
+                    <div class="category-icon">
+                        <i class="bi bi-rocket2"></i>
+                    </div>
+                    <h4><a href="#">Robotica</a></h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="course-category style-2">
+                    <div class="category-icon">
+                        <i class="bi bi-shield"></i>
+                    </div>
+                    <h4><a href="#">Oratoria</a></h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="course-category style-1">
+                   <div class="category-icon">
+                        <i class="bi bi-slider-range"></i>
+                   </div>
+                    <h4><a href="#">Ingles</a></h4>
+                </div>
+            </div>
+           
+            <div class="col-lg-3 col-md-6">
+                <div class="course-category style-4">
+                    <div class="category-icon">
+                        <i class="bi bi-layer"></i>
+                    </div>
+                    <h4><a href="#">Lectura y escritura</a></h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="course-category style-3">
+                    <div class="category-icon">
+                        <i class="bi bi-target-arrow"></i>
+                    </div>
+                    <h4><a href="#">Guarderia</a></h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="text-center mt-5">
+                    <p>Y muchos cursos mas </p>
+                    <div class="course-btn mt-4"><a href="#" class="btn btn-main"><i class="fa fa-grip-horizontal mr-2"></i>Ver todos los cursos</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-padding bg-grey team-2">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-6">
+                <div class="section-heading center-heading">
+                    <h3>Nuestro equipo</h3>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-4 col-sm-6">
+                <div class="team-block">
+                    <div class="team-img">
+                        <img src="assets/images/team/team-4.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="team-info">
+                        <h4>David Eduardo</h4>
+                        <p>Director Ite</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="team-block">
+                    <div class="team-img">
+                        <img src="assets/images/team/team-1.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="team-info">
+                        <h4>Tanvir Hasan</h4>
+                        <p>Market Researcher</p>
+                    </div>
+                    <ul class="team-socials list-inline">
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="team-block">
+                    <div class="team-img">
+                        <img src="assets/images/team/team-2.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="team-info">
+                        <h4>Mikele John</h4>
+                        <p>Content Writter</p>
+                    </div>
+                    <ul class="team-socials list-inline">
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="testimonial section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="section-heading center-heading text-center">
+                    <span class="subheading">Testimonials</span>
+                    <h3>Learn New Skills to Go Ahead for Your Career</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="testimonials-slides owl-carousel owl-theme">
+                    <div class="review-item">
+                        <div class="client-info">
+                            <i class="bi bi-quote"></i>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni eius autem aliquid pariatur rerum. Deserunt, praesentium.
+                             Adipisci, voluptates nihil debitis</p>
+                             <div class="rating">
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                            </div>
+                        </div>
+                        <div class="client-desc">
+                            <div class="client-img">
+                                <img src="assets/images/clients/test-1.jpg" alt="" class="img-fluid">
+                            </div>
+                            <div class="client-text">
+                                <h4>John Doe</h4>
+                                <span class="designation">Developer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="review-item">
+                        <div class="client-info">
+                            <i class="bi bi-quote"></i>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni eius autem aliquid pariatur rerum. Deserunt, praesentium.
+                             Adipisci, voluptates nihil debitis</p>
+                             <div class="rating">
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                            </div>
+                        </div>
+                        <div class="client-desc">
+                            <div class="client-img">
+                                <img src="assets/images/clients/test-2.jpg" alt="" class="img-fluid">
+                            </div>
+                            <div class="client-text">
+                                <h4>John Doe</h4>
+                                <span class="designation">Developer</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="review-item">
+                        <div class="client-info">
+                            <i class="bi bi-quote"></i>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni eius autem aliquid pariatur rerum. Deserunt, praesentium.
+                             Adipisci, voluptates nihil debitis</p>
+                             <div class="rating">
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                                <a href="#"><i class="fa fa-star"></i></a>
+                            </div>
+                        </div>
+                        <div class="client-desc">
+                            <div class="client-img">
+                                <img src="assets/images/clients/test-3.jpg" alt="" class="img-fluid">
+                            </div>
+                            <div class="client-text">
+                                <h4>John Doe</h4>
+                                <span class="designation">Developer</span>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-padding offer-course">
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-4">
+                <div class="section-heading">
+                    <span class="subheading">50% Discount offer</span>
+                    <h3>Hurry Up to get <span>50% off</span> courses</h3>
+                    <p>Eum eligendi nihil labore nemo alias eos sapiente perferendis iste molestias explicabo.tempor incididunt ut labore et dolore magna aliqua tempor incididunt.  </p>
+                    <a href="#" class="btn btn-main"><i class="fa fa-store mr-2"></i>All Courses</a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="course-block">
+                    <div class="course-img">
+                        <img src="assets/images/course/course1.jpg" alt="" class="img-fluid">
+                        <span class="course-label">Beginner</span>
+                    </div>
+                    
+                    <div class="course-content">
+                        <div class="rating">
+                            <a href="#"><i class="fa fa-star"></i></a>
+                            <a href="#"><i class="fa fa-star"></i></a>
+                            <a href="#"><i class="fa fa-star"></i></a>
+                            <a href="#"><i class="fa fa-star"></i></a>
+                            <a href="#"><i class="fa fa-star"></i></a>
+                            <span>(5.00)</span>
+                        </div>
+                        <h4><a href="#">Information About UI/UX Design Degree</a></h4>    
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, alias.</p>
+                        <div class="course-price ">$50</div>   
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="course-block">
+                    <div class="course-img">
+                        <img src="assets/images/course/course2.jpg" alt="" class="img-fluid">
+                        <span class="course-label">Advanced</span>
+                    </div>
+                    
+                    <div class="course-content">
+                        <div class="rating">
+                            <a href="#"><i class="fa fa-star"></i></a>
+                            <a href="#"><i class="fa fa-star"></i></a>
+                            <a href="#"><i class="fa fa-star"></i></a>
+                            <a href="#"><i class="fa fa-star"></i></a>
+                            <a href="#"><i class="fa fa-star"></i></a>
+                            <span>(5.00)</span>
+                        </div>
+                        <h4><a href="#">Photography Crash Course for Photographer</a></h4>    
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, alias.</p>
+                        <div class="course-price ">$80 <span class="del">$120</span></div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="blog section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="section-heading center-heading">
+                    <span class="subheading">Blog News</span>
+                    <h3>Latest Blog News</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicin gelit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="row">               
+            <div class="col-lg-4 col-md-6">
+                <div class="blog-item">
+                    <img src="assets/images/blog/news-1.jpg" alt="" class="img-fluid">
+                    <div class="blog-content">
+                        <div class="entry-meta">
+                            <span><i class="fa fa-calendar-alt"></i>May 19, 2020</span>
+                            <span><i class="fa fa-comments"></i>1 comment</span>
+                        </div>
+    
+                        <h2><a href="#">Powerful tips to grow business manner</a></h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicin gelit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                        <a href="#" class="btn btn-main btn-small"><i class="fa fa-plus-circle mr-2"></i>Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="blog-item">
+                    <img src="assets/images/blog/news-2.jpg" alt="" class="img-fluid">
+                    <div class="blog-content">
+                        <div class="entry-meta">
+                            <span><i class="fa fa-calendar-alt"></i>May 19, 2020</span>
+                            <span><i class="fa fa-comments"></i>1 comment</span>
+                        </div>
+    
+                        <h2><a href="#">Powerful tips to grow effective manner</a></h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicin gelit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                        <a href="#" class="btn btn-main btn-small"><i class="fa fa-plus-circle mr-2"></i>Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="blog-item">
+                    <img src="assets/images/blog/news-3.jpg" alt="" class="img-fluid">
+                    <div class="blog-content">
+                        <div class="entry-meta">
+                            <span><i class="fa fa-calendar-alt"></i>May 19, 2020</span>
+                            <span><i class="fa fa-comments"></i>1 comment</span>
+                        </div>
+    
+                        <h2><a href="#">Python may be you completed online </a></h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicin gelit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+                        <a href="#" class="btn btn-main btn-small"><i class="fa fa-plus-circle mr-2"></i>Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="cta-2">
+    <div class="container">
+        <div class="row align-items-center subscribe-section ">
+            <div class="col-lg-6">
+                <div class="section-heading white-text">
+                    <span class="subheading">Newsletter</span>
+                    <h3>Join our community of students</h3>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="subscribe-form">
+                    <form action="#">
+                        <input type="text" class="form-control" placeholder="Email Address">
+                        <a href="#" class="btn btn-main">Subscribe<i class="fa fa-angle-right ml-2"></i> </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="footer pt-120">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 mr-auto col-sm-6 col-md-6">
+				<div class="widget footer-widget mb-5 mb-lg-0">
+					<h5 class="widget-title">About Us</h5>
+					<p class="mt-3">Veniam Sequi molestias aut necessitatibus optio magni at natus accusamus.Lorem ipsum dolor sit amet, consectetur adipisicin gelit, sed do eiusmod tempor incididunt .</p>
+					<ul class="list-inline footer-socials">
+						<li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+						<li class="list-inline-item"> <a href="#"><i class="fab fa-twitter"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="col-lg-2 col-sm-6 col-md-6">
+				<div class="footer-widget mb-5 mb-lg-0">
+					<h5 class="widget-title">Company</h5>
+					<ul class="list-unstyled footer-links">
+						<li><a href="#">About us</a></li>
+						<li><a href="#">Contact us</a></li>
+						<li><a href="#">Projects</a></li>
+						<li><a href="#">Terms & Condition</a></li>
+						<li><a href="#">Privacy policy</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-2 col-sm-6 col-md-6">
+				<div class="footer-widget mb-5 mb-lg-0">
+					<h5 class="widget-title">Courses</h5>
+					<ul class="list-unstyled footer-links">
+						<li><a href="#">SEO Business</a></li>
+						<li><a href="#">Digital Marketing</a></li>
+						<li><a href="#">Graphic Design</a></li>
+						<li><a href="#">Site Development</a></li>
+						<li><a href="#">Social Marketing</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-3 col-sm-6 col-md-6">
+				<div class="footer-widget footer-contact mb-5 mb-lg-0">
+					<h5 class="widget-title">Contact </h5>
+					
+					<ul class="list-unstyled">
+						<li><i class="bi bi-headphone"></i>
+							<div>
+								<strong>Phone number</strong>
+								(68) 345 5902
+							</div>
+							
+						</li>
+						<li> <i class="bi bi-envelop"></i>
+							<div>
+								<strong>Email Address</strong>
+								info@yourdomain.com
+							</div>
+						</li>
+						<li><i class="bi bi-location-pointer"></i>
+							<div>
+								<strong>Office Address</strong>
+								Moon Street Light Avenue
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer-btm">
+		<div class="container">
+			<div class="row justify-content-center align-items-center">
+				<div class="col-lg-6">
+					<div class="footer-logo">
+						<img src="assets/images/logo-white.png" alt="Edutim" class="img-fluid">
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="copyright text-lg-center">
+						<p>@ Copyright reserved to Edutim.Proudly Crafted by <a href="https://themeturn.com">Dreambuzz</a> </p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<div class="fixed-btm-top">
+	<a href="#top-header" class="js-scroll-trigger scroll-to-top"><i class="fa fa-angle-up"></i></a>
+</div>
+
+
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+    
+    <!-- Main jQuery -->
+    <script src="assets/vendors/jquery/jquery.js"></script>
+    <!-- Bootstrap 4.5 -->
+    <script src="assets/vendors/bootstrap/bootstrap.js"></script>
+    <!-- Counterup -->
+    <script src="assets/vendors/counterup/waypoint.js"></script>
+    <script src="assets/vendors/counterup/jquery.counterup.min.js"></script>
+    <script src="assets/vendors/jquery.isotope.js"></script>
+    <script src="assets/vendors/imagesloaded.js"></script>
+    <!--  Owlk Carousel-->
+    <script src="assets/vendors/owl/owl.carousel.min.js"></script>
+    <script src="assets/js/script.js"></script>
+
+
+  </body>
+  </html>
+   
