@@ -208,6 +208,7 @@
          /*%%%%%%%%%%%%%%%%%%%%%%  CODIGO QUE SE CARGA DESPUES DE CARGAR LA PAGINA %%%%%%%%%%%*/
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();  
+            
             $('#tabla_hoy').dataTable({
                 "responsive":true,
                 "searching":true,
@@ -258,6 +259,62 @@
                 ],
             });
 
+    /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TABLA FUTURO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+    let tablaFuturo=$('#futuro').dataTable({
+                "responsive":true,
+                "searching":true,
+                "paging":   true,
+                "autoWidth":false,
+                "createdRow": function( row, data, dataIndex ) {
+                    
+                    if(moment(data['fecha']).format('DD-MM-YYYY') < moment().format('DD-MM-YYYY')){
+                        $(row).addClass('text-warning')
+                    }
+                    if(moment(data['fecha']).format('DD-MM-YYYY') == moment().format('DD-MM-YYYY')){
+                        $(row).addClass('text-danger')
+                    }
+                    if(moment(data['fecha']).format('DD-MM-YYYY') > moment().format('DD-MM-YYYY')){
+                        $(row).addClass('text-success')
+                    }
+                    
+                    $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
+                    $('td', row).eq(1).html(moment(data['fecha']).format('D-M-Y'));
+                    $('td', row).eq(2).html(moment(data['horaini']).format('HH:mm')+'-'+moment(data['horafin']).format('HH:mm'));
+                    $('td', row).eq(3).html(data['docente']);
+                    $('td', row).eq(4).html(data['aula']);
+
+                    
+                },
+                "ordering": true,
+                "info":     true,
+                "language":{
+                    "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                }, 
+                "ajax" : {
+                    'url' : "{{ route('programacioncom.futuro',['matriculacion'=>$matriculacion->id])}}",
+                    // "success":function(json){
+                    //     console.log(json);
+                    // }
+                },
+                "columns": [
+                        
+                        {"data": "id"},
+                        {"data": "fecha"},
+                        {"data": "horaini"},
+                        {"data": "docente"},
+                        {"data": "aula"},
+
+                        {"data": "btn"},
+                    ],
+                    // ->select('programacioncoms.id','fecha','horaini','horafin','programacioncoms.estado','docentes.nombre','aulas.aula');
+
+                "columnDefs": [
+                    { responsivePriority: 1, targets: 0 },  
+                    { responsivePriority: 2, targets: -1 }
+                // ],
+            });
+    /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+    
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             // $('#futuro').on('click', '.mostrar', function(e) {
             //     e.preventDefault(); 
@@ -402,7 +459,7 @@
 
                             $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'><div class='form-floating mb-3 text-gray'>";
                             $html+="<input type='time' name='hora_ini' class='form-control @error('hora_ini') is-invalid @enderror texto-plomo' id='hora_ini'"; 
-                            $html+="value=\'"+moment(data.programacioncom.horainicio).format('HH:mm:ss') +"'\>";
+                            $html+="value=\'"+moment(data.programacioncom.horaini).format('HH:mm:ss') +"'\>";
                             $html+="<label for='hora_ini'>hora inicio</label></div></div>";
 
                             $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'><div class='form-floating mb-3 text-gray'>";
@@ -507,7 +564,7 @@
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR ENVIO DE FORMULARIO PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $(document).on("submit","#formulario-editar",function(e){
                 e.preventDefault();//detenemos el envio
-                
+            
                 $hora_inicio=$('#hora_ini').val();
                 $hora_fin=$('#hora_fin').val();
                 $fecha=$('#fecha').val();
@@ -541,25 +598,16 @@
                             activo:$activo,
                             horas_por_clase:$horas_por_clase,
                             docente_id:$docente_id,
-                           
                             aula_id:$aula_id,
                             matriculacion_id:$matriculacion_id,
                             programacioncom_id:$programacioncom_id,
                         },
                     
                     success : function(json) {
-                        console.log(json);
-                        let programacion_actualizar=$('#programacioncom_id').val();
-                        
-                        $('#'+programacion_actualizar+' td:nth-child(2)').text(moment(json.programacioncom.fecha).format('D-M-Y dddd'));
-                        $('#'+programacion_actualizar+' td:nth-child(3)').text(moment(json.programacioncom.horaini).format('HH:mm')+'-'+moment(json.programacioncom.horafin).format('HH:mm'));
-                        $('#'+programacion_actualizar+' td:nth-child(4)').text(json.docente.nombre);
-                        // $('#'+programacion_actualizar+' td:nth-child(5)').text(json.materia.materia);
-                        $('#'+programacion_actualizar+' td:nth-child(6)').text(json.programacioncom.aula.aula);
+                        let programacion_actualizar=$('#programacioncom_id').val(); 
                         $('#modal-editar').modal('hide');
                         $("#"+programacion_actualizar).addTempClass( 'bg-success', 3000 );
-                        $('#tabla_hoy').DataTable().ajax.reload();
-                        
+                        $('#futuro').DataTable().ajax.reload();
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');

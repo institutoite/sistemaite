@@ -318,6 +318,7 @@ Route::get('generar/programacioncom/{matriculacion}',[ProgramacioncomController:
 Route::get('programacioncom/mostrar/{matriculacion}', [ProgramacioncomController::class,'mostrar'])->name('programacioncom.mostrar');
 Route::get('programacioncom/mostrar', [ProgramacioncomController::class,'mostrarClases'])->name('programacioncom.mostrar');
 Route::get('programacioncom/hoy/{matriculacion}', [ProgramacioncomController::class,'programacionescomHoy'])->name('programacioncom.hoy');
+Route::get('programacioncom/futuro/{matriculacion}', [ProgramacioncomController::class,'programacionescomFuturo'])->name('programacioncom.futuro');
 Route::get('programacioncom/editar/', [ProgramacioncomController::class,'editar'])->name('programacioncom.editar');
 Route::get('programacioncom/actualizar/', [ProgramacioncomController::class,'actualizar'])->name('programacioncom.actualizar');
 Route::get('regenerar/programacom/{matriculacion}/{fecha}/{unModo?}', [ProgramacioncomController::class,'regenerarProgramacom'])->name('regenerar.programacioncom');

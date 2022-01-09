@@ -384,6 +384,17 @@ class ProgramacioncomController extends Controller
                 ->rawColumns(['btn'])
                 ->toJson();
     }
+    public function programacionescomFuturo(Request $request){
+        $programacion=Programacioncom::join('docentes','docentes.id','=','programacioncoms.docente_id')
+                    ->join('aulas','aulas.id','=','programacioncoms.aula_id')
+                    ->where('matriculacion_id',$request->matriculacion)
+                    // ->where('fecha','>', Carbon::now()->isoFormat('Y-M-D'))
+                    ->select('programacioncoms.id','fecha','programacioncoms.estado','docentes.nombre as docente','horaini','horafin','aulas.aula');
+        return DataTables::of($programacion)
+                ->addColumn('btn','programacioncom.actionsfuturo')
+                ->rawColumns(['btn'])
+                ->toJson();
+    }
 
     public function deshabilitarTodoProgramascom($matriculacion_id){
         $programascom=Programacioncom::where('matriculacion_id','=', $matriculacion_id)->get();
