@@ -137,42 +137,33 @@
                                 </a> 
                             </div>
                         </li>
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item ">
-                                    <a href="{{ route('login') }}" class="nav-link">
-                                        Iniciar Sesion
-                                    </a>
-                                </li>
-                            @endif
-                            @if (Route::has('register'))
-                                <li class="nav-item ">
-                                    <a href="{{ route('register') }}" class="nav-link">
-                                        Registrate
-                                    </a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <i class="fa fa-angle-down"></i>
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                    {{ __('Cerrar Sesion') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                            </li>
-                        @endguest
                     </ul>
 
+                    @guest
+                        @if (Route::has('login'))
+                                <a href="{{ route('login') }}" class="btn btn-main btn-small"><i class="fa fa-sign-in-alt mr-2"></i>
+                                    Iniciar Sesion
+                                </a>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }} <i class="fa fa-angle-down"></i>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                {{ __('Cerrar Sesion') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                        </li>
+                    @endguest
                    <!-- <ul class="header-contact-right d-none d-lg-block">
                         <li> <a href="#" class="header-cart"><i class="fa fa-shopping-cart"></i></a></li>
                         <li><a href="#" class="header-search search_toggle"> <i class="fa fa fa-search"></i></a></li>
@@ -423,12 +414,19 @@
         </div>
 
         <div class="row align-items-center justify-content-center">
-            <div class="col-lg-10">
-                <div class="video-block">
-                     <img src="assets/images/bg/office01.jpg" alt="" class="img-fluid">
-                     <a href="#" class="video-icon"><i class="fa fa-play"></i></a>
-                </div>
+            <div class="col-lg-6">
+                    
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/0qouQRmWzqc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                     {{-- <a href="#" class="video-icon"><i class="fa fa-play"></i></a> --}}
+                
+                    {{-- <div class="video-block">
+                        <img src="assets/images/bg/office01.jpg" alt="" class="img-fluid">
+                        <a href="#" class="video-icon"><i class="fa fa-play"></i></a>
+                    </div> --}}
+
+                
             </div>
+             
         </div>
     </div>
     <!--course-->
@@ -473,7 +471,7 @@
                         <p>Lu Ma Ju Vi 6:30pm - 21:00pm</p>
                     </div>
 
-                    <a href="#" class="btn btn-main-2"><i class="fa fa-check mr-2"></i>more About Support</a>
+                    <a href="#" class="btn btn-main-2"><i class="fa fa-check mr-2"></i>Elige tu horario</a>
                 </div>
             </div>
         </div>
@@ -747,7 +745,7 @@
             <div class="col-lg-6">
                 <div class="section-heading white-text">
                     <span class="subheading">Newsletter</span>
-                    <h3>Join our community of students</h3>
+                    <h3>Únete a nuestra comunidad de estudiantes</h3>
                 </div>
             </div>
             <div class="col-lg-6">
