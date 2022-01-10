@@ -15,14 +15,14 @@ class MotivoSeeder extends Seeder
      */
     public function run()
     {
-        Motivo::create(['motivo'=>"tiene una tarea"]);
-        Motivo::create(['motivo' => "tiene un examen"]);
-        Motivo::create(['motivo' => "Se falto a clase, no le entiende"]);
-        Motivo::create(['motivo' => "Tiene una defenza"]);
-        Motivo::create(['motivo' => "su profe le fallo"]);
-        Motivo::create(['motivo' => "En su clase no le entiende"]);
-        Motivo::create(['motivo' => "Quire nivelarse"]);
-        Motivo::create(['motivo' => "Quiere adelantar"]);
+        Motivo::create(['motivo'=>"tiene una tarea",'tipomotivo_id'=>1]);
+        Motivo::create(['motivo' => "tiene un examen",'tipomotivo_id'=>1]);
+        Motivo::create(['motivo' => "Se falto a clase, no le entiende",'tipomotivo_id'=>1]);
+        Motivo::create(['motivo' => "Tiene una defenza",'tipomotivo_id'=>1]);
+        Motivo::create(['motivo' => "su profe le fallo",'tipomotivo_id'=>1]);
+        Motivo::create(['motivo' => "En su clase no le entiende",'tipomotivo_id'=>1]);
+        Motivo::create(['motivo' => "Quire nivelarse",'tipomotivo_id'=>1]);
+        Motivo::create(['motivo' => "Quiere adelantar",'tipomotivo_id'=>1]);
 
         Userable::create(["user_id"=>1,"userable_id"=>1,"userable_type"=>"App\Models\Motivo"]);
         Userable::create(["user_id"=>1,"userable_id"=>2,"userable_type"=>"App\Models\Motivo"]);

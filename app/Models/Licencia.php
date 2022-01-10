@@ -21,6 +21,10 @@ class Licencia extends Model
     {
         return $this->morphOne('App\Models\Userable', 'userable');
     }
+    public function licenciable()
+    {
+        return $this->morphTo();    
+    }
 
 
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLicenciasTable extends Migration
+class CreateMotivosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateLicenciasTable extends Migration
      */
     public function up()
     {
-        Schema::create('licencias', function (Blueprint $table) {
+        Schema::create('motivos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('motivo', 80);
-            $table->string('solicitante', 45);
-            $table->string('parentesco', 45);
-            $table->unsignedInteger('licenciable_id');
-            $table->string('licenciable_type',50);
+            $table->string('motivo', 50);
+            $table->unsignedInteger('tipomotivo_id');
+            $table->foreign('tipomotivo_id', 'fk_tipomotivos_motivo_idx')
+            ->references('id')->on('tipomotivos')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateLicenciasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('licencias');
+        Schema::dropIfExists('motivos');
     }
 }

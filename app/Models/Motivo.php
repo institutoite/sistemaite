@@ -33,7 +33,7 @@ class Motivo extends Model
     protected $fillable = ['motivo'];
 
 
-    /**
+    /** 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function inscripciones()
@@ -52,6 +52,10 @@ class Motivo extends Model
     
     public function matriculacion(){
         return $this->belongsTo("App\Models\Matriculacion");
+    }
+   
+    public function tipomotivo(){
+        return $this->belongsTo("App\Models\Tipomotivo");
     }
 
 }

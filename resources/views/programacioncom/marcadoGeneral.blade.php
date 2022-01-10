@@ -268,10 +268,11 @@
                 "createdRow": function( row, data, dataIndex ) {
                     
                     if(moment(data['fecha']).format('DD-MM-YYYY') < moment().format('DD-MM-YYYY')){
-                        $(row).addClass('text-warning')
+                        $(row).addClass('text-gray')
                     }
                     if(moment(data['fecha']).format('DD-MM-YYYY') == moment().format('DD-MM-YYYY')){
-                        $(row).addClass('text-danger')
+                        $(row).addClass('table-success');
+                        $(row).addClass('text-bold');
                     }
                     if(moment(data['fecha']).format('DD-MM-YYYY') > moment().format('DD-MM-YYYY')){
                         $(row).addClass('text-success')
@@ -311,8 +312,10 @@
                 "columnDefs": [
                     { responsivePriority: 1, targets: 0 },  
                     { responsivePriority: 2, targets: -1 }
-                // ],
+                ],
+                "order": [[ 1, "asc" ]],
             });
+            
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -555,6 +558,21 @@
                             $html+="</div>";
                         
                             $("#formulario-editar").append($html);
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },  
+                });
+            });
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO CREAR LICENCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.licencia', function(e) {
+                e.preventDefault(); 
+                let id_programacioncom =$(this).closest('tr').attr('id');
+                    $.ajax({
+                    url : "licencia/crear/"+id_programacioncom,
+                    data : { id :id_programacioncom },
+                    success : function(data) {
+                        
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');

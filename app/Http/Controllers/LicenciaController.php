@@ -19,7 +19,6 @@ class LicenciaController extends Controller
     public function index()
     {
         $licencias = Licencia::paginate();
-
         return view('licencia.index', compact('licencias'))
             ->with('i', (request()->input('page', 1) - 1) * $licencias->perPage());
     }

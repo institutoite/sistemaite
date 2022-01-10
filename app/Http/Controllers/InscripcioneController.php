@@ -81,11 +81,8 @@ class InscripcioneController extends Controller
     public function crear(Persona $persona)
     {
         
-        $motivos = Motivo::all();
+        $motivos = Motivo::where('tipomotivo_id','=',1);
         $ultima_inscripcion=$this->UltimaInscripcion($persona);
-        //$ultima_grado_id=Gestion::where('estudiante_id',$persona->estudiante->id)->orderBy('id', 'desc')->first()->grado_id;
-        //$ultimo_nivel=Nivel::findOrFail($ultima_grado_id);
-        //$modalidades = Modalidad::where('nivel_id', '=', $ultimo_nivel)->get();
         if($ultima_inscripcion!=null)        
         $ultimo_nivel=Nivel::findOrFail(Modalidad::findOrFail($ultima_inscripcion->modalidad_id)->nivel_id);
         else {

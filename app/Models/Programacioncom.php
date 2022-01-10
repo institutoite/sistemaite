@@ -45,6 +45,9 @@ class Programacioncom extends Model
     {
         return $this->morphMany(Observacion::class, 'observable');
     }
+    public function licencias(){
+        return $this->morphMany('App\Models\Licencia','licenciable');
+    }
     
 
 }
