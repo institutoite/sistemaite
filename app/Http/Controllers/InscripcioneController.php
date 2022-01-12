@@ -17,6 +17,7 @@ use App\Models\Gestion;
 use App\Models\Grado;
 use App\Models\Nivel;
 use App\Models\Programacion;
+use App\Models\Tipomotivo;
 use App\Models\Matriculacion;
 use Illuminate\Support\Facades\DB;
 
@@ -81,7 +82,7 @@ class InscripcioneController extends Controller
     public function crear(Persona $persona)
     {
         
-        $motivos = Motivo::where('tipomotivo_id','=',1);
+        $motivos = Tipomotivo::findOrFail(1)->motivos;
         $ultima_inscripcion=$this->UltimaInscripcion($persona);
         if($ultima_inscripcion!=null)        
         $ultimo_nivel=Nivel::findOrFail(Modalidad::findOrFail($ultima_inscripcion->modalidad_id)->nivel_id);

@@ -79,6 +79,6 @@
   ),
   'montserrat' => array(
     '100' => $fontDir . '/montserrat_100_0d704348384dbc46b968b5fb894873c7',
-    '300' => $fontDir . '/montserrat_300_265e2283cc6766af9f19e06102982ea0',
+    '300' => $fontDir . '/montserrat_300_0225255b278d03ef0143f6fb376c6a83',
   ),
 ) ?>

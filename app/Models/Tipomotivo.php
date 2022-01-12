@@ -9,8 +9,8 @@ class Tipomotivo extends Model
 {
     use HasFactory; 
 
-     public function motivo()
+     public function motivos()
     {
-        return $this->hasOne('App\Models\Motivo');
+        return $this->hasMany('App\Models\Motivo');
     }
 }
