@@ -77,7 +77,7 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a href="about.html" class="nav-link js-scroll-trigger">
+                            <a href="#" class="nav-link js-scroll-trigger">
                                 Acerca de nosotros
                             </a>
                         </li>
@@ -205,7 +205,8 @@
             <div class="col-md-12 col-lg-8">
                 <div class="banner-content center-heading">
                     <span class="subheading">Todos los niveles</span>
-                    <h1>Guardería, Inicial, Primaria, Secundaria, Pre-Universitario, Universitario, Profesionales</h1>
+                    <h1>Guardería, Inicial, Primaria, Secundaria,</h1>
+                    <h1>Pre-Universitario, Universitario, Profesionales</h1>
                     <a href="#" class="btn btn-main"><i class="fa fa-list-ul mr-2"></i>Contactanos </a>  
                     <a href="#" class="btn btn-tp ">Leer mas <i class="fa fa-angle-right ml-2"></i></a>  
                 </div>
@@ -279,7 +280,7 @@
                    <div class="category-icon">
                         <i class="bi bi-laptop"></i>
                    </div>
-                    <h4><a href="#">Computacion</a></h4>
+                    <h4><a href="#">Computación</a></h4>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
@@ -287,7 +288,7 @@
                     <div class="category-icon">
                         <i class="bi bi-slider-range"></i>
                     </div>
-                    <h4><a href="#">Programacion</a></h4>
+                    <h4><a href="#">Programación</a></h4>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
@@ -295,7 +296,7 @@
                     <div class="category-icon">
                         <i class="bi bi-bulb"></i>
                     </div>
-                    <h4><a href="#">Diseño grafico</a></h4>
+                    <h4><a href="#">Diseño gráfico</a></h4>
                 </div>
             </div>
 
@@ -304,7 +305,7 @@
                     <div class="category-icon">
                         <i class="bi bi-rocket2"></i>
                     </div>
-                    <h4><a href="#">Robotica</a></h4>
+                    <h4><a href="#">Robótica</a></h4>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
@@ -320,7 +321,7 @@
                    <div class="category-icon">
                         <i class="bi bi-slider-range"></i>
                    </div>
-                    <h4><a href="#">Ingles</a></h4>
+                    <h4><a href="#">Inglés</a></h4>
                 </div>
             </div>
            
@@ -337,7 +338,7 @@
                     <div class="category-icon">
                         <i class="bi bi-target-arrow"></i>
                     </div>
-                    <h4><a href="#">Guarderia</a></h4>
+                    <h4><a href="#">Guardería</a></h4>
                 </div>
             </div>
         </div>
@@ -408,15 +409,15 @@
             <div class="col-lg-6">
                 <div class="section-heading text-center center-heading">
                     <span class="subheading"></span>
-                    <h3>Video de presentacion</h3>
+                    <h3>Video de Presentación</h3>
                 </div>
             </div>
         </div>
 
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-6">
-                    
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/0qouQRmWzqc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/fN4OVcOlyxI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                      {{-- <a href="#" class="video-icon"><i class="fa fa-play"></i></a> --}}
                 
                     {{-- <div class="video-block">
@@ -449,8 +450,8 @@
                 <div class="about-content">
                     <div class="about-text-block">
                         <i class="bi bi-calendar"></i>
-                        <h4>Horario Super Especial</h4>
-                        <p>Lunes a Viernes 5.00 am - 6:00 amt</p>
+                        <h4>Horario Súper Especial</h4>
+                        <p>Lunes a Viernes 5.00 am - 6:00 am</p>
                     </div>
 
                     <div class="about-text-block">
@@ -462,7 +463,7 @@
                     <div class="about-text-block">
                         <i class="bi bi-calendar"></i>
                         <h4>Turno Tarde</h4>
-                        <p>LLunes a Viernes 2:00pm - 6:30pm</p>
+                        <p>Lunes a Viernes 2:00pm - 6:30pm</p>
                     </div>
 
                     <div class="about-text-block">
@@ -744,15 +745,15 @@
         <div class="row align-items-center subscribe-section ">
             <div class="col-lg-6">
                 <div class="section-heading white-text">
-                    <span class="subheading">Newsletter</span>
+                    <span class="subheading"></span>
                     <h3>Únete a nuestra comunidad de estudiantes</h3>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="subscribe-form">
                     <form action="#">
-                        <input type="text" class="form-control" placeholder="Email Address">
-                        <a href="#" class="btn btn-main">Subscribe<i class="fa fa-angle-right ml-2"></i> </a>
+                        <input type="text" class="form-control" placeholder="Correo electrónico">
+                        <a href="#" class="btn btn-main">Subscribete<i class="fa fa-angle-right ml-2"></i> </a>
                     </form>
                 </div>
             </div>
@@ -779,7 +780,7 @@
 				<div class="footer-widget mb-5 mb-lg-0">
 					<h5 class="widget-title">Niveles</h5>
 					<ul class="list-unstyled footer-links">
-						<li><a href="#">Guarderia</a></li>
+						<li><a href="#">Guardería</a></li>
 						<li><a href="#">Primaria</a></li>
 						<li><a href="#">Secundaria</a></li>
 						<li><a href="#">Pre-Universitarios</a></li>
@@ -815,13 +816,13 @@
 						</li>
 						<li> <i class="bi bi-envelop"></i>
 							<div>
-								<strong>Correo electronico</strong>
+								<strong>Correo electrónico</strong>
 								informaciones.ite@gmail.com
 							</div>
 						</li>
 						<li><i class="bi bi-location-pointer"></i>
 							<div>
-								<strong>Direccion</strong>
+								<strong>Dirección</strong>
 								Villa 1 de mayo avenida tres pasos al frente esquina Che Guevara 4710
                                 <br> 
                                 Santa Cruz de la Sierra, Bolivia
