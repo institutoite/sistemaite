@@ -225,7 +225,7 @@
                         <i class="bi bi-article"></i>
                     </div>
                     <div class="feature-text">
-                        <h4>En que materia deseas optimizarte?</h4>
+                        <h4>¿En que materia deseas optimizarte?</h4>
                         <p>Aprende lo que realmente, necesitas, avanza a tu ritmo de comprensión. </p>
                     </div>
                 </div>
@@ -263,13 +263,15 @@
     <!--course section start-->
     
     <!--course section end--> 
+
 <section class="section-padding category-section">
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-6">
                 <div class="section-heading center-heading">
-                    <h4>Aprendizaje para todos los niveles y todas las materias ¡No pares de aprender!</h4>
-                    
+                    <span class="subheading"></span>
+                    <h3>Empezamos cuando te inscribas</h3>
+                    <p>Capacitate, especializate en todas las materia y aprende lo que realmente necesites, aprende a tu ritmo de compresión.</p>
                 </div>
             </div>
         </div>
@@ -278,57 +280,15 @@
             <div class="col-lg-3 col-md-6">
                 <div class="course-category style-1">
                    <div class="category-icon">
-                        <i class="bi bi-laptop"></i>
+                        <i class="bi bi-target-arrow"></i>
                    </div>
-                    <h4><a href="#">Computación</a></h4>
+                    <h4><a href="#">Guardería</a></h4>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="course-category style-2">
                     <div class="category-icon">
-                        <i class="bi bi-slider-range"></i>
-                    </div>
-                    <h4><a href="#">Programación</a></h4>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="course-category style-3">
-                    <div class="category-icon">
-                        <i class="bi bi-bulb"></i>
-                    </div>
-                    <h4><a href="#">Diseño gráfico</a></h4>
-                </div>
-            </div>
-
-             <div class="col-lg-3 col-md-6">
-                <div class="course-category style-4">
-                    <div class="category-icon">
-                        <i class="bi bi-rocket2"></i>
-                    </div>
-                    <h4><a href="#">Robótica</a></h4>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="course-category style-2">
-                    <div class="category-icon">
-                        <i class="bi bi-shield"></i>
-                    </div>
-                    <h4><a href="#">Oratoria</a></h4>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="course-category style-1">
-                   <div class="category-icon">
-                        <i class="bi bi-slider-range"></i>
-                   </div>
-                    <h4><a href="#">Inglés</a></h4>
-                </div>
-            </div>
-           
-            <div class="col-lg-3 col-md-6">
-                <div class="course-category style-4">
-                    <div class="category-icon">
-                        <i class="bi bi-layer"></i>
+                        <i class="bi bi-pencil"></i>
                     </div>
                     <h4><a href="#">Lectura y escritura</a></h4>
                 </div>
@@ -336,9 +296,84 @@
             <div class="col-lg-3 col-md-6">
                 <div class="course-category style-3">
                     <div class="category-icon">
-                        <i class="bi bi-target-arrow"></i>
+                        <i class="bi bi-laptop"></i>
                     </div>
-                    <h4><a href="#">Guardería</a></h4>
+                    <h4><a href="#">Dactilografia</a></h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="course-category style-4">
+                    <div class="category-icon">
+                        <i class="bi bi-book"></i>
+                    </div>
+                    <h4><a href="#">Lenguaje</a></h4>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="course-category style-5">
+                    <div class="category-icon">
+                        <i class="bi bi-calculation"></i>
+                    </div>
+                    <h4><a href="#">Matemática</a></h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="course-category style-6">
+                   <div class="category-icon">
+                        <i class="bi bi-compass-math"></i>
+                   </div>
+                    <h4><a href="#">Fisica</a></h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="course-category style-7">
+                    <div class="category-icon">
+                        <i class="bi bi-nuclear-circle"></i>
+                    </div>
+                    <h4><a href="#">Química</a></h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="course-category style-8">
+                    <div class="category-icon">
+                        <i class="bi bi-layer"></i>
+                    </div>
+                    <h4><a href="#">Inglés</a></h4>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="course-category style-9">
+                    <div class="category-icon">
+                        <i class="bi bi-slider-doc"></i>
+                    </div>
+                    <h4><a href="#">PSA</a></h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="course-category style-10">
+                    <div class="category-icon">
+                        <i class="bi bi-slider-doc"></i>
+                    </div>
+                    <h4><a href="#">CUP</a></h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="course-category style-11">
+                   <div class="category-icon">
+                        <i class="bi bi-shield"></i>
+                   </div>
+                    <h4><a href="#">Oratoria</a></h4>
+                </div>
+            </div>
+           
+            <div class="col-lg-3 col-md-6">
+                <div class="course-category style-12">
+                    <div class="category-icon">
+                        <i class="bi bi-bulb"></i>
+                    </div>
+                    <h4><a href="#">Diseño gráfico</a></h4>
                 </div>
             </div>
         </div>
@@ -352,6 +387,8 @@
         </div>
     </div>
 </section>
+
+
 <!--<section class="process section-padding mt-0">
     <div class="process-img"></div>
     <div class="container">
@@ -416,8 +453,11 @@
 
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-6">
-                
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/fN4OVcOlyxI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/fN4OVcOlyxI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
                      {{-- <a href="#" class="video-icon"><i class="fa fa-play"></i></a> --}}
                 
                     {{-- <div class="video-block">
@@ -766,7 +806,7 @@
 		<div class="row">
 			<div class="col-lg-4 mr-auto col-sm-6 col-md-6">
 				<div class="widget footer-widget mb-5 mb-lg-0">
-					<h5 class="widget-title">Nuestras Redes</h5>
+					<h5 class="widget-title">Nuestras Redes Sociales</h5>
 					<p class="mt-3"></p>
 					<ul class="list-inline footer-socials">
 						<li class="list-inline-item"><a href="https://api.whatsapp.com/send?phone=59171039910&text=Tengo una pregunta"><i class="fab fa-whatsapp"></i></a></li>
