@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Tipomotivo;
 use Illuminate\Http\Request;
 
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
+
 class TipomotivoController extends Controller
 {
     /**
@@ -14,7 +17,7 @@ class TipomotivoController extends Controller
      */
     public function index()
     {
-        //
+        return view('tipomotivo.index');
     }
 
     /**
@@ -81,5 +84,12 @@ class TipomotivoController extends Controller
     public function destroy(Tipomotivo $tipomotivo)
     {
         //
+    }
+
+    public function listar(){
+        return datatables()->of(Tipomotivo::all())
+        ->addColumn('btn', 'tipomotivo.action')
+        ->rawColumns(['btn'])
+        ->toJson();
     }
 }

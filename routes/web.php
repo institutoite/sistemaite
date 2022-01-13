@@ -11,6 +11,7 @@ use App\Http\Controllers\OpcionController;
 use App\Http\Controllers\PagocomController;
 use App\Http\Controllers\ProgramacioncomController;
 use App\Http\Controllers\ClasecomController;
+use App\Http\Controllers\TipomotivoController;
 
 
 
@@ -35,7 +36,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[ProgramacioncomController::class,'actualizar'])->name('prueba');
+Route::get('prueba',[TipomotivoController::class,'listar'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -242,6 +243,11 @@ Route::get('tusmatriculaciones', [MatriculacionController::class,'tusMatriculaci
 
 
 // Route::get('gestiones/editar78', [GestionController::class, 'edition'])->name('gestion.editar');
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  TIPOMOTIVOS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::get('tipomotivos', [TipomotivoController::class,'index'])->name('tipomotivo.index');
+Route::get('listar/tipomotivos', [TipomotivoController::class,'index'])->name('tipomotivo.ajax');
+
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  M O T I V O S %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('motivos', "MotivoController");

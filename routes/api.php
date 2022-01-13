@@ -80,6 +80,12 @@ Route::get('motivos', function () {
         ->rawColumns(['btn'])
         ->toJson();
 });
+Route::get('tipomotivos', function () {
+    return datatables()->of(Tipomotivo::all())
+        ->addColumn('btn', 'tipomotivo.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+});
 Route::get('grados', function () {
     $grados=Grado::join('nivels','nivels.id','=','grados.nivel_id')
                 ->select('grados.id','grado','nivel')->get();

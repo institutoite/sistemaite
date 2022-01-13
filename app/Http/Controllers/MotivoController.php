@@ -141,6 +141,6 @@ class MotivoController extends Controller
     {
         $motivo = Motivo::find($id)->delete();
 
-        return response()->json(['mensaje'=>"Se elimino correctamente",'motivo'=>$motivo]);
+        return response()->json(['mensaje'=>"Se elimino correctamente"]);
     }
 }
