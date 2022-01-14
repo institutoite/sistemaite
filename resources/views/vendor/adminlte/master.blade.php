@@ -69,7 +69,7 @@
     @endif
     
     {{-- Livewire Styles --}}
-   @livewireStyles
+   {{-- @livewireStyles --}}
 </head>
 
 <body class="@yield('classes_body')" @yield('body_data')>
@@ -96,9 +96,10 @@
     
 
     {{-- Custom Scripts --}}
-    @livewireScripts
+    {{-- @livewireScripts --}}
     @yield('adminlte_js')
     @include('sweet::alert')
 </body>
 
 </html>
+{{--  --}}

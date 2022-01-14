@@ -1,9 +1,8 @@
-
 <a class="btn-accion-tabla tooltipsC mr-2 editar" title="Editar este motivo">
     <i class="fa fa-fw fa-edit text-primary"></i>
 </a>
 
-<a href="" class="btn-accion-tabla tooltipsC mr-2 mostrar" title="Ver este motivo">
+<a href="" class="btn-accion-tabla tooltipsC mr-2 mostrar" title="Ver este tipomotivo">
     <i class="fa fa-fw fa-eye text-primary"></i>
 </a>
 

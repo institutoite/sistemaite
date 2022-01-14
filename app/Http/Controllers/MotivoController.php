@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MotivoStoreRequest;
 use App\Models\Motivo;
 use App\Models\User;
+use App\Models\Tipomotivo;
 use App\Models\Userable;
 //use Dotenv\Validator as Validator;
 use Illuminate\Http\Request;
@@ -38,7 +39,8 @@ class MotivoController extends Controller
     public function create()
     {
         $motivo = new Motivo();
-        return view('motivo.create', compact('motivo'));
+        $tipomotivos=Tipomotivo::all();
+        return view('motivo.create', compact('motivo','tipomotivos'));
     }
 
     /**
@@ -50,16 +52,16 @@ class MotivoController extends Controller
     public function store(Request $request)
     {
         request()->validate(Motivo::$rules);
-        $motivo = Motivo::create($request->all());
-        
+        $motivo=new Motivo();
+        $motivo->motivo=$request->motivo;
+        $motivo->tipomotivo_id=$request->tipomotivo_id;
+        $motivo->save();
         $user = Auth::user();
-        //dd($user);
         $userable = new Userable();
         $userable->user_id = $user->id;
         $userable->userable_id = $motivo->id;
         $userable->userable_type = Motivo::class;
         $userable->save();
-
         return redirect()->route('motivos.index')
             ->with('success', 'Motivo Guardado Correctamente.');
     }
@@ -102,7 +104,9 @@ class MotivoController extends Controller
     public function editar(Request $request)
     {
         $motivo = Motivo::find($request->id);
-        return response()->json($motivo);
+        $tipomotivos=Tipomotivo::all();
+        $data=['motivo'=>$motivo,'tipomotivos'=>$tipomotivos];
+        return response()->json($data);
     }
 
     /**
@@ -115,12 +119,15 @@ class MotivoController extends Controller
       //%%%%%%%%%%%%%%%%%%%%%%%%%%%  u p d a t e %%%%%%%%%%%%%%%%%%%
     public function actualizar(Request $request)
     {
+        
         $validator = Validator::make($request->all(), [
             'motivo' => 'required|min:5|max:50|unique:motivos',
+            'tipomotivo_id' => 'required',
         ]);
         if ($validator->passes()) {
             $motivo = Motivo::findOrFail($request->id);
             $motivo->motivo = $request->motivo;
+            $motivo->tipomotivo_id = $request->tipomotivo_id;
             $motivo->save();
             return response()->json(['motivo'=>$motivo]);
         }else{
@@ -140,7 +147,17 @@ class MotivoController extends Controller
     public function destroy($id)
     {
         $motivo = Motivo::find($id)->delete();
-
         return response()->json(['mensaje'=>"Se elimino correctamente"]);
     }
+
+    public function listar(){
+
+        $motivos=Motivo::join('tipomotivos','motivos.tipomotivo_id','=','tipomotivos.id')
+                ->select('motivos.id','motivos.motivo','tipomotivos.tipomotivo');
+        return datatables()->of($motivos)
+        ->addColumn('btn', 'tipomotivo.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+    }
+
 }

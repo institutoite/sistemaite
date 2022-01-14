@@ -9,6 +9,10 @@ class Tipomotivo extends Model
 {
     use HasFactory; 
 
+    static $rules = [
+		'tipomotivo' => 'required|min:5',
+    ];
+
      public function motivos()
     {
         return $this->hasMany('App\Models\Motivo');

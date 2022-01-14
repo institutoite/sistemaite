@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg modalito">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                MOSTRAR MOTIVO
+                MOSTRAR TIPOMOTIVO
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-editar-pago">
@@ -44,7 +44,7 @@
 
                 <div class="card card-primary">
                     <div class="card-header bg-secondary">
-                        <span class="card-title">Editar Motivo</span>
+                        <span class="card-title">Editar Tipomotivo</span>
                     </div>
                     <div class="card-body">
                         @if ($errors->any())
@@ -59,10 +59,11 @@
 
                         <form id="formulario-editar-motivo">
                             @csrf
+                            
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" > 
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" type="text" name="motivo" id="motivo" value="">
-                                    <label for="motivo">Motivo</label>
+                                    <input class="form-control" type="text" name="tipomotivo" id="tipomotivo" value="">
+                                    <label for="tipomotivo">Tipomotivo</label>
                                 </div>
                             </div>
                              <div class="row">
@@ -71,7 +72,9 @@
                                     <span class="text-danger" id="error_motivo"></span>
                                 </div>
                             </div>  
-                            <input class="form-control" type="text" hidden name="motivo_id" id="motivo_id">
+
+
+                            <input class="form-control" type="text" hidden name="tipomotivo_id" id="tipomotivo_id">
                             <div class="container-fluid h-100 mt-3"> 
                                 <div class="row w-100 align-items-center">
                                     <div class="col text-center">

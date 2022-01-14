@@ -50,8 +50,7 @@ class OpcionController extends Controller
                 
                 $persona = $estudiante->persona;
                 $grados = $estudiante->grados;
-                $basura="Basura";
-                return view('opcion.principal', compact('basura','persona','grados','estudiante'));
+                return view('opcion.principal', compact('persona','grados','estudiante'));
             }
         }
     }

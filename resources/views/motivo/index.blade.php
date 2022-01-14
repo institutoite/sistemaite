@@ -39,7 +39,8 @@
                                     <tr>
                                         <th>No</th>
 										<th>Motivo</th>
-                                        <th></th>
+										<th>Tipomotivo</th>
+                                        <th>Opciones</th>
                                     </tr>
                                 </thead>
                             {{-- se carga con ajax --}}
@@ -109,10 +110,11 @@
                     $(row).attr('id',data['id']); 
                      $('td', row).eq(0).html(fila++);
                 },
-                "ajax": "{{ url('api/motivos') }}",
+                "ajax": "{{ url('listar/motivos') }}",
                 "columns": [
                     {data: 'id'},
                     {data: 'motivo'},
+                    {data: 'tipomotivo'},
                     {
                         "name":"btn",
                         "data": 'btn',
@@ -168,9 +170,21 @@
                     success : function(json) {
                         $("#modal-editar").modal("show");
                         $("#formulario-editar").empty();
+                        $("#tipomotivo_id").empty();
                             $html="<div class='row'>";
-                            $("#motivo").val(json.motivo);
-                            $("#motivo_id").val(json.id);
+                            $("#motivo").val(json.motivo.motivo);
+                            $("#motivo_id").val(json.motivo.id);
+                            $html="";
+                            for (let j in json.tipomotivos) {
+                                if(json.tipomotivos[j].id==json.motivo.tipomotivo_id){
+                                    $html+="<option  value='"+json.tipomotivos[j].id +"' selected >"+json.tipomotivos[j].tipomotivo+"</option>";
+                                }else{
+                                    $html+="<option  value='"+json.tipomotivos[j].id +"'>"+json.tipomotivos[j].tipomotivo+"</option>";
+                                }
+                            }
+                            
+                            $('#tipomotivo_id').append($html);
+
                             $("#formulario-editar").append($html);
                     },
                     error : function(xhr, status) {
@@ -188,6 +202,7 @@
             
                 $motivo=$('#motivo').val();
                 $motivo_id=$('#motivo_id').val();
+                $tipomotivo_id=$('#tipomotivo_id').val();
                 var token = $("input[name=_token]").val();
                 $.ajaxSetup({
                 headers: {
@@ -199,6 +214,7 @@
                     headers:{'X-CSRF-TOKEN':token},
                     data:{
                             motivo:$motivo,
+                            tipomotivo_id:$tipomotivo_id,
                             id:$motivo_id,
                             token:token,
                         },

@@ -21,6 +21,7 @@ class Motivo extends Model
     
     static $rules = [
 		'motivo' => 'required',
+        'tipomotivo_id'=>'required',
     ];
 
     protected $perPage = 20;

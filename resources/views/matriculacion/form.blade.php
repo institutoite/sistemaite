@@ -18,7 +18,7 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
-                <input type="numeric" class="form-control @error('costo') is-invalid @enderror" name="costo" id="costo" value="{{old('costo',$matriculacion->costo ?? '250')}}">
+                <input type="numeric" class="form-control @error('costo') is-invalid @enderror" name="costo" id="costo" value="{{old('costo',$matriculacion->costo ?? '175')}}">
                 <label for="costo">Ingrese Costo</label>    
             </div>
         </div>
@@ -49,7 +49,7 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
             <div class="form-floating mb-3 text-gray">
                 <select class="form-control @error('asignatura_id') is-invalid @enderror" data-old="{{ old('asignatura_id') }}" name="asignatura_id" id="country">
                     @foreach ($asignaturasFaltantes as $asignatura)
@@ -63,11 +63,32 @@
                 <label for="pais">Elija pais*</label>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-                <div class="form-floating mb-3 text-gray">
-                    @error('asignatura_id') <span class="text-danger">{{$message}}</span> @enderror
-                </div>
+        
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+            <div class="form-floating mb-3 text-gray">
+                <select class="form-control @error('motivo_id') is-invalid @enderror" data-old="{{ old('motivo_id') }}" name="motivo_id" id="country">
+                    @foreach ($motivos as $motivo)
+                        @isset($matriculacion)     
+                            <option  value="{{$motivo->id}}" {{$motivo->id==$matriculacion->motivo_id ? 'selected':''}}>{{$motivo->motivo}}</option>     
+                        @else
+                            <option value="{{ $motivo->id }}" {{ old('motivo_id') == $motivo->id ? 'selected':'' }} >{{ $motivo->motivo }}</option>
+                        @endisset 
+                    @endforeach
+                </select>
+                <label for="motivo_id">Elija motivo*</label>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+            <div class="form-floating mb-3 text-gray">
+                @error('asignatura_id') <span class="text-danger">{{$message}}</span> @enderror
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+            <div class="form-floating mb-3 text-gray">
+                @error('motivo_id') <span class="text-danger">{{$message}}</span> @enderror
+            </div>
+        </div>
+    </div>
+   

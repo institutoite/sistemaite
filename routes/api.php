@@ -74,12 +74,12 @@ Route::get('administrativos',function(){
         ->toJson();
 });
 
-Route::get('motivos', function () {
-    return datatables()->of(Motivo::all())
-        ->addColumn('btn', 'motivo.action')
-        ->rawColumns(['btn'])
-        ->toJson();
-});
+// Route::get('motivos', function () {
+//     return datatables()->of(Motivo::all())
+//         ->addColumn('btn', 'motivo.action')
+//         ->rawColumns(['btn'])
+//         ->toJson();
+// });
 Route::get('tipomotivos', function () {
     return datatables()->of(Tipomotivo::all())
         ->addColumn('btn', 'tipomotivo.action')

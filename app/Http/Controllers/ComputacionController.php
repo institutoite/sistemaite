@@ -101,8 +101,16 @@ class ComputacionController extends Controller
     public function GuardarNuevaCarrera(Request $request,$computacion) {
         
         $computacion = Persona::findOrFail($computacion)->computacion;
-        $computacion->carreras()->attach(array_keys($request->carreras));
-
-        return redirect()->route('configuracion.gestionar.carreras',$computacion->persona->id);
+        $persona=$computacion->persona;
+        $estudiante=$persona->estudiante;
+        if(!empty($request->carreras)){
+            $computacion->carreras()->attach(array_keys($request->carreras));
+            $carrera=$computacion->carreras->last();
+            return redirect()->route('matriculacion.create',['computacion'=>$computacion->id,'carrera'=>$carrera->id]);
+        }
+        else{
+            return view('opcion.principal', compact('persona','estudiante'));
+        }  
+        //return redirect()->route('configuracion.gestionar.carreras',$computacion->persona->id);
     } 
 }

@@ -12,6 +12,7 @@ use App\Models\Aula;
 use App\Models\Dia;
 use App\Models\Matriculacion;
 use App\Models\Estudiante;
+use App\Models\Tipomotivo;
 use Illuminate\Support\Arr;
 use App\Http\Requests\MatriculacionStoreRequest;
 use Illuminate\Support\Facades\DB;
@@ -44,8 +45,10 @@ class MatriculacionController extends Controller
                 $asignaturas=$carrera->asignaturas;
                 $inscritas =$computacion->matriculaciones;
                 $ids=Arr::pluck($inscritas, 'asignatura_id');
+
+                $motivos = Tipomotivo::findOrFail(2)->motivos;
                 $asignaturasFaltantes=$carrera->asignaturas->whereNotIn('id', $ids);
-                return view('matriculacion.create',compact('computacion','asignaturasFaltantes'));
+                return view('matriculacion.create',compact('computacion','asignaturasFaltantes','motivos'));
             }
         }
     }
@@ -57,22 +60,13 @@ class MatriculacionController extends Controller
      */
     public function create(Computacion $computacion,Carrera $carrera)
     {
-        //$asignaturas
-        //dd($carrera);
         $asignaturas=$carrera->asignaturas;
         $inscritas =$computacion->matriculaciones;
         $ids=Arr::pluck($inscritas, 'asignatura_id');
+        $motivos = Tipomotivo::findOrFail(2)->motivos;
         $asignaturasFaltantes=$carrera->asignaturas->whereNotIn('id', $ids);
-        return view('matriculacion.create',compact('computacion','asignaturasFaltantes'));
+        return view('matriculacion.create',compact('computacion','asignaturasFaltantes','motivos'));
     }
-
-    // public function CarrerasComptacion($computacion){
-    //     $carreras=Computacion::findOrFail($computacion)->carreras;
-    //     return datatables()->of($carreras)
-    //         ->addColumn('btn', 'matriculacion.action')
-    //         ->rawColumns(['btn'])
-    //         ->toJson();
-    // }
 
     /**
      * Store a newly created resource in storage.
@@ -82,6 +76,7 @@ class MatriculacionController extends Controller
      */
     public function store(MatriculacionStoreRequest $request)
     {
+        //dd($request->all());
         $matriculacion = new Matriculacion();
         $matriculacion->computacion_id=$request->computacion_id;
         $matriculacion->asignatura_id=$request->asignatura_id;
@@ -92,6 +87,8 @@ class MatriculacionController extends Controller
         $matriculacion->totalhoras=$request->totalhoras;
         $matriculacion->vigente=1;
         $matriculacion->condonado=0;
+        $matriculacion->motivo_id=$request->motivo_id;
+
         $matriculacion->save();
 
         $nivel=Nivel::findOrFail(6);
@@ -147,6 +144,7 @@ class MatriculacionController extends Controller
         $matriculacion->totalhoras=$request->totalhoras;
         $matriculacion->vigente=1;
         $matriculacion->condonado=0;
+        $matriculacion->motivo_id=$request->motivo_id;
         $matriculacion->save();
         $nivel=Nivel::findOrFail(6);
         $aulas = Aula::get();

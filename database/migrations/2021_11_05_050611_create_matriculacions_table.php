@@ -19,12 +19,20 @@ class CreateMatriculacionsTable extends Migration
             $table->unsignedInteger('computacion_id');
             $table->foreign('computacion_id')
                 ->references('id')
-                ->on('computacions');
+                ->on('computacions')
+                ->onDelete('cascade');
 
             $table->unsignedInteger('asignatura_id');
             $table->foreign('asignatura_id')
                 ->references('id')
-                ->on('asignaturas');
+                ->on('asignaturas')
+                ->onDelete('cascade');
+
+            $table->unsignedInteger('motivo_id');
+            $table->foreign('motivo_id', 'fk_matriculacion_motivos_idx')
+            ->references('id')
+            ->on('motivos')
+            ->onDelete('cascade');
 
             $table->date('fechaini');
             $table->date('fechafin');

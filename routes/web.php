@@ -12,6 +12,8 @@ use App\Http\Controllers\PagocomController;
 use App\Http\Controllers\ProgramacioncomController;
 use App\Http\Controllers\ClasecomController;
 use App\Http\Controllers\TipomotivoController;
+use App\Http\Controllers\LicenciaController;
+use App\Http\Controllers\MotivoController;
 
 
 
@@ -36,7 +38,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[TipomotivoController::class,'listar'])->name('prueba');
+Route::get('prueba',[MotivoController::class,'listar'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -246,15 +248,22 @@ Route::get('tusmatriculaciones', [MatriculacionController::class,'tusMatriculaci
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  TIPOMOTIVOS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('tipomotivos', [TipomotivoController::class,'index'])->name('tipomotivo.index');
-Route::get('listar/tipomotivos', [TipomotivoController::class,'index'])->name('tipomotivo.ajax');
+Route::get('listar/tipomotivos', [TipomotivoController::class,'listar'])->name('tipomotivo.ajax');
+Route::get('tipomotivo/mostrar', "TipomotivoController@mostrar")->name("tipomotivo.mostrar");
+Route::get('tipomotivo/editar/', "TipomotivoController@editar")->name("tipomotivo.editar");
+Route::get('tipomotivo/actualizar/', "TipomotivoController@actualizar")->name("tipomotivo.actualizar");
+Route::delete('eliminar/tipomotivo/{tipomotivo}', 'TipomotivoController@destroy')->name('eliminar.tipomotivo');
+Route::get('tipomotivo/create',[TipomotivoController::class,'create'])->name('tipomotivo.create');
+Route::post('tipomotivo/guardar',[TipomotivoController::class,'store'])->name('tipomotivo.store');
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  M O T I V O S %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('motivos', "MotivoController");
-Route::get('motivo/mostrar/', "MotivoController@mostrar")->name("motivo.mostrar");
-Route::get('motivo/editar/', "MotivoController@editar")->name("motivo.editar");
-Route::get('motivo/actualizar/', "MotivoController@actualizar")->name("motivo.actualizar");
-Route::delete('eliminar/motivo/{motivo}', 'MotivoController@destroy')->name('eliminar.motivo');
+Route::get('motivo/mostrar/',[MotivoController::class,'mostrar'])->name("motivo.mostrar");
+Route::get('listar/motivos', [MotivoController::class,'listar'])->name('motivo.ajax');
+Route::get('motivo/editar/', [MotivoController::class,'editar'])->name("motivo.editar");
+Route::get('motivo/actualizar/', [MotivoController::class,'actualizar'])->name("motivo.actualizar");
+Route::delete('eliminar/motivo/{motivo}', [MotivoController::class,'destroy'])->name('eliminar.motivo');
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  ASIGNATURAS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('asignaturas', [AsignaturaController::class,'index'])->name('asignatura.index');
