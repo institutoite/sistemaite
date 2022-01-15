@@ -358,7 +358,7 @@
             $('table').on('click', '.observacion', function(e) {
                 e.preventDefault(); 
                 let id_programacioncom=$(this).closest('tr').attr('id');
-                $("#id_programacioncom").val(id_programacioncom);
+                //$("#id_programacioncom").val(id_programacioncom);
                 $("#modal-gregar-observacion").modal("show");
                 
             });
@@ -569,13 +569,43 @@
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO CREAR LICENCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.licencia', function(e) {
                 e.preventDefault(); 
+                $html="";
                 let id_programacioncom =$(this).closest('tr').attr('id');
                     $.ajax({
-                    url : "licencia/crear/"+id_programacioncom,
-                    data : { id :id_programacioncom },
-                    success : function(data) {
-                        
-                    },
+                        url : "../../licenciacom/crear/",
+                        data : { id :id_programacioncom },
+                        success : function(data) {
+                            
+                            $("#licencia-crear").modal("show");
+                            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO AULA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+                            $html+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>";
+                            $html+="<div class='form-floating mb-3 text-gray'>";
+                            $html+="<select class='form-control @error('motivo_id') is-invalid @enderror' name='motivo_id' id='motivo_id'>";
+                            for (let j in data.motivos) {
+                                console.log(data.motivos[j]);
+                                if(data.motivos[j].id==data.motivos.motivo_id){
+                                    $html+="<option  value='"+data.motivos[j].id +"' selected >"+data.motivos[j].motivo+"</option>";
+                                }else{
+                                    $html+="<option  value='"+data.motivos[j].id +"'>"+data.motivos[j].motivo+"</option>";
+                                }
+                            }
+                            $html+="</select>";                
+                            $html+="<label for='motivo_id'>Motivo</label></div></div>";
+                            $html+="</div>";// fin de row
+                            $html+="<div class='row'>";
+
+
+                            $html+="<div class='container-fluid h-100 mt-3'>"; 
+                            $html+="<div class='row w-100 align-items-center'>";
+                            $html+="<div class='col text-center'>";
+                            $html+="<button type='submit' id='guardar' class='btn btn-primary text-white btn-lg'>Guardar <i class='far fa-save'></i></button> ";       
+                            $html+="</div>";
+                            $html+="</div>";
+                            $html+="</div>";
+                            
+                            $("#formulario-licencia").append($html);
+
+                        },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
                     },  

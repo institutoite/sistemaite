@@ -15,7 +15,12 @@ class CreateLicenciasTable extends Migration
     {
         Schema::create('licencias', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('motivo', 80);
+            
+            $table->unsignedInteger('motivo_id');
+            $table->foreign('motivo_id')
+                ->references('id')
+                ->on('motivos')->delete('cascade');
+
             $table->string('solicitante', 45);
             $table->string('parentesco', 45);
             $table->unsignedInteger('licenciable_id');

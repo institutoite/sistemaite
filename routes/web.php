@@ -38,7 +38,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[MotivoController::class,'listar'])->name('prueba');
+Route::get('prueba',[LicenciaController::class,'createcom'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -276,7 +276,6 @@ Route::delete('eliminar/asignatura/{asignatura}', [AsignaturaController::class,'
 
 Route::resource('personas', "PersonaController");
 Route::resource('telefonos', "TelefonoController");
-Route::resource('licencias', 'LicenciaController');
 Route::resource('users', 'UserController');
 
 Route::get('user/crear', "UserController@crear")->name('users.crear');
@@ -292,7 +291,9 @@ Route::get('modalidad/cosultar/', 'ModalidadController@consultar')->name('modali
 
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LICENCIAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-Route::get('licencias/dsds/ffdsfd', [LicenciaController::class,'index']);
+Route::get('licencias', [LicenciaController::class,'index'])->name('licencia.index');
+Route::get('licenciacom/crear', [LicenciaController::class,'createcom'])->name('licencia.crear');
+// Route::get('licencia/crear', [LicenciaController::class,'crearte'])->name('licencia.crear');
 
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/

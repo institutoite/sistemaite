@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Licencia;
+use App\Models\Programacioncom;
+use App\Models\Tipomotivo;
 use Illuminate\Http\Request;
 
 /**
@@ -28,10 +30,12 @@ class LicenciaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createcom(Request $request)
     {
-        $licencia = new Licencia();
-        return view('licencia.create', compact('licencia'));
+        $motivos=Tipomotivo::findOrFail(3)->motivos;    
+        $programacioncom=Programacioncom::findOrFail($request->id);
+        $data=['motivos'=>$motivos, 'programacioncom'=>$programacioncom];
+        return response()->json($data);
     }
 
     /**
