@@ -132,7 +132,7 @@
                             
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
                                 <div class="form-floating mb-3 text-gray">
-                                    <input  type="text" name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" value="{{old('observacion')}}">
+                                    <input  type="text" name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" value="">
                                     <label for="observacion">Observación</label>
                                 </div>  
                             </div>
@@ -204,7 +204,7 @@
                             <div class="container-fluid h-100 mt-3"> 
                                 <div class="row w-100 align-items-center">
                                     <div class="col text-center">
-                                        <button id="guardar-observacioxn" class="btn btn-primary text-white btn-lg">Guardar <i class="far fa-save"></i></button>        
+                                        <button id="guardar-observacion" class="btn btn-primary text-white btn-lg">Guardar <i class="far fa-save"></i></button>        
                                     </div>	
                                 </div>
                             </div>

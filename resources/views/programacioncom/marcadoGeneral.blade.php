@@ -358,7 +358,8 @@
             $('table').on('click', '.observacion', function(e) {
                 e.preventDefault(); 
                 let id_programacioncom=$(this).closest('tr').attr('id');
-                //$("#id_programacioncom").val(id_programacioncom);
+                $("#id_programacioncom").val(id_programacioncom);
+                $("#observacion").val("");
                 $("#modal-gregar-observacion").modal("show");
                 
             });
@@ -372,7 +373,11 @@
                     url : "../../guardar/observacion/programacioncom",
                     data : $("#formulario-guardar-observacion").serialize(),
                     success : function(json) {
-                            //console.log(json);
+                        
+                        let programacioncom_id=$('#id_programacioncom').val(); 
+                        $("#"+programacioncom_id).addTempClass( 'bg-success', 3000 );
+                        console.log(programacioncom_id);
+                        
                         const Toast = Swal.mixin({
                             toast: true,
                             position: 'top-end',
@@ -383,6 +388,7 @@
                             type: 'success',
                             title: "Guardado corectamente: "+ json.observacion,
                             })
+
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
@@ -575,12 +581,13 @@
                         url : "../../licenciacom/crear/",
                         data : { id :id_programacioncom },
                         success : function(data) {
-                            
+                            $("#formulario-licencia").empty();
                             $("#licencia-crear").modal("show");
                             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO AULA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
                             $html+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>";
                             $html+="<div class='form-floating mb-3 text-gray'>";
                             $html+="<select class='form-control @error('motivo_id') is-invalid @enderror' name='motivo_id' id='motivo_id'>";
+                            $html+="<option  value='' >Elije el motivo de la licencia </option>";
                             for (let j in data.motivos) {
                                 console.log(data.motivos[j]);
                                 if(data.motivos[j].id==data.motivos.motivo_id){
@@ -594,6 +601,31 @@
                             $html+="</div>";// fin de row
                             $html+="<div class='row'>";
 
+                            $html+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'><div class='form-floating mb-3 text-gray'>";
+                            $html+="<input type='text' name='solicitante' class='form-control @error('solicitante') is-invalid @enderror texto-plomo' id='solicitante'"; 
+                            $html+="value=\''\>";
+                            $html+="<label for='solicitante'>Nombre de persona Solicitante</label></div></div>";
+                            $html+="</div>";// div del row
+
+                            $html+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>";
+                            $html+="<div class='form-floating mb-3 text-gray'>";
+                            $html+="<select class='form-control @error('parentesco') is-invalid @enderror' name='parentesco' id='parentesco'>";
+                                $html+="<option  value='' >Elije un parentesco</option>";
+                                $html+="<option  value='PAPA' >PAPA</option>";
+                                $html+="<option  value='MAMA' >MAMA</option>";
+                                $html+="<option  value='ESPOSO' >ESPOSO</option>";
+                                $html+="<option  value='ESPOSA' >ESPOSA</option>";
+                                $html+="<option  value='TIO' >TIO</option>";
+                                $html+="<option  value='TIA' >TIA</option>";
+                                $html+="<option  value='ELMISMO' >EL O ELLA MISMA</option>";
+                            $html+="</select>";                
+                            $html+="<label for='parentesco'>Parentesco</label></div></div>";
+                            $html+="</div>";// fin de row
+                            $html+="<div class='row'>";
+
+                            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                            $html+="<input id='matriculacion_id'  type='text' hidden readonly name='inscripcione_id' value='"+data.programacioncom.matriculacion_id +"'>";
+                            $html+="<input id='programacioncom_id'  type='text' hidden readonly name='programacion_id' value='"+data.programacioncom.id +"'>";
 
                             $html+="<div class='container-fluid h-100 mt-3'>"; 
                             $html+="<div class='row w-100 align-items-center'>";
@@ -609,6 +641,45 @@
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
                     },  
+                });
+            });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR ENVIO DE FORMULARIO PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $(document).on("submit","#formulario-licencia",function(e){
+                e.preventDefault();//detenemos el envio
+            
+                $motivo_id=$('#motivo_id').val();
+                $solicitante=$('#solicitante').val();
+                $parentesco=$('#parentesco').val();
+                
+                $matriculacion_id=$('#matriculacion_id').val();
+                $programacioncom_id=$('#programacioncom_id').val();
+                
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    url : "../../licenciacom/guardar/",
+                    data:{
+                            motivo_id:$motivo_id,
+                            solicitante:$solicitante,
+                            parentesco:$parentesco,
+                            matriculacion_id:$matriculacion_id,
+                            programacioncom_id:$programacioncom_id,
+                        },
+                    
+                    success : function(json) {
+                        //console.log(json);
+                        let programacion_actualizar=$('#programacioncom_id').val(); 
+                        $('#licencia-crear').modal('hide');
+                        
+                        $("#"+programacion_actualizar).addTempClass( 'bg-success', 3000 );
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
                 });
             });
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR ENVIO DE FORMULARIO PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/

@@ -44,14 +44,20 @@ class LicenciaController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storecom(Request $request)
     {
-        request()->validate(Licencia::$rules);
 
-        $licencia = Licencia::create($request->all());
+        //request()->validate(Licencia::$rules);
 
-        return redirect()->route('licencias.index')
-            ->with('success', 'Licencia created successfully.');
+        $licenciacom    =new Licencia();
+        $licenciacom->motivo_id=$request->motivo_id;
+        $licenciacom->solicitante=$request->solicitante;  
+        $licenciacom->parentesco=$request->parentesco;  
+        $licenciacom->licenciable_id=$request->programacioncom_id;
+        $licenciacom->licenciable_type=Programacioncom::class;
+        $licenciacom->save();
+        $data=['mensaje'=>'Licencia guardado correctamente'];
+        return response()->json($data);
     }
 
     /**

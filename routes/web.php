@@ -293,7 +293,7 @@ Route::get('modalidad/cosultar/', 'ModalidadController@consultar')->name('modali
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LICENCIAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('licencias', [LicenciaController::class,'index'])->name('licencia.index');
 Route::get('licenciacom/crear', [LicenciaController::class,'createcom'])->name('licencia.crear');
-// Route::get('licencia/crear', [LicenciaController::class,'crearte'])->name('licencia.crear');
+Route::get('licenciacom/guardar', [LicenciaController::class,'storecom'])->name('licencia.storecom');
 
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/

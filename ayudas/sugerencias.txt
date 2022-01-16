@@ -55,3 +55,8 @@ file:///C:/Users/ite/Downloads/AdminLTE-3.1.0/AdminLTE-3.1.0/pages/UI/buttons.ht
 
 
 agregar nivel_id a motivos ya que los motivos dependen del nivel
+
+
+
+
+VALIDAR pago computacion
