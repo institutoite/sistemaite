@@ -60,7 +60,6 @@ class ObservacionController extends Controller
     public function show($id)
     {
         $observacion = Observacion::find($id);
-
         return view('observacion.show', compact('observacion'));
     }
 
@@ -70,11 +69,11 @@ class ObservacionController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        $observacion = Observacion::find($id);
-
-        return view('observacion.edit', compact('observacion'));
+        
+        $observacion = Observacion::find($request->id);
+        return response()->json($observacion);
     }
 
     /**
@@ -84,9 +83,15 @@ class ObservacionController extends Controller
      * @param  Observacion $observacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Observacion $observacion)
+    public function update(Request $request)
     {
-        request()->validate(Observacion::$rules);
+
+        $observacion=Observacion::findOrFail($request->observacion_id);
+        $observacion->observacion=$request->observacion;
+        $observacion->save();
+
+        return response()->json($request->all());
+        //request()->validate(Observacion::$rules);
 
         $observacion->update($request->all());
 

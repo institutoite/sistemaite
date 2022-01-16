@@ -328,7 +328,7 @@ class ProgramacioncomController extends Controller
         $programacioncom = Programacioncom::join('aulas', 'programacioncoms.aula_id', '=', 'aulas.id')
         ->join('docentes', 'programacioncoms.docente_id', '=', 'docentes.id')
         ->join('personas', 'personas.id', '=', 'docentes.persona_id')
-        ->select('programacioncoms.fecha', 'horaini', 'horafin','horas_por_clase', 'personas.nombre', 'aulas.aula', 'programacioncoms.habilitado', 'programacioncoms.matriculacion_id')
+        ->select('programacioncoms.id','programacioncoms.fecha', 'horaini', 'horafin','horas_por_clase', 'personas.nombre', 'aulas.aula', 'programacioncoms.habilitado', 'programacioncoms.matriculacion_id')
         ->orderBy('fecha', 'asc')
         ->where('matriculacion_id', '=', $matriculacion)->get();
         $persona=Persona::findOrFail(Matriculacion::findOrFail($matriculacion)->computacion->persona_id);

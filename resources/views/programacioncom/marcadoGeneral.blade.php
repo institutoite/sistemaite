@@ -363,6 +363,58 @@
                 $("#modal-gregar-observacion").modal("show");
                 
             });
+            
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA FORMULARIO EDITAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.editarobservacion', function(e) {
+                e.preventDefault(); 
+                let id_observacion=$(this).closest('tr').attr('id');
+                console.log(id_observacion);
+                $htmlobs="";
+                 $.ajax({
+                    url : "../../observacion/editar",
+                    data :{
+                        id:id_observacion,
+                    },
+                    success : function(json) {
+                        console.log(json);
+                        $("#editar-observacion").modal("show");
+                        $("#formulario-editar-observacion").empty();
+                        
+                        $htmlobs+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'><div class='form-floating mb-3 text-gray'>";
+                        $htmlobs+="<input type='text' name='observacion' class='form-control @error('observacion') is-invalid @enderror texto-plomo' id='observacionx'"; 
+                        $htmlobs+="value=\'"+ json.observacion +"'\>";
+                        $htmlobs+="<label for='observacion'>Nombre de persona Observacion</label></div></div>";
+                        $htmlobs+="</div>";// div del row
+                        
+                        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE id observacion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        $htmlobs+="<input id='observacion_id'  type='text' hidden readonly name='observacion_id' value='"+json.id +"'>";
+                        $htmlobs+="<input id='programacioncom_id'  type='text'  readonly name='programacion_id' value='"+json.observable_id +"'>";
+
+                        $htmlobs+="<div class='container-fluid h-100 mt-3'>"; 
+                        $htmlobs+="<div class='row w-100 align-items-center'>";
+                        $htmlobs+="<div class='col text-center'>";
+                        $htmlobs+="<button type='submit' id='actualizarobservacion' class='btn btn-primary text-white btn-lg'>Guardar <i class='far fa-save'></i></button> ";       
+                        $htmlobs+="</div>";
+                        $htmlobs+="</div>";
+                        $htmlobs+="</div>";
+
+                        $("#formulario-editar-observacion").append($htmlobs);
+                        
+                        // let programacioncom_id=$('#id_programacioncom').val(); 
+                        // $("#"+programacioncom_id).addTempClass( 'bg-success', 3000 );
+                        // console.log(programacioncom_id);
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+                
+                
+                // $("#id_programacioncom").val(id_programacioncom);
+                // $("#observacion").val("");
+                // $("#modal-gregar-observacion").modal("show");
+                
+            });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BOTON GUARDAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('#guardar-observacion').on('click', function(e) {
                 e.preventDefault();
@@ -428,7 +480,16 @@
 
                         $htmlObservaciones="";
                         for (let j in json.observaciones) {
-                            $htmlObservaciones+="<tr><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td></tr>";
+                            $htmlObservaciones+="<tr id='"+json.observaciones[j].id +"''><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td>";
+                            $htmlObservaciones+="<td>";
+                            $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 editarobservacion' title='Editar esta Observacion'>";
+                            $htmlObservaciones+="<i class='fa fa-fw fa-edit text-primary'></i></a>";
+                            
+                            $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 eliminarobservacion' title='Eliminar esta observacion'>";
+                            $htmlObservaciones+="<i class='fas fa-trash-alt text-danger'></i>";
+                                
+                            $htmlObservaciones+="</td>";
+
                         }
                         $("#tabla-mostrar-observaciones").append($htmlObservaciones);
 
@@ -441,6 +502,7 @@
                             $htmlClases+="<td>"+moment(json.clasescom[j].horafin).format('HH:mm:ss')+"</td>";
                             $htmlClases+="<td>" + json.clasescom[j].nombre + "</td>";
                             $htmlClases+="<td>"+json.clasescom[j].aula+"</td></tr>";
+                            
                             
                         }
                         $("#tabla-mostrar-clases").append($htmlClases);
@@ -676,6 +738,38 @@
                         $('#licencia-crear').modal('hide');
                         
                         $("#"+programacion_actualizar).addTempClass( 'bg-success', 3000 );
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+            });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR ENVIO DE FORMULARIO OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $(document).on("submit","#formulario-editar-observacion",function(e){
+                e.preventDefault();//detenemos el envio
+                $observacion=$('#observacionx').val();
+                console.log($observacion);
+                $observacion_id=$('#observacion_id').val();
+                $programacioncom_id=$('#programacioncom_id').val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url : "../../observacion/actualizar/",
+                    data:{
+                            observacion:$observacion,
+                            observacion_id:$observacion_id,
+                            programacioncom_id:$programacioncom_id,
+                        },
+                    
+                    success : function(json) {
+                        console.log(json);
+                        // let programacion_actualizar=$('#programacioncom_id').val(); 
+                        // $('#modal-editar').modal('hide');
+                        // $("#"+programacion_actualizar).addTempClass( 'bg-success', 3000 );
+                        // $('#futuro').DataTable().ajax.reload();
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');

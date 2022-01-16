@@ -14,6 +14,7 @@ use App\Http\Controllers\ClasecomController;
 use App\Http\Controllers\TipomotivoController;
 use App\Http\Controllers\LicenciaController;
 use App\Http\Controllers\MotivoController;
+use App\Http\Controllers\ObservacionController;
 
 
 
@@ -38,7 +39,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[LicenciaController::class,'createcom'])->name('prueba');
+Route::get('prueba',[ObservacionController::class,'edit'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -349,6 +350,9 @@ Route::get('clase/marcar/normal/{programacioncom_id}', [ProgramacioncomControlle
 Route::get('guardar/observacion/programacioncom', [ProgramacioncomController::class,'guardarObservacion'])->name('guardar.observacion.programacioncom');
 Route::get('inscripciones/vigentes/{estudiante_id}', 'InscripcioneController@inscripcionesVigentes')->name('inscripciones.vigentes');
 
+
+Route::get('observacion/editar',[ObservacionController::class,'edit'])->name('observacion.editar');
+Route::get('observacion/actualizar',[ObservacionController::class,'update'])->name('observacion.actualizar');
 
 
 /**
