@@ -11,7 +11,7 @@ use App\Http\Controllers\OpcionController;
 use App\Http\Controllers\PagocomController;
 use App\Http\Controllers\ProgramacioncomController;
 use App\Http\Controllers\ClasecomController;
-
+use App\Http\Controllers\Home\HomeController;
 
 
 use App\Http\Controllers\ProductoController;
@@ -373,3 +373,7 @@ Route::get('tomarfoto/{persona}', 'PersonaController@tomarfoto')->name('tomar.fo
 
 //Route Hooks - Do not delete//
 Route::view('ninacos', 'livewire.ninacos.index')->middleware('auth');
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  HOME ITE   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::resource('inicio', HomeController::class)->names('inicio');

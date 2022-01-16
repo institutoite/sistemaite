@@ -1102,6 +1102,29 @@ return [
             ],
         ],
 
+        //** %%%%%%%%%%%%%%%%%%  HOME ITE %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Pagina Inicio',
+            'icon'    => 'fas fa-prescription-bottle fa-2x',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Cursos',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'motivos',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Crear',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'motivos/create',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+
     ],
 
     /*

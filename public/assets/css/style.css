@@ -1296,6 +1296,27 @@ Course Category
   background-size: cover;
 }
 
+.style-13 {
+  background: url("../images/course/course13.jpg");
+  background-size: cover;
+}
+
+.style-14 {
+  background: url("../images/course/course14.jpg");
+  background-size: cover;
+}
+
+.style-15 {
+  background: url("../images/course/course15.jpg");
+  background-size: cover;
+}
+
+.style-16 {
+  background: url("../images/course/course16.jpg");
+  background-size: cover;
+}
+
+
 .category-section2 {
   margin-top: -120px;
   position: relative;
@@ -2145,6 +2166,7 @@ Footer Section
 }
 
 .footer-btm {
+  background: #fff;
   margin-top: 30px;
   padding: 20px 0px 25px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
