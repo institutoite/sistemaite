@@ -178,7 +178,7 @@
                         <form id="formulario-guardar-observacio" method="POST" action="{{route('programacion.actualizar')}}">
                             @csrf
                             
-                           <div class="row">
+                            <div class="row">
                                 {{-- %%%%%%%%%%%%%%%%%%%%%%% C A M P O   F E C H A  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}} 
                                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" > 
                                     <div class="form-floating mb-3 text-gray">

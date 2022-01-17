@@ -364,6 +364,89 @@
                 
             });
             
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR PERSONA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+            $('table').on('click','.eliminarobservacion',function (e) {
+                e.preventDefault(); 
+                let id_programacioncom=$(this).closest('tr').attr('id');
+                Swal.fire({
+                    title: 'Estas seguro(a) de eliminar este registro?',
+                    text: "Si eliminas el registro no lo podras recuperar jamás!",
+                    icon: 'question',
+                    showCancelButton: true,
+                    showConfirmButton:true,
+                    confirmButtonColor: '#25ff80',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Eliminar..!',
+                    position:'center',        
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: '../../eliminar/observacion/'+id_programacioncom,
+                            type: 'DELETE',
+                            data:{
+                                id:id_programacioncom,
+                                _token:'{{ csrf_token() }}'
+                            },
+                            success: function(result) {
+                                $("#modal-mostrar-clase").modal("hide");
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 1500,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                                })
+                                Toast.fire({
+                                icon: 'success',
+                                title: 'Se eliminó correctamente el registro'
+                                })  
+
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                switch (xhr.status) {
+                                    case 500:
+                                        Swal.fire({
+                                            title: 'No se completó esta operación por que este registro está relacionado con otros registros',
+                                            showClass: {
+                                                popup: 'animate__animated animate__fadeInDown'
+                                            },
+                                            hideClass: {
+                                                popup: 'animate__animated animate__fadeOutUp'
+                                            }
+                                        })
+                                        break;
+                                
+                                    default:
+                                        break;
+                                }
+                                
+                            }
+                        });
+                    }else{
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 4000,
+                            timerProgressBar: true,
+                            onOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'No se eliminó el registro'
+                        })
+                    }
+                })
+            });
+            
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA FORMULARIO EDITAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.editarobservacion', function(e) {
                 e.preventDefault(); 
@@ -377,6 +460,7 @@
                     },
                     success : function(json) {
                         console.log(json);
+                        $("#modal-mostrar-clase").modal("hide");
                         $("#editar-observacion").modal("show");
                         $("#formulario-editar-observacion").empty();
                         
@@ -388,7 +472,7 @@
                         
                         //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE id observacion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                         $htmlobs+="<input id='observacion_id'  type='text' hidden readonly name='observacion_id' value='"+json.id +"'>";
-                        $htmlobs+="<input id='programacioncom_id'  type='text'  readonly name='programacion_id' value='"+json.observable_id +"'>";
+                        $htmlobs+="<input id='programacioncom_id'  type='text' hidden  readonly name='programacion_id' value='"+json.observable_id +"'>";
 
                         $htmlobs+="<div class='container-fluid h-100 mt-3'>"; 
                         $htmlobs+="<div class='row w-100 align-items-center'>";
@@ -765,11 +849,12 @@
                         },
                     
                     success : function(json) {
-                        console.log(json);
-                        // let programacion_actualizar=$('#programacioncom_id').val(); 
-                        // $('#modal-editar').modal('hide');
-                        // $("#"+programacion_actualizar).addTempClass( 'bg-success', 3000 );
-                        // $('#futuro').DataTable().ajax.reload();
+                        let programacioncom_id=$('#programacioncom_id').val(); 
+                        console.log(programacioncom_id);
+                        
+                        $('#editar-observacion').modal('hide');
+                        $("#"+programacioncom_id).addTempClass( 'bg-success', 3000 );
+                        //$('#futuro').DataTable().ajax.reload();
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');

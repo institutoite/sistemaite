@@ -106,9 +106,7 @@ class ObservacionController extends Controller
      */
     public function destroy($id)
     {
-        $observacion = Observacion::find($id)->delete();
-
-        return redirect()->route('observacions.index')
-            ->with('success', 'Observacion deleted successfully');
+        $observacion = Observacion::findOrFail($id)->delete();
+        return response()->json($observacion);
     }
 }

@@ -353,7 +353,7 @@ Route::get('inscripciones/vigentes/{estudiante_id}', 'InscripcioneController@ins
 
 Route::get('observacion/editar',[ObservacionController::class,'edit'])->name('observacion.editar');
 Route::get('observacion/actualizar',[ObservacionController::class,'update'])->name('observacion.actualizar');
-
+Route::delete('eliminar/observacion/{observacion}',[ObservacionController::class,'destroy'])->name('eliminar.observacion');
 
 /**
  * clases
