@@ -14,7 +14,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //
+        $materias = materias::all();
+
+        return view('home.materias.index', compact('materias'));
     }
 
     /**
