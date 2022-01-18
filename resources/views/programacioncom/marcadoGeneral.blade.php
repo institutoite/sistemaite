@@ -210,7 +210,6 @@
          /*%%%%%%%%%%%%%%%%%%%%%%  CODIGO QUE SE CARGA DESPUES DE CARGAR LA PAGINA %%%%%%%%%%%*/
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();  
-            
             $('#tabla_hoy').dataTable({
                 "responsive":true,
                 "searching":true,
@@ -243,7 +242,6 @@
                     // }
                 },
                 "columns": [
-                        
                         {"data": "fecha"},
                         {"data": "horaini"},
                         {"data": "horafin"},

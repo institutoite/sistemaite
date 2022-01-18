@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Programacioncom;
 use App\Models\Matriculacion;
 use App\Models\Persona;
+use App\Models\Docente;
 use App\Models\Dia;
 use App\Models\Aula;
 use App\Models\Clasecom;
@@ -361,7 +362,7 @@ class ProgramacioncomController extends Controller
     
     public function marcadoNormal($programacioncom_id){
         $programacioncom=Programacioncom::findOrFail($programacioncom_id);
-        $matriculacion=Matriculacion::findOrFail($programacioncom->matriculacion);
+        $matriculacion=Matriculacion::findOrFail($programacioncom->matriculacion->id);
         $docentes=Docente::join('personas','personas.id','=','docentes.persona_id')
                         ->where('docentes.estado','=','activo')
                         ->select('docentes.id','personas.nombre','personas.apellidop')
@@ -369,10 +370,11 @@ class ProgramacioncomController extends Controller
         $aulas=Aula::all();
         $hora_inicio=Carbon::now()->isoFormat('HH:mm:ss');
         $hora_fin = Carbon::now()->addHours($programacioncom->horaini->floatDiffInHours($programacioncom->horafin))->isoFormat('HH:mm:ss');
-        return view('clase.create',compact('docentes','programacioncom','matriculacion','aulas','hora_inicio','hora_fin'));
+        return view('clasecom.create',compact('docentes','programacioncom','matriculacion','aulas','hora_inicio','hora_fin'));
     }
 
     public function programacionescomHoy(Request $request){
+
         $programacion=Programacioncom::join('docentes','docentes.id','=','programacioncoms.docente_id')
                     ->join('aulas','aulas.id','=','programacioncoms.aula_id')
                     ->where('matriculacion_id',$request->matriculacion)

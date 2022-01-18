@@ -188,6 +188,8 @@ Route::post('programa/estado/general/', 'ClaseController@marcadoGeneral')->name(
 Route::get('programacioncom/marcar/{matriculacion}', [ClasecomController::class,'marcadoGeneral'])->name('clases.marcadocom.general');
 Route::get('clasecom/marcar/rapido/{programacion_id}', 'ClasecomController@marcadoRapido')->name('marcadocom.presente.rapido');  // MARCADO RAPIDO COMPUTACION
 Route::get('clasescom/presentes/ahorita', 'ClasecomController@clasesPresentes')->name('clasescom.presente');
+Route::get('clasecom/crear', 'ClasecomController@crear')->name('clasecom.crear');
+Route::post('/clasecom/guardar/normal/{progrmacioncom_id}', 'ClasecomController@guardar')->name('clasescom.guardar');
 //Route::get('clasecom/mostrar/{clase}',[ClasecomController::class,'mostrar'])->name('clasecom.mostrar');
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  G R A D O S  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -346,7 +348,7 @@ Route::get('regenerar/programacom/{matriculacion}/{fecha}/{unModo?}', [Programac
 Route::get('mostrar/programacom/{matriculacion}', [ProgramacioncomController::class,'mostrarProgramacom'])->name('mostrar.programacioncom');
 Route::get('imprimir/programacom/{matriculacion}', [ProgramacioncomController::class,'imprimirProgramacom'])->name('imprimir.programacioncom');
 Route::get('actualizar/programacom/segunpago/{matriculacion}', [ProgramacioncomController::class,'actualizarProgramaSegunPagocom'])->name('actualizar.programacioncom.segun.pago');
-Route::get('clase/marcar/normal/{programacioncom_id}', [ProgramacioncomController::class,'marcadoNormal'])->name('marcadocom.presente.normal.programacioncom');
+Route::get('clasecom/marcar/normal/{programacioncom_id}', [ProgramacioncomController::class,'marcadoNormal'])->name('marcadocom.presente.normal.programacioncom');
 Route::get('guardar/observacion/programacioncom', [ProgramacioncomController::class,'guardarObservacion'])->name('guardar.observacion.programacioncom');
 Route::get('inscripciones/vigentes/{estudiante_id}', 'InscripcioneController@inscripcionesVigentes')->name('inscripciones.vigentes');
 
