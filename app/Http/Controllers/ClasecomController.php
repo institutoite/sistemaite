@@ -41,10 +41,29 @@ class ClasecomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+  
+    public function guardar(Request $request,$programacioncom_id){
+        dd($request->all());
+        $clase=new Clase();
+        $clase->fecha=$request->fecha;
+        $clase->estado="PRESENTE";
+        $clase->horainicio=$request->horainicio;
+        $clase->horafin=$request->horafin;
+        $clase->docente_id=$request->docente_id;
+        $clase->materia_id=$request->materia_id;
+        $clase->aula_id=$request->aula_id;
+        $clase->tema_id =1;
+        $clase->programacion_id=$programacion_id;
+        $clase->save();
+
+        $clase->userable()->create(['user_id' => Auth::user()->id]);
+
+        $programa=Programacion::findOrFail($programacion_id);
+        $programa->estado = 'PRESENTE';
+        $programa->save();
+        return redirect()->route('clase.presentes');
     }
+    
 
     /**
      * Display the specified resource.

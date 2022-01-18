@@ -11,16 +11,24 @@
 @stop
 @section('content')
     <section class="content container-fluid">
-       
+        <div class="alert alert-primary" role="alert">    
+            <ul class="list-group">
+                <li class="list-group-item active" aria-current="true">observaciones de esta clase programada</li>
+                @foreach ($programacioncom->observaciones as $observacion)
+                    <li class="list-group-item text-gray">{{$observacion->observacion}}</li>
+                @endforeach 
+            </ul>
+        </div>
         <div class="card card-default">
-            <div class="card-header bg-primary">
-                <span class="card-title">Create Clase</span>
+            @if ($programacioncom->activo)
+                <div class="card-header bg-success">
+            @else 
+                <div class="card-header bg-danger">
+            @endif
+                <span class="card-title">Marcar clase de computación</span>
+                
             </div>
             <div class="card-body">
-                <div class="alert alert-primary" role="alert">
-                    <h4 class="alert-heading">Objetivo</h4>
-                    {!! $programacioncom->observaciones !!}
-                </div>
                 <form method="POST" action="{{ route('clasescom.guardar',$programacioncom->id) }}"  role="form" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
