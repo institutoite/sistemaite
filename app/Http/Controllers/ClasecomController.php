@@ -43,24 +43,21 @@ class ClasecomController extends Controller
      */
   
     public function guardar(Request $request,$programacioncom_id){
-        dd($request->all());
-        $clase=new Clase();
-        $clase->fecha=$request->fecha;
-        $clase->estado="PRESENTE";
-        $clase->horainicio=$request->horainicio;
-        $clase->horafin=$request->horafin;
-        $clase->docente_id=$request->docente_id;
-        $clase->materia_id=$request->materia_id;
-        $clase->aula_id=$request->aula_id;
-        $clase->tema_id =1;
-        $clase->programacion_id=$programacion_id;
-        $clase->save();
+        $clasecom=new Clasecom();
+        $clasecom->fecha=$request->fecha;
+        $clasecom->estado="PRESENTE";
+        $clasecom->horainicio=$request->horainicio;
+        $clasecom->horafin=$request->horafin;
+        $clasecom->docente_id=$request->docente_id;
+        $clasecom->aula_id=$request->aula_id;
+        $clasecom->programacioncom_id=$programacioncom_id;
+        $clasecom->save();
 
-        $clase->userable()->create(['user_id' => Auth::user()->id]);
+       //$clasecom->userable()->create(['user_id' => Auth::user()->id]);
 
-        $programa=Programacion::findOrFail($programacion_id);
-        $programa->estado = 'PRESENTE';
-        $programa->save();
+        $programacom=Programacioncom::findOrFail($programacioncom_id);
+        $programacom->estado = 'PRESENTE';
+        $programacom->save();
         return redirect()->route('clase.presentes');
     }
     

@@ -279,10 +279,10 @@
                     }
                     
                     $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
-                    $('td', row).eq(1).html(moment(data['fecha']).format('D-M-Y'));
+                    $('td', row).eq(1).html(moment(data['fecha']).format('D-M-Y')+'-'+moment(data['fecha']).format('dddd'));
                     $('td', row).eq(2).html(moment(data['horaini']).format('HH:mm')+'-'+moment(data['horafin']).format('HH:mm'));
-                    $('td', row).eq(3).html(data['docente']);
-                    $('td', row).eq(4).html(data['aula']);
+                    $('td', row).eq(3).html(data['docente']+'/'+data['aula']);
+                    $('td', row).eq(4).html(data['estado']);
 
                     
                 },
