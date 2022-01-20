@@ -26,8 +26,10 @@
                 <table id="presentes" class="table table-hover table-bordered table-striped display" width="100%">
                     <thead class="bg-primary">
                         <tr>
+
                             <th>COD</th>
                             <th>ESTUDIANTE</th>
+                            {{-- <th>MATERIA</th> --}}
                             <th>AULA</th>
                             <th>DOCENTE</th>
                             <th>HORARIO</th>
@@ -39,16 +41,38 @@
                 </table >
             </div>
         </div>
-        @include('clasecom.presentescom')
+        <div class="card">
+            <div class="card-header bg-secondary">
+                ESTUDIANTES DE COMPUTACION PRESENTES AHORITA
+            </div>
+            <div class="card-body">
+                 <table id="presentescom" class="table table-hover table-bordered table-striped display" width="100%">
+                    <thead class="bg-primary">
+                        <tr>
+                            <th>COD</th>
+                            <th>ESTUDIANTE</th>
+                            <th>ASIGNATURA</th>
+                            <th>AULA</th>
+                            {{-- <th>DOCENTE</th> --}}
+                            <th>HORARIO</th>
+                            <th>TIEMPO</th>
+                            <th>FOTO</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                </table >
+            </div>
+        </div>
     </div>
     @include('clase.modalmostrar') 
     @include('clase.modaleditar') 
+
 @stop
 {{-- %%%%%%%%%%%%%%%%%%%%%%% inicio seccion JS --}}
 @section('js')  
     <script src="{{asset('dist/js/moment.js')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
@@ -60,56 +84,6 @@
                 containerCssClass: "select2--large", // For Select2 v4.0
                 selectionCssClass: "select2--large", // For Select2 v4.1
                 dropdownCssClass: "select2--large",
-            });
-            let tablaPresentes=$('#presentes').dataTable({
-                "createdRow": function( row, data, dataIndex){
-                    var horainicio=moment.duration(data['horainicio']);
-                    var horafin=moment.duration(data['horafin']);
-                    let hinicio=moment(data['horainicio']);
-                    let hfin=moment(data['horafin']);
-                    let ahora=moment();
-                    let minutosRestantantes=hfin.diff(ahora,'minutes');
-                        if(minutosRestantantes<-10){ $(row).addClass('text-bold text-danger');}
-                        if((minutosRestantantes<=0)&&(minutosRestantantes>=-10)){ $(row).addClass('text-danger');}
-                        if((minutosRestantantes>=0)&&(minutosRestantantes<15)){ $(row).addClass('text-warning');}
-                        if(minutosRestantantes>15){ $(row).addClass('text-success');}
-                    $(row).attr('id',data['id']);
-                    $('td', row).eq(4).html(moment(data['horainicio']).format('HH:mm')+'-'+moment(data['horafin']).format('HH:mm'));
-                    $('td', row).eq(5).html( hfin.from(ahora)+'('+hfin.diff(ahora,'minutes'));
-                },
-                "serverSide": true,
-                "ordering":true,
-                "responsive":true,
-                "paging":   true,
-                "info":     false,
-                "autoWidth":false,
-                "columns": [
-                        {data: 'codigo'},
-                        {data: 'name'},
-                        {data: 'aula'},
-                        {data: 'nombre'},
-                        {data: 'horainicio'},
-                        {data: 'horafin'},
-                        {
-                            "name": "foto",
-                            "data": "foto",
-                            "render": function (data, type, full, meta) {
-                                return "<div><img class='img-thumbnail zoomify' src=\"{{URL::to('/')}}/storage/" + data + "\" width=\"75\"/></div>";
-                            },
-                            "title": "FOTO",
-                            "orderable": false,
-                        },  
-                        { "data": "btn" },
-                    ],
-                "ajax": "{{ url('clases/presentes/ahorita') }}",
-                "columnDefs": [
-                    { responsivePriority: 1, targets: 0 },  
-                    { responsivePriority: 2, targets: 7 },
-                    { responsivePriority: 3, targets: -1 },
-                ],
-                "language":{
-                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-                },  
             });
 
             $('#presentes').on('click', '.finalizar', function(e) { 
@@ -339,7 +313,73 @@
             });
 
 
-         
+            let tablaPresentes=$('#presentes').dataTable({
+                "createdRow": function( row, data, dataIndex){
+                    var horainicio=moment.duration(data['horainicio']);
+                    var horafin=moment.duration(data['horafin']);
+                    
+                    let hinicio=moment(data['horainicio']);
+                    let hfin=moment(data['horafin']);
+                    let ahora=moment();
+                    let minutosRestantantes=hfin.diff(ahora,'minutes');
+                        
+                        if(minutosRestantantes<-10){
+                            $(row).addClass('text-bold text-danger');
+                        }
+                        if((minutosRestantantes<=0)&&(minutosRestantantes>=-10)){
+                            $(row).addClass('text-danger');
+                        }
+                        if((minutosRestantantes>=0)&&(minutosRestantantes<15)){
+                            $(row).addClass('text-warning');
+                        }
+                        if(minutosRestantantes>15){
+                            $(row).addClass('text-success');
+                        }
+                    $(row).attr('id',data['id']);
+                    
+                    $('td', row).eq(4).html(moment(data['horainicio']).format('HH:mm')+'-'+moment(data['horafin']).format('HH:mm'));
+                    $('td', row).eq(5).html( hfin.from(ahora)+'('+hfin.diff(ahora,'minutes'));
+
+                },
+                
+                "serverSide": true,
+                "ordering":true,
+                "responsive":true,
+                "paging":   true,
+                "info":     false,
+                "autoWidth":false,
+                "columns": [
+                        {data: 'codigo'},
+                        {data: 'name'},
+                        // {data: 'materia'},
+                        {data: 'aula'},
+                        
+                        {data: 'nombre'},
+                        {data: 'horainicio'},
+                        {data: 'horafin'},
+                        {
+                            "name": "foto",
+                            "data": "foto",
+                            "render": function (data, type, full, meta) {
+                                return "<div><img class='img-thumbnail zoomify' src=\"{{URL::to('/')}}/storage/" + data + "\" width=\"75\"/></div>";
+                            },
+                            "title": "FOTO",
+                            "orderable": false,
+                        },  
+                        {   
+                            "data": "btn"
+                        },
+                    ],
+                "ajax": "{{ url('clases/presentes/ahorita') }}",
+                "columnDefs": [
+                    { responsivePriority: 1, targets: 0 },  
+                    { responsivePriority: 2, targets: 7 },
+                    { responsivePriority: 3, targets: -1 },
+                ],
+                "language":{
+                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                },  
+            });
             /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MOSTRAR CLASE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', 'a .mostrar', function(e) {
                 e.preventDefault(); 
@@ -360,52 +400,59 @@
                         $html+="<tr><td>MATERIA</td>"+"<td>"+json.materia+"</td></tr>";
                         $html+="<tr><td>TEMA</td>"+"<td>"+json.tema+"</td></tr>";
                         $html+="<tr><td>FOTO ESTUDIANTE</td>"+"<td>"+fila.find('td').eq(8).html()+"</td></tr>";
+
                         $html+="<tr><td>FOTO DOCENTE</td>"+"<td><img class='zoom'  src="+"{{URL::to('/')}}/storage/"+json.foto+ " height='150'/></td></tr>";
                         $html+="<tr><td>CREADO</td>"+"<td>"+moment(json.created_at).format('LLLL')+"</td></tr>";
                         $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.updated_at).format('LLLL')+"</td></tr>";
                         $("#tabla-modal").append($html);
+
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
                     },
                 });
-            });
+                
 
-            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  JS PARA COMPUTACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            });
+            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MOSTRAR CLASE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', 'a .mostrarcom', function(e) {
                 e.preventDefault(); 
                 var id_clase =$(this).closest('tr').attr('id');
                 var fila=$(this).closest('tr');
-                // console.log(fila);
                 $.ajax({
                     url : "clasecom/mostrar/",
                     data : { id :id_clase },
                     success : function(json) {
-                        
-                        $("#tabla-modalcom").empty();
-                        $("#modal-mostrarcom").modal("show");
+                        console.log(json);
+                        $("#modal-mostrar").modal("show");
+                        $("#tabla-modal").empty();
                         $html="";
                         $html+="<tr><td>DOCENTE</td>"+"<td>"+json.nombre+' '+json.apellidop+' '+json.apellidom+"</td></tr>";
                         $html+="<tr><td>ESTUDIANTE</td>"+"<td>"+fila.find('td').eq(1).html()+"</td></tr>";
                         $html+="<tr><td>AULA</td>"+"<td>"+json.aula+"</td></tr>";
-                        $html+="<tr><td>FOTO ESTUDIANTE</td>"+"<td>"+fila.find('td').eq(6).html()+"</td></tr>";
-                        $html+="<tr><td>FOTO DOCENTE</td>"+"<td><img class='zoom'  src="+"{{URL::to('/')}}/storage/"+json.foto+ " height='80'/></td></tr>";
+                        $html+="<tr><td>MATERIA</td>"+"<td>"+json.materia+"</td></tr>";
+                        $html+="<tr><td>TEMA</td>"+"<td>"+json.tema+"</td></tr>";
+                        $html+="<tr><td>FOTO ESTUDIANTE</td>"+"<td>"+fila.find('td').eq(8).html()+"</td></tr>";
+
+                        $html+="<tr><td>FOTO DOCENTE</td>"+"<td><img class='zoom'  src="+"{{URL::to('/')}}/storage/"+json.foto+ " height='150'/></td></tr>";
                         $html+="<tr><td>CREADO</td>"+"<td>"+moment(json.created_at).format('LLLL')+"</td></tr>";
                         $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.updated_at).format('LLLL')+"</td></tr>";
-                        $("#tabla-modalcom").append($html);
+                        $("#tabla-modal").append($html);
+
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
                     },
                 });
+                
+
             });
             
-        
-            /**%%%%%%%%%%%%%%%%%%%% DATATABLE PRESENTESCOM INICIO %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            setInterval(function(){
+                $('#presentes').DataTable().ajax.reload();
+		    },60000);
+        /**%%%%%%%%%%%%%%%%%%%% JS PARA COMPUTACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        /**%%%%%%%%%%%%%%%%%%%% DATATABLE PRESENTESCOM INICIO %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             let tablaPresentescom=$('#presentescom').dataTable({
                 "createdRow": function( row, data, dataIndex){
                     var horainicio=moment.duration(data['horainicio']);
@@ -477,13 +524,15 @@
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                 },  
             });
-            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN JS PARA COMPUTACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        });
+            /**%%%%%%%%%%%%%%%%%%%% DATATABLE PRESENTESCOM FIN %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+    });
+
+        
+
     </script>
+
+
 @stop
 
 

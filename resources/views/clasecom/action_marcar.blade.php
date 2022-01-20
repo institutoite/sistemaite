@@ -6,12 +6,12 @@
 
 @if ($minutosRestantes<=-10)
 
-    <a href="{{route('clases.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-1 editar" title="Editar esta clase">
+    <a href="{{route('clasescom.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-1 editarcom" title="Editar esta clase">
         <i class="fa fa-fw fa-edit text-danger"></i>
     </a>
 
-    <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrar" title="Ver esta clase">
-        <i class="fa fa-fw fa-eye mostrar text-danger"></i>
+    <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarcom" title="Ver esta clase">
+        <i class="fa fa-fw fa-eye mostrarcom text-danger"></i>
     </a>
 
     <a href="" class="mr-1 finalizar" title="Finalizar esta clase">
@@ -21,12 +21,12 @@
 @endif
 @if (($minutosRestantes<=0)&&($minutosRestantes>-10))
 
-    <a href="{{route('clases.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-1 editar" title="Editar esta clase">
+    <a href="{{route('clasescom.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-1 editarcom" title="Editar esta clase">
         <i class="fa fa-fw fa-edit text-danger"></i>
     </a>
 
-    <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrar" title="Ver esta clase">
-        <i class="fa fa-fw fa-eye mostrar text-danger"></i>
+    <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarcom" title="Ver esta clase">
+        <i class="fa fa-fw fa-eye mostrarcom text-danger"></i>
     </a>
 
     <a href="" class="mr-1 finalizar" title="Finalizar esta clase">
@@ -36,12 +36,12 @@
 @endif
 @if (($minutosRestantes>0)&&($minutosRestantes<15))
 
-    <a href="{{route('clases.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-1 editar" title="Editar esta clase">
+    <a href="{{route('clasescom.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-1 editarcom" title="Editar esta clase">
         <i class="fa fa-fw fa-edit text-warning"></i>
     </a>
 
-    <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrar" title="Ver esta clase">
-        <i class="fa fa-fw fa-eye mostrar text-warning"></i>
+    <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarcom" title="Ver esta clase">
+        <i class="fa fa-fw fa-eye mostrarcom text-warning"></i>
     </a>
 
     <a href="" class="mr-1 finalizar" title="Finalizar esta clase">
@@ -51,12 +51,12 @@
 @endif
 @if ($minutosRestantes>15)
 
-    <a href="{{route('clases.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-1 editar" title="Editar esta clase">
+    <a href="{{route('clasescom.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-1 editarcom" title="Editar esta clase">
         <i class="fa fa-fw fa-edit text-success"></i>
     </a>
 
-    <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrar" title="Ver esta clase">
-        <i class="fa fa-fw fa-eye mostrar text-success"></i>
+    <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarcom" title="Ver esta clase">
+        <i class="fa fa-fw fa-eye mostrarcom text-success"></i>
     </a>
 
     <a href="" class="mr-1 finalizar" title="Finalizar esta clase">

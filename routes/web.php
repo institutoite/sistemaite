@@ -39,7 +39,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[ObservacionController::class,'edit'])->name('prueba');
+Route::get('prueba',[ClasecomController::class,'editar'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -190,7 +190,8 @@ Route::get('clasecom/marcar/rapido/{programacion_id}', 'ClasecomController@marca
 Route::get('clasescom/presentes/ahorita', 'ClasecomController@clasesPresentes')->name('clasescom.presente');
 Route::get('clasecom/crear', 'ClasecomController@crear')->name('clasecom.crear');
 Route::post('/clasecom/guardar/normal/{progrmacioncom_id}', 'ClasecomController@guardar')->name('clasescom.guardar');
-//Route::get('clasecom/mostrar/{clase}',[ClasecomController::class,'mostrar'])->name('clasecom.mostrar');
+Route::get('clasecom/mostrar/',[ClasecomController::class,'mostrarcom'])->name('clasecom.mostrar');
+Route::get('clasecom/editar/', [ClasecomController::class,'editar'])->name('clasescom.edit');
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  G R A D O S  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 //Route::resource('grados', [GradoController::class]);

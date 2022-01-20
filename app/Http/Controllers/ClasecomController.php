@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clasecom;
+use App\Models\Aula;
 use App\Models\Programacioncom;
 use App\Models\Matriculacion;
+use App\Models\Docente;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -68,9 +70,17 @@ class ClasecomController extends Controller
      * @param  \App\Models\Clasecom  $clasecom
      * @return \Illuminate\Http\Response
      */
-    public function show(Clasecom $clasecom)
+    public function mostrarcom(Request $request)
     {
-        //
+        // return response()->json($request->all());
+        $clase = Clasecom::join('aulas', 'clasecoms.aula_id', 'aulas.id')
+            ->join('docentes', 'clasecoms.docente_id', 'docentes.id')
+            ->join('personas', 'docentes.persona_id', 'personas.id')
+            ->where('clasecoms.id',$request->id)
+            ->select('clasecoms.id','fecha','clasecoms.estado','horainicio','horafin','personas.nombre'
+                    ,'personas.apellidop','personas.apellidom','personas.foto','aulas.aula',
+                'clasecoms.created_at','clasecoms.updated_at')->get()->first();
+        return response()->json($clase);
     }
 
     /**
@@ -79,9 +89,18 @@ class ClasecomController extends Controller
      * @param  \App\Models\Clasecom  $clasecom
      * @return \Illuminate\Http\Response
      */
-    public function edit(Clasecom $clasecom)
-    {
-        //
+    public function editar(Request $request){
+        $request->id=1;
+        $clasecom=Clasecom::findOrFail($request->id);
+        $docentes = Docente::join('personas', 'personas.id', '=', 'docentes.persona_id')
+        ->where('docentes.estado', '=', 'activo')
+            ->select('docentes.id', 'personas.nombre', 'personas.apellidop')
+            ->get();
+        $programacom = $clasecom->programacioncom;
+        $matriculacion = $programacom->matriculacion;
+        $aulas = Aula::all();
+        $data=['clasecom'=>$clasecom,'docentes'=>$docentes,'programacom'=>$programacom,'matriculacion'=>$matriculacion,'aulas'=>$aulas];
+        return response()->json($data);
     }
 
     /**
@@ -150,7 +169,7 @@ class ClasecomController extends Controller
         return redirect()->route('clase.presentes')->with('mensaje', 'MarcadoCorrectamente');
     }
      public function clasesPresentes(Request $request){
-        //if($request->ajax()){
+        
             $clasecoms =  Clasecom::join('programacioncoms', 'clasecoms.programacioncom_id', '=', 'programacioncoms.id')
                 ->join('matriculacions', 'programacioncoms.matriculacion_id', '=', 'matriculacions.id')
                 ->join('computacions', 'matriculacions.computacion_id', '=', 'computacions.id')
@@ -165,6 +184,6 @@ class ClasecomController extends Controller
                 ->addColumn('btn', 'clasecom.action_marcar')
                 ->rawColumns(['btn', 'foto'])
                 ->toJson();
-        //}
+        
     }
 }
