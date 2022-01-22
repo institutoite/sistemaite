@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHometextTable extends Migration
+class CreateHomeschedulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateHometextTable extends Migration
      */
     public function up()
     {
-        Schema::create('hometext', function (Blueprint $table) {
+        Schema::create('homeschedules', function (Blueprint $table) {
             $table->id();
-            $table->string('banner');
-            $table->string('heading');
-            $table->string('subheading');
+            $table->string('title');
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateHometextTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hometext');
+        Schema::dropIfExists('homeschedules');
     }
 }

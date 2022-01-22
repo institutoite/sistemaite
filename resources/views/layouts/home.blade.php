@@ -252,15 +252,7 @@
 
 <section class="section-padding category-section">
     <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-lg-6">
-                <div class="section-heading center-heading">
-                    <span class="subheading"></span>
-                    <h3>Empezamos cuando te inscribas</h3>
-                    <p>Capacitate, especializate en todas las materia y aprende lo que realmente necesites, aprende a tu ritmo de compresión.</p>
-                </div>
-            </div>
-        </div>
+        @yield('heading')
 
         <div class="row no-gutters">
             <div class="col-lg-3 col-md-6">
@@ -474,31 +466,10 @@
                 </div>
 
                 <div class="about-content">
-                    <div class="about-text-block">
-                        <i class="bi bi-calendar"></i>
-                        <h4>Horario Súper Especial</h4>
-                        <p>Lunes a Viernes 5.00 am - 6:00 am</p>
-                    </div>
+                    
+                    @yield('schedule')
 
-                    <div class="about-text-block">
-                        <i class="bi bi-calendar"></i>
-                        <h4>Turno Mañana</h4>
-                        <p>Lunes a Sábado 7:30 - 12:00</p>
-                    </div>
-
-                    <div class="about-text-block">
-                        <i class="bi bi-calendar"></i>
-                        <h4>Turno Tarde</h4>
-                        <p>Lunes a Viernes 2:00pm - 6:30pm</p>
-                    </div>
-
-                    <div class="about-text-block">
-                        <i class="bi bi-calendar"></i>
-                        <h4>Turno Noche</h4>
-                        <p>Lu Ma Ju Vi 6:30pm - 21:00pm</p>
-                    </div>
-
-                    <a href="#" class="btn btn-main-2"><i class="fa fa-check mr-2"></i>Elige tu horario</a>
+                    {{-- <a href="#" class="btn btn-main-2"><i class="fa fa-check mr-2"></i>Elige tu horario</a> --}}
                 </div>
             </div>
         </div>
@@ -516,43 +487,11 @@
 
 
         <div class="row">
-            <div class="col-lg-4 col-sm-6">
-                <div class="team-block">
-                    <div class="team-img">
-                        <img src="assets/images/team/team-4.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="team-info">
-                        <h4>David Eduardo</h4>
-                        <p>Director Ite</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="team-block">
-                    <div class="team-img">
-                        <img src="assets/images/team/team-1.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="team-info">
-                        <h4>Tanvir Hasan</h4>
-                        <p>Profesor Matematica</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="team-block">
-                    <div class="team-img">
-                        <img src="assets/images/team/team-2.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="team-info">
-                        <h4>Mikele John</h4>
-                        <p>Profesor Fisica</p>
-                    </div>
-                </div>
-            </div>
+           @yield('docente') 
         </div>
     </div>
 </section>
-<section class="testimonial section-padding">
+{{-- <section class="testimonial section-padding">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6">
@@ -641,8 +580,8 @@
             </div>
         </div>
     </div>
-</section>
-<section class="section-padding offer-course">
+</section> --}}
+{{-- <section class="section-padding offer-course">
     <div class="container">
         <div class="row ">
             <div class="col-lg-4">
@@ -785,7 +724,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 <section class="footer pt-120">
 	<div class="container">

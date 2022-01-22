@@ -1118,9 +1118,9 @@ return [
                 ],
                 
                 [
-                    'text' => 'Cursos',
+                    'text' => 'Horarios',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => 'motivos',
+                    'url'  => 'schedule',
                     'classes'  => 'text-dark',
                 ],
             ],

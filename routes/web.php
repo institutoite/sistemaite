@@ -374,10 +374,15 @@ Route::view('ninacos', 'livewire.ninacos.index')->middleware('auth');
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  HOME ITE   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
-Route::resource('home', "HomeController")->names('home');
 /* 
 Route::get('/', function () {
     return view('welcome');
 }); */
 
 Route::get('/',[HomeController::class, 'index']);
+
+Route::resource('home', "HomeController")->names('home');
+
+Route::resource('schedule', "HomescheduleController")->names('homeschedule');
+
+
