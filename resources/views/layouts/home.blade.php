@@ -147,21 +147,21 @@
                         @endif
                     @else
                         <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <i class="fa fa-angle-down"></i>
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                {{ __('Cerrar Sesion') }}
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <i class="fa fa-angle-down"></i>
                             </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                    {{ __('Cerrar Sesion') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
                         </li>
                     @endguest
                    <!-- <ul class="header-contact-right d-none d-lg-block">
@@ -199,21 +199,7 @@
 </div>
 <!--search overlay end-->
 
-<section class="banner">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12 col-lg-8">
-                <div class="banner-content center-heading">
-                    <span class="subheading">Todos los niveles</span>
-                    <h1>Guardería, Inicial, Primaria, Secundaria,</h1>
-                    <h1>Pre-Universitario, Universitario, Profesionales</h1>
-                    <a href="#" class="btn btn-main"><i class="fa fa-list-ul mr-2"></i>Contactanos </a>  
-                    <a href="#" class="btn btn-tp ">Leer mas <i class="fa fa-angle-right ml-2"></i></a>  
-                </div>
-            </div>
-        </div> <!-- / .row -->
-    </div> <!-- / .container -->
-</section>
+@yield('banner')
 
 
 <section class="feature">

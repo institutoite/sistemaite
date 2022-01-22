@@ -11,7 +11,7 @@ use App\Http\Controllers\OpcionController;
 use App\Http\Controllers\PagocomController;
 use App\Http\Controllers\ProgramacioncomController;
 use App\Http\Controllers\ClasecomController;
-use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\HomeController;
 
 
 use App\Http\Controllers\ProductoController;
@@ -37,9 +37,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
 Route::get('prueba',[ProgramacioncomController::class,'actualizar'])->name('prueba');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::get('/ninacos', function () {
     return view('ninaco.index');
 });
@@ -376,4 +374,10 @@ Route::view('ninacos', 'livewire.ninacos.index')->middleware('auth');
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  HOME ITE   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
-Route::resource('inicio', HomeController::class)->names('inicio');
+Route::resource('home', "HomeController")->names('home');
+/* 
+Route::get('/', function () {
+    return view('welcome');
+}); */
+
+Route::get('/',[HomeController::class, 'index']);

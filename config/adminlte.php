@@ -1111,15 +1111,16 @@ return [
             'classes'  => 'text-white text-bold bg-primary',
             'submenu' => [
                 [
+                    'text' => 'Texto Home',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'home/create',
+                    'classes'  => 'text-dark',
+                ],
+                
+                [
                     'text' => 'Cursos',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'motivos',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Crear',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'motivos/create',
                     'classes'  => 'text-dark',
                 ],
             ],

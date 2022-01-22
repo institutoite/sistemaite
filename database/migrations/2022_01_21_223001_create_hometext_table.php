@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHomemateriasTable extends Migration
+class CreateHometextTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateHomemateriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('homematerias', function (Blueprint $table) {
+        Schema::create('hometext', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('picture');
-            $table->string('icon');
+            $table->string('banner');
+            $table->string('heading');
+            $table->string('subheading');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateHomemateriasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('homematerias');
+        Schema::dropIfExists('hometext');
     }
 }
