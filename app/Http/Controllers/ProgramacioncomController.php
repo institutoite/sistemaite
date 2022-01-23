@@ -369,7 +369,7 @@ class ProgramacioncomController extends Controller
                         ->get(); 
         $aulas=Aula::all();
         $hora_inicio=Carbon::now()->isoFormat('HH:mm:ss');
-        $hora_fin = Carbon::now()->addHours($programacioncom->horaini->floatDiffInHours($programacioncom->horafin))->isoFormat('HH:mm:ss');
+        $hora_fin = Carbon::now()->addMinutes(($programacioncom->horaini->floatDiffInMinutes($programacioncom->horafin)))->isoFormat('HH:mm:ss');
         return view('clasecom.create',compact('docentes','programacioncom','matriculacion','aulas','hora_inicio','hora_fin'));
     }
 

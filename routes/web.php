@@ -15,6 +15,7 @@ use App\Http\Controllers\TipomotivoController;
 use App\Http\Controllers\LicenciaController;
 use App\Http\Controllers\MotivoController;
 use App\Http\Controllers\ObservacionController;
+use App\Http\Controllers\ClaseController;
 
 
 
@@ -172,7 +173,7 @@ Route::get('clase/actualizar/{clase}',"ClaseController@actualizar")->name('clase
 Route::get('clase/mostrar/',"ClaseController@mostrar")->name('clase.mostrar');
 Route::get('clase/listar',"ClaseController@index")->name('clase.index');
 Route::get('clase/finalizar/', 'ClaseController@finalizarClase')->name('clases.finalizar');
-Route::get('clases/presentes/ahorita', 'ClaseController@clasesPresentes')->name('clases.presente');
+Route::get('clases/presentes/ahorita', [ClaseController::class,'clasesPresentes'])->name('clases.presente');
 Route::get('presentes', function () {return view('clase.presentes');})->name('clase.presentes');
 Route::get('programa/marcar/{inscripcine_id}', 'ClaseController@marcadoGeneral')->name('clases.marcado.general');
 
@@ -191,7 +192,8 @@ Route::get('clasescom/presentes/ahorita', 'ClasecomController@clasesPresentes')-
 Route::get('clasecom/crear', 'ClasecomController@crear')->name('clasecom.crear');
 Route::post('/clasecom/guardar/normal/{progrmacioncom_id}', 'ClasecomController@guardar')->name('clasescom.guardar');
 Route::get('clasecom/mostrar/',[ClasecomController::class,'mostrarcom'])->name('clasecom.mostrar');
-Route::get('clasecom/editar/', [ClasecomController::class,'editar'])->name('clasescom.edit');
+Route::get('clasecom/editar/{clasecom}', [ClasecomController::class,'edit'])->name('clasescom.edit');
+Route::patch('clasecom/actualizar/{clasecom}', [ClasecomController::class,'actualizar'])->name("clasecom.update");
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  G R A D O S  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 //Route::resource('grados', [GradoController::class]);

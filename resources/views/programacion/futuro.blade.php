@@ -35,7 +35,7 @@
                             <td>{{ $programacion->docente->persona->nombre }}</td>
                             <td>{{ $programacion->aula->aula }}</td>
                             <td>
-                                <a href="{{ route('licencias.create',$programacion->id) }}" class="text-danger" data-toggle="tooltip" data-placement="top" title="Licencia"><i class="fas fa-ambulance"></i> </a>
+                                <a href="{{ route('licencia.crear',$programacion->id) }}" class="text-danger" data-toggle="tooltip" data-placement="top" title="Licencia"><i class="fas fa-ambulance"></i> </a>
                                 <a href="{{route('marcado.presente.normal',$programacion->id)}}" class="text-success ml-2" data-toggle="tooltip" data-placement="top" title="Adelantar Clase"><i class="far fa-arrow-alt-circle-right"></i></a>
                                 {{-- esto esta funcionando pero sin modal <a href="{{ route('programacions.edit',$programacion->id) }}" class="text-primary ml-2" data-toggle="tooltip" data-placement="top" title="Editar este programa"><i class="fas fa-edit"></i></a> --}}
                                 <a href="" class="text-primary ml-2 editar" data-toggle="tooltip" data-placement="top" title="Editar este programa"><i class="fas fa-edit"></i></a>

@@ -586,7 +586,7 @@ class ProgramacionController extends Controller
         $materias=Materia::all();
         $aulas=Aula::all();
         $hora_inicio=Carbon::now()->isoFormat('HH:mm:ss');
-        $hora_fin = Carbon::now()->addHours($programa->hora_ini->floatDiffInHours($programa->hora_fin))->isoFormat('HH:mm:ss');
+        $hora_fin = Carbon::now()->addMinutes($programa->hora_ini->floatDiffInMinutes($programa->hora_fin))->isoFormat('HH:mm:ss');
         return view('clase.create',compact('docentes','programa','inscripcion','materias','aulas','hora_inicio','hora_fin'));
     }
 

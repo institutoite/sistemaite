@@ -103,6 +103,21 @@ class ClasecomController extends Controller
         return response()->json($data);
     }
 
+     public function edit($id)
+    {
+        $clasecom = Clasecom::find($id);
+        $docentes = Docente::join('personas', 'personas.id', '=', 'docentes.persona_id')
+        ->where('docentes.estado', '=', 'activo')
+            ->select('docentes.id', 'personas.nombre', 'personas.apellidop')
+            ->get();
+        $programacioncom=$clasecom->programacioncom;
+        $matriculacion=$programacioncom->matriculacion;
+        $aulas = Aula::all();
+        $hora_inicio = $clasecom->horainicio->isoFormat('hh:mm:ss');
+        $hora_fin = $clasecom->horafin->isoFormat('hh:mm:ss');
+        return view('clasecom.edit', compact('docentes','clasecom', 'programacioncom', 'matriculacion','aulas', 'hora_inicio', 'hora_fin'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -110,9 +125,15 @@ class ClasecomController extends Controller
      * @param  \App\Models\Clasecom  $clasecom
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Clasecom $clasecom)
+    public function actualizar(Request $request, Clasecom $clasecom)
     {
-        //
+        $clasecom->fecha=$request->fecha;
+        $clasecom->docente_id=$request->docente_id;
+        $clasecom->horainicio=$request->horainicio;
+        $clasecom->horafin=$request->horafin;
+        $clasecom->aula_id=$request->aula_id;
+        $clasecom->save();
+        return redirect()->route('clase.presentes');
     }
 
     /**

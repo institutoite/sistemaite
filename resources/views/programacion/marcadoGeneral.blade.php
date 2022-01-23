@@ -160,8 +160,8 @@
                         <div class="success"></div>
                         @include('programacion.hoy')
                         @include('programacion.futuro')
-                        @include('programacion.pasado')
-                        @include('programacion.todo')
+                        {{-- @include('programacion.pasado')
+                        @include('programacion.todo') --}}
                         @include('programacion.modales')
                     </div>
                 </div>
@@ -264,15 +264,14 @@
                 e.preventDefault(); 
                 // var id_programacion =$(this).closest('tr').find('td:first-child').text();
                 let id_programacion =$(this).closest('tr').attr('id');
-                console.log("click");
-                
+                console.log(id_programacion);
                 $.ajax({
                     url : "../../programacion/mostrar/",
                     data : { id :id_programacion },
                     success : function(json) {
-                        $("#modal-mostrar").empty();
+                        console.log(json);
+                        $("#tabla-mostrar").empty();
                         $("#modal-mostrar").modal("show");
-                        
                         $html="";
                         $html+="<tr><td>Fecha</td>"+"<td>"+moment(json.programacion.fecha).format('dddd')+' '+moment(json.programacion.fecha).format('LL')+"</td></tr>";
                         $html+="<tr><td>Hora Inicio</td>"+"<td>"+moment(json.programacion.hora_ini).format('HH:mm:ss')+"</td></tr>";
@@ -285,10 +284,37 @@
                         $html+="<tr><td>Materia</td>"+"<td>"+json.materia.materia+"</td></tr>";
                         $html+="<tr><td>Aula</td>"+"<td>"+json.aula.aula+"</td></tr>";
                         $sumaCambio=0;
+                        // for (let j in json.observaciones) {
+                        //     $html+="<tr><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td></tr>";
+                        // }
+                        $("#tabla-mostrar-programacion").append($html);
+
+                        $htmlObservaciones="";
                         for (let j in json.observaciones) {
-                            $html+="<tr><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td></tr>";
+                            $htmlObservaciones+="<tr id='"+json.observaciones[j].id +"''><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td>";
+                            $htmlObservaciones+="<td>";
+                            $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 editarobservacion' title='Editar esta Observacion'>";
+                            $htmlObservaciones+="<i class='fa fa-fw fa-edit text-primary'></i></a>";
+                            $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 eliminarobservacion' title='Eliminar esta observacion'>";
+                            $htmlObservaciones+="<i class='fas fa-trash-alt text-danger'></i>";
+                            $htmlObservaciones+="</td>";
+
                         }
-                        $("#tabla-mostrar").append($html);
+                        $("#tabla-mostrar-observaciones").append($htmlObservaciones);
+
+                        // $htmlClases="";
+                        // for (let j in json.clasescom) {
+                        //     //console.log(json.clasescom[j].fecha);
+                        //     $htmlClases+="<tr><td>"+ moment(json.clasescom[j].fecha).format('LL') +"</td>";
+                        //     $htmlClases+="<td>"+json.clasescom[j].estado+"</td>";
+                        //     $htmlClases+="<td>"+moment(json.clasescom[j].horainicio).format('HH:mm:ss')+"</td>";
+                        //     $htmlClases+="<td>"+moment(json.clasescom[j].horafin).format('HH:mm:ss')+"</td>";
+                        //     $htmlClases+="<td>" + json.clasescom[j].nombre + "</td>";
+                        //     $htmlClases+="<td>"+json.clasescom[j].aula+"</td></tr>";
+                            
+                            
+                        // }
+                        // $("#tabla-mostrar-clases").append($htmlClases);
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');

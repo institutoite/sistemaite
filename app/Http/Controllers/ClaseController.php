@@ -186,16 +186,12 @@ class ClaseController extends Controller
      */
     public function update(Request $request, Clase $clase)
     {
-       // request()->validate(Clase::$rules);
-
         $clase->update($request->all());
-
         return redirect()->route('clases.index')
             ->with('success', 'Clase updated successfully');
     }
     public function actualizar(Request $request, Clase $clase)
     {
-        
         $clase->update($request->all());
         return response()->json(['mensaje'=>'La clase ha sido actualizada correctamente']);
     }

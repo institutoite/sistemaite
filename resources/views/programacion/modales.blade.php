@@ -9,17 +9,47 @@
             </div>
             <div class="modal-editar-pago">
                 <div class="container p-4">
-                    <table id="cambio" class="table table-bordered table-hover table-striped">
+                    <table id="programacion" class="table table-bordered table-hover table-striped">
                         <thead class="bg-primary">
                             <tr>
                                 <th>ATRIBUTO</th>
                                 <th>VALOR</th>
                             </tr>
                         </thead>
-                        <tbody id="tabla-mostrar">
+                        <tbody id="tabla-mostrar-programacion">
                             
                         </tbody>
                     </table>
+                    <table id="observaciones" class="table table-bordered table-hover table-striped">
+                        <thead class="bg-primary">
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-mostrar-observaciones">
+                            
+                        </tbody>
+                    </table>
+                    <table id="clases" class="table table-bordered table-hover table-striped">
+                        <thead class="bg-primary">
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                                <th>HoraIni</th>
+                                <th>HoraFin</th>
+                                <th>Docente</th>
+                                <th>Aula</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-mostrar-clases">
+                            
+                        </tbody>
+                    </table>
+                    
+
+
                 </div>
             </div>
             <div class="modal-footer">
