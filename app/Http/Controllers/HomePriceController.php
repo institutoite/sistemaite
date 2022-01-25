@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Docente;
-use App\Models\Homeschedule;
-use App\Models\Hometext;
-use App\Models\Persona;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class HomeController extends Controller
+class HomePriceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +13,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $hometext = Hometext::get()->last();
-        $homeschedules = Homeschedule::all();
-        $docentes = Docente::all()->where('estado','activo');
-
-        return view('home.index', compact(['hometext', 'homeschedules', 'docentes']));
+        //
     }
 
     /**
@@ -32,7 +23,7 @@ class HomeController extends Controller
      */
     public function create()
     {
-        return view('home.text.create');
+        //
     }
 
     /**
@@ -43,8 +34,7 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        Hometext::create($request->all());
-        return redirect()->route('home.create');
+        //
     }
 
     /**

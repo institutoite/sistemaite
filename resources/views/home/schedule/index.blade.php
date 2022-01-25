@@ -3,12 +3,14 @@
 @section('title', 'Horarios')
 
 @section('content_header')
-    <a class="btn btn-secondary btn-sm float-right" href="{{route('homeschedule.create')}}">Nuevo Horario</a>
-    <h1>Lista de Horarios</h1>
+    <h1 class="text-center text-primary">Horarios</h1>
 @stop
 
 @section('content')
     <div class="card">
+        <div class="card-header bg-primary">
+            Lista de Estudiantes <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('homeschedule.create')}}">Nuevo Horario</a>
+        </div>
         <div class="card-body">
             <table class="table table-striped">
                 <thead>

@@ -363,6 +363,10 @@
                 </div>
             </div>
         </div>
+
+       
+    </div>
+
     </div>
 </section>
 
@@ -455,21 +459,65 @@
     <div class="container">
         <div class="row align-items-center">
              <div class="col-lg-6 col-md-12">
-               <div class="about-img">
-                   <img src="assets/images/bg/2-2.png" alt="" class="img-fluid">
+               <div class="course-sidebar">
+                <div class="course-widget course-details-info">
+                    <h4 class="course-title">Nuestros precios</h4>
+                    <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">Modadidad</th>
+                            <th scope="col">Horas</th>
+                            <th scope="col">Costo</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Hora</td>
+                            <td>1</td>
+                            <td>Bs.40</td>
+                          </tr>
+                          <tr>
+                            <td>Semana</td>
+                            <td>5</td>
+                            <td>Bs.165</td>
+                          </tr>
+                          <tr>
+                            <td>Quincena</td>
+                            <td>10</td>
+                            <td>Bs.265</td>
+                          </tr>
+                          <tr>
+                            <td>1 Mes</td>
+                            <td>20</td>
+                            <td>Bs.420</td>
+                          </tr>
+                          <tr>
+                            <td>2 Meses</td>
+                            <td>40</td>
+                            <td>Bs.750</td>
+                          </tr>
+                          <tr>
+                            <td>3 Meses</td>
+                            <td>60</td>
+                            <td>Bs.1050</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
                </div>
             </div>
             <div class="col-lg-6 col-md-12">
-                <div class="section-heading">
-                    <span class="subheading"></span>
-                    <h3>Nuestros horarios</h3>
-                </div>
+                <div class="course-sidebar">
+                    <div class="course-widget course-details-info">
+                        <h4 class="course-title">Nuestros horarios</h4>
 
-                <div class="about-content">
-                    
-                    @yield('schedule')
+                        <div class="about-content">
+                            
+                            @yield('schedule')
 
-                    {{-- <a href="#" class="btn btn-main-2"><i class="fa fa-check mr-2"></i>Elige tu horario</a> --}}
+                            {{-- <a href="#" class="btn btn-main-2"><i class="fa fa-check mr-2"></i>Elige tu horario</a> --}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -488,6 +536,22 @@
 
         <div class="row">
            @yield('docente') 
+        </div>
+    </div>
+</section>
+<section class="testimonial section-padding">
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="section-header text-center">
+                    <h2 class="sub-title">Tabla de precios</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row pl">
+
         </div>
     </div>
 </section>
