@@ -9,7 +9,7 @@
 @section('content')
     <div class="card">
         <div class="card-header bg-primary">
-            Lista de Estudiantes <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('homeschedule.create')}}">Nuevo Horario</a>
+            Lista de Horarios <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('homeschedule.create')}}">Nuevo Horario</a>
         </div>
         <div class="card-body">
             <table class="table table-striped">

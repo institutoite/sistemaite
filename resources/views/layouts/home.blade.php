@@ -371,56 +371,6 @@
 </section>
 
 
-<!--<section class="process section-padding mt-0">
-    <div class="process-img"></div>
-    <div class="container">
-        <div class="row align-items-center">
-             <div class="col-lg-6 col-md-12">
-              
-            </div>
-            <div class="col-lg-6 col-md-12">
-                <div class="section-heading">
-                    <span class="subheading"></span>
-                    <h3>Nuestros horarios</h3>
-                </div>
-
-                <div class="process-block">
-                    <i class="bi bi-calendar"></i>
-                    <div class="process-desc no-divider">
-                        <h4>Horario Super Especial</h4>
-                        <p>Lunes a Viernes 5.00 am - 6:00 am</p>
-                    </div>
-                </div>
-
-                <div class="process-block">
-                    <i class="bi bi-calendar"></i>
-                    <div class="process-desc no-divider">
-                        <h4>Turno Mañana</h4>
-                        <p>Lunes a Sábado 7:30 - 12:00</p>
-                    </div>
-                </div>
-
-                <div class="process-block ">
-                    <i class="bi bi-calendar"></i>
-                    <div class="process-desc no-divider">
-                        <h4>Turno Tarde</h4>
-                        <p>Lunes a Viernes 2:00pm - 6:30pm</p>
-                    </div>
-                </div>
-            
-                <div class="process-block ">
-                    <i class="bi bi-calendar"></i>
-                    <div class="process-desc no-divider">
-                        <h4>Turno Noche</h4>
-                        <p>Lu Ma Ju Vi 6:30pm - 21:00pm</p>
-                    </div>
-                </div>
-                
-                
-            </div>
-        </div>
-    </div>
-</section> -->
 <!--course section start-->
 <section class="section-padding video-section" >
     <div class="container">
@@ -454,75 +404,522 @@
     </div>
     <!--course-->
 </section>
-<!--course section end--> 
-<section class="about-section section-padding">
+
+<section class="page-wrapper edutim-course-single">
     <div class="container">
-        <div class="row align-items-center">
-             <div class="col-lg-6 col-md-12">
-               <div class="course-sidebar">
-                <div class="course-widget course-details-info">
-                    <h4 class="course-title">Nuestros precios</h4>
-                    <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th scope="col">Modadidad</th>
-                            <th scope="col">Horas</th>
-                            <th scope="col">Costo</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Hora</td>
-                            <td>1</td>
-                            <td>Bs.40</td>
-                          </tr>
-                          <tr>
-                            <td>Semana</td>
-                            <td>5</td>
-                            <td>Bs.165</td>
-                          </tr>
-                          <tr>
-                            <td>Quincena</td>
-                            <td>10</td>
-                            <td>Bs.265</td>
-                          </tr>
-                          <tr>
-                            <td>1 Mes</td>
-                            <td>20</td>
-                            <td>Bs.420</td>
-                          </tr>
-                          <tr>
-                            <td>2 Meses</td>
-                            <td>40</td>
-                            <td>Bs.750</td>
-                          </tr>
-                          <tr>
-                            <td>3 Meses</td>
-                            <td>60</td>
-                            <td>Bs.1050</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                </div>
-               </div>
-            </div>
-            <div class="col-lg-6 col-md-12">
-                <div class="course-sidebar">
-                    <div class="course-widget course-details-info">
-                        <h4 class="course-title">Nuestros horarios</h4>
+        <div class="row">
+            <div class="col-lg-6">
+                <!--  Course Topics -->
+                <div class="edutim-single-course-segment  edutim-course-topics-wrap">
+                    <div class="single-course-details ">
+                        <h4 class="course-title">Nuestros Precios</h4>
+                        <p>Los precios son de acuerdo a los niveles. Elija un nivel:</p>
+                    </div>
 
-                        <div class="about-content">
-                            
-                            @yield('schedule')
+                    <div class="edutim-course-topics-contents">
+                        <div class="edutim-course-topic ">
+                            <div class="accordion" id="accordionExample">
 
-                            {{-- <a href="#" class="btn btn-main-2"><i class="fa fa-check mr-2"></i>Elige tu horario</a> --}}
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h2 class="mb-0">
+                                            <button class="btn-block text-left collapsed curriculmn-title-btn"
+                                                type="button" data-toggle="collapse" data-target="#collapseOne"
+                                                aria-expanded="false" aria-controls="collapseOne">
+                                                <h4 class="curriculmn-title"> Guarderia</h4>
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                        data-parent="#accordionExample">
+                                        <div class="course-lessons">
+                                            <div class="single-course-lesson">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">Modadidad</th>
+                                                        <th scope="col">Horas</th>
+                                                        <th scope="col">Costo</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr>
+                                                        <td>Hora</td>
+                                                        <td>1</td>
+                                                        <td>Bs.40</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Semana</td>
+                                                        <td>5</td>
+                                                        <td>Bs.165</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Quincena</td>
+                                                        <td>10</td>
+                                                        <td>Bs.265</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>1 Mes</td>
+                                                        <td>20</td>
+                                                        <td>Bs.420</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>2 Meses</td>
+                                                        <td>40</td>
+                                                        <td>Bs.750</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>3 Meses</td>
+                                                        <td>60</td>
+                                                        <td>Bs.1050</td>
+                                                      </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h2 class="mb-0">
+                                            <button class="btn-block text-left collapsed curriculmn-title-btn"
+                                                type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                                aria-expanded="false" aria-controls="collapseTwo">
+                                                <h4 class="curriculmn-title"> Inicial</h4>
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                        data-parent="#accordionExample">
+                                        <div class="course-lessons">
+                                            <div class="single-course-lesson">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">Modadidad</th>
+                                                        <th scope="col">Horas</th>
+                                                        <th scope="col">Costo</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr>
+                                                        <td>Hora</td>
+                                                        <td>1</td>
+                                                        <td>Bs.40</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Semana</td>
+                                                        <td>5</td>
+                                                        <td>Bs.165</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Quincena</td>
+                                                        <td>10</td>
+                                                        <td>Bs.265</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>1 Mes</td>
+                                                        <td>20</td>
+                                                        <td>Bs.420</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>2 Meses</td>
+                                                        <td>40</td>
+                                                        <td>Bs.750</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>3 Meses</td>
+                                                        <td>60</td>
+                                                        <td>Bs.1050</td>
+                                                      </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h2 class="mb-0">
+                                            <button class="btn-block text-left collapsed curriculmn-title-btn"
+                                                type="button" data-toggle="collapse" data-target="#collapseThree"
+                                                aria-expanded="false" aria-controls="collapseThree">
+                                                <h4 class="curriculmn-title"> Primaria</h4>
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                        data-parent="#accordionExample">
+                                        <div class="course-lessons">
+                                            <div class="single-course-lesson">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">Modadidad</th>
+                                                        <th scope="col">Horas</th>
+                                                        <th scope="col">Costo</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr>
+                                                        <td>Hora</td>
+                                                        <td>1</td>
+                                                        <td>Bs.40</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Semana</td>
+                                                        <td>5</td>
+                                                        <td>Bs.165</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Quincena</td>
+                                                        <td>10</td>
+                                                        <td>Bs.265</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>1 Mes</td>
+                                                        <td>20</td>
+                                                        <td>Bs.420</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>2 Meses</td>
+                                                        <td>40</td>
+                                                        <td>Bs.750</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>3 Meses</td>
+                                                        <td>60</td>
+                                                        <td>Bs.1050</td>
+                                                      </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header" id="headingFour">
+                                        <h2 class="mb-0">
+                                            <button class="btn-block text-left collapsed curriculmn-title-btn"
+                                                type="button" data-toggle="collapse" data-target="#collapseFour"
+                                                aria-expanded="false" aria-controls="collapseFour">
+                                                <h4 class="curriculmn-title"> Secundaria</h4>
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                        data-parent="#accordionExample">
+                                        <div class="course-lessons">
+                                            <div class="single-course-lesson">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">Modadidad</th>
+                                                        <th scope="col">Horas</th>
+                                                        <th scope="col">Costo</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr>
+                                                        <td>Hora</td>
+                                                        <td>1</td>
+                                                        <td>Bs.40</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Semana</td>
+                                                        <td>5</td>
+                                                        <td>Bs.165</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Quincena</td>
+                                                        <td>10</td>
+                                                        <td>Bs.265</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>1 Mes</td>
+                                                        <td>20</td>
+                                                        <td>Bs.420</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>2 Meses</td>
+                                                        <td>40</td>
+                                                        <td>Bs.750</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>3 Meses</td>
+                                                        <td>60</td>
+                                                        <td>Bs.1050</td>
+                                                      </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header" id="headingFive">
+                                        <h2 class="mb-0">
+                                            <button class="btn-block text-left collapsed curriculmn-title-btn"
+                                                type="button" data-toggle="collapse" data-target="#collapseFive"
+                                                aria-expanded="false" aria-controls="collapseFive">
+                                                <h4 class="curriculmn-title"> Pre-Universiratio</h4>
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+                                        data-parent="#accordionExample">
+                                        <div class="course-lessons">
+                                            <div class="single-course-lesson">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">Modadidad</th>
+                                                        <th scope="col">Horas</th>
+                                                        <th scope="col">Costo</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr>
+                                                        <td>Hora</td>
+                                                        <td>1</td>
+                                                        <td>Bs.40</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Semana</td>
+                                                        <td>5</td>
+                                                        <td>Bs.165</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Quincena</td>
+                                                        <td>10</td>
+                                                        <td>Bs.265</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>1 Mes</td>
+                                                        <td>20</td>
+                                                        <td>Bs.420</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>2 Meses</td>
+                                                        <td>40</td>
+                                                        <td>Bs.750</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>3 Meses</td>
+                                                        <td>60</td>
+                                                        <td>Bs.1050</td>
+                                                      </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header" id="headingSix">
+                                        <h2 class="mb-0">
+                                            <button class="btn-block text-left collapsed curriculmn-title-btn"
+                                                type="button" data-toggle="collapse" data-target="#collapseSix"
+                                                aria-expanded="false" aria-controls="collapseSix">
+                                                <h4 class="curriculmn-title"> Instituto</h4>
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseSix" class="collapse" aria-labelledby="headingSix"
+                                        data-parent="#accordionExample">
+                                        <div class="course-lessons">
+                                            <div class="single-course-lesson">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">Modadidad</th>
+                                                        <th scope="col">Horas</th>
+                                                        <th scope="col">Costo</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr>
+                                                        <td>Hora</td>
+                                                        <td>1</td>
+                                                        <td>Bs.40</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Semana</td>
+                                                        <td>5</td>
+                                                        <td>Bs.165</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Quincena</td>
+                                                        <td>10</td>
+                                                        <td>Bs.265</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>1 Mes</td>
+                                                        <td>20</td>
+                                                        <td>Bs.420</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>2 Meses</td>
+                                                        <td>40</td>
+                                                        <td>Bs.750</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>3 Meses</td>
+                                                        <td>60</td>
+                                                        <td>Bs.1050</td>
+                                                      </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header" id="headingSeven">
+                                        <h2 class="mb-0">
+                                            <button class="btn-block text-left collapsed curriculmn-title-btn"
+                                                type="button" data-toggle="collapse" data-target="#collapseSeven"
+                                                aria-expanded="false" aria-controls="collapseSeven">
+                                                <h4 class="curriculmn-title"> Universitario</h4>
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven"
+                                        data-parent="#accordionExample">
+                                        <div class="course-lessons">
+                                            <div class="single-course-lesson">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">Modadidad</th>
+                                                        <th scope="col">Horas</th>
+                                                        <th scope="col">Costo</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr>
+                                                        <td>Hora</td>
+                                                        <td>1</td>
+                                                        <td>Bs.40</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Semana</td>
+                                                        <td>5</td>
+                                                        <td>Bs.165</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Quincena</td>
+                                                        <td>10</td>
+                                                        <td>Bs.265</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>1 Mes</td>
+                                                        <td>20</td>
+                                                        <td>Bs.420</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>2 Meses</td>
+                                                        <td>40</td>
+                                                        <td>Bs.750</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>3 Meses</td>
+                                                        <td>60</td>
+                                                        <td>Bs.1050</td>
+                                                      </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header" id="headingEight">
+                                        <h2 class="mb-0">
+                                            <button class="btn-block text-left collapsed curriculmn-title-btn"
+                                                type="button" data-toggle="collapse" data-target="#collapseEight"
+                                                aria-expanded="false" aria-controls="collapseEight">
+                                                <h4 class="curriculmn-title"> Profesional</h4>
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseEight" class="collapse" aria-labelledby="headingEight"
+                                        data-parent="#accordionExample">
+                                        <div class="course-lessons">
+                                            <div class="single-course-lesson">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">Modadidad</th>
+                                                        <th scope="col">Horas</th>
+                                                        <th scope="col">Costo</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr>
+                                                        <td>Hora</td>
+                                                        <td>1</td>
+                                                        <td>Bs.40</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Semana</td>
+                                                        <td>5</td>
+                                                        <td>Bs.165</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Quincena</td>
+                                                        <td>10</td>
+                                                        <td>Bs.265</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>1 Mes</td>
+                                                        <td>20</td>
+                                                        <td>Bs.420</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>2 Meses</td>
+                                                        <td>40</td>
+                                                        <td>Bs.750</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>3 Meses</td>
+                                                        <td>60</td>
+                                                        <td>Bs.1050</td>
+                                                      </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!--  COurse Topics End -->
             </div>
+
+            <div class="col-lg-6">
+                <h4 class="course-title">Nuestros horarios</h4>
+
+                <div class="about-content">
+                    
+                    @yield('schedule')
+
+                    {{-- <a href="#" class="btn btn-main-2"><i class="fa fa-check mr-2"></i>Elige tu horario</a> --}}
+                </div>
+            </div> 
         </div>
     </div>
-</section> 
+</section>
+
 <section class="section-padding bg-grey team-2">
     <div class="container">
         <div class="row align-items-center justify-content-center">
@@ -539,256 +936,7 @@
         </div>
     </div>
 </section>
-<section class="testimonial section-padding">
-    <div class="container">
-        
-        <div class="row">
-            <div class="col-12">
-                <div class="section-header text-center">
-                    <h2 class="sub-title">Tabla de precios</h2>
-                </div>
-            </div>
-        </div>
 
-        <div class="row pl">
-
-        </div>
-    </div>
-</section>
-{{-- <section class="testimonial section-padding">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <div class="section-heading center-heading text-center">
-                    <span class="subheading">Testimonios</span>
-                    <h3>Lo que dicen nuestros estudiantes</h3>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="testimonials-slides owl-carousel owl-theme">
-                    <div class="review-item">
-                        <div class="client-info">
-                            <i class="bi bi-quote"></i>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni eius autem aliquid pariatur rerum. Deserunt, praesentium.
-                             Adipisci, voluptates nihil debitis</p>
-                             <div class="rating">
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                            </div>
-                        </div>
-                        <div class="client-desc">
-                            <div class="client-img">
-                                <img src="assets/images/clients/test-1.jpg" alt="" class="img-fluid">
-                            </div>
-                            <div class="client-text">
-                                <h4>John Doe</h4>
-                                <span class="designation">Developer</span>
-                            </div>
-                        </div>
-                    </div>
-
-                     <div class="review-item">
-                        <div class="client-info">
-                            <i class="bi bi-quote"></i>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni eius autem aliquid pariatur rerum. Deserunt, praesentium.
-                             Adipisci, voluptates nihil debitis</p>
-                             <div class="rating">
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                            </div>
-                        </div>
-                        <div class="client-desc">
-                            <div class="client-img">
-                                <img src="assets/images/clients/test-2.jpg" alt="" class="img-fluid">
-                            </div>
-                            <div class="client-text">
-                                <h4>John Doe</h4>
-                                <span class="designation">Developer</span>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="review-item">
-                        <div class="client-info">
-                            <i class="bi bi-quote"></i>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni eius autem aliquid pariatur rerum. Deserunt, praesentium.
-                             Adipisci, voluptates nihil debitis</p>
-                             <div class="rating">
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                            </div>
-                        </div>
-                        <div class="client-desc">
-                            <div class="client-img">
-                                <img src="assets/images/clients/test-3.jpg" alt="" class="img-fluid">
-                            </div>
-                            <div class="client-text">
-                                <h4>John Doe</h4>
-                                <span class="designation">Developer</span>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-            </div>
-        </div>
-    </div>
-</section> --}}
-{{-- <section class="section-padding offer-course">
-    <div class="container">
-        <div class="row ">
-            <div class="col-lg-4">
-                <div class="section-heading">
-                    <span class="subheading">50% Discount offer</span>
-                    <h3>Hurry Up to get <span>50% off</span> courses</h3>
-                    <p>Eum eligendi nihil labore nemo alias eos sapiente perferendis iste molestias explicabo.tempor incididunt ut labore et dolore magna aliqua tempor incididunt.  </p>
-                    <a href="#" class="btn btn-main"><i class="fa fa-store mr-2"></i>All Courses</a>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="course-block">
-                    <div class="course-img">
-                        <img src="assets/images/course/course1.jpg" alt="" class="img-fluid">
-                        <span class="course-label">Beginner</span>
-                    </div>
-                    
-                    <div class="course-content">
-                        <div class="rating">
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <span>(5.00)</span>
-                        </div>
-                        <h4><a href="#">Information About UI/UX Design Degree</a></h4>    
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, alias.</p>
-                        <div class="course-price ">$50</div>   
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="course-block">
-                    <div class="course-img">
-                        <img src="assets/images/course/course2.jpg" alt="" class="img-fluid">
-                        <span class="course-label">Advanced</span>
-                    </div>
-                    
-                    <div class="course-content">
-                        <div class="rating">
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <a href="#"><i class="fa fa-star"></i></a>
-                            <span>(5.00)</span>
-                        </div>
-                        <h4><a href="#">Photography Crash Course for Photographer</a></h4>    
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, alias.</p>
-                        <div class="course-price ">$80 <span class="del">$120</span></div>   
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="blog section-padding">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <div class="section-heading center-heading">
-                    <span class="subheading">Blog News</span>
-                    <h3>Latest Blog News</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicin gelit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-            </div>
-        </div>
-
-       
-        <div class="row">               
-            <div class="col-lg-4 col-md-6">
-                <div class="blog-item">
-                    <img src="assets/images/blog/news-1.jpg" alt="" class="img-fluid">
-                    <div class="blog-content">
-                        <div class="entry-meta">
-                            <span><i class="fa fa-calendar-alt"></i>May 19, 2020</span>
-                            <span><i class="fa fa-comments"></i>1 comment</span>
-                        </div>
-    
-                        <h2><a href="#">Powerful tips to grow business manner</a></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicin gelit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
-                        <a href="#" class="btn btn-main btn-small"><i class="fa fa-plus-circle mr-2"></i>Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="blog-item">
-                    <img src="assets/images/blog/news-2.jpg" alt="" class="img-fluid">
-                    <div class="blog-content">
-                        <div class="entry-meta">
-                            <span><i class="fa fa-calendar-alt"></i>May 19, 2020</span>
-                            <span><i class="fa fa-comments"></i>1 comment</span>
-                        </div>
-    
-                        <h2><a href="#">Powerful tips to grow effective manner</a></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicin gelit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
-                        <a href="#" class="btn btn-main btn-small"><i class="fa fa-plus-circle mr-2"></i>Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="blog-item">
-                    <img src="assets/images/blog/news-3.jpg" alt="" class="img-fluid">
-                    <div class="blog-content">
-                        <div class="entry-meta">
-                            <span><i class="fa fa-calendar-alt"></i>May 19, 2020</span>
-                            <span><i class="fa fa-comments"></i>1 comment</span>
-                        </div>
-    
-                        <h2><a href="#">Python may be you completed online </a></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicin gelit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
-                        <a href="#" class="btn btn-main btn-small"><i class="fa fa-plus-circle mr-2"></i>Read More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="cta-2">
-    <div class="container">
-        <div class="row align-items-center subscribe-section ">
-            <div class="col-lg-6">
-                <div class="section-heading white-text">
-                    <span class="subheading"></span>
-                    <h3>Únete a nuestra comunidad de estudiantes</h3>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="subscribe-form">
-                    <form action="#">
-                        <input type="text" class="form-control" placeholder="Correo electrónico">
-                        <a href="#" class="btn btn-main">Subscribete<i class="fa fa-angle-right ml-2"></i> </a>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> --}}
 
 <section class="footer pt-120">
 	<div class="container">

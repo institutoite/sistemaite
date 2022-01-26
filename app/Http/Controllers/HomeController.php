@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Docente;
 use App\Models\Homeschedule;
 use App\Models\Hometext;
+use App\Models\Modalidad;
 use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,9 +21,13 @@ class HomeController extends Controller
     {
         $hometext = Hometext::get()->last();
         $homeschedules = Homeschedule::all();
+        $guarderias = Modalidad::all()->where('nivel_id', '1');
+        $inicials = Modalidad::all()->where('nivel_id', '2');
+        $primarias = Modalidad::all()->where('nivel_id', '3');
+        $guarderias = Modalidad::all()->where('nivel_id', '1');
         $docentes = Docente::all()->where('estado','activo');
-
-        return view('home.index', compact(['hometext', 'homeschedules', 'docentes']));
+        
+        return view('home.index', compact(['hometext', 'homeschedules', 'guarderias', 'docentes']));
     }
 
     /**
