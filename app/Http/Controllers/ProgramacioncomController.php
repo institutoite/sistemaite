@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Models\Computacion;
 use App\Models\Nivel;
 use App\Models\Observacion;
+use App\Models\Licencia;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
@@ -476,7 +477,13 @@ class ProgramacioncomController extends Controller
                     ->where('programacioncoms.id',$request->id)
                     ->select('clasecoms.id','clasecoms.fecha','clasecoms.estado','clasecoms.horainicio','clasecoms.horafin','docentes.nombre', 'aulas.aula')
                     ->get();
-        $data = ['programacioncom' => $programacioncom, 'observaciones' => $observaciones, 'docente' => $docente, 'aula' => $aula, 'clasescom' => $clases,'asignatura'=>$asignatura];
+        $licencias=Licencia::join('motivos','motivos.id','=','licencias.motivo_id')
+            ->join('programacions','programacions.id','=','licencias.licenciable_id')
+            ->where('programacions.id','=',$request->id)
+            ->select('motivos.motivo','solicitante','parentesco','licencias.created_at','licencias.updated_at')
+            ->get();
+
+        $data = ['programacioncom' => $programacioncom, 'observaciones' => $observaciones, 'docente' => $docente, 'aula' => $aula,'licencias'=>$licencias, 'clasescom' => $clases,'asignatura'=>$asignatura];
         return response()->json($data);
     }
 }

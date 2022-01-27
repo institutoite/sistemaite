@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Licencia;
 use App\Models\Programacioncom;
+use App\Models\Programacion;
 use App\Models\Tipomotivo;
 use Illuminate\Http\Request;
 
@@ -32,9 +33,21 @@ class LicenciaController extends Controller
      */
     public function createcom(Request $request)
     {
-        $motivos=Tipomotivo::findOrFail(3)->motivos;    
+        $motivos=Tipomotivo::findOrFail(2)->motivos;    
         $programacioncom=Programacioncom::findOrFail($request->id);
         $data=['motivos'=>$motivos, 'programacioncom'=>$programacioncom];
+        return response()->json($data);
+    }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createprogramacion(Request $request)
+    {
+        $motivos=Tipomotivo::findOrFail(2)->motivos;    
+        $programacion=Programacion::findOrFail($request->id);
+        $data=['motivos'=>$motivos, 'programacion'=>$programacion];
         return response()->json($data);
     }
 
@@ -46,9 +59,6 @@ class LicenciaController extends Controller
      */
     public function storecom(Request $request)
     {
-
-        //request()->validate(Licencia::$rules);
-
         $licenciacom    =new Licencia();
         $licenciacom->motivo_id=$request->motivo_id;
         $licenciacom->solicitante=$request->solicitante;  
@@ -56,6 +66,28 @@ class LicenciaController extends Controller
         $licenciacom->licenciable_id=$request->programacioncom_id;
         $licenciacom->licenciable_type=Programacioncom::class;
         $licenciacom->save();
+
+        $programacioncom=Programacioncom::findOrFail($request->programacioncom_id);
+        $programacioncom->estado='LICENCIA';
+        $programacioncom->save();
+
+        $data=['mensaje'=>'Licencia guardado correctamente'];
+        return response()->json($data);
+    }
+    public function storeprogramacion(Request $request)
+    {
+        $licenciacom    =new Licencia();
+        $licenciacom->motivo_id=$request->motivo_id;
+        $licenciacom->solicitante=$request->solicitante;  
+        $licenciacom->parentesco=$request->parentesco;  
+        $licenciacom->licenciable_id=$request->programacion_id;
+        $licenciacom->licenciable_type=Programacion::class;
+        $licenciacom->save();
+
+        $programacion=Programacion::findOrFail($request->programacion_id);
+        $programacion->estado='LICENCIA';
+        $programacion->save();
+
         $data=['mensaje'=>'Licencia guardado correctamente'];
         return response()->json($data);
     }
@@ -69,7 +101,6 @@ class LicenciaController extends Controller
     public function show($id)
     {
         $licencia = Licencia::find($id);
-
         return view('licencia.show', compact('licencia'));
     }
 
@@ -82,7 +113,6 @@ class LicenciaController extends Controller
     public function edit($id)
     {
         $licencia = Licencia::find($id);
-
         return view('licencia.edit', compact('licencia'));
     }
 

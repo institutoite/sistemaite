@@ -16,6 +16,7 @@ use App\Models\Estudiante;
 use App\Models\Feriado;
 use App\Models\Materia;
 use App\Models\Modalidad;
+use App\Models\Licencia;
 use App\Models\Nivel;
 use App\Models\Observacion;
 use App\Models\Persona;
@@ -80,7 +81,12 @@ class ProgramacionController extends Controller
         $materia=$programacion->materia;
         $aula=$programacion->aula;
         $clases=$programacion->clases;
-        $data=['programacion'=>$programacion, 'observaciones'=>$observaciones,'docente'=>$docente, 'materia' => $materia, 'aula' => $aula,'clases'=>$clases];
+        $licencias=Licencia::join('motivos','motivos.id','=','licencias.motivo_id')
+            ->join('programacions','programacions.id','=','licencias.licenciable_id')
+            ->where('programacions.id','=',$request->id)
+            ->select('motivos.motivo','solicitante','parentesco','licencias.created_at','licencias.updated_at')
+            ->get();
+        $data=['programacion'=>$programacion, 'observaciones'=>$observaciones,'docente'=>$docente, 'materia' => $materia, 'aula' => $aula,'clases'=>$clases,'licencias'=>$licencias];
         return response()->json($data);
     }
     public function mostrarClases(Request $request)
@@ -598,6 +604,19 @@ class ProgramacionController extends Controller
         $observacion->observable_type= Programacion::class;
         $observacion->save();
         return response()->json($observacion);
+    }
+
+    public function programacionesFuturo(Request $request){
+        $programacion=Programacion::join('docentes','docentes.id','=','programacions.docente_id')
+                    ->join('aulas','aulas.id','=','programacions.aula_id')
+                    ->join('inscripciones','inscripciones.id','=','programacions.inscripcione_id')
+                    ->join('materias','materias.id','=','programacions.materia_id')
+                    ->where('inscripcione_id',$request->inscripcion)
+                    ->select('programacions.id','fecha','programacions.estado','materia','docentes.nombre as docente','programacions.hora_ini','programacions.hora_fin','aulas.aula')->get();
+        return DataTables::of($programacion)
+                ->addColumn('btn','programacion.actionsfuturo')
+                ->rawColumns(['btn'])
+                ->toJson();
     }
 
 }

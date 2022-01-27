@@ -163,7 +163,7 @@
                         @include('programacioncom.hoy')
                         @include('programacioncom.futuro')
                         @include('programacioncom.modales')
-                    {{--@include('programacioncom.pasado')
+                    º{{--@include('programacioncom.pasado')
                         @include('programacioncom.todo')
                          --}}
                     </div>
@@ -227,8 +227,8 @@
                     }
                     $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
                     $('td', row).eq(0).html(moment(data['fecha']).format('D-M-Y'));
-                    $('td', row).eq(1).html(moment(data['hora_ini']).format('HH:mm'));
-                    $('td', row).eq(2).html(moment(data['hora_fin']).format('HH:mm'));
+                    $('td', row).eq(1).html(moment(data['horaini']).format('HH:mm'));
+                    $('td', row).eq(2).html(moment(data['horafin']).format('HH:mm'));
                 },
                 "ordering": true,
                 "info":     true,
@@ -362,7 +362,7 @@
                 
             });
             
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR PERSONA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR OBESRVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
             $('table').on('click','.eliminarobservacion',function (e) {
                 e.preventDefault(); 
                 let id_programacioncom=$(this).closest('tr').attr('id');
@@ -479,23 +479,12 @@
                         $htmlobs+="</div>";
                         $htmlobs+="</div>";
                         $htmlobs+="</div>";
-
                         $("#formulario-editar-observacion").append($htmlobs);
-                        
-                        // let programacioncom_id=$('#id_programacioncom').val(); 
-                        // $("#"+programacioncom_id).addTempClass( 'bg-success', 3000 );
-                        // console.log(programacioncom_id);
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
                     },
-                });
-                
-                
-                // $("#id_programacioncom").val(id_programacioncom);
-                // $("#observacion").val("");
-                // $("#modal-gregar-observacion").modal("show");
-                
+                }); 
             });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BOTON GUARDAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('#guardar-observacion').on('click', function(e) {
@@ -534,12 +523,12 @@
             $('table').on('click', '.show', function(e) {
                 e.preventDefault(); 
                 let id_programacioncom =$(this).closest('tr').attr('id');
-                
+               // console.log('click');
                 $.ajax({
                     url : "../../programacioncom/mostrar",
                     data : { id :id_programacioncom },
                     success : function(json) {
-                        //console.log(json);
+                        console.log(json);
                         $("#modal-mostrar-clase").modal("show");
                         $("#tabla-mostrar-programacioncom").empty();
                         $("#tabla-mostrar-observaciones").empty();
@@ -566,12 +555,9 @@
                             $htmlObservaciones+="<td>";
                             $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 editarobservacion' title='Editar esta Observacion'>";
                             $htmlObservaciones+="<i class='fa fa-fw fa-edit text-primary'></i></a>";
-                            
                             $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 eliminarobservacion' title='Eliminar esta observacion'>";
                             $htmlObservaciones+="<i class='fas fa-trash-alt text-danger'></i>";
-                                
-                            $htmlObservaciones+="</td>";
-
+                            $htmlObservaciones+="</td></tr>";
                         }
                         $("#tabla-mostrar-observaciones").append($htmlObservaciones);
 
@@ -588,6 +574,15 @@
                             
                         }
                         $("#tabla-mostrar-clases").append($htmlClases);
+
+                        $htmlLicencia="";
+                        for (let j in json.licencias) {
+                            $htmlLicencia+="<tr><td>"+ json.licencias[j].motivo +"</td>";
+                            $htmlLicencia+="<td>"+json.licencias[j].solicitante+"</td>";
+                            $htmlLicencia+="<td>"+json.licencias[j].parentesco+"</td>";
+                            $htmlLicencia+="<td>"+moment(json.licencias[j].created_at).format('LLLL')+"</td>";
+                        }
+                        $("#tabla-mostrar-licencias").append($htmlLicencia);
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
@@ -815,10 +810,10 @@
                         },
                     
                     success : function(json) {
-                        //console.log(json);
+                        console.log(json);
                         let programacion_actualizar=$('#programacioncom_id').val(); 
                         $('#licencia-crear').modal('hide');
-                        
+                        $('#futuro').DataTable().ajax.reload();
                         $("#"+programacion_actualizar).addTempClass( 'bg-success', 3000 );
                     },
                     error : function(xhr, status) {
@@ -853,6 +848,7 @@
                         $('#editar-observacion').modal('hide');
                         $("#"+programacioncom_id).addTempClass( 'bg-success', 3000 );
                         //$('#futuro').DataTable().ajax.reload();
+                       
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
@@ -906,6 +902,7 @@
                         $('#modal-editar').modal('hide');
                         $("#"+programacion_actualizar).addTempClass( 'bg-success', 3000 );
                         $('#futuro').DataTable().ajax.reload();
+                         $('#tabla_hoy').DataTable().ajax.reload();
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');

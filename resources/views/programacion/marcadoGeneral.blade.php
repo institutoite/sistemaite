@@ -4,14 +4,10 @@
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 
 @stop
-
 @section('title', 'Programación')
-
-@section('plugins.Jquery', true)
+{{-- @section('plugins.Jquery', true) --}}
 @section('plugins.Sweetalert2', true)
 @section('plugins.Datatables', true)
-
-
 
 @if ($dias_que_faltan_para_pagar<0)
     @php $clase="dias-negativos" @endphp
@@ -168,7 +164,8 @@
             </div>
         </div>
     </div>
-    
+   
+
 @endsection
 
 @section('js')
@@ -207,6 +204,8 @@
          /*%%%%%%%%%%%%%%%%%%%%%%  CODIGO QUE SE CARGA DESPUES DE CARGAR LA PAGINA %%%%%%%%%%%*/
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();  
+            
+            /*%%%%%%%%%%%%%%%%%%%%%%%%% TABLA HOY %%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('#tabla_hoy').dataTable({
                 "responsive":true,
                 "searching":true,
@@ -259,6 +258,62 @@
                 ],
             });
 
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TABLA FUTURO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            let tablaFuturo=$('#futuro').dataTable({
+                "responsive":true,
+                "searching":true,
+                "paging":   true,
+                "autoWidth":false,
+                "createdRow": function( row, data, dataIndex ) {
+                    
+                    if(moment(data['fecha']).format('DD-MM-YYYY') < moment().format('DD-MM-YYYY')){
+                        $(row).addClass('text-gray')
+                    }
+                    if(moment(data['fecha']).format('DD-MM-YYYY') == moment().format('DD-MM-YYYY')){
+                        $(row).addClass('table-success');
+                        $(row).addClass('text-bold');
+                    }
+                    if(moment(data['fecha']).format('DD-MM-YYYY') > moment().format('DD-MM-YYYY')){
+                        $(row).addClass('text-success')
+                    }
+                    
+                    $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
+                    $('td', row).eq(1).html(moment(data['fecha']).format('D-M-Y')+'-'+moment(data['fecha']).format('dddd'));
+                    $('td', row).eq(2).html(moment(data['hora_ini']).format('HH:mm')+'-'+moment(data['hora_fin']).format('HH:mm'));
+                    $('td', row).eq(3).html(data['docente']+'/'+data['aula']);
+                    $('td', row).eq(4).html(data['materia']);
+                    $('td', row).eq(4).html(data['estado']);
+                },
+                "ordering": true,
+                "info":     true,
+                "language":{
+                    "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                }, 
+                "ajax" : {
+                    'url' : "{{ route('programacion.futuro',['inscripcion'=>$inscripcion->id])}}",
+                    // "success":function(json){
+                    //     console.log(json);
+                    // }
+                },
+                "columns": [
+                        {"data": "id"},
+                        {"data": "fecha"},
+                        {"data": "hora_ini"},
+                        {"data": "hora_fin"},
+                        {"data": "docente"},
+                        {"data": "materia"},
+                        
+
+                        {"data": "btn"},
+                    ],
+                "columnDefs": [
+                    { responsivePriority: 1, targets: 0 },  
+                    { responsivePriority: 2, targets: -1 }
+                ],
+                "order": [[ 1, "asc" ]],
+            });
+            
+
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('#futuro').on('click', '.mostrar', function(e) {
                 e.preventDefault(); 
@@ -270,13 +325,16 @@
                     data : { id :id_programacion },
                     success : function(json) {
                         console.log(json);
-                        $("#tabla-mostrar").empty();
+                        $("#tabla-mostrar-programacion").empty();
+                        $("#tabla-mostrar-observaciones").empty();
+                        $("#tabla-mostrar-observaciones").empty();
                         $("#modal-mostrar").modal("show");
                         $html="";
                         $html+="<tr><td>Fecha</td>"+"<td>"+moment(json.programacion.fecha).format('dddd')+' '+moment(json.programacion.fecha).format('LL')+"</td></tr>";
                         $html+="<tr><td>Hora Inicio</td>"+"<td>"+moment(json.programacion.hora_ini).format('HH:mm:ss')+"</td></tr>";
                         $html+="<tr><td>Hora Fin</td>"+"<td>"+moment(json.programacion.hora_fin).format('HH:mm:ss')+"</td></tr>";
-                        $html+="<tr><td>Horas por clase</td>"+"<td>"+json.programacion.horas_por_clase+"</td></tr>";
+                        $html+="<tr><td>Horas por clase</td>"+"<td>"+json.programacion.horas_por_clase+" Horas</td></tr>";
+    
                         $html+="<tr><td>Estado Pago</td>"+"<td>"+(json.programacion.habilitado==1) ? 'Pagado' :'Impaga'+"</td></tr>";
                         $html+="<tr><td>Estado Activo</td>"+"<td>"+(json.programacion.activo==1) ? 'Activo' :'Desactivado'+"</td></tr>";
                         $html+="<tr><td>Estado</td>"+"<td>"+json.programacion.estado+"</td></tr>";
@@ -288,7 +346,6 @@
                         //     $html+="<tr><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td></tr>";
                         // }
                         $("#tabla-mostrar-programacion").append($html);
-
                         $htmlObservaciones="";
                         for (let j in json.observaciones) {
                             $htmlObservaciones+="<tr id='"+json.observaciones[j].id +"''><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td>";
@@ -298,23 +355,28 @@
                             $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 eliminarobservacion' title='Eliminar esta observacion'>";
                             $htmlObservaciones+="<i class='fas fa-trash-alt text-danger'></i>";
                             $htmlObservaciones+="</td>";
-
                         }
                         $("#tabla-mostrar-observaciones").append($htmlObservaciones);
 
-                        // $htmlClases="";
-                        // for (let j in json.clasescom) {
-                        //     //console.log(json.clasescom[j].fecha);
-                        //     $htmlClases+="<tr><td>"+ moment(json.clasescom[j].fecha).format('LL') +"</td>";
-                        //     $htmlClases+="<td>"+json.clasescom[j].estado+"</td>";
-                        //     $htmlClases+="<td>"+moment(json.clasescom[j].horainicio).format('HH:mm:ss')+"</td>";
-                        //     $htmlClases+="<td>"+moment(json.clasescom[j].horafin).format('HH:mm:ss')+"</td>";
-                        //     $htmlClases+="<td>" + json.clasescom[j].nombre + "</td>";
-                        //     $htmlClases+="<td>"+json.clasescom[j].aula+"</td></tr>";
-                            
-                            
-                        // }
-                        // $("#tabla-mostrar-clases").append($htmlClases);
+                        $htmlClases="";
+                        for (let j in json.clasescom) {
+                            //console.log(json.clasescom[j].fecha);
+                            $htmlClases+="<tr><td>"+ moment(json.clasescom[j].fecha).format('LL') +"</td>";
+                            $htmlClases+="<td>"+json.clasescom[j].estado+"</td>";
+                            $htmlClases+="<td>"+moment(json.clasescom[j].horainicio).format('HH:mm:ss')+"</td>";
+                            $htmlClases+="<td>"+moment(json.clasescom[j].horafin).format('HH:mm:ss')+"</td>";
+                            $htmlClases+="<td>" + json.clasescom[j].nombre + "</td>";
+                            $htmlClases+="<td>"+json.clasescom[j].aula+"</td></tr>";
+                        }
+                        $("#tabla-mostrar-clases").append($htmlClases);
+                        $htmlLicencia="";
+                        for (let j in json.licencias) {
+                            $htmlLicencia+="<tr><td>"+ json.licencias[j].motivo +"</td>";
+                            $htmlLicencia+="<td>"+json.licencias[j].solicitante+"</td>";
+                            $htmlLicencia+="<td>"+json.licencias[j].parentesco+"</td>";
+                            $htmlLicencia+="<td>"+moment(json.licencias[j].created_at).format('LLLL')+"</td>";
+                        }
+                        $("#tabla-mostrar-licencias").append($htmlLicencia);
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
@@ -328,6 +390,7 @@
                 e.preventDefault(); 
                 let id_programacion=$(this).closest('tr').attr('id');
                 $("#id_programacion").val(id_programacion);
+                
                 $("#modal-gregar-observacion").modal("show");
             });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BOTON GUARDAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -358,7 +421,7 @@
                 $("#modal-gregar-observacion").modal("hide");
             });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR FINALIZADO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('#tabla_hoy').on('click', '.finalizado', function(e) {
+            $('#tabla_hoy').on('click', '.mostrar', function(e) {
                 e.preventDefault(); 
                 let id_programacion =$(this).closest('tr').attr('id');
                 
@@ -368,7 +431,7 @@
                     success : function(json) {
                         console.log(json);
                         
-                        $("#modal-mostrar-clase").modal("show");
+                        $("#modal-mostrar").modal("show");
                         $("#tabla-mostrar-programacion").empty();
                         $("#tabla-mostrar-observaciones").empty();
                         $("#tabla-mostrar-clases").empty();
@@ -390,7 +453,13 @@
 
                         $htmlObservaciones="";
                         for (let j in json.observaciones) {
-                            $htmlObservaciones+="<tr><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td></tr>";
+                            $htmlObservaciones+="<tr id='"+json.observaciones[j].id +"''><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td>";
+                            $htmlObservaciones+="<td>";
+                            $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 editarobservacion' title='Editar esta Observacion'>";
+                            $htmlObservaciones+="<i class='fa fa-fw fa-edit text-primary'></i></a>";
+                            $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 eliminarobservacion' title='Eliminar esta observacion'>";
+                            $htmlObservaciones+="<i class='fas fa-trash-alt text-danger'></i>";
+                            $htmlObservaciones+="</td></tr>";
                         }
                         $("#tabla-mostrar-observaciones").append($htmlObservaciones);
 
@@ -407,6 +476,40 @@
                             $htmlClases+="<tr><td colspan='7'>"+json.clases[j].tema+"</td></tr>";
                         }
                         $("#tabla-mostrar-clases").append($htmlClases);
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+            });
+             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR ENVIO DE FORMULARIO OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $(document).on("submit","#formulario-editar-observacion",function(e){
+                e.preventDefault();//detenemos el envio
+                $observacion=$('#observacionx').val();
+                console.log($observacion);
+                $observacion_id=$('#observacion_id').val();
+                $programacion_id=$('#programacion_id').val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url : "../../observacion/actualizar/",
+                    data:{
+                            observacion:$observacion,
+                            observacion_id:$observacion_id,
+                            programacion_id:$programacion_id,
+                        },
+                    
+                    success : function(json) {
+                        let programacion_id=$('#programacion_id').val(); 
+                        console.log(programacion_id);
+                        
+                        $('#editar-observacion').modal('hide');
+                        $("#"+programacion_id).addTempClass( 'bg-success', 3000 );
+                        //$('#futuro').DataTable().ajax.reload();
+                        
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
@@ -596,11 +699,12 @@
                         
                         $('#'+programacion_actualizar+' td:nth-child(2)').text(moment(json.programacion.fecha).format('D-M-Y dddd'));
                         $('#'+programacion_actualizar+' td:nth-child(3)').text(moment(json.programacion.hora_ini).format('HH:mm')+'-'+moment(json.programacion.hora_fin).format('HH:mm'));
-                        $('#'+programacion_actualizar+' td:nth-child(4)').text(json.docente.nombre);
-                        $('#'+programacion_actualizar+' td:nth-child(5)').text(json.materia.materia);
-                        $('#'+programacion_actualizar+' td:nth-child(6)').text(json.aula.aula);
+                        $('#'+programacion_actualizar+' td:nth-child(4)').text(json.docente.nombre+json.aula.aula);
+                        $('#'+programacion_actualizar+' td:nth-child(5)').text(json.programacion.estado);
+                        $('#'+programacion_actualizar+' td:nth-child(6)').text(json.materia.materia);
                         $('#modal-editar').modal('hide');
                         $("#"+programacion_actualizar).addTempClass( 'bg-success', 3000 );
+                        $('#futuro').DataTable().ajax.reload();
                         $('#tabla_hoy').DataTable().ajax.reload();
                         
                     },
@@ -611,6 +715,272 @@
             });
 
             /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ADELANTAR PRO */
+
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+            $('table').on('click','.eliminarobservacion',function (e) {
+                e.preventDefault(); 
+                let id_programacioncom=$(this).closest('tr').attr('id');
+                Swal.fire({
+                    title: 'Estas seguro(a) de eliminar este registro?',
+                    text: "Si eliminas el registro no lo podras recuperar jamás!",
+                    icon: 'question',
+                    showCancelButton: true,
+                    showConfirmButton:true,
+                    confirmButtonColor: '#25ff80',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Eliminar..!',
+                    position:'center',        
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: '../../eliminar/observacion/'+id_programacioncom,
+                            type: 'DELETE',
+                            data:{
+                                id:id_programacioncom,
+                                _token:'{{ csrf_token() }}'
+                            },
+                            success: function(result) {
+                                $("#modal-mostrar-clase").modal("hide");
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 1500,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                                })
+                                Toast.fire({
+                                icon: 'success',
+                                title: 'Se eliminó correctamente el registro'
+                                })  
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                switch (xhr.status) {
+                                    case 500:
+                                        Swal.fire({
+                                            title: 'No se completó esta operación por que este registro está relacionado con otros registros',
+                                            showClass: {
+                                                popup: 'animate__animated animate__fadeInDown'
+                                            },
+                                            hideClass: {
+                                                popup: 'animate__animated animate__fadeOutUp'
+                                            }
+                                        })
+                                        break;
+                                
+                                    default:
+                                        break;
+                                }
+                            }
+                        });
+                    }else{
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 4000,
+                            timerProgressBar: true,
+                            onOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'No se eliminó el registro'
+                        })
+                    }
+                })
+            });
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA FORMULARIO EDITAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.editarobservacion', function(e) {
+                e.preventDefault(); 
+                let id_observacion=$(this).closest('tr').attr('id');
+                console.log("id_observacion"+id_observacion);
+                $htmlobs="";
+                $.ajax({
+                    url : "../../observacion/editar",
+                    data :{
+                        id:id_observacion,
+                    },
+                    success : function(json) {
+                        console.log(json);
+                        $("#modal-mostrar").modal("hide");
+                        $("#editar-observacion").modal("show");
+                        $("#formulario-editar-observacion").empty();
+                        
+                        $htmlobs+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'><div class='form-floating mb-3 text-gray'>";
+                        $htmlobs+="<input type='text' name='observacion' class='form-control @error('observacion') is-invalid @enderror texto-plomo' id='observacionx'"; 
+                        $htmlobs+="value=\'"+ json.observacion +"'\>";
+                        $htmlobs+="<label for='observacion'>Nombre de persona Observacion</label></div></div>";
+                        $htmlobs+="</div>";// div del row
+                        
+                        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE id observacion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                        $htmlobs+="<input id='observacion_id'  type='text' hidden readonly name='observacion_id' value='"+json.id +"'>";
+                        $htmlobs+="<input id='programacioncom_id'  type='text' hidden  readonly name='programacion_id' value='"+json.observable_id +"'>";
+
+                        $htmlobs+="<div class='container-fluid h-100 mt-3'>"; 
+                        $htmlobs+="<div class='row w-100 align-items-center'>";
+                        $htmlobs+="<div class='col text-center'>";
+                        $htmlobs+="<button type='submit' id='actualizarobservacion' class='btn btn-primary text-white btn-lg'>Guardar <i class='far fa-save'></i></button> ";       
+                        $htmlobs+="</div>";
+                        $htmlobs+="</div>";
+                        $htmlobs+="</div>";
+                        $("#formulario-editar-observacion").append($htmlobs);
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+            });
+
+             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR ENVIO DE FORMULARIO OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $(document).on("submit","#formulario-editar-observacion",function(e){
+                e.preventDefault();//detenemos el envio
+                $observacion=$('#observacionx').val();
+                console.log($observacion);
+                $observacion_id=$('#observacion_id').val();
+                $programacioncom_id=$('#programacioncom_id').val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url : "../../observacion/actualizar/",
+                    data:{
+                            observacion:$observacion,
+                            observacion_id:$observacion_id,
+                            programacioncom_id:$programacioncom_id,
+                        },
+                    
+                    success : function(json) {
+                        let programacioncom_id=$('#programacioncom_id').val(); 
+                        console.log(programacioncom_id);
+                        
+                        $('#editar-observacion').modal('hide');
+                        $("#"+programacioncom_id).addTempClass( 'bg-success', 3000 );
+                        //$('#futuro').DataTable().ajax.reload();
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+            });
+                        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO CREAR LICENCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.licencia', function(e) {
+                e.preventDefault(); 
+                $html="";
+                let id_programacion =$(this).closest('tr').attr('id');
+                console.log(id_programacion);
+                    $.ajax({
+                        url : "../../licenciaprogramacion/crear/",
+                        data : { id :id_programacion },
+                        success : function(data) {
+                            $("#formulario-licencia").empty();
+                            $("#licencia-crear").modal("show");
+                            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO AULA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+                            $html+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>";
+                            $html+="<div class='form-floating mb-3 text-gray'>";
+                            $html+="<select class='form-control @error('motivo_id') is-invalid @enderror' name='motivo_id' id='motivo_id'>";
+                            $html+="<option  value='' >Elije el motivo de la licencia </option>";
+                            for (let j in data.motivos) {
+                                console.log(data.motivos[j]);
+                                if(data.motivos[j].id==data.motivos.motivo_id){
+                                    $html+="<option  value='"+data.motivos[j].id +"' selected >"+data.motivos[j].motivo+"</option>";
+                                }else{
+                                    $html+="<option  value='"+data.motivos[j].id +"'>"+data.motivos[j].motivo+"</option>";
+                                }
+                            }
+                            $html+="</select>";                
+                            $html+="<label for='motivo_id'>Motivo</label></div></div>";
+                            $html+="</div>";// fin de row
+                            $html+="<div class='row'>";
+
+                            $html+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'><div class='form-floating mb-3 text-gray'>";
+                            $html+="<input type='text' name='solicitante' class='form-control @error('solicitante') is-invalid @enderror texto-plomo' id='solicitante'"; 
+                            $html+="value=\''\>";
+                            $html+="<label for='solicitante'>Nombre de persona Solicitante</label></div></div>";
+                            $html+="</div>";// div del row
+
+                            $html+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>";
+                            $html+="<div class='form-floating mb-3 text-gray'>";
+                            $html+="<select class='form-control @error('parentesco') is-invalid @enderror' name='parentesco' id='parentesco'>";
+                                $html+="<option  value='' >Elije un parentesco</option>";
+                                $html+="<option  value='PAPA' >PAPA</option>";
+                                $html+="<option  value='MAMA' >MAMA</option>";
+                                $html+="<option  value='ESPOSO' >ESPOSO</option>";
+                                $html+="<option  value='ESPOSA' >ESPOSA</option>";
+                                $html+="<option  value='TIO' >TIO</option>";
+                                $html+="<option  value='TIA' >TIA</option>";
+                                $html+="<option  value='ELMISMO' >EL O ELLA MISMA</option>";
+                            $html+="</select>";                
+                            $html+="<label for='parentesco'>Parentesco</label></div></div>";
+                            $html+="</div>";// fin de row
+                            $html+="<div class='row'>";
+
+                            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                            $html+="<input id='inscripcione_id'  type='text' hidden readonly name='inscripcione_id' value='"+data.programacion.inscripcione_id +"'>";
+                            $html+="<input id='programacion_id'  type='text' hidden readonly name='programacion_id' value='"+data.programacion.id +"'>";
+
+                            $html+="<div class='container-fluid h-100 mt-3'>"; 
+                            $html+="<div class='row w-100 align-items-center'>";
+                            $html+="<div class='col text-center'>";
+                            $html+="<button type='submit' id='guardar' class='btn btn-primary text-white btn-lg'>Guardar <i class='far fa-save'></i></button> ";       
+                            $html+="</div>";
+                            $html+="</div>";
+                            $html+="</div>";
+                            
+                            $("#formulario-licencia").append($html);
+
+                        },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },  
+                });
+            });
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR ENVIO DE FORMULARIO PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $(document).on("submit","#formulario-licencia",function(e){
+                e.preventDefault();//detenemos el envio
+            
+                $motivo_id=$('#motivo_id').val();
+                $solicitante=$('#solicitante').val();
+                $parentesco=$('#parentesco').val();
+                
+                $inscripcione_id=$('#inscripcione_id').val();
+                $programacion_id=$('#programacion_id').val();
+                
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    url : "../../licenciaprogramacion/guardar",
+                    data:{
+                            motivo_id:$motivo_id,
+                            solicitante:$solicitante,
+                            parentesco:$parentesco,
+                            inscripcione_id:$inscripcione_id,
+                            programacion_id:$programacion_id,
+                        },
+                    
+                    success : function(json) {
+                        console.log(json);
+                        let programacion_actualizar=$('#programacion_id').val(); 
+                        $('#licencia-crear').modal('hide');
+                        $("#"+programacion_actualizar).addTempClass( 'bg-success', 3000 );
+                        $('#futuro').DataTable().ajax.reload();
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+            });
         });
 </script>
 

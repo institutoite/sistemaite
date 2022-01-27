@@ -79,6 +79,20 @@
                             
                         </tbody>
                     </table>
+
+                    <table id="licencias" class="table table-bordered table-hover table-striped">
+                        <thead class="bg-primary">
+                            <tr>
+                                <th>MOTIVO</th>
+                                <th>SOLICITANTE</th>
+                                <th>PARENTESCO</th>
+                                <th>SOLICITADO</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-mostrar-licencias">
+                            
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="modal-footer">

@@ -10,6 +10,7 @@ use App\Http\Controllers\GestionController;
 use App\Http\Controllers\OpcionController;
 use App\Http\Controllers\PagocomController;
 use App\Http\Controllers\ProgramacioncomController;
+use App\Http\Controllers\ProgramacionController;
 use App\Http\Controllers\ClasecomController;
 use App\Http\Controllers\TipomotivoController;
 use App\Http\Controllers\LicenciaController;
@@ -20,8 +21,6 @@ use App\Http\Controllers\ClaseController;
 
 
 use App\Http\Controllers\ProductoController;
-
-
 
 use Illuminate\Support\Facades\Auth;
 //use SweetAlert;
@@ -40,7 +39,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[ClasecomController::class,'editar'])->name('prueba');
+Route::get('prueba',[LicenciaController::class,'createprogramacion'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -298,9 +297,11 @@ Route::get('modalidad/cosultar/', 'ModalidadController@consultar')->name('modali
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LICENCIAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('licencias', [LicenciaController::class,'index'])->name('licencia.index');
-Route::get('licenciacom/crear', [LicenciaController::class,'createcom'])->name('licencia.crear');
-Route::get('licenciacom/guardar', [LicenciaController::class,'storecom'])->name('licencia.storecom');
-
+Route::get('licenciacom/crear', [LicenciaController::class,'createcom'])->name('licenciacom.crear');
+Route::get('licenciacom/guardar', [LicenciaController::class,'storecom'])->name('licenciacom.storecom');
+Route::get('licenciaprogramacion/crear', [LicenciaController::class,'createprogramacion'])->name('licenciaprogramacion.crear');
+Route::get('licenciaprogramacion/guardar', [LicenciaController::class,'storeprogramacion'])->name('licenciaprogramacion.guardar');
+                                                                       
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('tus_inscripciones/{estudiante_id}', 'InscripcioneController@tusinscripciones')->name('tus.inscripciones');
@@ -337,6 +338,7 @@ Route::get('imprimir/programa/{inscripcione}', 'ProgramacionController@imprimirP
 Route::get('actualizar/programa/segunpago/{inscripcione}', 'ProgramacionController@actualizarProgramaSegunPago')->name('actualizar.programa.segun.pago');
 Route::get('clase/marcar/normal/{programacion_id}', 'ProgramacionController@marcadoNormal')->name('marcado.presente.normal');
 Route::get('guardar/observacion/programacion', 'ProgramacionController@guardarObservacion')->name('guardar.observacion.programacion');
+Route::get('programacion/futuro/{inscripcion}', [ProgramacionController::class,'programacionesFuturo'])->name('programacion.futuro');
 
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% P R O G R A M A C I O N  COMPUTACION  C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
