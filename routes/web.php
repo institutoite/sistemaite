@@ -17,6 +17,7 @@ use App\Http\Controllers\LicenciaController;
 use App\Http\Controllers\MotivoController;
 use App\Http\Controllers\ObservacionController;
 use App\Http\Controllers\ClaseController;
+use App\Http\Controllers\EstadoController;
 
 
 
@@ -39,7 +40,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[LicenciaController::class,'createprogramacion'])->name('prueba');
+Route::get('prueba',[EstadoController::class,'index'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -123,6 +124,7 @@ Route::post('computacion/carreras/configurar/{persona}', 'ComputacionController@
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  T E M A S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('temas/{materia_id}','TemaController@listar')->name('tamas.listar');
+
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  M A T E R I A S    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -215,6 +217,17 @@ Route::get('gestion/editar/', [GestionController::class,'editar'])->name('gestio
 Route::get('gestion/create/{estudiante}', [GestionController::class,'create'])->name('gestion.create');
 Route::get('gestion/actualizar', [GestionController::class, 'actualizar'])->name("gestion.actualizar");
 Route::delete('eliminar/gestion/{gestion}', [GestionController::class, 'destroy'])->name('eliminar.gestion');
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  ESTADOS   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::get('estados', [EstadoController::class, 'index'])->name('estado.index');
+Route::get('estado/create',[EstadoController::class,'create'])->name('estado.create');
+Route::get('estados/show/{estado}', [EstadoController::class, 'show'])->name('estado.show');
+Route::post('estado/guardar',[EstadoController::class,'store'])->name('estado.store');
+Route::get('estado/mostrar/{estado}', [EstadoController::class,'show'])->name("estado.show");
+Route::get('estado/editar/{estado}', [EstadoController::class,'edit'])->name("estado.edit");
+Route::get('estado/actualizar/{estado}', [EstadoController::class,'update'])->name("estado.update");
+Route::delete('eliminar/estado/{estado}', [EstadoController::class,'destroy'])->name('estado.destroy');
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  C A R R E R A S   %%%%%%%%%%%%%%%%%%%%%%%%%%*/

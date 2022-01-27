@@ -192,6 +192,17 @@ class ClaseController extends Controller
     }
     public function actualizar(Request $request, Clase $clase)
     {
+        $clase->aula_id=$request->aula_id;
+        $clase->docente_id=$request->docente_id;
+        $clase->estado=$request->estado;
+        $clase->fecha =$request->fecha;
+        $clase->horafin=$request->horafin;
+        $clase->horainicio=$request->horainicio;
+        $clase->materia_id=$request->materia_id;
+        $clase->tema_id=$request->tema_id;
+
+        //$data=['request'=>$request->all(),'clase'=>$clase];
+        return response()->json($data);
         $clase->update($request->all());
         return response()->json(['mensaje'=>'La clase ha sido actualizada correctamente']);
     }

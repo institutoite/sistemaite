@@ -44,6 +44,7 @@ class DatabaseSeeder extends Seeder
             ComputacionSeeder::class,
             CarreraSeeder::class,
             AsignaturaSeeder::class,
+            EstadoSeeder::class,
 
         ]);
 

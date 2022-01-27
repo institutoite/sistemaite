@@ -35,7 +35,7 @@
                                 </div>
                             </div>
                             
-                            <select class="form-control" name="tema" id="tema">
+                            <select class="form-control" name="tema_id" id="tema_id">
                                 {{-- se cargan los opction desde Ajax  presentes.blade--}}
                             </select>
                             <div class="container-fluid h-100 mt-3"> 

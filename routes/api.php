@@ -21,6 +21,7 @@ use App\Models\Inscripcione;
 use App\Models\Motivo;
 use App\Models\Asignatura;
 use App\Models\Carrera;
+use App\Models\Estado;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -189,6 +190,12 @@ Route::get('asignaturas', function () {
 Route::get('carreras', function () {
     return datatables()->of(Carrera::all())
         ->addColumn('btn', 'carrera.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+});
+Route::get('estados', function () {
+    return datatables()->of(Estado::all())
+        ->addColumn('btn', 'estado.action')
         ->rawColumns(['btn'])
         ->toJson();
 });
