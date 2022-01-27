@@ -4,7 +4,10 @@ namespace Database\Seeders;
 use App\Estudiante;
 use App\Inscripcione;
 use App\Modalidad;
+use App\Models\Homeschedule;
 use Illuminate\Database\Seeder;
+
+use function Ramsey\Uuid\v1;
 
 class DatabaseSeeder extends Seeder
 {
@@ -43,7 +46,8 @@ class DatabaseSeeder extends Seeder
             ComputacionSeeder::class,
             CarreraSeeder::class,
             AsignaturaSeeder::class,
-
+            HomeSeeder::class,
+            HomescheduleSeeder::class,
         ]);
 
         

@@ -30,6 +30,52 @@
 </div>
 @stop
 
+@section('guarderia')
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Modadidad</th>
+            <th scope="col">Horas</th>
+            <th scope="col">Costo</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach ($guarderias as $guarderia)
+                <tr>
+                    <td>{{$guarderia->modalidad}}</td>
+                    <td>{{$guarderia->cargahoraria}}</td>
+                    <td>Bs.{{$guarderia->costo}}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+@stop
+
+@section('inicial')
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Modadidad</th>
+            <th scope="col">Horas</th>
+            <th scope="col">Costo</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach ($inicials as $inicial)
+                <tr>
+                    <td>{{$inicial->modalidad}}</td>
+                    <td>{{$inicial->cargahoraria}}</td>
+                    <td>Bs.{{$inicial->costo}}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+@stop
+
 @section('schedule')
 @foreach ($homeschedules as $homeschedule)
     <div class="about-text-block">
@@ -55,4 +101,5 @@
 </div>
 @endforeach
 @stop
+
 

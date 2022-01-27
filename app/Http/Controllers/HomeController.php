@@ -24,10 +24,14 @@ class HomeController extends Controller
         $guarderias = Modalidad::all()->where('nivel_id', '1');
         $inicials = Modalidad::all()->where('nivel_id', '2');
         $primarias = Modalidad::all()->where('nivel_id', '3');
-        $guarderias = Modalidad::all()->where('nivel_id', '1');
+        $secundarias = Modalidad::all()->where('nivel_id', '4');
+        $preuniversitarios = Modalidad::all()->where('nivel_id', '5');
+        $institutos = Modalidad::all()->where('nivel_id', '6');
+        $universitarios = Modalidad::all()->where('nivel_id', '7');
+        $profesionales = Modalidad::all()->where('nivel_id', '8');
         $docentes = Docente::all()->where('estado','activo');
         
-        return view('home.index', compact(['hometext', 'homeschedules', 'guarderias', 'docentes']));
+        return view('home.index', compact(['hometext', 'homeschedules', 'guarderias', 'inicials', 'primarias', 'secundarias', 'preuniversitarios', 'institutos', 'universitarios', 'profesionales', 'docentes']));
     }
 
     /**
