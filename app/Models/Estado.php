@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Estado extends Model
 {
     use HasFactory;
+
+    public function programaciones(){
+        return $this->hasMany(Programacion::class);
+    }
+    public function programacioncoms(){
+        return $this->hasMany(Programacioncom::class);
+    }
+    public function clases(){
+        return $this->hasMany(Clase::class);
+    }
+    public function clasecoms(){
+        return $this->hasMany(Clasecom::class);
+    }
 }

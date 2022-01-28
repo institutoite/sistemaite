@@ -18,8 +18,12 @@ class CreateProgramacioncomsTable extends Migration
             $table->date('fecha');
             $table->boolean('habilitado');
             $table->boolean('activo');
-            $table->string('estado', 25);
-            $table->time('horaini');
+
+            $table->unsignedInteger('estado_id');
+            $table->foreign('estado_id', 'fk_programacioncom_estado_id')
+                ->references('id')->on('estados');
+            
+                $table->time('horaini');
             $table->time('horafin');
             $table->double('horas_por_clase');
             $table->unsignedInteger('docente_id');

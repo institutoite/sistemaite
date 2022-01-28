@@ -18,23 +18,29 @@ class CreateProgramacionsTable extends Migration
             $table->date('fecha');
             $table->boolean('habilitado');
             $table->boolean('activo');
-            $table->string('estado', 25);
+            
             $table->time('hora_ini');
             $table->time('hora_fin');
             $table->double('horas_por_clase');
+            
+            
             $table->unsignedInteger('docente_id');
             $table->unsignedInteger('materia_id');
             $table->unsignedInteger('aula_id');
             $table->unsignedInteger('inscripcione_id');
 
-            $table->foreign('docente_id', 'fk_programacion_docente_idx')
-                ->references('id')->on('docentes');
+            $table->unsignedInteger('estado_id');
+            $table->foreign('estado_id', 'fk_programacion_estado_id')
+                ->references('id')->on('estados');
+            
+                $table->foreign('docente_id', 'fk_programacion_docente_idx')
+                ->references('id')->on('docentes')->onDelete('cascade');
 
             $table->foreign('materia_id', 'fk_programacion_materia_idx')
-            ->references('id')->on('materias');
+            ->references('id')->on('materias')->onDelete('cascade');
 
             $table->foreign('aula_id', 'fk_programacion_aula_idx')
-            ->references('id')->on('aulas');
+            ->references('id')->on('aulas')->onDelete('cascade');
 
             $table->foreign('inscripcione_id', 'fk_programacion_inscripcion_idx')
             ->references('id')->on('inscripciones')->onDelete('cascade');

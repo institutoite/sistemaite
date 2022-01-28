@@ -597,22 +597,13 @@
                             $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-6'>";
                             $html+="<div class='form-floating mb-3 text-gray'>";
                             $html+="<select class='form-control @error('estado') is-invalid @enderror'  name='estado' id='estado'>";
-                            $html+="<option value=''> Elija estado</option>";
-                            if(json.programacion.estado == 'INDEFINIDO'){
-                                $html+="<option value='INDEFINIDO'"+" selected>INDEFINIDO</option>";
-                            }else{
-                                $html+="<option value='INDEFINIDO'>INDEFINIDO</option>";
-                            }
-                            if(json.programacion.estado == 'PRESENTE'){
-                                $html+="<option value='PRESENTE'"+" selected>PRESENTE</option>";
-                            }else{
-                                $html+="<option value='PRESENTE'>PRESENTE</option>";
-                            }
-                            if(json.programacion.estado == 'FINALIZADO'){
-                                $html+="<option value='FINALIZADO'"+" selected>FINALIZADO</option>";
-                            }else{
-                                $html+="<option value='FINALIZADO'>FINALIZADO</option>";
-                            }
+                                for (let k in json.estados) {
+                                    if(json.estados[k].id==json.programacion.estado_id){
+                                        $html+="<option  value='"+json.estados[k].id +"' selected >"+json.estados[k].estado+"</option>";
+                                    }else{
+                                        $html+="<option  value='"+json.estados[k].id +"'>"+json.estados[k].estado+"</option>";
+                                    }
+                                }
                             $html+="</select>";                
                             $html+="<label for='estado'>Estado</label></div></div>";
                         // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO ACTIVO EN VENTANA MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

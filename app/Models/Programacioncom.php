@@ -48,6 +48,9 @@ class Programacioncom extends Model
     public function licencias(){
         return $this->morphMany('App\Models\Licencia','licenciable');
     }
+    public function estado(){
+        return $this->belongsTo(Estado::class);
+    }
     
 
 }

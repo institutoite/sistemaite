@@ -57,4 +57,8 @@ class Clase extends Model
     {
         return $this->morphOne('App\Models\Userable', 'userable');
     }
+
+    public function estado(){
+        return $this->belongsTo(Estado::class);
+    }
 }

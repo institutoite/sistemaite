@@ -16,7 +16,11 @@ class CreateClasesTable extends Migration
         Schema::create('clases', function (Blueprint $table) {
             $table->increments('id');
             $table->date('fecha');
-            $table->string('estado',15);
+            
+            $table->unsignedInteger('estado_id');
+            $table->foreign('estado_id', 'fk_clase_estado_id')
+                ->references('id')->on('estados');
+
             $table->time('horainicio');
             $table->time('horafin');
 

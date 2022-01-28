@@ -229,17 +229,18 @@ class ClaseController extends Controller
         ->join('aulas', 'sesions.aula_id', '=', 'aulas.id')
         ->join('docentes', 'sesions.docente_id', '=', 'docentes.id')
         ->join('personas', 'docentes.persona_id', '=', 'personas.id')
+        ->join('estados', 'estados.id', '=', 'programacions.estado_id')
         ->where('inscripciones.id', '=', $inscripcion_id)
         ->where('programacions.fecha', '=',DB::raw('date(now())'))
             ->where('dias.id', '=', DB::raw("DAYOFWEEK(programacions.fecha)-1"))
             
-        ->select('programacions.id', 'programacions.fecha', 'programacions.estado', 'hora_ini', 'hora_fin', 'programacions.habilitado', 'personas.nombre', 'materia','programacions.docente_id','programacions.materia_id')
+        ->select('programacions.id', 'programacions.fecha', 'estados.estado', 'hora_ini', 'hora_fin', 'programacions.habilitado', 'personas.nombre', 'materia','programacions.docente_id','programacions.materia_id')
         ->get();
         $inscripcion=Inscripcione::findOrFail($inscripcion_id);
         $dias_que_faltan_para_pagar= $inscripcion->fecha_proximo_pago->diffInDays(now());
         
         $pago=$inscripcion->pagos->sum('monto');
-        $faltas=Programacion::where('estado','=','FALTA')->count();
+        $faltas=Programacion::where('estado_','=','FALTA')->count();
         $presentes = Programacion::where('estado', '=', 'PRESENTE')->count();
         $finalizados = Programacion::where('estado', '=', 'FINALIZADO')->count();
         $licencias = Programacion::where('estado', '=', 'LICENCIA')->count();

@@ -28,4 +28,8 @@ class Clasecom extends Model
     {
         return $this->belongsTo(Aula::class);
     }
+
+    public function estado(){
+        return $this->belongsTo(Estado::class);
+    }
 }

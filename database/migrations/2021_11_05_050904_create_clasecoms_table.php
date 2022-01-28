@@ -16,8 +16,13 @@ class CreateClasecomsTable extends Migration
         Schema::create('clasecoms', function (Blueprint $table) {
             $table->increments('id');
             $table->date('fecha');
-            $table->string('estado',15);
-            $table->time('horainicio');
+
+
+            $table->unsignedInteger('estado_id');
+            $table->foreign('estado_id', 'fk_clasecom_estado_id')
+                ->references('id')->on('estados');
+            
+                $table->time('horainicio');
             $table->time('horafin');
 
             $table->unsignedInteger('docente_id')->nullable();

@@ -19,6 +19,7 @@ use App\Models\Modalidad;
 use App\Models\Licencia;
 use App\Models\Nivel;
 use App\Models\Observacion;
+use App\Models\Estado;
 use App\Models\Persona;
 use App\Models\Colegio;
 use App\Models\User;
@@ -137,13 +138,13 @@ class ProgramacionController extends Controller
 
      public function editar(Request $request)
     {
-        //return response()->json(['id'=>1]);
         $programacion=Programacion::findOrFail($request->id);
         $docentes=Docente::all();
         $materias=Materia::all();
         $aulas=Aula::all();
+        $estados=Estado::all();
         //return view('programacion.edit',compact('programacion','docentes','materias','aulas'));
-        $data=['programacion'=>$programacion,'docentes'=>$docentes,'materias'=>$materias,'aulas'=>$aulas];
+        $data=['programacion'=>$programacion,'docentes'=>$docentes,'materias'=>$materias,'aulas'=>$aulas,'estados'=>$estados];
         return response()->json($data);
 
     }
@@ -423,7 +424,7 @@ class ProgramacionController extends Controller
         $programa->fecha = $fecha;
         $programa->habilitado = $habilitado;
         $programa->activo = true;
-        $programa->estado = 'INDEFINIDO';
+        $programa->estado_id = 1;
         $programa->hora_ini = $sesion->horainicio;
         
         $programa->docente_id = $sesion->docente_id;
@@ -611,6 +612,7 @@ class ProgramacionController extends Controller
                     ->join('aulas','aulas.id','=','programacions.aula_id')
                     ->join('inscripciones','inscripciones.id','=','programacions.inscripcione_id')
                     ->join('materias','materias.id','=','programacions.materia_id')
+                    ->join('estados','estados.id','=','programacions.estado_id')
                     ->where('inscripcione_id',$request->inscripcion)
                     ->select('programacions.id','fecha','programacions.estado','materia','docentes.nombre as docente','programacions.hora_ini','programacions.hora_fin','aulas.aula')->get();
         return DataTables::of($programacion)
