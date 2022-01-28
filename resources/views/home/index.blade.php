@@ -76,6 +76,121 @@
 
 @stop
 
+@section('primaria')
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Modadidad</th>
+            <th scope="col">Horas</th>
+            <th scope="col">Costo</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach ($primarias as $primaria)
+                <tr>
+                    <td>{{$primaria->modalidad}}</td>
+                    <td>{{$primaria->cargahoraria}}</td>
+                    <td>Bs.{{$primaria->costo}}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+@stop
+
+@section('secundaria')
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Modadidad</th>
+            <th scope="col">Horas</th>
+            <th scope="col">Costo</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach ($secundarias as $secundaria)
+                <tr>
+                    <td>{{$secundaria->modalidad}}</td>
+                    <td>{{$secundaria->cargahoraria}}</td>
+                    <td>Bs.{{$secundaria->costo}}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+@stop
+
+@section('preuniversitario')
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Modadidad</th>
+            <th scope="col">Horas</th>
+            <th scope="col">Costo</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach ($preuniversitarios as $preuniversitario)
+                <tr>
+                    <td>{{$preuniversitario->modalidad}}</td>
+                    <td>{{$preuniversitario->cargahoraria}}</td>
+                    <td>Bs.{{$preuniversitario->costo}}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+@stop
+
+@section('instituto')
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Modadidad</th>
+            <th scope="col">Horas</th>
+            <th scope="col">Costo</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach ($institutos as $instituto)
+                <tr>
+                    <td>{{$instituto->modalidad}}</td>
+                    <td>{{$instituto->cargahoraria}}</td>
+                    <td>Bs.{{$instituto->costo}}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+@stop
+
+@section('profesional')
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Modadidad</th>
+            <th scope="col">Horas</th>
+            <th scope="col">Costo</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach ($profesionals as $profesional)
+                <tr>
+                    <td>{{$profesional->modalidad}}</td>
+                    <td>{{$profesional->cargahoraria}}</td>
+                    <td>Bs.{{$profesional->costo}}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+@stop
+
 @section('schedule')
 @foreach ($homeschedules as $homeschedule)
     <div class="about-text-block">
