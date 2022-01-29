@@ -337,7 +337,7 @@
     
                         $html+="<tr><td>Estado Pago</td>"+"<td>"+(json.programacion.habilitado==1) ? 'Pagado' :'Impaga'+"</td></tr>";
                         $html+="<tr><td>Estado Activo</td>"+"<td>"+(json.programacion.activo==1) ? 'Activo' :'Desactivado'+"</td></tr>";
-                        $html+="<tr><td>Estado</td>"+"<td>"+json.programacion.estado+"</td></tr>";
+                        $html+="<tr><td>Estado</td>"+"<td>"+json.estado.estado+"</td></tr>";
                         $html+="<tr><td>Docente</td>"+"<td>"+json.docente.nombre+"</td></tr>";
                         $html+="<tr><td>Materia</td>"+"<td>"+json.materia.materia+"</td></tr>";
                         $html+="<tr><td>Aula</td>"+"<td>"+json.aula.aula+"</td></tr>";
@@ -596,7 +596,7 @@
                             // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO ESTADO EN VENTANA MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                            
                             $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-6'>";
                             $html+="<div class='form-floating mb-3 text-gray'>";
-                            $html+="<select class='form-control @error('estado') is-invalid @enderror'  name='estado' id='estado'>";
+                            $html+="<select class='form-control @error('estado_id') is-invalid @enderror'  name='estado_id' id='estado_id'>";
                                 for (let k in json.estados) {
                                     if(json.estados[k].id==json.programacion.estado_id){
                                         $html+="<option  value='"+json.estados[k].id +"' selected >"+json.estados[k].estado+"</option>";
@@ -650,7 +650,7 @@
                 $fecha=$('#fecha').val();
                 
                 $habilitado=$('#habilitado').val();
-                $estado=$('#estado').val();
+                $estado_id=$('#estado_id').val();
                 $activo=$('#activo').val();
                 
                 $horas_por_clase=$('#hora_por_clase').val();
@@ -674,7 +674,7 @@
                             hora_fin:$hora_fin,
                             fecha:$fecha,
                             habilitado:$habilitado,
-                            estado:$estado,
+                            estado_id:$estado_id,
                             activo:$activo,
                             horas_por_clase:$horas_por_clase,
                             docente_id:$docente_id,
@@ -687,7 +687,7 @@
                     success : function(json) {
                         console.log(json);
                         let programacion_actualizar=$('#programacion_id').val();
-                        
+                        //console.log(moment(json.programacion.fecha).format('D-M-Y dddd'));
                         $('#'+programacion_actualizar+' td:nth-child(2)').text(moment(json.programacion.fecha).format('D-M-Y dddd'));
                         $('#'+programacion_actualizar+' td:nth-child(3)').text(moment(json.programacion.hora_ini).format('HH:mm')+'-'+moment(json.programacion.hora_fin).format('HH:mm'));
                         $('#'+programacion_actualizar+' td:nth-child(4)').text(json.docente.nombre+json.aula.aula);

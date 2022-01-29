@@ -240,10 +240,13 @@ class ClaseController extends Controller
         $dias_que_faltan_para_pagar= $inscripcion->fecha_proximo_pago->diffInDays(now());
         
         $pago=$inscripcion->pagos->sum('monto');
-        $faltas=Programacion::where('estado_','=','FALTA')->count();
-        $presentes = Programacion::where('estado', '=', 'PRESENTE')->count();
-        $finalizados = Programacion::where('estado', '=', 'FINALIZADO')->count();
-        $licencias = Programacion::where('estado', '=', 'LICENCIA')->count();
+        $indefinido=$inscripcion->programaciones->where('estado_id',1)->count();
+        $presentes = $inscripcion->programaciones->where('estado_id',2)->count();
+        $faltas = $inscripcion->programaciones->where('estado_id',3)->count();
+        $congelados = $inscripcion->programaciones->where('estado_id',4)->count();
+        $licencias = $inscripcion->programaciones->where('estado_id',5)->count();
+        $finalizados = $inscripcion->programaciones->where('estado_id',6)->count();
+
          
         return view('programacion.marcadoGeneral',compact('programaciones', 'faltas', 'presentes', 'licencias', 'pago', 'inscripcion', 'dias_que_faltan_para_pagar'));
         //return redirect()->route('clases.marcado.general',$inscripcion_id)->with('programaciones', 'programacionesHoy', 'faltas', 'presentes', 'licencias', 'pago', 'inscripcion','dias_que_faltan_para_pagar');

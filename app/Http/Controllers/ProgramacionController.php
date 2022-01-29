@@ -87,7 +87,9 @@ class ProgramacionController extends Controller
             ->where('programacions.id','=',$request->id)
             ->select('motivos.motivo','solicitante','parentesco','licencias.created_at','licencias.updated_at')
             ->get();
-        $data=['programacion'=>$programacion, 'observaciones'=>$observaciones,'docente'=>$docente, 'materia' => $materia, 'aula' => $aula,'clases'=>$clases,'licencias'=>$licencias];
+        $estado=Estado::findOrFail($programacion->estado_id);
+        //return response()->json($programacion);    
+        $data=['programacion'=>$programacion,'estado'=>$estado , 'observaciones'=>$observaciones,'docente'=>$docente, 'materia' => $materia, 'aula' => $aula,'clases'=>$clases,'licencias'=>$licencias];
         return response()->json($data);
     }
     public function mostrarClases(Request $request)
@@ -113,9 +115,10 @@ class ProgramacionController extends Controller
         $programacion=Programacion::join('docentes','docentes.id','=','programacions.docente_id')
                     ->join('materias','materias.id','=','programacions.materia_id')
                     ->join('aulas','aulas.id','=','programacions.aula_id')
+                    ->join('estados','estados.id','=','programacions.estado_id')
                     ->where('inscripcione_id',$request->inscripcion)
                     ->where('fecha','=', Carbon::now()->isoFormat('Y-M-D'))
-                    ->select('programacions.id','fecha','hora_ini','hora_fin','programacions.estado','docentes.nombre','materias.materia','aulas.aula');
+                    ->select('programacions.id','fecha','hora_ini','hora_fin','estados.estado','docentes.nombre','materias.materia','aulas.aula');
         return DataTables::of($programacion)
                 ->addColumn('btn','programacion.actions')
                 ->rawColumns(['btn'])
@@ -202,7 +205,7 @@ class ProgramacionController extends Controller
                 'Hora Inicio: ' . $programacion->hora_ini . ' ' .
                 'Hora Fin: ' . $programacion->hora_fin . ' ' .
                 'Fecha : ' . $programacion->fecha . ' ' .
-                'Estado : ' . $programacion->estado . ' ' .
+                'Estado : ' . $programacion->estado->estado . ' ' .
                 'activo : ' . $programacion->activo . ' ' .
                 'horas por clase: ' . $programacion->horas_por_clase . ' ' .
                 'Docente: ' . $programacion->docente->nombre . ' ' .
@@ -218,7 +221,7 @@ class ProgramacionController extends Controller
         $hora_fin=Carbon::create($request->hora_fin);
         $programacion->fecha            =$request->fecha;
         $programacion->activo           =$request->activo;
-        $programacion->estado           =$request->estado;
+        $programacion->estado_id           =$request->estado_id;
         $programacion->hora_fin         =$request->hora_fin;
         $programacion->hora_ini         =$request->hora_ini;
         $programacion->horas_por_clase  = $hora_inicio->floatDiffInHours($hora_fin);
@@ -614,7 +617,7 @@ class ProgramacionController extends Controller
                     ->join('materias','materias.id','=','programacions.materia_id')
                     ->join('estados','estados.id','=','programacions.estado_id')
                     ->where('inscripcione_id',$request->inscripcion)
-                    ->select('programacions.id','fecha','programacions.estado','materia','docentes.nombre as docente','programacions.hora_ini','programacions.hora_fin','aulas.aula')->get();
+                    ->select('programacions.id','fecha','estados.estado','materia','docentes.nombre as docente','programacions.hora_ini','programacions.hora_fin','aulas.aula')->get();
         return DataTables::of($programacion)
                 ->addColumn('btn','programacion.actionsfuturo')
                 ->rawColumns(['btn'])
