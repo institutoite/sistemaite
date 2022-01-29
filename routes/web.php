@@ -383,6 +383,8 @@ Route::get('/',[HomeController::class, 'index']);
 
 Route::resource('home', "HomeController")->names('home');
 
+Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
+
 Route::resource('schedule', "HomescheduleController")->names('homeschedule');
 
 

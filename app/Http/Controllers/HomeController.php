@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Docente;
+use App\Models\Feriado;
 use App\Models\Homeschedule;
 use App\Models\Hometext;
 use App\Models\Modalidad;
@@ -29,9 +30,10 @@ class HomeController extends Controller
         $institutos = Modalidad::all()->where('nivel_id', '6');
         $universitarios = Modalidad::all()->where('nivel_id', '7');
         $profesionals = Modalidad::all()->where('nivel_id', '8');
+        $feriados = Feriado::all();
         $docentes = Docente::all()->where('estado','activo');
         
-        return view('home.index', compact(['hometext', 'homeschedules', 'guarderias', 'inicials', 'primarias', 'secundarias', 'preuniversitarios', 'institutos', 'universitarios', 'profesionals', 'docentes']));
+        return view('home.index', compact(['hometext', 'homeschedules', 'guarderias', 'inicials', 'primarias', 'secundarias', 'preuniversitarios', 'institutos', 'universitarios', 'profesionals', 'feriados', 'docentes']));
     }
 
     /**
@@ -67,6 +69,10 @@ class HomeController extends Controller
         //
     }
 
+    public function about()
+    {
+        return view('home.about');
+    }
     /**
      * Show the form for editing the specified resource.
      *

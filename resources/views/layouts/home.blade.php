@@ -72,12 +72,12 @@
                 <div class="collapse navbar-collapse" id="navbarMenu">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item ">
-                            <a href="index-2.html" class="nav-link js-scroll-trigger">
+                            <a href="{{ url('/') }}" class="nav-link js-scroll-trigger">
                                 Inicio
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a href="#" class="nav-link js-scroll-trigger">
+                            <a href="{{ route('about') }}" class="nav-link js-scroll-trigger">
                                 Acerca de nosotros
                             </a>
                         </li>
@@ -614,47 +614,7 @@
                                         data-parent="#accordionExample">
                                         <div class="course-lessons">
                                             <div class="single-course-lesson">
-                                                <table class="table table-striped">
-                                                    <thead>
-                                                      <tr>
-                                                        <th scope="col">Modadidad</th>
-                                                        <th scope="col">Horas</th>
-                                                        <th scope="col">Costo</th>
-                                                      </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                      <tr>
-                                                        <td>Hora</td>
-                                                        <td>1</td>
-                                                        <td>Bs.40</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td>Semana</td>
-                                                        <td>5</td>
-                                                        <td>Bs.165</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td>Quincena</td>
-                                                        <td>10</td>
-                                                        <td>Bs.265</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td>1 Mes</td>
-                                                        <td>20</td>
-                                                        <td>Bs.420</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td>2 Meses</td>
-                                                        <td>40</td>
-                                                        <td>Bs.750</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td>3 Meses</td>
-                                                        <td>60</td>
-                                                        <td>Bs.1050</td>
-                                                      </tr>
-                                                    </tbody>
-                                                </table>
+                                                @yield('profesional')
                                             </div>
                                         </div>
                                     </div>
@@ -676,6 +636,34 @@
                     {{-- <a href="#" class="btn btn-main-2"><i class="fa fa-check mr-2"></i>Elige tu horario</a> --}}
                 </div>
             </div> 
+        </div>
+    </div>
+</section>
+
+<section class="feature-2">
+    <div class="container">
+        <div class="section-heading center-heading">
+            <span class="subheading"></span>
+            <h3>Feriados en Instituto Ite</h3>
+        </div>
+        @yield('feriado')
+    </div>
+</section>
+
+<section class="about-section section-padding about-2">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-9 col-md-12">
+                <div class="section-heading">
+                    <span class="subheading">Plataforma educativa Educabol</span>
+                    <h3>¿Te gustaria aprender a tu ritmo desde cualquier dispositivo?</h3>
+                </div>
+
+                <p>Ingresa a nuestra plataforma educativa Educabol para ver todos nuestros cursos online.</p>
+
+                <a href="https://www.educabol.com/" class="btn btn-main"><i class="fa fa-check mr-2"></i>Ingresar</a>
+                
+            </div>
         </div>
     </div>
 </section>
