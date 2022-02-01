@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Docente;
 use App\Models\Feriado;
+use App\Models\Homequestion;
 use App\Models\Homeschedule;
 use App\Models\Hometext;
 use App\Models\Modalidad;
@@ -72,6 +73,13 @@ class HomeController extends Controller
     public function about()
     {
         return view('home.about');
+    }
+
+
+    public function questions()
+    {
+        $questions = Homequestion::all();
+        return view('home.questions', compact('questions'));
     }
     /**
      * Show the form for editing the specified resource.

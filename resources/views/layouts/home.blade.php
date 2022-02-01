@@ -698,9 +698,20 @@
                         <li class="list-inline-item"><a href="https://www.facebook.com/institutoeducabol"><i class="fab fa-facebook-f"></i></a></li>
 						<li class="list-inline-item"> <a href="https://www.youtube.com/channel/UCbmRHfG51CGM1foo-6kzunQ"><i class="fab fa-youtube"></i></a></li>
 					</ul>
+                    
 				</div>
 			</div>
 			
+            <div class="col-lg-2 col-sm-6 col-md-6">
+				<div class="footer-widget mb-5 mb-lg-0">
+					<h5 class="widget-title">Informaciones</h5>
+					<ul class="list-unstyled footer-links">
+						<li><a href="{{ route('about') }}">¿Quienes Somos?</a></li>
+						<li><a href="{{ route('questions') }}">Preguntas frecuentes</a></li>
+					</ul>
+				</div>
+			</div>
+
 			<div class="col-lg-2 col-sm-6 col-md-6">
 				<div class="footer-widget mb-5 mb-lg-0">
 					<h5 class="widget-title">Niveles</h5>
@@ -710,23 +721,11 @@
 						<li><a href="#">Secundaria</a></li>
 						<li><a href="#">Pre-Universitarios</a></li>
 						<li><a href="#">Universidad</a></li>
+                        <li><a href="#">Profesionales</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="col-lg-2 col-sm-6 col-md-6">
-				<div class="footer-widget mb-5 mb-lg-0">
-					<h5 class="widget-title">Materias</h5>
-					<ul class="list-unstyled footer-links">
-						<li><a href="#">Matemáticas</a></li>
-						<li><a href="#">Física</a></li>
-						<li><a href="#">Química</a></li>
-						<li><a href="#">Lenguaje</a></li>
-						<li><a href="#">Computación</a></li>
-                        <li><a href="#">Cálculo</a></li>
-                        <li><a href="#">Álgebra</a></li>
-					</ul>
-				</div>
-			</div>
+			
 			<div class="col-lg-3 col-sm-6 col-md-6">
 				<div class="footer-widget footer-contact mb-5 mb-lg-0">
 					<h5 class="widget-title">Contacto </h5>
@@ -769,7 +768,7 @@
 				</div>
 				<div class="col-lg-6">
 					<div class="copyright text-lg-center">
-						<p></p>
+						<h6>Desarrollado por Instituto ITE</h6>
 					</div>
 				</div>
 			</div>

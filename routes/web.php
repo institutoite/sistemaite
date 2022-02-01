@@ -385,6 +385,11 @@ Route::resource('home', "HomeController")->names('home');
 
 Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
 
+Route::get('/questions', [App\Http\Controllers\HomeController::class, 'questions'])->name('questions');
+
 Route::resource('schedule', "HomescheduleController")->names('homeschedule');
+
+Route::resource('question', "HomequestionController")->names('homequestion');
+
 
 
