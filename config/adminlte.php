@@ -1123,6 +1123,13 @@ return [
                     'url'  => 'schedule',
                     'classes'  => 'text-dark',
                 ],
+
+                [
+                    'text' => 'Preguntas frecuentes',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'question',
+                    'classes'  => 'text-dark',
+                ],
             ],
         ],
 
