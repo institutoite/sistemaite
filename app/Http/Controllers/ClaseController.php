@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Config;
+
 use App\Models\Aula;
 use SweetAlert;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -11,6 +13,8 @@ use App\Models\Docente;
 use App\Models\Materia;
 use App\Models\Programacion;
 use App\Models\Tema;
+use App\Models\Nivel;
+use App\Models\Modalidad;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -76,7 +80,7 @@ class ClaseController extends Controller
 
         $clase=new Clase();
         $clase->fecha=$request->fecha;
-        $clase->estado="PRESENTE";
+        $clase->estado_id= Config::get('constantes.ESTADO_PRESENTE');
         $clase->horainicio=$request->horainicio;
         $clase->horafin=$request->horafin;
         $clase->docente_id=$request->docente_id;
@@ -89,7 +93,7 @@ class ClaseController extends Controller
         $clase->userable()->create(['user_id' => Auth::user()->id]);
 
         $programa=Programacion::findOrFail($programacion_id);
-        $programa->estado = 'PRESENTE';
+        $programa->estado_id = Config::get('constantes.ESTADO_PRESENTE');
         $programa->save();
         return redirect()->route('clase.presentes');
     }
@@ -108,18 +112,15 @@ class ClaseController extends Controller
     }
     public function mostrar(Request $request)
     {
-        
+        $request->id=3;
         $clase = Clase::join('materias','clases.materia_id','materias.id')
                         ->join('aulas', 'clases.aula_id', 'aulas.id')
                         ->join('temas', 'clases.tema_id', 'temas.id')
                         ->join('docentes', 'clases.docente_id', 'docentes.id')
                         ->join('personas', 'docentes.persona_id', 'personas.id')
+                        ->join('estados', 'clases.estado_id', 'estados.id')
                         ->where('clases.id',$request->id)
-                        // ->join('programacions','clases.programacion_id','programacions.id')
-                        // ->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-                        // ->join('estudiantes','inscripciones.estudiante_id','estudiantes.id')
-                        // ->join('personas','estudiantes.persona_id','personas.id')
-                        ->select('clases.id','fecha','clases.estado','horainicio','horafin','personas.nombre'
+                        ->select('clases.id','fecha','estados.estado','horainicio','horafin','personas.nombre'
                                 ,'personas.apellidop','personas.apellidom','personas.foto','materias.materia','aulas.aula','temas.tema',
                             'clases.created_at','clases.updated_at')->get()->first();
         return response()->json($clase);
@@ -127,6 +128,7 @@ class ClaseController extends Controller
 
     ///*  clase edu */
     public function editar(Request $request){
+        
         $clase=Clase::findOrFail($request->id);
         $docentes = Docente::join('personas', 'personas.id', '=', 'docentes.persona_id')
         ->where('docentes.estado', '=', 'activo')
@@ -135,7 +137,10 @@ class ClaseController extends Controller
         $programa = $clase->programacion;
         $inscripcion = $programa->inscripcione;
 
-        $materias = Materia::all();
+        $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
+        $materias = $nivel->materias;
+
+
         $aulas = Aula::all();
         $temas = Tema::all();
         $data=['clase'=>$clase,'docentes'=>$docentes,'programa'=>$programa,'inscripcion'=>$inscripcion,'materias'=>$materias,'aulas'=>$aulas,'temas'=>$temas];
@@ -219,8 +224,6 @@ class ClaseController extends Controller
             ->with('success', 'Clase deleted successfully');
     }
     public function marcadoGeneral($inscripcion_id){
-       
-        
         $programaciones=Programacion::where('inscripcione_id', '=', $inscripcion_id)->get();
         $programacionesHoy = Programacion::join('inscripciones', 'inscripciones.id', '=', 'programacions.inscripcione_id') //ok
         ->join('sesions', 'sesions.inscripcione_id', '=', 'inscripciones.id')
@@ -256,7 +259,7 @@ class ClaseController extends Controller
         $programa = Programacion::findOrFail($programacion_id);
         $clase=new Clase();
         $clase->fecha           =$programa->fecha;
-        $clase->estado          ='PRESENTE';
+        $clase->estado_id       =Config::get('constantes.ESTADO_PRESENTE');
         $clase->horainicio      =Carbon::now()->isoFormat('HH:mm:ss');
         $clase->horafin         =Carbon::now()->addHours($programa->hora_ini->floatDiffInHours($programa->hora_fin));
         $clase->docente_id      =$programa->docente_id;
@@ -264,12 +267,13 @@ class ClaseController extends Controller
         $clase->aula_id         =$programa->aula_id;
         $clase->tema_id         =1; // tema por 
         $clase->programacion_id =$programa->id;
-        $programa->estado='PRESENTE';
+        $programa->estado_id=Config::get('constantes.ESTADO_PRESENTE');
         $programa->save();
         $clase->save();
         return redirect()->route('clase.presentes')->with('mensaje', 'MarcadoCorrectamente');
     }
     public function clasesPresentes(Request $request){
+        //return response()->json(Config::get('constantes.constantes.ESTADO_PRESENTE'));
         if($request->ajax()){
             $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
                 ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
@@ -279,7 +283,7 @@ class ClaseController extends Controller
                 ->join('materias', 'clases.materia_id', '=', 'materias.id')
                 ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
                 ->join('temas', 'clases.tema_id', '=', 'temas.id')
-                ->where('clases.estado','PRESENTE')
+                ->where('clases.estado_id',Config::get('constantes.ESTADO_PRESENTE'))
                 ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
                 ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombre', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto')->get();
             return datatables()->of($clases)
@@ -294,9 +298,9 @@ class ClaseController extends Controller
         //return response()->json(['id'=>$request->id]);
         $clase = Clase::findOrFail($request->id);
         $programa = $clase->programacion;
-        $programa->estado = "FINALIZADO";
+        $programa->estado_id = Config::get('constantes.ESTADO_FINALIZADO');
         $programa->save();
-        $clase->estado = "FINALIZADO";
+        $clase->estado_id = Config::get('constantes.ESTADO_FINALIZADO');
         $clase->save();
         return response()->json(['message' => 'Despidete deseale el bien', 'status' => 200]);
     } 

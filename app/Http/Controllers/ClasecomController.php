@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Config;
+
 use App\Models\Clasecom;
 use App\Models\Aula;
 use App\Models\Programacioncom;
@@ -43,11 +45,11 @@ class ClasecomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-  
+
     public function guardar(Request $request,$programacioncom_id){
         $clasecom=new Clasecom();
         $clasecom->fecha=$request->fecha;
-        $clasecom->estado="PRESENTE";
+        $clasecom->estado_id=Config::get('constantes.ESTADO_PRESENTE');
         $clasecom->horainicio=$request->horainicio;
         $clasecom->horafin=$request->horafin;
         $clasecom->docente_id=$request->docente_id;
@@ -58,7 +60,7 @@ class ClasecomController extends Controller
        //$clasecom->userable()->create(['user_id' => Auth::user()->id]);
 
         $programacom=Programacioncom::findOrFail($programacioncom_id);
-        $programacom->estado = 'PRESENTE';
+        $programacom->estado_id = Config::get('constantes.ESTADO_PRESENTE');
         $programacom->save();
         return redirect()->route('clase.presentes');
     }
@@ -90,7 +92,7 @@ class ClasecomController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function editar(Request $request){
-        $request->id=1;
+        //$request->id=1;
         $clasecom=Clasecom::findOrFail($request->id);
         $docentes = Docente::join('personas', 'personas.id', '=', 'docentes.persona_id')
         ->where('docentes.estado', '=', 'activo')
@@ -178,13 +180,13 @@ class ClasecomController extends Controller
         $programa = Programacioncom::findOrFail($programacioncom_id);
         $clase=new Clasecom();
         $clase->fecha           =$programa->fecha;
-        $clase->estado          ='PRESENTE';
+        $clase->estado_id       =Config::get('constantes.ESTADO_PRESENTE');
         $clase->horainicio      =Carbon::now()->isoFormat('HH:mm:ss');
         $clase->horafin         =Carbon::now()->addHours($programa->horaini->floatDiffInHours($programa->horafin));
         $clase->docente_id      =$programa->docente_id;
         $clase->aula_id         =$programa->aula_id;
         $clase->programacioncom_id =$programa->id;
-        $programa->estado='PRESENTE';
+        $programa->estado_id=Config::get('constantes.ESTADO_PRESENTE');
         $programa->save();
         $clase->save();
         return redirect()->route('clase.presentes')->with('mensaje', 'MarcadoCorrectamente');
@@ -198,7 +200,7 @@ class ClasecomController extends Controller
                 ->join('docentes', 'clasecoms.docente_id', '=', 'docentes.id')
                 ->join('asignaturas', 'matriculacions.asignatura_id', '=', 'asignaturas.id')
                 ->join('aulas', 'clasecoms.aula_id', '=', 'aulas.id')
-                ->where('clasecoms.estado','PRESENTE')
+                ->where('clasecoms.estado_id',Config::get('constantes.ESTADO_PRESENTE'))
                 ->where('clasecoms.fecha',Carbon::now()->isoFormat('Y-M-D'))
                 ->select('clasecoms.id','personas.id as codigo', 'personas.nombre as name','clasecoms.horainicio', 'clasecoms.horafin', 'docentes.nombre', 'asignaturas.asignatura', 'aulas.aula','personas.foto')->get();
             return datatables()->of($clasecoms)

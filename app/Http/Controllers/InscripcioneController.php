@@ -211,7 +211,9 @@ class InscripcioneController extends Controller
         $inscripcione->motivo_id = $request->motivo_id;
         $inscripcione->save();
         $inscripcion=$inscripcione;
-        $materias = Materia::get();
+        
+        $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
+        $materias = $nivel->materias;
         $aulas = Aula::get();
         $docentes = Docente::get();
         $dias = Dia::get();

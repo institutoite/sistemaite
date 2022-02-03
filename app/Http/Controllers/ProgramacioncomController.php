@@ -19,6 +19,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Config;
+
 
 use PDF;
 
@@ -290,7 +292,7 @@ class ProgramacioncomController extends Controller
         $programacom->fecha = $fecha;
         $programacom->habilitado = $habilitado;
         $programacom->activo = true;
-        $programacom->estado = 'INDEFINIDO';
+        $programacom->estado_id =Config::get('constantes.ESTADO_INDEFINIDO');
         $programacom->horaini = $sesioncom->horainicio;
         
         $programacom->docente_id = $sesioncom->docente_id;

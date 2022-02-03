@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Config;
+
 use App\Models\Programacion;
 use App\Models\Pago;
 
@@ -99,15 +101,16 @@ class ProgramacionController extends Controller
         $docente = $programacion->docente;
         $materia = $programacion->materia;
         $aula = $programacion->aula;
+        $estado=$programacion->estado;
         $clases=Programacion::join('clases','programacions.id','clases.programacion_id')
                     ->join('docentes','docentes.id','programacions.docente_id')
                     ->join('materias','materias.id','programacions.materia_id')
                     ->join('aulas','aulas.id','programacions.aula_id')
                     ->join('temas','temas.id','clases.tema_id')
                     ->where('programacions.id',$request->id)
-                    ->select('clases.id','clases.fecha','clases.estado','clases.horainicio','clases.horafin','docentes.nombre','materias.materia', 'aulas.aula','temas.tema')
+                    ->select('clases.id','clases.fecha','clases.horainicio','clases.horafin','docentes.nombre','materias.materia', 'aulas.aula','temas.tema')
                     ->get();
-        $data = ['programacion' => $programacion, 'observaciones' => $observaciones, 'docente' => $docente, 'materia' => $materia, 'aula' => $aula, 'clases' => $clases];
+        $data = ['programacion' => $programacion, 'estado'=>$estado,'observaciones' => $observaciones, 'docente' => $docente, 'materia' => $materia, 'aula' => $aula, 'clases' => $clases];
         return response()->json($data);
     }
 
@@ -427,7 +430,7 @@ class ProgramacionController extends Controller
         $programa->fecha = $fecha;
         $programa->habilitado = $habilitado;
         $programa->activo = true;
-        $programa->estado_id = 1;
+        $programa->estado_id = Config::get('constantes.ESTADO_INDEFINIDO');
         $programa->hora_ini = $sesion->horainicio;
         
         $programa->docente_id = $sesion->docente_id;
@@ -586,14 +589,15 @@ class ProgramacionController extends Controller
         return $dompdf->download($persona->id . '_' . $fecha_actual . '_' . $persona->nombre . '_' . $persona->apellidop . '.pdf');
     }
 
-    public function marcadoNormal($programacion_id){
+    public function marcadoNormal($programacion_id){ //*
         $programa=Programacion::findOrFail($programacion_id);
         $inscripcion=Inscripcione::findOrFail($programa->inscripcione_id);
         $docentes=Docente::join('personas','personas.id','=','docentes.persona_id')
                         ->where('docentes.estado','=','activo')
                         ->select('docentes.id','personas.nombre','personas.apellidop')
                         ->get(); 
-        $materias=Materia::all();
+        $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
+        $materias = $nivel->materias;
         $aulas=Aula::all();
         $hora_inicio=Carbon::now()->isoFormat('HH:mm:ss');
         $hora_fin = Carbon::now()->addMinutes($programa->hora_ini->floatDiffInMinutes($programa->hora_fin))->isoFormat('HH:mm:ss');

@@ -444,7 +444,7 @@
                         $html+="<tr><td>Estado Pago</td>"+"<td>"+(json.programacion.habilitado==1) ? 'Pagado' :'Impaga'+"</td></tr>";
                         $html+="<tr><td>Estado Activo</td>"+"<td>"+(json.programacion.activo==1) ? 'Activo' :'Desactivado'+"</td></tr>";
 
-                        $html+="<tr><td>Estado</td>"+"<td>"+json.programacion.estado+"</td></tr>";
+                        $html+="<tr><td>Estado</td>"+"<td>"+json.estado.estado+"</td></tr>";
                         
                         $html+="<tr><td>Materia</td>"+"<td>"+json.programacion.docente.nombre+"</td></tr>";
                         $html+="<tr><td>Materia</td>"+"<td>"+json.programacion.materia.materia+"</td></tr>";
@@ -731,7 +731,7 @@
                                 _token:'{{ csrf_token() }}'
                             },
                             success: function(result) {
-                                $("#modal-mostrar-clase").modal("hide");
+                                $("#modal-mostrar").modal("hide");
                                 const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
