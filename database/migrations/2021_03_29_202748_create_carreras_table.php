@@ -15,7 +15,7 @@ class CreateCarrerasTable extends Migration
     {
         Schema::create('carreras', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
+            $table->string('carrera', 150);
             $table->text('description');
             $table->float('precio');
             $table->unsignedBigInteger('docente_id');

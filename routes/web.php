@@ -391,5 +391,7 @@ Route::resource('schedule', "HomescheduleController")->names('homeschedule');
 
 Route::resource('question', "HomequestionController")->names('homequestion');
 
+Route::resource('meta', "MetaController")->names('meta');
+
 
 
