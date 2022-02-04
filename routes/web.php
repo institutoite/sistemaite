@@ -393,5 +393,7 @@ Route::resource('question', "HomequestionController")->names('homequestion');
 
 Route::resource('meta', "MetaController")->names('meta');
 
+Route::resource('requisito', "RequisitoController")->names('requisito');
+
 
 

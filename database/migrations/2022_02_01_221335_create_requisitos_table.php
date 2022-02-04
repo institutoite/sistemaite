@@ -15,6 +15,12 @@ class CreateRequisitosTable extends Migration
     {
         Schema::create('requisitos', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->unsignedInteger('carrera_id');
+            $table->foreign('carrera_id')
+                ->references('id')
+                ->on('carreras')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
