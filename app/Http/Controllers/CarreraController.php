@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carrera;
+use App\Models\Docente;
+use App\Models\Meta;
+use App\Models\Requisito;
 use Illuminate\Http\Request;
 
 class CarreraController extends Controller
@@ -27,8 +30,8 @@ class CarreraController extends Controller
      */
     public function create()
     {
-        $carreras= Carrera::all();
-        return view('carrera.create',compact('carreras'));
+        $docentes= Docente::all();
+        return view('carrera.create',compact('docentes'));
     }
 
     /**
@@ -52,10 +55,11 @@ class CarreraController extends Controller
      * @param  \App\Models\Carrera  $carrera
      * @return \Illuminate\Http\Response
      */
-    public function show(Carrera $carrera)
+    public function show()
     {
-        
-        return view('carrera.show',compact('carrera'));
+        $metas = Meta::all();
+        $requisitos = Requisito::all();
+        return view('carrera.show',compact(['metas','requisitos']));
     }
 
     /**
