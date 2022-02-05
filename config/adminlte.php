@@ -969,7 +969,7 @@ return [
                 [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => 'carreras',
+                    'url'  => 'carrera',
                     'classes'  => 'text-dark',
                 ],
                 [

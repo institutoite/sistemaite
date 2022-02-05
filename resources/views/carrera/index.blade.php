@@ -1,136 +1,54 @@
 @extends('adminlte::page')
-@section('css')
-     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
-    <link rel="stylesheet" href="{{asset('custom/css/mapa.css')}}">
-@endsection
 
-@section('title', 'Carreras')
-@section('plugins.jquery', true)
-@section('plugins.Sweetalert2',true)
-@section('plugins.Datatables',true)
+@section('title', 'carreras')
+
+@section('content_header')
+    <h1 class="text-center text-primary">carreras</h1>
+@stop
 
 @section('content')
-    <table id="carreras" class="table table-light">
-        <thead class="thead-light">
-            <tr>
-                <th>#</th>
-                <th>carrera</th>
-                <th>Opciones</th>
-            </tr>
-        </thead>
-    </table>
-@endsection
+    <div class="card">
+        <div class="card-header bg-primary">
+            Lista de carreras<a class="btn btn-secondary text-white btn-sm float-right" href="{{route('carrera.create')}}">Nuevo carrera</a>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Carrera</th>
+                        <th colspan="2"></th>
+                    </tr>
+                </thead>
 
-@section('js')
+                <tbody>
+                    @foreach ($carreras as $carrera)
+                        <tr>
+                            <td>
+                                {{$carrera->carrera}}
+                            </td>
 
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
+                            <td>
+                                {{$carrera->precio}}
+                            </td>
 
-    <script>
-        $(document).ready(function() {
-        
-            var tabla=$('#carreras').DataTable(
-                {
-                    "serverSide": true,
-                    "responsive":true,
-                   
+                            <td width="10px">
+                                <a class="btn btn-primary btn-sm" href="{{route('carrera.edit', $carrera)}}">Editar</a>
+                            </td>
 
-                    "ajax": "{{ url('api/carreras') }}",
-                    "columns": [
-                        {"data": 'id',name:"id"},
-                        {"data": "carrera",name:"carrera"},     
-                        {
-                            "name":"btn",
-                            "data": 'btn',
-                            "orderable": false,
-                        },
-                    ],
-                    "language":{
-                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-                    },  
-                }
-            );
-/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  P E R S O N A %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-            $('table').on('click','.eliminar',function (e) {
-                e.preventDefault(); 
-                id=$(this).parent().parent().parent().find('td').first().html();
-                //console.log(id)
-                Swal.fire({
-                    title: 'Estas seguro(a) de eliminar este registro?',
-                    text: "Si eliminas el registro no lo podras recuperar jamás!",
-                    type: 'question',
-                    showCancelButton: true,
-                    showConfirmButton:true,
-                    confirmButtonColor: '#25ff80',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Eliminar..!',
-                    position:'center',        
-                }).then((result) => {
-                    if (result.value) {
-                        $.ajax({
-                            url: 'eliminar/carrera/'+id,
-                            type: 'DELETE',
-                            data:{
-                                id:id,
-                                _token:'{{ csrf_token() }}'
-                            },
-                            success: function(result) {
-                                console.log(result);
-                                tabla.ajax.reload();
-                                const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 1500,
-                                })
-                                Toast.fire({
-                                type: 'success',
-                                title: 'Se eliminó correctamente el registro'
-                                })   
-                            },
-                            error: function (xhr, ajaxOptions, thrownError) {
-                                switch (xhr.status) {
-                                    case 500:
-                                        Swal.fire({
-                                            title: 'No se completó esta operación por que este registro está relacionado con otros registros',
-                                            showClass: {
-                                                popup: 'animate__animated animate__fadeInDown'
-                                            },
-                                            hideClass: {
-                                                popup: 'animate__animated animate__fadeOutUp'
-                                            }
-                                        })
-                                        break;
-                                
-                                    default:
-                                        break;
-                                }
-                                
-                            }
-                        });
-                    }else{
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 4000,
-                           //type
-                            onOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
+                            <td width="10px">
+                                <form action="{{route('carrera.destroy', $carrera->id)}}" method="POST">
+                                    @csrf
+                                    @method('delete')
 
-                        Toast.fire({
-                            type: 'error',
-                            title: 'No se eliminó el registro'
-                        })
-                    }
-                })
-            });
-        } );
-        
-    </script>
-@endsection
+                                    <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+                                </form>
+                            <td></td>
+
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+@stop

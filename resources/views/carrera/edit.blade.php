@@ -9,23 +9,24 @@
 @section('plugins.Datatables',true)
 
 @section('content_header')
-    <h1 class="text-center text-primary">Formulario Crear Asignatura</h1>
+    <h1 class="text-center text-primary">Formulario Editar meta</h1>
 @stop
 
 @section('content')
-    <div class="card">
-        <div class="card-header bg-primary">
-            Crear Asignaturas <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('asignatura.index')}}">Listar Asignaturas</a>
-        </div>
-        <div class="card-body">
-            <form action="{{route('carrera.update',$carrera)}}" method="put">
+        <div class="card">
+            <div class="card-header bg-primary">
+                Editar metas <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('meta.index')}}">Listar metas</a>
+            </div>
+            <div class="card-body">
+                <form action="{{route('meta.update',$meta)}}" method="put">
                     @csrf
                     {{ @method_field('PUT') }} 
-                @include('carrera.form')
-                @include('include.botones')
-            </form>
+                    @include('meta.form')
+                    @include('include.botones')
+                </form>
+            </div>
         </div>
-    </div>
+    
 @stop
 
 @section('js')

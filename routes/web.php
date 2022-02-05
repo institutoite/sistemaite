@@ -208,14 +208,15 @@ Route::delete('eliminar/gestion/{gestion}', [GestionController::class, 'destroy'
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  C A R R E R A S   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
-Route::get('carreras', [CarreraController::class, 'index'])->name('carrera.index');
+/* Route::get('carreras', [CarreraController::class, 'index'])->name('carrera.index');
 Route::get('carrera/create',[CarreraController::class,'create'])->name('carrera.create');
 Route::get('carreras/show/{carrera}', [CarreraController::class, 'show'])->name('carrera.show');
 Route::post('carrera/guardar',[CarreraController::class,'store'])->name('carrera.store');
 Route::get('carrera/mostrar/{carrera}', [CarreraController::class,'show'])->name("carrera.show");
 Route::get('carrera/editar/{carrera}', [CarreraController::class,'edit'])->name("carrera.edit");
 Route::get('carrera/actualizar/{carrera}', [CarreraController::class,'update'])->name("carrera.update");
-Route::delete('eliminar/carrera/{carrera}', [CarreraController::class,'destroy'])->name('carrera.destroy');
+Route::delete('eliminar/carrera/{carrera}', [CarreraController::class,'destroy'])->name('carrera.destroy'); */
+Route::resource('carrera', "CarreraController")->names('carrera');
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MATRICULACION   %%%%%%%%%%%%%%%%%%%%%%%%%%*/

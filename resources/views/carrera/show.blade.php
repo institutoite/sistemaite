@@ -13,7 +13,7 @@
 @section('content')
         <div class="card">
             <div class="card-header bg-primary">
-                Mostrar Asignatura <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('carrera.index')}}">Listar Asignaturas</a>
+                Mostrar Asignatura <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('asignatura.index')}}">Listar Asignaturas</a>
             </div>
             <div class="card-body">
                 <table class="table table-light table-striped table-bordered">
@@ -26,19 +26,15 @@
                     <tbody>
                         <tr>
                             <td>ID</td>
-                            <td>{{$carrera->id}}</td>
+                            <td>{{$asignatura->id}}</td>
+                        </tr>
+                        <tr>
+                            <td>ASIGNAURA</td>
+                            <td>{{$asignatura->asignatura}}</td>
                         </tr>
                         <tr>
                             <td>CARRERA</td>
-                            <td>{{$carrera->carrera}}</td>
-                        </tr>
-                        <tr>
-                            <td>creado</td>
-                            <td>{{$carrera->created_at}}</td>
-                        </tr>
-                        <tr>
-                            <td>Actualizado</td>
-                            <td>{{$carrera->updated_at}}</td>
+                            <td>{{$asignatura->carrera->carrera}}</td>
                         </tr>
                     </tbody>
                 </table>
