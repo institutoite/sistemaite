@@ -40,7 +40,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[ClaseController::class,'mostrar'])->name('prueba');
+Route::get('prueba',[ProgramacioncomController::class,'editar'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');

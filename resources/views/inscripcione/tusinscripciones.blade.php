@@ -169,41 +169,7 @@
                 }
             );
 
-            // $('#inscripcionesOtras').dataTable({
-            //     "language":{
-            //             "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-            //         },
-                    
-            //     "info":     false, 
-            //     "searching": false,
-            //     "paging":   false, 
-            // });
-            // $('#inscripcionestodos').dataTable({
-            //     "language":{
-            //             "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-            //         },
-            //     "info":     false, 
-            //     "searching": false,
-            //     "paging":   false,
-            // });
-            
-        
-            // $('#matriculacionesOtras').dataTable({
-            //     "language":{
-            //             "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-            //         },
-            //     "info":     false, 
-            //     "searching": false,
-            //     "paging":   false,  
-            // });
-            // $('#matriculacionestodos').dataTable({
-            //     "language":{
-            //             "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-            //         },
-            //     "info":     false, 
-            //     "searching": false,
-            //     "paging":   false,  
-            // });
+
             
 
             $('table').on('click','.eliminarinscripcion',function (e) {

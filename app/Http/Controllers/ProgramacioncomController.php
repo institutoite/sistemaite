@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Programacioncom;
 use App\Models\Matriculacion;
+use App\Models\Estado;
 use App\Models\Persona;
 use App\Models\Docente;
 use App\Models\Dia;
@@ -93,28 +94,22 @@ class ProgramacioncomController extends Controller
         $nivel = Nivel::findOrFail(6);
         $docentes = $nivel->docentes;
         $aulas= Aula::all();
-        $data=['programacioncom'=>$programacioncom,'docentes'=>$docentes,'aulas'=>$aulas];
+        $estados=Estado::all();
+        $data=['programacioncom'=>$programacioncom,'docentes'=>$docentes,'aulas'=>$aulas,'estados'=>$estados];
         return response()->json($data);
     }
 
     public function actualizar(Request $request)
     {
-            // $request->fecha='2022';
-            // $request->activo='1';
-            // $request->estado='estado';
-            // $request->horafin='12:00:00';
-            // $request->horaini='12:30:00';
-            // $request->docente_id='1';
-            // $request->aula_id='1';
-            // $request->matriculacion_id='1';
-            // $programacioncom=Programacioncom::findOrFail(10);
+            //$request->estado_id=1;
+            // return response()->json($request->all());
             $programacioncom=Programacioncom::findOrFail($request->programacioncom_id);
             $arrayObservable= [
             'observacion' => 'Se editó los valores anteriores son' .
             'Hora Inicio: ' . $programacioncom->horaini . ' ' .
             'Hora Fin: ' . $programacioncom->horafin . ' ' .
             'Fecha : ' . $programacioncom->fecha . ' ' .
-                'Estado : ' . $programacioncom->estado . ' ' .
+                'Estado : ' . $programacioncom->estado_id . ' ' .
                 'activo : ' . $programacioncom->activo . ' ' .
                 'horas por clase: ' . $programacioncom->horas_por_clase . ' ' .
                 'Docente: ' . $programacioncom->docente->nombre . ' ' .
@@ -125,12 +120,12 @@ class ProgramacioncomController extends Controller
             ];
             $programacioncom->observaciones()->create($arrayObservable);
         
-           // return response()->json($request->all());
+        
         $horainicio=Carbon::create($request->horaini);
         $horafin=Carbon::create($request->horafin);
         $programacioncom->fecha            =$request->fecha;
         $programacioncom->activo           =$request->activo;
-        $programacioncom->estado           =$request->estado;
+        $programacioncom->estado_id       =$request->estado_id;
         $programacioncom->horafin         =$request->hora_fin;
         $programacioncom->horaini         =$request->hora_ini;
         $programacioncom->horas_por_clase  = $horainicio->floatDiffInHours($horafin);
@@ -380,9 +375,10 @@ class ProgramacioncomController extends Controller
 
         $programacion=Programacioncom::join('docentes','docentes.id','=','programacioncoms.docente_id')
                     ->join('aulas','aulas.id','=','programacioncoms.aula_id')
+                    ->join('estados','estados.id','=','programacioncoms.estado_id')
                     ->where('matriculacion_id',$request->matriculacion)
                     ->where('fecha','=', Carbon::now()->isoFormat('Y-M-D'))
-                    ->select('programacioncoms.id','fecha','horaini','horafin','programacioncoms.estado','docentes.nombre','aulas.aula');
+                    ->select('programacioncoms.id','fecha','horaini','horafin','estados.estado','docentes.nombre','aulas.aula');
         
         return DataTables::of($programacion)
                 ->addColumn('btn','programacioncom.actions')
@@ -392,9 +388,11 @@ class ProgramacioncomController extends Controller
     public function programacionescomFuturo(Request $request){
         $programacion=Programacioncom::join('docentes','docentes.id','=','programacioncoms.docente_id')
                     ->join('aulas','aulas.id','=','programacioncoms.aula_id')
+                    ->join('estados','estados.id','=','programacioncoms.estado_id')
+
                     ->where('matriculacion_id',$request->matriculacion)
                     // ->where('fecha','>', Carbon::now()->isoFormat('Y-M-D'))
-                    ->select('programacioncoms.id','fecha','programacioncoms.estado','docentes.nombre as docente','horaini','horafin','aulas.aula');
+                    ->select('programacioncoms.id','fecha','estados.estado','docentes.nombre as docente','horaini','horafin','aulas.aula');
         return DataTables::of($programacion)
                 ->addColumn('btn','programacioncom.actionsfuturo')
                 ->rawColumns(['btn'])
@@ -467,6 +465,7 @@ class ProgramacioncomController extends Controller
     }
     public function mostrarClases(Request $request)
     {
+        $request->id=1;
         $programacioncom = Programacioncom::findOrFail($request->id);
         $observaciones = $programacioncom->observaciones;
         $docente = $programacioncom->docente;
@@ -477,15 +476,17 @@ class ProgramacioncomController extends Controller
                     ->join('docentes','docentes.id','programacioncoms.docente_id')
                     ->join('aulas','aulas.id','programacioncoms.aula_id')
                     ->where('programacioncoms.id',$request->id)
-                    ->select('clasecoms.id','clasecoms.fecha','clasecoms.estado','clasecoms.horainicio','clasecoms.horafin','docentes.nombre', 'aulas.aula')
+                    ->select('clasecoms.id','clasecoms.fecha','clasecoms.horainicio','clasecoms.horafin','docentes.nombre', 'aulas.aula')
                     ->get();
+        $estado=$programacioncom->estado;
+                   // return response()->json($clases);
         $licencias=Licencia::join('motivos','motivos.id','=','licencias.motivo_id')
-            ->join('programacions','programacions.id','=','licencias.licenciable_id')
-            ->where('programacions.id','=',$request->id)
+            ->join('programacioncoms','programacioncoms.id','=','licencias.licenciable_id')
+            ->where('programacioncoms.id','=',$request->id)
             ->select('motivos.motivo','solicitante','parentesco','licencias.created_at','licencias.updated_at')
             ->get();
 
-        $data = ['programacioncom' => $programacioncom, 'observaciones' => $observaciones, 'docente' => $docente, 'aula' => $aula,'licencias'=>$licencias, 'clasescom' => $clases,'asignatura'=>$asignatura];
+        $data = ['programacioncom' => $programacioncom, 'observaciones' => $observaciones, 'docente' => $docente,'estado' => $estado, 'aula' => $aula,'licencias'=>$licencias, 'clasescom' => $clases,'asignatura'=>$asignatura];
         return response()->json($data);
     }
 }

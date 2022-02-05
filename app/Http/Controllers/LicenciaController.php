@@ -8,6 +8,8 @@ use App\Models\Programacion;
 use App\Models\Tipomotivo;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Config;
+
 /**
  * Class LicenciaController
  * @package App\Http\Controllers
@@ -68,7 +70,7 @@ class LicenciaController extends Controller
         $licenciacom->save();
 
         $programacioncom=Programacioncom::findOrFail($request->programacioncom_id);
-        $programacioncom->estado='LICENCIA';
+        $programacioncom->estado_id=Config::get('constantes.ESTADO_LICENCIA');
         $programacioncom->save();
 
         $data=['mensaje'=>'Licencia guardado correctamente'];
@@ -85,7 +87,7 @@ class LicenciaController extends Controller
         $licenciacom->save();
 
         $programacion=Programacion::findOrFail($request->programacion_id);
-        $programacion->estado='LICENCIA';
+        $programacion->estado_id=Config::get('constantes.ESTADO_LICENCIA');
         $programacion->save();
 
         $data=['mensaje'=>'Licencia guardado correctamente'];

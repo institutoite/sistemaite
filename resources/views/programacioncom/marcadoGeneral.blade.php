@@ -528,6 +528,7 @@
                     url : "../../programacioncom/mostrar",
                     data : { id :id_programacioncom },
                     success : function(json) {
+                        
                         console.log(json);
                         $("#modal-mostrar-clase").modal("show");
                         $("#tabla-mostrar-programacioncom").empty();
@@ -542,7 +543,7 @@
                         $html+="<tr><td>Estado Pago</td>"+"<td>"+(json.programacioncom.habilitado==1) ? 'Pagado' :'Impaga'+"</td></tr>";
                         $html+="<tr><td>Estado Activo</td>"+"<td>"+(json.programacioncom.activo==1) ? 'Activo' :'Desactivado'+"</td></tr>";
 
-                        $html+="<tr><td>Estado</td>"+"<td>"+json.programacioncom.estado+"</td></tr>";
+                        $html+="<tr><td>Estado</td>"+"<td>"+json.estado.estado+"</td></tr>";
                         
                         $html+="<tr><td>Docente</td>"+"<td>"+json.programacioncom.docente.nombre+"</td></tr>";
                         $html+="<tr><td>Asignatura</td>"+"<td>"+json.asignatura.asignatura+"</td></tr>";
@@ -621,7 +622,7 @@
 
                             //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                             $html+="<input id='matriculacion_id'  type='text' hidden readonly name='inscripcione_id' value='"+data.programacioncom.matriculacion_id +"'>";
-                            $html+="<input id='programacioncom_id'  type='text' hidden readonly name='programacion_id' value='"+data.programacioncom.id +"'>";
+                            $html+="<input id='programacioncom_id'  type='text' readonly name='programacion_id' value='"+data.programacioncom.id +"'>";
                             //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE DOCENTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                             $html+="<div class='row'>";
                             $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'>";
@@ -657,23 +658,17 @@
                             // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO ESTADO EN VENTANA MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                            
                             $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-6'>";
                             $html+="<div class='form-floating mb-3 text-gray'>";
-                            $html+="<select class='form-control @error('estado') is-invalid @enderror'  name='estado' id='estado'>";
+                            $html+="<select class='form-control @error('estado_id') is-invalid @enderror'  name='estado_id' id='estado_id'>";
                             $html+="<option value=''> Elija estado</option>";
-                            if(data.programacioncom.estado == 'INDEFINIDO'){
-                                $html+="<option value='INDEFINIDO'"+" selected>INDEFINIDO</option>";
-                            }else{
-                                $html+="<option value='INDEFINIDO'>INDEFINIDO</option>";
+
+                             for (let k in data.estados) {
+                                if(data.estados[k].id==data.programacioncom.estado_id){
+                                    $html+="<option  value='"+data.estados[k].id +"' selected >"+data.estados[k].estado+"</option>";
+                                }else{
+                                    $html+="<option  value='"+data.estados[k].id +"'>"+data.estados[k].estado+"</option>";
+                                }
                             }
-                            if(data.programacioncom.estado == 'PRESENTE'){
-                                $html+="<option value='PRESENTE'"+" selected>PRESENTE</option>";
-                            }else{
-                                $html+="<option value='PRESENTE'>PRESENTE</option>";
-                            }
-                            if(data.programacioncom.estado == 'FINALIZADO'){
-                                $html+="<option value='FINALIZADO'"+" selected>FINALIZADO</option>";
-                            }else{
-                                $html+="<option value='FINALIZADO'>FINALIZADO</option>";
-                            }
+                           
                             $html+="</select>";                
                             $html+="<label for='estado'>Estado</label></div></div>";
                         // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO ACTIVO EN VENTANA MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -864,7 +859,7 @@
                 $fecha=$('#fecha').val();
                 
                 $habilitado=$('#habilitado').val();
-                $estado=$('#estado').val();
+                $estado_id=$('#estado_id').val();
                 $activo=$('#activo').val();
                 
                 $horas_por_clase=$('#hora_por_clase').val();
@@ -888,7 +883,7 @@
                             hora_fin:$hora_fin,
                             fecha:$fecha,
                             habilitado:$habilitado,
-                            estado:$estado,
+                            estado_id:$estado_id,
                             activo:$activo,
                             horas_por_clase:$horas_por_clase,
                             docente_id:$docente_id,
@@ -898,11 +893,12 @@
                         },
                     
                     success : function(json) {
+                        console.log(json);
                         let programacion_actualizar=$('#programacioncom_id').val(); 
                         $('#modal-editar').modal('hide');
                         $("#"+programacion_actualizar).addTempClass( 'bg-success', 3000 );
                         $('#futuro').DataTable().ajax.reload();
-                         $('#tabla_hoy').DataTable().ajax.reload();
+                        $('#tabla_hoy').DataTable().ajax.reload();
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');

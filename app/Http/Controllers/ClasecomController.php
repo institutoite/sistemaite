@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Config;
 
+
 use App\Models\Clasecom;
 use App\Models\Aula;
 use App\Models\Programacioncom;
@@ -158,20 +159,26 @@ class ClasecomController extends Controller
         ->join('aulas', 'sesioncoms.aula_id', '=', 'aulas.id')
         ->join('docentes', 'sesioncoms.docente_id', '=', 'docentes.id')
         ->join('personas', 'docentes.persona_id', '=', 'personas.id')
+        ->join('estados', 'estados.id', '=', 'programacioncoms.estado_id')
+
         ->where('matriculacions.id', '=', $matriculacion_id)
         ->where('programacioncoms.fecha', '=',DB::raw('date(now())'))
             ->where('dias.id', '=', DB::raw("DAYOFWEEK(programacioncoms.fecha)-1"))
             
-        ->select('programacioncoms.id', 'programacioncoms.fecha', 'programacioncoms.estado','aulas.aula' ,'programacioncoms.horaini', 'programacioncoms.horafin', 'programacioncoms.habilitado', 'personas.nombre','programacioncoms.docente_id')
+        ->select('programacioncoms.id', 'programacioncoms.fecha', 'estados.estado','aulas.aula' ,'programacioncoms.horaini', 'programacioncoms.horafin', 'programacioncoms.habilitado', 'personas.nombre','programacioncoms.docente_id')
         ->get();
+
         $matriculacion=Matriculacion::findOrFail($matriculacion_id);
         $dias_que_faltan_para_pagar= $matriculacion->fecha_proximo_pago->diffInDays(now());
         
         $pago=$matriculacion->pagos->sum('monto');
-        $faltas=Programacioncom::where('estado','=','FALTA')->count();
-        $presentes = Programacioncom::where('estado', '=', 'PRESENTE')->count();
-        $finalizados = Programacioncom::where('estado', '=', 'FINALIZADO')->count();
-        $licencias = Programacioncom::where('estado', '=', 'LICENCIA')->count();
+        $indefinido=$matriculacion->programacionescom->where('estado_id',1)->count();
+        $presentes = $matriculacion->programacionescom->where('estado_id',Config::get('constantes.ESTADO_PRESENTE'))->count();
+        $faltas = $matriculacion->programacionescom->where('estado_id',Config::get('constantes.ESTADO_FALTA'))->count();
+        $congelados = $matriculacion->programacionescom->where('estado_id',Config::get('constantes.ESTADO_CONGELADO'))->count();
+        $licencias = $matriculacion->programacionescom->where('estado_id',Config::get('constantes.ESTADO_LICENCIA'))->count();
+        $finalizados = $matriculacion->programacionescom->where('estado_id',Config::get('constantes.ESTADO_FINALIZADO'))->count();
+
          
         return view('programacioncom.marcadoGeneral',compact('programaciones', 'faltas', 'presentes', 'licencias', 'pago', 'matriculacion', 'dias_que_faltan_para_pagar'));
         //return redirect()->route('clases.marcado.general',$inscripcion_id)->with('programaciones', 'programacionesHoy', 'faltas', 'presentes', 'licencias', 'pago', 'inscripcion','dias_que_faltan_para_pagar');

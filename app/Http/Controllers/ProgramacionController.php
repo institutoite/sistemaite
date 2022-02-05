@@ -170,7 +170,7 @@ class ProgramacionController extends Controller
                 'Hora Inicio= ' . $programacion->hora_ini . ' ' .
                 'Hora Fin= ' . $programacion->hora_fin . ' ' .
                 'Fecha = ' . $programacion->fecha . ' ' .
-                'Estado = ' . $programacion->estado . ' ' .
+                'Estado = ' . $programacion->estado_id . ' ' .
                 'activo = ' . $programacion->activo . ' ' .
                 'horas por clase= ' . $programacion->horas_por_clase . ' ' .
                 'Docente id=' . $programacion->docente_id . ' ' .
@@ -186,7 +186,7 @@ class ProgramacionController extends Controller
         $hora_fin=Carbon::create($request->hora_fin);
         $programacion->fecha            =$request->fecha;
         $programacion->activo           =$request->activo;
-        $programacion->estado           =$request->estado;
+        $programacion->estado_id           =$request->estado_id;
         $programacion->hora_fin         =$request->hora_fin;
         $programacion->hora_ini         =$request->hora_ini;
         $programacion->horas_por_clase  = $hora_inicio->floatDiffInHours($hora_fin);
