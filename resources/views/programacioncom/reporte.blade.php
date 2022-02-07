@@ -113,7 +113,7 @@
                             @endphp
                     </td>
                 </tr>
-                
+                    
                 @endforeach
             </tbody>
             <tfoot>

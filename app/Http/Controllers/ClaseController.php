@@ -69,15 +69,12 @@ class ClaseController extends Controller
      */
     public function store(Request $request)
     {
-        
         $clase = Clase::create($request->all());
         return redirect()->route('clases.index')
             ->with('success', 'Clase created successfully.');
     }
 
     public function guardar(Request $request,$programacion_id){
-        //dd($request->all());
-
         $clase=new Clase();
         $clase->fecha=$request->fecha;
         $clase->estado_id= Config::get('constantes.ESTADO_PRESENTE');
@@ -89,9 +86,7 @@ class ClaseController extends Controller
         $clase->tema_id =1;
         $clase->programacion_id=$programacion_id;
         $clase->save();
-
         $clase->userable()->create(['user_id' => Auth::user()->id]);
-
         $programa=Programacion::findOrFail($programacion_id);
         $programa->estado_id = Config::get('constantes.ESTADO_PRESENTE');
         $programa->save();
@@ -112,7 +107,7 @@ class ClaseController extends Controller
     }
     public function mostrar(Request $request)
     {
-        $request->id=3;
+        
         $clase = Clase::join('materias','clases.materia_id','materias.id')
                         ->join('aulas', 'clases.aula_id', 'aulas.id')
                         ->join('temas', 'clases.tema_id', 'temas.id')
@@ -197,18 +192,17 @@ class ClaseController extends Controller
     }
     public function actualizar(Request $request, Clase $clase)
     {
+        //return response()->json($clase);
+
         $clase->aula_id=$request->aula_id;
         $clase->docente_id=$request->docente_id;
-        $clase->estado=$request->estado;
+        $clase->estado_id=Config::get('constantes.ESTADO_PRESENTE');
         $clase->fecha =$request->fecha;
         $clase->horafin=$request->horafin;
         $clase->horainicio=$request->horainicio;
         $clase->materia_id=$request->materia_id;
         $clase->tema_id=$request->tema_id;
-
-        //$data=['request'=>$request->all(),'clase'=>$clase];
-        return response()->json($data);
-        $clase->update($request->all());
+        $clase->save();
         return response()->json(['mensaje'=>'La clase ha sido actualizada correctamente']);
     }
 

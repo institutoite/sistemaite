@@ -621,7 +621,7 @@ class ProgramacionController extends Controller
                     ->join('materias','materias.id','=','programacions.materia_id')
                     ->join('estados','estados.id','=','programacions.estado_id')
                     ->where('inscripcione_id',$request->inscripcion)
-                    ->select('programacions.id','fecha','estados.estado','materia','docentes.nombre as docente','programacions.hora_ini','programacions.hora_fin','aulas.aula')->get();
+                    ->select('programacions.id','fecha','estados.estado','materia','docentes.nombre as docente','programacions.hora_ini','programacions.hora_fin','aulas.aula','programacions.habilitado')->get();
         return DataTables::of($programacion)
                 ->addColumn('btn','programacion.actionsfuturo')
                 ->rawColumns(['btn'])

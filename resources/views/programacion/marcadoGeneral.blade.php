@@ -266,16 +266,25 @@
                 "autoWidth":false,
                 "createdRow": function( row, data, dataIndex ) {
                     
-                    if(moment(data['fecha']).format('DD-MM-YYYY') < moment().format('DD-MM-YYYY')){
-                        $(row).addClass('text-gray')
-                    }
-                    if(moment(data['fecha']).format('DD-MM-YYYY') == moment().format('DD-MM-YYYY')){
-                        $(row).addClass('table-success');
-                        $(row).addClass('text-bold');
-                    }
-                    if(moment(data['fecha']).format('DD-MM-YYYY') > moment().format('DD-MM-YYYY')){
+                    // if(moment(data['fecha']).format('DD-MM-YYYY') < moment().format('DD-MM-YYYY')){
+                    //     $(row).addClass('text-gray')
+                    // }
+                    // if(moment(data['fecha']).format('DD-MM-YYYY') == moment().format('DD-MM-YYYY')){
+                    //     $(row).addClass('table-success');
+                    //     $(row).addClass('text-bold');
+                    // }
+                    // if(moment(data['fecha']).format('DD-MM-YYYY') > moment().format('DD-MM-YYYY')){
+                    //     $(row).addClass('text-success')
+                    // }
+                      if(data['habilitado'] == 1 ){
+                        $(row).addClass('table-success')
                         $(row).addClass('text-success')
+                        
+                    }else{
+                        $(row).addClass('table-danger')
+                        $(row).addClass('text-danger')
                     }
+
                     
                     $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
                     $('td', row).eq(1).html(moment(data['fecha']).format('D-M-Y')+'-'+moment(data['fecha']).format('dddd'));

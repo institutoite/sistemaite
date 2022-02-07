@@ -392,7 +392,7 @@ class ProgramacioncomController extends Controller
 
                     ->where('matriculacion_id',$request->matriculacion)
                     // ->where('fecha','>', Carbon::now()->isoFormat('Y-M-D'))
-                    ->select('programacioncoms.id','fecha','estados.estado','docentes.nombre as docente','horaini','horafin','aulas.aula');
+                    ->select('programacioncoms.id','fecha','estados.estado','docentes.nombre as docente','horaini','horafin','aulas.aula','programacioncoms.habilitado');
         return DataTables::of($programacion)
                 ->addColumn('btn','programacioncom.actionsfuturo')
                 ->rawColumns(['btn'])
@@ -465,7 +465,7 @@ class ProgramacioncomController extends Controller
     }
     public function mostrarClases(Request $request)
     {
-        $request->id=1;
+        
         $programacioncom = Programacioncom::findOrFail($request->id);
         $observaciones = $programacioncom->observaciones;
         $docente = $programacioncom->docente;

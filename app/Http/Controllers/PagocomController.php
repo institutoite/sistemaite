@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PagoStoreRequest;
+use App\Http\Requests\PagocomStoreRequest;
 use Illuminate\Http\Request;
 use App\Models\Matriculacion;
 use App\Models\Pagocom;
@@ -37,7 +37,7 @@ class PagocomController extends Controller
         return view('pagocom.create', compact('matriculacion','pagoscom','acuenta','saldo'));
     }
 
-   public function guardar(Request $request,$matriculacion_id){
+   public function guardar(PagocomStoreRequest $request,$matriculacion_id){
 
         //dd($matriculacion_id);
         $matriculacion=Matriculacion::findOrFail($matriculacion_id);

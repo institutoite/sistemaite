@@ -72,7 +72,7 @@
 
 </div>
 
-    <div class="divtabla">
+    <div class="divtabla" styker="page-break-inside: auto;">
         <table class="table-fill table">
             <thead>
                 <tr>
@@ -116,7 +116,9 @@
                             @endphp
                     </td>
                 </tr>
-                
+                @if($loop->iteration%25==0){
+                    <tr> <td colspan="7"> <i style='page-break-before:always;'></i> </td></tr>
+                @endif
                 @endforeach
             </tbody>
             <tfoot>

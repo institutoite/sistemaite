@@ -163,7 +163,7 @@
                         @include('programacioncom.hoy')
                         @include('programacioncom.futuro')
                         @include('programacioncom.modales')
-                    º{{--@include('programacioncom.pasado')
+                       {{--@include('programacioncom.pasado')
                         @include('programacioncom.todo')
                          --}}
                     </div>
@@ -267,17 +267,20 @@
                 "autoWidth":false,
                 "createdRow": function( row, data, dataIndex ) {
                     
-                    if(moment(data['fecha']).format('DD-MM-YYYY') < moment().format('DD-MM-YYYY')){
-                        $(row).addClass('text-gray')
-                    }
-                    if(moment(data['fecha']).format('DD-MM-YYYY') == moment().format('DD-MM-YYYY')){
-                        $(row).addClass('table-success');
-                        $(row).addClass('text-bold');
-                    }
-                    if(moment(data['fecha']).format('DD-MM-YYYY') > moment().format('DD-MM-YYYY')){
-                        $(row).addClass('text-success')
-                    }
+                    // if(moment(data['fecha']).format('DD-MM-YYYY') == moment().format('DD-MM-YYYY')){
+                    //     $(row).addClass('table-success');
+                    //     $(row).addClass('text-bold');
+                    // }
                     
+                    if(data['habilitado'] == 1 ){
+                        $(row).addClass('table-success')
+                        $(row).addClass('text-success')
+                        
+                    }else{
+                        $(row).addClass('table-danger')
+                        $(row).addClass('text-danger')
+                    }
+
                     $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
                     $('td', row).eq(1).html(moment(data['fecha']).format('D-M-Y')+'-'+moment(data['fecha']).format('dddd'));
                     $('td', row).eq(2).html(moment(data['horaini']).format('HH:mm')+'-'+moment(data['horafin']).format('HH:mm'));
