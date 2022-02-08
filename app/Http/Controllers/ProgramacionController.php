@@ -628,4 +628,14 @@ class ProgramacionController extends Controller
                 ->toJson();
     }
 
+    public function controlAsitencia($inscripcion=1){
+       // $inscripcion=1;
+        $programacion=Programacion::join('inscripciones','inscripciones.id','=','programacions.inscripcione_id')
+                    ->join('estados','estados.id','=','programacions.estado_id')
+                    ->where('inscripcione_id',$inscripcion)
+                    ->select('programacions.id','fecha','estados.estado','programacions.habilitado')->get();
+        return DataTables::of($programacion)
+                ->toJson();
+    }
+
 }

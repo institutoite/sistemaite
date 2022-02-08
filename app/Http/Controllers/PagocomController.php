@@ -106,7 +106,7 @@ class PagocomController extends Controller
         return view('pagocom.detalle', compact('matriculacion', 'pagos', 'acuenta', 'saldo'));
 
     }
-    public function actualizar(PagoStoreRequest $request, $pago_id)
+    public function actualizar(PagocomStoreRequest $request, $pago_id)
     {
        // $pago->update($request->all());
 
