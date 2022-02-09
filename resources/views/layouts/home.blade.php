@@ -39,19 +39,19 @@
 
     
 <header>
-    <!--<div class="header-top">
+    <div class="header-top">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12 col-md-12">
                     <ul class="header-contact">
                         <li>
-                           Ite te desea una Feliz navidad y un prospero año nuevo
+                           Banner
                         </li>
                     </ul>
                 </div>
             </div>
         </div>    
-    </div>-->
+    </div>
 
     <!-- Main Menu Start -->
    
@@ -788,17 +788,17 @@
     =====================================-->
     
     <!-- Main jQuery -->
-    <script src="assets/vendors/jquery/jquery.js"></script>
+    <script src="{{asset('assets/vendors/jquery/jquery.js')}}"></script>
     <!-- Bootstrap 4.5 -->
-    <script src="assets/vendors/bootstrap/bootstrap.js"></script>
+    <script src="{{asset('assets/vendors/bootstrap/bootstrap.js')}}"></script>
     <!-- Counterup -->
-    <script src="assets/vendors/counterup/waypoint.js"></script>
-    <script src="assets/vendors/counterup/jquery.counterup.min.js"></script>
-    <script src="assets/vendors/jquery.isotope.js"></script>
-    <script src="assets/vendors/imagesloaded.js"></script>
+    <script src="{{asset('assets/vendors/counterup/waypoint.js')}}"></script>
+    <script src="{{asset('assets/vendors/counterup/jquery.counterup.min.js')}}"></script>
+    <script src="{{asset('assets/vendors/jquery.isotope.js')}}"></script>
+    <script src="{{asset('assets/vendors/imagesloaded.js')}}"></script>
     <!--  Owlk Carousel-->
-    <script src="assets/vendors/owl/owl.carousel.min.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="{{asset('assets/vendors/owl/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('assets/js/script.js')}}"></script>
 
 
   </body>
