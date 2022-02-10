@@ -297,18 +297,17 @@ class ClaseController extends Controller
         $clase->estado_id = Config::get('constantes.ESTADO_FINALIZADO');
         $clase->save();
         return response()->json(['message' => 'Despidete deseale el bien', 'status' => 200]);
-    } 
-
+    }
     
+    public function infoClase(){
+        /*
+         * aqui informar al profesor que clase le toca el clase
+         * materia
+         * tema
+         * objetivo de la inscripcion
+         * y objetivo de la clase
+         * de que hora a que hora  pasa la clase
+         * los dias que viene   
+         */
+    }
 }
-
-/**
- * 
- *   if ($request->ajax()) {
-            
-            $mensaje = ['mensaje'=>"Finalizado correctamente",'id'=>$id];
-            return response('Todo salio Buien ', 200);
-        }
-        
-
- */

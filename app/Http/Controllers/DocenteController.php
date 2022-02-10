@@ -5,6 +5,8 @@ use App\Models\Nivel;
 use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Config;
+use Carbon\Carbon;
 
 class DocenteController extends Controller
 {
@@ -101,6 +103,36 @@ class DocenteController extends Controller
         $docente->niveles()->sync(array_keys($request->niveles));
         return redirect()->route('docentes.gestionar.niveles',$docente->persona->id);
     } 
+
+    public function misEstudiatesActuales(){
+        $docente_id=1;
+        $estudiantes=Docente::findOrFail($docente_id)->clases
+            ->where('estado_id',Config::get('constantes.ESTADO_PRESENTE'))
+            ->where('fecha',Carbon::now());
+        dd($estudiantes);
+    }
+
+    public function misEstudiatescomActuales(){
+        
+    }
+
+    public function misEstudiatesProgramados(){
+
+    }
+    public function misEstudiatescomProgramados(){
+
+    }
+
+    public function misEsperados() //
+    {
+
+    }
+    
+    public function misEsperadoscom() //
+    {
+
+    }
+
 
 }
 

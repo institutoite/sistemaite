@@ -94,4 +94,5 @@ class EstudianteController extends Controller
         return view('estudiantes.historiaacademica',compact('grados','estudiante_id'));
     }
 
+    
 }

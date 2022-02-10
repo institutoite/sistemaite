@@ -18,6 +18,7 @@ use App\Http\Controllers\MotivoController;
 use App\Http\Controllers\ObservacionController;
 use App\Http\Controllers\ClaseController;
 use App\Http\Controllers\EstadoController;
+use App\Http\Controllers\DocenteController;
 
 
 
@@ -40,7 +41,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[ProgramacionController::class,'controlAsitencia'])->name('prueba');
+Route::get('prueba',[DocenteController::class,'misEstudiatesActuales'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');

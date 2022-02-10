@@ -79,8 +79,9 @@ class ClasecomController extends Controller
         $clase = Clasecom::join('aulas', 'clasecoms.aula_id', 'aulas.id')
             ->join('docentes', 'clasecoms.docente_id', 'docentes.id')
             ->join('personas', 'docentes.persona_id', 'personas.id')
+            ->join('estados', 'estados.id', 'clasecoms.estado_id')
             ->where('clasecoms.id',$request->id)
-            ->select('clasecoms.id','fecha','clasecoms.estado','horainicio','horafin','personas.nombre'
+            ->select('clasecoms.id','fecha','estados.estado','horainicio','horafin','personas.nombre'
                     ,'personas.apellidop','personas.apellidom','personas.foto','aulas.aula',
                 'clasecoms.created_at','clasecoms.updated_at')->get()->first();
         return response()->json($clase);
