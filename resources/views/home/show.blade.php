@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="es">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="description" content="edutim,coaching, distant learning, education html, health coaching, kids education, language school, learning online html, live training, online courses, online training, remote training, school html theme, training, university html, virtual training  ">
+  <meta name="description" content="Instituto Ite">
   
-  <meta name="author" content="themeturn.com">
+  <meta name="author" content="ite.com.bo">
 
-  <title>Edutim- Education LMS template</title>
+  <title>Instituto Ite</title>
 
   <!-- Mobile Specific Meta-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- bootstrap.min css -->
-  <link rel="stylesheet" href="assets/vendors/bootstrap/bootstrap.css">
+  <link rel="stylesheet" href="{{asset('assets/vendors/bootstrap/bootstrap.css')}}">
   <!-- Iconfont Css -->
-  <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.css">
-  <link rel="stylesheet" href="assets/vendors/bicon/css/bicon.min.css">
-  <link rel="stylesheet" href="assets/vendors/themify/themify-icons.css">
+  <link rel="stylesheet" href="{{asset('assets/vendors/fontawesome/css/all.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/vendors/bicon/css/bicon.min.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/vendors/themify/themify-icons.css')}}">
   <!-- animate.css -->
   <link rel="stylesheet" href="assets/vendors/animate-css/animate.css">
   <!-- WooCOmmerce CSS -->
@@ -30,211 +30,152 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
 
+  <link href="assets/images/faviconite.ico" rel="shortcut icon">
 </head>
+
 
 <body id="top-header">
 
   
 
     
-<header>
-    <div class="header-top">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6">
-                    <ul class="header-contact">
-                        <li>
-                            <span>Call :</span>
-                           +23 45 5467
-                        </li>
-                        <li>
-                            <span>Email :</span>
-                            info@example.com
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="header-right float-right">
-                        <div class="header-socials">
-                            <ul>
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="header-btn">
-                            <a href="#" class="btn btn-main btn-small"><i class="fa fa-user mr-2"></i>Login / Register</a>
-                        </div>
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12 col-md-12">
+                        <ul class="header-contact">
+                            <li>
+                               Banner
+                            </li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </div>    
-    </div>
-
-    <!-- Main Menu Start -->
-   
-    <div class="site-navigation main_menu " id="mainmenu-area">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <img src="assets/images/logo-dark.png" alt="Edutim" class="img-fluid">
-                </a>
-
-                <!-- Toggler -->
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="fa fa-bars"></span>
-                </button>
-
-                <!-- Collapse -->
-                <div class="collapse navbar-collapse" id="navbarMenu">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbar3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Home<i class="fa fa-angle-down"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbar3">
-                                 <a class="dropdown-item " href="index.html">
-                                    Home 1
+            </div>    
+        </div>
+    
+        <!-- Main Menu Start -->
+       
+        <div class="site-navigation main_menu " id="mainmenu-area">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        <img src="assets/images/logoite.png" alt="Edutim" class="img-fluid">
+                    </a>
+    
+                    <!-- Toggler -->
+    
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="fa fa-bars"></span>
+                    </button>
+    
+                    <!-- Collapse -->
+                    <div class="collapse navbar-collapse" id="navbarMenu">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item ">
+                                <a href="{{ url('/') }}" class="nav-link js-scroll-trigger">
+                                    Inicio
                                 </a>
-                                <a class="dropdown-item " href="index-2.html">
-                                    Home 2
-                                </a> 
-                                <a class="dropdown-item " href="index-3.html">
-                                    Home 3
-                                </a> 
-                                <a class="dropdown-item " href="index-4.html">
-                                    Home 4
-                                </a> 
-                                <a class="dropdown-item " href="index-5.html">
-                                    Home 5
-                                </a> 
-                                <a class="dropdown-item " href="index-6.html">
-                                    Home 6
-                                </a> 
-                                <a class="dropdown-item " href="index-7.html">
-                                    Home 7
-                                </a> 
-                                <a class="dropdown-item " href="index-8.html">
-                                    Home 8 <span>New</span>
-                                </a> 
-                                
-                            </div>
-                        </li>
-                        <li class="nav-item ">
-                            <a href="about.html" class="nav-link js-scroll-trigger">
-                                About us
-                            </a>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbar3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Courses<i class="fa fa-angle-down"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbar3">
-                                <a class="dropdown-item " href="course-grid.html">
-                                   Course Style 1
-                               </a>
-                               <a class="dropdown-item " href="course-grid-2.html">
-                                   Course Style 2
-                               </a> 
-
-                               <a class="dropdown-item " href="course-grid-3.html">
-                                   Course Style 3
-                               </a> 
-                               <a class="dropdown-item " href="course-grid-4.html">
-                                   Course Style 4
-                               </a> 
-                               <a class="dropdown-item " href="course-grid-5.html">
-                                   Course Filter
-                               </a>
-                               <a class="dropdown-item " href="course-grid-6.html">
-                                   Course List
-                               </a>
-                                <a class="dropdown-item " href="course-single.html">
-                                   Course Details Style 1
-                               </a> 
-                               <a class="dropdown-item " href="course-single2.html">
-                                   Course Details Style Tab
-                               </a> 
-                               <a class="dropdown-item " href="course-single3.html">
-                                   Course Details Style Tab2
-                               </a> 
-                               <a class="dropdown-item " href="course-single4.html">
-                                   Course Details Classic
-                               </a> 
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbar3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Shop<i class="fa fa-angle-down"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbar3">
-                                 <a class="dropdown-item " href="shop.html">
-                                    Shop
+                            </li>
+                            <li class="nav-item ">
+                                <a href="{{ route('about') }}" class="nav-link js-scroll-trigger">
+                                    Acerca de nosotros
                                 </a>
-                                <a class="dropdown-item " href="product-list-filter.html">
-                                    Shop List Filter
+                            </li>
+    
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbar3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Cursos<i class="fa fa-angle-down"></i>
                                 </a>
-                                <a class="dropdown-item " href="product-single.html">
-                                   Shop Single
-                                </a> 
-                                <a class="dropdown-item " href="cart.html">
-                                    Cart
-                                </a> 
-                                <a class="dropdown-item " href="checkout.html">
-                                    Checkout
-                                </a> 
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbar3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Pages<i class="fa fa-angle-down"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbar3">
-                                <a class="dropdown-item " href="instructors.html">
-                                    Instructor
+                                <div class="dropdown-menu" aria-labelledby="navbar3">
+                                    <a class="dropdown-item " href="course-grid.html">
+                                       Course Style 1
+                                   </a>
+                                   <a class="dropdown-item " href="course-grid-2.html">
+                                       Course Style 2
+                                   </a> 
+    
+                                   <a class="dropdown-item " href="course-grid-3.html">
+                                       Course Style 3
+                                   </a> 
+                                   <a class="dropdown-item " href="course-grid-4.html">
+                                       Course Style 4
+                                   </a> 
+                                   <a class="dropdown-item " href="course-grid-5.html">
+                                       Course Filter
+                                   </a>
+                                   <a class="dropdown-item " href="course-grid-6.html">
+                                       Course List
+                                   </a>
+                                    <a class="dropdown-item " href="course-single.html">
+                                       Course Details Style 1
+                                   </a> 
+                                   <a class="dropdown-item " href="course-single2.html">
+                                       Course Details Style Tab
+                                   </a> 
+                                   <a class="dropdown-item " href="course-single3.html">
+                                       Course Details Style Tab2
+                                   </a> 
+                                   <a class="dropdown-item " href="course-single4.html">
+                                       Course Details Classic
+                                   </a> 
+                                </div>
+                            </li>
+                            
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbar3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Paginas<i class="fa fa-angle-down"></i>
                                 </a>
-                                <a class="dropdown-item " href="login-registration.html">
-                                    Login
+                                <div class="dropdown-menu" aria-labelledby="navbar3">
+                                    <a class="dropdown-item " href="instructors.html">
+                                        Instructor
+                                    </a>
+                                    <a class="dropdown-item " href="login-registration.html">
+                                        Login
+                                    </a>
+                                    <a class="dropdown-item " href="404.html">
+                                        404
+                                    </a> 
+                                </div>
+                            </li>
+                        </ul>
+    
+                        @guest
+                            @if (Route::has('login'))
+                                    <a href="{{ route('login') }}" class="btn btn-main btn-small"><i class="fa fa-sign-in-alt mr-2"></i>
+                                        Iniciar Sesion
+                                    </a>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <i class="fa fa-angle-down"></i>
                                 </a>
-                                <a class="dropdown-item " href="404.html">
-                                    404
-                                </a> 
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbar3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Blog<i class="fa fa-angle-down"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbar3">
-                                 <a class="dropdown-item " href="blog.html">
-                                    Blog
-                                </a>
-                                <a class="dropdown-item " href="blog-single.html">
-                                    Blog Single
-                                </a> 
-                            </div>
-                        </li>
-                        
-                        <li class="nav-item ">
-                            <a href="contact.html" class="nav-link">
-                                Contact
-                            </a>
-                        </li>
-                    </ul>
-
-                    <ul class="header-contact-right d-none d-lg-block">
-                        <li> <a href="#" class="header-cart"><i class="fa fa-shopping-cart"></i></a></li>
-                        <li><a href="#" class="header-search search_toggle"> <i class="fa fa fa-search"></i></a></li>
-                    </ul>
-                   
-                </div> <!-- / .navbar-collapse -->
-            </div> <!-- / .container -->
-        </nav>
-    </div>
-</header>
+    
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                        {{ __('Cerrar Sesion') }}
+                                    </a>
+    
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                       <!-- <ul class="header-contact-right d-none d-lg-block">
+                            <li> <a href="#" class="header-cart"><i class="fa fa-shopping-cart"></i></a></li>
+                            <li><a href="#" class="header-search search_toggle"> <i class="fa fa fa-search"></i></a></li>
+                        </ul>-->
+                       
+                    </div> <!-- / .navbar-collapse -->
+                </div> <!-- / .container -->
+            </nav>
+        </div>
+    </header>
+    
 
  <!--search overlay start-->
  <div class="search-wrap">
@@ -852,17 +793,18 @@
     =====================================-->
     
     <!-- Main jQuery -->
-    <script src="assets/vendors/jquery/jquery.js"></script>
+    <script src="{{asset('assets/vendors/jquery/jquery.js')}}"></script>
     <!-- Bootstrap 4.5 -->
-    <script src="assets/vendors/bootstrap/bootstrap.js"></script>
+    <script src="{{asset('assets/vendors/bootstrap/bootstrap.js')}}"></script>
     <!-- Counterup -->
-    <script src="assets/vendors/counterup/waypoint.js"></script>
-    <script src="assets/vendors/counterup/jquery.counterup.min.js"></script>
-    <script src="assets/vendors/jquery.isotope.js"></script>
-    <script src="assets/vendors/imagesloaded.js"></script>
+    <script src="{{asset('assets/vendors/counterup/waypoint.js')}}"></script>
+    <script src="{{asset('assets/vendors/counterup/jquery.counterup.min.js')}}"></script>
+    <script src="{{asset('assets/vendors/jquery.isotope.js')}}"></script>
+    <script src="{{asset('assets/vendors/imagesloaded.js')}}"></script>
     <!--  Owlk Carousel-->
-    <script src="assets/vendors/owl/owl.carousel.min.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="{{asset('assets/vendors/owl/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('assets/js/script.js')}}"></script>
+
 
 
   </body>

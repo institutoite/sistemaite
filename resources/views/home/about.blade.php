@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="description" content="Instituto Ite">
-    
-    <meta name="author" content="ite.com.bo">
-    
-    <title>Instituto Ite</title>
-    
-    <!-- Mobile Specific Meta-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- bootstrap.min css -->
-    <link rel="stylesheet" href="{{asset('assets/vendors/bootstrap/bootstrap.css')}}">
-    <!-- Iconfont Css -->
-    <link rel="stylesheet" href="{{asset('assets/vendors/fontawesome/css/all.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendors/bicon/css/bicon.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendors/themify/themify-icons.css')}}">
-    <!-- animate.css -->
-    <link rel="stylesheet" href="assets/vendors/animate-css/animate.css">
-    <!-- WooCOmmerce CSS -->
-    <link rel="stylesheet" href="assets/vendors/woocommerce/woocommerce-layouts.css">
-    <link rel="stylesheet" href="assets/vendors/woocommerce/woocommerce-small-screen.css">
-    <link rel="stylesheet" href="assets/vendors/woocommerce/woocommerce.css">
-        <!-- Owl Carousel  CSS -->
-    <link rel="stylesheet" href="assets/vendors/owl/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/vendors/owl/assets/owl.theme.default.min.css">
-    
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    
-    <link href="assets/images/faviconite.ico" rel="shortcut icon">
-</head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="description" content="Instituto Ite">
+        
+        <meta name="author" content="ite.com.bo">
+      
+        <title>Instituto Ite</title>
+      
+        <!-- Mobile Specific Meta-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- bootstrap.min css -->
+        <link rel="stylesheet" href="{{asset('assets/vendors/bootstrap/bootstrap.css')}}">
+        <!-- Iconfont Css -->
+        <link rel="stylesheet" href="{{asset('assets/vendors/fontawesome/css/all.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/vendors/bicon/css/bicon.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/vendors/themify/themify-icons.css')}}">
+        <!-- animate.css -->
+        <link rel="stylesheet" href="assets/vendors/animate-css/animate.css">
+        <!-- WooCOmmerce CSS -->
+        <link rel="stylesheet" href="assets/vendors/woocommerce/woocommerce-layouts.css">
+        <link rel="stylesheet" href="assets/vendors/woocommerce/woocommerce-small-screen.css">
+        <link rel="stylesheet" href="assets/vendors/woocommerce/woocommerce.css">
+         <!-- Owl Carousel  CSS -->
+        <link rel="stylesheet" href="assets/vendors/owl/assets/owl.carousel.min.css">
+        <link rel="stylesheet" href="assets/vendors/owl/assets/owl.theme.default.min.css">
+      
+        <!-- Main Stylesheet -->
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/responsive.css">
+      
+        <link href="assets/images/faviconite.ico" rel="shortcut icon">
+    </head>
 
 <body id="top-header">
 
@@ -40,19 +40,19 @@
 
 
     <header>
-        <!--<div class="header-top">
+        <div class="header-top">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-12 col-md-12">
                         <ul class="header-contact">
                             <li>
-                               Ite te desea una Feliz navidad y un prospero año nuevo
+                               Banner
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>    
-        </div>-->
+        </div>
     
         <!-- Main Menu Start -->
        
@@ -60,7 +60,7 @@
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="assets/images/logoite.png" alt="Ite" class="img-fluid">
+                        <img src="assets/images/logoite.png" alt="Edutim" class="img-fluid">
                     </a>
     
                     <!-- Toggler -->
@@ -330,17 +330,17 @@
     =====================================-->
 
     <!-- Main jQuery -->
-    <script src="assets/vendors/jquery/jquery.js"></script>
+    <script src="{{asset('assets/vendors/jquery/jquery.js')}}"></script>
     <!-- Bootstrap 4.5 -->
-    <script src="assets/vendors/bootstrap/bootstrap.js"></script>
+    <script src="{{asset('assets/vendors/bootstrap/bootstrap.js')}}"></script>
     <!-- Counterup -->
-    <script src="assets/vendors/counterup/waypoint.js"></script>
-    <script src="assets/vendors/counterup/jquery.counterup.min.js"></script>
-    <script src="assets/vendors/jquery.isotope.js"></script>
-    <script src="assets/vendors/imagesloaded.js"></script>
+    <script src="{{asset('assets/vendors/counterup/waypoint.js')}}"></script>
+    <script src="{{asset('assets/vendors/counterup/jquery.counterup.min.js')}}"></script>
+    <script src="{{asset('assets/vendors/jquery.isotope.js')}}"></script>
+    <script src="{{asset('assets/vendors/imagesloaded.js')}}"></script>
     <!--  Owlk Carousel-->
-    <script src="assets/vendors/owl/owl.carousel.min.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="{{asset('assets/vendors/owl/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('assets/js/script.js')}}"></script>
 
 
 </body>
