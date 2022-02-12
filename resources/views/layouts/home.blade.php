@@ -42,12 +42,20 @@
     <div class="header-top">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-12 col-md-12">
+                <div class="col-lg-6 col-md-6">
                     <ul class="header-contact">
                         <li>
+                            <span></span>
                            Banner
                         </li>
                     </ul>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="header-right float-right">
+                        <div class="header-btn">
+                            <a href="#" class="btn btn-main btn-small">contactenos</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>    
