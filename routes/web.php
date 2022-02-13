@@ -12,6 +12,8 @@ use App\Http\Controllers\PagocomController;
 use App\Http\Controllers\ProgramacioncomController;
 use App\Http\Controllers\ClasecomController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController;
+
 
 
 use App\Http\Controllers\ProductoController;
@@ -395,6 +397,8 @@ Route::resource('question', "HomequestionController")->names('homequestion');
 Route::resource('meta', "MetaController")->names('meta');
 
 Route::resource('requisito', "RequisitoController")->names('requisito');
+
+Route::resource('role', "RoleController")->names('role');
 
 
 

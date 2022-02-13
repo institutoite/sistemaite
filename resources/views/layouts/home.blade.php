@@ -46,7 +46,7 @@
                     <ul class="header-contact">
                         <li>
                             <span></span>
-                           Banner
+                           Cursos Vacacionales
                         </li>
                     </ul>
                 </div>
