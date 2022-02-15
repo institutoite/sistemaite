@@ -105,15 +105,14 @@ class DocenteController extends Controller
     } 
 
     public function misEstudiatesActuales(){
-        $docente_id=1;
-        $estudiantes=Docente::findOrFail($docente_id)->clases
-            ->where('estado_id',Config::get('constantes.ESTADO_PRESENTE'))
-            ->where('fecha',Carbon::now());
+        $estudiantes=Docente::join('clases','clases.docente_id','docentes.id')->where('estado_id',Config::get('constantes.ESTADO_PRESENTE'))
+        ->where('fecha',Carbon::now()->format('Y-m-d'))->get();
         dd($estudiantes);
+        
     }
 
     public function misEstudiatescomActuales(){
-        
+      
     }
 
     public function misEstudiatesProgramados(){
