@@ -4,9 +4,7 @@
 @stop
 
 @section('title', 'Docentes')
-@section('title', 'Personas')
-@section('plugins.Sweetalert2',true)
-@section('plugins.Datatables',true)
+
 
 @section('content_header')
     <h1 class="text-center text-primary">Formulario Editar meta</h1>
