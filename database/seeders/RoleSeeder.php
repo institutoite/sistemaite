@@ -15,15 +15,14 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $admin= Role::create(['name' => 'Admin']);
+        /* $admin= Role::create(['name' => 'Admin']);
         $secretary= Role::create(['name' => 'Secretary']);
         $teacher= Role::create(['name' => 'Teacher']);
-        $student= Role::create(['name' => 'Student']);
+        $student= Role::create(['name' => 'Student']); */
 
-        Permission::create(['name' => 'schedule.index'])->syncRoles([$admin, $teacher]);
-        Permission::create(['name' => 'schedule.crear'])->syncRoles([$admin, $teacher]);
-        Permission::create(['name' => 'schedule'])->syncRoles([$admin, $teacher]);
-        Permission::create(['name' => 'schedule'])->syncRoles([$admin, $teacher]);
-        Permission::create(['name' => 'schedule'])->syncRoles([$admin, $teacher]);
+        Permission::create(['name' => 'Listar Horarios']);
+        Permission::create(['name' => 'Crear Horarios']);
+        Permission::create(['name' => 'Editar Horarios']);
+        Permission::create(['name' => 'Eliminar Horarios']);
     }
 }

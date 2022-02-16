@@ -7,24 +7,24 @@
 
 
 @section('content_header')
-    <h1 class="text-center text-primary">Formulario Editar meta</h1>
+    <h1 class="text-center text-primary">Formulario Editar Rol</h1>
 @stop
 
 @section('content')
-        <div class="card">
-            <div class="card-header bg-primary">
-                Editar metas <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('meta.index')}}">Listar metas</a>
-            </div>
-            <div class="card-body">
-                <form action="{{route('meta.update',$meta)}}" method="put">
-                    @csrf
-                    {{ @method_field('PUT') }} 
-                    @include('meta.form')
-                    @include('include.botones')
-                </form>
-            </div>
+    <div class="card">
+        <div class="card-header bg-primary">
+            Editar Rol <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('role.index')}}">Listar roles</a>
         </div>
-    
+        <div class="card-body">
+            {!! Form::model($role, ['route'=> ['role.update'], $role], 'method' => 'put') !!}
+
+                @include('roles.form')
+
+                {!! Form::submit('Crear Rol', ['class' => 'btn btn-primary mt-2']) !!}
+
+            {!! Form::close() !!}
+        </div>
+    </div>
 @stop
 
 @section('js')

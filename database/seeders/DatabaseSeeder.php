@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
             AsignaturaSeeder::class,
             HomeSeeder::class,
             HomescheduleSeeder::class,
+            RoleSeeder::class,
         ]);
 
         

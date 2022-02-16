@@ -25,11 +25,11 @@
                     @foreach ($roles as $role)
                         <tr>
                             <td>
-                                {{$role->nombre}}
+                                {{$role->id}}
                             </td>
 
                             <td>
-                                {{$role->carrera->carrera}}
+                                {{$role->name}}
                             </td>
 
                             <td width="10px">

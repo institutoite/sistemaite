@@ -50,7 +50,7 @@ class RoleController extends Controller
 
         $role->permissions()->attach($request->permissions);
 
-        return $request()->route('roles.index');
+        return redirect()->route('role.index');
     }
 
     /**
@@ -72,7 +72,8 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('roles.edit', compact('role'));
+        $permissions = Permission::all();
+        return view('roles.edit', compact('role','permissions'));
     }
 
     /**
@@ -84,7 +85,12 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'permissions' => 'required'
+        ]);
+
+        $role->permissions()->sync($request->permissions);
     }
 
     /**
