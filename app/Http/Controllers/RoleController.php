@@ -90,7 +90,13 @@ class RoleController extends Controller
             'permissions' => 'required'
         ]);
 
+        $role->update([
+            'name' => $request->name
+        ]);
+
         $role->permissions()->sync($request->permissions);
+
+        return redirect()->route('role.index');
     }
 
     /**
@@ -101,6 +107,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->delete();
+        return redirect()->route('role.index');
     }
 }
