@@ -11,9 +11,8 @@ use App\Http\Controllers\OpcionController;
 use App\Http\Controllers\PagocomController;
 use App\Http\Controllers\ProgramacioncomController;
 use App\Http\Controllers\ClasecomController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\RoleController;
 
+use App\Http\Controllers\HomeController;
 
 
 use App\Http\Controllers\ProductoController;
@@ -384,21 +383,23 @@ Route::get('/', function () {
 
 Route::get('/',[HomeController::class, 'index']);
 
-Route::resource('home', "HomeController")->names('home');
+Route::resource('home', HomeController::class)->names('home');
 
-Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
 
-Route::get('/questions', [App\Http\Controllers\HomeController::class, 'questions'])->name('questions');
+Route::get('/questions', [HomeController::class, 'questions'])->name('questions');
 
-Route::resource('schedule', "HomescheduleController")->names('homeschedule');
+Route::resource('schedule', HomescheduleController::class)->names('homeschedule');
 
-Route::resource('question', "HomequestionController")->names('homequestion');
+Route::resource('question', HomequestionController::class)->names('homequestion');
 
-Route::resource('meta', "MetaController")->names('meta');
+Route::resource('meta', MetaController::class)->names('meta');
 
-Route::resource('requisito', "RequisitoController")->names('requisito');
+Route::resource('requisito', RequisitoController::class)->names('requisito');
 
-Route::resource('role', "RoleController")->names('role');
+Route::resource('role', RoleController::class)->names('role');
+
+Route::resource('rolusers', RolUsersController::class)->only(['index', 'edit', 'update'])->names('rolusers');
 
 
 
