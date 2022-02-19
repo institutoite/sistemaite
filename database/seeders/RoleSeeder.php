@@ -16,9 +16,9 @@ class RoleSeeder extends Seeder
     public function run()
     {
         /* $admin= Role::create(['name' => 'Admin']);
-        $secretary= Role::create(['name' => 'Secretary']);
-        $teacher= Role::create(['name' => 'Teacher']);
-        $student= Role::create(['name' => 'Student']); */
+        $secretary= Role::create(['name' => 'Secretaria']);
+        $teacher= Role::create(['name' => 'Docente']);
+        $student= Role::create(['name' => 'Estudiante']); */
 
         Permission::create(['name' => 'Listar Asignaturas']);
         Permission::create(['name' => 'Crear Asignaturas']);
@@ -104,5 +104,11 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Crear Temas']);
         Permission::create(['name' => 'Editar Temas']);
         Permission::create(['name' => 'Eliminar Temas']);
+
+        Permission::create(['name' => 'Listar Roles']);
+        Permission::create(['name' => 'Crear Roles']);
+        Permission::create(['name' => 'Editar Roles']);
+        Permission::create(['name' => 'Eliminar Roles']);
+
     }
 }

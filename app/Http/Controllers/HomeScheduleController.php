@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class HomeScheduleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:Listar Horarios')->only('index');
+        $this->middleware('can:Crear Horarios')->only('create','store');
+        $this->middleware('can:Editar Horarios')->only('edit','update');
+        $this->middleware('can:Eliminar Horarios')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

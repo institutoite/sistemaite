@@ -9,6 +9,12 @@ use Spatie\Permission\Models\Role;
 
 class RolUsersController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:Listar Roles')->only('index');
+        $this->middleware('can:Editar Roles')->only('edit','update');
+    }
     /**
      * Display a listing of the resource.
      *

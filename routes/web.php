@@ -383,7 +383,7 @@ Route::get('/', function () {
 
 Route::get('/',[HomeController::class, 'index']);
 
-Route::resource('home', HomeController::class)->names('home');
+//Route::resource('home', HomeController::class);
 
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 

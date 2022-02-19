@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
  */
 class ModalidadController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:Listar Modalidades')->only('index');
+        $this->middleware('can:Crear Modalidades')->only('create','store');
+        $this->middleware('can:Editar Modalidades')->only('edit','update');
+        $this->middleware('can:Eliminar Modalidades')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

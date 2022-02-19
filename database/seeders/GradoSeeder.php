@@ -7,6 +7,7 @@ use App\Models\Grado;
 
 class GradoSeeder extends Seeder
 {
+    
     /**
      * Run the database seeds.
      *

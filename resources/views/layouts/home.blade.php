@@ -89,62 +89,14 @@
                                 Acerca de nosotros
                             </a>
                         </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbar3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Cursos<i class="fa fa-angle-down"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbar3">
-                                <a class="dropdown-item " href="course-grid.html">
-                                   Course Style 1
-                               </a>
-                               <a class="dropdown-item " href="course-grid-2.html">
-                                   Course Style 2
-                               </a> 
-
-                               <a class="dropdown-item " href="course-grid-3.html">
-                                   Course Style 3
-                               </a> 
-                               <a class="dropdown-item " href="course-grid-4.html">
-                                   Course Style 4
-                               </a> 
-                               <a class="dropdown-item " href="course-grid-5.html">
-                                   Course Filter
-                               </a>
-                               <a class="dropdown-item " href="course-grid-6.html">
-                                   Course List
-                               </a>
-                                <a class="dropdown-item " href="course-single.html">
-                                   Course Details Style 1
-                               </a> 
-                               <a class="dropdown-item " href="course-single2.html">
-                                   Course Details Style Tab
-                               </a> 
-                               <a class="dropdown-item " href="course-single3.html">
-                                   Course Details Style Tab2
-                               </a> 
-                               <a class="dropdown-item " href="course-single4.html">
-                                   Course Details Classic
-                               </a> 
-                            </div>
-                        </li>
+                        @auth
+                            <li class="nav-item ">
+                                <a href="{{ route('homeschedule.index') }}" class="nav-link js-scroll-trigger">
+                                    Panel administrativo
+                                </a>
+                            </li>
+                        @endauth
                         
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbar3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Paginas<i class="fa fa-angle-down"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbar3">
-                                <a class="dropdown-item " href="instructors.html">
-                                    Instructor
-                                </a>
-                                <a class="dropdown-item " href="login-registration.html">
-                                    Login
-                                </a>
-                                <a class="dropdown-item " href="404.html">
-                                    404
-                                </a> 
-                            </div>
-                        </li>
                     </ul>
 
                     @guest
@@ -154,7 +106,18 @@
                                 </a>
                         @endif
                     @else
-                        <li class="nav-item dropdown">
+                    
+                        <a class="btn btn-main btn-small" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                            {{ __('Cerrar Sesion') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                   
+                        {{-- <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <i class="fa fa-angle-down"></i>
                             </a>
@@ -170,7 +133,7 @@
                                     @csrf
                                 </form>
                             </div>
-                        </li>
+                        </li> --}}
                     @endguest
                    <!-- <ul class="header-contact-right d-none d-lg-block">
                         <li> <a href="#" class="header-cart"><i class="fa fa-shopping-cart"></i></a></li>

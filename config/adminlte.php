@@ -422,6 +422,7 @@ return [
                     'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                     'classes'  => 'text-secondary',
+                    'can' => 'Listar Inscripciones',
                 ],
                 [
                     'text' => 'Ingresos',
@@ -718,6 +719,7 @@ return [
             'icon'    => 'fas fa-calendar-times',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Feriados',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -741,6 +743,7 @@ return [
             'icon'    => 'fas fa-star-of-david',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Modalidades',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -783,6 +786,7 @@ return [
             'icon'    => 'fas fa-book-reader',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Materias',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -965,6 +969,7 @@ return [
             'icon'    => 'fas fa-map-marked-alt',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Carreras',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -987,6 +992,7 @@ return [
             'icon'    => 'fas fa-map-marked-alt',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Asignaturas',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -1003,6 +1009,7 @@ return [
             'icon'    => 'fas fa-map-marked-alt',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Niveles',
             'submenu' => [
                 [
                     'text' => 'listar',
@@ -1086,6 +1093,7 @@ return [
             'icon'    => 'fas fa-prescription-bottle fa-2x',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Motivos',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -1102,29 +1110,30 @@ return [
             ],
         ],
 
-               //** %%%%%%%%%%%%%%%%%%  MENU ROLEs %%%%%%%%%%%%% */
-        
-               [
-                'text'    => 'Roles',
-                'icon'    => 'fas fa-fw fa-users-cog',
-                'icon_color' => 'secondary',
-                'classes'  => 'text-white text-bold bg-primary',
-                'submenu' => [
-                    [
-                        'text' => 'Listar',
-                        'icon'    => 'fas fa-angle-right',
-                        'url'  => 'roles',
-                        'classes'  => 'text-dark',
-                    ],
-                    [
-                        'text' => 'Crear',
-                        'icon'    => 'fas fa-angle-right',
-                        'url'  => 'motivos/create',
-                        'classes'  => 'text-dark',
-                    ],
+        //** %%%%%%%%%%%%%%%%%%  MENU ROLES %%%%%%%%%%%%% */
+    
+        [
+            'text'    => 'Roles',
+            'icon'    => 'fas fa-fw fa-users-cog',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Roles',
+            'submenu' => [
+                [
+                    'text' => 'Listar Roles',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'role',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Asignar Rol a Usuario',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'rolusers',
+                    'classes'  => 'text-dark',
                 ],
             ],
-    
+        ],
+
         //** %%%%%%%%%%%%%%%%%%  HOME ITE %%%%%%%%%%%%% */
         
         [
@@ -1145,6 +1154,7 @@ return [
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'schedule',
                     'classes'  => 'text-dark',
+                    'can' => 'Listar Horarios',
                 ],
 
                 [

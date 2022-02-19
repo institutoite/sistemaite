@@ -9,6 +9,14 @@ use App\Http\Requests\AsignaturaGuardarRequest;
 
 class AsignaturaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:Listar Asignaturas')->only('index','show');
+        $this->middleware('can:Crear Asignaturas')->only('create','store');
+        $this->middleware('can:Editar Asignaturas')->only('edit','update');
+        $this->middleware('can:Eliminar Asignaturas')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *

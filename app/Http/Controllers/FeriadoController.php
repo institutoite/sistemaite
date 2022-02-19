@@ -11,6 +11,13 @@ use Illuminate\Http\Request;
  */
 class FeriadoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:Listar Feriados')->only('index');
+        $this->middleware('can:Crear Feriados')->only('create','store');
+        $this->middleware('can:Editar Feriados')->only('edit','update');
+        $this->middleware('can:Eliminar Feriados')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
