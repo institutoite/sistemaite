@@ -104,10 +104,20 @@ class DocenteController extends Controller
         return redirect()->route('docentes.gestionar.niveles',$docente->persona->id);
     } 
 
-    public function misEstudiatesActuales(){
-        $estudiantes=Docente::join('clases','clases.docente_id','docentes.id')->where('estado_id',Config::get('constantes.ESTADO_PRESENTE'))
-        ->where('fecha',Carbon::now()->format('Y-m-d'))->get();
-        dd($estudiantes);
+    public function misclases(Request $request){
+        $persona_id = $request->id;
+        return view('docente.estudiantesactuales',compact('persona_id'));
+    }
+
+    public function EstudiantesDeUnDocente($estudiante_id){
+        $estudiantes=Docente::findOrFail($estudiante_id)
+        ->estudiantes
+        ->get();
+        
+        return datatables()->of($estudiantes)
+                ->addColumn('btn', 'docente.action_estudiantes')
+                ->rawColumns(['btn', 'foto'])
+                ->toJson();
         
     }
 

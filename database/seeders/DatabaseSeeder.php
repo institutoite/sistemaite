@@ -17,11 +17,11 @@ class DatabaseSeeder extends Seeder
     {
         //Model::unguard();
         $this->call([
-            UserSeeder::class,
             PaisSeeder::class,
             CiudadSeeder::class,
             ZonaSeeder::class,
             PersonaSeeder::class,
+            UserSeeder::class,
             EstudianteSeeder::class,
             NivelSeeder::class,
             GradoSeeder::class,

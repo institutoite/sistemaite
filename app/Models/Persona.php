@@ -76,6 +76,12 @@ class Persona extends Model
         return $this->belongsToMany(Persona::class, 'persona_persona','persona_id', 'persona_id_apoderado')->withPivot('telefono', 'parentesco');
     }
 
+    public function usuario()
+    {
+        return $this->hasOne(User::class);
+    }
+
+
     public function hijos()
     {
         return $this->belongsToMany(Persona::class, 'persona_persona', 'persona_id_apoderado', 'persona_id')->withPivot('telefono', 'parentesco'); // //, 

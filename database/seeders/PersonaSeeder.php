@@ -16,6 +16,7 @@ class PersonaSeeder extends Seeder
      */
     public function run()
     {
+        
         Persona::factory()->count(30)->create();
         $a=1;
         while ($a <= 30) {

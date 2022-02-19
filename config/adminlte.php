@@ -627,6 +627,12 @@ return [
             'classes'  => 'text-white text-bold bg-primary',
             'submenu' => [
                 [
+                    'text' => 'Todos',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => '/personas',
+                    'classes'  => 'text-dark',
+                ],
+                [
                     'text' => 'Estudiantes',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => '/home',

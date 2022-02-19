@@ -13,6 +13,10 @@
     </button>
 </form>
 
-<a href="{{route('opcion.principal', $id)}}" class="btn btn-outline-primary tooltipsC mr-2" title="ir a opciones de la persona">
+{{-- <a href="{{route('opcion.principal', $id)}}" class="btn btn-outline-primary tooltipsC mr-2" title="ir a opciones de la persona">
     Opciones
+</a> --}}
+
+<a href="{{route('personas.agregar.papel', $id)}}" class="btn btn-outline-primary tooltipsC mr-2" title="ir a opciones de la persona">
+    Agregar Papel
 </a>

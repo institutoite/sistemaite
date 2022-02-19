@@ -296,7 +296,7 @@ class InscripcioneController extends Controller
         if($persona->computacion!==null){
             $matriculaciones=Matriculacion::where('computacion_id','=',$persona->computacion->id)->get();
             $matriculacionesVigentes=Matriculacion::join('pagos','pagos.pagable_id','=','matriculacions.id')
-                                                  ->join('asignaturas','asignaturas.id','=','matriculacions.asignatura_id')        
+                    ->join('asignaturas','asignaturas.id','=','matriculacions.asignatura_id')        
             ->where('computacion_id','=',$persona->computacion->id)->where('vigente',1)
             ->select('matriculacions.id','vigente','costo','asignatura',DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_type='App\\Models\\Inscripcione' and pagos.pagable_id=1) as acuenta"))
             ->groupBy('matriculacions.id', 'vigente', 'costo','asignatura','acuenta')->get();

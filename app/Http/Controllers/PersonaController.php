@@ -12,6 +12,7 @@ use App\Models\Cliservicio;
 use App\Models\Clicopy;
 use App\Models\Docente;
 use App\Models\Proveedor;
+use App\Models\User;
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
@@ -30,6 +31,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
+use Illuminate\Support\Facades\Hash;
+
 
 
 class PersonaController extends Controller
@@ -41,7 +44,7 @@ class PersonaController extends Controller
      */
     public function index()
     {
-           //return Persona::all();
+        return view('persona.index');
     }
 
     /**
@@ -98,6 +101,15 @@ class PersonaController extends Controller
         $persona->ciudad_id = $request->ciudad_id;
         $persona->zona_id = $request->zona_id;
         $persona->save();
+
+        $user = new User();
+        $user->email =strtolower(Str::substr($persona->nombre, 1, 2).$persona->apellidop.$persona->id)."@ite.com.bo" ;
+        $user->name = ucfirst($user->email);
+        $user->persona_id = $persona->id;
+        $user->password = Hash::make($user->name."*");
+        $user->foto = "estudiantes/sinperfil.png";
+        $user->save();
+
         //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A    P E R S O N A   %%%%%%%%%%%%%%%%*/
         $persona->userable()->create(['user_id'=>Auth::user()->id]);
         //dd($request->papel);
@@ -407,7 +419,18 @@ class PersonaController extends Controller
     }
 
     public function tomarfoto(Persona $persona){
-
         return view('persona.tomarfoto', compact('persona'));
+    }
+
+    public function configurar_papeles($persona_id){
+        $persona= Persona::findOrFail($persona_id);
+        $papeles=[];
+        $papeles['estudiante'] = $persona->estudiante == null ? false : true;
+        $papeles['computacion'] = $persona->computacion == null ? false : true;
+        $papeles['docente'] = $persona->docente == null ? false : true;
+        $papeles['administrativo'] = $persona->administrativo == null ? false : true;
+        $papeles['cliservicio'] = $persona->cliservicio == null ? false : true;
+        
+        return view('persona.papeles',compact('papeles'));
     }
 }

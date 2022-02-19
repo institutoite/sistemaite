@@ -45,49 +45,42 @@
             </div>
         </div>
     </div>
-    <div class="card"> 
-        <div class="card-header bg-primary" >
-            <div style="display: flex; justify-content: space-between; align-items: center;">
+    @if($persona->computacion)
+        <div class="card"> 
+            <div class="card-header bg-primary" >
+                <div style="display: flex; justify-content: space-between; align-items: center;">
 
-                <span id="card_title">
-                    {{ __('MATRICULACIOENS VIGENTES de: ')}} <strong> {{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom }}</strong>
-                </span>
+                    <span id="card_title">
+                        {{ __('MATRICULACIOENS VIGENTES de: ')}} <strong> {{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom }}</strong>
+                    </span>
 
-                <div class="float-right">
-                    <a href="{{route('miscarreras.listar',$persona->computacion)}}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                    {{ __('Matricular') }} <i class="fa fa-plus-circle text-white"></i>
-                    </a>
+                    <div class="float-right">
+                        <a href="{{route('miscarreras.listar',$persona->computacion)}}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                        {{ __('Matricular') }} <i class="fa fa-plus-circle text-white"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="matriculacionesVigentes" class="table table-striped table-hover">
+                        <thead class="thead">
+                            <tr>
+                                <th>#</th>
+                                <th>Objetivo</th>
+                                <th>acuenta</th>
+                                <th>costo</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table id="matriculacionesVigentes" class="table table-striped table-hover">
-                    <thead class="thead">
-                        <tr>
-                            <th>#</th>
-                            <th>Objetivo</th>
-                            <th>acuenta</th>
-                            <th>costo</th>
-                            <th>Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    
-        
-            
-            
-       
-
-
-
-    
+    @endif
 @endsection
 @section('js')
 

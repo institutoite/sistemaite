@@ -76,8 +76,13 @@ Route::put('persona/{persona}/subirfotojpg', 'PersonaController@guardarfotojpg')
 //Route::put('persona/subirfoto', 'PersonaController@guardarfoto')->name('actualizarfoto');
 
 Route::resource('personas', "PersonaController");
+Route::get('persona/papeles/{persona_id}', 'PersonaController@configurar_papeles')->name('personas.agregar.papel');
+
 
 Route::resource('paises', "PaisController");
+
+Route::resource('telefonos', "TelefonoController");
+Route::resource('users', 'UserController');
 Route::resource('ciudades', "CiudadController");
 Route::resource('zonas', "ZonaController");
 //Route::resource('usuarios', "UserController");
@@ -106,6 +111,8 @@ Route::get('docentes','DocenteController@index')->name('docentes.index');
 Route::get('docentes/niveles/{persona}', 'DocenteController@configurar_niveles')->name('docentes.gestionar.niveles');
 Route::post('docentes/niveles/configurar/{docente}', 'DocenteController@GuardarConfigurarNiveles')->name('docentes.niveles.configurar');
 Route::get('opciones/docentes/{persona}',[OpcionController::class,'docentes'])->name('opcion.docentes');
+Route::get('misclases/{persona_id}',[DocenteController::class,'misclases'])->name('misestudiantes.actuales.view');
+Route::get('misclases/actuales',[DocenteController::class,'ClasesDeUnDocente'])->name('misestudiantes.actuales.ajax');
 Route::delete('eliminar/docente/{docente}', 'DocenteController@destroy')->name('eliminar.docente');
 
 
@@ -178,6 +185,7 @@ Route::get('clase/finalizar/', 'ClaseController@finalizarClase')->name('clases.f
 Route::get('clases/presentes/ahorita', [ClaseController::class,'clasesPresentes'])->name('clases.presente');
 Route::get('presentes', function () {return view('clase.presentes');})->name('clase.presentes');
 Route::get('programa/marcar/{inscripcine_id}', 'ClaseController@marcadoGeneral')->name('clases.marcado.general');
+Route::get('clases/de/docente/{docente_id}', 'ClaseController@clasesDeDocete')->name('clases.de.un.docente');
 
 Route::get('marcar/asistencia/', 'ClaseController@marcado')->name('marcado');
 Route::get('clase/crear', 'ClaseController@crear')->name('clase.crear');
@@ -293,9 +301,6 @@ Route::get('asignatura/editar/{asignatura}', [AsignaturaController::class,'edit'
 Route::get('asignatura/actualizar/{asignatura}', [AsignaturaController::class,'update'])->name("asignatura.update");
 Route::delete('eliminar/asignatura/{asignatura}', [AsignaturaController::class,'destroy'])->name('asignatura.destroy');
 
-Route::resource('personas', "PersonaController");
-Route::resource('telefonos', "TelefonoController");
-Route::resource('users', 'UserController');
 
 Route::get('user/crear', "UserController@crear")->name('users.crear');
 Route::post('user/guardar', "UserController@guardar")->name('users.guardar');
@@ -333,8 +338,8 @@ Route::get('tusinscripciones', 'InscripcioneController@tusInscripcionesVigentes'
 Route::get('telefonos/vista/{persona}','TelefonoController@mostrarvista')->name('telefonos.persona');
 Route::get('telefono/crear/{persona}', 'TelefonoController@crear')->name('telefonos.crear');
 Route::get('telefonos/{persona}', 'PersonaController@index')->name('telefono.de.persona');
-Route::get('telefono/{persona}/{id}/editar','TelefonoController@editar')->name('telefono.editar');
-Route::put('telefono/{persona_id}/{apoderaçdo_id}', 'TelefonoController@actualizar')->name('telefono.actualizar');
+Route::get('telefono/{persona}/{apoderado_id}/editar','TelefonoController@editar')->name('telefono.editar');
+Route::put('telefono/{persona_id}/{apoderado_id}', 'TelefonoController@actualizar')->name('telefono.actualizar');
 Route::post('crear/contacto/{persona}','PersonaController@storeContacto')->name('persona.storeContacto');
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ROUTES P R O G R A M A C I O N   C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -379,9 +384,6 @@ Route::delete('eliminar/observacion/{observacion}',[ObservacionController::class
 /**
  * clases
  */
-
-
-
 Route::get('opciones/{persona}','OpcionController@index')->name('opcion.principal');
 
 //Route::get('principal/{id}', 'OpcionController@principal')->name('opcion.index');

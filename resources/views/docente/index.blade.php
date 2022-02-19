@@ -44,13 +44,11 @@
 
     <script>
         $(document).ready(function() {
-        
         var tabla=$('#docentes').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
                     "autoWidth":false,
-
                     "ajax": "{{ url('api/docentes') }}",
                     "columns": [
                         {data: 'id'},
@@ -63,7 +61,6 @@
                             },
                             "title": "FOTO",
                             "orderable": false,
-            
                         },     
                         {
                             "name":"btn",

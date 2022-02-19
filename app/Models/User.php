@@ -71,9 +71,9 @@ class User extends Authenticatable
     {
         return "Perfil";
     }
-    public function user()
+    public function persona()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Persona::class);
     }
     
 

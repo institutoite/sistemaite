@@ -81,7 +81,8 @@ class TelefonoController extends Controller
         $apoderado->telefono=$request->telefono;
         $apoderado->save();
         $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
-        return redirect()->Route('telefonos.crear', ['persona' => $persona]);
+        return redirect()->Route('telefonos.persona', ['persona' => $persona]);
+        
     }
 
     /**
@@ -104,15 +105,15 @@ class TelefonoController extends Controller
     public function edit(Telefono $telefono)
     {
     }
-    public function editar(Persona $persona,$id)
+    public function editar(Persona $persona,$apoderado_id)
     {
         //dd($id);
         
         $registro_pivot=DB::table('persona_persona')->select('id','persona_id','persona_id_apoderado','parentesco','telefono')
-                    ->where('persona_id_apoderado','=',$id)
+                    ->where('persona_id_apoderado','=',$apoderado_id)
                     ->where('persona_id','=',$persona->id)->get();
-        $persona = Persona::findOrFail($id);
-        return view('telefono.editar',compact('persona','registro_pivot'));
+        $apoderado = Persona::findOrFail($apoderado_id);
+        return view('telefono.editar',compact('persona','registro_pivot','apoderado'));
     }
 
     /**

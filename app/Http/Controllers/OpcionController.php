@@ -20,10 +20,13 @@ class OpcionController extends Controller
     public function index($estudiante_id)
     {
         
+        
         $estudiante=Estudiante::findOrFail($estudiante_id);
         if(!is_null($estudiante->grados()->first())){ 
             $anioUltimo = $estudiante->grados()->orderBy('anio', 'desc')->get()->first()->pivot->anio;
         }
+
+        
         $colegios=Colegio::all();
         
         $objetoGrado = new GradoController();

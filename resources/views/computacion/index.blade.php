@@ -3,8 +3,7 @@
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
 @stop
 
-@section('title', 'Docentes')
-@section('title', 'Personas')
+@section('title', 'Computacion')
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
 
@@ -14,8 +13,8 @@
 
 @section('content')
     <div class="card-header bg-primary">
-                Lista de Estudiantes <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('personas.create')}}">Crear Persona</a>
-            </div>
+        {{-- Lista de Estudiantes de Computación <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('configuracion.gestionar.carreras',$Persona)}}">Crear Persona</a> --}}
+    </div>
 
     <table id="computaciones" class="table table-bordered table-hover table-striped">
         <thead class="bg-primary text-center">

@@ -21,7 +21,7 @@
                 <th>ID</th>
                 <th>NOMBRE</th>
                 <th>FOTO</th>
-                <th>ACCIONES</th>
+                <th>ACCIONESx</th>
             </tr>
         </thead>
         <tbody>
@@ -52,29 +52,29 @@
         
         var tabla=$('#apoderados').DataTable(
                 {
-                    "serverSide": true,
-                    "responsive":true,
-                    "autoWidth":false,
+                //     "serverSide": true,
+                //     "responsive":true,
+                //     "autoWidth":false,
 
-                    "ajax": "{{ url('api/apoderados')}}",
-                    "columns": [
-                        {data: 'id'},
-                        {data: 'nombre'},
-                        {
-                            "name": "foto",
-                            "data": "foto",
-                            "render": function (data, type, full, meta) {
-                                return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
-                            },
-                            "title": "FOTO",
-                            "orderable": false,
-                        },     
-                        {
-                            "name":"btn",
-                            "data": 'btn',
-                            "orderable": false,
-                        },
-                    ],
+                //    "ajax": "{{ url('api/apoderados')}}",
+                    // "columns": [
+                    //     {data: 'id'},
+                    //     {data: 'nombre'},
+                    //     {
+                    //         "name": "foto",
+                    //         "data": "foto",
+                    //         "render": function (data, type, full, meta) {
+                    //             return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
+                    //         },
+                    //         "title": "FOTO",
+                    //         "orderable": false,
+                    //     },     
+                    //     {
+                    //         "name":"btn",
+                    //         "data": 'btn',
+                    //         "orderable": false,
+                    //     },
+                    // ],
                     "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                     },  

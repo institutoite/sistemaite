@@ -12,8 +12,9 @@
 @section('content')
 
     @if ($persona->isEstudiante())
+        {{-- {{dd($persona->estudiante->id)}} --}}
         <a href="{{route('inscribir',$persona)}}" class="btn btn-outline-secondary float-right">Inscribir <i class="fas fa-plus-circle "></i></a>
-        <a class="btn btn-outline-success float-right mb-3 mr-3" href="{{route('opcion.principal',$persona->id)}}"><i class="fas fa-ellipsis-v"></i> Ir Opciones <i class="fas fa-th-list"></i></i></a>
+        <a class="btn btn-outline-success float-right mb-3 mr-3" href="{{route('opcion.principal',$persona->estudiante->id)}}"><i class="fas fa-ellipsis-v"></i> Ir Opciones <i class="fas fa-th-list"></i></i></a>
     @endif
 
     <a href="{{route('telefonos.crear',$persona)}}" class="btn btn-outline-secondary float-right">Crear Teléfono <i class="fas fa-plus-circle "></i></a>
@@ -52,7 +53,7 @@
                     <td>{{$apoderado->updated_at}}</td>
 
                     <td>
-                        <a href="{{route('telefono.editar',['persona'=>$persona,'id'=>$apoderado->id])}}" class="btn-accion-tabla tooltipsC mr-2" title="Editar este número">
+                        <a href="{{route('telefono.editar',['persona'=>$persona,'apoderado_id'=>$apoderado->id])}}" class="btn-accion-tabla tooltipsC mr-2" title="Editar este número">
                             <i class="fa fa-fw fa-edit text-primary"></i>
                         </a> 
                     
