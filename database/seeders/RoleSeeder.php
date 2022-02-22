@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -15,10 +16,10 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        /* $admin= Role::create(['name' => 'Admin']);
-        $secretary= Role::create(['name' => 'Secretaria']);
-        $teacher= Role::create(['name' => 'Docente']);
-        $student= Role::create(['name' => 'Estudiante']); */
+        $admin= Role::create(['name' => 'Admin']);
+        $secre = Role::create(['name' => 'Secretaria']);
+        $teacher = Role::create(['name' => 'Docente']);
+        /* $student= Role::create(['name' => 'Estudiante']);  */
 
         Permission::create(['name' => 'Listar Asignaturas']);
         Permission::create(['name' => 'Crear Asignaturas']);
@@ -105,10 +106,12 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Editar Temas']);
         Permission::create(['name' => 'Eliminar Temas']);
 
-        Permission::create(['name' => 'Listar Roles']);
-        Permission::create(['name' => 'Crear Roles']);
-        Permission::create(['name' => 'Editar Roles']);
-        Permission::create(['name' => 'Eliminar Roles']);
+        Permission::create(['name' => 'Listar Roles'])->assignRole($admin);
+        Permission::create(['name' => 'Crear Roles'])->assignRole($admin);
+        Permission::create(['name' => 'Editar Roles'])->assignRole($admin);
+        Permission::create(['name' => 'Eliminar Roles'])->assignRole($admin);
 
+        $admin = User::find(1); 
+        $admin->assignRole('Admin');
     }
 }
