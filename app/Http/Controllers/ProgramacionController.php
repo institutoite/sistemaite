@@ -638,4 +638,22 @@ class ProgramacionController extends Controller
                 ->toJson();
     }
 
+    public function asisntecia(Request $request){
+        $estados=Inscripcione::join('programacions','programacions.inscripcione_id','inscripciones.id')
+        ->join('estudiantes','estudiantes.id','inscripciones.estudiante_id')
+        ->join('personas','personas.id','estudiantes.persona_id')
+        ->join('estados','estados.id','programacions.estado_id')
+        ->where('inscripciones.vigente',1)
+        ->where('inscripciones.id',$request->inscripcione_id)
+        ->select('personas.id','programacions.id as programacion_id','personas.nombre','personas.apellidop','estados.estado')
+        ->orderBy('programacions.id','asc')
+        ->get();
+        return response()->json($estados);
+    }
+    public function asignarFaltasFechasPasadas(){
+        Programacion::where('fecha','<',Carbon::now())
+                    ->where('estado_id',Config::get('constantes.ESTADO_INDEFINIDO'))->update(['estado_id'=>Config::get('constantes.ESTADO_FALTA')]);
+        return response()->json(['id'=>"Todo Bien"]);
+    }
+
 }

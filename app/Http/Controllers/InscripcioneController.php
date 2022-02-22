@@ -21,6 +21,10 @@ use App\Models\Tipomotivo;
 use App\Models\Matriculacion;
 use Illuminate\Support\Facades\DB;
 
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
+
+
 use Illuminate\Support\Facades\Auth;
 
 use Carbon\Carbon;
@@ -392,6 +396,14 @@ class InscripcioneController extends Controller
                 //return redirect()->route([InscripcioneController::class, 'tusinscripciones'], ['estudiante_id' => $estudiante_id]);
                 break;
         }
+    }
+    public function vigentesAjax(){
+        $inscripcionesVigentes=Inscripcione::join('estudiantes','estudiantes.id','inscripciones.estudiante_id')
+        ->join('personas','personas.id','estudiantes.persona_id')
+        ->where('vigente',1)
+        ->select('inscripciones.id','personas.nombre','personas.apellidop','personas.apellidom')->get();
+        return datatables()->of($inscripcionesVigentes)
+                            ->toJson();
     }
 
 }

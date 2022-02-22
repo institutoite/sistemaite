@@ -19,6 +19,7 @@ use App\Http\Controllers\ObservacionController;
 use App\Http\Controllers\ClaseController;
 use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\InscripcioneController;
 
 
 
@@ -41,7 +42,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[DocenteController::class,'misEstudiatesActuales'])->name('prueba');
+Route::get('prueba',[ProgramacionController::class,'asignarFaltasFechasPasadas'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -265,9 +266,10 @@ Route::post('matriculacion/actualizar/configuracion/{matriculacion_id}', [Matric
 
 Route::get('matriculacion/actualizar/fechapago/{fecha}/{id}',[MatriculacionController::class,'actualizar_fecha_proximo_pago'])->name('setcom.fecha.proximo.pago');
 Route::get('tusmatriculaciones', [MatriculacionController::class,'tusMatriculacionesVigentes'])->name('matriculaciones.de.estudiante');
+Route::get('matriculaciones/vigentes/view', function () {return view('matriculaciones.vigentes');})->name('matriculaciones.vigentes.view');
+Route::get('matriculaciones/vigentes/ajax', "MatriculacionController@vigentesAjax")->name('matriculaciones.vigentes.ajax');  
 //Route::get('tumatriculaciones', [MatriculacionController::class,'tusMatriculacionesVigentes'])->name('matriculaciones');
 //Route::get('imprimir/matriculacion/{matriculacion}',[MatriculacionController::class,'imprimir'] )->name('imprimir.matriculacion');
-
 
 
 
@@ -330,6 +332,9 @@ Route::post('inscripcion/guardar/configuracion/{id}', 'InscripcioneController@gu
 Route::post('inscripcion/actualizar/configuracion/{id_inscripcion}', 'InscripcioneController@actualizarConfiguracion')->name('inscripcion.actualizar.configuracion');
 Route::get('inscripcion/actualizar/fechapago/{fecha}/{id}', 'InscripcioneController@actualizar_fecha_proximo_pago')->name('set.fecha.proximo.pago');
 Route::get('tusinscripciones', 'InscripcioneController@tusInscripcionesVigentes')->name('inscripciones.de.estudiante');
+Route::get('inscripcines/vigentes/view', function () {return view('inscripcione.vigentes');})->name('inscripciones.vigentes.view');
+Route::get('inscripciones/vigentes/ajax', "InscripcioneController@vigentesAjax")->name('inscripciones.vigentes.ajax');  
+
 
 
 
@@ -358,6 +363,8 @@ Route::get('actualizar/programa/segunpago/{inscripcione}', 'ProgramacionControll
 Route::get('clase/marcar/normal/{programacion_id}', 'ProgramacionController@marcadoNormal')->name('marcado.presente.normal');
 Route::get('guardar/observacion/programacion', 'ProgramacionController@guardarObservacion')->name('guardar.observacion.programacion');
 Route::get('programacion/futuro/{inscripcion}', [ProgramacionController::class,'programacionesFuturo'])->name('programacion.futuro');
+Route::get('programacion/asistencia/ajax', [ProgramacionController::class,'asisntecia'])->name('asistencia.ajax');
+Route::get('programacion/asignarfalta/ajax', [ProgramacionController::class,'asignarFaltasFechasPasadas'])->name('programacion.asignarFaltas');
 
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% P R O G R A M A C I O N  COMPUTACION  C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -375,6 +382,9 @@ Route::get('actualizar/programacom/segunpago/{matriculacion}', [ProgramacioncomC
 Route::get('clasecom/marcar/normal/{programacioncom_id}', [ProgramacioncomController::class,'marcadoNormal'])->name('marcadocom.presente.normal.programacioncom');
 Route::get('guardar/observacion/programacioncom', [ProgramacioncomController::class,'guardarObservacion'])->name('guardar.observacion.programacioncom');
 Route::get('inscripciones/vigentes/{estudiante_id}', 'InscripcioneController@inscripcionesVigentes')->name('inscripciones.vigentes');
+Route::get('programacioncom/asistencia/ajax', [ProgramacioncomController::class,'asisntecia'])->name('asistenciacom.ajax');
+Route::get('programacioncom/asignarfalta/ajax', [ProgramacioncomController::class,'asignarFaltasFechasPasadas'])->name('programacioncom.asignarFaltas');
+
 
 
 Route::get('observacion/editar',[ObservacionController::class,'edit'])->name('observacion.editar');

@@ -298,6 +298,14 @@ return [
             'icon_color' => 'primary',
 
         ],
+        [
+            'text' => "asistencia",
+            'topnav' => true,
+            'url'  => 'inscripcines/vigentes/view',
+            'icon' => 'fas fa-record-vinyl',
+            'icon_color' => 'primary',
+
+        ],
         /**
          *  Menu personas 
          */

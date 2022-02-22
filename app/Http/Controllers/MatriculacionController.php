@@ -248,6 +248,15 @@ class MatriculacionController extends Controller
         
     }
 
+    public function vigentesAjax(){
+        $matriculacionesVigentes=Matriculacion::join('computacions','computacions.id','matriculacions.computacion_id')
+        ->join('personas','personas.id','computacions.persona_id')
+        ->where('vigente',1)
+        ->select('matriculacions.id','personas.nombre','personas.apellidop','personas.apellidom')->get();
+        return datatables()->of($matriculacionesVigentes)
+                            ->toJson();
+    }
+
 }
 
 

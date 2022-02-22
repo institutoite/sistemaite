@@ -489,4 +489,22 @@ class ProgramacioncomController extends Controller
         $data = ['programacioncom' => $programacioncom, 'observaciones' => $observaciones, 'docente' => $docente,'estado' => $estado, 'aula' => $aula,'licencias'=>$licencias, 'clasescom' => $clases,'asignatura'=>$asignatura];
         return response()->json($data);
     }
+
+    public function asisntecia(Request $request){
+        $estados=Matriculacion::join('programacioncoms','programacioncoms.matriculacion_id','matriculacions.id')
+        ->join('computacions','computacions.id','matriculacions.computacion_id')
+        ->join('personas','personas.id','computacions.persona_id')
+        ->join('estados','estados.id','programacioncoms.estado_id')
+        ->where('matriculacions.vigente',1)
+        ->where('matriculacions.id',$request->matriculacion_id)
+        ->select('personas.id','programacioncoms.id as programacioncom_id','personas.nombre','personas.apellidop','estados.estado')
+        ->orderBy('programacioncoms.id','asc')
+        ->get();
+        return response()->json($estados);
+    }
+    public function asignarFaltasFechasPasadas(){
+        Programacioncom::where('fecha','<',Carbon::now())
+                    ->where('estado_id',Config::get('constantes.ESTADO_INDEFINIDO'))->update(['estado_id'=>Config::get('constantes.ESTADO_FALTA')]);
+        return response()->json(['id'=>"Todo Bien"]);
+    }
 }
