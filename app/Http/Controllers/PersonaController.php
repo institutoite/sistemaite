@@ -418,6 +418,7 @@ class PersonaController extends Controller
     }
 
     public function configurar_papeles($persona_id){
+        // dd($persona_id);
         $persona= Persona::findOrFail($persona_id);
         $papeles=[];
         $papeles['estudiante'] = $persona->estudiante == null ? false : true;
@@ -425,7 +426,8 @@ class PersonaController extends Controller
         $papeles['docente'] = $persona->docente == null ? false : true;
         $papeles['administrativo'] = $persona->administrativo == null ? false : true;
         $papeles['cliservicio'] = $persona->cliservicio == null ? false : true;
-        
+        $papeles['persona'] = $persona->persona == null ? false : true;
+        dd($papeles);
         return view('persona.papeles',compact('papeles'));
     }
 }
