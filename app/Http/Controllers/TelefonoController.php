@@ -107,13 +107,12 @@ class TelefonoController extends Controller
     }
     public function editar(Persona $persona,$apoderado_id)
     {
-        //dd($id);
         
         $registro_pivot=DB::table('persona_persona')->select('id','persona_id','persona_id_apoderado','parentesco','telefono')
                     ->where('persona_id_apoderado','=',$apoderado_id)
                     ->where('persona_id','=',$persona->id)->get();
-        $apoderado = Persona::findOrFail($apoderado_id);
-        return view('telefono.editar',compact('persona','registro_pivot','apoderado'));
+        $persona = Persona::findOrFail($apoderado_id);
+        return view('telefono.editar',compact('persona','registro_pivot'));
     }
 
     /**

@@ -41,7 +41,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('estudiantes',function(){
     $persona=Persona::join('estudiantes','estudiantes.persona_id','=','personas.id')
-                    ->select('personas.id',DB::raw('concat_ws(" ",nombre,apellidop,apellidom) as nombre'),'foto');
+                    ->select('personas.id','nombre','apellidop','apellidom','foto');
     return datatables()->of($persona)
         ->addColumn('btn','persona.action')
         ->rawColumns(['btn','foto'])
@@ -50,7 +50,7 @@ Route::get('estudiantes',function(){
 
 Route::get('docentes',function(){
     $docentes=Persona::join('docentes','docentes.persona_id','=','personas.id')
-        ->select('personas.id',DB::raw('concat_ws(" ",personas.nombre,personas.apellidop,personas.apellidom) as nombre'),'foto');
+        ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','foto');
     return datatables()->of($docentes)
         ->addColumn('btn','docente.action')
         ->rawColumns(['btn','foto'])
@@ -59,7 +59,7 @@ Route::get('docentes',function(){
 
 Route::get('computaciones',function(){
     $computaciones=Persona::join('computacions','computacions.persona_id','=','personas.id')
-        ->select('personas.id',DB::raw('concat_ws(" ",personas.nombre,personas.apellidop,personas.apellidom) as nombre'),'foto');
+        ->select('personas.id','nombre','apellidop','apellidom','foto');
     return datatables()->of($computaciones)
         ->addColumn('btn','computacion.action')
         ->rawColumns(['btn','foto'])
@@ -68,10 +68,24 @@ Route::get('computaciones',function(){
 
 Route::get('administrativos',function(){
     $administrativos=Persona::join('administrativos','administrativos.persona_id','=','personas.id')
-        ->select('personas.id',DB::raw('concat_ws(" ",personas.nombre,personas.apellidop,personas.apellidom) as nombre'),'foto');
+        ->select('personas.id','nombre','apellidop','apellidom','foto');
     return datatables()->of($administrativos)
         ->addColumn('btn','administrativo.action')
         ->rawColumns(['btn','foto'])
+        ->toJson();
+});
+
+Route::get('presentes', function () {
+    $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
+    ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
+    ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
+    ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
+    // ->where('clases.estado','=','PRESENTE')
+    // ->where('clases.fecha','=',Carbon\Carbon::now()->isoFormat('Y-M-D'))
+    ->select('clases.id','nombre','apellidop','apellidom', 'clases.horainicio', 'clases.horafin', 'clases.docente_id', 'clases.materia_id', 'clases.aula_id', 'clases.tema_id', 'personas.foto')->get();
+    return datatables()->of($clases)
+        ->addColumn('btn', 'clase.action_marcar')
+        ->rawColumns(['btn', 'foto'])
         ->toJson();
 });
 
@@ -105,19 +119,7 @@ Route::get('referencias',function(){
         ->toJson();
 });
 
-Route::get('presentes', function () {
-    $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
-    ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
-    ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
-    ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
-    // ->where('clases.estado','=','PRESENTE')
-    // ->where('clases.fecha','=',Carbon\Carbon::now()->isoFormat('Y-M-D'))
-    ->select('clases.id', DB::raw('concat_ws(" ",nombre,apellidop) as nombre'), 'clases.horainicio', 'clases.horafin', 'clases.docente_id', 'clases.materia_id', 'clases.aula_id', 'clases.tema_id', 'personas.foto')->get();
-    return datatables()->of($clases)
-        ->addColumn('btn', 'clase.action_marcar')
-        ->rawColumns(['btn', 'foto'])
-        ->toJson();
-});
+
 
 
 
@@ -129,7 +131,7 @@ Route::get('paises',function(){
 
 });
 Route::get('personas', function () {
-    $persona=Persona::select('id',DB::raw('concat_ws(" ",nombre,apellidop,apellidom) as nombre'),'foto');
+    $persona=Persona::select('id','nombre','apellidop','apellidom','foto');
     return datatables()->of($persona)
         ->addColumn('btn', 'persona.actiontodos')
         ->rawColumns(['btn'])
@@ -144,7 +146,7 @@ Route::get('usuarios', function () {
 })->name('usuarios');
 
 Route::get('apoderados', function () {
-    $persona = Persona::select('id', DB::raw('concat_ws(" ",nombre,apellidop,apellidom) as nombre'), 'foto');
+    $persona = Persona::select('id', 'nombre','apellidop','apellidom', 'foto');
     return datatables()->of($persona)
         ->addColumn('btn', 'persona.actionapoderados')
         ->rawColumns(['btn'])

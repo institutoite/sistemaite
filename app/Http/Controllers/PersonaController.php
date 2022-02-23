@@ -217,13 +217,17 @@ class PersonaController extends Controller
 
         $carbon = new \Carbon\Carbon();
         $date = $carbon::createFromDate(1900, 1, 1);
-
-
         $apoderado->fechanacimiento=$date;
-        $apoderado->papelinicial = 'apoderado';
         $apoderado->telefono=$request->telefono;
         $apoderado->papelinicial = 'apoderado';
         $apoderado->save();
+
+        $observacion = new Observacion();
+        $observacion->observacion = "Se registró a sistema como un apoderado";
+        $observacion->activo = 1;
+        $observacion->observable_id = $apoderado->id;
+        $observacion->observable_type = "App\Models\Persona";
+        $observacion->save();
 
         $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
         $apoderados = $persona->apoderados;
@@ -242,22 +246,13 @@ class PersonaController extends Controller
         $pais=Pais::findOrFail($persona->pais_id);
         $ciudad = Ciudad::findOrFail($persona->ciudad_id);
         $zona = Zona::findOrFail($persona->zona_id);
-
-        
         $observacion = Observacion::where('observable_id', $persona->id)
             ->where('observable_type', Persona::class)->get()->first()->observacion;
-        
         $recomendado=Persona::find($persona->persona_id);    
         //dd($recomendado);
         return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion','recomendado'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Persona  $persona
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Persona $persona)
     {
         $ciudades = Ciudad::get();

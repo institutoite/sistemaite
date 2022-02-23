@@ -6,7 +6,7 @@
 @section('title', 'Personas')
 
 @section('content_header')
-    <h1 class="text-center text-primary">Buscar Cliente</h1>
+    <h1 class="text-center text-primary">Buscar persona</h1>
 @stop
 
 @section('content')
@@ -15,6 +15,8 @@
             <tr>
                 <th>ID</th>
                 <th>NOMBRE</th>
+                <th>APELLIDOP</th>
+                <th>APELLIDOM</th>
                 <th>FOTO</th>
                 <th>ACCIONES</th>
             </tr>
@@ -46,6 +48,8 @@
                     "columns": [
                         {data: 'id'},
                         {data: 'nombre'},
+                        {data: 'apellidop'},
+                        {data: 'apellidom'},
                         {
                             "name": "foto",
                             "data": "foto",
