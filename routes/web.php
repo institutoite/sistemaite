@@ -11,6 +11,7 @@ use App\Http\Controllers\OpcionController;
 use App\Http\Controllers\PagocomController;
 use App\Http\Controllers\ProgramacioncomController;
 use App\Http\Controllers\ClasecomController;
+use App\Http\Controllers\MessageController;
 
 use App\Http\Controllers\HomeController;
 
@@ -400,6 +401,12 @@ Route::resource('requisito', RequisitoController::class)->names('requisito');
 Route::resource('role', RoleController::class)->names('role');
 
 Route::resource('rolusers', RolUsersController::class)->only(['index', 'edit', 'update'])->names('rolusers');
+
+Route::get('messages',[MessageController::class, 'create'])->name('messages.create');
+
+Route::get('messages/{message}',[MessageController::class, 'show'])->name('messages.show');
+
+Route::post('messages', [MessageController::class, 'store'])->name('messages.store');
 
 
 

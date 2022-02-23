@@ -66,10 +66,10 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Editar Precios']);
         Permission::create(['name' => 'Eliminar Precios']);
 
-        Permission::create(['name' => 'Listar Horarios']);
-        Permission::create(['name' => 'Crear Horarios']);
-        Permission::create(['name' => 'Editar Horarios']);
-        Permission::create(['name' => 'Eliminar Horarios']);
+        Permission::create(['name' => 'Listar Horarios'])->assignRole($admin);
+        Permission::create(['name' => 'Crear Horarios'])->assignRole($admin);
+        Permission::create(['name' => 'Editar Horarios'])->assignRole($admin);
+        Permission::create(['name' => 'Eliminar Horarios'])->assignRole($admin);
 
         Permission::create(['name' => 'Listar Inscripciones']);
         Permission::create(['name' => 'Crear Inscripciones']);
