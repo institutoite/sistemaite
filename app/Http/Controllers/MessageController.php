@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use App\Models\User;
+use App\Notifications\MessageSent;
 use Illuminate\Http\Request;
+
 
 class MessageController extends Controller
 {
@@ -32,6 +34,9 @@ class MessageController extends Controller
             'from_user_id' => auth()->id(),
             'to_user_id' => $request->to_user_id,
         ]);
+
+        $user = User::find($request->to_user_id);
+        $user->notify(new MessageSent($message ));
 
         return redirect()->route('messages.create');
     }
