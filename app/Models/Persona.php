@@ -181,6 +181,15 @@ class Persona extends Model
             return false;
         }
     }
+    public function isApoderado()
+    {
+        $respuesta = Apoderado::where('persona_id', '=', $this->id)->count();
+        if ($respuesta > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }
 

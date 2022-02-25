@@ -78,6 +78,7 @@ Route::put('persona/{persona}/subirfotojpg', 'PersonaController@guardarfotojpg')
 
 Route::resource('personas', "PersonaController");
 Route::get('persona/papeles/{persona_id}', 'PersonaController@configurar_papeles')->name('personas.agregar.papel');
+Route::post('guardar/papeles/{persona}', 'PersonaController@guardarNuevoPapel')->name('guardar.nuevo.papel');
 
 
 Route::resource('paises', "PaisController");

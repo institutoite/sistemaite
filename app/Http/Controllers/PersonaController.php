@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Arr;
 
 use App\Models\Persona;
 
@@ -9,7 +10,7 @@ use App\Models\Estudiante;
 use App\Models\Zona;
 use App\Models\Administrativo;
 use App\Models\Cliservicio;
-use App\Models\Clicopy;
+use App\Models\Apoderado;
 use App\Models\Docente;
 use App\Models\Proveedor;
 use App\Models\User;
@@ -418,16 +419,77 @@ class PersonaController extends Controller
     }
 
     public function configurar_papeles($persona_id){
-        // dd($persona_id);
         $persona= Persona::findOrFail($persona_id);
-        $papeles=[];
-        $papeles['estudiante'] = $persona->estudiante == null ? false : true;
-        $papeles['computacion'] = $persona->computacion == null ? false : true;
-        $papeles['docente'] = $persona->docente == null ? false : true;
-        $papeles['administrativo'] = $persona->administrativo == null ? false : true;
-        $papeles['cliservicio'] = $persona->cliservicio == null ? false : true;
-        $papeles['persona'] = $persona->persona == null ? false : true;
-        dd($papeles);
-        return view('persona.papeles',compact('papeles'));
+        $papelesActuales=collect([]);
+        $papelesFaltantes=collect([]);
+
+        if($persona->estudiante == null){
+            $papelesFaltantes->push('estudiante');
+        }else{
+            $papelesActuales->push('estudiante');
+        }
+        if($persona->computacion == null){
+            $papelesFaltantes->push('computacion');
+        }else{
+            $papelesActuales->push('computacion');
+        }
+        if($persona->docente == null){
+            $papelesFaltantes->push('docente');
+        }else{
+            $papelesActuales->push('docente');
+        }
+        if($persona->administrativo == null){
+            $papelesFaltantes->push('administrativo');
+        }else{
+            $papelesActuales->push('administrativo');
+        }
+        if($persona->cliservicio == null){
+            $papelesFaltantes->push('cliservicio');
+        }else{
+            $papelesActuales->push('cliservicio');
+        }
+        
+        return view('persona.papeles',compact('papelesActuales','papelesFaltantes','persona'));
+    }
+
+    public function guardarNuevoPapel(Request $request,$persona_id){
+        $persona=Persona::findOrFail($persona_id);
+        $cuantas_papeles=count($request->papelesFalta);
+        $i=0;
+        $c="";
+        $nuevosPapeles=$request->papelesFalta;
+        while($i<$cuantas_papeles){
+            if($nuevosPapeles[$i]=='estudiante'){
+                Estudiante::create([
+                    'persona_id'=>$persona->id,
+                ]);
+            }
+            if($nuevosPapeles[$i]=='computacion'){
+                Computacion::create([
+                    'persona_id'=>$persona->id,
+                ]);
+            }
+            if($nuevosPapeles[$i]=='docente'){
+                Docente::create([
+                    'sueldo'=>0,
+                    'fecha_ingreso'=> Carbon::now()->format('Y-m-d'),
+                    'nombre'=>$persona->nombre." ". $persona->apellidop,
+                    'estado'=>'activo',
+                    'dias_prueba'=>2,
+                    'persona_id'=>$persona->id,
+                ]);
+            }
+            if($nuevosPapeles[$i]=='administrativo'){
+
+            }
+            if($nuevosPapeles[$i]=='cliservicio'){
+                Cliservicio::create([
+                    'persona_id'=>$persona->id,
+                    'requerimiento'=>"Esto es un requerimiento",
+                ]);
+            }
+            $i=$i+1;
+        }
+        return redirect()->route('personas.index');
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cliservicio extends Model
 {
     use HasFactory;
+    protected $fillable = ['persona_id','requerimiento'];
     public function persona()
     {
         return $this->belongsTo(Persona::class);

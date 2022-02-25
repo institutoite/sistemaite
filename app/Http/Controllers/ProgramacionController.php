@@ -524,15 +524,17 @@ class ProgramacionController extends Controller
         $total_costo=$inscripcion->costo;
         $total_horas=$inscripcion->totalhoras;
         $costo_por_hora=$total_costo/$total_horas;
+        dd($total_horas);
         $programas = Programacion::where('inscripcione_id', '=', $inscripcione_id)
-                                        ->get();
+        ->get();
+        
         $acuentaTotal=$inscripcion->pagos->sum->monto;
         $TotalPagado=$acuentaTotal;
-        // dd($acuentaTotal);
         $this->deshabilitarTodoProgramas($inscripcione_id);
-        //dd($programas);
+        dd($costo_por_hora);
         foreach ($programas as $programa) {
             $costo_programa = $programa->hora_ini->floatDiffInHours($programa->hora_fin)*($costo_por_hora);
+            dd($costo_programa);
             $P=Programacion::findOrFail($programa->id);
             if($acuentaTotal>$costo_programa){
                 $P->habilitado=1;
@@ -540,6 +542,9 @@ class ProgramacionController extends Controller
                 $acuentaTotal=$acuentaTotal-$costo_programa;
             }
         }
+
+        dd($programas);
+
         if ($TotalPagado < $inscripcion->costo) {
             return redirect()->route('mostrar.programa', $inscripcion);
         } else {

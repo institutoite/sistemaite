@@ -136,7 +136,8 @@ class InscripcioneController extends Controller
         $inscripcion->modalidad_id=$request->modalidad_id;
         $inscripcion->motivo_id=$request->motivo_id;
         $inscripcion->save();
-        //dd($inscripcion);
+        // dd($inscripcion);
+        
         //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   %%%%%%%%%%%%%%%%*/
         $inscripcion->userable()->create(['user_id'=>Auth::user()->id]);
         $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);

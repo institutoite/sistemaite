@@ -15,12 +15,12 @@
             </div>
         </div> --}}
         <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+        {{-- <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
                 <input  type="date" name="fechanacimiento" id="fechanacimiento" class="form-control @error('fechanacimiento') is-invalid @enderror" value="{{$persona->fechanacimiento->isoFormat('YYYY-MM-DD')}}">    
                 <label for="fechanacimiento">Fecha Nacimiento </label>    
             </div>   
-        </div>
+        </div> --}}
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
                 <select class="form-control @error('modalidad_id') is-invalid @enderror" data-old="{{ old('modalidad_id') }}" name="modalidad_id" id="modalidad_id">
