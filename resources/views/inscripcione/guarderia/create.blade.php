@@ -54,13 +54,17 @@
             $(".dias").change(function () {
                 CalcularMonto();
             });
+            $("#diasxsemana").on("change",function() {
+                CalcularMonto();
+            });
             function CalcularMonto(){
                 var startTime = moment($('#horainicio').val(), "HH:mm:ss a");
                 var endTime = moment($('#horafin').val(), "HH:mm:ss a");
                 var FechaNacimiento = moment($('#fechanacimiento').val()).format('L');
                 var edad=moment.duration(moment().diff(moment($('#fechanacimiento').val()),'years'));
+                var diasxsemana = $("#diasxsemana").val();
 
-                console.log("Edad: "+edad);
+                //console.log("Edad: "+edad);
                 // calculate total duration
                 var durationXporDia = moment.duration(endTime.diff(startTime));
                 // duration in hours
@@ -84,15 +88,10 @@
                         }else{
                             costoHora=costoHora-costoHora*0.00205;
                         }
-                        console.log(Contador+': '+costoHora);
+                        
                         Contador=Contador+1;
                     }
-                    console.log("Cantidad Dias: "+cantidadDias);
-                    console.log("Horas: "+hours);
-                    console.log("Total Horas: "+hours*cantidadDias);
-
-
-                    $('#costo').val(cantidadDias*hours*costoHora);
+                    $('#costo').val((cantidadDias*diasxsemana*hours*costoHora/(5.25)).toFixed(2));
                 }
                 if(edad>2)
                 {
@@ -104,16 +103,13 @@
                         }else{
                             costoHora=costoHora-costoHora*0.00205;
                         }
-                        console.log(Contador+': '+costoHora);
+                       
                         Contador=Contador+1;
                     }
-                    console.log("Cantidad Dias: "+cantidadDias);
-                    console.log("Horas: "+hours);
-                    console.log("Total Horas: "+hours*cantidadDias);
+                 
 
-
-                    $('#costo').val(cantidadDias*hours*costoHora*1.22);
-                    console.log(cantidadDias*hours*costoHora);
+                    $('#costo').val((cantidadDias*hours*costoHora*1.12*diasxsemana/(5.25)).toFixed(2));
+                    
                 }
                 
             }

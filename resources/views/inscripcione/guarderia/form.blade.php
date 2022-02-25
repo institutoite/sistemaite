@@ -15,12 +15,12 @@
             </div>
         </div> --}}
         <div class="row">
-        {{-- <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
                 <input  type="date" name="fechanacimiento" id="fechanacimiento" class="form-control @error('fechanacimiento') is-invalid @enderror" value="{{$persona->fechanacimiento->isoFormat('YYYY-MM-DD')}}">    
                 <label for="fechanacimiento">Fecha Nacimiento </label>    
             </div>   
-        </div> --}}
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
                 <select class="form-control @error('modalidad_id') is-invalid @enderror" data-old="{{ old('modalidad_id') }}" name="modalidad_id" id="modalidad_id">
@@ -79,24 +79,40 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" >
+            <div class="form-floating mb-3 text-gray">
+                {{-- <input type="number" step="1" class="form-control hora @error('diasxsemana') is-invalid @enderror" name="diasxsemana" id="diasxsemana" value="{{old('diasxsemana','4' ?? '5')}}"> --}}
+                <select class="form-control hora @error('diasxsemana') is-invalid @enderror" name="diasxsemana" id="diasxsemana">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option selected value="5">5</option>
+                    <option value="6">6</option>
+                    
+                </select>
+                <label for="costo">Dias Por Semana</label>  
+            </div>   
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" >
             <div class="form-floating mb-3 text-gray">
                 <input id="totalhoras" type="number" step="0.01" name="totalhoras" class="form-control @error('totalhoras') is-invalid @enderror" value="{{old('totalhoras',$ultima_inscripcion->totalhoras ?? '')}}" placeholder="Total Horas">
                 <label for="totalhoras">Horas por día</label>
             </div>    
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" >
             <div class="form-floating mb-3 text-gray">
                 <input id="horas_total" type="number" step="0.01" name="horas_total" class="form-control @error('horas_total') is-invalid @enderror" placeholder="Total Horas">
                 <label for="horas_total">Total_horas</label>
             </div> 
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" >
             <div class="form-floating mb-3 text-gray">
-                <input type="numeric" step="0.01" class="form-control @error('costo') is-invalid @enderror" name="costo" id="costo" value="{{old('costo',$ultima_inscripcion->costo ?? '')}}">
+                <input type="number" step="0.01" class="form-control @error('costo') is-invalid @enderror" name="costo" id="costo" value="{{old('costo',$ultima_inscripcion->costo ?? '')}}">
                 <label for="costo">Ingrese Costo</label>  
             </div>   
         </div>
+        
     </div>
 <hr>
 
