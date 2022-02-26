@@ -19,6 +19,7 @@
         {{-- Custom right links --}}
         @yield('content_top_nav_right')
 
+        @livewire('notification-component')
         {{-- Configured right links --}}
         @each('adminlte::partials.navbar.menu-item', $adminlte->menu('navbar-right'), 'item')
 
