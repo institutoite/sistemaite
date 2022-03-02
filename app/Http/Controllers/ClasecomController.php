@@ -10,9 +10,12 @@ use App\Models\Aula;
 use App\Models\Programacioncom;
 use App\Models\Matriculacion;
 use App\Models\Docente;
+use App\Models\Observacion;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
 
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
@@ -50,20 +53,38 @@ class ClasecomController extends Controller
     public function guardar(Request $request,$programacioncom_id){
         $clasecom=new Clasecom();
         $clasecom->fecha=$request->fecha;
-        $clasecom->estado_id=Config::get('constantes.ESTADO_PRESENTE');
         $clasecom->horainicio=$request->horainicio;
         $clasecom->horafin=$request->horafin;
         $clasecom->docente_id=$request->docente_id;
         $clasecom->aula_id=$request->aula_id;
         $clasecom->programacioncom_id=$programacioncom_id;
+        
+        $observacion=new Observacion();
+        $observacion->activo=1;
+        $observacion->observable_type= Programacioncom::class;
+
+        if($request->fecha < Carbon::now()->format('Y-m-d')){
+            $programa=Programacioncom::findOrFail($programacioncom_id);
+            $programa->estado_id = Config::get('constantes.ESTADO_FINALIZADO');
+            $clasecom->estado_id= Config::get('constantes.ESTADO_FINALIZADO');
+            $observacion->observacion="Esta programacioncom se marcó fuera de fecha: ".Carbon::now()->isoFormat('LLLL');
+        }else{
+            $programa=Programacioncom::findOrFail($programacioncom_id);
+            $programa->estado_id = Config::get('constantes.ESTADO_PRESENTE');
+            $clasecom->estado_id= Config::get('constantes.ESTADO_PRESENTE');
+            $observacion->observacion="Esta programacion se marcó en fecha adecuada: ".Carbon::now()->isoFormat('LLLL');
+        }
+
         $clasecom->save();
+        $programa->save();
+        $observacion->observable_id=$programacioncom_id;
+        $observacion->save();
 
-       //$clasecom->userable()->create(['user_id' => Auth::user()->id]);
+        $clasecom->userable()->create(['user_id' => Auth::user()->id]);
 
-        $programacom=Programacioncom::findOrFail($programacioncom_id);
-        $programacom->estado_id = Config::get('constantes.ESTADO_PRESENTE');
-        $programacom->save();
         return redirect()->route('clase.presentes');
+
+
     }
     
 
@@ -173,18 +194,17 @@ class ClasecomController extends Controller
         $dias_que_faltan_para_pagar= $matriculacion->fecha_proximo_pago->diffInDays(now());
         
         $pago=$matriculacion->pagos->sum('monto');
-        $indefinido=$matriculacion->programacionescom->where('estado_id',1)->count();
-        $presentes = $matriculacion->programacionescom->where('estado_id',Config::get('constantes.ESTADO_PRESENTE'))->count();
+        $indefinido=$matriculacion->programacionescom->where('estado_id',Config::get('constantes.ESTADO_INDEFINIDO'))->count();
+        $presentes = $matriculacion->programacionescom->where('estado_id',Config::get('constantes.ESTADO_FINALIZADO'))->count();
         $faltas = $matriculacion->programacionescom->where('estado_id',Config::get('constantes.ESTADO_FALTA'))->count();
         $congelados = $matriculacion->programacionescom->where('estado_id',Config::get('constantes.ESTADO_CONGELADO'))->count();
         $licencias = $matriculacion->programacionescom->where('estado_id',Config::get('constantes.ESTADO_LICENCIA'))->count();
-        $finalizados = $matriculacion->programacionescom->where('estado_id',Config::get('constantes.ESTADO_FINALIZADO'))->count();
+        $persona = $matriculacion->computacion->persona;
 
-         
-        return view('programacioncom.marcadoGeneral',compact('programaciones', 'faltas', 'presentes', 'licencias', 'pago', 'matriculacion', 'dias_que_faltan_para_pagar'));
+        return view('programacioncom.marcadoGeneral',compact('programaciones', 'faltas', 'presentes', 'licencias', 'pago','persona', 'matriculacion', 'dias_que_faltan_para_pagar'));
         //return redirect()->route('clases.marcado.general',$inscripcion_id)->with('programaciones', 'programacionesHoy', 'faltas', 'presentes', 'licencias', 'pago', 'inscripcion','dias_que_faltan_para_pagar');
     }
-      public function marcadoRapido($programacioncom_id){
+    public function marcadoRapido($programacioncom_id){
         $programa = Programacioncom::findOrFail($programacioncom_id);
         $clase=new Clasecom();
         $clase->fecha           =$programa->fecha;

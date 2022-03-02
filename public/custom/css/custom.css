@@ -59,11 +59,13 @@
     color: #FF0000;
 }
 .circulo {
-	width: 9rem;
-	height: 9rem;
+	width: 8rem;
+	height:8rem;
 	border-radius: 50%;
+	background: red;
 	display: flex;
-	
+	justify-content: center;
+	align-items: center;
 	text-align: center;
     margin:0px auto;
     padding:3%

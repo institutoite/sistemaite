@@ -158,19 +158,15 @@
                             console.log(json);
                             $("#modal-editar").modal("show");
                             $("#inputs-creados").empty();
-                                //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE DOCENTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+                            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE DOCENTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                             $("#fecha").val(moment(json.clase.fecha).format('YYYY-MM-DD'));
                             $("#horainicio").val(moment(json.clase.horainicio).format('HH:mm'));
                             $("#horafin").val(moment(json.clase.horafin).format('HH:mm'));
-
                             $html="<div id='inputs-creados'>";
                             $html+="<div class='row'>";
                             $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'>";
                             $html+="<div class='form-floating mb-3 text-gray'>";
                             $html+="<select class='form-control @error('docente_id') is-invalid @enderror' name='docente_id' id='docente_id'>";
-                            
                             for (let j in json.docentes) {
                                 if(json.docentes[j].id==json.clase.docente_id){
                                     $html+="<option  value='"+json.docentes[j].id +"' selected >"+json.docentes[j].nombre+"</option>";
@@ -210,12 +206,7 @@
                             /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% tema y ESTADO %%%%%%%%%%%%%%*/
                             $html+="<input id='clase_id'  type='text' hidden readonly name='clase_id' value='"+json.clase.id +"'>";
                             $html+="</div>";
-
-
-
-
                             $("#inputs").after($html);
-
                             $htmltemas="";
                             for (let n in json.temas) {
                                 if(json.temas[n].id==json.clase.tema_id){
@@ -235,7 +226,6 @@
                         })
                     },  
                 });
-               
             });
 
 

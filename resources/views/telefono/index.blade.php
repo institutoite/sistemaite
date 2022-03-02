@@ -19,7 +19,7 @@
 
     <a href="{{route('telefonos.crear',$persona)}}" class="btn btn-outline-secondary float-right">Crear Teléfono <i class="fas fa-plus-circle "></i></a>
     @if ($persona->isDocente())
-        <a class="btn btn-outline-success float-right mb-3 mr-3" href="{{route('opcion.docentes',$persona->id)}}"><i class="fas fa-ellipsis-v"></i> Ir Opciones <i class="fas fa-th-list"></i></i></a>
+        <a class="btn btn-outline-success float-right mb-3 mr-3" href="{{route('opcion.principal',$persona->id)}}"><i class="fas fa-ellipsis-v"></i> Ir Opciones <i class="fas fa-th-list"></i></i></a>
     @endif
     @if ($persona->isAdministrativo())
         <a class="btn btn-outline-success float-right mb-3 mr-3" href="{{route('opcion.administrativos',$persona->id)}}"><i class="fas fa-ellipsis-v"></i> Ir Opciones <i class="fas fa-th-list"></i></i></a>
@@ -27,7 +27,6 @@
     
     <table id="telefonos" class="table table-hover table-bordered table-striped display responsive nowrap" width="100%">
         <thead class="bg-primary">
-        
             <th>#</th>
             <th>CONTACTO</th>
             <th>NUMERO</th>
@@ -36,7 +35,6 @@
             <th width="120px">Opciones</th>
         </thead>
         <tbody>
-            
             @foreach ($apoderados as $apoderado)
                 <tr>
                     <td>{{$loop->iteration}}</td>
@@ -49,14 +47,11 @@
                     <td>
                         {{$apoderado->pivot->parentesco}}
                     </td>
-                                    
                     <td>{{$apoderado->updated_at}}</td>
-
                     <td>
                         <a href="{{route('telefono.editar',['persona'=>$persona,'apoderado_id'=>$apoderado->id])}}" class="btn-accion-tabla tooltipsC mr-2" title="Editar este número">
                             <i class="fa fa-fw fa-edit text-primary"></i>
                         </a> 
-                    
                         <form action="{{route('telefono.eliminar',['persona'=>$persona,'id'=>$apoderado->id])}}"  class="d-inline formulario" method="POST">
                             @csrf
                             @method("delete")
@@ -66,7 +61,6 @@
                         </form> 
                     </td>
                 </tr>
-
             @endforeach
         </tbody>
     </table>

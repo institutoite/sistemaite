@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
 @stop
 
 @section('title', 'Computacion')
@@ -78,6 +79,23 @@
                     },  
                 }
             );
+            
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ZOOMIFY %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click','.zoomify',function (e){
+                Swal.fire({
+                    title: 'Codigo: '+ $(this).closest('tr').find('td').eq(0).text(),
+                    text: $(this).closest('tr').find('td').eq(1).text(),
+                    imageUrl: $(this).attr('src'),
+                    imageWidth: 400,
+                    showCloseButton:true,
+                    confirmButtonColor:'#26baa5',
+                    type: 'success',
+                    imageHeight:400,
+                    imageAlt: 'Custom image',
+                    confirmButtonText:"Aceptar",
+                    
+                })
+            }); 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  P E R S O N A %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
             $('table').on('click','.eliminar',function (e) {
                 e.preventDefault(); 

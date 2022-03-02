@@ -20,6 +20,7 @@ use App\Http\Controllers\ClaseController;
 use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\InscripcioneController;
+use App\Http\Controllers\TemaController;
 
 
 
@@ -28,9 +29,6 @@ use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Auth;
 //use SweetAlert;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,9 +39,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('prueba',[ProgramacionController::class,'asignarFaltasFechasPasadas'])->name('prueba');
-
+Route::get('prueba',[ProgramacionController::class,'mostrarClases'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -52,8 +48,6 @@ Route::get('/ninacos', function () {
 });
 
 Auth::routes();
-
-
 Route::get('/home',function(){
     return view('persona.estudiantes');
 })->name('inicio')->middleware('auth');
@@ -336,10 +330,6 @@ Route::get('tusinscripciones', 'InscripcioneController@tusInscripcionesVigentes'
 Route::get('inscripcines/vigentes/view', function () {return view('inscripcione.vigentes');})->name('inscripciones.vigentes.view');
 Route::get('inscripciones/vigentes/ajax', "InscripcioneController@vigentesAjax")->name('inscripciones.vigentes.ajax');  
 
-
-
-
-
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TELEFONOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('telefonos/vista/{persona}','TelefonoController@mostrarvista')->name('telefonos.persona');
 Route::get('telefono/crear/{persona}', 'TelefonoController@crear')->name('telefonos.crear');
@@ -370,7 +360,7 @@ Route::get('programacion/asignarfalta/ajax', [ProgramacionController::class,'asi
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% P R O G R A M A C I O N  COMPUTACION  C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('generar/programacioncom/{matriculacion}',[ProgramacioncomController::class,'generarProgramacom'])->name('generar.programacioncom');
-Route::get('programacioncom/mostrar/{matriculacion}', [ProgramacioncomController::class,'mostrar'])->name('programacioncom.mostrar');
+//Route::get('programacioncom/mostrar/{matriculacion}', [ProgramacioncomController::class,'mostrar'])->name('programacioncom.mostrar');
 Route::get('programacioncom/mostrar', [ProgramacioncomController::class,'mostrarClases'])->name('programacioncom.mostrar');
 Route::get('programacioncom/hoy/{matriculacion}', [ProgramacioncomController::class,'programacionescomHoy'])->name('programacioncom.hoy');
 Route::get('programacioncom/futuro/{matriculacion}', [ProgramacioncomController::class,'programacionescomFuturo'])->name('programacioncom.futuro');

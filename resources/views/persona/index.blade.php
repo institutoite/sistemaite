@@ -1,9 +1,13 @@
 @extends('adminlte::page')
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
 @stop
 
+
 @section('title', 'Personas')
+@section('plugins.Sweetalert2',true)
+@section('plugins.Datatables',true)
 
 @section('content_header')
     <h1 class="text-center text-primary">Buscar persona</h1>
@@ -31,8 +35,7 @@
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
-    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
-    <!-- JavaScript Bundle with Popper -->
+
     
 
     <script>
@@ -54,7 +57,7 @@
                             "name": "foto",
                             "data": "foto",
                             "render": function (data, type, full, meta) {
-                                return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
+                                return "<img class='materialboxed zoomify' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
                             },
                             "title": "FOTO",
                             "orderable": false,
@@ -71,6 +74,24 @@
                     },  
                 }
             );
+
+
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ZOOMIFY %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click','.zoomify',function (e){
+                Swal.fire({
+                    title: 'Codigo: '+ $(this).closest('tr').find('td').eq(0).text(),
+                    text: $(this).closest('tr').find('td').eq(1).text(),
+                    imageUrl: $(this).attr('src'),
+                    imageWidth: 400,
+                    showCloseButton:true,
+                    confirmButtonColor:'#26baa5',
+                    type: 'success',
+                    imageHeight:400,
+                    imageAlt: 'Custom image',
+                    confirmButtonText:"Aceptar",
+                    
+                })
+            });
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR PERSONA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
             $('table').on('click','.eliminar',function (e) {
                 e.preventDefault(); 

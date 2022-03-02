@@ -16,24 +16,18 @@
         <div class="card-body">
             <table class="table table-bordered table-striped"> 
                 <tr class="bg-primary">
-                    
                         <th>ATRIBUTO</th>
                         <th>VALOR</th>
-                    
                 </tr>
                 <tbody>
                     <tr>
                         <td>Codigo</td>
                         <td>{{$persona->id}}</td>
                     </tr>
-                    
                     <tr>
                         <td>Fotografía</td>
-                            
                         <td> 
-                            
                             <div class="text-center">
-                                
                                 <img class="rounded img-thumbnail img-fluid border-primary border-5" src="{{URL::to('/').Storage::url("$persona->foto")}}" alt="{{$persona->nombre.' '.$persona->apellidop}}"> 
                                 <p>{!!$observacion!!}</p>
                             </div>
@@ -43,8 +37,6 @@
                         <td>Nombre</td>
                         <td>{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</td>
                     </tr>
-
-
                     <tr>
                         <td>fechanacimiento</td>
                         <td>'Nacido el: <strong> {{$persona->fechanacimiento}} </strong> Nació <strong>{{ $persona->fechanacimiento->diffForHumans()}} </strong> </td>
@@ -77,24 +69,19 @@
                         <td>Dirección</td>
                         <td>{{$persona->direccion}} </td>
                     </tr>
-
                     <tr>
                         <td>Como se enteró</td>
                         <td>{{$persona->como}} </td>
                     </tr>
-                    
                     <tr>
                         <td>Papel Inicial</td>
                         <td>{{$persona->papelinicial}} </td>
                     </tr>
-                    
                     <tr>
-                        
                         <td>Recomendado por</td>
                         @isset($recomendado)
                             <td> <a href="{{route('personas.show',$recomendado)}}">{{$recomendado->nombre.' '.$recomendado->apellidop}}</a> </td>
                         @endisset
-                            
                     </tr>
                     <tr>
                         <td>Actualizado</td>
@@ -104,15 +91,47 @@
                         <td>primera vez vino</td>
                         <td>{{$persona->created_at}} </td>
                     </tr>
-
                 </tbody>
             </table>
 
         </div>
     </div>
+
+    <div class="card">
+        <div class="card-header">
+            Apoderados
+        </div>
+        <div class="card-body">
+            <table id="telefonos" class="table table-hover table-bordered table-striped display responsive nowrap" width="100%">
+                <thead class="bg-primary">
+                    <th>#</th>
+                    <th>APODERADOS</th>
+                    <th>NUMERO</th>
+                    <th>PARENTESCO</th>
+                    <th>ACTUALIZADO</th>
+                </thead>
+                <tbody>
+                    @foreach ($apoderados as $apoderado)
+                        <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>
+                                {{$apoderado->nombre.' '.$apoderado->apellidop.' '.$apoderado->apellidom}}
+                            </td>
+                            <td>
+                                <a href="tel:{{$apoderado->telefono}}">{{$apoderado->pivot->telefono}}</a> 
+                            </td>
+                            <td>
+                                {{$apoderado->pivot->parentesco}}
+                            </td>
+                            <td>{{$apoderado->updated_at}}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 @stop
-
-
 @section('js')
     
 @stop

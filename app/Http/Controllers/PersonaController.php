@@ -105,7 +105,7 @@ class PersonaController extends Controller
 
         $user = new User();
         $user->email =strtolower(Str::substr($persona->nombre, 1, 2).$persona->apellidop.$persona->id)."@ite.com.bo" ;
-        $user->name = ucfirst($user->email);
+        $user->name = ucfirst($persona->name.$persona->id);
         $user->persona_id = $persona->id;
         $user->password = Hash::make($user->name."*");
         $user->foto = "estudiantes/sinperfil.png";
@@ -210,11 +210,16 @@ class PersonaController extends Controller
 
     public function storeContacto(PersonaApoderadaRequestStore $request,$id){
         
+
         $persona=Persona::findOrFail($id);
         $apoderado = new Persona();
         $apoderado->nombre = $request->nombre;
         $apoderado->apellidop = $request->apellidop;
         $apoderado->genero=$request->genero;
+
+        $apoderado->pais_id = $persona->pais_id;
+        $apoderado->ciudad_id = $persona->ciudad_id;
+        $apoderado->zona_id = $persona->zona_id;
 
         $carbon = new \Carbon\Carbon();
         $date = $carbon::createFromDate(1900, 1, 1);
@@ -247,11 +252,14 @@ class PersonaController extends Controller
         $pais=Pais::findOrFail($persona->pais_id);
         $ciudad = Ciudad::findOrFail($persona->ciudad_id);
         $zona = Zona::findOrFail($persona->zona_id);
+        
         $observacion = Observacion::where('observable_id', $persona->id)
             ->where('observable_type', Persona::class)->get()->first()->observacion;
-        $recomendado=Persona::find($persona->persona_id);    
+
+        $recomendado=Persona::find($persona->persona_id); 
+        $apoderados=$persona->apoderados;
         //dd($recomendado);
-        return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion','recomendado'));
+        return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion','recomendado','apoderados'));
     }
 
     public function edit(Persona $persona)

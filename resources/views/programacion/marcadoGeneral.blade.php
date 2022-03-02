@@ -2,6 +2,7 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
+    <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
 
 @stop
 @section('title', 'Programación')
@@ -48,15 +49,8 @@
                     <div class="card-header">
                         <div>
                             <span id="card_title">
-                                {{ __('Programacion') }}
+                                {{ __('Programacion de una Inscripción') }}
                             </span>
-
-                            <div class="float-right">
-                                <a href="{{ route('programacions.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                    {{ __('Inicio') }}
-                                </a>
-                            </div>
-                        
                     </div>
                     <div class="container-fluid mt-2">
                         <div class="row">
@@ -83,7 +77,7 @@
                             </div>
                             <div class="col-md-3 col-sm-6 col-12">
                                 <div class="info-box">
-                                    <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
+                                    <span class="info-box-icon bg-warning"><i class="fas fa-file-signature text-white"></i></span>
 
                                     <div class="info-box-content">
                                         <span class="info-box-text">Licencias</span>
@@ -93,7 +87,7 @@
                             </div>
                             <div class="col-md-3 col-sm-6 col-12">
                                 <div class="info-box">
-                                <span class="info-box-icon bg-danger"><i class="fas fa-skull-crossbones"></i></span>
+                                <span class="info-box-icon bg-danger"><i class="fas fa-user-times"></i></span>
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Faltas</span>
@@ -116,42 +110,63 @@
                                 @endif
                             @endif
 
-                            <div class="col-6">
-                                <table class="table table-bordered table-hover table-striped">
-                                    <tbody class="{{$clasetabla}}" >    
-                                        <tr class="">
-                                            <td><strong>COSTO</strong></td>
-                                            <td><strong>{{'Bs. '. floor($inscripcion->costo)}}</strong></td>
-                                        </tr>
-                                        <tr class="">
-                                            <td><strong>PAGOS</strong></td>
-                                            <td><strong>{{'Bs. '.$pago }}</strong></td>
-                                        </tr>
-                                        <tr class="">
-                                            <td><strong>DEBE</strong></td>
-                                            <td> <strong>Bs. {{$inscripcion->costo-$pago}}</strong></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="card text-center">
+                                    <div class="card-header {{$clase}}">
+                                        PAGOS
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table table-bordered table-hover">
+                                            <tbody class="" >    
+                                                <tr class="">
+                                                    <td><strong>COSTO</strong></td>
+                                                    <td><strong>{{'Bs. '. floor($inscripcion->costo)}}</strong></td>
+                                                </tr>
+                                                <tr class="">
+                                                    <td><strong>PAGOS</strong></td>
+                                                    <td><strong>{{'Bs. '.$pago }}</strong></td>
+                                                </tr>
+                                                <tr class="">
+                                                    <td><strong>DEBE</strong></td>
+                                                    <td> <strong>Bs. {{$inscripcion->costo-$pago}}</strong></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div> 
-                            
-                            <div class="col-6 text-center">
-                                <div class="circulo {{$clase}}">
-                                    @if ($dias_que_faltan_para_pagar==0)
-                                        <span>PAGA HOY</span> <br>
-                                    @else
-                                        @if ($dias_que_faltan_para_pagar>0)
-                                            <h2>Faltan <br> {{$dias_que_faltan_para_pagar}}  días</h2><br>
-                                        @else
-                                            <p> Ya Hace<br> {{$dias_que_faltan_para_pagar}} días</p>
-                                        @endif
-                                    @endif
-                                
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 text-center">
+                                <div class="card">
+                                    <div class="card-header {{$clase}}">
+                                        {{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                <div class="">
+                                                    <img class="img-thumbnail zoomify" src="{{URL::to('/').Storage::url("$persona->foto")}}" alt="" width="150px">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                                <div class="circulo {{$clase}}">
+                                                    @if ($dias_que_faltan_para_pagar==0)
+                                                        <span>PAGA HOY</span> <br>
+                                                    @else
+                                                        @if ($dias_que_faltan_para_pagar>0)
+                                                            <h2>Faltan <br> {{$dias_que_faltan_para_pagar}}  días</h2><br>
+                                                        @else
+                                                            <p> Ya Hace<br> {{$dias_que_faltan_para_pagar}} días</p>
+                                                        @endif
+                                                    @endif
+                                                </div>    
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
+                    
                     <div class="card-body">
                         <div class="success"></div>
                         @include('programacion.hoy')
@@ -164,11 +179,10 @@
             </div>
         </div>
     </div>
-   
-
 @endsection
 
 @section('js')
+    <script src="https://kit.fontawesome.com/067a2afa7e.js" crossorigin="anonymous"></script>
     <script src="{{asset('dist/js/moment.js')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
@@ -208,8 +222,8 @@
             /*%%%%%%%%%%%%%%%%%%%%%%%%% TABLA HOY %%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('#tabla_hoy').dataTable({
                 "responsive":true,
-                "searching":true,
-                "paging":   true,
+                "searching":false,
+                "paging":   false,
                 "autoWidth":false,
                 "createdRow": function( row, data, dataIndex ) {
                     if(data['estado']=="PRESENTE"){
@@ -229,8 +243,8 @@
                     $('td', row).eq(2).html(moment(data['hora_fin']).format('HH:mm'));
 
                 },
-                "ordering": true,
-                "info":     true,
+                "ordering": false,
+                "info":     false,
                 "language":{
                     "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                 }, 
@@ -258,6 +272,22 @@
                 ],
             });
 
+            $('.row').on('click','.zoomify',function (e){
+                Swal.fire({
+                    title: 'Código:{{$persona->id}} ',
+                    text: 'Nombre:{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}',
+                    imageUrl: $(this).attr('src'),
+                    imageWidth: 400,
+                    showCloseButton:true,
+                    confirmButtonColor:'#26baa5',
+                    type: 'success',
+                    imageHeight:400,
+                    imageAlt: 'Custom image',
+                    confirmButtonText:"Aceptar",
+                    
+                })
+            });
+
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TABLA FUTURO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             let tablaFuturo=$('#futuro').dataTable({
                 "responsive":true,
@@ -266,17 +296,7 @@
                 "autoWidth":false,
                 "createdRow": function( row, data, dataIndex ) {
                     
-                    // if(moment(data['fecha']).format('DD-MM-YYYY') < moment().format('DD-MM-YYYY')){
-                    //     $(row).addClass('text-gray')
-                    // }
-                    // if(moment(data['fecha']).format('DD-MM-YYYY') == moment().format('DD-MM-YYYY')){
-                    //     $(row).addClass('table-success');
-                    //     $(row).addClass('text-bold');
-                    // }
-                    // if(moment(data['fecha']).format('DD-MM-YYYY') > moment().format('DD-MM-YYYY')){
-                    //     $(row).addClass('text-success')
-                    // }
-                      if(data['habilitado'] == 1 ){
+                    if(data['habilitado'] == 1 ){
                         $(row).addClass('table-success')
                         $(row).addClass('text-success')
                         
@@ -311,8 +331,6 @@
                         {"data": "hora_fin"},
                         {"data": "docente"},
                         {"data": "materia"},
-                        
-
                         {"data": "btn"},
                     ],
                 "columnDefs": [
@@ -322,84 +340,12 @@
                 "order": [[ 1, "asc" ]],
             });
             
-
-    /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('#futuro').on('click', '.mostrar', function(e) {
-                e.preventDefault(); 
-                // var id_programacion =$(this).closest('tr').find('td:first-child').text();
-                let id_programacion =$(this).closest('tr').attr('id');
-                console.log(id_programacion);
-                $.ajax({
-                    url : "../../programacion/mostrar/",
-                    data : { id :id_programacion },
-                    success : function(json) {
-                        console.log(json);
-                        $("#tabla-mostrar-programacion").empty();
-                        $("#tabla-mostrar-observaciones").empty();
-                        $("#tabla-mostrar-observaciones").empty();
-                        $("#modal-mostrar").modal("show");
-                        $html="";
-                        $html+="<tr><td>Fecha</td>"+"<td>"+moment(json.programacion.fecha).format('dddd')+' '+moment(json.programacion.fecha).format('LL')+"</td></tr>";
-                        $html+="<tr><td>Hora Inicio</td>"+"<td>"+moment(json.programacion.hora_ini).format('HH:mm:ss')+"</td></tr>";
-                        $html+="<tr><td>Hora Fin</td>"+"<td>"+moment(json.programacion.hora_fin).format('HH:mm:ss')+"</td></tr>";
-                        $html+="<tr><td>Horas por clase</td>"+"<td>"+json.programacion.horas_por_clase+" Horas</td></tr>";
-    
-                        $html+="<tr><td>Estado Pago</td>"+"<td>"+(json.programacion.habilitado==1) ? 'Pagado' :'Impaga'+"</td></tr>";
-                        $html+="<tr><td>Estado Activo</td>"+"<td>"+(json.programacion.activo==1) ? 'Activo' :'Desactivado'+"</td></tr>";
-                        $html+="<tr><td>Estado</td>"+"<td>"+json.estado.estado+"</td></tr>";
-                        $html+="<tr><td>Docente</td>"+"<td>"+json.docente.nombre+"</td></tr>";
-                        $html+="<tr><td>Materia</td>"+"<td>"+json.materia.materia+"</td></tr>";
-                        $html+="<tr><td>Aula</td>"+"<td>"+json.aula.aula+"</td></tr>";
-                        $sumaCambio=0;
-                        // for (let j in json.observaciones) {
-                        //     $html+="<tr><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td></tr>";
-                        // }
-                        $("#tabla-mostrar-programacion").append($html);
-                        $htmlObservaciones="";
-                        for (let j in json.observaciones) {
-                            $htmlObservaciones+="<tr id='"+json.observaciones[j].id +"''><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td>";
-                            $htmlObservaciones+="<td>";
-                            $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 editarobservacion' title='Editar esta Observacion'>";
-                            $htmlObservaciones+="<i class='fa fa-fw fa-edit text-primary'></i></a>";
-                            $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 eliminarobservacion' title='Eliminar esta observacion'>";
-                            $htmlObservaciones+="<i class='fas fa-trash-alt text-danger'></i>";
-                            $htmlObservaciones+="</td>";
-                        }
-                        $("#tabla-mostrar-observaciones").append($htmlObservaciones);
-
-                        $htmlClases="";
-                        for (let j in json.clasescom) {
-                            //console.log(json.clasescom[j].fecha);
-                            $htmlClases+="<tr><td>"+ moment(json.clasescom[j].fecha).format('LL') +"</td>";
-                            $htmlClases+="<td>"+json.clasescom[j].estado+"</td>";
-                            $htmlClases+="<td>"+moment(json.clasescom[j].horainicio).format('HH:mm:ss')+"</td>";
-                            $htmlClases+="<td>"+moment(json.clasescom[j].horafin).format('HH:mm:ss')+"</td>";
-                            $htmlClases+="<td>" + json.clasescom[j].nombre + "</td>";
-                            $htmlClases+="<td>"+json.clasescom[j].aula+"</td></tr>";
-                        }
-                        $("#tabla-mostrar-clases").append($htmlClases);
-                        $htmlLicencia="";
-                        for (let j in json.licencias) {
-                            $htmlLicencia+="<tr><td>"+ json.licencias[j].motivo +"</td>";
-                            $htmlLicencia+="<td>"+json.licencias[j].solicitante+"</td>";
-                            $htmlLicencia+="<td>"+json.licencias[j].parentesco+"</td>";
-                            $htmlLicencia+="<td>"+moment(json.licencias[j].created_at).format('LLLL')+"</td>";
-                        }
-                        $("#tabla-mostrar-licencias").append($htmlLicencia);
-                    },
-                    error : function(xhr, status) {
-                        alert('Disculpe, existió un problema');
-                    },
-                });
-            });
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-             
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA FORMULARIO AGREGAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.observacion', function(e) {
                 e.preventDefault(); 
                 let id_programacion=$(this).closest('tr').attr('id');
                 $("#id_programacion").val(id_programacion);
-                
+                $("#observacion").val("");
                 $("#modal-gregar-observacion").modal("show");
             });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BOTON GUARDAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -430,7 +376,7 @@
                 $("#modal-gregar-observacion").modal("hide");
             });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR FINALIZADO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('#tabla_hoy').on('click', '.mostrar', function(e) {
+            $('#tabla_hoy, #futuro').on('click', '.mostrar', function(e) {
                 e.preventDefault(); 
                 let id_programacion =$(this).closest('tr').attr('id');
                 
@@ -444,6 +390,7 @@
                         $("#tabla-mostrar-programacion").empty();
                         $("#tabla-mostrar-observaciones").empty();
                         $("#tabla-mostrar-clases").empty();
+                        $("#tabla-mostrar-licencias").empty();
                         $html="";
                         $html+="<tr><td>Hora Inicio</td>"+"<td>"+moment(json.programacion.fecha).format('LLLL')+"</td></tr>";
                         $html+="<tr><td>Hora Inicio</td>"+"<td>"+moment(json.programacion.hora_ini).format('HH:mm:ss')+"</td></tr>";
@@ -474,17 +421,24 @@
 
                         $htmlClases="";
                         for (let j in json.clases) {
-                            console.log(json.clases[j]);
-                            $htmlClases+="<tr><td>"+ moment(json.clases[j].fecha).format('LL') +"</td>";
+                            $htmlClases+="<tr><td>"+ moment(json.clases[j].fecha).format('L') +"</td>";
                             $htmlClases+="<td>"+json.clases[j].estado+"</td>";
                             $htmlClases+="<td>"+json.clases[j].horainicio+"</td>";
                             $htmlClases+="<td>"+json.clases[j].horafin+"</td>";
                             $htmlClases+="<td>"+json.clases[j].nombre+"</td>";
                             $htmlClases+="<td>"+json.clases[j].materia+"</td>";
-                            $htmlClases+="<td>"+json.clases[j].aula+"</td></tr>";
-                            $htmlClases+="<tr><td colspan='7'>"+json.clases[j].tema+"</td></tr>";
+                            $htmlClases+="<td>"+json.clases[j].aula+"</td>";
+                            $htmlClases+="<td>"+json.clases[j].tema+"</td></tr>";
                         }
                         $("#tabla-mostrar-clases").append($htmlClases);
+                         $htmlLicencia="";
+                        for (let j in json.licencias) {
+                            $htmlLicencia+="<tr><td>"+ json.licencias[j].motivo +"</td>";
+                            $htmlLicencia+="<td>"+json.licencias[j].solicitante+"</td>";
+                            $htmlLicencia+="<td>"+json.licencias[j].parentesco+"</td>";
+                            $htmlLicencia+="<td>"+moment(json.licencias[j].created_at).format('LLLL')+"</td>";
+                        }
+                        $("#tabla-mostrar-licencias").append($htmlLicencia);
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
@@ -870,7 +824,7 @@
                     },
                 });
             });
-                        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO CREAR LICENCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO CREAR LICENCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.licencia', function(e) {
                 e.preventDefault(); 
                 $html="";
@@ -942,23 +896,20 @@
                     },  
                 });
             });
+
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR ENVIO DE FORMULARIO PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $(document).on("submit","#formulario-licencia",function(e){
                 e.preventDefault();//detenemos el envio
-            
                 $motivo_id=$('#motivo_id').val();
                 $solicitante=$('#solicitante').val();
                 $parentesco=$('#parentesco').val();
-                
                 $inscripcione_id=$('#inscripcione_id').val();
                 $programacion_id=$('#programacion_id').val();
-                
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
-
                 $.ajax({
                     url : "../../licenciaprogramacion/guardar",
                     data:{
@@ -968,7 +919,6 @@
                             inscripcione_id:$inscripcione_id,
                             programacion_id:$programacion_id,
                         },
-                    
                     success : function(json) {
                         console.log(json);
                         let programacion_actualizar=$('#programacion_id').val(); 

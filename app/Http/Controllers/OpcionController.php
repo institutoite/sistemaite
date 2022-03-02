@@ -60,7 +60,7 @@ class OpcionController extends Controller
 
     public function docentes($persona){
         $persona=Persona::findOrFail($persona);
-        return view('opcion.menu_docente', compact('persona'));
+        return view('opcion.principal', compact('persona'));
     }
     public function computacion($persona){
         $persona=Persona::findOrFail($persona);

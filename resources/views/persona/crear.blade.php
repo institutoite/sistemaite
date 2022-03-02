@@ -124,7 +124,6 @@
             }
             function cargarzonas(){
                 var city_id = $('#city').val();
-                
                 if(!city_id){
                 $('#zona').html('<option value="" required>Seleccione una Zona </option>');
                     return;

@@ -24,7 +24,7 @@ class MateriaSeeder extends Seeder
         Materia::create(['materia'=>'INGLES']);
         Materia::create(['materia'=>'BIOLOGIA']);
         Materia::create(['materia'=>'ESTADISTICA']);
-        Materia::create(['materia'=>'CALCULO I']);
+        Materia::create(['materia'=>'CALCULO']);
         Materia::create(['materia'=>'PROGRAMACION']);
         Materia::create(['materia'=>'WORD']);
         Materia::create(['materia'=>'WINDOWS']);
@@ -43,7 +43,6 @@ class MateriaSeeder extends Seeder
         Materia::create(['materia'=>'CAMTASIA']);
         Materia::create(['materia'=>'EXCEL INTERMEDIO']);
         Materia::create(['materia'=>'EXCEL AVANZADO']);
-
         Materia::find(1)->niveles()->attach(1, ['materia_id' => 1]);
         Materia::find(1)->niveles()->attach(1, ['materia_id' => 4]);
         

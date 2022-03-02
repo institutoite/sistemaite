@@ -254,7 +254,7 @@ class MatriculacionController extends Controller
         ->where('vigente',1)
         ->select('matriculacions.id','personas.nombre','personas.apellidop','personas.apellidom')->get();
         return datatables()->of($matriculacionesVigentes)
-                            ->toJson();
+            ->toJson();
     }
 
 }

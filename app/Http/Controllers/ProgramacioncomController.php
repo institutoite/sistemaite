@@ -172,7 +172,7 @@ class ProgramacioncomController extends Controller
                         $costo_x_sesion = ($costo_total / $matriculacion->totalhoras) *$hora_x_sesion ;
                         $costo_hora= $costo_total / $total_horas;
                         if($total_horas>$hora_x_sesion){
-                            if ($acuenta > $costo_x_sesion) {
+                            if ($acuenta >= $costo_x_sesion) {
                                 $this->agregarClase($programa,$fecha,$hora_x_sesion,$total_horas,$sesion,true,$matriculacion);
                             } else {
                                 $this->agregarClase($programa, $fecha, $hora_x_sesion,$total_horas, $sesion, false, $matriculacion);
@@ -420,11 +420,11 @@ class ProgramacioncomController extends Controller
         $acuentaTotal=$matriculacion->pagos->sum->monto;
         $TotalPagado=$acuentaTotal;
         
+
         $cuantas=[];
         foreach ($programascom as $programa) {
             $costo_programa = $programa->horaini->floatDiffInHours($programa->horafin)*($costo_por_hora);
-            
-            if($TotalPagado>$costo_programa){
+            if($TotalPagado>=$costo_programa){
                // $cuantas=$cuantas.' '.$acuentaTotal.'<br>';
                 $programa->habilitado=1;
                 $programa->save();
@@ -472,20 +472,23 @@ class ProgramacioncomController extends Controller
         $materia = $programacioncom->materia;
         $asignatura=$programacioncom->matriculacion->asignatura;
         $aula = $programacioncom->aula;
-        $clases=Programacioncom::join('clasecoms','programacioncoms.id','clasecoms.programacioncom_id')
-                    ->join('docentes','docentes.id','programacioncoms.docente_id')
-                    ->join('aulas','aulas.id','programacioncoms.aula_id')
-                    ->where('programacioncoms.id',$request->id)
-                    ->select('clasecoms.id','clasecoms.fecha','clasecoms.horainicio','clasecoms.horafin','docentes.nombre', 'aulas.aula')
-                    ->get();
-        $estado=$programacioncom->estado;
-                   // return response()->json($clases);
+
         $licencias=Licencia::join('motivos','motivos.id','=','licencias.motivo_id')
             ->join('programacioncoms','programacioncoms.id','=','licencias.licenciable_id')
             ->where('programacioncoms.id','=',$request->id)
             ->select('motivos.motivo','solicitante','parentesco','licencias.created_at','licencias.updated_at')
             ->get();
 
+        $clases=Programacioncom::join('clasecoms','programacioncoms.id','clasecoms.programacioncom_id')
+                    ->join('docentes','docentes.id','programacioncoms.docente_id')
+                    ->join('aulas','aulas.id','programacioncoms.aula_id')
+                    ->join('estados','estados.id','clasecoms.estado_id')
+                    ->where('programacioncoms.id',$request->id)
+                    ->select('clasecoms.id','clasecoms.fecha','clasecoms.horainicio','estados.estado','clasecoms.horafin','docentes.nombre', 'aulas.aula')
+                    ->get();
+        $estado=$programacioncom->estado;
+                   // return response()->json($clases);
+        
         $data = ['programacioncom' => $programacioncom, 'observaciones' => $observaciones, 'docente' => $docente,'estado' => $estado, 'aula' => $aula,'licencias'=>$licencias, 'clasescom' => $clases,'asignatura'=>$asignatura];
         return response()->json($data);
     }

@@ -50,4 +50,14 @@
         <label for="aula_id">Aula</label>
     </div>
 </div>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" > 
+    <div class="form-floating mb-3">
+        <select class="form-control mb-3" name="tema_id" id="tema_id" style="width: 100%">
+            {{-- <option value=""></option>
+            @foreach ($temas as $tema)
+                <option value="{{$tema->id}}">{{$tema->tema}}</option>
+            @endforeach --}}
+        </select>
+    </div>
+</div>
 

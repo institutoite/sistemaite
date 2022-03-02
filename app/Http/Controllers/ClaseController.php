@@ -15,6 +15,7 @@ use App\Models\Programacion;
 use App\Models\Tema;
 use App\Models\Nivel;
 use App\Models\Modalidad;
+use App\Models\Observacion;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -77,19 +78,38 @@ class ClaseController extends Controller
     public function guardar(Request $request,$programacion_id){
         $clase=new Clase();
         $clase->fecha=$request->fecha;
-        $clase->estado_id= Config::get('constantes.ESTADO_PRESENTE');
         $clase->horainicio=$request->horainicio;
         $clase->horafin=$request->horafin;
         $clase->docente_id=$request->docente_id;
         $clase->materia_id=$request->materia_id;
         $clase->aula_id=$request->aula_id;
-        $clase->tema_id =1;
+        $clase->tema_id =$request->tema_id;
         $clase->programacion_id=$programacion_id;
+
+        $observacion=new Observacion();
+        $observacion->activo=1;
+        $observacion->observable_type= Programacion::class;
+
+        if($request->fecha < Carbon::now()->format('Y-m-d')){
+            $programa=Programacion::findOrFail($programacion_id);
+            $programa->estado_id = Config::get('constantes.ESTADO_FINALIZADO');
+            $clase->estado_id= Config::get('constantes.ESTADO_FINALIZADO');
+            $observacion->observacion="Esta programacion se marco fuera de fecha: ".Carbon::now()->isoFormat('LLLL');
+            
+        }else{
+            $programa=Programacion::findOrFail($programacion_id);
+            $programa->estado_id = Config::get('constantes.ESTADO_PRESENTE');
+            $clase->estado_id= Config::get('constantes.ESTADO_PRESENTE');
+            $observacion->observacion="Esta programacion se marcó en fecha adecuada: ".Carbon::now()->isoFormat('LLLL');
+        }
+
         $clase->save();
-        $clase->userable()->create(['user_id' => Auth::user()->id]);
-        $programa=Programacion::findOrFail($programacion_id);
-        $programa->estado_id = Config::get('constantes.ESTADO_PRESENTE');
         $programa->save();
+        $observacion->observable_id=$programacion_id;
+        $observacion->save();
+        
+        $clase->userable()->create(['user_id' => Auth::user()->id]);
+
         return redirect()->route('clase.presentes');
     }
     
@@ -237,15 +257,14 @@ class ClaseController extends Controller
         $dias_que_faltan_para_pagar= $inscripcion->fecha_proximo_pago->diffInDays(now());
         
         $pago=$inscripcion->pagos->sum('monto');
-        $indefinido=$inscripcion->programaciones->where('estado_id',1)->count();
-        $presentes = $inscripcion->programaciones->where('estado_id',2)->count();
-        $faltas = $inscripcion->programaciones->where('estado_id',3)->count();
-        $congelados = $inscripcion->programaciones->where('estado_id',4)->count();
-        $licencias = $inscripcion->programaciones->where('estado_id',5)->count();
-        $finalizados = $inscripcion->programaciones->where('estado_id',6)->count();
-
-         
-        return view('programacion.marcadoGeneral',compact('programaciones', 'faltas', 'presentes', 'licencias', 'pago', 'inscripcion', 'dias_que_faltan_para_pagar'));
+        $indefinido=$inscripcion->programaciones->where('estado_id',Config::get('constantes.ESTADO_INDEFINIDO'))->count();
+        $presentes = $inscripcion->programaciones->where('estado_id',Config::get('constantes.ESTADO_FINALIZADO'))->count();
+        $faltas = $inscripcion->programaciones->where('estado_id',Config::get('constantes.ESTADO_FALTA'))->count();
+        $congelados = $inscripcion->programaciones->where('estado_id',Config::get('constantes.ESTADO_CONGELADO'))->count();
+        $licencias = $inscripcion->programaciones->where('estado_id',Config::get('constantes.ESTADO_LICENCIA'))->count();
+        $persona = $inscripcion->estudiante->persona;
+    
+        return view('programacion.marcadoGeneral',compact('programaciones','persona','faltas', 'presentes', 'licencias', 'pago', 'inscripcion', 'dias_que_faltan_para_pagar'));
         //return redirect()->route('clases.marcado.general',$inscripcion_id)->with('programaciones', 'programacionesHoy', 'faltas', 'presentes', 'licencias', 'pago', 'inscripcion','dias_que_faltan_para_pagar');
     }
     

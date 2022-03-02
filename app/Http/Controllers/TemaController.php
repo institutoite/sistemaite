@@ -88,4 +88,9 @@ class TemaController extends Controller
     {
         //
     }
+     public function tema_of_materia($materia_id){  
+        $temas=Tema::where('materia_id',$materia_id)->get();
+        return response()->json($temas);       
+        
+    } 
 }

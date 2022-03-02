@@ -10,22 +10,20 @@
 @section('plugins.Datatables', true)
 
 @section('content')
-
     <div class="container pt-4" id="container">
         @if ($persona->isEstudiante())
             @include('opcion.menu_estudiante')
         @endif
         @if ($persona->isDocente())
             @include('opcion.menu_docente')
+            
         @endif
         @if ($persona->isAdministrativo())
             @include('opcion.menu_administrativo')
         @endif
-        
         @if ($persona->isComputacion())
             @include('opcion.menu_computacion')
         @endif
-
         @if ($persona->isCliservicio())
             @include('opcion.menu_cliservicio')
         @endif
@@ -37,5 +35,5 @@
 @stop   
 
 @section('js')
-
+    <script src="https://kit.fontawesome.com/067a2afa7e.js" crossorigin="anonymous"></script>
 @stop

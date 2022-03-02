@@ -1,62 +1,20 @@
-
 que se pueda marcar despues de la clase trabajar en programacion pasada o vencida
 
+
+mostrar las clases de programadas para hoy 
 calificar al estudiante cuando termine la inscripcion calificable
-
 boton imprimir pdf formulario para registro rapido
-
 programar subir archivos documentos digitales
-
-tareas por hacer 
-
-%%%%%%%%%%%  hacer que sea responsive la ventana modal de estudaintes de referencias
-%%%%%%%%%%%  validar gaurdar contactos de un cliente
-%%%%%%%%%%%  Falta editar persona sale un error
-
-
-
-%%%%%%%%%%%     en pagos que se vea el acuenta total y lo adeudado 
-%%%%%%%%%%%     agregar a las modalidades mes de 1.5 horas de lunes a vienres 30 horas
-%%%%%%%%%%%     que se cambien de campo cuando se presiona enter en todos los formularios 
-                validar los formularios antes de guardar o actualizar 
-
-%%%%%%%%%%%     en crear el crud para motivos por el que viene a clase o a inscribirse
-
-
-
-
-AGREGAR OBERVACIONES A LOS DOCENTES PARA NO GENERAN NULL EL VER EDITAR
-
-
-
-
-
-
+%%%%%%%%%%% que se cambien de campo cuando se presiona enter en todos los formularios validar los formularios antes de guardar o actualizar 
 que todos los mostrar tengan quien hizo el registro correpondiente
-
 registro rapido de posibles clientes 
-
 mostrar la vista hoy con los estudiante presentes faltantes por llegar etc
-
-%%%%%%%%%% para hacer formularios interesantes estamos descargando bootstrap 5 compilar el archivo sass
-
-
-CUANDO SE REGISTRA PROFESOR QUE TENGA LA OPCION FINALIZAR AL REGISTRAR TELEFONOS  Y QUE NO SE VEA EL BOTON INSCRIBIR YA 
-QUE EL O ELLA NO ES UN ESTUDIANTE
-
-CUANDO SE EDITAR UNA PROGRAMACION SE QUEDA EN BLANCO HAY QUE REDIRECT 
-
-AL PARENCER 
-
 cuando le demos finalizar una clases que guarde la hora que se fue 
-
 file:///C:/Users/ite/Downloads/AdminLTE-3.1.0/AdminLTE-3.1.0/pages/UI/buttons.html botones hermosos
-
-
-
 agregar nivel_id a motivos ya que los motivos dependen del nivel
-
-
-
-
-VALIDAR pago computacion
+agregar boton compartir Credenciales de usuario de cliente
+cuando se paga el total de la modalidad enviar a la vista de programacionPrincipal
+cuando verificar el pago con Bs. 200 y cambio Bs. 25 en computacion y Matematicas
+limpiar las licencias de computacion mostrar programacion 
+Finalizar una clases presente en computacion  
+verificar las licencias que se muestran cuando se esta mostrando una programacion parece que es lo mismo de Mate= COmputacion 

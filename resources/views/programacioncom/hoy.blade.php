@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header {{$clase}}">
-        <h3 class="card-title">CLASE CORRESPONDIENTE AL DIA DE HOY</h3>
+        <h3 class="card-title">CLASES DE COMPUTACIÓN <i class="fa-solid fa-desktop"></i> </h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
         </div>

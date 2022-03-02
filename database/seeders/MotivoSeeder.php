@@ -15,14 +15,43 @@ class MotivoSeeder extends Seeder
      */
     public function run()
     {
-        Motivo::create(['motivo'=>"tiene una tarea",'tipomotivo_id'=>1]);
-        Motivo::create(['motivo' => "tiene un examen",'tipomotivo_id'=>1]);
-        Motivo::create(['motivo' => "Se falto a clase, no le entiende",'tipomotivo_id'=>1]);
+        Motivo::create(['motivo' => "Tiene una práctico",'tipomotivo_id'=>1]);
+        Motivo::create(['motivo' => "Tiene un examen",'tipomotivo_id'=>1]);
         Motivo::create(['motivo' => "Tiene una defenza",'tipomotivo_id'=>1]);
-        Motivo::create(['motivo' => "su profe le fallo",'tipomotivo_id'=>1]);
-        Motivo::create(['motivo' => "En su clase no le entiende",'tipomotivo_id'=>1]);
-        Motivo::create(['motivo' => "Quire nivelarse",'tipomotivo_id'=>1]);
-        Motivo::create(['motivo' => "Quiere adelantar",'tipomotivo_id'=>1]);
+        Motivo::create(['motivo' => "Tiene un profesor a domicilio, pero le falla mucho",'tipomotivo_id'=>1]);
+        Motivo::create(['motivo' => "En cada no tienen capacidad de ayudar",'tipomotivo_id'=>1]);
+        Motivo::create(['motivo' => "En casa hay alguien con capacidad pero no tiene tiempo",'tipomotivo_id'=>1]);
+        Motivo::create(['motivo' => "Quire nivelarse por que esta atrazado /a",'tipomotivo_id'=>1]);
+        Motivo::create(['motivo' => "Quiere ir adelantando",'tipomotivo_id'=>1]);
+        
+        Motivo::create(['motivo' => "Simplemente aprender",'tipomotivo_id'=>2]);
+        Motivo::create(['motivo' => "Necesita aprender por su trabajo",'tipomotivo_id'=>2]);
+        
+        Motivo::create(['motivo' => "Consiguió trabajo",'tipomotivo_id'=>3]);
+        Motivo::create(['motivo' => "Quiere que aprenda algo",'tipomotivo_id'=>3]);
+        Motivo::create(['motivo' => "Empezo las clases la persona que cuida se va a clases",'tipomotivo_id'=>3]);
+        Motivo::create(['motivo' => "Necesita estimular alguna habilidad",'tipomotivo_id'=>3]);
+        
+        Motivo::create(['motivo' => "Enfemedad o Salud",'tipomotivo_id'=>4]); 
+        Motivo::create(['motivo' => "Tiene mucha tarea de otras materias en su centro educativo",'tipomotivo_id'=>4]); 
+        Motivo::create(['motivo' => "Viaje",'tipomotivo_id'=>4]); 
+        Motivo::create(['motivo' => "Clima lluvia",'tipomotivo_id'=>4]); 
+        Motivo::create(['motivo' => "Problemas sociales",'tipomotivo_id'=>4]); 
+        Motivo::create(['motivo' => "Otro Motivo",'tipomotivo_id'=>4]); 
+        
+        Motivo::create(['motivo' => "Enfemedad o Salud",'tipomotivo_id'=>5]); 
+        Motivo::create(['motivo' => "Tiene mucha tarea de otras materias en su centro educativo",'tipomotivo_id'=>5]); 
+        Motivo::create(['motivo' => "Viaje",'tipomotivo_id'=>5]); 
+        Motivo::create(['motivo' => "Clima lluvia",'tipomotivo_id'=>5]); 
+        Motivo::create(['motivo' => "Problemas sociales",'tipomotivo_id'=>5]); 
+        Motivo::create(['motivo' => "Otro Motivo",'tipomotivo_id'=>5]); 
+        
+        Motivo::create(['motivo' => "Enfemedad o Salud",'tipomotivo_id'=>6]); 
+        Motivo::create(['motivo' => "Tiene mucha tarea de otras materias en su centro educativo",'tipomotivo_id'=>6]); 
+        Motivo::create(['motivo' => "Viaje",'tipomotivo_id'=>6]); 
+        Motivo::create(['motivo' => "Clima lluvia",'tipomotivo_id'=>6]); 
+        Motivo::create(['motivo' => "Problemas sociales",'tipomotivo_id'=>6]); 
+        Motivo::create(['motivo' => "Otro Motivo",'tipomotivo_id'=>6]); 
 
         Userable::create(["user_id"=>1,"userable_id"=>1,"userable_type"=>"App\Models\Motivo"]);
         Userable::create(["user_id"=>1,"userable_id"=>2,"userable_type"=>"App\Models\Motivo"]);

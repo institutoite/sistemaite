@@ -2,6 +2,7 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
+    <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
 
 @stop
 
@@ -54,21 +55,14 @@
                     <div class="card-header">
                         <div>
                             <span id="card_title">
-                                {{ __('Programacion') }}
+                                {{ __('Programacion de Computación') }}
                             </span>
-
-                            <div class="float-right">
-                                <a href="" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                    {{ __('Inicio') }}
-                                </a>
-                            </div>
-                        
                     </div>
                     <div class="container-fluid mt-2">
                         <div class="row">
                             <div class="col-md-3 col-sm-6 col-12">
                                 <div class="info-box">
-                                    <span class="info-box-icon bg-info"><i class="fas fa-user-graduate"></i></span>
+                                    <span class="info-box-icon bg-info"><i class="fas fa-user-graduate text-white"></i></span>
 
                                     <div class="info-box-content">
                                         <span class="info-box-text">Total Clase</span>
@@ -79,7 +73,7 @@
                             
                             <div class="col-md-3 col-sm-6 col-12">
                                 <div class="info-box">
-                                    <span class="info-box-icon bg-success"><i class="far fa-star"></i></span>
+                                    <span class="info-box-icon bg-success"><i class="far fa-star text-white"></i></span>
 
                                     <div class="info-box-content">
                                         <span class="info-box-text">Asistencias</span>
@@ -89,7 +83,7 @@
                             </div>
                             <div class="col-md-3 col-sm-6 col-12">
                                 <div class="info-box">
-                                    <span class="info-box-icon bg-warning"><i class="far fa-copy"></i></span>
+                                    <span class="info-box-icon bg-primary"><i class="fas fa-file-signature text-white"></i></span>
 
                                     <div class="info-box-content">
                                         <span class="info-box-text">Licencias</span>
@@ -99,7 +93,7 @@
                             </div>
                             <div class="col-md-3 col-sm-6 col-12">
                                 <div class="info-box">
-                                <span class="info-box-icon bg-danger"><i class="fas fa-skull-crossbones"></i></span>
+                                <span class="info-box-icon bg-danger"><i class="fas fa-user-times"></i></span>
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Faltas</span>
@@ -123,38 +117,63 @@
                             @endif
 
                             <div class="col-6">
-                                <table class="table table-bordered table-hover table-striped">
-                                    <tbody class="{{$clasetabla}}" >    
-                                        <tr class="">
-                                            <td><strong>COSTO</strong></td>
-                                            <td><strong>{{'Bs. '. floor($matriculacion->costo)}}</strong></td>
-                                        </tr>
-                                        <tr class="">
-                                            <td><strong>PAGOS</strong></td>
-                                            <td><strong>{{'Bs. '.$pago }}</strong></td>
-                                        </tr>
-                                        <tr class="">
-                                            <td><strong>DEBE</strong></td>
-                                            <td> <strong>Bs. {{$matriculacion->costo-$pago}}</strong></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                    <div class="card">
+                                        <div class="card-header {{$clase}}">
+                                            PAGOS
+                                        </div>
+                                        <div class="card-body">
+                                            <table class="table table-bordered table-borderless table-hover bg-white">
+                                                <tbody>    
+                                                    <tr class="">
+                                                        <td><strong>COSTO</strong></td>
+                                                        <td><strong>{{'Bs. '. floor($matriculacion->costo)}}</strong></td>
+                                                    </tr>
+                                                    <tr class="">
+                                                        <td><strong>PAGOS</strong></td>
+                                                        <td><strong>{{'Bs. '.$pago }}</strong></td>
+                                                    </tr>
+                                                    <tr class="">
+                                                        <td><strong>DEBE</strong></td>
+                                                        <td> <strong>Bs. {{$matriculacion->costo-$pago}}</strong></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                             </div> 
                             
-                            <div class="col-6 text-center">
-                                <div class="circulo {{$clase}}">
-                                    @if ($dias_que_faltan_para_pagar==0)
-                                        <span>PAGA HOY</span> <br>
-                                    @else
-                                        @if ($dias_que_faltan_para_pagar>0)
-                                            <h2>Faltan <br> {{$dias_que_faltan_para_pagar}}  días</h2><br>
-                                        @else
-                                            <p> Ya Hace<br> {{$dias_que_faltan_para_pagar}} días</p>
-                                        @endif
-                                    @endif
-                                
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 text-center">
+                                <div class="card">
+                                    <div class="card-header {{$clase}}">
+                                        {{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                                <div class="">
+                                                    <img class="img-thumbnail zoomify" src="{{URL::to('/').Storage::url("$persona->foto")}}" alt="" width="150px">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                                <div class="circulo {{$clase}}">
+                                                    @if ($dias_que_faltan_para_pagar==0)
+                                                        <span>PAGA HOY</span> <br>
+                                                    @else
+                                                        @if ($dias_que_faltan_para_pagar>0)
+                                                            <h2>Faltan <br> {{$dias_que_faltan_para_pagar}} <br> días</h2>
+                                                        @else
+                                                            <p> Ya Hace<br> {{$dias_que_faltan_para_pagar}} días</p>
+                                                        @endif
+                                                    @endif
+                                                </div>    
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            {{-- <div class="circulo">
+                                <img src="{{URL::to('/').Storage::url("$persona->foto")}}" alt="">
+                            </div> --}}
                             
                         </div>
                     </div>
@@ -163,7 +182,7 @@
                         @include('programacioncom.hoy')
                         @include('programacioncom.futuro')
                         @include('programacioncom.modales')
-                       {{--@include('programacioncom.pasado')
+                        {{--@include('programacioncom.pasado')
                         @include('programacioncom.todo')
                          --}}
                     </div>
@@ -179,7 +198,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-
+    <script src="https://kit.fontawesome.com/067a2afa7e.js" crossorigin="anonymous"></script>
     @if (session('mensaje')=='MarcadoCorrectamente')
         <script>
             Swal.fire({
@@ -212,8 +231,8 @@
             $('[data-toggle="tooltip"]').tooltip();  
             $('#tabla_hoy').dataTable({
                 "responsive":true,
-                "searching":true,
-                "paging":   true,
+                "searching":false,
+                "paging":   false,
                 "autoWidth":false,
                 "createdRow": function( row, data, dataIndex ) {
                     if(data['estado']=="PRESENTE"){
@@ -230,8 +249,8 @@
                     $('td', row).eq(1).html(moment(data['horaini']).format('HH:mm'));
                     $('td', row).eq(2).html(moment(data['horafin']).format('HH:mm'));
                 },
-                "ordering": true,
-                "info":     true,
+                "ordering": false,
+                "info":     false,
                 "language":{
                     "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                 }, 
@@ -259,6 +278,22 @@
                 ],
             });
 
+            $('.row').on('click','.zoomify',function (e){
+                Swal.fire({
+                    title: 'Código:{{$persona->id}} ',
+                    text: 'Nombre:{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}',
+                    imageUrl: $(this).attr('src'),
+                    imageWidth: 400,
+                    showCloseButton:true,
+                    confirmButtonColor:'#26baa5',
+                    type: 'success',
+                    imageHeight:400,
+                    imageAlt: 'Custom image',
+                    confirmButtonText:"Aceptar",
+                    
+                })
+            });
+
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TABLA FUTURO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     let tablaFuturo=$('#futuro').dataTable({
                 "responsive":true,
@@ -266,11 +301,6 @@
                 "paging":   true,
                 "autoWidth":false,
                 "createdRow": function( row, data, dataIndex ) {
-                    
-                    // if(moment(data['fecha']).format('DD-MM-YYYY') == moment().format('DD-MM-YYYY')){
-                    //     $(row).addClass('table-success');
-                    //     $(row).addClass('text-bold');
-                    // }
                     
                     if(data['habilitado'] == 1 ){
                         $(row).addClass('table-success')
@@ -310,7 +340,6 @@
 
                         {"data": "btn"},
                     ],
-                    // ->select('programacioncoms.id','fecha','horaini','horafin','programacioncoms.estado','docentes.nombre','aulas.aula');
 
                 "columnDefs": [
                     { responsivePriority: 1, targets: 0 },  
@@ -319,42 +348,6 @@
                 "order": [[ 1, "asc" ]],
             });
             
-    /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-    
-    /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            // $('#futuro').on('click', '.mostrar', function(e) {
-            //     e.preventDefault(); 
-            //     let id_programacioncom =$(this).closest('tr').attr('id');
-            //     $.ajax({
-            //         url : "../../programacioncom/mostrar/",
-            //         data : { id :id_programacioncom },
-            //         success : function(json) {
-            //             console.log(json);
-            //             $("#modal-mostrar").modal("show");
-            //             $("#tabla-mostrar").empty();
-            //             $html="";
-            //             $html+="<tr><td>Fecha</td>"+"<td>"+moment(json.programacioncom.fecha).format('dddd')+' '+moment(json.programacioncom.fecha).format('LL')+"</td></tr>";
-            //             $html+="<tr><td>Hora Inicio</td>"+"<td>"+moment(json.programacioncom.horainicio).format('HH:mm:ss')+"</td></tr>";
-            //             $html+="<tr><td>Hora Fin</td>"+"<td>"+moment(json.programacioncom.horafin).format('HH:mm:ss')+"</td></tr>";
-            //             $html+="<tr><td>Horas por clase</td>"+"<td>"+json.programacioncom.horas_por_clase+"</td></tr>";
-            //             $html+="<tr><td>Estado Pago</td>"+"<td>"+(json.programacioncom.habilitado==1) ? 'Pagado' :'Impaga'+"</td></tr>";
-            //             $html+="<tr><td>Estado Activo</td>"+"<td>"+(json.programacioncom.activo==1) ? 'Activo' :'Desactivado'+"</td></tr>";
-            //             $html+="<tr><td>Estado</td>"+"<td>"+json.programacioncom.estado+"</td></tr>";
-            //             $html+="<tr><td>Docente</td>"+"<td>"+json.docente.nombre+"</td></tr>";
-            //             $html+="<tr><td>Aula</td>"+"<td>"+json.aula.aula+"</td></tr>";
-            //             $sumaCambio=0;
-            //             for (let j in json.observaciones) {
-            //                 $html+="<tr><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td></tr>";
-            //             }
-            //             $("#tabla-mostrar").append($html);
-            //         },
-            //         error : function(xhr, status) {
-            //             alert('Disculpe, existió un problema');
-            //         },
-            //     });
-            // });
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-             
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA FORMULARIO AGREGAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.observacion', function(e) {
                 e.preventDefault(); 
@@ -364,7 +357,6 @@
                 $("#modal-gregar-observacion").modal("show");
                 
             });
-            
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR OBESRVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
             $('table').on('click','.eliminarobservacion',function (e) {
                 e.preventDefault(); 
@@ -532,16 +524,17 @@
                     data : { id :id_programacioncom },
                     success : function(json) {
                         
-                        console.log(json);
                         $("#modal-mostrar-clase").modal("show");
                         $("#tabla-mostrar-programacioncom").empty();
                         $("#tabla-mostrar-observaciones").empty();
                         $("#tabla-mostrar-clases").empty();
+                        $("#tabla-mostrar-licencias").empty();
+
                         $html="";
                         $html+="<tr><td>Hora Inicio</td>"+"<td>"+moment(json.programacioncom.fecha).format('LLLL')+"</td></tr>";
                         $html+="<tr><td>Hora Inicio</td>"+"<td>"+moment(json.programacioncom.horaini).format('HH:mm:ss')+"</td></tr>";
                         $html+="<tr><td>Hora Fin</td>"+"<td>"+moment(json.programacioncom.horafin).format('HH:mm:ss')+"</td></tr>";
-                            
+
                         $html+="<tr><td>Horas por clase</td>"+"<td>"+json.programacioncom.horas_por_clase +"</td></tr>";
                         $html+="<tr><td>Estado Pago</td>"+"<td>"+(json.programacioncom.habilitado==1) ? 'Pagado' :'Impaga'+"</td></tr>";
                         $html+="<tr><td>Estado Activo</td>"+"<td>"+(json.programacioncom.activo==1) ? 'Activo' :'Desactivado'+"</td></tr>";
@@ -567,18 +560,14 @@
 
                         $htmlClases="";
                         for (let j in json.clasescom) {
-                            //console.log(json.clasescom[j].fecha);
                             $htmlClases+="<tr><td>"+ moment(json.clasescom[j].fecha).format('LL') +"</td>";
                             $htmlClases+="<td>"+json.clasescom[j].estado+"</td>";
                             $htmlClases+="<td>"+moment(json.clasescom[j].horainicio).format('HH:mm:ss')+"</td>";
                             $htmlClases+="<td>"+moment(json.clasescom[j].horafin).format('HH:mm:ss')+"</td>";
                             $htmlClases+="<td>" + json.clasescom[j].nombre + "</td>";
                             $htmlClases+="<td>"+json.clasescom[j].aula+"</td></tr>";
-                            
-                            
                         }
                         $("#tabla-mostrar-clases").append($htmlClases);
-
                         $htmlLicencia="";
                         for (let j in json.licencias) {
                             $htmlLicencia+="<tr><td>"+ json.licencias[j].motivo +"</td>";

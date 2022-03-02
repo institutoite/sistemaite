@@ -24,12 +24,16 @@ class Clasecom extends Model
     {
         return $this->belongsTo(Docente::class);
     }
-     public function aula()
+    public function aula()
     {
         return $this->belongsTo(Aula::class);
     }
 
     public function estado(){
         return $this->belongsTo(Estado::class);
+    }
+    public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
     }
 }

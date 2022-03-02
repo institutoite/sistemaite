@@ -15,7 +15,7 @@ class CreateMotivosTable extends Migration
     {
         Schema::create('motivos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('motivo', 50);
+            $table->string('motivo', 80);
             $table->unsignedInteger('tipomotivo_id');
             $table->foreign('tipomotivo_id', 'fk_tipomotivos_motivo_idx')
             ->references('id')->on('tipomotivos')->onDelete('cascade');

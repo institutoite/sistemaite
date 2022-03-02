@@ -20,6 +20,7 @@ use App\Models\Materia;
 use App\Models\Modalidad;
 use App\Models\Licencia;
 use App\Models\Nivel;
+use App\Models\Tema;
 use App\Models\Observacion;
 use App\Models\Estado;
 use App\Models\Persona;
@@ -102,15 +103,23 @@ class ProgramacionController extends Controller
         $materia = $programacion->materia;
         $aula = $programacion->aula;
         $estado=$programacion->estado;
+
+        $licencias=Licencia::join('motivos','motivos.id','=','licencias.motivo_id')
+            ->join('programacions','programacions.id','=','licencias.licenciable_id')
+            ->where('programacions.id','=',$request->id)
+            ->select('motivos.motivo','solicitante','parentesco','licencias.created_at','licencias.updated_at')
+            ->get();
+
         $clases=Programacion::join('clases','programacions.id','clases.programacion_id')
                     ->join('docentes','docentes.id','programacions.docente_id')
                     ->join('materias','materias.id','programacions.materia_id')
                     ->join('aulas','aulas.id','programacions.aula_id')
                     ->join('temas','temas.id','clases.tema_id')
+                    ->join('estados','estados.id','clases.estado_id')
                     ->where('programacions.id',$request->id)
-                    ->select('clases.id','clases.fecha','clases.horainicio','clases.horafin','docentes.nombre','materias.materia', 'aulas.aula','temas.tema')
+                    ->select('clases.id','clases.fecha','clases.horainicio','estados.estado','clases.horafin','docentes.nombre','materias.materia', 'aulas.aula','temas.tema')
                     ->get();
-        $data = ['programacion' => $programacion, 'estado'=>$estado,'observaciones' => $observaciones, 'docente' => $docente, 'materia' => $materia, 'aula' => $aula, 'clases' => $clases];
+        $data = ['programacion' => $programacion, 'estado'=>$estado,'observaciones' => $observaciones, 'docente' => $docente, 'materia' => $materia, 'aula' => $aula, 'clases' => $clases,'licencias'=>$licencias];
         return response()->json($data);
     }
 
@@ -283,7 +292,7 @@ class ProgramacionController extends Controller
                         $costo_hora= $costo_total / $total_horas;
                         
                         if($total_horas>$hora_x_sesion){
-                            if ($acuenta > $costo_x_sesion) {
+                            if ($acuenta >= $costo_x_sesion) {
                                 $this->agregarClase($programa,$fecha,$hora_x_sesion,$total_horas,$sesion,true,$inscripcion);
                             } else {
                                 $this->agregarClase($programa, $fecha, $hora_x_sesion,$total_horas, $sesion, false, $inscripcion);
@@ -356,7 +365,7 @@ class ProgramacionController extends Controller
                 $costo_hora = $costo_total / $total_horas;
                 //dd($costo_hora);
                 if ($total_horas > $hora_x_sesion) {
-                    if ($acuenta > $costo_x_sesion) {
+                    if ($acuenta >= $costo_x_sesion) {
                         $this->agregarClase($programa, $fecha, $hora_x_sesion, $total_horas, $sesion, true, $inscripcion);
                     } else {
                         $this->agregarClase($programa, $fecha, $hora_x_sesion, $total_horas, $sesion, false, $inscripcion);
@@ -524,26 +533,23 @@ class ProgramacionController extends Controller
         $total_costo=$inscripcion->costo;
         $total_horas=$inscripcion->totalhoras;
         $costo_por_hora=$total_costo/$total_horas;
-        dd($total_horas);
+        
         $programas = Programacion::where('inscripcione_id', '=', $inscripcione_id)
         ->get();
         
         $acuentaTotal=$inscripcion->pagos->sum->monto;
         $TotalPagado=$acuentaTotal;
         $this->deshabilitarTodoProgramas($inscripcione_id);
-        dd($costo_por_hora);
+        
         foreach ($programas as $programa) {
             $costo_programa = $programa->hora_ini->floatDiffInHours($programa->hora_fin)*($costo_por_hora);
-            dd($costo_programa);
             $P=Programacion::findOrFail($programa->id);
-            if($acuentaTotal>$costo_programa){
+            if($acuentaTotal>=$costo_programa){
                 $P->habilitado=1;
                 $P->save();
                 $acuentaTotal=$acuentaTotal-$costo_programa;
             }
         }
-
-        dd($programas);
 
         if ($TotalPagado < $inscripcion->costo) {
             return redirect()->route('mostrar.programa', $inscripcion);
@@ -604,9 +610,10 @@ class ProgramacionController extends Controller
         $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
         $materias = $nivel->materias;
         $aulas=Aula::all();
+        $temas=Tema::all();
         $hora_inicio=Carbon::now()->isoFormat('HH:mm:ss');
         $hora_fin = Carbon::now()->addMinutes($programa->hora_ini->floatDiffInMinutes($programa->hora_fin))->isoFormat('HH:mm:ss');
-        return view('clase.create',compact('docentes','programa','inscripcion','materias','aulas','hora_inicio','hora_fin'));
+        return view('clase.create',compact('docentes','programa','inscripcion','materias','aulas','hora_inicio','hora_fin','temas'));
     }
 
     public function guardarObservacion(Request $request){
@@ -656,7 +663,7 @@ class ProgramacionController extends Controller
         return response()->json($estados);
     }
     public function asignarFaltasFechasPasadas(){
-        Programacion::where('fecha','<',Carbon::now())
+        Programacion::where('fecha','<',Carbon::now()->format('Y-m-d'))
                     ->where('estado_id',Config::get('constantes.ESTADO_INDEFINIDO'))->update(['estado_id'=>Config::get('constantes.ESTADO_FALTA')]);
         return response()->json(['id'=>"Todo Bien"]);
     }

@@ -20,13 +20,13 @@
     </a>
 </span>
 
-{{-- hay que enviar el estudiante no la persona --}}
+{{-- hay que enviar el estudiante no la persona
 <a href="{{route('inscripciones.vigentes', $id)}}" class="btn btn-secondary tooltipsC btn-sm mr-2" title="ir a inscripciones de matematicas">
     <i class="fas fa-square-root-alt"></i>
 </a> 
 <a href="{{route('inscripciones.vigentes', $id)}}" class="btn btn-danger tooltipsC btn-sm mr-2" title="ir a inscripciones de computación">
     <i class="fas fa-tv"></i>
-</a> 
+</a>  --}}
 
 
 

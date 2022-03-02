@@ -111,7 +111,6 @@ Route::get('grados', function () {
         ->toJson();
 });
 
-
 Route::get('referencias',function(){
     return datatables()->of(Persona::select('id','nombre','apellidop','apellidom','foto'))
         ->addColumn('btn', 'persona.actionmodal')
@@ -119,16 +118,11 @@ Route::get('referencias',function(){
         ->toJson();
 });
 
-
-
-
-
 Route::get('paises',function(){
     return datatables()->of(Pais::all())
         ->addColumn('btn','pais.action')
         ->rawColumns(['btn'])
         ->toJson();
-
 });
 Route::get('personas', function () {
     $persona=Persona::select('id','nombre','apellidop','apellidom','foto');
@@ -255,6 +249,7 @@ Route::get('inscripciones', function () {
 
 Route::get('pais/{id}/ciudades','CiudadController@city_of_country');
 Route::get('ciudad/{id}/zonas','ZonaController@zona_of_city');
+Route::get('temas/{materia_id}','TemaController@tema_of_materia');
 
 Route::get('departamento/{id}/provincias', 'ProvinciaController@provincia_of_departamento');
 Route::get('provincia/{id}/municipios', 'MunicipioController@municipio_of_provincia');

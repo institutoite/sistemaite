@@ -8,5 +8,6 @@
     <a href="" class="text-secondary ml-2 editar" data-toggle="tooltip" data-placement="top" title="Editar este programa"><i class="fas fa-edit fa-2x text-warning"></i></a>    
     <a href="" class="text-secondary ml-2 mostrar" data-toggle="tooltip" data-placement="top" title="Ver este programa"><i class="fas fa-eye fa-2x text-purple"></i></a>
     <a href="" class="text-secondary ml-2 observacion" data-toggle="tooltip" data-placement="top" title="Agregar Observacion"><i class="fas fa-comment-medical fa-2x text-indigo"></i></a>
+    {{-- <a href="" class="text-secondary ml-2 marcar_clase_atrazada" data-toggle="tooltip" data-placement="top" title="Marcar clase Atrazada"><i class="fa-solid fa-alarm-plus"></i> --}}
 @endif
 

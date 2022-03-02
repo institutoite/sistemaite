@@ -1,10 +1,10 @@
-{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%% M O D A L   P A R A  M O S T R A R   U N A   P R O G R A M A C I O M  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%--}}
+{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%% M O D A L   P A R A  M O S T R A R   U N A   P R O G R A M A C I O N  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%--}}
 
 <div class="modal" tabindex="-1" id="modal-mostrar">
     <div class="modal-dialog modal-xl modalito">
         <div class="modal-content">
             <div class="modal-header bg-    primary">
-                MOSTRAR PROGRAMACIONxx
+                {{__('MOSTRAR PROGRAMACIÓN DE UNA INSCRIPCIÓN')}}
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-editar-pago">
@@ -32,7 +32,7 @@
                             
                         </tbody>
                     </table>
-                    <table id="clases" class="table table-bordered table-hover table-striped">
+                    <table id="clases" class="table table-bordered table-hover table-striped text-small">
                         <thead class="bg-primary">
                             <tr>
                                 <th>Fecha</th>
@@ -40,7 +40,9 @@
                                 <th>HoraIni</th>
                                 <th>HoraFin</th>
                                 <th>Docente</th>
+                                <th>Materia</th>
                                 <th>Aula</th>
+                                <th>Tema</th>
                             </tr>
                         </thead>
                         <tbody id="tabla-mostrar-clases">
@@ -75,7 +77,7 @@
 
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%% M O D A L   P A R A  M O S T R A R   U N A   P R O G R A M A C I O CON SUS CLASES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%--}}
 
-<div class="modal" tabindex="-1" id="modal-mostrar-clase">
+{{-- <div class="modal" tabindex="-1" id="modal-mostrar-clase">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-primary">
@@ -115,7 +117,7 @@
                                 <th>HoraFin</th>
                                 <th>Docente</th>
                                 <th>Materia</th>
-                                <th>Aula</th>
+                                <th>Aulax</th>
                             </tr>
                         </thead>
                         <tbody id="tabla-mostrar-clases">
@@ -145,7 +147,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%% M O D A L   P A R A   E D I T A R %$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 <div class="modal" tabindex="-1" id="modal-editar">
     <div class="modal-dialog modal-xl modalito">

@@ -12,7 +12,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" > 
                 <div class="form-floating mb-3 text-gray">
                     <input  type="text" name="monto" id="monto"  class="form-control @error('monto') is-invalid @enderror" value="{{old('monto',$pago->monto ?? '')}}" tocomplete="off">
-                     <label for="monto">Ingrese Monto que esta pagando</label>  
+                    <label for="monto">Ingrese Monto que esta pagando</label>  
                 </div>
             </div>
     </div> 

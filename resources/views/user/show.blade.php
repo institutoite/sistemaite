@@ -39,7 +39,7 @@
                                 </tr>
                                 <tr>
                                     <td>FOTO</td>
-                                    <td><img src="{{URL::to('/').'/storage/'.$user->foto}}" alt=""></td>
+                                    <td><img src="{{URL::to('/').'/storage/'.$user->foto}}" alt="{{$user->name}}" height="250px"></td>
                                 </tr>
                             </tbody>
                         </table>    
