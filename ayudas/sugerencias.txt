@@ -1,7 +1,7 @@
 que se pueda marcar despues de la clase trabajar en programacion pasada o vencida
-
-
 mostrar las clases de programadas para hoy 
+
+
 calificar al estudiante cuando termine la inscripcion calificable
 boton imprimir pdf formulario para registro rapido
 programar subir archivos documentos digitales

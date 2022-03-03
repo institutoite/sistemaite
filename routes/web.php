@@ -99,7 +99,7 @@ Route::resource('inscripciones', "InscripcioneController");
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       E S T D U D I A N T E S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-Route::get('/hoy','EstudianteController@hoy')->name('estudiantes.hoy');
+
 Route::get('/historial/{estudiante}','EstudianteController@historia')->name('estudiante.historia');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       D O C E N T E S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -356,7 +356,8 @@ Route::get('guardar/observacion/programacion', 'ProgramacionController@guardarOb
 Route::get('programacion/futuro/{inscripcion}', [ProgramacionController::class,'programacionesFuturo'])->name('programacion.futuro');
 Route::get('programacion/asistencia/ajax', [ProgramacionController::class,'asisntecia'])->name('asistencia.ajax');
 Route::get('programacion/asignarfalta/ajax', [ProgramacionController::class,'asignarFaltasFechasPasadas'])->name('programacion.asignarFaltas');
-
+Route::get('programados/hoy', function () {return view('programacion.programados');})->name('programas.hoy.view');
+Route::get('hoy','ProgramacionController@hoy')->name('programas.hoy');
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% P R O G R A M A C I O N  COMPUTACION  C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('generar/programacioncom/{matriculacion}',[ProgramacioncomController::class,'generarProgramacom'])->name('generar.programacioncom');

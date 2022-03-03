@@ -668,4 +668,21 @@ class ProgramacionController extends Controller
         return response()->json(['id'=>"Todo Bien"]);
     }
 
+    public function hoy(){
+        $programas= Programacion::join('inscripciones','inscripciones.id','programacions.inscripcione_id')
+        ->join('estudiantes','estudiantes.id','inscripciones.estudiante_id')
+        ->join('personas','personas.id','estudiantes.persona_id')
+        ->join('docentes','programacions.docente_id','docentes.id')
+        ->join('materias','programacions.materia_id','materias.id')
+        ->where('programacions.fecha',Carbon::now()->format('Y-m-d'))
+        ->select('personas.id','personas.nombre as estudiante','personas.apellidop','foto','docentes.nombre as docente','programacions.hora_ini','programacions.hora_fin','materias.materia')
+        ->orderBy('docente','asc')	  
+        ->get();
+
+        return DataTables::of($programas)
+                ->addColumn('btn','programacion.actionshoy')
+                ->rawColumns(['btn'])
+                ->toJson();
+    }
+
 }
