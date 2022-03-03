@@ -57,6 +57,9 @@ class MessageSent extends Notification
      */
     public function toDatabase($notifiable)
     {
+        $notifiable->notification += 1;
+        $notifiable->save();
+        
         return [
             'url' => route('messages.show', $this->message->id),
             'message' => 'Has recibido un mensaje de ' . User::find($this->message->from_user_id)->name

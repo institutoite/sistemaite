@@ -17,4 +17,9 @@ class NotificationComponent extends Component
     {
         return view('livewire.notification-component');
     }
+
+    /* public function resetNotificationCount(){
+        auth()->user()->notification = 0;
+        auth()->user()->save();
+    } */
 }
