@@ -68,7 +68,7 @@ Route::get('personas/opciones/{id}', function ($id) {
 
 Route::put('persona/{persona}/subirfoto','PersonaController@guardarfoto')->name('guardarfoto');
 Route::put('persona/{persona}/subirfotojpg', 'PersonaController@guardarfotojpg')->name('guardarfotojpg');
-//Route::put('persona/subirfoto', 'PersonaController@guardarfoto')->name('actualizarfoto');
+Route::get('personas/crear/rapidingo/', function () {return view('persona.crearrapido');})->name('crear.persona.rapido');
 
 Route::resource('personas', "PersonaController");
 Route::get('persona/papeles/{persona_id}', 'PersonaController@configurar_papeles')->name('personas.agregar.papel');
