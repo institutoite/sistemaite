@@ -11,9 +11,6 @@
 
 
 @section('content')
-{{ $matriculacion->id }} 
-
-
     <section class="content container-fluid pt-3">
         <div class="row">
             <div class="col-md-7">

@@ -203,7 +203,8 @@ class ProgramacioncomController extends Controller
             } else {
                 $matriculacion->fecha_proximo_pago = $fecha;
                 $matriculacion->save();
-                return redirect()->route('imprimir.programacioncom', $matriculacion->id);;
+                return redirect()->route('mostrar.programacioncom', $matriculacion);
+                // return redirect()->route('imprimir.programacioncom', $matriculacion->id);;
             }   
     }
 
@@ -273,7 +274,8 @@ class ProgramacioncomController extends Controller
         } else {
             $matriculacion->fecha_proximo_pago = $fecha;
             $matriculacion->save();
-            return redirect()->route('imprimir.programacioncom', $matriculacion->id);/** llamar al metodo que muestra pdf*/
+            //return redirect()->route('imprimir.programacioncom', $matriculacion->id);/** llamar al metodo que muestra pdf*/
+            return redirect()->route('mostrar.programacioncom', $matriculacion);
         }    
     }
     public function agregarClase(&$programacom, &$fecha, $hora_x_sesion, &$total_horas , &$sesioncom , $habilitado, &$matriculacion){

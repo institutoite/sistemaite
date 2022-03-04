@@ -308,7 +308,6 @@ class ClaseController extends Controller
 
     public function finalizarClase(Request $request)
     {
-        //return response()->json(['id'=>$request->id]);
         $clase = Clase::findOrFail($request->id);
         $programa = $clase->programacion;
         $programa->estado_id = Config::get('constantes.ESTADO_FINALIZADO');

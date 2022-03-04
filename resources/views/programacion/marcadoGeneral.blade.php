@@ -144,10 +144,10 @@
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                 <div class="">
-                                                    <img class="img-thumbnail zoomify" src="{{URL::to('/').Storage::url("$persona->foto")}}" alt="" width="150px">
+                                                    <img class="img-thumbnail zoomify" src="{{URL::to('/').Storage::url("$persona->foto")}}" alt="" width="150px" height="150px">
                                                 </div>
                                             </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 text-center">
                                                 <div class="circulo {{$clase}}">
                                                     @if ($dias_que_faltan_para_pagar==0)
                                                         <span>PAGA HOY</span> <br>

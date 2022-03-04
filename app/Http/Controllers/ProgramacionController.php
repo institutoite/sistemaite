@@ -326,7 +326,8 @@ class ProgramacionController extends Controller
             } else {
                 $inscripcion->fecha_proximo_pago = $fecha;
                 $inscripcion->save();
-                return redirect()->route('imprimir.programa', $inscripcion->id);;
+                return redirect()->route('mostrar.programa', $inscripcion);
+                //return redirect()->route('imprimir.programa', $inscripcion->id);;
             }   
         
     }
@@ -515,7 +516,8 @@ class ProgramacionController extends Controller
         } else {
             $inscripcion->fecha_proximo_pago = $fecha;
             $inscripcion->save();
-            return redirect()->route('imprimir.programa', $inscripcion->id);/** llamar al metodo que muestra pdf*/
+            return redirect()->route('mostrar.programa', $inscripcion);
+            //return redirect()->route('imprimir.programa', $inscripcion->id);/** llamar al metodo que muestra pdf*/
         }    
     }
 
@@ -674,9 +676,10 @@ class ProgramacionController extends Controller
         ->join('personas','personas.id','estudiantes.persona_id')
         ->join('docentes','programacions.docente_id','docentes.id')
         ->join('materias','programacions.materia_id','materias.id')
+        ->join('estados','programacions.estado_id','estados.id')
+
         ->where('programacions.fecha',Carbon::now()->format('Y-m-d'))
-        ->select('personas.id','personas.nombre as estudiante','personas.apellidop','foto','docentes.nombre as docente','programacions.hora_ini','programacions.hora_fin','materias.materia')
-        ->orderBy('docente','asc')	  
+        ->select('personas.id','personas.nombre as estudiante','estados.estado','personas.apellidop','foto','docentes.nombre as docente','programacions.hora_ini','programacions.hora_fin','materias.materia')  
         ->get();
 
         return DataTables::of($programas)

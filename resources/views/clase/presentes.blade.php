@@ -145,6 +145,38 @@
                     },
                 });
 	        });
+            $('#presentescom').on('click', '.finalizar', function(e) { 
+                e.preventDefault(); 
+                var id_computacion =$(this).closest('tr').attr('id');
+                var           fila=$(this).closest('tr');
+                console.log(id_computacion);
+		        $.ajax({
+                    url : "clasecom/finalizar/",
+                    data : { id :id_computacion },
+                    success : function(json) {
+                            console.log(json);
+                            fila.remove();
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                })
+
+                                Toast.fire({
+                                type: 'success',
+                                title: json.message
+                                })
+                    },
+                    error : function(xhr, status) {
+                        Swal.fire({
+                        type: 'error',
+                        title: 'Ocurrio un Error',
+                        text: 'Saque una captura para mostrar al servicio Técnico!',
+                        })
+                    },
+                });
+	        });
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA FORMULARIO EDITAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.editar', function(e) {
@@ -413,8 +445,6 @@
                     let hfin=moment(data['horafin']);
                     let ahora=moment();
                     let minutosRestantantes=hfin.diff(ahora,'minutes');
-                    
-                        
                         if(minutosRestantantes<-10){
                             $(row).addClass('text-bold text-danger');
                         }

@@ -293,7 +293,7 @@ return [
         [
             'text' => "Hoy",
             'topnav' => true,
-            'url'  => '/hoy',
+            'url'  => 'programados/hoy',
             'icon' => 'fas fa-record-vinyl',
             'icon_color' => 'primary',
 

@@ -237,4 +237,16 @@ class ClasecomController extends Controller
                 ->toJson();
         
     }
+    public function finalizarClasecom(Request $request)
+    {
+       // return response()->json(['d'=>$request->id]);
+        $clasecom = Clasecom::findOrFail($request->id);
+        $programa = $clasecom->programacioncom;
+        $programa->estado_id = Config::get('constantes.ESTADO_FINALIZADO');
+        $programa->save();
+        $clasecom->estado_id = Config::get('constantes.ESTADO_FINALIZADO');
+        $clasecom->save();
+        return response()->json(['message' => 'Despidete deseale el bien', 'status' => 200]);
+    }
+    
 }

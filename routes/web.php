@@ -200,6 +200,7 @@ Route::post('/clasecom/guardar/normal/{progrmacioncom_id}', 'ClasecomController@
 Route::get('clasecom/mostrar/',[ClasecomController::class,'mostrarcom'])->name('clasecom.mostrar');
 Route::get('clasecom/editar/{clasecom}', [ClasecomController::class,'edit'])->name('clasescom.edit');
 Route::patch('clasecom/actualizar/{clasecom}', [ClasecomController::class,'actualizar'])->name("clasecom.update");
+Route::get('clasecom/finalizar/', [ClasecomController::class,'finalizarClasecom'])->name('clasecom.finalizar');
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  G R A D O S  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 //Route::resource('grados', [GradoController::class]);
