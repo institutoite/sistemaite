@@ -19,15 +19,15 @@ class CreatePersonasTable extends Migration
             $table->date('fechanacimiento')->nullable();
             $table->string('direccion', 120)->nullable();
             $table->string('carnet', 10)->nullable();
-            $table->string('expedido', 10)->nullable()->default();
-            $table->string('genero', 6);
+            $table->string('expedido', 10)->nullable();
+            $table->string('genero', 6)->nullable();
             
             $table->string('foto', 120)->nullable();
             $table->string('como', 30)->nullable();
-            $table->string('papelinicial', 30);
+            $table->string('papelinicial', 20);
             $table->string('telefono', 10)->nullable();
             $table->tinyInteger('votos')->nullable()->unsigned();
-            
+            $table->boolean('habilitado')->nullable()->default(0);
             $table->unsignedInteger('persona_id')->nullable();// persona que referenció
             $table->unsignedInteger('pais_id')->nullable();
             $table->unsignedInteger('ciudad_id')->nullable();

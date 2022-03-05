@@ -306,6 +306,22 @@ return [
             'icon_color' => 'primary',
 
         ],
+        [
+            'text' => "Rapidingo",
+            'topnav' => true,
+            'url'  => 'personas/crear/rapidingo',
+            'icon' => 'fas fa-fighter-jet',
+            'icon_color' => 'primary',
+
+        ],
+        [
+            'text' => "Potenciales",
+            'topnav' => true,
+            'url'  => 'persona/potenciales',
+            'icon' => 'fas fa-fighter-jet',
+            'icon_color' => 'primary',
+
+        ],
         /**
          *  Menu personas 
          */

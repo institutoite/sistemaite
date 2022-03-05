@@ -67,8 +67,14 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             @isset($persona)
                 <div class="form-floating mb-3 text-gray">
-                    <input  type="date" name="fechanacimiento" class="form-control @error('fechanacimiento') is-invalid @enderror" value="{{old('fechanacimiento',$persona->fechanacimiento->format('Y-m-d') ?? '')}}">
-                    <label for="fechanacimiento">fechanacimiento</label>
+                    @if(isset($persona->fechanacimiento))
+                        <input  type="date" name="fechanacimiento" class="form-control @error('fechanacimiento') is-invalid @enderror" value="{{old('fechanacimiento',$persona->fechanacimiento->format('Y-m-d') ?? '')}}">
+                        <label for="fechanacimiento">fechanacimiento</label>    
+                    @else 
+                        <input  type="date" name="fechanacimiento" class="form-control @error('fechanacimiento') is-invalid @enderror" value="">
+                        <label for="fechanacimiento">fechanacimiento</label>    
+                    @endif
+                    
                 </div>
             @else
                 <div class="form-floating mb-3 text-gray">
@@ -145,15 +151,19 @@
             <div class="form-floating mb-3 text-gray">
                 <select class="form-control @error('expedido') is-invalid @enderror" name="genero" id="genero">
                     <option value=""> Elija tu género</option>
-                    @isset($persona)      
-                        @if($persona->genero=="MUJER")
-                            <option value="{{ $persona->genero }}" {{ "MUJER"==$persona->genero ? 'selected':''}} >{{ $persona->genero }}</option>
-                            <option value="HOMBRE">HOMBRE</option>
-                        @else
-                            <option value="{{ $persona->genero }}" {{ "HOMBRE"==$persona->genero ? 'selected':''}} >{{ $persona->genero }}</option>
-                            <option value="MUJER" >MUJER</option>
-                        @endif
-                        
+                    @isset($persona)
+                        @if(isset($persona->genero))
+                            @if($persona->genero=="MUJER")
+                                <option value="{{ $persona->genero }}" {{ "MUJER"==$persona->genero ? 'selected':''}} >{{ $persona->genero }}</option>
+                                <option value="HOMBRE">HOMBRE</option>
+                            @else
+                                <option value="{{ $persona->genero }}" {{ "HOMBRE"==$persona->genero ? 'selected':''}} >{{ $persona->genero }}</option>
+                                <option value="MUJER" >MUJER</option>
+                            @endif
+                        @else  
+                            <option value="MUJER" @if(old('genero') == 'MUJER') {{'selected'}} @endif>MUJER</option>
+                            <option value="HOMBRE" @if(old('genero') == 'HOMBRE') {{'selected'}} @endif>HOMBRE</option>
+                        @endif 
                     @else
                         <option value="MUJER" @if(old('genero') == 'MUJER') {{'selected'}} @endif>MUJER</option>
                         <option value="HOMBRE" @if(old('genero') == 'HOMBRE') {{'selected'}} @endif>HOMBRE</option>

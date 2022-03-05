@@ -32,6 +32,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
+
 use Illuminate\Support\Facades\Hash;
 
 
@@ -59,7 +62,6 @@ class PersonaController extends Controller
         $paises=Pais::get();
         $zonas=Zona::get();
         return view('persona.crear',compact('ciudades','paises','zonas'));
-        
     }
 
     /**
@@ -95,6 +97,7 @@ class PersonaController extends Controller
             $persona->foto = $nombreImagen;
         }
         $persona->como = $request->como;
+        $persona->habilitado = 1;
         $persona->papelinicial = $request->papel;
         $persona->telefono=$request->telefono;
         $persona->persona_id = $request->persona_id;
@@ -152,7 +155,7 @@ class PersonaController extends Controller
                 $docente->nombre=$persona->nombre.' '.Str::substr($request->apellidop, 0, 1);
                 $docente->fecha_ingreso=Carbon::now()->isoFormat('YYYY-MM-DD');
                 $docente->dias_prueba = 2;
-                $docente->estado = 'actovo';
+                $docente->estado = 'activo';
                 $docente->persona_id = $persona->id;
                 $docente->save();
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  D O C E N T E   %%%%%%%%%%%%%%%%*/
@@ -207,10 +210,7 @@ class PersonaController extends Controller
         return redirect()->route('tomar.foto.persona',['persona'=>$persona]);
     }
 
-
     public function storeContacto(PersonaApoderadaRequestStore $request,$id){
-        
-
         $persona=Persona::findOrFail($id);
         $apoderado = new Persona();
         $apoderado->nombre = $request->nombre;
@@ -221,9 +221,9 @@ class PersonaController extends Controller
         $apoderado->ciudad_id = $persona->ciudad_id;
         $apoderado->zona_id = $persona->zona_id;
 
-        $carbon = new \Carbon\Carbon();
-        $date = $carbon::createFromDate(1900, 1, 1);
-        $apoderado->fechanacimiento=$date;
+        //$carbon = new \Carbon\Carbon();
+        // $date = $carbon::createFromDate(1900, 1, 1);
+        // $apoderado->fechanacimiento=$date;
         $apoderado->telefono=$request->telefono;
         $apoderado->papelinicial = 'apoderado';
         $apoderado->save();
@@ -239,6 +239,37 @@ class PersonaController extends Controller
         $apoderados = $persona->apoderados;
         return redirect()->route('telefonos.persona',['persona'=>$persona,'apoderados'=>$apoderados])->with('mensaje','Contacto Creado Corectamente');
 
+    }
+    public function guardarRapidingo(Request $request){
+        $persona=new Persona();
+        $persona->nombre = $request->nombre;
+        $persona->apellidop = $request->apellidop;
+        $persona->telefono=$request->telefono;
+        $persona->habilitado = 0;
+        $persona->papelinicial = 'estudiante';
+        $persona->save();
+
+        $observacion = new Observacion();
+        $observacion->observacion = "Vino a a preguntar por nuestros servicios";
+        $observacion->activo = 1;
+        $observacion->observable_id = $persona->id;
+        $observacion->observable_type = "App\Models\Persona";
+        $observacion->save();
+        
+        $apoderado = new Persona();
+        $apoderado->nombre = $request->nombrefamiliar;
+        $apoderado->apellidop = $request->apellidopfamiliar;
+        $apoderado->telefono=$request->telefonofamiliar;
+        $apoderado->papelinicial = 'apoderado';
+        $apoderado->save();
+
+        $observacion = new Observacion();
+        $observacion->observacion = "Se registró a sistema como un apoderado de".$persona->nombre.' '.$persona->apellidop;
+        $observacion->activo = 1;
+        $observacion->observable_id = $apoderado->id;
+        $observacion->observable_type = "App\Models\Persona";
+        $observacion->save();
+        $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
     }
 
     /**
@@ -499,5 +530,16 @@ class PersonaController extends Controller
             $i=$i+1;
         }
         return redirect()->route('personas.index');
+    }
+    public function potenciales(){
+        
+        $potenciales= Persona::where('habilitado',0)
+        ->select('id','personas.nombre','personas.apellidop')  
+        ->get();
+
+        return DataTables::of($potenciales)
+                ->addColumn('btn','persona.actionpotenciales')
+                ->rawColumns(['btn'])
+                ->toJson();
     }
 }

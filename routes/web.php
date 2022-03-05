@@ -21,6 +21,7 @@ use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\InscripcioneController;
 use App\Http\Controllers\TemaController;
+use App\Http\Controllers\PersonaController;
 
 
 
@@ -73,6 +74,9 @@ Route::get('personas/crear/rapidingo/', function () {return view('persona.crearr
 Route::resource('personas', "PersonaController");
 Route::get('persona/papeles/{persona_id}', 'PersonaController@configurar_papeles')->name('personas.agregar.papel');
 Route::post('guardar/papeles/{persona}', 'PersonaController@guardarNuevoPapel')->name('guardar.nuevo.papel');
+Route::post('persona/guardar/rapidingo',[PersonaController::class,'guardarRapidingo'])->name('personas.guardar.rapidindo');
+Route::get('persona/potenciales', function () {return view('persona.potenciales');});
+Route::get('potenciales', [PersonaController::class,'potenciales'])->name('personas.potenciales');
 
 
 Route::resource('paises', "PaisController");

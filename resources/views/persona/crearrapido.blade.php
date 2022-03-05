@@ -9,11 +9,13 @@
 @section('plugins.Datatables', true)
 
 @section('content')
-    <form action="{{route('personas.store')}}" id="formulario" method="post" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
-        @csrf
-        @include('persona.formrapido')
-        @include('include.botones')
-    </form>
+    <div class="pt-3">
+        <form action="{{route('personas.guardar.rapidindo')}}" id="formulario" method="post" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
+            @csrf
+            @include('persona.formrapido')
+            @include('include.botones')
+        </form>
+    </div>
 @stop
 
 @section('js')
