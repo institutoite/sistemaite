@@ -414,6 +414,7 @@ Route::post('messages', [MessageController::class, 'store'])->name('messages.sto
 
 
 //////////////////////////////////pruebas///////////////////7
-Route::get('/mail', function () {
+/* Route::get('/mail', function () {
     return view('mail.message');
 }); 
+ */
