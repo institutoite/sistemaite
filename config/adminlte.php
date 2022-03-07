@@ -1138,7 +1138,7 @@ return [
         
         [
             'text'    => 'Pagina Inicio',
-            'icon'    => 'fas fa-prescription-bottle fa-2x',
+            'icon'    => 'fas fa-home',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
             'submenu' => [
@@ -1148,9 +1148,19 @@ return [
                     'url'  => 'home/create',
                     'classes'  => 'text-dark',
                 ],
-                
+            ],
+        ],
+
+        //** %%%%%%%%%%%%%%%%%%  HORARIOS %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Horarios',
+            'icon'    => 'fas fa-calendar',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
                 [
-                    'text' => 'Horarios',
+                    'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'schedule',
                     'classes'  => 'text-dark',
@@ -1158,9 +1168,50 @@ return [
                 ],
 
                 [
-                    'text' => 'Preguntas frecuentes',
+                    'text' => 'Create',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'schedule/create',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+
+        //** %%%%%%%%%%%%%%%%%%  PREGUNTAS FRECUENTES %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Preguntas frecuentes',
+            'icon'    => 'fas fa-question',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'question',
+                    'classes'  => 'text-dark',
+                ],
+
+                [
+                    'text' => 'Crear',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'question/create',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+
+        //** %%%%%%%%%%%%%%%%%%  NOTIFICACIONES %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Enviar Mensaje',
+            'icon'    => 'fas fa-envelope',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Enviar Mensaje',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'messages',
                     'classes'  => 'text-dark',
                 ],
             ],

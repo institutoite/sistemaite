@@ -384,7 +384,9 @@ Route::get('/', function () {
 
 Route::get('/',[HomeController::class, 'index']);
 
-//Route::resource('home', HomeController::class);
+Route::get('home/create',[HomeController::class, 'create'])->name('home.create');
+
+Route::post('home/store', [HomeController::class, 'store'])->name('home.store');
 
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 
@@ -395,6 +397,8 @@ Route::resource('schedule', HomescheduleController::class)->names('homeschedule'
 Route::resource('question', HomequestionController::class)->names('homequestion');
 
 Route::resource('meta', MetaController::class)->names('meta');
+
+Route::resource('curso', CursoController::class)->names('curso');
 
 Route::resource('requisito', RequisitoController::class)->names('requisito');
 
@@ -411,3 +415,9 @@ Route::post('messages', [MessageController::class, 'store'])->name('messages.sto
 
 
 
+
+
+//////////////////////////////////pruebas///////////////////7
+Route::get('/mail', function () {
+    return view('mail.message');
+}); 
