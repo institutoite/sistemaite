@@ -533,8 +533,8 @@ class PersonaController extends Controller
     }
     public function potenciales(Request $request){
         
-        //return response()->json(['s'=>2]);
         $potenciales= Persona::where('habilitado',0)
+        ->where('votos',1)
         ->select('id','personas.nombre','personas.apellidop')  
         ->get();
 
@@ -544,15 +544,26 @@ class PersonaController extends Controller
                 ->toJson();
     }
     public function verPotencial(Request $request){
-        
-        $request->persona_id=1;
         $potencial= Persona::findOrFail($request->persona_id);
         $observaciones=$potencial->observaciones;
         $apoderados=$potencial->apoderados;
-        //dar  baja de
-        //darde Alta habilitado=1 
-
         $data=[$potencial,$observaciones,$apoderados];
         return response()->json($data);
     }
+
+    public function CambiarVotos(Request $request){
+        $persona= Persona::findOrFail($request->persona_id);
+        $persona=$request->votos;
+        $persona->save();
+        return response()->json([$mensaje=>"El cambio se realizo correctamente"]);
+    }
+
+    public function invertirHabilitado(Request $request){
+        $persona= Persona::findOrFail($request->persona_id);
+        $persona=$request->habilitado;
+        $persona->save();
+        return response()->json([$mensaje=>"El cambio se realizo correctamente"]);
+    }
+
+
 }
