@@ -40,7 +40,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('prueba',[ProgramacionController::class,'mostrarClases'])->name('prueba');
+Route::get('prueba',[PersonaController::class,'verPotencial'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -77,6 +77,7 @@ Route::post('guardar/papeles/{persona}', 'PersonaController@guardarNuevoPapel')-
 Route::post('persona/guardar/rapidingo',[PersonaController::class,'guardarRapidingo'])->name('personas.guardar.rapidindo');
 Route::get('persona/potenciales', function () {return view('persona.potenciales');});
 Route::get('potenciales', [PersonaController::class,'potenciales'])->name('personas.potenciales');
+Route::get('ver/potencial', [PersonaController::class,'verPotencial'])->name('personas.ver.potenciales');
 
 
 Route::resource('paises', "PaisController");

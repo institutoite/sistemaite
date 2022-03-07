@@ -531,8 +531,9 @@ class PersonaController extends Controller
         }
         return redirect()->route('personas.index');
     }
-    public function potenciales(){
+    public function potenciales(Request $request){
         
+        //return response()->json(['s'=>2]);
         $potenciales= Persona::where('habilitado',0)
         ->select('id','personas.nombre','personas.apellidop')  
         ->get();
@@ -541,5 +542,17 @@ class PersonaController extends Controller
                 ->addColumn('btn','persona.actionpotenciales')
                 ->rawColumns(['btn'])
                 ->toJson();
+    }
+    public function verPotencial(Request $request){
+        
+        $request->persona_id=1;
+        $potencial= Persona::findOrFail($request->persona_id);
+        $observaciones=$potencial->observaciones;
+        $apoderados=$potencial->apoderados;
+        //dar  baja de
+        //darde Alta habilitado=1 
+
+        $data=[$potencial,$observaciones,$apoderados];
+        return response()->json($data);
     }
 }

@@ -66,19 +66,19 @@
             );
             $('table').on('click','.ver',function (e) {
                 e.preventDefault(); 
-                id=$(this).parent().parent().find('td').first().html();
-                console.log($(this).parent().parent());
-                        // $.ajax({
-                        //     url: 'eliminar/persona/'+id,
-                        //     type: 'DELETE',
-                        //     data:{
-                        //         id:id,
+                persona_id=$(this).parent().parent().find('td').first().html();
+                // console.log($(this).parent().parent().find('td').first().html());
+                        $.ajax({
+                            url: '../ver/potencial',
+                            type: 'GET',
+                            data:{
+                                persona_id:persona_id,
         
-                        //     },
-                        //     success: function(result) {
-                        //         tabla.ajax.reload();
-                        //     },
-                        // });
+                            },
+                            success: function(result) {
+                                console.log(result);
+                            },
+                        });
                 })
             });
             
