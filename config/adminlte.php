@@ -130,7 +130,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-light-primary elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-dark navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -446,6 +446,7 @@ return [
                     'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                     'classes'  => 'text-secondary',
+                    'can' => 'Listar Inscripciones',
                 ],
                 [
                     'text' => 'Ingresos',
@@ -748,6 +749,7 @@ return [
             'icon'    => 'fas fa-calendar-times',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Feriados',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -771,6 +773,7 @@ return [
             'icon'    => 'fas fa-star-of-david',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Modalidades',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -813,6 +816,7 @@ return [
             'icon'    => 'fas fa-book-reader',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Materias',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -995,11 +999,12 @@ return [
             'icon'    => 'fas fa-map-marked-alt',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Carreras',
             'submenu' => [
                 [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => 'carreras',
+                    'url'  => 'carrera',
                     'classes'  => 'text-dark',
                 ],
                 [
@@ -1017,6 +1022,7 @@ return [
             'icon'    => 'fas fa-map-marked-alt',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Asignaturas',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -1033,6 +1039,7 @@ return [
             'icon'    => 'fas fa-map-marked-alt',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Niveles',
             'submenu' => [
                 [
                     'text' => 'listar',
@@ -1116,6 +1123,7 @@ return [
             'icon'    => 'fas fa-prescription-bottle fa-2x',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Motivos',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -1143,6 +1151,113 @@ return [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'tipomotivos',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+
+        //** %%%%%%%%%%%%%%%%%%  MENU ROLES %%%%%%%%%%%%% */
+    
+        [
+            'text'    => 'Roles',
+            'icon'    => 'fas fa-fw fa-users-cog',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Roles',
+            'submenu' => [
+                [
+                    'text' => 'Listar Roles',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'role',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Asignar Rol a Usuario',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'rolusers',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+
+        //** %%%%%%%%%%%%%%%%%%  HOME ITE %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Pagina Inicio',
+            'icon'    => 'fas fa-home',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Texto Home',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'home/create',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+
+        //** %%%%%%%%%%%%%%%%%%  HORARIOS %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Horarios',
+            'icon'    => 'fas fa-calendar',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'schedule',
+                    'classes'  => 'text-dark',
+                    'can' => 'Listar Horarios',
+                ],
+
+                [
+                    'text' => 'Create',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'schedule/create',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+
+        //** %%%%%%%%%%%%%%%%%%  PREGUNTAS FRECUENTES %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Preguntas frecuentes',
+            'icon'    => 'fas fa-question',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'question',
+                    'classes'  => 'text-dark',
+                ],
+
+                [
+                    'text' => 'Crear',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'question/create',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+
+        //** %%%%%%%%%%%%%%%%%%  NOTIFICACIONES %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Enviar Mensaje',
+            'icon'    => 'fas fa-envelope',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Enviar Mensaje',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'messages',
                     'classes'  => 'text-dark',
                 ],
             ],

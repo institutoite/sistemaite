@@ -11,6 +11,13 @@ use Illuminate\Http\Request;
  */
 class NivelController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:Listar Niveles')->only('index');
+        $this->middleware('can:Crear Niveles')->only('create','store');
+        $this->middleware('can:Editar Niveles')->only('edit','update');
+        $this->middleware('can:Eliminar Niveles')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

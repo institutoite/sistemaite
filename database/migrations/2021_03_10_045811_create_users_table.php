@@ -25,6 +25,9 @@ class CreateUsersTable extends Migration
                         ->references('id')->on('personas');
 
             $table->string('foto',128)->nullable();
+
+            $table->integer('notification')->default(0);
+
             $table->rememberToken();
             $table->timestamps();
         });

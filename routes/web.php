@@ -12,6 +12,7 @@ use App\Http\Controllers\PagocomController;
 use App\Http\Controllers\ProgramacioncomController;
 use App\Http\Controllers\ProgramacionController;
 use App\Http\Controllers\ClasecomController;
+
 use App\Http\Controllers\TipomotivoController;
 use App\Http\Controllers\LicenciaController;
 use App\Http\Controllers\MotivoController;
@@ -23,6 +24,10 @@ use App\Http\Controllers\InscripcioneController;
 use App\Http\Controllers\TemaController;
 use App\Http\Controllers\PersonaController;
 
+use App\Http\Controllers\MessageController;
+
+
+use App\Http\Controllers\HomeController;
 
 
 use App\Http\Controllers\ProductoController;
@@ -40,10 +45,12 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('prueba',[PersonaController::class,'potenciales'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/ninacos', function () {
     return view('ninaco.index');
 });
@@ -242,14 +249,15 @@ Route::delete('eliminar/estado/{estado}', [EstadoController::class,'destroy'])->
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  C A R R E R A S   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
-Route::get('carreras', [CarreraController::class, 'index'])->name('carrera.index');
+/* Route::get('carreras', [CarreraController::class, 'index'])->name('carrera.index');
 Route::get('carrera/create',[CarreraController::class,'create'])->name('carrera.create');
 Route::get('carreras/show/{carrera}', [CarreraController::class, 'show'])->name('carrera.show');
 Route::post('carrera/guardar',[CarreraController::class,'store'])->name('carrera.store');
 Route::get('carrera/mostrar/{carrera}', [CarreraController::class,'show'])->name("carrera.show");
 Route::get('carrera/editar/{carrera}', [CarreraController::class,'edit'])->name("carrera.edit");
 Route::get('carrera/actualizar/{carrera}', [CarreraController::class,'update'])->name("carrera.update");
-Route::delete('eliminar/carrera/{carrera}', [CarreraController::class,'destroy'])->name('carrera.destroy');
+Route::delete('eliminar/carrera/{carrera}', [CarreraController::class,'destroy'])->name('carrera.destroy'); */
+Route::resource('carrera', "CarreraController")->names('carrera');
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MATRICULACION   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -323,7 +331,6 @@ Route::get('licenciacom/crear', [LicenciaController::class,'createcom'])->name('
 Route::get('licenciacom/guardar', [LicenciaController::class,'storecom'])->name('licenciacom.storecom');
 Route::get('licenciaprogramacion/crear', [LicenciaController::class,'createprogramacion'])->name('licenciaprogramacion.crear');
 Route::get('licenciaprogramacion/guardar', [LicenciaController::class,'storeprogramacion'])->name('licenciaprogramacion.guardar');
-                                                                       
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('tus_inscripciones/{estudiante_id}', 'InscripcioneController@tusinscripciones')->name('tus.inscripciones');
@@ -429,3 +436,38 @@ Route::get('tomarfoto/{persona}', 'PersonaController@tomarfoto')->name('tomar.fo
 
 //Route Hooks - Do not delete//
 Route::view('ninacos', 'livewire.ninacos.index')->middleware('auth');
+
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  HOME ITE   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+Route::get('/',[HomeController::class, 'index']);
+
+Route::get('home/create',[HomeController::class, 'create'])->name('home.create');
+
+Route::post('home/store', [HomeController::class, 'store'])->name('home.store');
+
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+
+Route::get('/questions', [HomeController::class, 'questions'])->name('questions');
+
+Route::resource('schedule', HomescheduleController::class)->names('homeschedule');
+
+Route::resource('question', HomequestionController::class)->names('homequestion');
+
+Route::resource('meta', MetaController::class)->names('meta');
+
+Route::resource('curso', CursoController::class)->names('curso');
+
+Route::resource('requisito', RequisitoController::class)->names('requisito');
+
+Route::resource('role', RoleController::class)->names('role');
+
+Route::resource('rolusers', RolUsersController::class)->only(['index', 'edit', 'update'])->names('rolusers');
+
+Route::get('messages',[MessageController::class, 'create'])->name('messages.create');
+
+Route::get('messages/{message}',[MessageController::class, 'show'])->name('messages.show');
+
+Route::post('messages', [MessageController::class, 'store'])->name('messages.store');
+

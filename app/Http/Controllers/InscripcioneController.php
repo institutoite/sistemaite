@@ -38,6 +38,13 @@ use Illuminate\Http\Request;
  */
 class InscripcioneController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:Listar Inscripciones')->only('index');
+        $this->middleware('can:Crear Inscripciones')->only('create','store');
+        $this->middleware('can:Editar Inscripciones')->only('edit','update');
+        $this->middleware('can:Eliminar Inscripciones')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

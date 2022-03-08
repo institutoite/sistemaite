@@ -9,22 +9,23 @@
 @section('plugins.Datatables',true)
 
 @section('content_header')
-    <h1 class="text-center text-primary">Formulario Crear Carreras</h1>
+    <h1 class="text-center text-primary">Formulario Crear carrera</h1>
 @stop
 
 @section('content')
-    <div class="card">
-        <div class="card-header bg-primary">
-            Crear Carreras <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('carrera.index')}}">Listar Carreras</a>
+        <div class="card">
+            <div class="card-header bg-primary">
+                Crear carrera <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('carrera.index')}}">Listar carreras</a>
+            </div>
+            <div class="card-body">
+                <form action="{{route('carrera.store')}}" method="POST">
+                    @csrf
+                    @include('carrera.form')
+                    @include('include.botones')
+                </form>
+            </div>
         </div>
-        <div class="card-body">
-            <form action="{{route('carrera.store')}}" method="POST">
-                @csrf
-                @include('carrera.form')
-                @include('include.botones')
-            </form>
-        </div>
-    </div>
+    
 @stop
 
 @section('js')

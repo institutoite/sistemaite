@@ -20,13 +20,13 @@
 
                 <div class="card card-default">
                     <div class="card-header bg-primary">
-                        <span class="card-title">Create Motivo</span>
+                        <span class="card-title">Crear texto home</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('motivos.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('home.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('motivo.form')
+                            @include('home.text.form')
                             @include('include.botones')
                         </form>
                     </div>

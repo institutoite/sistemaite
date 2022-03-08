@@ -3,10 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carrera;
+use App\Models\Docente;
+use App\Models\Meta;
+use App\Models\Requisito;
 use Illuminate\Http\Request;
 
 class CarreraController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:Listar Carreras')->only('index','show');
+        $this->middleware('can:Crear Carreras')->only('create','store');
+        $this->middleware('can:Editar Carreras')->only('edit','update');
+        $this->middleware('can:Eliminar Carreras')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +24,9 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        return view('carrera.index');
+        $carreras = Carrera::all();
+
+        return view('carrera.index', compact('carreras'));
     }
     
 
@@ -25,7 +37,8 @@ class CarreraController extends Controller
      */
     public function create()
     {
-        return view('carrera.create');
+        $docentes= Docente::all();
+        return view('carrera.create',compact('docentes'));
     }
 
     /**
@@ -49,10 +62,11 @@ class CarreraController extends Controller
      * @param  \App\Models\Carrera  $carrera
      * @return \Illuminate\Http\Response
      */
-    public function show(Carrera $carrera)
+    public function show()
     {
-        
-        return view('carrera.show',compact('carrera'));
+        $metas = Meta::all();
+        $requisitos = Requisito::all();
+        return view('carrera.show',compact(['metas','requisitos']));
     }
 
     /**

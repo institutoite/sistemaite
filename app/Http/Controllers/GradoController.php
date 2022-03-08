@@ -18,6 +18,13 @@ use Illuminate\Support\Facades\Validator;
  */
 class GradoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:Listar Grados')->only('index');
+        $this->middleware('can:Crear Grados')->only('create','store');
+        $this->middleware('can:Editar Grados')->only('edit','update');
+        $this->middleware('can:Eliminar Grados')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
+
+use Spatie\Permission\Traits\HasRoles;
 /**
  * Class User
  *
@@ -29,6 +31,7 @@ use Illuminate\Support\Facades\URL;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+    use HasRoles;
    
     protected $perPage = 20;
 
