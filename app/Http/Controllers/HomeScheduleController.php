@@ -65,9 +65,10 @@ class HomeScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($homeschedule)
     {
-        //
+        $schedule= homeschedule::findOrFail($homeschedule);
+        return view('home.schedule.edit', compact('schedule'));
     }
 
     /**
@@ -77,9 +78,15 @@ class HomeScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,  Homeschedule $homeschedule)
     {
-        //
+        $request->validate([
+            'title' => 'required'
+        ]);
+
+        $homeschedule->update($request->all());
+
+        return redirect()->route('home.schedule.index');
     }
 
     /**

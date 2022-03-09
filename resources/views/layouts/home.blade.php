@@ -91,7 +91,7 @@
                         </li>
                         @auth
                             <li class="nav-item ">
-                                <a href="{{ route('homeschedule.index') }}" class="nav-link js-scroll-trigger">
+                                <a href="{{ route('home') }}" class="nav-link js-scroll-trigger">
                                     Panel administrativo
                                 </a>
                             </li>
