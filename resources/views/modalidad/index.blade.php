@@ -69,9 +69,9 @@
                     "responsive":true,
                     "autoWidth":false,
 
-                    "ajax": "{{ url('api/inscripciones') }}",
+                    "ajax": "{{ url('api/modalidades') }}",
                      data:{
-                        id:id,
+                        //id:id,
                         _token:'{{ csrf_token() }}'
                     },
                     "columns": [

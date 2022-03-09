@@ -29,6 +29,10 @@
             </div>
         </div>
     </div>
+
+
+    
+
 @stop
 
 @section('js')
@@ -67,18 +71,17 @@
             $('table').on('click','.ver',function (e) {
                 e.preventDefault(); 
                 persona_id=$(this).parent().parent().find('td').first().html();
-                // console.log($(this).parent().parent().find('td').first().html());
-                        $.ajax({
-                            url: '../ver/potencial',
-                            type: 'GET',
-                            data:{
-                                persona_id:persona_id,
-        
-                            },
-                            success: function(result) {
-                                console.log(result);
-                            },
-                        });
+                    $.ajax({
+                        url: '../ver/potencial',
+                        type: 'GET',
+                        data:{
+                            persona_id:persona_id,
+    
+                        },
+                        success: function(result) {
+                            
+                        },
+                    });
                 })
             });
             

@@ -57,6 +57,7 @@ Route::get('docentes',function(){
         ->toJson();
 });
 
+
 Route::get('computaciones',function(){
     $computaciones=Persona::join('computacions','computacions.persona_id','=','personas.id')
         ->select('personas.id','nombre','apellidop','apellidom','foto');
