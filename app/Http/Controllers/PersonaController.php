@@ -547,7 +547,7 @@ class PersonaController extends Controller
         $potencial= Persona::findOrFail($request->persona_id);
         $observaciones=$potencial->observaciones;
         $apoderados=$potencial->apoderados;
-        $data=['potenciales'=>$potencial,'observaciones'=>$observaciones,'apoderados'=>$apoderados];
+        $data=['potencial'=>$potencial,'observaciones'=>$observaciones,'apoderados'=>$apoderados];
         return response()->json($data);
     }
 
@@ -567,3 +567,4 @@ class PersonaController extends Controller
 
 
 }
+//

@@ -50,6 +50,23 @@ class ObservacionController extends Controller
         return redirect()->route('observacions.index')
             ->with('success', 'Observacion created successfully.');
     }
+    public function GuardarObservacion(Request $request)
+    {
+        //request()->validate(Observacion::$rules);
+
+        // $request->observacion="Observaciones";
+        // $request->observable_id=1;
+        // $request->observable_type=Persona::class;
+
+        $observacion =new Observacion;
+        $observacion->observacion = $request->observacion;
+        $observacion->observable_id=$request->observable_id;
+        $observacion->activo=1;
+        $observacion->observable_type=$request->observable_type;
+        $observacion->save();
+        //return response()->json($request->all());
+        return response()->json(['mensaje'=>"Guardado correctamente"]);
+    }
 
     /**
      * Display the specified resource.

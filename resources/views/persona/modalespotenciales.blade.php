@@ -1,0 +1,134 @@
+<div class="modal" tabindex="-1" id="modal-mostrar">
+    <div class="modal-dialog modal-xl modalito">
+        <div class="modal-content">
+            <div class="modal-header bg-    primary">
+                {{__('MOSTRANDO UN POTENCIAL CLIENTE')}}
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-editar-pago">
+                <div class="container p-4">
+                    <table id="potencial" class="table table-bordered table-hover table-striped">
+                        <thead class="bg-primary">
+                            <tr>
+                                <th>ATRIBUTO</th>
+                                <th>VALOR</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-mostrar-potencial">
+                            
+                        </tbody>
+                    </table>
+                    <table id="observaciones" class="table table-bordered table-hover table-striped">
+                        <thead class="bg-primary">
+                            <tr>
+                                <th>ID</th>
+                                <th>OBSERVACION</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-mostrar-observaciones">
+                            
+                        </tbody>
+                    </table>
+                    <table id="contactos" class="table table-bordered table-hover table-striped">
+                        <thead class="bg-primary">
+                            <tr>
+                                <th>ID</th>
+                                <th>NOMBRE</th>
+                                <th>TELEFONO</th>
+                                <th>PARENTESCO</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-mostrar-contactos">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger text-white" data-bs-dismiss="modal">cerrar &times;</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" id="modal-gregar-observacion">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                MODAL OBSERVACION DE PROGRAMACION
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card card-primary">
+                    <div class="card-header bg-secondary">
+                        <span class="card-title">Agregar Observación</span>
+                    </div>
+                    <div class="card-body">
+                        <form id="formulario-guardar-observacion" method="POST" action="{{route('programacion.actualizar')}}">
+                            @csrf
+                            
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                                <div class="form-floating mb-3 text-gray">
+                                    <input  type="text" name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" value="{{old('observacion')}}">
+                                    <label for="observacion">Observación</label>
+                                </div>  
+                            </div>
+                            
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                                <div class="form-floating mb-3 text-gray">
+                                    <input  type="number"  name="observable_id" id="observable_id" class="form-control" value="">
+                                </div>  
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                                <div class="form-floating mb-3 text-gray">
+                                    <input  type="text"  name="observable_type" id="observable_type" class="form-control" value="">
+                                </div>  
+                            </div>
+                            
+                            <div class="container-fluid h-100 mt-3"> 
+                                <div class="row w-100 align-items-center">
+                                    <div class="col text-center">
+                                        <button id="guardar-observacion" class="btn btn-primary text-white btn-lg">Guardar <i class="far fa-save"></i></button>        
+                                    </div>	
+                                </div>
+                            </div>
+
+                            
+                        </form>
+                    </div>
+                </div> 
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%   MODAL EDITAR OBSERVACION  %$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+<div class="modal" tabindex="-1" id="editar-observacion">
+    <div class="modal-dialog modal-xl modalito">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary">
+                EDITAR OBSERVACION
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card card-secondary">
+                    <div class="card-header bg-secondary">
+                        <span class="card-title">Observacion Editar</span>
+                    </div>
+                    <div class="card-body">
+                        <form id="formulario-editar-observacion" method="POST" action="{{route('programacioncom.actualizar')}}">
+                            @csrf
+                            
+                        </form>
+                    </div>
+                </div> 
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+
+

@@ -46,7 +46,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[PersonaController::class,'potenciales'])->name('prueba');
+Route::get('prueba',[ObservacionController::class,'GuardarObservacion'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -394,6 +394,7 @@ Route::get('programacioncom/asignarfalta/ajax', [ProgramacioncomController::clas
 
 Route::get('observacion/editar',[ObservacionController::class,'edit'])->name('observacion.editar');
 Route::get('observacion/actualizar',[ObservacionController::class,'update'])->name('observacion.actualizar');
+Route::get('observacion/guardar',[ObservacionController::class,'GuardarObservacion'])->name('observacion.guardar');
 Route::delete('eliminar/observacion/{observacion}',[ObservacionController::class,'destroy'])->name('eliminar.observacion');
 
 /**
