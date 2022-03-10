@@ -19,7 +19,7 @@
                     <span class="card-title">Editar Horario</span>
                 </div>
                 <div class="card-body">
-                    {!! Form::model($schedule, ['route' => ['homeschedule.update',$schedule], 'method' => 'put']) !!}
+                    {!! Form::model($homeschedule, ['route' => ['homeschedule.update',$homeschedule], 'method' => 'put']) !!}
                         <div class="form-group">
                             {!! Form::label('title', 'Titulo del horario') !!}
                             {!! Form::text('title', null, ['class' => 'form-control', 'placeholder'=> 'Ingrese el nombre del nivel']) !!}

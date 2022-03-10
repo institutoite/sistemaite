@@ -1158,6 +1158,7 @@ return [
             'icon'    => 'fas fa-calendar',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Horarios',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -1183,6 +1184,7 @@ return [
             'icon'    => 'fas fa-question',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Preguntas',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -1207,6 +1209,7 @@ return [
             'icon'    => 'fas fa-envelope',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Enviar Mensaje',
             'submenu' => [
                 [
                     'text' => 'Enviar Mensaje',
