@@ -9,7 +9,7 @@
                         <span class="subheading"></span>
                             <h1>{{$hometext->banner}}</h1>
                         
-                        <a href="#" class="btn btn-main"><i class="fa fa-list-ul mr-2"></i>Contactanos </a>  
+                        <a href="#" class="btn btn-main"><i class="fa fa-list-ul mr-2"></i>Contactanos</a>  
                         <a href="#" class="btn btn-tp ">Leer mas <i class="fa fa-angle-right ml-2"></i></a>  
                     </div>
                 </div>

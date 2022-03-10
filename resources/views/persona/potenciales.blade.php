@@ -90,39 +90,43 @@
                         persona_id:persona_id,
                     },
                     success: function(json) {
+                        console.log(json); 
                         $("#modal-mostrar").modal("show");
                         $("#tabla-mostrar-observaciones").empty();
                         $("#tabla-mostrar-potencial").empty();
+                        $("#tabla-mostrar-contactos").empty();
                         $html="";
                         $html+="<tr><td>CODIGO</td><td>"+json.potencial.id+"</td></tr>";
                         $html+="<tr><td>NOMBRE</td><td>"+json.potencial.nombre+"</td></tr>";
                         $html+="<tr><td>APELLIDOPATERNO</td><td>"+json.potencial.aptellidop+"</td></tr>";
                         $html+="<tr><td>APELLIDO MATERNO</td><td>"+json.potencial.apellidom+"</td></tr>";
                         $html+="<tr><td>TELEFONO</td><td>"+json.potencial.telefono+"</td></tr>";
-                        console.log($html);
+                        
                         $("#tabla-mostrar-potencial").append($html);
 
+                        $htmlObservaciones="";
+                        for (let j in json.observaciones) {
+                            $htmlObservaciones+="<tr><td>"+ json.observaciones[j].nombre +"</td>"+"<td>"+json.observaciones[j].apellidop+"</td>";
+                            $htmlObservaciones+="<td><a target='_blank' href=https://wa.me/591"+json.observaciones[j].telefono +">"+ json.observaciones[j].telefono +"</a></td>"+"<td>"+  +"</td>";
+                            $htmlObservaciones+="</tr>";
+                        }
+                        $("#tabla-mostrar-contactos").append($htmlObservaciones);
                         $htmlApoderados="";
                         for (let j in json.apoderados) {
-                            $htmlApoderados+="<tr><td>"+ json.apoderados[j].nombre +"</td>"+"<td>"+json.apoderados[j].apellidop + json.apoderados[j].apellidom+"</td>";
-                            $htmlApoderados+="<td>"+json.apoderados[j].telefono +"</td>"+"<td>"+ json.apoderados[j].pivot.parentesco +"</td>";
+                            $htmlApoderados+="<tr><td>"+ json.apoderados[j].nombre +"</td>"+"<td>"+json.apoderados[j].apellidop+"</td>";
+                            $htmlApoderados+="<td><a target='_blank' href=https://wa.me/591"+json.apoderados[j].telefono +">"+ json.apoderados[j].telefono +"</a></td>";
                             $htmlApoderados+="</tr>";
                         }
-                        console.log(json.apoderados);
                         $("#tabla-mostrar-contactos").append($htmlApoderados);
                     },
                 });
             });
             $('#guardar-observacion').on('click', function(e) {
                 e.preventDefault();
-                // let observacion=$("#observacion").val();
-                // let id_observacion=$("#id_programacion").val();
-                
                 $.ajax({
                     url : "../observacion/guardar",
                     data : $("#formulario-guardar-observacion").serialize(),
                     success : function(json) {
-                        console.log(json);
                         const Toast = Swal.mixin({
                             toast: true,
                             position: 'top-end',
@@ -248,7 +252,6 @@
             $('table').on('click', '.editarobservacion', function(e) {
                 e.preventDefault(); 
                 let id_observacion=$(this).closest('tr').attr('id');
-                console.log("id_observacion"+id_observacion);
                 $htmlobs="";
                 $.ajax({
                     url : "../observacion/editar",
@@ -256,7 +259,6 @@
                         id:id_observacion,
                     },
                     success : function(json) {
-                        console.log(json);
                         $("#modal-mostrar").modal("hide");
                         $("#editar-observacion").modal("show");
                         $("#formulario-editar-observacion").empty();

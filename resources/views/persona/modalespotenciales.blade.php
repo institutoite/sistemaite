@@ -77,12 +77,12 @@
                             
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
                                 <div class="form-floating mb-3 text-gray">
-                                    <input  type="number"  name="observable_id" id="observable_id" class="form-control" value="">
+                                    <input  type="number" hidden name="observable_id" id="observable_id" class="form-control" value="">
                                 </div>  
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
                                 <div class="form-floating mb-3 text-gray">
-                                    <input  type="text"  name="observable_type" id="observable_type" class="form-control" value="">
+                                    <input  type="text" hidden  name="observable_type" id="observable_type" class="form-control" value="">
                                 </div>  
                             </div>
                             
