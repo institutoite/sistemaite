@@ -36,6 +36,8 @@
 @stop
 
 @section('js')
+    <script src="https://kit.fontawesome.com/067a2afa7e.js" crossorigin="anonymous"></script>
+
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
@@ -100,21 +102,29 @@
                         $html+="<tr><td>NOMBRE</td><td>"+json.potencial.nombre+"</td></tr>";
                         $html+="<tr><td>APELLIDOPATERNO</td><td>"+json.potencial.aptellidop+"</td></tr>";
                         $html+="<tr><td>APELLIDO MATERNO</td><td>"+json.potencial.apellidom+"</td></tr>";
-                        $html+="<tr><td>TELEFONO</td><td>"+json.potencial.telefono+"</td></tr>";
-                        
+                            if (json.potencial.telefono!=null)
+                                $html+="<tr><td>TELEFONO</td><td>"+json.potencial.telefono+"</td></tr>";
+                            else
+                                $html+="<tr><td>TELEFONO</td><td>No tiene</td></tr>";
+
                         $("#tabla-mostrar-potencial").append($html);
 
-                        $htmlObservaciones="";
+                         $htmlObservaciones="";
                         for (let j in json.observaciones) {
-                            $htmlObservaciones+="<tr><td>"+ json.observaciones[j].nombre +"</td>"+"<td>"+json.observaciones[j].apellidop+"</td>";
-                            $htmlObservaciones+="<td><a target='_blank' href=https://wa.me/591"+json.observaciones[j].telefono +">"+ json.observaciones[j].telefono +"</a></td>"+"<td>"+  +"</td>";
-                            $htmlObservaciones+="</tr>";
+                            $htmlObservaciones+="<tr id='"+json.observaciones[j].id +"''><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td>";
+                            $htmlObservaciones+="<td>";
+                            $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 editarobservacion' title='Editar esta Observacion'>";
+                            $htmlObservaciones+="<i class='fa fa-fw fa-edit text-primary'></i></a>";
+                            $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 eliminarobservacion' title='Eliminar esta observacion'>";
+                            $htmlObservaciones+="<i class='fas fa-trash-alt text-danger'></i>";
+                            $htmlObservaciones+="</td></tr>";
                         }
-                        $("#tabla-mostrar-contactos").append($htmlObservaciones);
+                        $("#tabla-mostrar-observaciones").append($htmlObservaciones);
                         $htmlApoderados="";
                         for (let j in json.apoderados) {
                             $htmlApoderados+="<tr><td>"+ json.apoderados[j].nombre +"</td>"+"<td>"+json.apoderados[j].apellidop+"</td>";
                             $htmlApoderados+="<td><a target='_blank' href=https://wa.me/591"+json.apoderados[j].telefono +">"+ json.apoderados[j].telefono +"</a></td>";
+                            $htmlApoderados+="<td>"+ json.apoderados[j].pivot.parentesco +"</td>";
                             $htmlApoderados+="</tr>";
                         }
                         $("#tabla-mostrar-contactos").append($htmlApoderados);
