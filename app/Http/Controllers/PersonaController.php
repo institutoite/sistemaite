@@ -249,6 +249,8 @@ class PersonaController extends Controller
         $persona->papelinicial = 'estudiante';
         $persona->save();
 
+        $persona->userable()->create(['user_id'=>Auth::user()->id]);
+
         $observacion = new Observacion();
         $observacion->observacion = "Vino a a preguntar por nuestros servicios";
         $observacion->activo = 1;
@@ -262,6 +264,8 @@ class PersonaController extends Controller
         $apoderado->telefono=$request->telefonofamiliar;
         $apoderado->papelinicial = 'apoderado';
         $apoderado->save();
+
+        $apoderado->userable()->create(['user_id'=>Auth::user()->id]);
 
         $observacion = new Observacion();
         $observacion->observacion = "Se registró a sistema como un apoderado de".$persona->nombre.' '.$persona->apellidop;
@@ -547,7 +551,8 @@ class PersonaController extends Controller
         $potencial= Persona::findOrFail($request->persona_id);
         $observaciones=$potencial->observaciones;
         $apoderados=$potencial->apoderados;
-        $data=['potencial'=>$potencial,'observaciones'=>$observaciones,'apoderados'=>$apoderados];
+        $autor=User::findOrFail(Persona::findOrFail(40)->userable()->first()->user_id)->name;
+        $data=['potencial'=>$potencial,'observaciones'=>$observaciones,'apoderados'=>$apoderados,'autor'=>$autor];
         return response()->json($data);
     }
 

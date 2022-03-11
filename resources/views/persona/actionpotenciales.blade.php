@@ -1,15 +1,15 @@
 
 
 <a href="" class="observacion" id='{{$id}}' title="Agregar observacion">
-    <i class="fa-solid fa-arrow-trend-up text-green"></i>
+    <i class="fa-solid fa-upload text-green"></i>
 </a>
 <a href="" class="ver" id='{{$id}}' title="Ver potencial">
     <i class="far fa-eye"></i>
 </a>
 <a href="" class="observacion" id='{{$id}}' title="Agregar observacion">
-    <i class="fa-solid fa-upload text-secondary"></i>
+    <i class="fa-solid fa-comment-medical text-secondary"></i>
 </a>
 <a href="" class="observacion" id='{{$id}}' title="Agregar observacion">
-    <i class="fa-solid fa-down-long text-danger"></i>
+    <i class="fa-solid fa-download text-danger"></i>
 </a>
 

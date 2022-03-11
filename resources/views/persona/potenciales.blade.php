@@ -102,16 +102,20 @@
                         $html+="<tr><td>NOMBRE</td><td>"+json.potencial.nombre+"</td></tr>";
                         $html+="<tr><td>APELLIDOPATERNO</td><td>"+json.potencial.aptellidop+"</td></tr>";
                         $html+="<tr><td>APELLIDO MATERNO</td><td>"+json.potencial.apellidom+"</td></tr>";
-                            if (json.potencial.telefono!=null)
-                                $html+="<tr><td>TELEFONO</td><td>"+json.potencial.telefono+"</td></tr>";
-                            else
-                                $html+="<tr><td>TELEFONO</td><td>No tiene</td></tr>";
-
+                        $html+="<tr><td>APELLIDO MATERNO</td><td>"+json.potencial.apellidom+"</td></tr>";
+                        if (json.potencial.telefono!=null)
+                            $html+="<tr><td>TELEFONO</td><td>"+json.potencial.telefono+"</td></tr>";
+                        else
+                            $html+="<tr><td>TELEFONO</td><td>No tiene</td></tr>";
+                        $html+="<tr><td>CREADO</td><td>"+json.potencial.created_at+"</td></tr>";
+                        $html+="<tr><td>AUTOR</td><td>"+json.autor +"</td></tr>";
+                        
                         $("#tabla-mostrar-potencial").append($html);
 
                          $htmlObservaciones="";
                         for (let j in json.observaciones) {
                             $htmlObservaciones+="<tr id='"+json.observaciones[j].id +"''><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td>";
+                            $htmlObservaciones+="<td>"+ json.observaciones[j].created_at +"</td>";
                             $htmlObservaciones+="<td>";
                             $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 editarobservacion' title='Editar esta Observacion'>";
                             $htmlObservaciones+="<i class='fa fa-fw fa-edit text-primary'></i></a>";

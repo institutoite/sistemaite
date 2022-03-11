@@ -23,6 +23,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>OBSERVACION</th>
+                                <th>CREADO</th>
+                                <th>AUTOR</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
@@ -67,14 +69,12 @@
                     <div class="card-body">
                         <form id="formulario-guardar-observacion" method="POST" action="{{route('programacion.actualizar')}}">
                             @csrf
-                            
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
                                 <div class="form-floating mb-3 text-gray">
                                     <input  type="text" name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" value="{{old('observacion')}}">
                                     <label for="observacion">Observación</label>
                                 </div>  
                             </div>
-                            
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
                                 <div class="form-floating mb-3 text-gray">
                                     <input  type="number" hidden name="observable_id" id="observable_id" class="form-control" value="">
@@ -85,7 +85,6 @@
                                     <input  type="text" hidden  name="observable_type" id="observable_type" class="form-control" value="">
                                 </div>  
                             </div>
-                            
                             <div class="container-fluid h-100 mt-3"> 
                                 <div class="row w-100 align-items-center">
                                     <div class="col text-center">
@@ -93,8 +92,6 @@
                                     </div>	
                                 </div>
                             </div>
-
-                            
                         </form>
                     </div>
                 </div> 
