@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Curso;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CursoController extends Controller
 {
@@ -26,7 +27,7 @@ class CursoController extends Controller
      */
     public function create()
     {
-        //
+        return view('curso.create');
     }
 
     /**
@@ -37,7 +38,24 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'file' => 'image'
+        ]);
+
+        //dd($request);
+        
+
+        if ($request->file('file')) {
+            $url = Storage::put('cursos', $request->file('file'));
+
+            dd($url);
+            $course = Curso::create([
+                'name' => $request->name,
+                'icon' => $request->name,
+                'picture' => $url
+            ]);
+        }
     }
 
     /**

@@ -602,9 +602,10 @@ Route::view('ninacos', 'livewire.ninacos.index')->middleware('auth');
 
 Route::get('/',[HomeController::class, 'index']);
 
-Route::get('home/create',[HomeController::class, 'create'])->name('home.create');
+Route::get('home/edit', [HomeController::class, 'edit'])->name('home.edit');
 
-Route::post('home/store', [HomeController::class, 'store'])->name('home.store');
+Route::put('home/update/{text}', [HomeController::class, 'update'])->name('home.update');
+
 
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 

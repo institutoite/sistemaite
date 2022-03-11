@@ -34,7 +34,7 @@ class HomeController extends Controller
         $feriados = Feriado::all();
         $docentes = Docente::all()->where('estado','activo');
         
-        return view('home.index', compact(['hometext', 'homeschedules', 'guarderias', 'inicials', 'primarias', 'secundarias', 'preuniversitarios', 'institutos', 'universitarios', 'profesionals', 'feriados', 'docentes']));
+        return view('home.ipndex', compact(['hometext', 'homeschedules', 'guarderias', 'inicials', 'primarias', 'secundarias', 'preuniversitarios', 'institutos', 'universitarios', 'profesionals', 'feriados', 'docentes']));
     }
 
     /**
@@ -44,7 +44,7 @@ class HomeController extends Controller
      */
     public function create()
     {
-        return view('home.text.create');
+        
     }
 
     /**
@@ -55,8 +55,7 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        Hometext::create($request->all());
-        return redirect()->route('home.create');
+        
     }
 
     /**
@@ -87,9 +86,10 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        $text = Hometext::get()->last();
+        return view('home.text.edit', compact('text'));
     }
 
     /**
@@ -99,9 +99,11 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Hometext $text)
     {
-        //
+        $text->update($request->all());
+
+        return redirect()->route('home.edit');
     }
 
     /**

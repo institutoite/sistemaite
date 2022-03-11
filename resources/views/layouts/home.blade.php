@@ -39,27 +39,7 @@
 
     
 <header>
-    <div class="header-top">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6">
-                    <ul class="header-contact">
-                        <li>
-                            <span></span>
-                           Cursos Vacacionales
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="header-right float-right">
-                        <div class="header-btn">
-                            <a href="#" class="btn btn-main btn-small">contactenos</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>    
-    </div>
+    @yield('banner')
 
     <!-- Main Menu Start -->
    
@@ -170,7 +150,7 @@
 </div>
 <!--search overlay end-->
 
-@yield('banner')
+@yield('header')
 
 
 <section class="feature">
@@ -278,7 +258,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="course-category style-7">
                     <div class="category-icon">
-                        <i class="bi bi-nuclear-circle"></i>
+                        <i class=""></i>
                     </div>
                     <h4><a href="#">Química</a></h4>
                 </div>

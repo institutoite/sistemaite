@@ -16,6 +16,7 @@ class CreateHometextsTable extends Migration
         Schema::create('hometexts', function (Blueprint $table) {
             $table->id();
             $table->string('banner');
+            $table->string('header');
             $table->string('heading');
             $table->string('subheading');
             $table->timestamps();

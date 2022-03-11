@@ -1143,9 +1143,9 @@ return [
             'classes'  => 'text-white text-bold bg-primary',
             'submenu' => [
                 [
-                    'text' => 'Texto Home',
+                    'text' => 'Texto de la Pagina de Inicio',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => 'home/create',
+                    'url'  => 'home/edit',
                     'classes'  => 'text-dark',
                 ],
             ],
