@@ -38,6 +38,15 @@
                         @enderror
                     </div>
 
+                    <div class="col-lg-3 col-md-6">
+                        <div class="course-category" style="color:blue;">
+                           <div class="category-icon">
+                                <i class="bi bi-target-arrow"></i>
+                           </div>
+                            <h4><a href="#">Guardería</a></h4>
+                        </div>
+                    </div>
+
                     <div class="flex justify-end">
                         {!! Form::submit('Crear nuevo curso', ['class' => 'btn btn-primary']) !!}
                     </div>

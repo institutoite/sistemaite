@@ -49,7 +49,7 @@ class CursoController extends Controller
         if ($request->file('file')) {
             $url = Storage::put('cursos', $request->file('file'));
 
-            dd($url);
+        
             $course = Curso::create([
                 'name' => $request->name,
                 'icon' => $request->name,

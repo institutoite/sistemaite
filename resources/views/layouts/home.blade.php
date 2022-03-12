@@ -206,15 +206,19 @@
         @yield('heading')
 
         <div class="row no-gutters">
-            <div class="col-lg-3 col-md-6">
-                <div class="course-category style-1">
-                   <div class="category-icon">
-                        <i class="bi bi-target-arrow"></i>
-                   </div>
-                    <h4><a href="#">Guardería</a></h4>
+            @foreach ($cursos as $curso)
+                <div class="col-lg-3 col-md-6">
+                    
+                        <div class="course-category" style="background-image: url('{{ Storage::url("{$curso->picture}") }}');">
+                        <div class="category-icon">
+                                {{-- <i class="bi bi-target-arrow"></i> --}}
+                        </div>
+                            <h4><a href="#">{{ $curso->name }}</a></h4>
+                        </div>
+                    
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
+            @endforeach
+           {{--  <div class="col-lg-3 col-md-6">
                 <div class="course-category style-2">
                     <div class="category-icon">
                         <i class="bi bi-pencil"></i>
@@ -304,16 +308,16 @@
                     </div>
                     <h4><a href="#">Diseño gráfico</a></h4>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
-        <div class="row justify-content-center">
+        {{-- <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="text-center mt-5">
                     <div class="course-btn mt-4"><a href="#" class="btn btn-main"><i class="fa fa-grip-horizontal mr-2"></i>Ver todos los cursos</a></div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
        
     </div>
@@ -684,15 +688,21 @@
 					<ul class="list-unstyled">
 						<li><i class="bi bi-headphone"></i>
 							<div>
-								<strong>Telefono</strong>
-								71039910
+								<strong>Telefonos</strong>
+								+591 71039910
+                                <br>
+                                +591 71324941
+                                <br>
+                                +591 75553338
+                                <br>
+                                3-219050
 							</div>
 							
 						</li>
 						<li> <i class="bi bi-envelop"></i>
 							<div>
 								<strong>Correo electrónico</strong>
-								informaciones.ite@gmail.com
+								info@ite.com.bo
 							</div>
 						</li>
 						<li><i class="bi bi-location-pointer"></i>

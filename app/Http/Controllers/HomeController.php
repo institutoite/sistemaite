@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Curso;
 use App\Models\Docente;
 use App\Models\Feriado;
 use App\Models\Homequestion;
@@ -33,8 +34,10 @@ class HomeController extends Controller
         $profesionals = Modalidad::all()->where('nivel_id', '8');
         $feriados = Feriado::all();
         $docentes = Docente::all()->where('estado','activo');
+        $cursos = Curso::all();
+
         
-        return view('home.ipndex', compact(['hometext', 'homeschedules', 'guarderias', 'inicials', 'primarias', 'secundarias', 'preuniversitarios', 'institutos', 'universitarios', 'profesionals', 'feriados', 'docentes']));
+        return view('home.index', compact(['hometext', 'homeschedules', 'guarderias', 'inicials', 'primarias', 'secundarias', 'preuniversitarios', 'institutos', 'universitarios', 'profesionals', 'feriados', 'docentes', 'cursos']));
     }
 
     /**
