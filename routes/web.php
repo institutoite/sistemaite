@@ -46,7 +46,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[ObservacionController::class,'GuardarObservacion'])->name('prueba');
+Route::get('prueba',[PersonaController::class,'verPotencial'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });

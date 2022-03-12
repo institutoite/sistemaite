@@ -548,11 +548,23 @@ class PersonaController extends Controller
                 ->toJson();
     }
     public function verPotencial(Request $request){
+        $request->persona_id=39;
         $potencial= Persona::findOrFail($request->persona_id);
-        $observaciones=$potencial->observaciones;
-        $apoderados=$potencial->apoderados;
-        $autor=User::findOrFail(Persona::findOrFail(40)->userable()->first()->user_id)->name;
-        $data=['potencial'=>$potencial,'observaciones'=>$observaciones,'apoderados'=>$apoderados,'autor'=>$autor];
+        //return response()->json($potencial);
+        // $observaciones=$potencial->observaciones;
+        $observaciones=Observacion::join('personas','personas.id','observable_id')
+                ->join('userables','userables.userable_id','observacions.id')
+                ->where('observable_type',Persona::class)
+                ->where('observable_id',$potencial->id)
+                ->get();
+        $apoderados=$potencial->apoderados->toJson();
+        $autorPotencial=User::findOrFail($potencial->userable->user_id)->name;
+        
+        // $observaciones=Persona::findOrFail(39)->observaciones;
+        // $user = User::join('userables','userables.user_id','users.id')
+        //   			->join('users','user.id')
+
+        $data=['potencial'=>$potencial,'observaciones'=>$observaciones,'apoderados'=>$apoderados,'autorPotencial'=>$autorPotencial];
         return response()->json($data);
     }
 

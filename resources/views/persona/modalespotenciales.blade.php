@@ -38,6 +38,8 @@
                                 <th>ID</th>
                                 <th>NOMBRE</th>
                                 <th>TELEFONO</th>
+                                <th>CREADO</th>
+                                <th>AUTOR</th>
                                 <th>PARENTESCO</th>
                             </tr>
                         </thead>

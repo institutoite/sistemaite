@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Observacion;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+
 /**
  * Class ObservacionController
  * @package App\Http\Controllers
@@ -45,15 +47,14 @@ class ObservacionController extends Controller
     {
         request()->validate(Observacion::$rules);
 
-        $observacion = Observacion::create($request->all());
-
+        $observacion =  Observacion::create($request->all());
+        $observacion ->userable()->create(['user_id'=>Auth::user()->id]);
         return redirect()->route('observacions.index')
             ->with('success', 'Observacion created successfully.');
     }
     public function GuardarObservacion(Request $request)
     {
         //request()->validate(Observacion::$rules);
-
         // $request->observacion="Observaciones";
         // $request->observable_id=1;
         // $request->observable_type=Persona::class;
@@ -64,6 +65,7 @@ class ObservacionController extends Controller
         $observacion->activo=1;
         $observacion->observable_type=$request->observable_type;
         $observacion->save();
+        $observacion->userable()->create(['user_id'=>Auth::user()->id]);
         //return response()->json($request->all());
         return response()->json(['mensaje'=>"Guardado correctamente"]);
     }

@@ -39,6 +39,7 @@
     <script src="https://kit.fontawesome.com/067a2afa7e.js" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="{{asset('dist/js/moment.js')}}"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
@@ -85,6 +86,7 @@
             $('table').on('click','.ver',function (e) {
                 e.preventDefault(); 
                 persona_id=$(this).parent().parent().find('td').first().html();
+                //console.log(persona_id);
                 $.ajax({
                     url: '../ver/potencial',
                     type: 'GET',
@@ -92,7 +94,7 @@
                         persona_id:persona_id,
                     },
                     success: function(json) {
-                        console.log(json); 
+                        console.log(json.observaciones); 
                         $("#modal-mostrar").modal("show");
                         $("#tabla-mostrar-observaciones").empty();
                         $("#tabla-mostrar-potencial").empty();
@@ -100,22 +102,22 @@
                         $html="";
                         $html+="<tr><td>CODIGO</td><td>"+json.potencial.id+"</td></tr>";
                         $html+="<tr><td>NOMBRE</td><td>"+json.potencial.nombre+"</td></tr>";
-                        $html+="<tr><td>APELLIDOPATERNO</td><td>"+json.potencial.aptellidop+"</td></tr>";
-                        $html+="<tr><td>APELLIDO MATERNO</td><td>"+json.potencial.apellidom+"</td></tr>";
+                        $html+="<tr><td>APELLIDO PATERNO</td><td>"+json.potencial.apellidop+"</td></tr>";
                         $html+="<tr><td>APELLIDO MATERNO</td><td>"+json.potencial.apellidom+"</td></tr>";
                         if (json.potencial.telefono!=null)
                             $html+="<tr><td>TELEFONO</td><td>"+json.potencial.telefono+"</td></tr>";
                         else
                             $html+="<tr><td>TELEFONO</td><td>No tiene</td></tr>";
-                        $html+="<tr><td>CREADO</td><td>"+json.potencial.created_at+"</td></tr>";
-                        $html+="<tr><td>AUTOR</td><td>"+json.autor +"</td></tr>";
+                        $html+="<tr><td>CREADO</td><td>"+moment(json.potencial.created_at).format('LLLL')+"</td></tr>";
+                        $html+="<tr><td>AUTOR</td><td>"+json.autorPotencial +"</td></tr>";
                         
                         $("#tabla-mostrar-potencial").append($html);
 
                          $htmlObservaciones="";
                         for (let j in json.observaciones) {
-                            $htmlObservaciones+="<tr id='"+json.observaciones[j].id +"''><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td>";
-                            $htmlObservaciones+="<td>"+ json.observaciones[j].created_at +"</td>";
+                            $htmlObservaciones+="<tr id='"+json.observaciones[j].id +"''><td>"+ json.observaciones[j].id +"</td>"+"<td>"+json.observaciones[j].observacion+"</td>";
+                            $htmlObservaciones+="<td>"+ moment(json.observaciones[j].created_at).format('LLLL')  +"</td>";
+                            $htmlObservaciones+="<td>"+ "{{ App\Models\Observacion::findOrFail(1)->name}}"  +"</td>";
                             $htmlObservaciones+="<td>";
                             $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 editarobservacion' title='Editar esta Observacion'>";
                             $htmlObservaciones+="<i class='fa fa-fw fa-edit text-primary'></i></a>";
@@ -128,6 +130,8 @@
                         for (let j in json.apoderados) {
                             $htmlApoderados+="<tr><td>"+ json.apoderados[j].nombre +"</td>"+"<td>"+json.apoderados[j].apellidop+"</td>";
                             $htmlApoderados+="<td><a target='_blank' href=https://wa.me/591"+json.apoderados[j].telefono +">"+ json.apoderados[j].telefono +"</a></td>";
+                            $htmlApoderados+="<td>"+ moment(json.apoderados[j].created_at).format('LLLL') +"</a></td>";
+                            $htmlApoderados+="<td>"+ "david" +"</td>";
                             $htmlApoderados+="<td>"+ json.apoderados[j].pivot.parentesco +"</td>";
                             $htmlApoderados+="</tr>";
                         }
