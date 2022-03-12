@@ -46,7 +46,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[PersonaController::class,'verPotencial'])->name('prueba');
+Route::get('prueba',[UserController::class,'quien'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -90,7 +90,11 @@ Route::get('ver/potencial', [PersonaController::class,'verPotencial'])->name('pe
 Route::resource('paises', "PaisController");
 
 Route::resource('telefonos', "TelefonoController");
+
+
 Route::resource('users', 'UserController');
+Route::get('quien', [UserController::class,'quien'])->name('quien');
+
 Route::resource('ciudades', "CiudadController");
 Route::resource('zonas', "ZonaController");
 //Route::resource('usuarios', "UserController");

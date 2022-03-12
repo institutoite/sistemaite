@@ -24,8 +24,8 @@
                                 <th>ID</th>
                                 <th>OBSERVACION</th>
                                 <th>CREADO</th>
-                                <th>AUTOR</th>
                                 <th>Opciones</th>
+                                <th>AUTOR</th>
                             </tr>
                         </thead>
                         <tbody id="tabla-mostrar-observaciones">
