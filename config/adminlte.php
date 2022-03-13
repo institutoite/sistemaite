@@ -1202,24 +1202,6 @@ return [
             ],
         ],
 
-        //** %%%%%%%%%%%%%%%%%%  NOTIFICACIONES %%%%%%%%%%%%% */
-        
-        [
-            'text'    => 'Enviar Mensaje',
-            'icon'    => 'fas fa-envelope',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'can' => 'Enviar Mensaje',
-            'submenu' => [
-                [
-                    'text' => 'Enviar Mensaje',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'messages',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-
     ],
 
     /*

@@ -1805,7 +1805,7 @@
           <tbody>
             <tr>
               <td style="padding-top: 5px; text-align: center">
-                <p style="font-size: 18px">Instituto Ite te envio el siguiente mensaje.</p>
+                <p style="font-size: 18px"></p>
                 <h3
                   style="
                     padding-top: 7px;
@@ -1813,7 +1813,7 @@
                     font-size: 40px;
                   "
                 >
-                  {{$message->subject}}
+                  {{$mensaje->subject}}
                 </h3>
               </td>
             </tr>
@@ -1843,13 +1843,13 @@
                     font-size: 18px;
                   "
                 >
-                  {{$message->body}}
+                  {{$mensaje->body}}
                   {{-- <p>
                     My Son is ras semper sodales sapien, eget sagittis purus
                     porttitor sed. Aliquam in urna urna. Suspendedisse commodo
                     feugiat sem, dictum porttitor metus accumsan et. Duis varius
                     ultrices neque, et vulutate nulla elementum non.
-                  </p>--}}
+                  </p> --}}
 
                   <p style="padding-top: 34px; font-weight: bold">
                     David Eduardo

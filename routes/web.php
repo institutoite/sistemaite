@@ -270,6 +270,7 @@ Route::post('user/guardar', "UserController@guardar")->name('users.guardar');
 
 
 
+
 Route::get('apoderado/existente/{persona}', 'TelefonoController@apoderadoExistente')->name('apoderado.existente');
 Route::get('telefono/agregar/{persona_id}/{apoderado_id}', 'TelefonoController@agregarApoderado')->name('agregar.apoderado');
 Route::post('guardar/apoderado/existente', 'TelefonoController@guardarApoderadoExistente')->name('guardar.apoderado.existente');
@@ -625,7 +626,7 @@ Route::resource('role', RoleController::class)->names('role');
 
 Route::resource('rolusers', RolUsersController::class)->only(['index', 'edit', 'update'])->names('rolusers');
 
-Route::get('messages',[MessageController::class, 'create'])->name('messages.create');
+Route::get('messages/{id}',[MessageController::class, 'create'])->name('messages.create');
 
 Route::get('messages/{message}',[MessageController::class, 'show'])->name('messages.show');
 

@@ -33,10 +33,12 @@
 
                     <div class="form-group">
                         <div>
-                            {!! Form::label('to_user_id', 'Destinatario') !!}
-                            {!! Form::select('to_user_id', $users, null, ['class'=> 'form-control']) !!}
+                            {!! Form::label('to_user_email', 'Destinatario') !!}
+                            {!! Form::text('to_user_email', $user->email, ['class'=> 'form-control', 'readonly' => 'true']) !!}
                         </div>
                     </div>
+
+                    {!! Form::hidden('to_user_id', $user->id) !!}
                     
                     {!! Form::submit('Enviar', ['class' => 'btn btn-primary']) !!}
 
