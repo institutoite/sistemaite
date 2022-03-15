@@ -46,7 +46,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[UserController::class,'quien'])->name('prueba');
+Route::get('prueba',[PersonaController::class,'unsuscribe'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -85,14 +85,13 @@ Route::post('persona/guardar/rapidingo',[PersonaController::class,'guardarRapidi
 Route::get('persona/potenciales', function () {return view('persona.potenciales');});
 Route::get('potenciales', [PersonaController::class,'potenciales'])->name('personas.potenciales');
 Route::get('ver/potencial', [PersonaController::class,'verPotencial'])->name('personas.ver.potenciales');
-
+Route::get('persona/potenciales/unsuscribe', [PersonaController::class,'unsuscribe'])->name('personas.unsuscribe');
+Route::get('persona/potenciales/suscribe', [PersonaController::class,'suscribe'])->name('personas.suscribe');
 
 Route::resource('paises', "PaisController");
-
 Route::resource('telefonos', "TelefonoController");
-
-
 Route::resource('users', 'UserController');
+
 Route::get('quien', [UserController::class,'quien'])->name('quien');
 
 Route::resource('ciudades', "CiudadController");

@@ -246,22 +246,26 @@ class PersonaController extends Controller
         $persona->apellidop = $request->apellidop;
         $persona->telefono=$request->telefono;
         $persona->habilitado = 0;
+        $persona->votos = 1;
+
         $persona->papelinicial = 'estudiante';
         $persona->save();
 
         $persona->userable()->create(['user_id'=>Auth::user()->id]);
 
         $observacion = new Observacion();
-        $observacion->observacion = "Vino a a preguntar por nuestros servicios";
+        $observacion->observacion = $request->observacion;
         $observacion->activo = 1;
         $observacion->observable_id = $persona->id;
         $observacion->observable_type = "App\Models\Persona";
         $observacion->save();
+        $observacion->userable()->create(['user_id'=>Auth::user()->id]);
         
         $apoderado = new Persona();
         $apoderado->nombre = $request->nombrefamiliar;
         $apoderado->apellidop = $request->apellidopfamiliar;
         $apoderado->telefono=$request->telefonofamiliar;
+        $apoderado->votos=0;
         $apoderado->papelinicial = 'apoderado';
         $apoderado->save();
 
@@ -273,6 +277,7 @@ class PersonaController extends Controller
         $observacion->observable_id = $apoderado->id;
         $observacion->observable_type = "App\Models\Persona";
         $observacion->save();
+        $observacion->userable()->create(['user_id'=>Auth::user()->id]);
         $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
     }
 
@@ -344,9 +349,7 @@ class PersonaController extends Controller
      */
     public function update(PersonaUpdateRequest $request, Persona $persona)
     {
-
         $observacion=$persona->observaciones;
-        //dd($observacion);
         $persona->nombre = $request->nombre;
         $persona->apellidop = $request->apellidop;
         $persona->apellidom = $request->apellidom;
@@ -355,6 +358,7 @@ class PersonaController extends Controller
         $persona->carnet = $request->carnet;
         $persona->expedido = $request->expedido;
         $persona->genero = $request->genero;
+        $persona->habilitado=1;
         //$persona->observacion = $request->observacion;
         /* Guardar una imagen en storage si llega una foto*/
   
@@ -536,7 +540,6 @@ class PersonaController extends Controller
         return redirect()->route('personas.index');
     }
     public function potenciales(Request $request){
-        
         $potenciales= Persona::where('habilitado',0)
         ->where('votos',1)
         ->select('id','personas.nombre','personas.apellidop')  
@@ -548,38 +551,30 @@ class PersonaController extends Controller
                 ->toJson();
     }
     public function verPotencial(Request $request){
-        $request->persona_id=43;
+        //$request->persona_id=38;
         $potencial= Persona::findOrFail($request->persona_id);
-        //return response()->json($potencial);
-        // $observaciones=$potencial->observaciones;
-        $observaciones=Observacion::join('personas','personas.id','observable_id')
-                ->join('userables','userables.userable_id','observacions.id')
-                ->where('observable_type',Persona::class)
-                ->where('observable_id',$potencial->id)
-                ->get();
+        
+        $observaciones=Observacion::join('userables','userables.userable_id','observacions.id')
+        ->join('users','users.id','userables.user_id') 
+        ->where('observacions.observable_type',Persona::class)
+        ->where('observacions.observable_id',$request->persona_id)
+        ->where('userable_type',Observacion::class)
+        ->get();
         $apoderados=$potencial->apoderados;
         $autorPotencial=User::findOrFail($potencial->userable->user_id)->name;
-
+        $data=['potencial'=>$potencial,'observaciones'=>$observaciones,'apoderados'=>$apoderados,'autorPotencial'=>$autorPotencial];
+        return response()->json($data);
+        $apoderados=$potencial->apoderados;
+        $autorPotencial=User::findOrFail($potencial->userable->user_id)->name;
         $data=['potencial'=>$potencial,'observaciones'=>$observaciones,'apoderados'=>$apoderados,'autorPotencial'=>$autorPotencial];
         return response()->json($data);
     }
 
-    public function CambiarVotos(Request $request){
+    public function unsuscribe(Request $request){
         $persona= Persona::findOrFail($request->persona_id);
-        $persona=$request->votos;
+        $persona->votos=0;
         $persona->save();
-        return response()->json([$mensaje=>"El cambio se realizo correctamente"]);
+        return response()->json(["mensaje"=>"El cambio se realizo correctamente"]);
     }
-
-    public function invertirHabilitado(Request $request){
-        $persona= Persona::findOrFail($request->persona_id);
-        $persona=$request->habilitado;
-        $persona->save();
-        return response()->json([$mensaje=>"El cambio se realizo correctamente"]);
-    }
-
-    
-
-
 }
 //

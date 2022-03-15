@@ -74,6 +74,8 @@
                         },  
                     }
             );
+
+
             $('table').on('click', '.observacion', function(e) {
                 e.preventDefault(); 
                 persona_id=$(this).parent().parent().find('td').first().html();
@@ -83,6 +85,33 @@
                 $("#modal-gregar-observacion").modal("show");
             });
 
+
+            $('table').on('click', '.unsuscribe', function(e) {
+                e.preventDefault(); 
+                persona_id=$(this).parent().parent().find('td').first().html();
+                //console.log(persona_id);
+                $.ajax({
+                    url : "../persona/potenciales/unsuscribe",
+                    data:{ persona_id:persona_id },
+                    success : function(json) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            })
+                            Toast.fire({
+                            type: 'success',
+                            title: "Guardado corectamente: "+ json.mensaje,
+                            })
+                        $('#potenciales').DataTable().ajax.reload();
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+            });
+        
             $('table').on('click','.ver',function (e) {
                 e.preventDefault(); 
                 persona_id=$(this).parent().parent().find('td').first().html();
@@ -94,7 +123,7 @@
                         persona_id:persona_id,
                     },
                     success: function(json) {
-                        //console.log(json.observaciones); 
+                        console.log(json); 
                         $("#modal-mostrar").modal("show");
                         $("#tabla-mostrar-observaciones").empty();
                         $("#tabla-mostrar-potencial").empty();
@@ -113,36 +142,19 @@
                         
                         $("#tabla-mostrar-potencial").append($html);
 
-                        $htmlObservaciones="";
                         for (let j in json.observaciones) {
+                            $htmlObservaciones="";
                             $htmlObservaciones+="<tr id='"+json.observaciones[j].id +"''><td>"+ json.observaciones[j].id +"</td>"+"<td>"+json.observaciones[j].observacion+"</td>";
                             $htmlObservaciones+="<td>"+ moment(json.observaciones[j].created_at).format('LLLL')  +"</td>";
-                            tipo_id=json.observaciones[j].id;
-                            tipo_type="Observacion";
-
-                           
-                                                            
-                            //$htmlObservaciones+="<td>dsfs</td>";
+                            $htmlObservaciones+="<td>"+ json.observaciones[j].name +"</td>";
                             $htmlObservaciones+="<td>";
                             $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 editarobservacion' title='Editar esta Observacion'>";
                             $htmlObservaciones+="<i class='fa fa-fw fa-edit text-primary'></i></a>";
                             $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 eliminarobservacion' title='Eliminar esta observacion'>";
                             $htmlObservaciones+="<i class='fas fa-trash-alt text-danger'></i>";
-                            $htmlObservaciones+="</td></tr>";
+                            $htmlObservaciones+="</td>";
                             
-                            Quienes({ tipo_id:69,tipo_type:"Observacion"})
-                                .then(function(datosDevueltos){
-                                    // console.log(datosDevueltos.user[0].name);
-                                    // $("#"+json.observaciones[j].id).find('td').first().html("<td>"+ datosDevueltos.user[0].name +"</td>");
-                                   //var t= $('#tabla-mostrar-observaciones').find('tr').append('<td>'+ datosDevueltos.user[0].name +'</td>');
-                                   htmlObservaciones+='<td>'+ datosDevueltos.user[0].name +'</td>';
-                                   console.log(t);
-                                }, function(errorLanzado){
-                                    //console.log(errorLanz);
-                            });
-
                             $("#tabla-mostrar-observaciones").append($htmlObservaciones);
-                            
                         }
                         
                         $htmlApoderados="";
