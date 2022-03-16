@@ -33,6 +33,10 @@ class Persona extends Model
         'fechanacimiento', 'created_at', 'updated_at',
     ];
 
+    public function interests() {
+        return $this->belongsToMany(Interest::class);
+    }
+
     public function refenciados()
     {
         return $this->hasMany(Persona::class);

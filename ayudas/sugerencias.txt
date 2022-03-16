@@ -18,4 +18,4 @@ que se cambien de campo cuando se presiona enter en todos los formularios valida
 cuando le demos finalizar una clases que guarde la hora que se fue 
 
 verificar las licencias que se muestran cuando se esta mostrando una programacion parece que es lo mismo de Mate= COmputacion 
-
+validar actuzalidar un motivo sale que ya existe 

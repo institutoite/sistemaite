@@ -23,6 +23,7 @@ use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\InscripcioneController;
 use App\Http\Controllers\TemaController;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\InterestController;
 
 use App\Http\Controllers\MessageController;
 
@@ -46,7 +47,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[PersonaController::class,'unsuscribe'])->name('prueba');
+Route::get('prueba',[InterestController::class,'actualizar'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -74,10 +75,12 @@ Route::get('personas/opciones/{id}', function ($id) {
     return view('persona.opciones');
 })->name('personas.opciones');
 
+
+
+
 Route::put('persona/{persona}/subirfoto','PersonaController@guardarfoto')->name('guardarfoto');
 Route::put('persona/{persona}/subirfotojpg', 'PersonaController@guardarfotojpg')->name('guardarfotojpg');
 Route::get('personas/crear/rapidingo/', function () {return view('persona.crearrapido');})->name('crear.persona.rapido');
-
 Route::resource('personas', "PersonaController");
 Route::get('persona/papeles/{persona_id}', 'PersonaController@configurar_papeles')->name('personas.agregar.papel');
 Route::post('guardar/papeles/{persona}', 'PersonaController@guardarNuevoPapel')->name('guardar.nuevo.papel');
@@ -296,6 +299,16 @@ Route::get('tipomotivo/actualizar/', "TipomotivoController@actualizar")->name("t
 Route::delete('eliminar/tipomotivo/{tipomotivo}', 'TipomotivoController@destroy')->name('eliminar.tipomotivo');
 Route::get('tipomotivo/create',[TipomotivoController::class,'create'])->name('tipomotivo.create');
 Route::post('tipomotivo/guardar',[TipomotivoController::class,'store'])->name('tipomotivo.store');
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  INTEREST  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::get('interests', [InterestController::class,'index'])->name('interest.index');
+Route::get('listar/interests', [InterestController::class,'listar'])->name('interest.ajax');
+Route::get('interest/mostrar', "InterestController@mostrar")->name("interest.mostrar");
+Route::get('interest/editar/', "InterestController@editar")->name("interest.editar");
+Route::get('interest/actualizar/', "InterestController@actualizar")->name("interest.actualizar");
+Route::delete('eliminar/interest/{interest}', 'InterestController@destroy')->name('eliminar.interest');
+Route::get('interest/create',[InterestController::class,'create'])->name('interest.create');
+Route::post('interest/guardar',[InterestController::class,'store'])->name('interest.store');
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  M O T I V O S %%%%%%%%%%%%%%%%%%%%%%%%%%*/
