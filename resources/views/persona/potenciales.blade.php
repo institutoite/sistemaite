@@ -160,7 +160,8 @@
                         $htmlApoderados="";
                         for (let j in json.apoderados) {
                             $htmlApoderados+="<tr><td>"+ json.apoderados[j].nombre +"</td>"+"<td>"+json.apoderados[j].apellidop+"</td>";
-                            $htmlApoderados+="<td><a target='_blank' href=https://wa.me/591"+json.apoderados[j].telefono +">"+ json.apoderados[j].telefono +"</a></td>";
+                            $htmlApoderados+="<td><a target='_blank' href=https://wa.me/591"+json.apoderados[j].telefono +">"+ json.apoderados[j].telefono  +"</a></td>";
+                            $htmlApoderados+="<td><a href=tel:"+ json.apoderados[j].telefono + "><i class='fa-solid fa-phone-flip'></i></a> <a target='_blank' href=https://wa.me/591"+json.apoderados[j].telefono +"> <i class='fa-brands fa-whatsapp'></i> </a> </td>";
                             $htmlApoderados+="<td>"+ moment(json.apoderados[j].created_at).format('LLLL') +"</a></td>";
                             $htmlApoderados+="<td>"+ "david" +"</td>";
                             $htmlApoderados+="<td>"+ json.apoderados[j].pivot.parentesco +"</td>";

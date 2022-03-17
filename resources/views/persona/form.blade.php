@@ -295,18 +295,18 @@
         {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO ZONA  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
-            <select class="form-control @error('zona_id') is-invalid @enderror" name="zona_id" id="zona">
-                <option value="" > Seleccione una Zona</option>
-                @foreach ($zonas as $zona)
-                    @isset($persona)     
-                        <option  value="{{$zona->id}}" {{$zona->id==$persona->zona_id ? 'selected':''}}>{{$zona->zona}}</option>     
-                    @else
-                        <option value="{{ $zona->id }}" {{ old('zona_id') == $zona->id ? 'selected':'' }} >{{ $zona->zona }}</option>
-                    @endisset  
-                @endforeach
-            </select>
-            <label for="zona_id">Elija zona*</label>
-        </div>
+                <select class="form-control @error('zona_id') is-invalid @enderror" name="zona_id" id="zona">
+                    <option value="" > Seleccione una Zona</option>
+                    @foreach ($zonas as $zona)
+                        @isset($persona)     
+                            <option  value="{{$zona->id}}" {{$zona->id==$persona->zona_id ? 'selected':''}}>{{$zona->zona}}</option>     
+                        @else
+                            <option value="{{ $zona->id }}" {{ old('zona_id') == $zona->id ? 'selected':'' }} >{{ $zona->zona }}</option>
+                        @endisset  
+                    @endforeach
+                </select>
+                <label for="zona_id">Elija zona*</label>
+            </div>
         </div>
 
     </div>

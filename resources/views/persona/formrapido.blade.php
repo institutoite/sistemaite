@@ -3,26 +3,32 @@
         FORMULARIO REGISTRO RAPIDO
     </div>
     <div class="card-body">
+            
+            <hr>
+            <legend class="text-gray">Datos del Estudiante</legend> 
+            {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO NOMBRE %%%%%%%%%%%%%%%%%%%%%% --}}
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                     @if($errors->has('nombre'))
                         <span class="text-danger"> {{ $errors->first('nombre')}}</span>
                     @endif
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                     @if($errors->has('apellidop'))
                         <span class="text-danger"> {{ $errors->first('apellidop')}}</span>
                     @endif
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
                     @if($errors->has('telefono'))
                         <span class="text-danger"> {{ $errors->first('telefono')}}</span>
                     @endif
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                    @if($errors->has('como'))
+                        <span class="text-danger"> {{ $errors->first('como')}}</span>
+                    @endif
+                </div>
             </div>
-            <hr>
-            <legend class="text-gray">Datos del Estudiante</legend> 
-            {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO NOMBRE %%%%%%%%%%%%%%%%%%%%%% --}}
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" > 
                     <div class="form-floating mb-3 text-gray">
@@ -41,7 +47,7 @@
                 {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO APELLIDO MATERNO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3" >
                     <div class="form-floating mb-3 text-gray">
-                        <input class="form-control" type="tel" id="phone" name="telefono" value="{{old('telefono',$persona->telefono ?? '')}}">
+                        <input class="form-control @error('telefono') is-invalid @enderror" type="tel" id="phone" name="telefono" value="{{old('telefono',$persona->telefono ?? '')}}">
                         <label for="telefono">Telefono*</label>
                     </div>
                 </div>
@@ -84,7 +90,28 @@
 
             <hr>
             <legend class="text-gray">Datos del familiar</legend> 
-           
+           <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                    @if($errors->has('nombrefamiliar'))
+                        <span class="text-danger"> {{ $errors->first('nombrefamiliar')}}</span>
+                    @endif
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                    @if($errors->has('apellidopfamiliar'))
+                        <span class="text-danger"> {{ $errors->first('apellidopfamiliar')}}</span>
+                    @endif
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                    @if($errors->has('telefonofamiliar'))
+                        <span class="text-danger"> {{ $errors->first('telefonofamiliar')}}</span>
+                    @endif
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                    @if($errors->has('parentesco'))
+                        <span class="text-danger"> {{ $errors->first('parentesco')}}</span>
+                    @endif
+                </div>
+            </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" > 
                     <div class="form-floating mb-3 text-gray">
@@ -102,7 +129,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3" >
                     <div class="form-floating mb-3 text-gray">
-                        <input class="form-control" type="tel" id="phone" name="telefonofamiliar" value="{{old('telefonofamiliar',$persona->telefonofamiliar ?? '')}}">
+                        <input class="form-control @error('telefonofamiliar') is-invalid @enderror" type="tel" id="phone" name="telefonofamiliar" value="{{old('telefonofamiliar',$persona->telefonofamiliar ?? '')}}">
                         <label for="telefonofamiliar">Telefonofamiliar*</label>
                     </div>
                 </div>
@@ -153,7 +180,26 @@
                     </div>    
                 </div>
             </div>
-
+        
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                    @if($errors->has('interests'))
+                        <span class="text-danger"> {{ $errors->first('interests')}}</span>
+                    @endif
+            </div>
+        </div>
+        <div class="row">
+            <div class="card bg-warning">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 @error('interests') is-invalid @enderror">
+                    @foreach ($interests as $interest)
+                        <div class="form-check form-switch form-check-inline mb-2 mt-2 ml-2 mr-2">
+                            <input class="form-check-input" type="checkbox" name="interests[{{$interest->id}}]" value="{{$interest->interest}}" id="{{$interest->interest}}">
+                            <label class="form-check-label" for="{{$interest->id}}">{{$interest->interest}}</label>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
@@ -163,53 +209,15 @@
             </div>
         </div>
         
-        <textarea rows="5" placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" >{{old('observacion',$observacion ?? '')}}</textarea>
+        <textarea rows="10" class="@error('interests') is-invalid @enderror" placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" >{{old('observacion',$observacion ?? '')}}</textarea>
+        
+        
+       
 
-        </div>
     </div>
 </div>
 
-
-    
-    
-
-
-
-
-
-
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-            @if($errors->has('como'))
-                <span class="text-danger"> {{ $errors->first('como')}}</span>
-            @endif
-        </div>
-        
-    </div>
-    {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO GENERO  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-
-    
-        {{--%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO COMO SE INFORMO  --}}
-        
-        
-    </div>
-{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO OCULTO CON QUE PAPEL LLEGA A ITE papel de profesor papel de practico etc ---}}
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-            @if($errors->has('nombre'))
-                <span class="text-danger"> {{ $errors->first('nombre')}}</span>
-            @endif
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-            @if($errors->has('apellidop'))
-                <span class="text-danger"> {{ $errors->first('apellidop')}}</span>
-            @endif
-        </div>
-        
-    </div>
-
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO NOMBRE %%%%%%%%%%%%%%%%%%%%%% --}}
-
 <div class="modal" tabindex="-1" id="modal-ite">
     <div class="modal-dialog modal-lg modalito">
         <div class="modal-content">

@@ -20,10 +20,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PersonaStoreRequest;
 use App\Http\Requests\PersonaUpdateRequest;
 use App\Http\Requests\PersonaApoderadaRequestStore;
+use App\Http\Requests\PersonaRapidingoGuardarRequest;
 
 use App\Models\Inscripcione;
 use App\Models\Observacion;
 use App\Models\Computacion;
+use App\Models\Interest;
 use App\Models\Pais;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
@@ -62,6 +64,11 @@ class PersonaController extends Controller
         $paises=Pais::get();
         $zonas=Zona::get();
         return view('persona.crear',compact('ciudades','paises','zonas'));
+    }
+    public function crearRapido()
+    {
+        $interests=Interest::get();
+        return view('persona.crearrapido',compact('interests'));
     }
 
     /**
@@ -240,7 +247,7 @@ class PersonaController extends Controller
         return redirect()->route('telefonos.persona',['persona'=>$persona,'apoderados'=>$apoderados])->with('mensaje','Contacto Creado Corectamente');
 
     }
-    public function guardarRapidingo(Request $request){
+    public function guardarRapidingo(PersonaRapidingoGuardarRequest $request){
         $persona=new Persona();
         $persona->nombre = $request->nombre;
         $persona->apellidop = $request->apellidop;
@@ -250,6 +257,7 @@ class PersonaController extends Controller
 
         $persona->papelinicial = 'estudiante';
         $persona->save();
+        $persona->interests()->sync(array_keys($request->interests));
 
         $persona->userable()->create(['user_id'=>Auth::user()->id]);
 

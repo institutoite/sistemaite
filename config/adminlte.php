@@ -742,6 +742,22 @@ return [
                 ],
             ],
         ],
+//** %%%%%%%%%%%%%%%%%%  MENU INTERESTS %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Intereses',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'interests',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
 //** %%%%%%%%%%%%%%%%%%  MENU Feriados %%%%%%%%%%%%% */
         
         [
