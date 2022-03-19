@@ -6,29 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateInterestPersonaTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
+    
+
     public function up()
     {
         Schema::create('interest_persona', function (Blueprint $table) {
             
             $table->unsignedInteger('interest_id');
             $table->integer('persona_id')->unsigned();
-
             $table->foreign('interest_id')->references('id')->on('interests');
             $table->foreign('persona_id')->references('id')->on('personas');
 
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('interest_persona');

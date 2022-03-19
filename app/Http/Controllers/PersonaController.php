@@ -63,7 +63,8 @@ class PersonaController extends Controller
         $ciudades=Ciudad::get();
         $paises=Pais::get();
         $zonas=Zona::get();
-        return view('persona.crear',compact('ciudades','paises','zonas'));
+        $interests=Interest::all();
+        return view('persona.crear',compact('ciudades','paises','zonas','interests'));
     }
     public function crearRapido()
     {
@@ -317,6 +318,13 @@ class PersonaController extends Controller
         $zonas = Zona::get();
         $observacion = Observacion::where('observable_id', $persona->id)
             ->where('observable_type', Persona::class)->get()->first()->observacion;
+        $interests_currents=$persona->interests; 
+        $ids=[];
+        foreach ($interests_currents as $interest) {
+            $ids[] = $interest->id;
+        }
+        $interests_faltantes = Interest::whereNotIn('id', $ids)->get();
+        //dd($interests_faltantes);
         
         switch ($persona->papelinicial) {
 
@@ -345,7 +353,7 @@ class PersonaController extends Controller
                 break;
         }
 
-        return view("persona.editar",compact('persona','paises','ciudades','zonas','observacion'));
+        return view("persona.editar",compact('persona','paises','ciudades','zonas','observacion','interests_currents','interests_faltantes'));
     } 
 
     /**

@@ -340,9 +340,43 @@
                 <label for="telefono">Telefono*</label>
             </div>
         </div>
-
     </div>
-    
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                @if($errors->has('interests'))
+                    <span class="text-danger"> {{ $errors->first('interests')}}</span>
+                @endif
+        </div>
+    </div>
+    <div class="row">
+        <div class="card bg-warning">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 @error('interests') is-invalid @enderror">
+                @isset($persona)
+                    @foreach ($interests_currents as $current)
+                        <div class="form-check form-switch form-check-inline mb-2 mt-2 ml-2 mr-2">
+                            <input class="form-check-input" type="checkbox" name="interests[{{$current->id}}]" checked value="{{$current->interest}}" id="{{$current->interest}}">
+                            <label class="form-check-label" for="{{$interest->id}}">{{$current->interest}}</label>
+                        </div>
+                    @endforeach
+                    @foreach ($interests_faltantes as $faltante)
+                        <div class="form-check form-switch form-check-inline mb-2 mt-2 ml-2 mr-2">
+                            <input class="form-check-input" type="checkbox" name="interests[{{$faltante->id}}]"  value="{{$faltante->interest}}" id="{{$faltante->interest}}">
+                            <label class="form-check-label" for="{{$faltante->id}}">{{$faltante->interest}}</label>
+                        </div>
+                    @endforeach
+                @else
+                    @foreach ($interests as $interest)
+                        <div class="form-check form-switch form-check-inline mb-2 mt-2 ml-2 mr-2">
+                            <input class="form-check-input" type="checkbox" name="interests[{{$interest->id}}]" value="{{$interest->interest}}" id="{{$interest->interest}}">
+                            <label class="form-check-label" for="{{$interest->id}}">{{$interest->interest}}</label>
+                        </div>
+                    @endforeach
+                @endisset
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
                 @if($errors->has('observacion'))
