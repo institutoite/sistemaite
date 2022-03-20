@@ -51,6 +51,7 @@ class DatabaseSeeder extends Seeder
             HomeSeeder::class,
             HomescheduleSeeder::class,
             RoleSeeder::class,
+            InterestSeeder::class,
 
         ]);
 

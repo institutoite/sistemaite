@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use App\Models\Interest;
+use App\Models\Persona;
+
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
+
+class PersonaReporteController extends Controller
+{
+
+    public function potencialesPorInteresView(){
+
+        $interests=Interest::all();
+        return view('reportes.potenciales_por_interest', compact('interests'));
+    }
+    public function potencialesPorInteres(Request $request){
+        $potenciales=Persona::join('observacions','observacions.observable_id','personas.id')
+        ->join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interest_persona.interest_id','interests.id')
+        ->join('userables','userables.userable_id','personas.id')
+        ->join('users','users.id','userables.user_id') 
+        ->where('observacions.observable_type',Persona::class)
+        ->where('votos',1)
+        ->where('habilitado',0)
+        ->select('personas.id','nombre','apellidop','telefono','observacions.observacion','interest','personas.created_at','name')
+        ->get();
+        return DataTables::of($potenciales)
+                ->rawColumns(['observacion'])
+                ->toJson();
+    }
+    public function potencialesDeUnaFecha(Request $request){
+        
+    }
+    public function potencialesDeUnIntervalo(Request $request){
+        
+    }
+
+    
+
+}

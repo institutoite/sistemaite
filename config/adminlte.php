@@ -566,6 +566,41 @@ return [
                 ],
             ],
         ],
+        /**
+         *  Menu potenciales 
+         */
+        [
+            'text'    => 'Potenciales',
+            'icon'    => 'fas fa-keyboard',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Por intereses',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'reporte/potenciales',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Por fecha',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => '#',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'entre fechas',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => '#',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'por usuario',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => '#',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
 
         
         /**

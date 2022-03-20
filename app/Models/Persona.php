@@ -34,7 +34,7 @@ class Persona extends Model
     ];
 
     public function interests() {
-        return $this->belongsToMany(Interest::class);
+        return $this->belongsToMany(Interest::class)->withTimestamps();
     }
 
     public function refenciados()

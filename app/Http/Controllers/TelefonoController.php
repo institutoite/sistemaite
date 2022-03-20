@@ -35,6 +35,13 @@ class TelefonoController extends Controller
         $apoderados= $persona->apoderados;
         return view('telefono.index',compact('persona','apoderados'));
     }
+    public function mostrarvistaConIdPersona($persona_id){
+        //return response()->json(['d'=>$persona_id]);
+        $persona=Persona::find($persona_id);
+        $apoderados=$persona->apoderados;
+
+        return view('telefono.index',compact('persona','apoderados'));
+    }
 
     /**
      * Show the form for creating a new resource.

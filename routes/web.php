@@ -23,6 +23,7 @@ use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\InscripcioneController;
 use App\Http\Controllers\TemaController;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\PersonaReporteController;
 use App\Http\Controllers\InterestController;
 
 use App\Http\Controllers\MessageController;
@@ -47,7 +48,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[InterestController::class,'actualizar'])->name('prueba');
+Route::get('prueba',[PersonaReporteController::class,'potencialesPorInteres'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -88,10 +89,12 @@ Route::get('ver/potencial', [PersonaController::class,'verPotencial'])->name('pe
 Route::get('persona/potenciales/unsuscribe', [PersonaController::class,'unsuscribe'])->name('personas.unsuscribe');
 Route::get('persona/potenciales/suscribe', [PersonaController::class,'suscribe'])->name('personas.suscribe');
 
+Route::get('reporte/potenciales', [PersonaReporteController::class,'potencialesPorInteresView']);
+Route::get('reporte/potenciales/interest', [PersonaReporteController::class,'potencialesPorInteres'])->name('reporte.potenciales.interest');
+
 Route::resource('paises', "PaisController");
 Route::resource('telefonos', "TelefonoController");
 Route::resource('users', 'UserController');
-
 Route::get('quien', [UserController::class,'quien'])->name('quien');
 
 Route::resource('ciudades', "CiudadController");
@@ -358,6 +361,7 @@ Route::get('inscripciones/vigentes/ajax', "InscripcioneController@vigentesAjax")
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TELEFONOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('telefonos/vista/{persona}','TelefonoController@mostrarvista')->name('telefonos.persona');
+Route::get('telefono/vista/{persona_id}','TelefonoController@mostrarvistaConIdPersona')->name('telefonos.personaid');
 Route::get('telefono/crear/{persona}', 'TelefonoController@crear')->name('telefonos.crear');
 Route::get('telefonos/{persona}', 'PersonaController@index')->name('telefono.de.persona');
 Route::get('telefono/{persona}/{apoderado_id}/editar','TelefonoController@editar')->name('telefono.editar');

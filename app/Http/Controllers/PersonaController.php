@@ -80,6 +80,7 @@ class PersonaController extends Controller
      */
     public function store(PersonaStoreRequest $request)
     {
+       
         $persona=new Persona();
         $persona->nombre = $request->nombre;
         $persona->apellidop = $request->apellidop;
@@ -114,9 +115,12 @@ class PersonaController extends Controller
         $persona->zona_id = $request->zona_id;
         $persona->save();
 
+
+        $persona->interests()->sync(array_keys($request->interests));
+
         $user = new User();
         $user->email =strtolower(Str::substr($persona->nombre, 1, 2).$persona->apellidop.$persona->id)."@ite.com.bo" ;
-        $user->name = ucfirst($persona->name.$persona->id);
+        $user->name = ucfirst(strtolower($persona->nombre).$persona->id);
         $user->persona_id = $persona->id;
         $user->password = Hash::make($user->name."*");
         $user->foto = "estudiantes/sinperfil.png";
@@ -407,6 +411,9 @@ class PersonaController extends Controller
         $persona->zona_id = $request->zona_id;
         //dd($persona);
         $persona->save();
+        
+        $persona->interests()->sync(array_keys($request->interests));
+
 
         $observacion_actual = Observacion::where('observable_id',$persona->id)
                                 ->where('observable_type',Persona::class)->get()->first();
@@ -591,6 +598,29 @@ class PersonaController extends Controller
         $persona->votos=0;
         $persona->save();
         return response()->json(["mensaje"=>"El cambio se realizo correctamente"]);
+    }
+    public function ImprimirPotencial($persona_id){
+        $inscripcion=Persona::findOrFail($inscripcione_id);
+        $programacion = Persona::join('materias', 'programacions.materia_id', '=', 'materias.id')
+            ->join('aulas', 'programacions.aula_id', '=', 'aulas.id')
+            ->join('docentes', 'programacions.docente_id', '=', 'docentes.id')
+            ->join('personas', 'personas.id', '=', 'docentes.persona_id')
+            ->select('programacions.fecha', 'hora_ini','programacions.habilitado', 'hora_fin', 'horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado')
+            ->orderBy('fecha', 'asc')
+            ->where('inscripcione_id', '=', $inscripcione_id)->get();
+        $estudiante = Estudiante::findOrFail($inscripcion->estudiante_id);
+        $persona = $estudiante->persona;
+        $colegio=Colegio::find($estudiante->grados->last()->pivot->colegio_id);
+        $usuario=User::find($inscripcion->userable->user_id);
+        $modalidad=$inscripcion->modalidad;
+        $nivel=Nivel::findOrFail($estudiante->grados->last()->nivel_id);
+        $grado=Grado::findOrFail($estudiante->grados->last()->pivot->grado_id);
+        $dompdf = PDF::loadView('programacion.reporte', compact('grado','nivel','modalidad','usuario','programacion','persona','estudiante','persona','colegio','inscripcion'));
+        /**entrae a la persona al cual corresponde esta inscripcion */
+        $fecha_actual = Carbon::now();
+        $fecha_actual->isoFormat('DD-MM-YYYY-HH:mm:ss');
+        $dompdf->setPaper('letter','portrait');
+        return $dompdf->download($persona->id . '_' . $fecha_actual . '_' . $persona->nombre . '_' . $persona->apellidop . '.pdf');
     }
 }
 //

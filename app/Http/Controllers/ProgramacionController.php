@@ -585,8 +585,6 @@ class ProgramacionController extends Controller
             ->select('programacions.fecha', 'hora_ini','programacions.habilitado', 'hora_fin', 'horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado')
             ->orderBy('fecha', 'asc')
             ->where('inscripcione_id', '=', $inscripcione_id)->get();
-
-
         $estudiante = Estudiante::findOrFail($inscripcion->estudiante_id);
         $persona = $estudiante->persona;
         $colegio=Colegio::find($estudiante->grados->last()->pivot->colegio_id);

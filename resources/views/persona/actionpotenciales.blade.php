@@ -9,7 +9,10 @@
 <a href="" class="observacion" id='{{$id}}' title="Agregar observacion">
     <i class="fa-solid fa-comment-medical text-secondary"></i>
 </a>
-<a href="" class="unsuscribe" id='{{$id}}' title="Agregar observacion">
+<a href="" class="unsuscribe" id='{{$id}}' title="Dar de baja">
     <i class="fa-solid fa-download text-danger"></i>
 </a>
+{{-- <a href="{{route('imprimir.potenciales')}}" class="print" id='{{$id}}' title="Imprimir para cliente">
+    <i class="fa-solid fa-print"></i>
+</a> --}}
 
