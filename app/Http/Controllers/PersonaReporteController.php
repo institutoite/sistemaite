@@ -27,6 +27,7 @@ class PersonaReporteController extends Controller
         ->where('observacions.observable_type',Persona::class)
         ->where('votos',1)
         ->where('habilitado',0)
+        ->where('date(created_at)',)
         ->select('personas.id','nombre','apellidop','telefono','observacions.observacion','interest','personas.created_at','name')
         ->get();
         return DataTables::of($potenciales)

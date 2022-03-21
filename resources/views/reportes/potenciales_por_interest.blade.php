@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
 @stop
 
-@section('title', 'Motivos')
+@section('title', 'Potenciales')
 @section('plugins.Jquery', true)
 @section('plugins.Sweetalert2', true)
 @section('plugins.Datatables', true)
@@ -87,7 +87,7 @@
                 "createdRow": function( row, data, dataIndex ) {
                     $(row).attr('id',data['id']);
                     $('td', row).eq(2).html("<a target='_blank' href='https://wa.me/591"+ data['telefono'] +"'>"+ data['telefono']+"</a>"+"<a href='../telefono/vista/"+ data['id'] +"'> <i class='fa-solid fa-people-roof'></i> </a>");                    
-                    $('td', row).eq(5).html(moment(data['created_at']).format('L'));
+                    $('td', row).eq(5).html(moment(data['created_at']).format('MM/DD/YYYY HH:mm'));
                 },
                 "ajax":{
                         'url':"../reporte/potenciales/interest",
