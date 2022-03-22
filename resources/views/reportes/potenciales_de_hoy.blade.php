@@ -3,11 +3,11 @@
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 
-     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
 @stop
 
-@section('title', 'Potenciales')
+@section('title', 'Potenciales de hoy')
 @section('plugins.Jquery', true)
 @section('plugins.Sweetalert2', true)
 @section('plugins.Datatables', true)
@@ -53,7 +53,6 @@
             </div>
         </div>
     </div>
-    
 @endsection
 
 @section('js')
@@ -90,7 +89,7 @@
                     $('td', row).eq(5).html(moment(data['created_at']).format('MM/DD/YYYY HH:mm'));
                 },
                 "ajax":{
-                        'url':"../reporte/potenciales/interest",
+                        'url':"../reporte/potenciales/hoy",
                     },
                 "columns": [
                     {data: 'id'},
@@ -109,38 +108,7 @@
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                 },
             });
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATA TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            // $('#interests').on('click', '.mostrar', function(e) {
-            //     e.preventDefault(); 
-            //     let id_interest =$(this).closest('tr').attr('id');
-            //     console.log(id_interest)
-            //     //var fila=$(this).json;
-            //     $.ajax({
-            //         url : "interest/mostrar",
-            //         data : { id :id_interest },
-            //         success : function(json) {
-
-            //             $("#modal-mostrar").modal("show");
-            //             $("#tabla-mostrar").empty();
-            //             $html="";
-            //             $html+="<tr><td>ID</td>"+"<td>"+ json.interest.id +"</td></tr>";
-            //             $html+="<tr><td>INTEREST</td>"+"<td>"+json.interest.interest+"</td></tr>";
-            //             // $html+="<tr><td>CREADO POR </td>"+"<td>"+json.user.name+"</td></tr>";
-            //             $html+="<tr><td>CREADO</td>"+"<td>"+ moment(json.interest.created_at).format('LLLL') +"</td></tr>";
-            //             $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.interest.updated_at).format('LLLL')+"</td></tr>";
-            //             $("#tabla-mostrar").append($html);
-            //         },
-            //         error : function(xhr, status) {
-
-            //             Swal.fire({
-            //             type: 'error',
-            //             title: 'Ocurrio un Error',
-            //             text: 'Saque una captura para mostrar al servicio Técnico!',
-            //             })
-            //         },
-            //     });
-            // });
+           
         });
     </script>
 

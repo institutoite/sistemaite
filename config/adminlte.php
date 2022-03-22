@@ -576,7 +576,7 @@ return [
             'classes'  => 'text-white text-bold bg-primary',
             'submenu' => [
                 [
-                    'text' => 'Por intereses',
+                    'text' => 'Reporte general',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'reporte/potenciales',
                     'classes'  => 'text-dark',
@@ -584,19 +584,13 @@ return [
                 [
                     'text' => 'Potenciales Hoy',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '',
+                    'url'  => 'potenciales/hoy',
                     'classes'  => 'text-dark',
                 ],
                 [
                     'text' => 'entre 2 fechas',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'por Usuario',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '',
+                    'url'  => 'potenciales/between',
                     'classes'  => 'text-dark',
                 ],
             ],

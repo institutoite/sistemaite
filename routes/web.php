@@ -90,7 +90,13 @@ Route::get('persona/potenciales/unsuscribe', [PersonaController::class,'unsuscri
 Route::get('persona/potenciales/suscribe', [PersonaController::class,'suscribe'])->name('personas.suscribe');
 
 Route::get('reporte/potenciales', [PersonaReporteController::class,'potencialesPorInteresView']);
+Route::get('potenciales/hoy', [PersonaReporteController::class,'potencialesHoyView']);
+Route::get('potenciales/between', [PersonaReporteController::class,'potencialesBetweenView']);
+Route::get('potenciales/user', [PersonaReporteController::class,'potencialesUserView']);
+
 Route::get('reporte/potenciales/interest', [PersonaReporteController::class,'potencialesPorInteres'])->name('reporte.potenciales.interest');
+Route::get('reporte/potenciales/hoy', [PersonaReporteController::class,'potencialesDeHoy'])->name('reporte.potenciales.hoy');
+Route::post('reporte/potenciales/between', [PersonaReporteController::class,'potencialesBetween'])->name('reporte.potenciales.between');
 
 Route::resource('paises', "PaisController");
 Route::resource('telefonos', "TelefonoController");

@@ -23,8 +23,8 @@
                                 {{ __('Potenciales Filtrar por Intereses') }}
                             </span>
                             <div class="float-right">
-                                <a href="{{ route('interest.create') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
-                                    {{ __('Crear Intereses') }}
+                                <a href="{{ url('potenciales/between') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
+                                    {{ __('Consultar de nuevo') }}
                                 </a>
                             </div>
                         </div>
@@ -45,7 +45,17 @@
                                         <th>USUARIO</th>
                                     </tr>
                                 </thead>
-                            {{-- se carga con ajax --}}
+                                @foreach ($potenciales as $potencial)
+                                    <tr>
+                                        <td>{{$potencial->id}}</td>
+                                        <td>{{$potencial->nombre}}</td>
+                                        <td>{{$potencial->telefono}}</td>
+                                        <td>{!! $potencial->observacion !!}</td>
+                                        <td>{{$potencial->interest}}</td>
+                                        <td>{{$potencial->created_at}}</td>
+                                        <td>{{$potencial->name}}</td>
+                                    </tr>
+                                @endforeach
                             </table>
                         </div>
                     </div>
@@ -57,10 +67,8 @@
 @endsection
 
 @section('js')
-    <script src="{{asset('dist/js/moment.js')}}"></script>
 
     <script src="https://kit.fontawesome.com/067a2afa7e.js" crossorigin="anonymous"></script>
-
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> 
@@ -72,11 +80,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
-
     <script>
         $(document).ready(function() {
-            
-             var tabla=$('#interests').dataTable({
+            var tabla=$('#interests').dataTable({
                 "responsive":true,
                 "searching":true,
                 "paging":   true,
@@ -84,15 +90,7 @@
                 "ordering": true,
                 "info":     true,
                 "dom":'<"toolbar">Bftrip',
-                "createdRow": function( row, data, dataIndex ) {
-                    $(row).attr('id',data['id']);
-                    $('td', row).eq(2).html("<a target='_blank' href='https://wa.me/591"+ data['telefono'] +"'>"+ data['telefono']+"</a>"+"<a href='../telefono/vista/"+ data['id'] +"'> <i class='fa-solid fa-people-roof'></i> </a>");                    
-                    $('td', row).eq(5).html(moment(data['created_at']).format('MM/DD/YYYY HH:mm'));
-                },
-                "ajax":{
-                        'url':"../reporte/potenciales/interest",
-                    },
-                "columns": [
+                 "columns": [
                     {data: 'id'},
                     {data: 'nombre'},
                     {data: 'telefono'},
@@ -101,46 +99,10 @@
                     {data: 'created_at'},
                     {data: 'name'},
                 ],
-                "columnDefs": [
-                    { responsivePriority: 1, targets: 0 },  
-                    { responsivePriority: 2, targets: -1 }
-                ],
                 "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                 },
             });
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATA TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            // $('#interests').on('click', '.mostrar', function(e) {
-            //     e.preventDefault(); 
-            //     let id_interest =$(this).closest('tr').attr('id');
-            //     console.log(id_interest)
-            //     //var fila=$(this).json;
-            //     $.ajax({
-            //         url : "interest/mostrar",
-            //         data : { id :id_interest },
-            //         success : function(json) {
-
-            //             $("#modal-mostrar").modal("show");
-            //             $("#tabla-mostrar").empty();
-            //             $html="";
-            //             $html+="<tr><td>ID</td>"+"<td>"+ json.interest.id +"</td></tr>";
-            //             $html+="<tr><td>INTEREST</td>"+"<td>"+json.interest.interest+"</td></tr>";
-            //             // $html+="<tr><td>CREADO POR </td>"+"<td>"+json.user.name+"</td></tr>";
-            //             $html+="<tr><td>CREADO</td>"+"<td>"+ moment(json.interest.created_at).format('LLLL') +"</td></tr>";
-            //             $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.interest.updated_at).format('LLLL')+"</td></tr>";
-            //             $("#tabla-mostrar").append($html);
-            //         },
-            //         error : function(xhr, status) {
-
-            //             Swal.fire({
-            //             type: 'error',
-            //             title: 'Ocurrio un Error',
-            //             text: 'Saque una captura para mostrar al servicio Técnico!',
-            //             })
-            //         },
-            //     });
-            // });
         });
     </script>
 
