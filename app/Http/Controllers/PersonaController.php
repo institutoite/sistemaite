@@ -233,6 +233,9 @@ class PersonaController extends Controller
         $apoderado->ciudad_id = $persona->ciudad_id;
         $apoderado->zona_id = $persona->zona_id;
 
+        $apoderado->habilitado = 0;
+        $apoderado->votos = 0;
+
         //$carbon = new \Carbon\Carbon();
         // $date = $carbon::createFromDate(1900, 1, 1);
         // $apoderado->fechanacimiento=$date;
@@ -240,12 +243,16 @@ class PersonaController extends Controller
         $apoderado->papelinicial = 'apoderado';
         $apoderado->save();
 
+        $apoderado->userable()->create(['user_id'=>Auth::user()->id]);
+
         $observacion = new Observacion();
         $observacion->observacion = "Se registró a sistema como un apoderado";
         $observacion->activo = 1;
         $observacion->observable_id = $apoderado->id;
         $observacion->observable_type = "App\Models\Persona";
         $observacion->save();
+
+        $observacion->userable()->create(['user_id'=>Auth::user()->id]);
 
         $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
         $apoderados = $persona->apoderados;
@@ -259,9 +266,10 @@ class PersonaController extends Controller
         $persona->telefono=$request->telefono;
         $persona->habilitado = 0;
         $persona->votos = 1;
-
         $persona->papelinicial = 'estudiante';
         $persona->save();
+
+
         $persona->interests()->sync(array_keys($request->interests));
 
         $persona->userable()->create(['user_id'=>Auth::user()->id]);
@@ -292,6 +300,9 @@ class PersonaController extends Controller
         $observacion->save();
         $observacion->userable()->create(['user_id'=>Auth::user()->id]);
         $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
+        $apoderados = $persona->apoderados;
+        return redirect()->route('telefonos.persona',['persona'=>$persona,'apoderados'=>$apoderados])->with('mensaje','Contacto Creado Corectamente');
+
     }
 
     /**

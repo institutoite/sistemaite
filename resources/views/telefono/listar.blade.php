@@ -18,14 +18,14 @@
                         <a href="tel:{{$persona->telefono}}">{{$persona->telefono}}</a> 
                     </td>
                     <td>
-                        {{$persona->pivot->parentesco}}
+                        PERSONAL
                     </td>
                     <td>{{$persona->updated_at}}</td>
                     <td>
-                        <a href="{{route('telefono.editar',['persona'=>$persona,'apoderado_id'=>$apoderado->id])}}" class="btn-accion-tabla tooltipsC mr-2" title="Editar este número">
+                        <a href="{{route('telefono.editar',['persona'=>$persona,'apoderado_id'=>$persona->id])}}" class="btn-accion-tabla tooltipsC mr-2" title="Editar este número">
                             <i class="fa fa-fw fa-edit text-primary"></i>
                         </a> 
-                        <form action="{{route('telefono.eliminar',['persona'=>$persona,'id'=>$apoderado->id])}}"  class="d-inline formulario" method="POST">
+                        <form action="{{route('telefono.eliminar',['persona'=>$persona,'id'=>$persona->id])}}"  class="d-inline formulario" method="POST">
                             @csrf
                             @method("delete")
                             <button name="btn-eliminar" type="submit" class="btn eliminar" title="Eliminar este Número">
@@ -42,7 +42,7 @@
                         {{$apoderado->nombre.' '.$apoderado->apellidop.' '.$apoderado->apellidom}}
                     </td>
                     <td>
-                        <a href="tel:{{$apoderado->telefono}}">{{$apoderado->pivot->telefono}}</a> 
+                        <a href="tel:{{$apoderado->telefono}}">{{$apoderado->telefono}}</a> 
                     </td>
                     <td>
                         {{$apoderado->pivot->parentesco}}
