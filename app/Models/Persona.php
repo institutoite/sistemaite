@@ -121,6 +121,14 @@ class Persona extends Model
     {
         return $this->morphOne('App\Models\Userable', 'userable');
     }
+
+    public function calificaciones()
+    {
+        return $this->morphMany(Calificable::class,'calificable');
+    }
+
+
+
     
 
     public function isEstudiante()
