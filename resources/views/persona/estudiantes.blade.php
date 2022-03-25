@@ -2,12 +2,17 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+    {{-- <link href="css/star-rating.css" media="all" rel="stylesheet" type="text/css"/> --}}
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('dist/css/starrr.css')}}">
 @stop
 
 @section('title', 'Personas')
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
-
 @section('content')
     <div class="pt-4">
         <div class="card">
@@ -16,7 +21,7 @@
             </div>
             
             <div class="card-body">
-                
+                <x-calificacion/>
                 <table id="personas" class="table table-bordered table-hover table-striped">
                     <thead class="bg-primary text-center">
                         <tr>
@@ -36,13 +41,37 @@
 
 @section('js')
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+    <script src="{{asset('dist/js/starrr.js')}}"></script>
+
+
+    {{-- <script src="js/star-rating.js" type="text/javascript"></script> --}}
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
     
     <script>
+         $('.calificar').starrr({
+            change: function(e, value){
+                if (value) {
+                $('.your-choice-was').show();
+                $('.choice').text(value);
+                } else {
+                $('.your-choice-was').hide();
+                }
+            }
+        });
+
+
         $(document).ready(function() {
+
+       
+
         var tabla=$('#personas').DataTable(
                 {
                     "serverSide": true,

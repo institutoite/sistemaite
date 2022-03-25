@@ -19,6 +19,7 @@
                     <div class="active tab-pane" id="estudiante">
                         <form action="{{route('personas.store')}}" id="formulario" method="post" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
                             @csrf
+                            <x-header variable="fds"/>
                             @include('persona.form')
 
                             @include('include.botones')
@@ -31,6 +32,9 @@
 @stop
 
 @section('js')
+
+
+    
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/plugins/piexif.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/plugins/sortable.min.js" type="text/javascript"></script>
