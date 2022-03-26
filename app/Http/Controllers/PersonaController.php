@@ -301,8 +301,8 @@ class PersonaController extends Controller
         $observacion->userable()->create(['user_id'=>Auth::user()->id]);
         $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
         $apoderados = $persona->apoderados;
-        return redirect()->route('telefonos.persona',['persona'=>$persona,'apoderados'=>$apoderados])->with('mensaje','Contacto Creado Corectamente');
 
+        return redirect()->route('telefonos.persona',['persona'=>$persona,'apoderados'=>$apoderados])->with('mensaje','Contacto Creado Corectamente');
     }
 
     /**
