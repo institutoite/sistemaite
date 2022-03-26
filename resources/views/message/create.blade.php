@@ -3,13 +3,13 @@
 @section('title', 'Mensaje')
 
 @section('content_header')
-    <h1 class="text-center text-primary">Mensaje</h1>
+    <h1 class="text-center text-primary">Enviar mensaje</h1>
 @stop
 
 @section('content')
     <div class="card">
         <div class="card-header bg-primary">
-            Mensaje
+            Enviar mensaje
         </div>
         <div class="card-body">
             {!! Form::open(['route' => 'messages.store']) !!}
@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('body', 'Descripcion del curso') !!}
+                        {!! Form::label('body', 'Mensaje') !!}
                         {!! Form::textarea('body', null, ['class'=> 'form-control' . ($errors->has('body') ? ' border-red-600' : '')]) !!}
                     
                         @error('body')
@@ -33,10 +33,12 @@
 
                     <div class="form-group">
                         <div>
-                            {!! Form::label('to_user_id', 'Destinatario:') !!}
-                            {!! Form::select('to_user_id', $users, null, ['class'=> 'form-control']) !!}
+                            {!! Form::label('to_user_email', 'Destinatario') !!}
+                            {!! Form::text('to_user_email', $user->email, ['class'=> 'form-control', 'readonly' => 'true']) !!}
                         </div>
                     </div>
+
+                    {!! Form::hidden('to_user_id', $user->id) !!}
                     
                     {!! Form::submit('Enviar', ['class' => 'btn btn-primary']) !!}
 

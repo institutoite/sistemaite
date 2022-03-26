@@ -6,16 +6,18 @@ registro rapido de posibles clientes
 que sea nullable los campos de personas fechaNacimiento carnet direccion y expedido papel colocar por defecto estudiante 
 boton imprimir pdf formulario para registro rapido
 cuando se guarda rapidingo el telefono del apoderado no se muestra corretamente en los Telefonos
+
 calificar al estudiante cuando termine la inscripcion calificable
 
-
-
 programar subir archivos documentos digitales
-que todos los mostrar tengan quien hizo el registro correpondiente
-agregar boton compartir Credenciales de usuario de cliente
-cuando verificar el pago con Bs. 200 y cambio Bs. 25 en computacion y Matematicas
-que se cambien de campo cuando se presiona enter en todos los formularios validar los formularios antes de guardar o actualizar 
 
+que todos los mostrar tengan quien hizo el registro correpondiente
+
+agregar boton compartir Credenciales de usuario de cliente
+
+cuando verificar el pago con Bs. 200 y cambio Bs. 25 en computacion y Matematicas
+
+que se cambien de campo cuando se presiona enter en todos los formularios validar los formularios antes de guardar o actualizar 
 
 cuando le demos finalizar una clases que guarde la hora que se fue 
 

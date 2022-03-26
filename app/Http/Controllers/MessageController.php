@@ -10,11 +10,12 @@ use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
-    public function create(){
+    public function create($id){
 
-        $users = User::where('id', '<>', auth()->user()->id)->pluck('name', 'id');
+        $user = User::findOrFail($id);
+        
 
-        return view('message.create', compact('users'));
+        return view('message.create', compact('user'));
     }
 
     public function show(Message $message){
@@ -38,6 +39,6 @@ class MessageController extends Controller
         $user = User::find($request->to_user_id);
         $user->notify(new MessageSent($message ));
 
-        return redirect()->route('messages.create');
+        return redirect()->route('users.index');
     }
 }

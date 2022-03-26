@@ -60,7 +60,7 @@ Route::get('/ninacos', function () {
 Auth::routes();
 Route::get('/home',function(){
     return view('persona.estudiantes');
-})->name('inicio')->middleware('auth');
+})->name('home')->middleware('auth');
 
 Route::get('personas.todos', function () {
     return view('persona.index');
@@ -340,6 +340,7 @@ Route::post('user/guardar', "UserController@guardar")->name('users.guardar');
 
 
 
+
 Route::get('apoderado/existente/{persona}', 'TelefonoController@apoderadoExistente')->name('apoderado.existente');
 Route::get('telefono/agregar/{persona_id}/{apoderado_id}', 'TelefonoController@agregarApoderado')->name('agregar.apoderado');
 Route::post('guardar/apoderado/existente', 'TelefonoController@guardarApoderadoExistente')->name('guardar.apoderado.existente');
@@ -462,22 +463,29 @@ Route::get('tomarfoto/{persona}', 'PersonaController@tomarfoto')->name('tomar.fo
 Route::view('ninacos', 'livewire.ninacos.index')->middleware('auth');
 
 
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  HOME ITE   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+
+
+
+
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  HOME ITE   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
 Route::get('/',[HomeController::class, 'index']);
 
-Route::get('home/create',[HomeController::class, 'create'])->name('home.create');
+Route::get('home/edit', [HomeController::class, 'edit'])->name('home.edit');
 
-Route::post('home/store', [HomeController::class, 'store'])->name('home.store');
+Route::put('home/update/{text}', [HomeController::class, 'update'])->name('home.update');
+
 
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 
 Route::get('/questions', [HomeController::class, 'questions'])->name('questions');
 
-Route::resource('schedule', HomescheduleController::class)->names('homeschedule');
+Route::resource('schedule', HomeScheduleController::class)->names('homeschedule');
 
-Route::resource('question', HomequestionController::class)->names('homequestion');
+Route::resource('question', HomeQuestionController::class)->names('homequestion');
 
 Route::resource('meta', MetaController::class)->names('meta');
 
@@ -489,7 +497,7 @@ Route::resource('role', RoleController::class)->names('role');
 
 Route::resource('rolusers', RolUsersController::class)->only(['index', 'edit', 'update'])->names('rolusers');
 
-Route::get('messages',[MessageController::class, 'create'])->name('messages.create');
+Route::get('messages/{id}',[MessageController::class, 'create'])->name('messages.create');
 
 Route::get('messages/{message}',[MessageController::class, 'show'])->name('messages.show');
 

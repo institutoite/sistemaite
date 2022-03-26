@@ -32,9 +32,7 @@
                                 {{$meta->carrera->carrera}}
                             </td>
 
-                            <td width="10px">
-                                <a class="btn btn-primary btn-sm" href="{{route('meta.edit', $meta)}}">Editar</a>
-                            </td>
+                            
 
                             <td width="10px">
                                 <form action="{{route('meta.destroy', $meta->id)}}" method="POST">

@@ -12,7 +12,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 use Alert;
-
+use App\Models\Persona;
 use Illuminate\Support\Facades\Hash;
 
 //use UxWeb\SweetAlert\SweetAlert as SweetAlertSweetAlert;
@@ -194,4 +194,5 @@ class UserController extends Controller
             
         return response()->json(['user'=>$useres,'d'=>2]);
     }
+
 }

@@ -33,6 +33,10 @@
                             </td>
 
                             <td width="10px">
+                                <a class="btn btn-primary btn-sm" href="{{route('homeschedule.edit', $schedule)}}">Editar</a>
+                            </td>
+
+                            <td width="10px">
                                 <form action="{{route('homeschedule.destroy', $schedule->id)}}" method="POST">
                                     @csrf
                                     @method('delete')

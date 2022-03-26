@@ -1,16 +1,39 @@
 @extends('layouts.home')
 
 @section('banner')
+    <div class="header-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6">
+                    <ul class="header-contact">
+                        <li>
+                            <span></span>
+                            {{$hometext->banner}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="header-right float-right">
+                        <div class="header-btn">
+                            <a href="https://api.whatsapp.com/send?phone=59171039910&text=Tengo una pregunta" class="btn btn-main btn-small">contactenos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+@stop
+
+@section('header')
     <section class="banner">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-8">
                     <div class="banner-content center-heading">
                         <span class="subheading"></span>
-                            <h1>{{$hometext->banner}}</h1>
-                        
-                        <a href="#" class="btn btn-main"><i class="fa fa-list-ul mr-2"></i>Contactanos</a>  
-                        <a href="#" class="btn btn-tp ">Leer mas <i class="fa fa-angle-right ml-2"></i></a>  
+                            <h1>{{$hometext->header}}</h1>
+                            <a href="https://api.whatsapp.com/send?phone=59171039910&text=Tengo una pregunta" class="btn btn-main"><i class="fa fa-list-ul mr-2"></i>Contactanos </a>  
+                            <a href="{{ route('about') }}" class="btn btn-tp ">Leer mas <i class="fa fa-angle-right ml-2"></i></a>  
                     </div>
                 </div>
             </div> <!-- / .row -->

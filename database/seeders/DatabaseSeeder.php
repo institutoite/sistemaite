@@ -6,6 +6,7 @@ use App\Inscripcione;
 use App\Modalidad;
 use App\Models\Homeschedule;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 use function Ramsey\Uuid\v1;
 
@@ -18,6 +19,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+        Storage::deleteDirectory('cursos');
+        Storage::makeDirectory('cursos');
         //Model::unguard();
         $this->call([
             PaisSeeder::class,

@@ -20,7 +20,6 @@ class CreateCalificablesTable extends Migration
             $table->string('calificable_type', 35);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-
             $table->timestamps();
         });
     }

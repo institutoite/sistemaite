@@ -15,3 +15,7 @@
         <i class="fa fa-fw fa-trash text-danger"></i>   
     </button>
 </form>     
+
+<a href="{{route('messages.create', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Enviar mensaje">
+    <i class="fa fa-fw fa-envelope text-primary mostrar"></i>
+</a>

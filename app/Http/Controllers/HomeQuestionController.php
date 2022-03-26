@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class HomeQuestionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:Listar Preguntas')->only('index');
+        $this->middleware('can:Crear Preguntas')->only('create','store');
+        $this->middleware('can:Editar Preguntas')->only('edit','update');
+        $this->middleware('can:Eliminar Preguntas')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

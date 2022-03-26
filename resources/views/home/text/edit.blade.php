@@ -1,37 +1,66 @@
-
 @extends('adminlte::page')
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
-@section('title', 'Motivos')
+@section('title', 'homeschedules')
 @section('plugins.Jquery', true)
 @section('plugins.Sweetalert2', true)
 @section('plugins.Datatables', true)
 
 @section('content')
-    <section class="content container-fluid">
-        <div class="">
-            <div class="col-md-12">
+<section class="content container-fluid pt-4">
+    <div class="row">
+        <div class="col-md-12">
 
-                @includeif('partials.errors')
+            <div class="card card-default">
+                <div class="card-header bg-primary">
+                    <span class="card-title">Editar Texto de la Pagina de Inicio</span>
+                </div>
+                <div class="card-body">
+                    {!! Form::model($text, ['route' => ['home.update',$text], 'method' => 'put']) !!}
+                        <div class="form-group">
+                            {!! Form::label('banner', 'Texto del banner') !!}
+                            {!! Form::text('banner', null, ['class' => 'form-control', 'placeholder'=> 'Ingrese el texto del banner']) !!}
+                        
+                            @error('banner')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
 
-                <div class="card card-default">
-                    <div class="card-header">
-                        <span class="card-title">Update Motivo</span>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('motivos.update', $motivo->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
-                            @csrf
+                        <div class="form-group">
+                            {!! Form::label('header', 'Texto presentacion') !!}
+                            {!! Form::text('header', null, ['class' => 'form-control', 'placeholder'=> 'Ingrese el texto de presentacion']) !!}
+                        
+                            @error('header')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
 
-                            @include('motivo.form')
+                        <div class="form-group">
+                            {!! Form::label('heading', 'Texto titulo de los cursos') !!}
+                            {!! Form::text('heading', null, ['class' => 'form-control', 'placeholder'=> 'Ingrese titulo de los cursos']) !!}
+                        
+                            @error('heading')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
 
-                        </form>
-                    </div>
+                        <div class="form-group">
+                            {!! Form::label('subheading', 'Texto subtitulo de los cursos') !!}
+                            {!! Form::text('subheading', null, ['class' => 'form-control', 'placeholder'=> 'Ingrese subtitulo de los cursos']) !!}
+                        
+                            @error('subheading')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+
+                        {!! Form::submit('Actualizar texto', ['class' => 'btn btn-primary']) !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 @endsection

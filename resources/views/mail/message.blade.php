@@ -237,7 +237,7 @@
                         align="left"
                       >
                         <center>
-                          <img src="{{asset('assets/images/mail/logo.png')}}" alt="Ite">
+                          <img src="{{asset('assets/images/mail/header-logo.png')}}" alt="Ite">
                         </center>
                       </td>
                     </tr>
@@ -248,113 +248,9 @@
           </tbody>
         </table>
 
-        <table
-          cellpadding="0"
-          cellspacing="0"
-          role="presentation"
-          align="center"
-          style="
-            border-spacing: 0;
-            color: #3d3d3d;
-            font-family: 'Roboto', sans-serif, Arial, Helvetica;
-            background-color: #f0f1ed;
-            margin: 0;
-            padding-top: 0;
-            padding-right: 0;
-            padding-bottom: 0;
-            padding-left: 0;
-            width: 100%;
-            max-width: 680px;
-            background: url(assets/images/mail/first-fold-bg.png);
-            background-repeat: no-repeat;
-            background-position: top center;
-          "
-          background="#ffffff"
-        >
-          <tbody>
-            <tr>
-              <td
-                style="
-                  text-align: center;
-                  line-height: 140%;
-                  color: #ffffff;
-                  padding-top: 502px;
-                "
-                align="center"
-              >
-                <center>
-                  <p
-                    style="
-                      font-size: 40px;
-                      font-weight: 300;
-                      line-height: 55px;
-                      color: #ffffff;
-                      font-family: 'Gloria Hallelujah', cursive;
-                    "
-                  >
-                   {{--  {{$mensaje->body}} --}}
-                  </p>
-                  <p
-                    style="
-                      font-weight: 300;
-                      line-height: 100px;
-                      color: #ffffff;
-                      font-family: 'Gloria Hallelujah', cursive;
-                      margin-top: 2px;
-                    "
-                    class="hero-line"
-                  >
-                    
-                  </p>
+        
 
-                  <p
-                    style="
-                      font-size: 18px;
-                      font-weight: 600;
-                      color: #ffffff;
-                      padding-top: 34px;
-                      padding-bottom: 30px;
-                    "
-                  >
-                    Mensaje enviado por Instituto Ite.
-                  </p>
-
-                  <a
-                    style="
-                      color: #1a2b5f;
-                      background-color: #ffda16;
-                      border: none;
-                      padding: 24px 31px 27px;
-                      font-family: 'Gloria Hallelujah', cursive;
-                      font-size: 30px;
-                      border-radius: 22px;
-                      text-decoration: none;
-                      display: inline-block;
-                    "
-                    target="_blank"
-                    href="https://ite.educabol.com/"
-                  >
-                    Visitanos
-                  </a>
-                  <p
-                    style="
-                      font-size: 18px;
-                      font-weight: 300;
-                      color: #1a2b5f;
-                      padding-top: 38px;
-                      padding-bottom: 106px;
-                    "
-                  >
-                   
-                    <span style="font-weight: 600; color: #ffda16">30Ite</span>
-                  </p>
-                </center>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <table
+        {{-- <table
           cellpadding="0"
           cellspacing="0"
           role="presentation"
@@ -690,9 +586,9 @@
               </td>
             </tr>
           </tbody>
-        </table>
+        </table> --}}
 
-        <table
+        {{-- <table
           cellpadding="0"
           cellspacing="0"
           role="presentation"
@@ -1205,9 +1101,9 @@
               </td>
             </tr>
           </tbody>
-        </table>
+        </table> --}}
 
-        <table
+        {{-- <table
           cellpadding="0"
           cellspacing="0"
           role="presentation"
@@ -1505,9 +1401,9 @@
               </td>
             </tr>
           </tbody>
-        </table>
+        </table> --}}
 
-        <table
+        {{-- <table
           cellpadding="0"
           cellspacing="0"
           role="presentation"
@@ -1602,9 +1498,9 @@
               </td>
             </tr>
           </tbody>
-        </table>
+        </table> --}}
 
-        <table
+        {{-- <table
           cellpadding="0"
           cellspacing="0"
           role="presentation"
@@ -1883,7 +1779,7 @@
               </td>
             </tr>
           </tbody>
-        </table>
+        </table> --}}
 
         <table
           cellpadding="0"
@@ -1908,8 +1804,8 @@
         >
           <tbody>
             <tr>
-              <td style="padding-top: 76px; text-align: center">
-                <p style="font-size: 18px">Cras posuere mauris ficitur.</p>
+              <td style="padding-top: 5px; text-align: center">
+                <p style="font-size: 18px"></p>
                 <h3
                   style="
                     padding-top: 7px;
@@ -1917,7 +1813,7 @@
                     font-size: 40px;
                   "
                 >
-                  What Parents Says
+                  {{$mensaje->subject}}
                 </h3>
               </td>
             </tr>
@@ -1942,29 +1838,26 @@
                 <div
                   style="
                     padding: 55px 60px;
-                    background: #c5e4cf;
+                    background: #26BAA5;
                     border-radius: 30px;
                     font-size: 18px;
                   "
                 >
-                  <p>
+                  {{$mensaje->body}}
+                  {{-- <p>
                     My Son is ras semper sodales sapien, eget sagittis purus
                     porttitor sed. Aliquam in urna urna. Suspendedisse commodo
                     feugiat sem, dictum porttitor metus accumsan et. Duis varius
                     ultrices neque, et vulutate nulla elementum non.
-                  </p>
-
-                  <p style="padding-top: 22px">
-                    Nunc egestas eros et erat placerat, non bibendum.
-                  </p>
+                  </p> --}}
 
                   <p style="padding-top: 34px; font-weight: bold">
-                    Natasha Singh
+                    David Eduardo
                   </p>
                   <p
                     style="font-weight: 300; font-size: 14px; padding-top: 2px"
                   >
-                    Class 6 | Robert's Mother
+                    Director Instituto Ite
                   </p>
                 </div>
               </td>
@@ -1987,7 +1880,7 @@
           </tbody>
         </table>
 
-        <table
+        {{-- <table
           cellpadding="0"
           cellspacing="0"
           role="presentation"
@@ -2026,9 +1919,9 @@
               </td>
             </tr>
           </tbody>
-        </table>
+        </table> --}}
 
-        <table
+        {{-- <table
           cellpadding="0"
           cellspacing="0"
           role="presentation"
@@ -2106,9 +1999,9 @@
               </td>
             </tr>
           </tbody>
-        </table>
+        </table> --}}
 
-        <table
+        {{-- <table
           cellpadding="0"
           cellspacing="0"
           role="presentation"
@@ -2229,7 +2122,7 @@
               </td>
             </tr>
           </tbody>
-        </table>
+        </table> --}}
 
         <!--[if (gte mso 9)|(IE)]>
 				</td>
