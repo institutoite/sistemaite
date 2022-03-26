@@ -1,3 +1,4 @@
+console.log("Este es un mensaje de que esto es funcionando");
 var slice = [].slice;
 
 (function($, window) {

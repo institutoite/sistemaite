@@ -21,7 +21,7 @@
             </div>
             
             <div class="card-body">
-                <x-calificacion/>
+                <x-calificacion  calificable_id="dsfds" calificable_type="fdsfds sfd" promedio="ds"/>
                 <table id="personas" class="table table-bordered table-hover table-striped">
                     <thead class="bg-primary text-center">
                         <tr>
@@ -44,11 +44,11 @@
 
     
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
-    <script src="{{asset('dist/js/starrr.js')}}"></script>
-
-
+    
+    
     {{-- <script src="js/star-rating.js" type="text/javascript"></script> --}}
     <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="{{asset('dist/js/starrr.js')}}"></script>
 
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
@@ -56,21 +56,20 @@
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
     
     <script>
-         $('.calificar').starrr({
+        $('#calificar').starrr({
+            max: 5,
             change: function(e, value){
                 if (value) {
-                $('.your-choice-was').show();
-                $('.choice').text(value);
+                    alert('x' + value)
                 } else {
-                $('.your-choice-was').hide();
+                    $('.your-choice-was').hide();
                 }
+                
             }
         });
 
 
         $(document).ready(function() {
-
-       
 
         var tabla=$('#personas').DataTable(
                 {
