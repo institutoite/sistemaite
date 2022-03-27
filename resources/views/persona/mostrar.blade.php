@@ -4,6 +4,11 @@
 
 @section('css')
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('dist/css/starrr.css')}}">
 @endsection
 
 @section('content_header')
@@ -14,6 +19,13 @@
 {{-- {{dd($persona)}} --}}
     <div class="card">
         <div class="card-body">
+
+            <x-alert color="primary" califable="Personilla" calificableid="5">
+                <x-slot name="title">
+                    Calificar este Modelo
+                </x-slot>
+            </x-alert>
+
             <table class="table table-bordered table-striped"> 
                 <tr class="bg-primary">
                         <th>ATRIBUTO</th>
@@ -133,5 +145,23 @@
 
 @stop
 @section('js')
-    
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="{{asset('dist/js/starrr.js')}}"></script>
+
+    <script>
+         $('.starrr').starrr({
+            max: 5,
+            change: function(e, value){
+                if (value) {
+                    $("#calificacion").val(value);
+                } else {
+                    $('.your-choice-was').hide();
+                }
+                
+            }
+        });
+
+    </script>
 @stop

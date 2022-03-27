@@ -16,6 +16,7 @@ class CreateCalificablesTable extends Migration
         Schema::create('calificables', function (Blueprint $table) {
             $table->increments('id');
             $table->tinyInteger('calificacion');
+            $table->string('comentario', 100);
             $table->unsignedInteger('calificable_id');
             $table->string('calificable_type', 35);
             $table->integer('user_id')->unsigned();

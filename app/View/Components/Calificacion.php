@@ -6,19 +6,19 @@ use Illuminate\View\Component;
 
 class Calificacion extends Component
 {
-    public $calificable_id; 
-    public $calificable_type;
+    public $calificableid; 
+    public $calificabletype;
     public $promedio;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($calificable_id, $calificable_type, $promedio)
+    public function __construct($calificableid="valor por defecto", $calificabletype="Type por defecto", $promedio="radio por defecto")
     {
-        $this->calificable_id = $calificable_id;
-        $this->calificable_type = $calificable_type;
-        $this->promedio = $promedio;
+        $this->calificableid=$calificableid;
+        $this->calificabletype=$calificabletype;
+        $this->promedio=$promedio;
     }
 
     /**

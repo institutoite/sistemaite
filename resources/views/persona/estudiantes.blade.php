@@ -21,7 +21,6 @@
             </div>
             
             <div class="card-body">
-                <x-calificacion  calificable_id="dsfds" calificable_type="fdsfds sfd" promedio="ds"/>
                 <table id="personas" class="table table-bordered table-hover table-striped">
                     <thead class="bg-primary text-center">
                         <tr>
@@ -56,11 +55,11 @@
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
     
     <script>
-        $('#calificar').starrr({
+        $('.starrr').starrr({
             max: 5,
             change: function(e, value){
                 if (value) {
-                    alert('x' + value)
+                    $("#calificacion").val(value);
                 } else {
                     $('.your-choice-was').hide();
                 }
@@ -106,25 +105,25 @@
                 }
             );
             
-            $('table').on('click','.zoomify',function (e){
-                Swal.fire({
-                    title: 'Codigo: '+ $(this).closest('tr').find('td').eq(0).text(),
-                    text: $(this).closest('tr').find('td').eq(1).text(),
-                    imageUrl: $(this).attr('src'),
-                    imageWidth: 400,
-                    showCloseButton:true,
-                    confirmButtonColor:'#26baa5',
-                    type: 'success',
-                    imageHeight:400,
-                    imageAlt: 'Custom image',
-                    confirmButtonText:"Aceptar",
-                    
-                })
-            });
+        $('table').on('click','.zoomify',function (e){
+            Swal.fire({
+                title: 'Codigo: '+ $(this).closest('tr').find('td').eq(0).text(),
+                text: $(this).closest('tr').find('td').eq(1).text(),
+                imageUrl: $(this).attr('src'),
+                imageWidth: 400,
+                showCloseButton:true,
+                confirmButtonColor:'#26baa5',
+                type: 'success',
+                imageHeight:400,
+                imageAlt: 'Custom image',
+                confirmButtonText:"Aceptar",
+                
+            })
+        });
 
             
 
-            $('table').on('click','.eliminar',function (e) {
+        $('table').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
                 id=$(this).parent().parent().parent().find('td').first().html();
                 Swal.fire({
@@ -202,9 +201,9 @@
                             title: 'No se eliminó el registro'
                         })
                     }
-                })
-            });
+            })
         });
+    });
         
     </script>
 @stop

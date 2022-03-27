@@ -25,6 +25,7 @@ use App\Http\Controllers\TemaController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\PersonaReporteController;
 use App\Http\Controllers\InterestController;
+use App\Http\Controllers\CalificacionController;
 
 use App\Http\Controllers\MessageController;
 
@@ -374,6 +375,9 @@ Route::get('telefonos/{persona}', 'PersonaController@index')->name('telefono.de.
 Route::get('telefono/{persona}/{apoderado_id}/editar','TelefonoController@editar')->name('telefono.editar');
 Route::put('telefono/{persona_id}/{apoderado_id}', 'TelefonoController@actualizar')->name('telefono.actualizar');
 Route::post('crear/contacto/{persona}','PersonaController@storeContacto')->name('persona.storeContacto');
+
+Route::post('calificacion/store', [CalificacionController::class,'store'])->name('calificacion.store');  
+
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ROUTES P R O G R A M A C I O N   C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('programacions', "ProgramacionController");
