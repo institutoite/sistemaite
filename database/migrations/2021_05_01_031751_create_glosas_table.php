@@ -14,9 +14,9 @@ class CreateGlosasTable extends Migration
     public function up()
     {
         Schema::create('glosas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('glosa', 100);
-            $table->unsignedInteger('clase_id');
+            $table->unsignedBigInteger('clase_id');
 
 
             $table->foreign('clase_id', 'fk_glosa_clase_idx')

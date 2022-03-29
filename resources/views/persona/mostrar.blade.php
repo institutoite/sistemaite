@@ -4,6 +4,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -17,14 +18,50 @@
 
 @section('content')
 {{-- {{dd($persona)}} --}}
+
+    
+    <div class="card">
+        <div class="card-header">
+            CALIFICACION
+        </div>
+        <div class="card-body">
+            
+            @if ($calificado==0)
+                <x-calificacion color="primary" :personaid="$persona->id">
+                    <x-slot name="title">
+                        Calificar este Modelo
+                    </x-slot>
+                </x-calificacion>
+            @else
+            <div class="row">
+                <div class="col-10">
+                    <div class="border  position-relative">
+                        <div class="text-center col-auto p-5">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{($promedio/5)*100}}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center border">
+                        <div class="circulo bg-primary">
+                            <h1>{{ $promedio }}</h1> 
+                        </div>
+                        Calificación    
+                    </div>
+                </div>
+            </div>
+                
+                
+            @endif
+        </div>
+    </div>
+
     <div class="card">
         <div class="card-body">
 
-            <x-alert color="primary" califable="Personilla" calificableid="5">
-                <x-slot name="title">
-                    Calificar este Modelo
-                </x-slot>
-            </x-alert>
+            
 
             <table class="table table-bordered table-striped"> 
                 <tr class="bg-primary">
@@ -37,11 +74,17 @@
                         <td>{{$persona->id}}</td>
                     </tr>
                     <tr>
-                        <td>Fotografía</td>
+                        <td>Fotografía
+                            
+                            
+                            
+                        </td>
                         <td> 
                             <div class="text-center">
                                 <img class="rounded img-thumbnail img-fluid border-primary border-5" src="{{URL::to('/').Storage::url("$persona->foto")}}" alt="{{$persona->nombre.' '.$persona->apellidop}}"> 
                                 <p>{!!$observacion!!}</p>
+                                
+                            
                             </div>
                         </td>
                     </tr>
@@ -143,6 +186,7 @@
         </div>
     </div>
 
+    
 @stop
 @section('js')
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

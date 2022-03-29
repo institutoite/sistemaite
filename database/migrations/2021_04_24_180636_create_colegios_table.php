@@ -14,7 +14,7 @@ class CreateColegiosTable extends Migration
     public function up()
     {
         Schema::create('colegios', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('nombre', 80)->nullable();
             $table->string('rue', 10)->nullable();
             $table->string('director', 50)->nullable();
@@ -24,9 +24,9 @@ class CreateColegiosTable extends Migration
             $table->string('dependencia', 15)->nullable();
             $table->string('nivel', 20)->nullable();
             $table->string('turno', 15)->nullable();
-            $table->unsignedInteger('departamento_id');
-            $table->unsignedInteger('provincia_id');
-            $table->unsignedInteger('municipio_id');
+            $table->unsignedBigInteger('departamento_id');
+            $table->unsignedBigInteger('provincia_id');
+            $table->unsignedBigInteger('municipio_id');
             $table->string('distrito', 20)->nullable();
             $table->string('areageografica', 20)->nullable();
             $table->string('coordenadax', 15)->nullable();

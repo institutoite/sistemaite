@@ -14,9 +14,9 @@ class CreateGradosTable extends Migration
     public function up()
     {
         Schema::create('grados', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('grado',30);
-            $table->unsignedInteger('nivel_id');
+            $table->unsignedBigInteger('nivel_id');
             $table->foreign('nivel_id')->references('id')->on('nivels');
             $table->timestamps();
         });

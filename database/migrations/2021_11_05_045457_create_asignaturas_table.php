@@ -14,9 +14,9 @@ class CreateAsignaturasTable extends Migration
     public function up()
     {
         Schema::create('asignaturas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('asignatura', 50);
-            $table->unsignedInteger('carrera_id');
+            $table->unsignedBigInteger('carrera_id');
             $table->foreign('carrera_id')
                 ->references('id')
                 ->on('carreras');

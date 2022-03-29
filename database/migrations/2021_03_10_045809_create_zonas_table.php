@@ -14,10 +14,10 @@ class CreateZonasTable extends Migration
     public function up()
     {
         Schema::create('zonas', function (Blueprint $table) {
-             $table->increments('id');
+             $table->id();
             $table->string('zona', 100)->nullable();
             
-            $table->unsignedInteger('ciudad_id');
+            $table->unsignedBigInteger('ciudad_id');
              $table->foreign('ciudad_id','fk_ciudad_zona')
                         ->references('id')->on('ciudads');
             $table->timestamps();

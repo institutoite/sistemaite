@@ -14,11 +14,11 @@ class CreateCarreraComputacionTable extends Migration
     public function up()
     {
         Schema::create('carrera_computacion', function (Blueprint $table) {
-            $table->unsignedInteger('computacion_id');
+            $table->unsignedBigInteger('computacion_id');
             $table->foreign('computacion_id')
                 ->references('id')
                 ->on('computacions');
-            $table->unsignedInteger('carrera_id');
+            $table->unsignedBigInteger('carrera_id');
             $table->foreign('carrera_id')
                 ->references('id')
                 ->on('carreras');

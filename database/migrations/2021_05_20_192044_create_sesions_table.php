@@ -14,14 +14,14 @@ class CreateSesionsTable extends Migration
     public function up()
     {
         Schema::create('sesions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->time('horainicio');
             $table->time('horafin');
-            $table->unsignedInteger('inscripcione_id');
-            $table->unsignedInteger('dia_id');
-            $table->unsignedInteger('docente_id');
-            $table->unsignedInteger('materia_id');
-            $table->unsignedInteger('aula_id');
+            $table->unsignedBigInteger('inscripcione_id');
+            $table->unsignedBigInteger('dia_id');
+            $table->unsignedBigInteger('docente_id');
+            $table->unsignedBigInteger('materia_id');
+            $table->unsignedBigInteger('aula_id');
 
             $table->foreign('inscripcione_id','fk_inscripcione_sesion')->references('id')->on('inscripciones')->onDelete('cascade');
             $table->foreign('dia_id','fk_dia_sesion')->references('id')->on('dias');

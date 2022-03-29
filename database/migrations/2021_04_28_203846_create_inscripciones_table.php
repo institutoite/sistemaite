@@ -14,7 +14,7 @@ class CreateInscripcionesTable extends Migration
     public function up()
     {
         Schema::create('inscripciones', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->date('fechaini');
             $table->date('fechafin');
             $table->date('fecha_proximo_pago')->nullable(); 
@@ -23,9 +23,9 @@ class CreateInscripcionesTable extends Migration
             $table->boolean('vigente');
             $table->boolean('condonado');
             $table->string('objetivo');
-            $table->unsignedInteger('estudiante_id');
-            $table->unsignedInteger('modalidad_id');
-            $table->unsignedInteger('motivo_id');
+            $table->unsignedBigInteger('estudiante_id');
+            $table->unsignedBigInteger('modalidad_id');
+            $table->unsignedBigInteger('motivo_id');
 
             $table->foreign('motivo_id', 'fk_inscripcion_motivos_idx')
             ->references('id')->on('motivos')->onDelete('cascade');

@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Calificable extends Model
+class Calificacion extends Model
 {
     use HasFactory;
 
-    public function calificable()
+    public function persona()
     {
-        return $this->morphTo();
+        return $this->belongsTo(Persona::class);
     }
 }

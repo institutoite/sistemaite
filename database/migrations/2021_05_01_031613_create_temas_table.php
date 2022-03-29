@@ -14,9 +14,9 @@ class CreateTemasTable extends Migration
     public function up()
     {
         Schema::create('temas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('tema', 65);
-            $table->unsignedInteger('materia_id');
+            $table->unsignedBigInteger('materia_id');
             $table->foreign('materia_id', 'fk_tema_materia1_idx')
                 ->references('id')->on('materias');
             $table->timestamps();

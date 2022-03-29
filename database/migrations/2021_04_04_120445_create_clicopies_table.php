@@ -14,10 +14,10 @@ class CreateClicopiesTable extends Migration
     public function up()
     {
         Schema::create('clicopies', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('requerimiento', 200);
 
-            $table->unsignedInteger('persona_id');
+            $table->unsignedBigInteger('persona_id');
             $table->foreign('persona_id', 'fk_persona_clicopies')
                 ->references('id')->on('personas');
                 

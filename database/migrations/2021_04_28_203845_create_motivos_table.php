@@ -14,9 +14,9 @@ class CreateMotivosTable extends Migration
     public function up()
     {
         Schema::create('motivos', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('motivo', 80);
-            $table->unsignedInteger('tipomotivo_id');
+            $table->unsignedBigInteger('tipomotivo_id');
             $table->foreign('tipomotivo_id', 'fk_tipomotivos_motivo_idx')
             ->references('id')->on('tipomotivos')->onDelete('cascade');
             $table->timestamps();

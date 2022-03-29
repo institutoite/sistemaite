@@ -14,7 +14,7 @@ class CreateProgramacionsTable extends Migration
     public function up()
     {
         Schema::create('programacions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->date('fecha');
             $table->boolean('habilitado');
             $table->boolean('activo');
@@ -24,12 +24,12 @@ class CreateProgramacionsTable extends Migration
             $table->double('horas_por_clase');
             
             
-            $table->unsignedInteger('docente_id');
-            $table->unsignedInteger('materia_id');
-            $table->unsignedInteger('aula_id');
-            $table->unsignedInteger('inscripcione_id');
+            $table->unsignedBigInteger('docente_id');
+            $table->unsignedBigInteger('materia_id');
+            $table->unsignedBigInteger('aula_id');
+            $table->unsignedBigInteger('inscripcione_id');
 
-            $table->unsignedInteger('estado_id');
+            $table->unsignedBigInteger('estado_id');
             $table->foreign('estado_id', 'fk_programacion_estado_id')
                 ->references('id')->on('estados');
             

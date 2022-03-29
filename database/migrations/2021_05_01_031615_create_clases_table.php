@@ -14,21 +14,21 @@ class CreateClasesTable extends Migration
     public function up()
     {
         Schema::create('clases', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->date('fecha');
             
-            $table->unsignedInteger('estado_id');
+            $table->unsignedBigInteger('estado_id');
             $table->foreign('estado_id', 'fk_clase_estado_id')
                 ->references('id')->on('estados');
 
             $table->time('horainicio');
             $table->time('horafin');
 
-            $table->unsignedInteger('docente_id')->nullable();
-            $table->unsignedInteger('materia_id')->nullable();
-            $table->unsignedInteger('aula_id')->nullable();
-            $table->unsignedInteger('tema_id')->nullable();
-            $table->unsignedInteger('programacion_id');
+            $table->unsignedBigInteger('docente_id')->nullable();
+            $table->unsignedBigInteger('materia_id')->nullable();
+            $table->unsignedBigInteger('aula_id')->nullable();
+            $table->unsignedBigInteger('tema_id')->nullable();
+            $table->unsignedBigInteger('programacion_id');
             
             $table->foreign('docente_id')
             ->references('id')->on('docentes');

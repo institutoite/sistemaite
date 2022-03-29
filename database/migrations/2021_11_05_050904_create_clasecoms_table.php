@@ -14,20 +14,20 @@ class CreateClasecomsTable extends Migration
     public function up()
     {
         Schema::create('clasecoms', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->date('fecha');
 
 
-            $table->unsignedInteger('estado_id');
+            $table->unsignedBigInteger('estado_id');
             $table->foreign('estado_id', 'fk_clasecom_estado_id')
                 ->references('id')->on('estados');
             
                 $table->time('horainicio');
             $table->time('horafin');
 
-            $table->unsignedInteger('docente_id')->nullable();
-            $table->unsignedInteger('aula_id')->nullable();
-            $table->unsignedInteger('programacioncom_id');
+            $table->unsignedBigInteger('docente_id')->nullable();
+            $table->unsignedBigInteger('aula_id')->nullable();
+            $table->unsignedBigInteger('programacioncom_id');
             
             $table->foreign('docente_id')
             ->references('id')->on('docentes');

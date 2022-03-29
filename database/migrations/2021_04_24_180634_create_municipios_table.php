@@ -14,9 +14,9 @@ class CreateMunicipiosTable extends Migration
     public function up()
     {
         Schema::create('municipios', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('municipio', 25);
-            $table->unsignedInteger('provincia_id');
+            $table->unsignedBigInteger('provincia_id');
 
             $table->foreign('provincia_id','provincia_municipio')->references('id')->on('provincias');
             $table->timestamps();

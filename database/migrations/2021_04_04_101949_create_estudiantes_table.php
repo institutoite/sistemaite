@@ -14,8 +14,8 @@ class CreateEstudiantesTable extends Migration
     public function up()
     {
         Schema::create('estudiantes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('persona_id');
+            $table->id();
+            $table->unsignedBigInteger('persona_id');
             $table->foreign('persona_id', 'fk_persona_estudiante')
             ->references('id')->on('personas');
             

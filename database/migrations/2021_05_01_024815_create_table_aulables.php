@@ -14,10 +14,10 @@ class CreateTableAulables extends Migration
     public function up()
     {
         Schema::create('aulables', function (Blueprint $table) {
-            $table->unsignedInteger('aulable_id');
+            $table->unsignedBigInteger('aulable_id');
             $table->string('aulable_type');
 
-            $table->unsignedInteger('aula_id');
+            $table->unsignedBigInteger('aula_id');
             $table->foreign('aula_id')->references('id')->on('aulas');
         });
     }

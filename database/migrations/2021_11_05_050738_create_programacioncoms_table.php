@@ -14,21 +14,21 @@ class CreateProgramacioncomsTable extends Migration
     public function up()
     {
         Schema::create('programacioncoms', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->date('fecha');
             $table->boolean('habilitado');
             $table->boolean('activo');
 
-            $table->unsignedInteger('estado_id');
+            $table->unsignedBigInteger('estado_id');
             $table->foreign('estado_id', 'fk_programacioncom_estado_id')
                 ->references('id')->on('estados');
             
                 $table->time('horaini');
             $table->time('horafin');
             $table->double('horas_por_clase');
-            $table->unsignedInteger('docente_id');
-            $table->unsignedInteger('aula_id');
-            $table->unsignedInteger('matriculacion_id');
+            $table->unsignedBigInteger('docente_id');
+            $table->unsignedBigInteger('aula_id');
+            $table->unsignedBigInteger('matriculacion_id');
 
             $table->foreign('docente_id', 'fk_programacioncom_docente_idx')
                 ->references('id')->on('docentes');

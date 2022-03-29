@@ -14,9 +14,9 @@ class CreateTableMateriables extends Migration
     public function up()
     {
         Schema::create('materiables', function (Blueprint $table) {
-            $table->unsignedInteger('materiable_id');
+            $table->unsignedBigInteger('materiable_id');
             $table->string('materiable_type',35);
-            $table->unsignedInteger('materia_id');
+            $table->unsignedBigInteger('materia_id');
             $table->foreign('materia_id')->references('id')->on('materias');
             
         });

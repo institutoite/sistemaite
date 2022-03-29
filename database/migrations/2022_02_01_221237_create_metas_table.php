@@ -16,7 +16,7 @@ class CreateMetasTable extends Migration
         Schema::create('metas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->unsignedInteger('carrera_id');
+            $table->unsignedBigInteger('carrera_id');
             $table->foreign('carrera_id')
                 ->references('id')
                 ->on('carreras')

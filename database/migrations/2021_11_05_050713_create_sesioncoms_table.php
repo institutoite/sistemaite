@@ -14,13 +14,13 @@ class CreateSesioncomsTable extends Migration
     public function up()
     {
         Schema::create('sesioncoms', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->time('horainicio');
             $table->time('horafin');
-            $table->unsignedInteger('matriculacion_id');
-            $table->unsignedInteger('dia_id');
-            $table->unsignedInteger('docente_id');
-            $table->unsignedInteger('aula_id');
+            $table->unsignedBigInteger('matriculacion_id');
+            $table->unsignedBigInteger('dia_id');
+            $table->unsignedBigInteger('docente_id');
+            $table->unsignedBigInteger('aula_id');
 
             $table->foreign('matriculacion_id','fk_matriculacion_sesioncom')->references('id')->on('matriculacions');
             $table->foreign('dia_id','fk_dia_seseoncom')->references('id')->on('dias');

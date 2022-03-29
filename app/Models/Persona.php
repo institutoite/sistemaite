@@ -124,7 +124,7 @@ class Persona extends Model
 
     public function calificaciones()
     {
-        return $this->morphMany(Calificable::class,'calificable');
+        return $this->hasMany(Calificacion::class);
     }
 
 

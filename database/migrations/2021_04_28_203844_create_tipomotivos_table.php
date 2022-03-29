@@ -14,7 +14,7 @@ class CreateTipomotivosTable extends Migration
     public function up()
     {
         Schema::create('tipomotivos', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('tipomotivo', 50);
             $table->timestamps();
         });

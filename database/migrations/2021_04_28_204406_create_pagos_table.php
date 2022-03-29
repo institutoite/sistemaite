@@ -14,11 +14,11 @@ class CreatePagosTable extends Migration
     public function up()
     {
         Schema::create('pagos', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->decimal('monto', 6, 2);
             $table->decimal('pagocon', 6, 2);
             $table->decimal('cambio', 6, 2);
-            $table->unsignedInteger('pagable_id');
+            $table->unsignedBigInteger('pagable_id');
             $table->string('pagable_type',30);
 
             $table->timestamps();

@@ -14,12 +14,12 @@ class CreateComputacionAsignaturaTable extends Migration
     public function up()
     {
         Schema::create('computacion_asignatura', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('computacion_id');
+            $table->id();
+            $table->unsignedBigInteger('computacion_id');
             $table->foreign('computacion_id')
                 ->references('id')
                 ->on('computacions');
-            $table->unsignedInteger('asignatura_id');
+            $table->unsignedBigInteger('asignatura_id');
             $table->foreign('asignatura_id')
                 ->references('id')
                 ->on('asignaturas');
@@ -31,7 +31,7 @@ class CreateComputacionAsignaturaTable extends Migration
             $table->boolean('vigente');
             $table->boolean('condonado');
             $table->string('objetivo');
-            $table->unsignedInteger('motivo_id');
+            $table->unsignedBigInteger('motivo_id');
             $table->foreign('motivo_id', 'fk_computacion_motivos_idx')
             ->references('id')->on('motivos');
 

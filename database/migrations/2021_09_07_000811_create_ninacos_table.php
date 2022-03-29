@@ -14,8 +14,8 @@ class CreateNinacosTable extends Migration
     public function up()
     {
         Schema::create('ninacos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('persona_id');
+            $table->id();
+            $table->unsignedBigInteger('persona_id');
             $table->foreign('persona_id', 'fk_persona_ninaco')
             ->references('id')->on('personas');
             $table->timestamps();

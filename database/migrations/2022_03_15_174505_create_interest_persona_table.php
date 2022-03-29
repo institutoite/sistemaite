@@ -13,8 +13,8 @@ class CreateInterestPersonaTable extends Migration
     {
         Schema::create('interest_persona', function (Blueprint $table) {
             
-            $table->unsignedInteger('interest_id');
-            $table->integer('persona_id')->unsigned();
+            $table->unsignedBigInteger('interest_id');
+            $table->unsignedBigInteger('persona_id')->unsigned();
             $table->foreign('interest_id')->references('id')->on('interests');
             $table->foreign('persona_id')->references('id')->on('personas');
             $table->timestamps();

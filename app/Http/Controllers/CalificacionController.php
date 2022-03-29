@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CalificacionGuardarRequest;
+use App\Models\Calificacion;
+use App\Models\Persona;
+use Illuminate\Support\Facades\Auth;
 
 class CalificacionController extends Controller
 {
@@ -32,9 +36,19 @@ class CalificacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CalificacionGuardarRequest $request)
     {
-        return 'guardado';
+        $calificacion= new Calificacion();
+        $calificacion->calificacion=$request->calificacion;
+        $calificacion->persona_id=$request->persona_id;
+        $calificacion->user_id=Auth::user()->id;
+        $calificacion->save();  
+        
+        $persona=Persona::findOrFail($request->persona_id);
+
+
+        return redirect()->route('personas.show', $persona->id);//->withErrors($validator)->withInput();ç
+        
     }
 
     /**

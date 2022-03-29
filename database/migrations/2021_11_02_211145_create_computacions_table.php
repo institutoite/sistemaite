@@ -14,8 +14,8 @@ class CreateComputacionsTable extends Migration
     public function up()
     {
         Schema::create('computacions', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('persona_id');
+            $table->id();
+            $table->unsignedBigInteger('persona_id');
             $table->foreign('persona_id', 'fk_persona_computacion')
             ->references('id')->on('personas');
             $table->timestamps();

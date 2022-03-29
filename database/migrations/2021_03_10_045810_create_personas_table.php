@@ -12,7 +12,7 @@ class CreatePersonasTable extends Migration
     public function up()
     {
         Schema::create('personas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('nombre', 40);
             $table->string('apellidop', 25);
             $table->string('apellidom', 25)->nullable();
@@ -28,10 +28,10 @@ class CreatePersonasTable extends Migration
             $table->string('telefono', 10)->nullable();
             $table->tinyInteger('votos')->nullable()->unsigned()->default(1);
             $table->boolean('habilitado')->nullable()->default(0);
-            $table->unsignedInteger('persona_id')->nullable();// persona que referenció
-            $table->unsignedInteger('pais_id')->nullable();
-            $table->unsignedInteger('ciudad_id')->nullable();
-            $table->unsignedInteger('zona_id')->nullable();
+            $table->unsignedBigInteger('persona_id')->nullable();// persona que referenció
+            $table->unsignedBigInteger('pais_id')->nullable();
+            $table->unsignedBigInteger('ciudad_id')->nullable();
+            $table->unsignedBigInteger('zona_id')->nullable();
             
             $table->foreign('persona_id', 'fk_persona_persona1_idx')
             ->references('id')->on('personas');

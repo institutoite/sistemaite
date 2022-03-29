@@ -14,9 +14,9 @@ class CreateNivelablesTable extends Migration
     public function up()
     {
         Schema::create('nivelables', function (Blueprint $table) {
-            $table->unsignedInteger('nivelable_id');
+            $table->unsignedBigInteger('nivelable_id');
             $table->string('nivelable_type', 35);
-            $table->unsignedInteger('nivel_id');
+            $table->unsignedBigInteger('nivel_id');
             $table->foreign('nivel_id')->references('id')->on('nivels');
         });
     }

@@ -14,8 +14,8 @@ class CreateTableDiables extends Migration
     public function up()
     {
         Schema::create('diables', function (Blueprint $table) {
-            $table->unsignedInteger('dia_id');
-            $table->unsignedInteger('diable_id');
+            $table->unsignedBigInteger('dia_id');
+            $table->unsignedBigInteger('diable_id');
             $table->string('diable_type');
             $table->foreign('dia_id')->references('id')->on('dias');
         });

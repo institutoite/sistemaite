@@ -322,8 +322,17 @@ class PersonaController extends Controller
 
         $recomendado=Persona::find($persona->persona_id); 
         $apoderados=$persona->apoderados;
-        //dd($recomendado);
-        return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion','recomendado','apoderados'));
+
+        $calificaciones=Persona::join('calificacions','personas.id','calificacions.persona_id')
+            ->join('users','users.id','calificacions.user_id')
+            ->where('calificacions.persona_id',$persona->id)
+            ->select('calificacion','users.foto','calificacions.created_at')
+            ->get();
+        $calificado=$persona->calificaciones->where('user_id',Auth::user()->id)->count();
+        $promedio=round($persona->calificaciones->avg('calificacion'),1);
+
+
+        return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion','recomendado','apoderados','calificado','promedio','calificaciones'));
     }
 
     public function edit(Persona $persona)
