@@ -330,9 +330,9 @@ class PersonaController extends Controller
             ->get();
         $calificado=$persona->calificaciones->where('user_id',Auth::user()->id)->count();
         $promedio=round($persona->calificaciones->avg('calificacion'),1);
+        $micalificacion=$persona->calificaciones->where('user_id',1)->first()->calificacion;
 
-
-        return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion','recomendado','apoderados','calificado','promedio','calificaciones'));
+        return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion','recomendado','apoderados','calificado','promedio','calificaciones','micalificacion'));
     }
 
     public function edit(Persona $persona)

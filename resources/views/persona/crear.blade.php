@@ -19,7 +19,6 @@
                     <div class="active tab-pane" id="estudiante">
                         <form action="{{route('personas.store')}}" id="formulario" method="post" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
                             @csrf
-                            <x-header variable="fds"/>
                             @include('persona.form')
 
                             @include('include.botones')

@@ -6,8 +6,8 @@ registro rapido de posibles clientes
 que sea nullable los campos de personas fechaNacimiento carnet direccion y expedido papel colocar por defecto estudiante 
 boton imprimir pdf formulario para registro rapido
 cuando se guarda rapidingo el telefono del apoderado no se muestra corretamente en los Telefonos
-
 calificar al estudiante cuando termine la inscripcion calificable
+
 
 programar subir archivos documentos digitales
 
