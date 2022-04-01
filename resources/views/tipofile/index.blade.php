@@ -20,12 +20,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Archivos') }}
+                                {{ __('Tipo Archivos') }}
                             </span>
 
                             <div class="float-right">
-                                <a href="{{ route('files.create') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
-                                    {{ __('Guardar nuevo archivo') }}
+                                <a href="{{ route('tipofile.create') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
+                                    {{ __('Crear nuevo tipo archivo') }}
                                 </a>
                             </div>
                         </div>
@@ -34,13 +34,11 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="files" class="table table-striped table-hover table-borderless">
+                            <table id="tipofiles" class="table table-striped table-hover table-borderless">
                                 <thead class="">
                                     <tr>
                                         <th>No</th>
-										<th>nombre</th>
-										<th>tipo</th>
-										<th>description</th>
+										<th>Motivo</th>
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
@@ -52,7 +50,7 @@
             </div>
         </div>
     </div>
-    @include('motivo.modales')
+    @include('tipofile.modales')
 @endsection
 
 @section('js')
@@ -99,8 +97,8 @@
 
         $(document).ready(function() {
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATA TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            let fila=1;
-            $('#motivos').dataTable({
+            //let fila=1;
+            $('#tipofiles').dataTable({
                 "responsive":true,
                 "searching":true,
                 "paging":   true,
@@ -109,13 +107,14 @@
                 "info":     true,
                 "createdRow": function( row, data, dataIndex ) {
                     $(row).attr('id',data['id']); 
-                     $('td', row).eq(0).html(fila++);
+                    // $('td', row).eq(0).html(fila++);
                 },
-                "ajax": "{{ url('listar/motivos') }}",
+                "ajax":{
+                        'url':"listar/tipofiles",
+                    },
                 "columns": [
                     {data: 'id'},
-                    {data: 'motivo'},
-                    {data: 'tipomotivo'},
+                    {data: 'tipofile'},
                     {
                         "name":"btn",
                         "data": 'btn',
@@ -132,22 +131,24 @@
             });
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('#motivos').on('click', '.mostrar', function(e) {
+            $('#tipomotivos').on('click', '.mostrar', function(e) {
                 e.preventDefault(); 
-                let id_motivo =$(this).closest('tr').attr('id');
+                let id_tipomotivo =$(this).closest('tr').attr('id');
+                console.log(id_tipomotivo)
                 //var fila=$(this).json;
                 $.ajax({
-                    url : "motivo/mostrar/",
-                    data : { id :id_motivo },
+                    url : "tipomotivo/mostrar",
+                    data : { id :id_tipomotivo },
                     success : function(json) {
+
                         $("#modal-mostrar").modal("show");
                         $("#tabla-mostrar").empty();
                         $html="";
-                        $html+="<tr><td>ID</td>"+"<td>"+ json.motivo.id +"</td></tr>";
-                        $html+="<tr><td>MOTIVO</td>"+"<td>"+json.motivo.motivo+"</td></tr>";
-                        $html+="<tr><td>CREADO POR </td>"+"<td>"+json.user.name+"</td></tr>";
-                        $html+="<tr><td>CREADO</td>"+"<td>"+ moment(json.motivo.created_at).format('LLLL') +"</td></tr>";
-                        $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.motivo.updated_at).format('LLLL')+"</td></tr>";
+                        $html+="<tr><td>ID</td>"+"<td>"+ json.tipomotivo.id +"</td></tr>";
+                        $html+="<tr><td>TIPOMOTIVO</td>"+"<td>"+json.tipomotivo.tipomotivo+"</td></tr>";
+                        // $html+="<tr><td>CREADO POR </td>"+"<td>"+json.user.name+"</td></tr>";
+                        $html+="<tr><td>CREADO</td>"+"<td>"+ moment(json.tipomotivo.created_at).format('LLLL') +"</td></tr>";
+                        $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.tipomotivo.updated_at).format('LLLL')+"</td></tr>";
                         $("#tabla-mostrar").append($html);
                     },
                     error : function(xhr, status) {
@@ -163,29 +164,17 @@
              /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO MOSTRAR EDITAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.editar', function(e) {
                 e.preventDefault(); 
-                let id_motivo =$(this).closest('tr').attr('id');
-                $("#error_motivo").empty();
+                let id_tipomotivo =$(this).closest('tr').attr('id');
+                $("#error_tipomotivo").empty();
                     $.ajax({
-                    url : "motivo/editar/",
-                    data : { id :id_motivo },
+                    url : "tipomotivo/editar/",
+                    data : { id :id_tipomotivo },
                     success : function(json) {
                         $("#modal-editar").modal("show");
                         $("#formulario-editar").empty();
-                        $("#tipomotivo_id").empty();
                             $html="<div class='row'>";
-                            $("#motivo").val(json.motivo.motivo);
-                            $("#motivo_id").val(json.motivo.id);
-                            $html="";
-                            for (let j in json.tipomotivos) {
-                                if(json.tipomotivos[j].id==json.motivo.tipomotivo_id){
-                                    $html+="<option  value='"+json.tipomotivos[j].id +"' selected >"+json.tipomotivos[j].tipomotivo+"</option>";
-                                }else{
-                                    $html+="<option  value='"+json.tipomotivos[j].id +"'>"+json.tipomotivos[j].tipomotivo+"</option>";
-                                }
-                            }
-                            
-                            $('#tipomotivo_id').append($html);
-
+                            $("#tipomotivo").val(json.tipomotivo);
+                            $("#tipomotivo_id").val(json.id);
                             $("#formulario-editar").append($html);
                     },
                     error : function(xhr, status) {
@@ -201,9 +190,9 @@
             $(document).on("submit","#formulario-editar-motivo",function(e){
                 e.preventDefault();//detenemos el envio
             
-                $motivo=$('#motivo').val();
-                $motivo_id=$('#motivo_id').val();
+                $tipomotivo=$('#tipomotivo').val();
                 $tipomotivo_id=$('#tipomotivo_id').val();
+                console.log($tipomotivo_id);
                 var token = $("input[name=_token]").val();
                 $.ajaxSetup({
                 headers: {
@@ -211,12 +200,11 @@
                     }
                 });
                 $.ajax({
-                    url : "motivo/actualizar/",
+                    url : "tipomotivo/actualizar/",
                     headers:{'X-CSRF-TOKEN':token},
                     data:{
-                            motivo:$motivo,
-                            tipomotivo_id:$tipomotivo_id,
-                            id:$motivo_id,
+                            tipomotivo:$tipomotivo,
+                            id:$tipomotivo_id,
                             token:token,
                         },
                     success : function(json) {
@@ -224,7 +212,7 @@
                         $("#error_motivo").html(json.error);
                         }else{
                             $("#modal-editar").modal("hide");
-                            $('#motivos').DataTable().ajax.reload();
+                            $('#tipomotivos').DataTable().ajax.reload();
                             const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
@@ -244,9 +232,9 @@
             });
             
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  M O T I V O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-            $('#motivos').on('click','.eliminar',function (e) {
+            $('#tipomotivos').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
-                 var id_motivo =$(this).closest('tr').attr('id');
+                 var id_tipomotivo =$(this).closest('tr').attr('id');
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",
@@ -260,13 +248,13 @@
                 }).then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: 'eliminar/motivo/'+id_motivo,
+                            url: 'eliminar/tipomotivo/'+id_tipomotivo,
                             type: 'DELETE',
                             data:{
                                 _token:'{{ csrf_token() }}'
                             },
                             success: function(result) {
-                                $('#motivos').DataTable().ajax.reload();
+                                $('#tipomotivos').DataTable().ajax.reload();
                                 const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',

@@ -10,7 +10,6 @@ use App\Models\Persona;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
 use App\Http\Requests\ReportePotencialesBetween;
-//use App\Http\Requests\PersonaRapidingoGuardarRequest;
 
 class PersonaReporteController extends Controller
 {

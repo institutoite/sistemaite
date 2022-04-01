@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Validator;
 
 use App\Http\Requests\TipomotivoGuardarRequest;
 
-use Illuminate\Support\Facades\Validator;
 
 class TipomotivoController extends Controller
 {

@@ -26,6 +26,7 @@ use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\PersonaReporteController;
 use App\Http\Controllers\InterestController;
 use App\Http\Controllers\CalificacionController;
+use App\Http\Controllers\TipofileController;
 
 use App\Http\Controllers\MessageController;
 
@@ -306,6 +307,18 @@ Route::get('tipomotivo/actualizar/', "TipomotivoController@actualizar")->name("t
 Route::delete('eliminar/tipomotivo/{tipomotivo}', 'TipomotivoController@destroy')->name('eliminar.tipomotivo');
 Route::get('tipomotivo/create',[TipomotivoController::class,'create'])->name('tipomotivo.create');
 Route::post('tipomotivo/guardar',[TipomotivoController::class,'store'])->name('tipomotivo.store');
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  TIPOMOTIVOS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::get('tipofiles', [TipofileController::class,'index'])->name('tipofile.index');
+Route::get('listar/tipofiles', [TipofileController::class,'listar'])->name('tipofile.ajax');
+Route::get('tipofile/mostrar', [TipofileController::class,'mostrar'])->name("tipofile.mostrar");
+Route::get('tipofile/editar/', [TipofileController::class,'editar'])->name("tipofile.editar");
+Route::get('tipofile/actualizar/', [TipofileController::class,'actualizar'])->name("tipofile.actualizar");
+Route::delete('eliminar/tipofile/{tipofile}', [TipofileController::class,'destroy'])->name('eliminar.tipofile');
+Route::get('tipofile/create',[TipofileController::class,'create'])->name('tipofile.create');
+Route::post('tipofile/guardar',[TipofileController::class,'store'])->name('tipofile.store');
+
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  INTEREST  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('interests', [InterestController::class,'index'])->name('interest.index');

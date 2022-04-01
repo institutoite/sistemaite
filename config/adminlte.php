@@ -1200,6 +1200,22 @@ return [
                 ],
             ],
         ],
+        //** %%%%%%%%%%%%%%%%%%  MENU TIPOFILE %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Tipo Archivos',
+            'icon'    => 'fas fa-prescription-bottle fa-2x',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'tipofiles',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
 
         //** %%%%%%%%%%%%%%%%%%  MENU ROLES %%%%%%%%%%%%% */
     
