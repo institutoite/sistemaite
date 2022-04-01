@@ -49,7 +49,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[PersonaReporteController::class,'potencialesPorInteres'])->name('prueba');
+Route::get('prueba',[CalificacionController::class,'edit'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -377,6 +377,8 @@ Route::put('telefono/{persona_id}/{apoderado_id}', 'TelefonoController@actualiza
 Route::post('crear/contacto/{persona}','PersonaController@storeContacto')->name('persona.storeContacto');
 
 Route::post('calificacion/store', [CalificacionController::class,'store'])->name('calificacion.store');  
+Route::get('calificacion/editar',[CalificacionController::class,'edit'])->name('calificacion.editar');
+Route::post('calificacion/actualizar', [CalificacionController::class,'update'])->name("calificacion.update");
 
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ROUTES P R O G R A M A C I O N   C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/

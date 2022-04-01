@@ -43,12 +43,8 @@ class CalificacionController extends Controller
         $calificacion->persona_id=$request->persona_id;
         $calificacion->user_id=Auth::user()->id;
         $calificacion->save();  
-        
         $persona=Persona::findOrFail($request->persona_id);
-
-
         return redirect()->route('personas.show', $persona->id);//->withErrors($validator)->withInput();ç
-        
     }
 
     /**
@@ -68,9 +64,11 @@ class CalificacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $persona= Persona::find($request->persona_id);
+        $calificacion=$persona->calificaciones->where('user_id',Auth::user()->id)->first();
+        return response()->json(['calificacion'=>$calificacion]);
     }
 
     /**
@@ -80,9 +78,12 @@ class CalificacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $calificacion=Calificacion::findOrFail($request->calificacion_id);
+        $calificacion->calificacion=$request->calificacion;
+        $calificacion->save();
+        dd($calificacion);
     }
 
     /**

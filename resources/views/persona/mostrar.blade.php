@@ -10,16 +10,10 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('dist/css/starrr.css')}}">
+
 @endsection
 
-@section('content_header')
-    
-@stop
-
 @section('content')
-{{-- {{dd($persona)}} --}}
-
-    
     <div class="card">
         <div class="card-header">
             CALIFICACION
@@ -40,6 +34,7 @@
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{($promedio/5)*100}}%"></div>
                             </div>
+                            <a href="" class="editar_calificacion" ><i class="fa fa-fw fa-edit text-primary"></i></a>
                             Mi calificaion {{$micalificacion}}
                         </div>
                         
@@ -62,9 +57,6 @@
 
     <div class="card">
         <div class="card-body">
-
-            
-
             <table class="table table-bordered table-striped"> 
                 <tr class="bg-primary">
                         <th>ATRIBUTO</th>
@@ -77,16 +69,11 @@
                     </tr>
                     <tr>
                         <td>Fotografía
-                            
-                            
-                            
                         </td>
                         <td> 
                             <div class="text-center">
                                 <img class="rounded img-thumbnail img-fluid border-primary border-5" src="{{URL::to('/').Storage::url("$persona->foto")}}" alt="{{$persona->nombre.' '.$persona->apellidop}}"> 
                                 <p>{!!$observacion!!}</p>
-                                
-                            
                             </div>
                         </td>
                     </tr>
@@ -188,13 +175,25 @@
         </div>
     </div>
 
-    
+    @include('persona.modalescalificacion')
 @stop
 @section('js')
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
     <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
     <script src="{{asset('dist/js/starrr.js')}}"></script>
+
+    <script src="https://kit.fontawesome.com/067a2afa7e.js" crossorigin="anonymous"></script>
+
+    <script src="{{asset('dist/js/moment.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 
     <script>
          $('.starrr').starrr({
@@ -207,6 +206,28 @@
                 }
                 
             }
+        });
+
+        $(document).ready(function(){
+            $('.editar_calificacion').on('click',function(e) {
+                e.preventDefault(); 
+                let persona_id ="{{ $persona->id }}";
+                console.log(persona_id);
+                    $.ajax({
+                    url : "../calificacion/editar",
+                    data : { persona_id :persona_id },
+                    success : function(json) {
+                            console.log(json.calificacion.calificacion);
+                            $("#editar-calificacion").modal("show");
+                            $('#calificacion').val(json.calificacion.calificacion);
+                            $('#calificacion_id').val(json.calificacion.id);
+
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },  
+                });
+            });
         });
 
     </script>
