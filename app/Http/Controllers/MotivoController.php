@@ -162,7 +162,7 @@ class MotivoController extends Controller
         $motivos=Motivo::join('tipomotivos','motivos.tipomotivo_id','=','tipomotivos.id')
                 ->select('motivos.id','motivos.motivo','tipomotivos.tipomotivo');
         return datatables()->of($motivos)
-        ->addColumn('btn', 'tipomotivo.action')
+        ->addColumn('btn', 'motivo.action')
         ->rawColumns(['btn'])
         ->toJson();
     }

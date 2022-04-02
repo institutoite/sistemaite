@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Files;
 use Illuminate\Http\Request;
 
-class FilesController extends Controller
+use App\Models\File;
+
+class FileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class FilesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Files  $files
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Files $files)
+    public function show($id)
     {
         //
     }
@@ -52,10 +53,10 @@ class FilesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Files  $files
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Files $files)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +65,10 @@ class FilesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Files  $files
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Files $files)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,11 +76,20 @@ class FilesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Files  $files
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Files $files)
+    public function destroy($id)
     {
         //
+    }
+
+    public function listar(){
+        $files=File::join('tipofiles','files.tipofile_id','=','tipofiles.id')
+                ->select('files.id','files.descripcion','tipofiles.tipofile','files.created_at','files.updated_at');
+        return datatables()->of($files)
+        ->addColumn('btn', 'file.action')
+        ->rawColumns(['btn'])
+        ->toJson();
     }
 }

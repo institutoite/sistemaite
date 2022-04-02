@@ -27,15 +27,10 @@ use App\Http\Controllers\PersonaReporteController;
 use App\Http\Controllers\InterestController;
 use App\Http\Controllers\CalificacionController;
 use App\Http\Controllers\TipofileController;
-
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\MessageController;
-
-
 use App\Http\Controllers\HomeController;
-
-
 use App\Http\Controllers\ProductoController;
-
 use Illuminate\Support\Facades\Auth;
 //use SweetAlert;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
@@ -309,7 +304,7 @@ Route::get('tipomotivo/create',[TipomotivoController::class,'create'])->name('ti
 Route::post('tipomotivo/guardar',[TipomotivoController::class,'store'])->name('tipomotivo.store');
 
 
-/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  TIPOMOTIVOS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  TIPOFILES %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('tipofiles', [TipofileController::class,'index'])->name('tipofile.index');
 Route::get('listar/tipofiles', [TipofileController::class,'listar'])->name('tipofile.ajax');
 Route::get('tipofile/mostrar', [TipofileController::class,'mostrar'])->name("tipofile.mostrar");
@@ -331,13 +326,21 @@ Route::get('interest/create',[InterestController::class,'create'])->name('intere
 Route::post('interest/guardar',[InterestController::class,'store'])->name('interest.store');
 
 
-/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  M O T I V O S %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MOTIVOS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('motivos', "MotivoController");
 Route::get('motivo/mostrar/',[MotivoController::class,'mostrar'])->name("motivo.mostrar");
 Route::get('listar/motivos', [MotivoController::class,'listar'])->name('motivo.ajax');
 Route::get('motivo/editar/', [MotivoController::class,'editar'])->name("motivo.editar");
 Route::get('motivo/actualizar/', [MotivoController::class,'actualizar'])->name("motivo.actualizar");
 Route::delete('eliminar/motivo/{motivo}', [MotivoController::class,'destroy'])->name('eliminar.motivo');
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  FILES %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::resource('files', "FileController");
+Route::get('file/mostrar/',[FileController::class,'mostrar'])->name("file.mostrar");
+Route::get('listar/files', [FileController::class,'listar'])->name('file.ajax');
+Route::get('file/editar/', [FileController::class,'editar'])->name("file.editar");
+Route::get('file/actualizar/', [FileController::class,'actualizar'])->name("file.actualizar");
+Route::delete('eliminar/file/{file}', [FileController::class,'destroy'])->name('eliminar.file');
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  ASIGNATURAS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('asignaturas', [AsignaturaController::class,'index'])->name('asignatura.index');

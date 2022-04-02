@@ -9,6 +9,8 @@ use Yajra\DataTables\Contracts\DataTable as DataTable;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Validator;
 
+use App\Http\Requests\TipofileGuardarRequest;
+use App\Http\Requests\TipofileUpdateRequest;
 
 class TipofileController extends Controller
 {
@@ -29,7 +31,7 @@ class TipofileController extends Controller
      */
     public function create()
     {
-        //
+        return view('tipofile.create');
     }
 
     /**
@@ -38,9 +40,14 @@ class TipofileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TipofileGuardarRequest $request)
     {
-        //
+        $tipofile = new Tipofile();
+        $tipofile->tipofile = $request->tipofile;
+        $tipofile->programa = $request->programa;
+        $tipofile->save();
+        return redirect()->route('tipofile.index')
+            ->with('success', 'Motivo created successfully.');
     }
 
     /**
@@ -49,11 +56,12 @@ class TipofileController extends Controller
      * @param  \App\Models\Tipofile  $tipofile
      * @return \Illuminate\Http\Response
      */
-    public function show(Tipofile $tipofile)
+    public function mostrar(Request $request)
     {
-        //
+        $tipofile = Tipofile::findOrFail($request->id);
+        $data=['tipofile'=>$tipofile];
+        return response()->json($data);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -64,6 +72,25 @@ class TipofileController extends Controller
     {
         //
     }
+    public function editar(Request $request)
+    {
+        $tipofile = Tipofile::find($request->id);
+        return response()->json($tipofile);
+    }
+
+    public function actualizar(TipofileUpdateRequest $request)
+    {
+            $validated=$request->validated();
+            $tipofile = Tipofile::findOrFail($request->id);
+            $tipofile->tipofile = $request->tipofile;
+            $tipofile->programa = $request->programa;
+            $tipofile->save();
+
+            return response()->json(['tipofile'=>$tipofile]);
+        
+        
+    }
+
 
     /**
      * Update the specified resource in storage.
@@ -83,13 +110,14 @@ class TipofileController extends Controller
      * @param  \App\Models\Tipofile  $tipofile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tipofile $tipofile)
+    public function destroy($id)
     {
-        //
+         Tipofile::find($id)->delete();
+        return response()->json(['mensaje'=>"Se elimino correctamente"]);
     }
     public function listar(){
         return datatables()->of(Tipofile::get())
-        ->addColumn('btn', 'tipofiles.action')
+        ->addColumn('btn', 'tipofile.action')
         ->rawColumns(['btn'])
         ->toJson();
     }

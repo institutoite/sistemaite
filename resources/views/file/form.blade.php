@@ -1,43 +1,40 @@
-<div class="box box-info padding-1">
-    <div class="box-body">
-        
-        <div class="form-group">
-            {{ Form::label('modalidad') }}
-            {{ Form::text('modalidad', $modalidad->modalidad, ['class' => 'form-control' . ($errors->has('modalidad') ? ' is-invalid' : ''), 'placeholder' => 'Modalidad']) }}
-            {!! $errors->first('modalidad', '<div class="invalid-feedback">:message</p>') !!}
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+        <div class="form-floating mb-3 text-gray">
+            <input  type="text" name="banner" id="banner"  class="form-control @error('banner') is-invalid @enderror" value="" autocomplete="off">
+            <label>Ingrese texto del banner del home</label>
         </div>
-        <div class="form-group">
-            {{ Form::label('costo') }}
-            {{ Form::text('costo', $modalidad->costo, ['class' => 'form-control' . ($errors->has('costo') ? ' is-invalid' : ''), 'placeholder' => 'Costo']) }}
-            {!! $errors->first('costo', '<div class="invalid-feedback">:message</p>') !!}
+        <div class="form-floating mb-3 text-gray">
+            <input  type="text" name="heading" id="heading"  class="form-control @error('heading') is-invalid @enderror" value="" autocomplete="off">
+            <label>Ingrese titulo de las materias</label>
         </div>
-        <div class="form-group">
-            {{ Form::label('cargahoraria') }}
-            {{ Form::text('cargahoraria', $modalidad->cargahoraria, ['class' => 'form-control' . ($errors->has('cargahoraria') ? ' is-invalid' : ''), 'placeholder' => 'Cargahoraria']) }}
-            {!! $errors->first('cargahoraria', '<div class="invalid-feedback">:message</p>') !!}
+        <div class="form-floating mb-3 text-gray">
+            <input  type="text" name="subheading" id="subheading"  class="form-control @error('subheading') is-invalid @enderror" value="" autocomplete="off">
+            <label>Ingrese subtitulo de las materias</label>
         </div>
-
-        {{ Form::label('Nivel') }}
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm" >
-                <div class="input-group mb-2" >
-                    
-                    <select class="form-control @error('nivel_id') is-invalid @enderror" data-old="{{ old('nivel_id') }}" name="nivel_id" id="nivel">
-                        <option value="">Seleccione nivel</option>
-                        @foreach ($niveles as $nivel)
-                            @isset($modalidad)     
-                                <option  value="{{$nivel->id}}" {{$nivel->id==$modalidad->nivel_id ? 'selected':''}}>{{$nivel->nivel}}</option>     
-                            @else
-                                <option value="{{ $nivel->id }}" {{ old('nivel_id') == $nivel->id ? 'selected':'' }} >{{ $nivel->nivel }}</option>
-                            @endisset 
-                        @endforeach
-                    </select>
-                </div>
+    </div>
+</div> 
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+        <div class="form-floating mb-3 text-gray">
+            <select class="form-control @error('tipomotivo_id') is-invalid @enderror" data-old="{{ old('tipomotivo_id') }}" name="tipomotivo_id" id="country">
+                <option value="">Elija un tipo motivo</option>
+                @foreach ($tipomotivos as $tipomotivo)
+                    @isset($motivo)     
+                        <option  value="{{$tipomotivo->id}}" {{$tipomotivo->id==$motivo->tipomotivo_id ? 'selected':''}}>{{$tipomotivo->tipomotivo}}</option>     
+                    @else
+                        <option value="{{ $tipomotivo->id }}" {{ old('carrera_id') == $tipomotivo->id ? 'selected':'' }} >{{ $tipomotivo->tipomotivo }}</option>
+                    @endisset 
+                @endforeach
+            </select>
+            <label for="pais">Elija tipomotivo*</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+            <div class="form-floating mb-3 text-gray">
+                @error('tipomotivo_id') <span class="text-danger">{{$message}}</span> @enderror
             </div>
         </div>
-
-    </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
 </div>

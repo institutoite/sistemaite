@@ -16,7 +16,7 @@ class CreateTipofilesTable extends Migration
         Schema::create('tipofiles', function (Blueprint $table) {
             $table->id();
             $table->string('tipofile', 10);
-            $table->string('programa que abre',25);
+            $table->string('programa',25);
             $table->timestamps();
         });
     }

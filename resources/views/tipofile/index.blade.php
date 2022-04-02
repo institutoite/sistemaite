@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
-    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}"> --}}
 @stop
 
 @section('title', 'Motivos')
@@ -115,6 +115,7 @@
                 "columns": [
                     {data: 'id'},
                     {data: 'tipofile'},
+                    {data: 'programa'},
                     {
                         "name":"btn",
                         "data": 'btn',
@@ -131,24 +132,23 @@
             });
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('#tipomotivos').on('click', '.mostrar', function(e) {
+            $('#tipofiles').on('click', '.mostrar', function(e) {
                 e.preventDefault(); 
-                let id_tipomotivo =$(this).closest('tr').attr('id');
-                console.log(id_tipomotivo)
-                //var fila=$(this).json;
+                let id_tipofile=$(this).closest('tr').attr('id');
+                console.log(id_tipofile)
                 $.ajax({
-                    url : "tipomotivo/mostrar",
-                    data : { id :id_tipomotivo },
+                    url : "tipofile/mostrar",
+                    data : { id :id_tipofile },
                     success : function(json) {
-
+                        console.log(json);
                         $("#modal-mostrar").modal("show");
                         $("#tabla-mostrar").empty();
                         $html="";
-                        $html+="<tr><td>ID</td>"+"<td>"+ json.tipomotivo.id +"</td></tr>";
-                        $html+="<tr><td>TIPOMOTIVO</td>"+"<td>"+json.tipomotivo.tipomotivo+"</td></tr>";
-                        // $html+="<tr><td>CREADO POR </td>"+"<td>"+json.user.name+"</td></tr>";
-                        $html+="<tr><td>CREADO</td>"+"<td>"+ moment(json.tipomotivo.created_at).format('LLLL') +"</td></tr>";
-                        $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.tipomotivo.updated_at).format('LLLL')+"</td></tr>";
+                        $html+="<tr><td>ID</td>"+"<td>"+ json.tipofile.id +"</td></tr>";
+                        $html+="<tr><td>TIPOFILE</td>"+"<td>"+json.tipofile.tipofile+"</td></tr>";
+                        $html+="<tr><td>PROGRAMA</td>"+"<td>"+ json.tipofile.programa +"</td></tr>";
+                        $html+="<tr><td>CREADO</td>"+"<td>"+ moment(json.tipofile.created_at).format('LLLL') +"</td></tr>";
+                        $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.tipofile.updated_at).format('LLLL')+"</td></tr>";
                         $("#tabla-mostrar").append($html);
                     },
                     error : function(xhr, status) {
@@ -164,17 +164,22 @@
              /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO MOSTRAR EDITAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.editar', function(e) {
                 e.preventDefault(); 
-                let id_tipomotivo =$(this).closest('tr').attr('id');
-                $("#error_tipomotivo").empty();
+                let id_tipofile =$(this).closest('tr').attr('id');
+                
+                
                     $.ajax({
-                    url : "tipomotivo/editar/",
-                    data : { id :id_tipomotivo },
+                    url : "tipofile/editar/",
+                    data : { id :id_tipofile },
                     success : function(json) {
+                        console.log(json);
                         $("#modal-editar").modal("show");
+                        $("#errores").addClass('alert-danger');
                         $("#formulario-editar").empty();
+                        $("#errores").empty();
                             $html="<div class='row'>";
-                            $("#tipomotivo").val(json.tipomotivo);
-                            $("#tipomotivo_id").val(json.id);
+                            $("#tipofile").val(json.tipofile);
+                            $("#tipofile_id").val(json.id);
+                            $("#programa").val(json.programa);
                             $("#formulario-editar").append($html);
                     },
                     error : function(xhr, status) {
@@ -187,12 +192,14 @@
                 });
             });
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR ENVIO DE FORMULARIO PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $(document).on("submit","#formulario-editar-motivo",function(e){
+            $(document).on("submit","#formulario-editar-tipofile",function(e){
                 e.preventDefault();//detenemos el envio
             
-                $tipomotivo=$('#tipomotivo').val();
-                $tipomotivo_id=$('#tipomotivo_id').val();
-                console.log($tipomotivo_id);
+                $tipofile=$('#tipofile').val();
+                $tipofile_id=$('#tipofile_id').val();
+                $programa=$('#programa').val();
+                
+                console.log($tipofile_id);
                 var token = $("input[name=_token]").val();
                 $.ajaxSetup({
                 headers: {
@@ -200,19 +207,21 @@
                     }
                 });
                 $.ajax({
-                    url : "tipomotivo/actualizar/",
+                    url : "tipofile/actualizar/",
                     headers:{'X-CSRF-TOKEN':token},
                     data:{
-                            tipomotivo:$tipomotivo,
-                            id:$tipomotivo_id,
+                            tipofile:$tipofile,
+                            programa:$programa,
+                            id:$tipofile_id,
                             token:token,
                         },
                     success : function(json) {
+                        console.log(json);
                         if(json.error){
-                        $("#error_motivo").html(json.error);
+                        $("#errores").html(json.error);
                         }else{
                             $("#modal-editar").modal("hide");
-                            $('#tipomotivos').DataTable().ajax.reload();
+                            $('#tipofiles').DataTable().ajax.reload();
                             const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
@@ -225,16 +234,24 @@
                             })   
                         } 
                     },
-                    error:function(jqXHR,estado,error){
-                        
+                    error:function(xhr, textStatus, thrownError) 
+                    {
+                        html="";
+                        $.each(xhr.responseJSON.errors, function(i, item) {
+                            $.each(item, function(i, error) {
+                                html+="<li>"+ item[0] +"</li>";
+                            });
+                        });
+                        $("#errores").append(html);
                     },
                 });
             });
             
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  M O T I V O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-            $('#tipomotivos').on('click','.eliminar',function (e) {
+            $('#tipofiles').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
-                 var id_tipomotivo =$(this).closest('tr').attr('id');
+                 var id_tipofile =$(this).closest('tr').attr('id');
+                 console.log(id_tipofile);
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",
@@ -248,13 +265,13 @@
                 }).then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: 'eliminar/tipomotivo/'+id_tipomotivo,
+                            url: 'eliminar/tipofile/'+id_tipofile,
                             type: 'DELETE',
                             data:{
                                 _token:'{{ csrf_token() }}'
                             },
                             success: function(result) {
-                                $('#tipomotivos').DataTable().ajax.reload();
+                                $('#tipofiles').DataTable().ajax.reload();
                                 const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\TipomotivoGuardarRequest;
 
 
+
 class TipomotivoController extends Controller
 {
     /**
@@ -91,12 +92,8 @@ class TipomotivoController extends Controller
      * @param  \App\Models\Tipomotivo  $tipomotivo
      * @return \Illuminate\Http\Response
      */
-     public function actualizar(Request $request)
+    public function actualizar(Request $request)
     {
-
-        // $request->tipomotivo ="Untipo";
-        // $request->id =3;
-
         $validator = Validator::make($request->all(), [
             'tipomotivo' => 'required|min:5|max:50|unique:tipomotivos',
         ]);

@@ -20,13 +20,13 @@
 
                 <div class="card card-default">
                     <div class="card-header bg-primary">
-                        <span class="card-title">Create Tipomotivo</span>
+                        <span class="card-title">Create Tipo de archivo</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('tipomotivo.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('tipofile.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('tipomotivo.form')
+                            @include('tipofile.form')
                             @include('include.botones')
                         </form>
                     </div>

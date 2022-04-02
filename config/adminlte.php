@@ -1216,6 +1216,22 @@ return [
                 ],
             ],
         ],
+        //** %%%%%%%%%%%%%%%%%%  MENU FILE %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Archivos',
+            'icon'    => 'fas fa-prescription-bottle fa-2x',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'files',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
 
         //** %%%%%%%%%%%%%%%%%%  MENU ROLES %%%%%%%%%%%%% */
     
