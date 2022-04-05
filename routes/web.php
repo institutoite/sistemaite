@@ -45,7 +45,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[CalificacionController::class,'edit'])->name('prueba');
+Route::get('prueba',[FileController::class,'listar'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });

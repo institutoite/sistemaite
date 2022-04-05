@@ -24,7 +24,7 @@
                             </span>
 
                             <div class="float-right">
-                                <a href="{{ route('mitivo.create') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
+                                <a href="{{ route('motivos.create') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
                                     {{ __('Guardar nuevo archivo') }}
                                 </a>
                             </div>
@@ -34,13 +34,12 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="mitivos" class="table table-striped table-hover table-borderless">
+                            <table id="motivos" class="table table-striped table-hover table-borderless">
                                 <thead class="">
                                     <tr>
                                         <th>No</th>
-										<th>nombre</th>
+										<th>motivo</th>
 										<th>tipo</th>
-										<th>description</th>
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>

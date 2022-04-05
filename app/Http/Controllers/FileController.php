@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\File;
+use App\Models\Tipofile;
+use App\Http\Requests\FileGuardarRequest;
+use Carbon\Carbon;
+
 
 class FileController extends Controller
 {
@@ -25,7 +29,8 @@ class FileController extends Controller
      */
     public function create()
     {
-        //
+        $tipofiles=Tipofile::all();
+        return  view('file.create',compact('tipofiles'));
     }
 
     /**
@@ -34,9 +39,21 @@ class FileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FileGuardarRequest $request)
     {
-        //
+        $NombreOriginal=$request->file->getClientOriginalName();
+        $Extension=$this->extension($NombreOriginal);
+        $file=new File();
+        $file->descripcion =$request->descripcion;
+        $file->file ="documento".Carbon::now()->format('d-m-Y');
+        $file->tipofile =$Extension;
+        $file->save();
+        return view('file.index');
+    }
+    public function extension($unNombreArchivo){
+        $invertido=strrev($unNombreArchivo);
+        $PosPunto=strpos($invertido,'.');
+        return strrev(substr($invertido,0,$PosPunto));
     }
 
     /**
@@ -85,11 +102,13 @@ class FileController extends Controller
     }
 
     public function listar(){
-        $files=File::join('tipofiles','files.tipofile_id','=','tipofiles.id')
-                ->select('files.id','files.descripcion','tipofiles.tipofile','files.created_at','files.updated_at');
+        $files=File::
+                select('id','descripcion','tipofile','updated_at');
         return datatables()->of($files)
         ->addColumn('btn', 'file.action')
         ->rawColumns(['btn'])
         ->toJson();
     }
+
+    
 }

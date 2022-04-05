@@ -25,7 +25,7 @@
 
                             <div class="float-right">
                                 <a href="{{ route('files.create') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
-                                    {{ __('Guardar nuevo archivo') }}
+                                    {{ __('Crear Archivo') }}
                                 </a>
                             </div>
                         </div>
@@ -38,9 +38,9 @@
                                 <thead class="">
                                     <tr>
                                         <th>No</th>
-										<th>nombre</th>
-										<th>tipo</th>
 										<th>description</th>
+										<th>tipo</th>
+										<th>creaado</th>
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-    @include('motivo.modales')
+    {{-- @include('motivo.modales') --}}
 @endsection
 
 @section('js')
@@ -109,14 +109,15 @@
                 "info":     true,
                 "createdRow": function( row, data, dataIndex ) {
                     $(row).attr('id',data['id']); 
-                     $('td', row).eq(0).html(fila++);
+                    $('td', row).eq(0).html(fila++);
+                    $('td', row).eq(3).html( moment(data['updated_at']).format('DD-MM-YYYY HH:mm') );
+
                 },
                 "ajax": "{{ url('listar/files') }}",
                 "columns": [
                     {data: 'id'},
                     {data: 'descripcion'},
                     {data: 'tipofile'},
-                    {data: 'created_at'},
                     {data: 'updated_at'},
                     {
                         "name":"btn",
