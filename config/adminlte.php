@@ -763,12 +763,6 @@ return [
                     'url'  => '#',
                     'classes'  => 'text-dark',
                 ],
-                [
-                    'text' => 'Crear',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
             ],
         ],
 //** %%%%%%%%%%%%%%%%%%  MENU INTERESTS %%%%%%%%%%%%% */
@@ -783,6 +777,54 @@ return [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'interests',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+//** %%%%%%%%%%%%%%%%%%  MENU REQUISITOS %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Requisitos',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'requisito',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+//** %%%%%%%%%%%%%%%%%%  MENU METAS %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Metas',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'meta',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+//** %%%%%%%%%%%%%%%%%%  MENU zonas %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Zonas',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'zonas',
                     'classes'  => 'text-dark',
                 ],
             ],
@@ -888,13 +930,7 @@ return [
                 [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Crear',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'aulas',
                     'classes'  => 'text-dark',
                 ],
             ],
@@ -1026,13 +1062,7 @@ return [
                 [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Crear',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'ciudades',
                     'classes'  => 'text-dark',
                 ],
             ],
@@ -1049,13 +1079,7 @@ return [
                 [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => 'carrera',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Listar Carreers',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'carreers',
+                    'url'  => 'carreras',
                     'classes'  => 'text-dark',
                 ],
             ],
@@ -1228,6 +1252,22 @@ return [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'files',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        //** %%%%%%%%%%%%%%%%%%  MENU ASIGNATURA %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Asignaturas',
+            'icon'    => 'fas fa-prescription-bottle fa-2x',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'asignaturas',
                     'classes'  => 'text-dark',
                 ],
             ],

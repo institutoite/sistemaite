@@ -21,4 +21,8 @@ class Estado extends Model
     public function clasecoms(){
         return $this->hasMany(Clasecom::class);
     }
+    public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
+    }
 }

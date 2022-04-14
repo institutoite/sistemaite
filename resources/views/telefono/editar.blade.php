@@ -14,8 +14,6 @@
         <div class="card-header bg-secondary">
             <span class="text-center">FORMULARIO EDITAR CONTACTO TELEFONICO </span>
         </div>
-        
-        {{-- {{ dd($registro_pivot[0]) }} --}}
         <div class="card-body">
             <form action="{{route('telefono.actualizar',['persona_id'=>$registro_pivot[0]->persona_id,'apoderado_id'=>$registro_pivot[0]->persona_id_apoderado])}}" method="POST">
                 {{ @method_field('PUT') }}

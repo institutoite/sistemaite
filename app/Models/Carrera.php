@@ -23,4 +23,8 @@ class Carrera extends Model
     {
         return $this->hasMany('App\Models\Asignatura');
     }
+    public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
+    }
 }

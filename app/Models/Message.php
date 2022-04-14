@@ -11,4 +11,8 @@ class Message extends Model
 
     protected $guarded=['id'];
     
+    public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
+    }
 }

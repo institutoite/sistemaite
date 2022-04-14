@@ -1,10 +1,6 @@
 
-<a class="btn-accion-tabla tooltipsC mr-2 editar" title="Editar este motivo">
+<a href="{{route('files.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-2 editar" title="Editar este motivo">
     <i class="fa fa-fw fa-edit text-primary"></i>
-</a>
-
-<a href="" class="btn-accion-tabla tooltipsC mr-2 mostrar" title="Ver este motivo">
-    <i class="fa fa-fw fa-eye text-primary"></i>
 </a>
 
 <form action=""  class="d-inline formulario eliminar">
@@ -14,3 +10,5 @@
         <i class="fa fa-fw fa-trash text-danger"></i>   
     </button>
 </form> 
+
+<a href="{{route('file.download',$id)}}">Descargar <i class="fas fa-download"></i></a>

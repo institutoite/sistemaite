@@ -19,8 +19,9 @@ use App\Models\Nivel;
 use App\Models\Programacion;
 use App\Models\Tipomotivo;
 use App\Models\Matriculacion;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
 
@@ -181,7 +182,9 @@ class InscripcioneController extends Controller
         ->orderBy('fecha', 'asc')
         ->where('inscripcione_id', '=', $inscripciones_id)->get();
 
-        return view('inscripcione.show', compact('inscripcione','programacion'));
+        $user=User::findOrFail($inscripcione->estudiante->persona->userable->user_id);
+
+        return view('inscripcione.show', compact('inscripcione','programacion','user'));
     }
 
     /**

@@ -7,16 +7,42 @@ que sea nullable los campos de personas fechaNacimiento carnet direccion y exped
 boton imprimir pdf formulario para registro rapido
 cuando se guarda rapidingo el telefono del apoderado no se muestra corretamente en los Telefonos
 calificar al estudiante cuando termine la inscripcion calificable
-
-
-
 programar subir archivos documentos digitales
-que todos los mostrar tengan quien hizo el registro correpondiente
 
+que todos los mostrar tengan quien hizo el registro correpondiente
+validar intereses al crear personas
+en presentes aumentar guarderia, robotica  
+no se ve el boton siguiente o guardar cuando se toma foto con camara
 agregar boton compartir Credenciales de usuario de cliente
 cuando verificar el pago con Bs. 200 y cambio Bs. 25 en computacion y Matematicas
 que se cambien de campo cuando se presiona enter en todos los formularios validar los formularios antes de guardar o actualizar 
 cuando le demos finalizar una clases que guarde la hora que se fue 
-
 verificar las licencias que se muestran cuando se esta mostrando una programacion parece que es lo mismo de Mate= COmputacion 
-validar actuzalidar un motivo sale que ya existe 
+validar actuzalidar un motivo sale que ya existe
+hacer una seccion de contactanos donde este las formas de contactanos
+Falta terminar el crud de requisitos y metas
+
+en el controlador
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
+
+en mostrar
+$user=User::findOrFail($asignatura->userable->user_id);
+y su compact
+
+
+en el guardar 
+$persona->userable()->create(['user_id'=>Auth::user()->id]);
+
+
+
+en lavista
+ <tr>
+    <td>Usuario</td>
+    <td>
+        {{$user->name}}
+        <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5"> 
+    </td>
+</tr>
+

@@ -9,6 +9,10 @@ use App\Models\Tipofile;
 use App\Http\Requests\FileGuardarRequest;
 use Carbon\Carbon;
 
+use Illuminate\Support\Facades\Storage;
+// use Illuminate\Http\File as Filecillo;
+
+use Illuminate\Support\Str;
 
 class FileController extends Controller
 {
@@ -41,20 +45,34 @@ class FileController extends Controller
      */
     public function store(FileGuardarRequest $request)
     {
-        $NombreOriginal=$request->file->getClientOriginalName();
-        $Extension=$this->extension($NombreOriginal);
+        
         $file=new File();
         $file->descripcion =$request->descripcion;
-        $file->file ="documento".Carbon::now()->format('d-m-Y');
-        $file->tipofile =$Extension;
+        if ($request->hasFile('file')){
+            $fileArchivo=$request->file('file');
+            //$nombreArchivo=Str::random(10).$request->file('file')->getClientOriginalName();
+            $nombreArchivo=Str::random(20).'.'.$request->file('file')->extension();
+            \Storage::disk('public')->put('files\\'.$nombreArchivo,  \File::get($fileArchivo));
+            $file->file =$nombreArchivo;
+            $file->tipofile =$request->file('file')->extension();
+        }
+
+        
         $file->save();
+        //dd($file);
         return view('file.index');
     }
-    public function extension($unNombreArchivo){
-        $invertido=strrev($unNombreArchivo);
-        $PosPunto=strpos($invertido,'.');
-        return strrev(substr($invertido,0,$PosPunto));
+
+
+    public function download($file_id){
+        $file= File::where('id',$file_id)->firstOrFail();
+        $pathToFile=storage_path("app\\public\\files\\".$file->file);
+
+        return response()->download($pathToFile);
     }
+    
+    
+    
 
     /**
      * Display the specified resource.
@@ -75,7 +93,8 @@ class FileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $file=File::findOrFail($id);
+        return view('file.edit',compact('file'));
     }
 
     /**
@@ -87,7 +106,22 @@ class FileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $file=File::findOrFail($id);
+        if ($request->hasFile('file')) {
+            $direccion=storage_path().'\app\public\files\\'.$file->file;
+            $nombreArchivo=$file->file;
+            if (file_exists($direccion)) {
+                Storage::delete('public/files/'. $file->file);
+            }
+            $fileArchivo=$request->file('file');
+            $nombreArchivo=Str::random(20).'.'.$request->file('file')->extension();
+            \Storage::disk('public')->put('files\\'.$nombreArchivo,  \File::get($fileArchivo));
+            $file->file=$nombreArchivo;
+            $file->tipofile =$request->file('file')->extension();
+        }
+        $file->descripcion=$request->descripcion;
+        $file->save();
+        return view('file.index');
     }
 
     /**
@@ -98,7 +132,18 @@ class FileController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        
+         $file=File::findOrFail($id);
+        
+            $direccion=storage_path().'\app\public\files\\'.$file->file;
+            $nombreArchivo=$file->file;
+            if (file_exists($direccion)) {
+                Storage::delete('public/files/'. $file->file);
+            }
+        
+        $file->delete();
+        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
 
     public function listar(){
@@ -106,7 +151,7 @@ class FileController extends Controller
                 select('id','descripcion','tipofile','updated_at');
         return datatables()->of($files)
         ->addColumn('btn', 'file.action')
-        ->rawColumns(['btn'])
+        ->rawColumns(['btn','descripcion'])
         ->toJson();
     }
 

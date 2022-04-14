@@ -17,4 +17,8 @@ class Tipomotivo extends Model
     {
         return $this->hasMany('App\Models\Motivo');
     }
+    public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
+    }
 }

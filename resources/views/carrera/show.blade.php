@@ -40,7 +40,7 @@
 
 
     <header>
-        <!--<div class="header-top">
+        <div class="header-top">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-12 col-md-12">
@@ -52,7 +52,7 @@
                     </div>
                 </div>
             </div>    
-        </div>-->
+        </div>
 
         <!-- Main Menu Start -->
 
@@ -211,8 +211,8 @@
                     <div class="col-lg-8">
                         <div class="course-single-header white-text">
                             <span class="subheading"></span>
-                            <h3 class="single-course-title">Operador de Computadoras</h3>
-                            <p>El curso  de capacitación de Operador en Computadoras forma al estudiante   con conocimientos significativos  en el dominio  de  uso de paquetes de Microsoft Office, para generar un  óptimo desempeño en el área de ofimática en cualquier ámbito laboral</p>
+                            <h3 class="single-course-title">{{$carrera->carrera}}</h3>
+                            {!! $carrera->description !!}
                             {{-- <div class="d-flex align-items-center ">
                                 <div class="single-top-meta">
                                     <i class="fa fa-user"></i><span> 3450 Students Enrolled</span>
@@ -345,7 +345,7 @@
 
                             <div class="course-price-wrapper">
                                 <div class="course-price">
-                                    <h4>Precio: <span>Bs.850</span> </h4>
+                                    <h4>Precio: <span>{{$carrera->precio}}</span> </h4>
                                 </div>
                                 <div class="buy-btn"><a href="#" class="btn btn-main btn-block">Contactanos</a></div>
                             </div>

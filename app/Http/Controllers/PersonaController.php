@@ -201,6 +201,7 @@ class PersonaController extends Controller
 
             case 'administrativo':
                 $administrativo = new Administrativo();
+                $administrativo->cargo="Prueba";
                 $administrativo->persona_id = $persona->id;
                 $administrativo->save();
 
@@ -335,8 +336,10 @@ class PersonaController extends Controller
             $micalificacion=$persona->calificaciones->where('user_id',Auth::user()->id)->first()->calificacion;
         else 
             $micalificacion=null;
+        
+        $user=User::findOrFail($persona->userable->user_id);
 
-        return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion','recomendado','apoderados','calificado','promedio','calificaciones','micalificacion'));
+        return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion','recomendado','apoderados','calificado','promedio','calificaciones','micalificacion','user'));
     }
 
     public function edit(Persona $persona)

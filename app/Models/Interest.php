@@ -12,4 +12,8 @@ class Interest extends Model
     public function personas() {
         return $this->belongsToMany(Persona::class);
     }
+    public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
+    }
 }

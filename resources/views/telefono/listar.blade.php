@@ -22,16 +22,9 @@
                     </td>
                     <td>{{$persona->updated_at}}</td>
                     <td>
-                        <a href="{{route('telefono.editar',['persona'=>$persona,'apoderado_id'=>$persona->id])}}" class="btn-accion-tabla tooltipsC mr-2" title="Editar este número">
+                        <a href="{{route('personas.edit',$persona)}}" class="btn-accion-tabla tooltipsC mr-2" title="Editar este número">
                             <i class="fa fa-fw fa-edit text-primary"></i>
                         </a> 
-                        <form action="{{route('telefono.eliminar',['persona'=>$persona,'id'=>$persona->id])}}"  class="d-inline formulario" method="POST">
-                            @csrf
-                            @method("delete")
-                            <button name="btn-eliminar" type="submit" class="btn eliminar" title="Eliminar este Número">
-                                <i class="fa fa-fw fa-trash text-danger"></i>   
-                            </button>
-                        </form> 
                     </td>
             </tr>
 

@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
-    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}"> --}}
 @stop
 
-@section('title', 'Archivos')
+@section('title', 'Motivos')
 @section('plugins.Jquery', true)
 @section('plugins.Sweetalert2', true)
 @section('plugins.Datatables', true)
@@ -20,12 +20,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Archivos') }}
+                                {{ __('Tipo Archivos') }}
                             </span>
 
                             <div class="float-right">
-                                <a href="{{ route('files.create') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
-                                    {{ __('Crear Archivo') }}
+                                <a href="{{ route('tipofile.create') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
+                                    {{ __('Crear nuevo tipo archivo') }}
                                 </a>
                             </div>
                         </div>
@@ -34,13 +34,11 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="files" class="table table-striped table-hover table-borderless">
+                            <table id="tipofiles" class="table table-striped table-hover table-borderless">
                                 <thead class="">
                                     <tr>
                                         <th>No</th>
-										<th>description</th>
-										<th>tipo</th>
-										<th>creaado</th>
+										<th>Motivo</th>
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
@@ -52,7 +50,7 @@
             </div>
         </div>
     </div>
-    {{-- @include('motivo.modales') --}}
+    @include('tipofile.modales')
 @endsection
 
 @section('js')
@@ -99,8 +97,8 @@
 
         $(document).ready(function() {
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATA TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            let fila=1;
-            $('#files').dataTable({
+            //let fila=1;
+            $('#tipofiles').dataTable({
                 "responsive":true,
                 "searching":true,
                 "paging":   true,
@@ -109,16 +107,15 @@
                 "info":     true,
                 "createdRow": function( row, data, dataIndex ) {
                     $(row).attr('id',data['id']); 
-                    $('td', row).eq(0).html(fila++);
-                    $('td', row).eq(3).html( moment(data['updated_at']).format('DD-MM-YYYY HH:mm') );
-
+                    // $('td', row).eq(0).html(fila++);
                 },
-                "ajax": "{{ url('listar/files') }}",
+                "ajax":{
+                        'url':"listar/tipofiles",
+                    },
                 "columns": [
                     {data: 'id'},
-                    {data: 'descripcion'},
                     {data: 'tipofile'},
-                    {data: 'updated_at'},
+                    {data: 'programa'},
                     {
                         "name":"btn",
                         "data": 'btn',
@@ -133,12 +130,128 @@
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                 },
             });
-         
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  FILES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-            $('#files').on('click','.eliminar',function (e) {
+
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('#tipofiles').on('click', '.mostrar', function(e) {
                 e.preventDefault(); 
-                 var file_id =$(this).closest('tr').attr('id');
-                 console.log(file_id);
+                let id_tipofile=$(this).closest('tr').attr('id');
+                console.log(id_tipofile)
+                $.ajax({
+                    url : "tipofile/mostrar",
+                    data : { id :id_tipofile },
+                    success : function(json) {
+                        console.log(json);
+                        $("#modal-mostrar").modal("show");
+                        $("#tabla-mostrar").empty();
+                        $html="";
+                        $html+="<tr><td>ID</td>"+"<td>"+ json.tipofile.id +"</td></tr>";
+                        $html+="<tr><td>TIPOFILE</td>"+"<td>"+json.tipofile.tipofile+"</td></tr>";
+                        $html+="<tr><td>PROGRAMA</td>"+"<td>"+ json.tipofile.programa +"</td></tr>";
+                        $html+="<tr><td>CREADO</td>"+"<td>"+ moment(json.tipofile.created_at).format('LLLL') +"</td></tr>";
+                        $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.tipofile.updated_at).format('LLLL')+"</td></tr>";
+                        $("#tabla-mostrar").append($html);
+                    },
+                    error : function(xhr, status) {
+
+                        Swal.fire({
+                        type: 'error',
+                        title: 'Ocurrio un Error',
+                        text: 'Saque una captura para mostrar al servicio Técnico!',
+                        })
+                    },
+                });
+            });
+             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO MOSTRAR EDITAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.editar', function(e) {
+                e.preventDefault(); 
+                let id_tipofile =$(this).closest('tr').attr('id');
+                
+                
+                    $.ajax({
+                    url : "tipofile/editar/",
+                    data : { id :id_tipofile },
+                    success : function(json) {
+                        console.log(json);
+                        $("#modal-editar").modal("show");
+                        $("#errores").addClass('alert-danger');
+                        $("#formulario-editar").empty();
+                        $("#errores").empty();
+                            $html="<div class='row'>";
+                            $("#tipofile").val(json.tipofile);
+                            $("#tipofile_id").val(json.id);
+                            $("#programa").val(json.programa);
+                            $("#formulario-editar").append($html);
+                    },
+                    error : function(xhr, status) {
+                        Swal.fire({
+                        type: 'error',
+                        title: 'Ocurrio un Error',
+                        text: 'Saque una captura para mostrar al servicio Técnico!',
+                        })
+                    },  
+                });
+            });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR ENVIO DE FORMULARIO PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $(document).on("submit","#formulario-editar-tipofile",function(e){
+                e.preventDefault();//detenemos el envio
+            
+                $tipofile=$('#tipofile').val();
+                $tipofile_id=$('#tipofile_id').val();
+                $programa=$('#programa').val();
+                
+                console.log($tipofile_id);
+                var token = $("input[name=_token]").val();
+                $.ajaxSetup({
+                headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url : "tipofile/actualizar/",
+                    headers:{'X-CSRF-TOKEN':token},
+                    data:{
+                            tipofile:$tipofile,
+                            programa:$programa,
+                            id:$tipofile_id,
+                            token:token,
+                        },
+                    success : function(json) {
+                        console.log(json);
+                        if(json.error){
+                        $("#errores").html(json.error);
+                        }else{
+                            $("#modal-editar").modal("hide");
+                            $('#tipofiles').DataTable().ajax.reload();
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 1500,
+                                })
+                                Toast.fire({
+                                type: 'success',
+                                title: 'Se eliminó correctamente el registro'
+                            })   
+                        } 
+                    },
+                    error:function(xhr, textStatus, thrownError) 
+                    {
+                        html="";
+                        $.each(xhr.responseJSON.errors, function(i, item) {
+                            $.each(item, function(i, error) {
+                                html+="<li>"+ item[0] +"</li>";
+                            });
+                        });
+                        $("#errores").append(html);
+                    },
+                });
+            });
+            
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  M O T I V O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+            $('#tipofiles').on('click','.eliminar',function (e) {
+                e.preventDefault(); 
+                 var id_tipofile =$(this).closest('tr').attr('id');
+                 console.log(id_tipofile);
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",
@@ -152,13 +265,13 @@
                 }).then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: 'eliminar/file/'+file_id,
+                            url: 'eliminar/tipofile/'+id_tipofile,
                             type: 'DELETE',
                             data:{
                                 _token:'{{ csrf_token() }}'
                             },
                             success: function(result) {
-                                $('#files').DataTable().ajax.reload();
+                                $('#tipofiles').DataTable().ajax.reload();
                                 const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',

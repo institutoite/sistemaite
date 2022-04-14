@@ -18,10 +18,10 @@
                 Editar metas <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('meta.index')}}">Listar metas</a>
             </div>
             <div class="card-body">
-                <form action="{{route('meta.update',$meta)}}" method="put">
+                <form action="{{route('carrera.update',$carrera)}}" method="put">
                     @csrf
                     {{ @method_field('PUT') }} 
-                    @include('meta.form')
+                    @include('carrera.form')
                     @include('include.botones')
                 </form>
             </div>
@@ -30,5 +30,12 @@
 @stop
 
 @section('js')
-
+    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector('#description'))
+            .catch( error => {
+                console.error(error);
+        });
+    </script>
 @stop

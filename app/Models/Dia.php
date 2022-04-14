@@ -20,5 +20,9 @@ class Dia extends Model
     {
         return $this->belongsTo(Sesion::class);
     }
+    public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
+    }
     
 }

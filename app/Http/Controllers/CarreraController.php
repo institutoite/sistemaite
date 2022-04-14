@@ -8,6 +8,14 @@ use App\Models\Meta;
 use App\Models\Requisito;
 use Illuminate\Http\Request;
 
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
+use App\Http\Requests\CarreraGuardarRequest;
+use App\Http\Requests\CarreraActualizarRequest;
+
 class CarreraController extends Controller
 {
     public function __construct()
@@ -49,8 +57,12 @@ class CarreraController extends Controller
      */
     public function store(Request $request)
     {
+        
         $carrera = new Carrera();
         $carrera->carrera=$request->carrera;
+        $carrera->description=$request->description;
+        $carrera->precio=$request->precio;
+
         $carrera->save();
         return redirect()->route('carrera.index');
         
@@ -62,11 +74,11 @@ class CarreraController extends Controller
      * @param  \App\Models\Carrera  $carrera
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Carrera $carrera)
     {
-        $metas = Meta::all();
-        $requisitos = Requisito::all();
-        return view('carrera.show',compact(['metas','requisitos']));
+        $metas = Meta::all()->where('carrera_id',$carrera->id);
+        $requisitos = Requisito::all()->where('carrera_id',$carrera->id);
+        return view('carrera.show',compact(['metas','requisitos','carrera']));
     }
 
     /**
@@ -90,6 +102,8 @@ class CarreraController extends Controller
     public function update(Request $request, Carrera $carrera)
     {
         $carrera->carrera=$request->carrera;
+        $carrera->description=$request->description;
+        $carrera->precio=$request->precio;
         $carrera->save();
         return redirect()->route('carrera.index');
     }
@@ -104,5 +118,12 @@ class CarreraController extends Controller
     {
         $carrera->delete();
         return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
+    }
+
+    public function listar(){
+        return datatables()->of(Carrera::get())
+        ->addColumn('btn', 'carrera.action')
+        ->rawColumns(['btn','description'])
+        ->toJson();
     }
 }

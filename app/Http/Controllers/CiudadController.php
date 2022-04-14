@@ -7,6 +7,9 @@ use App\Models\Pais;
 use App\Models\Zona;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
 use App\Http\Requests\CiudadStoreRequest;
 use App\Http\Requests\CiudadUpdateRequest;
 
@@ -41,8 +44,14 @@ class CiudadController extends Controller
      */
     public function store(CiudadStoreRequest $request)
     {
-        Ciudad::create($request->all());
-        return redirect()->back()->with('mensaje','Registro creado satisfactoriamente');
+        //Ciudad::create($request->all());
+        $ciudad= new Ciudad();
+        $ciudad->ciudad=$request->ciudad;
+        $ciudad->pais_id = $request->pais_id;
+
+        $ciudad->save();
+        $ciudad->userable()->create(['user_id'=>Auth::user()->id]);
+        return view('ciudad.index');
     }
 
     /**
@@ -56,8 +65,8 @@ class CiudadController extends Controller
         $ciudad=Ciudad::findOrFail($id);
         
         $pais=Pais::findOrFail($ciudad->pais_id);
-        
-        return view('ciudad.mostrar',compact('ciudad','pais'));
+        $user=User::findOrFail($ciudad->userable->user_id);
+        return view('ciudad.mostrar',compact('ciudad','pais','user'));
     }
 
     /**

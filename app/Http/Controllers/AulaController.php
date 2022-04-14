@@ -4,17 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Aula;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
+
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
+use App\Http\Requests\AulaGuardarRequest;
+use App\Http\Requests\AulaActualizarRequest;
 
 class AulaController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return view('aula.index');
     }
 
     /**
@@ -24,7 +32,7 @@ class AulaController extends Controller
      */
     public function create()
     {
-        //
+        return view('aula.create');
     }
 
     /**
@@ -33,41 +41,74 @@ class AulaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AulaGuardarRequest $request)
     {
-        //
+        $aula = new Aula();
+        $aula->aula = $request->aula;
+        $aula->direccion = $request->direccion;
+        $aula->save();
+
+        $aula->userable()->create(['user_id'=>Auth::user()->id]);
+        return redirect()->route('aulas.index')
+            ->with('success', 'Registro creaado correctamente.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Aula  $aula
+     * @param  \App\Models\Tipofile  $tipofile
      * @return \Illuminate\Http\Response
      */
-    public function show(Aula $aula)
+    public function mostrar(Request $request)
     {
-        //
-    }
 
+        // $aula = Aula::findOrFail($request->id);
+        $aula = Aula::findOrFail(16);
+        $user=User::findOrFail($aula->userable->user_id);
+        $url=storage_path('app/public/'.$user->foto);
+        $data=['aula'=>$aula,'user'=>$user,'url'=>$url];
+
+        return response()->json($data);
+    }
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Aula  $aula
+     * @param  \App\Models\Tipofile  $tipofile
      * @return \Illuminate\Http\Response
      */
-    public function edit(Aula $aula)
+    public function edit(Tipofile $tipofile)
     {
         //
     }
+    public function editar(Request $request)
+    {
+        $aula = Aula::findOrFail($request->id);
+        return response()->json($aula);
+    }
+
+    public function actualizar(AulaActualizarRequest $request)
+    {
+        
+            $validated=$request->validated();
+            $aula = Aula::findOrFail($request->id);
+            $aula->aula = $request->aula;
+            $aula->direccion = $request->direccion;
+            $aula->save();
+
+            return response()->json(['aula'=>$aula]);
+        
+        
+    }
+
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Aula  $aula
+     * @param  \App\Models\Tipofile  $tipofile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Aula $aula)
+    public function update(Request $request, Tipofile $tipofile)
     {
         //
     }
@@ -75,11 +116,18 @@ class AulaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Aula  $aula
+     * @param  \App\Models\Tipofile  $tipofile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Aula $aula)
+    public function destroy($id)
     {
-        //
+         Aula::findOrFail($id)->delete();
+        return response()->json(['mensaje'=>"Se elimino correctamente"]);
+    }
+    public function listar(){
+        return datatables()->of(Aula::get())
+        ->addColumn('btn', 'aula.action')
+        ->rawColumns(['btn'])
+        ->toJson();
     }
 }

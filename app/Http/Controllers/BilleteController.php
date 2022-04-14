@@ -41,6 +41,7 @@ class BilleteController extends Controller
     public function crear($pago)
     {
         $pago=Pago::findOrFail($pago);
+        //dd("ya llegue aqui");
         return view('billete.create', compact('pago'));
     }
 
@@ -88,6 +89,7 @@ class BilleteController extends Controller
             $pago->billetes()->detach();
             foreach ($vector_cantidad_billetes as $key => $value) {
                 $pago->billetes()->attach($key,['cantidad'=>$value,'tipo'=>'pago']);
+                
             }
             //dd($request->all());
             $vector_cantidad_billetes_cambio=[];

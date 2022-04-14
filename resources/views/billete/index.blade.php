@@ -34,26 +34,11 @@
                             <table id="billetes" class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
-										<th>200Bs</th>
-										<th>100Bs</th>
-										<th>50Bs</th>
-										<th>20Bs</th>
-										<th>10Bs</th>
-										<th>5Bs</th>
-										<th>2Bs</th>
-										<th>1Bs</th>
-										<th>50ct</th>
-										<th>20ct</th>
-										<th>10ct</th>
-										<th>100$us</th>
-										<th>50$us</th>
-										<th>20$us</th>
-										<th>10$us</th>
-										<th>5$us</th>
-										<th>1$us</th>
-										<th>de Que</th>
-                                        <th></th>
+                                        <th>ID</th>
+										<th>CORTE</th>
+										<th>CREADO</th>
+                                        <th>ACTUALIZADO</th>
+                                        <th>OPCIONES</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,11 +59,12 @@
                     "responsive":true,
                     "autoWidth":false,
 
-                    "ajax": "{{ url('api/grados') }}",
+                    "ajax": "{{ url('api/billetes') }}",
                     "columns": [
                         {data: 'id'},
-                        {data:'grado'},
-                        {data:'nivel'},
+                        {data:'corte'},
+                        {data:'created_at'},
+                        {data:'updated_at'},
                         {data: 'btn'},
                     ],
                     "language":{

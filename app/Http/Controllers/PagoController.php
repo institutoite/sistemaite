@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 /**
  * Class PagoController
  * @package App\Http\Controllers
@@ -29,11 +30,14 @@ class PagoController extends Controller
     }
     public function detallar($inscripcion_id)
     {
-            $pagos=Pago::where('pagable_id','=',$inscripcion_id)->get();
-            $inscripcion = Inscripcione::findOrFail($inscripcion_id);
-            $pagos = $inscripcion->pagos;
-            $acuenta = $inscripcion->pagos->sum->monto;
-            $saldo = $inscripcion->costo - $acuenta;
+        $pagos=Pago::where('pagable_id','=',$inscripcion_id)->get();
+        $inscripcion = Inscripcione::findOrFail($inscripcion_id);
+        $pagos = $inscripcion->pagos;
+        $acuenta = $inscripcion->pagos->sum->monto;
+        $saldo = $inscripcion->costo - $acuenta;
+
+        
+
         return view('pago.detalle', compact('inscripcion', 'pagos', 'acuenta', 'saldo'));
     }
 
@@ -78,11 +82,8 @@ class PagoController extends Controller
     }
 
     public function guardar(PagoStoreRequest $request,$inscripcion_id){
-
-        
         $inscripcion=Inscripcione::findOrFail($inscripcion_id);
         $pago=new Pago();
-        
         $pago->monto=$request->monto;
         $pago->pagocon=$request->pagocon;
         $pago->cambio=$request->cambio;
@@ -91,7 +92,6 @@ class PagoController extends Controller
         $pago->save();
         //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   %%%%%%%%%%%%%%%%*/
         $pago->userable()->create(['user_id' => Auth::user()->id]); 
-
         return redirect()->route('billete.crear',['pago'=>$pago]);
     }
 
@@ -135,13 +135,13 @@ class PagoController extends Controller
     {
         $pago = Pago::find($id);
 
-        return view('pago.edit', compact('pago'));
+        return view('pago.editar', compact('pago'));
     }
     public function editar($pago_id)
     {
         $pago = Pago::find($pago_id);
         $inscripcion=$pago->pagable; 
-        return view('pago.editar',compact('pago','inscripcion'));
+        return view('pago.edit',compact('pago','inscripcion'));
     }
 
     /**

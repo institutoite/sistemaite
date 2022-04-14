@@ -149,7 +149,8 @@ Route::get('apoderados', function () {
 })->name('personas.todos');
 
 Route::get('ciudades',function(){
-    $ciudades=Ciudad::select('ciudads.id','ciudad','nombrepais')->join('pais','pais.id','=','ciudads.pais_id')->get();
+    $ciudades=Ciudad::select('ciudads.id','ciudad','nombrepais')->join('pais','pais.id','=','ciudads.pais_id')
+    ->get();
     return datatables()->of($ciudades)
         ->addColumn('btn','ciudad.action')
         ->rawColumns(['btn'])

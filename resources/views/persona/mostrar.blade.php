@@ -132,8 +132,15 @@
                         <td>{{$persona->updated_at}}</td>
                     </tr>
                     <tr>
-                        <td>primera vez vino</td>
+                        <td>vino por primera vez</td>
                         <td>{{$persona->created_at}} </td>
+                    </tr>
+                    <tr>
+                        <td>Usuario</td>
+                        <td>
+                            {{$user->name}}
+                            <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5"> 
+                        </td>
                     </tr>
                 </tbody>
             </table>

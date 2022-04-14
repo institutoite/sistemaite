@@ -21,6 +21,10 @@ class Asignatura extends Model
     {
         return $this->belongsToMany('App\Models\Computacion');
     }
+    public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
+    }
 
 
 

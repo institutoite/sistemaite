@@ -31,6 +31,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\AulaController;
 use Illuminate\Support\Facades\Auth;
 //use SweetAlert;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
@@ -45,7 +46,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[FileController::class,'listar'])->name('prueba');
+Route::get('prueba',[AulaController::class,'mostrar'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -258,15 +259,16 @@ Route::delete('eliminar/estado/{estado}', [EstadoController::class,'destroy'])->
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  C A R R E R A S   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
-/* Route::get('carreras', [CarreraController::class, 'index'])->name('carrera.index');
+Route::get('carreras', [CarreraController::class, 'index'])->name('carrera.index');
 Route::get('carrera/create',[CarreraController::class,'create'])->name('carrera.create');
 Route::get('carreras/show/{carrera}', [CarreraController::class, 'show'])->name('carrera.show');
 Route::post('carrera/guardar',[CarreraController::class,'store'])->name('carrera.store');
 Route::get('carrera/mostrar/{carrera}', [CarreraController::class,'show'])->name("carrera.show");
 Route::get('carrera/editar/{carrera}', [CarreraController::class,'edit'])->name("carrera.edit");
 Route::get('carrera/actualizar/{carrera}', [CarreraController::class,'update'])->name("carrera.update");
-Route::delete('eliminar/carrera/{carrera}', [CarreraController::class,'destroy'])->name('carrera.destroy'); */
-Route::resource('carrera', "CarreraController")->names('carrera');
+Route::delete('eliminar/carrera/{carrera}', [CarreraController::class,'destroy'])->name('carrera.destroy'); 
+Route::get('listar/carreras', [CarreraController::class,'listar'])->name('carrera.ajax');
+//Route::resource('carrera', "CarreraController")->names('carrera');
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MATRICULACION   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -334,12 +336,21 @@ Route::get('motivo/editar/', [MotivoController::class,'editar'])->name("motivo.e
 Route::get('motivo/actualizar/', [MotivoController::class,'actualizar'])->name("motivo.actualizar");
 Route::delete('eliminar/motivo/{motivo}', [MotivoController::class,'destroy'])->name('eliminar.motivo');
 
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MOTIVOS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::resource('aulas', "AulaController");
+Route::get('aula/mostrar/',[AulaController::class,'mostrar'])->name("aula.mostrar");
+Route::get('listar/aulas', [AulaController::class,'listar'])->name('aula.ajax');
+Route::get('aula/editar/', [AulaController::class,'editar'])->name("aula.editar");
+Route::get('aula/actualizar/', [AulaController::class,'actualizar'])->name("aula.actualizar");
+Route::delete('eliminar/aula/{aula}', [AulaController::class,'destroy'])->name('eliminar.aula');
+
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  FILES %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('files', "FileController");
 Route::get('file/mostrar/',[FileController::class,'mostrar'])->name("file.mostrar");
 Route::get('listar/files', [FileController::class,'listar'])->name('file.ajax');
 Route::get('file/editar/', [FileController::class,'editar'])->name("file.editar");
 Route::get('file/actualizar/', [FileController::class,'actualizar'])->name("file.actualizar");
+Route::get('file/descargar/{file_id}/', [FileController::class,'download'])->name("file.download");
 Route::delete('eliminar/file/{file}', [FileController::class,'destroy'])->name('eliminar.file');
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  ASIGNATURAS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -442,6 +453,7 @@ Route::get('observacion/editar',[ObservacionController::class,'edit'])->name('ob
 Route::get('observacion/actualizar',[ObservacionController::class,'update'])->name('observacion.actualizar');
 Route::get('observacion/guardar',[ObservacionController::class,'GuardarObservacion'])->name('observacion.guardar');
 Route::delete('eliminar/observacion/{observacion}',[ObservacionController::class,'destroy'])->name('eliminar.observacion');
+
 
 /**
  * clases

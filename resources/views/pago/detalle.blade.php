@@ -44,7 +44,13 @@
                                             <td>{{ $pago->monto }}</td>
                                             <td>{{ $pago->pagocon }}</td>
                                             <td>{{ $pago->cambio }}</td>
-                                            <td>{{ App\Models\User::find($pago->userable->user_id)->name }}</td>
+                                            <td>
+                                                @php
+                                                    $user=App\Models\User::findOrFail($pago->userable->user_id);
+                                                @endphp
+                                                {{$user->name}}
+                                                <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5" width="100"> 
+                                            </td>
                                             <td>{{ $pago->created_at }}</td>
                                             <td>
                                                 {{-- {{route('pagos.editar', $pago)}} --}}
@@ -133,6 +139,7 @@
                         $html+="<tr><td>Monto</td>"+"<td>Bs. "+json.pago.monto+"</td></tr>";
                         $html+="<tr><td>Pago Con</td>"+"<td>Bs. "+json.pago.pagocon+"</td></tr>";
                         $html+="<tr><td>Cambio</td>"+"<td>Bs. "+json.pago.cambio+"</td></tr>";
+                        $html+="<tr><td>Usuario</td>"+"<td>"+json.user.name+"</td></tr>";
                         $html+="<tr><td>Fecha y hora Pago</td>"+"<td>"+moment(json.pago.created_at).format('LLLL')+"</td></tr>";
                         $html+="<tr><td>Ultima Actualizacion</td>"+"<td>"+moment(json.pago.updated_at).format('LLLL')+"</td></tr>";
                         $("#tabla-modal").append($html);    

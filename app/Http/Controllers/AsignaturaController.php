@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Asignatura;
+use App\Models\User;
 use App\Models\Carrera;
 use Illuminate\Http\Request;
 use App\Http\Requests\AsignaturaGuardarRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AsignaturaController extends Controller
 {
@@ -50,6 +52,7 @@ class AsignaturaController extends Controller
         $asignatura->asignatura= $request->asignatura;
         $asignatura->carrera_id= $request->carrera_id;
         $asignatura->save();
+        $asignatura->userable()->create(['user_id'=>Auth::user()->id]);
         return redirect()->route('asignatura.index');
     }
 
@@ -62,7 +65,8 @@ class AsignaturaController extends Controller
     public function show($asignatura_id)
     {
         $asignatura=Asignatura::findOrFail($asignatura_id);
-        return view('asignatura.show',compact('asignatura'));
+        $user=User::findOrFail($asignatura->userable->user_id);
+        return view('asignatura.show',compact('asignatura','user'));
     }
 
     /**

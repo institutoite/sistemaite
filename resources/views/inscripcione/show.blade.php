@@ -60,6 +60,14 @@
                         <td>Actualizado</td>
                         <td>{{$inscripcione->updated_at}}</td>
                     </tr>
+
+                    <tr>
+                        <td>Usuario</td>
+                        <td>
+                            {{$user->name}}
+                            <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5"> 
+                        </td>
+                    </tr>
                 </tbody>
             </table>
 
