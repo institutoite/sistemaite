@@ -14,6 +14,7 @@ use App\Models\Observacion;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -105,7 +106,9 @@ class ClasecomController extends Controller
             ->select('clasecoms.id','fecha','estados.estado','horainicio','horafin','personas.nombre'
                     ,'personas.apellidop','personas.apellidom','personas.foto','aulas.aula',
                 'clasecoms.created_at','clasecoms.updated_at')->get()->first();
-        return response()->json($clase);
+        $user=User::findOrFail(Clasecom::findOrFail($request->id)->userable->user_id);
+        $data=['clase'=>$clase,'user'=>$user];
+        return response()->json($data);
     }
 
     /**
@@ -228,9 +231,12 @@ class ClasecomController extends Controller
                 ->join('docentes', 'clasecoms.docente_id', '=', 'docentes.id')
                 ->join('asignaturas', 'matriculacions.asignatura_id', '=', 'asignaturas.id')
                 ->join('aulas', 'clasecoms.aula_id', '=', 'aulas.id')
+                ->join('userables','userables.userable_id','clasecoms.id')
+                ->join('users','userables.user_id','users.id')
+                ->where('userables.userable_type',Clasecom::class)
                 ->where('clasecoms.estado_id',Config::get('constantes.ESTADO_PRESENTE'))
                 ->where('clasecoms.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clasecoms.id','personas.id as codigo', 'personas.nombre as name','clasecoms.horainicio', 'clasecoms.horafin', 'docentes.nombre', 'asignaturas.asignatura', 'aulas.aula','personas.foto')->get();
+                ->select('clasecoms.id','personas.id as codigo', 'personas.nombre as name','clasecoms.horainicio', 'clasecoms.horafin', 'docentes.nombre', 'asignaturas.asignatura', 'aulas.aula','personas.foto','users.name as user')->get();
             return datatables()->of($clasecoms)
                 ->addColumn('btn', 'clasecom.action_marcar')
                 ->rawColumns(['btn', 'foto'])

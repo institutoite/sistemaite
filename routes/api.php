@@ -222,7 +222,7 @@ Route::get('municipios', function () {
 });
 
 Route::get('colegios', function () {
-    return datatables()->of(Colegio::select('colegios.id', 'nombre', 'rue','telefono','celular')->get())
+    return datatables()->of(Colegio::select('colegios.id', 'nombre', 'director','telefono','celular')->get())
         ->addColumn('btn', 'colegio.action')
         ->rawColumns(['btn'])
         ->toJson();
@@ -254,4 +254,7 @@ Route::get('ciudad/{id}/zonas','ZonaController@zona_of_city');
 Route::get('temas/{materia_id}','TemaController@tema_of_materia');
 
 Route::get('departamento/{id}/provincias', 'ProvinciaController@provincia_of_departamento');
+//Route::get('provincia/{id}/municipios', 'MunicipioController@municipio_of_provincia');
+
+Route::get('departamento/{id}/provincias','ProvinciaController@provincia_of_departamento');
 Route::get('provincia/{id}/municipios', 'MunicipioController@municipio_of_provincia');

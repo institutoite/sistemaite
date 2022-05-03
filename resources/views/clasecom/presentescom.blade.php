@@ -13,6 +13,7 @@
                             <th>AULA</th>
                             <th>HORARIO</th>
                             <th>TIEMPO</th>
+                            <th>USUARIO</th>
                             <th>FOTO</th>
                             <th>ACTION</th>
                         </tr>

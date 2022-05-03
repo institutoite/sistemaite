@@ -760,7 +760,7 @@ return [
                 [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'colegios',
                     'classes'  => 'text-dark',
                 ],
             ],
@@ -1017,13 +1017,7 @@ return [
                 [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Crear',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'departamentos',
                     'classes'  => 'text-dark',
                 ],
             ],
@@ -1174,13 +1168,7 @@ return [
                 [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Crear',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'dias',
                     'classes'  => 'text-dark',
                 ],
             ],
@@ -1220,6 +1208,22 @@ return [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'tipomotivos',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        //** %%%%%%%%%%%%%%%%%%  MENU ESTADO %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Estado',
+            'icon'    => 'fas fa-prescription-bottle fa-2x',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'estados',
                     'classes'  => 'text-dark',
                 ],
             ],

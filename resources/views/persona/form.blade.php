@@ -25,7 +25,6 @@
                 <label for="nombre">nombre</label>
             </div>
         </div>
-
         {{-- %%%%%%%%%%%%%%% CAMPO APELLIDO PATERNO --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
@@ -40,7 +39,6 @@
             <label for="apellidom">apellidom</label>
             </div>
         </div>
-
     </div>
 
 

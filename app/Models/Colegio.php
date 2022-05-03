@@ -52,5 +52,9 @@ class Colegio extends Model
     {
         return $this->morphOne('App\Models\Userable', 'userable');
     }
+
+    public function niveles(){
+        return $this->belongsToMany(Nivel::class);
+    }
     
 }

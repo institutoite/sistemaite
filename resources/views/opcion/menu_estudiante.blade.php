@@ -45,8 +45,8 @@
                 </a>
             </div>
             <div class="col-6 col-xs-4 col-sm-4 col-md-3 col-lg-2">
-                <a class="btn btn-app text-secondary">
-                    <i class="fas fa-save"></i> Familiares
+                <a href="{{ route('personas.agregar.papel', $estudiante->persona->id) }}" class="btn btn-app text-secondary">
+                    <i class="fas fa-save"></i> Add Papel
                 </a>
             </div>
         </div>

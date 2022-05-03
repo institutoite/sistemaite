@@ -12,7 +12,6 @@ class Clasecom extends Model
         'fecha',
         'horainicio',
         'horafin',
-
     ];
 
     public function programacioncom()

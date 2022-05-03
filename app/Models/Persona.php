@@ -65,7 +65,7 @@ class Persona extends Model
     }
     public function Administrativo()
     {
-        return $this->hasOne(Estudiante::class);
+        return $this->hasOne(Administrativo::class);
     }
 
     /** OBSRVACIONES  */

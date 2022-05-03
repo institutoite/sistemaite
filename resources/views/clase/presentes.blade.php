@@ -32,6 +32,7 @@
                             <th>DOCENTE</th>
                             <th>HORARIO</th>
                             <th>TIEMPO</th>
+                            <th>USER</th>
                             <th>FOTO</th>
                             <th>ACTION</th>
                         </tr>
@@ -76,6 +77,8 @@
                     $(row).attr('id',data['id']);
                     $('td', row).eq(4).html(moment(data['horainicio']).format('HH:mm')+'-'+moment(data['horafin']).format('HH:mm'));
                     $('td', row).eq(5).html( hfin.from(ahora)+'('+hfin.diff(ahora,'minutes'));
+                    
+                   
                 },
                 "serverSide": true,
                 "ordering":true,
@@ -90,6 +93,7 @@
                         {data: 'nombre'},
                         {data: 'horainicio'},
                         {data: 'horafin'},
+                        {data: 'user'},
                         {
                             "name": "foto",
                             "data": "foto",
@@ -384,15 +388,16 @@
                         $("#modal-mostrar").modal("show");
                         $("#tabla-modal").empty();
                         $html="";
-                        $html+="<tr><td>DOCENTE</td>"+"<td>"+json.nombre+' '+json.apellidop+' '+json.apellidom+"</td></tr>";
+                        $html+="<tr><td>DOCENTE</td>"+"<td>"+json.clase.nombre+' '+json.clase.apellidop+' '+json.clase.apellidom+"x</td></tr>";
                         $html+="<tr><td>ESTUDIANTE</td>"+"<td>"+fila.find('td').eq(1).html()+"</td></tr>";
-                        $html+="<tr><td>AULA</td>"+"<td>"+json.aula+"</td></tr>";
-                        $html+="<tr><td>MATERIA</td>"+"<td>"+json.materia+"</td></tr>";
-                        $html+="<tr><td>TEMA</td>"+"<td>"+json.tema+"</td></tr>";
+                        $html+="<tr><td>AULA</td>"+"<td>"+json.clase.aula+"</td></tr>";
+                        $html+="<tr><td>MATERIA</td>"+"<td>"+json.clase.materia+"</td></tr>";
+                        $html+="<tr><td>TEMA</td>"+"<td>"+json.clase.tema+"</td></tr>";
                         $html+="<tr><td>FOTO ESTUDIANTE</td>"+"<td>"+fila.find('td').eq(6).html()+"</td></tr>";
-                        $html+="<tr><td>FOTO DOCENTE</td>"+"<td><img class='zoom'  src="+"{{URL::to('/')}}/storage/"+json.foto+ " height='150'/></td></tr>";
-                        $html+="<tr><td>CREADO</td>"+"<td>"+moment(json.created_at).format('LLLL')+"</td></tr>";
-                        $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.updated_at).format('LLLL')+"</td></tr>";
+                        $html+="<tr><td>FOTO DOCENTE</td>"+"<td><img class='zoom'  src="+"{{URL::to('/')}}/storage/"+json.clase.foto+ " height='150'/></td></tr>";
+                        $html+="<tr><td>CREADO</td>"+"<td>"+moment(json.clase.created_at).format('LLLL')+"</td></tr>";
+                        $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.clase.updated_at).format('LLLL')+"</td></tr>";
+                        $html+="<tr><td>USUARIO</td>"+"<td>"+json.user.name+"</td></tr>";
                         $("#tabla-modal").append($html);
                     },
                     error : function(xhr, status) {
@@ -419,13 +424,14 @@
                         $("#tabla-modalcom").empty();
                         $("#modal-mostrarcom").modal("show");
                         $html="";
-                        $html+="<tr><td>DOCENTE</td>"+"<td>"+json.nombre+' '+json.apellidop+' '+json.apellidom+"</td></tr>";
+                        $html+="<tr><td>DOCENTE</td>"+"<td>"+json.clase.nombre+' '+json.clase.apellidop+' '+json.clase.apellidom+"</td></tr>";
                         $html+="<tr><td>ESTUDIANTE</td>"+"<td>"+fila.find('td').eq(1).html()+"</td></tr>";
-                        $html+="<tr><td>AULA</td>"+"<td>"+json.aula+"</td></tr>";
+                        $html+="<tr><td>AULA</td>"+"<td>"+json.clase.aula+"</td></tr>";
                         $html+="<tr><td>FOTO ESTUDIANTE</td>"+"<td>"+fila.find('td').eq(6).html()+"</td></tr>";
-                        $html+="<tr><td>FOTO DOCENTE</td>"+"<td><img class='zoom'  src="+"{{URL::to('/')}}/storage/"+json.foto+ " height='75'/></td></tr>";
-                        $html+="<tr><td>CREADO</td>"+"<td>"+moment(json.created_at).format('LLLL')+"</td></tr>";
-                        $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.updated_at).format('LLLL')+"</td></tr>";
+                        $html+="<tr><td>FOTO DOCENTE</td>"+"<td><img class='zoom'  src="+"{{URL::to('/')}}/storage/"+json.clase.foto+ " height='75'/></td></tr>";
+                        $html+="<tr><td>CREADO</td>"+"<td>"+moment(json.clase.created_at).format('LLLL')+"</td></tr>";
+                        $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.clase.updated_at).format('LLLL')+"</td></tr>";
+                        $html+="<tr><td>USUARIO</td>"+"<td>"+json.user.name+"</td></tr>";
                         $("#tabla-modalcom").append($html);
                     },
                     error : function(xhr, status) {
@@ -482,6 +488,7 @@
                         // {data: 'nombre'},
                         {data: 'horainicio'},
                         {data: 'horafin'},
+                        {data: 'user'},
                         {
                             "name": "foto",
                             "data": "foto",

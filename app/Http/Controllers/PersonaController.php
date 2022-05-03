@@ -78,7 +78,8 @@ class PersonaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PersonaStoreRequest $request)
+    // public function store(PersonaStoreRequest $request)
+    public function store(Request $request)
     {
        
         $persona=new Persona();
@@ -115,6 +116,8 @@ class PersonaController extends Controller
         $persona->zona_id = $request->zona_id;
         $persona->save();
 
+
+        
 
         $persona->interests()->sync(array_keys($request->interests));
 
@@ -514,12 +517,13 @@ class PersonaController extends Controller
     public function tomarfoto(Persona $persona){
         return view('persona.tomarfoto', compact('persona'));
     }
-
+    
     public function configurar_papeles($persona_id){
         $persona= Persona::findOrFail($persona_id);
+        //dd($persona->administrativo->id);
         $papelesActuales=collect([]);
         $papelesFaltantes=collect([]);
-
+        
         if($persona->estudiante == null){
             $papelesFaltantes->push('estudiante');
         }else{
@@ -540,6 +544,7 @@ class PersonaController extends Controller
         }else{
             $papelesActuales->push('administrativo');
         }
+        
         if($persona->cliservicio == null){
             $papelesFaltantes->push('cliservicio');
         }else{

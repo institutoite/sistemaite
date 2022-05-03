@@ -112,10 +112,11 @@ class ProvinciaController extends Controller
         $provincia->delete();
         return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
-    public function provincia_of_departamento(Request $request, $id)
+    public function provincia_of_departamento($id)
     {
-        if ($request->ajax()) {
-            return Provincia::where('departamento_id', $id)->get();
-        }
+        $provincias=Provincia::where('departamento_id', $id)->get();
+        return response()->json($provincias);
     } 
+
+    
 }

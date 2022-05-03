@@ -14,6 +14,7 @@ use App\Models\Materia;
 use App\Models\Programacion;
 use App\Models\Tema;
 use App\Models\Nivel;
+use App\Models\User;
 use App\Models\Modalidad;
 use App\Models\Observacion;
 use Carbon\Carbon;
@@ -138,7 +139,10 @@ class ClaseController extends Controller
                         ->select('clases.id','fecha','estados.estado','horainicio','horafin','personas.nombre'
                                 ,'personas.apellidop','personas.apellidom','personas.foto','materias.materia','aulas.aula','temas.tema',
                             'clases.created_at','clases.updated_at')->get()->first();
-        return response()->json($clase);
+
+        $user=User::findOrFail(Clase::findOrFail($request->id)->userable->user_id);
+        $data=['clase'=>$clase,'user'=>$user];
+        return response()->json($data);
     }
 
     ///*  clase edu */
@@ -151,11 +155,8 @@ class ClaseController extends Controller
             ->get();
         $programa = $clase->programacion;
         $inscripcion = $programa->inscripcione;
-
         $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
         $materias = $nivel->materias;
-
-
         $aulas = Aula::all();
         $temas = Tema::all();
         $data=['clase'=>$clase,'docentes'=>$docentes,'programa'=>$programa,'inscripcion'=>$inscripcion,'materias'=>$materias,'aulas'=>$aulas,'temas'=>$temas];
@@ -296,9 +297,12 @@ class ClaseController extends Controller
                 ->join('materias', 'clases.materia_id', '=', 'materias.id')
                 ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
                 ->join('temas', 'clases.tema_id', '=', 'temas.id')
+                ->join('userables','userables.userable_id','clases.id')
+                ->join('users','userables.user_id','users.id')
+                ->where('userables.userable_type',Clase::class)
                 ->where('clases.estado_id',Config::get('constantes.ESTADO_PRESENTE'))
                 ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombre', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto')->get();
+                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombre', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto','users.name as user')->get();
             return datatables()->of($clases)
                 ->addColumn('btn', 'clase.action_marcar')
                 ->rawColumns(['btn', 'foto'])

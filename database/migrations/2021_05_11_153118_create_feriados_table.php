@@ -16,7 +16,10 @@ class CreateFeriadosTable extends Migration
         Schema::create('feriados', function (Blueprint $table) {
             $table->id();
             $table->date('fecha');
+            $table->inge('vigente');
+            $table->unsignedTinyInteger('vigente');
             $table->string('festividad',30);
+            
             $table->timestamps();
         });
     }

@@ -14,6 +14,7 @@ use App\Http\Controllers\ProgramacionController;
 use App\Http\Controllers\ClasecomController;
 
 use App\Http\Controllers\TipomotivoController;
+use App\Http\Controllers\DiaController;
 use App\Http\Controllers\LicenciaController;
 use App\Http\Controllers\MotivoController;
 use App\Http\Controllers\ObservacionController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\DocenteController;
 use App\Http\Controllers\InscripcioneController;
 use App\Http\Controllers\TemaController;
+use App\Http\Controllers\ProvinciaController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\PersonaReporteController;
 use App\Http\Controllers\InterestController;
@@ -32,6 +34,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\AulaController;
+use App\Http\Controllers\DepartamentoController;
 use Illuminate\Support\Facades\Auth;
 //use SweetAlert;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
@@ -46,7 +49,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[AulaController::class,'mostrar'])->name('prueba');
+Route::get('prueba',[DiaController::class,'listar'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -191,6 +194,12 @@ Route::post('billetecom/guardar/{pago}', 'BilletecomController@guardar')->name('
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  FERIADOS          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('feriados', "FeriadoController");
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  DIA          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+Route::resource('dias','DiaController');
+Route::get('dia/listar',[DiaController::class,'listar'])->name('dias.listar');
+
+
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  C L A S E S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('clases', "ClaseController");
@@ -480,6 +489,7 @@ Route::delete('eliminar/usuario/{id}', 'UserController@destroy')->name('eliminar
 Route::delete('eliminar/pago/{pago}', 'PagoController@destroy')->name('eliminar.pago');
 Route::delete('eliminar/computacion/{computacion}', 'ComputacionController@destroy')->name('eliminar.computacion');
 Route::delete('eliminar/carrera/{carrera}', 'CarreraController@destroy')->name('eliminar.carrera');
+Route::delete('eliminar/dia/{carrera}', 'DiaController@destroy')->name('eliminar.dia');
 
 Route::get('tomarfoto', function () {return view('persona.tomarfoto');})->name('tomarfoto');
 Route::get('tomarfoto/{persona}', 'PersonaController@tomarfoto')->name('tomar.foto.persona');

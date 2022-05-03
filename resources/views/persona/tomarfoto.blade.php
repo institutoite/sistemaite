@@ -29,7 +29,7 @@
         </div>
         <div class="row text-center">
             <div class="col-6">
-                <button class="btn btn-outline-primary" id="boton-tomar-foto">Tomarx Foto</button>
+                <button class="btn btn-outline-primary" id="boton-tomar-foto">Tomar Foto</button>
             </div>
             <div class="col-6">
                 <form id='formCanvas' method='post' action='{{route('guardarfoto',$persona)}}' ENCTYPE='multipart/form-data'>
@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <div class="row justify-content-center pt-3 p-5" >
-                        <button class="btn btn-primary mr-auto d-none" type="submit" id="guardar">Guardar <i class="far fa-save fa-2x"></i></button>        
+                        <button class="btn btn-primary mr-auto" type="submit" id="guardar">Guardar <i class="far fa-save fa-2x"></i></button>        
                         <a class="btn btn-warning" href="{{route('telefonos.crear',$persona)}}">Omitir<i class="fas fa-arrow-circle-right fa-2x"></i></a>
                     </div>
                 </form>
@@ -128,6 +128,10 @@
                 canvas.height = 100;//video.videoHeight;
                 canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
                 console.log("click");
+                $('#button').removeClass('d-none');
+                $('#button').on('click',function(){
+
+                });
             };
 
         const constraints = {
@@ -145,7 +149,6 @@
             console.log('navigator.MediaDevices.getUserMedia error: ', error.message, error.name);
             $("#contenedor").addClass("d-none");
 
-            $("#sincamera").removeClass("d-none");
             $("#sincamera").addClass("d-block");
             
         }

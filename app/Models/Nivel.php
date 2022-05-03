@@ -48,6 +48,10 @@ class Nivel extends Model
     return $this->hasMany(Modalidad::class);
   }
 
+  public function colegios(){
+        return $this->belongsToMany(Colegio::class);
+    }
+
   public function userable()
   {
     return $this->morphOne('App\Models\Userable', 'userable');

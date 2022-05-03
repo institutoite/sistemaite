@@ -6,6 +6,10 @@ use App\Models\Colegio;
 use App\Models\Municipio;
 use App\Models\Departamento;
 use App\Models\Provincia;
+use App\Models\Nivel;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
 
 use Illuminate\Http\Request;
 
@@ -50,8 +54,11 @@ class ColegioController extends Controller
         //$colegio = new Colegio();
         $departamentos = Departamento::get();
         $provincias = Provincia::get();
-        $municipios = Municipio::get();
-        return view('colegio.create', compact('municipios', 'provincias', 'departamentos'));
+        $municipios = Municipio::where('provincia_id',1)->get();
+        $niveles= Nivel::get();
+        //$mu= Nivel::get();
+
+        return view('colegio.create', compact('municipios', 'provincias', 'departamentos','niveles'));
     }
 
     /**
@@ -64,9 +71,13 @@ class ColegioController extends Controller
     {
         
         request()->validate(Colegio::$rules);
-        //dd($request->all());
         $colegio = Colegio::create($request->all());
         //dd($colegio);
+        
+        $colegio->niveles()->sync(array_keys($request->niveles));
+        //dd($request->all());
+        $colegio->userable()->create(['user_id'=>Auth::user()->id]);
+
         return redirect()->route('colegios.index')
             ->with('success', 'Colegio created successfully.');
     }
@@ -79,12 +90,17 @@ class ColegioController extends Controller
      */
     public function show($id)
     {
-        // $colegio = Colegio::find($id);
-        // $departamento=Departamento::findOrFail($colegio->departamento_id);
-        // $provincia = provincia::findOrFail($colegio->provincia_id);
-        // $municipio = municipio::findOrFail($colegio->municipio_id);
+        $colegio = Colegio::find($id);
+        $departamento=Departamento::findOrFail($colegio->departamento_id);
+        $provincia = provincia::findOrFail($colegio->provincia_id);
+        $municipio = municipio::findOrFail($colegio->municipio_id);
 
-       // return view('colegio.show', compact('colegio','departamento','provincia','municipio'));
+        $user=User::findOrFail($colegio->userable->user_id);
+
+        $niveles=$colegio->niveles;
+
+
+       return view('colegio.show', compact('colegio','departamento','provincia','municipio','niveles','user'));
     }
 
     /**
@@ -98,8 +114,17 @@ class ColegioController extends Controller
         $colegio = Colegio::find($id);
         $departamentos = Departamento::get();
         $provincias = Provincia::get();
-        $municipios = Municipio::where('provincia_id','=',$colegio->provincia)->get();
-        return view('colegio.edit', compact('colegio','departamentos','provincias','municipios'));
+        $municipios = Municipio::where('provincia_id','=',$colegio->provincia_id)->get();
+
+
+        $niveles_currents=$colegio->niveles; 
+        $ids=[];
+        foreach ($niveles_currents as $nivel) {
+            $ids[] = $nivel->id;
+        }
+        $niveles_faltantes = Nivel::whereNotIn('id', $ids)->get();
+
+        return view('colegio.edit', compact('colegio','departamentos','provincias','municipios','niveles_currents','niveles_faltantes'));
     }
 
     /**
@@ -115,6 +140,9 @@ class ColegioController extends Controller
 
         $colegio->update($request->all());
         //dd($colegio);
+
+        $colegio->niveles()->sync(array_keys($request->niveles));
+
         return redirect()->route('colegios.index')
             ->with('success', 'Colegio updated successfully');
     }

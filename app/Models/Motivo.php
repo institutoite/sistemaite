@@ -32,8 +32,6 @@ class Motivo extends Model
      * @var array
      */
     protected $fillable = ['motivo'];
-
-
     /** 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

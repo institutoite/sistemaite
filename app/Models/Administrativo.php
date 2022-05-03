@@ -16,4 +16,8 @@ class Administrativo extends Model
     {
         return $this->morphOne('App\Models\Userable', 'userable');
     }
+    public function persona()
+    {
+        return $this->belongsTo(Persona::class);
+    }
 }
