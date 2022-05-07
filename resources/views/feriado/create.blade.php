@@ -22,7 +22,7 @@
                             @csrf
 
                             @include('feriado.form')
-
+                            @include('include.botones')
                         </form>
                     </div>
                 </div>

@@ -66,6 +66,7 @@ class DiaController extends Controller
      */
     public function edit($id)
     {
+        //dd($id);
         $dia=Dia::findOrFail($id);
         return view('dia.edit',compact('dia'));
     }

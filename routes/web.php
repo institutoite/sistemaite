@@ -49,7 +49,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[DiaController::class,'listar'])->name('prueba');
+Route::get('prueba',[DiaController::class,'edit'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -490,6 +490,7 @@ Route::delete('eliminar/pago/{pago}', 'PagoController@destroy')->name('eliminar.
 Route::delete('eliminar/computacion/{computacion}', 'ComputacionController@destroy')->name('eliminar.computacion');
 Route::delete('eliminar/carrera/{carrera}', 'CarreraController@destroy')->name('eliminar.carrera');
 Route::delete('eliminar/dia/{carrera}', 'DiaController@destroy')->name('eliminar.dia');
+Route::delete('eliminar/feriado/{carrera}', 'FeriadoController@destroy')->name('eliminar.feriado');
 
 Route::get('tomarfoto', function () {return view('persona.tomarfoto');})->name('tomarfoto');
 Route::get('tomarfoto/{persona}', 'PersonaController@tomarfoto')->name('tomar.foto.persona');

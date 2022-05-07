@@ -3,6 +3,10 @@
     <i class="fa fa-fw fa-edit text-primary"></i>
 </a>
 
+<a href="{{route('files.show', $id)}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Editar esta carrera">
+    <i class="fa fa-fw fa-eye text-primary"></i>
+</a>
+
 <form action=""  class="d-inline formulario eliminar">
     @csrf
     @method("delete")

@@ -7,7 +7,7 @@
 
 
 @section('content_header')
-    <h1 class="text-center text-primary">Mostrar Feriado</h1>
+    <h1 class="text-center text-primary">Mostrar Archivo</h1>
 @stop
 
 
@@ -17,10 +17,10 @@
                 <div class="card">
                     <div class="card-header bg-secondary">
                         <div class="float-left">
-                            <span class="card-title">Show Feriado</span>
+                            <span class="card-title">Mostrar archivo</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('feriados.index') }}"> Listar Feriados activos </a>
+                            <a class="btn btn-primary" href="{{ route('files.index') }}"> Listar Archivos </a>
                         </div>
                     </div>
 
@@ -34,19 +34,24 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td> <strong>FECHA</strong></td>
-                                    <td>{{ $feriado->fecha }}</td>
+                                    <td> <strong>Tipo archivo</strong></td>
+                                    <td>{{ $file->tipofile }}</td>
                                 </tr>
                                 <tr>
-                                    <td> <strong>Festividad:</strong></td>
-                                    <td>{{ $feriado->festividad }}</td>
+                                    <td> <strong>Nombre Archivo:</strong></td>
+                                    <td>{{ $file->file }}  </td>
                                 </tr>
                                 <tr>
-                                    <td> <strong>Activo:</strong></td>
-                                    @php
-                                        $resultado = $feriado->festividad ? "Este feriado esta activo" : "Este feriado ya pasó";
-                                    @endphp
-                                    <td>{{ $resultado }}</td>
+                                    <td> <strong> Ver archivo :</strong></td>
+                                    <td><a href="{{route('file.download',$file->id)}}">Descargar <i class="fas fa-download"></i></a>  </td>
+                                </tr>
+                                <tr>
+                                    <td> <strong>Descripcion:</strong></td>
+                                    <td>{!! $file->descripcion !!}</td>
+                                </tr>
+                                <tr>
+                                    <td> <strong>Frecuencia:</strong></td>
+                                    <td>{{ $file->frecuencia }}</td>
                                 </tr>
                                  <tr>
                                     <td>Usuario</td>

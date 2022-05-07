@@ -14,8 +14,8 @@ class CreateInterestPersonaTable extends Migration
         Schema::create('interest_persona', function (Blueprint $table) {
             
             $table->unsignedBigInteger('interest_id');
-            $table->unsignedBigInteger('persona_id')->unsigned();
             $table->foreign('interest_id')->references('id')->on('interests');
+            $table->unsignedBigInteger('persona_id');
             $table->foreign('persona_id')->references('id')->on('personas');
             $table->timestamps();
         });

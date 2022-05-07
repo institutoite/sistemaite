@@ -22,6 +22,7 @@ use App\Models\Motivo;
 use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Estado;
+use App\Models\Feriado;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -245,6 +246,13 @@ Route::get('niveles', function () {
 Route::get('inscripciones', function () {
     return datatables()->of(Inscripcione::get())
         ->addColumn('btn', 'inscripcione.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+});
+Route::get('feriados', function () {
+    $feriados= Feriado::get();
+    return datatables()->of($feriados)
+        ->addColumn('btn', 'feriado.action')
         ->rawColumns(['btn'])
         ->toJson();
 });

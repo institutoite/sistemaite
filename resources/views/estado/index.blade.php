@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 @section('css')
-     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('custom/css/mapa.css')}}">
 @endsection
 

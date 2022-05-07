@@ -1,5 +1,15 @@
 
 
+
+
+@extends('adminlte::page')
+
+@section('title', 'Departamento Crear')
+
+@section('template_title')
+    Crear Departamento
+@endsection
+
 @section('content')
     <section class="content container-fluid">
         <div class="">
@@ -17,7 +27,7 @@
                             @csrf
 
                             @include('feriado.form')
-
+                             @include('include.botones')
                         </form>
                     </div>
                 </div>
@@ -25,3 +35,4 @@
         </div>
     </section>
 @endsection
+

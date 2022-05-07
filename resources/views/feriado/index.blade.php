@@ -1,74 +1,35 @@
 @extends('adminlte::page')
-
-@section('title', 'listar Feriados')
-
-@section('template_title')
-    Feriados
+@section('css')
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/mapa.css')}}">
 @endsection
+
+@section('title', 'Carreras')
+@section('plugins.jquery', true)
+@section('plugins.Sweetalert2',true)
+@section('plugins.Datatables',true)
+
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header bg-secondary">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-
-                            <span id="card_title">
-                                {{ __('Feriado') }}
-                            </span>
-
-                            <div class="float-right">
-                                <a href="{{ route('feriados.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                    {{ __('Crear Feriado') }}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @endif
-
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr>
-                                        <th>No</th>
-                                        
-										<th>Fecha</th>
-										<th>Festividad</th>
-
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($feriados as $feriado)
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $feriado->fecha }}</td>
-											<td>{{ $feriado->festividad }}</td>
-
-                                            <td>
-                                                <form action="{{ route('feriados.destroy',$feriado->id) }}" method="POST">
-                                                    <a class="btn" href="{{ route('feriados.show',$feriado->id) }}"><i class="fa fa-fw fa-eye text-success"></i></a>
-                                                    <a class="btn" href="{{ route('feriados.edit',$feriado->id) }}"><i class="fa fa-fw fa-edit text-warning"></i></a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn"><i class="fa fa-fw fa-trash text-danger"></i></button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                {!! $feriados->links() !!}
+    <div class="card">
+            <div class="card-header">
+                <div class="float-right">
+                <a href="{{ route('feriados.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                    {{ __('Create Estado') }}
+                </a>
             </div>
+        </div>
+        <div class="card-body">
+            <table id="feriados" class="table table-striped table-hover">
+                <thead class="thead">
+                    <tr>
+                        <th>No</th>
+                        <th>Fecha</th>
+                        <th>Festividad</th>
+                        <th>Vigencia</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+            </table>
         </div>
     </div>
 @endsection
@@ -93,7 +54,9 @@
                     "ajax": "{{ url('api/feriados') }}",
                     "columns": [
                         {"data": 'id',name:"id"},
-                        {"data": "estado",name:"estado"},     
+                        {"data": "fecha",name:"fecha"},     
+                        {"data": "festividad",name:"festividad"},     
+                        {"data": "vigente",name:"vigente"},     
                         {
                             "name":"btn",
                             "data": 'btn',
@@ -109,7 +72,7 @@
             $('table').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
                 id=$(this).parent().parent().parent().find('td').first().html();
-                //console.log(id)
+                console.log(id)
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",
@@ -123,14 +86,14 @@
                 }).then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: 'eliminar/estado/'+id,
+                            url: 'eliminar/feriado/'+id,
                             type: 'DELETE',
                             data:{
                                 id:id,
                                 _token:'{{ csrf_token() }}'
                             },
                             success: function(result) {
-                                console.log(result);
+                                //console.log(result);
                                 tabla.ajax.reload();
                                 const Toast = Swal.mixin({
                                 toast: true,

@@ -9,8 +9,8 @@
 
 
         <div class="mb-3">
-            <label for="descripcion" class="form-label">Seleccine un archivo </label>
-            <input class="form-control form-control-lg" id="descripcion"  name="file" type="file">
+            <label for="file" class="form-label">Seleccine un archivo </label>
+            <input class="form-control form-control-lg" id="file"  name="file" type="file" accept=".jpg,.jpeg,.pub,.png,.gif,.doc,.docx,.csv,.rtf,.xlsx,.xls,.txt,.pdf,.zip">
         </div>
 
         @isset($file)

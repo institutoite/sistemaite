@@ -9,6 +9,9 @@ use App\Models\Tipofile;
 use App\Http\Requests\FileGuardarRequest;
 use Carbon\Carbon;
 
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
 use Illuminate\Support\Facades\Storage;
 // use Illuminate\Http\File as Filecillo;
 
@@ -45,21 +48,23 @@ class FileController extends Controller
      */
     public function store(FileGuardarRequest $request)
     {
-        
         $file=new File();
         $file->descripcion =$request->descripcion;
+
+        
+
         if ($request->hasFile('file')){
             $fileArchivo=$request->file('file');
             //$nombreArchivo=Str::random(10).$request->file('file')->getClientOriginalName();
-            $nombreArchivo=Str::random(20).'.'.$request->file('file')->extension();
+            
+            $nombreArchivo=Str::random(20).'.'.$request->file('file')->getClientOriginalExtension();
             \Storage::disk('public')->put('files\\'.$nombreArchivo,  \File::get($fileArchivo));
             $file->file =$nombreArchivo;
-            $file->tipofile =$request->file('file')->extension();
+            $file->tipofile =$request->file('file')->getClientOriginalExtension();
         }
-
-        
         $file->save();
-        //dd($file);
+        $file->userable()->create(['user_id'=>Auth::user()->id]);
+
         return view('file.index');
     }
 
@@ -82,7 +87,9 @@ class FileController extends Controller
      */
     public function show($id)
     {
-        //
+        $file=File::findOrFail($id);
+        $user=User::findOrFail($file->userable->user_id);
+        return view('file.show',compact('file','user'));
     }
 
     /**

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Feriado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 /**
  * Class FeriadoController
@@ -25,10 +27,7 @@ class FeriadoController extends Controller
      */
     public function index()
     {
-        $feriados = Feriado::paginate();
-
-        return view('feriado.index', compact('feriados'))
-            ->with('i', (request()->input('page', 1) - 1) * $feriados->perPage());
+       return view('feriado.index');
     }
 
     /**
@@ -52,8 +51,13 @@ class FeriadoController extends Controller
     {
         request()->validate(Feriado::$rules);
 
-        $feriado = Feriado::create($request->all());
+        $feriado = new Feriado();
+        $feriado->fecha =$request->fecha;
+        $feriado->festividad=$request->festividad;
+        $feriado->vigente=1;
+        $feriado->save();
 
+        $feriado->userable()->create(['user_id'=>Auth::user()->id]);
         return redirect()->route('feriados.index')
             ->with('success', 'Feriado created successfully.');
     }
@@ -67,8 +71,8 @@ class FeriadoController extends Controller
     public function show($id)
     {
         $feriado = Feriado::find($id);
-
-        return view('feriado.show', compact('feriado'));
+        $user=User::findOrFail($feriado->userable->user_id);
+        return view('feriado.show', compact('feriado','user'));
     }
 
     /**
@@ -79,7 +83,8 @@ class FeriadoController extends Controller
      */
     public function edit($id)
     {
-        $feriado = Feriado::find($id);
+        // dd($id);
+        $feriado = Feriado::findOrFail($id);
 
         return view('feriado.edit', compact('feriado'));
     }
@@ -108,9 +113,8 @@ class FeriadoController extends Controller
      */
     public function destroy($id)
     {
-        $feriado = Feriado::find($id)->delete();
 
-        return redirect()->route('feriados.index')
-            ->with('success', 'Feriado deleted successfully');
+        Feriado::findOrFail($id)->delete();
+        return response()->json(['mensaje'=>"Se elimino correctamente"]);
     }
 }
