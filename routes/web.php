@@ -237,7 +237,7 @@ Route::get('clasecom/finalizar/', [ClasecomController::class,'finalizarClasecom'
 //Route::resource('grados', [GradoController::class]);
 Route::get('grados',[GradoController::class,'index'])->name('grados.index');
 Route::get('grados/create',[GradoController::class,'create'])->name('grados.create');
-Route::get('grados/store',[GradoController::class,'store'])->name('grados.store');
+Route::post('grados/store',[GradoController::class,'store'])->name('grados.store');
 Route::get('grados/no/cursados/{estudiante}','GradoController@gradosAunNoCursados')->name('grados.no.cursados');
 Route::get('/guardar/gestion',[GradoController::class,'agregarGrado'])->name('agregar.grado');
 

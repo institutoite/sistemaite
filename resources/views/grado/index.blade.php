@@ -98,7 +98,7 @@
 
         $(document).ready(function() {
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATA TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            let fila=1;
+            // let fila=1;
             $('#grados').dataTable({
                 "responsive":true,
                 "searching":true,
@@ -108,7 +108,7 @@
                 "info":     true,
                 "createdRow": function( row, data, dataIndex ) {
                     $(row).attr('id',data['id']); 
-                    $('td', row).eq(0).html(fila++);
+                    // $('td', row).eq(0).html(fila++);
                 },
                 "ajax": "{{ url('api/grados')}}",
                 "columns": [
@@ -134,12 +134,10 @@
             $('#grados').on('click', '.mostrar', function(e) {
                 e.preventDefault(); 
                 let id_grado =$(this).closest('tr').attr('id');
-                console.log(id_grado);
                 $.ajax({
                     url : "grado/mostrar/",
                     data : { id :id_grado },
                     success : function(json) {
-                        // console.log(json);
                         $("#modal-mostrar").modal("show");
                         $("#tabla-mostrar").empty();
                         $html="";
@@ -171,7 +169,6 @@
                         url : "grado/editar/",
                         data : { id :id_grado },
                         success : function(json) {
-                            console.log(json);
                             $("#modal-editar").modal("show");
                             $("#formulario-editar").empty();
                                 $html="<div class='row'>";
@@ -179,7 +176,10 @@
                                 $("#grado_id").val(json.grado.id);
                                 $htmlNiveles="";
                                 for (let j in json.niveles) {
-                                    $htmlNiveles+="<option value='"+ json.niveles[j].id +"'>"+json.niveles[j].nivel+"</option>";
+                                    if(json.niveles[j].id==json.grado.nivel_id)
+                                        $htmlNiveles+="<option selected value='"+ json.niveles[j].id +"'>"+json.niveles[j].nivel+"</option>";
+                                    else
+                                        $htmlNiveles+="<option value='"+ json.niveles[j].id +"'>"+json.niveles[j].nivel+"</option>";
                                 }
                                 $("#nivel_id").append($htmlNiveles);    
                                 $("#formulario-editar").append($html);
@@ -200,7 +200,6 @@
                 $grado=$('#grado').val();
                 $nivel_id=$('#nivel_id').val();
                 $grado_id=$('#grado_id').val();
-                console.log($grado_id);
                 var token = $("input[name=_token]").val();
                 $.ajaxSetup({
                 headers: {
@@ -224,7 +223,6 @@
                         }else{
                             $("#message-error").removeClass("d-none");
                             imprimeErrores(json);
-
                         }                        
                     },
                     error:function(jqXHR,estado,error){
@@ -240,15 +238,17 @@
                         $htmlErrores+="<li>"+errores[j][k]+" x "+"</li>";
                     }
                 }
+                $("#error").empty();
                 $("#error").append($htmlErrores);
                 
                 
             }
             
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  M O T I V O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-            $('#motivos').on('click','.eliminar',function (e) {
+            $('#grados').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
-                 var id_motivo =$(this).closest('tr').attr('id');
+                var grado_id =$(this).closest('tr').attr('id');
+                    //console.log(grado_id);
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",
@@ -262,13 +262,13 @@
                 }).then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: 'eliminar/motivo/'+id_motivo,
+                            url: 'eliminar/grado/'+grado_id,
                             type: 'DELETE',
                             data:{
                                 _token:'{{ csrf_token() }}'
                             },
                             success: function(result) {
-                                $('#motivos').DataTable().ajax.reload();
+                                $('#grados').DataTable().ajax.reload();
                                 const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',

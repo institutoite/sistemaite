@@ -22,8 +22,7 @@
                     {!! Form::model($text, ['route' => ['home.update',$text], 'method' => 'put']) !!}
                         <div class="form-group">
                             {!! Form::label('banner', 'Texto del banner') !!}
-                            {!! Form::text('banner', null, ['class' => 'form-control', 'placeholder'=> 'Ingrese el texto del banner']) !!}
-                        
+                            {!! Form::textarea('banner', null, ['class' => 'form-control', 'placeholder'=> 'Ingrese el texto del banner','rows'=>8]) !!}
                             @error('banner')
                                 <span class="text-danger">{{$message}}</span>
                             @enderror
@@ -63,4 +62,19 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('js')
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/decoupled-document/ckeditor.js"></script> --}}
+    <script>
+        ClassicEditor
+            .create( document.querySelector('#banner' ) )
+            .then( editor => {
+                    console.log( editor );
+            } )
+            .catch( error => {
+                    console.error( error );
+            } );
+    </script>
 @endsection

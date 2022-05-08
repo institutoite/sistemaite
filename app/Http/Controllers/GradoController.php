@@ -12,6 +12,7 @@ use App\Models\Userable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+
 /**
  * Class GradoController
  * @package App\Http\Controllers
@@ -74,13 +75,16 @@ class GradoController extends Controller
         $grado->nivel_id=$request->nivel_id;
         $grado->save();
         
+        $grado->userable()->create(['user_id'=>Auth::user()->id]);
         
-        $user = Auth::user();
-        $userable = new Userable();
-        $userable->user_id = $user->id;
-        $userable->userable_id = $grado->id;
-        $userable->userable_type = Grado::class;
-        $userable->save();
+        // $user = Auth::user();
+        // $userable = new Userable();
+        // $userable->user_id = $user->id;
+        // $userable->userable_id = $grado->id;
+        // $userable->userable_type = Grado::class;
+        // $userable->save();
+
+
         
         return redirect()->route('grados.index')
             ->with('success', 'Grado created successfully.');
@@ -96,6 +100,7 @@ class GradoController extends Controller
     {
         $grado = Grado::findOrFail($request->id);
         $user = User::findOrFail($grado->userable->user_id);
+        //return response()->json($user);
         $nivel=Nivel::findOrFail($grado->nivel_id);
         $data = ['grado' => $grado, 'user' => $user,'nivel'=>$nivel];
         return response()->json($data);
@@ -149,8 +154,7 @@ class GradoController extends Controller
      */
     public function destroy($id)
     {
-        $grado = Grado::find($id)->delete();
-        return redirect()->route('grados.index')
-            ->with('success', 'Grado deleted successfully');
+        $grado = Grado::findOrFail($id)->delete();
+        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
 }

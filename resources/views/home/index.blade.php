@@ -3,19 +3,19 @@
 @section('banner')
     <div class="header-top">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6">
-                    <ul class="header-contact">
+            <div class="row align-items-center text-white">
+                <div class="col-lg-6 col-md-6 text-white">
+                    {{-- <ul class="header-contact">
                         <li>
-                            <span></span>
-                            {{$hometext->banner}}
-                        </li>
-                    </ul>
+                            <span></span> --}}
+                            {!!$hometext->banner!!}
+                        {{-- </li>
+                    </ul> --}}
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="header-right float-right">
                         <div class="header-btn">
-                            <a href="https://api.whatsapp.com/send?phone=59171039910&text=Tengo una pregunta" class="btn btn-main btn-small">contactenos</a>
+                            <a href="https://api.whatsapp.com/send?phone=59171039910&text=" class="btn btn-main btn-small">contactenos</a>
                         </div>
                     </div>
                 </div>

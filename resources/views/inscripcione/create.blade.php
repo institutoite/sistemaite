@@ -25,7 +25,6 @@
 
 @section('js')
     <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
-    
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% CKEDITOR --}}
     <script>
         ClassicEditor
@@ -38,11 +37,7 @@
 
     <script>
 
-
         $(document).ready(function() {
-            
-
-
             $("#modalidad_id").change(function () {
                 var modalidad_id=$(this).val();    
                 data={modalidad_id};
