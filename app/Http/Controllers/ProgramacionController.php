@@ -119,6 +119,9 @@ class ProgramacionController extends Controller
                     ->where('programacions.id',$request->id)
                     ->select('clases.id','clases.fecha','clases.horainicio','estados.estado','clases.horafin','docentes.nombre','materias.materia', 'aulas.aula','temas.tema')
                     ->get();
+        
+        //$user=User::findOrFail($asignatura->userable->user_id);
+
         $data = ['programacion' => $programacion, 'estado'=>$estado,'observaciones' => $observaciones, 'docente' => $docente, 'materia' => $materia, 'aula' => $aula, 'clases' => $clases,'licencias'=>$licencias];
         return response()->json($data);
     }

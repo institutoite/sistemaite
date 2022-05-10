@@ -384,7 +384,7 @@
                     url : "../../programacion/mostrar/clases",
                     data : { id :id_programacion },
                     success : function(json) {
-                        console.log(json);
+                        // console.log(json);
                         
                         $("#modal-mostrar").modal("show");
                         $("#tabla-mostrar-programacion").empty();

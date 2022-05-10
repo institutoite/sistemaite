@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Interest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 use App\Http\Requests\InterestGuardarRequest;
 
@@ -41,6 +43,7 @@ class InterestController extends Controller
         $interest = new interest();
         $interest->interest = $request->interest;
         $interest->save();
+        $interest->userable()->create(['user_id'=>Auth::user()->id]);
         return redirect()->route('interest.index')
             ->with('success', 'Motivo created successfully.');
     }
@@ -58,7 +61,10 @@ class InterestController extends Controller
     public function mostrar(Request $request)
     {
         $interest = Interest::findOrFail($request->id);
-        $data=['interest'=>$interest];
+        $user = User::findOrFail($interest->userable->user_id);
+
+        $data=['interest'=>$interest,'user' => $user];
+
         return response()->json($data);
     }
 

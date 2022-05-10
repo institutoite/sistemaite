@@ -8,6 +8,9 @@ use App\Models\Programacion;
 use App\Models\Tipomotivo;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
 use Illuminate\Support\Facades\Config;
 
 /**
@@ -86,9 +89,13 @@ class LicenciaController extends Controller
         $licenciacom->licenciable_type=Programacion::class;
         $licenciacom->save();
 
+
+
         $programacion=Programacion::findOrFail($request->programacion_id);
         $programacion->estado_id=Config::get('constantes.ESTADO_LICENCIA');
         $programacion->save();
+
+        
 
         $data=['mensaje'=>'Licencia guardado correctamente'];
         return response()->json($data);

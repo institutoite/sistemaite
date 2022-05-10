@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
-@section('title', 'Motivos')
+@section('title', 'Intereses')
 @section('plugins.Jquery', true)
 @section('plugins.Sweetalert2', true)
 @section('plugins.Datatables', true)
@@ -17,7 +17,7 @@
                     <div class="card-header bg-secondary">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span id="card_title">
-                                {{ __('Motivos') }}
+                                {{ __('Intereses') }}
                             </span>
                             <div class="float-right">
                                 <a href="{{ route('interest.create') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
@@ -142,7 +142,7 @@
                         $html="";
                         $html+="<tr><td>ID</td>"+"<td>"+ json.interest.id +"</td></tr>";
                         $html+="<tr><td>INTEREST</td>"+"<td>"+json.interest.interest+"</td></tr>";
-                        // $html+="<tr><td>CREADO POR </td>"+"<td>"+json.user.name+"</td></tr>";
+                        $html+="<tr><td>CREADO POR </td>"+"<td>"+json.user.name+"</td></tr>";
                         $html+="<tr><td>CREADO</td>"+"<td>"+ moment(json.interest.created_at).format('LLLL') +"</td></tr>";
                         $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.interest.updated_at).format('LLLL')+"</td></tr>";
                         $("#tabla-mostrar").append($html);

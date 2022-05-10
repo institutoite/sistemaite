@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                         <td>OBJETIVO</td>
-                        <td>{{$inscripcione->objetivo}}</td>
+                        <td>{!!$inscripcione->objetivo!!}</td>
                     </tr>
                     <tr>
                         <td>ESTUDIANTE</td>

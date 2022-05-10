@@ -148,6 +148,7 @@ class InscripcioneController extends Controller
         
         //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   %%%%%%%%%%%%%%%%*/
         $inscripcion->userable()->create(['user_id'=>Auth::user()->id]);
+
         $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
         $materias = $nivel->materias;
         $aulas = Aula::get();
@@ -182,7 +183,8 @@ class InscripcioneController extends Controller
         ->orderBy('fecha', 'asc')
         ->where('inscripcione_id', '=', $inscripciones_id)->get();
 
-        $user=User::findOrFail($inscripcione->estudiante->persona->userable->user_id);
+        $user=User::findOrFail($inscripcione->userable->user_id);
+        //  $user=User::findOrFail($file->userable->user_id);
 
         return view('inscripcione.show', compact('inscripcione','programacion','user'));
     }

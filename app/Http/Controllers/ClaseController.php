@@ -141,6 +141,7 @@ class ClaseController extends Controller
                             'clases.created_at','clases.updated_at')->get()->first();
 
         $user=User::findOrFail(Clase::findOrFail($request->id)->userable->user_id);
+        //$user=User::findOrFail($asignatura->userable->user_id);
         $data=['clase'=>$clase,'user'=>$user];
         return response()->json($data);
     }
@@ -196,7 +197,6 @@ class ClaseController extends Controller
         //return view('clase.edit', compact('clase'));
         return view('clase.edit', compact('docentes','clase', 'programa', 'inscripcion', 'materias', 'aulas', 'hora_inicio', 'hora_fin'));
     }
-   
 
     /**
      * Update the specified resource in storage.

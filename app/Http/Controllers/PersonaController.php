@@ -232,11 +232,9 @@ class PersonaController extends Controller
         $apoderado->nombre = $request->nombre;
         $apoderado->apellidop = $request->apellidop;
         $apoderado->genero=$request->genero;
-
         $apoderado->pais_id = $persona->pais_id;
         $apoderado->ciudad_id = $persona->ciudad_id;
         $apoderado->zona_id = $persona->zona_id;
-
         $apoderado->habilitado = 0;
         $apoderado->votos = 0;
 

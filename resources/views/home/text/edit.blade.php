@@ -19,10 +19,12 @@
                     <span class="card-title">Editar Texto de la Pagina de Inicio</span>
                 </div>
                 <div class="card-body">
-                    {!! Form::model($text, ['route' => ['home.update',$text], 'method' => 'put']) !!}
+                    {!! Form::model($text, ['route' => ['home.update',$text], 'method' => 'put','enctype'=>'multipart/form-data']) !!}
                         <div class="form-group">
+                            <p>La imagen tiene que tener 1400 px de ancho x 300 px de alto </p>
                             {!! Form::label('banner', 'Texto del banner') !!}
-                            {!! Form::textarea('banner', null, ['class' => 'form-control', 'placeholder'=> 'Ingrese el texto del banner','rows'=>8]) !!}
+                            {{-- {!! Form::textarea('banner', null, ['class' => 'form-control', 'placeholder'=> 'Ingrese el texto del banner','rows'=>8]) !!} --}}
+                            <input type="file" name="banner" id="banner">
                             @error('banner')
                                 <span class="text-danger">{{$message}}</span>
                             @enderror
@@ -33,6 +35,13 @@
                             {!! Form::text('header', null, ['class' => 'form-control', 'placeholder'=> 'Ingrese el texto de presentacion']) !!}
                         
                             @error('header')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('mensaje', 'Texto de Whatsapp') !!}
+                            {!! Form::text('mensaje', null, ['class' => 'form-control', 'placeholder'=> 'Ingrese el texto automatico para whatsapp cuando nos escriban']) !!}
+                            @error('mensaje')
                                 <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>
@@ -65,7 +74,7 @@
 @endsection
 
 @section('js')
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script> --}}
     {{-- <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/decoupled-document/ckeditor.js"></script> --}}
     <script>
         ClassicEditor

@@ -13,6 +13,11 @@ use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
+
 class HomeController extends Controller
 {
     /**
@@ -104,7 +109,39 @@ class HomeController extends Controller
      */
     public function update(Request $request, Hometext $text)
     {
-        $text->update($request->all());
+        //dd($request->all());
+        //$hometext=new Hometext();
+        // $text->banner=$request->banner;
+        $text->header=$request->header;
+        $text->heading=$request->heading;
+        $text->subheading=$request->subheading;
+
+         if ($request->hasFile('banner')) {
+            // verificando si exites la foto actual
+            
+            
+            if (Storage::disk('public')->exists($text->banner)) {
+                // aquí la borro
+                Storage::disk('public')->delete($text->banner);
+            }
+
+            $banner = $request->file('banner');
+            $nombreImagen = 'banners/' . Str::random(20) . '.jpg';
+            /** las convertimos en jpg y la redimensionamos */
+            $imagen = Image::make($banner)->encode('jpg', 75);
+            $imagen->resize(1400, 300, function ($constraint) {
+                $constraint->upsize();
+            });
+            /* las guarda en en la carpeta estudiantes  */
+            $bannercillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
+
+            $text->banner = $nombreImagen;
+        }
+
+
+        $text->save();
+
+
 
         return redirect()->route('home.edit');
     }

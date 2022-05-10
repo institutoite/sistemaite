@@ -32,20 +32,15 @@
 
   <link href="assets/images/faviconite.ico" rel="shortcut icon">
 </head>
-
 <body id="top-header">
-
-  
-
-    
-<header>
-    @yield('banner')
-
-    <!-- Main Menu Start -->
-   
-    <div class="site-navigation main_menu " id="mainmenu-area">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
+    <header>
+        
+        <!-- Main Menu Start -->
+        
+        @yield('banner')
+        <div class="site-navigation main_menu " id="mainmenu-area">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="assets/images/logoite.png" alt="Edutim" class="img-fluid">
                 </a>
@@ -72,7 +67,7 @@
                         @auth
                             <li class="nav-item ">
                                 <a href="{{ route('home') }}" class="nav-link js-scroll-trigger">
-                                    Panel administrativo
+                                    Sistema
                                 </a>
                             </li>
                         @endauth
