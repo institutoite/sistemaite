@@ -162,19 +162,32 @@
                     <th>ACTUALIZADO</th>
                 </thead>
                 <tbody>
+                    <td>1</td>
+                    <td>
+                        {{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}
+                    </td>
+                    <td>
+                       <a class="text-bold" href="tel:{{$persona->telefono}}">{{$persona->telefono}}</a> 
+                    </td>
+                    <td>
+                        Personal
+                    </td>
+                    <td>{{$persona->updated_at->diffForHumans()}}</td>
+                
+
                     @foreach ($apoderados as $apoderado)
                         <tr>
-                            <td>{{$loop->iteration}}</td>
+                            <td>{{$loop->iteration+1}}</td>
                             <td>
                                 {{$apoderado->nombre.' '.$apoderado->apellidop.' '.$apoderado->apellidom}}
                             </td>
                             <td>
-                                <a href="tel:{{$apoderado->telefono}}">{{$apoderado->pivot->telefono}}</a> 
+                                <a class="text-bold" href="tel:{{$apoderado->telefono}}">{{$apoderado->pivot->telefono}}</a>
                             </td>
                             <td>
                                 {{$apoderado->pivot->parentesco}}
                             </td>
-                            <td>{{$apoderado->updated_at}}</td>
+                            <td>{{$apoderado->updated_at->diffForHumans()}}</td>
                         </tr>
                     @endforeach
                 </tbody>

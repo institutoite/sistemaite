@@ -76,27 +76,28 @@ class LicenciaController extends Controller
         $programacioncom->estado_id=Config::get('constantes.ESTADO_LICENCIA');
         $programacioncom->save();
 
+        $licenciacom->userable()->create(['user_id'=>Auth::user()->id]);
+
         $data=['mensaje'=>'Licencia guardado correctamente'];
         return response()->json($data);
     }
     public function storeprogramacion(Request $request)
     {
-        $licenciacom    =new Licencia();
-        $licenciacom->motivo_id=$request->motivo_id;
-        $licenciacom->solicitante=$request->solicitante;  
-        $licenciacom->parentesco=$request->parentesco;  
-        $licenciacom->licenciable_id=$request->programacion_id;
-        $licenciacom->licenciable_type=Programacion::class;
-        $licenciacom->save();
+        $licencia    =new Licencia();
+        $licencia->motivo_id=$request->motivo_id;
+        $licencia->solicitante=$request->solicitante;  
+        $licencia->parentesco=$request->parentesco;  
+        $licencia->licenciable_id=$request->programacion_id;
+        $licencia->licenciable_type=Programacion::class;
+        $licencia->save();
 
-
-
+        
         $programacion=Programacion::findOrFail($request->programacion_id);
         $programacion->estado_id=Config::get('constantes.ESTADO_LICENCIA');
         $programacion->save();
-
         
-
+        $licencia->userable()->create(['user_id'=>Auth::user()->id]);
+        
         $data=['mensaje'=>'Licencia guardado correctamente'];
         return response()->json($data);
     }

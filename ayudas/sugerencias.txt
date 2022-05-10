@@ -21,6 +21,8 @@ verificar las licencias que se muestran cuando se esta mostrando una programacio
 validar actuzalidar un motivo sale que ya existe
 hacer una seccion de contactanos donde este las formas de contactanos
 Falta terminar el crud de requisitos y metas
+En registrar facilito que tenga dos pestañas arriba uno para registrar sin apoderado y otro con apoderado
+
 
 en el controlador
 use Illuminate\Support\Facades\Auth;

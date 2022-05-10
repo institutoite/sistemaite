@@ -18,7 +18,6 @@ class CreateFeriadosTable extends Migration
             $table->date('fecha');
             $table->unsignedTinyInteger('vigente');
             $table->string('festividad',30);
-            
             $table->timestamps();
         });
     }

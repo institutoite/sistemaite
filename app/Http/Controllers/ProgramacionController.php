@@ -27,6 +27,7 @@ use App\Models\Persona;
 use App\Models\Colegio;
 use App\Models\User;
 use App\Models\Grado;
+use App\Models\Clase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
@@ -106,8 +107,13 @@ class ProgramacionController extends Controller
 
         $licencias=Licencia::join('motivos','motivos.id','=','licencias.motivo_id')
             ->join('programacions','programacions.id','=','licencias.licenciable_id')
+
+            ->join('userables','userables.userable_id','licencias.id')
+            ->join('users','userables.user_id','users.id')
+            ->where('userables.userable_type',Licencia::class)
+
             ->where('programacions.id','=',$request->id)
-            ->select('motivos.motivo','solicitante','parentesco','licencias.created_at','licencias.updated_at')
+            ->select('motivos.motivo','solicitante','parentesco','licencias.created_at','users.name as user','licencias.updated_at')
             ->get();
 
         $clases=Programacion::join('clases','programacions.id','clases.programacion_id')
@@ -116,12 +122,15 @@ class ProgramacionController extends Controller
                     ->join('aulas','aulas.id','programacions.aula_id')
                     ->join('temas','temas.id','clases.tema_id')
                     ->join('estados','estados.id','clases.estado_id')
+                    
+                    ->join('userables','userables.userable_id','clases.id')
+                    ->join('users','userables.user_id','users.id')
+                    ->where('userables.userable_type',Clase::class)
+                    
                     ->where('programacions.id',$request->id)
-                    ->select('clases.id','clases.fecha','clases.horainicio','estados.estado','clases.horafin','docentes.nombre','materias.materia', 'aulas.aula','temas.tema')
+                    ->select('clases.id','clases.fecha','clases.horainicio','estados.estado','users.name as user','clases.horafin','docentes.nombre','materias.materia', 'aulas.aula','temas.tema')
                     ->get();
         
-        //$user=User::findOrFail($asignatura->userable->user_id);
-
         $data = ['programacion' => $programacion, 'estado'=>$estado,'observaciones' => $observaciones, 'docente' => $docente, 'materia' => $materia, 'aula' => $aula, 'clases' => $clases,'licencias'=>$licencias];
         return response()->json($data);
     }
@@ -626,6 +635,8 @@ class ProgramacionController extends Controller
         $observacion->observable_id=$request->id_programacion;
         $observacion->observable_type= Programacion::class;
         $observacion->save();
+
+        
         return response()->json($observacion);
     }
 

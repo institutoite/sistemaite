@@ -1,4 +1,5 @@
-<?php return array (
+<?php return function ($fontDir, $rootDir) {
+return array (
   'sans-serif' => array(
     'normal' => $rootDir . '/lib/fonts/Helvetica',
     'bold' => $rootDir . '/lib/fonts/Helvetica-Bold',
@@ -79,6 +80,7 @@
   ),
   'montserrat' => array(
     '100' => $fontDir . '/montserrat_100_0d704348384dbc46b968b5fb894873c7',
-    '300' => $fontDir . '/montserrat_300_a3bd865fe884963f8527ffa39bf3da1c',
+    '300' => $fontDir . '/montserrat_300_db8a5f13b110de292cd7213ad180d479',
   ),
-) ?>
+);
+}; ?>

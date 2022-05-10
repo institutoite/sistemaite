@@ -42,6 +42,7 @@
                                 <th>Docente</th>
                                 <th>Materia</th>
                                 <th>Aula</th>
+                                <th>Asuario</th>
                                 <th>Tema</th>
                             </tr>
                         </thead>
@@ -55,6 +56,8 @@
                                 <th>MOTIVO</th>
                                 <th>SOLICITANTE</th>
                                 <th>PARENTESCO</th>
+
+                                <th>USUARIO</th>
                                 <th>SOLICITADO</th>
                             </tr>
                         </thead>

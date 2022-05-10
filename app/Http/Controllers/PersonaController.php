@@ -338,7 +338,8 @@ class PersonaController extends Controller
         else 
             $micalificacion=null;
         
-        $user=User::findOrFail($persona->userable->user_id);
+        
+            $user=User::findOrFail($persona->userable->user_id);
 
         return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion','recomendado','apoderados','calificado','promedio','calificaciones','micalificacion','user'));
     }

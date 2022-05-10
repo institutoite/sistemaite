@@ -384,7 +384,7 @@
                     url : "../../programacion/mostrar/clases",
                     data : { id :id_programacion },
                     success : function(json) {
-                        // console.log(json);
+                        console.log(json);
                         
                         $("#modal-mostrar").modal("show");
                         $("#tabla-mostrar-programacion").empty();
@@ -428,6 +428,7 @@
                             $htmlClases+="<td>"+json.clases[j].nombre+"</td>";
                             $htmlClases+="<td>"+json.clases[j].materia+"</td>";
                             $htmlClases+="<td>"+json.clases[j].aula+"</td>";
+                            $htmlClases+="<td>"+json.clases[j].user+"</td>";
                             $htmlClases+="<td>"+json.clases[j].tema+"</td></tr>";
                         }
                         $("#tabla-mostrar-clases").append($htmlClases);
@@ -436,6 +437,7 @@
                             $htmlLicencia+="<tr><td>"+ json.licencias[j].motivo +"</td>";
                             $htmlLicencia+="<td>"+json.licencias[j].solicitante+"</td>";
                             $htmlLicencia+="<td>"+json.licencias[j].parentesco+"</td>";
+                            $htmlLicencia+="<td>"+json.licencias[j].user+"</td>";
                             $htmlLicencia+="<td>"+moment(json.licencias[j].created_at).format('LLLL')+"</td>";
                         }
                         $("#tabla-mostrar-licencias").append($htmlLicencia);
