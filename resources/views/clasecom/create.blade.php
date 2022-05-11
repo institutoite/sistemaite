@@ -25,7 +25,7 @@
             @else 
                 <div class="card-header bg-danger">
             @endif
-                <span class="card-title">Marcar clase de computación</span>
+                <span class="card-title">Marcar clase de computación x</span>
                 
             </div>
             <div class="card-body">

@@ -22,6 +22,9 @@ use Yajra\DataTables\Contracts\DataTable as DataTable;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Config;
 
+use Illuminate\Support\Facades\Auth;
+
+
 
 use PDF;
 
@@ -463,8 +466,12 @@ class ProgramacioncomController extends Controller
         $observacion->observable_id=$request->id_programacioncom;
         $observacion->observable_type= Programacioncom::class;
         $observacion->save();
+
+        $observacion->userable()->create(['user_id'=>Auth::user()->id]);
+        
         return response()->json($request->all());
     }
+
     public function mostrarClases(Request $request)
     {
         
@@ -476,6 +483,7 @@ class ProgramacioncomController extends Controller
                         ->join('users','userables.user_id','users.id')
                         ->where('userables.userable_type',Observacion::class)
                         ->where('programacioncoms.id',$request->id)
+                        ->select('observacions.id','observacion','name')
                         ->get();
 
         $docente = $programacioncom->docente;

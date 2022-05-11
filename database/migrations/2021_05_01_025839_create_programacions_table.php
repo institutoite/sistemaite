@@ -23,7 +23,7 @@ class CreateProgramacionsTable extends Migration
             $table->time('hora_fin');
             $table->double('horas_por_clase');
             
-            
+             
             $table->unsignedBigInteger('docente_id');
             $table->unsignedBigInteger('materia_id');
             $table->unsignedBigInteger('aula_id');

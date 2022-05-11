@@ -562,11 +562,11 @@
                         for (let j in json.clasescom) {
                             $htmlClases+="<tr><td>"+ moment(json.clasescom[j].fecha).format('LL') +"</td>";
                             $htmlClases+="<td>"+json.clasescom[j].estado+"</td>";
-                            $htmlClases+="<td>"+moment(json.clasescom[j].horainicio).format('HH:mm:ss')+"</td>";
+                            $htmlClases+="<td>"+json.clasescom[j].horainicio+"</td>";
                             $htmlClases+="<td>"+moment(json.clasescom[j].horafin).format('HH:mm:ss')+"</td>";
 
                             $htmlClases+="<td>" + json.clasescom[j].nombre + "</td>";
-                            $htmlClases+="<td>"+json.clases[j].user+"</td>";
+                            $htmlClases+="<td>"+json.clasescom[j].user+"</td>";
                             $htmlClases+="<td>"+json.clasescom[j].aula+"</td></tr>";
                         }
                         $("#tabla-mostrar-clases").append($htmlClases);

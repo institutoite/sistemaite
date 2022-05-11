@@ -37,7 +37,7 @@ class Programacioncom extends Model
     {
         return $this->belongsTo('App\Models\Aula');
     }
-    public function clasescom()
+    public function clasescom() 
     {
         return $this->hasMany(Clasecom::class);
     }
@@ -45,6 +45,8 @@ class Programacioncom extends Model
     {
         return $this->morphMany(Observacion::class, 'observable');
     }
+    
+    
     public function licencias(){
         return $this->morphMany('App\Models\Licencia','licenciable');
     }

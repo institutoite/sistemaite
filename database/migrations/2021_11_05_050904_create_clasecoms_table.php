@@ -22,7 +22,7 @@ class CreateClasecomsTable extends Migration
             $table->foreign('estado_id', 'fk_clasecom_estado_id')
                 ->references('id')->on('estados');
             
-                $table->time('horainicio');
+            $table->time('horainicio');
             $table->time('horafin');
 
             $table->unsignedBigInteger('docente_id')->nullable();

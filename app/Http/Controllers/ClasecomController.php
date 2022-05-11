@@ -80,8 +80,9 @@ class ClasecomController extends Controller
         $programa->save();
         $observacion->observable_id=$programacioncom_id;
         $observacion->save();
-
+        
         $clasecom->userable()->create(['user_id' => Auth::user()->id]);
+        //dd($clasecom);
 
         return redirect()->route('clase.presentes');
 
