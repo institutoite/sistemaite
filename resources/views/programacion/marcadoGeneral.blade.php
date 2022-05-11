@@ -409,7 +409,7 @@
 
                         $htmlObservaciones="";
                         for (let j in json.observaciones) {
-                            $htmlObservaciones+="<tr id='"+json.observaciones[j].id +"''><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td>";
+                            $htmlObservaciones+="<tr id='"+json.observaciones[j].id +"''><td>"+ json.observaciones[j].name +"</td>"+"<td>"+json.observaciones[j].observacion+ "</td>";
                             $htmlObservaciones+="<td>";
                             $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 editarobservacion' title='Editar esta Observacion'>";
                             $htmlObservaciones+="<i class='fa fa-fw fa-edit text-primary'></i></a>";

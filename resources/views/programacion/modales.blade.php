@@ -23,8 +23,8 @@
                     <table id="observaciones" class="table table-bordered table-hover table-striped">
                         <thead class="bg-primary">
                             <tr>
-                                <th>Fecha</th>
-                                <th>Estado</th>
+                                <th>Usuario</th>
+                                <th>Observacion</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>

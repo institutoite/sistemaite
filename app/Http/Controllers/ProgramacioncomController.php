@@ -469,7 +469,15 @@ class ProgramacioncomController extends Controller
     {
         
         $programacioncom = Programacioncom::findOrFail($request->id);
-        $observaciones = $programacioncom->observaciones;
+        // $observaciones = $programacioncom->observaciones;
+
+        $observaciones=Observacion::join('programacioncoms','programacioncoms.id','observacions.observable_id')
+						->join('userables','userables.userable_id','observacions.id')
+                        ->join('users','userables.user_id','users.id')
+                        ->where('userables.userable_type',Observacion::class)
+                        ->where('programacioncoms.id',$request->id)
+                        ->get();
+
         $docente = $programacioncom->docente;
         $materia = $programacioncom->materia;
         $asignatura=$programacioncom->matriculacion->asignatura;
@@ -477,16 +485,26 @@ class ProgramacioncomController extends Controller
 
         $licencias=Licencia::join('motivos','motivos.id','=','licencias.motivo_id')
             ->join('programacioncoms','programacioncoms.id','=','licencias.licenciable_id')
+
+            ->join('userables','userables.userable_id','licencias.id')
+            ->join('users','userables.user_id','users.id')
+            ->where('userables.userable_type',Licencia::class)
+
             ->where('programacioncoms.id','=',$request->id)
-            ->select('motivos.motivo','solicitante','parentesco','licencias.created_at','licencias.updated_at')
+            ->select('motivos.motivo','solicitante','parentesco','users.name as user','licencias.created_at','licencias.updated_at')
             ->get();
 
         $clases=Programacioncom::join('clasecoms','programacioncoms.id','clasecoms.programacioncom_id')
                     ->join('docentes','docentes.id','programacioncoms.docente_id')
                     ->join('aulas','aulas.id','programacioncoms.aula_id')
                     ->join('estados','estados.id','clasecoms.estado_id')
+
+                    ->join('userables','userables.userable_id','clasecoms.id')
+                    ->join('users','userables.user_id','users.id')
+                    ->where('userables.userable_type',Clasecom::class)
+
                     ->where('programacioncoms.id',$request->id)
-                    ->select('clasecoms.id','clasecoms.fecha','clasecoms.horainicio','estados.estado','clasecoms.horafin','docentes.nombre', 'aulas.aula')
+                    ->select('clasecoms.id','clasecoms.fecha','clasecoms.horainicio','users.name as user','estados.estado','clasecoms.horafin','docentes.nombre', 'aulas.aula')
                     ->get();
         $estado=$programacioncom->estado;
                    // return response()->json($clases);

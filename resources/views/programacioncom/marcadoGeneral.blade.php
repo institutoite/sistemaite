@@ -515,15 +515,15 @@
                 $("#modal-gregar-observacion").modal("hide");
             });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR FINALIZADO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('table').on('click', '.show', function(e) {
+            $('#tabla_hoy, #futuro').on('click', '.show', function(e) {
                 e.preventDefault(); 
                 let id_programacioncom =$(this).closest('tr').attr('id');
-               // console.log('click');
+                // console.log(id_programacioncom);
                 $.ajax({
                     url : "../../programacioncom/mostrar",
                     data : { id :id_programacioncom },
                     success : function(json) {
-                        
+                        console.log(json);
                         $("#modal-mostrar-clase").modal("show");
                         $("#tabla-mostrar-programacioncom").empty();
                         $("#tabla-mostrar-observaciones").empty();
@@ -548,7 +548,7 @@
 
                         $htmlObservaciones="";
                         for (let j in json.observaciones) {
-                            $htmlObservaciones+="<tr id='"+json.observaciones[j].id +"''><td>OBS-"+ j +"</td>"+"<td>"+json.observaciones[j].observacion+"</td>";
+                            $htmlObservaciones+="<tr id='"+json.observaciones[j].id +"''><td>"+ json.observaciones[j].name +"</td>"+"<td>"+json.observaciones[j].observacion+"</td>";
                             $htmlObservaciones+="<td>";
                             $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 editarobservacion' title='Editar esta Observacion'>";
                             $htmlObservaciones+="<i class='fa fa-fw fa-edit text-primary'></i></a>";
@@ -564,7 +564,9 @@
                             $htmlClases+="<td>"+json.clasescom[j].estado+"</td>";
                             $htmlClases+="<td>"+moment(json.clasescom[j].horainicio).format('HH:mm:ss')+"</td>";
                             $htmlClases+="<td>"+moment(json.clasescom[j].horafin).format('HH:mm:ss')+"</td>";
+
                             $htmlClases+="<td>" + json.clasescom[j].nombre + "</td>";
+                            $htmlClases+="<td>"+json.clases[j].user+"</td>";
                             $htmlClases+="<td>"+json.clasescom[j].aula+"</td></tr>";
                         }
                         $("#tabla-mostrar-clases").append($htmlClases);
@@ -573,6 +575,7 @@
                             $htmlLicencia+="<tr><td>"+ json.licencias[j].motivo +"</td>";
                             $htmlLicencia+="<td>"+json.licencias[j].solicitante+"</td>";
                             $htmlLicencia+="<td>"+json.licencias[j].parentesco+"</td>";
+                            $htmlLicencia+="<td>"+json.licencias[j].user+"</td>";
                             $htmlLicencia+="<td>"+moment(json.licencias[j].created_at).format('LLLL')+"</td>";
                         }
                         $("#tabla-mostrar-licencias").append($htmlLicencia);

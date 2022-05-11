@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
 use App\Http\Controllers\PDFController;
+use Illuminate\Support\Facades\Auth;
 use PDF;
 
 class ProgramacionController extends Controller
@@ -99,7 +100,17 @@ class ProgramacionController extends Controller
     public function mostrarClases(Request $request)
     {
         $programacion = Programacion::findOrFail($request->id);
-        $observaciones = $programacion->observaciones;
+        
+        // $observaciones = $programacion->observaciones;
+        
+        $observaciones=Observacion::join('programacions','programacions.id','observacions.observable_id')
+						->join('userables','userables.userable_id','observacions.id')
+						  ->join('users','userables.user_id','users.id')
+						  ->where('userables.userable_type',Observacion::class)
+						  ->where('programacions.id',$request->id)
+						  ->get();
+
+
         $docente = $programacion->docente;
         $materia = $programacion->materia;
         $aula = $programacion->aula;
@@ -636,6 +647,7 @@ class ProgramacionController extends Controller
         $observacion->observable_type= Programacion::class;
         $observacion->save();
 
+        $observacion->userable()->create(['user_id'=>Auth::user()->id]);
         
         return response()->json($observacion);
     }
