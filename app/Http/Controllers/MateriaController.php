@@ -6,6 +6,9 @@ use App\Models\Materia;
 use App\Models\Nivel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
 
 class MateriaController extends Controller
 {
@@ -34,7 +37,8 @@ class MateriaController extends Controller
      */
     public function create()
     {
-        return view('materia.create');
+        $niveles=Nivel::get();
+        return view('materia.create',compact('niveles'));
     }
 
     /**
@@ -50,6 +54,8 @@ class MateriaController extends Controller
         $materia->materia=$request->materia;
         $materia->save();
     
+        $materia->userable()->create(['user_id'=>Auth::user()->id]);
+
         foreach (array_keys($request->niveles) as $key) {
             $materia->niveles()->attach($key,['materia_id'=>$materia->id]);
         }
@@ -63,7 +69,9 @@ class MateriaController extends Controller
      */
     public function show(Materia $materia)
     {
-        //
+        $niveles = $materia->niveles;
+        $user=User::findOrFail($materia->userable->user_id);
+        return view('materia.show',compact('niveles','materia','user'));
     }
 
     /**
@@ -74,7 +82,13 @@ class MateriaController extends Controller
      */
     public function edit(Materia $materia)
     {
-        //
+        $nivelesCurrents = $materia->niveles;
+        $ids=[];
+        foreach ($nivelesCurrents as $nivel) {
+            $ids[] = $nivel->id;
+        }
+        $nivelesMissings = Nivel::whereNotIn('id', $ids)->get();
+        return view('materia.edit',compact('materia','nivelesCurrents','nivelesMissings'));
     }
 
     /**

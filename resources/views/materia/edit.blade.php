@@ -1,4 +1,11 @@
 
+@extends('adminlte::page')
+@section('css')
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
+@stop
+
+@section('title', 'Edit Materias')
 
 @section('content')
     <section class="content container-fluid">
@@ -12,11 +19,12 @@
                         <span class="card-title">Update Feriado</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('feriados.update', $feriado->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('materias.update', $materia->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('feriado.form')
+                            @include('materia.form')
+                            @include('include.botones')
 
                         </form>
                     </div>

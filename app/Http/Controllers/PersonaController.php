@@ -484,7 +484,7 @@ class PersonaController extends Controller
             $foto = $request->file('foto');
             $nombreImagen = 'estudiantes/' . Str::random(20) . '.jpg';
             /** las convertimos en jpg y la redimensionamos */
-            $imagen = Image::make($foto)->encode('jpg', 75);
+            $imagen = Image::make($foto)->encode('jpg', 100);
             $imagen->resize(300, 300, function ($constraint) {
                 $constraint->upsize();
             });

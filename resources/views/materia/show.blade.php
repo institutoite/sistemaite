@@ -1,37 +1,64 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+@section('css')
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+@stop
 
-@section('template_title')
-    {{ $feriado->name ?? 'Show Feriado' }}
-@endsection
+@section('title', 'Mostrar Feriado')
+
+
+@section('content_header')
+    <h1 class="text-center text-primary">Mostrar Materia</h1>
+@stop
 
 @section('content')
-    <section class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header bg-secondary">
                         <div class="float-left">
-                            <span class="card-title">Show Feriado</span>
+                            <span class="card-title">Mostrar Materia</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('feriados.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('materias.index') }}"> Listar Archivos </a>
                         </div>
                     </div>
 
                     <div class="card-body">
-                        
-                        <div class="form-group">
-                            <strong>Fecha:</strong>
-                            {{ $feriado->fecha }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Festividad:</strong>
-                            {{ $feriado->festividad }}
-                        </div>
-
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead class="bg-primary">
+                                <tr>
+                                    <th>ATRIBUTO</th>
+                                    <th>VALOR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> <strong>ID</strong></td>
+                                    <td>{{ $materia->id }}</td>
+                                </tr>
+                                <tr>
+                                    <td> <strong>Materia</strong></td>
+                                    <td>{{ $materia->materia }}</td>
+                                </tr>
+                               
+                                 <tr>
+                                    <td>Usuario</td>
+                                    <td>
+                                        {{$user->name}}
+                                        <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5" width="100"> 
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                
+                        <strong>NIVELES A LOS QUE PERTENCE ESTA MATERIA</strong>
+                        <ul class="list-group">
+                            @foreach ($niveles as $nivel)
+                                <li class="list-group-item text-gray">{{ $nivel->nivel}}</li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 @endsection

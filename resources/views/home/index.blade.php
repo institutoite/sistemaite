@@ -252,7 +252,7 @@
                 </div>
                 <div class="team-info">
                     <h4>{{$docente->persona->nombre}} {{$docente->persona->apellidop}}</h4>
-                    <p>Profesor</p>
+                    <p> {{$docente->persona->observacion}} </p>
                 </div>
             </div>
         </div>

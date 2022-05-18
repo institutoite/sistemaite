@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\models\Colegio;
+use App\Models\Colegio;
 class ColegioSeeder extends Seeder
 {
     /**
