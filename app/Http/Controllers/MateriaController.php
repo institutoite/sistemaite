@@ -37,8 +37,8 @@ class MateriaController extends Controller
      */
     public function create()
     {
-        $niveles=Nivel::get();
-        return view('materia.create',compact('niveles'));
+        $nivelesMissings=Nivel::get();
+        return view('materia.create',compact('nivelesMissings'));
     }
 
     /**
@@ -100,7 +100,11 @@ class MateriaController extends Controller
      */
     public function update(Request $request, Materia $materia)
     {
-        //
+        //dd($request->all());
+        $materia->materia=$request->materia;
+        $materia->save();
+        $materia->niveles()->sync(array_keys($request->niveles));
+        return redirect()->route('materias.show',$materia);
     }
 
     /**
@@ -131,5 +135,12 @@ class MateriaController extends Controller
         $materia->niveles()->sync(array_keys($request->niveles));
         return redirect()->route('materias.gestionar.niveles', $materia->id);
     } 
+    public function listar(){
+        $materias=Materia::all();
+        return datatables()->of($materias)
+        ->addColumn('btn', 'materia.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+    }
 
 }

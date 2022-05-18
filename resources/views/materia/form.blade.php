@@ -12,21 +12,20 @@
     </div>
     <div class="card-body">
 
+    @isset($nivelesCurrents)
         @foreach ($nivelesCurrents as $nivel)
             <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="{{ $nivel->nivel }}" checked>
+                <input class="form-check-input" type="checkbox" id="{{ $nivel->nivel }}" name="niveles[{{ $nivel->id}}]" checked>
+
                 <label class="form-check-label" for="{{ $nivel->nivel }}">{{ $nivel->nivel }}</label>
             </div>
         @endforeach
-        
+    @endisset        
         @foreach ($nivelesMissings as $nivel)
              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="{{ $nivel->nivel }}" >
+                <input class="form-check-input" type="checkbox" id="{{ $nivel->nivel }}" name="niveles[{{ $nivel->id}}]" >
                 <label class="form-check-label" for="{{ $nivel->nivel }}">{{ $nivel->nivel }}</label>
             </div>
-        @endforeach
-
-       
-        
+        @endforeach    
     </div>
 </div>
