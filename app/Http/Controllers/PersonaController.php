@@ -485,7 +485,7 @@ class PersonaController extends Controller
             $nombreImagen = 'estudiantes/' . Str::random(20) . '.jpg';
             /** las convertimos en jpg y la redimensionamos */
             $imagen = Image::make($foto)->encode('jpg', 100);
-            $imagen->resize(300, 300, function ($constraint) {
+            $imagen->resize(800, 800, function ($constraint) {
                 $constraint->upsize();
             });
             /* las guarda en en la carpeta estudiantes  */

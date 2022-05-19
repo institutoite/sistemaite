@@ -86,7 +86,7 @@
                     showCloseButton:true,
                     confirmButtonColor:'#26baa5',
                     type: 'success',
-                    imageHeight:400,
+                    imageHeight:500,
                     imageAlt: 'Custom image',
                     confirmButtonText:"Aceptar",
                     

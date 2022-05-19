@@ -123,8 +123,8 @@ class MatriculacionController extends Controller
         $persona=$matriculacion->computacion->persona;
         $carrera=$matriculacion->asignatura->carrera;
         $asignaturasFaltantes = $carrera->asignaturas;
-    
-        return view('matriculacion.edit', compact('matriculacion','persona', 'asignaturasFaltantes'));
+          $motivos = Tipomotivo::findOrFail(2)->motivos;
+        return view('matriculacion.edit', compact('matriculacion','persona', 'asignaturasFaltantes','motivos'));
     }
 
     /**
@@ -187,13 +187,16 @@ class MatriculacionController extends Controller
 
       public function actualizarConfiguracion(Request $request, $matriculacion_id)
     {
+
         $cuantas_sesiones = count($request->dias);
         $fecha=$request->fecha;
         Sesioncom::where('matriculacion_id', '=', $matriculacion_id)->delete();
+        
         $matriculacion = Matriculacion::findOrFail($matriculacion_id);
         if($fecha<=$matriculacion->fechaini){
             $matriculacion->fechaini=$fecha;
         }
+        
         $i = 0;
         while ($i < $cuantas_sesiones) {
             $sesion = new Sesioncom();
@@ -207,6 +210,8 @@ class MatriculacionController extends Controller
             $i = $i + 1;
         }
         
+        
+
         if ($request->radioconfig=='radiodesde'){
             return redirect()->route('regenerar.programacioncom', ['matriculacion'=>$matriculacion->id,'fecha'=>$fecha]);   
         }
@@ -245,7 +250,7 @@ class MatriculacionController extends Controller
     }
 
     public function imprimirProgramacom(){
-        
+
     }
 
     public function vigentesAjax(){

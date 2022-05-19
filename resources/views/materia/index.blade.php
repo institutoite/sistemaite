@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
 @section('title', 'listar Feriados')
+@section('plugins.Jquery', true)
+@section('plugins.Sweetalert2', true)
+@section('plugins.Datatables', true)
 
-@section('template_title')
-    Feriados
-@endsection
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -105,7 +105,7 @@
                     data: 'id'
                 }
                 , {
-                    data: 'interest'
+                    data: 'materia'
                 }
                 , {
                     "name": "btn"
@@ -134,9 +134,10 @@
    
 
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  M O T I V O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-        $('#interests').on('click', '.eliminar', function(e) {
+        $('#materias').on('click', '.eliminar', function(e) {
             e.preventDefault();
-            var id_interest = $(this).closest('tr').attr('id');
+            var materia_id = $(this).closest('tr').attr('id');
+            console.log(materia_id);
             Swal.fire({
                 title: 'Estas seguro(a) de eliminar este registro?'
                 , text: "Si eliminas el registro no lo podras recuperar jamás!"
@@ -150,13 +151,14 @@
             , }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url: 'eliminar/interest/' + id_interest
+                        url: 'eliminar/materia/' + materia_id
                         , type: 'DELETE'
                         , data: {
                             _token: '{{ csrf_token() }}'
                         }
                         , success: function(result) {
-                            $('#interests').DataTable().ajax.reload();
+                            console.log(result);
+                            $('#materias').DataTable().ajax.reload();
                             const Toast = Swal.mixin({
                                 toast: true
                                 , position: 'top-end'

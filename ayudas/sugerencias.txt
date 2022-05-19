@@ -22,6 +22,8 @@ validar actuzalidar un motivo sale que ya existe
 hacer una seccion de contactanos donde este las formas de contactanos
 Falta terminar el crud de requisitos y metas
 En registrar facilito que tenga dos pestañas arriba uno para registrar sin apoderado y otro con apoderado
+editar Inscripción
+editar Matriculaciones
 
 
 en el controlador

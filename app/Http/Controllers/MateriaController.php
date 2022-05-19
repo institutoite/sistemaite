@@ -59,6 +59,7 @@ class MateriaController extends Controller
         foreach (array_keys($request->niveles) as $key) {
             $materia->niveles()->attach($key,['materia_id'=>$materia->id]);
         }
+        return redirect()->route('materias.show',$materia);
     }
 
     /**
@@ -113,9 +114,11 @@ class MateriaController extends Controller
      * @param  \App\Materia  $materia
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Materia $materia)
+    public function destroy($materia_id)
     {
-        //
+        //return response()->json(['r'=>$materia_id]);
+        $materia=Materia::findOrFail($materia_id)->delete();
+        return response()->json(['mensaje'=>"Se elimino correctamente"]);
     }
 
     public function configurar_niveles($materia)

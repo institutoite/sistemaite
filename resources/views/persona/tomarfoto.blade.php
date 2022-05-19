@@ -124,8 +124,8 @@
         const button = document.querySelector('button');
             
             button.onclick = function() {
-                canvas.width = 100;//video.videoWidth;
-                canvas.height = 100;//video.videoHeight;
+                canvas.width = 500;//video.videoWidth;
+                canvas.height = 400;//video.videoHeight;
                 canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
                 console.log("click");
                 $('#button').removeClass('d-none');

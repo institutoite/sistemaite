@@ -34,6 +34,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\AulaController;
+use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\DepartamentoController;
 use Illuminate\Support\Facades\Auth;
 //use SweetAlert;
@@ -49,7 +50,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[DiaController::class,'edit'])->name('prueba');
+Route::get('prueba',[MateriaController::class,'listar'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -161,6 +162,7 @@ Route::resource('materias', "MateriaController");
 Route::get('listar/materias',[MateriaController::class,'listar'])->name('materias.listar');
 Route::get('materias/niveles/{materia}', 'MateriaController@configurar_niveles')->name('materias.gestionar.niveles');
 Route::post('materias/niveles/configurar/{materia}', 'MateriaController@GuardarConfigurarNiveles')->name('materias.configurar.niveles.guardar');
+Route::delete('eliminar/materia/{materia}',[MateriaController::class,'destroy'])->name('eliminar.materia');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       P  A  G  O  S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('pagos', "PagoController");
