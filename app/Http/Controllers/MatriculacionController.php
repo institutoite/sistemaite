@@ -11,11 +11,13 @@ use App\Models\Nivel;
 use App\Models\Aula;
 use App\Models\Dia;
 use App\Models\Matriculacion;
+use App\Models\Programacioncom;
 use App\Models\Estudiante;
 use App\Models\Tipomotivo;
 use Illuminate\Support\Arr;
 use App\Http\Requests\MatriculacionStoreRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Config;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -106,9 +108,19 @@ class MatriculacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($matriculacion_id)
     {
-        //
+        $matriculacion = Matriculacion::findOrFail($matriculacion_id);
+        $programacioncom = Programacioncom::join('matriculacions', 'matriculacions.asignatura_id', '=', 'asignaturas.id')
+        ->join('aulas', 'programacioncoms.aula_id', '=', 'aulas.id')
+        ->join('docentes', 'programacioncoms.docente_id', '=', 'docentes.id')
+        ->join('personas', 'personas.id', '=', 'docentes.persona_id')
+        ->select('programacioncoms.fecha', 'horaini', 'horafin', 'horas_por_clase', 'personas.nombre', 'asignaturas.asignatura', 'aulas.aula', 'programacioncoms.habilitado', 'programacioncoms.matriculacion_id')
+        ->orderBy('fecha', 'asc')
+        ->where('matriculacion_id', '=', $matriculacion_id)->get();
+
+        $user=User::findOrFail($matriculacion->userable->user_id);
+        return view('matriculacion.show', compact('matriculacion','programacioncom','user'));
     }
 
     /**
@@ -136,6 +148,7 @@ class MatriculacionController extends Controller
      */
     public function update(Request $request, $matriculacion_id)
     {
+        //dd($request->all());
         $matriculacion = Matriculacion::findOrFail($matriculacion_id);
         $matriculacion->fechaini=$request->fechaini;
         $matriculacion->fechafin=$request->fechaini;
@@ -143,6 +156,7 @@ class MatriculacionController extends Controller
         $matriculacion->costo=$request->costo;
         $matriculacion->totalhoras=$request->totalhoras;
         $matriculacion->vigente=1;
+        $matriculacion->asignatura_id=$request->asignatura_id;
         $matriculacion->condonado=0;
         $matriculacion->motivo_id=$request->motivo_id;
         $matriculacion->save();
@@ -151,8 +165,12 @@ class MatriculacionController extends Controller
         $docentes = $nivel->docentes;
         $dias = Dia::get();
         $computacion=$matriculacion->computacion;
+        $programacioncoms=$matriculacion->programacionescom;
+        $clasesConsumidas=count($programacioncoms->where('estado_id','<>',Config::get('constantes.ESTADO_INDEFINIDO')));
+        $ultimaclasepasada=$programacioncoms->where('estado_id','<>',Config::get('constantes.ESTADO_INDEFINIDO'))->max();
         //$matriculacion->userable()->create(['user_id'=>Auth::user()->id]);
-        return view('matriculacion.configurarupdate', compact('computacion','matriculacion', 'aulas', 'docentes','dias'));
+        //  dd($ultimaclasepasada);
+        return view('matriculacion.configurarupdate', compact('ultimaclasepasada','computacion','matriculacion', 'aulas', 'docentes','dias','programacioncoms','clasesConsumidas'));
     }
 
     /**

@@ -5,6 +5,9 @@
         <i class="fas fa-hand-holding-usd"></i>
     </a>
 
+     <a href="{{route('matriculacion.show', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripción">
+        <i class="fa fa-fw fa-eye text-secondary mostrar"></i>
+    </a>
    
     <a href="{{route('imprimir.programacioncom',$id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Descargar e imprimir esta matriculación">
         <i class="fas fa-print"></i>

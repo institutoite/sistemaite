@@ -214,11 +214,9 @@ class ProgramacioncomController extends Controller
     public function EliminarTodosLosProgramascom($matriculacion_id){
         try {
             Programacioncom::where('matriculacion_id', '=', $matriculacion_id)->delete();
-        } catch (Exception $e) {
-            $mensaje="No se puede hacer esto";
-           return back()->withInput()->with(['mensaje'=>$mensaje]);
-        }
-        
+        } catch (\Illuminate\Database\QueryException $e) {
+           abort(404);
+        }        
     }
 
     public function regenerarProgramacom($matriculacion_id,$unaFecha,$unModo = 'desde'){

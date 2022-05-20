@@ -2,28 +2,89 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
-@endsection
+@stop
 
-@section('title', 'Programacionx')
-
-@section('plugins.Datatables',true)
-
+@section('title', 'Inscripcion Configurar')
 @section('content')
     <section class="content container-fluid">
-        <div class="row pt-4">
+        <div class="card">
+        <div class="card-body">
+            <table class="table table-bordered table-striped"> 
+                <tr class="bg-primary">
+                        <th>ATRIBUTO</th>
+                        <th>VALOR</th>
+                </tr>
+                <tbody>
+                    <tr>
+                        <td>ID</td>
+                        <td>{{$matriculacion->id}}</td>
+                    </tr>
+                    <tr>
+                        <td>FECHA INICIO</td>
+                        <td>{{$matriculacion->fechaini}}</td>
+                    </tr>
+                    <tr>
+                        <td>FECHA FIN</td>
+                        <td>{{$matriculacion->fechafin}}</td>
+                    </tr>
+                    <tr>
+                        <td>TOTAL HORAS</td>
+                        <td>{{$matriculacion->totalhoras}}</td>
+                    </tr>
+                    <tr>
+                        <td>VIGENTE</td>
+                        <td>{{($matriculacion->vigente==0) ? 'No':'Si'}}</td>
+                    </tr>
+                    <tr>
+                        <td>CONDONADO</td>
+                        <td>{{($matriculacion->condonado==0) ? 'No':'Si'}}</td>
+                    </tr>
+                    <tr>
+                        <td>OBJETIVO</td>
+                        <td>{!!$matriculacion->objetivo!!}</td>
+                    </tr>
+                    <tr>
+                        <td>ESTUDIANTE</td>
+                        <td>{{$matriculacion->estudiante->persona->nombre.' '.$matriculacion->estudiante->persona->apellidop.' '.$matriculacion->estudiante->persona->apellidom}}</td>
+                    </tr>
+                    <tr>
+                        <td>Modalidad</td>
+                        <td>{{$matriculacion->modalidad->modalidad}}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Creado</td>
+                        <td>{{$matriculacion->created_at}}</td>
+                    </tr>
+                    <tr>
+                        <td>Actualizado</td>
+                        <td>{{$matriculacion->updated_at}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Usuario</td>
+                        <td>
+                            {{$user->name}}
+                            <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5"> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    </section>
+
+    <section class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header bg-secondary">
                         <div class="float-left">
                             <span class="card-title">Programacion de clases</span>
                         </div>
                         <div class="float-right">
-                            {{$persona->nombre.' '.$persona->apellidop}}
-
-                            <a href="{{route('clases.marcadocom.general', $matriculacion)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
-                                Marcar 
-                            </a> 
-
-                            <a class="btn btn-primary text-white" href="{{ route('imprimir.programacioncom',$matriculacion) }}">Imprimir</a>
+                            <a class="btn btn-primary" href="{{ route('imprimir.programa',$matriculacion) }}">Imprimir</a>
                         </div>
                     </div>
 
@@ -38,13 +99,13 @@
                                     <th>HORARIO</th>
                                     <th>HORAS</th>
                                     <th>DOC</th>
-                                    <th>ESTADO</th>
+                                    <th>MATERIA</th>
                                     <th>AULA</th>
-                                    <th>OPCIONES</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($programacioncom as $programa)
+                                @foreach ($programacion as $programa)
                                         @php
                                             $hoy=Carbon\Carbon::now();
                                             $claseFila="";
@@ -55,18 +116,18 @@
                                                 if($programa->habilitado==0){
                                                     if($programa->fecha->isoFormat('DD/MM/YYYY')==$hoy->isoFormat('DD/MM/YYYY')){
                                                         $claseHoy.="bg-secondary";
-                                                        $claseBotonHoy.="btn btn-secondary";
+                                                        
                                                     }else{
                                                         $claseFila.="bg-danger";
-                                                        $claseBoton.="btn btn-danger";
+                                                       
                                                     }
                                                 }else{
                                                     if($programa->fecha->isoFormat('DD/MM/YYYY')==$hoy->isoFormat('DD/MM/YYYY')){
                                                         $claseHoy.="bg-primary";
-                                                        $claseBotonHoy.="btn btn-secondary";
+                                                      
                                                     }else{
                                                         $claseFila.="";
-                                                        $claseBoton.="btn btn-primary text-white";
+                                                        
                                                     }
                                                 }
                                         @endphp
@@ -74,16 +135,12 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$programa->fecha->isoFormat('DD/MM/YYYY')}}</td>
                                         <td>{{$programa->fecha->isoFormat('dddd')}}</td>
-                                        <td>{{$programa->horaini->isoFormat('HH:mm').'-'.$programa->horafin->isoFormat('HH:mm')}}</td>
+                                        <td>{{$programa->hora_ini->isoFormat('HH:mm').'-'.$programa->hora_fin->isoFormat('HH:mm')}}</td>
                                         <td>{{$programa->horas_por_clase.' hras'}}</td>
                                         <td>{{$programa->nombre}}</td>
-                                        <td>{{ App\Models\Programacioncom::findOrFail($programa->id)->estado->estado }}</td>
+                                        <td>{{$programa->materia}}</td>
                                         <td>{{$programa->aula}}</td>
-                                        <td>
-                                <a class="{{ $claseBoton.' '.$claseBotonHoy }} tooltipsC mr-2" href="{{route('setcom.fecha.proximo.pago', ['fecha'=>$programa->fecha->isoFormat('YYYY-MM-DD'),'id'=>$programa->matriculacion_id])}}" title="Asignar esta fecha para el proximo pago">
-                                                Pagará
-                                            </a>
-                                        </td>
+                                    
                                     </tr>
 
                                 @endforeach
@@ -96,23 +153,6 @@
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 @endsection
-@section('js')
-    <script>
-        $(document).ready(function(){
-            $('#programacion').DataTable(
-                {
-                    "iDisplayLength" : 25,
-
-                    "language":{
-                            "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json",
-                    },
-                    "drawCallback": function( settings ) {
-                        $('ul.pagination').addClass("pagination-sm");
-                    },
-                }
-            );
-        } );
-    </script>
-@stop

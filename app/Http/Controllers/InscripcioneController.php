@@ -174,7 +174,7 @@ class InscripcioneController extends Controller
 
     public function show($inscripciones_id)
     {
-        $inscripcione = Inscripcione::find($inscripciones_id);
+        $inscripcione = Inscripcione::findOrFail($inscripciones_id);
         $programacion = Programacion::join('materias', 'programacions.materia_id', '=', 'materias.id')
         ->join('aulas', 'programacions.aula_id', '=', 'aulas.id')
         ->join('docentes', 'programacions.docente_id', '=', 'docentes.id')

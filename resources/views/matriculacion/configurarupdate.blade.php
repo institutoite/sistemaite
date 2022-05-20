@@ -31,16 +31,18 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="radioconfig" id="radiodesde" value="radiodesde">
+                                                <input class="form-check-input" type="radio" name="radioconfig" id="radiodesde" value="radiodesde" {{$clasesConsumidas == 0 ? '' : 'checked' }}>
                                                 <label class="form-check-label text-gray" for="radiodesde">Modificar desde la fecha (de aqui en adelante)</label>
                                             </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="radioconfig" id="radiotodo" value="radiotodo">
-                                                <label class="form-check-label text-gray" for="radiotodo">Cambiar Fecha Inicio (Todo)</label>
-                                            </div>
+                                            
+                                                <div class="form-check form-check-inline"  >
+                                                    <input class="form-check-input" type="radio" {{$clasesConsumidas == 0 ? 'enabled' : 'disabled' }} name="radioconfig" id="radiotodo" value="radiotodo">
+                                                    <label class="form-check-label text-gray" for="radiotodo">Cambiar Fecha Inicio (Todo)</label>
+                                                </div>
+                                            
                                         </div>
                                         <div class="col-12">
-                                            <input id="fecha" class="form-control border-warning mb-3" name="fecha" value="{{$matriculacion->fechaini->format('Y-m-d')}}" type="date">
+                                            <input id="fecha" min={{ $ultimaclasepasada->fecha}} class="form-control border-warning mb-3" name="fecha" value="" type="date">
                                             <p id="mensajefecha" class="d-none text-gray">La fecha no es necesaria ya que lo tomara de la inscripción, esta opcion edita todas las clases</p>
 
                                         </div>
@@ -65,8 +67,9 @@
             </div>
         </div>
     </section>
-    @isset($programacioncom)
-        @if (count($programacion)>0)
+    {{-- {{ dd($programacioncoms) }} --}}
+    @isset($programacioncoms)
+        @if (count($programacioncoms)>0)
             @include('programacion.registros')    
         @endif
     @endisset
@@ -88,7 +91,7 @@
             
             let cantida_sesiones=0;
 
-            $("#titulosesion").html("<h4>Tine: "+cantida_sesiones+" sesiones por semana para esta inscripción</h4>");
+            $("#titulosesion").html("<h4>Tiene: "+cantida_sesiones+" sesiones por semana para esta Matriculación</h4>");
 
             $('#horainicio').blur(function() {
                 if(($('#horainicio').val()=='')||(($('#horafin').val()<=$('#horainicio').val()))){
@@ -157,7 +160,7 @@
                         
                     });
 
-                    $("#titulosesion").html("<h4>Tine: "+cantida_sesiones+" sesiones por semana para esta inscripción</h4>");
+                    $("#titulosesion").html("<h4>Tine: "+cantida_sesiones+" sesiones por semana para esta matriculación</h4>");
                      if(cantida_sesiones==0){
                     $("#boton-aceptar").addClass('d-none');
                     $("#titulosesion").addClass('bg-warning');
@@ -182,7 +185,7 @@
                     $("#titulosesion").addClass('bg-success');
                 }
                 console.log(cantida_sesiones);
-                $("#titulosesion").html("<h4>Tine: "+cantida_sesiones+" sesiones por semana para esta inscripción </h4>");
+                $("#titulosesion").html("<h4>Tine: "+cantida_sesiones+" sesiones por semana para esta Matriculación </h4>");
             });
 
                 //** data-table

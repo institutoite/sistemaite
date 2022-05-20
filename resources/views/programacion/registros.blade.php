@@ -11,12 +11,13 @@
                                 <th>DIA</th>
                                 <th>HORARIO</th>
                                 <th>HRAS</th>
-                                <th>DOCENTE/MATERIA/AULA</th>
+                                <th>DOCENTE/AULA</th>
+                                <th>ESTADO</th>
                                 <th>PAGO</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($programacion as $programa)
+                            @foreach ($programacioncoms as $programa)
                                     @php
                                     
                                         $hoy=Carbon\Carbon::now();
@@ -33,9 +34,10 @@
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$programa->fecha->isoFormat('DD/MM/YYYY')}}</td>
                                     <td>{{$programa->fecha->isoFormat('dddd')}}</td>
-                                    <td>{{$programa->hora_ini->isoFormat('HH:mm').'-'.$programa->hora_fin->isoFormat('HH:mm')}}</td>
+                                    <td>{{$programa->horaini->isoFormat('HH:mm').'-'.$programa->horafin->isoFormat('HH:mm')}}</td>
                                     <td>{{$programa->horas_por_clase}}</td>
-                                    <td>{{$programa->docente->persona->nombre.'/'.$programa->materia->materia.'/'.$programa->aula->aula}}</td>
+                                    <td>{{$programa->docente->persona->nombre.'/'.$programa->aula->aula}}</td>
+                                    <td>{{$programa->estado->estado}}</td>
                                     <td>
                                         @if ($programa->habilitado==1)
                                             <img width='20' height='20' src='{{asset('dist/image/check3.png')}}' alt=''>
