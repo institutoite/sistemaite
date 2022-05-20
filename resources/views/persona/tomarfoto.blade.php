@@ -12,7 +12,6 @@
 @stop
 
 @section('content')
-    
     <div id="contenedor" class="container border border-primary p-2">
         <div class="row">    
             <div class="col-1"></div>
@@ -146,10 +145,10 @@
     
 
         function handleError(error) {
-            console.log('navigator.MediaDevices.getUserMedia error: ', error.message, error.name);
+            //console.log('navigator.MediaDevices.getUserMedia error: ', error.message, error.name);
             $("#contenedor").addClass("d-none");
 
-            $("#sincamera").addClass("d-block");
+            $("#sincamera").removeClass("d-none");
             
         }
 

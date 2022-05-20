@@ -17,7 +17,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($programacioncoms as $programa)
+                            @foreach ($programacion as $programa)
                                     @php
                                     
                                         $hoy=Carbon\Carbon::now();
@@ -34,7 +34,7 @@
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$programa->fecha->isoFormat('DD/MM/YYYY')}}</td>
                                     <td>{{$programa->fecha->isoFormat('dddd')}}</td>
-                                    <td>{{$programa->horaini->isoFormat('HH:mm').'-'.$programa->horafin->isoFormat('HH:mm')}}</td>
+                                    <td>{{$programa->hora_ini->isoFormat('HH:mm').'-'.$programa->hora_fin->isoFormat('HH:mm')}}</td>
                                     <td>{{$programa->horas_por_clase}}</td>
                                     <td>{{$programa->docente->persona->nombre.'/'.$programa->aula->aula}}</td>
                                     <td>{{$programa->estado->estado}}</td>

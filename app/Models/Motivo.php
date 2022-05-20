@@ -50,7 +50,7 @@ class Motivo extends Model
     }
     
     public function matriculacion(){
-        return $this->belongsTo("App\Models\Matriculacion");
+        return $this->hasOne(Matriculacion::class);
     }
    
     public function tipomotivo(){

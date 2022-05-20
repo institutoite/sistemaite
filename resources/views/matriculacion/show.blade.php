@@ -21,11 +21,11 @@
                     </tr>
                     <tr>
                         <td>FECHA INICIO</td>
-                        <td>{{$matriculacion->fechaini}}</td>
+                        <td>{{$matriculacion->fechaini->isoFormat('DD/MM/YYYY')}}</td>
                     </tr>
                     <tr>
                         <td>FECHA FIN</td>
-                        <td>{{$matriculacion->fechafin}}</td>
+                        <td>{{$matriculacion->fechafin->isoFormat('DD/MM/YYYY')}}</td>
                     </tr>
                     <tr>
                         <td>TOTAL HORAS</td>
@@ -41,15 +41,15 @@
                     </tr>
                     <tr>
                         <td>OBJETIVO</td>
-                        <td>{!!$matriculacion->objetivo!!}</td>
+                        <td>{!! App\Models\Matriculacion::findOrFail($matriculacion->id)->motivo->motivo !!}</td>
                     </tr>
                     <tr>
                         <td>ESTUDIANTE</td>
-                        <td>{{$matriculacion->estudiante->persona->nombre.' '.$matriculacion->estudiante->persona->apellidop.' '.$matriculacion->estudiante->persona->apellidom}}</td>
+                        <td>{{$matriculacion->computacion->persona->nombre.' '.$matriculacion->computacion->persona->apellidop.' '.$matriculacion->computacion->persona->apellidom}}</td>
                     </tr>
                     <tr>
                         <td>Modalidad</td>
-                        <td>{{$matriculacion->modalidad->modalidad}}</td>
+                        <td>{{$matriculacion->asignatura->asignatura}}</td>
                     </tr>
                     
                     <tr>
@@ -99,13 +99,13 @@
                                     <th>HORARIO</th>
                                     <th>HORAS</th>
                                     <th>DOC</th>
-                                    <th>MATERIA</th>
+                                    <th>ESTADO</th>
                                     <th>AULA</th>
                                     
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($programacion as $programa)
+                                @foreach ($programacioncom as $programa)
                                         @php
                                             $hoy=Carbon\Carbon::now();
                                             $claseFila="";
@@ -135,10 +135,10 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$programa->fecha->isoFormat('DD/MM/YYYY')}}</td>
                                         <td>{{$programa->fecha->isoFormat('dddd')}}</td>
-                                        <td>{{$programa->hora_ini->isoFormat('HH:mm').'-'.$programa->hora_fin->isoFormat('HH:mm')}}</td>
+                                        <td>{{$programa->horaini->isoFormat('HH:mm').'-'.$programa->horafin->isoFormat('HH:mm')}}</td>
                                         <td>{{$programa->horas_por_clase.' hras'}}</td>
                                         <td>{{$programa->nombre}}</td>
-                                        <td>{{$programa->materia}}</td>
+                                        <td>{{ App\Models\Programacioncom::findOrFail($programa->id)->estado->estado}}</td>
                                         <td>{{$programa->aula}}</td>
                                     
                                     </tr>

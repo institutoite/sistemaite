@@ -202,6 +202,12 @@ class InscripcioneController extends Controller
         $ultima_inscripcion=$this->UltimaInscripcion($persona);
         $ultimo_nivel= $this->ultimoNivel($persona);
 
+        if($ultima_inscripcion==null){
+            $ultima_inscripcion=$inscripcione;
+        }else{
+            dd($ultima_inscripcion);
+        }
+
         $modalidades = $ultimo_nivel->modalidades;
         $motivos = Tipomotivo::findOrFail(1)->motivos;
         return view('inscripcione.edit', compact('inscripcione','persona', 'ultima_inscripcion','modalidades','motivos'));

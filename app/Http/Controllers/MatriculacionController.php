@@ -19,8 +19,8 @@ use App\Http\Requests\MatriculacionStoreRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
 
-
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class MatriculacionController extends Controller
 {
@@ -111,15 +111,16 @@ class MatriculacionController extends Controller
     public function show($matriculacion_id)
     {
         $matriculacion = Matriculacion::findOrFail($matriculacion_id);
-        $programacioncom = Programacioncom::join('matriculacions', 'matriculacions.asignatura_id', '=', 'asignaturas.id')
-        ->join('aulas', 'programacioncoms.aula_id', '=', 'aulas.id')
+         $programacioncom = Programacioncom::join('aulas', 'programacioncoms.aula_id', '=', 'aulas.id')
         ->join('docentes', 'programacioncoms.docente_id', '=', 'docentes.id')
         ->join('personas', 'personas.id', '=', 'docentes.persona_id')
-        ->select('programacioncoms.fecha', 'horaini', 'horafin', 'horas_por_clase', 'personas.nombre', 'asignaturas.asignatura', 'aulas.aula', 'programacioncoms.habilitado', 'programacioncoms.matriculacion_id')
+        ->select('programacioncoms.id','programacioncoms.fecha', 'horaini', 'horafin', 'horas_por_clase', 'personas.nombre', 'aulas.aula', 'programacioncoms.habilitado', 'programacioncoms.matriculacion_id')
         ->orderBy('fecha', 'asc')
         ->where('matriculacion_id', '=', $matriculacion_id)->get();
 
         $user=User::findOrFail($matriculacion->userable->user_id);
+        //  $user=User::findOrFail($file->userable->user_id);
+
         return view('matriculacion.show', compact('matriculacion','programacioncom','user'));
     }
 

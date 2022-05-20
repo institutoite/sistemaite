@@ -485,8 +485,18 @@ class ProgramacionController extends Controller
         $unaFecha= Carbon::createFromFormat('Y-m-d', $unaFecha);
         $inscripcion= Inscripcione::findOrFail($inscripcione_id);
         $FechaDesde=$unaFecha->format('Y-m-d');
-        $horasFaltantes = Programacion::where('inscripcione_id', '=', $inscripcione_id)->where('fecha', '>=', $FechaDesde)->sum('horas_por_clase');
-        $total_horas=$horasFaltantes;                
+        
+        $horasFaltantesAntiguo = Programacion::where('inscripcione_id', '=', $inscripcione_id)->where('fecha', '>=', $FechaDesde)->sum('horas_por_clase');
+        $totalHorasAntiguo=Programacion::where('inscripcione_id', '=', $inscripcione_id)->sum('horas_por_clase');
+        $totalHorasNuevo=$inscripcion->totalhoras;
+        $horas_pasadas=$totalHorasAntiguo-$horasFaltantesAntiguo;
+
+        if($totalHorasAntiguo<=$totalHorasNuevo){
+            $total_horas=$horasFaltantesAntiguo+($totalHorasNuevo-$totalHorasAntiguo);
+        }else{
+            $total_horas=$horasFaltantesAntiguo-($horasFaltantesAntiguo-$totalHorasNuevo)-$horas_pasadas;
+        }
+        $horasFaltantes=$total_horas;
         $horasPasadas = $inscripcion->totalhoras-$horasFaltantes;
         Programacion::where('inscripcione_id', '=', $inscripcione_id)->where('fecha', '>=', $FechaDesde)->delete();
         $costo_hora=$inscripcion->costo/$inscripcion->totalhoras;
