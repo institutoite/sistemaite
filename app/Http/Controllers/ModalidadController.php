@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Modalidad;
 use App\Models\Nivel;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 
@@ -28,9 +30,8 @@ class ModalidadController extends Controller
     public function index()
     {
         $modalidads = Modalidad::paginate();
-
-        return view('modalidad.index', compact('modalidads'))
-            ->with('i', (request()->input('page', 1) - 1) * $modalidads->perPage());
+        
+        return view('modalidad.index', compact('modalidads'));
     }
 
     /**
@@ -54,9 +55,8 @@ class ModalidadController extends Controller
     public function store(Request $request)
     {
         request()->validate(Modalidad::$rules);
-
         $modalidad = Modalidad::create($request->all());
-
+        $modalidad->userable()->create(['user_id'=>Auth::user()->id]);
         return redirect()->route('modalidads.index')
             ->with('success', 'Modalidad created successfully.');
     }
@@ -71,7 +71,8 @@ class ModalidadController extends Controller
     {
         $modalidad = Modalidad::find($id);
         $nivel=Nivel::findOrFail($modalidad->nivel_id);
-        return view('modalidad.show', compact('modalidad','nivel'));
+        $user=User::findOrFail($modalidad->userable->user_id);
+        return view('modalidad.show', compact('modalidad','nivel','user'));
     }
 
     public function consultar(Request $request)

@@ -1,7 +1,13 @@
 @extends('adminlte::page')
 @section('css')
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
+
+@section('title', 'Modalidad Create')
+@section('plugins.Jquery', true)
+@section('plugins.Sweetalert2', true)
+@section('plugins.Datatables', true)
 
 @section('title', 'Modalida Crear')
 @section('content')
@@ -11,7 +17,7 @@
 
                 @includeif('partials.errors')
 
-                <div class="card card-default">
+                <div class="card card-default mt-3">
                     <div class="card-header bg-secondary">
                         <span class="card-title">Create Modalidad</span>
                     </div>
@@ -20,7 +26,7 @@
                             @csrf
 
                             @include('modalidad.form')
-
+                            @include('include.botones')
                         </form>
                     </div>
                 </div>

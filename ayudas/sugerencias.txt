@@ -42,7 +42,7 @@ $persona->userable()->create(['user_id'=>Auth::user()->id]);
 
 
 en lavista
- <tr>
+<tr>
     <td>Usuario</td>
     <td>
         {{$user->name}}

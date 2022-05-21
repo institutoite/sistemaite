@@ -1,9 +1,13 @@
 @extends('adminlte::page')
 @section('css')
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
 @section('title', 'Modalidad Editar')
+@section('plugins.Jquery', true)
+@section('plugins.Sweetalert2', true)
+@section('plugins.Datatables', true)
 
 @section('content')
     <section class="content container-fluid">
@@ -22,7 +26,7 @@
                             @csrf
 
                             @include('modalidad.form')
-
+                            @include('include.botones')
                         </form>
                     </div>
                 </div>
