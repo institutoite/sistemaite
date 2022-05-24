@@ -18,16 +18,12 @@
 
                             <div class="float-right">
                                 <a href="{{ route('municipios.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                {{ __('Create New') }}
+                                {{ __('Crer nuevo municipio') }}
                                 </a>
                             </div>
                         </div>
                     </div>
-                    @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @endif
+                
 
                     <div class="card-body">
                         <div class="table-responsive">
@@ -38,7 +34,6 @@
                                         
 										<th>Municipio</th>
 										<th>Provincia</th>
-
                                         <th></th>
                                     </tr>
                                 </thead>

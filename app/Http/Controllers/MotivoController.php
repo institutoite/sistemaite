@@ -12,6 +12,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 //use Validator;
 use Illuminate\Support\Facades\Validator;
+
+
+
 /**
  * Class MotivoController
  * @package App\Http\Controllers
@@ -89,15 +92,15 @@ class MotivoController extends Controller
     public function show($id)
     {
         $motivo = Motivo::find($id);
-        
-        return view('motivo.show', compact('motivo'));
+        $user=User::findOrFail($motivo->userable->user_id);
+        return view('motivo.show', compact('motivo','user'));
     }
     public function mostrar(Request $request)
     {
         $motivo = Motivo::findOrFail($request->id);
         $user = User::findOrFail($motivo->userable->user_id);
-
-        $data=['motivo'=>$motivo,'user'=>$user];
+        $tipomotivo=$motivo->tipomotivo;
+        $data=['motivo'=>$motivo,'user'=>$user ,'tipomotivo'=>$tipomotivo];
         return response()->json($data);
     }
 

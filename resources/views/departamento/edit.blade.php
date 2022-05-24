@@ -1,17 +1,17 @@
 @extends('adminlte::page')
 @section('css')
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
-@section('title', 'Departamento Editar')
-
-@section('template_title')
-    Actualizar Departamento
-@endsection
+@section('title', 'Dpto Editar')
+@section('plugins.Jquery', true)
+@section('plugins.Sweetalert2', true)
+@section('plugins.Datatables', true)
 
 @section('content')
     <section class="content container-fluid">
-        <div class="">
+        <div class="row">
             <div class="col-md-12">
 
                 @includeif('partials.errors')
@@ -26,7 +26,7 @@
                             @csrf
 
                             @include('departamento.form')
-
+                            @include('include.botones')
                         </form>
                     </div>
                 </div>

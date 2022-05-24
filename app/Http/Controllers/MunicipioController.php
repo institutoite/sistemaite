@@ -7,6 +7,9 @@ use App\Models\Municipio;
 use App\Models\Provincia;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
 /**
  * Class MunicipioController
  * @package App\Http\Controllers
@@ -22,8 +25,7 @@ class MunicipioController extends Controller
     {
         $municipios = Municipio::paginate();
 
-        return view('municipio.index', compact('municipios'))
-            ->with('i', (request()->input('page', 1) - 1) * $municipios->perPage());
+        return view('municipio.index', compact('municipios'));
     }
 
     /**
@@ -52,8 +54,7 @@ class MunicipioController extends Controller
 
         $municipio = Municipio::create($request->all());
 
-        return redirect()->route('municipios.index')
-            ->with('success', 'Municipio created successfully.');
+        return redirect()->route('municipios.index');
     }
 
     /**
@@ -92,11 +93,8 @@ class MunicipioController extends Controller
     public function update(Request $request, Municipio $municipio)
     {
         request()->validate(Municipio::$rules);
-
         $municipio->update($request->all());
-
-        return redirect()->route('municipios.index')
-            ->with('success', 'Municipio updated successfully');
+        return redirect()->route('municipios.index');
     }
 
     /**

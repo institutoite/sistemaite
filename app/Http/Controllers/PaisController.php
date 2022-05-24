@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PaisStoreRequest;
 use App\Http\Requests\PaisUpdateRequest;
 use Alert;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 
 class PaisController extends Controller
@@ -18,7 +20,7 @@ class PaisController extends Controller
      */
     public function index()
     {
-        
+        return view('pais.index');
     }
 
     /**
@@ -40,7 +42,11 @@ class PaisController extends Controller
     public function store(PaisStoreRequest $request)
     {
         Pais::create($request->all());
-        return redirect()->back()->with('mensaje','Registro creado satisfactoriamente');
+        $pais=new Pais();
+        $pais->nombrepais=$request->nombrepais;
+        $pais->save();
+        $pais->userable()->create(['user_id'=>Auth::user()->id]);
+        return redirect()->route('paises.index');
     }
 
     /**
@@ -52,7 +58,8 @@ class PaisController extends Controller
     public function show($id)
     {
         $pais=Pais::findOrFail($id);
-        return view('pais.mostrar',compact('pais'));
+        $user=User::findOrFail($pais->userable->user_id);
+        return view('pais.mostrar',compact('pais','user'));
     }
 
     /**
@@ -82,7 +89,7 @@ class PaisController extends Controller
         $pais->save();
         $Mensaje="Se actualizó correctamente el registro, Reviselo";
 
-        return view('pais.mostrar',compact('pais','Mensaje'));
+        return redirect()->route('paises.index');
         
     }
 

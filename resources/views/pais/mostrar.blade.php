@@ -35,6 +35,13 @@
                         <td>{{$pais->nombrepais}}</td>
                     </tr>
                     <tr>
+                        <td>Usuario</td>
+                        <td>
+                            {{$user->name}}
+                            <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5"> 
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Creado</td>
                         <td>{{$pais->created_at}}</td>
                     </tr>

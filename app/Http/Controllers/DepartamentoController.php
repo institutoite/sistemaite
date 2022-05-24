@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Departamento;
+use App\Models\Pais;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 /**
  * Class DepartamentoController
@@ -31,8 +34,8 @@ class DepartamentoController extends Controller
      */
     public function create()
     {
-        $departamento = new Departamento();
-        return view('departamento.create', compact('departamento'));
+        $paises=Pais::get();
+        return view('departamento.create', compact('paises'));
     }
 
     /**
@@ -43,12 +46,12 @@ class DepartamentoController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Departamento::$rules);
-
-        $departamento = Departamento::create($request->all());
-
-        return redirect()->route('departamentos.index')
-            ->with('success', 'Departamento created successfully.');
+        $departamento=new Departamento();
+        $departamento->departamento=$request->departamento;
+        $departamento->pais_id = $request->pais_id;
+        $departamento->save();
+        $departamento->userable()->create(['user_id'=>Auth::user()->id]);
+        return redirect()->route('departamentos.index');
     }
 
     /**
@@ -60,8 +63,8 @@ class DepartamentoController extends Controller
     public function show($id)
     {
         $departamento = Departamento::findOrFail($id);
-
-        return view('departamento.show', compact('departamento'));
+        $user=User::findOrFail($departamento->userable->user_id);
+        return view('departamento.show', compact('departamento','user'));
     }
 
     /**
@@ -73,8 +76,8 @@ class DepartamentoController extends Controller
     public function edit($id)
     {
         $departamento = Departamento::findOrFail($id);
-
-        return view('departamento.edit', compact('departamento'));
+        $paises=Pais::get();
+        return view('departamento.edit', compact('departamento','paises'));
     }
 
     /**

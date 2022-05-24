@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Nivel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 /**
  * Class NivelController
@@ -25,10 +27,9 @@ class NivelController extends Controller
      */
     public function index()
     {
-        $nivels = Nivel::paginate();
+        $nivels = Nivel::all();
 
-        return view('nivel.index', compact('nivels'))
-            ->with('i', (request()->input('page', 1) - 1) * $nivels->perPage());
+        return view('nivel.index', compact('nivels'));
     }
 
     /**
@@ -53,9 +54,8 @@ class NivelController extends Controller
         request()->validate(Nivel::$rules);
 
         $nivel = Nivel::create($request->all());
-
-        return redirect()->route('nivels.index')
-            ->with('success', 'Nivel created successfully.');
+        $nivel->userable()->create(['user_id'=>Auth::user()->id]);
+        return redirect()->route('nivels.index');
     }
 
     /**
@@ -67,8 +67,8 @@ class NivelController extends Controller
     public function show($id)
     {
         $nivel = Nivel::find($id);
-
-        return view('nivel.show', compact('nivel'));
+        $user=User::findOrFail($nivel->userable->user_id);
+        return view('nivel.show', compact('nivel','user'));
     }
 
     /**
@@ -94,11 +94,9 @@ class NivelController extends Controller
     public function update(Request $request, Nivel $nivel)
     {
         request()->validate(Nivel::$rules);
-
         $nivel->update($request->all());
 
-        return redirect()->route('nivels.index')
-            ->with('success', 'Nivel updated successfully');
+        return redirect()->route('nivels.index');
     }
 
     /**

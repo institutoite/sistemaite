@@ -24,6 +24,9 @@ Falta terminar el crud de requisitos y metas
 En registrar facilito que tenga dos pestañas arriba uno para registrar sin apoderado y otro con apoderado
 editar Inscripción
 editar Matriculaciones
+a Todos los seeder Nivel::findOrFail(1)->userable()->create(['user_id'=>1]);
+
+
 
 
 en el controlador

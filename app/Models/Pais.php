@@ -25,6 +25,8 @@ class Pais extends Model
     {
         return $this->morphOne('App\Models\Userable', 'userable');
     }
+     public function departamentos()
+    {
+        return $this->hasMany(Departamento::class);
+    }
 }
-
-

@@ -23,10 +23,10 @@
                         <span class="card-title">Crear texto home</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('home.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('motivos.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('home.text.form')
+                            @include('motivo.form')
                             @include('include.botones')
                         </form>
                     </div>

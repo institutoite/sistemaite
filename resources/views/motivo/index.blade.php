@@ -25,7 +25,7 @@
 
                             <div class="float-right">
                                 <a href="{{ route('motivos.create') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
-                                    {{ __('Guardar nuevo archivo') }}
+                                    {{ __('Nuevo') }}
                                 </a>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
                 "info":     true,
                 "createdRow": function( row, data, dataIndex ) {
                     $(row).attr('id',data['id']); 
-                     $('td', row).eq(0).html(fila++);
+                     //$('td', row).eq(0).html(fila++);
                 },
                 "ajax": "{{ url('listar/motivos') }}",
                 "columns": [
@@ -133,17 +133,20 @@
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('#motivos').on('click', '.mostrar', function(e) {
                 e.preventDefault(); 
-                let id_motivo =$(this).closest('tr').attr('id');
+                let motivo_id =$(this).closest('tr').attr('id');
+                
                 //var fila=$(this).json;
                 $.ajax({
                     url : "motivo/mostrar/",
-                    data : { id :id_motivo },
+                    data : { id :motivo_id },
                     success : function(json) {
+                        console.log(json);
                         $("#modal-mostrar").modal("show");
                         $("#tabla-mostrar").empty();
                         $html="";
                         $html+="<tr><td>ID</td>"+"<td>"+ json.motivo.id +"</td></tr>";
                         $html+="<tr><td>MOTIVO</td>"+"<td>"+json.motivo.motivo+"</td></tr>";
+                        $html+="<tr><td>TIPO MOTIVO</td>"+"<td>"+json.tipomotivo.tipomotivo+"</td></tr>";
                         $html+="<tr><td>CREADO POR </td>"+"<td>"+json.user.name+"</td></tr>";
                         $html+="<tr><td>CREADO</td>"+"<td>"+ moment(json.motivo.created_at).format('LLLL') +"</td></tr>";
                         $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.motivo.updated_at).format('LLLL')+"</td></tr>";

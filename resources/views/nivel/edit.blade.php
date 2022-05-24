@@ -22,7 +22,7 @@
                             @csrf
 
                             @include('nivel.form')
-
+                            @include('include.botones')
                         </form>
                     </div>
                 </div>

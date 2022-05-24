@@ -1,26 +1,53 @@
 @extends('adminlte::page')
-
 @section('css')
-    
+    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
 @stop
 
-@section('title', 'Paises')
+@section('title', 'Motivos')
+@section('plugins.Jquery', true)
+@section('plugins.Sweetalert2', true)
+@section('plugins.Datatables', true)
 
-@section('content_header')
-    <h1 class="text-center text-primary">Paises</h1>
-    
-@stop
 
 @section('content')
-    <table id="paises" name="paises" class="table table-bordered table-hover table-striped">
-        <thead class="bg-primary">
-            <tr>
-                <th>ID</th>
-                <th>PAIS</th>
-                <th>ACCIONES</th>
-            </tr>
-        </thead>
-    </table>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+
+                            <span id="card_title">
+                                {{ __('Listado de Niveles') }}
+                            </span>
+
+                            <div class="float-right">
+                                <a href="{{ route('paises.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                    {{ __('Crear Nuevo Pais') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="paises" name="paises" class="table table-bordered table-hover table-striped">
+                                <thead class="bg-primary">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>PAIS</th>
+                                        <th>ACCIONES</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+    </div>    
+
+
 @stop
 
 @section('js')
@@ -38,7 +65,6 @@
                     "serverSide": true,
                     "responsive":true,
                     "autoWidth":false,
-
                     "ajax": "{{ url('api/paises') }}",
                     "columns": [
                         {data: 'id'},

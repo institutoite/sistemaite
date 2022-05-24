@@ -17,7 +17,6 @@ class CreateProvinciasTable extends Migration
             $table->id();
             $table->string('provincia', 40);
             $table->unsignedBigInteger('departamento_id');
-
             $table->foreign('departamento_id','departamento_provincia')->references('id')->on('departamentos');
             $table->timestamps();
         });

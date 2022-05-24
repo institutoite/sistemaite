@@ -16,25 +16,41 @@
                             <span class="card-title">Mostrar Nivel</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('nivels.index') }}"> Atras</a>
+                            <a class="btn btn-primary" href="{{ route('nivels.index') }}"> Listar niveles</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
-                        <div class="form-group">
-                            <strong>Nivel:</strong>
-                            {{ $nivel->nivel }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Creado:</strong>
-                            {{ $nivel->created_at }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Actualizado:</strong>
-                            {{ $nivel->updated_at }}
-                        </div>
-
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ATRIBUTO</th>
+                                    <th>VALOR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row">Nivel:</td>
+                                    <td>{{ $nivel->nivel }}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Usuario:</td>
+                                    <td>
+                                        {{$user->name}}
+                                        <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5"> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Creado:</td>
+                                    <td>{{ $nivel->created_at }}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Actualizado:</td>
+                                    <td>{{ $nivel->created_at }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

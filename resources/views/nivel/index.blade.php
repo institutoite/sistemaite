@@ -3,6 +3,12 @@
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
 @stop
 
+@section('title', 'Motivos')
+@section('plugins.Jquery', true)
+@section('plugins.Sweetalert2', true)
+@section('plugins.Datatables', true)
+
+
 @section('title', 'Modalidades')
 @section('content')
     <div class="container-fluid">
@@ -13,7 +19,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Nivel') }}
+                                {{ __('Listado de Niveles') }}
                             </span>
 
                             <div class="float-right">

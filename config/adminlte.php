@@ -995,13 +995,7 @@ return [
                 [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Crear',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'paises',
                     'classes'  => 'text-dark',
                 ],
             ],
@@ -1113,7 +1107,7 @@ return [
             ],
         ],
         //** %%%%%%%%%%%%%%%%%%  MENU MUNICIPIOS %%%%%%%%%%%%% */
-        
+    
         [
             'text'    => 'Municipios',
             'icon'    => 'fas fa-map-marked-alt',
@@ -1123,13 +1117,7 @@ return [
                 [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Crear',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'municipios',
                     'classes'  => 'text-dark',
                 ],
             ],
