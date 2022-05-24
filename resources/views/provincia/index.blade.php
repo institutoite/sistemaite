@@ -1,10 +1,14 @@
 
 @extends('adminlte::page')
 @section('css')
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
-@section('title', 'Provincias')
 
+@section('title', 'listar Feriados')
+@section('plugins.Jquery', true)
+@section('plugins.Sweetalert2', true)
+@section('plugins.Datatables', true)
 
 @section('content')
     <div class="container-fluid">
@@ -20,7 +24,7 @@
 
                             <div class="float-right">
                                 <a href="{{ route('provincias.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                {{ __('Create Nuevo') }}
+                                {{ __('Create Nueva Provincia') }}
                                 </a>
                             </div>
                         </div>
@@ -39,6 +43,7 @@
                                         <th>No</th>
 										<th>Provincia</th>
 										<th>Departamento</th>
+										<th>Pais</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -72,6 +77,7 @@
                         {data: 'id'},
                         {data: 'provincia'},
                         {data:'departamento'},
+                        {data:'nombrepais'},
                         {data: 'btn'},
                     ],
                     "language":{

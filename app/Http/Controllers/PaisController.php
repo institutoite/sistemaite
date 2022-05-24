@@ -9,6 +9,7 @@ use App\Http\Requests\PaisUpdateRequest;
 use Alert;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Departamento;
 
 
 class PaisController extends Controller
@@ -110,4 +111,11 @@ class PaisController extends Controller
         $pais->delete();
         return response()->json(['message' => 'Registro Eliminado','status'=>200]); 
     }
+
+    public function departamento_de_pais(Request $request,$id){
+        // return response()->json(['e'=>$id]);  
+        if($request->ajax()){
+            return Departamento::where('pais_id',$id)->get();      
+        }
+    } 
 }

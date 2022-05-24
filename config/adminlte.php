@@ -1027,13 +1027,7 @@ return [
                 [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Crear',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'provincias',
                     'classes'  => 'text-dark',
                 ],
             ],

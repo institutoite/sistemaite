@@ -207,8 +207,10 @@ Route::get('departamentos', function () {
 });
 
 Route::get('provincias', function () {
-    return datatables()->of(Provincia::select('provincias.id','provincia','departamento')
-        ->join('departamentos','departamentos.id','=','provincias.departamento_id')->get())
+
+    return datatables()->of(Provincia::select('provincias.id','provincia','departamento','nombrepais')
+        ->join('departamentos','departamentos.id','=','provincias.departamento_id')
+        ->join('pais','pais.id','=','departamentos.pais_id')->get())
         ->addColumn('btn', 'provincia.action')
         ->rawColumns(['btn'])
         ->toJson();
@@ -260,6 +262,8 @@ Route::get('feriados', function () {
 Route::get('pais/{id}/ciudades','CiudadController@city_of_country');
 Route::get('ciudad/{id}/zonas','ZonaController@zona_of_city');
 Route::get('temas/{materia_id}','TemaController@tema_of_materia');
+
+Route::get('pais/{id}/departamentos','PaisController@departamento_de_pais');
 
 Route::get('departamento/{id}/provincias', 'ProvinciaController@provincia_of_departamento');
 //Route::get('provincia/{id}/municipios', 'MunicipioController@municipio_of_provincia');

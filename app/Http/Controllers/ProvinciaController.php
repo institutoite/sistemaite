@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Departamento;
 use App\Models\Provincia;
+use App\Models\Pais;
 use Illuminate\Http\Request;
 
 /**
@@ -20,21 +21,15 @@ class ProvinciaController extends Controller
     public function index()
     {
         $provincias = Provincia::paginate();
-
-        return view('provincia.index', compact('provincias'))
-            ->with('i', (request()->input('page', 1) - 1) * $provincias->perPage());
+        return view('provincia.index', compact('provincias'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         $provincia = new Provincia();
         $departamentos = Departamento::get();
-        return view('provincia.create', compact('provincia','departamentos'));
+        $paises = Pais::get();
+        return view('provincia.create', compact('provincia','departamentos','paises'));
     }
 
     /**

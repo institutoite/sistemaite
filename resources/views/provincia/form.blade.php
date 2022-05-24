@@ -1,35 +1,39 @@
-<div class="box box-info padding-1">
-    <div class="box-body">
-        
-        <div class="form-group">
-            {{ Form::label('provincia') }}
-            {{ Form::text('provincia', $provincia->provincia, ['class' => 'form-control' . ($errors->has('provincia') ? ' is-invalid' : ''), 'placeholder' => 'Escriba nombre de Provincia']) }}
-            {!! $errors->first('provincia', '<div class="invalid-feedback">:message</p>') !!}
+<div class="row"> 
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+        <div class="form-floating mb-3 text-gray">
+            <input  type="text" name="provincia" class="form-control @error('provincia') is-invalid @enderror" value="{{old('provincia',$provincia->provincia ?? '')}}">
+            <label for="provincia">Provincia</label>
+        </div>    
+    </div>
+</div>
+<div class="row"> 
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+        <div class="form-floating mb-3 text-gray">
+            <select class="form-control @error('pais_id') is-invalid @enderror" data-old="{{ old('pais_id') }}" name="pais_id" id="pais_id">
+                <option value="1" selected> Bolivia</option>
+                @foreach ($paises as $pais)
+                    @isset($persona)     
+                        <option  value="{{$pais->id}}" {{$pais->id==$persona->pais_id ? 'selected':''}}>{{$pais->nombrepais}}</option>     
+                    @else
+                        <option value="{{ $pais->id }}" {{ old('pais') == $pais->id ? 'selected':'' }} >{{ $pais->nombrepais }}</option>
+                    @endisset 
+                @endforeach
+            </select>
+            <label for="pais">Elija pais*</label>
         </div>
-        <div class="form-group">
-            {{ Form::label('departamento') }}
-            
-            <div class="input-group mb-2" >
-                
-                <select class="form-control @error('departamento_id') is-invalid @enderror" name="departamento_id" id="departamento">
-                    <option value="" > Seleccione un departamento</option>
-                    {{-- $provincia es la provincia que llega desde Metodo edit $prov es cada una de todas la provincias que llegan para iterar--}}
-                    @foreach ($departamentos as $departamento)
-                        @isset($provincia)     
-                            <option  value="{{$departamento->id}}" {{$provincia->departamento_id==$departamento->id ? 'selected':''}}>{{$departamento->departamento}}</option>     
-                        @else
-                            <option value="{{ $departamento->id }}" {{ old('departamento_id') == $departamento->id ? 'selected':'' }} >{{ $departamento->departamento }}</option>
-                        @endisset  
-                    @endforeach
-                </select>
-            </div>
-            
+    </div>
+    {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO CIUDAD  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+        <div class="form-floating mb-3 text-gray">
+            <select class="form-control @error('departamento_id') is-invalid @enderror" name="departamento_id" id="departamento_id">
+                <option value=""> Elija un departamento</option>
+                    @foreach ($departamentos as $item)
+                        @isset($provincia) 
+                            {{-- <option value="{{ $item->id }}" {{ $item->id==$persona->departamento_id ? 'selected':''}} >{{ $item->departamento }}</option> --}}
+                        @endisset
+                    @endforeach 
+            </select>
+            <label for="pais">Elija Departamento*</label>
         </div>
-        {{-- {{dd($provincia)}} --}}
-        
-
-    
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
 </div>
