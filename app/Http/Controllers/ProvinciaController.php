@@ -6,6 +6,10 @@ use App\Models\Departamento;
 use App\Models\Provincia;
 use App\Models\Pais;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
+
 
 /**
  * Class ProvinciaController
@@ -26,10 +30,10 @@ class ProvinciaController extends Controller
     
     public function create()
     {
-        $provincia = new Provincia();
+        // $provincia = new Provincia();
         $departamentos = Departamento::get();
         $paises = Pais::get();
-        return view('provincia.create', compact('provincia','departamentos','paises'));
+        return view('provincia.create', compact('departamentos','paises'));
     }
 
     /**
@@ -43,9 +47,8 @@ class ProvinciaController extends Controller
         request()->validate(Provincia::$rules);
 
         $provincia = Provincia::create($request->all());
-
-        return redirect()->route('provincias.index')
-            ->with('success', 'Provincia created successfully.');
+        $provincia->userable()->create(['user_id'=>Auth::user()->id]);
+        return redirect()->route('provincias.index');
     }
 
     /**
@@ -56,11 +59,13 @@ class ProvinciaController extends Controller
      */
     public function show($id)
     {
-        $provincia = Provincia::select('provincias.id','provincia','departamento')
+        $provincia = Provincia::select('provincias.id','provincia','departamento','nombrepais','provincias.created_at','provincias.updated_at')
             ->join('departamentos','provincias.departamento_id','=','departamentos.id')
+            ->join('pais','departamentos.pais_id','=','pais.id')
             ->where('provincias.id','=',$id)->get()->first();
+        $user=User::findOrFail($provincia->userable->user_id);
         //$departamento=Departamento::findOrFail($provincia->departamento_id);
-        return view('provincia.show', compact('provincia'));
+        return view('provincia.show', compact('provincia','user'));
     }
 
     /**
@@ -73,7 +78,8 @@ class ProvinciaController extends Controller
     {
         $provincia = Provincia::find($id);
         $departamentos=Departamento::get();
-        return view('provincia.edit', compact('provincia','departamentos'));
+        $paises = Pais::get();
+        return view('provincia.edit', compact('provincia','departamentos','paises'));
     }
 
     /**
@@ -86,7 +92,6 @@ class ProvinciaController extends Controller
     public function update(Request $request, Provincia $provincia)
     {
         request()->validate(Provincia::$rules);
-
         //dd($request->all());
 
         $provincia->update($request->all());

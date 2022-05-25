@@ -217,8 +217,11 @@ Route::get('provincias', function () {
 });
 
 Route::get('municipios', function () {
-    return datatables()->of( Municipio::select('municipios.id','municipio','provincia')
-        ->join('provincias','provincias.id','=','municipios.provincia_id')->get())
+    return datatables()->of( Municipio::select('municipios.id','municipio','departamento','provincia','nombrepais')
+        ->join('provincias','provincias.id','=','municipios.provincia_id')
+        ->join('departamentos','departamentos.id','=','provincias.departamento_id')
+        ->join('pais','pais.id','=','departamentos.pais_id')
+        ->get())
         ->addColumn('btn', 'municipio.action')
         ->rawColumns(['btn'])
         ->toJson();

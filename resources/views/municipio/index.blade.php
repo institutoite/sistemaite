@@ -34,6 +34,8 @@
                                         
 										<th>Municipio</th>
 										<th>Provincia</th>
+										<th>Provincia</th>
+										<th>Provincia</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -67,7 +69,9 @@
                     "columns": [
                         {data: 'id'},
                         {data: 'municipio'},
-                        {data:'provincia'},
+                        {data: 'provincia'},
+                        {data: 'departamento'},
+                        {data: 'nombrepais'},
                         {data: 'btn'},
                     ],
                     "language":{

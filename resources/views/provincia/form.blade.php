@@ -10,12 +10,12 @@
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
         <div class="form-floating mb-3 text-gray">
             <select class="form-control @error('pais_id') is-invalid @enderror" data-old="{{ old('pais_id') }}" name="pais_id" id="pais_id">
-                <option value="1" selected> Bolivia</option>
+                <option value="">Elija un pais</option>
                 @foreach ($paises as $pais)
-                    @isset($persona)     
-                        <option  value="{{$pais->id}}" {{$pais->id==$persona->pais_id ? 'selected':''}}>{{$pais->nombrepais}}</option>     
+                    @isset($provincia)     
+                        <option  value="{{$pais->id}}" {{$pais->id==App\Models\Departamento::findOrFail($provincia->departamento_id)->pais->id ? 'selected':''}}>{{$pais->nombrepais}}</option>     
                     @else
-                        <option value="{{ $pais->id }}" {{ old('pais') == $pais->id ? 'selected':'' }} >{{ $pais->nombrepais }}</option>
+                        <option value="{{ $pais->id }}" {{ old('pais_id') == $pais->id ? 'selected':'' }} >{{ $pais->nombrepais }}</option>
                     @endisset 
                 @endforeach
             </select>
@@ -29,7 +29,7 @@
                 <option value=""> Elija un departamento</option>
                     @foreach ($departamentos as $item)
                         @isset($provincia) 
-                            {{-- <option value="{{ $item->id }}" {{ $item->id==$persona->departamento_id ? 'selected':''}} >{{ $item->departamento }}</option> --}}
+                            <option value="{{ $item->id }}" {{ $item->id==$provincia->departamento_id ? 'selected':''}} >{{ $item->departamento }}</option>
                         @endisset
                     @endforeach 
             </select>
