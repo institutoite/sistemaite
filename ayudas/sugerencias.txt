@@ -25,6 +25,9 @@ En registrar facilito que tenga dos pestañas arriba uno para registrar sin apod
 editar Inscripción
 editar Matriculaciones
 a Todos los seeder Nivel::findOrFail(1)->userable()->create(['user_id'=>1]);
+agragar chat por mesenger a las paginas 
+
+
 
 
 
