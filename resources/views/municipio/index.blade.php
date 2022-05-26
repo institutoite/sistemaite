@@ -34,9 +34,9 @@
                                         
 										<th>Municipio</th>
 										<th>Provincia</th>
-										<th>Provincia</th>
-										<th>Provincia</th>
-                                        <th></th>
+										<th>Departamento</th>
+										<th>Pais</th>
+                                        <th>Option</th>
                                     </tr>
                                 </thead>
                                 
@@ -125,7 +125,7 @@
                                 switch (xhr.status) {
                                     case 500:
                                         Swal.fire({
-                                            title: 'No se pudo eliminar el registro Codigo error:500',
+                                            title: 'No se pudo eliminar el registro. Por que ya esta relacionada con otro registro',
                                             showClass: {
                                                 popup: 'animate__animated animate__fadeInDown'
                                             },

@@ -40,7 +40,7 @@ class Municipio extends Model
      */
     public function provincia()
     {
-        return $this->hasOne(Provincia::class);
+        return $this->belongsTo(Provincia::class);
     }
   public function userable()
   {

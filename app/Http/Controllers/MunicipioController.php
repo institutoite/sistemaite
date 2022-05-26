@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Departamento;
 use App\Models\Municipio;
 use App\Models\Provincia;
+use App\Models\Pais;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
@@ -35,11 +36,12 @@ class MunicipioController extends Controller
      */
     public function create()
     {
-        $municipio = new Municipio();
         
-        //dd($departamentos);
+        $provincias = Provincia::get();
+        $departamentos=Departamento::get();
+        $paises = Pais::get();
 
-        return view('municipio.create', compact('municipio'));
+        return view('municipio.create', compact('paises','departamentos','provincias'));
     }
 
     /**
@@ -51,9 +53,8 @@ class MunicipioController extends Controller
     public function store(Request $request)
     {
         request()->validate(Municipio::$rules);
-
         $municipio = Municipio::create($request->all());
-
+        $municipio->userable()->create(['user_id'=>Auth::user()->id]);
         return redirect()->route('municipios.index');
     }
 
@@ -65,9 +66,12 @@ class MunicipioController extends Controller
      */
     public function show($id)
     {
-        $municipio = Municipio::find($id);
-
-        return view('municipio.show', compact('municipio'));
+        $municipio = Municipio::findOrFail($id);
+        $provincia = Provincia::findOrFail($municipio->provincia_id);
+        $departamento = Departamento::findOrFail($provincia->departamento_id);
+        $pais = Pais::findOrFail($departamento->pais_id);
+        $user=User::findOrFail($municipio->userable->user_id);
+        return view('municipio.show', compact('municipio','provincia','departamento','pais','user'));
     }
 
     /**
@@ -79,8 +83,10 @@ class MunicipioController extends Controller
     public function edit($id)
     {
         $municipio = Municipio::find($id);
-
-        return view('municipio.edit', compact('municipio'));
+        $provincias = Provincia::get();
+        $departamentos=Departamento::get();
+        $paises = Pais::get();
+        return view('municipio.edit', compact('municipio','provincias','departamentos','paises'));
     }
 
     /**
@@ -104,6 +110,7 @@ class MunicipioController extends Controller
      */
     public function destroy($id)
     {
+        //return response()->json(['id'=>$id]);
         $municipio = Municipio::findOrFail($id);
         $municipio->delete();
         return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);

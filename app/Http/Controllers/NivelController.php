@@ -106,6 +106,7 @@ class NivelController extends Controller
      */
     public function destroy($id)
     {
+        return response()->json(['id'=>$id]);
         $nivel = Nivel::findOrFail($id);
         $nivel->delete();
         return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
