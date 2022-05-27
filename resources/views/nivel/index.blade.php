@@ -109,6 +109,7 @@
                                 _token:'{{ csrf_token() }}'
                             },
                             success: function(result) {
+                                console.log("Reulsta");
                                 console.log(result);
                                 tabla.ajax.reload();
                                 const Toast = Swal.mixin({

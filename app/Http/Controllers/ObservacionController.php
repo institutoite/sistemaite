@@ -31,18 +31,11 @@ class ObservacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($observable_id, $observable_type)
     {
-        $observacion = new Observacion();
-        return view('observacion.create', compact('observacion'));
+        return view('observacion.create',compact('observable_id','observable_type'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         request()->validate(Observacion::$rules);

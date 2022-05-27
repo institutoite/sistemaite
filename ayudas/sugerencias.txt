@@ -26,6 +26,8 @@ editar Inscripción
 editar Matriculaciones
 a Todos los seeder Nivel::findOrFail(1)->userable()->create(['user_id'=>1]);
 agragar chat por mesenger a las paginas 
+Ver las carteras
+
 
 
 

@@ -1,9 +1,14 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+@section('css')
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
+@stop
 
-@section('template_title')
-    Create Observacion
-@endsection
-
+@section('title', 'Municipio Create')
+@section('plugins.Jquery', true)
+@section('plugins.Sweetalert2', true)
+@section('plugins.Datatables', true)
+@section('title', 'Municipio Crear')
 @section('content')
     <section class="content container-fluid">
         <div class="row">
@@ -16,7 +21,7 @@
                         <span class="card-title">Create Observacion</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('observacions.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('observacion.guardar') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
                             @include('observacion.form')
