@@ -195,6 +195,43 @@
         </div>
     </div>
 
+    <div class="card">
+        <div class="card-header">
+            Observaciones de esta persona
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Observacion</th>
+                        <th>activo</th>
+                        <th>Usuario</th>
+                        <th>creado</th>
+                        <th>Actualizado</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($observaciones as $observacion)
+                        <tr>
+                            <td>{{ $observacion->id }}</td>
+                            <td>{{ $observacion->observacion }}</td>
+                            <td>{{ $observacion->activo }}</td>
+                            <td>{{ App\Models\User::findOrFail($observacion->userable->user_id)->name}}</td>
+                            <td>{{ $observacion->created_at }}</td>
+                            <td>{{ $observacion->updated_at }}</td>
+                            <td>
+                                editar 
+                                eliminar
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     @include('persona.modalescalificacion')
 @stop
 @section('js')

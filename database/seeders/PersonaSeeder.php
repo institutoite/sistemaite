@@ -27,12 +27,13 @@ class PersonaSeeder extends Seeder
             $observacion->observable_type = "App\Models\Persona";
             $observacion->save();
             $a=$a+1;
+            //$observacion->userable()->create(['user_id'=>1]);
         }
         
         Persona::create([
-            'nombre' => 'Edgar',
-            'apellidop' => 'Estrada',
-            'apellidom' => 'Callizaya',
+            'nombre' => 'DAVID EDUARDO',
+            'apellidop' => 'FLORES',
+            'apellidom' => 'BELTRAN',
             'fechanacimiento' => '15-05-2015',
             'direccion' => 'Barrio Melgar',
             'carnet' => '456135',
@@ -50,9 +51,9 @@ class PersonaSeeder extends Seeder
 
 
         Persona::create([
-            'nombre' => 'Cesar',
-            'apellidop' => 'Calderon',
-            'apellidom' => 'Maya',
+            'nombre' => 'LIDIA',
+            'apellidop' => 'CONTRERAS',
+            'apellidom' => 'CATARI',
             'fechanacimiento' => '15-05-2015',
             'direccion' => 'Barrio Luis Soruco Barba',
             'carnet' => '45615535',
@@ -123,5 +124,10 @@ class PersonaSeeder extends Seeder
             'papelinicial' => 'docente',
             
         ]);
+
+        
+        
+        
+        
     }
 }

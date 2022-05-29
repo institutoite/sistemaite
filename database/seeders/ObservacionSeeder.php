@@ -59,5 +59,21 @@ class ObservacionSeeder extends Seeder
             'observable_id'=>37,
             'observable_type'=> 'App\Models\Persona',
         ]);
+
+         $a=1;
+        while ($a <= 30) {
+            Observacion::findOrFail($a)->userable()->create(['user_id'=>1]);
+            $a=+$a+1;
+        }
+        Observacion::findOrFail(31)->userable()->create(['user_id'=>1]);
+        Observacion::findOrFail(32)->userable()->create(['user_id'=>1]);
+        Observacion::findOrFail(33)->userable()->create(['user_id'=>1]);
+        Observacion::findOrFail(34)->userable()->create(['user_id'=>1]);
+        Observacion::findOrFail(35)->userable()->create(['user_id'=>1]);
+        Observacion::findOrFail(36)->userable()->create(['user_id'=>1]);
+        Observacion::findOrFail(37)->userable()->create(['user_id'=>1]);
+        
+
+
     }
 }

@@ -436,6 +436,7 @@ Route::get('imprimir/programa/{inscripcione}', 'ProgramacionController@imprimirP
 Route::get('actualizar/programa/segunpago/{inscripcione}', 'ProgramacionController@actualizarProgramaSegunPago')->name('actualizar.programa.segun.pago');
 Route::get('clase/marcar/normal/{programacion_id}', 'ProgramacionController@marcadoNormal')->name('marcado.presente.normal');
 Route::get('guardar/observacion/programacion', 'ProgramacionController@guardarObservacion')->name('guardar.observacion.programacion');
+Route::get('guardar/observacion', 'ObservacionController@guardarObservacionGeneral')->name('guardar.observacion.general');
 Route::get('programacion/futuro/{inscripcion}', [ProgramacionController::class,'programacionesFuturo'])->name('programacion.futuro');
 Route::get('programacion/asistencia/ajax', [ProgramacionController::class,'asisntecia'])->name('asistencia.ajax');
 Route::get('programacion/asignarfalta/ajax', [ProgramacionController::class,'asignarFaltasFechasPasadas'])->name('programacion.asignarFaltas');
@@ -465,6 +466,7 @@ Route::get('observacion/create/{observable_id}/{observable_type}',[ObservacionCo
 Route::get('observacion/editar',[ObservacionController::class,'edit'])->name('observacion.editar');
 Route::get('observacion/actualizar',[ObservacionController::class,'update'])->name('observacion.actualizar');
 Route::get('observacion/guardar',[ObservacionController::class,'GuardarObservacion'])->name('observacion.guardar');
+Route::post('observacion/store',[ObservacionController::class,'store'])->name('observacion.store');
 Route::delete('eliminar/observacion/{observacion}',[ObservacionController::class,'destroy'])->name('eliminar.observacion');
 
 /**

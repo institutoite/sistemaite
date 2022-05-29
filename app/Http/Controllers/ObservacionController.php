@@ -6,6 +6,7 @@ use App\Models\Observacion;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 /**
  * Class ObservacionController
@@ -38,20 +39,32 @@ class ObservacionController extends Controller
 
     public function store(Request $request)
     {
-        request()->validate(Observacion::$rules);
-
-        $observacion =  Observacion::create($request->all());
+       
+        $observacion=new Observacion();
+        $observacion->observacion=$request->observacion;
+        $observacion->activo=1;
+        $observacion->observable_id = $request->observable_id;
+        $observacion->observable_type ='App\\Models\\'.$request->observable_type;
+        $observacion->save();
         $observacion ->userable()->create(['user_id'=>Auth::user()->id]);
-        return redirect()->route('observacions.index')
-            ->with('success', 'Observacion created successfully.');
+        // dd($request->observable_type."Controller@index");
+        //$observaciones=$observacion->observable_type::findOrFail($request->observable_id)->observaciones;
+
+        return redirect()->action($request->observable_type."Controller@index");
+    }
+    public function guardarObservacionGeneral(Request $request){
+        $observacion =new Observacion;
+        $observacion->observacion = $request->observacion;
+        $observacion->observable_id=$request->observable_id;
+        $observacion->activo=1;
+        $observacion->observable_type='App\\Models\\'.$request->observable_type;
+        $observacion->save();
+        $observacion->userable()->create(['user_id'=>Auth::user()->id]);
+        //return response()->json($request->all());
+        return response()->json(['mensaje'=>"Guardado correctamente"]);
     }
     public function GuardarObservacion(Request $request)
     {
-        //request()->validate(Observacion::$rules);
-        // $request->observacion="Observaciones";
-        // $request->observable_id=1;
-        // $request->observable_type=Persona::class;
-
         $observacion =new Observacion;
         $observacion->observacion = $request->observacion;
         $observacion->observable_id=$request->observable_id;

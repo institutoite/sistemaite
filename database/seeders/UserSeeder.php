@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Models\User;
 use App\Models\Pais;
+use App\Models\Persona;
+use App\Models\Observacion;
 
 class UserSeeder extends Seeder
 {
@@ -119,6 +121,52 @@ class UserSeeder extends Seeder
      
         Pais::findOrFail(81)->userable()->create(['user_id'=>1]);
         Pais::findOrFail(82)->userable()->create(['user_id'=>1]);
+
+
+
+        Persona::findOrFail(1)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(2)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(3)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(4)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(5)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(6)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(7)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(8)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(9)->userable()->create(['user_id'=>1]);
+        
+        Persona::findOrFail(10)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(11)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(12)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(13)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(14)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(15)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(16)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(17)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(18)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(19)->userable()->create(['user_id'=>1]);
+        
+        Persona::findOrFail(20)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(21)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(22)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(23)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(24)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(25)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(26)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(27)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(28)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(29)->userable()->create(['user_id'=>1]);
+        
+        Persona::findOrFail(30)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(31)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(32)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(33)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(34)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(35)->userable()->create(['user_id'=>1]);
+
+
+
+       
+
     }
 }
 

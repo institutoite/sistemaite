@@ -337,11 +337,14 @@ class PersonaController extends Controller
             $micalificacion=$persona->calificaciones->where('user_id',Auth::user()->id)->first()->calificacion;
         else 
             $micalificacion=null;
-        
-        
             $user=User::findOrFail($persona->userable->user_id);
 
-        return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion','recomendado','apoderados','calificado','promedio','calificaciones','micalificacion','user'));
+        //$observaciones=$persona->observaciones;
+
+        $observaciones=$persona->estudiante->observaciones;
+        
+
+        return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion','recomendado','apoderados','calificado','promedio','calificaciones','micalificacion','user','observaciones'));
     }
 
     public function edit(Persona $persona)

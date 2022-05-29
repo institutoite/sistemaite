@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Observacion
+    Observacionx
 @endsection
+
+
 
 @section('content')
     <div class="container-fluid">
@@ -68,8 +70,19 @@
                         </div>
                     </div>
                 </div>
-                {!! $observacions->links() !!}
+                
             </div>
         </div>
+        
     </div>
 @endsection
+@section('js')
+    
+    
+    <script>
+        $(document).ready(function() {
+            
+        });
+    </script>
+@endsection
+
