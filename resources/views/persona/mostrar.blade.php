@@ -1,17 +1,18 @@
 @extends('adminlte::page')
 
-@section('title', 'Persona Mostrar')
-
 @section('css')
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('dist/css/starrr.css')}}">
-
 @endsection
+@section('title', 'Programación')
+@section('plugins.Jquery', true)
+@section('plugins.Sweetalert2', true)
+@section('plugins.Datatables', true)
 
 @section('content')
     <div class="card">
@@ -198,6 +199,11 @@
     <div class="card">
         <div class="card-header">
             Observaciones de esta persona
+           
+                <a href="{{ route('observacion.create',['observable_id'=>$persona->id,'observable_type'=>'Persona'])}}" class="btn btn-secondary tooltipsC btn-sm mr-2" title="Agregar Observacion">
+                    Agreagar Observación <i class="fas fa-comment-medical fa-2x"></i>
+                </a></td>
+                  
         </div>
         <div class="card-body">
             <table class="table table-bordered table-striped table-hover">
@@ -214,16 +220,19 @@
                 </thead>
                 <tbody>
                     @foreach ($observaciones as $observacion)
-                        <tr>
+                        <tr id="{{$observacion->id}}">
                             <td>{{ $observacion->id }}</td>
-                            <td>{{ $observacion->observacion }}</td>
+                            <td>{!! $observacion->observacion !!}</td>
                             <td>{{ $observacion->activo }}</td>
                             <td>{{ App\Models\User::findOrFail($observacion->userable->user_id)->name}}</td>
                             <td>{{ $observacion->created_at }}</td>
                             <td>{{ $observacion->updated_at }}</td>
                             <td>
-                                editar 
-                                eliminar
+                            <a class='btn-accion-tabla tooltipsC btn-sm mr-2 editarobservacion' title='Editar esta Observacion'>
+                                <i class='fa fa-fw fa-edit text-primary'></i>
+                            </a>
+                            <a class='btn-accion-tabla tooltipsC btn-sm mr-2 eliminarobservacion' title='Eliminar esta observacion'>
+                                <i class='fas fa-trash-alt text-danger'></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -233,6 +242,9 @@
     </div>
 
     @include('persona.modalescalificacion')
+    {{-- para observacion --}}
+    @include('observacion.modaleditar')
+    @include('observacion.modalcreate')
 @stop
 @section('js')
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -252,8 +264,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 
+    {{--  para observacion --}}
+    <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+    <script src="{{ asset('assets/js/observacion.js') }}"></script>
     <script>
-         $('.starrr').starrr({
+        $('.starrr').starrr({
             max: 5,
             change: function(e, value){
                 if (value) {
@@ -264,8 +279,183 @@
                 
             }
         });
-
+        /*%%%%%%%%%%%%%%%%%%%%%%  funcion que agrega clase por tiempo x y luego lo destruye %%%%%%%%%%%*/
+        ( function ( $ ) {
+            'use strict';
+            $.fn.addTempClass = function ( className, expire, callback ) {
+                className || ( className = '' );
+                expire || ( expire = 2000 );
+                return this.each( function () {
+                    $( this ).addClass( className ).delay( expire ).queue( function () {
+                        $( this ).removeClass( className ).clearQueue();
+                        callback && callback();
+                    } );
+                } );
+            };
+        } ( jQuery ) );
+        
+         
         $(document).ready(function(){
+            
+            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  editar observacion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+            $('table').on('click', '.editarobservacion', function (e) {
+                e.preventDefault();
+                let id_observacion = $(this).closest('tr').attr('id');
+                console.log($("#editor1").val());
+                $htmlobs = "";
+                $.ajax({
+                    url: "../observacion/editar",
+                    data: {
+                        id: id_observacion,
+                    },
+                    success: function (json) {
+                        console.log(json);
+                        $("#editor1").html(json.observacion);
+                        console.log($("#editor1").html());
+                        //$("#modal-mostrar").modal("hide");
+                        $("#editar-observacion").modal("show");
+                        $("#formulario-editar-observacion").empty();
+
+
+                        $htmlobs += "<textarea cols='80' id='editor1' name='editor1' rows='10' data-sample-short>"+ json.observacion +"</textarea>";
+                        $htmlobs += "<input hidden class='form-control' type='text' name='observacion_id' value='"+ json.id +"' id='observacion_id'>";
+                        $htmlobs += "<div class='container-fluid h-100 mt-3'>";
+                        $htmlobs += "<div class='row w-100 align-items-center'>";
+                        $htmlobs += "<div class='col text-center'>";
+                        $htmlobs += "<button type='submit' id='actualizarobservacion' class='btn btn-primary text-white btn-lg'>Guardar <i class='far fa-save'></i></button> ";
+                        $htmlobs += "</div>";
+                        $htmlobs += "</div>";
+                        $htmlobs += "</div>";
+                        $("#formulario-editar-observacion").append($htmlobs);
+                         CKEDITOR.replace('editor1', {
+                            height: 120,
+                            width: 550,
+                            removeButtons: 'PasteFromWord'
+                        });
+                    },
+                    error: function (xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+            });
+
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR ENVIO DE FORMULARIO OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $(document).on("submit","#formulario-editar-observacion",function(e){
+                e.preventDefault();//detenemos el envio
+                $observacion=$('#editor1').val();
+                console.log($observacion);
+                $observacion_id=$('#observacion_id').val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url : "../observacion/actualizar/",
+                    data:{
+                            observacion:$observacion,
+                            observacion_id:$observacion_id,
+                        },
+                    
+                    success : function(json) {
+                        let observacion_id=$('#observacion_id').val(); 
+                        console.log(observacion_id);
+                        
+                        $('#editar-observacion').modal('hide');
+                        $("#"+observacion_id).addTempClass( 'bg-success', 3000 );
+                        location.reload();
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+            });
+
+
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+            $('table').on('click','.eliminarobservacion',function (e) {
+                e.preventDefault(); 
+                let observacion_id=$(this).closest('tr').attr('id');
+                console.log(observacion_id);
+                Swal.fire({
+                    title: 'Estas seguro(a) de eliminar este registro?',
+                    text: "Si eliminas el registro no lo podras recuperar jamás!",
+                    icon: 'question',
+                    showCancelButton: true,
+                    showConfirmButton:true,
+                    confirmButtonColor: '#25ff80',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Eliminar..!',
+                    position:'center',        
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: '../eliminar/general',
+                            type: 'DELETE',
+                            data:{
+                                observacion_id:observacion_id,
+                                _token:'{{ csrf_token() }}'
+                            },
+                            success: function(result) {
+                                location.reload();
+                                $("#modal-mostrar").modal("hide");
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 1500,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                                })
+                                Toast.fire({
+                                icon: 'success',
+                                title: 'Se eliminó correctamente el registro'
+                                })  
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                switch (xhr.status) {
+                                    case 500:
+                                        Swal.fire({
+                                            title: 'No se completó esta operación por que este registro está relacionado con otros registros',
+                                            showClass: {
+                                                popup: 'animate__animated animate__fadeInDown'
+                                            },
+                                            hideClass: {
+                                                popup: 'animate__animated animate__fadeOutUp'
+                                            }
+                                        })
+                                        break;
+                                
+                                    default:
+                                        break;
+                                }
+                            }
+                        });
+                    }else{
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 4000,
+                            timerProgressBar: true,
+                            onOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'No se eliminó el registro'
+                        })
+                    }
+                })
+            });
+
+
+
             $('.editar_calificacion').on('click',function(e) {
                 e.preventDefault(); 
                 let persona_id ="{{ $persona->id }}";

@@ -51,7 +51,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[NivelController::class,'destroyer'])->name('prueba');
+Route::get('prueba',[ObservacionController::class,'eliminarGeneral'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -462,12 +462,12 @@ Route::get('programacioncom/asistencia/ajax', [ProgramacioncomController::class,
 Route::get('programacioncom/asignarfalta/ajax', [ProgramacioncomController::class,'asignarFaltasFechasPasadas'])->name('programacioncom.asignarFaltas');
 
 Route::get('observacion/create/{observable_id}/{observable_type}',[ObservacionController::class,'create'])->name('observacion.create');
-
 Route::get('observacion/editar',[ObservacionController::class,'edit'])->name('observacion.editar');
 Route::get('observacion/actualizar',[ObservacionController::class,'update'])->name('observacion.actualizar');
 Route::get('observacion/guardar',[ObservacionController::class,'GuardarObservacion'])->name('observacion.guardar');
 Route::post('observacion/store',[ObservacionController::class,'store'])->name('observacion.store');
 Route::delete('eliminar/observacion/{observacion}',[ObservacionController::class,'destroy'])->name('eliminar.observacion');
+Route::delete('eliminar/general',[ObservacionController::class,'eliminarGeneral'])->name('eliminar.observacion.general');
 
 /**
  * clases

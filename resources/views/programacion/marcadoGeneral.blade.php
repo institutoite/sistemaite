@@ -414,7 +414,7 @@
                             $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 editarobservacion' title='Editar esta Observacion'>";
                             $htmlObservaciones+="<i class='fa fa-fw fa-edit text-primary'></i></a>";
                             $htmlObservaciones+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 eliminarobservacion' title='Eliminar esta observacion'>";
-                            $htmlObservaciones+="<i class='fas fa-trash-alt text-danger'></i>";
+                            $htmlObservaciones+="<i class='fas fa-trash-alt text-danger'></i></a>";
                             $htmlObservaciones+="</td></tr>";
                         }
                         $("#tabla-mostrar-observaciones").append($htmlObservaciones);

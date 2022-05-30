@@ -50,7 +50,7 @@ class ObservacionController extends Controller
         // dd($request->observable_type."Controller@index");
         //$observaciones=$observacion->observable_type::findOrFail($request->observable_id)->observaciones;
 
-        return redirect()->action($request->observable_type."Controller@index");
+        return redirect()->action($request->observable_type."Controller@show",$request->observable_id);
     }
     public function guardarObservacionGeneral(Request $request){
         $observacion =new Observacion;
@@ -110,18 +110,10 @@ class ObservacionController extends Controller
      */
     public function update(Request $request)
     {
-
         $observacion=Observacion::findOrFail($request->observacion_id);
         $observacion->observacion=$request->observacion;
         $observacion->save();
-
         return response()->json($request->all());
-        //request()->validate(Observacion::$rules);
-
-        $observacion->update($request->all());
-
-        return redirect()->route('observacions.index')
-            ->with('success', 'Observacion updated successfully');
     }
 
     /**
@@ -132,6 +124,22 @@ class ObservacionController extends Controller
     public function destroy($id)
     {
         $observacion = Observacion::findOrFail($id)->delete();
-        return response()->json($observacion);
+        return response()->json(['mensaje' => "El registro fue eliminado correctamente"]);
+    }
+    public function eliminarGeneral(Request $request)
+    {        
+        //return response()->json($request->all());       
+        $observacion = Observacion::findOrFail($request->observacion_id)->delete();
+        return response()->json(['mensaje' => "El registro fue eliminado correctamente"]);
+    }
+
+    public function listar(){
+
+        $motivos=Motivo::join('tipomotivos','motivos.tipomotivo_id','=','tipomotivos.id')
+                ->select('motivos.id','motivos.motivo','tipomotivos.tipomotivo');
+        return datatables()->of($motivos)
+        ->addColumn('btn', 'motivo.action')
+        ->rawColumns(['btn'])
+        ->toJson();
     }
 }

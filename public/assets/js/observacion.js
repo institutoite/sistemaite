@@ -13,6 +13,7 @@ $('table').on('click', '.observacion', function (e) {
     //$("#observacion").attr("rows","15");
     $("#modal-gregar-observacion").modal("show");
 });
+
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BOTON GUARDAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 $('#guardar-observacion').on('click', function (e) {
     e.preventDefault();
@@ -51,3 +52,5 @@ $('#guardar-observacion').on('click', function (e) {
     });
     $("#modal-gregar-observacion").modal("hide");
 });
+
+//** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% editar observacion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
