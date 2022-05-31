@@ -4,8 +4,8 @@
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
     
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    {{-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet"> --}}
+    {{-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> --}}
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('dist/css/starrr.css')}}">
 @endsection
@@ -208,7 +208,7 @@
                   
         </div>
         <div class="card-body">
-            <table id="observaciones" class="table table-bordered table-striped table-hover">
+            <table class="table table-bordered table-striped table-hover">
                 <thead class="bg-secondary">
                     <tr>
                         <th>ID</th>
@@ -220,7 +220,36 @@
                         <th>Options</th>
                     </tr>
                 </thead>
-                
+                <tbody>
+                    @foreach ($observaciones as $observacion)
+                            @php
+                                if($observacion->activo==0)
+                                    $clase="text-danger";
+                                else
+                                    $clase="text-green";
+                            @endphp
+
+                        <tr id="{{$observacion->id}}" class="{{$clase}}">
+                            <td>{{ $observacion->id }}</td>
+                            <td>{!! $observacion->observacion !!}</td>
+                            <td>{{ $observacion->activo }}</td>
+                            <td>{{ App\Models\User::findOrFail($observacion->userable->user_id)->name}}</td>
+                            <td>{{ $observacion->created_at }}</td>
+                            <td>{{ $observacion->updated_at }}</td>
+                            <td>
+                                <a class='btn-accion-tabla tooltipsC btn-sm mr-2 editarobservacion' title='Editar esta Observacion'>
+                                    <i class='fa fa-fw fa-edit text-primary'></i>
+                                </a>
+                                <a class='btn-accion-tabla tooltipsC btn-sm mr-2 eliminarobservacion' title='Eliminar esta observacion'>
+                                    <i class='fas fa-trash-alt text-danger'></i>
+                                </a>
+                                <a class='btn-accion-tabla tooltipsC btn-sm mr-2 bajaobservacion' title='Dar de Baja  esta observacion'>
+                                    <i class="fas fa-arrow-down text-danger"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
             </table>
         </div>
     </div>
@@ -231,7 +260,7 @@
     @include('observacion.modalcreate')
 @stop
 @section('js')
-    {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
     <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
     <script src="{{asset('dist/js/starrr.js')}}"></script>
@@ -281,42 +310,6 @@
          
         $(document).ready(function(){
     
-            var observable_id="{{ $persona->id }}";
-            var observable_type="Persona";
-
-
-            var tabla=$('#observaciones').DataTable(
-                {
-                    "serverSide": true,
-                    "responsive":true,
-                    "autoWidth":false,
-                    "ajax":{
-                        "url":"../observaciones/"+observable_id+"/"+observable_type,
-                    }, 
-                    "createdRow": function( row, data, dataIndex ) {
-                    $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
-                },
-                    "columns": [
-                        {data: 'id'},
-                        {data: 'observacion'},
-                        {data: 'activo'},
-                        {data: 'name'},
-                        {data: 'created_at'},
-                        {data: 'updated_at'},
-                        {
-                            "name":"btn",
-                            "data": 'btn',
-                            "orderable": false,
-                        },
-                    ],
-
-                    "language":{
-                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-                    },  
-                }
-            );
-            
-
             $('.editar_calificacion').on('click',function(e) {
                 e.preventDefault(); 
                 let persona_id ="{{ $persona->id }}";
