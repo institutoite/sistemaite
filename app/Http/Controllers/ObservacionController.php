@@ -53,6 +53,7 @@ class ObservacionController extends Controller
         return redirect()->action($request->observable_type."Controller@show",$request->observable_id);
     }
     public function guardarObservacionGeneral(Request $request){
+        // return response()->json($request->all());
         $observacion =new Observacion;
         $observacion->observacion = $request->observacion;
         $observacion->observable_id=$request->observable_id;
@@ -60,7 +61,6 @@ class ObservacionController extends Controller
         $observacion->observable_type='App\\Models\\'.$request->observable_type;
         $observacion->save();
         $observacion->userable()->create(['user_id'=>Auth::user()->id]);
-        //return response()->json($request->all());
         return response()->json(['mensaje'=>"Guardado correctamente"]);
     }
     public function GuardarObservacion(Request $request)
@@ -113,7 +113,7 @@ class ObservacionController extends Controller
         $observacion=Observacion::findOrFail($request->observacion_id);
         $observacion->observacion=$request->observacion;
         $observacion->save();
-        return response()->json($request->all());
+        return response()->json(["mensajes"=>"Registro actualizado"]);
     }
     public function darbaja(Request $request)
     {
