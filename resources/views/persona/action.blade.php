@@ -19,9 +19,7 @@
         <i class="fas fa-bars fa-2x"></i>
     </a>
 </span>
-{{-- <a href="{{route('observacion.create', ['observable_id'=>$id,'observable_type'=> "Estudiante"])}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Ver esta persona">
-    <i class="fas fa-comment-alt fa-2x"></i>
-</a> --}}
-<a href="" class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" title="Agregar Observacion">
+
+<a href="" class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" id="Persona" title="Agregar Observacion">
     <i class="fas fa-comment-alt fa-2x"></i>
 </a>

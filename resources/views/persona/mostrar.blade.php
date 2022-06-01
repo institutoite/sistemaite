@@ -76,7 +76,10 @@
                         <td> 
                             <div class="text-center">
                                 <img class="rounded img-thumbnail img-fluid border-primary border-5" src="{{URL::to('/').Storage::url("$persona->foto")}}" alt="{{$persona->nombre.' '.$persona->apellidop}}"> 
-                                <p>{!!$observacion!!}</p>
+                                <p>
+                                    @isset($observacion)
+                                        {!!$observacion->observacion!!}</p>
+                                    @endisset
                             </div>
                         </td>
                     </tr>
@@ -213,9 +216,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Observacion</th>
-                        <th>activo</th>
+                        <th>Activo</th>
                         <th>Usuario</th>
-                        <th>creado</th>
                         <th>Actualizado</th>
                         <th>Options</th>
                     </tr>
@@ -285,7 +287,7 @@
             var observable_type="Persona";
 
 
-            var tabla=$('#observaciones').DataTable(
+            let tabla=$('#observaciones').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
@@ -294,14 +296,19 @@
                         "url":"../observaciones/"+observable_id+"/"+observable_type,
                     }, 
                     "createdRow": function( row, data, dataIndex ) {
-                    $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
+                        $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
+                        $('td', row).eq(4).html(moment(data['updated_at']).format('D-M-Y h:mm'));
+                        if(data['activo']==1){
+                            $(row).addClass('text-success');
+                        }else{
+                            $(row).addClass('text-danger');
+                        }
                 },
                     "columns": [
                         {data: 'id'},
                         {data: 'observacion'},
                         {data: 'activo'},
                         {data: 'name'},
-                        {data: 'created_at'},
                         {data: 'updated_at'},
                         {
                             "name":"btn",
@@ -312,10 +319,151 @@
 
                     "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-                    },  
+                    }, 
+                    "order": [[ 2, "desc" ]] 
                 }
             );
-            
+            $('table').on('click', '.bajaobservacion', function (e) {
+                e.preventDefault();
+                let observacion_id = $(this).closest('tr').attr('id');
+                $.ajax({
+                    url: "../darbaja/observacion",
+                    data: {
+                        //obs: $("#observacionx").val(),
+                        observacion_id: observacion_id,
+                    },
+                    success: function (json) {
+                        $("#" + observacion_id).addTempClass('bg-success', 3000);
+                        tabla.ajax.reload();
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                        })
+                        Toast.fire({
+                            type: 'success',
+                            title: "Actualizado corectamente",
+                        })
+
+                    },
+                    error: function (xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+            });
+            $('table').on('click', '.altaobservacion', function (e) {
+                e.preventDefault();
+                let observacion_id = $(this).closest('tr').attr('id');
+                $.ajax({
+                    url: "../daralta/observacion",
+                    data: {
+                        //obs: $("#observacionx").val(),
+                        observacion_id: observacion_id,
+                    },
+                    success: function (json) {
+                        $("#" + observacion_id).addTempClass('bg-success', 3000);
+                        tabla.ajax.reload();
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                        })
+                        Toast.fire({
+                            type: 'success',
+                            title: "Actualizado corectamente",
+                        })
+
+                    },
+                    error: function (xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+            });
+
+             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+    $('table').on('click', '.eliminarobservacion', function (e) {
+        e.preventDefault();
+        let observacion_id = $(this).closest('tr').attr('id');
+        console.log(observacion_id);
+        Swal.fire({
+            title: 'Estas seguro(a) de eliminar este registro?',
+            text: "Si eliminas el registro no lo podras recuperar jamás!",
+            icon: 'question',
+            showCancelButton: true,
+            showConfirmButton: true,
+            confirmButtonColor: '#25ff80',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar..!',
+            position: 'center',
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: '../eliminar/general',
+                    type: 'DELETE',
+                    data: {
+                        observacion_id: observacion_id,
+                        "_token": $("meta[name='csrf-token']").attr("content")
+                    },
+                   
+                    success: function (result) {
+                        tabla.ajax.reload();
+                        $("#modal-mostrar").modal("hide");
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1500,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Se eliminó correctamente el registro'
+                        })
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        switch (xhr.status) {
+                            case 500:
+                                Swal.fire({
+                                    title: 'No se completó esta operación por que este registro está relacionado con otros registros',
+                                    showClass: {
+                                        popup: 'animate__animated animate__fadeInDown'
+                                    },
+                                    hideClass: {
+                                        popup: 'animate__animated animate__fadeOutUp'
+                                    }
+                                })
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+                });
+            } else {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 4000,
+                    timerProgressBar: true,
+                    onOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+                Toast.fire({
+                    icon: 'error',
+                    title: 'No se eliminó el registro'
+                })
+            }
+        })
+    });
 
             $('.editar_calificacion').on('click',function(e) {
                 e.preventDefault(); 

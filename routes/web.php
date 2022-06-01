@@ -465,6 +465,7 @@ Route::get('observacion/create/{observable_id}/{observable_type}',[ObservacionCo
 Route::get('observacion/editar',[ObservacionController::class,'edit'])->name('observacion.editar');
 Route::get('observacion/actualizar',[ObservacionController::class,'update'])->name('observacion.actualizar');
 Route::get('darbaja/observacion',[ObservacionController::class,'darbaja'])->name('observacion.darbaja');
+Route::get('daralta/observacion',[ObservacionController::class,'daralta'])->name('observacion.daralta');
 Route::get('observacion/guardar',[ObservacionController::class,'GuardarObservacion'])->name('observacion.guardar');
 Route::post('observacion/store',[ObservacionController::class,'store'])->name('observacion.store');
 Route::delete('eliminar/observacion/{observacion}',[ObservacionController::class,'destroy'])->name('eliminar.observacion');

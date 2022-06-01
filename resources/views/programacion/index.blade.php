@@ -46,7 +46,6 @@
 										<th>Materia Id</th>
 										<th>Aula Id</th>
 										<th>Inscripcion Id</th>
-
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -54,7 +53,6 @@
                                     @foreach ($programacions as $programacion)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
 											<td>{{ $programacion->fecha }}</td>
 											<td>{{ $programacion->habilitado }}</td>
 											<td>{{ $programacion->estado }}</td>
@@ -64,7 +62,6 @@
 											<td>{{ $programacion->materia_id }}</td>
 											<td>{{ $programacion->aula_id }}</td>
 											<td>{{ $programacion->inscripcion_id }}</td>
-
                                             <td>
                                                 <form action="{{ route('programacions.destroy',$programacion->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('programacions.show',$programacion->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>

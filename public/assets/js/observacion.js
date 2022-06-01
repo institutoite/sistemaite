@@ -5,84 +5,15 @@
         removeButtons: 'PasteFromWord'
     });
 
+    
     $('table').on('click', '.observacion', function (e) {
         e.preventDefault();
         let objeto_id = $(this).closest('tr').attr('id');
-        console.log(objeto_id);
         $("#observable_id").val(objeto_id);
-        $("#observacionx").val("");
-        //$("#observacion").attr("rows","15");
+        $("#observable_type").val($(this).attr("id"));
         $("#modal-gregar-observacion").modal("show");
     });
-    $('table').on('click', '.bajaobservacion', function (e) {
-        e.preventDefault();
-        let observacion_id = $(this).closest('tr').attr('id');
-        $.ajax({
-            url: "../darbaja/observacion",
-            data: {
-                //obs: $("#observacionx").val(),
-                observacion_id: observacion_id,
-            },
-            success: function (json) {
-
-                let observacion_id = $('#observacion_id').val();
-                $("#" + observacion_id).addTempClass('bg-success', 3000);
-
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                })
-                Toast.fire({
-                    type: 'success',
-                    title: "Actualizado corectamente",
-                })
-
-            },
-            error: function (xhr, status) {
-                alert('Disculpe, existió un problema');
-            },
-        });
-    });
-
-    $('#guardar-observacion').on('click', function (e) {
-        e.preventDefault();
-        let observable_id = $("#observable_id").val();
-        let observable_type = $("#observable_type").val();
-        $.ajax({
-            url: "guardar/observacion",
-            data: {
-                //obs: $("#observacionx").val(),
-                observacion: $("#editor1").val(),
-
-                observable_id: $("#observable_id").val(),
-                observable_type: "Persona"
-            },
-            success: function (json) {
-                console.log(json);
-
-                let observable_id = $('#observable_id').val();
-                $("#" + observable_id).addTempClass('bg-success', 3000);
-
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                })
-                Toast.fire({
-                    type: 'success',
-                    title: "Guardado corectamente: " + json.observacion,
-                })
-
-            },
-            error: function (xhr, status) {
-                alert('Disculpe, existió un problema');
-            },
-        });
-        $("#modal-gregar-observacion").modal("hide");
-    });
+    
 
 
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BOTON GUARDAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -97,16 +28,11 @@
             data: {
                 //obs: $("#observacionx").val(),
                 observacion: $("#editor1").val(),
-
-                observable_id: $("#observable_id").val(),
-                observable_type: "Persona"
+                observable_id: observable_id,
+                observable_type: observable_type,
             },
             success: function (json) {
-                console.log(json);
-
-                let observable_id = $('#observable_id').val();
                 $("#" + observable_id).addTempClass('bg-success', 3000);
-
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -117,7 +43,6 @@
                     type: 'success',
                     title: "Guardado corectamente: " + json.observacion,
                 })
-
             },
             error: function (xhr, status) {
                 alert('Disculpe, existió un problema');
@@ -190,11 +115,9 @@
 
             success: function (json) {
                 let observacion_id = $('#observacion_id').val();
-                console.log(observacion_id);
-
                 $('#editar-observacion').modal('hide');
                 $("#" + observacion_id).addTempClass('bg-success', 3000);
-                location.reload();
+                tabla.ajax.reload();
             },
             error: function (xhr, status) {
                 alert('Disculpe, existió un problema');
@@ -203,85 +126,4 @@
     });
 
 
-    /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-    $('table').on('click', '.eliminarobservacion', function (e) {
-        e.preventDefault();
-        let observacion_id = $(this).closest('tr').attr('id');
-        console.log(observacion_id);
-        Swal.fire({
-            title: 'Estas seguro(a) de eliminar este registro?',
-            text: "Si eliminas el registro no lo podras recuperar jamás!",
-            icon: 'question',
-            showCancelButton: true,
-            showConfirmButton: true,
-            confirmButtonColor: '#25ff80',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Eliminar..!',
-            position: 'center',
-        }).then((result) => {
-            if (result.value) {
-                $.ajax({
-                    url: '../eliminar/general',
-                    type: 'DELETE',
-                    data: {
-                        observacion_id: observacion_id,
-                        "_token": $("meta[name='csrf-token']").attr("content")
-                    },
-                   
-                    success: function (result) {
-                        location.reload();
-                        $("#modal-mostrar").modal("hide");
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 1500,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
-                        Toast.fire({
-                            icon: 'success',
-                            title: 'Se eliminó correctamente el registro'
-                        })
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        switch (xhr.status) {
-                            case 500:
-                                Swal.fire({
-                                    title: 'No se completó esta operación por que este registro está relacionado con otros registros',
-                                    showClass: {
-                                        popup: 'animate__animated animate__fadeInDown'
-                                    },
-                                    hideClass: {
-                                        popup: 'animate__animated animate__fadeOutUp'
-                                    }
-                                })
-                                break;
-
-                            default:
-                                break;
-                        }
-                    }
-                });
-            } else {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 4000,
-                    timerProgressBar: true,
-                    onOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
-                Toast.fire({
-                    icon: 'error',
-                    title: 'No se eliminó el registro'
-                })
-            }
-        })
-    });
+   

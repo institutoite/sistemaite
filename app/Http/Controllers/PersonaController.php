@@ -318,9 +318,15 @@ class PersonaController extends Controller
         $pais=Pais::findOrFail($persona->pais_id);
         $ciudad = Ciudad::findOrFail($persona->ciudad_id);
         $zona = Zona::findOrFail($persona->zona_id);
+
+        
         
         $observacion = Observacion::where('observable_id', $persona->id)
-            ->where('observable_type', Persona::class)->get()->first()->observacion;
+            ->where('observable_type', Persona::class)->get();
+
+        if(count($observacion)>0){
+            $observacion=$observacion->first();
+        }   
 
         $recomendado=Persona::find($persona->persona_id); 
         $apoderados=$persona->apoderados;

@@ -122,6 +122,13 @@ class ObservacionController extends Controller
         $observacion->save();
         return response()->json($request->all());
     }
+    public function daralta(Request $request)
+    {
+        $observacion=Observacion::findOrFail($request->observacion_id);
+        $observacion->activo=1;
+        $observacion->save();
+        return response()->json($request->all());
+    }
 
     /**
      * @param int $id
@@ -143,16 +150,10 @@ class ObservacionController extends Controller
     public function listar($observable_id,$observable_type){
         
         $observaciones=Observacion::join('userables','userables.userable_id','=','observacions.id')
-                            ->join('users','users.id','=','userables.user_id')
-                            ->where('observable_id',$observable_id)
-                            ->where('observable_type','App\\Models\\'.$observable_type)
-                            ->select('observacions.id','observacion','activo','name','observacions.created_at','observacions.updated_at');
-
-        $observaciones=Observacion::join('userables','userables.userable_id','=','observacions.id')
         ->join('users','users.id','=','userables.user_id')
         ->where('userable_type','App\\Models\\Observacion')
-        ->where('observable_id',1)
-        ->where('observable_type','App\\Models\\Persona')
+        ->where('observable_id',$observable_id)
+        ->where('observable_type','App\\Models\\'.$observable_type)
         ->select('observacions.id','observacion','activo','name','observacions.created_at','observacions.updated_at')->get();
         
         return datatables()->of($observaciones)

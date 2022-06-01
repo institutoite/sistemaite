@@ -7,6 +7,6 @@
 <a class='btn-accion-tabla tooltipsC btn-sm mr-2 bajaobservacion' title='Dar de Baja  esta observacion'>
     <i class="fas fa-arrow-down text-danger"></i>
 </a>
-<a class='btn-accion-tabla tooltipsC btn-sm mr-2 bajaobservacion' title='Dar de Baja  esta observacion'>
+<a class='btn-accion-tabla tooltipsC btn-sm mr-2 altaobservacion' title='Dar de Alta esta observacion'>
     <i class="fas fa-arrow-up text-success"></i>
 </a>
