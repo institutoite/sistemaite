@@ -1,19 +1,19 @@
 @extends('adminlte::page')
 
 @section('css')
-    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
-    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
-    
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{asset('dist/css/starrr.css')}}">
+
+<link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{asset('dist/css/starrr.css')}}">
+<link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
 @endsection
 
-@section('title', 'Programación')
-@section('plugins.Jquery', true)
-@section('plugins.Sweetalert2', true)
-@section('plugins.Datatables', true)
+@section('title', 'Mostrar Persona')
+@section('plugins.Jquery',true)
+@section('plugins.Sweetalert2',true)
+@section('plugins.Datatables',true)
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 @section('content')
@@ -242,25 +242,379 @@
     {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
     <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
-    <script src="{{asset('dist/js/starrr.js')}}"></script>
-
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script>
     <script src="https://kit.fontawesome.com/067a2afa7e.js" crossorigin="anonymous"></script>
-
     <script src="{{asset('dist/js/moment.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-
+    <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>    
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>    
     {{--  para observacion --}}
+    <script src="{{asset('dist/js/starrr.js')}}"></script>
     <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
     <script src="{{ asset('assets/js/observacionshow.js') }}"></script>
     <script>
-       
+    
+        /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONFIGURARION DE CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        CKEDITOR.replace('editor1', {
+            height: 120,
+            width: "100%",
+            removeButtons: 'PasteFromWord'
+        });
+        /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MUESTRA CONFIGURARCION DE CALIFICACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('.starrr').starrr({
+            max: 5,
+            change: function(e, value){
+                if (value) {
+                    $("#calificacion").val(value);
+                } else {
+                    $('.your-choice-was').hide();
+                }
+            }
+        });
+        /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  EDITAR CONFIGURARCION DE CALIFICACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('.editar_calificacion').on('click', function (e) {
+            e.preventDefault();
+            let persona_id = "{{ $persona->id }}";
+            console.log(persona_id);
+            $.ajax({
+                url: "../calificacion/editar",
+                data: { persona_id: persona_id },
+                success: function (json) {
+                    console.log(json.calificacion.calificacion);
+                    $("#editar-calificacion").modal("show");
+                    $('#calificacion').val(json.calificacion.calificacion);
+                    $('#calificacion_id').val(json.calificacion.id);
+
+                },
+                error: function (xhr, status) {
+                    alert('Disculpe, existió un problema');
+                },
+            });
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%  funcion que agrega clase por tiempo x y luego lo destruye %%%%%%%%%%%*/
+        ( function ( $ ) {
+            'use strict';
+            $.fn.addTempClass = function ( className, expire, callback ) {
+                className || ( className = '' );
+                expire || ( expire = 2000 );
+                return this.each( function () {
+                    $( this ).addClass( className ).delay( expire ).queue( function () {
+                        $( this ).removeClass( className ).clearQueue();
+                        callback && callback();
+                    } );
+                } );
+            };
+        } ( jQuery ) );
+        
+        $(document).ready(function(){
+            /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  VALORES DE LOS PARAMETROS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            var observable_id="{{ $persona->id }}";
+            var observable_type="Persona";
+
+        /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATATABLE DE OBSERVACIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        let tabla=$('#observaciones').DataTable(
+            {
+                "serverSide": true,
+                "responsive":true,
+                "autoWidth":false,
+                "ajax":{
+                    "url":"../observaciones/"+observable_id+"/"+observable_type,
+                }, 
+                "createdRow": function( row, data, dataIndex ) {
+                    $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
+                    $('td', row).eq(4).html(moment(data['updated_at']).format('D-M-Y h:mm'));
+                    if(data['activo']==1){
+                        $(row).addClass('text-success');
+                    }else{
+                        $(row).addClass('text-danger');
+                    }
+            },
+                "columns": [
+                    {data: 'id'},
+                    {data: 'observacion'},
+                    {data: 'activo'},
+                    {data: 'name'},
+                    {data: 'updated_at'},
+                    {
+                        "name":"btn",
+                        "data": 'btn',
+                        "orderable": false,
+                    },
+                ],
+                "language":{
+                    "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                }, 
+                "order": [[ 2, "desc" ]] 
+            }
+        );
+        /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MUESTRA LA VENTAN MODAL DE CREAR NUEVO OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('.observacion').on('click', function (e) {
+            e.preventDefault();
+            $("#editor1").val("");
+            let objeto_id = "{{ $persona->id }}";
+            $("#observable_id").val(objeto_id);
+            $("#observable_type").val($(this).attr("id"));
+            CKEDITOR.instances.editor1.setData('');
+            $("#modal-gregar-observacion").modal("show");
+            // $("#formulario-guardar-observacion").empty();
+        });
+        
+        /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  GUARDA OBSERVACION CON AJAX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('#guardar-observacion').on('click', function (e) {
+            e.preventDefault();
+            let observable_id = $("#observable_id").val();
+            let observable_type = $("#observable_type").val();
+            for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
+            $.ajax({
+                url: "../guardar/observacion",
+                data: {
+                    //obs: $("#observacionx").val(),
+                    observacion: $("#editor1").val(),
+                    observable_id: observable_id,
+                    observable_type: observable_type,
+                },
+                success: function (json) {
+                    tabla.ajax.reload();
+                    $("#" + observable_id).addTempClass('bg-success', 3000);
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                    })
+                    Toast.fire({
+                        type: 'success',
+                        title: "Guardado corectamente: " + json.observacion,
+                    })
+                },
+                error: function (xhr, status) {
+                    alert('Disculpe, existió un problema');
+                },
+            });
+            $("#modal-gregar-observacion").modal("hide");
+        });
+        /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MUESTRA EDITAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+        $('table').on('click', '.editarobservacion', function (e) {
+            e.preventDefault();
+            let id_observacion = $(this).closest('tr').attr('id');
+            console.log($("#editor1").val());
+            $htmlobs = "";
+            $.ajax({
+                url: "../observacion/editar",
+                data: {
+                    id: id_observacion,
+                },
+                success: function (json) {
+                    console.log(json);
+                    $("#editor1").html(json.observacion);
+                    console.log($("#editor1").html());
+                    //$("#modal-mostrar").modal("hide");
+                    $("#formulario-editar-observacion").empty();
+                    $("#editar-observacion").modal("show");
+                    $htmlobs += "<textarea cols='80' id='editor1' name='editor1' rows='10' data-sample-short>" + json.observacion + "</textarea>";
+                    $htmlobs += "<input hidden class='form-control' type='text' name='observacion_id' value='" + json.id + "' id='observacion_id'>";
+                    $htmlobs += "<div class='container-fluid h-100 mt-3'>";
+                    $htmlobs += "<div class='row w-100 align-items-center'>";
+                    $htmlobs += "<div class='col text-center'>";
+                    $htmlobs += "<button type='submit' id='actualizarobservacion' class='btn btn-primary text-white btn-lg'>Guardar <i class='far fa-save'></i></button> ";
+                    $htmlobs += "</div>";
+                    $htmlobs += "</div>";
+                    $htmlobs += "</div>";
+                    $("#formulario-editar-observacion").append($htmlobs);
+                    CKEDITOR.replace('editor1', {
+                        height: 120,
+                        width: "100%",
+                        removeButtons: 'PasteFromWord'
+                    });
+                },
+                error: function (xhr, status) {
+                    alert('Disculpe, existió un problema');
+                },
+            });
+        });
+                
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR ENVIO DE FORMULARIO OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $(document).on("submit", "#formulario-editar-observacion", function (e) {
+            e.preventDefault();//detenemos el envio
+            $observacion = $('#editor1').val();
+            console.log($observacion);
+            $observacion_id = $('#observacion_id').val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "../observacion/actualizar/",
+                data: {
+                    observacion: $observacion,
+                    observacion_id: $observacion_id,
+                },
+                success: function (json) {
+                    //console.log(json);
+                    tabla.ajax.reload();
+                    $('#editar-observacion').modal('hide');
+                },
+                error: function (xhr, status) {
+                    alert('Disculpe, existió un problema');
+                },
+            });
+        });
+        
+        /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DA DE BAJA UNA OBSERVACION UTILIZA AJAX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.bajaobservacion', function (e) {
+            e.preventDefault();
+            let observacion_id = $(this).closest('tr').attr('id');
+            $.ajax({
+                url: "../darbaja/observacion",
+                data: {
+                    //obs: $("#observacionx").val(),
+                    observacion_id: observacion_id,
+                },
+                success: function (json) {
+                    $("#" + observacion_id).addTempClass('bg-success', 3000);
+                    tabla.ajax.reload();
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                    })
+                    Toast.fire({
+                        type: 'success',
+                        title: "Actualizado corectamente",
+                    })
+
+                },
+                error: function (xhr, status) {
+                    alert('Disculpe, existió un problema');
+                },
+            });
+        });
+        
+        /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DA DE ALTA UNA OBSERVACION QUE ESTA CON BAJA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.altaobservacion', function (e) {
+            e.preventDefault();
+            let observacion_id = $(this).closest('tr').attr('id');
+            $.ajax({
+                url: "../daralta/observacion",
+                data: {
+                    //obs: $("#observacionx").val(),
+                    observacion_id: observacion_id,
+                },
+                success: function (json) {
+                    $("#" + observacion_id).addTempClass('bg-success', 3000);
+                    tabla.ajax.reload();
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                    })
+                    Toast.fire({
+                        type: 'success',
+                        title: "Actualizado corectamente",
+                    })
+                },
+                error: function (xhr, status) {
+                    alert('Disculpe, existió un problema');
+                },
+            });
+        });
+
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+        $('table').on('click', '.eliminarobservacion', function (e) {
+            e.preventDefault();
+            let observacion_id = $(this).closest('tr').attr('id');
+            Swal.fire({
+                title: 'Estas seguro(a) de eliminar este registro?',
+                text: "Si eliminas el registro no lo podras recuperar jamás!",
+                icon: 'question',
+                showCancelButton: true,
+                showConfirmButton: true,
+                confirmButtonColor: '#25ff80',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Eliminar..!',
+                position: 'center',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: '../eliminar/general',
+                        type: 'DELETE',
+                        data: {
+                            observacion_id: observacion_id,
+                            "_token": $("meta[name='csrf-token']").attr("content")
+                        },
+                        success: function (result) {
+                            tabla.ajax.reload();
+                            $("#modal-mostrar").modal("hide");
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 1500,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                            })
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Se eliminó correctamente el registro'
+                            })
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            switch (xhr.status) {
+                                case 500:
+                                    Swal.fire({
+                                        title: 'No se completó esta operación por que este registro está relacionado con otros registros',
+                                        showClass: {
+                                            popup: 'animate__animated animate__fadeInDown'
+                                        },
+                                        hideClass: {
+                                            popup: 'animate__animated animate__fadeOutUp'
+                                        }
+                                    })
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                        }
+                    });
+                } else {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 4000,
+                        timerProgressBar: true,
+                        onOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'No se eliminó el registro'
+                    })
+                }
+            })
+        });
+    });    
 
     </script>
 @stop

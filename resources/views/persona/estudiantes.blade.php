@@ -5,7 +5,6 @@
     <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
     {{-- <link href="css/star-rating.css" media="all" rel="stylesheet" type="text/css"/> --}}
-
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('dist/css/starrr.css')}}">
@@ -42,8 +41,6 @@
 
 @section('js')
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
-    
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
     
     

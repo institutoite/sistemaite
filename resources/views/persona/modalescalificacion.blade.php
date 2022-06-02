@@ -19,7 +19,7 @@
                                 <x-slot name="title">
                                     Calificar este Modelo
                                 </x-slot>
-                                 <input class="form-control" type="text" name="calificacion_id" id="calificacion_id">
+                                 <input class="form-control" hidden type="text" name="calificacion_id" id="calificacion_id">
                             </x-calificacion>
 
                            

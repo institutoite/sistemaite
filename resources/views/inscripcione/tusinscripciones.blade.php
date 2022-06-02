@@ -9,7 +9,6 @@
 @section('plugins.SweetAlert2',true)
 @section('plugins.Datatables',true)
 
-
 @section('content')
     <div class="card">
         <div class="card-header bg-primary" >
@@ -162,9 +161,6 @@
                 }
             );
 
-
-            
-
             $('table').on('click','.eliminarinscripcion',function (e) {
                 e.preventDefault(); 
                 id=$(this).parent().parent().parent().find('td').first().html();
@@ -189,9 +185,7 @@
                                 _token:'{{ csrf_token() }}'
                             },
                             success: function(result) {
-                                //console.log(result);
                                 tabla.ajax.reload();
-                                //location.reload();
                                 const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
@@ -251,122 +245,3 @@
         } );
     </script>
 @stop
-
-
-        {{-- <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="card collapsed-card">
-                    <div class="card-header bg-secondary">
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus text-white"></i></button>
-                        </div>
-                        VER INSCRIPCIONES NO VIGENTES <span class="text-primary">  Para ver haga click en el ícono ------------------------------------> </span>
-                    </div>
-                        
-                    
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="inscripcionesOtras" class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Objetivo</th>
-                                        <th>acuenta</th>
-                                        <th>costo</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($inscripcionesOtras as $inscripcion)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $inscripcion->objetivo }}</td>
-                                            <td>{{ $inscripcion->acuenta }}</td>
-                                            <td>{{ $inscripcion->costo }}</td>
-                                            <th>
-                                                
-                                                <a href="{{route('pagos.crear',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta inscripcione">
-                                                    <i class="fas fa-hand-holding-usd"></i>
-                                                </a>
-
-                                                <a href="{{route('inscripciones.show', $inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
-                                                    <i class="fa fa-fw fa-eye text-secondary mostrar"></i>
-                                                </a>
-                                                <a href="{{route('imprimir.programa',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
-                                                    <i class="fas fa-print"></i>
-                                                </a>
-
-                                                <a href="{{route('clases.marcado.general',$inscripcion->id)}}" class="" title="Ver esta inscripcione">
-                                                    <i class="far fa-calendar-check"></i>
-                                                </a>
-
-                                            </th>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-        </div> --}}
-
-        {{-- <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="card collapsed-card">
-                    <div class="card-header bg-secondary">
-                        TODAS LAS INSCRIPCIONES <span class="text-primary">  Para ver haga click en el ícono -----------------------------></span>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus text-white"></i></button>
-                        </div>
-                    </div>
-                        
-                    
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="inscripcionestodos" class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Objetivo</th>
-                                        <th>acuenta</th>
-                                        <th>costo</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($inscripciones as $inscripcion)
-                                        <tr>
-                                            <td>{{ $inscripcion->id }}</td>
-                                            <td>
-                                                {!! $inscripcion->objetivo !!}
-                                            </td>
-                                            <td>{{ $inscripcion->acuenta }}</td>
-                                            <td>{{ $inscripcion->costo }}</td>
-                                            <th>
-                                                
-                                                <a href="{{route('pagos.crear',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta inscripcione">
-                                                    <i class="fas fa-hand-holding-usd"></i>
-                                                </a>
-
-                                                <a href="{{route('inscripciones.show', $inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
-                                                    <i class="fa fa-fw fa-eye text-secondary mostrar"></i>
-                                                </a>
-                                                <a href="{{route('imprimir.programa',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
-                                                    <i class="fas fa-print"></i>
-                                                </a>
-
-                                                <a href="{{route('clases.marcado.general',$inscripcion->id)}}" class="" title="Ver esta inscripcione">
-                                                    <i class="far fa-calendar-check"></i>
-                                                </a>
-
-                                            </th>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-        </div> --}}
