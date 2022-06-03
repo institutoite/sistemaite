@@ -20,3 +20,7 @@
 <a href="{{route('personas.agregar.papel', $id)}}" class="btn btn-outline-primary tooltipsC mr-2" title="ir a opciones de la persona">
     Agregar Papel
 </a>
+
+<a href="" class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" id="Persona" title="Agregar Observacion">
+    <i class="fas fa-comment-alt fa-2x"></i>
+</a>

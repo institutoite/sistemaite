@@ -9,6 +9,7 @@
     $('table').on('click', '.observacion', function (e) {
         e.preventDefault();
         let objeto_id = $(this).closest('tr').attr('id');
+        console.log(objeto_id);
         $("#observable_id").val(objeto_id);
         $("#observable_type").val($(this).attr("id"));
         CKEDITOR.instances.editor1.setData('');
@@ -31,6 +32,7 @@
                 observable_type: observable_type,
             },
             success: function (json) {
+                console.log()
                 $("#" + observable_id).addTempClass('bg-success', 3000);
                 const Toast = Swal.mixin({
                     toast: true,
