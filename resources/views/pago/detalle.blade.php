@@ -48,8 +48,10 @@
                                                 @php
                                                     $user=App\Models\User::findOrFail($pago->userable->user_id);
                                                 @endphp
-                                                {{$user->name}}
-                                                <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5" width="100"> 
+                                                    
+                                                {{$user->name."x"}}
+                                                    <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5" width="100"> 
+
                                             </td>
                                             <td>{{ $pago->created_at }}</td>
                                             <td>

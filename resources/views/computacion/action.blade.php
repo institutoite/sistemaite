@@ -27,5 +27,6 @@
 
 @endisset
 
-
-
+<a href="" class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" id="Persona" title="Agregar Observacion">
+    <i class="fas fa-comment-alt fa-2x"></i>
+</a>

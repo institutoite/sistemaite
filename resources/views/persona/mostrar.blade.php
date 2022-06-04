@@ -75,7 +75,7 @@
                         </td>
                         <td> 
                             <div class="text-center">
-                                <img class="rounded img-thumbnail img-fluid border-primary border-5" src="{{URL::to('/').Storage::url("$persona->foto")}}" alt="{{$persona->nombre.' '.$persona->apellidop}}"> 
+                                <img class="rounded img-thumbnail img-fluid border-primary border-5" src="{{URL::to('/').Storage::url("$persona->foto")}}" alt="{{$persona->nombre.' '.$persona->apellidop}}" width="100"> 
                                 <p>
                                     @isset($observacion)
                                         {!!$observacion->observacion!!}</p>
@@ -145,7 +145,7 @@
                         <td>Usuario</td>
                         <td>
                             {{$user->name}}
-                            <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5"> 
+                            <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5" width="100"> 
                         </td>
                     </tr>
                 </tbody>
@@ -263,7 +263,7 @@
     {{--  para observacion --}}
     <script src="{{asset('dist/js/starrr.js')}}"></script>
     <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
-    <script src="{{ asset('assets/js/observacionshow.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/observacionshow.js') }}"></script> --}}
     <script>
     
         /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONFIGURARION DE CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -296,7 +296,6 @@
                     $("#editar-calificacion").modal("show");
                     $('#calificacion').val(json.calificacion.calificacion);
                     $('#calificacion_id').val(json.calificacion.id);
-
                 },
                 error: function (xhr, status) {
                     alert('Disculpe, existió un problema');
@@ -419,11 +418,11 @@
                 success: function (json) {
                     console.log(json);
                     $("#editor1").html(json.observacion);
-                    console.log($("#editor1").html());
+                    //console.log($("#editor1").html());
                     //$("#modal-mostrar").modal("hide");
                     $("#formulario-editar-observacion").empty();
                     $("#editar-observacion").modal("show");
-                    $htmlobs += "<textarea cols='80' id='editor1' name='editor1' rows='10' data-sample-short>" + json.observacion + "</textarea>";
+                    $htmlobs += "<textarea cols='80' id='editor2' name='editor2' rows='10' data-sample-short>" + json.observacion + "</textarea>";
                     $htmlobs += "<input hidden class='form-control' type='text' name='observacion_id' value='" + json.id + "' id='observacion_id'>";
                     $htmlobs += "<div class='container-fluid h-100 mt-3'>";
                     $htmlobs += "<div class='row w-100 align-items-center'>";
@@ -433,7 +432,7 @@
                     $htmlobs += "</div>";
                     $htmlobs += "</div>";
                     $("#formulario-editar-observacion").append($htmlobs);
-                    CKEDITOR.replace('editor1', {
+                    CKEDITOR.replace('editor2', {
                         height: 120,
                         width: "100%",
                         removeButtons: 'PasteFromWord'
@@ -448,7 +447,7 @@
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR ENVIO DE FORMULARIO OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         $(document).on("submit", "#formulario-editar-observacion", function (e) {
             e.preventDefault();//detenemos el envio
-            $observacion = $('#editor1').val();
+            $observacion = $('#editor2').val();
             console.log($observacion);
             $observacion_id = $('#observacion_id').val();
             $.ajaxSetup({

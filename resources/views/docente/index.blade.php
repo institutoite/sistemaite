@@ -30,6 +30,7 @@
             </tr>
         </thead>
     </table>
+    @include('observacion.modalcreate')
 @stop
 
 @section('js')
@@ -40,11 +41,29 @@
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
     
-    
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+    <script src="{{asset('assets/js/observacion.js')}}"></script>
     <!-- JavaScript Bundle with Popper -->
     
 
     <script>
+        ( function ( $ ) {
+            'use strict';
+            $.fn.addTempClass = function ( className, expire, callback ) {
+                className || ( className = '' );
+                expire || ( expire = 2000 );
+                return this.each( function () {
+                    $( this ).addClass( className ).delay( expire ).queue( function () {
+                        $( this ).removeClass( className ).clearQueue();
+                        callback && callback();
+                    } );
+                } );
+            };
+        } ( jQuery ) );
+        
         $(document).ready(function() {
         var tabla=$('#docentes').DataTable(
                 {
@@ -52,6 +71,9 @@
                     "responsive":true,
                     "autoWidth":false,
                     "ajax": "{{ url('api/docentes') }}",
+                    "createdRow": function( row, data, dataIndex ) {
+                        $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
+                    },
                     "columns": [
                         {data: 'id'},
                         {data: 'nombre'},

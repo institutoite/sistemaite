@@ -21,7 +21,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Pago extends Model
 {
-    
     static $rules = [
 		'monto' => 'required',
 		'pagocon' => 'required',
@@ -29,7 +28,6 @@ class Pago extends Model
 		'pagable_id' => 'required',
 		'pagable_type' => 'required',
     ];
-
     protected $perPage = 20;
 
     /**

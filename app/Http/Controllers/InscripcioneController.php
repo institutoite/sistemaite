@@ -99,7 +99,6 @@ class InscripcioneController extends Controller
         if($ultima_inscripcion!=null)        
         $ultimo_nivel=Nivel::findOrFail(Modalidad::findOrFail($ultima_inscripcion->modalidad_id)->nivel_id);
         else {
-            
             $ultimo_grado=$persona->estudiante->grados->first();
             if(empty($ultimo_grado->nivel)){
                 return redirect()->route('gestion.create',$persona->estudiante->id);

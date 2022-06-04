@@ -19,15 +19,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         Storage::deleteDirectory('cursos');
         Storage::makeDirectory('cursos');
-        //Model::unguard();
         $this->call([
             PaisSeeder::class,
             CiudadSeeder::class,
             ZonaSeeder::class,
             PersonaSeeder::class,
+            AdministrativoSeeder::class,
             UserSeeder::class,
             EstudianteSeeder::class,
             NivelSeeder::class,
@@ -46,7 +45,6 @@ class DatabaseSeeder extends Seeder
             TemaSeeder::class,
             BilleteSeeder::class,
             ColegioSeeder::class,
-            AdministrativoSeeder::class,
             ObservacionSeeder::class,
             ComputacionSeeder::class,
             CarreraSeeder::class,
@@ -56,9 +54,6 @@ class DatabaseSeeder extends Seeder
             HomescheduleSeeder::class,
             RoleSeeder::class,
             InterestSeeder::class,
-
         ]);
-
-        
     }  
 }

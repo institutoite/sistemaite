@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
+
 /**
  * Class PagoController
  * @package App\Http\Controllers
@@ -30,14 +31,11 @@ class PagoController extends Controller
     }
     public function detallar($inscripcion_id)
     {
-        $pagos=Pago::where('pagable_id','=',$inscripcion_id)->get();
+        //$pagos=Pago::where('pagable_id','=',$inscripcion_id)->get();
         $inscripcion = Inscripcione::findOrFail($inscripcion_id);
         $pagos = $inscripcion->pagos;
         $acuenta = $inscripcion->pagos->sum->monto;
         $saldo = $inscripcion->costo - $acuenta;
-
-        
-
         return view('pago.detalle', compact('inscripcion', 'pagos', 'acuenta', 'saldo'));
     }
 
@@ -72,7 +70,6 @@ class PagoController extends Controller
     }
     public function crear($inscripcion)
     {
-        
         $inscripcion=Inscripcione::findOrFail((int)$inscripcion);
         $pagos = $inscripcion->pagos;
         $acuenta= $inscripcion->pagos->sum->monto;

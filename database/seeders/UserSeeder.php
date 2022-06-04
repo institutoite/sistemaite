@@ -162,11 +162,9 @@ class UserSeeder extends Seeder
         Persona::findOrFail(33)->userable()->create(['user_id'=>1]);
         Persona::findOrFail(34)->userable()->create(['user_id'=>1]);
         Persona::findOrFail(35)->userable()->create(['user_id'=>1]);
-
-
-
-       
-
+        
+        Persona::findOrFail(36)->userable()->create(['user_id'=>1]);
+        Persona::findOrFail(37)->userable()->create(['user_id'=>1]);
     }
 }
 

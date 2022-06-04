@@ -64,6 +64,5 @@ class AdministrativoSeeder extends Seeder
             'sueldo'=>2000,
             'persona_id'=>37,
         ]);
-
     }
 }
