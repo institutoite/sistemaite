@@ -33,8 +33,6 @@
         </div>
     </div>
     @include('persona.modalespotenciales')
-    
-
 @stop
 
 @section('js')
@@ -67,14 +65,12 @@
                         "serverSide": true,
                         "responsive":true,
                         "autoWidth":false,
-
                         "ajax": "{{ url('potenciales') }}",
                         // "dom":'<"toolbar">Bftrip',
                         "columns": [
                             {data: 'id'},
                             {data: 'nombre'},
                             {data: 'apellidop'},
-                            
                             {
                                 "name":"btn",
                                 "data": 'btn',
@@ -90,8 +86,6 @@
                         },  
                     }
             );
-
-
             $('table').on('click', '.observacion', function(e) {
                 e.preventDefault(); 
                 persona_id=$(this).parent().parent().find('td').first().html();
@@ -242,6 +236,7 @@
             $('table').on('click','.eliminarobservacion',function (e) {
                 e.preventDefault(); 
                 let id_programacioncom=$(this).closest('tr').attr('id');
+                console.log(id_programacioncom+"poraqui");
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",
