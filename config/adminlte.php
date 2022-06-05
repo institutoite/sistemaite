@@ -710,6 +710,12 @@ return [
                     'url'  => 'administrativos',
                     'classes'  => 'text-dark',
                 ],
+                [
+                    'text' => 'Proveedores',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'proveedores',
+                    'classes'  => 'text-dark',
+                ],
                
             ],
         ],
@@ -761,6 +767,21 @@ return [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'colegios',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+//** %%%%%%%%%%%%%%%%%%  MENU TEMAS %%%%%%%%%%%%% */
+        [
+            'text'    => 'Temas',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'temas',
                     'classes'  => 'text-dark',
                 ],
             ],

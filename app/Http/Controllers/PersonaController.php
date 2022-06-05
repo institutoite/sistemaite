@@ -621,29 +621,11 @@ class PersonaController extends Controller
         ->where('personas.id',$request->persona_id)
         ->select('observacions.id','observacion','name')
         ->get();
-
-        // ->where('observacions.observable_type',Persona::class)
-        // ->where('observacions.observable_id',$request->persona_id)
-        // ->select('observacions.id','observacions.observacion','users.id','userables.user_id') 
-
-        // $observaciones=Observacion::join('programacions','programacions.id','observacions.observable_id')
-		// 				->join('userables','userables.userable_id','observacions.id')
-		// 				  ->join('users','userables.user_id','users.id')
-		// 				  ->where('userables.userable_type',Observacion::class)
-		// 				  ->where('programacions.id',$request->id)
-        //                   ->select('observacions.id','observacion','name')
-		// 				  ->get();
-
-        //return response()->json(['e'=>$observaciones]);
         $apoderados=$potencial->apoderados;
         $autorPotencial=User::findOrFail($potencial->userable->user_id)->name;
 
         $data=['potencial'=>$potencial,'observaciones'=>$observaciones,'apoderados'=>$apoderados,'autorPotencial'=>$autorPotencial];
         return response()->json($data);
-        // $apoderados=$potencial->apoderados;
-        // $autorPotencial=User::findOrFail($potencial->userable->user_id)->name;
-        // $data=['potencial'=>$potencial,'observaciones'=>$observaciones,'apoderados'=>$apoderados,'autorPotencial'=>$autorPotencial];
-        // return response()->json($data);
     }
 
     public function unsuscribe(Request $request){

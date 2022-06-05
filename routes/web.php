@@ -51,7 +51,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[ObservacionController::class,'listar'])->name('prueba');
+Route::get('prueba',[TemaController::class,'listarajax'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -155,7 +155,9 @@ Route::post('computacion/carreras/configurar/{persona}', 'ComputacionController@
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  T E M A S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('temas/{materia_id}','TemaController@listar')->name('tamas.listar');
-
+Route::get('temas/listar',[TemaController::class,'listarajax'])->name('tema.listar');
+Route::get('temas',[TemaController::class,'index'])->name('tema.index');
+Route::get('tema/create',[TemaController::class,'create'])->name('tema.create');
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  M A T E R I A S    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */

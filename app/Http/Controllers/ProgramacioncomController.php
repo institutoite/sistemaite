@@ -486,6 +486,7 @@ class ProgramacioncomController extends Controller
 						->join('userables','userables.userable_id','observacions.id')
                         ->join('users','userables.user_id','users.id')
                         ->where('userables.userable_type',Observacion::class)
+                        ->where('observacions.observable_type',Programacioncom::class)
                         ->where('programacioncoms.id',$request->id)
                         ->select('observacions.id','observacion','name')
                         ->get();

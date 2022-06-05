@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Tema;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
 
 class TemaController extends Controller
 {
@@ -14,13 +16,24 @@ class TemaController extends Controller
      */
     public function index()
     {
-        //
+        return view('tema.index');
     }
     public function listar($materia_id)
     {
         $temas=Tema::where('materia_id',$materia_id)->get();
         
         return response()->json($temas);
+    }
+
+    public function listarajax(){
+        $temas=Tema::join('materias','materias.id','temas.materia_id')
+                    ->select('temas.id','temas.tema','materias.materia')
+                    ->get();
+        return datatables()->of($temas)
+        ->addColumn('btn', 'tema.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+
     }
 
     /**

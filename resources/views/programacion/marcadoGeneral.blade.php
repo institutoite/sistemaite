@@ -405,6 +405,7 @@
                         $html+="<tr><td>Materia</td>"+"<td>"+json.programacion.docente.nombre+"</td></tr>";
                         $html+="<tr><td>Materia</td>"+"<td>"+json.programacion.materia.materia+"</td></tr>";
                         $html+="<tr><td>Aula</td>"+"<td>"+json.programacion.aula.aula+"</td></tr>";
+                        $html+="<tr><td>Usuario</td>"+"<td>"+json.user.name+"</td></tr>";
                         $("#tabla-mostrar-programacion").append($html);
 
                         $htmlObservaciones="";

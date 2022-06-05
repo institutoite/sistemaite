@@ -100,16 +100,14 @@ class ProgramacionController extends Controller
     public function mostrarClases(Request $request)
     {
         $programacion = Programacion::findOrFail($request->id);
-        
-        // $observaciones = $programacion->observaciones;
-        
         $observaciones=Observacion::join('programacions','programacions.id','observacions.observable_id')
 						->join('userables','userables.userable_id','observacions.id')
-						  ->join('users','userables.user_id','users.id')
-						  ->where('userables.userable_type',Observacion::class)
-						  ->where('programacions.id',$request->id)
-                          ->select('observacions.id','observacion','name')
-						  ->get();
+                        ->join('users','userables.user_id','users.id')
+                        ->where('userables.userable_type',Observacion::class)
+                        ->where('observacions.observable_type',Programacion::class)
+                        ->where('programacions.id',$request->id)
+                        ->select('observacions.id','observacion','name')
+                        ->get();
 
 
         $docente = $programacion->docente;
@@ -142,8 +140,9 @@ class ProgramacionController extends Controller
                     ->where('programacions.id',$request->id)
                     ->select('clases.id','clases.fecha','clases.horainicio','estados.estado','users.name as user','clases.horafin','docentes.nombre','materias.materia', 'aulas.aula','temas.tema')
                     ->get();
+        $user=User::findOrFail($programacion->inscripcione->userable->user_id);	
         
-        $data = ['programacion' => $programacion, 'estado'=>$estado,'observaciones' => $observaciones, 'docente' => $docente, 'materia' => $materia, 'aula' => $aula, 'clases' => $clases,'licencias'=>$licencias];
+        $data = ['programacion' => $programacion,'user'=> $user, 'estado'=>$estado,'observaciones' => $observaciones, 'docente' => $docente, 'materia' => $materia, 'aula' => $aula, 'clases' => $clases,'licencias'=>$licencias];
         return response()->json($data);
     }
 
