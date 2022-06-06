@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
 
 use App\Http\Requests\TipomotivoGuardarRequest;
 
@@ -46,6 +49,7 @@ class TipomotivoController extends Controller
         $tipomotivo = new Tipomotivo();
         $tipomotivo->tipomotivo = $request->tipomotivo;
         $tipomotivo->save();
+        $tipomotivo->userable()->create(['user_id'=>Auth::user()->id]);
         return redirect()->route('tipomotivo.index')
             ->with('success', 'Motivo created successfully.');
     }
@@ -63,9 +67,9 @@ class TipomotivoController extends Controller
     public function mostrar(Request $request)
     {
         $tipomotivo = Tipomotivo::findOrFail($request->id);
-        //$user = User::findOrFail($tipomotivo->userable->user_id);
+        $user = User::findOrFail($tipomotivo->userable->user_id);
 
-        $data=['tipomotivo'=>$tipomotivo];
+        $data=['tipomotivo'=>$tipomotivo,'user'=>$user];
         return response()->json($data);
     }
 

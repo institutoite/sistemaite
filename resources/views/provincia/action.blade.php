@@ -1,5 +1,3 @@
-
-
 <a href="{{route('provincias.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar este provincia">
     <i class="fa fa-fw fa-edit text-primary"></i>
 </a>

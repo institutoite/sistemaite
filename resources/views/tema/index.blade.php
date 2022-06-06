@@ -23,17 +23,17 @@
 
                             <div class="float-right">
                                 <a href="{{ route('tema.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                    {{ __('Crear Nuevo Pais') }}
+                                    {{ __('Crear Nuevo Tema') }}
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="temas" name="temas" class="table table-bordered table-hover table-striped">
+                            <table id="temas" class="table table-bordered table-hover table-striped">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>ID</th>
+                                        <th>IDx</th>
                                         <th>TEMA</th>
                                         <th>MATERIA</th>
                                         <th>ACCIONES</th>
@@ -66,10 +66,11 @@
                     "serverSide": true,
                     "responsive":true,
                     "autoWidth":false,
-                    "ajax": "{{ url('temas/listar')}}",
-                    "createdRow": function( row, data, dataIndex ) {
-                        $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
-                    },
+                    "ajax":"{{route('tema.listar')}}",
+                    // "createdRow": function( row, data, dataIndex ) {
+                    //     $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
+                    // },
+                    
                     "columns": [
                         {data: 'id'},
                         {data:'tema'},

@@ -51,7 +51,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[TemaController::class,'listarajax'])->name('prueba');
+Route::get('prueba',[TemaController::class,'lista'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -154,10 +154,15 @@ Route::post('computacion/carreras/configurar/{persona}', 'ComputacionController@
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  T E M A S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-Route::get('temas/{materia_id}','TemaController@listar')->name('tamas.listar');
-Route::get('temas/listar',[TemaController::class,'listarajax'])->name('tema.listar');
+Route::get('temas/{materia_id}',[TemaController::class,'listar'])->name('tamas.listar');
+Route::get('tema/index',[TemaController::class,'lista'])->name('tema.listar');
 Route::get('temas',[TemaController::class,'index'])->name('tema.index');
 Route::get('tema/create',[TemaController::class,'create'])->name('tema.create');
+Route::get('tema/show/{tema}',[TemaController::class,'show'])->name('tema.show');
+Route::get('tema/edit/{tema}',[TemaController::class,'edit'])->name('tema.edit');
+Route::delete('eliminar/tema/{tema}',[TemaController::class,'destroy'])->name('eliminar.tema');
+Route::patch('tema/actualizar/{tema}', [TemaController::class,'update'])->name('tema.update');
+Route::post('tema/store', [TemaController::class,'store'])->name('tema.store');
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  M A T E R I A S    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */

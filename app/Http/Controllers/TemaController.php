@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tema;
+use App\Models\Materia;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
+
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
 
 class TemaController extends Controller
 {
@@ -25,15 +30,15 @@ class TemaController extends Controller
         return response()->json($temas);
     }
 
-    public function listarajax(){
+    public function Lista(){
+        //return response()->json(['e'=>3]);
         $temas=Tema::join('materias','materias.id','temas.materia_id')
                     ->select('temas.id','temas.tema','materias.materia')
                     ->get();
         return datatables()->of($temas)
-        ->addColumn('btn', 'tema.action')
-        ->rawColumns(['btn'])
-        ->toJson();
-
+            ->addColumn('btn', 'tema.action')
+            ->rawColumns(['btn'])
+            ->toJson();
     }
 
     /**
@@ -43,7 +48,8 @@ class TemaController extends Controller
      */
     public function create()
     {
-        //
+        $materias=Materia::all();
+        return view('tema.create', compact('materias'));
     }
 
     /**
@@ -54,7 +60,12 @@ class TemaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tema= new Tema();
+        $tema->tema = $request->tema;
+        $tema->materia_id=$request->materia_id;
+        $tema->save();
+        $tema->userable()->create(['user_id'=>Auth::user()->id]);
+        return view('tema.index');
     }
 
     /**
@@ -65,7 +76,8 @@ class TemaController extends Controller
      */
     public function show(Tema $tema)
     {
-        //
+        $user=User::findOrFail($tema->userable->user_id);
+        return view('tema.show', compact('tema','user'));
     }
 
     /**
@@ -76,7 +88,8 @@ class TemaController extends Controller
      */
     public function edit(Tema $tema)
     {
-        //
+        $materias=Materia::all();
+        return view('tema.edit', compact('tema','materias'));
     }
 
     /**
@@ -88,7 +101,10 @@ class TemaController extends Controller
      */
     public function update(Request $request, Tema $tema)
     {
-        //
+        $tema->tema=$request->tema;
+        $tema->materia_id=$request->materia_id;
+        $tema->save();
+        return view('tema.index');
     }
 
     /**
@@ -99,7 +115,8 @@ class TemaController extends Controller
      */
     public function destroy(Tema $tema)
     {
-        //
+        $tema->delete();
+        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
      public function tema_of_materia($materia_id){  
         $temas=Tema::where('materia_id',$materia_id)->get();

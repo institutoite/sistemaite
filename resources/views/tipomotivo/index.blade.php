@@ -146,7 +146,7 @@
                         $html="";
                         $html+="<tr><td>ID</td>"+"<td>"+ json.tipomotivo.id +"</td></tr>";
                         $html+="<tr><td>TIPOMOTIVO</td>"+"<td>"+json.tipomotivo.tipomotivo+"</td></tr>";
-                        // $html+="<tr><td>CREADO POR </td>"+"<td>"+json.user.name+"</td></tr>";
+                        $html+="<tr><td>USUARIO </td>"+"<td>"+json.user.name+"</td></tr>";
                         $html+="<tr><td>CREADO</td>"+"<td>"+ moment(json.tipomotivo.created_at).format('LLLL') +"</td></tr>";
                         $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.tipomotivo.updated_at).format('LLLL')+"</td></tr>";
                         $("#tabla-mostrar").append($html);
