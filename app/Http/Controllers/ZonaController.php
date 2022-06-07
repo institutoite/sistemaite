@@ -71,8 +71,7 @@ class ZonaController extends Controller
     {
         $zona=Zona::findOrFail($id);
         $ciudades=Ciudad::get();
-        $paises=Pais::get();
-        return view('zona.editar',compact('ciudades','paises','zona'));
+        return view('zona.editar', compact('ciudades','zona'));
         
     }
 
@@ -85,13 +84,14 @@ class ZonaController extends Controller
      */
     public function update(ZonaUpdateRequest $request, $id)
     {
+        dd($request->all());
         $zona=Zona::findOrFail($id);
         $zona->zona=$request->zona;
         $zona->ciudad_id=$request->ciudad_id;
         $zona->save();
         $ciudad=Ciudad::findOrFail($request->ciudad_id);
         $Mensaje="Se actualizó correctamente el registro, Reviselo";
-        return view('zona.mostrar',compact('ciudad','Mensaje','zona'));
+        return view('zona.listar',compact('ciudad','Mensaje','zona'));
     }
 
     /**

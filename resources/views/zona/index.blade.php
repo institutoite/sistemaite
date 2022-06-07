@@ -1,10 +1,14 @@
 @extends('adminlte::page')
 
 @section('css')
-    
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
-@section('title', 'Paises')
+@section('title', 'Zonas')
+@section('plugins.Jquery', true)
+@section('plugins.Sweetalert2', true)
+@section('plugins.Datatables', true)
 
 @section('content_header')
     <h1 class="text-center text-primary">Paises</h1>
@@ -12,16 +16,23 @@
 @stop
 
 @section('content')
-    <table id="zonas" class="table table-bordered table-hover table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>ZONA</th>
-                <th>CIUDAD</th>
-                <th>ACCIONES</th>
-            </tr>
-        </thead>
-    </table>
+    <div class="card">
+        <div class="card-header">
+            Lista de Zonas
+        </div>
+        <div class="card-body">
+            <table id="zonas" class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ZONA</th>
+                        <th>CIUDAD</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
 @stop
 
 @section('js')
@@ -44,7 +55,7 @@
                     "columns": [
                         {data: 'id'},
                         {data:'zona'},
-                        {data:'ciudad_id'},
+                        {data:'ciudad'},
                         {data: 'btn'},
                     ],
                     "language":{

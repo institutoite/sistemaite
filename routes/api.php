@@ -158,7 +158,10 @@ Route::get('ciudades',function(){
         ->toJson();
 });
 Route::get('zonas',function(){
-    return datatables()->of(Zona::all())
+    $zonas=Zona::join('ciudads','ciudads.id','=','zonas.ciudad_id')
+        ->select('zonas.id','zonas.zona','ciudad')
+        ->get();
+    return datatables()->of($zonas)
         ->addColumn('btn','zona.action')
         ->rawColumns(['btn'])
         ->toJson();
