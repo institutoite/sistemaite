@@ -25,6 +25,9 @@
     </div>
 @stop
 
+
+
+
 @section('header')
     <section class="banner">
         <div class="container">
@@ -37,6 +40,7 @@
                             <a href="{{ route('about') }}" class="btn btn-tp ">Leer mas <i class="fa fa-angle-right ml-2"></i></a>  
                     </div>
                 </div>
+                
             </div> <!-- / .row -->
         </div> <!-- / .container -->
     </section>
@@ -49,10 +53,13 @@
                 <span class="subheading"></span>
                 <h3>{{$hometext->heading}}</h3>
                 <p>{{$hometext->subheading}}</p>
+
             </div>
         </div>
     </div>
 @stop
+
+
 
 @section('guarderia')
 
@@ -258,5 +265,7 @@
         </div>
     @endforeach
 @stop
+
+
 
 

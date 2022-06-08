@@ -31,6 +31,15 @@
   <link rel="stylesheet" href="assets/css/responsive.css">
 
   <link href="assets/images/faviconite.ico" rel="shortcut icon">
+
+  {{--  css de booth --}}
+<link href="{{asset('dist/css/booth/style.css')}}" rel="stylesheet" type="text/css" media="all" />
+<link href="{{asset('dist/css/booth/owl.carousel.css')}}" rel="stylesheet" type="text/css" media="all">
+<!-- //Custom Theme files -->
+<!-- web font -->
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'><!--web font-->
+<link href="//fonts.googleapis.com/css?family=Petit+Formal+Script" rel="stylesheet">
+
 </head>
 <body id="top-header">
     <header>
@@ -121,8 +130,8 @@
     </div>
 </header>
 
-        
-
+    @include('home.booth')
+    
  <!--search overlay start-->
  <div class="search-wrap">
     <div class="overlay">
@@ -147,7 +156,7 @@
 
 @yield('header')
 
-
+  
 <section class="feature">
     <div class="container">
         <div class="row no-gutters">
@@ -199,7 +208,7 @@
 <section class="section-padding category-section">
     <div class="container">
         @yield('heading')
-
+        
         <div class="row no-gutters">
             @foreach ($cursos as $curso)
                 <div class="col-lg-3 col-md-6">
@@ -755,8 +764,40 @@
     <!--  Owlk Carousel-->
     <script src="{{asset('assets/vendors/owl/owl.carousel.min.js')}}"></script>
     <script src="{{asset('assets/js/script.js')}}"></script>
-
-
+    
+    {{-- js de booth --}}
+    <script src="{{asset('dist/js/booth/jquery-1.9.1.min.js')}}"></script> 
+	<script src="{{asset('dist/js/booth/owl.carousel.js')}}"></script>
+	<script>
+		$(document).ready(function() { 
+			$("#owl-demo").owlCarousel({
+				
+			  autoPlay: 3000, //Set AutoPlay to 3 seconds 
+			  items : 3,
+			  itemsDesktop : [640,5],
+			  itemsDesktopSmall : [414,4]
+		 
+			}); 
+		}); 
+	</script> 
+	<!-- //js -->
+	<!-- popup js --> 
+	<script src="{{asset('dist/js/booth/jquery.magnific-popup.js')}}" type="text/javascript"></script>  
+	<script>
+		$(document).ready(function() {
+			$('.popup-with-zoom-anim').magnificPopup({
+				type: 'inline',
+				fixedContentPos: false,
+				fixedBgPos: true,
+				overflowY: 'auto',
+				closeBtnInside: true,
+				preloader: false,
+				midClick: true,
+				removalDelay: 300,
+				mainClass: 'my-mfp-zoom-in'
+			}); 															
+		});
+	</script>
   </body>
   </html>
    
