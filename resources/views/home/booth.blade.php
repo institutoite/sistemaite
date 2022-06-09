@@ -9,12 +9,12 @@
 							<p>BASICO50</p>
 						</div>
 						<div class="pricing-bottom"> 
-							<p>Diámetro 50 cm.<i class="fas fa-times text-danger"></i></p> 
-							<p>Brazo regulable  <i class="fas fa-times text-danger"></i></p> 
+							<p>Diámetro 50 cm.<i class="fas fa-check text-success"></i></p> 
+							<p>Largo de brazo regulable  <i class="fas fa-times text-danger"></i></p> 
 							<p>Control manual  <i class="fas fa-check text-success"></i></p> 
 							<p>Control alámbrico <i class="fas fa-times text-danger"></i></p> 
 							<p>Control inalámbrico <i class="fas fa-times text-danger"></i></p> 
-							<p>Capacidad 50Kg/Peso 25Kg.</p> 
+							<p>Capacidad 50Kg/Peso equipo 25Kg. <i class="fas fa-check text-success"></i></p> 
 							<p>Giron 2 sentidos <i class="fas fa-times text-danger"></i></p> 
 							<p>Costo Alquiler: Bs. 80/Hora <i class="fas fa-check text-success"></i></p>
 							<p> <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20mas%20información%20del%20videobooth360%20modelo%20BASICO50">Mas Información</a>  </p>
@@ -31,21 +31,22 @@
 							<p>BASICO60</p>
 						</div>
 						<div class="pricing-bottom"> 
-							<p>Diámetro 50 cm.<i class="fas fa-times text-danger"></i></p> 
-							<p>Brazo regulable  <i class="fas fa-times text-danger"></i></p> 
+							<p>Diámetro 60 cm.<i class="fas fa-check text-success"></i></p> 
+							<p>Inclinacion & Largo brazo regulable <i class="fas fa-check text-successr"></i></p> 
 							<p>Control manual  <i class="fas fa-check text-success"></i></p> 
-							<p>Control alámbrico <i class="fas fa-times text-danger"></i></p> 
+							<p>Control alámbrico <i class="fas fa-check text-success"></i></p> 
 							<p>Control inalámbrico <i class="fas fa-times text-danger"></i></p> 
-							<p>Capacidad 50 Kg.</p> 
-							<p>Giron 2 sentidos <i class="fas fa-times text-danger"></i></p> 
-							<p>Costo Alquiler: Bs. 80/Hora <i class="fas fa-check text-success"></i></p>
+							<p>Capacidad 75 Kg./Peso equipo 26 Kg.</p> 
+							<p>Velocidad y Sentido de giro único <i class="fas fa-times text-danger"></i></p> 
+							<p>Costo Alquiler: Bs. 100/Hora <i class="fas fa-check text-success"></i></p>
 							<p> <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20mas%20información%20del%20videobooth360%20modelo%20BASICO60">Mas Información</a>  </p>
 							<div class="agileits-buy">
 								<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20comprar%20el%20Videobooth360%20modelo%20BASICO60">Comprar</a>
 							</div>
 						</div>
 					</div> 
-				</div>  
+				</div> 
+				
 				<div class="item">
 					<div class="pricing pricing-two">
 						<div class="pricing-top top-two">
@@ -53,7 +54,7 @@
 							<p>STANDARD70</p>
 						</div>
 						<div class="pricing-bottom wthree"> 
-							<p>Diámetro 50 cm.<i class="fas fa-times text-danger"></i></p> 
+							<p>Diámetro 70 cm.<i class="fas fa-times text-danger"></i></p> 
 							<p>Brazo regulable  <i class="fas fa-times text-danger"></i></p> 
 							<p>Control manual  <i class="fas fa-check text-success"></i></p> 
 							<p>Control alámbrico <i class="fas fa-times text-danger"></i></p> 
