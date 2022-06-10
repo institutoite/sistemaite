@@ -10,13 +10,12 @@
 						</div>
 						<div class="pricing-bottom"> 
 							<p>Diámetro 50 cm.<i class="fas fa-check text-success"></i></p> 
-							<p>Largo de brazo regulable  <i class="fas fa-times text-danger"></i></p> 
 							<p>Control manual  <i class="fas fa-check text-success"></i></p> 
 							<p>Control alámbrico <i class="fas fa-times text-danger"></i></p> 
 							<p>Control inalámbrico <i class="fas fa-times text-danger"></i></p> 
-							<p>Capacidad 50Kg/Peso equipo 25Kg. <i class="fas fa-check text-success"></i></p> 
-							<p>Giron 2 sentidos <i class="fas fa-times text-danger"></i></p> 
-							<p>Costo Alquiler: Bs. 80/Hora <i class="fas fa-check text-success"></i></p>
+							<p>Capacidad 50Kg<i class="fas fa-check text-success"></i></p> 
+							<p>Velocidad Única <i class="fas fa-times text-danger"></i></p> 
+							<p>Alquiler: Bs. 80/Hra <i class="fas fa-check text-success"></i></p>
 							<p> <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20mas%20información%20del%20videobooth360%20modelo%20BASICO50">Mas Información</a>  </p>
 							<div class="agileits-buy">
 								<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20comprar%20el%20Videobooth360%20modelo%20BASICO50">Comprar</a>
@@ -31,14 +30,13 @@
 							<p>BASICO60</p>
 						</div>
 						<div class="pricing-bottom"> 
-							<p>Diámetro 60 cm.<i class="fas fa-check text-success"></i></p> 
-							<p>Inclinacion & Largo brazo regulable <i class="fas fa-check text-successr"></i></p> 
+							<p>Diámetro 60 cm. <i class="fas fa-check text-success"></i></p> 
 							<p>Control manual  <i class="fas fa-check text-success"></i></p> 
-							<p>Control alámbrico <i class="fas fa-check text-success"></i></p> 
+							<p>Control alámbrico <i class="fas fa-times text-danger"></i></p> 
 							<p>Control inalámbrico <i class="fas fa-times text-danger"></i></p> 
-							<p>Capacidad 75 Kg./Peso equipo 26 Kg.</p> 
-							<p>Velocidad y Sentido de giro único <i class="fas fa-times text-danger"></i></p> 
-							<p>Costo Alquiler: Bs. 100/Hora <i class="fas fa-check text-success"></i></p>
+							<p>Capacidad 75Kg<i class="fas fa-check text-success"></i></p> 
+							<p>Velocidad ünica <i class="fas fa-times text-danger"></i></p> 
+							<p>Alquiler: Bs. 100/Hra <i class="fas fa-check text-success"></i></p>
 							<p> <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20mas%20información%20del%20videobooth360%20modelo%20BASICO60">Mas Información</a>  </p>
 							<div class="agileits-buy">
 								<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20comprar%20el%20Videobooth360%20modelo%20BASICO60">Comprar</a>
@@ -54,14 +52,13 @@
 							<p>STANDARD70</p>
 						</div>
 						<div class="pricing-bottom wthree"> 
-							<p>Diámetro 70 cm.<i class="fas fa-times text-danger"></i></p> 
-							<p>Brazo regulable  <i class="fas fa-times text-danger"></i></p> 
+							<p>Diámetro 70 cm. <i class="fas fa-check text-success"></i></p> 
 							<p>Control manual  <i class="fas fa-check text-success"></i></p> 
-							<p>Control alámbrico <i class="fas fa-times text-danger"></i></p> 
-							<p>Control inalámbrico <i class="fas fa-times text-danger"></i></p> 
-							<p>Capacidad 50 Kg.</p> 
-							<p>Giron 2 sentidos <i class="fas fa-times text-danger"></i></p> 
-							<p>Costo Alquiler: Bs. 80/Hora <i class="fas fa-check text-success"></i></p>
+							<p>Control alámbrico <i class="fas fa-check text-success"></i></p> 
+							<p>Control inalámbrico <i class="fas fa-check text-success"></i></p> 
+							<p>Capacidad 100 Kg <i class="fas fa-check text-success"></i></p> 
+							<p>Velocidad Regulable <i class="fas fa-check text-success"></i> </p> 
+							<p>Alquiler: Bs. 120/Hra <i class="fas fa-check text-success"></i></p>
 							<p> <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20mas%20información%20del%20videobooth360%20modelo%20STANDART70">Mas Información</a>  </p>
 							<div class="agileits-buy">
 								<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20comprar%20el%20Videobooth360%20modelo%20STANDARD70">Comprar</a>
@@ -73,17 +70,16 @@
 					<div class="pricing pricing-three agileits">
 						<div class="pricing-top top-three">
 							<h3>Bs. 7500</h3>
-							<p>STANDART80</p>
+							<p>STANDARD80</p>
 						</div>
 						<div class="pricing-bottom"> 
-							<p>Diámetro 50 cm.<i class="fas fa-times text-danger"></i></p> 
-							<p>Brazo regulable  <i class="fas fa-times text-danger"></i></p> 
+							<p>Diámetro 80 cm. <i class="fas fa-check text-success"></i></p> 
 							<p>Control manual  <i class="fas fa-check text-success"></i></p> 
-							<p>Control alámbrico <i class="fas fa-times text-danger"></i></p> 
-							<p>Control inalámbrico <i class="fas fa-times text-danger"></i></p> 
-							<p>Capacidad 50 Kg.</p> 
-							<p>Giron 2 sentidos <i class="fas fa-times text-danger"></i></p> 
-							<p>Costo Alquiler: Bs. 80/Hora <i class="fas fa-check text-success"></i></p>
+							<p>Control alámbrico <i class="fas fa-check text-success"></i></p> 
+							<p>Control inalámbrico <i class="fas fa-check text-success"></i></p> 
+							<p>Capacidad 160 Kg <i class="fas fa-check text-success"></i></p> 
+							<p>Velocidad Regulable <i class="fas fa-check text-success"></i> </p> 
+							<p>Alquiler: Bs. 140/Hra <i class="fas fa-check text-success"></i></p>
 							<p> <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20mas%20información%20del%20videobooth360%20modelo%20STANDART80">Mas Información</a>  </p>
 							<div class="agileits-buy">
 								<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20comprar%20el%20Videobooth360%20modelo%20STANDART80">Comprar</a>
@@ -94,18 +90,17 @@
 				<div class="item">
 					<div class="pricing pricing-two">
 						<div class="pricing-top top-two">
-							<h3>Bs. 7500</h3>
+							<h3>Bs. 7600</h3>
 							<p>PROFESIONAL85</p>
 						</div>
 						<div class="pricing-bottom"> 
-							<p>Diámetro 50 cm.<i class="fas fa-times text-danger"></i></p> 
-							<p>Brazo regulable  <i class="fas fa-times text-danger"></i></p> 
+							<p>Diámetro 85 cm. <i class="fas fa-check text-success"></i></p> 
 							<p>Control manual  <i class="fas fa-check text-success"></i></p> 
-							<p>Control alámbrico <i class="fas fa-times text-danger"></i></p> 
-							<p>Control inalámbrico <i class="fas fa-times text-danger"></i></p> 
-							<p>Capacidad 50 Kg.</p> 
-							<p>Giron 2 sentidos <i class="fas fa-times text-danger"></i></p> 
-							<p>Costo Alquiler: Bs. 80/Hora <i class="fas fa-check text-success"></i></p>
+							<p>Control alámbrico <i class="fas fa-check text-success"></i></p> 
+							<p>Control inalámbrico <i class="fas fa-check text-success"></i></p> 
+							<p>Capacidad 180 Kg <i class="fas fa-check text-success"></i></p> 
+							<p>Velocidad Regulable <i class="fas fa-check text-success"></i> </p> 
+							<p>Alquiler: Bs. 150/Hra <i class="fas fa-check text-success"></i></p>
 							<p> <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20mas%20información%20del%20videobooth360%20modelo%20PROFESIONAL85">Mas Información</a>  </p>
 							<div class="agileits-buy">
 								<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20comprar%20el%20Videobooth360%20modelo%20PROFESIONAL85">Comprar</a>
@@ -117,90 +112,26 @@
 					<div class="pricing pricing-three">
 						<div class="pricing-top top-three">
 							<h3>Bs. 8000</h3>
-							<p>Diámentro 90 cm</p>
+							<p>EXTRA90</p>
 						</div>
 						<div class="pricing-bottom w3ls"> 
-							<p>Diámetro 50 cm.<i class="fas fa-times text-danger"></i></p> 
-							<p>Brazo regulable  <i class="fas fa-times text-danger"></i></p> 
+							<p>Diámetro 90 cm. <i class="fas fa-check text-success"></i></p> 
 							<p>Control manual  <i class="fas fa-check text-success"></i></p> 
-							<p>Control alámbrico <i class="fas fa-times text-danger"></i></p> 
-							<p>Control inalámbrico <i class="fas fa-times text-danger"></i></p> 
-							<p>Capacidad 50 Kg.</p> 
-							<p>Giron 2 sentidos <i class="fas fa-times text-danger"></i></p> 
-							<p>Costo Alquiler: Bs. 80/Hora <i class="fas fa-check text-success"></i></p>
-							<p> <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20mas%20información%20del%20videobooth360%20modelo%20BASICO50">Mas Información</a>  </p>
+							<p>Control alámbrico <i class="fas fa-check text-success"></i></p> 
+							<p>Control inalámbrico <i class="fas fa-check text-success"></i></p> 
+							<p>Capacidad 200 Kg <i class="fas fa-check text-success"></i></p> 
+							<p>Velocidad Regulable <i class="fas fa-check text-success"></i> </p> 
+							<p>Alquiler: Bs. 175/Hra <i class="fas fa-check text-success"></i></p>
+							<p> <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20mas%20información%20del%20videobooth360%20modelo%20EXTRA90">Mas Información</a>  </p>
 							<div class="agileits-buy">
-								<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20comprar%20el%20Videobooth360%20modelo%20BASICO50">Comprar</a>
+								<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20comprar%20el%20Videobooth360%20modelo%20EXTRA90">Comprar</a>
 							</div>
 						</div>
 					</div>
 				</div>  	
-				<div class="item">
-					<div class="pricing pricing-two">
-						<div class="pricing-top top-two">
-							<h3>Bs. 8500</h3>
-							<p>Diámentro 95 cm</p>
-						</div>
-						<div class="pricing-bottom w3layouts"> 
-							<p>Diámetro 50 cm.<i class="fas fa-times text-danger"></i></p> 
-							<p>Brazo regulable  <i class="fas fa-times text-danger"></i></p> 
-							<p>Control manual  <i class="fas fa-check text-success"></i></p> 
-							<p>Control alámbrico <i class="fas fa-times text-danger"></i></p> 
-							<p>Control inalámbrico <i class="fas fa-times text-danger"></i></p> 
-							<p>Capacidad 50 Kg.</p> 
-							<p>Giron 2 sentidos <i class="fas fa-times text-danger"></i></p> 
-							<p>Costo Alquiler: Bs. 80/Hora <i class="fas fa-check text-success"></i></p>
-							<p> <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20mas%20información%20del%20videobooth360%20modelo%20BASICO50">Mas Información</a>  </p>
-							<div class="agileits-buy">
-								<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20comprar%20el%20Videobooth360%20modelo%20BASICO50">Comprar</a>
-							</div>
-						</div>
-					</div> 
-				</div> 
-				<div class="item">
-					<div class="pricing pricing-three">
-						<div class="pricing-top top-three">
-							<h3>Bs. 9000</h3>
-							<p>Diámentro 100cm</p>
-						</div>
-						<div class="pricing-bottom"> 
-							<p>Diámetro 50 cm.<i class="fas fa-times text-danger"></i></p> 
-							<p>Brazo regulable  <i class="fas fa-times text-danger"></i></p> 
-							<p>Control manual  <i class="fas fa-check text-success"></i></p> 
-							<p>Control alámbrico <i class="fas fa-times text-danger"></i></p> 
-							<p>Control inalámbrico <i class="fas fa-times text-danger"></i></p> 
-							<p>Capacidad 50 Kg.</p> 
-							<p>Giron 2 sentidos <i class="fas fa-times text-danger"></i></p> 
-							<p>Costo Alquiler: Bs. 80/Hora <i class="fas fa-check text-success"></i></p>
-							<p> <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20mas%20información%20del%20videobooth360%20modelo%20BASICO50">Mas Información</a>  </p>
-							<div class="agileits-buy">
-								<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20comprar%20el%20Videobooth360%20modelo%20BASICO50">Comprar</a>
-							</div>
-						</div>
-					</div> 
-				</div>  
-				<div class="item">
-					<div class="pricing pricing-two">
-						<div class="pricing-top top-two">
-							<h3>Bs. 10000</h3>
-							<p>Diámentro 105 cm</p>
-						</div>
-						<div class="pricing-bottom w3layouts"> 
-							<p>Diámetro 50 cm.<i class="fas fa-times text-danger"></i></p> 
-							<p>Brazo regulable  <i class="fas fa-times text-danger"></i></p> 
-							<p>Control manual  <i class="fas fa-check text-success"></i></p> 
-							<p>Control alámbrico <i class="fas fa-times text-danger"></i></p> 
-							<p>Control inalámbrico <i class="fas fa-times text-danger"></i></p> 
-							<p>Capacidad 50 Kg.</p> 
-							<p>Giron 2 sentidos <i class="fas fa-times text-danger"></i></p> 
-							<p>Costo Alquiler: Bs. 80/Hora <i class="fas fa-check text-success"></i></p>
-							<p> <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20mas%20información%20del%20videobooth360%20modelo%20BASICO50">Mas Información</a>  </p>
-							<div class="agileits-buy">
-								<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20comprar%20el%20Videobooth360%20modelo%20BASICO50">Comprar</a>
-							</div>
-						</div>
-					</div> 
-				</div>     
+				
+				
+				 
 			</div>	
 			<!-- //owl-carousel -->
 		</div>	
