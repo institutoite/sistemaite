@@ -8,9 +8,9 @@ boton imprimir pdf formulario para registro rapido
 cuando se guarda rapidingo el telefono del apoderado no se muestra corretamente en los Telefonos
 calificar al estudiante cuando termine la inscripcion calificable
 programar subir archivos documentos digitales
-
 que todos los mostrar tengan quien hizo el registro correpondiente
 validar intereses al crear personas
+
 en presentes aumentar guarderia, robotica  
 no se ve el boton siguiente o guardar cuando se toma foto con camara
 agregar boton compartir Credenciales de usuario de cliente

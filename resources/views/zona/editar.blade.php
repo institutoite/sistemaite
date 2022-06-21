@@ -1,12 +1,8 @@
 @extends('adminlte::page')
-@section('css')
-    
+@section('css') 
 @stop
 
 @section('title', 'Editar')
-
-@section('content_header')
-@stop
 
 @section('content')
     <div class="card">

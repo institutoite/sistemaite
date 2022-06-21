@@ -26,7 +26,7 @@ class ZonaUpdateRequest extends FormRequest
         return [
             'zona'=>'required|max:100|unique:zonas,zona',
             'ciudad_id'=>'required|integer|not_in:0',
-            'pais_id'=>'required|integer|not_in:0',
+            //'pais_id'=>'required|integer|not_in:0',
         ];
     }
 }

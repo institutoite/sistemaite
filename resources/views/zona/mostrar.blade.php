@@ -1,39 +1,48 @@
 @extends('adminlte::page')
-
-@section('title', 'Dashboard')
-
-@section('content_header')
-    <h1>Pais: {{$pais->nombrepais}}</h1>
+@section('css')
+    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
 @stop
 
+@section('title', 'Mostrar Zona')
+
 @section('content')
-    @isset($Mensaje)
-        <p>{{$Mensaje}}</p>    
-    @endisset
-    
     <div class="card">
+        <div class="card-header bg-secondary">
+            <h3>Zona: {{$zona->zona}}</h3>
+        </div>
         <div class="card-body">
-            <table class="table table-bordered table-striped"> 
+            <table class="table table-bordered table-striped table-hover"> 
                 <tr class="bg-primary">
                         <th>ATRIBUTO</th>
                         <th>VALOR</th>
                 </tr>
                 <tbody>
                     <tr>
-                        <td>Id</td>
-                        <td>{{$pais->id}}</td>
+                        <td>ID</td>
+                        <td>{{$zona->id}}</td>
                     </tr>
                     <tr>
-                        <td>Pais</td>
-                        <td>{{$pais->nombrepais}}</td>
+                        <td>Zona</td>
+                        <td>{{$zona->zona}}</td>
+                    </tr>
+                    <tr>
+                        <td>Ciudad</td>
+                        <td>{{App\Models\Ciudad::findOrFail($zona->ciudad_id)->ciudad}}</td>
+                    </tr>
+                   <tr>
+                        <td>Usuario</td>
+                        <td>
+                            {{$user->name}}
+                            <img  width="200px" src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5"> 
+                        </td>
                     </tr>
                     <tr>
                         <td>Creado</td>
-                        <td>{{$pais->created_at}}</td>
+                        <td>{{$zona->created_at}}</td>
                     </tr>
                     <tr>
                         <td>Actualizado</td>
-                        <td>{{$pais->updated_at}}</td>
+                        <td>{{$zona->updated_at}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -43,11 +52,6 @@
     
 @stop
 
-@section('css')
-   
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
-@stop
-
 @section('js')
-    <script> console.log('Hi!'); </script>
+
 @stop

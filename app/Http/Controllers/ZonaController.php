@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ZonaStoreRequest;
 use App\Http\Requests\ZonaUpdateRequest;
 
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
 class ZonaController extends Controller
 {
     /**
@@ -47,6 +50,7 @@ class ZonaController extends Controller
         $zonaNueva->zona=$request->zona;
         $zonaNueva->ciudad_id=$request->ciudad_id;
         $zonaNueva->save();
+        $zonaNueva->userable()->create(['user_id'=>Auth::user()->id]);
         return redirect()->back()->with('mensaje','Registro creado satisfactoriamente');
     }
 
@@ -58,7 +62,9 @@ class ZonaController extends Controller
      */
     public function show(Zona $zona)
     {
-        //
+        //if (isset($zona->userable))
+        $user=User::findOrFail($zona->userable->user_id);
+        return view('zona.mostrar',compact('zona','user'));
     }
 
     /**
@@ -84,14 +90,13 @@ class ZonaController extends Controller
      */
     public function update(ZonaUpdateRequest $request, $id)
     {
-        dd($request->all());
         $zona=Zona::findOrFail($id);
         $zona->zona=$request->zona;
         $zona->ciudad_id=$request->ciudad_id;
         $zona->save();
         $ciudad=Ciudad::findOrFail($request->ciudad_id);
         $Mensaje="Se actualizó correctamente el registro, Reviselo";
-        return view('zona.listar',compact('ciudad','Mensaje','zona'));
+        return view('zona.index',compact('ciudad','Mensaje','zona'));
     }
 
     /**

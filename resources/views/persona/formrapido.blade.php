@@ -209,7 +209,7 @@
             </div>
         </div>
         
-        <textarea rows="10" class="@error('interests') is-invalid @enderror" placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" >{{old('observacion',$observacion ?? 'Este es un requerimiento del cliente')}}</textarea>
+        <textarea rows="10" class="@error('observacion') is-invalid @enderror" placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" >{{old('observacion',$observacion ?? 'Este es un requerimiento del cliente')}}</textarea>
         
         
        

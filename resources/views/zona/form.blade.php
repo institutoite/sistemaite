@@ -1,31 +1,3 @@
-
-{{-- $$$$$$$$$$$ CAMPO PAIS --}}
-{{-- <div class="row"> 
-    <div class="input-group mb-2" >
-        <label class="col-3 form-control bg-primary" for="">PAIS</label> 
-        <select class="form-control" data-old="{{ old('pais_id') }}" name="pais_id" id="country">
-            <option value=""> Elija una país</option>
-            @foreach ($paises as $pais)
-                @isset($zona)     
-                    <option  value="{{$pais->id}}" {{$pais->id==$zona->pais_id ? 'selected':''}}>{{$pais->nombrepais}}</option>     
-                @else
-                    <option value="{{ $pais->id }}" {{ old('pais') == $pais->id ? 'selected':'' }} >{{ $pais->nombrepais }}</option>
-                @endisset 
-            @endforeach
-        </select>
-    </div>
-</div> --}}
-{{-- <div class="row">
-    <div class="col-3"></div>
-    <div class="col-9">
-        @if($errors->has('pais_id'))
-            <p class="text-danger"> {{ $errors->first('pais_id')}}</p>
-        @endif
-    </div>
-</div> --}}
-
-
-{{-- $$$$$$$$$$$ CAMPO CIUDAD --}}
 <div class="row"> 
     <div class="input-group mb-2" >
         <label class="col-3 form-control bg-primary" for="">CIUDAD</label> 

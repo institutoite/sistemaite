@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Models\Zona;
 use App\Models\Pais;
 use App\Models\Persona;
 use App\Models\Observacion;
@@ -165,6 +166,30 @@ class UserSeeder extends Seeder
         
         Persona::findOrFail(36)->userable()->create(['user_id'=>1]);
         Persona::findOrFail(37)->userable()->create(['user_id'=>1]);
+
+
+        Zona::findOrFail(1)->userable()->create(['user_id'=>1]);
+        Zona::findOrFail(2)->userable()->create(['user_id'=>1]);
+        Zona::findOrFail(3)->userable()->create(['user_id'=>1]);
+        Zona::findOrFail(4)->userable()->create(['user_id'=>1]);
+        Zona::findOrFail(5)->userable()->create(['user_id'=>1]);
+        
+        Zona::findOrFail(6)->userable()->create(['user_id'=>1]);
+        Zona::findOrFail(7)->userable()->create(['user_id'=>1]);
+        Zona::findOrFail(8)->userable()->create(['user_id'=>1]);
+        Zona::findOrFail(9)->userable()->create(['user_id'=>1]);
+        Zona::findOrFail(10)->userable()->create(['user_id'=>1]);
+        
+        Zona::findOrFail(11)->userable()->create(['user_id'=>1]);
+        Zona::findOrFail(12)->userable()->create(['user_id'=>1]);
+        Zona::findOrFail(13)->userable()->create(['user_id'=>1]);
+        Zona::findOrFail(14)->userable()->create(['user_id'=>1]);
+        Zona::findOrFail(15)->userable()->create(['user_id'=>1]);
+        
+        Zona::findOrFail(16)->userable()->create(['user_id'=>1]);
+        Zona::findOrFail(17)->userable()->create(['user_id'=>1]);
+        Zona::findOrFail(18)->userable()->create(['user_id'=>1]);
+        Zona::findOrFail(19)->userable()->create(['user_id'=>1]);
     }
 }
 

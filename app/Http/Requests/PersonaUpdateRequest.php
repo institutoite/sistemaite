@@ -42,6 +42,7 @@ class PersonaUpdateRequest extends FormRequest
             "foto" => 'nullable|file',
             "papel" =>'required|string',
             "telefono" => 'max:8',
+            'interests'=>'required',
         ];
         
     }
