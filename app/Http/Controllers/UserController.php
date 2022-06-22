@@ -183,8 +183,12 @@ class UserController extends Controller
     }
     
     public function share(Persona $persona){
+        //dd($persona);
         $apoderados= $persona->apoderados;
-        return view('telefono.index',compact('persona','apoderados'));
+        $user=$persona->user;
+        $pass=ucfirst(strtolower($persona->nombre).$persona->id).'*';
+        
+        return view('user.telefonos',compact('persona','apoderados','user','pass'));
     }
     public function quien(Request $request){
         $useres=User::join('userables','userables.user_id','users.id')

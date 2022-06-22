@@ -1,0 +1,114 @@
+@extends('adminlte::page')
+
+@section('css')
+@stop
+
+@section('title', 'Telefonos')
+
+@section('content_header')
+    <h1 class="text-center text-primary">Telefonos <span class="text-secondary">{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}} </span> </h1>
+@stop
+
+@section('content')
+
+    @if ($persona->isEstudiante())
+        {{-- {{dd($persona->estudiante->id)}} --}}
+        <a class="btn btn-outline-success float-right mb-3 mr-3" href="{{route('opcion.principal',$persona->estudiante->id)}}"><i class="fas fa-ellipsis-v"></i> Ir Opciones <i class="fas fa-th-list"></i></i></a>
+    @endif
+
+    
+
+    
+    @if ($persona->isDocente())
+        <a class="btn btn-outline-success float-right mb-3 mr-3" href="{{route('opcion.principal',$persona->id)}}"><i class="fas fa-ellipsis-v"></i> Ir Opciones <i class="fas fa-th-list"></i></i></a>
+    @endif
+    @if ($persona->isAdministrativo())
+        <a class="btn btn-outline-success float-right mb-3 mr-3" href="{{route('opcion.administrativos',$persona->id)}}"><i class="fas fa-ellipsis-v"></i> Ir Opciones <i class="fas fa-th-list"></i></i></a>
+    @endif
+    
+    
+    <table id="telefonos" class="table table-hover table-bordered table-striped display responsive nowrap" width="100%">
+        <thead class="bg-primary">
+            <th>#</th>
+            <th>CONTACTO</th>
+            <th>NUMERO</th>
+            <th>PARENTESCO</th>
+            <th>ACTUALIZADO</th>
+            <th width="120px">Opciones</th>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>1</td>
+                    <td>
+                        {{$persona->nombre.' '.$persona->apellidop}}
+                    </td>
+                    <td>
+                        <a href="tel:{{$persona->telefono}}">{{$persona->telefono}}</a> 
+                    </td>
+                    <td>
+                        PERSONAL
+                    </td>
+                    <td>{{$persona->updated_at}}</td>
+                    <td>
+                        <a target="_blank" href="https://api.whatsapp.com/send?phone={{$persona->telefono}}&text={{$user->name}}" class="btn-accion-tabla tooltipsC mr-2" title="Editar este número">
+                            <i class="fas fa-share-square fa-2x"></i>
+                        </a> 
+                    </td>
+            </tr>
+
+            @foreach ($apoderados as $apoderado)
+                <tr>
+                    <td>{{$loop->iteration+1}}</td>
+                    <td>
+                        {{$apoderado->nombre.' '.$apoderado->apellidop.' '.$apoderado->apellidom}}
+                    </td>
+                    <td>
+                        <a href="tel:{{$apoderado->telefono}}">{{$apoderado->telefono}}</a> 
+                    </td>
+                    <td>
+                        {{$apoderado->pivot->parentesco}}
+                    </td>
+                    <td>{{$apoderado->updated_at}}</td>
+                    <td>
+                         <a target="_blank" href="https://api.whatsapp.com/send?phone={{$apoderado->telefono}}&text={{$user->name.$pass}}" class="btn-accion-tabla tooltipsC mr-2" title="Editar este número">
+                            <i class="fas fa-share-square fa-2x"></i>
+                        </a> 
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+
+
+    {{-- <a class="btn btn-outline-success float-right" href="{{route('opcion.principal',$persona)}}" target="_blank"><i class="fas fa-ellipsis-v"></i> Ir Opciones <i class="fas fa-th-list"></i></i></a> --}}
+@stop
+
+@section('js')
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
+    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
+    
+    @if (session('mensaje')=='Contacto Creado Corectamente')
+        <script>
+            Swal.fire({
+                position: 'top-start',
+                type: 'success',
+                title: 'Contacto Guardado Correctamente',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        </script>
+        
+    @endif
+    <script>
+        $(document).ready(function() {
+           
+          
+        } );
+    </script>
+@stop

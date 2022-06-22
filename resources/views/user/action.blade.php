@@ -19,7 +19,7 @@
 <a href="{{route('messages.create', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Enviar mensaje">
     <i class="fa fa-fw fa-envelope text-primary mostrar"></i>
 </a>
-<a href="{{route('share.credentials', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Compartir credenciales">
+<a href="{{route('share.credentials', App\Models\Persona::find($id))}}" class="btn-accion-tabla tooltipsC mr-1" title="Compartir credenciales">
     <i class="fas fa-share-alt"></i>
 </a>
 
