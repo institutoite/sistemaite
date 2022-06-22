@@ -19,7 +19,7 @@
                             <span class="card-title">Mostrar Materia</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('materias.index') }}"> Listar Archivos </a>
+                            <a class="btn btn-primary" href="{{ route('materias.index') }}"> Listar Materias </a>
                         </div>
                     </div>
 

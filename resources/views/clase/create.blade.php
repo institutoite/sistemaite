@@ -25,7 +25,7 @@
             </div>
             <div class="card-body">
                 <div class="alert alert-primary" role="alert">
-                    <h4 class="alert-heading">Objetivo</h4>
+                    <h4 class="alert-heading">{!! "Horario: ".$programa->hora_ini->toTimeString().' '.($programa->hora_fin)->toTimeString() !!}</h4>
                     {!! $inscripcion->objetivo !!}
                 </div>
                 <form method="POST" action="{{ route('clases.guardar',$programa->id) }}"  role="form" enctype="multipart/form-data">

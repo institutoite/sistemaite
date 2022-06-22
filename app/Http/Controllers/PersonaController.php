@@ -79,7 +79,7 @@ class PersonaController extends Controller
      * @return \Illuminate\Http\Response
      */
     // public function store(PersonaStoreRequest $request)
-    public function store(Request $request)
+    public function store(PersonaStoreRequest $request)
     {
        
         $persona=new Persona();
@@ -482,6 +482,10 @@ class PersonaController extends Controller
         //Storage::put(storage_path() . '/public/App/' . $imageName, base64_decode($image));
         $persona->foto=$imageName;
         $persona->save();
+        $user=$persona->user;
+        $user->foto=$persona->foto;
+        $user->save();
+
         return redirect()->Route('telefonos.crear',['persona'=>$persona]);
     }
     public function guardarfotojpg(Request $request, Persona $persona){

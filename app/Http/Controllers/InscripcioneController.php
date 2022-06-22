@@ -108,8 +108,8 @@ class InscripcioneController extends Controller
         }
         
         $modalidades = $ultimo_nivel->modalidades;
-        // dd($modalidades);
         if($ultimo_nivel->nivel=='GUARDERIA'){
+            //dd($ultimo_nivel);
             return view('inscripcione.guarderia.create', compact('modalidades', 'motivos','persona','ultima_inscripcion'));
         }
         else{
@@ -156,7 +156,7 @@ class InscripcioneController extends Controller
         $tipo = 'guardando';    
         $programacion = $inscripcion->programaciones;
         if ($nivel->nivel=='GUARDERIA'){
-            return view('inscripcione.configurar', compact('datos','nivel','inscripcion', 'materias', 'aulas', 'docentes', 'tipo', 'dias', 'programacion')); 
+            return view('inscripcione.guarderia.config', compact('datos','nivel','inscripcion', 'materias', 'aulas', 'docentes', 'tipo', 'dias', 'programacion')); 
         }else{
             return view('inscripcione.configurar', compact('nivel','inscripcion', 'materias', 'aulas', 'docentes', 'tipo', 'dias', 'programacion')); 
         }
