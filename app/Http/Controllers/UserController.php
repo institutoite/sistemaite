@@ -181,11 +181,12 @@ class UserController extends Controller
         $usuario->delete();
         return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
+    
+    public function share(Persona $persona){
+        $apoderados= $persona->apoderados;
+        return view('telefono.index',compact('persona','apoderados'));
+    }
     public function quien(Request $request){
-        //return response()->json($request->tu);
-        //$request->tipo_id=69;
-        // $tipo_type=Observacion::class;
-        //return response()->json(['tipo'=> $request->tipo_id]);
         $useres=User::join('userables','userables.user_id','users.id')
             ->where('userable_id',69)
             ->where('userables.userable_type',"App\\Models\\Observacion")

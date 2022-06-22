@@ -385,6 +385,7 @@ Route::delete('eliminar/asignatura/{asignatura}', [AsignaturaController::class,'
 
 Route::get('user/crear', "UserController@crear")->name('users.crear');
 Route::post('user/guardar', "UserController@guardar")->name('users.guardar');
+Route::get('share/credential/{user}', [UserController::class,'share'])->name('share.credentials');
 
 
 
