@@ -40,6 +40,8 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Hash;
 
 
+use Illuminate\Support\Facades\Crypt;
+
 
 class PersonaController extends Controller
 {
@@ -125,6 +127,7 @@ class PersonaController extends Controller
         $user->email =strtolower(Str::substr($persona->nombre, 1, 2).$persona->apellidop.$persona->id)."@ite.com.bo" ;
         $user->name = ucfirst(strtolower($persona->nombre).$persona->id);
         $user->persona_id = $persona->id;
+        // $user->password = Crypt::encryptString($user->name."*");
         $user->password = Hash::make($user->name."*");
         $user->foto = "estudiantes/sinperfil.png";
         $user->save();

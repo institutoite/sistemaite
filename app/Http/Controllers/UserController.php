@@ -15,6 +15,8 @@ use Alert;
 use App\Models\Persona;
 use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Support\Facades\Crypt;
+
 //use UxWeb\SweetAlert\SweetAlert as SweetAlertSweetAlert;
 
 /**
@@ -182,12 +184,13 @@ class UserController extends Controller
         return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
     
-    public function share(Persona $persona){
-        //dd($persona);
+    public function share(User $user){
+        $persona=$user->persona;
         $apoderados= $persona->apoderados;
         $user=$persona->user;
         $pass=ucfirst(strtolower($persona->nombre).$persona->id).'*';
-        
+        //dd(Crypt::decryptString($user->password));
+        //dd($pass);
         return view('user.telefonos',compact('persona','apoderados','user','pass'));
     }
     public function quien(Request $request){

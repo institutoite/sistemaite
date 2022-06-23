@@ -71,7 +71,7 @@
                     </td>
                     <td>{{$apoderado->updated_at}}</td>
                     <td>
-                         <a target="_blank" href="https://api.whatsapp.com/send?phone={{$apoderado->telefono}}&text={{$user->name.$pass}}" class="btn-accion-tabla tooltipsC mr-2" title="Editar este número">
+                         <a target="_blank" href="https://api.whatsapp.com/send?phone={{$apoderado->telefono}}&text={{'Le escribimos de Instituto ite para pasarle su credenciales del sistema %0A Usuario: *'.$user->name.'* %0A Contraseña: *'.$pass.'* '.'%0A'.' Desde la aplicación podrá ver la programación de su inscripción Ademas le recomendamos cambiar su contraseña y usuario para que sea mas seguro'}}" class="btn-accion-tabla tooltipsC mr-2" title="Editar este número">
                             <i class="fas fa-share-square fa-2x"></i>
                         </a> 
                     </td>
