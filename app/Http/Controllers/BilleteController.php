@@ -72,7 +72,7 @@ class BilleteController extends Controller
         
         if(($pago->monto!=$montoBilletes)||($pago->cambio!=$cambioBilletes)){
             $mensaje="La cantidad de Billetes es incorrecta: ";
-            return back()->withInput()->with(['mensaje'=>$mensaje,'monto'=>$montoBilletes,'cambio'=>$cambioBilletes]);
+            return back()->withInput()->with(['mensaje'=>$mensaje,'pagocon'=>$montoBilletes,'cambio'=>$cambioBilletes]);
         }else{
             $vector_cantidad_billetes=[];
             if($request->billete200 != 0){ $vector_cantidad_billetes['1']= $request->billete200;}

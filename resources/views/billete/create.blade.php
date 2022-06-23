@@ -31,7 +31,7 @@
                         @csrf
                         <div class="card">
                             <div class="card-header bg-primary">
-                                PAGOS {{$pago->monto}} Bs.
+                                PAGOS {{$pago->pagocon}} Bs.
                             </div>
                             <div class="card-body border border-3 border-primary turqueza_suave">
                                 @include('billete.form')

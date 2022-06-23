@@ -14,8 +14,8 @@
                         <h4 class="alert-heading">{{ Auth::user()->name }}!  favor corregir el o los siguientes errores</h4> 
                             {{session('mensaje')}}
                             <ol>
-                                @if(session('monto')!=$pago->monto)
-                                    <li><strong>PAGO: </strong> Monto enviado en billetes es <strong>Bs. {{session('monto')}}</strong>  sin enbargo se pago:<strong>Bs. {{$pago->monto}}</strong></li>    
+                                @if(session('pagocon')!=$pago->pagocon)
+                                    <li><strong>PAGO: </strong> Monto enviado en billetes es <strong>Bs. {{session('pagocon')}}</strong>  sin enbargo se pago:<strong>Bs. {{$pago->pagocon}}</strong></li>    
                                 @endif
                                 
                                 @if(session('cambio')!=$pago->cambio)
@@ -31,7 +31,7 @@
                         @csrf
                         <div class="card">
                             <div class="card-header bg-primary">
-                               PAGOS {{$pago->monto}} Bs.
+                               PAGOS {{$pago->pagocon}} Bs.
                             </div>
                             <div class="card-body border border-3 border-primary turqueza_suave">
                                 @include('billetecom.form')
