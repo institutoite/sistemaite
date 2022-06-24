@@ -55,7 +55,7 @@ class CarreraController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CarreraStoreRequest $request)
     {
         
         $carrera = new Carrera();

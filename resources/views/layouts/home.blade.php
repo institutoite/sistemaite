@@ -119,10 +119,10 @@
                             </div>
                         </li> --}}
                     @endguest
-                   <!-- <ul class="header-contact-right d-none d-lg-block">
+                   {{-- <!-- <ul class="header-contact-right d-none d-lg-block">
                         <li> <a href="#" class="header-cart"><i class="fa fa-shopping-cart"></i></a></li>
                         <li><a href="#" class="header-search search_toggle"> <i class="fa fa fa-search"></i></a></li>
-                    </ul>-->
+                    </ul>!--> --}}
                    
                 </div> <!-- / .navbar-collapse -->
             </div> <!-- / .container -->
@@ -748,9 +748,7 @@
 
 
 
-    <!-- 
-    Essential Scripts
-    =====================================-->
+   
     
     <!-- Main jQuery -->
     <script src="{{asset('assets/vendors/jquery/jquery.js')}}"></script>
