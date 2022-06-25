@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
+use App\Http\Requests\DepartamentoStoreRequest;
+use App\Http\Requests\DepartamentoUpdateRequest;
+
 /**
  * Class DepartamentoController
  * @package App\Http\Controllers
@@ -44,7 +47,7 @@ class DepartamentoController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DepartamentoStoreRequest $request)
     {
         $departamento=new Departamento();
         $departamento->departamento=$request->departamento;

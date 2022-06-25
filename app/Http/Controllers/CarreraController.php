@@ -13,8 +13,8 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
-use App\Http\Requests\CarreraGuardarRequest;
-use App\Http\Requests\CarreraActualizarRequest;
+use App\Http\Requests\CarreraStoreRequest;
+use App\Http\Requests\CarreraUpdateRequest;
 
 class CarreraController extends Controller
 {

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CarreraStoreRequest extends FormRequest
+class FeriadoStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class CarreraStoreRequest extends FormRequest
     public function rules()
     {
         return [
-           'carrera'=>'required',
-           'descripcion'=>'required',
-           'precio' => 'required', 
+            'fecha'=>'required',
+            'festividad'=>'required',
         ];
     }
 }

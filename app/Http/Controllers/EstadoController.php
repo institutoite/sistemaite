@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Estado;
 use Illuminate\Http\Request;
+use App\Http\Requests\EstadoStoreRequest;
+use App\Http\Requests\EstadoUpdateRequest;
 
 class EstadoController extends Controller
 {
@@ -33,7 +35,7 @@ class EstadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EstadoStoreRequest $request)
     {
         $estadonuevo=new Estado();
         $estadonuevo->estado = $request->estado;
@@ -70,7 +72,7 @@ class EstadoController extends Controller
      * @param  \App\Models\Estado  $estado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Estado $estado)
+    public function update(EstadoUpdateRequest $request, Estado $estado)
     {
         $estado->estado = $request->estado;
         $estado->save();

@@ -26,6 +26,9 @@
                 <div class="card-header bg-danger">
             @endif
                 <span class="card-title">Marcar clase de computación x</span>
+               
+                    <h4 class="alert-heading">{!! "Horario: ".$programacioncom->horaini->toTimeString().' '.($programacioncom->horafin)->toTimeString() !!}</h4>
+                    {!! $matriculacion->objetivo !!}
                 
             </div>
             <div class="card-body">

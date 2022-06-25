@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 
+use App\Http\Requests\GestionStoreRequest;
+use App\Http\Requests\GestionUpdateRequest;
+
 
 class GestionController extends Controller
 {
@@ -71,7 +74,7 @@ class GestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GestionStoreRequest $request)
     {
         //dd($request->all());
         $estudiante = Estudiante::findOrFail($request->estudiante_id);
@@ -118,7 +121,7 @@ class GestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(Request $request)
+    public function actualizar(GestionStoreRequest $request)
     {
         //return response()->json($request->all());
         $validator = Validator::make($request->all(), [

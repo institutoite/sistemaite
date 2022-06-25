@@ -8,7 +8,7 @@ use Yajra\DataTables\Contracts\DataTable as DataTable;
 use Yajra\DataTables\DataTables;
 
 
-use App\Http\Requests\DiaGuardarRequest;
+use App\Http\Requests\DiaStoreRequest;
 use App\Http\Requests\DiaUpdateRequest;
 
 class DiaController extends Controller
@@ -39,7 +39,7 @@ class DiaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DiaStoreRequest $request)
     {
         $dia = new Dia();
         $dia->dia=$request->dia;
@@ -78,7 +78,7 @@ class DiaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DiaUpdateRequest $request, $id)
     {
         $dia=Dia::findOrFail($id);
         $dia->dia=$request->dia;

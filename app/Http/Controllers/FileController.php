@@ -50,9 +50,7 @@ class FileController extends Controller
     {
         $file=new File();
         $file->descripcion =$request->descripcion;
-
         
-
         if ($request->hasFile('file')){
             $fileArchivo=$request->file('file');
             //$nombreArchivo=Str::random(10).$request->file('file')->getClientOriginalName();
@@ -111,7 +109,7 @@ class FileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FileGuardarRequest $request, $id)
     {
         $file=File::findOrFail($id);
         if ($request->hasFile('file')) {

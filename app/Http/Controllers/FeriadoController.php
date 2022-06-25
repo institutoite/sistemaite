@@ -1,12 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Feriado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-
+use App\Http\Requests\FeriadoStoreRequest;
+use App\Http\Requests\FeriadoUpdateRequest;
 /**
  * Class FeriadoController
  * @package App\Http\Controllers
@@ -47,9 +46,9 @@ class FeriadoController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FeriadoStoreRequest $request)
     {
-        request()->validate(Feriado::$rules);
+        //request()->validate(Feriado::$rules);
 
         $feriado = new Feriado();
         $feriado->fecha =$request->fecha;
@@ -96,9 +95,9 @@ class FeriadoController extends Controller
      * @param  Feriado $feriado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Feriado $feriado)
+    public function update(FeriadoUpdateRequest $request, Feriado $feriado)
     {
-        request()->validate(Feriado::$rules);
+        //request()->validate(Feriado::$rules);
 
         $feriado->update($request->all());
 

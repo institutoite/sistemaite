@@ -29,6 +29,7 @@ agragar chat por mesenger a las paginas
 Ver las carteras
 que en detalle de pagos se muestre el total
 cuando computacion se paga todo la ultima clase se queda impaga
+a la hora de marcar clase que se muestre la programacion real  
 
 
 

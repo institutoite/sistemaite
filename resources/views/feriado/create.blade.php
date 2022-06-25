@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Departamento Crear')
+@section('css')
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+@stop
 
-@section('template_title')
-    Crear Departamento
-@endsection
+@section('title', 'Form Feriado')
 
 @section('content')
     <section class="content container-fluid">
