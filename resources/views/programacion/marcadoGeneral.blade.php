@@ -923,11 +923,30 @@
                             programacion_id:$programacion_id,
                         },
                     success : function(json) {
-                        console.log(json);
-                        let programacion_actualizar=$('#programacion_id').val(); 
-                        $('#licencia-crear').modal('hide');
-                        $("#"+programacion_actualizar).addTempClass( 'bg-success', 3000 );
-                        $('#futuro').DataTable().ajax.reload();
+                        //console.log(json.errores);
+                        //$("#error").empty();
+                        if(json.errores){
+                            $html="";
+                            
+                                $html+="<li>"+ json.errores +"</li>";
+                        
+                            $("#errordiv").removeClass('d-none');
+                            $("#error").append($html);
+                        }else{
+                            $("#modal-editar").modal("hide");
+                            $('#interests').DataTable().ajax.reload();
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 1500,
+                                })
+                                Toast.fire({
+                                type: 'success',
+                                title: 'Se eliminó correctamente el registro'
+                            })   
+                        } 
+                        
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');

@@ -39,7 +39,7 @@
 
             <div class="modal-body">
                     <div id='message-error' class="alert alert-danger danger text-danger" role='alert' style="display: none">
-                        <strong id="error"></strong>
+                        <strong id="error_motivo"></strong>
                     </div>
 
                 <div class="card card-primary">
@@ -47,16 +47,11 @@
                         <span class="card-title">Editar Interest</span>
                     </div>
                     <div class="card-body">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
+                            <div id="erroresdiv" class="alert alert-danger d-none">
+                                <ul id=errores>
+                                    
                                 </ul>
                             </div>
-                        @endif
-
                         <form id="formulario-editar-motivo">
                             @csrf
                             

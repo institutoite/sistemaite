@@ -2,12 +2,12 @@
     <input  type="text" name="estudiante_id"  value="{{ $persona->estudiante->id }}" hidden>    
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-sm">
             @if($errors->has('modalidad_id'))
                 <span class="text-danger"> {{ $errors->first('modalidad_id')}}</span>
             @endif
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm">    
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-sm">    
             @if($errors->has('costo'))
                 <span class="text-danger"> {{ $errors->first('costo')}}</span>
             @endif
@@ -44,12 +44,12 @@
     </div>
 
     <div class="row">
-         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm">    
+         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-sm">    
             @if($errors->has('fechaini'))
                 <span class="text-danger"> {{ $errors->first('fechaini')}}</span>
             @endif
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-sm">
             @if($errors->has('totalhoras'))
                 <span class="text-danger"> {{ $errors->first('totalhoras')}}</span>
             @endif

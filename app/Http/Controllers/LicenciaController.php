@@ -9,6 +9,7 @@ use App\Models\Tipomotivo;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Config;
@@ -81,25 +82,42 @@ class LicenciaController extends Controller
         $data=['mensaje'=>'Licencia guardado correctamente'];
         return response()->json($data);
     }
+
+
+
     public function storeprogramacion(Request $request)
     {
-        $licencia    =new Licencia();
-        $licencia->motivo_id=$request->motivo_id;
-        $licencia->solicitante=$request->solicitante;  
-        $licencia->parentesco=$request->parentesco;  
-        $licencia->licenciable_id=$request->programacion_id;
-        $licencia->licenciable_type=Programacion::class;
-        $licencia->save();
+        //return response()->json(['d'=>2]);
+        $validator = Validator::make($request->all(), [
+            'motivo_id' => 'required',
+            'solicitante' => 'required',
+            'parentesco' => 'required',
+        ]);
 
+       
+//        return response()->json($data);
+        return response()->json(['errores' => $validator->errors()->first()]);
+
+        //  if ($validator->passes()) {
+        //     $licencia    =new Licencia();
+        //     $licencia->motivo_id=$request->motivo_id;
+        //     $licencia->solicitante=$request->solicitante;  
+        //     $licencia->parentesco=$request->parentesco;  
+        //     $licencia->licenciable_id=$request->programacion_id;
+        //     $licencia->licenciable_type=Programacion::class;
+        //     $licencia->save();
+
+        //     $programacion=Programacion::findOrFail($request->programacion_id);
+        //     $programacion->estado_id=Config::get('constantes.ESTADO_LICENCIA');
+        //     $programacion->save();
+            
+        //     $licencia->userable()->create(['user_id'=>Auth::user()->id]);
         
-        $programacion=Programacion::findOrFail($request->programacion_id);
-        $programacion->estado_id=Config::get('constantes.ESTADO_LICENCIA');
-        $programacion->save();
-        
-        $licencia->userable()->create(['user_id'=>Auth::user()->id]);
-        
-        $data=['mensaje'=>'Licencia guardado correctamente'];
-        return response()->json($data);
+        //     $data=['mensaje'=>'Licencia guardado correctamente'];
+        //     return response()->json(['interest'=>$interest]);
+        // }else{
+        //     return response()->json(['errores' => $validator->errors()]);
+        // }
     }
 
     /**

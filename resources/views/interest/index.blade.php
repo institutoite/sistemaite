@@ -207,8 +207,13 @@
                         },
                     success : function(json) {
                         console.log(json);
-                        if(json.error){
-                        $("#error_motivo").html(json.error);
+                        if(json.errores){
+                            $html="";
+                            for (let j in json.errores) {
+                                $html+="<li>"+ json.errores.interest[0] +"</li>";
+                            }
+                            $("#erroresdiv").removeClass('d-none');
+                            $("#errores").append($html);
                         }else{
                             $("#modal-editar").modal("hide");
                             $('#interests').DataTable().ajax.reload();
@@ -225,7 +230,7 @@
                         } 
                     },
                     error:function(jqXHR,estado,error){
-                        
+                        console.log("fdsf");
                     },
                 });
             });

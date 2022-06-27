@@ -104,7 +104,7 @@ class InterestController extends Controller
             $interest->save();
             return response()->json(['interest'=>$interest]);
         }else{
-            return response()->json(['error' => $validator->errors()->first()]);
+            return response()->json(['errores' => $validator->errors()]);
         }
     }
     /**

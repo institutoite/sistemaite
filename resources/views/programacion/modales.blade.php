@@ -221,6 +221,11 @@
                     <div class="card-header bg-primary">
                         <span class="card-title">Actualizar Programacion</span>
                     </div>
+                    <div class="errordiv alert alert-danger d-none">
+                        <ul id="error">
+
+                        </ul>
+                    </div>
                     <div class="card-body">
                         <form id="formulario-licencia" method="POST" action="{{route('programacioncom.actualizar')}}">
                             @csrf
