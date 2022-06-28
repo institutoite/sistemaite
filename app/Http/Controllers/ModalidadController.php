@@ -9,6 +9,9 @@ use App\Models\User;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\ModalidadStoreRequest;
+use App\Http\Requests\ModalidadUpdateRequest;
+
 /**
  * Class ModalidadController
  * @package App\Http\Controllers
@@ -52,9 +55,10 @@ class ModalidadController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ModalidadStoreRequest $request)
     {
-        request()->validate(Modalidad::$rules);
+        dd($request->all());
+        //request()->validate(Modalidad::$rules);
         $modalidad = Modalidad::create($request->all());
         $modalidad->userable()->create(['user_id'=>Auth::user()->id]);
         return redirect()->route('modalidads.index')

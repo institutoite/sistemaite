@@ -3,21 +3,21 @@
     <input  type="text" hidden name="computacion_id" value="{{old('computacion_id',$computacion->id ?? '')}}">
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-            <div class="form-floating text-gray">
-                @error('fechaini') <span class="text-danger">{{$message}}</span> @enderror
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+                @if($errors->has('fechaini'))
+                    <span class="text-danger"> {{ $errors->first('fechaini')}}</span>
+                @endif
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-            <div class="form-floating text-gray">
-                @error('costo') <span class="text-danger">{{$message}}</span> @enderror
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+                @if($errors->has('costo'))
+                    <span class="text-danger"> {{ $errors->first('costo')}}</span>
+                @endif
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-            <div class="form-floating text-gray">
-                @error('totalhoras') <span class="text-danger">{{$message}}</span> @enderror
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+                @if($errors->has('totalhoras'))
+                    <span class="text-danger"> {{ $errors->first('totalhoras')}}</span>
+                @endif
             </div>
-        </div>
     </div>
 
     <div class="row"> 
@@ -52,14 +52,14 @@
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
-            <div class="form-floating text-gray">
-                @error('asignatura_id') <span class="text-danger">{{$message}}</span> @enderror
-            </div>
+            @if($errors->has('asignatura_id'))
+                <span class="text-danger"> {{ $errors->first('asignatura_id')}}</span>
+            @endif
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
-            <div class="form-floating text-gray">
-                @error('motivo_id') <span class="text-danger">{{$message}}</span> @enderror
-            </div>
+            @if($errors->has('motivo_id'))
+                <span class="text-danger"> {{ $errors->first('motivo_id')}}</span>
+            @endif
         </div>
     </div>
 
@@ -67,6 +67,7 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
             <div class="form-floating text-gray">
                 <select class="form-control @error('asignatura_id') is-invalid @enderror" data-old="{{ old('asignatura_id') }}" name="asignatura_id" id="country">
+                    <option value="">Elija una Asignatura</option>
                     @foreach ($asignaturasFaltantes as $asignatura)
                         @isset($matriculacion)     
                             <option  value="{{$asignatura->id}}" {{$asignatura->id==$matriculacion->asignatura_id ? 'selected':''}}>{{$asignatura->asignatura}}</option>     
@@ -75,13 +76,14 @@
                         @endisset 
                     @endforeach
                 </select>
-                <label for="pais">Elija pais*</label>
+                <label for="pais">Elija asignatura*</label>
             </div>
         </div>
         
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
             <div class="form-floating text-gray">
-                <select class="form-control @error('motivo_id') is-invalid @enderror" data-old="{{ old('motivo_id') }}" name="motivo_id" id="country">
+                <select class="form-control @error('motivo_id') is-invalid @enderror" data-old="{{ old('motivo_id') }}" name="motivo_id" id="motivo_id">
+                    <option value="">Elija un motivo</option>
                     @foreach ($motivos as $motivo)
                         @isset($matriculacion)     
                             <option  value="{{$motivo->id}}" {{$motivo->id==$matriculacion->motivo_id ? 'selected':''}}>{{$motivo->motivo}}</option>     

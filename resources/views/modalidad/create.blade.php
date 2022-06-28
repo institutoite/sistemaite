@@ -19,10 +19,10 @@
 
                 <div class="card card-default mt-3">
                     <div class="card-header bg-secondary">
-                        <span class="card-title">Create Modalidad</span>
+                        <span class="card-title">Create Modalidadx</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('modalidads.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('modalidads.store') }}"  role="form">
                             @csrf
 
                             @include('modalidad.form')
