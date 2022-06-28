@@ -43,6 +43,4 @@ class Matriculacion extends Model
     {
         return $this->morphOne('App\Models\Userable', 'userable');
     }
-    
-
 }

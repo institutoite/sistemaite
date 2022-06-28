@@ -2,6 +2,24 @@
 
     <input  type="text" hidden name="computacion_id" value="{{old('computacion_id',$computacion->id ?? '')}}">
 
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+            <div class="form-floating text-gray">
+                @error('fechaini') <span class="text-danger">{{$message}}</span> @enderror
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+            <div class="form-floating text-gray">
+                @error('costo') <span class="text-danger">{{$message}}</span> @enderror
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+            <div class="form-floating text-gray">
+                @error('totalhoras') <span class="text-danger">{{$message}}</span> @enderror
+            </div>
+        </div>
+    </div>
+
     <div class="row"> 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             @isset($persona)
@@ -30,27 +48,24 @@
         </div>
 
     </div>
+    
+
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-            <div class="form-floating mb-3 text-gray">
-                @error('fechaini') <span class="text-danger">{{$message}}</span> @enderror
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+            <div class="form-floating text-gray">
+                @error('asignatura_id') <span class="text-danger">{{$message}}</span> @enderror
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-            <div class="form-floating mb-3 text-gray">
-                @error('costo') <span class="text-danger">{{$message}}</span> @enderror
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-            <div class="form-floating mb-3 text-gray">
-                @error('totalhoras') <span class="text-danger">{{$message}}</span> @enderror
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+            <div class="form-floating text-gray">
+                @error('motivo_id') <span class="text-danger">{{$message}}</span> @enderror
             </div>
         </div>
     </div>
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
-            <div class="form-floating mb-3 text-gray">
+            <div class="form-floating text-gray">
                 <select class="form-control @error('asignatura_id') is-invalid @enderror" data-old="{{ old('asignatura_id') }}" name="asignatura_id" id="country">
                     @foreach ($asignaturasFaltantes as $asignatura)
                         @isset($matriculacion)     
@@ -65,7 +80,7 @@
         </div>
         
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
-            <div class="form-floating mb-3 text-gray">
+            <div class="form-floating text-gray">
                 <select class="form-control @error('motivo_id') is-invalid @enderror" data-old="{{ old('motivo_id') }}" name="motivo_id" id="country">
                     @foreach ($motivos as $motivo)
                         @isset($matriculacion)     
@@ -79,16 +94,5 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
-            <div class="form-floating mb-3 text-gray">
-                @error('asignatura_id') <span class="text-danger">{{$message}}</span> @enderror
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
-            <div class="form-floating mb-3 text-gray">
-                @error('motivo_id') <span class="text-danger">{{$message}}</span> @enderror
-            </div>
-        </div>
-    </div>
+    
    

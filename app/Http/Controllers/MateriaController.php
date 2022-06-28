@@ -9,6 +9,9 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
+use App\Http\Requests\MateriaStoreRequest;
+use App\Http\Requests\MateriaUpdateRequest;
+
 
 class MateriaController extends Controller
 {
@@ -47,7 +50,7 @@ class MateriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MateriaStoreRequest $request)
     {
         //dd($request->all());
         $materia= new Materia();
@@ -99,7 +102,7 @@ class MateriaController extends Controller
      * @param  \App\Materia  $materia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Materia $materia)
+    public function update(MateriaUpdateRequest $request, Materia $materia)
     {
         //dd($request->all());
         $materia->materia=$request->materia;

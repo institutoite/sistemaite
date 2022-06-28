@@ -1,10 +1,10 @@
  <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
-                @if($errors->has('interest'))
-                    <span class="text-danger"> {{ $errors->first('interest')}}</span>
-                @endif
-        </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+            @if($errors->has('interest'))
+                <span class="text-danger"> {{ $errors->first('interest')}}</span>
+            @endif
     </div>
+</div>
 <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
         <div class="form-floating mb-3 text-gray">

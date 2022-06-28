@@ -65,22 +65,29 @@ class LicenciaController extends Controller
      */
     public function storecom(Request $request)
     {
-        $licenciacom    =new Licencia();
-        $licenciacom->motivo_id=$request->motivo_id;
-        $licenciacom->solicitante=$request->solicitante;  
-        $licenciacom->parentesco=$request->parentesco;  
-        $licenciacom->licenciable_id=$request->programacioncom_id;
-        $licenciacom->licenciable_type=Programacioncom::class;
-        $licenciacom->save();
+        $validator = Validator::make($request->all(), [
+            'motivo_id' => 'required',
+            'solicitante' => 'required',
+            'parentesco' => 'required',
+        ]);
 
-        $programacioncom=Programacioncom::findOrFail($request->programacioncom_id);
-        $programacioncom->estado_id=Config::get('constantes.ESTADO_LICENCIA');
-        $programacioncom->save();
+        if ($validator->passes()) {
+            $licenciacom    =new Licencia();
+            $licenciacom->motivo_id=$request->motivo_id;
+            $licenciacom->solicitante=$request->solicitante;  
+            $licenciacom->parentesco=$request->parentesco;  
+            $licenciacom->licenciable_id=$request->programacioncom_id;
+            $licenciacom->licenciable_type=Programacioncom::class;
+            $licenciacom->save();
 
-        $licenciacom->userable()->create(['user_id'=>Auth::user()->id]);
+            $programacioncom=Programacioncom::findOrFail($request->programacioncom_id);
+            $programacioncom->estado_id=Config::get('constantes.ESTADO_LICENCIA');
+            $programacioncom->save();
 
-        $data=['mensaje'=>'Licencia guardado correctamente'];
-        return response()->json($data);
+            $licenciacom->userable()->create(['user_id'=>Auth::user()->id]);
+            return response()->json(['errores'=>[]]);
+        }
+            return response()->json(['errores' => $validator->errors()->all()]);
     }
 
 
@@ -94,30 +101,24 @@ class LicenciaController extends Controller
             'parentesco' => 'required',
         ]);
 
-       
-//        return response()->json($data);
-        return response()->json(['errores' => $validator->errors()->first()]);
+         if ($validator->passes()) {
+            $licencia    =new Licencia();
+            $licencia->motivo_id=$request->motivo_id;
+            $licencia->solicitante=$request->solicitante;  
+            $licencia->parentesco=$request->parentesco;  
+            $licencia->licenciable_id=$request->programacion_id;
+            $licencia->licenciable_type=Programacion::class;
+            $licencia->save();
 
-        //  if ($validator->passes()) {
-        //     $licencia    =new Licencia();
-        //     $licencia->motivo_id=$request->motivo_id;
-        //     $licencia->solicitante=$request->solicitante;  
-        //     $licencia->parentesco=$request->parentesco;  
-        //     $licencia->licenciable_id=$request->programacion_id;
-        //     $licencia->licenciable_type=Programacion::class;
-        //     $licencia->save();
-
-        //     $programacion=Programacion::findOrFail($request->programacion_id);
-        //     $programacion->estado_id=Config::get('constantes.ESTADO_LICENCIA');
-        //     $programacion->save();
+            $programacion=Programacion::findOrFail($request->programacion_id);
+            $programacion->estado_id=Config::get('constantes.ESTADO_LICENCIA');
+            $programacion->save();
             
-        //     $licencia->userable()->create(['user_id'=>Auth::user()->id]);
+            $licencia->userable()->create(['user_id'=>Auth::user()->id]);
+            return response()->json(['errores'=>[]]);
+        }
+            return response()->json(['errores' => $validator->errors()->all()]);
         
-        //     $data=['mensaje'=>'Licencia guardado correctamente'];
-        //     return response()->json(['interest'=>$interest]);
-        // }else{
-        //     return response()->json(['errores' => $validator->errors()]);
-        // }
     }
 
     /**

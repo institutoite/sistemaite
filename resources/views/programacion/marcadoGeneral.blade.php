@@ -384,8 +384,6 @@
                     url : "../../programacion/mostrar/clases",
                     data : { id :id_programacion },
                     success : function(json) {
-                        console.log(json);
-                        
                         $("#modal-mostrar").modal("show");
                         $("#tabla-mostrar-programacion").empty();
                         $("#tabla-mostrar-observaciones").empty();
@@ -452,7 +450,6 @@
             $(document).on("submit","#formulario-editar-observacion",function(e){
                 e.preventDefault();//detenemos el envio
                 $observacion=$('#observacionx').val();
-                console.log($observacion);
                 $observacion_id=$('#observacion_id').val();
                 $programacion_id=$('#programacion_id').val();
                 $.ajaxSetup({
@@ -470,7 +467,6 @@
                     
                     success : function(json) {
                         let programacion_id=$('#programacion_id').val(); 
-                        console.log(programacion_id);
                         
                         $('#editar-observacion').modal('hide');
                         $("#"+programacion_id).addTempClass( 'bg-success', 3000 );
@@ -651,7 +647,6 @@
                         },
                     
                     success : function(json) {
-                        console.log(json);
                         let programacion_actualizar=$('#programacion_id').val();
                         //console.log(moment(json.programacion.fecha).format('D-M-Y dddd'));
                         $('#'+programacion_actualizar+' td:nth-child(2)').text(moment(json.programacion.fecha).format('D-M-Y dddd'));
@@ -756,7 +751,6 @@
             $('table').on('click', '.editarobservacion', function(e) {
                 e.preventDefault(); 
                 let id_observacion=$(this).closest('tr').attr('id');
-                console.log("id_observacion"+id_observacion);
                 $htmlobs="";
                 $.ajax({
                     url : "../../observacion/editar",
@@ -764,7 +758,6 @@
                         id:id_observacion,
                     },
                     success : function(json) {
-                        console.log(json);
                         $("#modal-mostrar").modal("hide");
                         $("#editar-observacion").modal("show");
                         $("#formulario-editar-observacion").empty();
@@ -798,7 +791,6 @@
             $(document).on("submit","#formulario-editar-observacion",function(e){
                 e.preventDefault();//detenemos el envio
                 $observacion=$('#observacionx').val();
-                console.log($observacion);
                 $observacion_id=$('#observacion_id').val();
                 $programacioncom_id=$('#programacioncom_id').val();
                 $.ajaxSetup({
@@ -816,8 +808,6 @@
                     
                     success : function(json) {
                         let programacioncom_id=$('#programacioncom_id').val(); 
-                        console.log(programacioncom_id);
-                        
                         $('#editar-observacion').modal('hide');
                         $("#"+programacioncom_id).addTempClass( 'bg-success', 3000 );
                         //$('#futuro').DataTable().ajax.reload();
@@ -832,7 +822,6 @@
                 e.preventDefault(); 
                 $html="";
                 let id_programacion =$(this).closest('tr').attr('id');
-                console.log(id_programacion);
                     $.ajax({
                         url : "../../licenciaprogramacion/crear/",
                         data : { id :id_programacion },
@@ -845,7 +834,6 @@
                             $html+="<select class='form-control @error('motivo_id') is-invalid @enderror' name='motivo_id' id='motivo_id'>";
                             $html+="<option  value='' >Elije el motivo de la licencia </option>";
                             for (let j in data.motivos) {
-                                console.log(data.motivos[j]);
                                 if(data.motivos[j].id==data.motivos.motivo_id){
                                     $html+="<option  value='"+data.motivos[j].id +"' selected >"+data.motivos[j].motivo+"</option>";
                                 }else{
@@ -923,18 +911,17 @@
                             programacion_id:$programacion_id,
                         },
                     success : function(json) {
-                        //console.log(json.errores);
-                        //$("#error").empty();
-                        if(json.errores){
+                        $("#error").empty();
+                        if(json.errores.length>0){
                             $html="";
-                            
-                                $html+="<li>"+ json.errores +"</li>";
-                        
+                             for (let j in json.errores) {
+                                 $html+="<li>"+ json.errores[j] +"</li>";
+                            }
                             $("#errordiv").removeClass('d-none');
                             $("#error").append($html);
                         }else{
-                            $("#modal-editar").modal("hide");
-                            $('#interests').DataTable().ajax.reload();
+                            $("#licencia-crear").modal("hide");
+                            $('#futuro').DataTable().ajax.reload();
                             const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
@@ -943,7 +930,7 @@
                                 })
                                 Toast.fire({
                                 type: 'success',
-                                title: 'Se eliminó correctamente el registro'
+                                title: 'Se guardó correctamente el registro'
                             })   
                         } 
                         
