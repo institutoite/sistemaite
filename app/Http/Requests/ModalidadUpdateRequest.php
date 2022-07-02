@@ -13,7 +13,7 @@ class ModalidadUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class ModalidadUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'modalidad'=>'required',
+            'costo' => 'required',
+            'cargahoraria'=>'required',
+            'nivel_id'=>'required',
         ];
     }
 }

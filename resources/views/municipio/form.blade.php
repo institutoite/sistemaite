@@ -1,4 +1,20 @@
-
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+        @if($errors->has('pais_id'))
+        <span class="text-danger"> {{ $errors->first('pais_id')}}</span>
+        @endif
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+        @if($errors->has('departamento_id'))
+        <span class="text-danger"> {{ $errors->first('departamento_id')}}</span>
+        @endif
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+        @if($errors->has('provincia_id'))
+        <span class="text-danger"> {{ $errors->first('provincia_id')}}</span>
+        @endif
+    </div>
+</div>
 <div class="row"> 
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
         <div class="form-floating mb-3 text-gray">
@@ -15,7 +31,9 @@
             <label for="pais">Elija pais*</label>
         </div>
     </div>
+    
     {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO CIUDAD  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+    
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
         <div class="form-floating mb-3 text-gray">
             <select class="form-control @error('departamento_id') is-invalid @enderror" name="departamento_id" id="departamento_id">
@@ -29,6 +47,7 @@
             <label for="pais">Elija Departamento*</label>
         </div>
     </div>
+
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
         <div class="form-floating mb-3 text-gray">
             <select class="form-control @error('provincia_id') is-invalid @enderror" name="provincia_id" id="provincia_id">
@@ -44,6 +63,13 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+        @if($errors->has('municipio'))
+        <span class="text-danger"> {{ $errors->first('municipio')}}</span>
+        @endif
+    </div>
+</div>
 <div class="row"> 
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
         <div class="form-floating mb-3 text-gray">

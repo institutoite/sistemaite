@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
+use App\Http\Requests\MunicipioUpdateRequest;
+use App\Http\Requests\MunicipioStoreRequest;
+
 /**
  * Class MunicipioController
  * @package App\Http\Controllers
@@ -50,9 +53,9 @@ class MunicipioController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MunicipioStoreRequest $request)
     {
-        request()->validate(Municipio::$rules);
+        // request()->validate(Municipio::$rules);
         $municipio = Municipio::create($request->all());
         $municipio->userable()->create(['user_id'=>Auth::user()->id]);
         return redirect()->route('municipios.index');
@@ -96,9 +99,9 @@ class MunicipioController extends Controller
      * @param  Municipio $municipio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Municipio $municipio)
+    public function update(MunicipioStoreRequest $request, Municipio $municipio)
     {
-        request()->validate(Municipio::$rules);
+        //request()->validate(Municipio::$rules);
         $municipio->update($request->all());
         return redirect()->route('municipios.index');
     }

@@ -177,7 +177,7 @@
                             $html="<div class='row'>";
                             $("#motivo").val(json.motivo.motivo);
                             $("#motivo_id").val(json.motivo.id);
-                            $html="";
+                            $html="<option value=''>Seleccione un motivo</option>";
                             for (let j in json.tipomotivos) {
                                 if(json.tipomotivos[j].id==json.motivo.tipomotivo_id){
                                     $html+="<option  value='"+json.tipomotivos[j].id +"' selected >"+json.tipomotivos[j].tipomotivo+"</option>";

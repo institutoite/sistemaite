@@ -26,6 +26,7 @@ class MotivoStoreRequest extends FormRequest
     {
         return [
             'motivo'=>'required',
+            'tipomotivo_id'=>'required',
         ];
     }
 }

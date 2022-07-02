@@ -57,12 +57,10 @@ class ModalidadController extends Controller
      */
     public function store(ModalidadStoreRequest $request)
     {
-        dd($request->all());
         //request()->validate(Modalidad::$rules);
         $modalidad = Modalidad::create($request->all());
         $modalidad->userable()->create(['user_id'=>Auth::user()->id]);
-        return redirect()->route('modalidads.index')
-            ->with('success', 'Modalidad created successfully.');
+        return redirect()->route('modalidads.index');
     }
 
     /**

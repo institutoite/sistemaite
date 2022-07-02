@@ -59,18 +59,19 @@
 
                         <form id="formulario-editar-motivo">
                             @csrf
+                            
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                                    <span class="text-danger" id="error_motivo"></span>
+                                </div>
+                            </div> 
+                            
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" > 
                                 <div class="form-floating mb-3">
                                     <input class="form-control" type="text" name="motivo" id="motivo" value="">
                                     <label for="motivo">Motivo</label>
                                 </div>
                             </div>
-                             <div class="row">
-                                <div class="col-3"></div>
-                                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" >
-                                    <span class="text-danger" id="error_motivo"></span>
-                                </div>
-                            </div> 
                             
                             
                             <div class="row">
@@ -83,7 +84,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
                                         <div class="form-floating mb-3 text-gray">
                                             @error('tipomotivo_id') <span class="text-danger">{{$message}}</span> @enderror
                                         </div>

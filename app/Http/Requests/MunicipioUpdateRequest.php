@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ModalidadStoreRequest extends FormRequest
+class MunicipioUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class ModalidadStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'modalidad'=>'required',
-            'costo' => 'required',
-            'cargahoraria'=>'required',
-            'nivel_id'=>'required',
+            'municipio' => 'required',
+		    'provincia_id' => 'required',
+		    'departamento_id' => 'required',
+		    'pais_id' => 'required',
         ];
     }
 }
