@@ -10,12 +10,9 @@
 @section('plugins.Datatables', true)
 @section('plugins.Sweetalert2', true)
 
-@section('content_header')
-    <h1 class="text-center text-primary">Usuarios</h1>
-@stop
+
 
 @section('content')
-   
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -73,8 +70,6 @@
             </div>
         </div>
     </div>
-    
-    
 @endsection
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.all.min.js" integrity="sha512-kW/Di7T8diljfKY9/VU2ybQZSQrbClTiUuk13fK/TIvlEB1XqEdhlUp9D+BHGYuEoS9ZQTd3D8fr9iE74LvCkA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @section('js')

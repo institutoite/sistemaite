@@ -273,7 +273,8 @@ class PersonaController extends Controller
         $persona->votos = 1;
         $persona->papelinicial = 'estudiante';
         $persona->save();
-
+        
+        //dd($persona);
 
         $persona->interests()->sync(array_keys($request->interests));
 
@@ -287,27 +288,29 @@ class PersonaController extends Controller
         $observacion->save();
         $observacion->userable()->create(['user_id'=>Auth::user()->id]);
         
-        $apoderado = new Persona();
-        $apoderado->nombre = $request->nombrefamiliar;
-        $apoderado->apellidop = $request->apellidopfamiliar;
-        $apoderado->telefono=$request->telefonofamiliar;
-        $apoderado->votos=0;
-        $apoderado->papelinicial = 'apoderado';
-        $apoderado->save();
+        //Route::redirect('URI', 'URI', 301);
+        // $apoderado = new Persona();
+        // $apoderado->nombre = $request->nombrefamiliar;
+        // $apoderado->apellidop = $request->apellidopfamiliar;
+        // $apoderado->telefono=$request->telefonofamiliar;
+        // $apoderado->votos=0;
+        // $apoderado->papelinicial = 'apoderado';
+        // $apoderado->save();
 
-        $apoderado->userable()->create(['user_id'=>Auth::user()->id]);
+        //$apoderado->userable()->create(['user_id'=>Auth::user()->id]);
 
-        $observacion = new Observacion();
-        $observacion->observacion = "Se registró a sistema como un apoderado de".$persona->nombre.' '.$persona->apellidop;
-        $observacion->activo = 1;
-        $observacion->observable_id = $apoderado->id;
-        $observacion->observable_type = "App\Models\Persona";
-        $observacion->save();
-        $observacion->userable()->create(['user_id'=>Auth::user()->id]);
-        $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
-        $apoderados = $persona->apoderados;
+        // $observacion = new Observacion();
+        // $observacion->observacion = "Se registró a sistema como un apoderado de".$persona->nombre.' '.$persona->apellidop;
+        // $observacion->activo = 1;
+        // $observacion->observable_id = $apoderado->id;
+        // $observacion->observable_type = "App\Models\Persona";
+        // $observacion->save();
+        //$observacion->userable()->create(['user_id'=>Auth::user()->id]);
+        //$persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
+        // $apoderados = $persona->apoderados;
 
-        return redirect()->route('telefonos.persona',['persona'=>$persona,'apoderados'=>$apoderados])->with('mensaje','Contacto Creado Corectamente');
+        return redirect()->route('telefonos.crear',['persona'=>$persona])->with('mensaje','Contacto Creado Corectamente');
+        // return redirect()->route('telefonos.persona',['persona'=>$persona,'apoderados'=>$apoderados])->with('mensaje','Contacto Creado Corectamente');
     }
 
     /**
@@ -608,9 +611,11 @@ class PersonaController extends Controller
         return redirect()->route('personas.index');
     }
     public function potenciales(Request $request){
-        $potenciales= Persona::where('habilitado',0)
+        $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        ->where('habilitado',0)
         ->where('votos',1)
-        ->select('id','personas.nombre','personas.apellidop')  
+        ->select('personas.id','personas.nombre','personas.apellidop','interests.interest')  
         ->get();
 
         return DataTables::of($potenciales)
@@ -629,9 +634,10 @@ class PersonaController extends Controller
         ->select('observacions.id','observacion','name')
         ->get();
         $apoderados=$potencial->apoderados;
+        $interests=$potencial->interests;
         $autorPotencial=User::findOrFail($potencial->userable->user_id)->name;
 
-        $data=['potencial'=>$potencial,'observaciones'=>$observaciones,'apoderados'=>$apoderados,'autorPotencial'=>$autorPotencial];
+        $data=['intereses'=>$interests,'potencial'=>$potencial,'observaciones'=>$observaciones,'apoderados'=>$apoderados,'autorPotencial'=>$autorPotencial];
         return response()->json($data);
     }
 

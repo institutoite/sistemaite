@@ -8,13 +8,20 @@
 @section('plugins.Jquery', true)
 @section('plugins.Datatables', true)
 @section('content')
-    <div class="pt-3">
-        <form action="{{route('personas.guardar.rapidindo')}}" id="formulario" method="post" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
-            @csrf
-            @include('persona.formrapido')
-            @include('include.botones')
-        </form>
-    </div>
+    
+        <div class="card">
+            <div class="card-header bg-secondary">
+                CREAR USUARIO SUPER RAPIDO
+            </div>
+            <div class="card-body">
+                <form action="{{route('personas.guardar.rapidindo')}}" id="formulario" method="post" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
+                    @csrf
+                    @include('persona.formrapido')
+                    @include('include.botones')
+                </form>
+            </div>
+        </div>
+    
 @stop
 
 @section('js')

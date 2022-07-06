@@ -8,9 +8,8 @@ use App\Models\Pais;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-
-
-
+use App\Http\Requests\ProvinciaStoreRequest;
+use App\Http\Requests\ProvinciaUpdateRequest;
 /**
  * Class ProvinciaController
  * @package App\Http\Controllers
@@ -42,10 +41,8 @@ class ProvinciaController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProvinciaStoreRequest $request)
     {
-        request()->validate(Provincia::$rules);
-
         $provincia = Provincia::create($request->all());
         $provincia->userable()->create(['user_id'=>Auth::user()->id]);
         return redirect()->route('provincias.index');
@@ -89,16 +86,10 @@ class ProvinciaController extends Controller
      * @param  Provincia $provincia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Provincia $provincia)
+    public function update(ProvinciaUpdateRequest $request, Provincia $provincia)
     {
-        request()->validate(Provincia::$rules);
-        //dd($request->all());
-
         $provincia->update($request->all());
-
-        
-        return redirect()->route('provincias.index')
-            ->with('success', 'Provincia updated successfully');
+        return redirect()->route('provincias.index');
     }
 
     /**

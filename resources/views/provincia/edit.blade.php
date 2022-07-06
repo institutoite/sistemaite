@@ -53,14 +53,9 @@
         function cargardepartamentos(){
             var pais_id = $('#pais_id').val();
             console.log(pais_id);
-            // if(!pais_id){
-            // $('#departamento_id').html('<option value="6" required selected>Santa Cruz</option>');
-            //     return;
-            // }
+        
             html_select="";
             $.get('../../api/pais/'+ pais_id +'/departamentos',function (data) {
-                //console.log(data);
-                // var html_select='<option value="1" required selected>Santa Cruz</option>';
                 for (var i = 0; i < data.length; i++) {
                     html_select+='<option value="'+ data[i].id +'">' +data[i].departamento +'</option>';
                 }

@@ -25,6 +25,7 @@
                             <th>ID</th>
                             <th>NOMBRE</th>
                             <th>APELLIDOP</th>
+                            <th>INTEREST</th>
                             <th>ACCIONES</th>
                         </tr>
                     </thead>
@@ -66,11 +67,15 @@
                         "responsive":true,
                         "autoWidth":false,
                         "ajax": "{{ url('potenciales') }}",
-                        // "dom":'<"toolbar">Bftrip',
+                        // "createdRow": function( row, data, dataIndex ) {
+
+                        //     $(row).attr('id',data['id']);
+                        // },
                         "columns": [
                             {data: 'id'},
                             {data: 'nombre'},
                             {data: 'apellidop'},
+                            {data: 'interest'},
                             {
                                 "name":"btn",
                                 "data": 'btn',
@@ -133,11 +138,19 @@
                         persona_id:persona_id,
                     },
                     success: function(json) {
-                        console.log(json); 
+                        //console.log(json); 
                         $("#modal-mostrar").modal("show");
                         $("#tabla-mostrar-observaciones").empty();
                         $("#tabla-mostrar-potencial").empty();
                         $("#tabla-mostrar-contactos").empty();
+                        $intereses="<ul>";
+                        for (let k in json.intereses) {
+                            $intereses+="<li>";
+                            $intereses+=json.intereses[k].interest;
+                            $intereses+="</li>";
+                        }
+                        $intereses+="</ul>";
+                        $("#intereses").append($intereses);
                         $html="";
                         $html+="<tr><td>CODIGO</td><td>"+json.potencial.id+"</td></tr>";
                         $html+="<tr><td>NOMBRE</td><td>"+json.potencial.nombre+"</td></tr>";
@@ -149,6 +162,7 @@
                             $html+="<tr><td>TELEFONO</td><td>No tiene</td></tr>";
                         $html+="<tr><td>CREADO</td><td>"+moment(json.potencial.created_at).format('LLLL')+"</td></tr>";
                         $html+="<tr><td>AUTOR</td><td>"+json.autorPotencial +"</td></tr>";
+                        $html+="<tr><td>INTERESES</td><td>"+ $intereses +"</td></tr>";
                         
                         $("#tabla-mostrar-potencial").append($html);
 
@@ -166,6 +180,7 @@
                             
                             $("#tabla-mostrar-observaciones").append($htmlObservaciones);
                         }
+                        
                         
                         $htmlApoderados="";
                         for (let j in json.apoderados) {

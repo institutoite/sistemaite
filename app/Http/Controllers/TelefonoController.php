@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\GuardarApoderadoExistenteRequest;
 use App\Models\Telefono;
 use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\GuardarApoderadoExistenteRequest;
 
 class TelefonoController extends Controller
 {

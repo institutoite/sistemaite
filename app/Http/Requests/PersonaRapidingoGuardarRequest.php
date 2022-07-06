@@ -28,12 +28,12 @@ class PersonaRapidingoGuardarRequest extends FormRequest
             'nombre'=>'required|min:3',
             'apellidop'=>'required|max:50',
             'telefono'=>'numeric|nullable',
-            'nombrefamiliar'=>'required',
-            'apellidopfamiliar'=>'required',
-            'telefonofamiliar'=>'required|numeric|min:8',
             'como'=>'required',
-            'parentesco'=>'required',
-            'observacion'=>'required|min:20',
+            // 'nombrefamiliar'=>'required',
+            // 'apellidopfamiliar'=>'required',
+            // 'telefonofamiliar'=>'required|numeric|min:8',
+            // 'parentesco'=>'required',
+            // 'observacion'=>'required|min:20',
         ];
     }
 }

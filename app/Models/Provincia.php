@@ -24,6 +24,7 @@ class Provincia extends Model
     static $rules = [
 		'provincia' => 'required',
 		'departamento_id' => 'required',
+		'pais_id' => 'required',
     ];
 
     protected $perPage = 20;
