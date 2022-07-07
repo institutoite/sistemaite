@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TelefonoUpdateRequest extends FormRequest
+class TemaUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,8 @@ class TelefonoUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' =>'required',
-            'apellidop' => 'required',
-            'apellidom'=>'nullable',
-            'telefono'=>'required',
-            'parentesco'=>'required',
-            'genero'=>'required',
+            'tema'=>'required',
+            'materia_id'=>'required'
         ];
     }
 }

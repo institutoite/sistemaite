@@ -44,13 +44,18 @@
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
-            @if($errors->has('genero'))
-                <span class="text-danger"> {{ $errors->first('genero')}}</span>
+            @if($errors->has('telefono'))
+                <span class="text-danger"> {{ $errors->first('telefono')}}</span>
             @endif
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
-            @if($errors->has('como'))
-                <span class="text-danger"> {{ $errors->first('como')}}</span>
+            @if($errors->has('parentesco'))
+            <span class="text-danger"> {{ $errors->first('parentesco')}}</span>
+            @endif
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+            @if($errors->has('genero'))
+                <span class="text-danger"> {{ $errors->first('genero')}}</span>
             @endif
         </div>
     </div>

@@ -132,15 +132,15 @@
                     </div>
             {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO GENERO DEL FAMILIAR ---}}
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm" >
-                    <div class="input-group mb-2" >
-                        <p class="col-3 form-control bg-secondary p-1 p-1" for="">Género*</p> 
-                        <select class="form-control @error('expedido') is-invalid @enderror" name="genero" id="genero">
-                            <option value=""> Elija tu género</option>
-                                <option value="MUJER" @if(old('genero') == 'MUJER') {{'selected'}} @endif>MUJER</option>
-                                <option value="HOMBRE" @if(old('genero') == 'HOMBRE') {{'selected'}} @endif>HOMBRE</option> 
-                        </select>
+                        <div class="input-group mb-2" >
+                            <p class="col-3 form-control bg-secondary p-1 p-1" for="">Género*</p> 
+                            <select class="form-control @error('genero') is-invalid @enderror" name="genero" id="genero">
+                                <option value=""> Elija tu género</option>
+                                    <option value="MUJER" @if(old('genero') == 'MUJER') {{'selected'}} @endif>MUJER</option>
+                                    <option value="HOMBRE" @if(old('genero') == 'HOMBRE') {{'selected'}} @endif>HOMBRE</option> 
+                            </select>
+                        </div>
                     </div>
-                </div>
             </div>
 
             <div class="row justify-content-center pt-3" >

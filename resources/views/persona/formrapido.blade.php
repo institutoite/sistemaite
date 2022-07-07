@@ -102,7 +102,7 @@
 {{-- 
 <div class="card card-primary card-tabs">
     <div class="card-header p-0 pt-1">
-        <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+        <ul class="nav nav-tabs" id="custom-tabs-one-tab" role=p"tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#solo-estudiante" role="tab" aria-controls="solo-estudiante" aria-selected="true">SOLO</a>
             </li>

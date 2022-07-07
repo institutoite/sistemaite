@@ -7,6 +7,7 @@ use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\GuardarApoderadoExistenteRequest;
+use App\Http\Requests\TelefonoUpdateRequest;
 
 class TelefonoController extends Controller
 {
@@ -134,7 +135,7 @@ class TelefonoController extends Controller
     {
         //
     }
-    public function actualizar(Request $request, $persona_id, $apoderado_id)
+    public function actualizar(TelefonoUpdateRequest $request, $persona_id, $apoderado_id)
     {
         /** en el registro pivot vienen ambas ids */
         $persona=Persona::findOrFail($persona_id);

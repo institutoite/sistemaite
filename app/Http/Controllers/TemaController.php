@@ -10,7 +10,8 @@ use Yajra\DataTables\DataTables;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-
+use App\Http\Requests\TemaUpdateRequest;
+use App\Http\Requests\TemaStoreRequest;
 
 class TemaController extends Controller
 {
@@ -58,7 +59,7 @@ class TemaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TemaStoreRequest $request)
     {
         $tema= new Tema();
         $tema->tema = $request->tema;
@@ -99,7 +100,7 @@ class TemaController extends Controller
      * @param  \App\Tema  $tema
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tema $tema)
+    public function update(TemaUpdateRequest $request, Tema $tema)
     {
         $tema->tema=$request->tema;
         $tema->materia_id=$request->materia_id;

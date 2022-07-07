@@ -17,8 +17,8 @@
 
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        @if($errors->has('tema'))
-            <span class="text-danger"> {{ $errors->first('tema')}}</span>
+        @if($errors->has('materia_id'))
+            <span class="text-danger"> {{ $errors->first('materia_id')}}</span>
         @endif
     </div>
 </div>
