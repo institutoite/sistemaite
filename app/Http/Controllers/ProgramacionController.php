@@ -121,8 +121,10 @@ class ProgramacionController extends Controller
             ->join('userables','userables.userable_id','licencias.id')
             ->join('users','userables.user_id','users.id')
             ->where('userables.userable_type',Licencia::class)
-
+            ->where('licencias.licenciable_id',$request->id)
+            ->where('licencias.licenciable_type',Programacion::class)
             ->where('programacions.id','=',$request->id)
+
             ->select('motivos.motivo','solicitante','parentesco','licencias.created_at','users.name as user','licencias.updated_at')
             ->get();
 

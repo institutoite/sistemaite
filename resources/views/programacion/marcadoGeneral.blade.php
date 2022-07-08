@@ -436,7 +436,7 @@
                             $htmlLicencia+="<tr><td>"+ json.licencias[j].motivo +"</td>";
                             $htmlLicencia+="<td>"+json.licencias[j].solicitante+"</td>";
                             $htmlLicencia+="<td>"+json.licencias[j].parentesco+"</td>";
-                            $htmlLicencia+="<td>"+json.licencias[j].user+"</td>";
+                            $htmlLicencia+="<td>"+json.licencias[j].user+'<4>'+"</td>";
                             $htmlLicencia+="<td>"+moment(json.licencias[j].created_at).format('LLLL')+"</td>";
                         }
                         $("#tabla-mostrar-licencias").append($htmlLicencia);

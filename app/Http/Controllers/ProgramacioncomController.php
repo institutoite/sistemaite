@@ -502,7 +502,8 @@ class ProgramacioncomController extends Controller
             ->join('userables','userables.userable_id','licencias.id')
             ->join('users','userables.user_id','users.id')
             ->where('userables.userable_type',Licencia::class)
-
+            ->where('licencias.licenciable_id',$request->id)
+            ->where('licencias.licenciable_type',Programacioncom::class)
             ->where('programacioncoms.id','=',$request->id)
             ->select('motivos.motivo','solicitante','parentesco','users.name as user','licencias.created_at','licencias.updated_at')
             ->get();

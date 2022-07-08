@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MotivoStoreRequest;
+use App\Http\Requests\MotivoUpdateRequest;
 use App\Models\Motivo;
 use App\Models\User;
 use App\Models\Tipomotivo;
@@ -12,6 +13,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 //use Validator;
 use Illuminate\Support\Facades\Validator;
+
+use Illuminate\Validation\Rule;
+
 
 
 
@@ -59,9 +63,9 @@ class MotivoController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MotivoStoreRequest $request)
     {
-        request()->validate(Motivo::$rules);
+        //request()->validate(Motivo::$rules);
         $motivo=new Motivo();
         $motivo->motivo=$request->motivo;
         $motivo->tipomotivo_id=$request->tipomotivo_id;
@@ -129,11 +133,12 @@ class MotivoController extends Controller
       //%%%%%%%%%%%%%%%%%%%%%%%%%%%  u p d a t e %%%%%%%%%%%%%%%%%%%
     public function actualizar(Request $request)
     {
-        
+        $motivo = Motivo::findOrFail($request->id);
         $validator = Validator::make($request->all(), [
-            'motivo' => 'required|min:5|max:50|unique:motivos',
-            'tipomotivo_id' => 'required',
+            'motivo'=>'required',Rule::unique('motivos', 'motivo')->ignore($motivo),
+            'tipomotivo_id'=>'required',
         ]);
+        
         if ($validator->passes()) {
             $motivo = Motivo::findOrFail($request->id);
             $motivo->motivo = $request->motivo;

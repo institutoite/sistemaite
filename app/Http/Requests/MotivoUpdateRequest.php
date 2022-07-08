@@ -5,7 +5,8 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class PaisUpdateRequest extends FormRequest
+
+class MotivoUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +26,8 @@ class PaisUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombrepais'=>'required',Rule::unique('pais', 'nombrepais')->ignore($this->pais)
-            //'email' => 'required|string|email|max:255|unique:users,id,:id',
+            'motivo'=>'required',Rule::unique('motivos', 'motivo')->ignore($this->motivo),
+            'tipomotivo_id'=>'required',
         ];
     }
 }

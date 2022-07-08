@@ -16,9 +16,9 @@ agregar boton compartir Credenciales de usuario de cliente
 cuando verificar el pago con Bs. 200 y cambio Bs. 25 en computacion y Matematicas
 que se cambien de campo cuando se presiona enter en todos los formularios validar los formularios antes de guardar o actualizar 
 cuando le demos finalizar una clases que guarde la hora que se fue 
-
 verificar las licencias que se muestran cuando se esta mostrando una programacion parece que es lo mismo de Mate= COmputacion 
 validar actuzalidar un motivo sale que ya existe
+
 hacer una seccion de contactanos donde este las formas de contactanos
 Falta terminar el crud de requisitos y metas
 En registrar facilito que tenga dos pestañas arriba uno para registrar sin apoderado y otro con apoderado
@@ -30,6 +30,8 @@ Ver las carteras
 que en detalle de pagos se muestre el total
 cuando computacion se paga todo la ultima clase se queda impaga
 a la hora de marcar clase que se muestre la programacion real  
+despues de editar calificacion se muestra una ventana rrara
+cuando estamos crando una licenciacom en motivo semuestran otros motivos ajenos a licenciacom
 
 
 

@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
         <div class="form-floating mb-3 text-gray">
-            <input  type="text" name="motivo" id="motivo"  class="form-control @error('motivo') is-invalid @enderror" value="" autocomplete="off">
+            <input  type="text" name="motivo" id="motivo"  class="form-control @error('motivo') is-invalid @enderror" value="{{old('motivo',$motivo->motivo ?? '')}}" autocomplete="off">
             <label>Motivo</label>
         </div>
     </div>
@@ -31,7 +31,7 @@
                     @isset($motivo)     
                         <option  value="{{$tipomotivo->id}}" {{$tipomotivo->id==$motivo->tipomotivo_id ? 'selected':''}}>{{$tipomotivo->tipomotivo}}</option>     
                     @else
-                        <option value="{{ $tipomotivo->id }}" {{ old('carrera_id') == $tipomotivo->id ? 'selected':'' }} >{{ $tipomotivo->tipomotivo }}</option>
+                        <option value="{{ $tipomotivo->id }}" {{ old('tipomotivo_id') == $tipomotivo->id ? 'selected':'' }} >{{ $tipomotivo->tipomotivo }}</option>
                     @endisset 
                 @endforeach
             </select>
