@@ -5,8 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-
-class MotivoUpdateRequest extends FormRequest
+class AsignaturaUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +14,7 @@ class MotivoUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,8 +25,8 @@ class MotivoUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'motivo'=>'required',Rule::unique('motivos', 'motivo')->ignore($this->motivo),
-            // 'tipomotivo_id'=>'required',
+            'asignatura'=>'required|max:50|min:5',Rule::unique('asignaturas', 'asignatura')->ignore($this->asignatura),
+            'carrera_id'=>'required'
         ];
     }
 }

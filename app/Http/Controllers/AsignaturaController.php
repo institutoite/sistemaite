@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Carrera;
 use Illuminate\Http\Request;
 use App\Http\Requests\AsignaturaGuardarRequest;
+use App\Http\Requests\AsignaturaUpdateRequest;
 use Illuminate\Support\Facades\Auth;
 
 class AsignaturaController extends Controller
@@ -90,7 +91,7 @@ class AsignaturaController extends Controller
      * @param  \App\Models\Asignatura  $asignatura
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Asignatura $asignatura)
+    public function update(AsignaturaUpdateRequest $request, Asignatura $asignatura)
     {
         $asignatura->asignatura=$request->asignatura;
         $asignatura->carrera_id=$request->carrera_id;

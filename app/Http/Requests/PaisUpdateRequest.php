@@ -26,7 +26,6 @@ class PaisUpdateRequest extends FormRequest
     {
         return [
             'nombrepais'=>'required',Rule::unique('pais', 'nombrepais')->ignore($this->pais)
-            //'email' => 'required|string|email|max:255|unique:users,id,:id',
         ];
     }
 }

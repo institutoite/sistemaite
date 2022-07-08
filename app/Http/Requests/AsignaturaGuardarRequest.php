@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AsignaturaGuardarRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class AsignaturaGuardarRequest extends FormRequest
     public function rules()
     {
         return [
-            'asignatura'=>'required|max:50|min:5',
+            'asignatura'=>'required|max:50|min:5|unique:asignaturas,asignatura',
             'carrera_id'=>'required'
         ];
     }
