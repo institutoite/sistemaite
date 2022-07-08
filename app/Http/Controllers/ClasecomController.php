@@ -252,6 +252,7 @@ class ClasecomController extends Controller
         $programa->estado_id = Config::get('constantes.ESTADO_FINALIZADO');
         $programa->save();
         $clasecom->estado_id = Config::get('constantes.ESTADO_FINALIZADO');
+        $clasecom->horafin=Carbon::now()->isoFormat('HH:mm:ss');
         $clasecom->save();
         return response()->json(['message' => 'Despidete deseale el bien', 'status' => 200]);
     }

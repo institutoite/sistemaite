@@ -14,9 +14,9 @@ en presentes aumentar guarderia, robotica
 no se ve el boton siguiente o guardar cuando se toma foto con camara
 agregar boton compartir Credenciales de usuario de cliente
 cuando verificar el pago con Bs. 200 y cambio Bs. 25 en computacion y Matematicas
-
 que se cambien de campo cuando se presiona enter en todos los formularios validar los formularios antes de guardar o actualizar 
 cuando le demos finalizar una clases que guarde la hora que se fue 
+
 verificar las licencias que se muestran cuando se esta mostrando una programacion parece que es lo mismo de Mate= COmputacion 
 validar actuzalidar un motivo sale que ya existe
 hacer una seccion de contactanos donde este las formas de contactanos

@@ -317,6 +317,7 @@ class ClaseController extends Controller
         $programa->estado_id = Config::get('constantes.ESTADO_FINALIZADO');
         $programa->save();
         $clase->estado_id = Config::get('constantes.ESTADO_FINALIZADO');
+        $clase->horafin=Carbon::now()->isoFormat('HH:mm:ss');
         $clase->save();
         return response()->json(['message' => 'Despidete deseale el bien', 'status' => 200]);
     }

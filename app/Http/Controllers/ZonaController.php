@@ -51,7 +51,7 @@ class ZonaController extends Controller
         $zonaNueva->ciudad_id=$request->ciudad_id;
         $zonaNueva->save();
         $zonaNueva->userable()->create(['user_id'=>Auth::user()->id]);
-        return redirect()->back()->with('mensaje','Registro creado satisfactoriamente');
+        return redirect()->route('zonas.index');
     }
 
     /**

@@ -383,8 +383,8 @@ Route::get('asignatura/actualizar/{asignatura}', [AsignaturaController::class,'u
 Route::delete('eliminar/asignatura/{asignatura}', [AsignaturaController::class,'destroy'])->name('asignatura.destroy');
 
 
-Route::get('user/crear', "UserController@crear")->name('users.crear');
-Route::post('user/guardar', "UserController@guardar")->name('users.guardar');
+// Route::get('user/crear', "UserController@crear")->name('users.crear');
+// Route::post('user/guardar', "UserController@guardar")->name('users.guardar');
 Route::get('share/credential/{user}', [UserController::class,'share'])->name('share.credentials');
 
 

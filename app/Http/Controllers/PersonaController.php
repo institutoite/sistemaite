@@ -241,15 +241,19 @@ class PersonaController extends Controller
         $apoderado->habilitado = 0;
         $apoderado->votos = 0;
 
-        //$carbon = new \Carbon\Carbon();
-        // $date = $carbon::createFromDate(1900, 1, 1);
-        // $apoderado->fechanacimiento=$date;
         $apoderado->telefono=$request->telefono;
         $apoderado->papelinicial = 'apoderado';
         $apoderado->save();
 
-        $apoderado->userable()->create(['user_id'=>Auth::user()->id]);
+        $user = new User();
+        $user->email =strtolower(Str::substr($apoderado->nombre, 1, 2).$apoderado->apellidop.$apoderado->id)."@ite.com.bo" ;
+        $user->name = ucfirst(strtolower($apoderado->nombre).$apoderado->id);
+        $user->persona_id = $apoderado->id;
+        $user->password = Hash::make($user->name."*");
+        $user->foto = "estudiantes/sinperfil.png";
+        $user->save();
 
+        $apoderado->userable()->create(['user_id'=>Auth::user()->id]);
         $observacion = new Observacion();
         $observacion->observacion = "Se registró a sistema como un apoderado";
         $observacion->activo = 1;

@@ -59,19 +59,20 @@
 
                         <form id="formulario-editar-motivo">
                             @csrf
-                            
+                        
+                                <div class="row">
+                                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" >
+                                        <span class="text-danger" id="error_motivo"></span>
+                                    </div>
+                                </div>  
+
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" > 
                                 <div class="form-floating mb-3">
                                     <input class="form-control" type="text" name="tipomotivo" id="tipomotivo" value="">
                                     <label for="tipomotivo">Tipomotivo</label>
                                 </div>
                             </div>
-                             <div class="row">
-                                <div class="col-3"></div>
-                                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" >
-                                    <span class="text-danger" id="error_motivo"></span>
-                                </div>
-                            </div>  
+                        
 
 
                             <input class="form-control" type="text" hidden name="tipomotivo_id" id="tipomotivo_id">

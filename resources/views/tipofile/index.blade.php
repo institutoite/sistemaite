@@ -198,7 +198,7 @@
                 $tipofile=$('#tipofile').val();
                 $tipofile_id=$('#tipofile_id').val();
                 $programa=$('#programa').val();
-                
+                $("#errores").empty();  
                 console.log($tipofile_id);
                 var token = $("input[name=_token]").val();
                 $.ajaxSetup({
@@ -216,9 +216,9 @@
                             token:token,
                         },
                     success : function(json) {
-                        console.log(json);
                         if(json.error){
-                        $("#errores").html(json.error);
+                              
+                            $("#errores").html(json.error);
                         }else{
                             $("#modal-editar").modal("hide");
                             $('#tipofiles').DataTable().ajax.reload();

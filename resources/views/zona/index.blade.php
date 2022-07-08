@@ -19,6 +19,11 @@
     <div class="card">
         <div class="card-header">
             Lista de Zonas
+            <div class="float-right">
+                <a href="{{ route('zonas.create') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
+                    {{ __('Crear Zona') }}
+                </a>
+            </div>
         </div>
         <div class="card-body">
             <table id="zonas" class="table table-bordered table-hover table-striped">
