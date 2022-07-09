@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\File;
 use App\Models\Tipofile;
 use App\Http\Requests\FileGuardarRequest;
+use App\Http\Requests\FileUpdateRequest;
 use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Auth;
@@ -109,7 +110,7 @@ class FileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(FileGuardarRequest $request, $id)
+    public function update(FileUpdateRequest $request, $id)
     {
         $file=File::findOrFail($id);
         if ($request->hasFile('file')) {

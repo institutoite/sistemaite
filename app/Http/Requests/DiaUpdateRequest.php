@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class DiaUpdateRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class DiaUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'dia'=>'required'
+            'dia'=>'required',Rule::unique('dias', 'dia')->ignore($this->dia),
         ];
     }
 }

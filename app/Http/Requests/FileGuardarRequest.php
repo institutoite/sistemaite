@@ -25,7 +25,7 @@ class FileGuardarRequest extends FormRequest
     {
         return [
             'file'=>'required',
-            'descripcion'=>'required',
+            'descripcion'=>'required|unique:files,file',
         ];
     }
 }

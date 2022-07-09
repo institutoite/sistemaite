@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CarreraStoreRequest extends FormRequest
+class FileUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class CarreraStoreRequest extends FormRequest
     public function rules()
     {
         return [
-           'carrera'=>'required|unique:carreras,carrera',
-           'description'=>'required',
-           'precio' => 'required', 
+            'file'=>'max:5000',
+            'descripcion'=>'required',
         ];
     }
 }

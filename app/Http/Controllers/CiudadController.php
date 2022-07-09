@@ -94,7 +94,6 @@ class CiudadController extends Controller
     public function update(CiudadUpdateRequest $request, $id)
     {
         $ciudad=Ciudad::findOrFail($id);
-
         $ciudad->ciudad=$request->ciudad;
         $ciudad->pais_id=$request->pais_id;
         $ciudad->save();

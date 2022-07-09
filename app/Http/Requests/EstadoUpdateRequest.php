@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class EstadoUpdateRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class EstadoUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'estado'=>'required',
+            'estado'=>'required',Rule::unique('estados', 'estado')->ignore($this->estado),
         ];
     }
 }

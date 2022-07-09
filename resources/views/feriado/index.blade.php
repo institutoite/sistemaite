@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('custom/css/mapa.css')}}">
 @endsection
 
-@section('title', 'Carreras')
+@section('title', 'Feriados')
 @section('plugins.jquery', true)
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
@@ -14,7 +14,7 @@
             <div class="card-header">
                 <div class="float-right">
                 <a href="{{ route('feriados.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                    {{ __('Create Estado') }}
+                    {{ __('Crear Feriado') }}
                 </a>
             </div>
         </div>

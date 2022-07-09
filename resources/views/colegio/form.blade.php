@@ -1,10 +1,24 @@
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO NOMBRE %%%%%%%%%%%%%%%%%%%%%% --}}
     <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            @if($errors->has('nombre'))
+                <span class="text-danger"> {{ $errors->first('nombre')}}</span>
+            @endif
+        </div>
+    </div>
+    <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" > 
             <div class="form-floating mb-3 text-gray">
                 <input  type="text" name="nombre" class="form-control @error('nombre') is-invalid @enderror" value="{{old('nombre',$colegio->nombre ?? '')}}">
                 <label for="nombre">nombre de colegio</label>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            @if($errors->has('director'))
+                <span class="text-danger"> {{ $errors->first('director')}}</span>
+            @endif
         </div>
     </div>
     <div class="row">
@@ -16,6 +30,13 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            @if($errors->has('direccion'))
+                <span class="text-danger"> {{ $errors->first('direccion')}}</span>
+            @endif
+        </div>
+    </div>
+    <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" > 
             <div class="form-floating mb-3 text-gray">
                 <input  type="text" name="direccion" class="form-control @error('direccion') is-invalid @enderror" value="{{old('direccion',$colegio->direccion ?? '')}}">
@@ -23,7 +44,26 @@
             </div>
         </div>
     </div>
-
+    
+    <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                @if($errors->has('rue'))
+                    <span class="text-danger"> {{ $errors->first('rue')}}</span>
+                @endif
+            </div>
+        
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                @if($errors->has('telefono'))
+                    <span class="text-danger"> {{ $errors->first('telefono')}}</span>
+                @endif
+            </div>
+        
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                @if($errors->has('celular'))
+                    <span class="text-danger"> {{ $errors->first('celular')}}</span>
+                @endif
+            </div>
+    </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" > 
             <div class="form-floating mb-3 text-gray">
@@ -47,6 +87,24 @@
         </div>
     </div>
     
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            @if($errors->has('dependencia'))
+                <span class="text-danger"> {{ $errors->first('dependencia')}}</span>
+            @endif
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            @if($errors->has('turno'))
+                <span class="text-danger"> {{ $errors->first('turno')}}</span>
+            @endif
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            @if($errors->has('areageografica'))
+                <span class="text-danger"> {{ $errors->first('areageografica')}}</span>
+            @endif
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" > 
             <div class="form-floating mb-3 text-gray">
@@ -102,6 +160,25 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            @if($errors->has('departamento_id'))
+                <span class="text-danger"> {{ $errors->first('departamento_id')}}</span>
+            @endif
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            @if($errors->has('provincia_id'))
+                <span class="text-danger"> {{ $errors->first('provincia_id')}}</span>
+            @endif
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            @if($errors->has('municipio_id'))
+                <span class="text-danger"> {{ $errors->first('municipio_id')}}</span>
+            @endif
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
@@ -151,6 +228,13 @@
 
 
     <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            @if($errors->has('niveles'))
+                <span class="text-danger"> {{ $errors->first('niveles')}}</span>
+            @endif
+        </div>
+    </div>
+    <div class="row">
         <div class="card bg-warning">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 @error('niveles') is-invalid @enderror">
                 @isset($colegio)
@@ -175,6 +259,20 @@
                     @endforeach
                 @endisset
             </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            @if($errors->has('coordenadax'))
+                <span class="text-danger"> {{ $errors->first('coordenadax')}}</span>
+            @endif
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            @if($errors->has('coordenaday'))
+                <span class="text-danger"> {{ $errors->first('coordenaday')}}</span>
+            @endif
         </div>
     </div>
 

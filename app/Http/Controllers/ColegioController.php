@@ -9,7 +9,8 @@ use App\Models\Provincia;
 use App\Models\Nivel;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-
+use App\Http\Requests\ColegioStoreRequest;
+use App\Http\Requests\ColegioUpdateRequest;
 
 use Illuminate\Http\Request;
 
@@ -67,10 +68,11 @@ class ColegioController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ColegioStoreRequest $request)
     {
         
-        request()->validate(Colegio::$rules);
+        //dd($request->all());
+        //request()->validate(Colegio::$rules);
         $colegio = Colegio::create($request->all());
         //dd($colegio);
         
@@ -134,15 +136,10 @@ class ColegioController extends Controller
      * @param  Colegio $colegio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Colegio $colegio)
+    public function update(ColegioUpdateRequest $request, Colegio $colegio)
     {
-        request()->validate(Colegio::$rules);
-
         $colegio->update($request->all());
-        //dd($colegio);
-
         $colegio->niveles()->sync(array_keys($request->niveles));
-
         return redirect()->route('colegios.index')
             ->with('success', 'Colegio updated successfully');
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class FeriadoUpdateRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class FeriadoUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,8 @@ class FeriadoUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'fecha'=>'required|',Rule::unique('feriados', 'fecha')->ignore($this->fecha),
+            'festividad'=>'required',
         ];
     }
 }

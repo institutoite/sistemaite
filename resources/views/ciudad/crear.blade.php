@@ -1,12 +1,13 @@
+
 @extends('adminlte::page')
 @section('css')
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
 @stop
 
-@section('title', 'Dashboard')
-
-@section('content_header')
-
-@stop
+@section('title', 'Ciudad')
+@section('title', 'Personas')
+@section('plugins.Sweetalert2',true)
+@section('plugins.Datatables',true)
 
 @section('content')
     <div class="card">

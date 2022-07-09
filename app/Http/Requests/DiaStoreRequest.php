@@ -24,7 +24,7 @@ class DiaStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'dia'=>'required',
+            'dia'=>'required|unique:dias,dia',
         ];
     }
 }

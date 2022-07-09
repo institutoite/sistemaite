@@ -24,7 +24,7 @@ class EstadoStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'estado'=>'required',
+            'estado'=>'required|unique:estados,estado',
         ];
     }
 }

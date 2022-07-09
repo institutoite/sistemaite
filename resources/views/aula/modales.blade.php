@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg modalito">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                MOSTRAR TIPO DE ARCHIVO
+                MOSTRAR AULA
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-editar-pago">
@@ -33,7 +33,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                MODAL EDITAR ARCHIVO
+                MODAL EDITAR AULA
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -44,7 +44,7 @@
 
                 <div class="card card-primary">
                     <div class="card-header bg-secondary">
-                        <span class="card-title">Editar Tipo archivo</span>
+                        <span class="card-title">Editar Aula</span>
                     </div>
                     <div class="card-body">
                        
@@ -80,7 +80,7 @@
                             </div>  
 
 
-                            <input class="form-control" type="text" name="aula_id" id="aula_id">
+                            <input class="form-control" hidden type="text" name="aula_id" id="aula_id">
                             <div class="container-fluid h-100 mt-3"> 
                                 <div class="row w-100 align-items-center">
                                     <div class="col text-center">

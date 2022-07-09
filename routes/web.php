@@ -563,4 +563,3 @@ Route::get('messages/{id}',[MessageController::class, 'create'])->name('messages
 Route::get('messages/{message}',[MessageController::class, 'show'])->name('messages.show');
 
 Route::post('messages', [MessageController::class, 'store'])->name('messages.store');
-

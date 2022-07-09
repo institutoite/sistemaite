@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class DepartamentoUpdateRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class DepartamentoUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'departamento'=>'required',
+            'departamento'=>'required',Rule::unique('depatamentos', 'departamento')->ignore($this->departamento),
             'pais_id'=>'required',
         ];
     }

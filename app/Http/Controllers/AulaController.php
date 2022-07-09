@@ -12,7 +12,8 @@ use App\Models\User;
 
 use App\Http\Requests\AulaGuardarRequest;
 use App\Http\Requests\AulaActualizarRequest;
-
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 class AulaController extends Controller
 {
    /**
@@ -86,16 +87,26 @@ class AulaController extends Controller
         return response()->json($aula);
     }
 
-    public function actualizar(AulaActualizarRequest $request)
+    public function actualizar(Request $request)
     {
-        
-            $validated=$request->validated();
-            $aula = Aula::findOrFail($request->id);
-            $aula->aula = $request->aula;
-            $aula->direccion = $request->direccion;
-            $aula->save();
 
-            return response()->json(['aula'=>$aula]);
+            $aula = Aula::findOrFail($request->id);
+            $validator = Validator::make($request->all(), [
+                'aula'=>'required',Rule::unique('aulas', 'aula')->ignore($aula),
+                'direccion'=>'required',
+            ]);
+             if ($validator->passes()) {
+                $aula = Aula::findOrFail($request->id);
+                $aula->aula = $request->aula;
+                $aula->direccion = $request->direccion;
+                $aula->save();
+                return response()->json(['aula'=>$aula]);
+            }else{
+                return response()->json(['error' => $validator->errors()->first()]);
+            }
+           
+
+            
         
         
     }

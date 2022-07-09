@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CarreraUpdateRequest extends FormRequest
 {
@@ -24,7 +25,8 @@ class CarreraUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'carrera'=>'required',Rule::unique('carreras', 'carrera')->ignore($this->carrera),
+            'description'=>'required'
         ];
     }
 }

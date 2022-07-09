@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CiudadUpdateRequest extends FormRequest
 {
@@ -24,7 +25,8 @@ class CiudadUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'ciudad'=>'required|max:80|unique:ciudads,ciudad',
+            'ciudad'=>'required|max:80',Rule::unique('ciudads', 'ciudad')->ignore($this->ciudad),
+            'pais_id'=>'required'
         ];
     }
 }

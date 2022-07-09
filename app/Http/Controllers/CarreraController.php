@@ -33,7 +33,6 @@ class CarreraController extends Controller
     public function index()
     {
         $carreras = Carrera::all();
-
         return view('carrera.index', compact('carreras'));
     }
     
@@ -62,7 +61,6 @@ class CarreraController extends Controller
         $carrera->carrera=$request->carrera;
         $carrera->description=$request->description;
         $carrera->precio=$request->precio;
-
         $carrera->save();
         return redirect()->route('carrera.index');
         
@@ -99,7 +97,7 @@ class CarreraController extends Controller
      * @param  \App\Models\Carrera  $carrera
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Carrera $carrera)
+    public function update(CarreraUpdateRequest $request, Carrera $carrera)
     {
         $carrera->carrera=$request->carrera;
         $carrera->description=$request->description;
