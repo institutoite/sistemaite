@@ -183,6 +183,7 @@
                                 }
                                 $("#nivel_id").append($htmlNiveles);    
                                 $("#formulario-editar").append($html);
+                                //$("#grados").
                         },
                         error : function(xhr, status) {
                             Swal.fire({
@@ -219,11 +220,13 @@
                         if($.isEmptyObject(json.error)){
                             $("#message-error").addClass("d-none");
                             $("#modal-editar").modal("hide");
-                            $('#grados').DataTable().ajax.reload();
+                            
                         }else{
                             $("#message-error").removeClass("d-none");
                             imprimeErrores(json);
-                        }                        
+                        }  
+                        $('#grados').DataTable().ajax.reload();
+                        alert("Successç");                      
                     },
                     error:function(jqXHR,estado,error){
                         

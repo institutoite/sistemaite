@@ -261,11 +261,13 @@
                         if($.isEmptyObject(json.error)){
                             $("#message-error").addClass("d-none");
                             $("#modal-editar").modal("hide");
-                            $('#grados').DataTable().ajax.reload();
+                            
                         }else{
                             $("#message-error").removeClass("d-none");
                             imprimeErrores(json);
-                        }                        
+                        }
+                        alert("Todo esta bien");
+                                                 
                     },
                     error:function(jqXHR,estado,error){
                         
