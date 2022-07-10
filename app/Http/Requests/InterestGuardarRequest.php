@@ -24,7 +24,7 @@ class InterestGuardarRequest extends FormRequest
     public function rules()
     {
         return [
-            'interest'=>'required|min:5|max:30',
+            'interest'=>'required|min:5|max:30|unique:interests,interest',
         ];
     }
 }

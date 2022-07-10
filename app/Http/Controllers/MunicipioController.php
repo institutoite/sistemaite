@@ -55,7 +55,6 @@ class MunicipioController extends Controller
      */
     public function store(MunicipioStoreRequest $request)
     {
-        // request()->validate(Municipio::$rules);
         $municipio = Municipio::create($request->all());
         $municipio->userable()->create(['user_id'=>Auth::user()->id]);
         return redirect()->route('municipios.index');
@@ -99,9 +98,8 @@ class MunicipioController extends Controller
      * @param  Municipio $municipio
      * @return \Illuminate\Http\Response
      */
-    public function update(MunicipioStoreRequest $request, Municipio $municipio)
+    public function update(MunicipioUpdateRequest $request, Municipio $municipio)
     {
-        //request()->validate(Municipio::$rules);
         $municipio->update($request->all());
         return redirect()->route('municipios.index');
     }

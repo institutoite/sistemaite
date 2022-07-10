@@ -1,48 +1,53 @@
-  <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                <div class="row">
+                    <div class="col-xs-122 col-sm-122 col-md-6 col-lg-6">
                         @if($errors->has('nombre'))
                             <span class="text-danger"> {{ $errors->first('nombre')}}</span>
                         @endif
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+                    <div class="col-xs-122 col-sm-122 col-md-6 col-lg-6">
                         @if($errors->has('apellidop'))
                             <span class="text-danger"> {{ $errors->first('apellidop')}}</span>
-                        @endif
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
-                        @if($errors->has('telefono'))
-                            <span class="text-danger"> {{ $errors->first('telefono')}}</span>
-                        @endif
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
-                        @if($errors->has('como'))
-                            <span class="text-danger"> {{ $errors->first('como')}}</span>
                         @endif
                     </div>
                 </div>
                 
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" > 
+                    <div class="col-xs-122 col-sm-122 col-md-6 col-lg-6" > 
                         <div class="form-floating mb-3 text-gray">
                             <input  type="text" name="nombre" class="form-control @error('nombre') is-invalid @enderror" value="{{old('nombre',$persona->nombre ?? '')}}">
                             <label for="nombre">nombre</label>
                         </div>
                     </div>
                     {{-- %%%%%%%%%%%%%%% CAMPO APELLIDO PATERNO --}}
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" >
+                    <div class="col-xs-122 col-sm-122 col-md-6 col-lg-6" >
                         <div class="form-floating mb-3 text-gray">
                             <input  type="text" name="apellidop" class="form-control @error('apellidop') is-invalid @enderror" value="{{old('apellidop',$persona->apellidop ?? '')}}">
                             <label for="apellidop">apellidop</label>
                         </div>    
                     </div>
                     {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO APELLIDO MATERNO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3" >
+                </div> {{-- FIN DEL ROW DE LOS INPUT DE ESTUDIANTE  --}}
+
+                <div class="row">
+                    <div class="col-xs-122 col-sm-122 col-md-6 col-lg-6">
+                        @if($errors->has('telefono'))
+                            <span class="text-danger"> {{ $errors->first('telefono')}}</span>
+                        @endif
+                    </div>
+                    <div class="col-xs-122 col-sm-122 col-md-6 col-lg-6">
+                        @if($errors->has('como'))
+                            <span class="text-danger"> {{ $errors->first('como')}}</span>
+                        @endif
+                    </div>    
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
                         <div class="form-floating mb-3 text-gray">
                             <input class="form-control @error('telefono') is-invalid @enderror" type="tel" id="phone" name="telefono" value="{{old('telefono',$persona->telefono ?? '')}}">
                             <label for="telefono">Telefono*</label>
                         </div>
                     </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3" >
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
                         <div class="row">
                             <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" >
                                 <div class="form-floating mb-3 text-gray">
@@ -68,15 +73,17 @@
                                 </div>
                             </div>
                             {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO REFERENCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3" >
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
                                 <div class="form-floating mb-3 text-gray">
                                     <input  type="text" readonly id="persona_id" name="persona_id" class="form-control @error('carnet') is-invalid @enderror" value="{{old('persona_id',$persona->persona_id ?? '')}}">
                                 </div>
                             </div>
                         </div>
                     </div>
-                
-                </div> {{-- FIN DEL ROW DE LOS INPUT DE ESTUDIANTE  --}}
+                </div>
+
+
+
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
                             @if($errors->has('interests'))
@@ -96,6 +103,9 @@
                         </div>
                     </div>
                 </div>
+
+                 <textarea placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" >{{old('observacion',$observacion ?? '')}}</textarea>
+
 
 
 

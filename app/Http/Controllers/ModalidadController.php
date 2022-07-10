@@ -105,12 +105,9 @@ class ModalidadController extends Controller
      * @param  Modalidad $modalidad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Modalidad $modalidad)
+    public function update(ModalidadUpdateRequest $request, Modalidad $modalidad)
     {
-        request()->validate(Modalidad::$rules);
-
         $modalidad->update($request->all());
-
         return redirect()->route('modalidads.index')
             ->with('success', 'Modalidad updated successfully');
     }

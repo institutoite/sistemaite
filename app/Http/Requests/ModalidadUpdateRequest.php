@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ModalidadUpdateRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class ModalidadUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'modalidad'=>'required',
+            'modalidad'=>'required',Rule::unique('modalidads', 'modalidad')->ignore($this->modalidad),
             'costo' => 'required',
             'cargahoraria'=>'required',
             'nivel_id'=>'required',

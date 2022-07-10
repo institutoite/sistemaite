@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class MateriaUpdateRequest extends FormRequest
+class NivelUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,7 @@ class MateriaUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'materia'=>'required',Rule::unique('materias', 'materia')->ignore($this->materia),
-            'niveles'=>'required',
+            'nivel'=>'required',Rule::unique('nivels', 'nivel')->ignore($this->nivel),
         ];
     }
 }

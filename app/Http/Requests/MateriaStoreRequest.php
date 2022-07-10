@@ -24,7 +24,7 @@ class MateriaStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'materia'=>'required',
+            'materia'=>'required|unique:materias,materia',
             'niveles'=>'required'
         ];
     }

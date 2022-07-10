@@ -235,7 +235,7 @@
                                 })
                                 Toast.fire({
                                 type: 'success',
-                                title: 'Se eliminó correctamente el registro'
+                                title: 'Se actualizó correctamente el registro'
                             })   
                         } 
                     },

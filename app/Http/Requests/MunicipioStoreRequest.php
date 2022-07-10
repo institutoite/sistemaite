@@ -24,7 +24,7 @@ class MunicipioStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'municipio' => 'required',
+            'municipio' => 'required|unique:municipios,municipio',
 		    'provincia_id' => 'required',
 		    'departamento_id' => 'required',
 		    'pais_id' => 'required',

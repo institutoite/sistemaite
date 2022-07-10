@@ -47,6 +47,7 @@
             html_select="";
             $.get('../api/pais/'+ pais_id +'/departamentos',function (data) {
                 console.log(data);
+                html_select+='<option value="">Seleccione un departamento</option>';
                 for (var i = 0; i < data.length; i++) {
                     html_select+='<option value="'+ data[i].id +'">' +data[i].departamento +'</option>';
                 }

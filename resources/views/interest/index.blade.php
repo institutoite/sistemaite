@@ -90,7 +90,7 @@
                 } );
             };
         } ( jQuery ) );
-
+        
         $(document).ready(function() {
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATA TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             //let fila=1;
@@ -225,7 +225,7 @@
                                 })
                                 Toast.fire({
                                 type: 'success',
-                                title: 'Se eliminó correctamente el registro'
+                                title: 'Se actualizó correctamente el registro'
                             })   
                         } 
                     },

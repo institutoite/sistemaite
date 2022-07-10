@@ -11,6 +11,9 @@ use App\Models\User;
  * Class NivelController
  * @package App\Http\Controllers
  */
+use App\Http\Requests\NivelStoreRequest;
+use App\Http\Requests\NivelUpdateRequest;
+
 class NivelController extends Controller
 {
     public function __construct()
@@ -49,7 +52,7 @@ class NivelController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NivelStoreRequest $request)
     {
         request()->validate(Nivel::$rules);
 
@@ -91,11 +94,10 @@ class NivelController extends Controller
      * @param  Nivel $nivel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nivel $nivel)
+    public function update(NivelUpdateRequest $request, Nivel $nivel)
     {
-        request()->validate(Nivel::$rules);
+       //request()->validate(Nivel::$rules);
         $nivel->update($request->all());
-
         return redirect()->route('nivels.index');
     }
 

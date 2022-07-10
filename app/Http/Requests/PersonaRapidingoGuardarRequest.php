@@ -13,7 +13,7 @@ class PersonaRapidingoGuardarRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,8 +24,13 @@ class PersonaRapidingoGuardarRequest extends FormRequest
     public function rules()
     {
         return [
+            /**
+             * 
+             * AL PARECER ESTO NO ESTA TRBAAJANDO
+             * 
+             */
             'interests'=>'required',
-            'nombre'=>'required|min:3',
+            "nombre" => 'required|unique_with:personas,apellidop'.$persona->id,
             'apellidop'=>'required|max:50',
             'telefono'=>'numeric|nullable',
             'como'=>'required',

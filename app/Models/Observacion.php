@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property $inscripcione_id
  * @property $created_at
  * @property $updated_at
- *
  * @property Inscripcione $inscripcione
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder

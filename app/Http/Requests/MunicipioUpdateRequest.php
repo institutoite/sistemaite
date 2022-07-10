@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class MunicipioUpdateRequest extends FormRequest
 {
@@ -23,8 +24,9 @@ class MunicipioUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
-            'municipio' => 'required',
+            'municipio' => 'required',Rule::unique('municipios', 'municipio')->ignore($this->municipio),
 		    'provincia_id' => 'required',
 		    'departamento_id' => 'required',
 		    'pais_id' => 'required',

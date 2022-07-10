@@ -52,8 +52,8 @@ a la hora de marcar clase que se muestre la programacion real
 despues de editar calificacion se muestra una ventana rrara
 cuando estamos crando una licenciacom en motivo semuestran otros motivos ajenos a licenciacom
 en todos los mostrar el foto del usuario es muy grande 
-
-
+cambiar en ver toda la programacion dice en el titulo clases que faltan
+crud para licencias en computacion y nivelacion
 
 
 

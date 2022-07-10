@@ -277,13 +277,8 @@ class PersonaController extends Controller
         $persona->votos = 1;
         $persona->papelinicial = 'estudiante';
         $persona->save();
-        
-        //dd($persona);
-
         $persona->interests()->sync(array_keys($request->interests));
-
         $persona->userable()->create(['user_id'=>Auth::user()->id]);
-
         $observacion = new Observacion();
         $observacion->observacion = $request->observacion;
         $observacion->activo = 1;
@@ -291,30 +286,7 @@ class PersonaController extends Controller
         $observacion->observable_type = "App\Models\Persona";
         $observacion->save();
         $observacion->userable()->create(['user_id'=>Auth::user()->id]);
-        
-        //Route::redirect('URI', 'URI', 301);
-        // $apoderado = new Persona();
-        // $apoderado->nombre = $request->nombrefamiliar;
-        // $apoderado->apellidop = $request->apellidopfamiliar;
-        // $apoderado->telefono=$request->telefonofamiliar;
-        // $apoderado->votos=0;
-        // $apoderado->papelinicial = 'apoderado';
-        // $apoderado->save();
-
-        //$apoderado->userable()->create(['user_id'=>Auth::user()->id]);
-
-        // $observacion = new Observacion();
-        // $observacion->observacion = "Se registró a sistema como un apoderado de".$persona->nombre.' '.$persona->apellidop;
-        // $observacion->activo = 1;
-        // $observacion->observable_id = $apoderado->id;
-        // $observacion->observable_type = "App\Models\Persona";
-        // $observacion->save();
-        //$observacion->userable()->create(['user_id'=>Auth::user()->id]);
-        //$persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
-        // $apoderados = $persona->apoderados;
-
         return redirect()->route('telefonos.crear',['persona'=>$persona])->with('mensaje','Contacto Creado Corectamente');
-        // return redirect()->route('telefonos.persona',['persona'=>$persona,'apoderados'=>$apoderados])->with('mensaje','Contacto Creado Corectamente');
     }
 
     /**
@@ -325,12 +297,14 @@ class PersonaController extends Controller
      */
     public function show(Persona $persona)
     {   
+        if(is_null($persona->pais_id)){
+            return redirect()->route('personas.edit',$persona);
+        }
+
         $pais=Pais::findOrFail($persona->pais_id);
         $ciudad = Ciudad::findOrFail($persona->ciudad_id);
         $zona = Zona::findOrFail($persona->zona_id);
 
-        
-        
         $observacion = Observacion::where('observable_id', $persona->id)
             ->where('observable_type', Persona::class)->get();
 
@@ -425,16 +399,13 @@ class PersonaController extends Controller
         $persona->expedido = $request->expedido;
         $persona->genero = $request->genero;
         $persona->habilitado=1;
-        //$persona->observacion = $request->observacion;
-        /* Guardar una imagen en storage si llega una foto*/
-  
+        
         if ($request->hasFile('foto')) {
             // verificando si exites la foto actual
             if (Storage::disk('public')->exists($persona->foto)) {
                 // aquí la borro
                 Storage::disk('public')->delete($persona->foto);
             }
-//       leandro bruno leaandro
             $foto = $request->file('foto');
             $nombreImagen = 'estudiantes/' . Str::random(20) . '.jpg';
             /** las convertimos en jpg y la redimensionamos */
@@ -481,10 +452,7 @@ class PersonaController extends Controller
     }
 
     public function guardarfoto(Request $request, Persona $persona){
-        //dd($request->all());
-
         $image = $request->imagen;  // your base64 encoded
-        
         $image = str_replace('data:image/png;base64,', '', $image);
         $image = str_replace(' ', '+', $image);
         $imageName = 'estudiantes/'.Str::random(20) . '.' . 'png';

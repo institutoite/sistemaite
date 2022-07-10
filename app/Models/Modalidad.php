@@ -19,15 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Modalidad extends Model
 {
-    
-    static $rules = [
-		'modalidad' => 'required',
-		'costo' => 'required',
-		'cargahoraria' => 'required',
-    ];
-
     protected $perPage = 20;
-
     /**
      * Attributes that should be mass-assignable.
      *

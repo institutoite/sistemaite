@@ -24,7 +24,7 @@ class ModalidadStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'modalidad'=>'required',
+            'modalidad'=>'required|unique:modalidads,modalidad',
             'costo' => 'required',
             'cargahoraria'=>'required',
             'nivel_id'=>'required',
