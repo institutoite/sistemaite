@@ -203,8 +203,6 @@ class InscripcioneController extends Controller
 
         if($ultima_inscripcion==null){
             $ultima_inscripcion=$inscripcione;
-        }else{
-            dd($ultima_inscripcion);
         }
 
         $modalidades = $ultimo_nivel->modalidades;

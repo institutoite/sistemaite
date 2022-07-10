@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+use App\Http\Requests\GradoUpdateRequest;
+use App\Http\Requests\GradoStoreRequest;
+
 /**
  * Class GradoController
  * @package App\Http\Controllers
@@ -66,26 +69,13 @@ class GradoController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GradoStoreRequest $request)
     {
-        
-        request()->validate(Grado::$rules);
         $grado=new Grado();
         $grado->grado=$request->grado;
         $grado->nivel_id=$request->nivel_id;
         $grado->save();
-        
         $grado->userable()->create(['user_id'=>Auth::user()->id]);
-        
-        // $user = Auth::user();
-        // $userable = new Userable();
-        // $userable->user_id = $user->id;
-        // $userable->userable_id = $grado->id;
-        // $userable->userable_type = Grado::class;
-        // $userable->save();
-
-
-        
         return redirect()->route('grados.index')
             ->with('success', 'Grado created successfully.');
     }
@@ -126,7 +116,7 @@ class GradoController extends Controller
      * @param  Grado $grado
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(Request $request)
+    public function actualizar(GradoUpdateRequest $request)
     {
 
         //return response()->json(['ok'=>2]);

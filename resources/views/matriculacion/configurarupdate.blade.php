@@ -70,7 +70,7 @@
     {{-- {{ dd($programacioncoms) }} --}}
     @isset($programacioncoms)
         @if (count($programacioncoms)>0)
-            @include('programacion.registros')    
+            @include('programacioncom.registros')    
         @endif
     @endisset
     

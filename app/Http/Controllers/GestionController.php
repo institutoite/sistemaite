@@ -30,10 +30,8 @@ class GestionController extends Controller
         }
 
         $colegios = Colegio::all();
-
         $objetoGrado = new GradoController();
         $grados = $objetoGrado->gradosAunNoCursados($estudiante_id);
-
         $gestiones = Estudiante::join('estudiante_grado', 'estudiantes.id', '=', 'estudiante_grado.estudiante_id')
         ->join('grados', 'grados.id', '=', 'estudiante_grado.grado_id')
         ->join('colegios', 'colegios.id', '=', 'estudiante_grado.colegio_id')
@@ -121,9 +119,10 @@ class GestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(GestionStoreRequest $request)
+    public function actualizar(Request $request)
     {
-        //return response()->json($request->all());
+        
+       
         $validator = Validator::make($request->all(), [
             'grado_id' => ['required'],  
             'colegio_id' => ['required'],
@@ -132,20 +131,14 @@ class GestionController extends Controller
         //return response()->json($validator->passes());
 
         if ($validator->passes()) {
-            // $datos = [
-            //     "colegio_id" => $request->colegio_id,
-            //     "anio" => $request->anio,
-            // ];
-            //Estudiante::findOrFail($request->estudiante_id)->grados()->updateExistingPivot($request->grado_id, $datos);
-
             $gestion=Gestion::findOrFail($request->gestion_id);
+
             $gestion->colegio_id=$request->colegio_id;
             $gestion->grado_id=$request->grado_id;
             $gestion->anio=$request->anio;
-            $gestion->estudiante_id=$request->estudiante_id;
             $gestion->save();
 
-            return response()->json(['gestion_id' => $request->gestion_id]);
+            return response()->json($gestion);
         } else {
             return response()->json(['error' => $validator->errors()->all()]);
         }

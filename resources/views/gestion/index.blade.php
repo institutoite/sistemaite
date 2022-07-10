@@ -38,6 +38,7 @@
                         <table id="gestiones" class="table table-hover table-striped table-bordered">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>COLEGIO</th>
                                     <th>GRADO</th>
                                     <th>GESTION</th>
@@ -47,6 +48,7 @@
                             <tbody>
                                 @foreach ($gestiones as $gestion)
                                     <tr id="{{$gestion->id}}">
+                                        <td>{{$gestion->id}} </td>
                                         <td>{{$gestion->nombre}} </td>
                                         <td>{{$gestion->grado}} </td>
                                         <td>{{$gestion->anio}} </td>
@@ -168,17 +170,18 @@
              /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO MOSTRAR EDITAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.editar', function(e) {
                 e.preventDefault(); 
+                // let id_gestion =$(this).closest('tr').attr('id');
                 let id_gestion =$(this).closest('tr').attr('id');
                 let estudiante_id="{{$estudiante->id}}";
 
-                //console.log(estudiante_id);
+                //console.log(id_gestion);
                     //$("#error_motivo").empty();
 
                     $.ajax({
                     url : "../gestion/editar",
                     data : { id_gestion : id_gestion },
                     success : function(json) {
-                        
+                        console.log(json);
                         $("#modal-editar").modal("show");
                             $htmlColegios="";
                             for (let j in json.colegios) {
@@ -203,8 +206,10 @@
 
                             $("#estudiante_id").val("{{$estudiante->id}}");
                             
-                            $("#gestion_id").val("{{$gestion->id}}");
+                            $("#gestion_id").val(json.gestion[0].id);
                             
+                            //console.log(json.gestion[0].id);
+
                             $htmlAnios="";
                             inicio=json.gestion[0].anio-12;
                             fin=inicio+24;
@@ -257,7 +262,7 @@
                             estudiante_id:$estudiante_id,
                         },
                     success : function(json) {
-                        
+                        console.log(json);
                         if($.isEmptyObject(json.error)){
                             $("#message-error").addClass("d-none");
                             $("#modal-editar").modal("hide");
@@ -266,8 +271,7 @@
                             $("#message-error").removeClass("d-none");
                             imprimeErrores(json);
                         }
-                        alert("Todo esta bien");
-                                                 
+                        location.reload();
                     },
                     error:function(jqXHR,estado,error){
                         

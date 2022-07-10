@@ -226,7 +226,16 @@
                             imprimeErrores(json);
                         }  
                         $('#grados').DataTable().ajax.reload();
-                        alert("Successç");                      
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1500,
+                            })
+                            Toast.fire({
+                            type: 'success',
+                            title: 'Se actualizó correctamente el registro'
+                        })   
                     },
                     error:function(jqXHR,estado,error){
                         
