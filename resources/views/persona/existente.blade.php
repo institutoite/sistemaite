@@ -28,7 +28,7 @@
             @foreach ($apoderados as $apoderado)
                 <tr>
                     <td>{{$apoderado->id}}</td>
-                    <td>{{$apoderado->nombre}}</td>
+                    <td>{{$apoderado->nombre.' '.$apoderado->apellidop.' '.$apoderado->apellidom}}</td>
                     <td><img width="100" class="img-thumbnail" src="{{URL::to('/').'/'.'storage/'.$apoderado->foto}}" alt=""></td>
                     <td>
                         <a href="{{route('agregar.apoderado',['persona_id'=>$persona->id,'apoderado_id'=>$apoderado->id])}}" class="btn btn-outline-primary" title="ir a opciones de la persona">

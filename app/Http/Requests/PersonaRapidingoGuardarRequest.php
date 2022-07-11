@@ -13,7 +13,7 @@ class PersonaRapidingoGuardarRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,21 +24,11 @@ class PersonaRapidingoGuardarRequest extends FormRequest
     public function rules()
     {
         return [
-            /**
-             * 
-             * AL PARECER ESTO NO ESTA TRBAAJANDO
-             * 
-             */
             'interests'=>'required',
-            "nombre" => 'required|unique_with:personas,apellidop'.$persona->id,
+            "nombre" => 'required|unique_with:personas,apellidop',
             'apellidop'=>'required|max:50',
             'telefono'=>'numeric|nullable',
             'como'=>'required',
-            // 'nombrefamiliar'=>'required',
-            // 'apellidopfamiliar'=>'required',
-            // 'telefonofamiliar'=>'required|numeric|min:8',
-            // 'parentesco'=>'required',
-            // 'observacion'=>'required|min:20',
         ];
     }
 }

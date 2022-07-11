@@ -234,6 +234,7 @@ class PersonaController extends Controller
         $apoderado = new Persona();
         $apoderado->nombre = $request->nombre;
         $apoderado->apellidop = $request->apellidop;
+        $apoderado->apellidom = $request->apellidom;
         $apoderado->genero=$request->genero;
         $apoderado->pais_id = $persona->pais_id;
         $apoderado->ciudad_id = $persona->ciudad_id;

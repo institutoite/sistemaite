@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TemaUpdateRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class TemaUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'tema'=>'required',
+            'tema'=>'required',Rule::unique('temas', 'tema')->ignore($this->tema),
             'materia_id'=>'required'
         ];
     }

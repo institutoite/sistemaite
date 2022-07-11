@@ -38,7 +38,7 @@
                                 <thead class="">
                                     <tr>
                                         <th>No</th>
-										<th>Motivo</th>
+										<th>Tipo File</th>
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
@@ -230,7 +230,7 @@
                                 })
                                 Toast.fire({
                                 type: 'success',
-                                title: 'Se eliminó correctamente el registro'
+                                title: 'Se actualizó correctamente el registro'
                             })   
                         } 
                     },

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TipofileUpdateRequest extends FormRequest
 {
@@ -26,7 +27,7 @@ class TipofileUpdateRequest extends FormRequest
         $tipofile=$this->route('tipofile');
 
         return [
-            'tipofile' => 'required|min:2|max:50|unique:tipofiles,tipofile,'.$this->id,
+            'tipofile' => 'required|min:2|max:50',Rule::unique('tipofiles', 'tipofile')->ignore($this->tipofile),
             'programa' => 'required|min:5|max:25',
         ];
 
