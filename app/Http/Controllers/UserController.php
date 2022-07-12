@@ -68,10 +68,10 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(userStoreRequest $request)
     {
         //request()->validate(User::$rules);
-
+        dd($request->all());
         $user = User::create($request->all());
 
         return redirect()->route('users.index')
@@ -79,6 +79,7 @@ class UserController extends Controller
     }
     public function guardar(UserStoreRequest $request)
     {
+        dd($request->all());
         $usuario=new User();
         $usuario->name=$request->name;
         $usuario->email=$request->email;
@@ -137,7 +138,7 @@ class UserController extends Controller
      * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserUpdateRequest $request, User $user)
     {
         //dd($request->all());
 

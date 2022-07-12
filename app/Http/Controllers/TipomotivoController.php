@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
+use Illuminate\Validation\Rule;
+
 
 use App\Http\Requests\TipomotivoGuardarRequest;
 
@@ -98,8 +100,9 @@ class TipomotivoController extends Controller
      */
     public function actualizar(Request $request)
     {
+        $tipomotivo = Tipomotivo::findOrFail($request->id);
         $validator = Validator::make($request->all(), [
-            'tipomotivo' => 'required|min:5|max:50|unique:tipomotivos',
+            'tipomotivo' => 'required|min:5|max:50',Rule::unique('tipomotivos', 'tipomotivo')->ignore($tipomotivo),
         ]);
         if ($validator->passes()) {
             $tipomotivo = Tipomotivo::findOrFail($request->id);

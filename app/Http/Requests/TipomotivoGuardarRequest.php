@@ -24,7 +24,7 @@ class TipomotivoGuardarRequest extends FormRequest
     public function rules()
     {
         return [
-            'tipomotivo'=>'required'
+            'tipomotivo'=>'required|unique:tipomotivos,tipomotivo',
         ];
     }
 }
