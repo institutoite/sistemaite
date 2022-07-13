@@ -79,7 +79,7 @@ class UserController extends Controller
     }
     public function guardar(UserStoreRequest $request)
     {
-        dd($request->all());
+        //dd($request->all());
         $usuario=new User();
         $usuario->name=$request->name;
         $usuario->email=$request->email;
@@ -141,9 +141,10 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, User $user)
     {
         //dd($request->all());
-
+        
         $user->name=$request->name;
         $user->email=$request->email;
+
         if($request->password != null){
             $user->password=$request->password;
         }

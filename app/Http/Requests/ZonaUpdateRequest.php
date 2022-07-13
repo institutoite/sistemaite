@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ZonaUpdateRequest extends FormRequest
 {
@@ -24,9 +25,8 @@ class ZonaUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'zona'=>'required|max:100|unique:zonas,zona',
+            'zona'=>'required|max:100',Rule::unique('zonas', 'zona')->ignore($this->zona),
             'ciudad_id'=>'required|integer|not_in:0',
-            //'pais_id'=>'required|integer|not_in:0',
         ];
     }
 }

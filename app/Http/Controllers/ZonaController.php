@@ -45,7 +45,7 @@ class ZonaController extends Controller
      */
     public function store(ZonaStoreRequest $request)
     {
-        //dd($request->all());
+        
         $zonaNueva=new Zona();
         $zonaNueva->zona=$request->zona;
         $zonaNueva->ciudad_id=$request->ciudad_id;

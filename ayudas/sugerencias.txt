@@ -19,25 +19,6 @@ cuando le demos finalizar una clases que guarde la hora que se fue
 verificar las licencias que se muestran cuando se esta mostrando una programacion parece que es lo mismo de Mate= COmputacion 
 validar actuzalidar un motivo sale que ya existe
 
-Sin Ajax 
-requestUpdate
-use Illuminate\Validation\Rule;
-'nombrepais'=>'required',Rule::unique('pais', 'nombrepais')->ignore($this->pais)
-
-RequestStore 
-'nombrepais'=>'required|max:40|unique:pais,nombrepais',
-con ajax
-
-use Illuminate\Validation\Rule;
-
-$motivo = Motivo::findOrFail($request->id);
-$validator = Validator::make($request->all(), [
-    'motivo'=>'required',Rule::unique('motivos', 'motivo')->ignore($motivo),
-    'tipomotivo_id'=>'required',
-]);
-
-
-
 hacer una seccion de contactanos donde este las formas de contactanos
 Falta terminar el crud de requisitos y metas
 En registrar facilito que tenga dos pestañas arriba uno para registrar sin apoderado y otro con apoderado

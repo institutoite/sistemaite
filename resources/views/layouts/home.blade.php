@@ -28,6 +28,10 @@
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/redes.css">
+ 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <link rel="stylesheet" href="assets/css/responsive.css">
 
   <link href="assets/images/faviconite.ico" rel="shortcut icon">
@@ -130,7 +134,7 @@
     </div>
 </header>
 
-    @include('home.booth')
+
     
  <!--search overlay start-->
  <div class="search-wrap">
@@ -156,7 +160,8 @@
 
 @yield('header')
 
-  
+
+
 <section class="feature">
     <div class="container">
         <div class="row no-gutters">
@@ -603,11 +608,19 @@
     <div class="container">
         <div class="section-heading center-heading">
             <span class="subheading"></span>
-            <h3>Feriados en Instituto Ite</h3>
+            <h3>Días que no trabajamos</h3>
         </div>
         @yield('feriado')
     </div>
 </section>
+<section class="feature-2">
+        <div class="section-heading center-heading">
+            <span class="subheading"></span>
+            <h3>Visita nuestras redes sociales</h3>
+        </div>
+        @include('home.redes')
+</section>
+
 
 <section class="about-section section-padding about-2">
     <div class="container">
@@ -641,22 +654,26 @@
         <div class="row">
            @yield('docente') 
         </div>
+        
     </div>
 </section>
 
 
+
+
 <section class="footer pt-120">
 	<div class="container">
+        
 		<div class="row">
-			<div class="col-lg-4 mr-auto col-sm-6 col-md-6">
+			<div class="col-lg-2 mr-auto col-sm-6 col-md-6">
 				<div class="widget footer-widget mb-5 mb-lg-0">
 					<h5 class="widget-title">Nuestras Redes Sociales</h5>
-					<p class="mt-3"></p>
-					<ul class="list-inline footer-socials">
+					{{-- <ul class="list-inline footer-socials">
 						<li class="list-inline-item"><a href="https://api.whatsapp.com/send?phone=59171039910&text=Tengo una pregunta"><i class="fab fa-whatsapp"></i></a></li>
                         <li class="list-inline-item"><a href="https://www.facebook.com/institutoeducabol"><i class="fab fa-facebook-f"></i></a></li>
 						<li class="list-inline-item"> <a href="https://www.youtube.com/channel/UCbmRHfG51CGM1foo-6kzunQ"><i class="fab fa-youtube"></i></a></li>
-					</ul>
+					</ul> --}}
+                    @include('home.redes')
                     
 				</div>
 			</div>
