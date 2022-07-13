@@ -11,6 +11,7 @@
   <!-- Mobile Specific Meta-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- bootstrap.min css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="{{asset('assets/vendors/bootstrap/bootstrap.css')}}">
   <!-- Iconfont Css -->
   <link rel="stylesheet" href="{{asset('assets/vendors/fontawesome/css/all.css')}}">
@@ -614,11 +615,22 @@
     </div>
 </section>
 <section class="feature-2">
-        <div class="section-heading center-heading">
-            <span class="subheading"></span>
-            <h3>Visita nuestras redes sociales</h3>
+    <div class="row">
+        <div class="col-6">
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <h3 class="card-title">Nuestras Redes</h3>
+                </div>
+                <div class="card-body">
+                    @include('home.redes')
+                <br>
+                </div>
+            </div>
         </div>
-        @include('home.redes')
+        <div class="col-6">
+            @include('home.formcontacto')
+        </div>
+    </div>
 </section>
 
 
@@ -791,7 +803,48 @@
                 items : 3,
                 itemsDesktop : [640,5],
                 itemsDesktopSmall : [414,4]
-			}); 
+			});
+            
+            $.ajax({
+                url: 'interests/get',
+                type: 'GET',
+                success: function(json) {
+                    $html="";
+                    for (let j in json.interests) {
+                        $html+="<div class='form-check form-switch form-check-inline'>";
+                            $html+="<input class='form-check-input bg-default' id="+ json.interests[j].interest +"  name='interests[]' type='checkbox'>";
+                            $html+="<label class='form-check-label'>"+json.interests[j].interest+"</label>";
+                        $html+="</div>";
+                    }
+                    $("#interests").append($html);
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                   
+                }
+            });
+
+            $("#enviar").on("click",function(e){
+                e.preventDefault();
+                contardor =1;
+                var Nombre =$("#nombre").val();
+                var Telefono =$("#telefono").val();
+                $msg="Hola. mi nombre es:%0A*"+Nombre+"*%0A y mi telefono es:%0A*"+Telefono+"* %0AVisite su página estoy interesado en los siguientes servicios o productos:%0A";
+                $("input:checkbox:checked").each(function() {
+                    $msg+="*"+contardor+".- "+$(this).attr('id')+'*%0A';
+                    contardor++;
+                });
+
+
+                $url="https://api.whatsapp.com/send?phone=59171324941&text="+$msg;
+                $url+='Mas información por favor';
+                let a= document.createElement('a');
+                    a.target= '_blank';
+                    a.href=$url;
+                    a.click();
+                
+            });
+        
 		}); 
 	</script> 
 	<!-- //js -->

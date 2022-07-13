@@ -339,6 +339,7 @@ Route::post('tipofile/guardar',[TipofileController::class,'store'])->name('tipof
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  INTEREST  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('interests', [InterestController::class,'index'])->name('interest.index');
+Route::get('interests/get', [InterestController::class,'getParaHome'])->name('interest.para.home');
 Route::get('listar/interests', [InterestController::class,'listar'])->name('interest.ajax');
 Route::get('interest/mostrar', "InterestController@mostrar")->name("interest.mostrar");
 Route::get('interest/editar/', "InterestController@editar")->name("interest.editar");

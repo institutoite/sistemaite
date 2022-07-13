@@ -126,4 +126,9 @@ class InterestController extends Controller
         ->rawColumns(['btn'])
         ->toJson();
     }
+    public function getParaHome(){
+       $interests=Interest::get();
+       $data=['interests'=>$interests];
+       return response()->json($data);
+    }
 }

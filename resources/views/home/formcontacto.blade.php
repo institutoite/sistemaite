@@ -1,0 +1,44 @@
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Dejenos su número</h3>
+    </div>
+              <!-- /.card-header -->
+    <div class="card-body">
+        <form>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control mb-3" id="nombre" placeholder="Ingrese su nombre">
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <input type="number" class="form-control mb-3" id="telefono" placeholder="Ingrese su número de telefono">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <h5 class="card-title m-0">Nuestros servicios</h5>
+                        </div>
+                        <div class="card-body">
+                            <span class="mb-3">Marque los productos o servicios que le gustaría tomar</span>
+                            <div id="interests" class="mt-3">
+
+                            </div>
+                            <div class="container-fluid h-100 mt-3"> 
+                                <div class="row w-100 align-items-center">
+                                    <div class="col text-center">
+                                        <button type="button" id="enviar" class="btn btn-main">Enviar <i class="far fa-save"></i></button>        
+                                    </div>	
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div> <!-- /.fin -->
