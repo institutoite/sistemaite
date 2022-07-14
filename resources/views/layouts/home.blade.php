@@ -397,7 +397,7 @@
                                     </div>
                                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                                         data-parent="#accordionExample">
-                                        <div class="course-lessons">
+                                        <div class="course-lessons bg-primary">
                                             <div class="single-course-lesson">
                                                 @yield('guarderia')
                                             </div>
@@ -614,21 +614,65 @@
         @yield('feriado')
     </div>
 </section>
+
 <section class="feature-2">
-    <div class="row">
-        <div class="col-6">
-            <div class="card card-secondary">
-                <div class="card-header">
-                    <h3 class="card-title">Nuestras Redes</h3>
-                </div>
-                <div class="card-body">
-                    @include('home.redes')
-                <br>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="card card-secondary">
+                    <div class="card-header btn-main">
+                        <h3 class="text-white text-center">Visita nuestras redes sociales</h3>
+                    </div>
+                    <div class="card-body">
+                        @include('home.redes')
+                
+                   
+
+                    <section>
+                        <ul id="services">
+                            <h2>Fancy Colorlib Social</h2>
+                            <li>
+                                <div class="facebook">
+                                    <a href="https://facebook.com/colorlib/">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <span>Facebook</span>
+                            </li>
+                            <li>
+                                <div class="twitter">
+                                    <a href="https://twitter.com/colorlib/">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <span>Twitter</span>
+                            </li>
+                            <li>
+                                <div class="youtube">
+                                    <a href="https://www.youtube.com/c/Colorlib">
+                                    <i class="fa fa-youtube" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            <span>YouTube</span>
+                            </li>
+                            <li>
+                                <div class="linkedin">
+                                    <a href="https://www.linkedin.com/company/colorlib">
+                                    <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <span>LinkedIn</span>
+                            </li>
+    
+                        </ul>
+                    </section>
+                    
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-6">
-            @include('home.formcontacto')
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                @include('home.formcontacto')
+            </div>
         </div>
     </div>
 </section>
@@ -817,33 +861,76 @@
                         $html+="</div>";
                     }
                     $("#interests").append($html);
-
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                    
                 }
             });
 
-            $("#enviar").on("click",function(e){
-                e.preventDefault();
-                contardor =1;
-                var Nombre =$("#nombre").val();
-                var Telefono =$("#telefono").val();
-                $msg="Hola. mi nombre es:%0A*"+Nombre+"*%0A y mi telefono es:%0A*"+Telefono+"* %0AVisite su página estoy interesado en los siguientes servicios o productos:%0A";
+        
+            $("#formulario").submit(function(event) {
+                event.preventDefault();
+                var token = $("input[name=_token]").val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $msg="";
                 $("input:checkbox:checked").each(function() {
-                    $msg+="*"+contardor+".- "+$(this).attr('id')+'*%0A';
-                    contardor++;
+                    $msg+=$(this).attr('id')+',';
                 });
 
+                $("#error").empty();
 
-                $url="https://api.whatsapp.com/send?phone=59171324941&text="+$msg;
-                $url+='Mas información por favor';
-                let a= document.createElement('a');
-                    a.target= '_blank';
-                    a.href=$url;
-                    a.click();
-                
+                jQuery.ajax({
+                   headers:{'X-CSRF-TOKEN':token},
+                    url: "comentario/guardar",
+                    data:{
+                        token:token,
+                        nombre:$("#nombre").val(),
+                        telefono:$("#telefono").val(),
+                        interests:$msg,
+                    },
+                    success: function(data)
+                    {
+
+                        if(data.error)
+                        $("#error").append("<li class='text-danger'>"+ data.error +"</li>");
+                        else{
+                            $("#nombre").val("");
+                            $("#telefono").val("");
+                            $("input:checkbox").each(function() {
+                                $(this).attr('checked',false);
+                            });
+                            $("#error").append("<li class='text-success'>Se envio correctamente tus datos</li>");
+                        }
+                    }
+                });
             });
+
+            // $("#enviar").on("click",function(e){
+            //     e.preventDefault();
+            //     contardor =1;
+
+            //     a
+
+            //     var Nombre =$("#nombre").val();
+            //     var Telefono =$("#telefono").val();
+            //     $msg="Hola. mi nombre es:%0A*"+Nombre+"*%0A y mi telefono es:%0A*"+Telefono+"* %0AVisite su página estoy interesado en los siguientes servicios o productos:%0A";
+            //     $("input:checkbox:checked").each(function() {
+            //         $msg+="*"+contardor+".- "+$(this).attr('id')+'*%0A';
+            //         contardor++;
+            //     });
+
+            //     $url="https://api.whatsapp.com/send?phone=59171324941&text="+$msg;
+            //     $url+='Mas información por favor';
+            //     let a= document.createElement('a');
+            //         a.target= '_blank';
+            //         a.href=$url;
+            //         a.click();
+                
+            // });
         
 		}); 
 	</script> 

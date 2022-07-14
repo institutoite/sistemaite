@@ -12,6 +12,7 @@ use App\Http\Controllers\PagocomController;
 use App\Http\Controllers\ProgramacioncomController;
 use App\Http\Controllers\ProgramacionController;
 use App\Http\Controllers\ClasecomController;
+use App\Http\Controllers\ComentarioController;
 
 use App\Http\Controllers\TipomotivoController;
 use App\Http\Controllers\DiaController;
@@ -51,7 +52,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[TemaController::class,'lista'])->name('prueba');
+Route::get('prueba',[ComentarioController::class,'guardarComentario'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -126,8 +127,10 @@ Route::resource('inscripciones', "InscripcioneController");
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       E S T D U D I A N T E S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-
 Route::get('/historial/{estudiante}','EstudianteController@historia')->name('estudiante.historia');
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       COMENTARIO         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+Route::get('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       D O C E N T E S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('docentes','DocenteController@index')->name('docentes.index');

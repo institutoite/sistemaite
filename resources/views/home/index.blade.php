@@ -43,17 +43,17 @@
                 
             </div> <!-- / .row -->
         </div> <!-- / .container -->
+        
     </section>
 @stop
 
 @section('heading')
-    <div class="row align-items-center justify-content-center">
+    <div class="row align-items-center justify-content-center border">
         <div class="col-lg-6">
             <div class="section-heading center-heading">
                 <span class="subheading"></span>
-                <h3>{{$hometext->heading}}</h3>
-                <p>{{$hometext->subheading}}</p>
-
+                <p class="h1">{{$hometext->heading}}</p>
+                <p class="text-white h4">{{$hometext->subheading}}</p>
             </div>
         </div>
     </div>

@@ -36,7 +36,7 @@ cuando estamos crando una licenciacom en motivo semuestran otros motivos ajenos 
 en todos los mostrar el foto del usuario es muy grande 
 cambiar en ver toda la programacion dice en el titulo clases que faltan
 crud para licencias en computacion y nivelacion
-
+hacer ite business/familiar/persona/Colegios
 
 
 
