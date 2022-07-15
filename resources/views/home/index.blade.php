@@ -59,8 +59,6 @@
     </div>
 @stop
 
-
-
 @section('guarderia')
 
     <table class="table table-striped table-bordered table-hover">

@@ -1,1 +1,15 @@
 para crear un observacion genericamente se envia el Model desde el accion como id 
+
+cuando sale un error de longitu este error sale cuando se sube al servidor
+
+public function boot() 
+{ 
+    Schema::defaultStringLength(191); 
+}
+
+/config/database.php 
+'mysql' => [ 
+    ..., 
+    ..., 
+    'engine' => 'InnoDB', 
+ ]

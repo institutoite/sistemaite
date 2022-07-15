@@ -92,7 +92,7 @@
 	transition:.5s all;
 }
 .owl-pagination .owl-page.active span, .owl-pagination .owl-page:hover span {
-    background: #ff69b4;
+    background: rgb(55, 95, 122);
 }
 @media(max-width:480px){
 .owl-controls { 

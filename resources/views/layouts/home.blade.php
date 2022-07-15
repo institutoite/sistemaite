@@ -228,108 +228,11 @@
                     
                 </div>
             @endforeach
-           {{--  <div class="col-lg-3 col-md-6">
-                <div class="course-category style-2">
-                    <div class="category-icon">
-                        <i class="bi bi-pencil"></i>
-                    </div>
-                    <h4><a href="#">Lectura y escritura</a></h4>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="course-category style-3">
-                    <div class="category-icon">
-                        <i class="bi bi-laptop"></i>
-                    </div>
-                    <h4><a href="#">Dactilografia</a></h4>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="course-category style-4">
-                    <div class="category-icon">
-                        <i class="bi bi-book"></i>
-                    </div>
-                    <h4><a href="#">Lenguaje</a></h4>
-                </div>
-            </div>
-            
-            <div class="col-lg-3 col-md-6">
-                <div class="course-category style-5">
-                    <div class="category-icon">
-                        <i class="bi bi-calculation"></i>
-                    </div>
-                    <h4><a href="#">Matemática</a></h4>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="course-category style-6">
-                   <div class="category-icon">
-                        <i class="bi bi-compass-math"></i>
-                   </div>
-                    <h4><a href="#">Fisica</a></h4>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="course-category style-7">
-                    <div class="category-icon">
-                        <i class=""></i>
-                    </div>
-                    <h4><a href="#">Química</a></h4>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="course-category style-8">
-                    <div class="category-icon">
-                        <i class="bi bi-layer"></i>
-                    </div>
-                    <h4><a href="#">Inglés</a></h4>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="course-category style-9">
-                    <div class="category-icon">
-                        <i class="bi bi-slider-doc"></i>
-                    </div>
-                    <h4><a href="#">PSA</a></h4>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="course-category style-10">
-                    <div class="category-icon">
-                        <i class="bi bi-slider-doc"></i>
-                    </div>
-                    <h4><a href="#">CUP</a></h4>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="course-category style-11">
-                   <div class="category-icon">
-                        <i class="bi bi-shield"></i>
-                   </div>
-                    <h4><a href="#">Oratoria</a></h4>
-                </div>
-            </div>
-           
-            <div class="col-lg-3 col-md-6">
-                <div class="course-category style-12">
-                    <div class="category-icon">
-                        <i class="bi bi-bulb"></i>
-                    </div>
-                    <h4><a href="#">Diseño gráfico</a></h4>
-                </div>
-            </div> --}}
+      
         </div>
 
-        {{-- <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <div class="text-center mt-5">
-                    <div class="course-btn mt-4"><a href="#" class="btn btn-main"><i class="fa fa-grip-horizontal mr-2"></i>Ver todos los cursos</a></div>
-                </div>
-            </div>
-        </div> --}}
-
        
+    
     </div>
 
     </div>
@@ -369,6 +272,8 @@
     </div>
     <!--course-->
 </section>
+
+@include('home.booth')
 
 <section class="page-wrapper edutim-course-single">
     <div class="container">

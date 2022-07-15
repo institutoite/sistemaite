@@ -132,6 +132,7 @@ h1 {
 .pricing:hover:before{
 	width: 100%;
 }
+/* titulo grande arriba */
 .pricing-top h3{
 	color:#FFF;
 	font-size:1.5em;
@@ -139,18 +140,22 @@ h1 {
 	font-weight:700;
 	/* font-family: 'Petit Formal Script'; */
 }
+
+/* slogan del encabezado */
 .pricing-top p {	
     color: #FFF;
     font-size: .9em;
     margin: 0.8em 0 0 0;
     font-weight: 300;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 .pricing-bottom{
-    background: rgba(129, 129, 129, 0.05);
+	/* color de fondo del cuerpo */
+    background: white; 
     text-align: center;
     padding: 0.9em;
-	border: 1px solid  rgb(209, 207, 207) ;
+	/* color de borde */
+	border: 1px solid rgb(205, 205, 206);
     border-bottom-left-radius: 5px;
 	-webkit-border-bottom-left-radius: 5px;
 	-moz-border-bottom-left-radius: 5px;
@@ -346,10 +351,11 @@ form ul {
 	background:none;
 }
 .payment-sendbtns input[type="submit"]{
-	background:#FF69B4;  
+	background:rgb(38, 186, 165);  
 }
 .payment-sendbtns input[type="submit"]:hover{ 
-	color:#FF69B4;
+	color:rgb(38, 186, 165);
+		;;
 	background:none;
 }
 .payment-sendbtns li{
@@ -378,7 +384,7 @@ form ul {
 	background-position:-71px -26px;
 } 
 .payment-type {
-	border-top: 1px solid rgba(144, 149, 170, 0.22);
+	border-top: 1px solid rgba(55, 95, 125, 1);
 	margin-top: 3%;
 	text-align: left;
 } 
