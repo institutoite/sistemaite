@@ -63,20 +63,23 @@
 
 @section('guarderia')
 
-    <table class="table table-striped">
-        <thead>
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="bg-secondary text-white">
         <tr>
             <th scope="col">Modadidad</th>
-            <th scope="col">Horas</th>
             <th scope="col">Costo</th>
+            <th colspan="2" scope="col">Opciones</th>
         </tr>
         </thead>
         <tbody>
             @foreach ($guarderias as $guarderia)
                 <tr>
                     <td>{{$guarderia->modalidad}}</td>
-                    <td>{{$guarderia->cargahoraria}}</td>
+                    {{-- <td>{{$guarderia->cargahoraria}}</td> --}}
                     <td>Bs.{{$guarderia->costo}}</td>
+                    <td><button type="button" class="btn btn-outline-success">Comprar</button></td>
+                    <td><button type="button" class="btn btn-outline-secondary">Info</button></td>
+                    
                 </tr>
             @endforeach
         </tbody>
@@ -86,11 +89,10 @@
 
 @section('inicial')
 
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered table-hover">
         <thead>
         <tr>
             <th scope="col">Modadidad</th>
-            <th scope="col">Horas</th>
             <th scope="col">Costo</th>
         </tr>
         </thead>
@@ -98,7 +100,6 @@
             @foreach ($inicials as $inicial)
                 <tr>
                     <td>{{$inicial->modalidad}}</td>
-                    <td>{{$inicial->cargahoraria}}</td>
                     <td>Bs.{{$inicial->costo}}</td>
                 </tr>
             @endforeach
@@ -109,11 +110,10 @@
 
 @section('primaria')
 
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered table-hover">
         <thead>
         <tr>
             <th scope="col">Modadidad</th>
-            <th scope="col">Horas</th>
             <th scope="col">Costo</th>
         </tr>
         </thead>
@@ -121,7 +121,6 @@
             @foreach ($primarias as $primaria)
                 <tr>
                     <td>{{$primaria->modalidad}}</td>
-                    <td>{{$primaria->cargahoraria}}</td>
                     <td>Bs.{{$primaria->costo}}</td>
                 </tr>
             @endforeach
@@ -132,11 +131,11 @@
 
 @section('secundaria')
 
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered table-hover">
         <thead>
         <tr>
             <th scope="col">Modadidad</th>
-            <th scope="col">Horas</th>
+            {{-- <th scope="col">Horas</th> --}}
             <th scope="col">Costo</th>
         </tr>
         </thead>
@@ -144,7 +143,7 @@
             @foreach ($secundarias as $secundaria)
                 <tr>
                     <td>{{$secundaria->modalidad}}</td>
-                    <td>{{$secundaria->cargahoraria}}</td>
+                    {{-- <td>{{$secundaria->cargahoraria}}</td> --}}
                     <td>Bs.{{$secundaria->costo}}</td>
                 </tr>
             @endforeach
@@ -153,13 +152,35 @@
 
 @stop
 
-@section('preuniversitario')
+@section('universidad')
 
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered table-hover">
         <thead>
         <tr>
             <th scope="col">Modadidad</th>
-            <th scope="col">Horas</th>
+            {{-- <th scope="col">Horas</th> --}}
+            <th scope="col">Costo</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach ($universitarios as $universitario)
+                <tr>
+                    <td>{{$preuniversitario->modalidad}}</td>
+                    {{-- <td>{{$preuniversitario->cargahoraria}}</td> --}}
+                    <td>Bs.{{$universitario->costo}}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+@stop
+@section('preuniversitario')
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Modadidad</th>
+            {{-- <th scope="col">Horas</th> --}}
             <th scope="col">Costo</th>
         </tr>
         </thead>
@@ -167,7 +188,7 @@
             @foreach ($preuniversitarios as $preuniversitario)
                 <tr>
                     <td>{{$preuniversitario->modalidad}}</td>
-                    <td>{{$preuniversitario->cargahoraria}}</td>
+                    {{-- <td>{{$preuniversitario->cargahoraria}}</td> --}}
                     <td>Bs.{{$preuniversitario->costo}}</td>
                 </tr>
             @endforeach
@@ -178,11 +199,11 @@
 
 @section('instituto')
 
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered table-hover">
         <thead>
         <tr>
             <th scope="col">Modadidad</th>
-            <th scope="col">Horas</th>
+            {{-- <th scope="col">Horas</th> --}}
             <th scope="col">Costo</th>
         </tr>
         </thead>
@@ -190,7 +211,7 @@
             @foreach ($institutos as $instituto)
                 <tr>
                     <td>{{$instituto->modalidad}}</td>
-                    <td>{{$instituto->cargahoraria}}</td>
+                    {{-- <td>{{$instituto->cargahoraria}}</td> --}}
                     <td>Bs.{{$instituto->costo}}</td>
                 </tr>
             @endforeach
@@ -201,7 +222,7 @@
 
 @section('profesional')
 
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered table-hover">
         <thead>
         <tr>
             <th scope="col">Modadidad</th>

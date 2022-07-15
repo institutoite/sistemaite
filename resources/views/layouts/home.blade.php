@@ -519,47 +519,7 @@
                                         data-parent="#accordionExample">
                                         <div class="course-lessons">
                                             <div class="single-course-lesson">
-                                                <table class="table table-striped">
-                                                    <thead>
-                                                      <tr>
-                                                        <th scope="col">Modadidad</th>
-                                                        <th scope="col">Horas</th>
-                                                        <th scope="col">Costo</th>
-                                                      </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                      <tr>
-                                                        <td>Hora</td>
-                                                        <td>1</td>
-                                                        <td>Bs.40</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td>Semana</td>
-                                                        <td>5</td>
-                                                        <td>Bs.165</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td>Quincena</td>
-                                                        <td>10</td>
-                                                        <td>Bs.265</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td>1 Mes</td>
-                                                        <td>20</td>
-                                                        <td>Bs.420</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td>2 Meses</td>
-                                                        <td>40</td>
-                                                        <td>Bs.750</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td>3 Meses</td>
-                                                        <td>60</td>
-                                                        <td>Bs.1050</td>
-                                                      </tr>
-                                                    </tbody>
-                                                </table>
+                                                @yield('universidad')
                                             </div>
                                         </div>
                                     </div>
