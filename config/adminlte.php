@@ -282,6 +282,7 @@ return [
             'icon_color' => 'primary',
 
         ],
+        
         [
             'text' => "Actualidad",
             'topnav' => true,
@@ -750,7 +751,6 @@ return [
         ],
 
 //** %%%%%%%%%%%%%%%%%%  MENU Colegios %%%%%%%%%%%%% */
-        
         [
             'text'    => 'Colegios',
             'icon'    => 'fas fa-house-user',
@@ -761,6 +761,21 @@ return [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'colegios',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+//** %%%%%%%%%%%%%%%%%%  MENU Colegios %%%%%%%%%%%%% */
+        [
+            'text'    => 'Mensajes',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Mensaje',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'mensajes',
                     'classes'  => 'text-dark',
                 ],
             ],

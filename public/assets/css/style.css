@@ -166,6 +166,7 @@ BUTTONS STYLE
   border-color: #26BAA5;
 }
 
+
 .btn-main:hover {
   color: #fff;
   border-color: #022E5A;
@@ -179,9 +180,9 @@ BUTTONS STYLE
 }
 
 .btn-main-2:hover {
-  background: #26BAA5;
+  background: #1f9987;
   color: #fff;
-  border-color: #26BAA5;
+  border-color: #1f9987;
 }
 
 .btn-tp {

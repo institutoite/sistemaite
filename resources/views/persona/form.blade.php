@@ -415,10 +415,6 @@
 
     @endisset
     
-
-    
-
-
 <div class="modal" tabindex="-1" id="modal-ite">
     <div class="modal-dialog modal-lg modalito">
         <div class="modal-content">

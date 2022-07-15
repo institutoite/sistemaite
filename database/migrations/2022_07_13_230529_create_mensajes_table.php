@@ -15,6 +15,9 @@ class CreateMensajesTable extends Migration
     {
         Schema::create('mensajes', function (Blueprint $table) {
             $table->id();
+            $table->string("nombre",25);
+            $table->boolean("vigente");
+            $table->string("mensaje",500);
             $table->timestamps();
         });
     }

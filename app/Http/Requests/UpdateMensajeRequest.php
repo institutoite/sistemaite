@@ -13,7 +13,7 @@ class UpdateMensajeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class UpdateMensajeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nombre'=>'required|unique:mensajes,mensaje',
+            'mensaje'=>'required',
         ];
     }
 }

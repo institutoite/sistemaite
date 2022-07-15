@@ -13,6 +13,7 @@ use App\Http\Controllers\ProgramacioncomController;
 use App\Http\Controllers\ProgramacionController;
 use App\Http\Controllers\ClasecomController;
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\MensajeController;
 
 use App\Http\Controllers\TipomotivoController;
 use App\Http\Controllers\DiaController;
@@ -359,6 +360,17 @@ Route::get('listar/motivos', [MotivoController::class,'listar'])->name('motivo.a
 Route::get('motivo/editar/', [MotivoController::class,'editar'])->name("motivo.editar");
 Route::get('motivo/actualizar/', [MotivoController::class,'actualizar'])->name("motivo.actualizar");
 Route::delete('eliminar/motivo/{motivo}', [MotivoController::class,'destroy'])->name('eliminar.motivo');
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MOTIVOS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::get('mensajes',[MensajeController::class,'index'])->name("mensaje.index");
+Route::get('mensajes/create',[MensajeController::class,'create'])->name("mensaje.create");
+Route::get('mensaje/mostrar/{mensaje}',[MensajeController::class,'show'])->name("mensaje.show");
+Route::get('listar/mensajes', [MensajeController::class,'listar'])->name('mensaje.ajax');
+Route::get('mensaje/editar/{mensaje}', [MensajeController::class,'edit'])->name("mensaje.edit");
+Route::post('mensaje/actualizar/{mensaje}', [MensajeController::class,'update'])->name("mensaje.update");
+Route::delete('eliminar/mensaje/{mensaje}', [MensajeController::class,'destroy'])->name('mensaje.delete');
+Route::post('mensaje/guardar',[MensajeController::class,'store'])->name('mensaje.store');
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MOTIVOS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('aulas', "AulaController");

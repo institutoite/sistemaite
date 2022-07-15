@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Mensaje extends Model
 {
     use HasFactory;
+     public function userable()
+    {
+        return $this->morphOne('App\Models\Userable', 'userable');
+    }
 }

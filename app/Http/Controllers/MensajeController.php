@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Mensaje;
 use App\Http\Requests\StoreMensajeRequest;
 use App\Http\Requests\UpdateMensajeRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
 
 class MensajeController extends Controller
 {
@@ -15,7 +18,7 @@ class MensajeController extends Controller
      */
     public function index()
     {
-        //
+        return view('whatsapp.index');
     }
 
     /**
@@ -25,7 +28,7 @@ class MensajeController extends Controller
      */
     public function create()
     {
-        //
+        return view('whatsapp.create');
     }
 
     /**
@@ -36,7 +39,13 @@ class MensajeController extends Controller
      */
     public function store(StoreMensajeRequest $request)
     {
-        //
+        $mensaje=new Mensaje();
+        $mensaje->nombre = $request->nombre;
+        $mensaje->mensaje= $request->mensaje;
+        $mensaje->vigente=1;
+        $mensaje->save();
+        $mensaje->userable()->create(['user_id'=>Auth::user()->id]);
+        return redirect()->route('mensaje.index');
     }
 
     /**
@@ -47,7 +56,9 @@ class MensajeController extends Controller
      */
     public function show(Mensaje $mensaje)
     {
-        //
+        //dd($mensaje);
+        $user=User::findOrFail($mensaje->userable->user_id);
+        return view('whatsapp.show',compact('mensaje','user'));
     }
 
     /**
@@ -58,7 +69,7 @@ class MensajeController extends Controller
      */
     public function edit(Mensaje $mensaje)
     {
-        //
+        return view("whatsapp.edit",compact('mensaje'));
     }
 
     /**
@@ -70,7 +81,12 @@ class MensajeController extends Controller
      */
     public function update(UpdateMensajeRequest $request, Mensaje $mensaje)
     {
-        //
+        $mensaje->nombre=$request->nombre;
+        $mensaje->mensaje=$request->mensaje;
+        $mensaje->save();
+        
+        //dd($mensaje);
+        return redirect()->route("mensaje.show",$mensaje);
     }
 
     /**
@@ -83,4 +99,14 @@ class MensajeController extends Controller
     {
         //
     }
+
+    
+    public function listar(){
+        $mensajes=Mensaje::all();
+        return datatables()->of($mensajes)
+        ->addColumn('btn', 'whatsapp.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+    }
+
 }

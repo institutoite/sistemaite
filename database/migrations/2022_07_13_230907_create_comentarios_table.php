@@ -18,6 +18,7 @@ class CreateComentariosTable extends Migration
             $table->string("nombre",40);
             $table->string("telefono",12);
             $table->string("interests",500);
+            $table->boolean("vigente");
             $table->timestamps();
         });
     }

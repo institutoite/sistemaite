@@ -52,7 +52,10 @@ class ComentarioController extends Controller
             $comentario->interests = $request->interests;
             $comentario->save();
             
-            return response()->json(['comentario' => $comentario]);
+            $cadena_intereses  = $comentario->interests;
+            $vectorIntereses = explode(",", $cadena_intereses);
+            array_pop($vectorIntereses);
+            return response()->json(['comentario' => $comentario,'vector_intereses'=>$vectorIntereses]);
         }else{
             return response()->json(['error' => $validator->errors()->first()]);
         }

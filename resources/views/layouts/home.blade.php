@@ -683,13 +683,13 @@
         <div class="row align-items-center">
             <div class="col-lg-9 col-md-12">
                 <div class="section-heading">
-                    <span class="subheading">Plataforma educativa Educabol</span>
-                    <h3>¿Te gustaria aprender a tu ritmo desde cualquier dispositivo?</h3>
+                    <span class="h2">Plataforma educativa Educabol</span>
+                    <p class="h5 text-default">¿Te gustaria aprender a tu ritmo desde cualquier dispositivo?</p>
                 </div>
 
-                <p>Ingresa a nuestra plataforma educativa Educabol para ver todos nuestros cursos online.</p>
+                <p class="h5 text-white">Ingresa a nuestra plataforma educativa Educabol para ver todos nuestros cursos online.</p>
 
-                <a href="https://www.educabol.com/" class="btn btn-main"><i class="fa fa-check mr-2"></i>Ingresar</a>
+                <a href="https://www.educabol.com/" class="btn btn-main-2"><i class="fa fa-check mr-2"></i>Ingresar</a>
                 
             </div>
         </div>
@@ -904,6 +904,21 @@
                                 $(this).attr('checked',false);
                             });
                             $("#error").append("<li class='text-success'>Se envio correctamente tus datos</li>");
+                            
+                            //console.log(data.vector_intereses);
+                            contardor=1;
+                            $msg="Hola. mi nombre es:%0A*"+data.comentario.nombre+"*%0A y mi telefono es:%0A*"+data.comentario.telefono+"* %0AVisite su página estoy interesado en los siguientes servicios o productos:%0A";
+                            $.each( data.vector_intereses, function( key, value ) {
+                                $msg+="*"+contardor+".- "+value +'*%0A';
+                                console.log( $msg );
+                                contardor++;
+                            });
+                            $url="https://api.whatsapp.com/send?phone=59171039910&text="+$msg;
+                            $url+='Mas información por favor';
+                            let a= document.createElement('a');
+                                a.target= '_blank';
+                                a.href=$url;
+                                a.click();
                         }
                     }
                 });

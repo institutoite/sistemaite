@@ -18,13 +18,11 @@ que se cambien de campo cuando se presiona enter en todos los formularios valida
 cuando le demos finalizar una clases que guarde la hora que se fue 
 verificar las licencias que se muestran cuando se esta mostrando una programacion parece que es lo mismo de Mate= COmputacion 
 validar actuzalidar un motivo sale que ya existe
-
 hacer una seccion de contactanos donde este las formas de contactanos
-
-Falta terminar el crud de requisitos y metas
 En registrar facilito que tenga dos pestañas arriba uno para registrar sin apoderado y otro con apoderado
 editar Inscripción
 editar Matriculaciones
+
 a Todos los seeder Nivel::findOrFail(1)->userable()->create(['user_id'=>1]);
 agragar chat por mesenger a las paginas 
 Ver las carteras
@@ -37,6 +35,7 @@ en todos los mostrar el foto del usuario es muy grande
 cambiar en ver toda la programacion dice en el titulo clases que faltan
 crud para licencias en computacion y nivelacion
 hacer ite business/familiar/persona/Colegios
+Falta terminar el crud de requisitos y metas
 
 
 
