@@ -257,7 +257,7 @@
             <div class="team-block">
                 
                 <div class="team-img">
-                    <img src="{{ Storage::url($docente->persona->foto) }}" alt="" class="img-fluid">
+                    
                     <img src="{{URL::to('/')}}/storage/{{$docente->persona->foto}}" alt="" class="img-fluid">
                 </div>
                 <div class="team-info">

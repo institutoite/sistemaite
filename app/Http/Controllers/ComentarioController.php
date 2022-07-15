@@ -53,7 +53,7 @@ class ComentarioController extends Controller
             $comentario->interests = $intereses_limpio;
             $comentario->vigente = 1;
             $comentario->save();
-            $vectorIntereses  = $comentario->interests;
+            $vectorIntereses  = explode(',',$comentario->interests);
             return response()->json(['comentario' => $comentario,'vector_intereses'=>$vectorIntereses]);
         }else{
             return response()->json(['error' => $validator->errors()->first()]);

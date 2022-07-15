@@ -905,14 +905,15 @@
                             });
                             $("#error").append("<li class='text-success'>Se envio correctamente tus datos</li>");
                             
-                            //console.log(data.vector_intereses);
+                            console.log(data.vector_intereses);
                             contardor=1;
                             $msg="Hola. mi nombre es:%0A*"+data.comentario.nombre+"*%0A y mi telefono es:%0A*"+data.comentario.telefono+"* %0AVisite su página estoy interesado en los siguientes servicios o productos:%0A";
                             $.each( data.vector_intereses, function( key, value ) {
                                 $msg+="*"+contardor+".- "+value +'*%0A';
-                                console.log( $msg );
+                                // console.log( $msg );
                                 contardor++;
                             });
+                          
                             $url="https://api.whatsapp.com/send?phone=59171039910&text="+$msg;
                             $url+='Mas información por favor';
                             let a= document.createElement('a');
