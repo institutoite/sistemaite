@@ -530,7 +530,7 @@ return [
          *  Menu personas 
          */
         [
-            'text'    => 'Gestionar Inscripciones',
+            'text'    => 'Inscripciones',
             'icon'    => 'fas fa-keyboard',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
@@ -662,6 +662,12 @@ return [
                     'url'  => '#',
                     'classes'  => 'text-dark',
                 ],
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'mensajes',
+                    'classes'  => 'text-dark',
+                ],
             ],
         ],
 
@@ -767,15 +773,15 @@ return [
         ],
 //** %%%%%%%%%%%%%%%%%%  MENU Colegios %%%%%%%%%%%%% */
         [
-            'text'    => 'Mensajes',
+            'text'    => 'Comentario Web',
             'icon'    => 'fas fa-house-user',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
             'submenu' => [
                 [
-                    'text' => 'Mensaje',
+                    'text' => 'listar comentarios',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => 'mensajes',
+                    'url'  => 'comentarios',
                     'classes'  => 'text-dark',
                 ],
             ],
@@ -1150,7 +1156,7 @@ return [
         //** %%%%%%%%%%%%%%%%%%  MENU ZONAS %%%%%%%%%%%%% */
 
         [
-            'text'    => 'fas fa-map-marked-alt',
+            'text'    => 'Zonas',
             'icon'    => 'fas fa-street-view',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
@@ -1158,15 +1164,10 @@ return [
                 [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'zonas',
                     'classes'  => 'text-dark',
                 ],
-                [
-                    'text' => 'Crear',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
+               
             ],
         ],
         //** %%%%%%%%%%%%%%%%%%  MENU DIAS %%%%%%%%%%%%% */

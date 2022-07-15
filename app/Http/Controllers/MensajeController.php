@@ -7,6 +7,7 @@ use App\Http\Requests\StoreMensajeRequest;
 use App\Http\Requests\UpdateMensajeRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 
 class MensajeController extends Controller
@@ -97,7 +98,8 @@ class MensajeController extends Controller
      */
     public function destroy(Mensaje $mensaje)
     {
-        //
+        $mensaje->delete();
+        return response()->json(['mensaje'=>"Se eliminó correctamente"]);
     }
 
     
@@ -105,8 +107,24 @@ class MensajeController extends Controller
         $mensajes=Mensaje::all();
         return datatables()->of($mensajes)
         ->addColumn('btn', 'whatsapp.action')
-        ->rawColumns(['btn'])
+        ->rawColumns(['btn','mensaje'])
         ->toJson();
     }
 
+    public function darbaja(Request $request)
+    {
+       // return response()->json(['id'=>$request->all()]);
+        $mensaje=Mensaje::findOrFail($request->mensaje_id);
+        $mensaje->vigente=0;
+        $mensaje->save();
+        return response()->json(['mensaje'=>"Se dió de BAJA el registro correctamente"]);
+    }
+   
+    public function daralta(Request $request)
+    {
+        $mensaje=Mensaje::findOrFail($request->mensaje_id);
+        $mensaje->vigente=1;
+        $mensaje->save();
+        return response()->json(['mensaje'=>"Se dió de ALTA el registro correctamente"]);
+    }
 }

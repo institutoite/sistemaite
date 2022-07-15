@@ -17,7 +17,7 @@ class ComentarioController extends Controller
      */
     public function index()
     {
-        //
+       return view('comentario.index'); 
     }
 
     /**
@@ -41,7 +41,7 @@ class ComentarioController extends Controller
         //return response()->json($request->all());
 
         $validator = Validator::make($request->all(), [
-            'nombre'=>'required|min:5|max:30',
+            'nombre'=>'required|min:4|max:30',
             'telefono'=>'required|min:8|max:10',
             'interests'=>'required',
         ]);
@@ -49,12 +49,11 @@ class ComentarioController extends Controller
             $comentario = new Comentario();
             $comentario->nombre = $request->nombre;
             $comentario->telefono = $request->telefono;
-            $comentario->interests = $request->interests;
+                $intereses_limpio=substr($request->interests, 0, -1);
+            $comentario->interests = $intereses_limpio;
+            $comentario->vigente = 1;
             $comentario->save();
-            
-            $cadena_intereses  = $comentario->interests;
-            $vectorIntereses = explode(",", $cadena_intereses);
-            array_pop($vectorIntereses);
+            $vectorIntereses  = $comentario->interests;
             return response()->json(['comentario' => $comentario,'vector_intereses'=>$vectorIntereses]);
         }else{
             return response()->json(['error' => $validator->errors()->first()]);
@@ -70,7 +69,7 @@ class ComentarioController extends Controller
      */
     public function show(Comentario $comentario)
     {
-        //
+        return view('comentario.show', compact('comentario'));
     }
 
     /**
@@ -81,7 +80,7 @@ class ComentarioController extends Controller
      */
     public function edit(Comentario $comentario)
     {
-        //
+        return view('comentario.edit', compact('comentario'));
     }
 
     /**
@@ -93,7 +92,12 @@ class ComentarioController extends Controller
      */
     public function update(UpdateComentarioRequest $request, Comentario $comentario)
     {
-        //
+       
+        $comentario->nombre = $request->nombre;
+        $comentario->telefono = $request->telefono;
+        $comentario->interests = $request->interests;
+        $comentario->save();
+        return redirect()->route("comentario.show",$comentario);
     }
 
     /**
@@ -104,6 +108,32 @@ class ComentarioController extends Controller
      */
     public function destroy(Comentario $comentario)
     {
-        //
+        $comentario->delete();
+        return response()->json(['mensaje'=>"Se eliminó correctamente"]);
+    }
+    
+    public function listar(){
+        $comentarios=Comentario::all();
+        return datatables()->of($comentarios)
+        ->addColumn('btn', 'comentario.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+    }
+
+    public function darbaja(Request $request)
+    {
+       // return response()->json(['id'=>$request->all()]);
+        $comentario=Comentario::findOrFail($request->comentario_id);
+        $comentario->vigente=0;
+        $comentario->save();
+        return response()->json(['mensaje'=>"Se dió de baja el registro correctamente"]);
+    }
+   
+    public function daralta(Request $request)
+    {
+        $comentario=Comentario::findOrFail($request->comentario_id);
+        $comentario->vigente=1;
+        $comentario->save();
+        return response()->json(['mensaje'=>"Se dió de alta el registro correctamente"]);
     }
 }

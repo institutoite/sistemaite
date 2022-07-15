@@ -15,10 +15,10 @@
                 <div class="card">
                     <div class="card-header bg-secondary">
                         <div class="float-left">
-                            <span class="card-title">Mostrar Mensaje</span>
+                            <span class="card-title">Mostrar Comentario</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('mensaje.index') }}">Listar Mensaje</a>
+                            <a class="btn btn-primary" href="{{ route('comentario.index') }}">Listar Comentarios</a>
                         </div>
                     </div>
 
@@ -31,16 +31,27 @@
                             <tbody>
                                 <tr>
                                     <td>NOMBRE</td>
-                                    <td>{{$mensaje->nombre}}</td>
+                                    <td>{{$comentario->nombre}}</td>
+                                </tr>
+                                <tr>
+                                    <td>NOMBRE</td>
+                                    <td>{{$comentario->telefono}}</td>
+                                </tr>
+                                <tr>
+                                    <td>NOMBRE</td>
+                                    <td>
+                                        @if ($comentario->vigente==1)
+                                            Vigente
+                                        @else
+                                            No Vigente
+                                        @endif
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>MENSAJE</td>
-                                    <td>{!!$mensaje->mensaje!!}</td>
+                                    <td>{{$comentario->interests}}</td>
                                 </tr>
-                                <tr>
-                                    <td>Foto creador</td>
-                                    <td><img src="{{URL::to('/').'/storage/'.$user->foto}}" alt="{{$user->name}}" height="250px"></td>
-                                </tr>
+                                
                             </tbody>
                         </table>    
                     </div>

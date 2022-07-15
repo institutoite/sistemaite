@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
-@section('title', 'Mensajes')
+@section('title', 'Comentarios')
 @section('plugins.Jquery', true)
 @section('plugins.Sweetalert2', true)
 @section('plugins.Datatables', true)
@@ -20,27 +20,21 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Mensajes para enviar') }}
+                                {{ __('Comentarios escritos desde la Web') }}
                             </span>
-
-                            <div class="float-right">
-                                <a href="{{ route('mensaje.create') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
-                                    {{ __('Crear Mensaje Nuevo') }}
-                                </a>
-                            </div>
                         </div>
                     </div>
                     
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="mensajes" class="table table-striped table-hover table-borderless">
+                            <table id="comentarios" class="table table-striped table-hover table-borderless">
                                 <thead class="">
                                     <tr>
                                         <th>No</th>
 										<th>nombre</th>
-										<th>Mensaje</th>
-										<th>Vigente</th>
+										<th>telefono</th>
+										<th>Intereses</th>
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
@@ -51,6 +45,7 @@
             </div>
         </div>
     </div>
+     @include('observacion.modalcreate')
 @endsection
 
 @section('js')
@@ -58,6 +53,10 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> 
+      
+    <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
+    <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+    <script src="{{asset('assets/js/observacion.js')}}"></script>
     
     {{-- %%%%%%%%%%%%%% muestra el ok de la insersion de datos %%%%%%%%%%%%%%%%% --}}
     @if ($message = Session::get('success'))
@@ -98,7 +97,7 @@
         $(document).ready(function() {
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATA TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             let fila=1;
-            let tabla=$('#mensajes').dataTable({
+            let tabla=$('#comentarios').dataTable({
                 "responsive":true,
                 "searching":true,
                 "paging":   true,
@@ -109,18 +108,29 @@
                     $(row).attr('id',data['id']); 
                     if(data['vigente']==1){
                         $(row).addClass('text-success');
-                        $('td', row).eq(3).html('Si');
+                        // $('td', row).eq(3).html('Si');
                     }else{
-                        $('td', row).eq(3).html('No');
+                        // $('td', row).eq(3).html('No');
                         $(row).addClass('text-danger');
                     }
+                        let str = data['interests'];
+                        let vector_intereses = str.split(',');
+                            vector_intereses
+                        $html="<ol>";
+                            $.each(vector_intereses, function( index, value ) {
+                                $html+="<li>"+value+"</li>";
+                            });
+                        $html+="</ol>";
+                        
+                        $('td', row).eq(3).html($html);
                 },
-                "ajax": "{{ url('listar/mensajes') }}",
+                "ajax": "{{ url('listar/comentarios') }}",
                 "columns": [
                     {data: 'id'},
                     {data: 'nombre'},
-                    {data: 'mensaje'},
-                    {data: 'vigente'},
+                    {data: 'telefono'},
+                   
+                    {data: 'interests'},
                     {
                         "name":"btn",
                         "data": 'btn',
@@ -137,19 +147,19 @@
             });
 
            /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DA DE BAJA UNA OBSERVACION UTILIZA AJAX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('table').on('click', '.bajamensaje', function (e) {
+            $('table').on('click', '.bajacomentario', function (e) {
                 e.preventDefault();
-                let mensaje_id = $(this).closest('tr').attr('id');
-                console.log("id"+mensaje_id);
+                let comentario_id = $(this).closest('tr').attr('id');
+                console.log("id"+comentario_id);
                 $.ajax({
-                    url: "darbaja/mensaje",
+                    url: "darbaja/comentario",
                     data: {
                         //obs: $("#observacionx").val(),
-                        mensaje_id: mensaje_id,
+                        comentario_id: comentario_id,
                     },
                     success: function (json) {
-                        $("#" + mensaje_id).addTempClass('bg-danger', 3000);
-                        $('#mensajes').DataTable().ajax.reload();
+                        $("#" + comentario_id).addTempClass('bg-danger', 3000);
+                        $('#comentarios').DataTable().ajax.reload();
                         const Toast = Swal.mixin({
                             toast: true,
                             position: 'top-end',
@@ -169,19 +179,19 @@
             });
         
         /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DA DE ALTA UNA OBSERVACION QUE ESTA CON BAJA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $('table').on('click', '.altamensaje', function (e) {
+        $('table').on('click', '.altacomentario', function (e) {
             e.preventDefault();
-            let mensaje_id = $(this).closest('tr').attr('id');
-            console.log(mensaje_id);
+            let comentario_id = $(this).closest('tr').attr('id');
+            console.log(comentario_id);
             $.ajax({
-                url: "daralta/mensaje",
+                url: "daralta/comentario",
                 data: {
-                    //obs: $("#mensajex").val(),
-                    mensaje_id: mensaje_id,
+                    //obs: $("#comentariox").val(),
+                    comentario_id: comentario_id,
                 },
                 success: function (json) {
-                    $("#" + mensaje_id).addTempClass('bg-success', 3000);
-                    $('#mensajes').DataTable().ajax.reload();
+                    $("#" + comentario_id).addTempClass('bg-success', 3000);
+                    $('#comentarios').DataTable().ajax.reload();
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -201,9 +211,9 @@
 
             
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  M O T I V O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-            $('#mensajes').on('click','.eliminar',function (e) {
+            $('#comentarios').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
-                 var mensaje_id =$(this).closest('tr').attr('id');
+                 var comentario_id =$(this).closest('tr').attr('id');
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",
@@ -217,13 +227,13 @@
                 }).then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: 'eliminar/mensaje/'+mensaje_id,
+                            url: 'eliminar/comentario/'+comentario_id,
                             type: 'DELETE',
                             data:{
                                 _token:'{{ csrf_token() }}'
                             },
                             success: function(result) {
-                                $('#mensajes').DataTable().ajax.reload();
+                                $('#comentarios').DataTable().ajax.reload();
                                 const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',

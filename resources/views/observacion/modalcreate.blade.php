@@ -42,8 +42,8 @@
                             @csrf
                             <textarea cols="80" id="editor1" name="editor1" rows="10" data-sample-short>
                             </textarea>
-                            <input type="text" hidden name="observable_id" id="observable_id" value="">
-                            <input type="text" hidden name="observable_type" id="observable_type" value="">
+                            <input type="text" name="observable_id" id="observable_id" value="">
+                            <input type="text" name="observable_type" id="observable_type" value="">
 
                             <div class="container-fluid h-100 mt-3"> 
                                 <div class="row w-100 align-items-center">

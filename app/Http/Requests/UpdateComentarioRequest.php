@@ -13,7 +13,7 @@ class UpdateComentarioRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class UpdateComentarioRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nombre'=>'required|min:4|max:30',
+            'telefono'=>'required|min:8|max:10',
+            'interests'=>'required',
         ];
     }
 }

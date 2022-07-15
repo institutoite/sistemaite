@@ -15,3 +15,10 @@
         <i class="fa fa-fw fa-trash text-danger"></i>   
     </button>
 </form> 
+
+<a class='btn-accion-tabla tooltipsC btn-sm mr-2 bajamensaje' title='Dar de Baja  esta mensaje'>
+    <i class="fas fa-arrow-down text-danger"></i>
+</a>
+<a class='btn-accion-tabla tooltipsC btn-sm mr-2 altamensaje' title='Dar de Alta esta mensaje'>
+    <i class="fas fa-arrow-up text-success"></i>
+</a>

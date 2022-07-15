@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{asset('dist/css/starrr.css')}}">
 @stop
 
-@section('title', 'Personas')
+@section('title', 'Estudiantes')
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
 @section('content')

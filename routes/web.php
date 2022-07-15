@@ -53,7 +53,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[ComentarioController::class,'guardarComentario'])->name('prueba');
+Route::get('prueba',[MensajeController::class,'dar'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -132,6 +132,14 @@ Route::get('/historial/{estudiante}','EstudianteController@historia')->name('est
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       COMENTARIO         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');
+Route::get('comentarios',[ComentarioController::class,'index'])->name("comentario.index");
+Route::get('comentario/mostrar/{comentario}',[ComentarioController::class,'show'])->name("comentario.show");
+Route::get('listar/comentarios', [ComentarioController::class,'listar'])->name('comentario.ajax');
+Route::get('comentario/editar/{comentario}', [ComentarioController::class,'edit'])->name("comentario.edit");
+Route::post('comentario/actualizar/{comentario}', [ComentarioController::class,'update'])->name("comentario.update");
+Route::delete('eliminar/comentario/{comentario}', [ComentarioController::class,'destroy'])->name('comentario.delete');
+Route::get('darbaja/comentario',[ComentarioController::class,'darbaja'])->name('comentario.darbaja');
+Route::get('daralta/comentario/',[ComentarioController::class,'daralta'])->name('comentario.daralta');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       D O C E N T E S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('docentes','DocenteController@index')->name('docentes.index');
@@ -362,7 +370,7 @@ Route::get('motivo/actualizar/', [MotivoController::class,'actualizar'])->name("
 Route::delete('eliminar/motivo/{motivo}', [MotivoController::class,'destroy'])->name('eliminar.motivo');
 
 
-/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MOTIVOS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MENSAJE %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('mensajes',[MensajeController::class,'index'])->name("mensaje.index");
 Route::get('mensajes/create',[MensajeController::class,'create'])->name("mensaje.create");
 Route::get('mensaje/mostrar/{mensaje}',[MensajeController::class,'show'])->name("mensaje.show");
@@ -371,6 +379,8 @@ Route::get('mensaje/editar/{mensaje}', [MensajeController::class,'edit'])->name(
 Route::post('mensaje/actualizar/{mensaje}', [MensajeController::class,'update'])->name("mensaje.update");
 Route::delete('eliminar/mensaje/{mensaje}', [MensajeController::class,'destroy'])->name('mensaje.delete');
 Route::post('mensaje/guardar',[MensajeController::class,'store'])->name('mensaje.store');
+Route::get('darbaja/mensaje',[MensajeController::class,'darbaja'])->name('mensaje.darbaja');
+Route::get('daralta/mensaje/',[MensajeController::class,'daralta'])->name('mensaje.daralta');
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MOTIVOS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('aulas', "AulaController");
