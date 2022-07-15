@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="assets/vendors/owl/assets/owl.theme.default.min.css">
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/redes.css">
+  <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/css/redes.css')}}">
  
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -633,37 +633,38 @@
                             <h2>Fancy Colorlib Social</h2>
                             <li>
                                 <div class="facebook">
-                                    <a href="https://facebook.com/colorlib/">
+                                    <a target="_blank" href="https://www.facebook.com/institutoeducabol">
                                     <i class="fa fa-facebook" aria-hidden="true"></i>
                                     </a>
                                 </div>
                                 <span>Facebook</span>
                             </li>
                             <li>
-                                <div class="twitter">
-                                    <a href="https://twitter.com/colorlib/">
-                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                                <div class="whatsapp">
+                                    <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Visite su pagina. Quiero mas información">
+                                    <i class="fa fa-whatsapp" aria-hidden="true"></i>
                                     </a>
                                 </div>
-                                <span>Twitter</span>
+                                <span>Whatsapp</span>
                             </li>
                             <li>
                                 <div class="youtube">
-                                    <a href="https://www.youtube.com/c/Colorlib">
+                                    <a target="_blank" href="https://www.youtube.com/channel/UCbmRHfG51CGM1foo-6kzunQ">
                                     <i class="fa fa-youtube" aria-hidden="true"></i>
                                     </a>
                                 </div>
                             <span>YouTube</span>
                             </li>
                             <li>
-                                <div class="linkedin">
-                                    <a href="https://www.linkedin.com/company/colorlib">
-                                    <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                <div class="telegram">
+                                    <a target="_blank" href="https://msng.link/o/?@institutoite=tg">
+                                    <i class="fa fa-telegram" aria-hidden="true"></i>
                                     </a>
                                 </div>
-                                <span>LinkedIn</span>
+                                <span>Telegram</span>
                             </li>
     
+
                         </ul>
                     </section>
                     
