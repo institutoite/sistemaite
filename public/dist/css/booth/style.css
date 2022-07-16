@@ -99,8 +99,10 @@ h1 {
 	-ms-border-top-right-radius: 5px;
 	-o-border-top-right-radius: 5px;
 }
+
+/* cabecera turqueza */
 .top-two{
-	background:rgb(38,186,165);
+	background:rgb(35, 172, 151);
 }
 .top-three{
 	background:rgb(2, 33, 54);
@@ -121,13 +123,15 @@ h1 {
 	background: rgb(2, 33, 54);
 }
 .pricing.pricing-two:before { 
-	background: rgb(38, 186, 165);
+	background: rgb(27, 34, 33);
 }
+/* border de abajo del a */
 .pricing.pricing-three:before { 
-	background: rgb(2, 33, 54);
+	background: rgb(54, 2, 26);
 }
+/* border de a  de abajo del turqueza*/
 .pricing.pricing-two:before { 
-	background: rgb(38, 186, 165);
+	background: rgb(35, 172, 151);
 }
 .pricing:hover:before{
 	width: 100%;
@@ -366,7 +370,7 @@ form ul {
 	margin: 1em 1em 1em 0;
 }
 .payment-online-form-right{
-	background: #2B2937;
+	background: #0e0253;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-o-border-radius: 5px;

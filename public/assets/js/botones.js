@@ -1,0 +1,33 @@
+var animateButtonAzul = function (e) {
+
+    e.preventDefault;
+    //reset animation
+    e.target.classList.remove('animate');
+
+    e.target.classList.add('animate');
+    setTimeout(function () {
+        e.target.classList.remove('animate');
+    }, 700);
+};
+var animateButtonTurqueza = function (e) {
+
+    e.preventDefault;
+    //reset animation
+    e.target.classList.remove('animate');
+
+    e.target.classList.add('animate');
+    setTimeout(function () {
+        e.target.classList.remove('animate');
+    }, 700);
+};
+
+var bubblyButtons = document.getElementsByClassName("boton-azul");
+
+for (var i = 0; i < bubblyButtons.length; i++) {
+    bubblyButtons[i].addEventListener('click', animateButtonAzul, false);
+}
+var bubblyturquezas = document.getElementsByClassName("boton-turqueza");
+
+for (var i = 0; i < bubblyturquezas.length; i++) {
+    bubblyturquezas[i].addEventListener('click', animateButtonTurqueza, false);
+}

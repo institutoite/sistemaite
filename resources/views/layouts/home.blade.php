@@ -30,6 +30,8 @@
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
   <link rel="stylesheet" href="{{asset('assets/css/redes.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/css/botones.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/css/botonTurqueza.css')}}">
  
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -257,15 +259,6 @@
                 <div class="video-container">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/fN4OVcOlyxI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-
-                     {{-- <a href="#" class="video-icon"><i class="fa fa-play"></i></a> --}}
-                
-                    {{-- <div class="video-block">
-                        <img src="assets/images/bg/office01.jpg" alt="" class="img-fluid">
-                        <a href="#" class="video-icon"><i class="fa fa-play"></i></a>
-                    </div> --}}
-
-                
             </div>
              
         </div>
@@ -273,7 +266,19 @@
     <!--course-->
 </section>
 
-@include('home.booth')
+@include('home.programacion')
+
+
+<button class="boton-azul">Click me!</button>
+<div class="container"> 
+  <div class="boton-turqueza">
+    <span>Atom</span>
+    <div class="dot"></div>
+  </div>
+  
+</div>
+
+
 
 <section class="page-wrapper edutim-course-single">
     <div class="container">
@@ -555,7 +560,7 @@
 
                 <p class="h5 text-white">Ingresa a nuestra plataforma educativa Educabol para ver todos nuestros cursos online.</p>
 
-                <a href="https://www.educabol.com/" class="btn btn-main-2"><i class="fa fa-check mr-2"></i>Ingresar</a>
+                <a href="https://www.educabol.com/" class="boton-azul"><i class="fa fa-check mr-2"></i>Ingresar</a>
                 
             </div>
         </div>
@@ -567,7 +572,9 @@
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-6">
                 <div class="section-heading center-heading">
+
                     <h3>Nuestro equipo</h3>
+                    <a class="boton-turqueza"><i class="fa fa-check mr-2"></i>Ingresar</a>
                 </div>
             </div>
         </div>
@@ -819,6 +826,7 @@
 	<!-- //js -->
 	<!-- popup js --> 
 	<script src="{{asset('dist/js/booth/jquery.magnific-popup.js')}}" type="text/javascript"></script>  
+	<script src="{{asset('assets/js/botones.js')}}" type="text/javascript"></script> 
 	<script>
 		$(document).ready(function() {
 			$('.popup-with-zoom-anim').magnificPopup({
