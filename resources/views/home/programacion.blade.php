@@ -15,14 +15,19 @@
 							<p>HORA LIBRE</p>
 						</div>
 						<div class="pricing-bottom"> 
-							<p>Certificado<i class="fas fa-times text-danger"></i></p> 
-							<p>Contenido Personalizado<i class="fas fa-check text-success"></i></p> 
-							<p>Turno mañana <i class="fas fa-check text-success"></i></p> 
-							<p>Turno Tarde <i class="fas fa-times text-danger"></i></p> 
-							<p>Turno Noche<i class="fas fa-times text-danger"></i></p> 
+							<p>Certificado &nbsp; <i class="fas fa-times text-danger"></i></p> 
+							<p>Contenido Personalizado &nbsp; <i class="fas fa-check text-success"></i></p> 
+							<p>Turno mañana  &nbsp; <i class="fas fa-check text-success"></i></p> 
+							<p>Turno Tarde  &nbsp; <i class="fas fa-times text-danger"></i></p> 
+							<p>Turno Noche &nbsp; <i class="fas fa-times text-danger"></i></p> 
 							<p> <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20mas%20información%20del%20PROGRAMACION%20HORALIBRE%20">Mas Información</a>  </p>
+							{{-- <div class="agileits-buy">
+									<a class="a_demo_four text-white" target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20reservar%20el%20PROGRAMACION%20HORALIBRE">
+										Reservar
+									</a>
+							</div> --}}
 							<div class="agileits-buy">
-								<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20reservar%20el%20PROGRAMACION%20HORALIBRE">Comprar</a>
+								<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20comprar%20el%20Videobooth360%20modelo%20BASICO60">Comprar</a>
 							</div>
 						</div>
 					</div> 
@@ -34,15 +39,16 @@
 							<p>NIVEL BASICO </p>
 						</div>
 						<div class="pricing-bottom"> 
-							<p>Certificado<i class="fas fa-times text-danger"></i></p> 
-							<p>Contenido Personalizado<i class="fas fa-times text-danger"></i></p> 
-							<p>Turno mañana <i class="fas fa-check text-success"></i></p> 
-							<p>Turno Tarde <i class="fas fa-check text-success"></i></p> 
-							<p>Turno Noche<i class="fas fa-times text-danger"></i></p> 
+							<p>Certificado &nbsp; <i class="fas fa-times text-danger"></i></p> 
+							<p>Contenido Personalizado &nbsp; <i class="fas fa-times text-danger"></i></p> 
+							<p>Turno mañana  &nbsp; <i class="fas fa-check text-success"></i></p> 
+							<p>Turno Tarde  &nbsp; <i class="fas fa-check text-success"></i></p> 
+							<p>Turno Noche &nbsp; <i class="fas fa-times text-danger"></i></p> 
 							<p> <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20mas%20información%20del%20videobooth360%20modelo%20BASICO60">Mas Información</a>  </p>
 							<div class="agileits-buy">
 								<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20comprar%20el%20Videobooth360%20modelo%20BASICO60">Comprar</a>
 							</div>
+							
 						</div>
 					</div> 
 				</div> 
@@ -54,14 +60,16 @@
 							<p>NIVEL INTERMEDIO</p>
 						</div>
 						<div class="pricing-bottom wthree"> 
-							<p>Certificado<i class="fas fa-check text-success"></i></p> 
-							<p>Pago mensual<i class="fas fa-times text-danger"></i></p> 
-							<p>Turno mañana <i class="fas fa-check text-success"></i></p> 
-							<p>Turno Tarde <i class="fas fa-check text-success"></i></p> 
-							<p>Turno Noche<i class="fas fa-check text-success"></i></p> 
+							<p>Certificado &nbsp; <i class="fas fa-check text-success"></i></p> 
+							<p>Pago mensual &nbsp; <i class="fas fa-times text-danger"></i></p> 
+							<p>Turno mañana  &nbsp; <i class="fas fa-check text-success"></i></p> 
+							<p>Turno Tarde  &nbsp; <i class="fas fa-check text-success"></i></p> 
+							<p>Turno Noche &nbsp; <i class="fas fa-check text-success"></i></p> 
 							<p> <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20mas%20información%20del%20videobooth360%20modelo%20STANDART70">Mas Información</a>  </p>
 							<div class="agileits-buy">
-								<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20comprar%20el%20Videobooth360%20modelo%20STANDARD70">Comprar</a>
+								<a class="a_demo_four text-white" target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20reservar%20el%20PROGRAMACION%20NIVEL%20INTERMEDIO">
+									Reservar
+								</a>
 							</div>
 						</div>
 					</div> 
@@ -73,11 +81,11 @@
 							<p>AVANZADO</p>
 						</div>
 						<div class="pricing-bottom"> 
-							<p>Certificado<i class="fas fa-check text-success"></i></p> 
-							<p>Grupos reducidos<i class="fas fa-check text-success"></i></p> 
-							<p>Turno mañana <i class="fas fa-check text-success"></i></p> 
-							<p>Turno Tarde <i class="fas fa-check text-success"></i></p> 
-							<p>Turno Noche<i class="fas fa-check text-success"></i></p> 
+							<p>Certificado &nbsp; <i class="fas fa-check text-success"></i></p> 
+							<p>Grupos reducidos &nbsp; <i class="fas fa-check text-success"></i></p> 
+							<p>Turno mañana  &nbsp; <i class="fas fa-check text-success"></i></p> 
+							<p>Turno Tarde  &nbsp; <i class="fas fa-check text-success"></i></p> 
+							<p>Turno Noche &nbsp; <i class="fas fa-check text-success"></i></p> 
 							<p> <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20mas%20información%20del%20videobooth360%20modelo%20STANDART80">Mas Información</a>  </p>
 							<div class="agileits-buy">
 								<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20comprar%20el%20Videobooth360%20modelo%20STANDART80">Comprar</a>
@@ -92,21 +100,21 @@
 							<p>EXPERTO</p>
 						</div>
 						<div class="pricing-bottom"> 
-							<p>Certificado<i class="fas fa-check text-success"></i></p> 
-							<p>Curso Práctico<i class="fas fa-check text-success"></i></p> 
-							<p>Turno mañana <i class="fas fa-check text-success"></i></p> 
-							<p>Turno Tarde <i class="fas fa-check text-success"></i></p> 
-							<p>Turno Noche<i class="fas fa-check text-success"></i></p> 
+							<p>Certificado &nbsp; <i class="fas fa-check text-success"></i></p> 
+							<p>Curso Práctico &nbsp; <i class="fas fa-check text-success"></i></p> 
+							<p>Turno mañana  &nbsp; <i class="fas fa-check text-success"></i></p> 
+							<p>Turno Tarde  &nbsp; <i class="fas fa-check text-success"></i></p> 
+							<p>Turno Noche &nbsp; <i class="fas fa-check text-success"></i></p> 
 							<p> <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20mas%20información%20del%20videobooth360%20modelo%20PROFESIONAL85">Mas Información</a>  </p>
 							<div class="agileits-buy">
-								<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20comprar%20el%20Videobooth360%20modelo%20PROFESIONAL85">Comprar</a>
+								<a class="a_demo_four text-white" target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20comprar%20el%20Videobooth360%20modelo%20PROFESIONAL85">Comprar</a>
 							</div>
 						</div>
 					</div> 
 				</div>  
 				
 			</div>	
-			<!-- //owl-carousel -->
+			<!-- //owl-carousel -->	
 		</div>	
 	</div>	
 	<!-- //main -->

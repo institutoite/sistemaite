@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Aula;
+use App\Models\Userable;
 
 class AulaSeeder extends Seeder
 {
@@ -24,6 +25,19 @@ class AulaSeeder extends Seeder
         Aula::create(['aula' => 'Aula8', 'direccion' => 'Sucursal calle 16 planta baja']);
         Aula::create(['aula' => 'Aula9', 'direccion' => 'Sucursal calle 16 planta baja']);
         Aula::create(['aula' => 'Aula10', 'direccion' => 'Sucursal calle 16 planta baja']); 
+
+        Userable::create(["user_id"=>1,"userable_id"=>1,"userable_type"=>"App\Models\Aula"]);
+        Userable::create(["user_id"=>1,"userable_id"=>2,"userable_type"=>"App\Models\Aula"]);
+        Userable::create(["user_id"=>1,"userable_id"=>3,"userable_type"=>"App\Models\Aula"]);
+        Userable::create(["user_id"=>1,"userable_id"=>4,"userable_type"=>"App\Models\Aula"]);
+        
+        Userable::create(["user_id"=>1,"userable_id"=>5,"userable_type"=>"App\Models\Aula"]);
+        Userable::create(["user_id"=>1,"userable_id"=>6,"userable_type"=>"App\Models\Aula"]);
+        Userable::create(["user_id"=>1,"userable_id"=>7,"userable_type"=>"App\Models\Aula"]);
+        Userable::create(["user_id"=>1,"userable_id"=>8,"userable_type"=>"App\Models\Aula"]);
+        
+        Userable::create(["user_id"=>1,"userable_id"=>9,"userable_type"=>"App\Models\Aula"]);
+        Userable::create(["user_id"=>1,"userable_id"=>10,"userable_type"=>"App\Models\Aula"]);
 
 
     }

@@ -32,6 +32,8 @@
   <link rel="stylesheet" href="{{asset('assets/css/redes.css')}}">
   <link rel="stylesheet" href="{{asset('assets/css/botones.css')}}">
   <link rel="stylesheet" href="{{asset('assets/css/botonTurqueza.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/css/demo.css')}}">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
  
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -92,8 +94,8 @@
 
                     @guest
                         @if (Route::has('login'))
-                                <a href="{{ route('login') }}" class="btn btn-main btn-small"><i class="fa fa-sign-in-alt mr-2"></i>
-                                    Iniciar Sesion
+                                <a href="{{ route('login') }}"><i class="fa fa-sign-in-alt mr-2"></i>
+                                    <button class="boton-azul">Iniciar sesion</button>
                                 </a>
                         @endif
                     @else
@@ -218,6 +220,7 @@
         @yield('heading')
         
         <div class="row no-gutters">
+            
             @foreach ($cursos as $curso)
                 <div class="col-lg-3 col-md-6">
                     
@@ -269,14 +272,8 @@
 @include('home.programacion')
 
 
-<button class="boton-azul">Click me!</button>
-<div class="container"> 
-  <div class="boton-turqueza">
-    <span>Atom</span>
-    <div class="dot"></div>
-  </div>
-  
-</div>
+
+
 
 
 
@@ -560,7 +557,7 @@
 
                 <p class="h5 text-white">Ingresa a nuestra plataforma educativa Educabol para ver todos nuestros cursos online.</p>
 
-                <a href="https://www.educabol.com/" class="boton-azul"><i class="fa fa-check mr-2"></i>Ingresar</a>
+                <a href="https://www.educabol.com/"><button class="boton-azul"><i class="fa fa-check mr-2"></i> Ingresar</button> </a>
                 
             </div>
         </div>
@@ -574,7 +571,7 @@
                 <div class="section-heading center-heading">
 
                     <h3>Nuestro equipo</h3>
-                    <a class="boton-turqueza"><i class="fa fa-check mr-2"></i>Ingresar</a>
+                    {{-- <a class="boton-turqueza"><i class="fa fa-check mr-2"></i>Ingresar</a> --}}
                 </div>
             </div>
         </div>
@@ -827,6 +824,7 @@
 	<!-- popup js --> 
 	<script src="{{asset('dist/js/booth/jquery.magnific-popup.js')}}" type="text/javascript"></script>  
 	<script src="{{asset('assets/js/botones.js')}}" type="text/javascript"></script> 
+	<script src="{{asset('assets/js/botonTurqueza.js')}}" type="text/javascript"></script> 
 	<script>
 		$(document).ready(function() {
 			$('.popup-with-zoom-anim').magnificPopup({

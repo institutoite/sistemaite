@@ -61,6 +61,24 @@ class MotivoSeeder extends Seeder
         Userable::create(["user_id"=>1,"userable_id"=>6,"userable_type"=>"App\Models\Motivo"]);
         Userable::create(["user_id"=>1,"userable_id"=>7,"userable_type"=>"App\Models\Motivo"]);
         Userable::create(["user_id"=>1,"userable_id"=>8,"userable_type"=>"App\Models\Motivo"]);
+        
+        Userable::create(["user_id"=>1,"userable_id"=>9,"userable_type"=>"App\Models\Motivo"]);
+        Userable::create(["user_id"=>1,"userable_id"=>10,"userable_type"=>"App\Models\Motivo"]);
+        Userable::create(["user_id"=>1,"userable_id"=>11,"userable_type"=>"App\Models\Motivo"]);
+        Userable::create(["user_id"=>1,"userable_id"=>12,"userable_type"=>"App\Models\Motivo"]);
+        Userable::create(["user_id"=>1,"userable_id"=>13,"userable_type"=>"App\Models\Motivo"]);
+        Userable::create(["user_id"=>1,"userable_id"=>14,"userable_type"=>"App\Models\Motivo"]);
+        Userable::create(["user_id"=>1,"userable_id"=>15,"userable_type"=>"App\Models\Motivo"]);
+        Userable::create(["user_id"=>1,"userable_id"=>16,"userable_type"=>"App\Models\Motivo"]);
+        
+        Userable::create(["user_id"=>1,"userable_id"=>17,"userable_type"=>"App\Models\Motivo"]);
+        Userable::create(["user_id"=>1,"userable_id"=>18,"userable_type"=>"App\Models\Motivo"]);
+        Userable::create(["user_id"=>1,"userable_id"=>19,"userable_type"=>"App\Models\Motivo"]);
+        Userable::create(["user_id"=>1,"userable_id"=>20,"userable_type"=>"App\Models\Motivo"]);
+        Userable::create(["user_id"=>1,"userable_id"=>21,"userable_type"=>"App\Models\Motivo"]);
+        Userable::create(["user_id"=>1,"userable_id"=>22,"userable_type"=>"App\Models\Motivo"]);
+        Userable::create(["user_id"=>1,"userable_id"=>23,"userable_type"=>"App\Models\Motivo"]);
+        Userable::create(["user_id"=>1,"userable_id"=>24,"userable_type"=>"App\Models\Motivo"]);
 
         
 

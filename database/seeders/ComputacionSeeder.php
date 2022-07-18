@@ -16,10 +16,6 @@ class ComputacionSeeder extends Seeder
      */
     public function run()
     {
-        Observacion::create(['observable_id' => 1, 'activo' => 1, 'observable_type' => 'App\Models\Computacion', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
-        Observacion::create(['observable_id' => 2, 'activo' => 1, 'observable_type' => 'App\Models\Computacion', 'observacion' => 'Esto es un requerimiento de prueba solamente']);
-
-        Computacion::create(['persona_id' => 1]);
-        Computacion::create(['persona_id' => 2]);
+       
     }
 }

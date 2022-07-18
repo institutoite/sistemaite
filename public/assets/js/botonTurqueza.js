@@ -1,4 +1,4 @@
-var animateButtonAzul = function (e) {
+var animateButton = function (e) {
 
     e.preventDefault;
     //reset animation
@@ -10,10 +10,8 @@ var animateButtonAzul = function (e) {
     }, 700);
 };
 
-
-var bubblyButtons = document.getElementsByClassName("boton-azul");
+var bubblyButtons = document.getElementsByClassName("bubbly-button");
 
 for (var i = 0; i < bubblyButtons.length; i++) {
-    bubblyButtons[i].addEventListener('click', animateButtonAzul, false);
+    bubblyButtons[i].addEventListener('click', animateButton, false);
 }
-

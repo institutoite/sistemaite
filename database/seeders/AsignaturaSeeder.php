@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Asignatura;
+use App\Models\Userable;
 
 class AsignaturaSeeder extends Seeder
 {
@@ -38,5 +39,32 @@ class AsignaturaSeeder extends Seeder
         Asignatura::create(['asignatura'=>'ADOBO AFTER EFECT','carrera_id'=>2]);
         Asignatura::create(['asignatura'=>'PROYECTO I','carrera_id'=>2]);
         Asignatura::create(['asignatura'=>'PROYECTO II','carrera_id'=>2]);
+
+        Userable::create(["user_id"=>1,"userable_id"=>1,"userable_type"=>"App\Models\Asignatura"]);
+        Userable::create(["user_id"=>1,"userable_id"=>2,"userable_type"=>"App\Models\Asignatura"]);
+        Userable::create(["user_id"=>1,"userable_id"=>3,"userable_type"=>"App\Models\Asignatura"]);
+        Userable::create(["user_id"=>1,"userable_id"=>4,"userable_type"=>"App\Models\Asignatura"]);
+        
+        Userable::create(["user_id"=>1,"userable_id"=>5,"userable_type"=>"App\Models\Asignatura"]);
+        Userable::create(["user_id"=>1,"userable_id"=>6,"userable_type"=>"App\Models\Asignatura"]);
+        Userable::create(["user_id"=>1,"userable_id"=>7,"userable_type"=>"App\Models\Asignatura"]);
+        Userable::create(["user_id"=>1,"userable_id"=>8,"userable_type"=>"App\Models\Asignatura"]);
+        
+        Userable::create(["user_id"=>1,"userable_id"=>9,"userable_type"=>"App\Models\Asignatura"]);
+        Userable::create(["user_id"=>1,"userable_id"=>10,"userable_type"=>"App\Models\Asignatura"]);
+        
+        Userable::create(["user_id"=>1,"userable_id"=>11,"userable_type"=>"App\Models\Asignatura"]);
+        Userable::create(["user_id"=>1,"userable_id"=>12,"userable_type"=>"App\Models\Asignatura"]);
+        Userable::create(["user_id"=>1,"userable_id"=>13,"userable_type"=>"App\Models\Asignatura"]);
+        Userable::create(["user_id"=>1,"userable_id"=>14,"userable_type"=>"App\Models\Asignatura"]);
+        
+        Userable::create(["user_id"=>1,"userable_id"=>15,"userable_type"=>"App\Models\Asignatura"]);
+        Userable::create(["user_id"=>1,"userable_id"=>16,"userable_type"=>"App\Models\Asignatura"]);
+        Userable::create(["user_id"=>1,"userable_id"=>17,"userable_type"=>"App\Models\Asignatura"]);
+        Userable::create(["user_id"=>1,"userable_id"=>18,"userable_type"=>"App\Models\Asignatura"]);
+        
+        Userable::create(["user_id"=>1,"userable_id"=>19,"userable_type"=>"App\Models\Asignatura"]);
+        Userable::create(["user_id"=>1,"userable_id"=>20,"userable_type"=>"App\Models\Asignatura"]);
+        
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -81,4 +82,17 @@ class AdministrativoController extends Controller
     {
         //
     }
+
+    public function vistaCartera(){
+        return view('cartera.index');
+    }
+    public function micartera(){
+
+        $userActual = Auth::user();
+
+        
+        return response()->json($data, 200, $headers);
+
+    }
+
 }

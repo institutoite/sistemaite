@@ -36,6 +36,29 @@ class ZonaSeeder extends Seeder
         Zona::create(['zona' => 'SATELITE NORTE', 'ciudad_id' => 6]);
         Zona::create(['zona' => 'PAURITO', 'ciudad_id' => 6]);
         Zona::create(['zona' => 'ZONA NORTE', 'ciudad_id' => 6]);
+
+        // Zona::findOrFail(1)->userable()->create(['user_id'=>1]);
+        // Zona::findOrFail(2)->userable()->create(['user_id'=>1]);
+        // Zona::findOrFail(3)->userable()->create(['user_id'=>1]);
+        // Zona::findOrFail(4)->userable()->create(['user_id'=>1]);
+        // Zona::findOrFail(5)->userable()->create(['user_id'=>1]);
+
+        // Zona::findOrFail(6)->userable()->create(['user_id'=>1]);
+        // Zona::findOrFail(7)->userable()->create(['user_id'=>1]);
+        // Zona::findOrFail(8)->userable()->create(['user_id'=>1]);
+        // Zona::findOrFail(9)->userable()->create(['user_id'=>1]);
+        // Zona::findOrFail(10)->userable()->create(['user_id'=>1]);
+
+        // Zona::findOrFail(11)->userable()->create(['user_id'=>1]);
+        // Zona::findOrFail(12)->userable()->create(['user_id'=>1]);
+        // Zona::findOrFail(13)->userable()->create(['user_id'=>1]);
+        // Zona::findOrFail(14)->userable()->create(['user_id'=>1]);
+        // Zona::findOrFail(15)->userable()->create(['user_id'=>1]);
+
+        // Zona::findOrFail(16)->userable()->create(['user_id'=>1]);
+        // Zona::findOrFail(17)->userable()->create(['user_id'=>1]);
+        // Zona::findOrFail(18)->userable()->create(['user_id'=>1]);
+        // Zona::findOrFail(19)->userable()->create(['user_id'=>1]);
         
     }
 }

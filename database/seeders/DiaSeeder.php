@@ -21,5 +21,13 @@ class DiaSeeder extends Seeder
         Dia::create(['dia' => 'viernes']);
         Dia::create(['dia' => 'sábado']);
         Dia::create(['dia' => 'domingo']);
+
+        Dia::findOrFail(1)->userable()->create(['user_id'=>1]);
+        Dia::findOrFail(2)->userable()->create(['user_id'=>1]);
+        Dia::findOrFail(3)->userable()->create(['user_id'=>1]);
+        Dia::findOrFail(4)->userable()->create(['user_id'=>1]);
+        Dia::findOrFail(5)->userable()->create(['user_id'=>1]);
+        Dia::findOrFail(6)->userable()->create(['user_id'=>1]);
+        Dia::findOrFail(7)->userable()->create(['user_id'=>1]);
     }
 }

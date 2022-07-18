@@ -22,8 +22,8 @@ hacer una seccion de contactanos donde este las formas de contactanos
 En registrar facilito que tenga dos pestañas arriba uno para registrar sin apoderado y otro con apoderado
 editar Inscripción
 editar Matriculaciones
-
 a Todos los seeder Nivel::findOrFail(1)->userable()->create(['user_id'=>1]);
+
 agragar chat por mesenger a las paginas 
 Ver las carteras
 que en detalle de pagos se muestre el total
@@ -36,6 +36,7 @@ cambiar en ver toda la programacion dice en el titulo clases que faltan
 crud para licencias en computacion y nivelacion
 hacer ite business/familiar/persona/Colegios
 Falta terminar el crud de requisitos y metas
+Hay error al crear user
 
 
 

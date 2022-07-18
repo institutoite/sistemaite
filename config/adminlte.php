@@ -801,6 +801,21 @@ return [
                 ],
             ],
         ],
+//** %%%%%%%%%%%%%%%%%% MI CARTERA %%%%%%%%%%%%% */
+        [
+            'text'    => 'Cartera',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Mi Cartera',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'micartera/view',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
 //** %%%%%%%%%%%%%%%%%%  MENU INTERESTS %%%%%%%%%%%%% */
         
         [

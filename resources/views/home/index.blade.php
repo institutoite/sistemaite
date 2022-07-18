@@ -55,6 +55,10 @@
                 <p class="h1">{{$hometext->heading}}</p>
                 <p class="text-white h4">{{$hometext->subheading}}</p>
             </div>
+
+            <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero empezar...">
+                <button class="boton-azul"> Empezar </button>
+            </a>
         </div>
     </div>
 @stop
@@ -66,18 +70,17 @@
         <tr>
             <th scope="col">Modadidad</th>
             <th scope="col">Costo</th>
-            <th colspan="2" scope="col">Opciones</th>
+            <th scope="col">Opciones</th>
         </tr>
         </thead>
         <tbody>
             @foreach ($guarderias as $guarderia)
                 <tr>
                     <td>{{$guarderia->modalidad}}</td>
-                    {{-- <td>{{$guarderia->cargahoraria}}</td> --}}
                     <td>Bs.{{$guarderia->costo}}</td>
-                    <td><button type="button" class="btn btn-outline-success">Comprar</button></td>
-                    <td><button type="button" class="btn btn-outline-secondary">Info</button></td>
-                    
+                    <td>
+						<a class="a_demo_four text-white" target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero reservar la modalidad {{$guarderia->modalidad}}">Comprar</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -92,6 +95,7 @@
         <tr>
             <th scope="col">Modadidad</th>
             <th scope="col">Costo</th>
+            <th scope="col">Opciones</th>
         </tr>
         </thead>
         <tbody>
@@ -99,6 +103,9 @@
                 <tr>
                     <td>{{$inicial->modalidad}}</td>
                     <td>Bs.{{$inicial->costo}}</td>
+                    <td>
+                        <a class="a_demo_four text-white" target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero reservar la modalidad {{$inicial->modalidad}}">Comprar</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -107,12 +114,12 @@
 @stop
 
 @section('primaria')
-
     <table class="table table-striped table-bordered table-hover">
         <thead>
         <tr>
             <th scope="col">Modadidad</th>
             <th scope="col">Costo</th>
+            <th scope="col">Opciones</th>
         </tr>
         </thead>
         <tbody>
@@ -120,6 +127,9 @@
                 <tr>
                     <td>{{$primaria->modalidad}}</td>
                     <td>Bs.{{$primaria->costo}}</td>
+                    <td>
+                        <a class="a_demo_four text-white" target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero reservar la modalidad {{$primaria->modalidad}}">Comprar</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -133,16 +143,18 @@
         <thead>
         <tr>
             <th scope="col">Modadidad</th>
-            {{-- <th scope="col">Horas</th> --}}
             <th scope="col">Costo</th>
+            <th scope="col">Opcion</th>
         </tr>
         </thead>
         <tbody>
             @foreach ($secundarias as $secundaria)
                 <tr>
                     <td>{{$secundaria->modalidad}}</td>
-                    {{-- <td>{{$secundaria->cargahoraria}}</td> --}}
                     <td>Bs.{{$secundaria->costo}}</td>
+                    <td>
+                        <a class="a_demo_four text-white" target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero reservar la modalidad {{$secundaria->modalidad}}">Comprar</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -156,16 +168,18 @@
         <thead>
         <tr>
             <th scope="col">Modadidad</th>
-            {{-- <th scope="col">Horas</th> --}}
             <th scope="col">Costo</th>
+            <th scope="col">Opcion</th>
         </tr>
         </thead>
         <tbody>
-            @foreach ($universitarios as $universitario)
+            @foreach ($universitarios as $preuniversitario)
                 <tr>
                     <td>{{$preuniversitario->modalidad}}</td>
-                    {{-- <td>{{$preuniversitario->cargahoraria}}</td> --}}
-                    <td>Bs.{{$universitario->costo}}</td>
+                    <td>Bs.{{$preuniversitario->costo}}</td>
+                    <td>
+                        <a class="a_demo_four text-white" target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero reservar la modalidad {{$preuniversitario->modalidad.'-Nivel:'.$preuniversitario->nivel}}">Comprar</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -178,16 +192,18 @@
         <thead>
         <tr>
             <th scope="col">Modadidad</th>
-            {{-- <th scope="col">Horas</th> --}}
             <th scope="col">Costo</th>
+            <th scope="col">Opcion</th>
         </tr>
         </thead>
         <tbody>
             @foreach ($preuniversitarios as $preuniversitario)
                 <tr>
                     <td>{{$preuniversitario->modalidad}}</td>
-                    {{-- <td>{{$preuniversitario->cargahoraria}}</td> --}}
                     <td>Bs.{{$preuniversitario->costo}}</td>
+                    <td>
+                        <a class="a_demo_four text-white" target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero reservar la modalidad {{$preuniversitario->modalidad}}">Comprar</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -201,16 +217,18 @@
         <thead>
         <tr>
             <th scope="col">Modadidad</th>
-            {{-- <th scope="col">Horas</th> --}}
             <th scope="col">Costo</th>
+            <th scope="col">Opcion</th>
         </tr>
         </thead>
         <tbody>
             @foreach ($institutos as $instituto)
                 <tr>
                     <td>{{$instituto->modalidad}}</td>
-                    {{-- <td>{{$instituto->cargahoraria}}</td> --}}
                     <td>Bs.{{$instituto->costo}}</td>
+                    <td>
+                        <a class="a_demo_four text-white" target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero reservar la modalidad {{$instituto->modalidad}}">Comprar</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -218,6 +236,30 @@
 
 @stop
 
+@section('universitario')
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Modadidad</th>
+            <th scope="col">Horas</th>
+            <th scope="col">Opcion</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach ($universitarios as $universidad)
+                <tr>
+                    <td>{{$universidad->modalidad}}</td>
+                    <td>Bs.{{$universidad->costo}}</td>
+                    <td>
+                        <a class="a_demo_four text-white" target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero reservar la modalidad {{$universidad->modalidad}}">Comprar</a>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+@stop
 @section('profesional')
 
     <table class="table table-striped table-bordered table-hover">
@@ -225,15 +267,17 @@
         <tr>
             <th scope="col">Modadidad</th>
             <th scope="col">Horas</th>
-            <th scope="col">Costo</th>
+            <th scope="col">Opcion</th>
         </tr>
         </thead>
         <tbody>
             @foreach ($profesionals as $profesional)
                 <tr>
                     <td>{{$profesional->modalidad}}</td>
-                    <td>{{$profesional->cargahoraria}}</td>
                     <td>Bs.{{$profesional->costo}}</td>
+                    <td>
+                        <a class="a_demo_four text-white" target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero reservar la modalidad {{$profesional->modalidad}}">Comprar</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

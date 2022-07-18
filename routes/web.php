@@ -39,6 +39,7 @@ use App\Http\Controllers\AulaController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\NivelController;
 use App\Http\Controllers\DepartamentoController;
+use App\Http\Controllers\AdministrativoController;
 use Illuminate\Support\Facades\Auth;
 //use SweetAlert;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
@@ -53,7 +54,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[MensajeController::class,'dar'])->name('prueba');
+Route::get('prueba',[AdministrativoController::class,'micartera'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -153,6 +154,8 @@ Route::delete('eliminar/docente/{docente}', 'DocenteController@destroy')->name('
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       A D M I N I S T R AT I V O S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('administrativos','AdministrativoController@index')->name('administrativo.index');
+Route::get('micartera/view',[AdministrativoController::class,'vistaCartera'])->name('administrativo.vistaCartera');
+Route::get('micartera',[AdministrativoController::class,'miCartera'])->name('administrativo.micartera');
 Route::get('opciones/administrativos/{persona}',[OpcionController::class,'administrativos'])->name('opcion.administrativos');
 
 
@@ -533,6 +536,8 @@ Route::delete('eliminar/computacion/{computacion}', 'ComputacionController@destr
 Route::delete('eliminar/carrera/{carrera}', 'CarreraController@destroy')->name('eliminar.carrera');
 Route::delete('eliminar/dia/{carrera}', 'DiaController@destroy')->name('eliminar.dia');
 Route::delete('eliminar/feriado/{carrera}', 'FeriadoController@destroy')->name('eliminar.feriado');
+
+
 
 Route::get('tomarfoto', function () {return view('persona.tomarfoto');})->name('tomarfoto');
 Route::get('tomarfoto/{persona}', 'PersonaController@tomarfoto')->name('tomar.foto.persona');
