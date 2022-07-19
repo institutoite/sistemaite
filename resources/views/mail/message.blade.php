@@ -1,2135 +1,583 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="light dark" />
-    <meta name="supported-color-schemes" content="light dark" />
-    <title>Ite - Instituto Tecnico Educabol</title>
-    <style type="text/css">
-      * {
-        margin: 0;
-        padding: 0;
-        font-family: "Roboto", sans-serif, Arial, Helvetica;
-        color: #1a2b5f;
-      }
-      table {
-        border-spacing: 0;
-        border-collapse: collapse;
-      }
-      td {
-        padding: 0;
-        vertical-align: top;
-        border-collapse: collapse;
-      }
-      p {
-        font-size: 16px;
-        margin: 0;
-      }
-      img {
-        border: 0;
-        border-width: 0;
-      }
-      a {
-        color: #1a2b5f;
-        text-decoration: none;
-      }
-      .hero-line {
-        font-size: 126px;
-      }
-      @media screen and (max-width: 599.98px) {
-        .px-680-0 {
-          padding-left: 0 !important;
-          padding-right: 0 !important;
-        }
-        .pt-680-0 {
-          padding-top: 0 !important;
-        }
-        img.third-img-last {
-          width: 200px !important;
-          max-width: 200px !important;
-        }
-        .d-680-none {
-          display: none !important;
-        }
-        .pr-large {
-          padding-right: 140px !important;
-        }
-        .center-text-mobile {
-          text-align: center !important;
-        }
-        .hero-line {
-          font-size: 78px;
-        }
-      }
-      @media screen and (max-width: 549.98px) {
-        .pt-550-0 {
-          padding-top: 0 !important;
-        }
-        .pr-large {
-          padding-right: 100px !important;
-        }
-      }
-      @media screen and (max-width: 499.98px) {
-        .pt-500-0 {
-          padding-top: 0 !important;
-        }
-        .pr-large {
-          padding-right: 60px !important;
-        }
-      }
-      @media screen and (max-width: 399.98px) {
-        .banner {
-          height: auto !important;
-          padding-top: 50px !important;
-          padding-bottom: 30px !important;
-        }
-        .px-sm-0 {
-          padding-left: 0 !important;
-          padding-right: 0 !important;
-        }
-        .pt-400-0 {
-          padding-top: 0 !important;
-        }
-        img.third-img {
-          width: 200px !important;
-          max-width: 200px !important;
-        }
-        .pr-large {
-          padding-right: 25px !important;
-        }
-        .hero-line {
-          font-size: 56px;
-        }
-      }
-    </style>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<!--[if (gte mso 9)|(IE)]>
+  <xml>
+    <o:OfficeDocumentSettings>
+    <o:AllowPNG/>
+    <o:PixelsPerInch>96</o:PixelsPerInch>
+  </o:OfficeDocumentSettings>
+</xml>
+<![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- So that mobile will display zoomed in -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- enable media queries for windows phone 8 -->
+<meta name="format-detection" content="telephone=no"> <!-- disable auto telephone linking in iOS -->
+<meta name="format-detection" content="date=no"> <!-- disable auto date linking in iOS -->
+<meta name="format-detection" content="address=no"> <!-- disable auto address linking in iOS -->
+<meta name="format-detection" content="email=no"> <!-- disable auto email linking in iOS -->
+<meta name="color-scheme" content="only">
+<title></title>
 
-    <!--[if !mso]><!-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700&display=swap"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <!--<![endif]-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
-    <!--[if (gte mso 9)|(IE)]>
-      <style type="text/css">
-        table {
-          border-collapse: collapse !important;
-        }
-      </style>
-    <![endif]-->
-  </head>
-  <body
-    style="
-      margin: 0;
-      padding-top: 0;
-      padding-right: 0;
-      padding-bottom: 0;
-      padding-left: 0;
-      min-width: 100%;
-      background: url(./images/pattern.jpg);
-    "
-  >
-    <!--[if (gte mso 9)|(IE)]>
-      <style type="text/css">
-        body {
-          background-color: #f6f9fc !important;
-        }
-        body,
-        table,
-        td,
-        p,
-        a {
-          font-family: sans-serif, Arial, Helvetica !important;
-        }
-      </style>
-    <![endif]-->
+<style type="text/css">
+/*Basics*/
+body {margin:0px !important; padding:0px !important; display:block !important; min-width:100% !important; width:100% !important; -webkit-text-size-adjust:none;}
+table {border-spacing:0; mso-table-lspace:0pt; mso-table-rspace:0pt;}
+table td {border-collapse: collapse;mso-line-height-rule:exactly;}
+td img {-ms-interpolation-mode:bicubic; width:auto; max-width:auto; height:auto; margin:auto; display:block!important; border:0px;}
+td p {margin:0; padding:0;}
+td div {margin:0; padding:0;}
+td a {text-decoration:none; color: inherit;}
+/*Outlook*/
+.ExternalClass {width: 100%;}
+.ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div {line-height:inherit;}
+.ReadMsgBody {width:100%; background-color: #ffffff;}
+/* iOS black LINKS */
+a[x-apple-data-detectors] {color:inherit !important; text-decoration:none !important; font-size:inherit !important; font-family:inherit !important; font-weight:inherit !important; line-height:inherit !important;} 
+/*Gmail black links*/
+u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:inherit;font-weight:inherit;line-height:inherit;}
+/*Buttons fix*/
+.undoreset a, .undoreset a:hover {text-decoration:none !important;}
+.yshortcuts a {border-bottom:none !important;}
+.ios-footer a {color:#aaaaaa !important;text-decoration:none;}
+/*Responsive-Tablet*/
+@media only screen and (max-width: 799px) and (min-width: 601px) {
+  .outer-table.row {width:640px!important;max-width:640px!important;}
+  .inner-table.row {width:580px!important;max-width:580px!important;}
+}
+/*Responsive-Mobile*/
+@media only screen and (max-width: 600px) and (min-width: 320px) {
+  table.row {width: 100%!important;max-width: 100%!important;}
+  td.row {width: 100%!important;max-width: 100%!important;}
+  .img-responsive img {width:100%!important;max-width: 100%!important;height: auto!important;margin: auto;}
+  .center-float {float: none!important;margin:auto!important;}
+  .center-text{text-align: center!important;}
+  .container-padding {width: 100%!important;padding-left: 15px!important;padding-right: 15px!important;}
+  .container-padding10 {width: 100%!important;padding-left: 10px!important;padding-right: 10px!important;}
+  .hide-mobile {display: none!important;}
+  .menu-container {text-align: center !important;}
+  .autoheight {height: auto!important;}
+  .m-padding-10 {margin: 10px 0!important;}
+  .m-padding-15 {margin: 15px 0!important;}
+  .m-padding-20 {margin: 20px 0!important;}
+  .m-padding-30 {margin: 30px 0!important;}
+  .m-padding-40 {margin: 40px 0!important;}
+  .m-padding-50 {margin: 50px 0!important;}
+  .m-padding-60 {margin: 60px 0!important;}
+  .m-padding-top10 {margin: 30px 0 0 0!important;}
+  .m-padding-top15 {margin: 15px 0 0 0!important;}
+  .m-padding-top20 {margin: 20px 0 0 0!important;}
+  .m-padding-top30 {margin: 30px 0 0 0!important;}
+  .m-padding-top40 {margin: 40px 0 0 0!important;}
+  .m-padding-top50 {margin: 50px 0 0 0!important;}
+  .m-padding-top60 {margin: 60px 0 0 0!important;}
+  .m-height10 {font-size:10px!important;line-height:10px!important;height:10px!important;}
+  .m-height15 {font-size:15px!important;line-height:15px!important;height:15px!important;}
+  .m-height20 {font-size:20px!important;line-height:20px!important;height:20px!important;}
+  .m-height25 {font-size:25px!important;line-height:25px!important;height:25px!important;}
+  .m-height30 {font-size:30px!important;line-height:30px!important;height:30px!important;}
+  .radius6 {border-radius: 6px!important;}
+  .fade-white {background-color: rgba(255, 255, 255, 0.8)!important;}
+  .rwd-on-mobile {display: inline-block!important;padding: 5px!important;}
+  .center-on-mobile {text-align: center!important;}
+  .rwd-col {width:100%!important;max-width:100%!important;display:inline-block!important;}
+  .type48 {font-size:48px!important;line-height:58px!important;}
+}
+</style>
+<style type="text/css" class="export-delete"> 
+  .composer--mobile table.row {width: 100%!important;max-width: 100%!important;}
+  .composer--mobile td.row {width: 100%!important;max-width: 100%!important;}
+  .composer--mobile .img-responsive img {width:100%!important;max-width: 100%!important;height: auto!important;margin: auto;}
+  .composer--mobile .center-float {float: none!important;margin:auto!important;}
+  .composer--mobile .center-text{text-align: center!important;}
+  .composer--mobile .container-padding {width: 100%!important;padding-left: 15px!important;padding-right: 15px!important;}
+  .composer--mobile .container-padding10 {width: 100%!important;padding-left: 10px!important;padding-right: 10px!important;}
+  .composer--mobile .hide-mobile {display: none!important;}
+  .composer--mobile .menu-container {text-align: center !important;}
+  .composer--mobile .autoheight {height: auto!important;}
+  .composer--mobile .m-padding-10 {margin: 10px 0!important;}
+  .composer--mobile .m-padding-15 {margin: 15px 0!important;}
+  .composer--mobile .m-padding-20 {margin: 20px 0!important;}
+  .composer--mobile .m-padding-30 {margin: 30px 0!important;}
+  .composer--mobile .m-padding-40 {margin: 40px 0!important;}
+  .composer--mobile .m-padding-50 {margin: 50px 0!important;}
+  .composer--mobile .m-padding-60 {margin: 60px 0!important;}
+  .composer--mobile .m-padding-top10 {margin: 30px 0 0 0!important;}
+  .composer--mobile .m-padding-top15 {margin: 15px 0 0 0!important;}
+  .composer--mobile .m-padding-top20 {margin: 20px 0 0 0!important;}
+  .composer--mobile .m-padding-top30 {margin: 30px 0 0 0!important;}
+  .composer--mobile .m-padding-top40 {margin: 40px 0 0 0!important;}
+  .composer--mobile .m-padding-top50 {margin: 50px 0 0 0!important;}
+  .composer--mobile .m-padding-top60 {margin: 60px 0 0 0!important;}
+  .composer--mobile .m-height10 {font-size:10px!important;line-height:10px!important;height:10px!important;}
+  .composer--mobile .m-height15 {font-size:15px!important;line-height:15px!important;height:15px!important;}
+  .composer--mobile .m-height20 {font-srobotoize:20px!important;line-height:20px!important;height:20px!important;}
+  .composer--mobile .m-height25 {font-size:25px!important;line-height:25px!important;height:25px!important;}
+  .composer--mobile .m-height30 {font-size:30px!important;line-height:30px!important;height:30px!important;}
+  .composer--mobile .radius6 {border-radius: 6px!important;}
+  .composer--mobile .fade-white {background-color: rgba(255, 255, 255, 0.8)!important;}
+  .composer--mobile .rwd-on-mobile {display: inline-block!important;padding: 5px!important;}
+  .composer--mobile .center-on-mobile {text-align: center!important;}
+  .composer--mobile .rwd-col {width:100%!important;max-width:100%!important;display:inline-block!important;}
+  .composer--mobile .type48 {font-size:48px!important;line-height:58px!important;}
+</style>
+</head>
 
-    <center style="width: 100%; table-layout: fixed; padding-bottom: 40px">
-      <div style="max-width: 680px">
-        <!-- Preheader (remove comment) -->
-        <div
-          style="
-            font-size: 0px;
-            color: #fafdfe;
-            line-height: 1px;
-            mso-line-height-rule: exactly;
-            display: none;
-            max-width: 0px;
-            max-height: 0px;
-            opacity: 0;
-            overflow: hidden;
-            mso-hide: all;
-          "
-        >
-          <!-- Add Preheader Text Here (85-100 characters in length) -->
-        </div>
-        <!-- End Preheader (remove comment) -->
+<body data-bgcolor="Body" style="margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;" bgcolor="#000000">
 
-        <!--[if (gte mso 9)|(IE)]>
-				<table width="680" align="center" style="border-spacing:0;color:#3d3d3d;" role="presentation">
-				<tr>
-				<td style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0;">
-			<![endif]-->
+<span class="preheader-text" data-preheader-text style="color: transparent; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; visibility: hidden; width: 0; display: none; mso-hide: all;"></span>
 
-        <table
-          cellpadding="0"
-          cellspacing="0"
-          role="presentation"
-          align="center"
-          style="
-            border-spacing: 0;
-            color: #3d3d3d;
-            font-family: 'Roboto', sans-serif, Arial, Helvetica;
-            background-color: #ffffff;
-            margin: 0;
-            padding-top: 0;
-            padding-right: 0;
-            padding-bottom: 0;
-            padding-left: 0;
-            width: 100%;
-            max-width: 680px;
-          "
-          background="#ffffff"
-          role="presentation"
-        >
-          <tbody>
-            <tr>
-              <td
-                style="
-                  padding-top: 0;
-                  padding-right: 0;
-                  padding-bottom: 0;
-                  padding-left: 0;
-                "
-              >
-                <table
-                  style="
-                    font-family: 'Roboto', sans-serif;
-                    background: url(./images/hero.png);
-                    background-repeat: no-repeat;
-                    background-color: #fff;
-                  "
-                  role="presentation"
-                  cellpadding="0"
-                  cellspacing="0"
-                  width="100%"
-                  border="0"
-                >
-                  <tbody>
-                    <tr>
-                      <td
-                        style="
-                          background-repeat: no-repeat;
-                          overflow-wrap: break-word;
-                          word-break: break-word;
-                          padding: 29px 15px 39px;
-                          font-family: 'Roboto', sans-serif;
-                        "
-                        align="left"
-                      >
-                        <center>
-                          <img src="{{asset('assets/images/mail/header-logo.png')}}" alt="Ite">
-                        </center>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-          </tbody>
+<!-- Preheader white space hack -->
+<div style="display: none; max-height: 0px; overflow: hidden;">
+&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+</div>
+
+<div data-primary-font="Roboto Slab" data-secondary-font="Roboto" style="display:none; font-size:0px; line-height:0px; max-height:0px; max-width:0px; opacity:0; overflow:hidden; visibility:hidden; mso-hide:all;"></div>
+
+<table border="0" align="center" cellpadding="0" cellspacing="0" width="100%" style="width:100%;max-width:100%;">
+  <tr><!-- Outer Table -->
+    <td align="center" data-bgcolor="Body" bgcolor="#100f1f" class="container-padding" data-composer>
+
+<table data-outer-table border="0" align="center" cellpadding="0" cellspacing="0" class="outer-table row" role="presentation" width="580" style="width:580px;max-width:580px;" data-module="black-logo">
+  <!-- black-logo -->
+  <tr>
+    <td height="60" style="font-size:60px;line-height:60px;" data-height="Spacing top">&nbsp;</td>
+  </tr>
+  <tr data-element="black-logo" data-label="Logo">
+    <td align="center">
+      <img style="width:189px;border:0px;display: inline!important;" src="{{asset('images/logo.png')}}" width="189" border="0" editable="true" data-icon data-image-edit data-url data-label="Logo" data-image-width alt="logo">
+    </td>
+  </tr>
+  <tr>
+    <td height="30" style="font-size:30px;line-height:30px;" data-height="Spacing bottom">&nbsp;</td>
+  </tr>
+  <!-- black-logo -->
+</table>
+
+<table data-outer-table border="0" align="center" cellpadding="0" cellspacing="0" class="outer-table row" role="presentation" width="580" style="width:580px;max-width:580px;" data-module="black-intro-1">
+  <!-- black-intro-1 -->
+  <tr>
+    <td height="30" style="font-size:30px;line-height:30px;" data-height="Spacing top">&nbsp;</td>
+  </tr>
+  <tr data-element="black-intro-1-headline" data-label="Intro Headline">
+    <td class="type48" data-text-style="Intro Headline" align="center" style="font-family:'Roboto Slab',Arial,Helvetica,sans-serif;font-size:64px;line-height:84px;font-weight:700;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;">
+        <singleline>
+          <div mc:edit data-text-edit>
+            {{$mensaje->subject}}
+          </div>
+        </singleline>
+    </td>
+  </tr>
+  <tr data-element="black-intro-1-headline" data-label="Intro Headline"> 
+    <td height="20" style="font-size:20px;line-height:20px;" data-height="Spacing under headline">&nbsp;</td>
+  </tr>
+  <tr data-element="black-intro-1-paragraph" data-label="Intro Paragraph">
+    <td data-text-style="Intro Paragraph" align="center" style="font-family:'Roboto',Arial,Helvetica,sans-serif;font-size:18px;line-height:32px;font-weight:400;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;">
+        <singleline>
+          <div mc:edit data-text-edit>
+            {{$mensaje->body}} 
+          </div>
+        </singleline>
+    </td>
+  </tr>
+  <tr data-element="black-intro-1-paragraph" data-label="Intro Paragraph">
+    <td height="40" style="font-size:40px;line-height:40px;" data-height="Spacing under paragraph">&nbsp;</td>
+  </tr>
+  <tr data-element="black-intro-1-button" data-label="Intro Button">
+    <td align="center">
+      <!-- Button -->
+      <table border="0" cellspacing="0" cellpadding="0" role="presentation" align="center">
+        <tr>
+          <td align="center" data-border-radius-default="0,6,36" data-border-radius-custom="Intro Button" data-bgcolor="Intro Button" bgcolor="#26BAA5" style="border-radius: 6px;">
+      <!--[if (gte mso 9)|(IE)]>
+        <table border="0" cellpadding="0" cellspacing="0" align="center">
+          <tr>
+            <td align="center" width="38"></td>
+            <td align="center" height="60" style="height:60px;">
+            <![endif]-->
+              <singleline>
+                <a href="https://www.ite.com.bo/" mc:edit data-button data-text-style="Intro Button" style="font-family:'Roboto Slab',Arial,Helvetica,sans-serif;font-size:18px;line-height:28px;font-weight:700;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;padding: 16px 38px 16px 38px;display: inline-block;"><span>Visitanos</span></a>
+              </singleline>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            <td align="center" width="38"></td>
+          </tr>
         </table>
+      <![endif]-->
+          </td>
+        </tr>
+      </table>
+      <!-- Buttons -->
+    </td>
+  </tr>
+  <tr>
+    <td height="30" style="font-size:30px;line-height:30px;" data-height="Spacing bottom">&nbsp;</td>
+  </tr>
+  <!-- black-intro-1 -->
+</table>
 
-        
+<table data-outer-table border="0" align="center" cellpadding="0" cellspacing="0" class="outer-table row" role="presentation" width="580" style="width:580px;max-width:580px;" data-module="black-fwd-image-1">
+  <!-- black-fwd-image-1 -->
+  <tr>
+    <td height="30" style="font-size:30px;line-height:30px;" data-height="Spacing top">&nbsp;</td>
+  </tr>
+  <tr data-element="black-intro-1-image" data-label="Image">
+    <td align="center" class="img-responsive">
+      <img class="auto-width" style="display:block;width:100%;max-width:100%;border:0px;" data-image-edit data-url data-label="Image" width="580" src="{{asset('images/fwd-image-1.jpg')}}" border="0" editable="true" alt="picture">
+    </td>
+  </tr>
+  <tr>
+    <td height="30" style="font-size:30px;line-height:30px;" data-height="Spacing bottom">&nbsp;</td>
+  </tr>
+  <!-- black-fwd-image-1 -->
+</table>
 
-        {{-- <table
-          cellpadding="0"
-          cellspacing="0"
-          role="presentation"
-          align="center"
-          style="
-            border-spacing: 0;
-            color: #3d3d3d;
-            font-family: 'Roboto', sans-serif, Arial, Helvetica;
-            background-color: #ffffff;
-            margin: 0;
-            padding-top: 0;
-            padding-right: 0;
-            padding-bottom: 0;
-            padding-left: 0;
-            width: 100%;
-            max-width: 680px;
-          "
-          background="#ffffff"
-          role="presentation"
-        >
-          <tbody>
-            <tr>
-              <td style="text-align: center; padding: 116px 20px 17px">
-                <p style="font-size: 18px">Why It is Important</p>
-                <h3 style="padding-top: 7px; font-size: 40px">
-                  Ite Online Education <br />
-                  Program
-                </h3>
-              </td>
-            </tr>
-            <tr>
-              <td style="padding: 0 28px">
-                <table cellpadding="0" cellspacing="0" role="presentation">
-                  <tbody>
-                    <tr style="border-bottom: 1px solid #e4e4e4">
-                      <td style="padding-top: 20px; text-align: center">
-                        <center>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              width: 49%;
-                              min-width: 245px;
-                              vertical-align: top;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td
-                                  style="
-                                    padding-bottom: 32px;
-                                    padding-top: 20px;
-                                  "
-                                >
-                                  <img
-                                    src="{{asset('assets/images/mail/section-1-image-1.png')}}"
-                                    alt=""
-                                  />
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              width: 50%;
-                              min-width: 249px;
-                              vertical-align: top;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td
-                                  style="
-                                    width: 50%;
-                                    padding-left: 10px;
-                                    padding-top: 20px;
-                                    padding-bottom: 20px;
-                                  "
-                                >
-                                  <h4
-                                    style="
-                                      font-family: 'Gloria Hallelujah', cursive;
-                                      font-weight: normal;
-                                      font-size: 30px;
-                                      margin: 25px 0 0;
-                                      line-height: 1.1;
-                                      color: #1a2b5f;
-                                    "
-                                  >
-                                    Flexible &amp; Convenience Schedule
-                                  </h4>
-                                  <p
-                                    style="
-                                      font-size: 14px;
-                                      margin-top: 10px;
-                                      line-height: 1.4;
-                                      padding-right: 15px;
-                                      padding-bottom: 29px;
-                                    "
-                                  >
-                                    Sed egestas libero tincidunt tempor
-                                    imperdiet. Quisque sit amet metus porttitor,
-                                    euismod enim at, malesuada justo. Integer
-                                    placerat varius mi.
-                                  </p>
-                                  <a
-                                    style="
-                                      color: #1a2b5f;
-                                      background-color: #ffda16;
-                                      border: none;
-                                      padding: 1px 23px 2px;
-                                      font-family: 'Gloria Hallelujah', cursive;
-                                      font-size: 18px;
-                                      text-decoration: none;
-                                      border-radius: 13px;
-                                      display: inline-block;
-                                    "
-                                    target="_blank"
-                                    href="#"
-                                  >
-                                    Enroll Now
-                                  </a>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </center>
-                      </td>
-                    </tr>
+<table data-outer-table border="0" align="center" cellpadding="0" cellspacing="0" class="outer-table row" role="presentation" width="580" style="width:580px;max-width:580px;" data-module="black-step-1">
+  <!-- black-step-1 -->
+  <tr>
+    <td height="70" style="font-size:70px;line-height:70px;" data-height="Spacing top">&nbsp;</td>
+  </tr>
+  <tr data-element="black-step-1-title" data-label="Titles">
+    <td align="center">
+      <!-- rwd-col -->
+      <table border="0" cellpadding="0" cellspacing="0" align="center" role="presentation" class="row">
+        <tr>
+          <td class="rwd-col" align="center">
 
-                    <tr style="border-bottom: 1px solid #e4e4e4">
-                      <td style="padding: 35px 0 34px">
-                        <center>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              min-width: 250px;
-                              vertical-align: top;
-                              width: 49%;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td
-                                  style="
-                                    width: 50%;
-                                    padding-left: 10px;
-                                    padding-top: 14px;
-                                  "
-                                >
-                                  <h4
-                                    style="
-                                      font-family: 'Gloria Hallelujah', cursive;
-                                      font-weight: normal;
-                                      font-size: 30px;
-                                      padding: 25px 0 0;
-                                      line-height: 1.1;
-                                      color: #1a2b5f;
-                                    "
-                                  >
-                                    Prepare kids for Digital Life
-                                  </h4>
-                                  <p
-                                    style="
-                                      font-size: 14px;
-                                      margin-top: 20px;
-                                      line-height: 1.4;
-                                      padding-right: 15px;
-                                      padding-left: 1px;
-                                      padding-bottom: 30px;
-                                    "
-                                  >
-                                    Sed egestas libero tincidunt tempor
-                                    imperdiet. Quisque sit amet metus porttitor,
-                                    euismod enim at, malesuada justo. Integer
-                                    placerat varius mi.
-                                  </p>
-                                  <a
-                                    style="
-                                      color: #1a2b5f;
-                                      background-color: #ffda16;
-                                      border: none;
-                                      padding: 1px 23px 2px;
-                                      font-family: 'Gloria Hallelujah', cursive;
-                                      font-size: 18px;
-                                      border-radius: 13px;
-                                      text-decoration: none;
-                                      display: inline-block;
-                                    "
-                                    target="_blank"
-                                    href="#"
-                                  >
-                                    Enroll Now
-                                  </a>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              min-width: 254px;
-                              vertical-align: top;
-                              width: 50%;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td
-                                  style="
-                                    width: 50%;
-                                    padding-top: 24px;
-                                    padding-left: 38px;
-                                  "
-                                >
-                                  <img
-                                    src="./images/section-1-image-2.png"
-                                    alt=""
-                                  />
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </center>
-                      </td>
-                    </tr>
+            <table border="0" align="right" cellpadding="0" cellspacing="0" role="presentation" class="center-float"> 
+              <tr>
+                <td align="center">
+                  <img style="width:52px;border:0px;display: inline!important;" src="{{asset('images/post-icon.png')}}" width="52" border="0" editable="true" data-icon data-image-edit data-url data-label="Icon" alt="icon">
+                </td>
+              </tr>
+            </table>
 
+          </td>
+          <td class="rwd-col" align="center" width="6" height="10" style="width:10px;max-width:10px;height:10px;">&nbsp;</td>
+          <td class="rwd-col" align="center">
+
+            <table border="0" align="left" cellpadding="0" cellspacing="0" role="presentation" class="center-float"> 
+              <tr>
+                <td data-text-style="Titles" align="center" style="font-family:'Roboto Slab',Arial,Helvetica,sans-serif;font-size:24px;line-height:32px;font-weight:700;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;">
+                    <singleline>
+                      <div mc:edit data-text-edit>
+                       ¿En que materia deseas optimizarte?
+                      </div>
+                    </singleline>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+        <tr>
+          <td height="5" style="font-size:5px;line-height:5px;">&nbsp;</td>
+        </tr>
+      </table>
+      <!-- rwd-col -->
+    </td>
+  </tr>
+  <tr data-element="black-step-1-title" data-label="Titles">
+    <td height="20" style="font-size:20px;line-height:20px;" data-height="Spacing under titles">&nbsp;</td>
+  </tr>
+  <tr data-element="black-step-1-paragraph" data-label="Paragraphs">
+    <td data-text-style="Paragraphs" align="center" style="font-family:'Roboto',Arial,Helvetica,sans-serif;font-size:18px;line-height:32px;font-weight:400;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;">
+        <singleline>
+          <div mc:edit data-text-edit>
+            Aprende lo que realmente, necesitas, avanza a tu ritmo de comprensión.
+          </div>
+        </singleline>
+    </td>
+  </tr>
+  <tr>
+    <td height="30" style="font-size:30px;line-height:30px;" data-height="Spacing bottom">&nbsp;</td>
+  </tr>
+  <!-- black-step-1 -->
+</table>
+
+<table data-outer-table border="0" align="center" cellpadding="0" cellspacing="0" class="outer-table row" role="presentation" width="580" style="width:580px;max-width:580px;" data-module="black-splitter">
+  <!-- black-splitter -->
+  <tr>
+    <td height="30" style="font-size:30px;line-height:30px;" data-height="Spacing top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center" height="8" data-border-color="dotted-dividers" style="font-size:8px;line-height:8px;border-top: 8px dotted #333333;">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30" style="font-size:30px;line-height:30px;" data-height="Spacing bottom">&nbsp;</td>
+  </tr>
+  <!-- black-splitter -->
+</table>
+
+<table data-outer-table border="0" align="center" cellpadding="0" cellspacing="0" class="outer-table row" role="presentation" width="580" style="width:580px;max-width:580px;" data-module="black-step-2">
+  <!-- black-step-2 -->
+  <tr>
+    <td height="20" style="font-size:20px;line-height:20px;" data-height="Spacing top">&nbsp;</td>
+  </tr>
+  <tr data-element="black-step-2-title" data-label="Titles">
+    <td align="center">
+      <!-- rwd-col -->
+      <table border="0" cellpadding="0" cellspacing="0" align="center" role="presentation" class="row">
+        <tr>
+          <td class="rwd-col" align="center">
+
+            <table border="0" align="right" cellpadding="0" cellspacing="0" role="presentation" class="center-float"> 
+              <tr>
+                <td align="center">
+                  <img style="width:52px;border:0px;display: inline!important;" src="{{asset('images/skills-icon.png')}}" width="52" border="0" editable="true" data-icon data-image-edit data-url data-label="Icon" alt="icon">
+                </td>
+              </tr>
+            </table>
+
+          </td>
+          <td class="rwd-col" align="center" width="6" height="10" style="width:10px;max-width:10px;height:10px;">&nbsp;</td>
+          <td class="rwd-col" align="center">
+
+            <table border="0" align="left" cellpadding="0" cellspacing="0" role="presentation" class="center-float"> 
+              <tr>
+                <td data-text-style="Titles" align="center" style="font-family:'Roboto Slab',Arial,Helvetica,sans-serif;font-size:24px;line-height:32px;font-weight:700;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;">
+                    <singleline>
+                      <div mc:edit data-text-edit>
+                       Logra tus objetivos
+                      </div>
+                    </singleline>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+        <tr>
+          <td height="5" style="font-size:5px;line-height:5px;">&nbsp;</td>
+        </tr>
+      </table>
+      <!-- rwd-col -->
+    </td>
+  </tr>
+  <tr data-element="black-step-2-title" data-label="Titles">
+    <td height="20" style="font-size:20px;line-height:20px;" data-height="Spacing under titles">&nbsp;</td>
+  </tr>
+  <tr data-element="black-step-2-paragraph" data-label="Paragraphs">
+    <td data-text-style="Paragraphs" align="center" style="font-family:'Roboto',Arial,Helvetica,sans-serif;font-size:18px;line-height:32px;font-weight:400;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;">
+        <singleline>
+          <div mc:edit data-text-edit>
+            No sólo clases: Apoyo académico, motivaciones, orientaciones, sobre todo mucha práctica.
+          </div>
+        </singleline>
+    </td>
+  </tr>
+  <tr>
+    <td height="30" style="font-size:30px;line-height:30px;" data-height="Spacing bottom">&nbsp;</td>
+  </tr>
+  <!-- black-step-2 -->
+</table>
+
+<table data-outer-table border="0" align="center" cellpadding="0" cellspacing="0" class="outer-table row" role="presentation" width="580" style="width:580px;max-width:580px;" data-module="black-splitter">
+  <!-- black-splitter -->
+  <tr>
+    <td height="30" style="font-size:30px;line-height:30px;" data-height="Spacing top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center" height="8" data-border-color="dotted-dividers" style="font-size:8px;line-height:8px;border-top: 8px dotted #333333;">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="30" style="font-size:30px;line-height:30px;" data-height="Spacing bottom">&nbsp;</td>
+  </tr>
+  <!-- black-splitter -->
+</table>
+
+<table data-outer-table border="0" align="center" cellpadding="0" cellspacing="0" class="outer-table row" role="presentation" width="580" style="width:580px;max-width:580px;" data-module="black-step-3">
+  <!-- black-step-3 -->
+  <tr>
+    <td height="20" style="font-size:20px;line-height:20px;" data-height="Spacing top">&nbsp;</td>
+  </tr>
+  <tr data-element="black-step-3-title" data-label="Titles">
+    <td align="center">
+      <!-- rwd-col -->
+      <table border="0" cellpadding="0" cellspacing="0" align="center" role="presentation" class="row">
+        <tr>
+          <td class="rwd-col" align="center">
+
+            <table border="0" align="right" cellpadding="0" cellspacing="0" role="presentation" class="center-float"> 
+              <tr>
+                <td align="center">
+                  <img style="width:52px;border:0px;display: inline!important;" src="{{asset('images/account-icon.png')}}" width="52" border="0" editable="true" data-icon data-image-edit data-url data-label="Icon" alt="icon">
+                </td>
+              </tr>
+            </table>
+
+          </td>
+          <td class="rwd-col" align="center" width="6" height="10" style="width:10px;max-width:10px;height:10px;">&nbsp;</td>
+          <td class="rwd-col" align="center">
+
+            <table border="0" align="left" cellpadding="0" cellspacing="0" role="presentation" class="center-float"> 
+              <tr>
+                <td data-text-style="Titles" align="center" style="font-family:'Roboto Slab',Arial,Helvetica,sans-serif;font-size:24px;line-height:32px;font-weight:700;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;">
+                    <singleline>
+                      <div mc:edit data-text-edit>
+                       Descubre tu potencialidad real
+                      </div>
+                    </singleline>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+        <tr>
+          <td height="5" style="font-size:5px;line-height:5px;">&nbsp;</td>
+        </tr>
+      </table>
+      <!-- rwd-col -->
+    </td>
+  </tr>
+  <tr data-element="black-step-3-title" data-label="Titles">
+    <td height="20" style="font-size:20px;line-height:20px;" data-height="Spacing under titles">&nbsp;</td>
+  </tr>
+  <tr data-element="black-step-3-paragraph" data-label="Paragraphs">
+    <td data-text-style="Paragraphs" align="center" style="font-family:'Roboto',Arial,Helvetica,sans-serif;font-size:18px;line-height:32px;font-weight:400;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;">
+        <singleline>
+          <div mc:edit data-text-edit>
+            Te transformamos a una versión mejorada de ti mismo, para que seas mas productivo.
+          </div>
+        </singleline>
+    </td>
+  </tr>
+  <tr>
+    <td height="30" style="font-size:30px;line-height:30px;" data-height="Spacing bottom">&nbsp;</td>
+  </tr>
+  <!-- black-step-3 -->
+</table>
+
+<table data-outer-table border="0" align="center" cellpadding="0" cellspacing="0" class="outer-table row" role="presentation" width="580" style="width:580px;max-width:580px;" data-module="black-gap">
+  <!-- black-gap -->
+  <tr>
+    <td height="30" style="font-size:30px;line-height:30px;" data-height="Spacing">&nbsp;</td>
+  </tr>
+  <!-- black-gap -->
+</table>
+
+<table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" class="row" width="580" style="width:580px;max-width:580px;" data-module="black-footer">
+  <!-- black-footer -->
+  <tr>
+    <td height="100" style="font-size:100px;line-height:100px;" data-height="Footer spacing top">&nbsp;</td>
+  </tr>
+  <tr data-element="black-footer-links" data-label="Footer Links">
+    <td align="center">
+      <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
+        <tr class="center-on-mobile">
+          <td data-element="black-footer-1st-link" data-label="1st Link" data-text-style="Footer Links" class="rwd-on-mobile center-text" align="center" style="font-family:'Roboto',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:400;font-style:normal;color:#999999;text-decoration:none;letter-spacing:0px;">
+            <!-- Links -->
+              <singleline>
+                <a href="https://www.ite.com.bo/about" mc:edit data-button data-text-style="Footer Links" style="font-family:'Roboto',Arial,Helvetica,sans-serif;font-size:14px;line-height:28px;font-weight:400;font-style:normal;color:#999999;text-decoration:none;letter-spacing:0px;display:inline-block;vertical-align:middle;"><span>Acerca de nosotros</span></a> 
+              </singleline>
+            <!-- Links -->
+          </td>
+          
+          
+          <td data-element="black-footer-gap-3" data-label="3rd Gap" class="hide-mobile" align="center" valign="middle">
+            <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
+              <tr>
+                <td width="10"></td>
+                <td class="center-text" data-text-style="Paragraphs" align="center" style="font-family:'Roboto',Arial,Helvetica,sans-serif;font-size:28px;line-height:28px;font-weight:100;font-style:normal;color:#444444;text-decoration:none;letter-spacing:0px;">|</td>
+                <td width="10"></td>
+              </tr>
+            </table>
+          </td>
+          <td data-element="black-footer-4th-link" data-label="4th Link" data-text-style="Footer Links" class="rwd-on-mobile center-text" align="center" style="font-family:'Roboto',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:400;font-style:normal;color:#999999;text-decoration:none;letter-spacing:0px;">
+            <!-- Links -->
+              <singleline>
+                <a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Tengo una pregunta" mc:edit data-button data-text-style="Footer Links" style="font-family:'Roboto',Arial,Helvetica,sans-serif;font-size:14px;line-height:28px;font-weight:400;font-style:normal;color:#999999;text-decoration:none;letter-spacing:0px;display:inline-block;vertical-align:middle;"><span>Contactanos</span></a> 
+              </singleline>
+            <!-- Links -->
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr data-element="black-footer-links" data-label="Footer Links">
+    <td height="40" style="font-size:40px;line-height:40px;" data-height="Spacing under footer links">&nbsp;</td>
+  </tr>
+  
+  <tr data-element="black-footer-social-icons" data-label="Social Icons">
+    <td align="center">
+      <!-- Social Icons -->
+      <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
+        <tr>
+          <td align="center">
+            <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
+              <tr class="center-on-mobile">
+
+                <td data-element="black-footer-facebook" data-label="Facebook" class="rwd-on-mobile" align="center" valign="middle" height="28" style="height: 28px;">
+                  <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
                     <tr>
-                      <td style="padding: 35px 0 116px">
-                        <center>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              width: 49%;
-                              min-width: 250px;
-                              vertical-align: top;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td style="padding-top: 24px">
-                                  <img
-                                    src="./images/section-1-image-3.png"
-                                    alt=""
-                                    style="margin-left: -4px"
-                                  />
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              width: 50%;
-                              min-width: 250px;
-                              vertical-align: top;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td
-                                  style="padding-top: 33px; padding-left: 10px"
-                                >
-                                  <h4
-                                    style="
-                                      font-family: 'Gloria Hallelujah', cursive;
-                                      font-weight: normal;
-                                      font-size: 30px;
-                                      line-height: 1.1;
-                                      color: #1a2b5f;
-                                    "
-                                  >
-                                    Lower cost &amp; Exploration
-                                  </h4>
-                                  <p
-                                    style="
-                                      font-size: 14px;
-                                      margin-top: 13px;
-                                      line-height: 1.4;
-                                      padding-right: 15px;
-                                      padding-bottom: 30px;
-                                    "
-                                  >
-                                    Sed egestas libero tincidunt tempor
-                                    imperdiet. Quisque sit amet metus porttitor,
-                                    euismod enim at, malesuada justo. Integer
-                                    placerat varius mi.
-                                  </p>
-                                  <a
-                                    style="
-                                      color: #1a2b5f;
-                                      background-color: #ffda16;
-                                      border: none;
-                                      padding: 1px 23px 2px;
-                                      font-family: 'Gloria Hallelujah', cursive;
-                                      font-size: 18px;
-                                      border-radius: 13px;
-                                      text-decoration: none;
-                                      display: inline-block;
-                                    "
-                                    target="_blank"
-                                    href="#"
-                                  >
-                                    Enroll Now
-                                  </a>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </center>
+                      <td align="center">
+                        <a href="https://www.facebook.com/institutoeducabol">
+                        <img style="width:28px;border:0px;display: inline!important;" src="{{asset('images/facebook.png')}}" width="28" border="0" editable="true" data-icon data-image-edit data-url data-label="Facebook" data-image-width alt="icon">
+                        </a>
                       </td>
+                      <td width="7"></td>
                     </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-          </tbody>
-        </table> --}}
+                  </table>
+                </td>
 
-        {{-- <table
-          cellpadding="0"
-          cellspacing="0"
-          role="presentation"
-          align="center"
-          style="
-            border-spacing: 0;
-            color: #3d3d3d;
-            font-family: 'Roboto', sans-serif, Arial, Helvetica;
-            background-color: #ffffff;
-            margin: 0;
-            padding-top: 0;
-            padding-right: 0;
-            padding-bottom: 0;
-            padding-left: 0;
-            width: 100%;
-            max-width: 680px;
-          "
-          background="#ffffff"
-        >
-          <tbody>
-            <tr>
-              <td style="text-align: center; background-color: #fdeed7">
-                <table
-                  cellpadding="0"
-                  cellspacing="0"
-                  role="presentation"
-                  style="
-                    margin-top: -21px;
-                    width: 100%;
-                    background: url(./images/section-2-bg.png);
-                    background-repeat: no-repeat;
-                    margin-bottom: 10px;
-                  "
-                >
-                  <tbody>
+
+                <td data-element="black-footer-youtube" data-label="YouTube" class="rwd-on-mobile" align="center" valign="middle" height="28" style="height: 28px;">
+                  <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
                     <tr>
-                      <td style="padding-top: 140px">
-                        <p style="font-size: 18px">
-                          Cras posuere mauris ficitur.
-                        </p>
-                        <h3
-                          style="
-                            padding-top: 7px;
-                            padding-bottom: 17px;
-                            font-size: 40px;
-                          "
-                        >
-                          Browse by Subject
-                        </h3>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="padding: 20px; text-align: center">
-                        <center>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              vertical-align: top;
-                              min-width: 200px;
-                              text-align: center;
-                              height: 168px;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td style="padding: 9px">
-                                  <div
-                                    style="
-                                      background: #fff;
-                                      border-radius: 30px;
-                                      width: 110px;
-                                      padding: 40px;
-                                    "
-                                  >
-                                    <img src="./images/tiles-icon.png" alt="" />
-                                    <p
-                                      style="
-                                        font-size: 18px;
-                                        font-weight: 600;
-                                        margin-top: 15px;
-                                      "
-                                    >
-                                      <a
-                                        href="#"
-                                        style="
-                                          color: #1a2b5f;
-                                          text-decoration: none;
-                                        "
-                                        target="_blank"
-                                        >History
-                                      </a>
-                                    </p>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              vertical-align: top;
-                              min-width: 200px;
-                              text-align: center;
-                              height: 168px;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td style="padding: 9px">
-                                  <div
-                                    style="
-                                      background: #fff;
-                                      border-radius: 30px;
-                                      width: 110px;
-                                      padding: 40px;
-                                    "
-                                  >
-                                    <img src="./images/tiles-icon.png" alt="" />
-                                    <p
-                                      style="
-                                        font-size: 18px;
-                                        font-weight: 600;
-                                        margin-top: 15px;
-                                      "
-                                    >
-                                      <a
-                                        href="#"
-                                        style="
-                                          color: #1a2b5f;
-                                          text-decoration: none;
-                                        "
-                                        target="_blank"
-                                        >Biology
-                                      </a>
-                                    </p>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              vertical-align: top;
-                              min-width: 200px;
-                              text-align: center;
-                              height: 168px;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td style="padding: 9px">
-                                  <div
-                                    style="
-                                      background: #fff;
-                                      width: 110px;
-                                      border-radius: 30px;
-                                      padding: 40px;
-                                    "
-                                  >
-                                    <img src="./images/tiles-icon.png" alt="" />
-                                    <p
-                                      style="
-                                        font-size: 18px;
-                                        font-weight: 600;
-                                        margin-top: 15px;
-                                      "
-                                    >
-                                      <a
-                                        href="#"
-                                        style="
-                                          color: #1a2b5f;
-                                          text-decoration: none;
-                                        "
-                                        target="_blank"
-                                        >Chemistry
-                                      </a>
-                                    </p>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              vertical-align: top;
-                              min-width: 200px;
-                              text-align: center;
-                              height: 168px;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td style="padding: 9px">
-                                  <div
-                                    style="
-                                      background: #fff;
-                                      border-radius: 30px;
-                                      width: 110px;
-                                      padding: 40px;
-                                    "
-                                  >
-                                    <img src="./images/tiles-icon.png" alt="" />
-                                    <p
-                                      style="
-                                        font-size: 18px;
-                                        font-weight: 600;
-                                        margin-top: 15px;
-                                      "
-                                    >
-                                      <a
-                                        href="#"
-                                        style="
-                                          color: #1a2b5f;
-                                          text-decoration: none;
-                                        "
-                                        target="_blank"
-                                        >Health
-                                      </a>
-                                    </p>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              vertical-align: top;
-                              min-width: 200px;
-                              text-align: center;
-                              height: 168px;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td style="padding: 9px">
-                                  <div
-                                    style="
-                                      background: #fff;
-                                      border-radius: 30px;
-                                      width: 110px;
-                                      padding: 40px;
-                                    "
-                                  >
-                                    <img src="./images/tiles-icon.png" alt="" />
-                                    <p
-                                      style="
-                                        font-size: 18px;
-                                        font-weight: 600;
-                                        margin-top: 15px;
-                                      "
-                                    >
-                                      <a
-                                        href="#"
-                                        style="
-                                          color: #1a2b5f;
-                                          text-decoration: none;
-                                        "
-                                        target="_blank"
-                                        >Arts
-                                      </a>
-                                    </p>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              vertical-align: top;
-                              min-width: 200px;
-                              text-align: center;
-                              height: 168px;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td style="padding: 9px">
-                                  <div
-                                    style="
-                                      background: #fff;
-                                      border-radius: 30px;
-                                      width: 110px;
-                                      padding: 40px;
-                                    "
-                                  >
-                                    <img src="./images/tiles-icon.png" alt="" />
-                                    <p
-                                      style="
-                                        font-size: 18px;
-                                        font-weight: 600;
-                                        margin-top: 15px;
-                                      "
-                                    >
-                                      <a
-                                        href="#"
-                                        style="
-                                          color: #1a2b5f;
-                                          text-decoration: none;
-                                        "
-                                        target="_blank"
-                                        >Geography
-                                      </a>
-                                    </p>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              vertical-align: top;
-                              min-width: 200px;
-                              text-align: center;
-                              height: 168px;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td style="padding: 9px">
-                                  <div
-                                    style="
-                                      background: #fff;
-                                      border-radius: 30px;
-                                      width: 110px;
-                                      padding: 40px;
-                                    "
-                                  >
-                                    <img src="./images/tiles-icon.png" alt="" />
-                                    <p
-                                      style="
-                                        font-size: 18px;
-                                        font-weight: 600;
-                                        margin-top: 15px;
-                                      "
-                                    >
-                                      <a
-                                        href="#"
-                                        style="
-                                          color: #1a2b5f;
-                                          text-decoration: none;
-                                        "
-                                        target="_blank"
-                                        >Hindi
-                                      </a>
-                                    </p>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              vertical-align: top;
-                              min-width: 200px;
-                              text-align: center;
-                              height: 168px;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td style="padding: 9px">
-                                  <div
-                                    style="
-                                      background: #fff;
-                                      border-radius: 30px;
-                                      width: 110px;
-                                      padding: 40px;
-                                    "
-                                  >
-                                    <img src="./images/tiles-icon.png" alt="" />
-                                    <p
-                                      style="
-                                        font-size: 18px;
-                                        font-weight: 600;
-                                        margin-top: 15px;
-                                      "
-                                    >
-                                      <a
-                                        href="#"
-                                        style="
-                                          color: #1a2b5f;
-                                          text-decoration: none;
-                                        "
-                                        target="_blank"
-                                        >Computer
-                                      </a>
-                                    </p>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              vertical-align: top;
-                              min-width: 200px;
-                              text-align: center;
-                              height: 168px;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td style="padding: 9px">
-                                  <div
-                                    style="
-                                      background: #fff;
-                                      border-radius: 30px;
-                                      width: 110px;
-                                      padding: 40px;
-                                    "
-                                  >
-                                    <img src="./images/tiles-icon.png" alt="" />
-                                    <p
-                                      style="
-                                        font-size: 18px;
-                                        font-weight: 600;
-                                        margin-top: 15px;
-                                      "
-                                    >
-                                      <a
-                                        href="#"
-                                        style="
-                                          color: #1a2b5f;
-                                          text-decoration: none;
-                                        "
-                                        target="_blank"
-                                        >French
-                                      </a>
-                                    </p>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </center>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td
-                        style="
-                          text-align: center;
-                          padding-bottom: 110px;
-                          padding-top: 23px;
-                        "
-                      >
-                        <a
-                          style="
-                            color: #1a2b5f;
-                            background-color: #ffda16;
-                            border: none;
-                            padding: 5px 76px 10px;
-                            font-family: 'Gloria Hallelujah', cursive;
-                            font-size: 30px;
-                            border-radius: 22px;
-                            text-decoration: none;
-                            display: inline-block;
-                          "
-                          target="_blank"
-                          href="#"
-                        >
-                          Learn More
+                      <td width="7"></td>
+                      <td align="center">
+                        <a href="https://www.youtube.com/channel/UCbmRHfG51CGM1foo-6kzunQ">
+                        <img style="width:28px;border:0px;display: inline!important;" src="{{asset('images/youtube.png')}}" width="28" border="0" editable="true" data-icon data-image-edit data-url data-label="YouTube" data-image-width alt="icon">
                         </a>
                       </td>
                     </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-            <tr>
-              <td style="background-color: #fff">
-                <img
-                  src="./images/section-2-bg-2.png"
-                  alt=""
-                  style="margin-top: -27px; width: 100%"
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table> --}}
-
-        {{-- <table
-          cellpadding="0"
-          cellspacing="0"
-          role="presentation"
-          align="center"
-          style="
-            border-spacing: 0;
-            color: #3d3d3d;
-            font-family: 'Roboto', sans-serif, Arial, Helvetica;
-            background-color: #ffffff;
-            margin: 0;
-            padding-top: 0;
-            padding-right: 0;
-            padding-bottom: 0;
-            padding-left: 0;
-            width: 100%;
-            max-width: 680px;
-          "
-          background="#ffffff"
-          role="presentation"
-        >
-          <tbody>
-            <tr>
-              <td style="padding-top: 117px; text-align: center">
-                <p style="font-size: 18px">Cras posuere mauris ficitur.</p>
-                <h3
-                  style="
-                    padding-top: 6px;
-                    padding-bottom: 17px;
-                    font-size: 40px;
-                  "
-                >
-                  Some Extra Activities
-                </h3>
-              </td>
-            </tr>
-            <tr>
-              <td style="padding: 32px 30px 90px">
-                <table
-                  cellpadding="0"
-                  cellspacing="0"
-                  role="presentation"
-                  style="width: 100%"
-                >
-                  <tbody>
-                    <tr>
-                      <td style="text-align: center">
-                        <center>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              width: 49%;
-                              vertical-align: top;
-                              min-width: 200px;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td>
-                                  <img
-                                    src="./images/activity-tile-1.png"
-                                    alt=""
-                                  />
-                                  <div
-                                    style="
-                                      padding-left: 19px;
-                                      padding-top: 21px;
-                                      width: 200px;
-                                    "
-                                  >
-                                    <h4
-                                      style="
-                                        font-family: 'Gloria Hallelujah',
-                                          cursive;
-                                        font-weight: normal;
-                                        font-size: 30px;
-                                        line-height: 1.1;
-                                        color: #1a2b5f;
-                                      "
-                                    >
-                                      Dance
-                                    </h4>
-
-                                    <p
-                                      style="
-                                        font-size: 14px;
-                                        padding-top: 13px;
-                                        line-height: 1.2;
-                                        padding-right: 15px;
-                                      "
-                                    >
-                                      Cras posuere mauris fiis fici citur
-                                      sdersier.
-                                    </p>
-                                    <p style="padding-top: 30px">
-                                      <a href="#">
-                                        <img src="./images/arrow.png" alt="" />
-                                      </a>
-                                    </p>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              width: 49%;
-                              vertical-align: top;
-                              min-width: 200px;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td style="padding-top: 60px">
-                                  <img
-                                    src="./images/activity-tile-2.png"
-                                    alt=""
-                                  />
-                                  <div
-                                    style="
-                                      padding-left: 21px;
-                                      padding-top: 21px;
-                                      width: 200px;
-                                    "
-                                  >
-                                    <h4
-                                      style="
-                                        font-family: 'Gloria Hallelujah',
-                                          cursive;
-                                        font-weight: normal;
-                                        font-size: 30px;
-                                        line-height: 1.1;
-                                        color: #1a2b5f;
-                                      "
-                                    >
-                                      Cooking
-                                    </h4>
-
-                                    <p
-                                      style="
-                                        font-size: 14px;
-                                        padding-top: 15px;
-                                        line-height: 1.2;
-                                        padding-right: 15px;
-                                      "
-                                    >
-                                      Cras posuere mauris fiis fici citur
-                                      sdersier.
-                                    </p>
-                                    <p style="padding-top: 30px">
-                                      <a href="#">
-                                        <img src="./images/arrow.png" alt="" />
-                                      </a>
-                                    </p>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </center>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="text-align: center">
-                        <center>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              width: 49%;
-                              vertical-align: top;
-                              min-width: 200px;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td>
-                                  <img
-                                    src="./images/activity-tile-3.png"
-                                    alt=""
-                                  />
-                                  <div
-                                    style="
-                                      padding-left: 19px;
-                                      padding-top: 21px;
-                                      width: 200px;
-                                    "
-                                  >
-                                    <h4
-                                      style="
-                                        font-family: 'Gloria Hallelujah',
-                                          cursive;
-                                        font-weight: normal;
-                                        font-size: 30px;
-                                        line-height: 1.1;
-                                        color: #1a2b5f;
-                                      "
-                                    >
-                                      Painting
-                                    </h4>
-
-                                    <p
-                                      style="
-                                        font-size: 14px;
-                                        padding-top: 13px;
-                                        line-height: 1.2;
-                                        padding-right: 15px;
-                                      "
-                                    >
-                                      Cras posuere mauris fiis fici citur
-                                      sdersier.
-                                    </p>
-                                    <p style="padding-top: 30px">
-                                      <a href="#">
-                                        <img src="./images/arrow.png" alt="" />
-                                      </a>
-                                    </p>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <table
-                            cellpadding="0"
-                            cellspacing="0"
-                            role="presentation"
-                            style="
-                              display: inline-block;
-                              width: 49%;
-                              vertical-align: top;
-                              min-width: 200px;
-                            "
-                          >
-                            <tbody>
-                              <tr>
-                                <td style="padding-top: 60px">
-                                  <img
-                                    src="./images/activity-tile-4.png"
-                                    alt=""
-                                  />
-                                  <div
-                                    style="
-                                      padding-left: 21px;
-                                      padding-top: 17px;
-                                      width: 200px;
-                                    "
-                                  >
-                                    <h4
-                                      style="
-                                        font-family: 'Gloria Hallelujah',
-                                          cursive;
-                                        font-weight: normal;
-                                        font-size: 30px;
-                                        line-height: 1.1;
-                                        color: #1a2b5f;
-                                      "
-                                    >
-                                      Martial Arts
-                                    </h4>
-
-                                    <p
-                                      style="
-                                        font-size: 14px;
-                                        padding-top: 15px;
-                                        line-height: 1.2;
-                                        padding-right: 15px;
-                                      "
-                                    >
-                                      Cras posuere mauris fiis fici citur
-                                      sdersier.
-                                    </p>
-                                    <p style="padding-top: 30px">
-                                      <a href="#">
-                                        <img src="./images/arrow.png" alt="" />
-                                      </a>
-                                    </p>
-                                  </div>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </center>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-          </tbody>
-        </table> --}}
-
-        {{-- <table
-          cellpadding="0"
-          cellspacing="0"
-          role="presentation"
-          align="center"
-          style="
-            border-spacing: 0;
-            color: #3d3d3d;
-            font-family: 'Roboto', sans-serif, Arial, Helvetica;
-            background-color: #ffffff;
-            margin: 0;
-            padding-top: 0;
-            padding-right: 0;
-            padding-bottom: 0;
-            padding-left: 0;
-            width: 100%;
-            max-width: 680px;
-          "
-          background="#ffffff"
-          role="presentation"
-        >
-          <tbody>
-            <tr>
-              <td style="text-align: left; padding-left: 113px">
-                <img
-                  src="./images/yellow-element.png"
-                  alt=""
-                  style="margin-bottom: -23px"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td
-                style="
-                  padding-top: 120px;
-                  background: #ff706d;
-                  text-align: center;
-                "
-              >
-                <p style="font-size: 18px">Cras posuere mauris ficitur.</p>
-                <h3
-                  style="
-                    padding-top: 7px;
-                    padding-bottom: 17px;
-                    font-size: 40px;
-                  "
-                >
-                  Success Stories
-                </h3>
-              </td>
-            </tr>
-            <tr>
-              <td
-                style="padding-top: 33px; background: #ff706d; height: 206px"
-              ></td>
-            </tr>
-            <tr>
-              <td style="background: #fff; text-align: center">
-                <a href="#" target="_blank">
-                  <img
-                    src="./images/success-story.png"
-                    alt=""
-                    style="margin-top: -209px; width: 100%; max-width: 519px"
-                  />
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td
-                style="
-                  text-align: center;
-                  padding-top: 59px;
-                  padding-bottom: 117px;
-                "
-              >
-                <a
-                  style="
-                    color: #1a2b5f;
-                    background-color: #ffda16;
-                    border: none;
-                    padding: 5px 48px 10px;
-                    font-family: 'Gloria Hallelujah', cursive;
-                    font-size: 30px;
-                    border-radius: 22px;
-                    text-decoration: none;
-                    display: inline-block;
-                  "
-                  target="_blank"
-                  href="#"
-                >
-                  View More Stories
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table> --}}
-
-        {{-- <table
-          cellpadding="0"
-          cellspacing="0"
-          role="presentation"
-          align="center"
-          style="
-            border-spacing: 0;
-            color: #3d3d3d;
-            font-family: 'Roboto', sans-serif, Arial, Helvetica;
-            background-color: #ffffff;
-            margin: 0;
-            padding-top: 0;
-            padding-right: 0;
-            padding-bottom: 0;
-            padding-left: 0;
-            width: 100%;
-            max-width: 680px;
-          "
-          background="#ffffff"
-          role="presentation"
-        >
-          <tbody>
-            <tr>
-              <td style="padding-top: 0px; text-align: center">
-                <p style="font-size: 18px">Cras posuere mauris ficitur.</p>
-                <h3
-                  style="
-                    padding-top: 6px;
-                    padding-bottom: 17px;
-                    font-size: 40px;
-                  "
-                >
-                  Pricing
-                </h3>
-              </td>
-            </tr>
-            <tr>
-              <td style="text-align: center; padding-bottom: 40px">
-                <center>
-                  <table
-                    cellpadding="0"
-                    cellspacing="0"
-                    role="presentation"
-                    style="
-                      display: inline-block;
-                      width: 49%;
-                      max-width: 311px;
-                      min-width: 287px;
-                      vertical-align: top;
-                    "
-                  >
-                    <tbody>
-                      <tr>
-                        <td style="padding-top: 40px; text-align: center">
-                          <div
-                            style="
-                              border-radius: 30px;
-                              background: #fdeed7;
-                              padding: 66px 30px 60px;
-                              margin: 0 10px;
-                            "
-                          >
-                            <div
-                              style="
-                                color: #fff;
-                                background: #ff706d;
-                                border-radius: 20px;
-                                padding: 7px 21px;
-                                border: none;
-                                font-weight: 600;
-                                font-size: 14px;
-                                width: 60px;
-                                margin: auto;
-                              "
-                            >
-                              Monthly
-                            </div>
-
-                            <p
-                              style="
-                                padding-top: 23px;
-                                margin-bottom: 0px;
-                                font-size: 60px;
-                                font-weight: 600;
-                              "
-                            >
-                              <sup
-                                ><span
-                                  style="
-                                    font-size: 20px;
-                                    position: relative;
-                                    top: -5px;
-                                  "
-                                  >$</span
-                                ></sup
-                              >20<span style="font-size: 15px; font-weight: 300"
-                                >/mo</span
-                              >
-                            </p>
-
-                            <p style="font-size: 14px">Billed Monthly</p>
-
-                            <p style="font-size: 18px; padding-top: 54px">
-                              Curabitur quis fauciula.
-                            </p>
-
-                            <p style="padding-top: 20px">
-                              <img
-                                src="./images/price-left-divider.png"
-                                alt=""
-                              />
-                            </p>
-
-                            <p style="font-size: 18px; padding-top: 17px">
-                              Pellentesque vehicula lirpis facilisis placerat
-                            </p>
-
-                            <p style="padding-top: 20px">
-                              <img
-                                src="./images/price-left-divider.png"
-                                alt=""
-                              />
-                            </p>
-
-                            <p
-                              style="
-                                font-size: 18px;
-                                padding-top: 15px;
-                                padding-bottom: 60px;
-                              "
-                            >
-                              Tinciduplacerat nibh finibus
-                            </p>
-
-                            <a
-                              style="
-                                color: #1a2b5f;
-                                background-color: #ffda16;
-                                border: none;
-                                padding: 1px 30px 2px;
-                                font-family: 'Gloria Hallelujah', cursive;
-                                font-size: 18px;
-                                border-radius: 13px;
-                                text-decoration: none;
-                                display: inline-block;
-                              "
-                              target="_blank"
-                              href="#"
-                            >
-                              Start Trial
-                            </a>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
                   </table>
-                  <table
-                    cellpadding="0"
-                    cellspacing="0"
-                    role="presentation"
-                    style="
-                      display: inline-block;
-                      width: 49%;
-                      max-width: 311px;
-                      min-width: 287px;
-                      vertical-align: top;
-                    "
-                  >
-                    <tbody>
-                      <tr>
-                        <td style="padding-top: 40px; text-align: center">
-                          <div
-                            style="
-                              border-radius: 30px;
-                              background: #3895f3;
-                              padding: 66px 30px 60px;
-                              margin: 0 10px;
-                              color: #fff;
-                            "
-                          >
-                            <div
-                              style="
-                                color: #fff;
-                                background: #1573d3;
-                                border-radius: 20px;
-                                padding: 7px 21px;
-                                border: none;
-                                font-weight: 600;
-                                font-size: 14px;
-                                width: 60px;
-                                margin: auto;
-                              "
-                            >
-                              Yearly
-                            </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- Social Icons -->
+    </td>
+  </tr>
+  <tr data-element="black-footer-social-icons" data-label="Social Icons">
+    <td height="45" style="font-size:45px;line-height:45px;" data-height="Spacing under social icons">&nbsp;</td>
+  </tr>
 
-                            <p
-                              style="
-                                padding-top: 23px;
-                                margin-bottom: 0px;
-                                font-size: 60px;
-                                font-weight: 600;
-                                color: #fff;
-                              "
-                            >
-                              <sup
-                                ><span
-                                  style="
-                                    font-size: 20px;
-                                    position: relative;
-                                    top: -5px;
-                                  "
-                                  >$</span
-                                ></sup
-                              >12<span style="font-size: 15px; font-weight: 300"
-                                >/mo</span
-                              >
-                            </p>
 
-                            <p style="font-size: 14px">Billed Yearly $120</p>
+  <tr data-element="black-footer-paragraphs" data-label="Paragraphs">
+    <td align="center">
+      <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" class="row" width="480" style="width:480px;max-width:480px;">
+        <tr>
+          <td class="center-text" data-text-style="Paragraphs" align="center" style="font-family:'Roboto',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:400;font-style:normal;color:#999999;text-decoration:none;letter-spacing:0px;">
+            <multiline>
+              <div mc:edit data-text-edit>
+                2022 - Desarrollado por Instituto ITE.<br>
+                Villa 1 de mayo avenida tres pasos al frente esquina Che Guevara 4710
+              </div>
+            </multiline>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  
+  <tr>
+    <td height="50" style="font-size:50px;line-height:50px;" data-height="Footer spacing bottom">&nbsp;</td>
+  </tr>
+  <!-- black-footer -->
+</table>
 
-                            <p style="font-size: 18px; padding-top: 54px">
-                              Curabitur quis fauciula.
-                            </p>
+    </td>
+  </tr><!-- Outer-Table -->
+</table>
 
-                            <p style="padding-top: 20px">
-                              <img
-                                src="./images/price-right-divider.png"
-                                alt=""
-                              />
-                            </p>
-
-                            <p style="font-size: 18px; padding-top: 17px">
-                              Pellentesque vehicula lirpis facilisis placerat
-                            </p>
-
-                            <p style="padding-top: 20px">
-                              <img
-                                src="./images/price-right-divider.png"
-                                alt=""
-                              />
-                            </p>
-
-                            <p
-                              style="
-                                font-size: 18px;
-                                padding-top: 15px;
-                                padding-bottom: 60px;
-                              "
-                            >
-                              Tinciduplacerat nibh finibus
-                            </p>
-
-                            <a
-                              style="
-                                color: #1a2b5f;
-                                background-color: #fff;
-                                border: none;
-                                padding: 1px 30px 2px;
-                                font-family: 'Gloria Hallelujah', cursive;
-                                font-size: 18px;
-                                border-radius: 13px;
-                                text-decoration: none;
-                                display: inline-block;
-                              "
-                              target="_blank"
-                              href="#"
-                            >
-                              Start Trial
-                            </a>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </center>
-              </td>
-            </tr>
-          </tbody>
-        </table> --}}
-
-        <table
-          cellpadding="0"
-          cellspacing="0"
-          role="presentation"
-          align="center"
-          style="
-            border-spacing: 0;
-            color: #3d3d3d;
-            font-family: 'Roboto', sans-serif, Arial, Helvetica;
-            background-color: #ffffff;
-            margin: 0;
-            padding-top: 0;
-            padding-right: 0;
-            padding-bottom: 0;
-            padding-left: 0;
-            width: 100%;
-            max-width: 680px;
-          "
-          background="#ffffff"
-          role="presentation"
-        >
-          <tbody>
-            <tr>
-              <td style="padding-top: 5px; text-align: center">
-                <p style="font-size: 18px"></p>
-                <h3
-                  style="
-                    padding-top: 7px;
-                    padding-bottom: 31px;
-                    font-size: 40px;
-                  "
-                >
-                  {{$mensaje->subject}}
-                </h3>
-              </td>
-            </tr>
-            <tr>
-              <td style="text-align: left; padding: 0 68px 0 90px">
-                <img
-                  src="./images/quote.png"
-                  alt=""
-                  style="margin-bottom: -29px"
-                />
-                <img
-                  src="./images/pink-element.png"
-                  alt=""
-                  style="margin-bottom: -35px; float: right"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td
-                style="padding: 4px 30px 0; text-align: left; line-height: 1.4"
-              >
-                <div
-                  style="
-                    padding: 55px 60px;
-                    background: #26BAA5;
-                    border-radius: 30px;
-                    font-size: 18px;
-                  "
-                >
-                  {{$mensaje->body}}
-                  {{-- <p>
-                    My Son is ras semper sodales sapien, eget sagittis purus
-                    porttitor sed. Aliquam in urna urna. Suspendedisse commodo
-                    feugiat sem, dictum porttitor metus accumsan et. Duis varius
-                    ultrices neque, et vulutate nulla elementum non.
-                  </p> --}}
-
-                  <p style="padding-top: 34px; font-weight: bold">
-                    David Eduardo
-                  </p>
-                  <p
-                    style="font-weight: 300; font-size: 14px; padding-top: 2px"
-                  >
-                    Director Instituto Ite
-                  </p>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td style="padding: 0 110px; text-align: right">
-                <img
-                  src="./images/testimonial-person.png"
-                  alt=""
-                  style="margin-top: -76px; float: right"
-                />
-
-                <img
-                  src="./images/yellow-element.png"
-                  alt=""
-                  style="margin-top: -23px; margin-right: 81px; float: right"
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        {{-- <table
-          cellpadding="0"
-          cellspacing="0"
-          role="presentation"
-          align="center"
-          style="
-            border-spacing: 0;
-            color: #3d3d3d;
-            font-family: 'Roboto', sans-serif, Arial, Helvetica;
-            background-color: #ffffff;
-            margin: 0;
-            padding-top: 0;
-            padding-right: 0;
-            padding-bottom: 0;
-            padding-left: 0;
-            width: 100%;
-            max-width: 680px;
-          "
-          background="#ffffff"
-          role="presentation"
-        >
-          <tbody>
-            <tr>
-              <td style="padding-top: 112px; text-align: center">
-                <center>
-                  <p style="font-size: 18px">Cras posuere mauris ficitur.</p>
-                  <h3
-                    style="
-                      padding-top: 5px;
-                      padding-bottom: 31px;
-                      font-size: 40px;
-                    "
-                  >
-                    Get the Ite App
-                  </h3>
-                </center>
-              </td>
-            </tr>
-          </tbody>
-        </table> --}}
-
-        {{-- <table
-          cellpadding="0"
-          cellspacing="0"
-          role="presentation"
-          align="center"
-          style="
-            border-spacing: 0;
-            color: #3d3d3d;
-            font-family: 'Roboto', sans-serif, Arial, Helvetica;
-            background-color: #ffffff;
-            margin: 0;
-            padding-top: 0;
-            padding-right: 0;
-            padding-bottom: 0;
-            padding-left: 0;
-            width: 100%;
-            max-width: 680px;
-          "
-          background="#ffffff"
-          role="presentation"
-        >
-          <tbody>
-            <tr>
-              <td style="background-color: #fff; height: 50px"></td>
-            </tr>
-            <tr>
-              <td style="background: #eee; padding: 0; text-align: center">
-                <center>
-                  <table
-                    cellpadding="0"
-                    cellspacing="0"
-                    role="presentation"
-                    style="
-                      display: inline-block;
-                      width: 49%;
-                      min-width: 100px;
-                      width: 190px;
-                      margin-top: -30px;
-                      vertical-align: top;
-                    "
-                  >
-                    <tbody>
-                      <tr>
-                        <td style="text-align: right; padding: 0 10px 44px">
-                          <a href="#" target="_blank">
-                            <img src="./images/app-play-store.png" alt="" />
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <table
-                    cellpadding="0"
-                    cellspacing="0"
-                    role="presentation"
-                    style="
-                      display: inline-block;
-                      width: 49%;
-                      min-width: 100px;
-                      width: 190px;
-                      margin-top: -30px;
-                      vertical-align: top;
-                    "
-                  >
-                    <tbody>
-                      <tr>
-                        <td style="text-align: left; padding: 0 10px 44px">
-                          <a href="#" target="_blank">
-                            <img src="./images/app-apple-store.png" alt="" />
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </center>
-              </td>
-            </tr>
-          </tbody>
-        </table> --}}
-
-        {{-- <table
-          cellpadding="0"
-          cellspacing="0"
-          role="presentation"
-          align="center"
-          style="
-            border-spacing: 0;
-            color: #3d3d3d;
-            font-family: 'Roboto', sans-serif, Arial, Helvetica;
-            background-color: #ffffff;
-            margin: 0;
-            padding-top: 0;
-            padding-right: 0;
-            padding-bottom: 0;
-            padding-left: 0;
-            width: 100%;
-            max-width: 680px;
-          "
-          background="#ffffff"
-          role="presentation"
-        >
-          <tbody>
-            <tr>
-              <td
-                style="
-                  padding: 76px 0px;
-                  background-color: #eee;
-                  text-align: center;
-                "
-              >
-                <center>
-                  <table
-                    cellpadding="0"
-                    cellspacing="0"
-                    role="presentation"
-                    style="
-                      width: 252px;
-                      margin: 0px auto 0px;
-                      text-align: center;
-                    "
-                  >
-                    <tbody>
-                      <tr>
-                        <td>
-                          <a href="#" target="_blank">
-                            <img src="./images/social-fb.png" alt="" />
-                          </a>
-                        </td>
-                        <td>
-                          <a href="#" target="_blank">
-                            <img src="./images/social-tw.png" alt="" />
-                          </a>
-                        </td>
-                        <td>
-                          <a href="#" target="_blank">
-                            <img src="./images/social-li.png" alt="" />
-                          </a>
-                        </td>
-                        <td>
-                          <a href="#" target="_blank">
-                            <img src="./images/social-ig.png" alt="" />
-                          </a>
-                        </td>
-                        <td>
-                          <a href="#" target="_blank">
-                            <img src="./images/social-yt.png" alt="" />
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <p
-                    style="
-                      font-size: 14px;
-                      line-height: 24px;
-                      color: #66667e;
-                      font-weight: 300;
-                      padding-top: 49px;
-                      padding-bottom: 50px;
-                    "
-                  >
-                    &copy; 2021 Ite. All rights reserved. <br />
-                    7th Street Name, RedLight Tower, New York, NY
-                  </p>
-                  <table
-                    cellpadding="0"
-                    cellspacing="0"
-                    role="presentation"
-                    style="
-                      width: 300px;
-                      text-align: center;
-                      margin: 0px auto;
-                      font-size: 14px;
-                      color: #66667e;
-                      font-weight: 300;
-                    "
-                  >
-                    <tbody>
-                      <tr>
-                        <td>
-                          <a href="#" style="color: #66667e" target="_blank"
-                            >Unsubscribe</a
-                          >
-                        </td>
-                        <td>
-                          <a href="#" style="color: #66667e" target="_blank"
-                            >Terms & Conditions</a
-                          >
-                        </td>
-                        <td>
-                          <a href="#" style="color: #66667e" target="_blank"
-                            >Contact Us</a
-                          >
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </center>
-              </td>
-            </tr>
-          </tbody>
-        </table> --}}
-
-        <!--[if (gte mso 9)|(IE)]>
-				</td>
-				</tr>
-				</table>
-			<![endif]-->
-      </div>
-    </center>
-  </body>
+</body>
 </html>
