@@ -54,7 +54,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[AdministrativoController::class,'micartera'])->name('prueba');
+Route::get('prueba',[AdministrativoController::class,'miCarteraInscripciones'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -155,7 +155,8 @@ Route::delete('eliminar/docente/{docente}', 'DocenteController@destroy')->name('
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       A D M I N I S T R AT I V O S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('administrativos','AdministrativoController@index')->name('administrativo.index');
 Route::get('micartera/view',[AdministrativoController::class,'vistaCartera'])->name('administrativo.vistaCartera');
-Route::get('micartera',[AdministrativoController::class,'miCartera'])->name('administrativo.micartera');
+Route::get('micartera/inscripciones',[AdministrativoController::class,'miCarteraInscripciones'])->name('administrativo.micartera.inscripciones');
+Route::get('micartera/matriculacioenes',[AdministrativoController::class,'miCarteraMatriculaciones'])->name('administrativo.micartera.matriculacioenes');
 Route::get('opciones/administrativos/{persona}',[OpcionController::class,'administrativos'])->name('opcion.administrativos');
 
 

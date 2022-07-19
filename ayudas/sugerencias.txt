@@ -37,7 +37,7 @@ crud para licencias en computacion y nivelacion
 hacer ite business/familiar/persona/Colegios
 Falta terminar el crud de requisitos y metas
 Hay error al crear user
-
+en ver inscripciones no aparece la matriculacion que no pago
 
 
 en el controlador

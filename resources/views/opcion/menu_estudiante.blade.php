@@ -2,6 +2,9 @@
     <div class="card-header bg-primary">
         <h3 class="card-title">ESTUDIANTE: <strong>{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</strong></h3>
     </div>
+    @isset($estudiante)
+        
+    
     <div class="card-body">
         <div class="row text-center">
             <div class="col-6 col-xs-4 col-sm-4 col-md-3 col-lg-2">
@@ -51,5 +54,7 @@
             </div>
         </div>
     </div>
+    @endisset
+
 </div>
 

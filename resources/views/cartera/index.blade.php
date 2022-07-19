@@ -39,7 +39,6 @@
 										<th>Nombre</th>
 										<th>modalidad</th>
 										<th>acuenta</th>
-										<th>saldo</th>
 										<th>Proximo</th>
                                         <th>Options</th>
                                     </tr>
@@ -55,11 +54,11 @@
 @endsection
 @section('js')
     <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
-    {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
-    {{-- <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script> --}}
-    {{-- <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script> --}}
-    {{-- <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script> --}}
-    {{-- <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script>  --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
     
 <script>
         $(document).ready(function() {
@@ -70,13 +69,12 @@
                     "responsive":true,
                     "autoWidth":false,
 
-                    "ajax": "{{ url('micartera') }}",
+                    "ajax": "{{ url('micartera/inscripciones') }}",
                     "columns": [
                         {data: 'id'},
                         {data:'nombre'},
                         {data: 'modalidad'},
                         {data: 'acuenta'},
-                        {data: 'saldo'},
                         {data: 'proximo'},
                         {data: 'btn'},
                     ],

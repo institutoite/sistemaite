@@ -254,14 +254,19 @@ class MatriculacionController extends Controller
         if($computacion!==null){
             $matriculacionesVigentes=Matriculacion::join('pagos','pagos.pagable_id','=','matriculacions.id')
             ->join('asignaturas','asignaturas.id','=','matriculacions.asignatura_id')        
-            
             ->where('computacion_id','=',$computacion->id)
             ->where('pagos.pagable_type','=',"App\Models\Matriculacion")
             ->where('vigente', 1)
-
             ->select('matriculacions.id','vigente','costo','asignatura',DB::raw('sum(pagos.monto) as acuenta'))
             ->groupBy('matriculacions.id', 'vigente', 'costo','asignatura')->get();
         }
+        // if($computacion!==null){
+        //     $matriculacionesSinPago=Matriculacion::join('asignaturas','asignaturas.id','=','matriculacions.asignatura_id')        
+        //     ->where('computacion_id','=',$computacion->id)
+        //     ->where('vigente', 1)
+        //     ->select('matriculacions.id','vigente','costo','asignatura')
+        //     ->groupBy('matriculacions.id', 'vigente', 'costo','asignatura')->get();
+        // }
         return datatables()->of($matriculacionesVigentes)
                 ->addColumn('btn', 'inscripcione.actiontusmatriculacion')
                 ->rawColumns(['btn'])

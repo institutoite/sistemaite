@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Administrativo;
+use App\Models\Inscripcione;
+use App\Models\User;
 
+
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
 
 class AdministrativoController extends Controller
@@ -86,13 +92,38 @@ class AdministrativoController extends Controller
     public function vistaCartera(){
         return view('cartera.index');
     }
-    public function micartera(){
-
+    public function miCarteraInscripciones(){
         $userActual = Auth::user();
-
+        $inscripciones= Inscripcione::join('userables','userables.userable_id','inscripciones.id')
+            ->join('estudiantes','inscripciones.estudiante_id','estudiantes.id')
+            ->join('modalidads','modalidads.id','inscripciones.modalidad_id')
+            ->join('personas','personas.id','estudiantes.persona_id')
+            ->join('users','users.id','userables.user_id')
+            ->where('users.id', $userActual->id)
+            ->where('userables.userable_type',Inscripcione::class)
+            ->select('inscripciones.id as inscripcione_id','personas.id as persona_id','personas.nombre','modalidads.modalidad','inscripciones.costo','fecha_proximo_pago')
+            ->get();
+        
+            return datatables()->of($inscripciones)
+                ->addColumn('btn', 'cartera.action')
+                ->rawColumns(['btn'])
+                ->toJson();
+    }
+    public function miCarteraMatriculacioenes(){
+        $userActual = Auth::user();
+        $inscripciones= Inscripcione::join('userables','userables.userable_id','inscripciones.id')
+            ->join('estudiantes','inscripciones.estudiante_id','estudiantes.id')
+            ->join('modalidads','modalidads.id','inscripciones.modalidad_id')
+            ->join('personas','personas.id','estudiantes.persona_id')
+            ->join('users','users.id','userables.user_id')
+            ->where('users.id', $userActual->id)
+            ->where('userables.userable_type',Inscripcione::class)
+            ->select('inscripciones.id as inscripcione_id','personas.id as persona_id','personas.nombre','modalidads.modalidad','inscripciones.costo','fecha_proximo_pago')
+            ->get();
+        
+        $data=['matriculaciones'=>$matriculaciones];
         
         return response()->json($data, 200, $headers);
-
     }
 
 }
