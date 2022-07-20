@@ -333,6 +333,20 @@ class PersonaController extends Controller
         return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion','recomendado','apoderados','calificado','promedio','calificaciones','micalificacion','user','observaciones'));
     }
 
+    public function personaMostrarAjax(Request $request){
+        $persona = Inscripcione::findOrFail($request->inscripcion_id)->estudiante->persona;
+        $pais=Pais::findOrFail($persona->pais_id);
+        $ciudad=Ciudad::findOrFail($persona->ciudad_id);
+        $zona=Zona::findOrFail($persona->zona_id);
+        $edad=$persona->fechanacimiento->diffForHumans();
+        $creado=$persona->created_at->diffForHumans();
+        $actualizado=$persona->updated_at->diffForHumans();
+        $data=['persona'=>$persona, 'pais'=>$pais, 'ciudad'=>$ciudad, 'zona'=>$zona,'edad'=>$edad,'creado'=>$creado, 'actualizado'=>$actualizado];
+        return response()->json($data);
+    }
+
+
+
     public function edit(Persona $persona)
     {
         $ciudades = Ciudad::get();

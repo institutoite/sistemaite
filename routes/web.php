@@ -54,7 +54,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[AdministrativoController::class,'miCarteraInscripciones'])->name('prueba');
+Route::get('prueba',[PersonaController::class,'personaMostrarAjax'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -94,6 +94,7 @@ Route::get('potenciales', [PersonaController::class,'potenciales'])->name('perso
 Route::get('ver/potencial', [PersonaController::class,'verPotencial'])->name('personas.ver.potenciales');
 Route::get('persona/potenciales/unsuscribe', [PersonaController::class,'unsuscribe'])->name('personas.unsuscribe');
 Route::get('persona/potenciales/suscribe', [PersonaController::class,'suscribe'])->name('personas.suscribe');
+Route::get('persona/mostrar/ajax', [PersonaController::class,'personaMostrarAjax'])->name('persona.mostrar.ajax');
 
 Route::get('reporte/potenciales', [PersonaReporteController::class,'potencialesPorInteresView']);
 Route::get('potenciales/hoy', [PersonaReporteController::class,'potencialesHoyView']);
@@ -156,7 +157,7 @@ Route::delete('eliminar/docente/{docente}', 'DocenteController@destroy')->name('
 Route::get('administrativos','AdministrativoController@index')->name('administrativo.index');
 Route::get('micartera/view',[AdministrativoController::class,'vistaCartera'])->name('administrativo.vistaCartera');
 Route::get('micartera/inscripciones',[AdministrativoController::class,'miCarteraInscripciones'])->name('administrativo.micartera.inscripciones');
-Route::get('micartera/matriculacioenes',[AdministrativoController::class,'miCarteraMatriculaciones'])->name('administrativo.micartera.matriculacioenes');
+Route::get('micartera/matriculaciones',[AdministrativoController::class,'miCarteraMatriculaciones'])->name('administrativo.micartera.matriculacioenes');
 Route::get('opciones/administrativos/{persona}',[OpcionController::class,'administrativos'])->name('opcion.administrativos');
 
 
@@ -444,6 +445,7 @@ Route::get('inscripcion/actualizar/fechapago/{fecha}/{id}', 'InscripcioneControl
 Route::get('tusinscripciones', 'InscripcioneController@tusInscripcionesVigentes')->name('inscripciones.de.estudiante');
 Route::get('inscripcines/vigentes/view', function () {return view('inscripcione.vigentes');})->name('inscripciones.vigentes.view');
 Route::get('inscripciones/vigentes/ajax', "InscripcioneController@vigentesAjax")->name('inscripciones.vigentes.ajax');  
+Route::get('inscripcion/mostrar/ajax', "InscripcioneController@inscripcionMostrarAjax")->name('inscripcion.mostrar.ajax');  
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TELEFONOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('telefonos/vista/{persona}','TelefonoController@mostrarvista')->name('telefonos.persona');

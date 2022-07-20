@@ -188,6 +188,30 @@ class InscripcioneController extends Controller
         return view('inscripcione.show', compact('inscripcione','programacion','user'));
     }
 
+    public function inscripcionMostrarAjax(Request $request){
+        $inscripcion = Inscripcione::findOrFail($request->inscripcion_id);
+        $modalidad=Modalidad::findOrFail($request->modalidad_id);
+        $persona=$inscripcion->estudiante->persona;
+        $motivo=Motivo::findOrFail($inscripcion->motivo_id);
+        $empezo=$inscripcion->fechaini->diffForHumans();    
+        $finaliza=$inscripcion->fechfin->diffForHumans();    
+        $proximo_pago=$inscripcion->fecha_proximo_pago->diffForHumans();    
+        $creado=$persona->created_at->diffForHumans();
+        $actualizado=$persona->updated_at->diffForHumans();
+        $data=['inscripcion'=>$inscripcion,
+                'modalidad'=>$modalidad,
+                'persona'=>$persona, 
+                'motivo'=>$zona,
+                'empezo'=>$empezo,
+                'finaliza'=>$finaliza,
+                'proximo_pago'=>$proximo_pago,
+                'creado'=>$creado, 
+                'actualizado'=>$actualizado];
+        return response()->json($data);
+    }
+
+
+
     /**
      * Show the form for editing the specified resource.
      *
