@@ -175,4 +175,14 @@ class PagoController extends Controller
         $pago->delete();    
         return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
+    public function pagosMostrarAjax(Request $request){
+        $inscripcion = Inscripcione::findOrFail($request->inscripcion_id);
+        $persona=$inscripcion->estudiante->persona;
+        $pagos = $inscripcion->pagos;
+        $acuenta = $inscripcion->pagos->sum->monto;
+        $saldo = $inscripcion->costo - $acuenta;
+        $data=['pagos'=>$pagos, 'persona'=>$persona,'acuenta'=>$acuenta, 'saldo'=>$saldo,'total'=>$inscripcion->costo];
+        return response()->json($data);
+    }
+
 }

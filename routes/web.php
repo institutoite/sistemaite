@@ -14,6 +14,7 @@ use App\Http\Controllers\ProgramacionController;
 use App\Http\Controllers\ClasecomController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\MensajeController;
+use App\Http\Controllers\PagoController;
 
 use App\Http\Controllers\TipomotivoController;
 use App\Http\Controllers\DiaController;
@@ -54,7 +55,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[PersonaController::class,'personaMostrarAjax'])->name('prueba');
+Route::get('prueba',[ObservacionController::class,'listarObservacionesGeneral'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -197,6 +198,7 @@ Route::get('pago/editar/{pago}', 'PagoController@editar')->name('pago.editar');
 Route::get('pagos/inscripcion/{inscripcione}', 'PagoController@detallar')->name('pagos.detallar');
 Route::post('pagos/realizar/{inscripcione}', 'PagoController@guardar')->name('pagos.guardar');
 Route::patch('pago/actualizar/{pago}', "PagoController@actualizar")->name('pago.actualizar');
+Route::get('pagos/mostrar/ajax',[PagoController::class,'pagosMostrarAjax'])->name('pagos.mostrar.ajax');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       P  A  G  O  S  COMPUTACION         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('pagocom/crear/{matriculacion}', 'PagocomController@crear')->name('pagocom.crear');
@@ -444,8 +446,8 @@ Route::post('inscripcion/actualizar/configuracion/{id_inscripcion}', 'Inscripcio
 Route::get('inscripcion/actualizar/fechapago/{fecha}/{id}', 'InscripcioneController@actualizar_fecha_proximo_pago')->name('set.fecha.proximo.pago');
 Route::get('tusinscripciones', 'InscripcioneController@tusInscripcionesVigentes')->name('inscripciones.de.estudiante');
 Route::get('inscripcines/vigentes/view', function () {return view('inscripcione.vigentes');})->name('inscripciones.vigentes.view');
-Route::get('inscripciones/vigentes/ajax', "InscripcioneController@vigentesAjax")->name('inscripciones.vigentes.ajax');  
-Route::get('inscripcion/mostrar/ajax', "InscripcioneController@inscripcionMostrarAjax")->name('inscripcion.mostrar.ajax');  
+Route::get('inscripciones/vigentes/ajax', [InscripcioneController::class,'vigentesAjax'])->name('inscripciones.vigentes.ajax');  
+Route::get('inscripcion/mostrar/ajax', [InscripcioneController::class,'inscripcionMostrarAjax'])->name('inscripcion.mostrar.ajax');  
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TELEFONOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('telefonos/vista/{persona}','TelefonoController@mostrarvista')->name('telefonos.persona');
@@ -481,6 +483,7 @@ Route::get('programacion/asistencia/ajax', [ProgramacionController::class,'asisn
 Route::get('programacion/asignarfalta/ajax', [ProgramacionController::class,'asignarFaltasFechasPasadas'])->name('programacion.asignarFaltas');
 Route::get('programados/hoy', function () {return view('programacion.programados');})->name('programas.hoy.view');
 Route::get('hoy','ProgramacionController@hoy')->name('programas.hoy');
+Route::get('programacion/mostrar/ajax', [ProgramacionController::class,'programacionMostrarAjax'])->name('programacion.mostrar..ajax');
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% P R O G R A M A C I O N  COMPUTACION  C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('generar/programacioncom/{matriculacion}',[ProgramacioncomController::class,'generarProgramacom'])->name('generar.programacioncom');
@@ -510,6 +513,7 @@ Route::post('observacion/store',[ObservacionController::class,'store'])->name('o
 Route::delete('eliminar/observacion/{observacion}',[ObservacionController::class,'destroy'])->name('eliminar.observacion');
 Route::delete('eliminar/general',[ObservacionController::class,'eliminarGeneral'])->name('eliminar.observacion.general');
 Route::get('observaciones/{observable_id}/{observable_type}',[ObservacionController::class,'listar'])->name('observaciones.listar');
+Route::get('observaciones/general',[ObservacionController::class,'listarGeneral'])->name('observaciones.listar.general');
 Route::get('guardar/observacion', 'ObservacionController@guardarObservacionGeneral')->name('guardar.observacion.general');
 
 /**

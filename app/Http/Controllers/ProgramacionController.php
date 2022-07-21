@@ -162,6 +162,8 @@ class ProgramacionController extends Controller
                 ->toJson();
     }
 
+    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -722,6 +724,19 @@ class ProgramacionController extends Controller
                 ->addColumn('btn','programacion.actionshoy')
                 ->rawColumns(['btn'])
                 ->toJson();
+    }
+
+    public function programacionMostrarAjax(Request $request){
+            $programacion = Programacion::join('materias', 'programacions.materia_id', '=', 'materias.id')
+            ->join('aulas', 'programacions.aula_id', '=', 'aulas.id')
+            ->join('docentes', 'programacions.docente_id', '=', 'docentes.id')
+            ->join('personas', 'personas.id', '=', 'docentes.persona_id')
+            ->join('estados','estados.id','programacions.estado_id')
+            ->select('programacions.fecha', 'hora_ini','estados.estado','programacions.habilitado', 'hora_fin', 'horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado')
+            ->orderBy('fecha', 'asc')
+            ->where('inscripcione_id', '=', $request->inscripcion_id)->get();
+        return response()->json($programacion);
+
     }
 
 }

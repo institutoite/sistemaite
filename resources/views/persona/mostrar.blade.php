@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{asset('dist/css/starrr.css')}}">
-<link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+{{-- <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}"> --}}
 @endsection
 
 @section('title', 'Mostrar Persona')

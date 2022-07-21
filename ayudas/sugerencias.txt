@@ -38,6 +38,8 @@ hacer ite business/familiar/persona/Colegios
 Falta terminar el crud de requisitos y metas
 Hay error al crear user
 en ver inscripciones no aparece la matriculacion que no pago
+que se pueda agreagar observaciones en Inscripciones por ejemplo matriculacioanes etc
+validar guaradar observacion en todos los casos
 
 
 en el controlador

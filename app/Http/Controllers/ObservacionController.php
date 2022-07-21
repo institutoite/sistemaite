@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Observacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -53,15 +54,23 @@ class ObservacionController extends Controller
         return redirect()->action($request->observable_type."Controller@show",$request->observable_id);
     }
     public function guardarObservacionGeneral(Request $request){
-        // return response()->json($request->all());
-        $observacion =new Observacion;
-        $observacion->observacion = $request->observacion;
-        $observacion->observable_id=$request->observable_id;
-        $observacion->activo=1;
-        $observacion->observable_type='App\\Models\\'.$request->observable_type;
-        $observacion->save();
-        $observacion->userable()->create(['user_id'=>Auth::user()->id]);
-        return response()->json(['mensaje'=>"Guardado correctamente"]);
+        $validator = Validator::make($request->all(), [
+            'observacion' => 'required|min:5|max:500',
+        ]);
+        if ($validator->passes()) {
+            $observacion =new Observacion;
+            $observacion->observacion = $request->observacion;
+            $observacion->observable_id=$request->observable_id;
+            $observacion->activo=1;
+            $observacion->observable_type='App\\Models\\'.$request->observable_type;
+            $observacion->save();
+            $observacion->userable()->create(['user_id'=>Auth::user()->id]);
+            return response()->json(['mensaje'=>"Guardado correctamente"]);    
+        }else{
+            return response()->json(['errores' => $validator->errors()]);
+        }
+
+        
     }
     public function GuardarObservacion(Request $request)
     {
@@ -160,5 +169,16 @@ class ObservacionController extends Controller
         ->addColumn('btn', 'observacion.action')
         ->rawColumns(['btn','observacion'])
         ->toJson();
+    }
+    public function listarGeneral(Request $request){
+        
+        $observation=Observacion::join('userables','userables.userable_id','=','observacions.id')
+            ->join('users','users.id','=','userables.user_id')
+            ->where('userable_type','App\\Models\\Observacion')
+            ->where('observacions.activo',1)
+            ->where('observable_id',$request->observable_id)
+            ->where('observable_type','App\\Models\\'.$request->observable_type)
+            ->select('observacions.id','observacion','activo','name','observacions.created_at','observacions.updated_at')->get();
+        return response()->json($observation);
     }
 }
