@@ -11,7 +11,7 @@ use App\Models\User;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class AdministrativoController extends Controller
 {
     /**
@@ -101,6 +101,7 @@ class AdministrativoController extends Controller
             ->join('personas','personas.id','estudiantes.persona_id')
             ->join('users','users.id','userables.user_id')
             ->where('users.id', $userActual->id)
+            ->where('vigente',1)
             ->where('userables.userable_type',Inscripcione::class)
             ->select('inscripciones.id','personas.nombre','modalidads.modalidad','inscripciones.costo','fecha_proximo_pago')
             ->get();
@@ -110,19 +111,75 @@ class AdministrativoController extends Controller
                 ->rawColumns(['btn'])
                 ->toJson();
     }
+     public function miCarteraInscripcionesDesvigentes(){
+        $userActual = Auth::user();
+        
+    $inscripciones= Inscripcione::join('userables','userables.userable_id','inscripciones.id')
+        ->join('estudiantes','inscripciones.estudiante_id','estudiantes.id')
+        ->join('personas','personas.id','estudiantes.persona_id')
+        ->join('users','users.id','userables.user_id')
+        ->where('users.id', $userActual->id)
+        ->where('vigente',0)
+        ->where('userables.userable_type',Inscripcione::class)
+        ->select('inscripciones.id','personas.nombre','personas.apellidop','apellidom',DB::raw("(SELECT max(fechafin) FROM inscripciones WHERE estudiantes.id= inscripciones.estudiante_id) as fecha"))
+        ->groupBy('inscripciones.id','personas.nombre','personas.apellidop','apellidom','fecha')
+        ->get();
+         return datatables()->of($inscripciones)
+                ->addColumn('btn', 'cartera.actioninscripcionesdesvigentes')
+                ->rawColumns(['btn'])
+                ->toJson();
+        
+     }   
+    public function listar(Persona $persona){
+        $persona=Persona::findOrFail($persona->id);
+        $inscripcionesVigentes = Inscripcione::join('pagos','pagos.pagable_id','=','inscripciones.id')
+                                        ->where('estudiante_id', '=', $persona->estudiante->id)
+                                        ->where('vigente',1)
+                                        ->select('inscripciones.id','objetivo','costo',DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= inscripciones.id) as acuenta"))
+                                        ->groupBy('inscripciones.id','objetivo','acuenta','costo')
+                                        ->get();
+        $inscripcionesOtras = Inscripcione::where('estudiante_id', '=', $persona->estudiante->id)
+                                        ->where('vigente', 0)
+                                        ->select('id', 'objetivo', 'costo')->get();
+
+            return datatables()->of($inscripciones)
+                ->addColumn('btn', 'cartera.actioninscripcionesdesvigentes')
+                ->rawColumns(['btn'])
+                ->toJson();
+    }
     public function miCarteraMatriculaciones(){
-       $userActual = Auth::user();
+        $userActual = Auth::user();
         $matriculaciones=Matriculacion::join('userables','userables.userable_id','matriculacions.id')
         ->join('computacions','matriculacions.computacion_id','computacions.id')
         ->join('asignaturas','asignaturas.id','matriculacions.asignatura_id')
         ->join('personas','personas.id','computacions.persona_id')
         ->join('users','users.id','userables.user_id')
         ->where('users.id', $userActual->id)
+        ->where('vigente',1)
         ->where('userables.userable_type',Matriculacion::class)
         ->select('matriculacions.id','personas.nombre','asignaturas.asignatura','matriculacions.costo','fecha_proximo_pago')
         ->get();
     
-          return datatables()->of($matriculaciones)
+        return datatables()->of($matriculaciones)
+                ->addColumn('btn', 'cartera.actionmatriculacion')
+                ->rawColumns(['btn'])
+                ->toJson();
+    }
+    public function miCarteraMatriculacioneDesvigentes(){
+        $userActual = Auth::user();
+        $matriculaciones=Matriculacion::join('userables','userables.userable_id','matriculacions.id')
+        ->join('computacions','matriculacions.computacion_id','computacions.id')
+        ->join('personas','personas.id','computacions.persona_id')
+        ->join('users','users.id','userables.user_id')
+        ->where('users.id', $userActual->id)
+        ->where('vigente',1)
+        ->where('userables.userable_type',Matriculacion::class)
+        ->select('matriculacions.id','personas.nombre','apellidop','apellidom')
+        ->max('fechfin')
+  		->distinct()
+        ->get();
+    
+        return datatables()->of($matriculaciones)
                 ->addColumn('btn', 'cartera.actionmatriculacion')
                 ->rawColumns(['btn'])
                 ->toJson();

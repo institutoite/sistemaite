@@ -25,7 +25,7 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="inscripciones" class="table table-striped table-hover">
-                                <thead class="thead bg-primary">
+                                <thead class="thead">
                                     <tr>
                                         <th>No</th>
 										<th>Nombre</th>
@@ -55,13 +55,43 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="matriculaciones" class="table table-striped table-hover">
-                                <thead class="thead bg-primary">
+                                <thead class="thead">
                                     <tr>
                                         <th>No</th>
 										<th>Nombre</th>
 										<th>modalidad</th>
 										<th>Costo</th>
 										<th>Proximo</th>
+                                        <th>Options</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span id="card_title">
+                                {{ __('Mis clientes con inscripciones finalizdas') }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="inscripcionesdesvigentes" class="table table-striped table-hover">
+                                <thead class="thead">
+                                    <tr>
+                                        <th>NRO</th>
+										<th>NOMBRE</th>
+										<th>APELLIDOP</th>
+										<th>APELLIDOM</th>
+										<th>ULTIMA VEZ</th>
                                         <th>Options</th>
                                     </tr>
                                 </thead>
@@ -87,12 +117,14 @@
     <script src="{{asset('dist/js/moment.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-     <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+
+    <script src="{{asset('assets/js/observacion.js')}}"></script>
     
     
 <script>
         $(document).ready(function() {
-            let observabable_id;
+            
             var tablainscripciones=$('#inscripciones').DataTable(
                 {
                     "serverSide": true,
@@ -158,11 +190,39 @@
                 }
             );
 
+            var tablainscripciones=$('#inscripcionesdesvigentes').DataTable(
+                {
+                    "serverSide": true,
+                    "responsive":true,
+                    "autoWidth":false,
+                    "createdRow": function( row, data, dataIndex ) {
+                        $(row).attr('id',data['id']); 
+                    },
+                    "ajax": "{{ url('micartera/inscripciones/desvigentes') }}",
+                    "columns": [
+                        {data: 'id'},
+                        {data:'nombre'},
+                        {data: 'apellidop'},
+                        {data: 'apellidom'},
+                        {data: 'fecha'},
+                        {data: 'btn'},
+                    ],
+                    "columnDefs": [
+                        { responsivePriority: 1, targets: 0 },
+                        { responsivePriority: 3, targets: -1 }
+                    ],
+                    "language":{
+                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    },  
+                }
+            );
+
+
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PERSONA DE INSCRIPCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/    
             $('table').on('click', '.mostrarpersona', function(e) {
                 e.preventDefault();
                 let inscripcion_id=$(this).closest('tr').attr('id'); 
-                // console.log(inscripcion_id);
+                console.log(inscripcion_id);
                 $("#tabla-mostrar-persona").empty();
                 $html="";
                 $.ajax({
@@ -191,6 +251,7 @@
                 });
                 $("#modal-mostrar-persona").modal("show");
             });
+           
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/    
             $('table').on('click', '.mostrarinscripcion', function(e) {
                 e.preventDefault();

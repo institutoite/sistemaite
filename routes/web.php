@@ -159,6 +159,7 @@ Route::delete('eliminar/docente/{docente}', 'DocenteController@destroy')->name('
 Route::get('administrativos','AdministrativoController@index')->name('administrativo.index');
 Route::get('micartera/view',[AdministrativoController::class,'vistaCartera'])->name('administrativo.vistaCartera');
 Route::get('micartera/inscripciones',[AdministrativoController::class,'miCarteraInscripciones'])->name('administrativo.micartera.inscripciones');
+Route::get('micartera/inscripciones/desvigentes',[AdministrativoController::class,'miCarteraInscripcionesDesvigentes'])->name('administrativo.micartera.inscripciones.desvigentes');
 Route::get('micartera/matriculaciones',[AdministrativoController::class,'miCarteraMatriculaciones'])->name('administrativo.micartera.matriculacioenes');
 Route::get('opciones/administrativos/{persona}',[OpcionController::class,'administrativos'])->name('opcion.administrativos');
 
