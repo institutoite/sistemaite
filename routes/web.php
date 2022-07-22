@@ -96,6 +96,7 @@ Route::get('ver/potencial', [PersonaController::class,'verPotencial'])->name('pe
 Route::get('persona/potenciales/unsuscribe', [PersonaController::class,'unsuscribe'])->name('personas.unsuscribe');
 Route::get('persona/potenciales/suscribe', [PersonaController::class,'suscribe'])->name('personas.suscribe');
 Route::get('persona/mostrar/ajax', [PersonaController::class,'personaMostrarAjax'])->name('persona.mostrar.ajax');
+Route::get('persona/mostrar/ajax/matriculacion', [PersonaController::class,'personaMostrarAjaxMatriculacion'])->name('persona.mostrar.matriculacion.ajax');
 
 Route::get('reporte/potenciales', [PersonaReporteController::class,'potencialesPorInteresView']);
 Route::get('potenciales/hoy', [PersonaReporteController::class,'potencialesHoyView']);
@@ -327,6 +328,8 @@ Route::get('matriculacion/actualizar/fechapago/{fecha}/{id}',[MatriculacionContr
 Route::get('tusmatriculaciones', [MatriculacionController::class,'tusMatriculacionesVigentes'])->name('matriculaciones.de.estudiante');
 Route::get('matriculaciones/vigentes/view', function () {return view('matriculaciones.vigentes');})->name('matriculaciones.vigentes.view');
 Route::get('matriculaciones/vigentes/ajax', "MatriculacionController@vigentesAjax")->name('matriculaciones.vigentes.ajax');  
+Route::get('matriculacion/mostrar/ajax', [MatriculacionController::class,'matriculacionMostrarAjax'])->name('matriculacion.mostrar.ajax');
+  
 //Route::get('tumatriculaciones', [MatriculacionController::class,'tusMatriculacionesVigentes'])->name('matriculaciones');
 //Route::get('imprimir/matriculacion/{matriculacion}',[MatriculacionController::class,'imprimir'] )->name('imprimir.matriculacion');
 

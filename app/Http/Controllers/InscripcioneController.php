@@ -196,8 +196,8 @@ class InscripcioneController extends Controller
         $empezo=$inscripcion->fechaini->diffForHumans();    
         $finaliza=$inscripcion->fechafin->diffForHumans();    
         $proximo_pago=$inscripcion->fecha_proximo_pago->diffForHumans();    
-        $creado=$persona->created_at->diffForHumans();
-        $actualizado=$persona->updated_at->diffForHumans();
+        $creado=$inscripcion->created_at->diffForHumans();
+        $actualizado=$inscripcion->updated_at->diffForHumans();
         $data=['inscripcion'=>$inscripcion,
                 'modalidad'=>$modalidad,
                 'persona'=>$persona, 
@@ -209,6 +209,8 @@ class InscripcioneController extends Controller
                 'actualizado'=>$actualizado];
         return response()->json($data);
     }
+
+
 
 
 

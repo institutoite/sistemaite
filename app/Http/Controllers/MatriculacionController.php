@@ -247,6 +247,28 @@ class MatriculacionController extends Controller
         return redirect()->route('imprimir.programacioncom',$matriculacion->id);
     }
 
+    public function matriculacionMostrarAjax(Request $request){
+        $matriculacion = Matriculacion::findOrFail($request->matriculacion_id);
+        $asignatura=Asignatura::findOrFail($matriculacion->asignatura_id);
+        $persona=$matriculacion->computacion->persona;
+        $motivo=Motivo::findOrFail($matriculacion->motivo_id);
+        $empezo=$matriculacion->fechaini->diffForHumans();    
+        $finaliza=$matriculacion->fechafin->diffForHumans();    
+        $proximo_pago=$matriculacion->fecha_proximo_pago->diffForHumans();    
+        $creado=$persona->created_at->diffForHumans();
+        $actualizado=$persona->updated_at->diffForHumans();
+        $data=['matriculacion'=>$matriculacion,
+                'modalidad'=>$modalidad,
+                'persona'=>$persona, 
+                'motivo'=>$motivo,
+                'empezo'=>$empezo,
+                'finaliza'=>$finaliza,
+                'proximo_pago'=>$proximo_pago,
+                'creado'=>$creado, 
+                'actualizado'=>$actualizado];
+        return response()->json($data);
+    }
+
 
     public function tusMatriculacionesVigentes(Request $request){
         $persona=Estudiante::findOrFail($request->estudiante_id)->persona;
@@ -260,13 +282,6 @@ class MatriculacionController extends Controller
             ->select('matriculacions.id','vigente','costo','asignatura',DB::raw('sum(pagos.monto) as acuenta'))
             ->groupBy('matriculacions.id', 'vigente', 'costo','asignatura')->get();
         }
-        // if($computacion!==null){
-        //     $matriculacionesSinPago=Matriculacion::join('asignaturas','asignaturas.id','=','matriculacions.asignatura_id')        
-        //     ->where('computacion_id','=',$computacion->id)
-        //     ->where('vigente', 1)
-        //     ->select('matriculacions.id','vigente','costo','asignatura')
-        //     ->groupBy('matriculacions.id', 'vigente', 'costo','asignatura')->get();
-        // }
         return datatables()->of($matriculacionesVigentes)
                 ->addColumn('btn', 'inscripcione.actiontusmatriculacion')
                 ->rawColumns(['btn'])

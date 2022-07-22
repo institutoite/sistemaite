@@ -23,6 +23,7 @@ use App\Http\Requests\PersonaApoderadaRequestStore;
 use App\Http\Requests\PersonaRapidingoGuardarRequest;
 
 use App\Models\Inscripcione;
+use App\Models\Matriculacion;
 use App\Models\Observacion;
 use App\Models\Computacion;
 use App\Models\Interest;
@@ -335,6 +336,17 @@ class PersonaController extends Controller
 
     public function personaMostrarAjax(Request $request){
         $persona = Inscripcione::findOrFail($request->inscripcion_id)->estudiante->persona;
+        $pais=Pais::findOrFail($persona->pais_id);
+        $ciudad=Ciudad::findOrFail($persona->ciudad_id);
+        $zona=Zona::findOrFail($persona->zona_id);
+        $edad=$persona->fechanacimiento->diffForHumans();
+        $creado=$persona->created_at->diffForHumans();
+        $actualizado=$persona->updated_at->diffForHumans();
+        $data=['persona'=>$persona, 'pais'=>$pais, 'ciudad'=>$ciudad, 'zona'=>$zona,'edad'=>$edad,'creado'=>$creado, 'actualizado'=>$actualizado];
+        return response()->json($data);
+    }
+    public function personaMostrarAjaxMatriculacion(Request $request){
+        $persona = Matriculacion::findOrFail($request->matriculacion_id)->computacion->persona;
         $pais=Pais::findOrFail($persona->pais_id);
         $ciudad=Ciudad::findOrFail($persona->ciudad_id);
         $zona=Zona::findOrFail($persona->zona_id);
