@@ -106,6 +106,7 @@
     
     @include('cartera.modalesmatriculacions')
     @include('observacion.modalcreate')
+    @include('cartera.modales')
 @endsection
 @section('js')
     {{-- <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script> --}}
@@ -709,6 +710,44 @@
                                 },
                             });
                     });
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+                
+                $('table').on('click', '.mostrarobservacionespersona', function(e) {
+                    e.preventDefault();
+                    console.log('MostrarClick'); 
+                    observable_id =$(this).closest('tr').attr('id');
+                    observable_type ="Persona";
+                        var fila=$(this).closest('tr');
+                        console.log(observable_id);
+                        $("#modal-mostrar-observaciones").modal("show");
+                        $("#tabla-observaciones").empty();
+                             $.ajax({
+                                url :"../observaciones/general",
+                                data:{
+                                    observable_id:observable_id,
+                                    observable_type:observable_type,
+                                },
+                                success : function(json) {
+                                    $html="";
+                                    $clase="";
+                                    for (let j in json) {
+                                        if(json[j].activo==1){
+                                            $clase="text-success";
+                                        }else{
+                                            $clase="text-danger";    
+                                        }
+                                        $html+="<tr class='"+$clase+"'><td>"+ json[j].observacion +"</td>";
+                                        $html+="<td>"+json[j].name+"</td>";
+                                        $html+="<td>"+moment(json[j].created_at).format('LLL') +"</td>";
+                                        $html+="<td>"+moment(json[j].updated_at).format('LLL') +"</td></tr>";
+                                    }
+                                    $("#tabla-observaciones").append($html);
+                                },
+                                error : function(xhr, status) {
+                                    alert('Disculpe, existió un problema');
+                                },
+                            });
+                    });
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AGREAGAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
@@ -728,9 +767,24 @@
                 $("#modal-gregar-observacion").modal("show");
                 //$("#formulario-guardar-observacion").empty();
             });
-
-            /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  GUARDA OBSERVACION CON AJAX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-          
+             CKEDITOR.replace('editor2', {
+                height: 120,
+                width: "100%",
+                removeButtons: 'PasteFromWord'
+            });
+             $('table').on('click', '.agregarobservacionpersona', function(e) {
+                e.preventDefault();
+                console.log("clicked agregarobservacionpersona");
+                $("#editor2").val("");
+                let objeto_id = $(this).closest('tr').attr('id');
+                $("#observable_id").val(objeto_id);
+                $("#observable_type").val("Persona");
+                CKEDITOR.instances.editor1.setData('');
+                $("#modal-agregar-observacion-persona").modal("show");
+                //$("#formulario-guardar-observacion").empty();
+            });
+             
+            /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  GUARDA OBSERVACION CON  AJAX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('#guardar-observacion').on('click', function (e) {
                 e.preventDefault();
                 $("#errores").empty();
@@ -766,6 +820,50 @@
                                 title: "Guardado corectamente: " + json.observacion,
                             })
                             $("#modal-gregar-observacion").modal("hide");
+                        }
+                    },
+                    error: function (xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+                
+            });
+            /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  GUARDA OBSERVACION PERSONA DESVIGENTIZADA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('#guardar-observacion-persona').on('click', function (e) {
+                e.preventDefault();
+                $("#errores").empty();
+                let observable_id = $("#observable_id").val();
+                let observable_type = $("#observable_type").val();
+                for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
+                $.ajax({
+                    url: "../guardar/observacion",
+                    data: {
+                        //obs: $("#observacionx").val(),
+                        observacion: $("#editor2").val(),
+                        observable_id: observable_id,
+                        observable_type: observable_type,
+                    },
+                    success: function (json) {
+                        if(json.errores){
+                            console.log(json.errores);
+                            $html="";
+                            for (let j in json.errores) {
+                                $html+="<li>"+ json.errores.observacion[0] +"</li>";
+                            }
+                            $("#erroresdiv").removeClass('d-none');
+                            $("#errores").append($html);
+                        }else{
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                            })
+                            Toast.fire({
+                                type: 'success',
+                                title: "Guardado corectamente: " + json.observacion,
+                            })
+                            $("#modal-agregar-observacion-persona").modal("hide");
                         }
                     },
                     error: function (xhr, status) {

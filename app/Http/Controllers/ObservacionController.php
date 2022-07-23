@@ -171,7 +171,6 @@ class ObservacionController extends Controller
         ->toJson();
     }
     public function listarGeneral(Request $request){
-        
         $observation=Observacion::join('userables','userables.userable_id','=','observacions.id')
             ->join('users','users.id','=','userables.user_id')
             ->where('userable_type','App\\Models\\Observacion')
