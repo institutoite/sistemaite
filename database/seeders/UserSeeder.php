@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
         //User::factory()->count(10)->create();
         
 
-        Userable::create(["user_id"=>1,"userable_id"=>1,"userable_type"=>"App\Models\Ciudad"]);
+       /* Userable::create(["user_id"=>1,"userable_id"=>1,"userable_type"=>"App\Models\Ciudad"]);
         Userable::create(["user_id"=>1,"userable_id"=>2,"userable_type"=>"App\Models\Ciudad"]);
         Userable::create(["user_id"=>1,"userable_id"=>3,"userable_type"=>"App\Models\Ciudad"]);
         Userable::create(["user_id"=>1,"userable_id"=>4,"userable_type"=>"App\Models\Ciudad"]);
@@ -268,7 +268,7 @@ class UserSeeder extends Seeder
         Userable::create(["user_id"=>1,"userable_id"=>223,"userable_type"=>"App\Models\Ciudad"]);
         
         
-        Userable::create(["user_id"=>1,"userable_id"=>1,"userable_type"=>"App\Models\Persona"]);
+        Userable::create(["user_id"=>1,"userable_id"=>1,"userable_type"=>"App\Models\Persona"]);*/
 
        
        

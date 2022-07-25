@@ -33,9 +33,9 @@ class Feriado extends Model
      */
     protected $fillable = ['fecha','festividad'];
 
-    public function userable()
+    public function usuario()
     {
-      return $this->morphOne('App\Models\Userable', 'userable');
+        return $this->morphToMany('App\Models\User', 'userable');
     }
 
 

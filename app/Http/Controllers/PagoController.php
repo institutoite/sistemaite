@@ -88,7 +88,7 @@ class PagoController extends Controller
         $pago->pagable_type='App\Models\Inscripcione';
         $pago->save();
         //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   %%%%%%%%%%%%%%%%*/
-        $pago->userable()->create(['user_id' => Auth::user()->id]); 
+        $pago->usuario()->attacha(Auth::user()->id);
         return redirect()->route('billete.crear',['pago'=>$pago]);
     }
 

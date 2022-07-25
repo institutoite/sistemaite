@@ -12,12 +12,16 @@ class Administrativo extends Model
     {
         return $this->morphMany(Observacion::class, 'observable');
     }
-    public function userable()
-    {
-        return $this->morphOne('App\Models\Userable', 'userable');
-    }
+    // public function userable()
+    // {
+    //     return $this->morphOne('App\Models\Userable', 'userable');
+    // }
     public function persona()
     {
         return $this->belongsTo(Persona::class);
+    }
+    public function usuario()
+    {
+        return $this->morphToMany('App\Models\User', 'userable');
     }
 }

@@ -21,10 +21,6 @@ class Aula extends Model
     {
         return $this->hasMany(Clasecom::class);
     }
-    public function userable()
-    {
-        return $this->morphOne('App\Models\Userable', 'userable');
-    }
     public function sesioncom()
     {
         return $this->belongsTo(Sesion::class);
@@ -32,6 +28,10 @@ class Aula extends Model
     public function programacioncom()
     {
         return $this->hasOne(Programacioncom::class);
+    }
+    public function usuario()
+    {
+        return $this->morphToMany('App\Models\User', 'userable');
     }
 
 }

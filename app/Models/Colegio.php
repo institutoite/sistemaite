@@ -48,9 +48,9 @@ class Colegio extends Model
      */
     protected $fillable = ['nombre','rue','director','direccion','telefono','celular','dependencia','nivel','turno','departamento_id','provincia_id','municipio_id','distrito','areageografica','coordenadax','coordenaday'];
     
-    public function userable()
+    public function usuario()
     {
-        return $this->morphOne('App\Models\Userable', 'userable');
+        return $this->morphToMany('App\Models\User', 'userable');
     }
 
     public function niveles(){

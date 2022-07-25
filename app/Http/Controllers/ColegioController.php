@@ -70,16 +70,9 @@ class ColegioController extends Controller
      */
     public function store(ColegioStoreRequest $request)
     {
-        
-        //dd($request->all());
-        //request()->validate(Colegio::$rules);
         $colegio = Colegio::create($request->all());
-        //dd($colegio);
-        
         $colegio->niveles()->sync(array_keys($request->niveles));
-        //dd($request->all());
-        $colegio->userable()->create(['user_id'=>Auth::user()->id]);
-
+        $colegio->usuario()->attach(Auth::user()->id);
         return redirect()->route('colegios.index')
             ->with('success', 'Colegio created successfully.');
     }
@@ -96,13 +89,9 @@ class ColegioController extends Controller
         $departamento=Departamento::findOrFail($colegio->departamento_id);
         $provincia = provincia::findOrFail($colegio->provincia_id);
         $municipio = municipio::findOrFail($colegio->municipio_id);
-
-        $user=User::findOrFail($colegio->userable->user_id);
-
+        $user=Colegio->usuario->first();
         $niveles=$colegio->niveles;
-
-
-       return view('colegio.show', compact('colegio','departamento','provincia','municipio','niveles','user'));
+        return view('colegio.show', compact('colegio','departamento','provincia','municipio','niveles','user'));
     }
 
     /**

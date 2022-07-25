@@ -50,7 +50,7 @@ class PagocomController extends Controller
         $pago->save();
         //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   %%%%%%%%%%%%%%%%*/
         
-        $pago->userable()->create(['user_id' => Auth::user()->id]); 
+        $pago->usuario()->attacha(Auth::user()->id);
         return redirect()->route('billetecom.crear',['pago'=>$pago]);
     }
 

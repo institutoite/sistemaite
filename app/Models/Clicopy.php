@@ -9,8 +9,8 @@ class Clicopy extends Model
 {
     use HasFactory;
     
-    public function userable()
+    public function usuario()
     {
-        return $this->morphOne('App\Models\Userable', 'userable');
+        return $this->morphToMany('App\Models\User', 'userable');
     }
 }

@@ -54,9 +54,9 @@ class Billete extends Model
   {
     return $this->morphedByMany(Pago::class, 'billetable');
   }
-  public function userable()
+  public function usuario()
   {
-    return $this->morphOne('App\Models\Userable', 'userable');
+      return $this->morphToMany('App\Models\User', 'userable');
   }
 
 }

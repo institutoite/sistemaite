@@ -98,7 +98,7 @@ class MatriculacionController extends Controller
         $docentes = $nivel->docentes;
         $dias = Dia::get();
         $computacion=$matriculacion->computacion;
-        $matriculacion->userable()->create(['user_id'=>Auth::user()->id]);
+        $matriculacion->usuario()->attach(Auth::user()->id);
         return view('matriculacion.configurar', compact('computacion','matriculacion', 'aulas', 'docentes','dias')); 
     }
 
@@ -111,16 +111,13 @@ class MatriculacionController extends Controller
     public function show($matriculacion_id)
     {
         $matriculacion = Matriculacion::findOrFail($matriculacion_id);
-         $programacioncom = Programacioncom::join('aulas', 'programacioncoms.aula_id', '=', 'aulas.id')
+        $programacioncom = Programacioncom::join('aulas', 'programacioncoms.aula_id', '=', 'aulas.id')
         ->join('docentes', 'programacioncoms.docente_id', '=', 'docentes.id')
         ->join('personas', 'personas.id', '=', 'docentes.persona_id')
         ->select('programacioncoms.id','programacioncoms.fecha', 'horaini', 'horafin', 'horas_por_clase', 'personas.nombre', 'aulas.aula', 'programacioncoms.habilitado', 'programacioncoms.matriculacion_id')
         ->orderBy('fecha', 'asc')
         ->where('matriculacion_id', '=', $matriculacion_id)->get();
-
-        $user=User::findOrFail($matriculacion->userable->user_id);
-        //  $user=User::findOrFail($file->userable->user_id);
-
+        $user=$matriculacion->usuario->first();
         return view('matriculacion.show', compact('matriculacion','programacioncom','user'));
     }
 
@@ -136,7 +133,7 @@ class MatriculacionController extends Controller
         $persona=$matriculacion->computacion->persona;
         $carrera=$matriculacion->asignatura->carrera;
         $asignaturasFaltantes = $carrera->asignaturas;
-          $motivos = Tipomotivo::findOrFail(2)->motivos;
+        $motivos = Tipomotivo::findOrFail(2)->motivos;
         return view('matriculacion.edit', compact('matriculacion','persona', 'asignaturasFaltantes','motivos'));
     }
 
@@ -169,8 +166,6 @@ class MatriculacionController extends Controller
         $programacioncoms=$matriculacion->programacionescom;
         $clasesConsumidas=count($programacioncoms->where('estado_id','<>',Config::get('constantes.ESTADO_INDEFINIDO')));
         $ultimaclasepasada=$programacioncoms->where('estado_id','<>',Config::get('constantes.ESTADO_INDEFINIDO'))->max();
-        //$matriculacion->userable()->create(['user_id'=>Auth::user()->id]);
-        //  dd($ultimaclasepasada);
         return view('matriculacion.configurarupdate', compact('ultimaclasepasada','computacion','matriculacion', 'aulas', 'docentes','dias','programacioncoms','clasesConsumidas'));
     }
 

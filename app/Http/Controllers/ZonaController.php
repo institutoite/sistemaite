@@ -50,7 +50,7 @@ class ZonaController extends Controller
         $zonaNueva->zona=$request->zona;
         $zonaNueva->ciudad_id=$request->ciudad_id;
         $zonaNueva->save();
-        $zonaNueva->userable()->create(['user_id'=>Auth::user()->id]);
+        $zonaNueva->usuario()->attach(Auth::user()->id);
         return redirect()->route('zonas.index');
     }
 
@@ -63,7 +63,7 @@ class ZonaController extends Controller
     public function show(Zona $zona)
     {
         //if (isset($zona->userable))
-        $user=User::findOrFail($zona->userable->user_id);
+        $user=$zona->usuario->first();
         return view('zona.mostrar',compact('zona','user'));
     }
 

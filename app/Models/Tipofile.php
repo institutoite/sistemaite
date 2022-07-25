@@ -12,5 +12,8 @@ class Tipofile extends Model
      */
     use HasFactory;
 
-    
+    public function usuario()
+    {
+        return $this->morphToMany('App\Models\User', 'userable');
+    }
 }

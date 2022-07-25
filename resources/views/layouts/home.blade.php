@@ -51,6 +51,7 @@
 
 </head>
 <body id="top-header">
+
     <header>
         
         <!-- Main Menu Start -->
@@ -139,7 +140,14 @@
     </div>
 </header>
 
+<!-- Messenger plugin del chat Code -->
+    <div id="fb-root"></div>
 
+    <!-- Your plugin del chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+   
     
  <!--search overlay start-->
  <div class="search-wrap">

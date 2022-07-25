@@ -111,10 +111,10 @@ class AdministrativoController extends Controller
                 ->rawColumns(['btn'])
                 ->toJson();
     }
-     public function miCarteraInscripcionesDesvigentes(){
+    public function miCarteraInscripcionesDesvigentes(){
         $userActual = Auth::user();
         
-    $inscripciones= Inscripcione::join('userables','userables.userable_id','inscripciones.id')
+        $inscripciones= Inscripcione::join('userables','userables.userable_id','inscripciones.id')
         ->join('estudiantes','inscripciones.estudiante_id','estudiantes.id')
         ->join('personas','personas.id','estudiantes.persona_id')
         ->join('users','users.id','userables.user_id')
@@ -124,7 +124,7 @@ class AdministrativoController extends Controller
         ->select('inscripciones.id','personas.nombre','personas.apellidop','apellidom',DB::raw("(SELECT max(fechafin) FROM inscripciones WHERE estudiantes.id= inscripciones.estudiante_id) as fecha"))
         ->groupBy('inscripciones.id','personas.nombre','personas.apellidop','apellidom','fecha')
         ->get();
-         return datatables()->of($inscripciones)
+        return datatables()->of($inscripciones)
                 ->addColumn('btn', 'cartera.actioninscripcionesdesvigentes')
                 ->rawColumns(['btn'])
                 ->toJson();
@@ -165,19 +165,16 @@ class AdministrativoController extends Controller
                 ->rawColumns(['btn'])
                 ->toJson();
     }
-    public function miCarteraMatriculacioneDesvigentes(){
+    public function miCarteraMatriculacionesDesvigentes(){
         $userActual = Auth::user();
-        $matriculaciones=Matriculacion::join('userables','userables.userable_id','matriculacions.id')
-        ->join('computacions','matriculacions.computacion_id','computacions.id')
-        ->join('personas','personas.id','computacions.persona_id')
+       $iculaciones=Matriculacion::join('computacions','matriculacions.computacion_id','computacions.id')
+        ->join('userables','userables.userable_id','matriculacions.id')
         ->join('users','users.id','userables.user_id')
+        ->join('personas','personas.id','computacions.persona_id')
+        ->where('vigente',0)
         ->where('users.id', $userActual->id)
-        ->where('vigente',1)
-        ->where('userables.userable_type',Matriculacion::class)
-        ->select('matriculacions.id','personas.nombre','apellidop','apellidom')
-        ->max('fechfin')
-  		->distinct()
-        ->get();
+        ->select('personas.id','nombre','apellidop','apellidom',DB::raw("(SELECT max(fechafin) FROM matriculacions WHERE computacions.id= matriculacions.computacion_id) as fecha"))
+        ->groupBy('personas.id','nombre','apellidop','apellidom','fecha')->get();
     
         return datatables()->of($matriculaciones)
                 ->addColumn('btn', 'cartera.actionmatriculacion')

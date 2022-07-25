@@ -13,4 +13,8 @@ class Calificacion extends Model
     {
         return $this->belongsTo(Persona::class);
     }
+    public function usuario()
+    {
+        return $this->morphToMany('App\Models\User', 'userable');
+    }
 }

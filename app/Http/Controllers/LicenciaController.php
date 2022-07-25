@@ -84,7 +84,7 @@ class LicenciaController extends Controller
             $programacioncom->estado_id=Config::get('constantes.ESTADO_LICENCIA');
             $programacioncom->save();
 
-            $licenciacom->userable()->create(['user_id'=>Auth::user()->id]);
+            $licenciacom->usuario()->attach(Auth::user()->id);
             return response()->json(['errores'=>[]]);
         }
             return response()->json(['errores' => $validator->errors()->all()]);
@@ -114,7 +114,7 @@ class LicenciaController extends Controller
             $programacion->estado_id=Config::get('constantes.ESTADO_LICENCIA');
             $programacion->save();
             
-            $licencia->userable()->create(['user_id'=>Auth::user()->id]);
+            $licencia->usuario()->attacha(Auth::user()->id);
             return response()->json(['errores'=>[]]);
         }
             return response()->json(['errores' => $validator->errors()->all()]);

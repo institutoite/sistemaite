@@ -39,8 +39,8 @@ class Matriculacion extends Model
     {
         return $this->belongsTo(Asignatura::class);
     }
-    public function userable()
+    public function usuario()
     {
-        return $this->morphOne('App\Models\Userable', 'userable');
+        return $this->morphToMany('App\Models\User', 'userable');
     }
 }

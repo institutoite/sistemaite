@@ -53,7 +53,7 @@ class DepartamentoController extends Controller
         $departamento->departamento=$request->departamento;
         $departamento->pais_id = $request->pais_id;
         $departamento->save();
-        $departamento->userable()->create(['user_id'=>Auth::user()->id]);
+        $departamento->usuario()->attach(Auth::user()->id);
         return redirect()->route('departamentos.index');
     }
 
@@ -66,7 +66,7 @@ class DepartamentoController extends Controller
     public function show($id)
     {
         $departamento = Departamento::findOrFail($id);
-        $user=User::findOrFail($departamento->userable->user_id);
+        $user=Departamento->usuario->first();
         return view('departamento.show', compact('departamento','user'));
     }
 

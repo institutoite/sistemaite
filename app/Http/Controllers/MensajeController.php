@@ -45,7 +45,7 @@ class MensajeController extends Controller
         $mensaje->mensaje= $request->mensaje;
         $mensaje->vigente=1;
         $mensaje->save();
-        $mensaje->userable()->create(['user_id'=>Auth::user()->id]);
+        $mensaje->usuario()->attach(Auth::user()->id);
         return redirect()->route('mensaje.index');
     }
 
@@ -58,7 +58,7 @@ class MensajeController extends Controller
     public function show(Mensaje $mensaje)
     {
         //dd($mensaje);
-        $user=User::findOrFail($mensaje->userable->user_id);
+        $user=$mensaje->usuario->first();
         return view('whatsapp.show',compact('mensaje','user'));
     }
 

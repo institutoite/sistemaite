@@ -55,7 +55,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[ObservacionController::class,'listarObservacionesGeneral'])->name('prueba');
+Route::get('prueba',[AdministrativoController::class,'miCarteraMatriculacionesDesvigentes'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -161,6 +161,7 @@ Route::get('micartera/view',[AdministrativoController::class,'vistaCartera'])->n
 Route::get('micartera/inscripciones',[AdministrativoController::class,'miCarteraInscripciones'])->name('administrativo.micartera.inscripciones');
 Route::get('micartera/inscripciones/desvigentes',[AdministrativoController::class,'miCarteraInscripcionesDesvigentes'])->name('administrativo.micartera.inscripciones.desvigentes');
 Route::get('micartera/matriculaciones',[AdministrativoController::class,'miCarteraMatriculaciones'])->name('administrativo.micartera.matriculacioenes');
+Route::get('micartera/matriculaciones/desvigentes',[AdministrativoController::class,'miCarteraMatriculacionesDesvigentes'])->name('administrativo.micartera.matriculacioenes.desvigentes');
 Route::get('opciones/administrativos/{persona}',[OpcionController::class,'administrativos'])->name('opcion.administrativos');
 
 

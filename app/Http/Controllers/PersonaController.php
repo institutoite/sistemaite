@@ -134,7 +134,7 @@ class PersonaController extends Controller
         $user->save();
 
         //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A    P E R S O N A   %%%%%%%%%%%%%%%%*/
-        $persona->userable()->create(['user_id'=>Auth::user()->id]);
+        $persona->usuario()->attach(Auth::user()->id);
         //dd($request->papel);
         switch ($request->papel) {
             
@@ -143,7 +143,7 @@ class PersonaController extends Controller
                 $estudiante->persona_id=$persona->id;
                 $estudiante->save();
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  E S T U D I A N T E   %%%%%%%%%%%%%%%%*/
-                $estudiante->userable()->create(['user_id' => Auth::user()->id]);
+                $estudiante->usuario()->attach(Auth::user()->id);
                 $observacion=new Observacion();
                 $observacion->observacion=$request->observacion;
                 $observacion->activo=1;
@@ -151,7 +151,7 @@ class PersonaController extends Controller
                 $observacion->observable_type="App\Models\Persona";
                 $observacion->save();
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  O B S E R V A C I O N   %%%%%%%%%%%%%%%%*/
-                $observacion->userable()->create(['user_id' => Auth::user()->id]);
+                $observacion->usuario()->attach(Auth::user()->id);
                 break;
             case 'computacion':
                 $computacion=new Computacion();
@@ -159,7 +159,7 @@ class PersonaController extends Controller
                 $computacion->save();
                 
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  E S T U D I A N T E   %%%%%%%%%%%%%%%%*/
-                $computacion->userable()->create(['user_id' => Auth::user()->id]);
+                $computacion->usuario()->attach(Auth::user()->id);
                 $observacion=new Observacion();
                 $observacion->observacion=$request->observacion;
                 $observacion->activo=1;
@@ -167,7 +167,7 @@ class PersonaController extends Controller
                 $observacion->observable_type="App\Models\Persona";
                 $observacion->save();
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  O B S E R V A C I O N   %%%%%%%%%%%%%%%%*/
-                $observacion->userable()->create(['user_id' => Auth::user()->id]);
+                $observacion->usuario()->attach(Auth::user()->id);
                 break;         
             case 'docente':
                 $docente = new Docente();
@@ -178,7 +178,7 @@ class PersonaController extends Controller
                 $docente->persona_id = $persona->id;
                 $docente->save();
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  D O C E N T E   %%%%%%%%%%%%%%%%*/
-                $docente->userable()->create(['user_id' => Auth::user()->id]);
+                $docente->usuario()->attach(Auth::user()->id);
                 
                 $observacion = new Observacion();
                 $observacion->observacion = $request->observacion;
@@ -187,7 +187,7 @@ class PersonaController extends Controller
                 $observacion->observable_type = "App\Models\Persona";
                 $observacion->save();
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  O B S E R V A C I O N   %%%%%%%%%%%%%%%%*/
-                $observacion->userable()->create(['user_id' => Auth::user()->id]);
+                $observacion->usuario()->attach(Auth::user()->id);
 
                 break;
             case 'cliservicio':
@@ -196,14 +196,14 @@ class PersonaController extends Controller
                 $cliservicio->save();
 
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   C L I S E R V I C I O   %%%%%%%%%%%%%%%%*/
-                $cliservicio->userable()->create(['user_id' => Auth::user()->id]);
+                $cliservicio->usuario()->attach(Auth::user()->id);
                 break;
             case 'clicopy':
                 $clicopy = new Clicopy();
                 $clicopy->persona_id = $persona->id;
                 $clicopy->save();
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   C L I C O P Y   %%%%%%%%%%%%%%%%*/
-                $clicopy->userable()->create(['user_id' => Auth::user()->id]);
+                $clicopy->usuario()->attach(Auth::user()->id);
                 break;
 
             case 'administrativo':
@@ -213,7 +213,7 @@ class PersonaController extends Controller
                 $administrativo->save();
 
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   A D M I N I S T V R V A V T I V O  %%%%%%%%%%%%%%%%*/
-                $administrativo->userable()->create(['user_id' => Auth::user()->id]);
+                $administrativo->usuario()->attach(Auth::user()->id);
                 break;
             case 'proveedor':
                 $proveedor = new Proveedor();
@@ -221,7 +221,7 @@ class PersonaController extends Controller
                 $proveedor->save();
 
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   P R O V E E D O R    %%%%%%%%%%%%%%%%*/
-                $proveedor->userable()->create(['user_id' => Auth::user()->id]);
+                $proveedor->usuario()->attach(Auth::user()->id);
                 break;
             default:
                 # code...
@@ -255,7 +255,7 @@ class PersonaController extends Controller
         $user->foto = "estudiantes/sinperfil.png";
         $user->save();
 
-        $apoderado->userable()->create(['user_id'=>Auth::user()->id]);
+        $apoderado->usuario()->attach(Auth::user()->id);
         $observacion = new Observacion();
         $observacion->observacion = "Se registró a sistema como un apoderado";
         $observacion->activo = 1;
@@ -263,7 +263,7 @@ class PersonaController extends Controller
         $observacion->observable_type = "App\Models\Persona";
         $observacion->save();
 
-        $observacion->userable()->create(['user_id'=>Auth::user()->id]);
+        $observacion->usuario()->attach(Auth::user()->id);
 
         $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
         $apoderados = $persona->apoderados;
@@ -280,14 +280,14 @@ class PersonaController extends Controller
         $persona->papelinicial = 'estudiante';
         $persona->save();
         $persona->interests()->sync(array_keys($request->interests));
-        $persona->userable()->create(['user_id'=>Auth::user()->id]);
+        $persona->usuario()->attach(Auth::user()->id);
         $observacion = new Observacion();
         $observacion->observacion = $request->observacion;
         $observacion->activo = 1;
         $observacion->observable_id = $persona->id;
         $observacion->observable_type = "App\Models\Persona";
         $observacion->save();
-        $observacion->userable()->create(['user_id'=>Auth::user()->id]);
+        $observacion->usuario()->attach(Auth::user()->id);
         return redirect()->route('telefonos.crear',['persona'=>$persona])->with('mensaje','Contacto Creado Corectamente');
     }
 
@@ -302,7 +302,6 @@ class PersonaController extends Controller
         if(is_null($persona->pais_id)){
             return redirect()->route('personas.edit',$persona);
         }
-
         $pais=Pais::findOrFail($persona->pais_id);
         $ciudad = Ciudad::findOrFail($persona->ciudad_id);
         $zona = Zona::findOrFail($persona->zona_id);
@@ -329,7 +328,7 @@ class PersonaController extends Controller
             $micalificacion=$persona->calificaciones->where('user_id',Auth::user()->id)->first()->calificacion;
         else 
             $micalificacion=null;
-            $user=User::findOrFail($persona->userable->user_id);
+            $user=$persona->usuario->first();
         $observaciones=$persona->observaciones;
         return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion','recomendado','apoderados','calificado','promedio','calificaciones','micalificacion','user','observaciones'));
     }
@@ -634,7 +633,7 @@ class PersonaController extends Controller
         ->get();
         $apoderados=$potencial->apoderados;
         $interests=$potencial->interests;
-        $autorPotencial=User::findOrFail($potencial->userable->user_id)->name;
+        $autorPotencial=User::findOrFail($potencial->usuario->user_id)->name;
 
         $data=['intereses'=>$interests,'potencial'=>$potencial,'observaciones'=>$observaciones,'apoderados'=>$apoderados,'autorPotencial'=>$autorPotencial];
         return response()->json($data);
@@ -658,7 +657,7 @@ class PersonaController extends Controller
         $estudiante = Estudiante::findOrFail($inscripcion->estudiante_id);
         $persona = $estudiante->persona;
         $colegio=Colegio::find($estudiante->grados->last()->pivot->colegio_id);
-        $usuario=User::find($inscripcion->userable->user_id);
+        $usuario=User::find($inscripcion->usuario->user_id);
         $modalidad=$inscripcion->modalidad;
         $nivel=Nivel::findOrFail($estudiante->grados->last()->nivel_id);
         $grado=Grado::findOrFail($estudiante->grados->last()->pivot->grado_id);

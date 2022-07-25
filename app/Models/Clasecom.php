@@ -31,8 +31,8 @@ class Clasecom extends Model
     public function estado(){
         return $this->belongsTo(Estado::class);
     }
-    public function userable()
+    public function usuario()
     {
-        return $this->morphOne('App\Models\Userable', 'userable');
+        return $this->morphToMany('App\Models\User', 'userable');
     }
 }

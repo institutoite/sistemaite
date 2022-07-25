@@ -356,7 +356,7 @@ class ProgramacioncomController extends Controller
         $computacion = Computacion::findOrFail($matriculacion->computacion_id);
         $persona = $computacion->persona;
         //dd($matriculacion);
-        $usuario=User::find($matriculacion->userable->user_id);
+        $usuario=$matriculacion->usuario->first();
         $asignatura=$matriculacion->asignatura;
         $carrera=$asignatura->carrera;
         $dompdf = PDF::loadView('programacioncom.reporte', compact('carrera','usuario','programacion','persona','computacion','persona','matriculacion'));
@@ -471,7 +471,7 @@ class ProgramacioncomController extends Controller
         $observacion->observable_type= Programacioncom::class;
         $observacion->save();
 
-        $observacion->userable()->create(['user_id'=>Auth::user()->id]);
+        $observacion->usuario()->attacha(Auth::user()->id);
         
         return response()->json($request->all());
     }

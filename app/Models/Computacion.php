@@ -14,10 +14,10 @@ class Computacion extends Model
     {
         return $this->belongsTo(Persona::class);
     }
-    public function userable()
-    {
-        return $this->morphOne('App\Models\Userable', 'userable');
-    }
+    // public function userable()
+    // {
+    //     return $this->morphOne('App\Models\Userable', 'userable');
+    // }
     public function carreras()
     {
         return $this->belongsToMany('App\Models\Carrera');
@@ -30,5 +30,9 @@ class Computacion extends Model
     public function matriculaciones()
     {
         return $this->hasMany(Matriculacion::class);
+    }
+    public function usuario()
+    {
+        return $this->morphToMany('App\Models\User', 'userable');
     }
 }

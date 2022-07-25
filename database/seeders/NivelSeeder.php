@@ -25,7 +25,7 @@ class NivelSeeder extends Seeder
         Nivel::create(['nivel' => 'UNIVERSITARIO']);
         Nivel::create(['nivel' => 'PROFESIONAL']);
 
-        Nivel::findOrFail(1)->userable()->create(['user_id'=>1]);
+        /*Nivel::findOrFail(1)->userable()->create(['user_id'=>1]);
         Nivel::findOrFail(2)->userable()->create(['user_id'=>1]);
         Nivel::findOrFail(3)->userable()->create(['user_id'=>1]);
         
@@ -34,6 +34,6 @@ class NivelSeeder extends Seeder
         Nivel::findOrFail(6)->userable()->create(['user_id'=>1]);
         
         Nivel::findOrFail(7)->userable()->create(['user_id'=>1]);
-        Nivel::findOrFail(8)->userable()->create(['user_id'=>1]);
+        Nivel::findOrFail(8)->userable()->create(['user_id'=>1]);*/
     }
 }

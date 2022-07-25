@@ -36,8 +36,8 @@ class Zona extends Model
         return Zona::where('ciudad_id','=',$id)->get();
     }
 
-    public function userable()
+    public function usuario()
     {
-        return $this->morphOne('App\Models\Userable', 'userable');
+        return $this->morphToMany('App\Models\User', 'userable');
     }
 }

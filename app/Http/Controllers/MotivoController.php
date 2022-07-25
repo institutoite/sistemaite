@@ -7,7 +7,6 @@ use App\Http\Requests\MotivoUpdateRequest;
 use App\Models\Motivo;
 use App\Models\User;
 use App\Models\Tipomotivo;
-use App\Models\Userable;
 //use Dotenv\Validator as Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -71,11 +70,7 @@ class MotivoController extends Controller
         $motivo->tipomotivo_id=$request->tipomotivo_id;
         $motivo->save();
         $user = Auth::user();
-        $userable = new Userable();
-        $userable->user_id = $user->id;
-        $userable->userable_id = $motivo->id;
-        $userable->userable_type = Motivo::class;
-        $userable->save();
+        $motivo->usuario()->attach(Auth::user()->id);
         return redirect()->route('motivos.index')
             ->with('success', 'Motivo Guardado Correctamente.');
     }

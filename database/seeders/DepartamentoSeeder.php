@@ -26,7 +26,7 @@ class DepartamentoSeeder extends Seeder
         Departamento::create(['departamento' => 'BENI','pais_id'=>1]);
         Departamento::create(['departamento' => 'PANDO','pais_id'=>1]);
         
-        Departamento::findOrFail(1)->userable()->create(['user_id'=>1]);
+        /*Departamento::findOrFail(1)->userable()->create(['user_id'=>1]);
         Departamento::findOrFail(2)->userable()->create(['user_id'=>1]);
         Departamento::findOrFail(3)->userable()->create(['user_id'=>1]);
 
@@ -36,6 +36,6 @@ class DepartamentoSeeder extends Seeder
         
         Departamento::findOrFail(7)->userable()->create(['user_id'=>1]);
         Departamento::findOrFail(8)->userable()->create(['user_id'=>1]);
-        Departamento::findOrFail(9)->userable()->create(['user_id'=>1]);
+        Departamento::findOrFail(9)->userable()->create(['user_id'=>1]);*/
     }
 }

@@ -44,7 +44,7 @@ class ProvinciaController extends Controller
     public function store(ProvinciaStoreRequest $request)
     {
         $provincia = Provincia::create($request->all());
-        $provincia->userable()->create(['user_id'=>Auth::user()->id]);
+        $provincia->usuario()->attach(Auth::user()->id);
         return redirect()->route('provincias.index');
     }
 
@@ -60,7 +60,7 @@ class ProvinciaController extends Controller
             ->join('departamentos','provincias.departamento_id','=','departamentos.id')
             ->join('pais','departamentos.pais_id','=','pais.id')
             ->where('provincias.id','=',$id)->get()->first();
-        $user=User::findOrFail($provincia->userable->user_id);
+        $user=$provincias->usuario->first();
         //$departamento=Departamento::findOrFail($provincia->departamento_id);
         return view('provincia.show', compact('provincia','user'));
     }

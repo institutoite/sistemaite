@@ -117,9 +117,14 @@ class Persona extends Model
     }
 
 
-    public function userable()
+    // public function userable()
+    // {
+    //     return $this->morphToMany('App\Models\User', 'userable');
+    // }
+
+    public function usuario()
     {
-        return $this->morphOne('App\Models\Userable', 'userable');
+        return $this->morphToMany('App\Models\User', 'userable');
     }
 
     public function calificaciones()

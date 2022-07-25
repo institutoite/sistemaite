@@ -65,7 +65,7 @@ class GradoSeeder extends Seeder
         Grado::create(['grado' => 'Diplomado', 'nivel_id' =>8]);
         Grado::create(['grado' => 'Profesional', 'nivel_id' => 8]);
 
-        Grado::findOrFail(1)->userable()->create(['user_id'=>1]);
+        /*Grado::findOrFail(1)->userable()->create(['user_id'=>1]);
         Grado::findOrFail(2)->userable()->create(['user_id'=>1]);
         Grado::findOrFail(3)->userable()->create(['user_id'=>1]);
         Grado::findOrFail(4)->userable()->create(['user_id'=>1]);
@@ -103,7 +103,7 @@ class GradoSeeder extends Seeder
         Grado::findOrFail(30)->userable()->create(['user_id'=>1]);
         Grado::findOrFail(31)->userable()->create(['user_id'=>1]);
         Grado::findOrFail(32)->userable()->create(['user_id'=>1]);
-        Grado::findOrFail(33)->userable()->create(['user_id'=>1]);
+        Grado::findOrFail(33)->userable()->create(['user_id'=>1]);*/
         
     }
 }

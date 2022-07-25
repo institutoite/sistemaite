@@ -17,9 +17,9 @@ class Licencia extends Model
         return $this->hasOne(Programacion::class);
     }
 
-    public function userable()
+    public function usuario()
     {
-        return $this->morphOne('App\Models\Userable', 'userable');
+        return $this->morphToMany('App\Models\User', 'userable');
     }
     public function licenciable()
     {

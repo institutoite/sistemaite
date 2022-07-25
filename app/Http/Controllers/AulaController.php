@@ -49,7 +49,7 @@ class AulaController extends Controller
         $aula->direccion = $request->direccion;
         $aula->save();
 
-        $aula->userable()->create(['user_id'=>Auth::user()->id]);
+        $aula->usuario()->attach(Auth::user()->id);
         return redirect()->route('aulas.index')
             ->with('success', 'Registro creaado correctamente.');
     }
@@ -63,9 +63,9 @@ class AulaController extends Controller
     public function mostrar(Request $request)
     {
 
-        // $aula = Aula::findOrFail($request->id);
-        $aula = Aula::findOrFail(16);
-        $user=User::findOrFail($aula->userable->user_id);
+        $aula = Aula::findOrFail($request->id);
+        //$aula = Aula::findOrFail(16);
+        $user=$aula->usuario->first();
         $url=storage_path('app/public/'.$user->foto);
         $data=['aula'=>$aula,'user'=>$user,'url'=>$url];
 
@@ -89,26 +89,20 @@ class AulaController extends Controller
 
     public function actualizar(Request $request)
     {
-
+        $aula = Aula::findOrFail($request->id);
+        $validator = Validator::make($request->all(), [
+            'aula'=>'required',Rule::unique('aulas', 'aula')->ignore($aula),
+            'direccion'=>'required',
+        ]);
+            if ($validator->passes()) {
             $aula = Aula::findOrFail($request->id);
-            $validator = Validator::make($request->all(), [
-                'aula'=>'required',Rule::unique('aulas', 'aula')->ignore($aula),
-                'direccion'=>'required',
-            ]);
-             if ($validator->passes()) {
-                $aula = Aula::findOrFail($request->id);
-                $aula->aula = $request->aula;
-                $aula->direccion = $request->direccion;
-                $aula->save();
-                return response()->json(['aula'=>$aula]);
-            }else{
-                return response()->json(['error' => $validator->errors()->first()]);
-            }
-           
-
-            
-        
-        
+            $aula->aula = $request->aula;
+            $aula->direccion = $request->direccion;
+            $aula->save();
+            return response()->json(['aula'=>$aula]);
+        }else{
+            return response()->json(['error' => $validator->errors()->first()]);
+        }
     }
 
 

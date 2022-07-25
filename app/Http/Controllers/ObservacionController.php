@@ -47,10 +47,7 @@ class ObservacionController extends Controller
         $observacion->observable_id = $request->observable_id;
         $observacion->observable_type ='App\\Models\\'.$request->observable_type;
         $observacion->save();
-        $observacion ->userable()->create(['user_id'=>Auth::user()->id]);
-        // dd($request->observable_type."Controller@index");
-        //$observaciones=$observacion->observable_type::findOrFail($request->observable_id)->observaciones;
-
+        $observacion ->usuario()->attach(Auth::user()->id);
         return redirect()->action($request->observable_type."Controller@show",$request->observable_id);
     }
     public function guardarObservacionGeneral(Request $request){
@@ -64,7 +61,7 @@ class ObservacionController extends Controller
             $observacion->activo=1;
             $observacion->observable_type='App\\Models\\'.$request->observable_type;
             $observacion->save();
-            $observacion->userable()->create(['user_id'=>Auth::user()->id]);
+            $observacion->usuario()->attach(Auth::user()->id);
             return response()->json(['mensaje'=>"Guardado correctamente"]);    
         }else{
             return response()->json(['errores' => $validator->errors()]);
@@ -80,7 +77,7 @@ class ObservacionController extends Controller
         $observacion->activo=1;
         $observacion->observable_type=$request->observable_type;
         $observacion->save();
-        $observacion->userable()->create(['user_id'=>Auth::user()->id]);
+        $observacion->usuario()->attach(Auth::user()->id);
         //return response()->json($request->all());
         return response()->json(['mensaje'=>"Guardado correctamente"]);
     }

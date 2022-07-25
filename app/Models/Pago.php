@@ -48,7 +48,8 @@ class Pago extends Model
     return $this->morphTo();
   }
   
-  public function userable(){
-    return $this->morphOne('App\Models\Userable','userable');
+  public function usuario()
+  {
+      return $this->morphToMany('App\Models\User', 'userable');
   }
 }

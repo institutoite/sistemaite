@@ -78,13 +78,43 @@
                     <div class="card-header bg-secondary">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span id="card_title">
-                                {{ __('Mis clientes con inscripciones finalizdas') }}
+                                {{ __('Mis clientes con inscripciones finalizadas') }}
                             </span>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="inscripcionesdesvigentes" class="table table-striped table-hover">
+                                <thead class="thead">
+                                    <tr>
+                                        <th>NRO</th>
+										<th>NOMBRE</th>
+										<th>APELLIDOP</th>
+										<th>APELLIDOM</th>
+										<th>ULTIMA VEZ</th>
+                                        <th>Options</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span id="card_title">
+                                {{ __('Mis clientes con matriculaciones finalizadas') }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="matriculacionesdesvigentes" class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
                                         <th>NRO</th>
@@ -191,7 +221,7 @@
                 }
             );
 
-            var tablainscripciones=$('#inscripcionesdesvigentes').DataTable(
+            var tablainscripcionesdesvigentes=$('#inscripcionesdesvigentes').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
@@ -218,7 +248,32 @@
                 }
             );
 
-
+            var tablamatriculacionesdesvigentes=$('#matriculacionesdesvigentes').DataTable(
+                {
+                    "serverSide": true,
+                    "responsive":true,
+                    "autoWidth":false,
+                    "createdRow": function( row, data, dataIndex ) {
+                        $(row).attr('id',data['id']); 
+                    },
+                    "ajax": "{{ url('micartera/matriculaciones/desvigentes') }}",
+                    "columns": [
+                        {data: 'id'},
+                        {data:'nombre'},
+                        {data: 'asignatura'},
+                        {data: 'costo'},
+                        {data: 'fecha_proximo_pago'},
+                        {data: 'btn'},
+                    ],
+                    "columnDefs": [
+                        { responsivePriority: 1, targets: 0 },
+                        { responsivePriority: 3, targets: -1 }
+                    ],
+                    "language":{
+                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    },  
+                }
+            );
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PERSONA DE INSCRIPCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/    
             $('table').on('click', '.mostrarpersona', function(e) {
                 e.preventDefault();

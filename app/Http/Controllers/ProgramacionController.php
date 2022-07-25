@@ -142,7 +142,7 @@ class ProgramacionController extends Controller
                     ->where('programacions.id',$request->id)
                     ->select('clases.id','clases.fecha','clases.horainicio','estados.estado','users.name as user','clases.horafin','docentes.nombre','materias.materia', 'aulas.aula','temas.tema')
                     ->get();
-        $user=User::findOrFail($programacion->inscripcione->userable->user_id);	
+        $user=$programacion->usuario->first();
         
         $data = ['programacion' => $programacion,'user'=> $user, 'estado'=>$estado,'observaciones' => $observaciones, 'docente' => $docente, 'materia' => $materia, 'aula' => $aula, 'clases' => $clases,'licencias'=>$licencias];
         return response()->json($data);
@@ -625,7 +625,7 @@ class ProgramacionController extends Controller
         $estudiante = Estudiante::findOrFail($inscripcion->estudiante_id);
         $persona = $estudiante->persona;
         $colegio=Colegio::find($estudiante->grados->last()->pivot->colegio_id);
-        $usuario=User::find($inscripcion->userable->user_id);
+        $usuario=$inscripcion->usuario->first();
         $modalidad=$inscripcion->modalidad;
         $nivel=Nivel::findOrFail($estudiante->grados->last()->nivel_id);
         $grado=Grado::findOrFail($estudiante->grados->last()->pivot->grado_id);
@@ -661,7 +661,7 @@ class ProgramacionController extends Controller
         $observacion->observable_type= Programacion::class;
         $observacion->save();
 
-        $observacion->userable()->create(['user_id'=>Auth::user()->id]);
+        $observacion->usuario()->attach(Auth::user()->id);
         
         return response()->json($observacion);
     }

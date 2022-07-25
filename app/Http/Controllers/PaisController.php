@@ -46,7 +46,7 @@ class PaisController extends Controller
         $pais=new Pais();
         $pais->nombrepais=$request->nombrepais;
         $pais->save();
-        $pais->userable()->create(['user_id'=>Auth::user()->id]);
+        $pais->usuario()->attacha(Auth::user()->id);
         return redirect()->route('paises.index');
     }
 
@@ -59,7 +59,7 @@ class PaisController extends Controller
     public function show($id)
     {
         $pais=Pais::findOrFail($id);
-        $user=User::findOrFail($pais->userable->user_id);
+        $user=$pais->usuario->first();
         return view('pais.mostrar',compact('pais','user'));
     }
 

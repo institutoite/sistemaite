@@ -13,8 +13,8 @@ class Clipractico extends Model
         return $this->morphMany(Observacion::class, 'observable');
     }
 
-    public function userable()
+    public function usuario()
     {
-        return $this->morphOne('App\Models\Userable', 'userable');
+        return $this->morphToMany('App\Models\User', 'userable');
     }
 }

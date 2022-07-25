@@ -53,7 +53,7 @@ class AsignaturaController extends Controller
         $asignatura->asignatura= $request->asignatura;
         $asignatura->carrera_id= $request->carrera_id;
         $asignatura->save();
-        $asignatura->userable()->create(['user_id'=>Auth::user()->id]);
+        $asignatura->usuario()->attach(Auth::user()->id);
         return redirect()->route('asignatura.index');
     }
 
@@ -66,7 +66,7 @@ class AsignaturaController extends Controller
     public function show($asignatura_id)
     {
         $asignatura=Asignatura::findOrFail($asignatura_id);
-        $user=User::findOrFail($asignatura->userable->user_id);
+        $user=$asignatura->usuario->first();
         return view('asignatura.show',compact('asignatura','user'));
     }
 

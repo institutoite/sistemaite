@@ -8,7 +8,7 @@ use App\Models\Grado;
 use App\Models\User;
 use App\Models\Nivel;
 use App\Models\Persona;
-use App\Models\Userable;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -75,7 +75,7 @@ class GradoController extends Controller
         $grado->grado=$request->grado;
         $grado->nivel_id=$request->nivel_id;
         $grado->save();
-        $grado->userable()->create(['user_id'=>Auth::user()->id]);
+        $grado->usuario()->attach(Auth::user()->id);
         return redirect()->route('grados.index')
             ->with('success', 'Grado created successfully.');
     }
@@ -89,7 +89,7 @@ class GradoController extends Controller
     public function mostrar(Request $request)
     {
         $grado = Grado::findOrFail($request->id);
-        $user = User::findOrFail($grado->userable->user_id);
+        $user = $grado->usuario->first();
         //return response()->json($user);
         $nivel=Nivel::findOrFail($grado->nivel_id);
         $data = ['grado' => $grado, 'user' => $user,'nivel'=>$nivel];

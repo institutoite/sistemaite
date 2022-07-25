@@ -10,8 +10,5 @@ class Homeschedule extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-    public function userable()
-    {
-        return $this->morphOne('App\Models\Userable', 'userable');
-    }
+   
 }

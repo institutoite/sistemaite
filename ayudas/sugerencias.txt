@@ -24,7 +24,8 @@ editar Inscripción
 editar Matriculaciones
 a Todos los seeder Nivel::findOrFail(1)->userable()->create(['user_id'=>1]);
 
-agragar chat por mesenger a las paginas 
+/%%%%%%%%%%%%% postergado agragar chat por mesenger a las paginas 
+
 Ver las carteras
 que en detalle de pagos se muestre el total
 cuando computacion se paga todo la ultima clase se queda impaga
