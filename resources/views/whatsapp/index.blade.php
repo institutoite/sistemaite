@@ -12,13 +12,10 @@
 @section('content')
     <div class="container-fluid pt-4">
         <div class="row">
-           
             <div class="col-sm-12">
-
                 <div class="card">
                     <div class="card-header bg-secondary">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-
                             <span id="card_title">
                                 {{ __('Mensajes para enviar') }}
                             </span>

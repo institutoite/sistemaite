@@ -172,6 +172,7 @@ class AdministrativoController extends Controller
                 ->join('userables','userables.userable_id','matriculacions.id')
                 ->join('users','users.id','userables.user_id')
                 ->where('users.id', $userActual->id)
+                ->where('matriculacions.vigente', 0)
                 ->select('personas.id','nombre','apellidop','apellidom')
                 ->groupBy('personas.id','nombre','apellidop','apellidom')
                 ->get();

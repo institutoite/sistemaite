@@ -135,6 +135,7 @@
     @include('cartera.modalesmatriculacions')
     @include('observacion.modalcreate')
     @include('cartera.modales')
+    @include('whatsapp.modalmensajes')
 @endsection
 @section('js')
     {{-- <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script> --}}
@@ -280,6 +281,44 @@
                     },  
                 }
             );
+                /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% este data table es para mostrar los mensajes actuales %%%%%%%%%%%%%%%%%%%%%*/
+            var tablamensajes=$('#mensajes').DataTable({
+                    "responsive":true,
+                    "searching":true,
+                    "paging":   true,
+                    "autoWidth":false,
+                    "ordering": true,
+                    "info":     true,
+                    "createdRow": function( row, data, dataIndex ) {
+                        $(row).attr('id',data['id']); 
+                        if(data['vigente']==1){
+                            $(row).addClass('text-success');
+                            $('td', row).eq(3).html('Si');
+                        }else{
+                            $('td', row).eq(3).html('No');
+                            $(row).addClass('text-danger');
+                        }
+                    },
+                    "ajax": "{{ url('listar/mensajes') }}",
+                    "columns": [
+                        {data: 'id'},
+                        {data: 'nombre'},
+                        {data: 'mensaje'},
+                        {data: 'vigente'},
+                        {
+                            "name":"btn",
+                            "data": 'btn',
+                            "orderable": false,
+                        },
+                    ],
+                    "columnDefs": [
+                        { responsivePriority: 1, targets: 0 },  
+                        { responsivePriority: 2, targets: -1 }
+                    ],
+                    "language":{
+                            "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    },
+                });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PERSONA DE INSCRIPCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/    
             $('table').on('click', '.mostrarpersona', function(e) {
                 e.preventDefault();
@@ -587,6 +626,39 @@
                     url:"{{url('persona/mostrar/ajax/matriculacion')}}",
                     data:{
                         matriculacion_id:matriculacion_id,
+                    },
+                    success : function(json) {
+                        //console.log(json);
+                        $html+="<tr>"+"<td>NOMBRE</td><td>"+ json.persona.nombre+" "+json.persona.apellidop+" "+json.persona.apellidom+"</td><td rowspan='4'><img class='img-fluid rounded img-thumbnail' alt='"+ json.persona.nombre +"' src={{URL::to('/')}}"+"/storage/"+json.persona.foto +"></td>></tr>";
+                        $html+="<tr>"+"<td>CARNET</td><td>"+ json.persona.carnet+" "+json.persona.expedido+"</td></tr>";
+                        $html+="<tr>"+"<td>PAIS</td><td>"+ json.pais.nombrepais +", "+json.ciudad.ciudad+","+json.zona.zona+","+json.persona.direccion+"</td></tr>";
+                        $html+="<tr>"+"<td>COMO LLEGO</td><td>"+ json.persona.como +"</td></tr>";
+                        $html+="<tr>"+"<td>FECHA NACIMIENTO</td><td colspan='2'>"+ moment(json.persona.fechanacimiento).format('DD-MM-YYYY')+ " "+json.edad+"</td></tr>";
+                        $html+="<tr>"+"<td>GENERO</td><td colspan='2'>"+ json.persona.genero +"</td></tr>";
+                        $html+="<tr>"+"<td>HABILITADO</td><td colspan='2'>"+ json.persona.habilitado +"</td></tr>";
+                        $html+="<tr>"+"<td>PAPEL INICIAL</td><td colspan='2'>"+ json.persona.papelinicial +"</td></tr>";
+                        $html+="<tr>"+"<td>TELEFONO</td><td colspan='2'>"+ json.persona.telefono +"</td></tr>";
+                        $html+="<tr>"+"<td>VOTOS</td><td colspan='2'>"+ json.persona.votos +"</td></tr>";                        
+                        $html+="<tr>"+"<td>CREADO</td><td colspan='2'>"+ moment(json.persona.created_at).format('DD-MM-YYYY') + " "+ json.creado+"</td></tr>";                        
+                        $html+="<tr>"+"<td>ACTUALIZADO</td><td colspan='2'>"+ moment(json.persona.updated_at).format('DD-MM-YYYY')+ " "+ json.actualizado +"</td></tr>";  
+                        $('#tabla-mostrar-persona').append($html); 
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+                $("#modal-mostrar-persona").modal("show");
+            });
+            $('table').on('click', '.mostrarpersonamatriculaciondesvigente', function(e) {
+                e.preventDefault();
+                let persona_id=$(this).closest('tr').attr('id'); 
+                console.log(persona_id+" OK");
+                $("#tabla-mostrar-persona").empty();
+                $html="";
+                $.ajax({
+                    url:"{{url('persona/mostrar')}}",
+                    data:{
+                        persona_id:persona_id,
                     },
                     success : function(json) {
                         //console.log(json);
@@ -1024,9 +1096,18 @@
                                 for (let j in json) {
                                     if(json[j].habilitado==1){
                                         $clase="text-success";
+                                        if(moment(json[j].fecha).format('DD-MM-YYYY')==moment().format('DD-MM-YYYY')){
+                                            $clase+=" bg-success text-white";
+                                        }
                                     }else{
                                         $clase="text-danger";    
+                                        if(moment(json[j].fecha).format('DD-MM-YYYY')==moment().format('DD-MM-YYYY')){
+                                            $clase+=" bg-danger text-white";
+                                        }
                                     }
+                                   
+                                    //console.log();
+                                    // console.log(moment(json[j].fecha).format('DD-MM-YYYY'));
                                     $html+="<tr class='"+$clase+"'><td>"+ moment(json[j].fecha).format("L") +"</td>";
                                     $html+="<td>"+moment(json[j].horaini).format('hh:mm-ss')+" - "+moment(json[j].horafin).format('hh:mm:ss')+"</td>";
                                     $html+="<td>"+json[j].horas_por_clase+"</td>";
@@ -1081,60 +1162,9 @@
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LLAMAR  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.listarmensajes', function(e) {
                 e.preventDefault();
-                
                 telefono =$(this).closest('tr').attr('id');
                 console.log(telefono);
                     $("#modal-mensajes").modal("show");
-                    $("#tabla-mensajes").empty();
-                            $.ajax({
-                            url :"../listar/mensajes",
-                            data:{
-                                telefono:telefono,
-                            },
-                            success : function(json) {
-                                console.log(json);
-                               let tabla=$('#mensajes').dataTable({
-                                    "responsive":true,
-                                    "searching":true,
-                                    "paging":   true,
-                                    "autoWidth":false,
-                                    "ordering": true,
-                                    "info":     true,
-                                    "createdRow": function( row, data, dataIndex ) {
-                                        $(row).attr('id',data['id']); 
-                                        if(data['vigente']==1){
-                                            $(row).addClass('text-success');
-                                            $('td', row).eq(3).html('Si');
-                                        }else{
-                                            $('td', row).eq(3).html('No');
-                                            $(row).addClass('text-danger');
-                                        }
-                                    },
-                                    "ajax": "{{ url('listar/mensajes') }}",
-                                    "columns": [
-                                        {data: 'id'},
-                                        {data: 'nombre'},
-                                        {data: 'mensaje'},
-                                        {data: 'vigente'},
-                                        {
-                                            "name":"btn",
-                                            "data": 'btn',
-                                            "orderable": false,
-                                        },
-                                    ],
-                                    "columnDefs": [
-                                        { responsivePriority: 1, targets: 0 },  
-                                        { responsivePriority: 2, targets: -1 }
-                                    ],
-                                    "language":{
-                                            "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-                                    },
-                                });
-                                },
-                                error : function(xhr, status) {
-                                    alert('Disculpe, existió un problema');
-                                },
-                            });
                 }); 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FECHAR UNA FECHA A PROXIMADA DE REGRESO A CLASES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.fechar', function(e) {

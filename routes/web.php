@@ -95,7 +95,8 @@ Route::get('potenciales', [PersonaController::class,'potenciales'])->name('perso
 Route::get('ver/potencial', [PersonaController::class,'verPotencial'])->name('personas.ver.potenciales');
 Route::get('persona/potenciales/unsuscribe', [PersonaController::class,'unsuscribe'])->name('personas.unsuscribe');
 Route::get('persona/potenciales/suscribe', [PersonaController::class,'suscribe'])->name('personas.suscribe');
-Route::get('persona/mostrar/ajax', [PersonaController::class,'personaMostrarAjax'])->name('persona.mostrar.ajax');
+Route::get('persona/mostrar', [PersonaController::class,'personaMostrarAjax'])->name('persona.mostrar.ajax');
+Route::get('persona/mostrar/ajax', [PersonaController::class,'personaMostrarAjaxInscripcion'])->name('persona.mostrar.ajax');
 Route::get('persona/mostrar/ajax/matriculacion', [PersonaController::class,'personaMostrarAjaxMatriculacion'])->name('persona.mostrar.matriculacion.ajax');
 Route::get('persona/ultimaobservacion', [PersonaController::class,'ultimaObservacion'])->name('persona.ultima.observacion');
 Route::get('persona/ultima/matriculacion', [PersonaController::class,'ultimaMatriculacion'])->name('persona.ultima.matriculacion');

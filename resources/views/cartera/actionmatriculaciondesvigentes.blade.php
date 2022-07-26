@@ -1,4 +1,4 @@
-<a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarpersonamatriculacion" title="Ver persona">
+<a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarpersonamatriculaciondesvigente" title="Ver persona">
     <i class="fas fa-user-tie"></i>
 </a>
 <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarobservacionespersona" title="Mostrar observaciones">
