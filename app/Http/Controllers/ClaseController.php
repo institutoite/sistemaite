@@ -109,7 +109,7 @@ class ClaseController extends Controller
         $observacion->observable_id=$programacion_id;
         $observacion->save();
         
-        $clase->usuario()->attach(Auth::user()->id);
+        $clase->usuarios()->attach(Auth::user()->id);
 
         return redirect()->route('clase.presentes');
     }
@@ -140,7 +140,7 @@ class ClaseController extends Controller
                                 ,'personas.apellidop','personas.apellidom','personas.foto','materias.materia','aulas.aula','temas.tema',
                             'clases.created_at','clases.updated_at')->get()->first();
 
-        $user=Clase::findOrFail($request->id)->usuario->first();
+        $user=Clase::findOrFail($request->id)->usuarios->first();
         $data=['clase'=>$clase,'user'=>$user];
         return response()->json($data);
     }

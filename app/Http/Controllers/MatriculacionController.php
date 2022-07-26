@@ -98,7 +98,7 @@ class MatriculacionController extends Controller
         $docentes = $nivel->docentes;
         $dias = Dia::get();
         $computacion=$matriculacion->computacion;
-        $matriculacion->usuario()->attach(Auth::user()->id);
+        $matriculacion->usuarios()->attach(Auth::user()->id);
         return view('matriculacion.configurar', compact('computacion','matriculacion', 'aulas', 'docentes','dias')); 
     }
 
@@ -117,7 +117,7 @@ class MatriculacionController extends Controller
         ->select('programacioncoms.id','programacioncoms.fecha', 'horaini', 'horafin', 'horas_por_clase', 'personas.nombre', 'aulas.aula', 'programacioncoms.habilitado', 'programacioncoms.matriculacion_id')
         ->orderBy('fecha', 'asc')
         ->where('matriculacion_id', '=', $matriculacion_id)->get();
-        $user=$matriculacion->usuario->first();
+        $user=$matriculacion->usuarios->first();
         return view('matriculacion.show', compact('matriculacion','programacioncom','user'));
     }
 
@@ -247,6 +247,7 @@ class MatriculacionController extends Controller
         $asignatura=Asignatura::findOrFail($matriculacion->asignatura_id);
         $persona=$matriculacion->computacion->persona;
         $motivo=Motivo::findOrFail($matriculacion->motivo_id);
+        
         $empezo=$matriculacion->fechaini->diffForHumans();    
         $finaliza=$matriculacion->fechafin->diffForHumans();    
         $proximo_pago=$matriculacion->fecha_proximo_pago->diffForHumans();    

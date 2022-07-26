@@ -71,7 +71,7 @@ class UserController extends Controller
     public function store(userStoreRequest $request)
     {
         //request()->validate(User::$rules);
-        dd($request->all());
+        //dd($request->all());
         $user = User::create($request->all());
 
         return redirect()->route('users.index')

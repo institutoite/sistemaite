@@ -56,7 +56,7 @@ class FeriadoController extends Controller
         $feriado->vigente=1;
         $feriado->save();
 
-        $feriado->usuario()->attach(Auth::user()->id);
+        $feriado->usuarios()->attach(Auth::user()->id);
         return redirect()->route('feriados.index')
             ->with('success', 'Feriado created successfully.');
     }
@@ -70,7 +70,7 @@ class FeriadoController extends Controller
     public function show($id)
     {
         $feriado = Feriado::find($id);
-        $user=$feriado->usuario->first();
+        $user=$feriado->usuarios->first();
         return view('feriado.show', compact('feriado','user'));
     }
 

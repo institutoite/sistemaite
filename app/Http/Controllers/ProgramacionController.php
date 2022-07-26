@@ -142,7 +142,8 @@ class ProgramacionController extends Controller
                     ->where('programacions.id',$request->id)
                     ->select('clases.id','clases.fecha','clases.horainicio','estados.estado','users.name as user','clases.horafin','docentes.nombre','materias.materia', 'aulas.aula','temas.tema')
                     ->get();
-        $user=$programacion->usuario->first();
+        // $user=User::findOrFail($programacion->inscripcione->userable->user_id);	
+        $user=$programacion->inscripcione->usuarios->first();
         
         $data = ['programacion' => $programacion,'user'=> $user, 'estado'=>$estado,'observaciones' => $observaciones, 'docente' => $docente, 'materia' => $materia, 'aula' => $aula, 'clases' => $clases,'licencias'=>$licencias];
         return response()->json($data);
@@ -625,7 +626,7 @@ class ProgramacionController extends Controller
         $estudiante = Estudiante::findOrFail($inscripcion->estudiante_id);
         $persona = $estudiante->persona;
         $colegio=Colegio::find($estudiante->grados->last()->pivot->colegio_id);
-        $usuario=$inscripcion->usuario->first();
+        $usuario=$inscripcion->usuarios->first();
         $modalidad=$inscripcion->modalidad;
         $nivel=Nivel::findOrFail($estudiante->grados->last()->nivel_id);
         $grado=Grado::findOrFail($estudiante->grados->last()->pivot->grado_id);
@@ -661,7 +662,7 @@ class ProgramacionController extends Controller
         $observacion->observable_type= Programacion::class;
         $observacion->save();
 
-        $observacion->usuario()->attach(Auth::user()->id);
+        $observacion->usuarios()->attach(Auth::user()->id);
         
         return response()->json($observacion);
     }
@@ -732,7 +733,7 @@ class ProgramacionController extends Controller
             ->join('docentes', 'programacions.docente_id', '=', 'docentes.id')
             ->join('personas', 'personas.id', '=', 'docentes.persona_id')
             ->join('estados','estados.id','programacions.estado_id')
-            ->select('programacions.fecha', 'hora_ini','estados.estado','programacions.habilitado', 'hora_fin', 'horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado')
+            ->select('programacions.fecha', 'hora_ini','estados.estado','programacions.habilitado', 'hora_fin', 'horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula')
             ->orderBy('fecha', 'asc')
             ->where('inscripcione_id', '=', $request->inscripcion_id)->get();
         return response()->json($programacion);

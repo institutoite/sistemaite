@@ -75,7 +75,7 @@ class GradoController extends Controller
         $grado->grado=$request->grado;
         $grado->nivel_id=$request->nivel_id;
         $grado->save();
-        $grado->usuario()->attach(Auth::user()->id);
+        $grado->usuarios()->attach(Auth::user()->id);
         return redirect()->route('grados.index')
             ->with('success', 'Grado created successfully.');
     }
@@ -89,7 +89,7 @@ class GradoController extends Controller
     public function mostrar(Request $request)
     {
         $grado = Grado::findOrFail($request->id);
-        $user = $grado->usuario->first();
+        $user = $grado->usuarios->first();
         //return response()->json($user);
         $nivel=Nivel::findOrFail($grado->nivel_id);
         $data = ['grado' => $grado, 'user' => $user,'nivel'=>$nivel];

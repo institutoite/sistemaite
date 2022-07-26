@@ -27,6 +27,7 @@ use App\Models\Matriculacion;
 use App\Models\Observacion;
 use App\Models\Computacion;
 use App\Models\Interest;
+use App\Models\Programacioncom;
 use App\Models\Pais;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
@@ -134,7 +135,7 @@ class PersonaController extends Controller
         $user->save();
 
         //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A    P E R S O N A   %%%%%%%%%%%%%%%%*/
-        $persona->usuario()->attach(Auth::user()->id);
+        $persona->usuarios()->attach(Auth::user()->id);
         //dd($request->papel);
         switch ($request->papel) {
             
@@ -143,7 +144,7 @@ class PersonaController extends Controller
                 $estudiante->persona_id=$persona->id;
                 $estudiante->save();
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  E S T U D I A N T E   %%%%%%%%%%%%%%%%*/
-                $estudiante->usuario()->attach(Auth::user()->id);
+                $estudiante->usuarios()->attach(Auth::user()->id);
                 $observacion=new Observacion();
                 $observacion->observacion=$request->observacion;
                 $observacion->activo=1;
@@ -151,7 +152,7 @@ class PersonaController extends Controller
                 $observacion->observable_type="App\Models\Persona";
                 $observacion->save();
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  O B S E R V A C I O N   %%%%%%%%%%%%%%%%*/
-                $observacion->usuario()->attach(Auth::user()->id);
+                $observacion->usuarios()->attach(Auth::user()->id);
                 break;
             case 'computacion':
                 $computacion=new Computacion();
@@ -159,7 +160,7 @@ class PersonaController extends Controller
                 $computacion->save();
                 
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  E S T U D I A N T E   %%%%%%%%%%%%%%%%*/
-                $computacion->usuario()->attach(Auth::user()->id);
+                $computacion->usuarios()->attach(Auth::user()->id);
                 $observacion=new Observacion();
                 $observacion->observacion=$request->observacion;
                 $observacion->activo=1;
@@ -167,7 +168,7 @@ class PersonaController extends Controller
                 $observacion->observable_type="App\Models\Persona";
                 $observacion->save();
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  O B S E R V A C I O N   %%%%%%%%%%%%%%%%*/
-                $observacion->usuario()->attach(Auth::user()->id);
+                $observacion->usuarios()->attach(Auth::user()->id);
                 break;         
             case 'docente':
                 $docente = new Docente();
@@ -178,7 +179,7 @@ class PersonaController extends Controller
                 $docente->persona_id = $persona->id;
                 $docente->save();
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  D O C E N T E   %%%%%%%%%%%%%%%%*/
-                $docente->usuario()->attach(Auth::user()->id);
+                $docente->usuarios()->attach(Auth::user()->id);
                 
                 $observacion = new Observacion();
                 $observacion->observacion = $request->observacion;
@@ -187,7 +188,7 @@ class PersonaController extends Controller
                 $observacion->observable_type = "App\Models\Persona";
                 $observacion->save();
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  O B S E R V A C I O N   %%%%%%%%%%%%%%%%*/
-                $observacion->usuario()->attach(Auth::user()->id);
+                $observacion->usuarios()->attach(Auth::user()->id);
 
                 break;
             case 'cliservicio':
@@ -196,14 +197,14 @@ class PersonaController extends Controller
                 $cliservicio->save();
 
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   C L I S E R V I C I O   %%%%%%%%%%%%%%%%*/
-                $cliservicio->usuario()->attach(Auth::user()->id);
+                $cliservicio->usuarios()->attach(Auth::user()->id);
                 break;
             case 'clicopy':
                 $clicopy = new Clicopy();
                 $clicopy->persona_id = $persona->id;
                 $clicopy->save();
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   C L I C O P Y   %%%%%%%%%%%%%%%%*/
-                $clicopy->usuario()->attach(Auth::user()->id);
+                $clicopy->usuarios()->attach(Auth::user()->id);
                 break;
 
             case 'administrativo':
@@ -213,7 +214,7 @@ class PersonaController extends Controller
                 $administrativo->save();
 
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   A D M I N I S T V R V A V T I V O  %%%%%%%%%%%%%%%%*/
-                $administrativo->usuario()->attach(Auth::user()->id);
+                $administrativo->usuarios()->attach(Auth::user()->id);
                 break;
             case 'proveedor':
                 $proveedor = new Proveedor();
@@ -221,7 +222,7 @@ class PersonaController extends Controller
                 $proveedor->save();
 
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   P R O V E E D O R    %%%%%%%%%%%%%%%%*/
-                $proveedor->usuario()->attach(Auth::user()->id);
+                $proveedor->usuarios()->attach(Auth::user()->id);
                 break;
             default:
                 # code...
@@ -255,7 +256,7 @@ class PersonaController extends Controller
         $user->foto = "estudiantes/sinperfil.png";
         $user->save();
 
-        $apoderado->usuario()->attach(Auth::user()->id);
+        $apoderado->usuarios()->attach(Auth::user()->id);
         $observacion = new Observacion();
         $observacion->observacion = "Se registró a sistema como un apoderado";
         $observacion->activo = 1;
@@ -263,7 +264,7 @@ class PersonaController extends Controller
         $observacion->observable_type = "App\Models\Persona";
         $observacion->save();
 
-        $observacion->usuario()->attach(Auth::user()->id);
+        $observacion->usuarios()->attach(Auth::user()->id);
 
         $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
         $apoderados = $persona->apoderados;
@@ -280,14 +281,14 @@ class PersonaController extends Controller
         $persona->papelinicial = 'estudiante';
         $persona->save();
         $persona->interests()->sync(array_keys($request->interests));
-        $persona->usuario()->attach(Auth::user()->id);
+        $persona->usuarios()->attach(Auth::user()->id);
         $observacion = new Observacion();
         $observacion->observacion = $request->observacion;
         $observacion->activo = 1;
         $observacion->observable_id = $persona->id;
         $observacion->observable_type = "App\Models\Persona";
         $observacion->save();
-        $observacion->usuario()->attach(Auth::user()->id);
+        $observacion->usuarios()->attach(Auth::user()->id);
         return redirect()->route('telefonos.crear',['persona'=>$persona])->with('mensaje','Contacto Creado Corectamente');
     }
 
@@ -328,7 +329,7 @@ class PersonaController extends Controller
             $micalificacion=$persona->calificaciones->where('user_id',Auth::user()->id)->first()->calificacion;
         else 
             $micalificacion=null;
-            $user=$persona->usuario->first();
+            $user=$persona->usuarios->first();
         $observaciones=$persona->observaciones;
         return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion','recomendado','apoderados','calificado','promedio','calificaciones','micalificacion','user','observaciones'));
     }
@@ -345,6 +346,7 @@ class PersonaController extends Controller
         return response()->json($data);
     }
     public function personaMostrarAjaxMatriculacion(Request $request){
+        //return response()->json($request->all());
         $persona = Matriculacion::findOrFail($request->matriculacion_id)->computacion->persona;
         $pais=Pais::findOrFail($persona->pais_id);
         $ciudad=Ciudad::findOrFail($persona->ciudad_id);
@@ -633,7 +635,7 @@ class PersonaController extends Controller
         ->get();
         $apoderados=$potencial->apoderados;
         $interests=$potencial->interests;
-        $autorPotencial=User::findOrFail($potencial->usuario->user_id)->name;
+        $autorPotencial=$potencial->usuarios->first()->name;
 
         $data=['intereses'=>$interests,'potencial'=>$potencial,'observaciones'=>$observaciones,'apoderados'=>$apoderados,'autorPotencial'=>$autorPotencial];
         return response()->json($data);
@@ -657,7 +659,7 @@ class PersonaController extends Controller
         $estudiante = Estudiante::findOrFail($inscripcion->estudiante_id);
         $persona = $estudiante->persona;
         $colegio=Colegio::find($estudiante->grados->last()->pivot->colegio_id);
-        $usuario=User::find($inscripcion->usuario->user_id);
+        $usuario=$inscripcion->usuarios->first();
         $modalidad=$inscripcion->modalidad;
         $nivel=Nivel::findOrFail($estudiante->grados->last()->nivel_id);
         $grado=Grado::findOrFail($estudiante->grados->last()->pivot->grado_id);
@@ -667,6 +669,55 @@ class PersonaController extends Controller
         $fecha_actual->isoFormat('DD-MM-YYYY-HH:mm:ss');
         $dompdf->setPaper('letter','portrait');
         return $dompdf->download($persona->id . '_' . $fecha_actual . '_' . $persona->nombre . '_' . $persona->apellidop . '.pdf');
+    }
+    public function ultimaObservacion(Request $request){
+        $observacion=Persona::findOrFail($request->persona_id)->observaciones->last();
+        $usuario=$observacion->usuarios->first();
+        $data=['observacion'=>$observacion,'usuario'=>$usuario];
+        return response()->json($data);
+    }
+    public function ultimaMatriculacion(Request $request){
+        
+        $matriculacion=Persona::findOrFail($request->persona_id)->computacion->matriculaciones->last();
+        $asignatura=$matriculacion->asignatura;
+        $usuario=$matriculacion->usuarios->first();
+        $motivo=$matriculacion->motivo;
+        $empezo=$matriculacion->fechaini->diffForHumans();    
+        $finaliza=$matriculacion->fechafin->diffForHumans();    
+        $proximo_pago=$matriculacion->fecha_proximo_pago->diffForHumans();    
+        $creado=$matriculacion->created_at->diffForHumans();
+        $actualizado=$matriculacion->updated_at->diffForHumans();
+
+        $data=[
+            'matriculacion'=>$matriculacion,
+            'usuario'=>$usuario,
+            'asignatura'=>$asignatura,
+            'motivo'=>$motivo,
+            'empezo'=>$empezo,
+            'finaliza'=>$finaliza,
+            'proximo_pago'=>$proximo_pago,
+            'creado'=>$creado, 
+            'actualizado'=>$actualizado,
+        ];
+
+        return response()->json($data);
+    }
+    public function ultimaProgramacioncom(Request $request){
+         $matriculacion=Persona::findOrFail($request->persona_id)->computacion->matriculaciones->last();
+         $programacioncoms = Programacioncom::join('aulas', 'programacioncoms.aula_id', '=', 'aulas.id')
+            ->join('docentes', 'programacioncoms.docente_id', '=', 'docentes.id')
+            ->join('estados','estados.id','programacioncoms.estado_id')
+            ->select('programacioncoms.fecha','nombre', 'habilitado','horaini','estados.estado','programacioncoms.habilitado', 'horafin', 'horas_por_clase', 'aulas.aula')
+            ->orderBy('fecha', 'asc')
+            ->where('programacioncoms.matriculacion_id', '=', $matriculacion->id)->get();
+        return response()->json($programacioncoms);
+    }
+    public function enviarMensaje(Request $request){
+        //  return response()->json(['d'=>2]);
+         $persona=Persona::findOrFail($request->persona_id);
+         $apoderados= $persona->apoderados;
+         $data=['persona'=>$persona,'apoderados'=>$apoderados];
+        return response()->json($data);
     }
 }
 //

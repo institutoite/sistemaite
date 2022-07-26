@@ -72,7 +72,7 @@ class ColegioController extends Controller
     {
         $colegio = Colegio::create($request->all());
         $colegio->niveles()->sync(array_keys($request->niveles));
-        $colegio->usuario()->attach(Auth::user()->id);
+        $colegio->usuarios()->attach(Auth::user()->id);
         return redirect()->route('colegios.index')
             ->with('success', 'Colegio created successfully.');
     }
@@ -89,7 +89,7 @@ class ColegioController extends Controller
         $departamento=Departamento::findOrFail($colegio->departamento_id);
         $provincia = provincia::findOrFail($colegio->provincia_id);
         $municipio = municipio::findOrFail($colegio->municipio_id);
-        $user=Colegio->usuario->first();
+        $user=$colegio->usuarios->first();
         $niveles=$colegio->niveles;
         return view('colegio.show', compact('colegio','departamento','provincia','municipio','niveles','user'));
     }

@@ -17,7 +17,7 @@ class Tema extends Model
     }
 
     
-    public function usuario()
+    public function usuarios()
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }

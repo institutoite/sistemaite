@@ -210,7 +210,7 @@
 <div class="modal" tabindex="-1" id="modal-mostrar-programacion">
     <div class="modal-dialog modal-xl modalito">
         <div class="modal-content">
-            <div class="modal-header bg-    primary">
+            <div class="modal-header bg-primary">
                 {{__('MOSTRAR CLASES PROGRAMADAS')}}
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -241,3 +241,104 @@
         </div>
     </div>
 </div>
+{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  MODAL ULTIMA PROGRAMACIONCOM  --}}
+<div class="modal" tabindex="-1" id="modal-mostrar-ultima-programacioncom">
+    <div class="modal-dialog modal-xl modalito">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                {{__('PROGRAMACION DE ULTIMA MATRICULACION EN DETALLE')}}
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>FECHA</th>
+                                    <th>HORARIO</th>
+                                    <th>HORAS/CLASE</th>
+                                    <th>DOCENTE</th>
+                                    <th>ESTADO</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-ultima-programacioncom">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger text-white" data-bs-dismiss="modal">cerrar &times;</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  MODAL ULTIMA MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--}}
+<div class="modal" tabindex="-1" id="modal-mostrar-ultimamatriculacion">
+    <div class="modal-dialog modal-xl modalito">
+        <div class="modal-content">
+            <div class="modal-header bg-    primary">
+                {{__('ULTIMA MATRICULACION')}}
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ATRIBUTO</th>
+                                    <th>VALOR</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-ultimamatriculacion">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger text-white" data-bs-dismiss="modal">cerrar &times;</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  MODAL MOSTRAR CONTACTOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--}}
+<div class="modal" tabindex="-1" id="modal-mostrar-contactos">
+    <div class="modal-dialog modal-xl modalito">
+        <div class="modal-content">
+            <div class="modal-header bg-    primary">
+                {{__('CONTACTOS')}}
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>NOMBRE APODERADO</th>
+                                    <th>PARENTEZCO</th>
+                                    <th>TELEFONO</th>
+                                    <th>REGISTRADO</th>
+                                    <th>ACTUALIZADO</th>
+                                    <th>OPTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-contactos">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger text-white" data-bs-dismiss="modal">cerrar &times;</button>
+            </div>
+        </div>
+    </div>
+</div>
+

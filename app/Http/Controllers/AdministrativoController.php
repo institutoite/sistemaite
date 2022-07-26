@@ -6,8 +6,7 @@ use App\Models\Administrativo;
 use App\Models\Inscripcione;
 use App\Models\Matriculacion;
 use App\Models\User;
-
-
+use App\Models\Persona;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
@@ -167,19 +166,35 @@ class AdministrativoController extends Controller
     }
     public function miCarteraMatriculacionesDesvigentes(){
         $userActual = Auth::user();
-       $iculaciones=Matriculacion::join('computacions','matriculacions.computacion_id','computacions.id')
-        ->join('userables','userables.userable_id','matriculacions.id')
-        ->join('users','users.id','userables.user_id')
-        ->join('personas','personas.id','computacions.persona_id')
-        ->where('vigente',0)
-        ->where('users.id', $userActual->id)
-        ->select('personas.id','nombre','apellidop','apellidom',DB::raw("(SELECT max(fechafin) FROM matriculacions WHERE computacions.id= matriculacions.computacion_id) as fecha"))
-        ->groupBy('personas.id','nombre','apellidop','apellidom','fecha')->get();
-    
-        return datatables()->of($matriculaciones)
-                ->addColumn('btn', 'cartera.actionmatriculacion')
+       
+       $personas=Persona::join('computacions','computacions.persona_id','personas.id')
+                ->join('matriculacions','matriculacions.computacion_id','computacions.id')
+                ->join('userables','userables.userable_id','matriculacions.id')
+                ->join('users','users.id','userables.user_id')
+                ->where('users.id', $userActual->id)
+                ->select('personas.id','nombre','apellidop','apellidom')
+                ->groupBy('personas.id','nombre','apellidop','apellidom')
+                ->get();
+
+        return datatables()->of($personas)
+                ->addColumn('btn', 'cartera.actionmatriculaciondesvigentes')
                 ->rawColumns(['btn'])
                 ->toJson();
     }
 
 }
+
+
+/*
+   
+$matriculaciones=Matriculacion::join('computacions','matriculacions.computacion_id','computacions.id')
+        ->join('asignaturas','asignaturas.id','matriculacions.asignatura_id')
+        ->join('userables','userables.userable_id','matriculacions.id')
+        ->join('users','users.id','userables.user_id')
+        ->join('personas','personas.id','computacions.persona_id')
+        ->where('vigente',0)
+        
+        ->select('personas.id as persona_id','nombre','apellidop','apellidom','asignatura')
+        ->unique()
+        ->get();
+*/

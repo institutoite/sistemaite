@@ -40,7 +40,7 @@ class Motivo extends Model
         return $this->hasMany('App\Models\Inscripcione', 'motivo_id', 'id');
     }
 
-    public function usuario()
+    public function usuarios()
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }

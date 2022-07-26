@@ -23,7 +23,7 @@ class Carrera extends Model
     {
         return $this->hasMany('App\Models\Asignatura');
     }
-    public function usuario()
+    public function usuarios()
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }

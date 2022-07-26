@@ -64,7 +64,7 @@ class Docente extends Model
     {
         return $this->belongsTo(Programacion::class); 
     }
-    public function usuario()
+    public function usuarios()
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }

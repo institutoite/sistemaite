@@ -50,7 +50,7 @@ class CiudadController extends Controller
         $ciudad->pais_id = $request->pais_id;
 
         $ciudad->save();
-        $ciudad->usuario()->attach(Auth::user()->id);
+        $ciudad->usuarios()->attach(Auth::user()->id);
         return view('ciudad.index');
     }
 
@@ -65,7 +65,7 @@ class CiudadController extends Controller
         $ciudad=Ciudad::findOrFail($id);
         
         $pais=Pais::findOrFail($ciudad->pais_id);
-        $user=$ciudad->usuario->first();
+        $user=$ciudad->usuarios->first();
         return view('ciudad.mostrar',compact('ciudad','pais','user'));
     }
 

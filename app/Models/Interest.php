@@ -12,7 +12,7 @@ class Interest extends Model
     public function personas() {
         return $this->belongsToMany(Persona::class);
     }
-    public function usuario()
+    public function usuarios()
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }

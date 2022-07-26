@@ -46,6 +46,18 @@ class ModalidadSeeder extends Seeder
             'cargahoraria' => 8,
             'nivel_id' => 1
         ]);
+        Modalidad::create([
+            'modalidad' => 'Hora libre Primaria',
+            'costo' => 40,
+            'cargahoraria' => 1,
+            'nivel_id' => 3
+        ]);
+        Modalidad::create([
+            'modalidad' => 'Mes 1LV1H Primaria',
+            'costo' => 420,
+            'cargahoraria' => 20,
+            'nivel_id' => 3
+        ]);
         
   
         

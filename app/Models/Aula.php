@@ -29,7 +29,7 @@ class Aula extends Model
     {
         return $this->hasOne(Programacioncom::class);
     }
-    public function usuario()
+    public function usuarios()
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }

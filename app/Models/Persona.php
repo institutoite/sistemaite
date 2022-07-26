@@ -122,7 +122,7 @@ class Persona extends Model
     //     return $this->morphToMany('App\Models\User', 'userable');
     // }
 
-    public function usuario()
+    public function usuarios()
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }

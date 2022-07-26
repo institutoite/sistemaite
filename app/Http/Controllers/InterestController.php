@@ -44,7 +44,7 @@ class InterestController extends Controller
         $interest = new interest();
         $interest->interest = $request->interest;
         $interest->save();
-        $interest->usuario()->attach(Auth::user()->id);
+        $interest->usuarios()->attach(Auth::user()->id);
         return redirect()->route('interest.index')
             ->with('success', 'Motivo created successfully.');
     }
@@ -62,7 +62,7 @@ class InterestController extends Controller
     public function mostrar(Request $request)
     {
         $interest = Interest::findOrFail($request->id);
-        $user = $interest->usuario->first();
+        $user = $interest->usuarios->first();
         $data=['interest'=>$interest,'user' => $user];
         return response()->json($data);
     }

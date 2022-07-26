@@ -70,7 +70,7 @@ class MotivoController extends Controller
         $motivo->tipomotivo_id=$request->tipomotivo_id;
         $motivo->save();
         $user = Auth::user();
-        $motivo->usuario()->attach(Auth::user()->id);
+        $motivo->usuarios()->attach(Auth::user()->id);
         return redirect()->route('motivos.index')
             ->with('success', 'Motivo Guardado Correctamente.');
     }

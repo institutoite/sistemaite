@@ -21,7 +21,7 @@ class Asignatura extends Model
     {
         return $this->belongsToMany('App\Models\Computacion');
     }
-    public function usuario()
+    public function usuarios()
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }

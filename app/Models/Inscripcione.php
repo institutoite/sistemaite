@@ -111,7 +111,7 @@ class Inscripcione extends Model
         return $this->hasMany(Programacion::class);
     }
 
-    public function usuario()
+    public function usuarios()
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }

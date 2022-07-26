@@ -21,7 +21,7 @@ class Estado extends Model
     public function clasecoms(){
         return $this->hasMany(Clasecom::class);
     }
-    public function usuario()
+    public function usuarios()
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }

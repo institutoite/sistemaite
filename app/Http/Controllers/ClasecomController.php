@@ -81,7 +81,7 @@ class ClasecomController extends Controller
         $observacion->observable_id=$programacioncom_id;
         $observacion->save();
         
-        $clasecom->usuario()->attach(Auth::user()->id);
+        $clasecom->usuarios()->attach(Auth::user()->id);
         //dd($clasecom);
 
         return redirect()->route('clase.presentes');
@@ -107,7 +107,7 @@ class ClasecomController extends Controller
             ->select('clasecoms.id','fecha','estados.estado','horainicio','horafin','personas.nombre'
                     ,'personas.apellidop','personas.apellidom','personas.foto','aulas.aula',
                 'clasecoms.created_at','clasecoms.updated_at')->get()->first();
-        $user=Clasecom::findOrFail($request->id)->usuario->first();
+        $user=Clasecom::findOrFail($request->id)->usuarios->first();
         $data=['clase'=>$clase,'user'=>$user];
         return response()->json($data);
     }

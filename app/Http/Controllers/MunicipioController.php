@@ -56,7 +56,7 @@ class MunicipioController extends Controller
     public function store(MunicipioStoreRequest $request)
     {
         $municipio = Municipio::create($request->all());
-        $municipio->usuario()->attacha(Auth::user()->id);
+        $municipio->usuarios()->attach(Auth::user()->id);
         return redirect()->route('municipios.index');
     }
 

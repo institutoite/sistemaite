@@ -57,7 +57,7 @@ class NivelController extends Controller
         request()->validate(Nivel::$rules);
 
         $nivel = Nivel::create($request->all());
-        $nivel->usuario()->attacha(Auth::user()->id);
+        $nivel->usuarios()->attach(Auth::user()->id);
         return redirect()->route('nivels.index');
     }
 
@@ -70,7 +70,7 @@ class NivelController extends Controller
     public function show($id)
     {
         $nivel = Nivel::find($id);
-        $user=$nivel->usuario->first();
+        $user=$nivel->usuarios->first();
         return view('nivel.show', compact('nivel','user'));
     }
 

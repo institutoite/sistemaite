@@ -62,7 +62,7 @@ class FileController extends Controller
             $file->tipofile =$request->file('file')->getClientOriginalExtension();
         }
         $file->save();
-        $file->usuario()->attach(Auth::user()->id);
+        $file->usuarios()->attach(Auth::user()->id);
 
         return view('file.index');
     }
@@ -87,7 +87,7 @@ class FileController extends Controller
     public function show($id)
     {
         $file=File::findOrFail($id);
-        $user=$file->usuario->first();
+        $user=$file->usuarios->first();
         return view('file.show',compact('file','user'));
     }
 

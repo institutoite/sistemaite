@@ -47,7 +47,7 @@ class ObservacionController extends Controller
         $observacion->observable_id = $request->observable_id;
         $observacion->observable_type ='App\\Models\\'.$request->observable_type;
         $observacion->save();
-        $observacion ->usuario()->attach(Auth::user()->id);
+        $observacion ->usuarios()->attach(Auth::user()->id);
         return redirect()->action($request->observable_type."Controller@show",$request->observable_id);
     }
     public function guardarObservacionGeneral(Request $request){
@@ -61,7 +61,7 @@ class ObservacionController extends Controller
             $observacion->activo=1;
             $observacion->observable_type='App\\Models\\'.$request->observable_type;
             $observacion->save();
-            $observacion->usuario()->attach(Auth::user()->id);
+            $observacion->usuarios()->attach(Auth::user()->id);
             return response()->json(['mensaje'=>"Guardado correctamente"]);    
         }else{
             return response()->json(['errores' => $validator->errors()]);
@@ -77,7 +77,7 @@ class ObservacionController extends Controller
         $observacion->activo=1;
         $observacion->observable_type=$request->observable_type;
         $observacion->save();
-        $observacion->usuario()->attach(Auth::user()->id);
+        $observacion->usuarios()->attach(Auth::user()->id);
         //return response()->json($request->all());
         return response()->json(['mensaje'=>"Guardado correctamente"]);
     }
@@ -160,7 +160,9 @@ class ObservacionController extends Controller
         ->where('userable_type','App\\Models\\Observacion')
         ->where('observable_id',$observable_id)
         ->where('observable_type','App\\Models\\'.$observable_type)
-        ->select('observacions.id','observacion','activo','name','observacions.created_at','observacions.updated_at')->get();
+        ->select('observacions.id','observacion','activo','name','observacions.created_at','observacions.updated_at')
+        ->orderBy('created_at','desc')
+        ->get();
         
         return datatables()->of($observaciones)
         ->addColumn('btn', 'observacion.action')
@@ -168,13 +170,16 @@ class ObservacionController extends Controller
         ->toJson();
     }
     public function listarGeneral(Request $request){
+        //return response()->json($request->all());
         $observation=Observacion::join('userables','userables.userable_id','=','observacions.id')
             ->join('users','users.id','=','userables.user_id')
             ->where('userable_type','App\\Models\\Observacion')
             ->where('observacions.activo',1)
             ->where('observable_id',$request->observable_id)
             ->where('observable_type','App\\Models\\'.$request->observable_type)
-            ->select('observacions.id','observacion','activo','name','observacions.created_at','observacions.updated_at')->get();
+            ->select('observacions.id','observacion','activo','name','observacions.created_at','observacions.updated_at')
+            ->orderBy('created_at','desc')
+            ->get();
         return response()->json($observation);
     }
 }

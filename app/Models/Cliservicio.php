@@ -18,7 +18,7 @@ class Cliservicio extends Model
     {
         return $this->morphMany(Observacion::class, 'observable');
     }
-    public function usuario()
+    public function usuarios()
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }

@@ -65,7 +65,7 @@ class TemaController extends Controller
         $tema->tema = $request->tema;
         $tema->materia_id=$request->materia_id;
         $tema->save();
-        $tema->usuario()->attach(Auth::user()->id);
+        $tema->usuarios()->attach(Auth::user()->id);
         return view('tema.index');
     }
 
@@ -77,7 +77,7 @@ class TemaController extends Controller
      */
     public function show(Tema $tema)
     {
-        $user=$tema->usuario->first();
+        $user=$tema->usuarios->first();
         return view('tema.show', compact('tema','user'));
     }
 

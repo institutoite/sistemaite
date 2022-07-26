@@ -49,7 +49,7 @@ class AulaController extends Controller
         $aula->direccion = $request->direccion;
         $aula->save();
 
-        $aula->usuario()->attach(Auth::user()->id);
+        $aula->usuarios()->attach(Auth::user()->id);
         return redirect()->route('aulas.index')
             ->with('success', 'Registro creaado correctamente.');
     }
@@ -65,7 +65,7 @@ class AulaController extends Controller
 
         $aula = Aula::findOrFail($request->id);
         //$aula = Aula::findOrFail(16);
-        $user=$aula->usuario->first();
+        $user=$aula->usuarios->first();
         $url=storage_path('app/public/'.$user->foto);
         $data=['aula'=>$aula,'user'=>$user,'url'=>$url];
 

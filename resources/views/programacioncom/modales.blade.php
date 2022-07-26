@@ -86,6 +86,7 @@
                                 <th>MOTIVO</th>
                                 <th>SOLICITANTE</th>
                                 <th>PARENTESCO</th>
+                                <th>AUTOR</th>
                                 <th>SOLICITADO</th>
                             </tr>
                         </thead>

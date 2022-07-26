@@ -57,7 +57,7 @@ class MateriaController extends Controller
         $materia->materia=$request->materia;
         $materia->save();
     
-        $materia->usuario()->attach(Auth::user()->id);
+        $materia->usuarios()->attach(Auth::user()->id);
 
         foreach (array_keys($request->niveles) as $key) {
             $materia->niveles()->attach($key,['materia_id'=>$materia->id]);
@@ -74,7 +74,7 @@ class MateriaController extends Controller
     public function show(Materia $materia)
     {
         $niveles = $materia->niveles;
-        $user=$materia->usuario->first();
+        $user=$materia->usuarios->first();
         return view('materia.show',compact('niveles','materia','user'));
     }
 

@@ -39,7 +39,7 @@ class Matriculacion extends Model
     {
         return $this->belongsTo(Asignatura::class);
     }
-    public function usuario()
+    public function usuarios()
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }

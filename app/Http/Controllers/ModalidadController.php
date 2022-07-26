@@ -59,7 +59,7 @@ class ModalidadController extends Controller
     {
         //request()->validate(Modalidad::$rules);
         $modalidad = Modalidad::create($request->all());
-        $modalidad->usuario()->attach(Auth::user()->id);
+        $modalidad->usuarios()->attach(Auth::user()->id);
         return redirect()->route('modalidads.index');
     }
 
@@ -73,7 +73,7 @@ class ModalidadController extends Controller
     {
         $modalidad = Modalidad::find($id);
         $nivel=Nivel::findOrFail($modalidad->nivel_id);
-        $user=$modalidad->usuario->first();
+        $user=$modalidad->usuarios->first();
         return view('modalidad.show', compact('modalidad','nivel','user'));
     }
 

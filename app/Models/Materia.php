@@ -36,7 +36,7 @@ class Materia extends Model
     {
         return $this->hasMany(Clase::class);
     }
-    public function usuario()
+    public function usuarios()
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }

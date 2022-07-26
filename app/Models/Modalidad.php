@@ -36,7 +36,7 @@ class Modalidad extends Model
   {
     return $this->belongsTo(Nivel::class);
   }
-  public function usuario()
+  public function usuarios()
   {
       return $this->morphToMany('App\Models\User', 'userable');
   }

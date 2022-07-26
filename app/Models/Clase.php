@@ -53,7 +53,7 @@ class Clase extends Model
         return $this->belongsTo(Tema::class);
     }
 
-    public function usuario()
+    public function usuarios()
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }

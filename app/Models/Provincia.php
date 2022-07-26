@@ -53,7 +53,7 @@ class Provincia extends Model
         return $this->hasMany(Municipio::class);
     }
 
-    public function usuario()
+    public function usuarios()
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }

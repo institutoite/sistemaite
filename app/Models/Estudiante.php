@@ -33,7 +33,7 @@ class Estudiante extends Model
     // {
     //     return $this->morphOne('App\Models\Userable', 'userable');
     // }
-    public function usuario()
+    public function usuarios()
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }

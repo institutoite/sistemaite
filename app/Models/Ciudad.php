@@ -30,7 +30,7 @@ class Ciudad extends Model
     {
         return $this->hasMany(Zona::class);
     }
-    public function usuario()
+    public function usuarios()
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }

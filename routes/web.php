@@ -55,7 +55,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[AdministrativoController::class,'miCarteraMatriculacionesDesvigentes'])->name('prueba');
+Route::get('prueba',[PersonaController::class,'enviarMensajes'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -97,6 +97,11 @@ Route::get('persona/potenciales/unsuscribe', [PersonaController::class,'unsuscri
 Route::get('persona/potenciales/suscribe', [PersonaController::class,'suscribe'])->name('personas.suscribe');
 Route::get('persona/mostrar/ajax', [PersonaController::class,'personaMostrarAjax'])->name('persona.mostrar.ajax');
 Route::get('persona/mostrar/ajax/matriculacion', [PersonaController::class,'personaMostrarAjaxMatriculacion'])->name('persona.mostrar.matriculacion.ajax');
+Route::get('persona/ultimaobservacion', [PersonaController::class,'ultimaObservacion'])->name('persona.ultima.observacion');
+Route::get('persona/ultima/matriculacion', [PersonaController::class,'ultimaMatriculacion'])->name('persona.ultima.matriculacion');
+Route::get('persona/ultima/programacioncom', [PersonaController::class,'ultimaProgramacioncom'])->name('persona.ultima.programacioncom');
+Route::get('persona/enviar/mensaje', [PersonaController::class,'enviarMensaje'])->name('persona.enviar.mensaje');
+Route::get('persona/fdsfd', [PersonaController::class,'enviarMensaje'])->name('persona.enviar.mensaje');
 
 Route::get('reporte/potenciales', [PersonaReporteController::class,'potencialesPorInteresView']);
 Route::get('potenciales/hoy', [PersonaReporteController::class,'potencialesHoyView']);

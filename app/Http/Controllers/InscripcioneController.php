@@ -146,7 +146,7 @@ class InscripcioneController extends Controller
         // dd($inscripcion);
         
         //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   %%%%%%%%%%%%%%%%*/
-        $inscripcion->usuario()->attach(Auth::user()->id);
+        $inscripcion->usuarios()->attach(Auth::user()->id);
         $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
         $materias = $nivel->materias;
         $aulas = Aula::get();
@@ -180,7 +180,7 @@ class InscripcioneController extends Controller
         ->select('programacions.fecha', 'hora_ini', 'hora_fin', 'horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado', 'programacions.inscripcione_id')
         ->orderBy('fecha', 'asc')
         ->where('inscripcione_id', '=', $inscripciones_id)->get();
-        $user=$inscripcione->usuario->first();
+        $user=$inscripcione->usuarios->first();
         return view('inscripcione.show', compact('inscripcione','programacion','user'));
     }
 

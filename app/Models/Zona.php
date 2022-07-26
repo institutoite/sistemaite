@@ -36,7 +36,7 @@ class Zona extends Model
         return Zona::where('ciudad_id','=',$id)->get();
     }
 
-    public function usuario()
+    public function usuarios()
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }

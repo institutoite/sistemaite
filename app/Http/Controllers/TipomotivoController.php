@@ -51,7 +51,7 @@ class TipomotivoController extends Controller
         $tipomotivo = new Tipomotivo();
         $tipomotivo->tipomotivo = $request->tipomotivo;
         $tipomotivo->save();
-        $tipomotivo->usuario()->attach(Auth::user()->id);
+        $tipomotivo->usuarios()->attach(Auth::user()->id);
         return redirect()->route('tipomotivo.index')
             ->with('success', 'Motivo created successfully.');
     }
@@ -69,7 +69,7 @@ class TipomotivoController extends Controller
     public function mostrar(Request $request)
     {
         $tipomotivo = Tipomotivo::findOrFail($request->id);
-        $user = $tipomotivo->usuario->first();
+        $user = $tipomotivo->usuarios->first();
 
         $data=['tipomotivo'=>$tipomotivo,'user'=>$user];
         return response()->json($data);
