@@ -153,6 +153,7 @@
     
     
 <script>
+    let tablamensajes;
         $(document).ready(function() {
             
             var tablainscripciones=$('#inscripciones').DataTable(
@@ -282,43 +283,7 @@
                 }
             );
                 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% este data table es para mostrar los mensajes actuales %%%%%%%%%%%%%%%%%%%%%*/
-            var tablamensajes=$('#mensajes').DataTable({
-                    "responsive":true,
-                    "searching":true,
-                    "paging":   true,
-                    "autoWidth":false,
-                    "ordering": true,
-                    "info":     true,
-                    "createdRow": function( row, data, dataIndex ) {
-                        $(row).attr('id',data['id']); 
-                        if(data['vigente']==1){
-                            $(row).addClass('text-success');
-                            $('td', row).eq(3).html('Si');
-                        }else{
-                            $('td', row).eq(3).html('No');
-                            $(row).addClass('text-danger');
-                        }
-                    },
-                    "ajax": "{{ url('listar/mensajes') }}",
-                    "columns": [
-                        {data: 'id'},
-                        {data: 'nombre'},
-                        {data: 'mensaje'},
-                        {data: 'vigente'},
-                        {
-                            "name":"btn",
-                            "data": 'btn',
-                            "orderable": false,
-                        },
-                    ],
-                    "columnDefs": [
-                        { responsivePriority: 1, targets: 0 },  
-                        { responsivePriority: 2, targets: -1 }
-                    ],
-                    "language":{
-                            "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-                    },
-                });
+            
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PERSONA DE INSCRIPCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/    
             $('table').on('click', '.mostrarpersona', function(e) {
                 e.preventDefault();
@@ -1164,6 +1129,7 @@
                 e.preventDefault();
                 telefono =$(this).closest('tr').attr('id');
                 console.log(telefono);
+                    MostrarMensajes(telefono);
                     $("#modal-mensajes").modal("show");
                 }); 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FECHAR UNA FECHA A PROXIMADA DE REGRESO A CLASES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -1243,5 +1209,51 @@
                 }); 
         } );
         
+        function MostrarMensajes(UnTelefono){
+                $("#mensajes").dataTable().fnDestroy();
+                tablamensajes=$('#mensajes').DataTable({
+                    "responsive":true,
+                    "searching":true,
+                    "paging":   true,
+                    "autoWidth":false,
+                    "ordering": true,
+                    "info":     true,
+                    "createdRow": function( row, data, dataIndex ) {
+                        $(row).attr('id',data['id']); 
+                        if(data['vigente']==1){
+                            $(row).addClass('text-success');
+                        }else{
+                            $(row).addClass('text-danger');
+                        }
+                        $('td', row).eq(3).html(data['telefono']+"db");
+                        
+                    },
+                    "ajax":{
+                        "url": "../listar/mensajes/enviar",
+                        "data":{
+                            telefono:UnTelefono,
+                        },
+                    },
+                    "columns": [
+                        {data: 'id'},
+                        {data: 'nombre'},
+                        {data: 'mensaje'},
+                        {data: 'telefono'},
+                        {
+                            "name":"btn",
+                            "data": 'btn',
+                            "orderable": false,
+                        },
+                    ],
+                    "columnDefs": [
+                        { responsivePriority: 1, targets: 0 },  
+                        { responsivePriority: 2, targets: -1 }
+                    ],
+                    "language":{
+                            "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    },
+                });
+        }
+
     </script>
 @stop

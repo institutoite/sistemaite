@@ -55,7 +55,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[PersonaController::class,'enviarMensajes'])->name('prueba');
+Route::get('prueba',[MensajeController::class,'listarMensajes'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -393,6 +393,7 @@ Route::get('mensajes',[MensajeController::class,'index'])->name("mensaje.index")
 Route::get('mensajes/create',[MensajeController::class,'create'])->name("mensaje.create");
 Route::get('mensaje/mostrar/{mensaje}',[MensajeController::class,'show'])->name("mensaje.show");
 Route::get('listar/mensajes', [MensajeController::class,'listar'])->name('mensaje.ajax');
+Route::get('listar/mensajes/enviar', [MensajeController::class,'listarMensajes'])->name('mensaje.ajax.enviar');
 Route::get('mensaje/editar/{mensaje}', [MensajeController::class,'edit'])->name("mensaje.edit");
 Route::post('mensaje/actualizar/{mensaje}', [MensajeController::class,'update'])->name("mensaje.update");
 Route::delete('eliminar/mensaje/{mensaje}', [MensajeController::class,'destroy'])->name('mensaje.delete');

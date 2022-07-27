@@ -110,6 +110,15 @@ class MensajeController extends Controller
         ->rawColumns(['btn','mensaje'])
         ->toJson();
     }
+    public function listarMensajes(Request $request){
+        //return response()->json($request->all());
+        $mensajes=Mensaje::all();
+        return datatables()->of($mensajes)
+        ->addColumn('telefono',$request->telefono)
+        ->addColumn('btn', 'whatsapp.actionenvio')
+        ->rawColumns(['btn','telefono'])
+        ->toJson();
+    }
 
     public function darbaja(Request $request)
     {
