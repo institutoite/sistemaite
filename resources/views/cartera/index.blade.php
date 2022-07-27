@@ -1124,6 +1124,47 @@
                             },
                         });
                 }); 
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HACER LLAMADAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.llamar', function(e) {
+                e.preventDefault();
+                console.log("LLAMAR CLICK");
+                persona_id =$(this).closest('tr').attr('id');
+
+                        $ultimacelda="<td><a class='btn listarmensajes'><i class='far fa-comment-dots fa-2x'></i></a><a target='_blank' onclick='descargar()' title='Envia este mensaje'>";
+                                    $ultimacelda+="<i class='fas fa-download fa-2x'></i></a> </td></tr>";
+
+                    $("#modal-mostrar-contactos").modal("show");
+                    $("#tabla-contactos").empty();
+                            $.ajax({
+                            url :"../persona/enviar/mensaje",
+                            data:{
+                                persona_id:persona_id,
+                            },
+                            success : function(json) {
+                                console.log(json);
+                                $html="<tr id='"+ json.persona.telefono +"'><td>"+ json.persona.nombre +"</td>";
+                                $html+="<td>Teléfono personal</td>";
+                                $html+="<td><a href='tel:+591"+json.persona.telefono+"'><i class='fas fa-phone-volume'></i> "+json.persona.telefono+"</a></td>";
+                                $html+="<td>"+moment(json.persona.created_at).format('L') +"</td>";
+                                $html+="<td>"+moment(json.persona.updated_at).format('L') +"</td>";
+                                $html+=$ultimacelda;
+
+                                for (let j in json.apoderados) {
+                                    $html+="<tr id='"+ json.apoderados[j].telefono +"'><td>"+ json.apoderados[j].nombre +"</td>";
+                                    $html+="<td>"+json.apoderados[j].pivot.parentesco+"</td>";
+                                    $html+="<td><a href='tel:+591"+json.apoderados[j].telefono+"'><i class='fas fa-phone-volume'></i>"+json.apoderados[j].telefono+"</a></td>";
+                                    $html+="<td>"+moment(json.apoderados[j].created_at).format('LLL') +"</td>";
+                                    $html+="<td>"+moment(json.apoderados[j].updated_at).format('LLL') +"</td>";
+                                    $hhtml+=$ultimacelda;
+
+                                }
+                                $("#tabla-contactos").append($html);
+                            },
+                            error : function(xhr, status) {
+                                alert('Disculpe, existió un problema');
+                            },
+                        });
+                }); 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LLAMAR  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.listarmensajes', function(e) {
                 e.preventDefault();
@@ -1225,7 +1266,7 @@
                         }else{
                             $(row).addClass('text-danger');
                         }
-                        $('td', row).eq(3).html(data['telefono']+"db");
+                        $('td', row).eq(3).html(data['telefono']);
                         
                     },
                     "ajax":{
@@ -1255,5 +1296,14 @@
                 });
         }
 
+        function descargar(){
+            var blob = new Blob(["This is my first text."], {type: "text/plain;charset=utf-8"});
+            saveAs(blob, "testfile1.txt");
+        }
+
+      
+           
+
+        descargar();
     </script>
 @stop

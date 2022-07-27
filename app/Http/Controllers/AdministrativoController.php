@@ -184,18 +184,3 @@ class AdministrativoController extends Controller
     }
 
 }
-
-
-/*
-   
-$matriculaciones=Matriculacion::join('computacions','matriculacions.computacion_id','computacions.id')
-        ->join('asignaturas','asignaturas.id','matriculacions.asignatura_id')
-        ->join('userables','userables.userable_id','matriculacions.id')
-        ->join('users','users.id','userables.user_id')
-        ->join('personas','personas.id','computacions.persona_id')
-        ->where('vigente',0)
-        
-        ->select('personas.id as persona_id','nombre','apellidop','apellidom','asignatura')
-        ->unique()
-        ->get();
-*/

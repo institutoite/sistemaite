@@ -731,5 +731,41 @@ class PersonaController extends Controller
          $data=['persona'=>$persona,'apoderados'=>$apoderados];
         return response()->json($data);
     }
+
+    public function CrearContacto(){
+        $persona=Persona::find(1);
+        $nombre_archivo='contactos/'.$persona->id.'_'.$persona->nombre.$persona->apellidop.' '.$persona->apellidom.'.vcf';
+        Storage::append($nombre_archivo, 'BEGIN:VCARD');
+        Storage::append($nombre_archivo, 'FN:');// nombre completo del la persona de
+                                                //PHOTO:http://www.example.com/pub/photos/jqpublic.gif
+                                                //BDAY:20040507
+                                                //GENDER:M
+                                                // TEL;VALUE=uri;PREF=1;TYPE="voice,home":tel:+1-555-555-5555;ext=5555
+                                                //TEL;VALUE=uri;TYPE=home:tel:+33-01-23-45-67
+                                                //LANG;TYPE=work;PREF=2:fr
+                                                //TITLE:Research Scientist  APODERADO O ESTUDIANTE
+                                                //ROLE:Project Leader
+                                                // LOGO:http://www.example.com/pub/logos/abccorp.jpg
+                                                //ORG:ABC\, Inc.;North American Division;Marketing
+                                                //CATEGORIES:INTERNET,IETF,INDUSTRY,INFORMATION TECHNOLOGY
+                                                //NOTE:This fax number is operational 0800 to 1715
+        Storage::append($nombre_archivo, 'END:VCARD');
+        Storage::append($nombre_archivo, 'Appended  ds Text');
+        $contacto=Storage::disk('public')->put($nombre_archivo,'Contents');
+
+        
+     VERSION:4.0
+     UID:urn:uuid:4fbe8971-0bc3-424c-9c26-36c3e1eff6b1
+     FN;PID=1.1:J. Doe
+     N:Doe;J.;;;
+     EMAIL;PID=1.1:jdoe@example.com
+     EMAIL;PID=2.2:ceo@example.com
+     TEL;PID=1.1;VALUE=uri:tel:+1-555-555-5555
+     TEL;PID=2.2;VALUE=uri:tel:+1-666-666-6666
+     CLIENTPIDMAP:1;urn:uuid:53e374d9-337e-4727-8803-a1e9c14e0556
+     CLIENTPIDMAP:2;urn:uuid:1f762d2b-03c4-4a83-9a03-75ff658a6eee
+     
+    }
+    
 }
 //
