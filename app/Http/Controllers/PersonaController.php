@@ -733,18 +733,34 @@ class PersonaController extends Controller
     }
 
     public function CrearContacto(){
-        $persona=Persona::find(3);
-        $nombre_archivo='contactos/'.$persona->id.'_'.$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom.'.vcf';
+        $persona=Persona::find(5);
+        $nombre_archivo='contactos/'.$persona->id.'.vcf';
         Storage::append($nombre_archivo, 'BEGIN:VCARD');
-        Storage::append($nombre_archivo, '  VERSION:4.0');
-        Storage::append($nombre_archivo, '  N:'.$persona->nombre.';'.$persona->apellidop.';'.$persona->apellidom);
-        Storage::append($nombre_archivo, '  FN:'.$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom);
-        //Storage::append($nombre_archivo, 'PHOTO:'.$persona->foto);
-        Storage::append($nombre_archivo, '  BDAY:'.$persona->fechanacimiento->isoFormat('YYYYMMDD'));
-        Storage::append($nombre_archivo, '  GENDER:'.$persona->genero);
-        Storage::append($nombre_archivo, "  TEL;VALUE=uri;PREF=1;TYPE=voice,home:".$persona->telefono);
-       // Storage::append($nombre_archivo, "LANG;TYPE=work;PREF=2:es");
-        Storage::append($nombre_archivo, "  TITLE:".$persona->papelinicial);
+        Storage::append($nombre_archivo, 'VERSION:3.0');
+        Storage::append($nombre_archivo, 'N:'.$persona->apellidop.';'.$persona->nombre.';'.$persona->apellidom.";;");
+                                        // N:Doe;J.;;;
+        Storage::append($nombre_archivo, 'FN:'.$persona->apellidop.' '.$persona->nombre.' '.$persona->apellidom);
+        Storage::append($nombre_archivo, 'PHOTO:'.$persona->foto);
+        Storage::append($nombre_archivo, 'BDAY:'.$persona->fechanacimiento->isoFormat('YYYY-MM-DD'));
+        if($persona->genero=="MUJER")
+            Storage::append($nombre_archivo, 'GENDER:F');
+        else{
+            Storage::append($nombre_archivo, 'GENDER:M');
+        }
+        Storage::append($nombre_archivo, "TEL;VALUE=uri;PREF=1;TYPE=voice,work:".$persona->telefono);
+
+        Storage::append($nombre_archivo, "URL:wa.me/591".$persona->telefono);
+        $apoderados=$persona->apoderados;
+            
+            foreach ($apoderados as $apoderado) {
+                Storage::append($nombre_archivo, "TEL;VALUE=uri;PREF=1;TYPE=voice,home:".$apoderado->telefono);
+                Storage::append($nombre_archivo, "NOTE:Nombre:".$apoderado->nombre.' '.$apoderado->apellidop.' '.$apoderado->apellidom.'\nPARENTESCO:'.$apoderado->pivot->parentesco.'\nTelefono:'.$apoderado->telefono);
+                Storage::append($nombre_archivo, "URL:wa.me/591".$apoderado->telefono);
+
+            } 
+        
+        Storage::append($nombre_archivo, "LANG;TYPE=work;PREF=2:es");
+        Storage::append($nombre_archivo, "TITLE:".$persona->papelinicial);
         $roles="";
         if($persona->isEstudiante()){
             $roles.="ESTUDIANTE,";
@@ -758,17 +774,20 @@ class PersonaController extends Controller
         if($persona->isComputacion()){
             $roles.="COMPUTACION,";
         }
-        Storage::append($nombre_archivo, "  ROLE:"."un rol");
-        Storage::append($nombre_archivo, "  LOGO:".$persona->foto);
-        Storage::append($nombre_archivo, "  ORG:Suempresa".$persona->empresa);
+        Storage::append($nombre_archivo, "ROLE:"."un rol");
+        Storage::append($nombre_archivo, "LOGO:".$persona->foto);
+        Storage::append($nombre_archivo, "ORG:Suempresa".$persona->empresa);
         $intereses=$persona->interests;
         $categorias="";
         foreach ($intereses as $categoria) {
             $categorias.=$categoria->interest.",";
         }
-        //Storage::append($nombre_archivo, "CATEGORIES:".$categorias);
+        Storage::append($nombre_archivo, "CATEGORIES:".$categorias);
         $observacioninicial=$persona->observaciones->first();
-        Storage::append($nombre_archivo, "  NOTE:".$observacioninicial->observacion);
+        $observacionfinal=$persona->observaciones->last();
+        
+        Storage::append($nombre_archivo, "NOTE:".$observacioninicial->observacion);
+        Storage::append($nombre_archivo, "NOTE:".$observacionfinal->observacion);
         Storage::append($nombre_archivo, 'END:VCARD');
         $contacto=Storage::disk('public')->put($nombre_archivo,'Contents');
     
