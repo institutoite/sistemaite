@@ -1296,14 +1296,32 @@
                 });
         }
 
-        function descargar(){
-            var blob = new Blob(["This is my first text."], {type: "text/plain;charset=utf-8"});
-            saveAs(blob, "testfile1.txt");
-        }
+        $('table').on('click', '.descargar', function(e) {
+                e.preventDefault();
+                console.log('descargar click'); 
+                persona_id =$(this).closest('tr').attr('id');
+                console.log(persona_id);
+                $.ajax({
+                    url :"../persona/descargar/contacto",
+                    data:{
+                        persona_id:persona_id,
+                    },
+                    success : function(json) {
+                        console.log(json);
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+        }); 
+        // function descargar(){
+        //     var blob = new Blob(["This is my first text."], {type: "text/plain;charset=utf-8"});
+        //     saveAs(blob, "testfile1.txt");
+        // }
 
       
            
 
-        descargar();
+        // descargar();
     </script>
 @stop

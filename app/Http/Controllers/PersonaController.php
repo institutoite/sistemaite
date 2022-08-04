@@ -32,6 +32,7 @@ use App\Models\Pais;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
@@ -733,14 +734,13 @@ class PersonaController extends Controller
     }
 
     public function CrearContacto(){
-        $persona=Persona::find(5);
+        $persona=Persona::find(3);
         $nombre_archivo='contactos/'.$persona->id.'.vcf';
         Storage::append($nombre_archivo, 'BEGIN:VCARD');
         Storage::append($nombre_archivo, 'VERSION:3.0');
         Storage::append($nombre_archivo, 'N:'.$persona->apellidop.';'.$persona->nombre.';'.$persona->apellidom.";;");
-                                        // N:Doe;J.;;;
         Storage::append($nombre_archivo, 'FN:'.$persona->apellidop.' '.$persona->nombre.' '.$persona->apellidom);
-        Storage::append($nombre_archivo, 'PHOTO:'.$persona->foto);
+        Storage::append($nombre_archivo, "PHOTO;VALUE=uri".URL::to('/').Storage::url($persona->foto));
         Storage::append($nombre_archivo, 'BDAY:'.$persona->fechanacimiento->isoFormat('YYYY-MM-DD'));
         if($persona->genero=="MUJER")
             Storage::append($nombre_archivo, 'GENDER:F');
@@ -748,8 +748,13 @@ class PersonaController extends Controller
             Storage::append($nombre_archivo, 'GENDER:M');
         }
         Storage::append($nombre_archivo, "TEL;VALUE=uri;PREF=1;TYPE=voice,work:".$persona->telefono);
-
         Storage::append($nombre_archivo, "URL:wa.me/591".$persona->telefono);
+
+        $genero=$persona->genero;
+        $direccion=$persona->zona->zona.' '.$persona->direccion;
+        $como=$persona->como;
+        Storage::append($nombre_archivo, "NOTE:Genero:".$genero.'\nDireccion:'.$direccion.'\nComo eneteró:'.$como);
+
         $apoderados=$persona->apoderados;
             
             foreach ($apoderados as $apoderado) {
@@ -757,10 +762,19 @@ class PersonaController extends Controller
                 Storage::append($nombre_archivo, "NOTE:Nombre:".$apoderado->nombre.' '.$apoderado->apellidop.' '.$apoderado->apellidom.'\nPARENTESCO:'.$apoderado->pivot->parentesco.'\nTelefono:'.$apoderado->telefono);
                 Storage::append($nombre_archivo, "URL:wa.me/591".$apoderado->telefono);
 
-            } 
+            }
+        $inscripciones=$persona->estudiante->inscripciones;
+            foreach ($inscripciones as $inscripcion) {
+                Storage::append($nombre_archivo, "NOTE:Modalidad:".$inscripcion->modalidad->modalidad.'\nObservacion:'.$inscripcion->objetivo.'\nVigente:'.$inscripcion->vigente.'\nMotivo:'.$inscripcion->motivo);
+            }
+        $matriculaciones=$persona->computacion->matriculaciones;
+            foreach ($matriculaciones as $matriculacion) {
+                Storage::append($nombre_archivo, "NOTE:Asignatura:".$matriculacion->asignatura->asignatura.'\nVigente:'.$matriculacion->vigente);
+            }
         
         Storage::append($nombre_archivo, "LANG;TYPE=work;PREF=2:es");
         Storage::append($nombre_archivo, "TITLE:".$persona->papelinicial);
+        
         $roles="";
         if($persona->isEstudiante()){
             $roles.="ESTUDIANTE,";
@@ -774,23 +788,28 @@ class PersonaController extends Controller
         if($persona->isComputacion()){
             $roles.="COMPUTACION,";
         }
-        Storage::append($nombre_archivo, "ROLE:"."un rol");
+        Storage::append($nombre_archivo, "ROLE:".$roles);
         Storage::append($nombre_archivo, "LOGO:".$persona->foto);
-        Storage::append($nombre_archivo, "ORG:Suempresa".$persona->empresa);
+        Storage::append($nombre_archivo, "ORG:".$persona->empresa);
         $intereses=$persona->interests;
         $categorias="";
         foreach ($intereses as $categoria) {
             $categorias.=$categoria->interest.",";
         }
-        Storage::append($nombre_archivo, "CATEGORIES:".$categorias);
+        Storage::append($nombre_archivo, "NOTE:INTERESES:".$categorias);
         $observacioninicial=$persona->observaciones->first();
         $observacionfinal=$persona->observaciones->last();
-        
         Storage::append($nombre_archivo, "NOTE:".$observacioninicial->observacion);
         Storage::append($nombre_archivo, "NOTE:".$observacionfinal->observacion);
         Storage::append($nombre_archivo, 'END:VCARD');
         $contacto=Storage::disk('public')->put($nombre_archivo,'Contents');
-    
+    }
+    public function descargarContacto(){
+        //$file= File::where('id',$file_id)->firstOrFail();
+        //$pathToFile=storage_path("app\\public\\files\\".$file->file);
+        $pathToFile=storage_path("app\\public\\contactos\\3.vcf");
+
+        return response()->download($pathToFile);
     }
     
 }
