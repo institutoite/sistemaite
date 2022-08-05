@@ -733,8 +733,11 @@ class PersonaController extends Controller
         return response()->json($data);
     }
 
-    public function CrearContacto(){
-        $persona=Persona::find(3);
+    public function CrearContacto($persona_id){
+        $persona=Persona::find($persona_id);
+
+       
+
         $nombre_archivo='contactos/'.$persona->id.'.vcf';
         Storage::append($nombre_archivo, 'BEGIN:VCARD');
         Storage::append($nombre_archivo, 'VERSION:3.0');
@@ -804,12 +807,21 @@ class PersonaController extends Controller
         Storage::append($nombre_archivo, 'END:VCARD');
         $contacto=Storage::disk('public')->put($nombre_archivo,'Contents');
     }
-    public function descargarContacto(){
-        //$file= File::where('id',$file_id)->firstOrFail();
-        //$pathToFile=storage_path("app\\public\\files\\".$file->file);
-        $pathToFile=storage_path("app\\public\\contactos\\3.vcf");
-
-        return response()->download($pathToFile);
+    public function descargarContacto($persona){
+        $url=storage_path("app\\contactos\\".$persona.".vcf");
+        // dd($url);
+        
+        if (Storage::disk('public')->exists("app\\contactos\\".$persona.".vcf")) {
+            Storage::disk('public')->delete("contactos\\".$persona.".vcf");
+            dd("ok");
+            
+        }else{
+            
+            dd(Storage::disk('public')->exists("app/contactos/".$persona.".vcf"));
+        }
+        //dd(Storage::disk('public')->delete($url));
+        $this->CrearContacto($persona);
+        return response()->download($url);
     }
     
 }

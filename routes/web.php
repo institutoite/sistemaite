@@ -55,7 +55,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[PersonaController::class,'CrearContacto'])->name('prueba');
+Route::get('prueba',[PersonaController::class,'descargarContacto'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -102,7 +102,7 @@ Route::get('persona/ultimaobservacion', [PersonaController::class,'ultimaObserva
 Route::get('persona/ultima/matriculacion', [PersonaController::class,'ultimaMatriculacion'])->name('persona.ultima.matriculacion');
 Route::get('persona/ultima/programacioncom', [PersonaController::class,'ultimaProgramacioncom'])->name('persona.ultima.programacioncom');
 Route::get('persona/enviar/mensaje', [PersonaController::class,'enviarMensaje'])->name('persona.enviar.mensaje');
-Route::get('persona/descargar/contacto', [PersonaController::class,'descargarContacto'])->name('descargar.contacto');
+Route::get('persona/descargar/contacto/{persona}', [PersonaController::class,'descargarContacto'])->name('descargar.contacto');
 
 Route::get('reporte/potenciales', [PersonaReporteController::class,'potencialesPorInteresView']);
 Route::get('potenciales/hoy', [PersonaReporteController::class,'potencialesHoyView']);

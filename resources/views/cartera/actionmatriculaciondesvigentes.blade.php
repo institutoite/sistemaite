@@ -23,7 +23,7 @@
 <a href="" class="btn-accion-tabla tooltipsC mr-1 fechar" title="Fechar una fecha de regresar a clases">
     <i class="fas fa-calendar-check"></i>
 </a>
-<a href="{{route('descargar.contacto', $id)}}" class="btn-accion-tabla tooltipsC mr-1 descargar" title="Fechar una fecha de regresar a clases">
+<a href="{{route('descargar.contacto', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Fechar una fecha de regresar a clases">
     <i class="fas fa-download"></i>
 </a>
 
