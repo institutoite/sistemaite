@@ -33,12 +33,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
-
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
+
 
 use Illuminate\Support\Facades\Hash;
 
@@ -808,20 +809,32 @@ class PersonaController extends Controller
         $contacto=Storage::disk('public')->put($nombre_archivo,'Contents');
     }
     public function descargarContacto($persona){
-        $url=storage_path("app\\contactos\\".$persona.".vcf");
-        // dd($url);
         
-        if (Storage::disk('public')->exists("app\\contactos\\".$persona.".vcf")) {
-            Storage::disk('public')->delete("contactos\\".$persona.".vcf");
-            dd("ok");
-            
-        }else{
-            
-            dd(Storage::disk('public')->exists("app/contactos/".$persona.".vcf"));
+        $url=storage_path("app\\contactos\\".$persona.".vcf");
+        if(!is_null($url)){
+            if (file_exists($url)){
+                if (unlink($url)) {
+                    $this->CrearContacto($persona);
+                }         
+            }
         }
-        //dd(Storage::disk('public')->delete($url));
-        $this->CrearContacto($persona);
+       
         return response()->download($url);
+    }
+    public function actualizarVuelveFecha(Request $request)
+    {
+        //return response()->json($request->all());
+        $validator = Validator::make($request->all(), [
+            'vuelvefecha' => ['required','min:5','max:30'],  /* https://laraveles.com/foro/viewtopic.php?id=6764 */
+        ]);
+        if ($validator->passes()) {
+            $persona=Persona::findOrFail(5);
+            $persona->vuelvefecha = $request->vuelvefecha;
+            $persona->save();
+            return response()->json(['persona' => $persona]);
+        } else {
+            return response()->json(['error' => $validator->errors()->all()]);
+        }
     }
     
 }

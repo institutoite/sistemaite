@@ -206,6 +206,41 @@
         </div>
     </div>
 </div>
+{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  MODAL FECHAR  --}}
+<div class="modal" tabindex="-1" id="modal-fechar">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-    primary">
+                {{__('AGENDAR O FECHAR UN POSIBLE REGRESO')}}
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body">
+                        <div id='message-error' class="alert alert-danger danger text-danger d-none" role='alert'>
+                            <div class="alert alert-danger">
+                                <h4 class="alert-heading">Error</h4>
+                                <ul id="error">
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                            <input class="form-control" type="date" id="vuelvefecha" name="vuelvefecha">
+                            <input class="form-control" type="text" id="persona_id" name="persona_id">
+                            <div class="container-fluid h-100 mt-3"> 
+                                <div class="row w-100 align-items-center">
+                                    <div class="col text-center">
+                                        <button id="agendar" class="btn btn-primary text-white btn-lg">Agendar<i class="far fa-save"></i></button>        
+                                    </div>	
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  MODAL PROGRAMACION  --}}
 <div class="modal" tabindex="-1" id="modal-mostrar-programacion">
     <div class="modal-dialog modal-xl modalito">
