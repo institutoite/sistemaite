@@ -35,7 +35,7 @@
     <div class="modal-dialog modal-xl modalito">
         <div class="modal-content">
             <div class="modal-header bg-    primary">
-                {{__('MOSTRAR INSCRIPCION')}}
+                {{__('MOSTRAR INSCRIPCIONx')}}
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -217,7 +217,7 @@
             <div class="modal-body">
                 <div class="card">
                     <div class="card-body">
-                        <div id='message-error' class="alert alert-danger danger text-danger d-none" role='alert'>
+                        <div id='erroresdiv' class="alert alert-danger danger text-danger d-none" role='alert'>
                             <div class="alert alert-danger">
                                 <h4 class="alert-heading">Error</h4>
                                 <ul id="error">
@@ -226,11 +226,52 @@
                             </div>
                         </div>
                             <input class="form-control" type="date" id="vuelvefecha" name="vuelvefecha">
-                            <input class="form-control" type="text" id="persona_id" name="persona_id">
+                            <input class="form-control" type="text" hidden id="persona_id" name="persona_id">
                             <div class="container-fluid h-100 mt-3"> 
                                 <div class="row w-100 align-items-center">
                                     <div class="col text-center">
                                         <button id="agendar" class="btn btn-primary text-white btn-lg">Agendar<i class="far fa-save"></i></button>        
+                                    </div>	
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  MODAL CALIFICAR  --}}
+<div class="modal" tabindex="-1" id="modal-calificar">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-    primary">
+                {{__('CALIFICAR UNA PERSONA')}}
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body">
+                        <div id='erroresdiv' class="alert alert-danger danger text-danger d-none" role='alert'>
+                            <div class="alert alert-danger">
+                                <h4 class="alert-heading">Error</h4>
+                                <ul id="error">
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                            <select id="volvera" class="form-control">
+                                <option value="1">No piensa volver(20%)</option>
+                                <option value="2">Poco probable que vuelva(40%)</option>
+                                <option value="3">Es posible que vuelva(60%)</option>
+                                <option value="4">Casi seguro que vuelva(80%)</option>
+                                <option value="5">Va volver con seguridad(100%)</option>
+                            </select>
+                            <input class="form-control" type="text" hidden id="persona_id" name="persona_id">
+                            <div class="container-fluid h-100 mt-3"> 
+                                <div class="row w-100 align-items-center">
+                                    <div class="col text-center">
+                                        <button id="calificar" class="btn btn-primary text-white btn-lg">Calificar<i class="far fa-save"></i></button>        
                                     </div>	
                                 </div>
                             </div>

@@ -122,7 +122,7 @@ class PersonaController extends Controller
         $persona->zona_id = $request->zona_id;
         $persona->save();
 
-
+        $this->CrearContacto($persona->id);
         
 
         $persona->interests()->sync(array_keys($request->interests));
@@ -270,6 +270,7 @@ class PersonaController extends Controller
 
         $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
         $apoderados = $persona->apoderados;
+        $this->CrearContacto($persona->id);
         return redirect()->route('telefonos.persona',['persona'=>$persona,'apoderados'=>$apoderados])->with('mensaje','Contacto Creado Corectamente');
 
     }
@@ -282,6 +283,9 @@ class PersonaController extends Controller
         $persona->votos = 1;
         $persona->papelinicial = 'estudiante';
         $persona->save();
+        
+        $this->CrearContacto($persona->id);
+
         $persona->interests()->sync(array_keys($request->interests));
         $persona->usuarios()->attach(Auth::user()->id);
         $observacion = new Observacion();
@@ -767,15 +771,19 @@ class PersonaController extends Controller
                 Storage::append($nombre_archivo, "URL:wa.me/591".$apoderado->telefono);
 
             }
-        $inscripciones=$persona->estudiante->inscripciones;
+        if (isset($persona->estudiante->inscripciones)){
+            $inscripciones=$persona->estudiante->inscripciones;
             foreach ($inscripciones as $inscripcion) {
                 Storage::append($nombre_archivo, "NOTE:Modalidad:".$inscripcion->modalidad->modalidad.'\nObservacion:'.$inscripcion->objetivo.'\nVigente:'.$inscripcion->vigente.'\nMotivo:'.$inscripcion->motivo);
             }
-        $matriculaciones=$persona->computacion->matriculaciones;
+        }    
+        
+        if(isset($persona->computacion->matriculaciones)){
+            $matriculaciones=$persona->computacion->matriculaciones;
             foreach ($matriculaciones as $matriculacion) {
                 Storage::append($nombre_archivo, "NOTE:Asignatura:".$matriculacion->asignatura->asignatura.'\nVigente:'.$matriculacion->vigente);
             }
-        
+        }
         Storage::append($nombre_archivo, "LANG;TYPE=work;PREF=2:es");
         Storage::append($nombre_archivo, "TITLE:".$persona->papelinicial);
         
@@ -803,8 +811,10 @@ class PersonaController extends Controller
         Storage::append($nombre_archivo, "NOTE:INTERESES:".$categorias);
         $observacioninicial=$persona->observaciones->first();
         $observacionfinal=$persona->observaciones->last();
-        Storage::append($nombre_archivo, "NOTE:".$observacioninicial->observacion);
-        Storage::append($nombre_archivo, "NOTE:".$observacionfinal->observacion);
+        if (isset($observacioninicial->observacion)){
+            Storage::append($nombre_archivo, "NOTE:".$observacioninicial->observacion);
+            Storage::append($nombre_archivo, "NOTE:".$observacionfinal->observacion);
+        }
         Storage::append($nombre_archivo, 'END:VCARD');
         $contacto=Storage::disk('public')->put($nombre_archivo,'Contents');
     }
@@ -828,8 +838,23 @@ class PersonaController extends Controller
             'vuelvefecha' => ['required','min:5','max:30'],  /* https://laraveles.com/foro/viewtopic.php?id=6764 */
         ]);
         if ($validator->passes()) {
-            $persona=Persona::findOrFail(5);
+            $persona=Persona::findOrFail($request->persona_id);
             $persona->vuelvefecha = $request->vuelvefecha;
+            $persona->save();
+            return response()->json(['persona' => $persona]);
+        } else {
+            return response()->json(['error' => $validator->errors()->all()]);
+        }
+    }
+    public function actualizarVolvera(Request $request)
+    {
+        //return response()->json($request->all());
+        $validator = Validator::make($request->all(), [
+            'volvera' => ['numeric','required','min:1','max:5'],  /* https://laraveles.com/foro/viewtopic.php?id=6764 */
+        ]);
+        if ($validator->passes()) {
+            $persona=Persona::findOrFail($request->persona_id);
+            $persona->volvera = $request->volvera;
             $persona->save();
             return response()->json(['persona' => $persona]);
         } else {

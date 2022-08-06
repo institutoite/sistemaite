@@ -1181,7 +1181,7 @@
                 $("#persona_id").val(persona_id);
                 
             }); 
-            /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+             /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('#agendar').on('click', function (e) {
                 e.preventDefault();
                 $("#errores").empty();
@@ -1194,15 +1194,15 @@
                         persona_id:persona_id,
                     },
                     success: function (json) {
-                        console.log(json);
-                        if(json.errores){
-                            console.log(json.errores);
+                        //console.log(json.error[0]);
+                        if(json.error){
+                            console.log(json.error);
                             $html="";
-                            for (let j in json.errores) {
-                                $html+="<li>"+ json.errores.observacion[0] +"</li>";
+                            for (let j in json.error) {
+                                $html+="<li>"+ json.error[0] +"</li>";
                             }
                             $("#erroresdiv").removeClass('d-none');
-                            $("#errores").append($html);
+                            $("#error").append($html);
                         }else{
                             const Toast = Swal.mixin({
                                 toast: true,
@@ -1224,44 +1224,59 @@
                 });
                 
             });
-        
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CALIFICAR EL GRADO DE REGRESO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            /**%%%%%%%%%%%%%%%%%%%%%%%%%%%% CALIFICAR  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.calificar', function(e) {
                 e.preventDefault();
-                console.log('MostrarClick'); 
-                observable_id =$(this).closest('tr').attr('id');
-                observable_type ="Inscripcione";
-                    var fila=$(this).closest('tr');
-                    console.log(observable_id);
-                    $("#modal-mostrar-observaciones").modal("show");
-                    $("#tabla-observaciones").empty();
-                            $.ajax({
-                            url :"../observaciones/general",
-                            data:{
-                                observable_id:observable_id,
-                                observable_type:observable_type,
-                            },
-                            success : function(json) {
-                                $html="";
-                                $clase="";
-                                for (let j in json) {
-                                    if(json[j].activo==1){
-                                        $clase="text-success";
-                                    }else{
-                                        $clase="text-danger";    
-                                    }
-                                    $html+="<tr class='"+$clase+"'><td>"+ json[j].observacion +"</td>";
-                                    $html+="<td>"+json[j].name+"</td>";
-                                    $html+="<td>"+moment(json[j].created_at).format('LLL') +"</td>";
-                                    $html+="<td>"+moment(json[j].updated_at).format('LLL') +"</td></tr>";
-                                }
-                                $("#tabla-observaciones").append($html);
-                            },
-                            error : function(xhr, status) {
-                                alert('Disculpe, existió un problema');
-                            },
-                        });
-                }); 
+                persona_id =$(this).closest('tr').attr('id');
+                $("#modal-calificar").modal("show");
+                $("#persona_id").val(persona_id);
+            }); 
+             /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('#calificar').on('click', function (e) {
+                e.preventDefault();
+                $("#errores").empty();
+                let volvera = $("#volvera").val();
+                let persona_id = $("#persona_id").val();
+                $.ajax({
+                    url: "../persona/actualizar/volvera",
+                    data: {
+                        volvera:volvera,
+                        persona_id:persona_id,
+                    },
+                    success: function (json) {
+                        console.log(json);
+                        if(json.error){
+                            console.log(json.error);
+                            $html="";
+                            for (let j in json.error) {
+                                $html+="<li>"+ json.error[0] +"</li>";
+                            }
+                            $("#erroresdiv").removeClass('d-none');
+                            $("#error").append($html);
+                        }else{
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                            })
+                            Toast.fire({
+                                type: 'success',
+                                title: "Guardado corectamente: " + json.observacion,
+                            })
+                            $("#modal-fechar").modal("hide");
+                        }
+                        //tablamatriculacionesdesvigentes.ajax.reload();
+                    },
+                    error: function (xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+                
+            });
+           
+        
+            
         } );
         
         function MostrarMensajes(UnTelefono){

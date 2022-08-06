@@ -16,14 +16,14 @@ class DocenteSeeder extends Seeder
     public function run()
     {
       
-        // Docente::create([
-        //     'sueldo'=>2000.00,
-        //     'fecha_ingreso'=>'2000-10-12',
-        //     'nombre'=>'Edgar E',
-        //     'estado'=>'activo',
-        //     'dias_prueba'=>2,
-        //     'persona_id'=>31,
-        //     ]);
+        Docente::create([
+            'sueldo'=>2000.00,
+            'fecha_ingreso'=>'2000-10-12',
+            'nombre'=>'DAVID F',
+            'estado'=>'activo',
+            'dias_prueba'=>2,
+            'persona_id'=>1,
+            ]);
         // Docente::create([
         //     'sueldo' => 2000.00,
         //     'fecha_ingreso' => '1998-10-12',
@@ -68,11 +68,12 @@ class DocenteSeeder extends Seeder
         // Docente::find(2)->niveles()->attach(1, ['nivel_id' => 6]);
         // Docente::find(2)->niveles()->attach(1, ['nivel_id' => 7]);
         
-        // Docente::find(3)->niveles()->attach(1, ['nivel_id' => 1]);
-        // Docente::find(3)->niveles()->attach(1, ['nivel_id' => 2]);
-        // Docente::find(3)->niveles()->attach(1, ['nivel_id' => 3]);
-        // Docente::find(3)->niveles()->attach(1, ['nivel_id' => 4]);
-        // Docente::find(3)->niveles()->attach(1, ['nivel_id' => 5]);
+        Docente::find(1)->niveles()->attach(1, ['nivel_id' => 1]);
+        Docente::find(1)->niveles()->attach(1, ['nivel_id' => 2]);
+        Docente::find(1)->niveles()->attach(1, ['nivel_id' => 3]);
+        Docente::find(1)->niveles()->attach(1, ['nivel_id' => 4]);
+        Docente::find(1)->niveles()->attach(1, ['nivel_id' => 5]);
+        Docente::find(1)->niveles()->attach(1, ['nivel_id' => 6]);
         
         // Docente::find(4)->niveles()->attach(1, ['nivel_id' => 3]);
         // Docente::find(4)->niveles()->attach(1, ['nivel_id' => 4]);

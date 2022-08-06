@@ -104,6 +104,7 @@ Route::get('persona/ultima/programacioncom', [PersonaController::class,'ultimaPr
 Route::get('persona/enviar/mensaje', [PersonaController::class,'enviarMensaje'])->name('persona.enviar.mensaje');
 Route::get('persona/descargar/contacto/{persona}', [PersonaController::class,'descargarContacto'])->name('descargar.contacto');
 Route::get('persona/actualizar/vuelvefecha', [PersonaController::class,'actualizarVuelveFecha'])->name('persona.update.vuelvefecha');
+Route::get('persona/actualizar/volvera', [PersonaController::class,'actualizarVolvera'])->name('persona.update.volvera');
 
 Route::get('reporte/potenciales', [PersonaReporteController::class,'potencialesPorInteresView']);
 Route::get('potenciales/hoy', [PersonaReporteController::class,'potencialesHoyView']);

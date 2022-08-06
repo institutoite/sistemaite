@@ -38,24 +38,25 @@ class PersonaSeeder extends Seeder
 
         
 
-        // Persona::create([
-        //     'nombre' => 'LIDIA',
-        //     'apellidop' => 'CONTRERAS',
-        //     'apellidom' => 'CATARI',
-        //     'fechanacimiento' => '15-05-2015',
-        //     'direccion' => 'Barrio Luis Soruco Barba',
-        //     'carnet' => '45615535',
-        //     'expedido' => 'BEN',
-        //     'genero' => 'HOMBRE',
-        //     'habilitado' => 1,
-        //     'pais_id' => 1,
-        //     'ciudad_id' => 6,
-        //     'zona_id' => 1,
-        //     'como' => "FACEBOOK",
-        //     'foto' => "estudiantes/foto.jpg",
-        //     'papelinicial' => 'docente',
+        Persona::create([
+            'nombre' => 'LIDIA',
+            'apellidop' => 'CONTRERAS',
+            'apellidom' => 'CATARI',
+            'fechanacimiento' => '15-05-2015',
+            'direccion' => 'Barrio Luis Soruco Barba',
+            'carnet' => '45615535',
+            'expedido' => 'BEN',
+            'genero' => 'HOMBRE',
+            'habilitado' => 1,
+            'pais_id' => 1,
+            'ciudad_id' => 6,
+            'zona_id' => 1,
+            'como' => "FACEBOOK",
+            'foto' => "estudiantes/foto.jpg",
+            'papelinicial' => 'estudiante',
             
-        // ]);
+        ]);
+        
 
         // Persona::create([
         //     'nombre' => 'MAYLIN',
