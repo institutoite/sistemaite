@@ -63,7 +63,7 @@
 </div>
 {{-- $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MOSTRAR INSCRIPCIONES MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 
-<div class="modal" tabindex="-1" id="modal-mostrar-pagos">
+<div class="modal" tabindex="-1" id="modal-mostrar-pagoscom">
     <div class="modal-dialog modal-xl modalito">
         <div class="modal-content">
             <div class="modal-header bg-    primary">
@@ -76,7 +76,7 @@
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>ATRIBUTO</th>
+                                    <th>ATRIBUTOx</th>
                                     <th>VALOR</th>
                                     <th>FOTOGRAFIA</th>
                                 </tr>
@@ -113,7 +113,38 @@
         </div>
     </div>
 </div>
+{{-- $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MOSTRAR MATRICULACION MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 
+<div class="modal" tabindex="-1" id="modal-mostrar-matriculacion">
+    <div class="modal-dialog modal-xl modalito">
+        <div class="modal-content">
+            <div class="modal-header bg-    primary">
+                {{__('MOSTRAR MATRICULACION')}}
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Atributo</th>
+                                    <th colspan="2">Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-mostrar-matriculacion">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger text-white" data-bs-dismiss="modal">cerrar &times;</button>
+            </div>
+        </div>
+    </div>
+</div>
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MODAL DETALLAR  --}}
 <div class="modal" tabindex="-1" id="modal-detallar-pago">
     <div class="modal-dialog modal-lg modalito">
@@ -317,6 +348,40 @@
         </div>
     </div>
 </div>
+{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  MODAL PROGRAMACION  --}}
+<div class="modal" tabindex="-1" id="modal-mostrar-programacioncom">
+    <div class="modal-dialog modal-xl modalito">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                {{__('MOSTRAR CLASES PROGRAMADAS DE COMPUTACION')}}
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>FECHA</th>
+                                    <th>HORARIO</th>
+                                    <th>DOCENTE</th>
+                                    <th>ESTADO</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-programacioncom">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger text-white" data-bs-dismiss="modal">cerrar &times;</button>
+            </div>
+        </div>
+    </div>
+</div>
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  MODAL ULTIMA PROGRAMACIONCOM  --}}
 <div class="modal" tabindex="-1" id="modal-mostrar-ultima-programacioncom">
     <div class="modal-dialog modal-xl modalito">
@@ -401,7 +466,6 @@
                                     <th>TELEFONO</th>
                                     <th>REGISTRADO</th>
                                     <th>ACTUALIZADO</th>
-                                    <th>OPTIONS</th>
                                 </tr>
                             </thead>
                             <tbody id="tabla-contactos">
@@ -414,6 +478,48 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger text-white" data-bs-dismiss="modal">cerrar &times;</button>
             </div>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1"  id="modal-agregar-observacion-matriculacion">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                MODAL AGEREGA OBERACION DE MATRICULACION 4
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card card-primary">
+                    <div class="card-header bg-secondary">
+                        <span class="card-title">Agregar Observación</span>
+                    </div>
+                    <div class="card-body">
+                        <div id="erroresdiv" class="alert alert-danger d-none">
+                            <ul id=errores>
+                                
+                            </ul>
+                        </div>
+                        <form id="formulario-guardar-observacion-matriculacion" method="POST">
+                            @csrf
+                            <textarea cols="80" id="editor4" name="editor4" rows="10" data-sample-short>
+                            </textarea>
+                            <input type="text" id="observable_id_matriculacion" value="">
+                            <input type="text" id="observable_type_matriculacion" value="">
+
+                            <div class="container-fluid h-100 mt-3"> 
+                                <div class="row w-100 align-items-center">
+                                    <div class="col text-center">
+                                        <button id="guardar-observacion-matriculacion" class="btn btn-primary text-white btn-lg">Guardar <i class="far fa-save"></i></button>        
+                                    </div>	
+                                </div>
+                            </div>
+
+                            
+                        </form>
+                    </div>
+                </div> 
+            </div>
+           
         </div>
     </div>
 </div>

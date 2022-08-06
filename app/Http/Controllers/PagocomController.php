@@ -120,5 +120,15 @@ class PagocomController extends Controller
 
         return redirect()->route('billetecom.crear', ['pago'=>$pago]); 
     }
+    public function pagosComMostrarAjax(Request $request){
+        //return response()->json(['s'=>8]);
+        $matriculacion = Matriculacion::findOrFail(1);
+        $persona=$matriculacion->computacion->persona;
+        $pagos = $matriculacion->pagos;
+        $acuenta = $matriculacion->pagos->sum->monto;
+        $saldo = $matriculacion->costo - $acuenta;
+        $data=['pagos'=>$pagos, 'persona'=>$persona,'acuenta'=>$acuenta, 'saldo'=>$saldo,'total'=>$matriculacion->costo];
+        return response()->json($data);
+    }
 
 }

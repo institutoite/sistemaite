@@ -284,3 +284,113 @@
         </div>
     </div>
 </div>
+<div class="modal" tabindex="-1"  id="modal-agregar-observacion-inscripcion">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                MODAL AGEREGA OBERACION DE INCRIPCION
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card card-primary">
+                    <div class="card-header bg-secondary">
+                        <span class="card-title">Agregar Observación</span>
+                    </div>
+                    <div class="card-body">
+                        <div id="erroresdiv" class="alert alert-danger d-none">
+                            <ul id=errores>
+                                
+                            </ul>
+                        </div>
+                        <form id="formulario-guardar-observacion-inscripcion" method="POST">
+                            @csrf
+                            <textarea cols="80" id="editor3" name="editor3" rows="10" data-sample-short>
+                            </textarea>
+                            <input type="text" id="observable_id_inscripcion" hidden value="">
+                            <input type="text" id="observable_type_inscripcion" hidden value="">
+
+                            <div class="container-fluid h-100 mt-3"> 
+                                <div class="row w-100 align-items-center">
+                                    <div class="col text-center">
+                                        <button id="guardar-observacion-inscripcion" class="btn btn-primary text-white btn-lg">Guardar <i class="far fa-save"></i></button>        
+                                    </div>	
+                                </div>
+                            </div>
+
+                            
+                        </form>
+                    </div>
+                </div> 
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  MODAL ULTIMA INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%--}}
+<div class="modal" tabindex="-1" id="modal-mostrar-ultimainscripcion">
+    <div class="modal-dialog modal-xl modalito">
+        <div class="modal-content">
+            <div class="modal-header bg-    primary">
+                {{__('ULTIMA INSCRIPCION')}}
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ATRIBUTO</th>
+                                    <th>VALOR</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-ultimainscripcion">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger text-white" data-bs-dismiss="modal">cerrar &times;</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  MODAL ULTIMA PROGRAMACION DE INSCRIPCION  --}}
+<div class="modal" tabindex="-1" id="modal-mostrar-ultima-programacion">
+    <div class="modal-dialog modal-xl modalito">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                {{__('PROGRAMACION DE ULTIMA INSCRIPCION EN DETALLE')}}
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>FECHA</th>
+                                    <th>HORARIO</th>
+                                    <th>HRAS</th>
+                                    <th>DOCENTE</th>
+                                    <th>ESTADO</th>
+                                    <th>MATERIA</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-ultima-programacion">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger text-white" data-bs-dismiss="modal">cerrar &times;</button>
+            </div>
+        </div>
+    </div>
+</div>

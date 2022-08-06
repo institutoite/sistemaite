@@ -14,6 +14,7 @@ use App\Models\Matriculacion;
 use App\Models\Programacioncom;
 use App\Models\Estudiante;
 use App\Models\Tipomotivo;
+use App\Models\Motivo;
 use Illuminate\Support\Arr;
 use App\Http\Requests\MatriculacionStoreRequest;
 use Illuminate\Support\Facades\DB;
@@ -244,6 +245,7 @@ class MatriculacionController extends Controller
 
     public function matriculacionMostrarAjax(Request $request){
         $matriculacion = Matriculacion::findOrFail($request->matriculacion_id);
+        // $matriculacion = Matriculacion::findOrFail(1);
         $asignatura=Asignatura::findOrFail($matriculacion->asignatura_id);
         $persona=$matriculacion->computacion->persona;
         $motivo=Motivo::findOrFail($matriculacion->motivo_id);
@@ -251,10 +253,10 @@ class MatriculacionController extends Controller
         $empezo=$matriculacion->fechaini->diffForHumans();    
         $finaliza=$matriculacion->fechafin->diffForHumans();    
         $proximo_pago=$matriculacion->fecha_proximo_pago->diffForHumans();    
-        $creado=$persona->created_at->diffForHumans();
-        $actualizado=$persona->updated_at->diffForHumans();
+        $creado=$matriculacion->created_at->diffForHumans();
+        $actualizado=$matriculacion->updated_at->diffForHumans();
         $data=['matriculacion'=>$matriculacion,
-                'modalidad'=>$modalidad,
+                'asignatura'=>$asignatura,
                 'persona'=>$persona, 
                 'motivo'=>$motivo,
                 'empezo'=>$empezo,

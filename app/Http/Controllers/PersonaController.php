@@ -28,6 +28,7 @@ use App\Models\Observacion;
 use App\Models\Computacion;
 use App\Models\Interest;
 use App\Models\Programacioncom;
+use App\Models\Programacion;
 use App\Models\Pais;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
@@ -694,6 +695,45 @@ class PersonaController extends Controller
         $data=['observacion'=>$observacion,'usuario'=>$usuario];
         return response()->json($data);
     }
+
+     public function ultimaInscripcion(Request $request){
+        $inscripcion=Persona::findOrFail($request->persona_id)->estudiante->inscripciones->last();
+        $materia=$inscripcion->materia;
+        $usuario=$inscripcion->usuarios->first();
+        $motivo=$inscripcion->motivo;
+        $empezo=$inscripcion->fechaini->diffForHumans();    
+        $finaliza=$inscripcion->fechafin->diffForHumans();    
+        $proximo_pago=$inscripcion->fecha_proximo_pago->diffForHumans();    
+        $creado=$inscripcion->created_at->diffForHumans();
+        $actualizado=$inscripcion->updated_at->diffForHumans();
+        $data=[
+            'inscripcion'=>$inscripcion,
+            'usuario'=>$usuario,
+            'materia'=>$materia,
+            'motivo'=>$motivo,
+            'empezo'=>$empezo,
+            'finaliza'=>$finaliza,
+            'proximo_pago'=>$proximo_pago,
+            'creado'=>$creado, 
+            'actualizado'=>$actualizado,
+        ];
+
+        return response()->json($data);
+    }
+    // public function ultimaProgramacion(Request $request){
+    public function ultimaProgramacion(){
+        // $inscripcion=Persona::findOrFail($request->persona_id)->estudiante->inscripciones->last();
+        $inscripcion=Persona::findOrFail(2)->estudiante->inscripciones->last();
+        $programaciones = Programacion::join('aulas', 'programacions.aula_id', '=', 'aulas.id')
+            ->join('docentes', 'programacions.docente_id', '=', 'docentes.id')
+            ->join('materias', 'programacions.docente_id', '=', 'docentes.id')
+            ->join('estados','estados.id','programacions.estado_id')
+            ->select('programacions.fecha','nombre','hora_ini','estados.estado','programacions.habilitado','materias.materia', 'hora_fin', 'horas_por_clase', 'aulas.aula')
+            ->orderBy('fecha', 'asc')
+            ->where('programacions.matriculacion_id', '=', $inscripcion->id)->get();
+        return response()->json($programaciones);
+    }
+
     public function ultimaMatriculacion(Request $request){
         
         $matriculacion=Persona::findOrFail($request->persona_id)->computacion->matriculaciones->last();
@@ -720,16 +760,21 @@ class PersonaController extends Controller
 
         return response()->json($data);
     }
+
     public function ultimaProgramacioncom(Request $request){
          $matriculacion=Persona::findOrFail($request->persona_id)->computacion->matriculaciones->last();
          $programacioncoms = Programacioncom::join('aulas', 'programacioncoms.aula_id', '=', 'aulas.id')
             ->join('docentes', 'programacioncoms.docente_id', '=', 'docentes.id')
             ->join('estados','estados.id','programacioncoms.estado_id')
-            ->select('programacioncoms.fecha','nombre', 'habilitado','horaini','estados.estado','programacioncoms.habilitado', 'horafin', 'horas_por_clase', 'aulas.aula')
+            ->select('programacioncoms.fecha','nombre', 'habilitado','horaini','estados.estado', 'horafin', 'horas_por_clase', 'aulas.aula')
             ->orderBy('fecha', 'asc')
             ->where('programacioncoms.matriculacion_id', '=', $matriculacion->id)->get();
         return response()->json($programacioncoms);
     }
+
+   
+    
+   
     public function enviarMensaje(Request $request){
         //  return response()->json(['d'=>2]);
          $persona=Persona::findOrFail($request->persona_id);

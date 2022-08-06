@@ -87,6 +87,11 @@ class Inscripcione extends Model
     {
         return $this->belongsTo(Modalidad::class);
     }
+    
+    public function motivo()
+    {
+        return $this->belongsTo(Motivo::class);
+    }
 
     
 

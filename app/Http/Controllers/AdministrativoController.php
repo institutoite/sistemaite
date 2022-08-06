@@ -173,8 +173,8 @@ class AdministrativoController extends Controller
                 ->join('users','users.id','userables.user_id')
                 ->where('users.id', $userActual->id)
                 ->where('matriculacions.vigente', 0)
-                ->select('personas.id','nombre','apellidop','apellidom')
-                ->groupBy('personas.id','nombre','apellidop','apellidom')
+                ->select('personas.id','nombre','apellidop','apellidom','vuelvefecha','volvera')
+                ->groupBy('personas.id','nombre','apellidop','apellidom','vuelvefecha','volvera')
                 ->get();
 
         return datatables()->of($personas)

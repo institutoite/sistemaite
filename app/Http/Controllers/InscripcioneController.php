@@ -146,7 +146,7 @@ class InscripcioneController extends Controller
         // dd($inscripcion);
         
         //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   %%%%%%%%%%%%%%%%*/
-        $inscripcion->usuarios()->attah(Auth::user()->id);
+        $inscripcion->usuarios()->attach(Auth::user()->id);
         $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
         $materias = $nivel->materias;
         $aulas = Aula::get();

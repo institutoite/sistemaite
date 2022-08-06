@@ -25,7 +25,7 @@
     </div>
 </div>
 
-<div class="modal" tabindex="-1"  id="modal-gregar-observacion">
+<div class="modal" tabindex="-1"  id="modal-agregar-observacion">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-primary">
@@ -35,7 +35,7 @@
             <div class="modal-body">
                 <div class="card card-primary">
                     <div class="card-header bg-secondary">
-                        <span class="card-title">Agregar Observaciónz</span>
+                        <span class="card-title">Agregar Observación</span>
                     </div>
                     <div class="card-body">
                         <div id="erroresdiv" class="alert alert-danger d-none">

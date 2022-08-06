@@ -544,4 +544,18 @@ class ProgramacioncomController extends Controller
                     ->where('estado_id',Config::get('constantes.ESTADO_INDEFINIDO'))->update(['estado_id'=>Config::get('constantes.ESTADO_FALTA')]);
         return response()->json(['id'=>"Todo Bien"]);
     }
+    public function programacioncomMostrarAjax(Request $request){
+            $programacion = Programacioncom::join('matriculacions', 'programacioncoms.matriculacion_id', '=', 'matriculacions.id')
+            ->join('aulas', 'programacioncoms.aula_id', '=', 'aulas.id')
+            ->join('asignaturas', 'matriculacions.asignatura_id', '=', 'asignaturas.id')
+            ->join('docentes', 'programacioncoms.docente_id', '=', 'docentes.id')
+            ->join('personas', 'personas.id', '=', 'docentes.persona_id')
+            ->join('estados','estados.id','programacioncoms.estado_id')
+            ->select('programacioncoms.fecha', 'horaini','estados.estado','programacioncoms.habilitado', 'horafin', 'horas_por_clase', 'personas.nombre', 'asignaturas.asignatura', 'aulas.aula')
+            ->orderBy('fecha', 'asc')
+            // ->where('matriculacion_id', '=', 1)->get();
+            ->where('matriculacion_id', '=', $request->matriculacion_id)->get();
+        return response()->json($programacion);
+
+    }
 }

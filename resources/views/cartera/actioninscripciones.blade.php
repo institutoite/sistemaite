@@ -13,7 +13,7 @@
     <i class="fas fa-comments text-secondary"></i>
 </a>
 
-<a href="" class="btn-accion-tabla tooltipsC mr-1 agregarobservacion" title="Agregar Observaciones">
+<a href="" class="btn-accion-tabla tooltipsC mr-1 agregarobservacioninscripcion" title="Agregar Observaciones">
     <i class="fas fa-comment-medical text-fuchsia"></i>
 </a>
 

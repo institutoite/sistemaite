@@ -55,7 +55,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[PersonaController::class,'actualizarVuelveFecha'])->name('prueba');
+Route::get('prueba',[PersonaController::class,'ultimaProgramacion'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -105,6 +105,9 @@ Route::get('persona/enviar/mensaje', [PersonaController::class,'enviarMensaje'])
 Route::get('persona/descargar/contacto/{persona}', [PersonaController::class,'descargarContacto'])->name('descargar.contacto');
 Route::get('persona/actualizar/vuelvefecha', [PersonaController::class,'actualizarVuelveFecha'])->name('persona.update.vuelvefecha');
 Route::get('persona/actualizar/volvera', [PersonaController::class,'actualizarVolvera'])->name('persona.update.volvera');
+
+Route::get('persona/ultima/inscripcion', [PersonaController::class,'ultimaInscripcion'])->name('persona.ultima.inscripcion');
+Route::get('persona/ultima/programacion', [PersonaController::class,'ultimaProgramacion'])->name('persona.ultima.programacion');
 
 Route::get('reporte/potenciales', [PersonaReporteController::class,'potencialesPorInteresView']);
 Route::get('potenciales/hoy', [PersonaReporteController::class,'potencialesHoyView']);
@@ -212,12 +215,13 @@ Route::patch('pago/actualizar/{pago}', "PagoController@actualizar")->name('pago.
 Route::get('pagos/mostrar/ajax',[PagoController::class,'pagosMostrarAjax'])->name('pagos.mostrar.ajax');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       P  A  G  O  S  COMPUTACION         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-Route::get('pagocom/crear/{matriculacion}', 'PagocomController@crear')->name('pagocom.crear');
-Route::get('pagocom/mostrar/{pagocom}', 'PagocomController@mostrar')->name('pagocom.mostrar');
-Route::get('pagocom/editar/{pagocom}', 'PagocomController@editar')->name('pagocom.editar');
-Route::get('pagocom/inscripcion/{matriculacion}', 'PagocomController@detallar')->name('pagocom.detallar');
-Route::post('pagocom/realizar/{matriculacion}', 'PagocomController@guardar')->name('pagocom.guardar');
-Route::patch('pagocom/actualizar/{pagocom}', "PagocomController@actualizar")->name('pagocom.actualizar');
+Route::get('pagocom/crear/{matriculacion}',[PagocomController::class,'crear'])->name('pagocom.crear');
+Route::get('pagocom/mostrar/{pagocom}',[PagocomController::class,'mostrar'])->name('pagocom.mostrar');
+Route::get('pagocom/editar/{pagocom}',[PagocomController::class,'editar'])->name('pagocom.editar');
+Route::get('pagocom/inscripcion/{matriculacion}',[PagocomController::class,'detallar'])->name('pagocom.detallar');
+Route::post('pagocom/realizar/{matriculacion}',[PagocomController::class,'guardar'])->name('pagocom.guardar');
+Route::patch('pagocom/actualizar/{pagocom}', [PagocomController::class,'actualizar'])->name('pagocom.actualizar');
+Route::get('pagoscom/mostrar/ajax',[PagocomController::class,'pagosComMostrarAjax'])->name('pagoscom.mostrar.ajax');
 
 
 
@@ -338,7 +342,7 @@ Route::get('matriculacion/actualizar/fechapago/{fecha}/{id}',[MatriculacionContr
 Route::get('tusmatriculaciones', [MatriculacionController::class,'tusMatriculacionesVigentes'])->name('matriculaciones.de.estudiante');
 Route::get('matriculaciones/vigentes/view', function () {return view('matriculaciones.vigentes');})->name('matriculaciones.vigentes.view');
 Route::get('matriculaciones/vigentes/ajax', "MatriculacionController@vigentesAjax")->name('matriculaciones.vigentes.ajax');  
-Route::get('matriculacion/mostrar/ajax', [MatriculacionController::class,'matriculacionMostrarAjax'])->name('matriculacion.mostrar.ajax');
+Route::get('matriculacioncita/ajax/show', [MatriculacionController::class,'matriculacionMostrarAjax'])->name('matriculacion.mostrar.ajax');
   
 //Route::get('tumatriculaciones', [MatriculacionController::class,'tusMatriculacionesVigentes'])->name('matriculaciones');
 //Route::get('imprimir/matriculacion/{matriculacion}',[MatriculacionController::class,'imprimir'] )->name('imprimir.matriculacion');
@@ -516,6 +520,7 @@ Route::get('guardar/observacion/programacioncom', [ProgramacioncomController::cl
 Route::get('inscripciones/vigentes/{estudiante_id}', 'InscripcioneController@inscripcionesVigentes')->name('inscripciones.vigentes');
 Route::get('programacioncom/asistencia/ajax', [ProgramacioncomController::class,'asisntecia'])->name('asistenciacom.ajax');
 Route::get('programacioncom/asignarfalta/ajax', [ProgramacioncomController::class,'asignarFaltasFechasPasadas'])->name('programacioncom.asignarFaltas');
+Route::get('programacioncom/mostrar/ajax', [ProgramacioncomController::class,'programacioncomMostrarAjax'])->name('programacioncom.mostrar..ajax');
 
 Route::get('observacion/create/{observable_id}/{observable_type}',[ObservacionController::class,'create'])->name('observacion.create');
 Route::get('observacion/editar',[ObservacionController::class,'edit'])->name('observacion.editar');

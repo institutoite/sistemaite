@@ -41,7 +41,7 @@ Hay error al crear user
 en ver inscripciones no aparece la matriculacion que no pago
 que se pueda agreagar observaciones en Inscripciones por ejemplo matriculacioanes etc
 validar guaradar observacion en todos los casos
-
+no se  puede crear mensajes de texto para enviar
 
 en el controlador
 use Illuminate\Support\Facades\Auth;

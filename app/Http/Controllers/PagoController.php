@@ -111,11 +111,11 @@ class PagoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function mostrar($pago_id)
-    {
+    {   
         $pago = Pago::find($pago_id);
         $billetes=$pago->billetes;
-        $user=User::find($pago->userable->user_id);
-
+        //$user=User::find($pago->userable->user_id);
+        $user=$pago->usuarios->first();
         $data=['pago'=>$pago,'user'=>$user,'billetes'=>$billetes];
 
         return response()->json($data);

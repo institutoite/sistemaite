@@ -14,19 +14,19 @@
 <a href="" class="btn-accion-tabla tooltipsC mr-1 ultimaprogramacioncom" title="Ver ultima programacioncom">
     <i class="fas fa-list-ol"></i>
 </a>
-<a href="" class="btn-accion-tabla tooltipsC mr-1 enviarmensaje" title="Ver ultima programacioncom">
+<a href="" class="btn-accion-tabla tooltipsC mr-1 enviarmensaje" title="Enviar un mensaje">
     <i class="fab fa-whatsapp"></i>
 </a>
 <a href="" class="btn-accion-tabla tooltipsC mr-1 llamar" title="Hacer una llamada">
     <i class="fas fa-phone-volume"></i>
 </a>
-<a href="" class="btn-accion-tabla tooltipsC mr-1 fechar" title="Fechar una fecha de regresar a clases">
+<a href="" class="btn-accion-tabla tooltipsC mr-1 fechar" title="Agendar regreso a clases">
     <i class="fas fa-calendar-check"></i>
 </a>
-<a href="" class="btn-accion-tabla tooltipsC mr-1 calificar" title="Fechar una fecha de regresar a clases">
+<a href="" class="btn-accion-tabla tooltipsC mr-1 calificar" title="Calificar el nivel de regreso 1 a 5 donde 5 es que volvera seguro">
     <i class="fas fa-thumbs-up"></i>
 </a>
-<a href="{{route('descargar.contacto', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Fechar una fecha de regresar a clases">
-    <i class="fas fa-download"></i>
+<a href="{{route('descargar.contacto', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Descargar contacto">
+    <i class="far fa-address-card"></i>
 </a>
 
