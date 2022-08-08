@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header {{$clase}}">
-        <h3 class="card-title">CLASES QUE FALTAN</h3>
+        <h3 class="card-title">PROGRAMACION COMPLETA DE ESTA INSCRIPCION</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
         </div>

@@ -5,16 +5,16 @@
         removeButtons: 'PasteFromWord'
     });
 
-    
     $('table').on('click', '.observacion', function (e) {
         e.preventDefault();
         let objeto_id = $(this).closest('tr').attr('id');
         console.log(objeto_id);
         $("#observable_id").val(objeto_id);
-        $("#observable_type").val($(this).attr("id"));
-        CKEDITOR.instances.editor1.setData('');
-        $("#modal-gregar-observacion").modal("show");
+        $("#observable_type").val('Inscripcione');
+        //CKEDITOR.instances.editor1.setData("");
+        $("#modal-agregar-observacion").modal("show");
     });
+
 
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BOTON GUARDAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     $('#guardar-observacion').on('click', function (e) {
@@ -49,7 +49,7 @@
                 alert('Disculpe, existió un problema');
             },
         });
-        $("#modal-gregar-observacion").modal("hide");
+        $("#modal-agregar-observacion").modal("hide");
     });
 
     //** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% editar observacion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */

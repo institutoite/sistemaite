@@ -23,3 +23,7 @@
     <a href="{{route('clases.marcado.general',$id)}}" class="" title="Gestionar asistencia">
         <i class="far fa-calendar-check"></i>
     </a>
+
+    <a class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" id="Inscripcione" title="Agregar Observacion">
+        <i class="fas fa-comment-alt fa-2x"></i>
+    </a>

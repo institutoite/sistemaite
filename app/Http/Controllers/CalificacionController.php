@@ -83,7 +83,10 @@ class CalificacionController extends Controller
         $calificacion=Calificacion::findOrFail($request->calificacion_id);
         $calificacion->calificacion=$request->calificacion;
         $calificacion->save();
-        return response()->json(['calificacion'=>"Guardado correctamente"]);
+        $persona=$calificacion->persona;
+        
+        return redirect()->route('personas.show',$persona);
+        // return response()->json(['calificacion'=>"Guardado correctamente"]);
     }
 
     /**

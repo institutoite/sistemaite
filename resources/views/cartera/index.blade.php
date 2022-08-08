@@ -88,10 +88,10 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>NRO</th>
-										<th>NOMBRE</th>
-										<th>APELLIDOP</th>
-										<th>APELLIDOM</th>
-										<th>ULTIMA VEZ</th>
+										<th>NOMBRE COMPLETO</th>
+										<th>ULTIMA OBSERVACION</th>
+										<th>POSIBLE VUELTA</th>
+										<th>NIVEL</th>
                                         <th>Options</th>
                                     </tr>
                                 </thead>
@@ -229,17 +229,51 @@
                     "responsive":true,
                     "autoWidth":false,
                     "createdRow": function( row, data, dataIndex ) {
-                        $(row).attr('id',data['id']); 
+                        $(row).attr('id',data['id']);
+                         persona_id = data['id'];
+                        $.ajax({
+                            url:"{{url('persona/ultimaobservacion')}}",
+                            data:{persona_id:persona_id},
+                            success : function(json) {
+                                $('td', row).eq(2).html(json.observacion.observacion +'('+ json.usuario.name +')');  
+                            },
+                        }); 
+                        $('td', row).eq(1).html(data['nombre']+' '+data['apellidop']+' '+data['apellidom']); 
+                        
+                        if (moment(data['vuelvefecha']).format('YY-MM-DD')>moment().format('YY-MM-DD')){
+                            $(row).addClass('text-success')
+                        }else{
+                            $(row).addClass('text-danger')
+                        }
+                        
+                        switch (data['volvera']) {
+                            case 1:
+                                $('td', row).eq(4).html("<i class='fas fa-2x fa-battery-empty'></i><span class='float'><strong>"+1+"</strong></span>"); 
+                                break;
+                            case 2:
+                                $('td', row).eq(4).html("<i class='fas fa-2x fa-battery-quarter'></i><span class='float'><strong>"+2+"</strong></span>");
+                                break;
+                            case 3:
+                                $('td', row).eq(4).html("<i class='fas fa-2x fa-battery-half'></i><span class='float'><strong>"+3+"</strong></span>");
+                                break;
+                            case 4:
+                                $('td', row).eq(4).html("<i class='fas fa-2x fa-battery-three-quarters'></i><span class='float'><strong>"+4+"</strong></span>");
+                                break;
+                            case 5:
+                                $('td', row).eq(4).html("<i class='fas fa-2x fa-battery-full'></i><span class='float'><strong>"+5+"</strong></span>");
+                                break;
+                        }
                     },
                     "ajax": "{{ url('micartera/inscripciones/desvigentes') }}",
                     "columns": [
                         {data: 'id'},
                         {data:'nombre'},
                         {data: 'apellidop'},
-                        {data: 'apellidom'},
-                        {data: 'fecha'},
+                        {data: 'vuelvefecha'},
+                        {data: 'volvera'},
                         {data: 'btn'},
                     ],
+                    order: [[3, 'asc']],
                     "columnDefs": [
                         { responsivePriority: 1, targets: 0 },
                         { responsivePriority: 3, targets: -1 }
@@ -1202,14 +1236,13 @@
                                             $clase+=" bg-danger text-white";
                                         }
                                     }
-                                   
-                                    //console.log();
-                                    // console.log(moment(json[j].fecha).format('DD-MM-YYYY'));
-                                    $html+="<tr class='"+$clase+"'><td>"+ moment(json[j].fecha).format("L") +"</td>";
-                                    $html+="<td>"+moment(json[j].horaini).format('hh:mm-ss')+" - "+moment(json[j].horafin).format('hh:mm:ss')+"</td>";
+                                    $html+="<tr class='"+$clase+"'><td>"+ parseInt(parseInt(j)+1) +"</td>";
+                                    $html+="<td>"+ moment(json[j].fecha).format("L") +"</td>";
+                                    $html+="<td>"+moment(json[j].hora_ini).format('hh:mm-ss')+" - "+moment(json[j].hora_fin).format('hh:mm:ss')+"</td>";
                                     $html+="<td>"+json[j].horas_por_clase+"</td>";
                                     $html+="<td>"+json[j].nombre+"</td>";
                                     $html+="<td>"+json[j].estado+"</td>";
+                                    $html+="<td>"+json[j].materia+"</td>";
                                 }
                                 $("#tabla-ultima-programacion").append($html);
                             },
@@ -1246,6 +1279,7 @@
                                             $clase+=" bg-danger text-white";
                                         }
                                     }
+
                                    
                                     //console.log();
                                     // console.log(moment(json[j].fecha).format('DD-MM-YYYY'));

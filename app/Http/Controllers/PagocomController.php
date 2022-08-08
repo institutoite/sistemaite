@@ -38,8 +38,6 @@ class PagocomController extends Controller
     }
 
    public function guardar(PagocomStoreRequest $request,$matriculacion_id){
-
-        //dd($matriculacion_id);
         $matriculacion=Matriculacion::findOrFail($matriculacion_id);
         $pago=new Pago();
         $pago->monto=$request->monto;
@@ -108,10 +106,6 @@ class PagocomController extends Controller
     }
     public function actualizar(PagocomStoreRequest $request, $pago_id)
     {
-       // $pago->update($request->all());
-
-        //  dd($pago_id);
-        // $matriculacion=Matriculacion::findOrFail($matriculacion_id);
         $pago=Pago::findOrFail($pago_id);
         $pago->monto=$request->monto;
         $pago->pagocon=$request->pagocon;
@@ -121,7 +115,6 @@ class PagocomController extends Controller
         return redirect()->route('billetecom.crear', ['pago'=>$pago]); 
     }
     public function pagosComMostrarAjax(Request $request){
-        //return response()->json(['s'=>8]);
         $matriculacion = Matriculacion::findOrFail(1);
         $persona=$matriculacion->computacion->persona;
         $pagos = $matriculacion->pagos;

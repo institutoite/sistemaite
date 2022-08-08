@@ -40,31 +40,29 @@ class AsignaturaSeeder extends Seeder
         Asignatura::create(['asignatura'=>'PROYECTO I','carrera_id'=>2]);
         Asignatura::create(['asignatura'=>'PROYECTO II','carrera_id'=>2]);
 
-        // Userable::create(["user_id"=>1,"userable_id"=>1,"userable_type"=>"App\Models\Asignatura"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>2,"userable_type"=>"App\Models\Asignatura"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>3,"userable_type"=>"App\Models\Asignatura"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>4,"userable_type"=>"App\Models\Asignatura"]);
+        Asignatura::find(1)->usuarios()->attach(1);
+        Asignatura::find(2)->usuarios()->attach(1);
+        Asignatura::find(3)->usuarios()->attach(1);
+        Asignatura::find(4)->usuarios()->attach(1);
+        Asignatura::find(5)->usuarios()->attach(1);
+        Asignatura::find(6)->usuarios()->attach(1);
+        Asignatura::find(7)->usuarios()->attach(1);
+        Asignatura::find(8)->usuarios()->attach(1);
+        Asignatura::find(9)->usuarios()->attach(1);
+        Asignatura::find(10)->usuarios()->attach(1);
+
+        Asignatura::find(11)->usuarios()->attach(1);
+        Asignatura::find(12)->usuarios()->attach(1);
+        Asignatura::find(13)->usuarios()->attach(1);
+        Asignatura::find(14)->usuarios()->attach(1);
+        Asignatura::find(15)->usuarios()->attach(1);
+        Asignatura::find(16)->usuarios()->attach(1);
+        Asignatura::find(17)->usuarios()->attach(1);
+        Asignatura::find(18)->usuarios()->attach(1);
+        Asignatura::find(19)->usuarios()->attach(1);
+        Asignatura::find(20)->usuarios()->attach(1);
+
         
-        // Userable::create(["user_id"=>1,"userable_id"=>5,"userable_type"=>"App\Models\Asignatura"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>6,"userable_type"=>"App\Models\Asignatura"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>7,"userable_type"=>"App\Models\Asignatura"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>8,"userable_type"=>"App\Models\Asignatura"]);
-        
-        // Userable::create(["user_id"=>1,"userable_id"=>9,"userable_type"=>"App\Models\Asignatura"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>10,"userable_type"=>"App\Models\Asignatura"]);
-        
-        // Userable::create(["user_id"=>1,"userable_id"=>11,"userable_type"=>"App\Models\Asignatura"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>12,"userable_type"=>"App\Models\Asignatura"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>13,"userable_type"=>"App\Models\Asignatura"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>14,"userable_type"=>"App\Models\Asignatura"]);
-        
-        // Userable::create(["user_id"=>1,"userable_id"=>15,"userable_type"=>"App\Models\Asignatura"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>16,"userable_type"=>"App\Models\Asignatura"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>17,"userable_type"=>"App\Models\Asignatura"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>18,"userable_type"=>"App\Models\Asignatura"]);
-        
-        // Userable::create(["user_id"=>1,"userable_id"=>19,"userable_type"=>"App\Models\Asignatura"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>20,"userable_type"=>"App\Models\Asignatura"]);
         
     }
 }

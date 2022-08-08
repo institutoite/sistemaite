@@ -105,8 +105,21 @@
 
 
         $(document).ready(function() {
-
-            
+        CKEDITOR.replace('editor1', {
+            height: 120,
+            width: "100%",
+            removeButtons: 'PasteFromWord'
+        });
+ 
+        $('table').on('click', '.observacion', function (e) {
+            e.preventDefault();
+            let objeto_id = $(this).closest('tr').attr('id');
+            console.log(objeto_id);
+            $("#observable_id").val(objeto_id);
+            $("#observable_type").val('Persona');
+            CKEDITOR.instances.editor1.setData('');
+            $("#modal-agregar-observacion").modal("show");
+        });    
 
         var tabla=$('#personas').DataTable(
                 {

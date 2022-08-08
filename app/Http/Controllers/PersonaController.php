@@ -721,18 +721,27 @@ class PersonaController extends Controller
         return response()->json($data);
     }
     // public function ultimaProgramacion(Request $request){
-    public function ultimaProgramacion(){
-        // $inscripcion=Persona::findOrFail($request->persona_id)->estudiante->inscripciones->last();
-        $inscripcion=Persona::findOrFail(2)->estudiante->inscripciones->last();
-        $programaciones = Programacion::join('aulas', 'programacions.aula_id', '=', 'aulas.id')
-            ->join('docentes', 'programacions.docente_id', '=', 'docentes.id')
-            ->join('materias', 'programacions.docente_id', '=', 'docentes.id')
-            ->join('estados','estados.id','programacions.estado_id')
-            ->select('programacions.fecha','nombre','hora_ini','estados.estado','programacions.habilitado','materias.materia', 'hora_fin', 'horas_por_clase', 'aulas.aula')
-            ->orderBy('fecha', 'asc')
-            ->where('programacions.matriculacion_id', '=', $inscripcion->id)->get();
+    public function ultimaProgramacion(Request $request){
+        $inscripcion=Persona::findOrFail($request->persona_id)->estudiante->inscripciones->last();
+        // $inscripcion=Persona::findOrFail(2)->estudiante->inscripciones->last();
+        
+        $programaciones=Programacion::join('docentes','docentes.id','=','programacions.docente_id')
+                    ->join('aulas','aulas.id','=','programacions.aula_id')
+                    ->join('inscripciones','inscripciones.id','=','programacions.inscripcione_id')
+                    ->join('materias','materias.id','=','programacions.materia_id')
+                    ->join('estados','estados.id','=','programacions.estado_id')
+                    ->where('inscripcione_id',$inscripcion->id)
+                    ->select('programacions.id','fecha','estados.estado','materia','docentes.nombre','programacions.hora_ini','programacions.hora_fin','horas_por_clase','aulas.aula','programacions.habilitado')->get();
         return response()->json($programaciones);
     }
+
+    // $programaciones = Programacion::join('aulas', 'programacions.aula_id', '=', 'aulas.id')
+    //     ->join('docentes', 'programacions.docente_id', '=', 'docentes.id')
+    //     ->join('materias', 'programacions.docente_id', '=', 'docentes.id')
+    //     ->join('estados','estados.id','programacions.estado_id')
+    //     ->where('programacions.inscripcione_id', '=', $inscripcion->id)
+    //     ->select('programacions.fecha','nombre','hora_ini','estados.estado','programacions.habilitado','materias.materia', 'hora_fin', 'horas_por_clase', 'aulas.aula')
+    //     ->orderBy('fecha', 'asc')->get();
 
     public function ultimaMatriculacion(Request $request){
         

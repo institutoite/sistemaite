@@ -25,24 +25,25 @@ editar Matriculaciones
 a Todos los seeder Nivel::findOrFail(1)->userable()->create(['user_id'=>1]);
 
 /%%%%%%%%%%%%% postergado agragar chat por mesenger a las paginas 
-
+/%%%%%%%%%%%%% a la hora de marcar clase que se muestre la programacion real  
 Ver las carteras
 que en detalle de pagos se muestre el total
 cuando computacion se paga todo la ultima clase se queda impaga
-a la hora de marcar clase que se muestre la programacion real  
 despues de editar calificacion se muestra una ventana rrara
 cuando estamos crando una licenciacom en motivo semuestran otros motivos ajenos a licenciacom
-en todos los mostrar el foto del usuario es muy grande 
 cambiar en ver toda la programacion dice en el titulo clases que faltan
+en ver inscripciones no aparece la matriculacion que no pago
+ 
 crud para licencias en computacion y nivelacion
+en todos los mostrar el foto del usuario es muy grande 
 hacer ite business/familiar/persona/Colegios
 Falta terminar el crud de requisitos y metas
-Hay error al crear user
-en ver inscripciones no aparece la matriculacion que no pago
+
 que se pueda agreagar observaciones en Inscripciones por ejemplo matriculacioanes etc
 validar guaradar observacion en todos los casos
 no se  puede crear mensajes de texto para enviar
-
+cuandose registra una persona como estudiante se crea una cuenta pero que se cree con ese privilegio
+la muestra de mostrar bueno esta en show de ciudades
 en el controlador
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;

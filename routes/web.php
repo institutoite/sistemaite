@@ -55,7 +55,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[PersonaController::class,'ultimaProgramacion'])->name('prueba');
+Route::get('prueba',[InscripcioneController::class,'Saldo'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -466,6 +466,7 @@ Route::get('tusinscripciones', 'InscripcioneController@tusInscripcionesVigentes'
 Route::get('inscripcines/vigentes/view', function () {return view('inscripcione.vigentes');})->name('inscripciones.vigentes.view');
 Route::get('inscripciones/vigentes/ajax', [InscripcioneController::class,'vigentesAjax'])->name('inscripciones.vigentes.ajax');  
 Route::get('inscripcion/mostrar/ajax', [InscripcioneController::class,'inscripcionMostrarAjax'])->name('inscripcion.mostrar.ajax');  
+Route::get('saldo/inscripcion', [InscripcioneController::class,'Saldo'])->name('inscripcion.saldo.ajax');  
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TELEFONOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('telefonos/vista/{persona}','TelefonoController@mostrarvista')->name('telefonos.persona');

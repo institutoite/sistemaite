@@ -373,6 +373,7 @@
                         <table class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
+                                    <th>#</th>
                                     <th>FECHA</th>
                                     <th>HORARIO</th>
                                     <th>HRAS</th>

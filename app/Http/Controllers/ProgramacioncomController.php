@@ -172,9 +172,9 @@ class ProgramacioncomController extends Controller
                     if ($total_horas > 0) {
                         $programa = new Programacioncom();
                         $hora_x_sesion= $sesion->horainicio->floatDiffInHours($sesion->horafin);
-                        $costo_x_sesion = ($costo_total / $matriculacion->totalhoras) *$hora_x_sesion ;
+                        $costo_x_sesion = ($costo_total / $matriculacion->totalhoras)*$hora_x_sesion ;
                         $costo_hora= $costo_total / $total_horas;
-                        if($total_horas>$hora_x_sesion){
+                        if($total_horas>=$hora_x_sesion){
                             if ($acuenta >= $costo_x_sesion) {
                                 $this->agregarClase($programa,$fecha,$hora_x_sesion,$total_horas,$sesion,true,$matriculacion);
                             } else {
@@ -274,6 +274,7 @@ class ProgramacioncomController extends Controller
                     }
                 } 
             }
+            dd($programa);
         }
         $matriculacion->fechafin = $programa->fecha;
         if ($Acuenta_para_regenerar < $matriculacion->costo) {
@@ -443,12 +444,10 @@ class ProgramacioncomController extends Controller
         }
         $programascom = Programacioncom::where('matriculacion_id', '=', $matriculacion_id)
                                         ->get();
-        //return $cuantas;
 
-        if ($TotalPagado < $matriculacion->costo) {
+        if ($TotalPagado <= $matriculacion->costo) {
             return redirect()->route('mostrar.programacioncom', $matriculacion);
         } else {
-            //dd($matriculacion->costo);
             $matriculacion->fecha_proximo_pago = $matriculacion->programaciones->last()->fecha->isoFormat('Y-M-D');
             $matriculacion->save();
             return redirect()->route('imprimir.programa', $matriculacion->id);

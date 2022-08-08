@@ -319,7 +319,7 @@ class ProgramacionController extends Controller
                         $costo_x_sesion = ($costo_total / $inscripcion->totalhoras) *$hora_x_sesion ;
                         $costo_hora= $costo_total / $total_horas;
                         
-                        if($total_horas>$hora_x_sesion){
+                        if($total_horas>=$hora_x_sesion){
                             if ($acuenta >= $costo_x_sesion) {
                                 $this->agregarClase($programa,$fecha,$hora_x_sesion,$total_horas,$sesion,true,$inscripcion);
                             } else {
@@ -393,7 +393,7 @@ class ProgramacionController extends Controller
 
                 $costo_hora = $costo_total / $total_horas;
                 //dd($costo_hora);
-                if ($total_horas > $hora_x_sesion) {
+                if ($total_horas >= $hora_x_sesion) {
                     if ($acuenta >= $costo_x_sesion) {
                         $this->agregarClase($programa, $fecha, $hora_x_sesion, $total_horas, $sesion, true, $inscripcion);
                     } else {
@@ -521,7 +521,7 @@ class ProgramacionController extends Controller
                     $programa = new Programacion();
                     $hora_x_sesion = $sesion->horainicio->floatDiffInHours($sesion->horafin);
                     $costo_x_sesion = ($costo_restante / $total_horas) * $hora_x_sesion;
-                    if ($horasFaltantes > $hora_x_sesion) {
+                    if ($horasFaltantes >= $hora_x_sesion) {
                         if ($Acuenta_para_regenerar > $costo_x_sesion) {
                             $this->agregarClase($programa, $fecha, $hora_x_sesion, $horasFaltantes, $sesion, true, $inscripcion);
                         } else {

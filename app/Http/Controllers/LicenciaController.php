@@ -39,7 +39,7 @@ class LicenciaController extends Controller
      */
     public function createcom(Request $request)
     {
-        $motivos=Tipomotivo::findOrFail(2)->motivos;    
+        $motivos=Tipomotivo::findOrFail(4)->motivos;    
         $programacioncom=Programacioncom::findOrFail($request->id);
         $data=['motivos'=>$motivos, 'programacioncom'=>$programacioncom];
         return response()->json($data);
@@ -51,7 +51,7 @@ class LicenciaController extends Controller
      */
     public function createprogramacion(Request $request)
     {
-        $motivos=Tipomotivo::findOrFail(2)->motivos;    
+        $motivos=Tipomotivo::findOrFail(4)->motivos;    
         $programacion=Programacion::findOrFail($request->id);
         $data=['motivos'=>$motivos, 'programacion'=>$programacion];
         return response()->json($data);

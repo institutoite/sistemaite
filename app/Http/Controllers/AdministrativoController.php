@@ -120,8 +120,8 @@ class AdministrativoController extends Controller
         ->where('users.id', $userActual->id)
         ->where('vigente',0)
         ->where('userables.userable_type',Inscripcione::class)
-        ->select('inscripciones.id','personas.nombre','personas.apellidop','apellidom',DB::raw("(SELECT max(fechafin) FROM inscripciones WHERE estudiantes.id= inscripciones.estudiante_id) as fecha"))
-        ->groupBy('inscripciones.id','personas.nombre','personas.apellidop','apellidom','fecha')
+        ->select('personas.id','nombre','apellidop','apellidom','vuelvefecha','volvera')
+        ->groupBy('personas.id','nombre','apellidop','apellidom','vuelvefecha','volvera')
         ->get();
         return datatables()->of($inscripciones)
                 ->addColumn('btn', 'cartera.actioninscripcionesdesvigentes')

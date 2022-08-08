@@ -26,6 +26,16 @@ class AulaSeeder extends Seeder
         Aula::create(['aula' => 'Aula9', 'direccion' => 'Sucursal calle 16 planta baja']);
         Aula::create(['aula' => 'Aula10', 'direccion' => 'Sucursal calle 16 planta baja']); 
 
+        Aula::find(1)->usuarios()->attach(1);
+        Aula::find(2)->usuarios()->attach(1);
+        Aula::find(3)->usuarios()->attach(1);
+        Aula::find(4)->usuarios()->attach(1);
+        Aula::find(5)->usuarios()->attach(1);
+        Aula::find(6)->usuarios()->attach(1);
+        Aula::find(7)->usuarios()->attach(1);
+        Aula::find(8)->usuarios()->attach(1);
+        Aula::find(9)->usuarios()->attach(1);
+        Aula::find(10)->usuarios()->attach(1);
         // Userable::create(["user_id"=>1,"userable_id"=>1,"userable_type"=>"App\Models\Aula"]);
         // Userable::create(["user_id"=>1,"userable_id"=>2,"userable_type"=>"App\Models\Aula"]);
         // Userable::create(["user_id"=>1,"userable_id"=>3,"userable_type"=>"App\Models\Aula"]);

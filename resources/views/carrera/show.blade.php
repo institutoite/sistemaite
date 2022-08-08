@@ -259,7 +259,7 @@
                                         @foreach ($metas as $meta)
                                             <li>
                                                 <i class="fa fa-check"></i>
-                                                {{$meta->nombre}}
+                                                {{$meta->nombre.'fdsfd'}}
                                             </li>
                                         @endforeach
                                     </ul>

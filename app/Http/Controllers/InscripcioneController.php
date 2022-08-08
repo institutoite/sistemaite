@@ -299,17 +299,14 @@ class InscripcioneController extends Controller
     }
 
     public function tusInscripcionesVigentes(Request $request){
+        // $estudiante_id=1;
         $estudiante_id=$request->estudiante_id;
-        //return response()->json(["es"=>$estudiante_id], 200, $headers);
         $persona=Estudiante::findOrFail($estudiante_id)->persona;
-        $inscripcionesVigentes = Inscripcione::join('pagos', 'pagos.pagable_id', '=', 'inscripciones.id')
+        $inscripcionesVigentes = Inscripcione::join('modalidads','modalidads.id','inscripciones.modalidad_id')
             ->where('estudiante_id','=',$estudiante_id)
-            ->where('pagos.pagable_type','=',"App\Models\Inscripcione")
             ->where('vigente', 1)
-            ->select('inscripciones.id','vigente', 'objetivo', 'costo', DB::raw('sum(pagos.monto) as acuenta'))
-            ->groupBy('inscripciones.id', 'vigente','objetivo', 'costo')
+            ->select('inscripciones.id','vigente', 'objetivo', 'inscripciones.costo','fecha_proximo_pago','modalidads.modalidad')
             ->get();
-
         return datatables()->of($inscripcionesVigentes)
                             ->addColumn('btn', 'inscripcione.actiontusinscripciones')
                             ->rawColumns(['btn','objetivo'])
@@ -435,6 +432,8 @@ class InscripcioneController extends Controller
                 break;
         }
     }
+
+    /** INSCIRPCIONES VIGENTES */
     public function vigentesAjax(){
         $inscripcionesVigentes=Inscripcione::join('estudiantes','estudiantes.id','inscripciones.estudiante_id')
         ->join('personas','personas.id','estudiantes.persona_id')
@@ -442,6 +441,15 @@ class InscripcioneController extends Controller
         ->select('inscripciones.id','personas.nombre','personas.apellidop','personas.apellidom')->get();
         return datatables()->of($inscripcionesVigentes)
                             ->toJson();
+    }
+    public function Saldo(Request $request){
+        $inscripcion=Inscripcione::findOrFail($request->inscripcion_id);
+        $acuenta=$inscripcion->pagos->sum('monto');
+        $costo=$inscripcion->costo;
+        $saldo=$costo-$acuenta;
+        $fechaHumamizado=$inscripcion->fecha_proximo_pago->diffForHumans();
+        $data=['acuenta'=>$acuenta,'costo'=>$costo,'saldo'=>$saldo,'fechaHumamizado'=>$fechaHumamizado];
+        return response()->json($data);
     }
 
 }

@@ -32,8 +32,9 @@
                         <tr>
                             <th>#</th>
                             <th>Objetivo</th>
-                            <th>acuenta</th>
-                            <th>costo</th>
+                            <th>PAGO</th>
+                            <th>Fecha Pago</th>
+                            <th>Modalidades</th>
                             <th>Options</th>
                         </tr>
                     </thead>
@@ -76,24 +77,33 @@
                             
                         </tbody>
                     </table>
+                    @include('observacion.modalcreate')
                 </div>
             </div>
         </div>
+        
     @endif
 @endsection
 @section('js')
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
-    <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
+<script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
+<script src="{{asset('dist/js/moment.js')}}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+
+    <script src="{{asset('assets/js/observacion.js')}}"></script>
     
     <script>
         
     $(document).ready(function() {
-
 
         let tabla=$('#inscripcionesVigentes').DataTable(
                 {
@@ -102,17 +112,33 @@
                     "autoWidth":false,
                     "ajax":{ 
                         "url":'../tusinscripciones',
-                       
                         "data":{
                             estudiante_id:"{{ $persona->estudiante->id }}",
                         },
-                        
+                    },
+                    "createdRow": function( row, data, dataIndex ) {
+                    $(row).attr('id',data['id']); 
+                        if (moment(data['fecha_proximo_pago']).format('YY-MM-DD')>moment().format('YY-MM-DD')){
+                            $(row).addClass('text-success')
+                        }else{
+                            $(row).addClass('text-danger')
+                        }
+                        // $('td', row).eq(3).html(moment(data['fecha_proximo_pago']).format('DD-MM-YYYY'));
+                            $.ajax({
+                                url:"{{url('saldo/inscripcion')}}",
+                                data:{inscripcion_id:data['id']},
+                                success : function(json) {
+                                    $('td', row).eq(2).html('<strong>Acuenta: </strong>'+json.acuenta+'<br>'+'<strong>Costo: </strong>'+json.costo+'<br><strong>Saldo: </strong>'+json.saldo);  
+                                    $('td', row).eq(3).html(json.fechaHumamizado+'<br>'+moment(data['fecha_proximo_pago']).format('DD-MM-YYYY'));  
+                                },
+                            }); 
                     },
                     "columns": [
-                        {data: 'id'},
-                        {data: 'objetivo'},
-                        {data:'acuenta'},
+                        {data:'id'},
+                        {data:'objetivo'},
                         {data:'costo'},
+                        {data:'fecha_proximo_pago'},
+                        {data:'modalidad'},
                         {
                             "name":"btn",
                             "data": 'btn',
