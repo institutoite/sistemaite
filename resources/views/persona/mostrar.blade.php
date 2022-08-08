@@ -204,16 +204,9 @@
     <div class="card">
         <div class="card-header bg-secondary">
             Observaciones de esta persona
-           
                 <a href="" class="btn btn-primary tooltipsC btn-sm mr-2 float-right observacion"  id="Persona" title="Agregar Observacion">
                     Agreagar Observación <i class="fas fa-comment-medical fa-2x"></i>
                 </a>
-{{--                 
-                <a href="" class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" id="Persona" title="Agregar Observacion">
-                    <i class="fas fa-comment-alt fa-2x"></i>
-                </a> --}}
-
-                  
         </div>
         <div class="card-body">
             <table id="observaciones" class="table table-bordered table-striped table-hover">

@@ -902,7 +902,6 @@ class PersonaController extends Controller
     }
     public function actualizarVolvera(Request $request)
     {
-        //return response()->json($request->all());
         $validator = Validator::make($request->all(), [
             'volvera' => ['numeric','required','min:1','max:5'],  /* https://laraveles.com/foro/viewtopic.php?id=6764 */
         ]);
@@ -917,4 +916,3 @@ class PersonaController extends Controller
     }
     
 }
-//

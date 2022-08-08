@@ -25,5 +25,9 @@
     </a>
 
     <a class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" id="Inscripcione" title="Agregar Observacion">
-        <i class="fas fa-comment-alt fa-2x"></i>
+        <i class="fas fa-comment-alt"></i>
+    </a>
+
+    <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarobservacionesinscripcion" title="Mostrar observaciones">
+        <i class="fas fa-comments text-secondary"></i>
     </a>

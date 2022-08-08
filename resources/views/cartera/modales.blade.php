@@ -191,6 +191,9 @@
                                     <th>AUTOR</th>
                                     <th>CREADO</th>
                                     <th>ACTUALIZADO</th>
+                                    <th>ACTUALIZADO</th>
+                                    <th>ACTUALIZADO</th>
+                                    <th>ACTUALIZADO</th>
                                 </tr>
                             </thead>
                             <tbody id="tabla-observaciones">

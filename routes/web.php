@@ -55,7 +55,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[InscripcioneController::class,'Saldo'])->name('prueba');
+Route::get('prueba',[ObservacionController::class,'listarGeneral'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -343,7 +343,7 @@ Route::get('tusmatriculaciones', [MatriculacionController::class,'tusMatriculaci
 Route::get('matriculaciones/vigentes/view', function () {return view('matriculaciones.vigentes');})->name('matriculaciones.vigentes.view');
 Route::get('matriculaciones/vigentes/ajax', "MatriculacionController@vigentesAjax")->name('matriculaciones.vigentes.ajax');  
 Route::get('matriculacioncita/ajax/show', [MatriculacionController::class,'matriculacionMostrarAjax'])->name('matriculacion.mostrar.ajax');
-  
+Route::get('saldo/matriculacion', [MatriculacionController::class,'Saldo'])->name('matriculacion.saldo.ajax');  
 //Route::get('tumatriculaciones', [MatriculacionController::class,'tusMatriculacionesVigentes'])->name('matriculaciones');
 //Route::get('imprimir/matriculacion/{matriculacion}',[MatriculacionController::class,'imprimir'] )->name('imprimir.matriculacion');
 

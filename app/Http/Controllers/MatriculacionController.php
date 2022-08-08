@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Computacion;
+use App\Models\Persona;
 use App\Models\Sesioncom;
 use App\Models\Asignatura;
 use App\Models\Carrera;
@@ -268,17 +269,17 @@ class MatriculacionController extends Controller
     }
 
 
+    // public function tusMatriculacionesVigentes(Request $request){
     public function tusMatriculacionesVigentes(Request $request){
-        $persona=Estudiante::findOrFail($request->estudiante_id)->persona;
-        $computacion=$persona->computacion;
+
+        $computacion=Estudiante::findOrFail($request->estudiante_id)->persona->computacion;
+        // $computacion=Persona::findOrFail(2)->computacion;
         if($computacion!==null){
-            $matriculacionesVigentes=Matriculacion::join('pagos','pagos.pagable_id','=','matriculacions.id')
-            ->join('asignaturas','asignaturas.id','=','matriculacions.asignatura_id')        
+            $matriculacionesVigentes=Matriculacion::join('asignaturas','asignaturas.id','=','matriculacions.asignatura_id')        
             ->where('computacion_id','=',$computacion->id)
-            ->where('pagos.pagable_type','=',"App\Models\Matriculacion")
             ->where('vigente', 1)
-            ->select('matriculacions.id','vigente','costo','asignatura',DB::raw('sum(pagos.monto) as acuenta'))
-            ->groupBy('matriculacions.id', 'vigente', 'costo','asignatura')->get();
+            ->select('matriculacions.id','vigente','costo','asignatura','fecha_proximo_pago')
+            ->get();
         }
         return datatables()->of($matriculacionesVigentes)
                 ->addColumn('btn', 'inscripcione.actiontusmatriculacion')
@@ -297,6 +298,15 @@ class MatriculacionController extends Controller
         ->select('matriculacions.id','personas.nombre','personas.apellidop','personas.apellidom')->get();
         return datatables()->of($matriculacionesVigentes)
             ->toJson();
+    }
+    public function Saldo(Request $request){
+        $matriculacion=Matriculacion::findOrFail($request->matriculacion_id);
+        $acuenta=$matriculacion->pagos->sum('monto');
+        $costo=$matriculacion->costo;
+        $saldo=$costo-$acuenta;
+        $fechaHumamizado=$matriculacion->fecha_proximo_pago->diffForHumans();
+        $data=['acuenta'=>$acuenta,'costo'=>$costo,'saldo'=>$saldo,'fechaHumamizado'=>$fechaHumamizado];
+        return response()->json($data);
     }
 
 }

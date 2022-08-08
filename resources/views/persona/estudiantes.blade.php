@@ -4,7 +4,6 @@
      <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
     <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
-    {{-- <link href="css/star-rating.css" media="all" rel="stylesheet" type="text/css"/> --}}
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('dist/css/starrr.css')}}">
@@ -36,6 +35,7 @@
             </div>
         </div>
         @include('observacion.modalcreate')
+        @include('persona.modalobservaciones')
     </div>
 @stop
 
@@ -68,6 +68,8 @@
     
     <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
     <script src="{{asset('assets/js/observacion.js')}}"></script>
+
+    <script src="{{asset('dist/js/moment.js')}}"></script>
     
     <script>
         ( function ( $ ) {
@@ -105,22 +107,6 @@
 
 
         $(document).ready(function() {
-        CKEDITOR.replace('editor1', {
-            height: 120,
-            width: "100%",
-            removeButtons: 'PasteFromWord'
-        });
- 
-        $('table').on('click', '.observacion', function (e) {
-            e.preventDefault();
-            let objeto_id = $(this).closest('tr').attr('id');
-            console.log(objeto_id);
-            $("#observable_id").val(objeto_id);
-            $("#observable_type").val('Persona');
-            CKEDITOR.instances.editor1.setData('');
-            $("#modal-agregar-observacion").modal("show");
-        });    
-
         var tabla=$('#personas').DataTable(
                 {
                     "serverSide": true,
@@ -160,8 +146,46 @@
             );
             
            
-
-           
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+                
+                $('table').on('click', '.mostrarobservacionespersona', function(e) {
+                    e.preventDefault();
+                    console.log('MostrarClick este metodito'); 
+                    observable_id =$(this).closest('tr').attr('id');
+                    console.log(observable_id);
+                    observable_type ="Persona";
+                        var fila=$(this).closest('tr');
+                        $("#modal-mostrar-observaciones").modal("show");
+                        $("#tabla-observaciones").empty();
+                             $.ajax({
+                                url :"observaciones/general",
+                                data:{
+                                    observable_id:observable_id,
+                                    observable_type:observable_type,
+                                },
+                                success : function(json) {
+                                    console.log(json);
+                                    $html="";
+                                    $clase="";
+                                    for (let j in json) {
+                                        if(json[j].activo==1){
+                                            $clase="text-success";
+                                        }else{
+                                            $clase="text-danger";    
+                                        }
+                                        $html+="<tr class='"+$clase+"'><td>"+ json[j].observacion +"</td>";
+                                        $html+="<td>"+json[j].name+"</td>";
+                                        $html+="<td>"+moment(json[j].created_at).format('LLL') +"</td>";
+                                        $html+="<td>"+moment(json[j].updated_at).format('LLL') +"</td></tr>";
+                                    }
+                                    $("#tabla-observaciones").append($html);
+                                },
+                                error : function(xhr, status) {
+                                    alert('Disculpe, existió un problema');
+                                },
+                            });
+                    });
+        
 
 
         $('table').on('click','.zoomify',function (e){

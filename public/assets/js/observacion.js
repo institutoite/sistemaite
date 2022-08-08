@@ -10,8 +10,8 @@
         let objeto_id = $(this).closest('tr').attr('id');
         console.log(objeto_id);
         $("#observable_id").val(objeto_id);
-        $("#observable_type").val('Inscripcione');
-        //CKEDITOR.instances.editor1.setData("");
+        $("#observable_type").val($(this).attr('id'));
+        CKEDITOR.instances.editor1.setData("");
         $("#modal-agregar-observacion").modal("show");
     });
 

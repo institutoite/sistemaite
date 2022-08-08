@@ -119,15 +119,12 @@
                                                         
                                                     }else{
                                                         $claseFila.="bg-danger";
-                                                       
                                                     }
                                                 }else{
                                                     if($programa->fecha->isoFormat('DD/MM/YYYY')==$hoy->isoFormat('DD/MM/YYYY')){
                                                         $claseHoy.="bg-primary";
-                                                      
                                                     }else{
                                                         $claseFila.="";
-                                                        
                                                     }
                                                 }
                                         @endphp
@@ -140,9 +137,7 @@
                                         <td>{{$programa->nombre}}</td>
                                         <td>{{$programa->materia}}</td>
                                         <td>{{$programa->aula}}</td>
-                                    
                                     </tr>
-
                                 @endforeach
                             </tbody>
                             <tfoot>
@@ -155,4 +150,8 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('js')
+   
 @endsection
