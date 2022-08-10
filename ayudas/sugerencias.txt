@@ -35,8 +35,8 @@ cambiar en ver toda la programacion dice en el titulo clases que faltan
 en ver inscripciones no aparece la matriculacion que no pago
  
 crud para licencias en computacion y nivelacion
-en todos los mostrar el foto del usuario es muy grande 
 hacer ite business/familiar/persona/Colegios
+en todos los mostrar el foto del usuario es muy grande 
 Falta terminar el crud de requisitos y metas
 
 que se pueda agreagar observaciones en Inscripciones por ejemplo matriculacioanes etc

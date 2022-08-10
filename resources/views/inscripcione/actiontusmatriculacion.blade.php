@@ -24,9 +24,19 @@
     <a href="{{route('clases.marcadocom.general',$id)}}" class="" title="Gestionar asistencia computación">
         <i class="far fa-calendar-check"></i>
     </a>
-      <a class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion-matriculacion" title="Agregar Observacion">
+    
+    {{-- <a class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion-matriculacion" title="Agregar Observacion">
         <i class="fas fa-comment-alt"></i>
     </a>
     <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarobservacionesmatriculacion" title="Mostrar observaciones">
         <i class="fas fa-comments text-secondary"></i>
+    </a> --}}
+
+    <a class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" id="Matriculacion" title="Agregar Observacion">
+        <i class="fas fa-comment-alt"></i>
     </a>
+
+    <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarobservacionesmatriculacion" title="Mostrar observaciones">
+        <i class="fas fa-comments text-secondary"></i>
+    </a>
+

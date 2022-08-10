@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Observacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
@@ -52,7 +51,7 @@ class ObservacionController extends Controller
     }
     public function guardarObservacionGeneral(Request $request){
         $validator = Validator::make($request->all(), [
-            'observacion' => 'required|min:5|max:500',
+            'observacion' => 'required|min:5|max:400',
         ]);
         if ($validator->passes()) {
             $observacion =new Observacion;
@@ -71,13 +70,23 @@ class ObservacionController extends Controller
     }
     public function GuardarObservacion(Request $request)
     {
-        $observacion =new Observacion;
-        $observacion->observacion = $request->observacion;
-        $observacion->observable_id=$request->observable_id;
-        $observacion->activo=1;
-        $observacion->observable_type=$request->observable_type;
-        $observacion->save();
-        $observacion->usuarios()->attach(Auth::user()->id);
+        $validator = Validator::make($request->all(), [
+            'observacion' => 'required|min:5|max:400',
+        ]);
+        if ($validator->passes()) {
+            $observacion =new Observacion;
+            $observacion->observacion = $request->observacion;
+            $observacion->observable_id=$request->observable_id;
+            $observacion->activo=1;
+            $observacion->observable_type=$request->observable_type;
+            $observacion->save();
+            $observacion->usuarios()->attach(Auth::user()->id);
+            return response()->json(['observacion'=>$observacion]);
+        }else{
+            return response()->json(['error' => $validator->errors()->first()]);
+        }
+
+       
         //return response()->json($request->all());
         return response()->json(['mensaje'=>"Guardado correctamente"]);
     }
@@ -102,10 +111,10 @@ class ObservacionController extends Controller
      */
     public function edit(Request $request)
     {
-        
         $observacion = Observacion::find($request->id);
         return response()->json($observacion);
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -119,7 +128,7 @@ class ObservacionController extends Controller
         $observacion=Observacion::findOrFail($request->observacion_id);
         $observacion->observacion=$request->observacion;
         $observacion->save();
-        return response()->json(["mensajes"=>"Registro actualizado"]);
+        return response()->json(["mensajes"=>"Registro actualizado correctamente"]);
     }
     public function darbaja(Request $request)
     {
@@ -170,11 +179,10 @@ class ObservacionController extends Controller
         ->toJson();
     }
     public function listarGeneral(Request $request){
-        //return response()->json($request->all());
         $observation=Observacion::join('userables','userables.userable_id','=','observacions.id')
             ->join('users','users.id','=','userables.user_id')
             ->where('userable_type','App\\Models\\Observacion')
-            ->where('observacions.activo',1)
+            // ->where('observacions.activo',1)
             ->where('observable_id',$request->observable_id)
             ->where('observable_type','App\\Models\\'.$request->observable_type)
             ->select('observacions.id','observacion','activo','name','observacions.created_at','observacions.updated_at')

@@ -533,6 +533,7 @@ Route::post('observacion/store',[ObservacionController::class,'store'])->name('o
 Route::delete('eliminar/observacion/{observacion}',[ObservacionController::class,'destroy'])->name('eliminar.observacion');
 Route::delete('eliminar/general',[ObservacionController::class,'eliminarGeneral'])->name('eliminar.observacion.general');
 Route::get('observaciones/{observable_id}/{observable_type}',[ObservacionController::class,'listar'])->name('observaciones.listar');
+// Route::get('observaciones',[ObservacionController::class,'listar'])->name('observaciones.listar');
 Route::get('observaciones/general',[ObservacionController::class,'listarGeneral'])->name('observaciones.listar.general');
 Route::get('guardar/observacion', 'ObservacionController@guardarObservacionGeneral')->name('guardar.observacion.general');
 

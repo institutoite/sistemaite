@@ -35,8 +35,12 @@
             </div>
         </div>
         @include('observacion.modalcreate')
-        @include('persona.modalobservaciones')
+       
     </div>
+    
+    <x-header variable="Una Variable" >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis sed ipsum, voluptates perspiciatis cupiditate est ex aliquid in repellendus tenetur aut libero hic natus, dolor inventore consectetur sequi labore asperiores!
+    </x-header>
 @stop
 
 @section('js')
@@ -72,6 +76,95 @@
     <script src="{{asset('dist/js/moment.js')}}"></script>
     
     <script>
+        //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        CKEDITOR.replace('editorpersona', {
+            height: 120,
+            width: "100%",
+            removeButtons: 'PasteFromWord'
+        });
+        //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        CKEDITOR.replace('editorpersonaeditar', {
+            height: 120,
+            width: "100%",
+            removeButtons: 'PasteFromWord'
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CREAR OBSERVACION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.observacion', function (e) {
+            e.preventDefault();
+            let objeto_id = $(this).closest('tr').attr('id');
+            console.log(objeto_id);
+            $("#observable_id").val(objeto_id);
+            $("#observable_type").val($(this).attr('id'));
+            CKEDITOR.instances.editorpersona.setData("");
+            $("#modal-agregar-observacion").modal("show");
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CLICK BOTON GUARDAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('#guardar-observacion').on('click', function (e) {
+            e.preventDefault();
+            console.log("click en guardar obsrvacion");
+            let observable_id = $("#observable_id").val();
+            console.log(observable_id);
+            let observable_type = $("#observable_type").val();
+            console.log(observable_type);
+            for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
+            observacion=$("#editorpersona").val();
+            url = "guardar/observacion"
+            guardarObservacion(observacion,observable_id,observable_type,url);
+            
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.mostrarobservacionespersona', function(e) {
+            e.preventDefault();
+                observable_id =$(this).closest('tr').attr('id');
+                observable_type ="Persona";
+                url="observaciones/" + observable_id + "/" + observable_type,
+                mostrarCrudObservaciones(url);
+                $("#modal-mostrar-observaciones").modal("show");
+        });
+
+
+        $('table').on('click', '.bajaobservacion', function (e) {
+            e.preventDefault();
+            let observacion_id = $(this).closest('tr').attr('id');
+            console.log(observacion_id);
+            url="darbaja/observacion";
+            darBaja(observacion_id,url);
+        });
+        
+        $('table').on('click', '.altaobservacion', function (e) {
+            e.preventDefault();
+            let observacion_id = $(this).closest('tr').attr('id');
+            url="darbaja/observacion";
+            darAlta(observacion_id,url);
+        });
+
+        $('table').on('click', '.eliminarobservacion', function (e) {
+            e.preventDefault();
+            let observacion_id = $(this).closest('tr').attr('id');
+            url="eliminar/general"
+            eliminarObservacion(observacion_id,url);
+        });
+        $('table').on('click', '.editarobservacion', function (e) {
+            e.preventDefault();
+            observacion_id =$(this).closest('tr').attr('id');
+            url="observacion/editar";
+            editarObservacion(observacion_id,url);
+            $("#modal-mostrar-observaciones").modal("hide");
+            $("#modal-editar-observacion").modal("show");
+        });
+        $('#actualizar-observacion').on('click', function (e){ 
+            e.preventDefault();
+            observacion_id =$("#observable_id").val();
+            observacion=CKEDITOR.instances.editorpersonaeditar.getData();
+            console.log(observacion);
+            url="observacion/actualizar";
+            actualizarObservacion(observacion_id,observacion,url);
+            $("#modal-editar-observacion").modal("hide");
+        });
+
+
+
+
         ( function ( $ ) {
             'use strict';
             $.fn.addTempClass = function ( className, expire, callback ) {
@@ -97,17 +190,9 @@
                 
             }
         });
-
-       
-
-    
-               
-    {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% CKEDITOR --}}
-  
-
-
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE PERSONAS ESTUDIANTES %%%%%%%%%%%%%%%%%%%%*/
         $(document).ready(function() {
-        var tabla=$('#personas').DataTable(
+            var tabla=$('#personas').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
@@ -144,69 +229,38 @@
                     },  
                 }
             );
-            
+         
+        
            
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+          
+           
+           
+
+            $('table').on('click','.zoomify',function (e){
+                Swal.fire({
+                    title: 'Codigo: '+ $(this).closest('tr').find('td').eq(0).text(),
+                    text: $(this).closest('tr').find('td').eq(1).text(),
+                    imageUrl: $(this).attr('src'),
+                    imageWidth: 400,
+                    showCloseButton:true,
+                    confirmButtonColor:'#26baa5',
+                    type: 'success',
+                    imageHeight:400,
+                    imageAlt: 'Custom image',
+                    confirmButtonText:"Aceptar",
                 
-                $('table').on('click', '.mostrarobservacionespersona', function(e) {
-                    e.preventDefault();
-                    console.log('MostrarClick este metodito'); 
-                    observable_id =$(this).closest('tr').attr('id');
-                    console.log(observable_id);
-                    observable_type ="Persona";
-                        var fila=$(this).closest('tr');
-                        $("#modal-mostrar-observaciones").modal("show");
-                        $("#tabla-observaciones").empty();
-                             $.ajax({
-                                url :"observaciones/general",
-                                data:{
-                                    observable_id:observable_id,
-                                    observable_type:observable_type,
-                                },
-                                success : function(json) {
-                                    console.log(json);
-                                    $html="";
-                                    $clase="";
-                                    for (let j in json) {
-                                        if(json[j].activo==1){
-                                            $clase="text-success";
-                                        }else{
-                                            $clase="text-danger";    
-                                        }
-                                        $html+="<tr class='"+$clase+"'><td>"+ json[j].observacion +"</td>";
-                                        $html+="<td>"+json[j].name+"</td>";
-                                        $html+="<td>"+moment(json[j].created_at).format('LLL') +"</td>";
-                                        $html+="<td>"+moment(json[j].updated_at).format('LLL') +"</td></tr>";
-                                    }
-                                    $("#tabla-observaciones").append($html);
-                                },
-                                error : function(xhr, status) {
-                                    alert('Disculpe, existió un problema');
-                                },
-                            });
-                    });
+                })
+            });
+        
         
 
-
-        $('table').on('click','.zoomify',function (e){
-            Swal.fire({
-                title: 'Codigo: '+ $(this).closest('tr').find('td').eq(0).text(),
-                text: $(this).closest('tr').find('td').eq(1).text(),
-                imageUrl: $(this).attr('src'),
-                imageWidth: 400,
-                showCloseButton:true,
-                confirmButtonColor:'#26baa5',
-                type: 'success',
-                imageHeight:400,
-                imageAlt: 'Custom image',
-                confirmButtonText:"Aceptar",
-                
-            })
-        });
+        
+        
 
             
-
-        $('table').on('click','.eliminar',function (e) {
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
                 id=$(this).parent().parent().parent().find('td').first().html();
                 Swal.fire({
@@ -284,9 +338,10 @@
                             title: 'No se eliminó el registro'
                         })
                     }
-            })
+                })
+            });
         });
-    });
-        
+                
+
     </script>
 @stop

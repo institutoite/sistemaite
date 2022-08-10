@@ -25,45 +25,44 @@
     </div>
 </div>
 
-<div class="modal" tabindex="-1"  id="modal-agregar-observacion">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header bg-primary">
-                MODAL OBSERVACION DE PROGRAMACION
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="card card-primary">
-                    <div class="card-header bg-secondary">
-                        <span class="card-title">Agregar Observación</span>
-                    </div>
-                    <div class="card-body">
-                        <div id="erroresdiv" class="alert alert-danger d-none">
-                            <ul id=errores>
-                                
-                            </ul>
-                        </div>
-                        <form id="formulario-guardar-observacion" method="POST">
-                            @csrf
-                            <textarea cols="80" id="editor1" name="editor1" rows="10" data-sample-short>
-                            </textarea>
-                            <input type="text" name="observable_id" hidden id="observable_id" value="">
-                            <input type="text" name="observable_type" hidden id="observable_type" value="">
 
-                            <div class="container-fluid h-100 mt-3"> 
-                                <div class="row w-100 align-items-center">
-                                    <div class="col text-center">
-                                        <button id="guardar-observacion" class="btn btn-primary text-white btn-lg">Guardar <i class="far fa-save"></i></button>        
-                                    </div>	
-                                </div>
-                            </div>
+{{-- %%%%%%%%%%%%%%  MODALES CREAR Y EDITAR PERSONA DE ESTUDIANTES.BLADE.PHP %%%%%%%%%% --}}
+    <x-createobservation 
+        idmodalformulario="modal-agregar-observacion"
+        id="editorpersona"
+        nombre="editorpersona"
+        observabletype="Persona"
+        btnguardar="guardar-observacion"
+        btnlabel="Guardar"
+        titulo="CREAR UNA OBSERVACION DE PERSONA"
+        modo="CREAR NUEVA OBSRVACION"
+    >
+    </x-createobservation>
 
-                            
-                        </form>
-                    </div>
-                </div> 
-            </div>
-           
-        </div>
-    </div>
-</div>
+    <x-createobservation 
+        idmodalformulario="modal-editar-observacion"
+        id="editorpersonaeditar"
+        nombre="editar-observacion"
+        observabletype="Persona"
+        btnguardar="actualizar-observacion"
+        btnlabel="Actualizar"
+        titulo="EDITAR OBSERVACION DE PERSONA"
+        modo="EDITAR OBSRVACION"
+    >
+    </x-createobservation>
+
+{{-- %%%%%%%%%%%%%%  MODALES MOSTRAR OBSERVACIONES O CRUD COMPLETO  DE ESTUDIANTES.BLADE.PHP %%%%%%%%%% --}}
+<x-crudobservacion 
+    titulo="OBSERVACIONES DEL REGISTRO SELECCIONADO"
+    header="Observaciones"
+    idmodal="modal-mostrar-observaciones"
+    >
+</x-crudobservacion>
+{{-- <x-crudobservacion 
+    titulo="OBSERVACIONES DE INSCRIPCION"
+    header="Observaciones"
+    idmodal="modal-mostrar-observaciones-inscripcion"
+    >
+</x-crudobservacion> --}}
+
+{{-- %%%%%%%%%%%%%%  MODALES MOSTRAR OBSERVACIONES O CRUD COMPLETO  DE ESTUDIANTES.BLADE.PHP %%%%%%%%%% --}}
