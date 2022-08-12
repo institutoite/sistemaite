@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Config;
 
 use Illuminate\Http\Request;
 
@@ -80,11 +81,16 @@ class BilletecomController extends Controller
                 $pago->billetes()->attach($key,['cantidad'=>$val,'tipo'=>'cambio']);
             }
             $matriculacion = Matriculacion::findOrFail($pago->pagable_id);
-            if ($matriculacion->programacionescom->count() == 0) {
-                return redirect()->route('generar.programacioncom', $matriculacion->id);
-            } else {
-                
-                return redirect()->route('actualizar.programacioncom.segun.pago', ['matriculacion' => $matriculacion->id, 'pago' => $pago_id]);
+            if($matriculacion->estado_id==Config::get('constantes.ESTADO_RESERVADO')){
+               
+                return redirect()->route('matriculacion.configuracion',$matriculacion);
+            }else{
+                if ($matriculacion->programacionescom->count() == 0) {
+                    return redirect()->route('generar.programacioncom', $matriculacion->id);
+                } else {
+                    
+                    return redirect()->route('actualizar.programacioncom.segun.pago', ['matriculacion' => $matriculacion->id, 'pago' => $pago_id]);
+                }
             }
         }
     }

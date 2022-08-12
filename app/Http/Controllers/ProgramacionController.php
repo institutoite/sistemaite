@@ -549,6 +549,8 @@ class ProgramacionController extends Controller
             }
         }
         $inscripcion->fechafin = $programa->fecha;
+        $inscripcion->estado_id = Config::get('constantes.ESTADO_CORRIENDO');
+        $inscripcion->save();
         if ($Acuenta_para_regenerar < $inscripcion->costo) {
             return redirect()->route('mostrar.programa', $inscripcion);
         } else {

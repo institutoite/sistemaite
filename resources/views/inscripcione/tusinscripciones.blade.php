@@ -102,13 +102,13 @@
     
     <script>
      //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR CREAR OBSERVACION  %%%%%%%%%%%%%%%%%%%%%%%%%%%
-        CKEDITOR.replace('editorpersona', {
+        CKEDITOR.replace('editorguardar', {
             height: 120,
             width: "100%",
             removeButtons: 'PasteFromWord'
         });
         //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR EDITAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%
-        CKEDITOR.replace('editorpersonaeditar', {
+        CKEDITOR.replace('editoreditar', {
             height: 120,
             width: "100%",
             removeButtons: 'PasteFromWord'
@@ -127,10 +127,11 @@
             $("#observable_id").val(objeto_id);
             $("#observable_type").val($(this).attr('id'));
             console.log("click en observacion crear");
-            CKEDITOR.instances.editorpersona.setData("");
+            CKEDITOR.instances.editorguardar.setData("");
+            $("diverror").addClass("d-none");
             $("#modal-agregar-observacion").modal("show");
         });
-         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CLICK BOTON GUARDAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CLICK BOTON GUARDAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         $('#guardar-observacion').on('click', function (e) {
             e.preventDefault();
             console.log("click en guardar obsrvacion");
@@ -139,7 +140,7 @@
             let observable_type = $("#observable_type").val();
             console.log(observable_type);
             for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
-            observacion=$("#editorpersona").val();
+            observacion=$("#editorguardar").val();
             console.log(observacion);
             url ="../guardar/observacion"
             guardarObservacion(observacion,observable_id,observable_type,url);
@@ -193,11 +194,11 @@
         $('#actualizar-observacion').on('click', function (e){ 
             e.preventDefault();
             observacion_id =$("#observable_id").val();
-            observacion=CKEDITOR.instances.editorpersonaeditar.getData();
+            observacion=CKEDITOR.instances.editoreditar.getData();
             console.log(observacion);
             url="../observacion/actualizar";
             actualizarObservacion(observacion_id,observacion,url)
-            $("#modal-editar-observacion").modal("hide");
+            // $("#modal-editar-observacion").modal("hide");
             // $("#modal-editar-observacion").modal("show");
         });
 
@@ -205,92 +206,34 @@
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       JS MATRICULACION   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-                /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CREAR OBSERVACION INSCIRPCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        // $('table').on('click', '.observacion', function (e) {
-        //     e.preventDefault();
-        //     let objeto_id = $(this).closest('tr').attr('id');
-        //     console.log(objeto_id);
-        //     $("#observable_id").val(objeto_id);
-        //     $("#observable_type").val($(this).attr('id'));
-        //     ()
-        //     CKEDITOR.instances.editorpersona.setData("");
-        //     $("#modal-agregar-observacion").modal("show");
-        // });
-         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CLICK BOTON GUARDAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $('#guardar-observacion').on('click', function (e) {
-            e.preventDefault();
-            console.log("click en guardar obsrvacion");
-            let observable_id = $("#observable_id").val();
-            console.log(observable_id);
-            let observable_type = $("#observable_type").val();
-            console.log(observable_type);
-            for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
-            observacion=$("#editorpersona").val();
-            console.log(observacion);
-            url ="../guardar/observacion"
-            guardarObservacion(observacion,observable_id,observable_type,url);
-            
-        });
-        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $('table').on('click', '.mostrarobservacionesinscripcion', function(e) {
+       
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.mostrarobservacionesmatriculacion', function(e) {
             e.preventDefault();
                 observable_id =$(this).closest('tr').attr('id');
                 console.log(observable_id);
-                observable_type ="Inscripcione";
+                observable_type ="Matriculacion";
                 url="../observaciones/" + observable_id + "/" + observable_type,
                 console.log(url);
                 mostrarCrudObservaciones(url);
                 $("#modal-mostrar-observaciones").modal("show");
         });
-        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DAR BAJA OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-
-        $('table').on('click', '.bajaobservacion', function (e) {
-            e.preventDefault();
-            let observacion_id = $(this).closest('tr').attr('id');
-            console.log(observacion_id);
-            url="../darbaja/observacion";
-            darBaja(observacion_id,url);
-        });
-        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DAR ALTA OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $('table').on('click', '.altaobservacion', function (e) {
-            e.preventDefault();
-            let observacion_id = $(this).closest('tr').attr('id');
-            url="../daralta/observacion";
-            darAlta(observacion_id,url);
-        });
-
-        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $('table').on('click', '.eliminarobservacion', function (e) {
-            e.preventDefault();
-            let observacion_id = $(this).closest('tr').attr('id');
-            url="../eliminar/general"
-            eliminarObservacion(observacion_id,url);
-        });
-        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EDITAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $('table').on('click', '.editarobservacion', function (e) {
-            e.preventDefault();
-            observacion_id =$(this).closest('tr').attr('id');
-            url="../observacion/editar";
-            editarObservacion(observacion_id,url);
-            $("#modal-mostrar-observaciones").modal("hide");
-            $("#modal-editar-observacion").modal("show");
-        });
-        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $('#actualizar-observacion').on('click', function (e){ 
-            e.preventDefault();
-            observacion_id =$("#observable_id").val();
-            observacion=CKEDITOR.instances.editorpersonaeditar.getData();
-            console.log(observacion);
-            url="../observacion/actualizar";
-            actualizarObservacion(observacion_id,observacion,url)
-            $("#modal-editar-observacion").modal("hide");
-            // $("#modal-editar-observacion").modal("show");
-        });
+       
 
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       JS GENERAL       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-
+        
+        /*%%%%%%%%%%%%%%%%%%%%%  OCULTA DIVERROR DE MODAL CUANDO SE CIERRA MODAL GUARDAR %%%%%%*/
+        $('#modal-agregar-observacion').on('hidden.bs.modal', function (e) {
+            $("#diverror").addClass("d-none");
+        });
+        
+        /*%%%%%%%%%%%%%%%%%%%%%  OCULTA DIVERROR DE MODAL CUANDO SE CIERRA MODAL EDITAR %%%%%%*/
+        $('#modal-editar-observacion').on('hidden.bs.modal', function (e) {
+            $(".diverror").addClass("d-none");
+        });
+        
         /*%%%%%%%%%%%%%%%%%%% JS GENERAL AGREGA UNA CLASE DE FORMA TEMPORAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         ( function ( $ ) {
             'use strict';
@@ -319,6 +262,9 @@
                         "data":{
                             estudiante_id:"{{ $persona->estudiante->id }}",
                         },
+                        // "success":function(json) {
+                        //     console.log(json);
+                        // }
                     },
                     "createdRow": function( row, data, dataIndex ) {
                     $(row).attr('id',data['id']); 
@@ -327,10 +273,30 @@
                         }else{
                             $(row).addClass('text-danger')
                         }
+                        $clase="";
+                        switch (data['estado']) {
+                            case "RESERVADO":
+                                console.log("reservado");
+                                $clase="danger";
+                                break;
+                            case "CORRIENDO":
+                                $clase="success";
+                                console.log("corriendo");
+                                break;
+                            case "CONGELADO":
+                                $clase="warning";
+                                console.log("congelado");
+                                break;
+                            default:
+                                break;
+                        }
+
+                        $('td', row).eq(1).html(data['objetivo']+"</br><div class='alert alert-" +$clase+" d-flex align-items-center'><i class='fas fa-info-circle fa-2x'></i>"+ data['estado'] +"</div>");
                             $.ajax({
                                 url:"{{url('saldo/inscripcion')}}",
                                 data:{inscripcion_id:data['id']},
                                 success : function(json) {
+                                      
                                     $('td', row).eq(2).html('<strong>Acuenta: </strong>'+json.acuenta+'<br>'+'<strong>Costo: </strong>'+json.costo+'<br><strong>Saldo: </strong>'+json.saldo);  
                                     $('td', row).eq(3).html(json.fechaHumamizado+'<br>'+moment(data['fecha_proximo_pago']).format('DD-MM-YYYY'));  
                                 },
@@ -373,6 +339,27 @@
                         }else{
                             $(row).addClass('text-danger table-danger');
                         }
+                         $clase="";
+                        switch (data['estado']) {
+                            case "RESERVADO":
+                                console.log("reservado");
+                                $clase="danger";
+                                break;
+                            case "CORRIENDO":
+                                $clase="success";
+                                console.log("corriendo");
+                                break;
+                            case "CONGELADO":
+                                $clase="warning";
+                                console.log("congelado");
+                                break;
+                            default:
+                                break;
+                        }
+
+                        $('td', row).eq(1).html(data['asignatura']+"</br><div class='alert alert-" +$clase+" d-flex align-items-center'><i class='fas fa-info-circle fa-2x'></i>"+ data['estado'] +"</div>");
+
+
                             $.ajax({
                                 url:"{{url('saldo/matriculacion')}}",
                                 data:{matriculacion_id:data['id']},

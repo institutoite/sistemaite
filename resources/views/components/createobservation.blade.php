@@ -12,16 +12,16 @@
                     </div>
 
                     <div class="card-body">
-                        <div id="diverror" class="alert alert-danger alert-dismissible d-none">
+                        <div id="diverror" class="diverror alert alert-danger alert-dismissible d-none">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-                            <p id="error"></p>
+                            <p class="error"id="error"></p>
                         </div>
                         
                         <textarea cols="80" id="{{$id}}" name="{{$nombre}}" rows="10" data-sample-short>
                         </textarea>
                         <input type="text" class="observable_id" name="observable_id" id="observable_id" value="">
-                        <input type="text" name="observable_type" id="observable_type" value="{{$observabletype}}">
+                        <input type="text" class="observable_type" name="observable_type" id="observable_type" value="{{$observabletype}}">
 
                         <div class="container-fluid h-100 mt-3"> 
                             <div class="row w-100 align-items-center">

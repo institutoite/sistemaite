@@ -205,7 +205,7 @@
 </div>
 
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  MODAL OBSERVACIONES  --}}
-<div class="modal" tabindex="-1" id="modal-mostrar-observaciones">
+{{-- <div class="modal" tabindex="-1" id="modal-mostrar-observaciones">
     <div class="modal-dialog modal-xl modalito">
         <div class="modal-content">
             <div class="modal-header bg-    primary">
@@ -236,7 +236,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  MODAL FECHAR  --}}
 <div class="modal" tabindex="-1" id="modal-fechar">
     <div class="modal-dialog modal-dialog-centered">

@@ -59,6 +59,7 @@ class MensajeController extends Controller
     {
         //dd($mensaje);
         $user=$mensaje->usuarios->first();
+        
         return view('whatsapp.show',compact('mensaje','user'));
     }
 

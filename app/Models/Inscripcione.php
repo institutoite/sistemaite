@@ -92,6 +92,10 @@ class Inscripcione extends Model
     {
         return $this->belongsTo(Motivo::class);
     }
+    public function estado()
+    {
+        return $this->belongsTo(Estado::class);
+    }
 
     
 

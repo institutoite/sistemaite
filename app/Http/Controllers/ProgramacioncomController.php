@@ -274,9 +274,10 @@ class ProgramacioncomController extends Controller
                     }
                 } 
             }
-            dd($programa);
         }
         $matriculacion->fechafin = $programa->fecha;
+        $matriculacion->estado_id = Config::get('constantes.ESTADO_CORRIENDO');
+        $matriculacion->save();
         if ($Acuenta_para_regenerar < $matriculacion->costo) {
             return redirect()->route('mostrar.programacioncom', $matriculacion);
         } else {

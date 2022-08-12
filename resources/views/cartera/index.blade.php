@@ -149,15 +149,17 @@
     <script src="{{asset('dist/js/moment.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
-
-    <script src="{{asset('assets/js/observacion.js')}}"></script>
     
+    {{-- <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+    <script src="{{asset('assets/js/observacion.js')}}"></script> --}}
+    <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+    <script src="{{asset('assets/js/observacion.js')}}"></script>
     
 <script>
     let tablamensajes;
         $(document).ready(function() {
-            
+        
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    DATATABLE INSCRIPCIONES  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             var tablainscripciones=$('#inscripciones').DataTable(
                 {
                     "serverSide": true,
@@ -190,6 +192,7 @@
                     },  
                 }
             );
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%  DATATABLE MATRICULACIONES   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             var tablamatriculaciones=$('#matriculaciones').DataTable(
                 {
                     "serverSide": true,
@@ -223,6 +226,7 @@
                 }
             );
 
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATATABLE INSCRIPCIOENS DESVIGENTES  %%%%%%%%%%%%%%%%%%%%%%%*/    
             var tablainscripcionesdesvigentes=$('#inscripcionesdesvigentes').DataTable(
                 {
                     "serverSide": true,
@@ -284,6 +288,8 @@
                 }
             );
 
+
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATATABLE MATRICULACIONES DESVIGENTES %%%%%%%%%%%%%%%%%%%%%%%%%*/    
             var tablamatriculacionesdesvigentes=$('#matriculacionesdesvigentes').DataTable(
                 {
                     "serverSide": true,
@@ -345,7 +351,150 @@
                     },  
                 }
             );
-                /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% este data table es para mostrar los mensajes actuales %%%%%%%%%%%%%%%%%%%%%*/
+            
+            //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR CREAR OBSERVACION  %%%%%%%%%%%%%%%%%%%%%%%%%%%
+            CKEDITOR.replace('editorguardar', {
+                height: 120,
+                width: "100%",
+                removeButtons: 'PasteFromWord'
+            });
+            //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR EDITAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%
+            CKEDITOR.replace('editoreditar', {
+                height: 120,
+                width: "100%",
+                removeButtons: 'PasteFromWord'
+            });
+
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       JS INSCRIPCION   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CREAR OBSERVACION INSCIRPCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.observacion', function (e) {
+                e.preventDefault();
+                let objeto_id = $(this).closest('tr').attr('id');
+                console.log(objeto_id);
+                $("#observable_id").val(objeto_id);
+                $("#observable_type").val($(this).attr('id'));
+                console.log($("#observable_id").val());
+                console.log($("#observable_type").val());
+                console.log("click en observacion crear");
+                CKEDITOR.instances.editorguardar.setData("");
+                $("#modal-agregar-observacion").modal("show");
+            });
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CLICK BOTON GUARDAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('#guardar-observacion').on('click', function (e) {
+                e.preventDefault();
+                console.log("click en guardar obsrvacion");
+                let observable_id = $("#observable_id").val();
+                console.log(observable_id);
+                let observable_type = $("#observable_type").val();
+                console.log(observable_type);
+                for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
+                observacion=$("#editorguardar").val();
+                console.log(observacion+"GUARDARNDO...");
+                url ="../guardar/observacion"
+                guardarObservacion(observacion,observable_id,observable_type,url);
+                
+            });
+             $('table').on('click', '.mostrarobservacionespersona', function(e) {
+                e.preventDefault();
+                    observable_id =$(this).closest('tr').attr('id');
+                    observable_type ="Persona";
+                    url="../observaciones/" + observable_id + "/" + observable_type,
+                    mostrarCrudObservaciones(url);
+                    $("#modal-mostrar-observaciones").modal("show");
+            });
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DAR BAJA OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+            $('table').on('click', '.bajaobservacion', function (e) {
+                e.preventDefault();
+                let observacion_id = $(this).closest('tr').attr('id');
+                console.log(observacion_id);
+                url="../darbaja/observacion";
+                darBaja(observacion_id,url);
+            });
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DAR ALTA OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.altaobservacion', function (e) {
+                e.preventDefault();
+                let observacion_id = $(this).closest('tr').attr('id');
+                url="../daralta/observacion";
+                darAlta(observacion_id,url);
+            });
+
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.eliminarobservacion', function (e) {
+                e.preventDefault();
+                let observacion_id = $(this).closest('tr').attr('id');
+                url="../eliminar/general"
+                eliminarObservacion(observacion_id,url);
+            });
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EDITAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.editarobservacion', function (e) {
+                e.preventDefault();
+                observacion_id =$(this).closest('tr').attr('id');
+                url="../observacion/editar";
+                console.log(url);
+                editarObservacion(observacion_id,url);
+                $("#modal-mostrar-observaciones").modal("hide");
+                $("#modal-editar-observacion").modal("show");
+            });
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('#actualizar-observacion').on('click', function (e){ 
+                e.preventDefault();
+                observacion_id =$("#observable_id").val();
+                observacion=CKEDITOR.instances.editoreditar.getData();
+                console.log(observacion);
+                url="../observacion/actualizar";
+                actualizarObservacion(observacion_id,observacion,url)
+                $("#modal-editar-observacion").modal("hide");
+                // $("#modal-editar-observacion").modal("show");
+            });
+
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       JS MATRICULACION   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+       
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.mostrarobservacionesmatriculacion', function(e) {
+                e.preventDefault();
+                    observable_id =$(this).closest('tr').attr('id');
+                    console.log(observable_id);
+                    observable_type ="Matriculacion";
+                    url="../observaciones/" + observable_id + "/" + observable_type,
+                    console.log(url);
+                    mostrarCrudObservaciones(url);
+                    $("#modal-mostrar-observaciones").modal("show");
+            });
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       JS GENERAL       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+            /*%%%%%%%%%%%%%%%%%%% JS GENERAL AGREGA UNA CLASE DE FORMA TEMPORAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            ( function ( $ ) {
+                'use strict';
+                $.fn.addTempClass = function ( className, expire, callback ) {
+                    className || ( className = '' );
+                    expire || ( expire = 2000 );
+                    return this.each( function () {
+                        $( this ).addClass( className ).delay( expire ).queue( function () {
+                            $( this ).removeClass( className ).clearQueue();
+                            callback && callback();
+                        } );
+                    } );
+                };
+            } ( jQuery ) );
+
+                $('#modal-agregar-observacion').on('hidden.bs.modal', function (e) {
+                    $(".diverror").addClass("d-none");
+                });
+                
+                $('#modal-editar-observacion').on('hidden.bs.modal', function (e) {
+                    $(".diverror").addClass("d-none");
+                });
+        
             
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PERSONA DE INSCRIPCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/    
             $('table').on('click', '.mostrarpersona', function(e) {
@@ -546,69 +695,69 @@
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AGREAGAR OBSERVACION INSCRIPCIONES VIGENTES  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-            CKEDITOR.replace('editor1', {
-                height: 120,
-                width: "100%",
-                removeButtons: 'PasteFromWord'
-            });
-             $('table').on('click', '.agregarobservacion', function(e) {
-                e.preventDefault();
-                console.log("click agregarobservacion inscripcion");
-                $("#editor1").val("");
-                let objeto_id = $(this).closest('tr').attr('id');
-                $("#observable_id").val(objeto_id);
-                $("#observable_type").val("Inscripcione");
-                CKEDITOR.instances.editor1.setData('');
-                $("#modal-agregar-observacion").modal("show");
-            });
+            // CKEDITOR.replace('editor1', {
+            //     height: 120,
+            //     width: "100%",
+            //     removeButtons: 'PasteFromWord'
+            // });
+            //  $('table').on('click', '.agregarobservacion', function(e) {
+            //     e.preventDefault();
+            //     console.log("click agregarobservacion inscripcion");
+            //     $("#editor1").val("");
+            //     let objeto_id = $(this).closest('tr').attr('id');
+            //     $("#observable_id").val(objeto_id);
+            //     $("#observable_type").val("Inscripcione");
+            //     CKEDITOR.instances.editor1.setData('');
+            //     $("#modal-agregar-observacion").modal("show");
+            // });
 
             /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  GUARDA OBSERVACION CON AJAX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
           
-            $('#guardar-observacion').on('click', function (e) {
-                e.preventDefault();
-                $("#errores").empty();
-                let observable_id = $("#observable_id").val();
-                let observable_type = $("#observable_type").val();
-                for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
-                $.ajax({
-                    url: "../guardar/observacion",
-                    data: {
-                        //obs: $("#observacionx").val(),
-                        observacion: $("#editor1").val(),
-                        observable_id: observable_id,
-                        observable_type: observable_type,
-                    },
-                    success: function (json) {
-                        if(json.errores){
-                            console.log(json.errores);
-                            $html="";
-                            for (let j in json.errores) {
-                                $html+="<li>"+ json.errores.observacion[0] +"</li>";
-                            }
-                            $("#erroresdiv").removeClass('d-none');
-                            $("#errores").append($html);
-                        }else{
-                            const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 3000,
-                            })
-                            Toast.fire({
-                                type: 'success',
-                                title: "Guardado corectamente: " + json.observacion,
-                            })
-                            $("#modal-agregar-observacion").modal("hide");
-                        }
-                    },
-                    error: function (xhr, status) {
-                        alert('Disculpe, existió un problema');
-                    },
-                });
+            // $('#guardar-observacion').on('click', function (e) {
+            //     e.preventDefault();
+            //     $("#errores").empty();
+            //     let observable_id = $("#observable_id").val();
+            //     let observable_type = $("#observable_type").val();
+            //     for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
+            //     $.ajax({
+            //         url: "../guardar/observacion",
+            //         data: {
+            //             //obs: $("#observacionx").val(),
+            //             observacion: $("#editor1").val(),
+            //             observable_id: observable_id,
+            //             observable_type: observable_type,
+            //         },
+            //         success: function (json) {
+            //             if(json.errores){
+            //                 console.log(json.errores);
+            //                 $html="";
+            //                 for (let j in json.errores) {
+            //                     $html+="<li>"+ json.errores.observacion[0] +"</li>";
+            //                 }
+            //                 $("#erroresdiv").removeClass('d-none');
+            //                 $("#errores").append($html);
+            //             }else{
+            //                 const Toast = Swal.mixin({
+            //                     toast: true,
+            //                     position: 'top-end',
+            //                     showConfirmButton: false,
+            //                     timer: 3000,
+            //                 })
+            //                 Toast.fire({
+            //                     type: 'success',
+            //                     title: "Guardado corectamente: " + json.observacion,
+            //                 })
+            //                 $("#modal-agregar-observacion").modal("hide");
+            //             }
+            //         },
+            //         error: function (xhr, status) {
+            //             alert('Disculpe, existió un problema');
+            //         },
+            //     });
                 
-            });
+            // });
         
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AGREAGAR MOSTRAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PROGRAMACION DE INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.mostrarprogramacion', function(e) {
                  e.preventDefault();
                 let inscripcion_id=$(this).closest('tr').attr('id'); 
@@ -642,7 +791,7 @@
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MATRICULACION JS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             
-              /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PERSONA DE MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/    
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PERSONA DE MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/    
             $('table').on('click', '.mostrarpersonamatriculacion', function(e) {
                 e.preventDefault();
                 let matriculacion_id=$(this).closest('tr').attr('id'); 
@@ -676,6 +825,8 @@
                 });
                 $("#modal-mostrar-persona").modal("show");
             });
+
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PERSONA DE MATRICULACION DESVIGENTE %%%%%%%%%%%%%%%%%%%%%%%%%%% */
             $('table').on('click', '.mostrarpersonamatriculaciondesvigente', function(e) {
                 e.preventDefault();
                 let persona_id=$(this).closest('tr').attr('id'); 
@@ -709,7 +860,7 @@
                 });
                 $("#modal-mostrar-persona").modal("show");
             });
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/    
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/    
             $('table').on('click', '.mostrarmatriculacion', function(e) {
                 e.preventDefault();
                 let matriculacion_id=$(this).closest('tr').attr('id'); 
@@ -766,7 +917,7 @@
                             $html+="<tr>"+"<td>TOTAL</td><td>"+ json.total+"</td></tr>";
                             $('#tabla-mostrar-pagos').append($html); 
                             $pagosHtml="";
-                             for (let j in json.pagos) {
+                            for (let j in json.pagos) {
                                 $pagosHtml+="<tr id='"+ json.pagos[j].id +"' ><td>"+ json.pagos[j].id +"</td>";
                                 $pagosHtml+="<td>"+json.pagos[j].monto+"</td>";
                                 $pagosHtml+="<td>"+json.pagos[j].pagocon+"</td>";
@@ -785,7 +936,7 @@
             });
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DETALLA PAGO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-               $('table').on('click', '.detallarpagomatriculacion', function(e) {
+                $('table').on('click', '.detallarpagomatriculacion', function(e) {
                 e.preventDefault(); 
                 var pago_id =$(this).closest('tr').attr('id');
 
@@ -915,53 +1066,53 @@
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AGREAGAR OBSERVACION DE INSCRIPCIONES VIGENTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-            CKEDITOR.replace('editor3', {
-                height: 120,
-                width: "100%",
-                removeButtons: 'PasteFromWord'
-            });
-             $('table').on('click', '.agregarobservacioninscripcion', function(e) {
-                e.preventDefault();
-                $("#editor3").val("");
-                let inscripcion_id = $(this).closest('tr').attr('id');
-                console.log(inscripcion_id);
-                $("#observable_id_inscripcion").val(inscripcion_id);
-                $("#observable_type_inscripcion").val("Inscripcione");
-                CKEDITOR.instances.editor3.setData('');
-                $("#modal-agregar-observacion-inscripcion").modal("show");
-            });
+            // CKEDITOR.replace('editor3', {
+            //     height: 120,
+            //     width: "100%",
+            //     removeButtons: 'PasteFromWord'
+            // });
+            //  $('table').on('click', '.agregarobservacioninscripcion', function(e) {
+            //     e.preventDefault();
+            //     $("#editor3").val("");
+            //     let inscripcion_id = $(this).closest('tr').attr('id');
+            //     console.log(inscripcion_id);
+            //     $("#observable_id_inscripcion").val(inscripcion_id);
+            //     $("#observable_type_inscripcion").val("Inscripcione");
+            //     CKEDITOR.instances.editor3.setData('');
+            //     $("#modal-agregar-observacion-inscripcion").modal("show");
+            // });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AGREAGAR OBSERVACION DE MATRICULACIONES VIGENTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-            CKEDITOR.replace('editor4', {
-                height: 120,
-                width: "100%",
-                removeButtons: 'PasteFromWord'
-            });
-             $('table').on('click', '.agregarobservacionmatriculacion', function(e) {
-                e.preventDefault();
-                $("#editor4").val("");
-                let matriculacion_id = $(this).closest('tr').attr('id');
-                console.log(matriculacion_id);
-                $("#observable_id_matriculacion").val(matriculacion_id);
-                $("#observable_type_matriculacion").val("Matriculacion");
-                CKEDITOR.instances.editor4.setData('');
-                $("#modal-agregar-observacion-matriculacion").modal("show");
-            });
-            CKEDITOR.replace('editor2', {
-                height: 120,
-                width: "100%",
-                removeButtons: 'PasteFromWord'
-            });
-             $('table').on('click', '.agregarobservacionpersona', function(e) {
-                e.preventDefault();
-                console.log("clicked agregarobservacionpersona");
-                $("#editor2").val("");
-                let objeto_id = $(this).closest('tr').attr('id');
-                $("#observable_id").val(objeto_id);
-                $("#observable_type").val("Persona");
-                CKEDITOR.instances.editor1.setData('');
-                $("#modal-agregar-observacion-persona").modal("show");
-            });
+            // CKEDITOR.replace('editor4', {
+            //     height: 120,
+            //     width: "100%",
+            //     removeButtons: 'PasteFromWord'
+            // });
+            //  $('table').on('click', '.agregarobservacionmatriculacion', function(e) {
+            //     e.preventDefault();
+            //     $("#editor4").val("");
+            //     let matriculacion_id = $(this).closest('tr').attr('id');
+            //     console.log(matriculacion_id);
+            //     $("#observable_id_matriculacion").val(matriculacion_id);
+            //     $("#observable_type_matriculacion").val("Matriculacion");
+            //     CKEDITOR.instances.editor4.setData('');
+            //     $("#modal-agregar-observacion-matriculacion").modal("show");
+            // });
+            // CKEDITOR.replace('editor2', {
+            //     height: 120,
+            //     width: "100%",
+            //     removeButtons: 'PasteFromWord'
+            // });
+            //  $('table').on('click', '.agregarobservacionpersona', function(e) {
+            //     e.preventDefault();
+            //     console.log("clicked agregarobservacionpersona");
+            //     $("#editor2").val("");
+            //     let objeto_id = $(this).closest('tr').attr('id');
+            //     $("#observable_id").val(objeto_id);
+            //     $("#observable_type").val("Persona");
+            //     CKEDITOR.instances.editor1.setData('');
+            //     $("#modal-agregar-observacion-persona").modal("show");
+            // });
              
             /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  GUARDA OBSERVACION CON DE UNA INSCRIPCION  AJAX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('#guardar-observacion-inscripcion').on('click', function (e) {
@@ -1059,50 +1210,50 @@
                 
             });
             /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  GUARDA OBSERVACION PERSONA DESVIGENTIZADA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('#guardar-observacion-persona').on('click', function (e) {
-                e.preventDefault();
-                $("#errores").empty();
-                let observable_id = $("#observable_id").val();
-                let observable_type = $("#observable_type").val();
-                for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
-                $.ajax({
-                    url: "../guardar/observacion",
-                    data: {
-                        //obs: $("#observacionx").val(),
-                        observacion: $("#editor2").val(),
-                        observable_id: observable_id,
-                        observable_type: observable_type,
-                    },
-                    success: function (json) {
-                        if(json.errores){
-                            console.log(json.errores);
-                            $html="";
-                            for (let j in json.errores) {
-                                $html+="<li>"+ json.errores.observacion[0] +"</li>";
-                            }
-                            $("#erroresdiv").removeClass('d-none');
-                            $("#errores").append($html);
-                        }else{
-                            const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 3000,
-                            })
-                            Toast.fire({
-                                type: 'success',
-                                title: "Guardado corectamente: " + json.observacion,
-                            })
-                            $("#modal-agregar-observacion-persona").modal("hide");
-                        }
-                        tablamatriculacionesdesvigentes.ajax.reload();
-                    },
-                    error: function (xhr, status) {
-                        alert('Disculpe, existió un problema');
-                    },
-                });
+            // $('#guardar-observacion-persona').on('click', function (e) {
+            //     e.preventDefault();
+            //     $("#errores").empty();
+            //     let observable_id = $("#observable_id").val();
+            //     let observable_type = $("#observable_type").val();
+            //     for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
+            //     $.ajax({
+            //         url: "../guardar/observacion",
+            //         data: {
+            //             //obs: $("#observacionx").val(),
+            //             observacion: $("#editor2").val(),
+            //             observable_id: observable_id,
+            //             observable_type: observable_type,
+            //         },
+            //         success: function (json) {
+            //             if(json.errores){
+            //                 console.log(json.errores);
+            //                 $html="";
+            //                 for (let j in json.errores) {
+            //                     $html+="<li>"+ json.errores.observacion[0] +"</li>";
+            //                 }
+            //                 $("#erroresdiv").removeClass('d-none');
+            //                 $("#errores").append($html);
+            //             }else{
+            //                 const Toast = Swal.mixin({
+            //                     toast: true,
+            //                     position: 'top-end',
+            //                     showConfirmButton: false,
+            //                     timer: 3000,
+            //                 })
+            //                 Toast.fire({
+            //                     type: 'success',
+            //                     title: "Guardado corectamente: " + json.observacion,
+            //                 })
+            //                 $("#modal-agregar-observacion-persona").modal("hide");
+            //             }
+            //             tablamatriculacionesdesvigentes.ajax.reload();
+            //         },
+            //         error: function (xhr, status) {
+            //             alert('Disculpe, existió un problema');
+            //         },
+            //     });
                 
-            });
+            // });
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AGREAGAR MOSTRAR PROGRAMACIONCOM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.mostrarprogramacionmatriculacion', function(e) {

@@ -109,7 +109,7 @@ function editarObservacion(observacion_id,url){
         },
         success: function (json) {
             console.log(json.observacion);
-            CKEDITOR.instances.editorpersonaeditar.setData(json.observacion);
+            CKEDITOR.instances.editoreditar.setData(json.observacion);
             $(".observable_id").val(json.id);
         },
     });
@@ -123,22 +123,26 @@ function actualizarObservacion(observacion_id,observacion,url){
             observacion: observacion,
         },
         success: function (json) {
-            console.log(json);
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 1500,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-            Toast.fire({
-                type: 'success',
-                title: json.mensajes
-            })
+            console.log(json.errores);
+            if (json.errores) {
+                $(".error").html(json.errores.observacion);
+                $(".diverror").removeClass('d-none');
+                console.log("hay errores");
+            } else {
+                
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                })
+                Toast.fire({
+                    type: 'success',
+                    title: "Guardado corectamente: " + json.mensaje,
+                })
+                $("#modal-editar-observacion").modal("hide"); 
+                console.log("No hay errores");
+            }
         },
     });
 }
@@ -153,11 +157,10 @@ function actualizarObservacion(observacion_id,observacion,url){
                 observable_type: observable_type,
             },
             success: function (json) {
-
-                console.log(json);
+                
                 if (json.errores) {
-                    $("#error").html(json.errores.observacion);
-                    $("#diverror").removeClass('d-none');
+                    $(".error").html(json.errores.observacion);
+                    $(".diverror").removeClass('d-none');
                 } else {
                     $("#" + observable_id).addTempClass('bg-success', 3000);
                     const Toast = Swal.mixin({

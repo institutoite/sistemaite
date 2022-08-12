@@ -39,7 +39,8 @@
                                 </tr>
                                 <tr>
                                     <td>Foto creador</td>
-                                    <td><img src="{{URL::to('/').'/storage/'.$user->foto}}" alt="{{$user->name}}" height="250px"></td>
+                                    {{-- <td><img src="{{URL::to('/').'/storage/'.$user->foto}}" alt="{{$user->name}}" height="250px"></td> --}}
+                                    <td><img  width="200px" src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5"> </td>
                                 </tr>
                             </tbody>
                         </table>    

@@ -13,12 +13,12 @@
                     <div class="card-header bg-secondary">
                         <span class="card-title">Configurar Inscripcion</span>
                         <div class="card-tools" id="divfuera">
-                            <button id="botonplus" class="btn btn-primary d-none" type="button">Agregar  Sesiones<i class="fas fa-plus-square"></i></button>
+                            <button id="botonplus" class="btn btn-primary d-none" type="button">Agregar Sesiones<i class="fas fa-plus-square"></i></button>
                         </div>
                     </div>
                     <div class="card-body">
                         @include('matriculacion.form_configurar')
-                            <form method="POST" id="formulario" action="{{ route('matriculacion.guardar.configuracion',$matriculacion->id)}}"  role="form" enctype="multipart/form-data">       
+                            <form method="POST" id="formulario" action="{{ route('matriculacion.guardar.configuracion')}}"  role="form" enctype="multipart/form-data">       
                                 @csrf
                                 <div class="card">
                                     <div id="titulosesion" class="card-header bg-warning">
@@ -28,6 +28,7 @@
                                         <div id="sesiones" class="p-3">
                                             
                                         </div>
+                                        <input class="form-control" type="number" name="matriculacion_id" value="{{$matriculacion->id}}">
                                         <div class="card-tools text-lg-center">
                                             <input id="boton-aceptar" class="btn btn-primary p-2 pl-5  d-none pr-5" type="submit" value="Guardar Cambios">
                                         </div>

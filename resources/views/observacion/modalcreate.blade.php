@@ -1,4 +1,4 @@
-{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%% M O D A L   P A R A   E D I T A R %$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%% M O D A L   P A R A   E D I T A R %$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%%
 <div class="modal" tabindex="-1" id="modal-editar">
     <div class="modal-dialog modal-xl modalito">
         <div class="modal-content">
@@ -12,7 +12,6 @@
                         <span class="card-title">Actualizar Programacion</span>
                     </div>
                     <div class="card-body">
-                        {{-- <form method="POST" action="{{ route('programacions.update', $programacion->id) }}"  role="form" enctype="multipart/form-data"> --}}
                         <form id="formulario-editar" method="POST" action="{{route('programacion.actualizar')}}">
                             @csrf
                         
@@ -23,14 +22,14 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 
 {{-- %%%%%%%%%%%%%%  MODALES CREAR Y EDITAR PERSONA DE ESTUDIANTES.BLADE.PHP %%%%%%%%%% --}}
     <x-createobservation 
         idmodalformulario="modal-agregar-observacion"
-        id="editorpersona"
-        nombre="editorpersona"
+        id="editorguardar"
+        nombre="editorguardar"
         observabletype="Persona"
         btnguardar="guardar-observacion"
         btnlabel="Guardar"
@@ -41,7 +40,7 @@
 
     <x-createobservation 
         idmodalformulario="modal-editar-observacion"
-        id="editorpersonaeditar"
+        id="editoreditar"
         nombre="editar-observacion"
         observabletype="Persona"
         btnguardar="actualizar-observacion"

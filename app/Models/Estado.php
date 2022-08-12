@@ -25,4 +25,12 @@ class Estado extends Model
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }
+    public function inscripciones()
+    {
+        return $this->hasMany(Inscripcione::class);
+    }
+    public function matriculaciones()
+    {
+        return $this->hasMany(Matriculacion::class);
+    }
 }

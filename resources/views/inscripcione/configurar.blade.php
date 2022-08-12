@@ -40,10 +40,14 @@
                         {{-- @include('inscripcione.guarderia.config') --}}
                         @include('inscripcione.form_configurar')
                         @if ($tipo=='actualizando')
-                            <form method="POST" id="formulario" action="{{ route('inscripcion.actualizar.configuracion',$inscripcion->id)}}"  role="form" enctype="multipart/form-data">       
+                            <form method="POST" id="formulario" action="{{ route('inscripcion.actualizar.configuracion')}}"  role="form" enctype="multipart/form-data">       
                                 @csrf 
-                                
                                 <div class="row">
+                                    <div class="col-12">
+                                        @if($errors->has('radioconfig'))
+                                            <span class="text-danger"> {{ $errors->first('radioconfig')}}</span>
+                                        @endif
+                                    </div>
                                     <div class="col-12">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="radioconfig" id="radiodesde" value="radiodesde">
@@ -55,10 +59,15 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
+                                        @if($errors->has('fecha'))
+                                            <span class="text-danger"> {{ $errors->first('fecha')}}</span>
+                                        @endif
+                                    </div>
+                                    <div class="col-12">
                                         <input id="fecha" class="form-control border-warning mb-3" name="fecha" value="{{$inscripcion->fechaini->format('Y-m-d')}}" type="date">
                                         <p id="mensajefecha" class="d-none text-gray">La fecha no es necesaria ya que lo tomara de la inscripción, esta opcion edita todas las clases</p>
-
                                     </div>
+                                    <input class="form-control" type="number" name="inscripcione_id" value="{{$inscripcion->id}}">
                                 </div>
                                 
                                 

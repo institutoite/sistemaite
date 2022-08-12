@@ -24,7 +24,7 @@
         <i class="far fa-calendar-check"></i>
     </a>
 
-    <a class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" id="Inscripcione" title="Agregar Observacion">
+    <a class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" id="Persona" title="Agregar Observacion">
         <i class="fas fa-comment-alt"></i>
     </a>
 

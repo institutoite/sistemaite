@@ -28,7 +28,11 @@ class Matriculacion extends Model
     
     public function computacion()
     {
-        return $this->belongsTo("App\Models\Computacion");
+        return $this->belongsTo(Computacion::class);// cambiado de constante a class
+    }
+    public function estado()
+    {
+        return $this->belongsTo(Estado::class);
     }
     public function pagos()
     {

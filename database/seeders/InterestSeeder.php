@@ -15,7 +15,7 @@ class InterestSeeder extends Seeder
     {
         Interest::create(['interest'=>'Guardería']);
         Interest::create(['interest'=>'Inicial']);
-        Interest::create(['interest'=>'Primari']);
+        Interest::create(['interest'=>'Primaria']);
         Interest::create(['interest'=>'Secundaria']);
         Interest::create(['interest'=>'Pre Universitario']);
         

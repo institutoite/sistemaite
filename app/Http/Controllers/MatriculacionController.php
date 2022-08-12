@@ -18,6 +18,7 @@ use App\Models\Tipomotivo;
 use App\Models\Motivo;
 use Illuminate\Support\Arr;
 use App\Http\Requests\MatriculacionStoreRequest;
+use App\Http\Requests\ActualizarConfiguracionMatriculacionRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
 
@@ -70,6 +71,21 @@ class MatriculacionController extends Controller
         $motivos = Tipomotivo::findOrFail(2)->motivos;
         $asignaturasFaltantes=$carrera->asignaturas->whereNotIn('id', $ids);
         return view('matriculacion.create',compact('computacion','asignaturasFaltantes','motivos'));
+    }
+    
+    public function configurarView($matriculacion_id)
+    {
+        $matriculacion=Matriculacion::findOrFail($matriculacion_id);
+        $nivel=Nivel::findOrFail(6);
+        $aulas = Aula::get();
+        $docentes = $nivel->docentes;
+        $dias = Dia::get();
+        $computacion=$matriculacion->computacion;
+        $matriculacion->usuarios()->attach(Auth::user()->id);
+        $programacioncoms=$matriculacion->programacionescom;
+        $clasesConsumidas=count($programacioncoms->where('estado_id','<>',Config::get('constantes.ESTADO_INDEFINIDO')));
+        $ultimaclasepasada=$programacioncoms->where('estado_id','<>',Config::get('constantes.ESTADO_INDEFINIDO'))->max();
+        return view('matriculacion.configurarupdate', compact('ultimaclasepasada','programacioncoms','clasesConsumidas','computacion','matriculacion', 'aulas', 'docentes','dias'));
     }
 
     /**
@@ -181,9 +197,9 @@ class MatriculacionController extends Controller
     {
         //
     }
-    public function guardarconfiguracion(Request $request, $matriculacion){
-        //dd($matriculacion);
-        
+    public function guardarconfiguracion(Request $request){
+        // dd($request->all());
+        $matriculacion=$request->matriculacion_id;
         $cuantas_sesiones=count($request->dias);
         $i=0;
         while($i<$cuantas_sesiones){
@@ -201,9 +217,9 @@ class MatriculacionController extends Controller
         return redirect()->route('pagocom.crear',$matriculacion);
     }
 
-      public function actualizarConfiguracion(Request $request, $matriculacion_id)
+      public function actualizarConfiguracion(ActualizarConfiguracionMatriculacionRequest $request)
     {
-
+        $matriculacion_id=$request->matriculacion_id;
         $cuantas_sesiones = count($request->dias);
         $fecha=$request->fecha;
         Sesioncom::where('matriculacion_id', '=', $matriculacion_id)->delete();
@@ -226,8 +242,7 @@ class MatriculacionController extends Controller
             $i = $i + 1;
         }
         
-        
-
+        $matriculacion->save();
         if ($request->radioconfig=='radiodesde'){
             return redirect()->route('regenerar.programacioncom', ['matriculacion'=>$matriculacion->id,'fecha'=>$fecha]);   
         }
@@ -276,9 +291,10 @@ class MatriculacionController extends Controller
         // $computacion=Persona::findOrFail(2)->computacion;
         if($computacion!==null){
             $matriculacionesVigentes=Matriculacion::join('asignaturas','asignaturas.id','=','matriculacions.asignatura_id')        
+            ->join('estados','estados.id','matriculacions.estado_id')
             ->where('computacion_id','=',$computacion->id)
             ->where('vigente', 1)
-            ->select('matriculacions.id','vigente','costo','asignatura','fecha_proximo_pago')
+            ->select('matriculacions.id','vigente','costo','asignatura','fecha_proximo_pago','estado')
             ->get();
         }
         return datatables()->of($matriculacionesVigentes)

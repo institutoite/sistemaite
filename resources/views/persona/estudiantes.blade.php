@@ -77,13 +77,13 @@
     
     <script>
         //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
-        CKEDITOR.replace('editorpersona', {
+        CKEDITOR.replace('editorguardar', {
             height: 120,
             width: "100%",
             removeButtons: 'PasteFromWord'
         });
         //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
-        CKEDITOR.replace('editorpersonaeditar', {
+        CKEDITOR.replace('editoreditar', {
             height: 120,
             width: "100%",
             removeButtons: 'PasteFromWord'
@@ -95,7 +95,8 @@
             console.log(objeto_id);
             $("#observable_id").val(objeto_id);
             $("#observable_type").val($(this).attr('id'));
-            CKEDITOR.instances.editorpersona.setData("");
+            CKEDITOR.instances.editorguardar.setData("");
+            console.log("Click en Observacion crear");
             $("#modal-agregar-observacion").modal("show");
         });
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CLICK BOTON GUARDAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -107,7 +108,7 @@
             let observable_type = $("#observable_type").val();
             console.log(observable_type);
             for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
-            observacion=$("#editorpersona").val();
+            observacion=$("#editorguardar").val();
             url = "guardar/observacion"
             guardarObservacion(observacion,observable_id,observable_type,url);
             
@@ -134,7 +135,7 @@
         $('table').on('click', '.altaobservacion', function (e) {
             e.preventDefault();
             let observacion_id = $(this).closest('tr').attr('id');
-            url="darbaja/observacion";
+            url="daralta/observacion";
             darAlta(observacion_id,url);
         });
 
@@ -155,15 +156,22 @@
         $('#actualizar-observacion').on('click', function (e){ 
             e.preventDefault();
             observacion_id =$("#observable_id").val();
-            observacion=CKEDITOR.instances.editorpersonaeditar.getData();
-            console.log(observacion);
+            observacion=CKEDITOR.instances.editoreditar.getData();
             url="observacion/actualizar";
             actualizarObservacion(observacion_id,observacion,url);
-            $("#modal-editar-observacion").modal("hide");
         });
 
 
 
+
+        $('#modal-agregar-observacion').on('hidden.bs.modal', function (e) {
+            $("#diverror").addClass("d-none");
+        });
+        
+        $('#modal-editar-observacion').on('hidden.bs.modal', function (e) {
+            $(".diverror").addClass("d-none");
+        });
+        
 
         ( function ( $ ) {
             'use strict';

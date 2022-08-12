@@ -1,12 +1,12 @@
 <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarpersona" title="Ver persona">
     <i class="fas fa-user-tie"></i>
 </a>
-<a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarobservacionespersona" title="Mostrar observaciones">
+{{-- <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarobservacionespersona" title="Mostrar observaciones">
     <i class="fas fa-comments text-secondary"></i>
 </a>
 <a href="" class="btn-accion-tabla tooltipsC mr-1 agregarobservacionpersona" title="Agregar Observaciones">
     <i class="fas fa-comment-medical text-fuchsia"></i>
-</a>
+</a> --}}
 
 <a href="" class="btn-accion-tabla tooltipsC mr-1 ultimainscripcion" title="Ver ultima Inscripción">
     <i class="fas fa-spell-check text-secondary"></i>
@@ -29,5 +29,11 @@
 </a>
 <a href="{{route('descargar.contacto', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Descargar contacto">
     <i class="far fa-address-card"></i>
+</a>
+<a href="" class="btn-accion-tabla tooltipsC mr-1 observacion" id="Persona" title="Agregar Observaciones">
+    <i class="fas fa-comment-medical text-fuchsia"></i>
+</a>
+<a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarobservacionespersona" title="Mostrar observaciones">
+    <i class="fas fa-comments text-secondary"></i>
 </a>
 

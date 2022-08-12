@@ -38,14 +38,15 @@
 
 @section('js')
         
-    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script> --}}
+     <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% CKEDITOR --}}
     <script>
-        ClassicEditor
-            .create( document.querySelector('#mensaje'))
-            .catch( error => {
-                console.error(error);
-            } );
+        CKEDITOR.replace('mensaje', {
+            height: 120,
+            width: "100%",
+            removeButtons: 'PasteFromWord'
+        });
     </script>
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% FIN CKEDITOR --}}
 

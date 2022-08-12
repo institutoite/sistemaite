@@ -6,6 +6,10 @@ use App\Http\Requests\PagoStoreRequest;
 use App\Models\Inscripcione;
 use App\Models\Pago;
 use App\Models\User;
+use App\Models\Aula;
+use App\Models\Dia;
+use App\Models\Modalidad;
+use App\Models\Nivel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -68,13 +72,12 @@ class PagoController extends Controller
         return redirect()->route('pagos.index')
             ->with('success', 'Pago created successfully.');
     }
-    public function crear($inscripcion)
+    public function crear($inscripcion_id)
     {
-        $inscripcion=Inscripcione::findOrFail((int)$inscripcion);
+        $inscripcion=Inscripcione::findOrFail((int)$inscripcion_id);
         $pagos = $inscripcion->pagos;
         $acuenta= $inscripcion->pagos->sum->monto;
         $saldo=$inscripcion->costo-$acuenta;
-        
         return view('pago.create', compact('inscripcion','pagos','acuenta','saldo'));
     }
 

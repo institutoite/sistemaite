@@ -229,4 +229,5 @@ class User extends Authenticatable
     public function zonas(){
         return $this->morphedByMany(Zona::class,'userable');
     } 
+   
 }

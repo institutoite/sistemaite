@@ -55,7 +55,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[ObservacionController::class,'listarGeneral'])->name('prueba');
+Route::get('prueba',[InscripcioneController::class,'tusInscripcionesVigentes'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -335,7 +335,7 @@ Route::get('matriculacion/editar/{matriculacion}', [MatriculacionController::cla
 Route::patch('matriculacion/actualizar/{matriculacion}', [MatriculacionController::class,'update'])->name("matriculacion.update");
 Route::get('matriculacion/mostrar/{matriculacion}', [MatriculacionController::class,'show'])->name("matriculacion.show");
 
-Route::post('matriculacion/guardar/configuracion/{matriculaciocion}', 'MatriculacionController@guardarconfiguracion')->name('matriculacion.guardar.configuracion');
+Route::post('matriculacion/guardar/configuracion', 'MatriculacionController@guardarconfiguracion')->name('matriculacion.guardar.configuracion');
 Route::post('matriculacion/actualizar/configuracion/{matriculacion_id}', [MatriculacionController::class,'actualizarConfiguracion'])->name('matriculacion.actualizar.configuracion');
 
 Route::get('matriculacion/actualizar/fechapago/{fecha}/{id}',[MatriculacionController::class,'actualizar_fecha_proximo_pago'])->name('setcom.fecha.proximo.pago');
@@ -346,7 +346,7 @@ Route::get('matriculacioncita/ajax/show', [MatriculacionController::class,'matri
 Route::get('saldo/matriculacion', [MatriculacionController::class,'Saldo'])->name('matriculacion.saldo.ajax');  
 //Route::get('tumatriculaciones', [MatriculacionController::class,'tusMatriculacionesVigentes'])->name('matriculaciones');
 //Route::get('imprimir/matriculacion/{matriculacion}',[MatriculacionController::class,'imprimir'] )->name('imprimir.matriculacion');
-
+Route::get('matriculacion/configuracion/{matriculacion}', [MatriculacionController::class,'configurarView'])->name('matriculacion.configuracion');
 
 
 // Route::get('gestiones/editar78', [GestionController::class, 'edition'])->name('gestion.editar');
@@ -460,7 +460,8 @@ Route::get('tus_inscripciones/{estudiante_id}', 'InscripcioneController@tusinscr
 Route::get('listar/inscripciones/{persona}', 'InscripcioneController@listar')->name('listar_inscripciones');
 Route::get('inscripcione/crear/{persona}', 'InscripcioneController@crear')->name('inscribir');
 Route::post('inscripcion/guardar/configuracion/{id}', 'InscripcioneController@guardarconfiguracion')->name('inscripcion.guardar.configuracion');
-Route::post('inscripcion/actualizar/configuracion/{id_inscripcion}', 'InscripcioneController@actualizarConfiguracion')->name('inscripcion.actualizar.configuracion');
+Route::get('inscripcion/configuracion/{inscripcione}', 'InscripcioneController@configurarView')->name('inscripcion.configuracion');
+Route::post('inscripcion/actualizar/configuracion', 'InscripcioneController@actualizarConfiguracion')->name('inscripcion.actualizar.configuracion');
 Route::get('inscripcion/actualizar/fechapago/{fecha}/{id}', 'InscripcioneController@actualizar_fecha_proximo_pago')->name('set.fecha.proximo.pago');
 Route::get('tusinscripciones', 'InscripcioneController@tusInscripcionesVigentes')->name('inscripciones.de.estudiante');
 Route::get('inscripcines/vigentes/view', function () {return view('inscripcione.vigentes');})->name('inscripciones.vigentes.view');

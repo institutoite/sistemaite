@@ -125,10 +125,17 @@ class ObservacionController extends Controller
      */
     public function update(Request $request)
     {
-        $observacion=Observacion::findOrFail($request->observacion_id);
-        $observacion->observacion=$request->observacion;
-        $observacion->save();
-        return response()->json(["mensajes"=>"Registro actualizado correctamente"]);
+        $validator = Validator::make($request->all(), [
+            'observacion' => 'required|min:5|max:400',
+        ]);
+        if ($validator->passes()) {
+            $observacion=Observacion::findOrFail($request->observacion_id);
+            $observacion->observacion=$request->observacion;
+            $observacion->save();
+            return response()->json(['mensaje'=>"Guardado correctamente"]);    
+        }else{
+            return response()->json(['errores' => $validator->errors()]);
+        }
     }
     public function darbaja(Request $request)
     {

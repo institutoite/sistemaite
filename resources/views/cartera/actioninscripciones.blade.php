@@ -9,13 +9,13 @@
     <i class="fas fa-hand-holding-usd text-primary"></i>
 </a>
 
-<a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarobservaciones" title="Mostrar observaciones">
+<a href="" class="btn-accion-tabla tooltipsC mr-1 observacion" id="Inscripcione" title="Agregar Observaciones">
+    <i class="fas fa-comment-medical text-fuchsia"></i>
+</a>
+<a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarobservacionesinscripcion" title="Mostrar observaciones">
     <i class="fas fa-comments text-secondary"></i>
 </a>
 
-<a href="" class="btn-accion-tabla tooltipsC mr-1 agregarobservacioninscripcion" title="Agregar Observaciones">
-    <i class="fas fa-comment-medical text-fuchsia"></i>
-</a>
 
 <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarprogramacion" title="Mostrar Programacion">
     <i class="fas fa-calendar-alt text-secondary"></i>

@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Config;
 
 use App\Models\Inscripcione;
 use App\Models\Billete;
 use App\Models\Modalidad;
 use App\Models\Pago;
+use App\Models\Nivel;
+use App\Models\Aula;
+use App\Models\Dia;
 use Illuminate\Http\Request;
 
 /**
@@ -61,10 +65,7 @@ class BilleteController extends Controller
 
     public function guardar(Request $request,$pago_id)
     {
-        
-        
         $pago = Pago::findOrFail($pago_id);
-        
         $montoBilletes= $request->billete200*200+ $request->billete100*100+ $request->billete50*50+ $request->billete20*20+
                 $request->billete10*10+ $request->moneda5*5+ $request->moneda2*2+ $request->moneda1*1+ $request->moneda50*0.5+ $request->moneda20*0.2;
         $cambioBilletes = $request->billetecambio200 * 200 + $request->billetecambio100 * 100 + $request->billetecambio50 * 50 + $request->billetecambio20 * 20 +
@@ -108,17 +109,23 @@ class BilleteController extends Controller
                 $pago->billetes()->attach($key,['cantidad'=>$val,'tipo'=>'cambio']);
             }
             $inscripcion = Inscripcione::findOrFail($pago->pagable_id);
-            if ($inscripcion->programaciones->count() == 0) {
-                $nivel=Modalidad::findOrFail($inscripcion->modalidad_id)->nivel->nivel;
-                if($nivel=="GUARDERIA"){
-                    
-                    return redirect()->route('generar.programa.guarderia', $inscripcion->id);
-                }else {
-                    return redirect()->route('generar.programa', $inscripcion->id);
-                }
-            } else {
+            
+            if($inscripcion->estado_id==Config::get('constantes.ESTADO_RESERVADO')){
                 
-                return redirect()->route('actualizar.programa.segun.pago', ['inscripcione' => $inscripcion->id, 'pago' => $pago_id]);
+                return redirect()->route('inscripcion.configuracion',$inscripcion);
+            }else{
+                if ($inscripcion->programaciones->count() == 0) {
+                    $nivel=Modalidad::findOrFail($inscripcion->modalidad_id)->nivel->nivel;
+                    if($nivel=="GUARDERIA"){
+                        
+                        return redirect()->route('generar.programa.guarderia', $inscripcion->id);
+                    }else {
+                        return redirect()->route('generar.programa', $inscripcion->id);
+                    }
+                } else {
+                    
+                    return redirect()->route('actualizar.programa.segun.pago', ['inscripcione' => $inscripcion->id, 'pago' => $pago_id]);
+                }
             }
         }
        

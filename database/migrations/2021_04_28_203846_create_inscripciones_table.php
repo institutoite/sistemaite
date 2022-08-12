@@ -26,7 +26,10 @@ class CreateInscripcionesTable extends Migration
             $table->unsignedBigInteger('estudiante_id');
             $table->unsignedBigInteger('modalidad_id');
             $table->unsignedBigInteger('motivo_id');
-
+            $table->unsignedBigInteger('estado_id')->default(Config::get('constantes.ESTADO_RESERVADO'));
+            $table->foreign('estado_id', 'fk_inscripcion_estados_idx')
+            ->references('id')->on('estados')->onDelete('cascade');
+            
             $table->foreign('motivo_id', 'fk_inscripcion_motivos_idx')
             ->references('id')->on('motivos')->onDelete('cascade');
 

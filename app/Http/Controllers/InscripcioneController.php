@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ConfigurarionInscripcionRequest;
+use App\Http\Requests\ActualizarConfigurarionInscripcionRequest;
 use App\Models\Inscripcione;
 use App\Models\Modalidad;
 use App\Models\Motivo;
@@ -70,6 +71,18 @@ class InscripcioneController extends Controller
 
         //desde el menu puede enviar el objeto persona a create:
         return view('inscripcione.create', compact('modalidades','motivos'));
+    }
+    public function configurarView($inscripcion_id)
+    {
+        $inscripcion=Inscripcione::findOrFail($inscripcion_id);
+        $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
+        $materias = $nivel->materias;
+        $aulas = Aula::get();
+        $docentes = $nivel->docentes;
+        $dias = Dia::get();
+        $tipo='actualizando';
+        $programacion = $inscripcion->programaciones; 
+        return view('inscripcione.configurar', compact('nivel','inscripcion','materias','aulas','docentes','dias','tipo','programacion'));
     }
 
 
@@ -298,14 +311,18 @@ class InscripcioneController extends Controller
         //return redirect()->action([InscripcioneController::class, 'tusinscripciones'], ['estudiante_id' => $persona->estudiante_id]);
     }
 
+    /*%%%%%%%%%%%%%%%%%%%%%%%%%  INSCRIPCIONES PARA DATATABLE DE inscripcione/tusinscripciones.blade */
     public function tusInscripcionesVigentes(Request $request){
+    // public function tusInscripcionesVigentes(){
         // $estudiante_id=1;
         $estudiante_id=$request->estudiante_id;
+        // $estudiante_id=1;
         $persona=Estudiante::findOrFail($estudiante_id)->persona;
         $inscripcionesVigentes = Inscripcione::join('modalidads','modalidads.id','inscripciones.modalidad_id')
+            ->join('estados','estados.id','inscripciones.estado_id')
             ->where('estudiante_id','=',$estudiante_id)
             ->where('vigente', 1)
-            ->select('inscripciones.id','vigente', 'objetivo', 'inscripciones.costo','fecha_proximo_pago','modalidads.modalidad')
+            ->select('inscripciones.id','vigente', 'objetivo', 'inscripciones.costo','fecha_proximo_pago','modalidads.modalidad','estado')
             ->get();
         return datatables()->of($inscripcionesVigentes)
                             ->addColumn('btn', 'inscripcione.actiontusinscripciones')
@@ -370,12 +387,14 @@ class InscripcioneController extends Controller
         return redirect()->route('pagos.crear',['inscripcione'=>$inscripcion->id]);
     }
 
-    public function actualizarConfiguracion(Request $request, $id)
+    public function actualizarConfiguracion(ActualizarConfigurarionInscripcionRequest $request)
     {
+       
         $cuantas_sesiones = count($request->dias);
         $fecha=$request->fecha;
-        Sesion::where('inscripcione_id', '=', $id)->delete();
-        $inscripcion = Inscripcione::findOrFail($id);
+        $inscripcion_id=$request->inscripcione_id;
+        Sesion::where('inscripcione_id', '=', $inscripcion_id)->delete();
+        $inscripcion = Inscripcione::findOrFail($inscripcion_id);
         if($fecha<=$inscripcion->fechaini){
             $inscripcion->fechaini=$fecha;
         }
@@ -388,11 +407,11 @@ class InscripcioneController extends Controller
             $sesion->docente_id = $request->docentes[$i];
             $sesion->materia_id = $request->materias[$i];
             $sesion->aula_id = $request->aulas[$i];
-            $sesion->inscripcione_id = $id;
+            $sesion->inscripcione_id = $inscripcion_id;
             $sesion->save();
             $i = $i + 1;
         }
-        
+        $inscripcion->save();
         if ($request->radioconfig=='radiodesde'){
             return redirect()->route('regenerar.programa', ['inscripcione'=>$inscripcion->id,'fecha'=>$fecha]);   
         }

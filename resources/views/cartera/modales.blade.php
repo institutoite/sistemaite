@@ -174,7 +174,7 @@
 </div>
 
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  MODAL OBSERVACIONES  --}}
-<div class="modal" tabindex="-1" id="modal-mostrar-observaciones">
+{{-- <div class="modal" tabindex="-1" id="modal-mostrar-observaciones">
     <div class="modal-dialog modal-xl modalito">
         <div class="modal-content">
             <div class="modal-header bg-    primary">
@@ -208,7 +208,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  MODAL PROGRAMACION  --}}
 <div class="modal" tabindex="-1" id="modal-mostrar-programacion">
     <div class="modal-dialog modal-xl modalito">
