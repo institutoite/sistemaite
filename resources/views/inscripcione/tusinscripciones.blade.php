@@ -273,6 +273,10 @@
                         }else{
                             $(row).addClass('text-danger')
                         }
+
+                        if (data['vigente']==0){
+                            $(row).addClass('bg-danger text-white')
+                        }
                         $clase="";
                         switch (data['estado']) {
                             case "RESERVADO":
@@ -314,6 +318,7 @@
                             "orderable": false,
                         },
                     ],
+                    order: [[0, 'desc']],
                     "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                     },

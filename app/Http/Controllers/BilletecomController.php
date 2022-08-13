@@ -82,7 +82,6 @@ class BilletecomController extends Controller
             }
             $matriculacion = Matriculacion::findOrFail($pago->pagable_id);
             if($matriculacion->estado_id==Config::get('constantes.ESTADO_RESERVADO')){
-               
                 return redirect()->route('matriculacion.configuracion',$matriculacion);
             }else{
                 if ($matriculacion->programacionescom->count() == 0) {

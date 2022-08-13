@@ -55,7 +55,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[InscripcioneController::class,'tusInscripcionesVigentes'])->name('prueba');
+Route::get('prueba',[InscripcioneController::class,'daralta'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -214,7 +214,7 @@ Route::post('pagos/realizar/{inscripcione}', 'PagoController@guardar')->name('pa
 Route::patch('pago/actualizar/{pago}', "PagoController@actualizar")->name('pago.actualizar');
 Route::get('pagos/mostrar/ajax',[PagoController::class,'pagosMostrarAjax'])->name('pagos.mostrar.ajax');
 
-/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       P  A  G  O  S  COMPUTACION         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%PAGOS COMPUTACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('pagocom/crear/{matriculacion}',[PagocomController::class,'crear'])->name('pagocom.crear');
 Route::get('pagocom/mostrar/{pagocom}',[PagocomController::class,'mostrar'])->name('pagocom.mostrar');
 Route::get('pagocom/editar/{pagocom}',[PagocomController::class,'editar'])->name('pagocom.editar');
@@ -225,7 +225,7 @@ Route::get('pagoscom/mostrar/ajax',[PagocomController::class,'pagosComMostrarAja
 
 
 
-/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       B  I  L  L  E  T  E  S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%BILLETES          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('billetes', "BilleteController");
 Route::get('billetes/crear/{pago}', "BilleteController@crear")->name('billete.crear');
 Route::post('billetes/guardar/{pago}', 'BilleteController@guardar')->name('billetes.guardar');
@@ -325,7 +325,7 @@ Route::get('listar/carreras', [CarreraController::class,'listar'])->name('carrer
 //Route::resource('carrera', "CarreraController")->names('carrera');
 
 
-/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MATRICULACION   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%MATRICULACION  RUTAS  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('matriculacion/create/{computacion}/{carrera}',[MatriculacionController::class,'create'])->name('matriculacion.create');
 Route::get('miscarreras/{computacion}', [MatriculacionController::class, 'misCarreras'])->name('miscarreras.listar');
 Route::get('carrerasajax/{computacion}', [MatriculacionController::class, 'CarrerasComptacion'])->name('miscarrerasajax');
@@ -347,8 +347,9 @@ Route::get('saldo/matriculacion', [MatriculacionController::class,'Saldo'])->nam
 //Route::get('tumatriculaciones', [MatriculacionController::class,'tusMatriculacionesVigentes'])->name('matriculaciones');
 //Route::get('imprimir/matriculacion/{matriculacion}',[MatriculacionController::class,'imprimir'] )->name('imprimir.matriculacion');
 Route::get('matriculacion/configuracion/{matriculacion}', [MatriculacionController::class,'configurarView'])->name('matriculacion.configuracion');
-
-
+Route::get('reservar/matriculacion/{matriculacion}', [MatriculacionController::class,'reservar'])->name('reservar.matriculacion');
+Route::get('darbaja/matriculacion',[MatriculacionController::class,'darbaja'])->name('matriculacion.darbaja');
+Route::get('daralta/matriculacion',[MatriculacionController::class,'daralta'])->name('matriculacion.daralta');
 // Route::get('gestiones/editar78', [GestionController::class, 'edition'])->name('gestion.editar');
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  TIPOMOTIVOS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -469,6 +470,8 @@ Route::get('inscripciones/vigentes/ajax', [InscripcioneController::class,'vigent
 Route::get('inscripcion/mostrar/ajax', [InscripcioneController::class,'inscripcionMostrarAjax'])->name('inscripcion.mostrar.ajax');  
 Route::get('saldo/inscripcion', [InscripcioneController::class,'Saldo'])->name('inscripcion.saldo.ajax');  
 Route::get('reservar/inscripcion/{inscripcione}', [InscripcioneController::class,'reservar'])->name('reservar.inscripcion');  
+Route::get('darbaja/inscripcion',[InscripcioneController::class,'darbaja'])->name('inscripcion.darbaja');
+Route::get('daralta/inscripcion',[InscripcioneController::class,'daralta'])->name('inscripcion.daralta');
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TELEFONOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('telefonos/vista/{persona}','TelefonoController@mostrarvista')->name('telefonos.persona');
@@ -525,6 +528,7 @@ Route::get('programacioncom/asistencia/ajax', [ProgramacioncomController::class,
 Route::get('programacioncom/asignarfalta/ajax', [ProgramacioncomController::class,'asignarFaltasFechasPasadas'])->name('programacioncom.asignarFaltas');
 Route::get('programacioncom/mostrar/ajax', [ProgramacioncomController::class,'programacioncomMostrarAjax'])->name('programacioncom.mostrar..ajax');
 
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%OBSERVACION RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('observacion/create/{observable_id}/{observable_type}',[ObservacionController::class,'create'])->name('observacion.create');
 Route::get('observacion/editar',[ObservacionController::class,'edit'])->name('observacion.editar');
 Route::get('observacion/actualizar',[ObservacionController::class,'update'])->name('observacion.actualizar');

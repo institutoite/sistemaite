@@ -49,7 +49,11 @@
                     <div class="card-header">
                         <div>
                             <span id="card_title">
-                                {{ __('Programacion de una Inscripción') }}
+                                {{ __('Marcado General') }}
+                                
+                                <a href="{{route('opcion.principal', $inscripcion->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
+                                    Opciones&nbsp;<i class="fas fa-bars"></i>
+                                </a> 
                             </span>
                     </div>
                     <div class="container-fluid mt-2">

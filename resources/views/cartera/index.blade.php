@@ -154,17 +154,24 @@
     <script src="{{asset('assets/js/observacion.js')}}"></script> --}}
     <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
     <script src="{{asset('assets/js/observacion.js')}}"></script>
+    <script src="{{asset('assets/js/configinscripcion.js')}}"></script>
+    <script src="{{asset('assets/js/configmatriculacion.js')}}"></script>
     
 <script>
     let tablamensajes;
+    let tablainscripciones;
+    let tablamatriculaciones;
+    let tablainscripcionesdesvigentes;
+    let tablamatriculacionesdesvigentes;
         $(document).ready(function() {
         
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    DATATABLE INSCRIPCIONES  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            var tablainscripciones=$('#inscripciones').DataTable(
+            tablainscripciones=$('#inscripciones').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
                     "autoWidth":false,
+                    // "bStateSave": true,
                     "createdRow": function( row, data, dataIndex ) {
                     $(row).attr('id',data['id']); 
                         if (moment(data['fecha_proximo_pago']).format('YY-MM-DD')>moment().format('YY-MM-DD')){
@@ -175,6 +182,8 @@
                         $('td', row).eq(4).html(moment(data['fecha_proximo_pago']).format('DD-MM-YYYY'));
                     },
                     "ajax": "{{ url('micartera/inscripciones') }}",
+                    // "aLengthMenu": [[5, 10, 20, -1], [5, 10, 20, "All"]],
+                    // "iDisplayLength" : 5,
                     "columns": [
                         {data: 'id'},
                         {data:'nombre'},
@@ -193,7 +202,7 @@
                 }
             );
             /*%%%%%%%%%%%%%%%%%%%%%%%%%  DATATABLE MATRICULACIONES   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            var tablamatriculaciones=$('#matriculaciones').DataTable(
+            tablamatriculaciones=$('#matriculaciones').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
@@ -227,7 +236,7 @@
             );
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATATABLE INSCRIPCIOENS DESVIGENTES  %%%%%%%%%%%%%%%%%%%%%%%*/    
-            var tablainscripcionesdesvigentes=$('#inscripcionesdesvigentes').DataTable(
+            tablainscripcionesdesvigentes=$('#inscripcionesdesvigentes').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
@@ -290,7 +299,7 @@
 
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATATABLE MATRICULACIONES DESVIGENTES %%%%%%%%%%%%%%%%%%%%%%%%%*/    
-            var tablamatriculacionesdesvigentes=$('#matriculacionesdesvigentes').DataTable(
+            tablamatriculacionesdesvigentes=$('#matriculacionesdesvigentes').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
@@ -398,7 +407,7 @@
                 guardarObservacion(observacion,observable_id,observable_type,url);
                 
             });
-             $('table').on('click', '.mostrarobservacionespersona', function(e) {
+            $('table').on('click', '.mostrarobservacionespersona', function(e) {
                 e.preventDefault();
                     observable_id =$(this).closest('tr').attr('id');
                     observable_type ="Persona";
@@ -451,6 +460,31 @@
                 $("#modal-editar-observacion").modal("hide");
                 // $("#modal-editar-observacion").modal("show");
             });
+            /*%%%%%%%%%%%%%%%%%%%%% BAJA DE INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.bajainscripcion', function (e) {
+                e.preventDefault();
+                let inscripcion_id = $(this).closest('tr').attr('id');
+                console.log("BajaInscripcion"+inscripcion_id);
+                url="../darbaja/inscripcion";
+                darBajaInscripcion(inscripcion_id,url);
+            });
+            /*%%%%%%%%%%%%%%%%%%%%% ALTA DE INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.altainscripcion', function (e) {
+                e.preventDefault();
+                let inscripcion_id = $(this).closest('tr').attr('id');
+                console.log(inscripcion_id+"AltaInscripcion");
+                url="../daralta/inscripcion";
+                darAltaInscripcion(inscripcion_id,url);
+            });
+            /*%%%%%%%%%%%%%%%%%%%%% CONDONAR INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+             $('table').on('click', '.condonarinscripcion', function (e) {
+                e.preventDefault();
+                let inscripcion_id = $(this).closest('tr').attr('id');
+                console.log(inscripcion_id+"CondonarInscripcion");
+                url="../condonar/inscripcion";
+                condonarInscripcion(inscripcion_id,url);
+            });
+
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       JS MATRICULACION   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

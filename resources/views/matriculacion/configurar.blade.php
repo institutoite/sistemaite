@@ -47,7 +47,26 @@
             @include('programacion.registros')    
         @endif
     @endisset
-    
+     <div class="container-fluid h-100 mt-3"> 
+        <div class="row w-100 align-items-center">
+            <div class="col text-center">
+                <div class="card">
+                    <div class="card-header">
+                        <a href="{{route('reservar.matriculacion',$matriculacion->id )}}">
+                            <button type="button" class="btn btn-danger text-white btn-lg" data-bs-toggle="tooltip" data-bs-placement="left" title="Click aqui si solo va reservar sin pagar: solo si no trajo dinero el Supercliente">
+                                Solo reservar: Sin dinero <i class="fas fa-times-circle"></i>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center">
+                        <img class="img-thumbnail rounded" src="{{asset('imagenes/sindinero.jpg')}}" width="200" alt="No traje dinero solo quiero reservar">
+                        </div>
+                    </div>
+                </div>
+            </div>	
+        </div>
+    </div>
 @endsection
 
 

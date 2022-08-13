@@ -324,6 +324,26 @@ class MatriculacionController extends Controller
         $data=['acuenta'=>$acuenta,'costo'=>$costo,'saldo'=>$saldo,'fechaHumamizado'=>$fechaHumamizado];
         return response()->json($data);
     }
+     public function reservar($matriculacion_id){
+        $matriculacion=Matriculacion::findOrFail($matriculacion_id);
+        $matriculacion->estado_id=Config::get('constantes.ESTADO_RESERVADO');
+        $matriculacion->save();
+        return redirect()->route("opcion.principal",$matriculacion->computacion->persona->estudiante->id);
+    }
+    public function darbaja(Request $request)
+    {
+        $matriculacion=Matriculacion::findOrFail($request->matriculacion_id);
+        $matriculacion->activo=0;
+        $matriculacion->save();
+        return response()->json($request->all());
+    }
+    public function daralta(Request $request)
+    {
+        $matriculacion=Matriculacion::findOrFail($request->matriculacion_id);
+        $matriculacion->activo=1;
+        $matriculacion->save();
+        return response()->json($request->all());
+    }
 
 }
 

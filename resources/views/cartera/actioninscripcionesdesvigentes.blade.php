@@ -36,4 +36,13 @@
 <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarobservacionespersona" title="Mostrar observaciones">
     <i class="fas fa-comments text-secondary"></i>
 </a>
+<a href="" class="btn-accion-tabla tooltipsC mr-1 condonarinscripcion" title="Condonar Deuda">
+    <i class="fas fa-hand-holding-heart"></i>
+</a>
+<a href="" class="btn-accion-tabla tooltipsC mr-1 condonarinscripcion" title="Condonar Deuda">
+    <i class="fas fa-hand-holding-heart text-secondary"></i>
+</a>
+
+
+
 

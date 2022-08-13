@@ -1,12 +1,12 @@
 @extends('adminlte::page')
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
-     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
-    <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+    {{-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> --}}
+    {{-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"> --}}
     <link rel="stylesheet" href="{{asset('dist/css/starrr.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
+    <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
 @stop
 
 @section('title', 'Estudiantes')

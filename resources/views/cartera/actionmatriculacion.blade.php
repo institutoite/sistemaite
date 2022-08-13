@@ -5,7 +5,6 @@
 <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarmatriculacion" title="Ver Matriculacion">
     <i class="fas fa-table text-secondary"></i>
 </a>
-
 <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarpagosmatriculacion" title="Ver pagos">
     <i class="fas fa-hand-holding-usd text-primary"></i>
 </a>
@@ -17,7 +16,11 @@
     <i class="fas fa-comments text-secondary"></i>
 </a>
 
-
 <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarprogramacionmatriculacion" title="Mostrar Programacion">
     <i class="fas fa-calendar-alt text-secondary"></i>
 </a>
+<a href="" class="btn-accion-tabla tooltipsC mr-1 bajamatriculacion" title="Mostrar Programacion">
+    <i class="fas fa-arrow-down"></i>
+</a>
+
+

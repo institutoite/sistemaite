@@ -322,7 +322,7 @@ class InscripcioneController extends Controller
         $inscripcionesVigentes = Inscripcione::join('modalidads','modalidads.id','inscripciones.modalidad_id')
             ->join('estados','estados.id','inscripciones.estado_id')
             ->where('estudiante_id','=',$estudiante_id)
-            ->where('vigente', 1)
+            // ->where('vigente', 1)
             ->select('inscripciones.id','vigente', 'objetivo', 'inscripciones.costo','fecha_proximo_pago','modalidads.modalidad','estado')
             ->get();
         return datatables()->of($inscripcionesVigentes)
@@ -474,7 +474,24 @@ class InscripcioneController extends Controller
     public function reservar($inscripcion_id){
         $inscripcion=Inscripcione::findOrFail($inscripcion_id);
         $inscripcion->estado_id=Config::get('constantes.ESTADO_RESERVADO');
-        return redirect()->route("tus.inscripciones",$inscripcion->estudiante->id);
+        $inscripcion->save();
+        return redirect()->route("opcion.principal",$inscripcion->estudiante->id);
+    }
+    public function darbaja(Request $request)
+    {
+        $inscripcion=Inscripcione::findOrFail($request->inscripcion_id);
+        $inscripcion->vigente=0;
+        $inscripcion->estado_id = Config::get('constantes.ESTADO_DESVIGENTE');
+        $inscripcion->save();
+        return response()->json(["mensaje"=>"Se dio de baja exitosamente"]);
+    }
+    public function daralta(Request $request)
+    {
+        //return response()->json(['e'=>2]);
+        $inscripcion=Inscripcione::findOrFail($request->inscripcion_id);
+        $inscripcion->vigente=1;
+        $inscripcion->save();
+        return response()->json(["mensaje"=>"Se dio de alta exitosamente"]);
     }
 
 }

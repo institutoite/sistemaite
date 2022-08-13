@@ -45,10 +45,11 @@ ver de donde condonar y cuando darbaja una inscripcion y una matriculacion
 crud para licencias en computacion y nivelacion
 cuandose registra una persona como estudiante se crea una cuenta pero que se cree con ese privilegio
 la muestra de mostrar bueno esta en show de ciudades
+ocultar text inscripcion y matriculaicon de configurarion respectivamente 
 
 
-
-
+daralta una inscripcion y una matriculacion
+condonar inscripcion
 hacer ite business/familiar/persona/Colegios
 en todos los mostrar el foto del usuario es muy grande 
 Falta terminar el crud de requisitos y metas

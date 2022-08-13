@@ -17,13 +17,18 @@
                             <span class="card-title">Programacion de clases</span>
                         </div>
                         <div class="float-right">
-                            {{$persona->nombre.' '.$persona->apellidop}}
+                            {{$persona->nombre.' '.$persona->apellidop}}&nbsp; <i class="fas fa-user-graduate"></i>
 
+                            <a href="{{route('opcion.principal', $inscripcion->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
+                                Opciones&nbsp;<i class="fas fa-bars"></i>
+                            </a> 
                             <a href="{{route('clases.marcado.general', $inscripcion)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
-                                Marcar 
+                                Marcar &nbsp; <i class="fas fa-user-check"></i>
                             </a> 
 
-                            <a class="btn btn-primary text-white" href="{{ route('imprimir.programa',$inscripcion) }}">Imprimir</a>
+                            <a class="btn btn-primary text-white" href="{{ route('imprimir.programa',$inscripcion) }}">
+                                Imprimir &nbsp;<i class="fas fa-print"></i>
+                            </a>
                         </div>
                     </div>
 
@@ -81,7 +86,7 @@
                                         <td>{{$programa->aula}}</td>
                                         <td>
                                             <a class="{{ $claseBoton.' '.$claseBotonHoy }} tooltipsC mr-2" href="{{route('set.fecha.proximo.pago', ['fecha'=>$programa->fecha->isoFormat('YYYY-MM-DD'),'id'=>$programa->inscripcione_id])}}" title="Asignar esta fecha para el proximo pago">
-                                                Pagará
+                                                Pagará &nbsp;<i class="fas fa-calendar-check"></i>
                                             </a>
                                         </td>
                                     </tr>

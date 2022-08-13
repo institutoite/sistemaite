@@ -17,6 +17,11 @@
                 <div class="card card-default">
                     <div class="card-header bg-secondary">
                         <span class="card-title">Crear Pago</span>
+                        <div class="float-right">sin pago
+                            <a href="{{ route('reservar.matriculacion',$matriculacion->id) }}" class="text-white float-right"  data-placement="left">
+                                <i class="fas fa-times-circle fa-2x"></i>
+                            </a>
+                        </div>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('pagocom.guardar',$matriculacion->id)}}">

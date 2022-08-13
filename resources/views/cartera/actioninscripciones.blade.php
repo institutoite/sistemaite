@@ -15,8 +15,9 @@
 <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarobservacionesinscripcion" title="Mostrar observaciones">
     <i class="fas fa-comments text-secondary"></i>
 </a>
-
-
 <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarprogramacion" title="Mostrar Programacion">
     <i class="fas fa-calendar-alt text-secondary"></i>
+</a>
+<a href="" class="btn-accion-tabla tooltipsC mr-1 bajainscripcion" title="Mostrar Programacion">
+    <i class="fas fa-arrow-down"></i>x
 </a>
