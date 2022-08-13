@@ -348,8 +348,11 @@ class ProgramacionController extends Controller
                     }
                 }
             }
+            $inscripcion->estado_id = Config::get('constantes.ESTADO_CORRIENDO');
             $inscripcion->fechafin = $programa->fecha;
+            
             if ($inscripcion->pagos->sum('monto') < $inscripcion->costo) {
+                $inscripcion->save();
                 return redirect()->route('mostrar.programa', $inscripcion);
             } else {
                 $inscripcion->fecha_proximo_pago = $fecha;

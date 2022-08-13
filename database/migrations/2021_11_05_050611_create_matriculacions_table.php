@@ -15,7 +15,7 @@ class CreateMatriculacionsTable extends Migration
     {
         Schema::create('matriculacions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('estado_id')->default(Config::get('constantes.ESTADO_RESERVADO'));
+            $table->unsignedBigInteger('estado_id')->default(Config::get('constantes.ESTADO_INDEFINIDO'));
             $table->foreign('estado_id')
                 ->references('id')
                 ->on('estados')

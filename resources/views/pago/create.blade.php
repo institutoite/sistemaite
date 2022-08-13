@@ -20,13 +20,25 @@
                 <div class="card card-default">
                     <div class="card-header bg-secondary">
                         <span class="card-title">Crear Pago</span>
+                        
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('pagos.guardar',['inscripcione'=>$inscripcion->id])}}">
                             @csrf
                             @include('pago.form')
-                            @include('include.botones')
+                            {{-- @include('include.botones') --}}
+                            <div class="container-fluid h-100 mt-3"> 
+                                <div class="row w-100 align-items-center">
+                                    <div class="col text-center">
+                                        <button type="submit" id="guardar" class="btn btn-primary text-white btn-lg">Guardar <i class="far fa-save"></i></button>  
+                                    </div>	
+                                </div>
+                            </div>
                         </form>
+
+                        <div class="row">
+                            <a href="{{route('reservar.inscripcion',$inscripcion->id )}}"><button id="guardar" class="btn btn-danger text-white btn-lg">Solo reserva <i class="fas fa-times-circle"></i></button></a>
+                        </div>
                     </div>
                 </div>
             </div>

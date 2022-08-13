@@ -448,14 +448,14 @@ Route::get('modalidad/cosultar/', 'ModalidadController@consultar')->name('modali
 
 
 
-/** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LICENCIAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+/** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LICENCIAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('licencias', [LicenciaController::class,'index'])->name('licencia.index');
 Route::get('licenciacom/crear', [LicenciaController::class,'createcom'])->name('licenciacom.crear');
 Route::get('licenciacom/guardar', [LicenciaController::class,'storecom'])->name('licenciacom.storecom');
 Route::get('licenciaprogramacion/crear', [LicenciaController::class,'createprogramacion'])->name('licenciaprogramacion.crear');
 Route::get('licenciaprogramacion/guardar', [LicenciaController::class,'storeprogramacion'])->name('licenciaprogramacion.guardar');
 
-/** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+/** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%INSCRIPCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('tus_inscripciones/{estudiante_id}', 'InscripcioneController@tusinscripciones')->name('tus.inscripciones');
 Route::get('listar/inscripciones/{persona}', 'InscripcioneController@listar')->name('listar_inscripciones');
 Route::get('inscripcione/crear/{persona}', 'InscripcioneController@crear')->name('inscribir');
@@ -468,8 +468,9 @@ Route::get('inscripcines/vigentes/view', function () {return view('inscripcione.
 Route::get('inscripciones/vigentes/ajax', [InscripcioneController::class,'vigentesAjax'])->name('inscripciones.vigentes.ajax');  
 Route::get('inscripcion/mostrar/ajax', [InscripcioneController::class,'inscripcionMostrarAjax'])->name('inscripcion.mostrar.ajax');  
 Route::get('saldo/inscripcion', [InscripcioneController::class,'Saldo'])->name('inscripcion.saldo.ajax');  
+Route::get('reservar/inscripcion/{inscripcione}', [InscripcioneController::class,'reservar'])->name('reservar.inscripcion');  
 
-/** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TELEFONOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+/** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TELEFONOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('telefonos/vista/{persona}','TelefonoController@mostrarvista')->name('telefonos.persona');
 Route::get('telefono/vista/{persona_id}','TelefonoController@mostrarvistaConIdPersona')->name('telefonos.personaid');
 Route::get('telefono/crear/{persona}', 'TelefonoController@crear')->name('telefonos.crear');

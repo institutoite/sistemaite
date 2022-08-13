@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Config;
 use App\Http\Requests\ConfigurarionInscripcionRequest;
 use App\Http\Requests\ActualizarConfigurarionInscripcionRequest;
 use App\Models\Inscripcione;
@@ -469,6 +470,11 @@ class InscripcioneController extends Controller
         $fechaHumamizado=$inscripcion->fecha_proximo_pago->diffForHumans();
         $data=['acuenta'=>$acuenta,'costo'=>$costo,'saldo'=>$saldo,'fechaHumamizado'=>$fechaHumamizado];
         return response()->json($data);
+    }
+    public function reservar($inscripcion_id){
+        $inscripcion=Inscripcione::findOrFail($inscripcion_id);
+        $inscripcion->estado_id=Config::get('constantes.ESTADO_RESERVADO');
+        return redirect()->route("tus.inscripciones",$inscripcion->estudiante->id);
     }
 
 }
