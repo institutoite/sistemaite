@@ -270,32 +270,43 @@
                     $(row).attr('id',data['id']); 
                         if (moment(data['fecha_proximo_pago']).format('YY-MM-DD')>moment().format('YY-MM-DD')){
                             $(row).addClass('text-success')
+                            
                         }else{
-                            $(row).addClass('text-danger')
+                            $(row).addClass('text-success')
+                            $('td', row).eq(2).addClass('text-danger');
+                            $('td', row).eq(3).addClass('text-danger');
                         }
 
                         if (data['vigente']==0){
-                            $(row).addClass('bg-danger text-white')
+                            $(row).addClass('table-danger text-white')
                         }
                         $clase="";
                         switch (data['estado']) {
                             case "RESERVADO":
-                                console.log("reservado");
-                                $clase="danger";
+                                $clase="warning text-warning";
+                                $icono="<i class='fas fa-exclamation-triangle'></i>";
                                 break;
                             case "CORRIENDO":
-                                $clase="success";
-                                console.log("corriendo");
+                                $clase="success text-success";
+                                $icono="<i class='fas fa-running'></i>";
                                 break;
                             case "CONGELADO":
-                                $clase="warning";
-                                console.log("congelado");
+                                $clase="secondary text-secondary";
+                                $icono="<i class='fas fa-stop'></i>";
+                                break;
+                            case "FINALIZADO":
+                                $clase="success text-success";
+                                $icono="<i class='fas fa-hourglass-end'></i>";
+                                break;
+                            case "DEVIGENTE":
+                                $clase="danger text-danger";
+                                $icono="<i class='fas fa-user-lock'></i>";
                                 break;
                             default:
                                 break;
                         }
 
-                        $('td', row).eq(1).html(data['objetivo']+"</br><div class='alert alert-" +$clase+" d-flex align-items-center'><i class='fas fa-info-circle fa-2x'></i>"+ data['estado'] +"</div>");
+                        $('td', row).eq(1).html(data['objetivo']+"</br><div class='alert alert-" +$clase+" d-flex align-items-center'>"+$icono+ data['estado'] +"</div>");
                             $.ajax({
                                 url:"{{url('saldo/inscripcion')}}",
                                 data:{inscripcion_id:data['id']},

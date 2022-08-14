@@ -22,6 +22,7 @@ use App\Models\Programacion;
 use App\Models\Tipomotivo;
 use App\Models\Matriculacion;
 use App\Models\User;
+use App\Models\Estado;
 
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
@@ -243,7 +244,8 @@ class InscripcioneController extends Controller
 
         $modalidades = $ultimo_nivel->modalidades;
         $motivos = Tipomotivo::findOrFail(1)->motivos;
-        return view('inscripcione.edit', compact('inscripcione','persona', 'ultima_inscripcion','modalidades','motivos'));
+        $estados=Estado::get();
+        return view('inscripcione.edit', compact('inscripcione','persona','estados', 'ultima_inscripcion','modalidades','motivos'));
     }
 
     /**
@@ -265,9 +267,9 @@ class InscripcioneController extends Controller
         $inscripcione->estudiante_id = $request->estudiante_id;
         $inscripcione->modalidad_id = $request->modalidad_id;
         $inscripcione->motivo_id = $request->motivo_id;
+        $inscripcione->estado_id = $request->estado_id;
         $inscripcione->save();
         $inscripcion=$inscripcione;
-        
         $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
         $materias = $nivel->materias;
         $aulas = Aula::get();

@@ -104,6 +104,33 @@
         </div>
     </div>
 
+    @isset($ultima_inscripcion)
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                @if($errors->has('estado_id'))
+                    <span class="text-danger"> {{ $errors->first('estado_id')}}</span>
+                @endif
+            </div>
+        </div>
+        <div class="row"> 
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                <div class="form-floating mb-3 text-gray">
+                    <select class="form-control @error('estado_id') is-invalid @enderror" data-old="{{ old('estado_id') }}" name="estado_id" id="motivo">
+                        <option value="" > Seleccione Estado </option>
+                        @foreach ($estados as $estado)
+                            @isset($ultima_inscripcion)     
+                                <option  value="{{$estado->id}}" {{$estado->id==$ultima_inscripcion->estado_id ? 'selected':''}}>{{$estado->estado}}</option>     
+                            @else
+                                <option value="{{ $estado->id }}" {{ old('estado_id') == $estado->id ? 'selected':'' }} >{{ $estado->estado }}</option>
+                            @endisset 
+                        @endforeach
+                    </select>
+                    <label for="motivo">Elija un estado</label>  
+                </div>    
+            </div>
+        </div>
+    @endisset
+
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             @if($errors->has('objetivo'))

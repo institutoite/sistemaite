@@ -19,7 +19,7 @@
                         <div class="float-right">
                             {{$persona->nombre.' '.$persona->apellidop}}&nbsp; <i class="fas fa-user-graduate"></i>
 
-                            <a href="{{route('opcion.principal', $inscripcion->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
+                            <a href="{{route('opcion.principal', App\Models\Inscripcione::findOrFail($inscripcion)->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
                                 Opciones&nbsp;<i class="fas fa-bars"></i>
                             </a> 
                             <a href="{{route('clases.marcado.general', $inscripcion)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">

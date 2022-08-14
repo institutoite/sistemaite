@@ -21,6 +21,10 @@
                             @csrf
                             {{-- {{ dd($motivos); }} --}}
                             @include('inscripcione.form')
+                            
+                            
+                            
+                            
                             @include('include.botones')
                         </form>
                     </div>
