@@ -12,19 +12,14 @@
                 @includeif('partials.errors')
 
                 <div class="card card-default">
-                    <div class="card-header">
+                    <div class="card-header bg-primary">
                         <span class="card-title">Actualizar Inscripcion</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('inscripciones.update', $inscripcione->id) }}"  role="form">
                             {{ method_field('PATCH') }}
                             @csrf
-                            {{-- {{ dd($motivos); }} --}}
                             @include('inscripcione.form')
-                            
-                            
-                            
-                            
                             @include('include.botones')
                         </form>
                     </div>

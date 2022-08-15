@@ -55,7 +55,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[InscripcioneController::class,'daralta'])->name('prueba');
+Route::get('prueba',[MatriculacionController::class,'destroy'])->name('prueba');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -564,6 +564,7 @@ Route::delete('eliminar/colegio/{id}', 'ColegioController@destroy')->name('elimi
 Route::delete('eliminar/modalidad/{id}', 'ModalidadController@destroy')->name('eliminar.modalidad');
 Route::delete('eliminar/nivel/{id}', 'NivelController@destroy')->name('eliminar.nivel');
 Route::delete('eliminar/inscripcion/{id}', 'InscripcioneController@destroy')->name('eliminar.inscripcione');
+Route::delete('eliminar/matriculacion/{id}', 'MatriculacionController@destroy')->name('eliminar.matriculacion');
 Route::delete('eliminar/usuario/{id}', 'UserController@destroy')->name('eliminar.user');
 Route::delete('eliminar/pago/{pago}', 'PagoController@destroy')->name('eliminar.pago');
 Route::delete('eliminar/computacion/{computacion}', 'ComputacionController@destroy')->name('eliminar.computacion');

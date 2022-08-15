@@ -110,7 +110,6 @@ class PersonaController extends Controller
             });
             /* las guarda en en la carpeta estudiantes  */
             $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
-            
             $persona->foto = $nombreImagen;
         }
         $persona->como = $request->como;
@@ -122,12 +121,8 @@ class PersonaController extends Controller
         $persona->ciudad_id = $request->ciudad_id;
         $persona->zona_id = $request->zona_id;
         $persona->save();
-
         $this->CrearContacto($persona->id);
-        
-
         $persona->interests()->sync(array_keys($request->interests));
-
         $user = new User();
         $user->email =strtolower(Str::substr($persona->nombre, 1, 2).$persona->apellidop.$persona->id)."@ite.com.bo" ;
         $user->name = ucfirst(strtolower($persona->nombre).$persona->id);
@@ -136,18 +131,23 @@ class PersonaController extends Controller
         $user->password = Hash::make($user->name."*");
         $user->foto = "estudiantes/sinperfil.png";
         $user->save();
-
+        $user->assignRole('Estudiante');
         //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A    P E R S O N A   %%%%%%%%%%%%%%%%*/
         $persona->usuarios()->attach(Auth::user()->id);
         //dd($request->papel);
         switch ($request->papel) {
-            
             case 'estudiante':
+                $computacion=new Computacion();
+                $computacion->persona_id=$persona->id;
+                $computacion->save();
+
                 $estudiante=new Estudiante();
                 $estudiante->persona_id=$persona->id;
                 $estudiante->save();
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  E S T U D I A N T E   %%%%%%%%%%%%%%%%*/
                 $estudiante->usuarios()->attach(Auth::user()->id);
+                $computacion->usuarios()->attach(Auth::user()->id);
+                
                 $observacion=new Observacion();
                 $observacion->observacion=$request->observacion;
                 $observacion->activo=1;
@@ -158,12 +158,17 @@ class PersonaController extends Controller
                 $observacion->usuarios()->attach(Auth::user()->id);
                 break;
             case 'computacion':
+                $estudiante=new Estudiante();
+                $estudiante->persona_id=$persona->id;
+                $estudiante->save();
+
                 $computacion=new Computacion();
                 $computacion->persona_id=$persona->id;
                 $computacion->save();
-                
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  E S T U D I A N T E   %%%%%%%%%%%%%%%%*/
                 $computacion->usuarios()->attach(Auth::user()->id);
+                $estudiante->usuarios()->attach(Auth::user()->id);
+                
                 $observacion=new Observacion();
                 $observacion->observacion=$request->observacion;
                 $observacion->activo=1;
@@ -914,5 +919,7 @@ class PersonaController extends Controller
             return response()->json(['error' => $validator->errors()->all()]);
         }
     }
+
+    
     
 }

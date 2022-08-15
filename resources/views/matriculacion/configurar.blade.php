@@ -28,7 +28,7 @@
                                         <div id="sesiones" class="p-3">
                                             
                                         </div>
-                                        <input class="form-control" type="number" name="matriculacion_id" value="{{$matriculacion->id}}">
+                                        <input class="form-control" type="number" name="matriculacion_id" hidden value="{{$matriculacion->id}}">
                                         <div class="card-tools text-lg-center">
                                             <input id="boton-aceptar" class="btn btn-primary p-2 pl-5  d-none pr-5" type="submit" value="Guardar Cambios">
                                         </div>

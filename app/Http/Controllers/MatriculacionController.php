@@ -13,6 +13,7 @@ use App\Models\Aula;
 use App\Models\Dia;
 use App\Models\Matriculacion;
 use App\Models\Programacioncom;
+use App\Models\Estado;
 use App\Models\Estudiante;
 use App\Models\Tipomotivo;
 use App\Models\Motivo;
@@ -152,7 +153,8 @@ class MatriculacionController extends Controller
         $carrera=$matriculacion->asignatura->carrera;
         $asignaturasFaltantes = $carrera->asignaturas;
         $motivos = Tipomotivo::findOrFail(2)->motivos;
-        return view('matriculacion.edit', compact('matriculacion','persona', 'asignaturasFaltantes','motivos'));
+        $estados=Estado::get();
+        return view('matriculacion.edit', compact('matriculacion','persona','estados','asignaturasFaltantes','motivos'));
     }
 
     /**
@@ -171,10 +173,13 @@ class MatriculacionController extends Controller
         $matriculacion->fecha_proximo_pago=$request->fechaini;
         $matriculacion->costo=$request->costo;
         $matriculacion->totalhoras=$request->totalhoras;
-        $matriculacion->vigente=1;
         $matriculacion->asignatura_id=$request->asignatura_id;
-        $matriculacion->condonado=0;
         $matriculacion->motivo_id=$request->motivo_id;
+
+        $matriculacion->estado_id = $request->estado_id;
+        $matriculacion->condonado = $request->condonado;
+        $matriculacion->vigente = $request->vigente;
+
         $matriculacion->save();
         $nivel=Nivel::findOrFail(6);
         $aulas = Aula::get();
@@ -195,7 +200,12 @@ class MatriculacionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        //return response()->json(['message' => $id]);
+        // $matriculacion = $matriculacion::findOrFail($id);
+        $matriculacion = Matriculacion::findOrFail($id);
+        $matriculacion->delete();
+        return response()->json(['message' => 'Registro Eliminado']);
     }
     public function guardarconfiguracion(Request $request){
         // dd($request->all());

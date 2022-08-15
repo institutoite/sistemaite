@@ -58,7 +58,7 @@
     </div>
 
     <div class="row"> 
-         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
             <div class="form-floating mb-3 text-gray">
                 @isset($ultima_inscripcion)
                     <input  type="date" name="fechaini" class="form-control @error('fechaini') is-invalid @enderror" value="{{ old('fechaini', $ultima_inscripcion->fechaini->format('Y-m-d') ?? '')}}">    
@@ -80,7 +80,7 @@
 
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
             @if($errors->has('motivo_id'))
                 <span class="text-danger"> {{ $errors->first('motivo_id')}}</span>
             @endif
@@ -106,7 +106,7 @@
 
     @isset($ultima_inscripcion)
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 @if($errors->has('estado_id'))
                     <span class="text-danger"> {{ $errors->first('estado_id')}}</span>
                 @endif
@@ -115,7 +115,7 @@
         <div class="row"> 
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
                 <div class="form-floating mb-3 text-gray">
-                    <select class="form-control @error('estado_id') is-invalid @enderror" data-old="{{ old('estado_id') }}" name="estado_id" id="motivo">
+                    <select class="form-control @error('estado_id') is-invalid @enderror" data-old="{{ old('estado_id') }}" name="estado_id" id="estado_id">
                         <option value="" > Seleccione Estado </option>
                         @foreach ($estados as $estado)
                             @isset($ultima_inscripcion)     
@@ -129,10 +129,69 @@
                 </div>    
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                @if($errors->has('condonado'))
+                    <span class="text-danger"> {{ $errors->first('condonado')}}</span>
+                @endif
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                <div class="form-floating mb-3 text-gray">
+                    <select class="form-control @error('condonado') is-invalid @enderror" name="condonado" id="condonado">
+                        <option value=""> Elija tipo condonacion</option>
+                            @if(isset($ultima_inscripcion->condonado))
+                                @if($ultima_inscripcion->condonado==0)
+                                    <option value="{{ $ultima_inscripcion->condonado }}" {{ 0==$ultima_inscripcion->condonado ? 'selected':''}} >No condonar</option>
+                                    <option value="1">Condonar</option>
+                                @else
+                                    <option value="{{$ultima_inscripcion->condonado }}" {{ 1==$ultima_inscripcion->condonado ? 'selected':''}} > Condonar </option>
+                                    <option value="0">No condonar</option>
+                                @endif
+                            @else  
+                                <option value="MUJER" @if(old('condonado') == 'MUJER') {{'selected'}} @endif>MUJER</option>
+                                <option value="HOMBRE" @if(old('condonado') == 'HOMBRE') {{'selected'}} @endif>HOMBRE</option>
+                            @endif 
+                    </select>
+                    <label for="condonado">Elija condonado*</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                @if($errors->has('vigente'))
+                    <span class="text-danger"> {{ $errors->first('vigente')}}</span>
+                @endif
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                <div class="form-floating mb-3 text-gray">
+                    <select class="form-control @error('vigente') is-invalid @enderror" name="vigente" id="vigente">
+                        <option value=""> Elija tipo de vigencia</option>
+                            @if(isset($ultima_inscripcion->vigente))
+                                @if($ultima_inscripcion->vigente==0)
+                                    <option value="{{ $ultima_inscripcion->vigente }}" {{ 0==$ultima_inscripcion->vigente ? 'selected':''}} >Desvigente</option>
+                                    <option value="1">Vigente</option>
+                                @else
+                                    <option value="{{$ultima_inscripcion->vigente }}" {{ 1==$ultima_inscripcion->vigente ? 'selected':''}} > Vigente </option>
+                                    <option value="0">Desvigente</option>
+                                @endif
+                            @else  
+                                <option value="1" @if(old('vigente') == '1') {{'selected'}} @endif>Vigente</option>
+                                <option value="0" @if(old('vigente') == '0') {{'selected'}} @endif>Desvigente</option>
+                            @endif 
+                    </select>
+                    <label for="vigente">Elija Vigencia*</label>
+                </div>
+            </div>
+        </div>
     @endisset
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             @if($errors->has('objetivo'))
                 <span class="text-danger"> {{ $errors->first('objetivo')}}</span>
             @endif

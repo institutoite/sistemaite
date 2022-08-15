@@ -38,16 +38,16 @@ revisar validar cuando se envia campos vacios en agaregar observaciones
 validar guaradar observacion en todos los casos
 no se  puede crear mensajes de texto para enviar
 si se hace una inscripcion y no se realiza la programacion cuando se desea pagar sale error la sol seria en el momneto de pagar verificar si tiene programaciones o sesiones y si no tiene redireccionar a crear sesiones
+ver de donde condonar y cuando darbaja una inscripcion y una matriculacion 
+cuandose registra una persona como estudiante se crea una cuenta pero que se cree con ese privilegio
+ocultar text inscripcion y matriculaicon de configurarion respectivamente 
  
 
 
-ver de donde condonar y cuando darbaja una inscripcion y una matriculacion 
 crud para licencias en computacion y nivelacion
-cuandose registra una persona como estudiante se crea una cuenta pero que se cree con ese privilegio
-la muestra de mostrar bueno esta en show de ciudades
-ocultar text inscripcion y matriculaicon de configurarion respectivamente 
 
 
+hacer componente la muestra de mostrar bueno esta en show de ciudades
 daralta una inscripcion y una matriculacion
 condonar inscripcion
 hacer ite business/familiar/persona/Colegios

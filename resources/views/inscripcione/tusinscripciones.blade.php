@@ -250,7 +250,6 @@
         } ( jQuery ) );
 
         $(document).ready(function() {
-
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE INSCRIPCIONES VIGENTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             let tabla=$('#inscripcionesVigentes').DataTable(
                 {
@@ -298,15 +297,17 @@
                                 $clase="success text-success";
                                 $icono="<i class='fas fa-hourglass-end'></i>";
                                 break;
-                            case "DEVIGENTE":
+                            case "DESVIGENTE":
                                 $clase="danger text-danger";
                                 $icono="<i class='fas fa-user-lock'></i>";
                                 break;
                             default:
+                                $clase="danger text-danger";
+                                $icono="<i class='fas fa-info-circle'></i>";
                                 break;
                         }
 
-                        $('td', row).eq(1).html(data['objetivo']+"</br><div class='alert alert-" +$clase+" d-flex align-items-center'>"+$icono+ data['estado'] +"</div>");
+                        $('td', row).eq(1).html(data['objetivo']+"</br><div class='alert alert-" +$clase+" d-flex align-items-center'>"+$icono+ "&nbsp;"+data['estado'] +"</div>");
                             $.ajax({
                                 url:"{{url('saldo/inscripcion')}}",
                                 data:{inscripcion_id:data['id']},
@@ -337,7 +338,7 @@
                 }
             );
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE MATRICULACIONES VIGENTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/    
-            $('#matriculacionesVigentes').dataTable(
+            var tablamatriculaciones=$('#matriculacionesVigentes').dataTable(
                 {
                     "serverSide":true,
                     "responsive":true,
@@ -351,31 +352,41 @@
                     "createdRow": function( row, data, dataIndex ) {
                     $(row).attr('id',data['id']); 
                         if (moment(data['fecha_proximo_pago']).format('YY-MM-DD')>moment().format('YY-MM-DD')){
-                            $(row).addClass('text-success table-success');
+                            $(row).addClass('text-success')
                         }else{
-                            $(row).addClass('text-danger table-danger');
+                            $(row).addClass('text-success')
+                            $('td', row).eq(2).addClass('text-danger');
+                            $('td', row).eq(3).addClass('text-danger');
                         }
                          $clase="";
                         switch (data['estado']) {
                             case "RESERVADO":
-                                console.log("reservado");
-                                $clase="danger";
+                                $clase="warning text-warning";
+                                $icono="<i class='fas fa-exclamation-triangle'></i>";
                                 break;
                             case "CORRIENDO":
-                                $clase="success";
-                                console.log("corriendo");
+                                $clase="success text-success";
+                                $icono="<i class='fas fa-running'></i>";
                                 break;
                             case "CONGELADO":
-                                $clase="warning";
-                                console.log("congelado");
+                                $clase="secondary text-secondary";
+                                $icono="<i class='fas fa-stop'></i>";
+                                break;
+                            case "FINALIZADO":
+                                $clase="success text-success";
+                                $icono="<i class='fas fa-hourglass-end'></i>";
+                                break;
+                            case "DESVIGENTE":
+                                $clase="danger text-danger";
+                                $icono="<i class='fas fa-user-lock'></i>";
                                 break;
                             default:
+                                $clase="danger text-danger";
+                                $icono="<i class='fas fa-info-circle'></i>";
                                 break;
                         }
 
-                        $('td', row).eq(1).html(data['asignatura']+"</br><div class='alert alert-" +$clase+" d-flex align-items-center'><i class='fas fa-info-circle fa-2x'></i>"+ data['estado'] +"</div>");
-
-
+                        $('td', row).eq(1).html(data['asignatura']+"</br><div class='alert alert-" +$clase+" d-flex align-items-center'>"+ $icono+ "&nbsp;"+data['estado'] +"</div>");
                             $.ajax({
                                 url:"{{url('saldo/matriculacion')}}",
                                 data:{matriculacion_id:data['id']},
@@ -430,6 +441,89 @@
                             },
                             success: function(result) {
                                 tabla.ajax.reload();
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 1500,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                                })
+                                Toast.fire({
+                                icon: 'success',
+                                title: 'Se eliminó correctamente el registro'
+                                })   
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                switch (xhr.status) {
+                                    case 500:
+                                        Swal.fire({
+                                            title: 'No se pudo eliminar el registro Codigo error:500',
+                                            showClass: {
+                                                popup: 'animate__animated animate__fadeInDown'
+                                            },
+                                            hideClass: {
+                                                popup: 'animate__animated animate__fadeOutUp'
+                                            }
+                                        })
+                                        break;
+                                
+                                    default:
+                                        break;
+                                }
+                                
+                            }
+                        });
+                    }else{
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 4000,
+                            timerProgressBar: true,
+                            onOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'No se eliminó el registro'
+                        })
+                    }
+                })
+            });            
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%  ELIMINAR MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click','.eliminarmatriculacion',function (e) {
+                e.preventDefault(); 
+                id=$(this).parent().parent().parent().find('td').first().html();
+                //console.log(id);
+                Swal.fire({
+                    title: 'Estas seguro(a) de eliminar este registro?',
+                    text: "Si eliminas el registro no lo podras recuperar jamás!",
+                    icon: 'question',
+                    showCancelButton: true,
+                    showConfirmButton:true,
+                    confirmButtonColor: '#25ff80',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Eliminar..!',
+                    position:'center',        
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: '../eliminar/matriculacion/'+id,
+                            type: 'DELETE',
+                            data:{
+                                id:id,
+                                _token:'{{ csrf_token() }}'
+                            },
+                            success: function(result) {
+                                console.log(result);
+                                tablamatriculaciones.api().ajax.reload();
                                 const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',

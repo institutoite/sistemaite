@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 @section('css')
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 @section('title', 'Inscripcion Configurar')
 @section('content')
@@ -10,7 +11,7 @@
 
                 @includeif('partials.errors')
 
-                <div class="card card-default">
+                <div class="card card-primary">
                     <div class="card-header">
                         <span class="card-title">Actualizar Matriculación</span>
                     </div>

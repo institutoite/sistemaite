@@ -7,10 +7,7 @@
 @section('content')
  
     <section class="content container-fluid">
-        <div class="row">
-           
-           
-            
+        <div class="row"> 
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -18,6 +15,9 @@
                     <div class="card-header bg-secondary">
                         <span class="card-title">Actualizar Configuracion de Matriculación </span>
                         <div class="card-tools" id="divfuera">
+                            <a href="{{route('opcion.principal', $matriculacion->computacion->persona->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
+                                Conservar clases sin modificar &nbsp;<i class="fas fa-bars"></i>
+                            </a>
                             <button id="botonplus" class="btn btn-primary d-none" type="button">Agregar  Sesiones<i class="fas fa-plus-square"></i></button>
                         </div>
                     </div>
@@ -77,6 +77,26 @@
                                 
                             </form>
                        
+                    </div>
+                    <div class="container-fluid h-100 mt-3"> 
+                        <div class="row w-100 align-items-center">
+                            <div class="col text-center">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a href="{{route('reservar.matriculacion',$matriculacion->id )}}">
+                                            <button type="button" class="btn btn-danger text-white btn-lg" data-bs-toggle="tooltip" data-bs-placement="left" title="Click aqui si solo va reservar sin pagar: solo si no trajo dinero el Supercliente">
+                                                Solo reservar: Sin dinero <i class="fas fa-times-circle"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="text-center">
+                                        <img class="img-thumbnail rounded" src="{{asset('imagenes/sindinero.jpg')}}" width="200" alt="No traje dinero solo quiero reservar">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>	
+                        </div>
                     </div>
                 </div>
             </div>

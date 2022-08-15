@@ -147,7 +147,7 @@
     <div class="row"> 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
-                <select class="form-control @error('expedido') is-invalid @enderror" name="genero" id="genero">
+                <select class="form-control @error('genero') is-invalid @enderror" name="genero" id="genero">
                     <option value=""> Elija tu género</option>
                     @isset($persona)
                         @if(isset($persona->genero))

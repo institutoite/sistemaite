@@ -38,6 +38,8 @@ class CreateMatriculacionsTable extends Migration
             ->on('motivos')
             ->onDelete('cascade');
 
+            
+
             $table->date('fechaini');
             $table->date('fechafin');
             $table->date('fecha_proximo_pago')->nullable(); 

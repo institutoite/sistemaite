@@ -261,13 +261,13 @@ class InscripcioneController extends Controller
         $inscripcione->fechaini = $request->fechaini;
         $inscripcione->totalhoras = $request->totalhoras;
         $inscripcione->costo = $request->costo;
-        $inscripcione->vigente = 1;
-        $inscripcione->condonado = 0;
         $inscripcione->objetivo = $request->objetivo;
         $inscripcione->estudiante_id = $request->estudiante_id;
         $inscripcione->modalidad_id = $request->modalidad_id;
         $inscripcione->motivo_id = $request->motivo_id;
         $inscripcione->estado_id = $request->estado_id;
+        $inscripcione->condonado = $request->condonado;
+        $inscripcione->vigente = $request->vigente;
         $inscripcione->save();
         $inscripcion=$inscripcione;
         $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
@@ -290,8 +290,6 @@ class InscripcioneController extends Controller
     {
         $inscripcion = Inscripcione::findOrFail($id);
         $inscripcion->delete();
-        // return redirect()->action([InscripcioneController::class, 'tusinscripciones'], ['estudiante_id' => $inscripcion->estudiante_id]);
-        // return response()->json()
         return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
         
     }

@@ -28,13 +28,19 @@ class CreateInscripcionesTable extends Migration
             $table->unsignedBigInteger('motivo_id');
             $table->unsignedBigInteger('estado_id')->default(Config::get('constantes.ESTADO_INDEFINIDO'));
             $table->foreign('estado_id', 'fk_inscripcion_estados_idx')
-            ->references('id')->on('estados')->onDelete('cascade');
+                ->references('id')
+                ->on('estados')
+                ->onDelete('cascade');
             
             $table->foreign('motivo_id', 'fk_inscripcion_motivos_idx')
-            ->references('id')->on('motivos')->onDelete('cascade');
+                ->references('id')
+                ->on('motivos')
+                ->onDelete('cascade');
 
             $table->foreign('estudiante_id', 'fk_inscripcion_estudiante1x_idx')
-                ->references('id')->on('estudiantes')->onDelete('cascade');
+                ->references('id')
+                ->on('estudiantes')
+                ->onDelete('cascade');
 
             $table->foreign('modalidad_id', 'fk_inscripciones_modalidades_idx')
                 ->references('id')->on('modalidads')->onDelete('cascade');

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Estudiante;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 class EstudianteController extends Controller
 {
     /**
@@ -92,6 +92,16 @@ class EstudianteController extends Controller
                         ->orderBy('anio', 'desc')
                         ->get();
         return view('estudiantes.historiaacademica',compact('grados','estudiante_id'));
+    }
+    public function cumpleaneros(Request $request){
+        Persona::join('estudiantes','estudiantes.persona_id','personas.id')
+                ->whereMonth('fechanacimiento', '=', Carbon::now()->format('m'))
+                ->whereDay('fechanacimiento', '=', Carbon::now()->format('d'))
+                ->get();
+        return DataTables::of($cumpleaneros)
+            ->addColumn('btn','persona.actioncumpleaneros')
+            ->rawColumns(['btn'])
+            ->toJson(); 
     }
 
     

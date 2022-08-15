@@ -32,7 +32,10 @@
                     <div class="card-header bg-secondary">
                         <span class="card-title">Configurar Inscripcion</span>
                         <div class="card-tools" id="divfuera">
-                            <button id="botonplus" class="btn btn-primary d-none" type="button">Agregar  Sesiones<i class="fas fa-plus-square"></i></button>
+                            <a href="{{route('opcion.principal', $inscripcion->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
+                                Conservar clases sin modificar &nbsp;<i class="fas fa-bars"></i>
+                            </a>
+                            <button id="botonplus" class="btn btn-primary d-none" type="button">Agregar Sesiones &nbsp;<i class="fas fa-plus-square"></i></button>
                         </div>
                     </div>
                    
@@ -67,7 +70,7 @@
                                         <input id="fecha" class="form-control border-warning mb-3" name="fecha" value="{{$inscripcion->fechaini->format('Y-m-d')}}" type="date">
                                         <p id="mensajefecha" class="d-none text-gray">La fecha no es necesaria ya que lo tomara de la inscripción, esta opcion edita todas las clases</p>
                                     </div>
-                                    <input class="form-control" type="number" name="inscripcione_id" value="{{$inscripcion->id}}">
+                                    <input class="form-control" type="number" name="inscripcione_id" hidden value="{{$inscripcion->id}}">
                                 </div>
                                 
                                 
