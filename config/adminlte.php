@@ -647,7 +647,7 @@ return [
                 [
                     'text' => 'Faltones',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'faltones/view',
                     'classes'  => 'text-dark',
                 ],
                 [

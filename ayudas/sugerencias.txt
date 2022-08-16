@@ -44,7 +44,6 @@ ocultar text inscripcion y matriculaicon de configurarion respectivamente
  
 
 
-crud para licencias en computacion y nivelacion
 
 
 hacer componente la muestra de mostrar bueno esta en show de ciudades
@@ -54,3 +53,6 @@ hacer ite business/familiar/persona/Colegios
 en todos los mostrar el foto del usuario es muy grande 
 Falta terminar el crud de requisitos y metas
 crear un buson de sugerencias
+
+crud para licencias en computacion y nivelacion
+arreglar css de reportes 

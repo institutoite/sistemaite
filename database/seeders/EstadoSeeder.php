@@ -23,6 +23,7 @@ class EstadoSeeder extends Seeder
         Estado::create(['estado'=>'RESERVADO']);
         Estado::create(['estado'=>'CORRIENDO']);
         Estado::create(['estado'=>'DESVIGENTE']);
+        Estado::create(['estado'=>'FALTANOTIFICADA']);
         
     }
 }

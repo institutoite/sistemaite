@@ -113,4 +113,19 @@ class ComputacionController extends Controller
         }  
         //return redirect()->route('configuracion.gestionar.carreras',$computacion->persona->id);
     } 
+
+    public function computacionFaltones()
+    {
+        $faltonescom=Persona::join('computacions','personas.id','computacions.persona_id')
+                ->join('matriculacions','matriculacions.computacion_id','computacions.id')
+                ->join('programacioncoms','programacioncoms.matriculacion_id','matriculacions.id')
+                ->join('estados','estados.id','programacioncoms.estado_id')
+                ->where('estados.estado','FALTA')
+                ->select('nombre','apellidop','apellidom','telefono')
+                ->get();
+        return DataTables::of($faltonescom)
+        ->addColumn('btn','estudiantes.actionfaltones')
+        ->rawColumns(['btn'])
+        ->toJson(); 
+    }
 }
