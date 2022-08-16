@@ -57,7 +57,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[EstudianteController::class,'cumpleaneros'])->name('prueba');
+Route::get('prueba',[MensajeController::class,'getMensajeGenerico'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -105,6 +105,7 @@ Route::get('persona/ultimaobservacion', [PersonaController::class,'ultimaObserva
 Route::get('persona/ultima/matriculacion', [PersonaController::class,'ultimaMatriculacion'])->name('persona.ultima.matriculacion');
 Route::get('persona/ultima/programacioncom', [PersonaController::class,'ultimaProgramacioncom'])->name('persona.ultima.programacioncom');
 Route::get('persona/enviar/mensaje', [PersonaController::class,'enviarMensaje'])->name('persona.enviar.mensaje');
+Route::get('persona/enviar/mensaje/cumpleaneros', [PersonaController::class,'enviarMensajeCumpleanero'])->name('persona.enviar.mensaje.cumpleaneros');
 Route::get('persona/descargar/contacto/{persona}', [PersonaController::class,'descargarContacto'])->name('descargar.contacto');
 Route::get('persona/actualizar/vuelvefecha', [PersonaController::class,'actualizarVuelveFecha'])->name('persona.update.vuelvefecha');
 Route::get('persona/actualizar/volvera', [PersonaController::class,'actualizarVolvera'])->name('persona.update.volvera');
@@ -412,6 +413,7 @@ Route::delete('eliminar/mensaje/{mensaje}', [MensajeController::class,'destroy']
 Route::post('mensaje/guardar',[MensajeController::class,'store'])->name('mensaje.store');
 Route::get('darbaja/mensaje',[MensajeController::class,'darbaja'])->name('mensaje.darbaja');
 Route::get('daralta/mensaje/',[MensajeController::class,'daralta'])->name('mensaje.daralta');
+Route::get('mensaje/generico',[MensajeController::class,'getMensajeGenerico'])->name('mensaje.generico');// get mensaje(id)
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MOTIVOS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('aulas', "AulaController");

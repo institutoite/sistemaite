@@ -12,6 +12,7 @@ use App\Models\Administrativo;
 use App\Models\Cliservicio;
 use App\Models\Apoderado;
 use App\Models\Docente;
+use App\Models\Mensaje;
 use App\Models\Proveedor;
 use App\Models\User;
 use Carbon\Carbon;
@@ -785,15 +786,18 @@ class PersonaController extends Controller
             ->where('programacioncoms.matriculacion_id', '=', $matriculacion->id)->get();
         return response()->json($programacioncoms);
     }
-
-   
-    
-   
     public function enviarMensaje(Request $request){
-        //  return response()->json(['d'=>2]);
-         $persona=Persona::findOrFail($request->persona_id);
-         $apoderados= $persona->apoderados;
-         $data=['persona'=>$persona,'apoderados'=>$apoderados];
+        $persona=Persona::findOrFail($request->persona_id);
+        $apoderados= $persona->apoderados;
+        $data=['persona'=>$persona,'apoderados'=>$apoderados];
+        return response()->json($data);
+    }
+    
+    public function enviarMensajeCumpleanero(Request $request){
+        $mensaje=strip_tags(Mensaje::findOrFail(1)->mensaje);
+        $persona=Persona::findOrFail($request->persona_id);
+        $apoderados= $persona->apoderados;
+        $data=['persona'=>$persona,'apoderados'=>$apoderados,'mensaje'=>$mensaje];
         return response()->json($data);
     }
 

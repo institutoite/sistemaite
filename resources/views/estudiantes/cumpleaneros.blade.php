@@ -105,27 +105,27 @@
                     $("#modal-mostrar-contactos").modal("show");
                     $("#tabla-contactos").empty();
                             $.ajax({
-                            url :"../persona/enviar/mensaje",
+                            url :"../persona/enviar/mensaje/cumpleaneros",
                             data:{
                                 persona_id:persona_id,
                             },
                             success : function(json) {
-                                console.log(json);
                                 $html="<tr id='"+ json.persona.telefono +"'><td>"+ json.persona.nombre +"</td>";
                                 $html+="<td>Teléfono personal</td>";
                                 $html+="<td>"+json.persona.telefono+"</td>";
                                 $html+="<td>"+moment(json.persona.created_at).format('L') +"</td>";
                                 $html+="<td>"+moment(json.persona.updated_at).format('L') +"</td>";
-                                $html+="<td><a class='btn listarmensajes'><i class='fab fa-whatsapp'></i></a></td></tr>";
-
+                                if (json.persona.telefono!=0)
+                                    $html+="<td><a target='_blank' href='https://api.whatsapp.com/send?phone=591"+ json.persona.telefono+"&text="+ json.mensaje +"' class=''><i class='fab fa-whatsapp'></i></a></td></tr>";
+                                else
+                                    $html+="<td><a class=''>No tiene número</a></td></tr>";
                                 for (let j in json.apoderados) {
                                     $html+="<tr id='"+ json.apoderados[j].telefono +"'><td>"+ json.apoderados[j].nombre +"</td>";
                                     $html+="<td>"+json.apoderados[j].pivot.parentesco+"</td>";
                                     $html+="<td>"+json.apoderados[j].telefono+"</td>";
                                     $html+="<td>"+moment(json.apoderados[j].created_at).format('LLL') +"</td>";
                                     $html+="<td>X"+moment(json.apoderados[j].updated_at).format('LLL') +"</td>";
-                                    $html+="<td><a class='btn listarmensajes'><i class='fab fa-whatsapp'></i></a></td></tr>";
-
+                                    $html+="<td><a target='_blank' href='https://api.whatsapp.com/send?phone=591"+ json.apoderados[j].telefono +"&text="+ json.mensaje +"' class=''><i class='fab fa-whatsapp'></i></a></td></tr>";
                                 }
                                 $("#tabla-contactos").append($html);
                             },
