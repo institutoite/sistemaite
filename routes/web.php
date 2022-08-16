@@ -41,6 +41,8 @@ use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\NivelController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\AdministrativoController;
+use App\Http\Controllers\EstudianteController;
+
 use Illuminate\Support\Facades\Auth;
 //use SweetAlert;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
@@ -55,7 +57,8 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 |
 */
 
-Route::get('prueba',[MatriculacionController::class,'destroy'])->name('prueba');
+Route::get('prueba',[EstudianteController::class,'cumpleaneros'])->name('prueba');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -142,8 +145,10 @@ Route::resource('inscripciones', "InscripcioneController");
 // Route::resource('matriculacion', "MatriculacionController");
 
 
-/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       E S T D U D I A N T E S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%ESTDUDIANTES         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('/historial/{estudiante}','EstudianteController@historia')->name('estudiante.historia');
+Route::get('cumpleaneros',[EstudianteController::class,'cumpleaneros'])->name('cumpleaneros');
+Route::get('cumpleaneros/view',[EstudianteController::class,'cumplenerosView'])->name('cumpleaneros.view');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       COMENTARIO         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');

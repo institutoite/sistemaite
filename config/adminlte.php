@@ -641,7 +641,7 @@ return [
                 [
                     'text' => 'Cumpleañeros',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'cumpleaneros/view',
                     'classes'  => 'text-dark',
                 ],
                 [
