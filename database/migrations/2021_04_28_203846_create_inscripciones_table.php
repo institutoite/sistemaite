@@ -26,7 +26,7 @@ class CreateInscripcionesTable extends Migration
             $table->unsignedBigInteger('estudiante_id');
             $table->unsignedBigInteger('modalidad_id');
             $table->unsignedBigInteger('motivo_id');
-            $table->unsignedBigInteger('estado_id')->default(Config::get('constantes.ESTADO_INDEFINIDO'));
+            $table->unsignedBigInteger('estado_id')->default(estado('INDEFINIDO'));
             $table->foreign('estado_id', 'fk_inscripcion_estados_idx')
                 ->references('id')
                 ->on('estados')

@@ -84,8 +84,8 @@ class MatriculacionController extends Controller
         $computacion=$matriculacion->computacion;
         $matriculacion->usuarios()->attach(Auth::user()->id);
         $programacioncoms=$matriculacion->programacionescom;
-        $clasesConsumidas=count($programacioncoms->where('estado_id','<>',Config::get('constantes.ESTADO_INDEFINIDO')));
-        $ultimaclasepasada=$programacioncoms->where('estado_id','<>',Config::get('constantes.ESTADO_INDEFINIDO'))->max();
+        $clasesConsumidas=count($programacioncoms->where('estado_id','<>',estado('INDEFINIDO')));
+        $ultimaclasepasada=$programacioncoms->where('estado_id','<>',estado('INDEFINIDO'))->max();
         return view('matriculacion.configurarupdate', compact('ultimaclasepasada','programacioncoms','clasesConsumidas','computacion','matriculacion', 'aulas', 'docentes','dias'));
     }
 
@@ -187,8 +187,8 @@ class MatriculacionController extends Controller
         $dias = Dia::get();
         $computacion=$matriculacion->computacion;
         $programacioncoms=$matriculacion->programacionescom;
-        $clasesConsumidas=count($programacioncoms->where('estado_id','<>',Config::get('constantes.ESTADO_INDEFINIDO')));
-        $ultimaclasepasada=$programacioncoms->where('estado_id','<>',Config::get('constantes.ESTADO_INDEFINIDO'))->max();
+        $clasesConsumidas=count($programacioncoms->where('estado_id','<>',estado('INDEFINIDO')));
+        $ultimaclasepasada=$programacioncoms->where('estado_id','<>',estado('INDEFINIDO'))->max();
         return view('matriculacion.configurarupdate', compact('ultimaclasepasada','computacion','matriculacion', 'aulas', 'docentes','dias','programacioncoms','clasesConsumidas'));
     }
 
@@ -336,7 +336,7 @@ class MatriculacionController extends Controller
     }
      public function reservar($matriculacion_id){
         $matriculacion=Matriculacion::findOrFail($matriculacion_id);
-        $matriculacion->estado_id=Config::get('constantes.ESTADO_RESERVADO');
+        $matriculacion->estado_id=estado('RESERVADO');
         $matriculacion->save();
         return redirect()->route("opcion.principal",$matriculacion->computacion->persona->estudiante->id);
     }

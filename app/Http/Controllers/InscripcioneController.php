@@ -245,7 +245,8 @@ class InscripcioneController extends Controller
         $modalidades = $ultimo_nivel->modalidades;
         $motivos = Tipomotivo::findOrFail(1)->motivos;
         $estados=Estado::get();
-        return view('inscripcione.edit', compact('inscripcione','persona','estados', 'ultima_inscripcion','modalidades','motivos'));
+        $editando=true;
+        return view('inscripcione.edit', compact('editando','inscripcione','persona','estados', 'ultima_inscripcion','modalidades','motivos'));
     }
 
     /**
@@ -473,7 +474,7 @@ class InscripcioneController extends Controller
     }
     public function reservar($inscripcion_id){
         $inscripcion=Inscripcione::findOrFail($inscripcion_id);
-        $inscripcion->estado_id=Config::get('constantes.ESTADO_RESERVADO');
+        $inscripcion->estado_id=estado('RESERVADO');
         $inscripcion->save();
         return redirect()->route("opcion.principal",$inscripcion->estudiante->id);
     }
@@ -481,7 +482,7 @@ class InscripcioneController extends Controller
     {
         $inscripcion=Inscripcione::findOrFail($request->inscripcion_id);
         $inscripcion->vigente=0;
-        $inscripcion->estado_id = Config::get('constantes.ESTADO_DESVIGENTE');
+        $inscripcion->estado_id = estado('DESVIGENTE');
         $inscripcion->save();
         return response()->json(["mensaje"=>"Se dio de baja exitosamente"]);
     }

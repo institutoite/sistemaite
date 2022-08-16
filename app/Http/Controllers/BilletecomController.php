@@ -81,7 +81,8 @@ class BilletecomController extends Controller
                 $pago->billetes()->attach($key,['cantidad'=>$val,'tipo'=>'cambio']);
             }
             $matriculacion = Matriculacion::findOrFail($pago->pagable_id);
-            if($matriculacion->estado_id==Config::get('constantes.ESTADO_RESERVADO')){
+            
+            if($matriculacion->estado_id==estado("RESERVADO")){
                 return redirect()->route('matriculacion.configuracion',$matriculacion);
             }else{
                 if ($matriculacion->programacionescom->count() == 0) {

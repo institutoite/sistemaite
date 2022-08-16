@@ -104,7 +104,7 @@
         </div>
     </div>
 
-    @isset($ultima_inscripcion)
+    @isset($editando)
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 @if($errors->has('estado_id'))

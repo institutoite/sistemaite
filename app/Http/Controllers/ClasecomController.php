@@ -66,13 +66,13 @@ class ClasecomController extends Controller
 
         if($request->fecha < Carbon::now()->format('Y-m-d')){
             $programa=Programacioncom::findOrFail($programacioncom_id);
-            $programa->estado_id = Config::get('constantes.ESTADO_FINALIZADO');
-            $clasecom->estado_id= Config::get('constantes.ESTADO_FINALIZADO');
+            $programa->estado_id = estado("FINALIZADO");
+            $clasecom->estado_id= estado("FINALIZADO");
             $observacion->observacion="Esta programacioncom se marcó fuera de fecha: ".Carbon::now()->isoFormat('LLLL');
         }else{
             $programa=Programacioncom::findOrFail($programacioncom_id);
-            $programa->estado_id = Config::get('constantes.ESTADO_PRESENTE');
-            $clasecom->estado_id= Config::get('constantes.ESTADO_PRESENTE');
+            $programa->estado_id =estado("PRESENTE");
+            $clasecom->estado_id= estado("PRESENTE");
             $observacion->observacion="Esta programacion se marcó en fecha adecuada: ".Carbon::now()->isoFormat('LLLL');
         }
 
@@ -198,11 +198,11 @@ class ClasecomController extends Controller
         $dias_que_faltan_para_pagar= $matriculacion->fecha_proximo_pago->diffInDays(now());
         
         $pago=$matriculacion->pagos->sum('monto');
-        $indefinido=$matriculacion->programacionescom->where('estado_id',Config::get('constantes.ESTADO_INDEFINIDO'))->count();
-        $presentes = $matriculacion->programacionescom->where('estado_id',Config::get('constantes.ESTADO_FINALIZADO'))->count();
-        $faltas = $matriculacion->programacionescom->where('estado_id',Config::get('constantes.ESTADO_FALTA'))->count();
-        $congelados = $matriculacion->programacionescom->where('estado_id',Config::get('constantes.ESTADO_CONGELADO'))->count();
-        $licencias = $matriculacion->programacionescom->where('estado_id',Config::get('constantes.ESTADO_LICENCIA'))->count();
+        $indefinido=$matriculacion->programacionescom->where('estado_id',estado("INDEFINIDO"))->count();
+        $presentes = $matriculacion->programacionescom->where('estado_id',estado("FINALIZADO"))->count();
+        $faltas = $matriculacion->programacionescom->where('estado_id',estado("FALTA"))->count();
+        $congelados = $matriculacion->programacionescom->where('estado_id',estado("CONGELADO"))->count();
+        $licencias = $matriculacion->programacionescom->where('estado_id',estado("LICENCIA"))->count();
         $persona = $matriculacion->computacion->persona;
 
         return view('programacioncom.marcadoGeneral',compact('programaciones', 'faltas', 'presentes', 'licencias', 'pago','persona', 'matriculacion', 'dias_que_faltan_para_pagar'));
@@ -212,13 +212,13 @@ class ClasecomController extends Controller
         $programa = Programacioncom::findOrFail($programacioncom_id);
         $clase=new Clasecom();
         $clase->fecha           =$programa->fecha;
-        $clase->estado_id       =Config::get('constantes.ESTADO_PRESENTE');
+        $clase->estado_id       =estado('PRESENTE');
         $clase->horainicio      =Carbon::now()->isoFormat('HH:mm:ss');
         $clase->horafin         =Carbon::now()->addHours($programa->horaini->floatDiffInHours($programa->horafin));
         $clase->docente_id      =$programa->docente_id;
         $clase->aula_id         =$programa->aula_id;
         $clase->programacioncom_id =$programa->id;
-        $programa->estado_id=Config::get('constantes.ESTADO_PRESENTE');
+        $programa->estado_id=estado('PRESENTE');
         $programa->save();
         $clase->save();
         return redirect()->route('clase.presentes')->with('mensaje', 'MarcadoCorrectamente');
@@ -235,7 +235,7 @@ class ClasecomController extends Controller
                 ->join('userables','userables.userable_id','clasecoms.id')
                 ->join('users','userables.user_id','users.id')
                 ->where('userables.userable_type',Clasecom::class)
-                ->where('clasecoms.estado_id',Config::get('constantes.ESTADO_PRESENTE'))
+                ->where('clasecoms.estado_id',estado('PRESENTE'))
                 ->where('clasecoms.fecha',Carbon::now()->isoFormat('Y-M-D'))
                 ->select('clasecoms.id','personas.id as codigo', 'personas.nombre as name','clasecoms.horainicio', 'clasecoms.horafin', 'docentes.nombre', 'asignaturas.asignatura', 'aulas.aula','personas.foto','users.name as user')->get();
             return datatables()->of($clasecoms)
@@ -249,9 +249,9 @@ class ClasecomController extends Controller
        // return response()->json(['d'=>$request->id]);
         $clasecom = Clasecom::findOrFail($request->id);
         $programa = $clasecom->programacioncom;
-        $programa->estado_id = Config::get('constantes.ESTADO_FINALIZADO');
+        $programa->estado_id = estado('FINALIZADO');
         $programa->save();
-        $clasecom->estado_id = Config::get('constantes.ESTADO_FINALIZADO');
+        $clasecom->estado_id = estado('FINALIZADO');
         $clasecom->horafin=Carbon::now()->isoFormat('HH:mm:ss');
         $clasecom->save();
         return response()->json(['message' => 'Despidete deseale el bien', 'status' => 200]);

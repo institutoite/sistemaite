@@ -110,7 +110,7 @@ class BilleteController extends Controller
             }
             $inscripcion = Inscripcione::findOrFail($pago->pagable_id);
             
-            if($inscripcion->estado_id==Config::get('constantes.ESTADO_RESERVADO')){
+            if($inscripcion->estado_id==estado("RESERVADO")){
                 //dd("ESTADO INDEFINIDO");
                 return redirect()->route('inscripcion.configuracion',$inscripcion);
             }else{

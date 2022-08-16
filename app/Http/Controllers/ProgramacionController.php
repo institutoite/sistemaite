@@ -348,7 +348,7 @@ class ProgramacionController extends Controller
                     }
                 }
             }
-            $inscripcion->estado_id = Config::get('constantes.ESTADO_CORRIENDO');
+            $inscripcion->estado_id = estado('CORRIENDO');
             $inscripcion->fechafin = $programa->fecha;
             
             if ($inscripcion->pagos->sum('monto') < $inscripcion->costo) {
@@ -471,7 +471,7 @@ class ProgramacionController extends Controller
         $programa->fecha = $fecha;
         $programa->habilitado = $habilitado;
         $programa->activo = true;
-        $programa->estado_id = Config::get('constantes.ESTADO_INDEFINIDO');
+        $programa->estado_id = estado('INDEFINIDO');
         $programa->hora_ini = $sesion->horainicio;
         
         $programa->docente_id = $sesion->docente_id;
@@ -552,7 +552,7 @@ class ProgramacionController extends Controller
             }
         }
         $inscripcion->fechafin = $programa->fecha;
-        $inscripcion->estado_id = Config::get('constantes.ESTADO_CORRIENDO');
+        $inscripcion->estado_id = estado('CORRIENDO');
         $inscripcion->save();
         if ($Acuenta_para_regenerar < $inscripcion->costo) {
             return redirect()->route('mostrar.programa', $inscripcion);
@@ -710,7 +710,7 @@ class ProgramacionController extends Controller
     }
     public function asignarFaltasFechasPasadas(){
         Programacion::where('fecha','<',Carbon::now()->format('Y-m-d'))
-                    ->where('estado_id',Config::get('constantes.ESTADO_INDEFINIDO'))->update(['estado_id'=>Config::get('constantes.ESTADO_FALTA')]);
+                    ->where('estado_id',estado('INDEFINIDO'))->update(['estado_id'=>estado('FALTA')]);
         return response()->json(['id'=>"Todo Bien"]);
     }
 

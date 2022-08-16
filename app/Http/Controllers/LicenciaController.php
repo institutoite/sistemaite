@@ -81,7 +81,7 @@ class LicenciaController extends Controller
             $licenciacom->save();
 
             $programacioncom=Programacioncom::findOrFail($request->programacioncom_id);
-            $programacioncom->estado_id=Config::get('constantes.ESTADO_LICENCIA');
+            $programacioncom->estado_id=estado('LICENCIA');
             $programacioncom->save();
 
             $licenciacom->usuarios()->attach(Auth::user()->id);
@@ -111,7 +111,7 @@ class LicenciaController extends Controller
             $licencia->save();
 
             $programacion=Programacion::findOrFail($request->programacion_id);
-            $programacion->estado_id=Config::get('constantes.ESTADO_LICENCIA');
+            $programacion->estado_id=estado('LICENCIA');
             $programacion->save();
             
             $licencia->usuarios()->attach(Auth::user()->id);

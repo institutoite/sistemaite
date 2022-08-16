@@ -93,14 +93,14 @@ class ClaseController extends Controller
 
         if($request->fecha < Carbon::now()->format('Y-m-d')){
             $programa=Programacion::findOrFail($programacion_id);
-            $programa->estado_id = Config::get('constantes.ESTADO_FINALIZADO');
-            $clase->estado_id= Config::get('constantes.ESTADO_FINALIZADO');
+            $programa->estado_id = estado('FINALIZADO');
+            $clase->estado_id= estado('FINALIZADO');
             $observacion->observacion="Esta programacion se marco fuera de fecha: ".Carbon::now()->isoFormat('LLLL');
             
         }else{
             $programa=Programacion::findOrFail($programacion_id);
-            $programa->estado_id = Config::get('constantes.ESTADO_PRESENTE');
-            $clase->estado_id= Config::get('constantes.ESTADO_PRESENTE');
+            $programa->estado_id = estado('PRESENTE');
+            $clase->estado_id= estado('PRESENTE');
             $observacion->observacion="Esta programacion se marcó en fecha adecuada: ".Carbon::now()->isoFormat('LLLL');
         }
 
@@ -216,7 +216,7 @@ class ClaseController extends Controller
 
         $clase->aula_id=$request->aula_id;
         $clase->docente_id=$request->docente_id;
-        $clase->estado_id=Config::get('constantes.ESTADO_PRESENTE');
+        $clase->estado_id=estado('PRESENTE');
         $clase->fecha =$request->fecha;
         $clase->horafin=$request->horafin;
         $clase->horainicio=$request->horainicio;
@@ -257,11 +257,11 @@ class ClaseController extends Controller
         $dias_que_faltan_para_pagar= $inscripcion->fecha_proximo_pago->diffInDays(now());
         
         $pago=$inscripcion->pagos->sum('monto');
-        $indefinido=$inscripcion->programaciones->where('estado_id',Config::get('constantes.ESTADO_INDEFINIDO'))->count();
-        $presentes = $inscripcion->programaciones->where('estado_id',Config::get('constantes.ESTADO_FINALIZADO'))->count();
-        $faltas = $inscripcion->programaciones->where('estado_id',Config::get('constantes.ESTADO_FALTA'))->count();
-        $congelados = $inscripcion->programaciones->where('estado_id',Config::get('constantes.ESTADO_CONGELADO'))->count();
-        $licencias = $inscripcion->programaciones->where('estado_id',Config::get('constantes.ESTADO_LICENCIA'))->count();
+        $indefinido=$inscripcion->programaciones->where('estado_id',estado('INDEFINIDO'))->count();
+        $presentes = $inscripcion->programaciones->where('estado_id',estado('FINALIZADO'))->count();
+        $faltas = $inscripcion->programaciones->where('estado_id',estado('FALTA'))->count();
+        $congelados = $inscripcion->programaciones->where('estado_id',estado('CONGELADO'))->count();
+        $licencias = $inscripcion->programaciones->where('estado_id',estado('LICENCIA'))->count();
         $persona = $inscripcion->estudiante->persona;
     
         return view('programacion.marcadoGeneral',compact('programaciones','persona','faltas', 'presentes', 'licencias', 'pago', 'inscripcion', 'dias_que_faltan_para_pagar'));
@@ -272,7 +272,7 @@ class ClaseController extends Controller
         $programa = Programacion::findOrFail($programacion_id);
         $clase=new Clase();
         $clase->fecha           =$programa->fecha;
-        $clase->estado_id       =Config::get('constantes.ESTADO_PRESENTE');
+        $clase->estado_id       =estado('PRESENTE');
         $clase->horainicio      =Carbon::now()->isoFormat('HH:mm:ss');
         $clase->horafin         =Carbon::now()->addHours($programa->hora_ini->floatDiffInHours($programa->hora_fin));
         $clase->docente_id      =$programa->docente_id;
@@ -280,13 +280,13 @@ class ClaseController extends Controller
         $clase->aula_id         =$programa->aula_id;
         $clase->tema_id         =1; // tema por 
         $clase->programacion_id =$programa->id;
-        $programa->estado_id=Config::get('constantes.ESTADO_PRESENTE');
+        $programa->estado_id=estado('PRESENTE');
         $programa->save();
         $clase->save();
         return redirect()->route('clase.presentes')->with('mensaje', 'MarcadoCorrectamente');
     }
     public function clasesPresentes(Request $request){
-        //return response()->json(Config::get('constantes.constantes.ESTADO_PRESENTE'));
+        //return response()->json(estado('tes.ESTADO_PRESENTE'));
         if($request->ajax()){
             $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
                 ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
@@ -299,7 +299,7 @@ class ClaseController extends Controller
                 ->join('userables','userables.userable_id','clases.id')
                 ->join('users','userables.user_id','users.id')
                 ->where('userables.userable_type',Clase::class)
-                ->where('clases.estado_id',Config::get('constantes.ESTADO_PRESENTE'))
+                ->where('clases.estado_id',estado('PRESENTE'))
                 ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
                 ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombre', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto','users.name as user')->get();
             return datatables()->of($clases)
@@ -313,9 +313,9 @@ class ClaseController extends Controller
     {
         $clase = Clase::findOrFail($request->id);
         $programa = $clase->programacion;
-        $programa->estado_id = Config::get('constantes.ESTADO_FINALIZADO');
+        $programa->estado_id = estado('FINALIZADO');
         $programa->save();
-        $clase->estado_id = Config::get('constantes.ESTADO_FINALIZADO');
+        $clase->estado_id = estado('FINALIZADO');
         $clase->horafin=Carbon::now()->isoFormat('HH:mm:ss');
         $clase->save();
         return response()->json(['message' => 'Despidete deseale el bien', 'status' => 200]);

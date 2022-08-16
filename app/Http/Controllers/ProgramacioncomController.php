@@ -276,7 +276,7 @@ class ProgramacioncomController extends Controller
             }
         }
         $matriculacion->fechafin = $programa->fecha;
-        $matriculacion->estado_id = Config::get('constantes.ESTADO_CORRIENDO');
+        $matriculacion->estado_id = estado('CORRIENDO');
         $matriculacion->save();
         if ($Acuenta_para_regenerar < $matriculacion->costo) {
             return redirect()->route('mostrar.programacioncom', $matriculacion);
@@ -298,7 +298,7 @@ class ProgramacioncomController extends Controller
         $programacom->fecha = $fecha;
         $programacom->habilitado = $habilitado;
         $programacom->activo = true;
-        $programacom->estado_id =Config::get('constantes.ESTADO_INDEFINIDO');
+        $programacom->estado_id =estado('INDEFINIDO');
         $programacom->horaini = $sesioncom->horainicio;
         
         $programacom->docente_id = $sesioncom->docente_id;
@@ -541,7 +541,7 @@ class ProgramacioncomController extends Controller
     }
     public function asignarFaltasFechasPasadas(){
         Programacioncom::where('fecha','<',Carbon::now())
-                    ->where('estado_id',Config::get('constantes.ESTADO_INDEFINIDO'))->update(['estado_id'=>Config::get('constantes.ESTADO_FALTA')]);
+                    ->where('estado_id',estado('INDEFINIDO'))->update(['estado_id'=>estado('FALTA')]);
         return response()->json(['id'=>"Todo Bien"]);
     }
     public function programacioncomMostrarAjax(Request $request){
