@@ -48,6 +48,7 @@
 <script>
 
     $(document).ready(function() {
+        
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATA TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         var tabla =  $('#cumpleaneros').dataTable({
                 "responsive":true,
@@ -97,6 +98,12 @@
                 },
             });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ENVIAR MENSAJES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            
+            // $("#modal-mostrar-contactos").on("hidden.bs.modal", function () {
+            //     //console.log("actualizado");
+            //     //tabla.ajax.reload();
+            // });
+
             $('table').on('click', '.enviarmensaje', function(e) {
                 e.preventDefault();
                 console.log("enviar mensajes");
@@ -110,6 +117,7 @@
                                 persona_id:persona_id,
                             },
                             success : function(json) {
+                                tabla.api().ajax.reload();
                                 $html="<tr id='"+ json.persona.telefono +"'><td>"+ json.persona.nombre +"</td>";
                                 $html+="<td>Teléfono personal</td>";
                                 $html+="<td>"+json.persona.telefono+"</td>";
@@ -133,7 +141,34 @@
                                 alert('Disculpe, existió un problema');
                             },
                         });
-                }); 
+                });
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  guarda que ya se felicito este año %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            // $.ajaxSetup({
+            // headers:{
+            //     'X-CSRF-TOKEN' : $('meta[name="_token"]').attr('content')
+            //     }
+            // });
+            $('table').on('click', '.felicitado', function(e) {
+                e.preventDefault();    
+                persona_id =$(this).closest('tr').attr('id');
+                console.log("Felicitado "+persona_id);
+                
+                $.ajax({
+                    url :"../persona/felicitado",
+                    data:{
+                        persona_id:persona_id,
+                        _token: '{{csrf_token()}}'
+                    },
+                    type: "POST",
+                    success : function(json) {
+                        
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+            });
+             
             $('table').on('click','.zoomify',function (e){
                 Swal.fire({
                     title: 'Codigo: '+ $(this).closest('tr').find('td').eq(0).text(),

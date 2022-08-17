@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\MatriculacionController;
@@ -15,7 +14,6 @@ use App\Http\Controllers\ClasecomController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\MensajeController;
 use App\Http\Controllers\PagoController;
-
 use App\Http\Controllers\TipomotivoController;
 use App\Http\Controllers\DiaController;
 use App\Http\Controllers\LicenciaController;
@@ -39,25 +37,14 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\AulaController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\NivelController;
+use App\Http\Controllers\FelicitadoController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\AdministrativoController;
 use App\Http\Controllers\EstudianteController;
-
 use Illuminate\Support\Facades\Auth;
-//use SweetAlert;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('prueba',[MensajeController::class,'getMensajeGenerico'])->name('prueba');
+Route::get('prueba',[EstudianteController::class,'estudiantesFaltones'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -106,12 +93,14 @@ Route::get('persona/ultima/matriculacion', [PersonaController::class,'ultimaMatr
 Route::get('persona/ultima/programacioncom', [PersonaController::class,'ultimaProgramacioncom'])->name('persona.ultima.programacioncom');
 Route::get('persona/enviar/mensaje', [PersonaController::class,'enviarMensaje'])->name('persona.enviar.mensaje');
 Route::get('persona/enviar/mensaje/cumpleaneros', [PersonaController::class,'enviarMensajeCumpleanero'])->name('persona.enviar.mensaje.cumpleaneros');
+Route::get('persona/enviar/mensaje/faltones', [PersonaController::class,'enviarMensajeFaltones'])->name('persona.enviar.mensaje.faltones');
 Route::get('persona/descargar/contacto/{persona}', [PersonaController::class,'descargarContacto'])->name('descargar.contacto');
 Route::get('persona/actualizar/vuelvefecha', [PersonaController::class,'actualizarVuelveFecha'])->name('persona.update.vuelvefecha');
 Route::get('persona/actualizar/volvera', [PersonaController::class,'actualizarVolvera'])->name('persona.update.volvera');
 
 Route::get('persona/ultima/inscripcion', [PersonaController::class,'ultimaInscripcion'])->name('persona.ultima.inscripcion');
 Route::get('persona/ultima/programacion', [PersonaController::class,'ultimaProgramacion'])->name('persona.ultima.programacion');
+Route::post('persona/felicitado', [PersonaController::class,'felicitado'])->name('persona.felicitado'); //agrega felicitado enla tabla felicitados 
 
 Route::get('reporte/potenciales', [PersonaReporteController::class,'potencialesPorInteresView']);
 Route::get('potenciales/hoy', [PersonaReporteController::class,'potencialesHoyView']);
@@ -152,6 +141,7 @@ Route::get('cumpleaneros',[EstudianteController::class,'cumpleaneros'])->name('c
 Route::get('estudiante/faltones',[EstudianteController::class,'estudiantesFaltones'])->name('estudiante.faltones');
 Route::get('faltones/view',[EstudianteController::class,'faltonesView'])->name('estudiante.faltones.view');
 Route::get('cumpleaneros/view',[EstudianteController::class,'cumplenerosView'])->name('cumpleaneros.view');
+Route::get('yaesta/felicitado/{persona}',[EstudianteController::class,'yaSeFelicito'])->name('yaesta.felicitado');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       COMENTARIO         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');

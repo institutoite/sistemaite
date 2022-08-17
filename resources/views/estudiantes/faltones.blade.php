@@ -12,16 +12,7 @@
     <div class="card">
         <div class="card-header bg-primary" >
             <div style="display: flex; justify-content: space-between; align-items: center;">
-
-                <span id="card_title">
-                    {{ __('Inscripciones VIGENTES de: ')}} <strong> {{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom }}</strong>
-                </span>
-
-                <div class="float-right">
-                    <a href="{{ route('inscribir',$persona) }}" class="btn btn-secondary btn-sm float-right"  data-placement="left">
-                    {{ __('Inscribir') }} <i class="fa fa-plus-circle text-white"></i>
-                    </a>
-                </div>
+                LISTA DE FALTONES
             </div>
         </div>
         <div class="card-body">
@@ -29,7 +20,6 @@
                 <table id="inscripcionfaltones" class="table table-striped table-hover">
                     <thead class="thead">
                         <tr>
-                            <th>#</th>
                             <th>NOMBRE</th>
                             <th>APELLIDOP</th>
                             <th>APELLIDOM</th>
@@ -44,6 +34,7 @@
             </div>
         </div>
     </div>
+    @include('estudiantes.modal')
 @endsection
 @section('js')
 
@@ -62,23 +53,8 @@
 <script src="{{asset('assets/js/observacion.js')}}"></script>
     
     <script>
-    
 
-                
-        /*%%%%%%%%%%%%%%%%%%% JS GENERAL AGREGA UNA CLASE DE FORMA TEMPORAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        ( function ( $ ) {
-            'use strict';
-            $.fn.addTempClass = function ( className, expire, callback ) {
-                className || ( className = '' );
-                expire || ( expire = 2000 );
-                return this.each( function () {
-                    $( this ).addClass( className ).delay( expire ).queue( function () {
-                        $( this ).removeClass( className ).clearQueue();
-                        callback && callback();
-                    } );
-                } );
-            };
-        } ( jQuery ) );
+       
 
         $(document).ready(function() {
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE INSCRIPCIONES VIGENTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -88,18 +64,17 @@
                     "responsive":true,
                     "autoWidth":false,
                     "ajax":{ 
-                        "url":'estudiante/faltones',
+                        "url":'../estudiante/faltones',
                     },
                     "createdRow": function( row, data, dataIndex ) {
                         $(row).attr('id',data['id']); 
                     },
-                    ->select('personas.id','nombre','apellidop','apellidom','telefono','foto')
                     "columns": [
                         {data:'nombre'},
                         {data:'apellidop'},
                         {data:'apellidom'},
                         {data:'telefono'},
-                        {data:'telefono'},
+                        {data:'name'},
                         {
                             "name":"btn",
                             "data": 'btn',
@@ -114,63 +89,17 @@
                 }
             );
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE MATRICULACIONES VIGENTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/    
-            var tablamatriculaciones=$('#matriculacionesVigentes').dataTable(
+            var tablamatriculaciones=$('#matriculacionfaltones').dataTable(
                 {
                     "serverSide":true,
                     "responsive":true,
                     "autoWidth":false,
                     "ajax":{ 
                         "url":'../tusmatriculaciones',
-                        "data":{
-                            estudiante_id:"{{$persona->estudiante->id }}",  //mandar computacion
-                        },
                     },
                     "createdRow": function( row, data, dataIndex ) {
                     $(row).attr('id',data['id']); 
-                        if (moment(data['fecha_proximo_pago']).format('YY-MM-DD')>moment().format('YY-MM-DD')){
-                            $(row).addClass('text-success')
-                        }else{
-                            $(row).addClass('text-success')
-                            $('td', row).eq(2).addClass('text-danger');
-                            $('td', row).eq(3).addClass('text-danger');
-                        }
-                         $clase="";
-                        switch (data['estado']) {
-                            case "RESERVADO":
-                                $clase="warning text-warning";
-                                $icono="<i class='fas fa-exclamation-triangle'></i>";
-                                break;
-                            case "CORRIENDO":
-                                $clase="success text-success";
-                                $icono="<i class='fas fa-running'></i>";
-                                break;
-                            case "CONGELADO":
-                                $clase="secondary text-secondary";
-                                $icono="<i class='fas fa-stop'></i>";
-                                break;
-                            case "FINALIZADO":
-                                $clase="success text-success";
-                                $icono="<i class='fas fa-hourglass-end'></i>";
-                                break;
-                            case "DESVIGENTE":
-                                $clase="danger text-danger";
-                                $icono="<i class='fas fa-user-lock'></i>";
-                                break;
-                            default:
-                                $clase="danger text-danger";
-                                $icono="<i class='fas fa-info-circle'></i>";
-                                break;
-                        }
-
                         $('td', row).eq(1).html(data['asignatura']+"</br><div class='alert alert-" +$clase+" d-flex align-items-center'>"+ $icono+ "&nbsp;"+data['estado'] +"</div>");
-                            $.ajax({
-                                url:"{{url('saldo/matriculacion')}}",
-                                data:{matriculacion_id:data['id']},
-                                success : function(json) {
-                                    $('td', row).eq(2).html('<strong>Acuenta:</strong>'+json.acuenta+'<br>'+'<strong>Costo: </strong>'+json.costo+'<br><strong>Saldo: </strong>'+json.saldo);  
-                                    $('td', row).eq(3).html(json.fechaHumamizado+'<br>'+moment(data['fecha_proximo_pago']).format('DD-MM-YYYY'));  
-                                },
-                            }); 
                     },
                     "columns": [
                         {data:'id'},
@@ -191,6 +120,62 @@
                     "paging":true, 
                 }
             );
+
+             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ENVIAR MENSAJES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.enviarmensaje', function(e) {
+                e.preventDefault();
+                console.log("enviar mensajes");
+                persona_id =$(this).closest('tr').attr('id');
+                console.log(persona_id); 
+                    $("#modal-mostrar-contactos").modal("show");
+                    $("#tabla-contactos").empty();
+                            $.ajax({
+                            url :"../persona/enviar/mensaje/faltones",
+                            data:{
+                                persona_id:persona_id,
+                            },
+                            success : function(json) {
+                                tabla.api().ajax.reload();
+                                $html="<tr id='"+ json.persona.telefono +"'><td>"+ json.persona.nombre +"</td>";
+                                $html+="<td>Teléfono personal</td>";
+                                $html+="<td>"+json.persona.telefono+"</td>";
+                                $html+="<td>"+moment(json.persona.created_at).format('L') +"</td>";
+                                $html+="<td>"+moment(json.persona.updated_at).format('L') +"</td>";
+                                if (json.persona.telefono!=0)
+                                    $html+="<td><a target='_blank' href='https://api.whatsapp.com/send?phone=591"+ json.persona.telefono+"&text="+ json.mensaje +"' class='falta'><i class='fab fa-whatsapp'></i></a></td></tr>";
+                                else
+                                    $html+="<td><a class=''>No tiene número</a></td></tr>";
+                                for (let j in json.apoderados) {
+                                    $html+="<tr id='"+ json.apoderados[j].telefono +"'><td>"+ json.apoderados[j].nombre +"</td>";
+                                    $html+="<td>"+json.apoderados[j].pivot.parentesco+"</td>";
+                                    $html+="<td>"+json.apoderados[j].telefono+"</td>";
+                                    $html+="<td>"+moment(json.apoderados[j].created_at).format('LLL') +"</td>";
+                                    $html+="<td>X"+moment(json.apoderados[j].updated_at).format('LLL') +"</td>";
+                                    $html+="<td><a target='_blank' href='https://api.whatsapp.com/send?phone=591"+ json.apoderados[j].telefono +"&text="+ json.mensaje +"' class='falta'><i class='fab fa-whatsapp'></i></a></td></tr>";
+                                }
+                                $("#tabla-contactos").append($html);
+                            },
+                            error : function(xhr, status) {
+                                alert('Disculpe, existió un problema');
+                            },
+                        });
+                }); 
+            $('table').on('click','.zoomify',function (e){
+                Swal.fire({
+                    title: 'Codigo: '+ $(this).closest('tr').find('td').eq(0).text(),
+                    text: $(this).closest('tr').find('td').eq(1).text(),
+                    imageUrl: $(this).attr('src'),
+                    imageWidth: 400,
+                    showCloseButton:true,
+                    confirmButtonColor:'#26baa5',
+                    type: 'success',
+                    imageHeight:400,
+                    imageAlt: 'Custom image',
+                    confirmButtonText:"Aceptar",
+                
+                })
+            });
+
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%  ELIMINAR INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click','.eliminarinscripcion',function (e) {
                 e.preventDefault(); 

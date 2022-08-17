@@ -131,7 +131,10 @@ class Persona extends Model
     {
         return $this->hasMany(Calificacion::class);
     }
-
+    public function felicitados()
+    {
+        return $this->hasMany(Felicitado::class);
+    }
 
 
     
@@ -207,7 +210,7 @@ class Persona extends Model
             return false;
         }
     }
-
+    //public function isFelicitado()
 }
 
 

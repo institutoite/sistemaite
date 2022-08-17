@@ -31,6 +31,7 @@ use App\Models\Interest;
 use App\Models\Programacioncom;
 use App\Models\Programacion;
 use App\Models\Pais;
+use App\Models\Felicitado;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Storage;
@@ -800,12 +801,16 @@ class PersonaController extends Controller
         $data=['persona'=>$persona,'apoderados'=>$apoderados,'mensaje'=>$mensaje];
         return response()->json($data);
     }
+    public function enviarMensajeFaltones(Request $request){
+        $mensaje=strip_tags(Mensaje::findOrFail(2)->mensaje);
+        $persona=Persona::findOrFail($request->persona_id);
+        $apoderados= $persona->apoderados;
+        $data=['persona'=>$persona,'apoderados'=>$apoderados,'mensaje'=>$mensaje];
+        return response()->json($data);
+    }
 
     public function CrearContacto($persona_id){
         $persona=Persona::find($persona_id);
-
-       
-
         $nombre_archivo='contactos/'.$persona->id.'.vcf';
         Storage::append($nombre_archivo, 'BEGIN:VCARD');
         Storage::append($nombre_archivo, 'VERSION:3.0');
@@ -923,7 +928,11 @@ class PersonaController extends Controller
             return response()->json(['error' => $validator->errors()->all()]);
         }
     }
-
-    
-    
+    public function felicitado(Request $request){
+        $felicitado=new Felicitado();
+        $felicitado->anio=Carbon::now()->year;
+        $felicitado->persona_id=$request->persona_id;
+        $felicitado->save();
+        return response()->json($felicitado);
+    }
 }

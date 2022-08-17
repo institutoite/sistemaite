@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estudiante;
+use App\Models\Felicitado;
+use App\Models\Inscripcione;
 use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -30,6 +32,7 @@ class EstudianteController extends Controller
         $cumpleaneros=Persona::join('estudiantes','estudiantes.persona_id','personas.id')
   			    ->whereMonth('fechanacimiento', '=', Carbon::now()->add($request->dias, 'day')->format('m'))
                 ->whereDay('fechanacimiento', '=', Carbon::now()->add($request->dias, 'day')->format('d'))
+                ->whereNotIn('personas.id',Felicitado::where('anio',Carbon::now()->year)->select('persona_id')->get()->toArray())
   			    ->select('personas.id','nombre','apellidop','apellidom','foto','telefono',DB::raw("(SELECT TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) AS viejo FROM personas where personas.id=estudiantes.persona_id GROUP BY nombre,fechanacimiento) as edad"))
                 ->groupBy('personas.id','nombre','fechanacimiento','apellidop','apellidom','foto','telefono','edad')
                 ->get();
@@ -50,13 +53,21 @@ class EstudianteController extends Controller
                 ->join('users','users.id','userables.user_id')
                 ->where('userables.userable_type',Inscripcione::class)
                 ->where('estados.estado','FALTA')
-                ->select('personas.id','nombre','apellidop','apellidom','telefono','foto')
+                ->select('personas.id','nombre','apellidop','apellidom','telefono','users.name','personas.foto')
                 ->get();
         return DataTables::of($faltones)
         ->addColumn('btn','estudiantes.actionfaltones')
         ->rawColumns(['btn'])
         ->toJson(); 
     }
+
+    public function yaSeFelicito($persona_id){
+        $cantidad = count(DB::table('felicitados')->where('persona_id',$persona_id)->whereIn('anio',[Carbon::now()->year])->get());
+        return $cantidad>0;
+    }
+
+
+
     public function faltonesView()
     {
         return view('estudiantes.faltones');

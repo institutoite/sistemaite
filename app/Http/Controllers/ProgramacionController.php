@@ -437,7 +437,6 @@ class ProgramacionController extends Controller
  * Funciones de apoyo para generar clases
  */
     public function esFeriado($unaFecha){
-        //$frecuencia=count(Feriado::where('fecha','=',$unaFecha)->get());
         $cantidad = count(DB::table('feriados')->whereIn('fecha', [$unaFecha])->get());
         return $cantidad>0;
     }

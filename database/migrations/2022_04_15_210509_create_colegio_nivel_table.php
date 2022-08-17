@@ -15,8 +15,8 @@ class CreateColegioNivelTable extends Migration
     {
         Schema::create('colegio_nivel', function (Blueprint $table) {
             $table->unsignedBigInteger('colegio_id');
-            $table->unsignedBigInteger('nivel_id');
             $table->foreign('colegio_id')->references('id')->on('colegios');
+            $table->unsignedBigInteger('nivel_id');
             $table->foreign('nivel_id')->references('id')->on('nivels');
             $table->timestamps();
         });
