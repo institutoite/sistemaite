@@ -61,13 +61,7 @@ class EstudianteController extends Controller
         ->toJson(); 
     }
 
-    public function yaSeFelicito($persona_id){
-        $cantidad = count(DB::table('felicitados')->where('persona_id',$persona_id)->whereIn('anio',[Carbon::now()->year])->get());
-        return $cantidad>0;
-    }
-
-
-
+    
     public function faltonesView()
     {
         return view('estudiantes.faltones');

@@ -935,4 +935,17 @@ class PersonaController extends Controller
         $felicitado->save();
         return response()->json($felicitado);
     }
+    public function informarFalta(Request $request){
+        $observacion = new Observacion();
+        $observacion->observacion=Auth::user()->name .": sobre la Falta de esta clase en fecha y  hora: ". Carbon::now()->format('Y-m-d H:i');
+        $observacion->activo=1;
+        $observacion->observable_id=$programacion->id;
+        $observacion->observable_type="App\Models\Persona";
+        $observacion->save();
+        $felicitado=new Felicitado();
+        $felicitado->anio=Carbon::now()->year;
+        $felicitado->persona_id=$request->persona_id;
+        $felicitado->save();
+        return response()->json($felicitado);
+    }
 }

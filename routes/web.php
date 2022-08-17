@@ -101,6 +101,7 @@ Route::get('persona/actualizar/volvera', [PersonaController::class,'actualizarVo
 Route::get('persona/ultima/inscripcion', [PersonaController::class,'ultimaInscripcion'])->name('persona.ultima.inscripcion');
 Route::get('persona/ultima/programacion', [PersonaController::class,'ultimaProgramacion'])->name('persona.ultima.programacion');
 Route::post('persona/felicitado', [PersonaController::class,'felicitado'])->name('persona.felicitado'); //agrega felicitado enla tabla felicitados 
+Route::post('persona/faltainformar', [PersonaController::class,'faltaInformar'])->name('persona.faltaInformar'); //Falta informar 
 
 Route::get('reporte/potenciales', [PersonaReporteController::class,'potencialesPorInteresView']);
 Route::get('potenciales/hoy', [PersonaReporteController::class,'potencialesHoyView']);
@@ -141,7 +142,7 @@ Route::get('cumpleaneros',[EstudianteController::class,'cumpleaneros'])->name('c
 Route::get('estudiante/faltones',[EstudianteController::class,'estudiantesFaltones'])->name('estudiante.faltones');
 Route::get('faltones/view',[EstudianteController::class,'faltonesView'])->name('estudiante.faltones.view');
 Route::get('cumpleaneros/view',[EstudianteController::class,'cumplenerosView'])->name('cumpleaneros.view');
-Route::get('yaesta/felicitado/{persona}',[EstudianteController::class,'yaSeFelicito'])->name('yaesta.felicitado');
+// Route::get('yaesta/felicitado/{persona}',[EstudianteController::class,'yaSeFelicito'])->name('yaesta.felicitado');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       COMENTARIO         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');

@@ -126,6 +126,7 @@
                 e.preventDefault();
                 console.log("enviar mensajes");
                 persona_id =$(this).closest('tr').attr('id');
+                buscar como enviar programacion_id donde se hizo clic para registrar una observacion  o informe
                 console.log(persona_id); 
                     $("#modal-mostrar-contactos").modal("show");
                     $("#tabla-contactos").empty();
@@ -133,6 +134,7 @@
                             url :"../persona/enviar/mensaje/faltones",
                             data:{
                                 persona_id:persona_id,
+                                programacion_id:programacion_id,
                             },
                             success : function(json) {
                                 tabla.api().ajax.reload();
@@ -159,7 +161,30 @@
                                 alert('Disculpe, existió un problema');
                             },
                         });
-                }); 
+                });
+            
+            
+            $('table').on('click', '.faltainformada', function(e) {
+                e.preventDefault();    
+                persona_id =$(this).closest('tr').attr('id');
+                console.log("Falta informada "+persona_id);
+                
+                $.ajax({
+                    url :"../persona/faltainformar",
+                    data:{
+                        persona_id:persona_id,
+                        _token: '{{csrf_token()}}'
+                    },
+                    type: "POST",
+                    success : function(json) {
+                        
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+            });
+                
             $('table').on('click','.zoomify',function (e){
                 Swal.fire({
                     title: 'Codigo: '+ $(this).closest('tr').find('td').eq(0).text(),
