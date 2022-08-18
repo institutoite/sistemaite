@@ -44,6 +44,9 @@ ocultar text inscripcion y matriculaicon de configurarion respectivamente
  
 
 
+en potenciales que se muestre las observaciones e insertar observacion que sea con el componente ambos en realidad agregar descargar contacto
+cuando se registra un telefono de apoderado no se crea el contacto
+reporte general en potenciales al parecer esta mal la consulta por que salen repetidos tres veces
 
 
 hacer componente la muestra de mostrar bueno esta en show de ciudades
@@ -53,6 +56,7 @@ hacer ite business/familiar/persona/Colegios
 en todos los mostrar el foto del usuario es muy grande 
 Falta terminar el crud de requisitos y metas
 crear un buson de sugerencias
+graficos estadisticos 
 
 crud para licencias en computacion y nivelacion
 arreglar css de reportes 

@@ -26,3 +26,6 @@
 <a href="" class="tooltipsC mr-1 mostrarobservacionespersona" title="Mostrar observaciones">
     <i class="fas fa-comments text-secondary"></i>
 </a>
+<a href="{{route('descargar.contacto', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Descargar contacto">
+    <i class="far fa-address-card"></i>
+</a>

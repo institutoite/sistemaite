@@ -29,9 +29,9 @@
 <a href="{{route('descargar.contacto', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Descargar contacto">
     <i class="far fa-address-card"></i>
 </a>
-<a href="" class="btn-accion-tabla tooltipsC mr-1 condonarmatriculacion" title="Condonar Deuda">
+{{-- <a href="" class="btn-accion-tabla tooltipsC mr-1 condonarmatriculacion" title="Condonar Deuda">
     <i class="fas fa-hand-holding-heart text-secondary"></i>
-</a>
+</a> --}}
 
 
 

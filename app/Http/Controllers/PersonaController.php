@@ -802,6 +802,18 @@ class PersonaController extends Controller
         return response()->json($data);
     }
     public function enviarMensajeFaltones(Request $request){
+        $observacion = new Observacion();
+        $observacion->observacion=Auth::user()->name .": Informo sobre la falta de esta clase en fecha y  hora: ". Carbon::now()->format('Y-m-d H:i');
+        $observacion->activo=1;
+        $observacion->observable_id=$request->programacion_id;
+        $observacion->observable_type=Programacion::class;
+        $observacion->save();
+
+        $programacion=Programacion::findOrFail($request->programacion_id);
+        $programacion->estado_id=estado("FALTANOTIFICADA");
+        $programacion->save();
+
+        $observacion->usuarios()->attach(Auth::user()->id);
         $mensaje=strip_tags(Mensaje::findOrFail(2)->mensaje);
         $persona=Persona::findOrFail($request->persona_id);
         $apoderados= $persona->apoderados;
@@ -809,27 +821,39 @@ class PersonaController extends Controller
         return response()->json($data);
     }
 
+
     public function CrearContacto($persona_id){
         $persona=Persona::find($persona_id);
         $nombre_archivo='contactos/'.$persona->id.'.vcf';
         Storage::append($nombre_archivo, 'BEGIN:VCARD');
         Storage::append($nombre_archivo, 'VERSION:3.0');
-        Storage::append($nombre_archivo, 'N:'.$persona->apellidop.';'.$persona->nombre.';'.$persona->apellidom.";;");
-        Storage::append($nombre_archivo, 'FN:'.$persona->apellidop.' '.$persona->nombre.' '.$persona->apellidom);
-        Storage::append($nombre_archivo, "PHOTO;VALUE=uri".URL::to('/').Storage::url($persona->foto));
-        Storage::append($nombre_archivo, 'BDAY:'.$persona->fechanacimiento->isoFormat('YYYY-MM-DD'));
-        if($persona->genero=="MUJER")
+        $apellidoMaterno = isset($persona->apellidom) ? $persona->apellidom : '-';
+        Storage::append($nombre_archivo, 'N:'.$persona->apellidop.';'.$persona->nombre.';'.$apellidoMaterno.";;");
+        Storage::append($nombre_archivo, 'FN:'.$persona->apellidop.' '.$persona->nombre.' '.$apellidoMaterno);
+        $foto = isset($persona->foto) ? $persona->foto : '-';
+        Storage::append($nombre_archivo, "PHOTO;VALUE=uri".URL::to('/').Storage::url($foto));
+        if (isset($persona->fechanacimiento)){
+            Storage::append($nombre_archivo, 'BDAY:'.$persona->fechanacimiento->isoFormat('YYYY-MM-DD'));
+        }
+        $genero = isset($persona->genero) ? $persona->genero : '';
+        if($genero=="MUJER")
             Storage::append($nombre_archivo, 'GENDER:F');
         else{
             Storage::append($nombre_archivo, 'GENDER:M');
         }
+        $telefono = isset($persona->telefono) ? $persona->telefono : '0';
         Storage::append($nombre_archivo, "TEL;VALUE=uri;PREF=1;TYPE=voice,work:".$persona->telefono);
-        Storage::append($nombre_archivo, "URL:wa.me/591".$persona->telefono);
+        $whatsapp = ($telefono!=0) ? $telefono : 'No tiene numero';
+        Storage::append($nombre_archivo, "URL:wa.me/591".$whatsapp);
 
-        $genero=$persona->genero;
-        $direccion=$persona->zona->zona.' '.$persona->direccion;
-        $como=$persona->como;
-        Storage::append($nombre_archivo, "NOTE:Genero:".$genero.'\nDireccion:'.$direccion.'\nComo eneteró:'.$como);
+        $zona = isset($persona->zona) ? $persona->zona->zona : '-';
+        $direccion = isset($persona->direccion) ? $persona->direccion : '-';
+        $como = isset($persona->como) ? $persona->como : '-';
+        
+        if(isset($persona->como)){
+            $como=$persona->como;
+        }
+        Storage::append($nombre_archivo, "NOTE:Genero:".$genero.'\nDireccion:'.$zona.' '.$direccion.'\nComo eneteró:'.$como);
 
         $apoderados=$persona->apoderados;
             
@@ -839,6 +863,8 @@ class PersonaController extends Controller
                 Storage::append($nombre_archivo, "URL:wa.me/591".$apoderado->telefono);
 
             }
+        
+        
         if (isset($persona->estudiante->inscripciones)){
             $inscripciones=$persona->estudiante->inscripciones;
             foreach ($inscripciones as $inscripcion) {
@@ -929,19 +955,6 @@ class PersonaController extends Controller
         }
     }
     public function felicitado(Request $request){
-        $felicitado=new Felicitado();
-        $felicitado->anio=Carbon::now()->year;
-        $felicitado->persona_id=$request->persona_id;
-        $felicitado->save();
-        return response()->json($felicitado);
-    }
-    public function informarFalta(Request $request){
-        $observacion = new Observacion();
-        $observacion->observacion=Auth::user()->name .": sobre la Falta de esta clase en fecha y  hora: ". Carbon::now()->format('Y-m-d H:i');
-        $observacion->activo=1;
-        $observacion->observable_id=$programacion->id;
-        $observacion->observable_type="App\Models\Persona";
-        $observacion->save();
         $felicitado=new Felicitado();
         $felicitado->anio=Carbon::now()->year;
         $felicitado->persona_id=$request->persona_id;

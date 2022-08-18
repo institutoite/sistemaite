@@ -53,7 +53,7 @@ class EstudianteController extends Controller
                 ->join('users','users.id','userables.user_id')
                 ->where('userables.userable_type',Inscripcione::class)
                 ->where('estados.estado','FALTA')
-                ->select('personas.id','nombre','apellidop','apellidom','telefono','users.name','personas.foto')
+                ->select('personas.id','programacions.id as programacion_id','nombre','apellidop','apellidom','telefono','users.name','personas.foto')
                 ->get();
         return DataTables::of($faltones)
         ->addColumn('btn','estudiantes.actionfaltones')

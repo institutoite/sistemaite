@@ -12,12 +12,37 @@
     <div class="card">
         <div class="card-header bg-primary" >
             <div style="display: flex; justify-content: space-between; align-items: center;">
-                LISTA DE FALTONES
+                ESTUDIANTES QUE TIENEN FALTAS NO INFORMADAS
             </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table id="inscripcionfaltones" class="table table-striped table-hover">
+                    <thead class="thead">
+                        <tr>
+                            <th>NOMBRE</th>
+                            <th>APELLIDOP</th>
+                            <th>APELLIDOM</th>
+                            <th>TELEFONO</th>
+                            <th>USUARIO</th>
+                            <th>OPTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody> 
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header bg-primary" >
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                ITENAUTAS QUE TIENEN FALTAS NO INFORMADAS
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="matriculacionfaltones" class="table table-striped table-hover">
                     <thead class="thead">
                         <tr>
                             <th>NOMBRE</th>
@@ -55,10 +80,11 @@
     <script>
 
        
-
+        
         $(document).ready(function() {
+            let tabla;
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE INSCRIPCIONES VIGENTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            let tabla=$('#inscripcionfaltones').DataTable(
+            tabla=$('#inscripcionfaltones').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
@@ -95,17 +121,18 @@
                     "responsive":true,
                     "autoWidth":false,
                     "ajax":{ 
-                        "url":'../tusmatriculaciones',
+                        "url":'../computacion/faltones',
                     },
                     "createdRow": function( row, data, dataIndex ) {
                     $(row).attr('id',data['id']); 
                         $('td', row).eq(1).html(data['asignatura']+"</br><div class='alert alert-" +$clase+" d-flex align-items-center'>"+ $icono+ "&nbsp;"+data['estado'] +"</div>");
                     },
                     "columns": [
-                        {data:'id'},
-                        {data:'asignatura'},
-                        {data:'costo'},
-                        {data:'fecha_proximo_pago'},
+                        {data:'nombre'},
+                        {data:'apellidop'},
+                        {data:'apellidom'},
+                        {data:'telefono'},
+                        {data:'name'},
                         {
                             "name":"btn",
                             "data": 'btn',
@@ -126,8 +153,8 @@
                 e.preventDefault();
                 console.log("enviar mensajes");
                 persona_id =$(this).closest('tr').attr('id');
-                buscar como enviar programacion_id donde se hizo clic para registrar una observacion  o informe
-                console.log(persona_id); 
+                programacion_id =$(this).attr('id');
+                console.log("Programacion_id" + programacion_id); 
                     $("#modal-mostrar-contactos").modal("show");
                     $("#tabla-contactos").empty();
                             $.ajax({
@@ -137,7 +164,8 @@
                                 programacion_id:programacion_id,
                             },
                             success : function(json) {
-                                tabla.api().ajax.reload();
+                                console.log(json);
+                                tabla.ajax.reload();
                                 $html="<tr id='"+ json.persona.telefono +"'><td>"+ json.persona.nombre +"</td>";
                                 $html+="<td>Teléfono personal</td>";
                                 $html+="<td>"+json.persona.telefono+"</td>";
@@ -155,6 +183,7 @@
                                     $html+="<td>X"+moment(json.apoderados[j].updated_at).format('LLL') +"</td>";
                                     $html+="<td><a target='_blank' href='https://api.whatsapp.com/send?phone=591"+ json.apoderados[j].telefono +"&text="+ json.mensaje +"' class='falta'><i class='fab fa-whatsapp'></i></a></td></tr>";
                                 }
+                                tabla.ajax.reload();
                                 $("#tabla-contactos").append($html);
                             },
                             error : function(xhr, status) {
@@ -162,7 +191,10 @@
                             },
                         });
                 });
-            
+            // $('#modal-mostrar-contactos').on('hidden.bs.modal', function () {
+            //     console.log("se cerro");
+            //     tabla.ajax.reload();
+            // });
             
             $('table').on('click', '.faltainformada', function(e) {
                 e.preventDefault();    

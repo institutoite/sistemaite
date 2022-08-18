@@ -21,6 +21,9 @@
     Agregar Papel
 </a>
 
-<a href="" class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" id="Persona" title="Agregar Observacion">
+{{-- <a href="" class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" id="Persona" title="Agregar Observacion">
     <i class="fas fa-comment-alt fa-2x"></i>
+</a> --}}
+<a href="{{route('descargar.contacto', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Descargar contacto">
+    <i class="far fa-address-card"></i>
 </a>

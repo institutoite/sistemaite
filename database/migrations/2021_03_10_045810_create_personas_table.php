@@ -17,10 +17,10 @@ class CreatePersonasTable extends Migration
             $table->string('apellidop', 25);
             $table->string('apellidom', 25)->nullable();
             $table->date('fechanacimiento')->nullable();
-            $table->string('direccion', 120)->nullable();
+            $table->string('direccion', 120)->nullable()->default("N/S");
             $table->string('carnet', 10)->nullable();
             $table->string('expedido', 10)->nullable();
-            $table->string('genero', 6)->nullable();
+            $table->string('genero', 6)->nullable()->default("N/S");
             
             $table->string('foto', 120)->nullable();
             $table->string('como', 30)->nullable();

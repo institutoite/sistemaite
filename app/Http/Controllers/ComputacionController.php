@@ -8,6 +8,11 @@ use App\Models\Carrera;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
+use Carbon\Carbon;
+
 class ComputacionController extends Controller
 {
     /**
@@ -114,7 +119,7 @@ class ComputacionController extends Controller
         //return redirect()->route('configuracion.gestionar.carreras',$computacion->persona->id);
     } 
 
-    public function computacionFaltones()
+    public function computacionsFaltones()
     {
         $faltonescom=Persona::join('computacions','personas.id','computacions.persona_id')
                 ->join('matriculacions','matriculacions.computacion_id','computacions.id')

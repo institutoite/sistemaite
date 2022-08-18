@@ -38,13 +38,14 @@ use App\Http\Controllers\AulaController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\NivelController;
 use App\Http\Controllers\FelicitadoController;
+use App\Http\Controllers\ComputacionController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\AdministrativoController;
 use App\Http\Controllers\EstudianteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[EstudianteController::class,'estudiantesFaltones'])->name('prueba');
+Route::get('prueba',[ComputacionController::class,'computacionsFaltones'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -175,11 +176,13 @@ Route::get('micartera/matriculaciones/desvigentes',[AdministrativoController::cl
 Route::get('opciones/administrativos/{persona}',[OpcionController::class,'administrativos'])->name('opcion.administrativos');
 
 
-/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       COMPUTACIONES         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%COMPUTACIONES         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('computaciones','ComputacionController@index')->name('computacion.index');
 Route::get('computacion/carreras/{persona}', 'ComputacionController@mostrar_carreras')->name('configuracion.gestionar.carreras');
 Route::get('opciones/computacion/{persona}',[OpcionController::class,'computacion'])->name('opcion.computacion');
 Route::post('computacion/carreras/configurar/{persona}', 'ComputacionController@GuardarNuevaCarrera')->name('computacion.carreras.guardar');
+Route::get('computacion/faltones',[ComputacionController::class,'computacionsFaltones'])->name('computacion.faltones');
+//Route::get('faltones/view',[EstudianteController::class,'faltonesView'])->name('estudiante.faltones.view');
 
 
 
