@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Computacion;
+use App\Models\Matriculacion;
 use App\Models\Persona;
 use App\Models\Carrera;
 use Illuminate\Http\Request;
@@ -125,11 +126,14 @@ class ComputacionController extends Controller
                 ->join('matriculacions','matriculacions.computacion_id','computacions.id')
                 ->join('programacioncoms','programacioncoms.matriculacion_id','matriculacions.id')
                 ->join('estados','estados.id','programacioncoms.estado_id')
+                ->join('userables','userables.userable_id','matriculacions.id')
+                ->join('users','users.id','userables.user_id')
+                ->where('userables.userable_type',Matriculacion::class)
                 ->where('estados.estado','FALTA')
-                ->select('nombre','apellidop','apellidom','telefono')
+                ->select('personas.id','programacioncoms.id as programacioncom_id','nombre','apellidop','apellidom','telefono','users.name','personas.foto')
                 ->get();
         return DataTables::of($faltonescom)
-        ->addColumn('btn','estudiantes.actionfaltones')
+        ->addColumn('btn','computacion.actionfaltones')
         ->rawColumns(['btn'])
         ->toJson(); 
     }

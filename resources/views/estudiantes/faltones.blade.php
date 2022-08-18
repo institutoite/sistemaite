@@ -83,6 +83,7 @@
         
         $(document).ready(function() {
             let tabla;
+            let tablamatriculaciones
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE INSCRIPCIONES VIGENTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             tabla=$('#inscripcionfaltones').DataTable(
                 {
@@ -115,17 +116,17 @@
                 }
             );
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE MATRICULACIONES VIGENTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/    
-            var tablamatriculaciones=$('#matriculacionfaltones').dataTable(
+            tablamatriculaciones=$('#matriculacionfaltones').dataTable(
                 {
                     "serverSide":true,
                     "responsive":true,
                     "autoWidth":false,
                     "ajax":{ 
                         "url":'../computacion/faltones',
+                       
                     },
                     "createdRow": function( row, data, dataIndex ) {
-                    $(row).attr('id',data['id']); 
-                        $('td', row).eq(1).html(data['asignatura']+"</br><div class='alert alert-" +$clase+" d-flex align-items-center'>"+ $icono+ "&nbsp;"+data['estado'] +"</div>");
+                        $(row).attr('id',data['id']); 
                     },
                     "columns": [
                         {data:'nombre'},
@@ -148,7 +149,9 @@
                 }
             );
 
-             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ENVIAR MENSAJES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA MODAL VER CONTACTOS DE ESTUDIANTE Y ALA VEZ 
+                                                CREA UNA OBSERVACION MENSIONANDO LA FALTA
+                                                                        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.enviarmensaje', function(e) {
                 e.preventDefault();
                 console.log("enviar mensajes");
@@ -165,7 +168,7 @@
                             },
                             success : function(json) {
                                 console.log(json);
-                                tabla.ajax.reload();
+                                //tabla.ajax.reload();
                                 $html="<tr id='"+ json.persona.telefono +"'><td>"+ json.persona.nombre +"</td>";
                                 $html+="<td>Teléfono personal</td>";
                                 $html+="<td>"+json.persona.telefono+"</td>";
@@ -191,6 +194,52 @@
                             },
                         });
                 });
+                       /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA MODAL VER CONTACTOS DE COMPUTACION Y ALA VEZ 
+                                                CREA UNA OBSERVACION MENSIONANDO LA FALTA
+                                                                        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.enviarmensajecom', function(e) {
+                e.preventDefault();
+                console.log("enviar mensajes");
+                persona_id =$(this).closest('tr').attr('id');
+                programacioncom_id =$(this).attr('id');
+                console.log("Programacion_id" + programacioncom_id); 
+                    $("#modal-mostrar-contactos").modal("show");
+                    $("#tabla-contactos").empty();
+                            $.ajax({
+                            url :"../persona/enviar/mensaje/faltonescom",
+                            data:{
+                                persona_id:persona_id,
+                                programacioncom_id:programacioncom_id,
+                            },
+                            success : function(json) {
+                                console.log(json);
+                                tablamatriculaciones.api().ajax.reload();
+                                $html="<tr id='"+ json.persona.telefono +"'><td>"+ json.persona.nombre +"</td>";
+                                $html+="<td>Teléfono personal</td>";
+                                $html+="<td>"+json.persona.telefono+"</td>";
+                                $html+="<td>"+moment(json.persona.created_at).format('L') +"</td>";
+                                $html+="<td>"+moment(json.persona.updated_at).format('L') +"</td>";
+                                if (json.persona.telefono!=0)
+                                    $html+="<td><a target='_blank' href='https://api.whatsapp.com/send?phone=591"+ json.persona.telefono+"&text="+ json.mensaje +"' class='falta'><i class='fab fa-whatsapp'></i></a></td></tr>";
+                                else
+                                    $html+="<td><a class=''>No tiene número</a></td></tr>";
+                                for (let j in json.apoderados) {
+                                    el id a enviar tiene que ser el de programacioncom para enviar en el mensaje la fecha por ejemplo
+                                    $html+="<tr id='"+ json.apoderados[j].telefono +"'><td>"+ json.apoderados[j].nombre +"</td>";
+                                    $html+="<td>"+json.apoderados[j].pivot.parentesco+"</td>";
+                                    $html+="<td>"+json.apoderados[j].telefono+"</td>";
+                                    $html+="<td>"+moment(json.apoderados[j].created_at).format('LLL') +"</td>";
+                                    $html+="<td>X"+moment(json.apoderados[j].updated_at).format('LLL') +"</td>";
+                                    $html+="<td><a target='_blank' href='https://api.whatsapp.com/send?phone=591"+ json.apoderados[j].telefono +"&text="+ json.mensaje +"' class='falta'><i class='fab fa-whatsapp'></i></a></td></tr>";
+                                }
+                               
+                                $("#tabla-contactos").append($html);
+                            },
+                            error : function(xhr, status) {
+                                alert('Disculpe, existió un problema');
+                            },
+                        });
+                });
             // $('#modal-mostrar-contactos').on('hidden.bs.modal', function () {
             //     console.log("se cerro");
             //     tabla.ajax.reload();
@@ -203,6 +252,26 @@
                 
                 $.ajax({
                     url :"../persona/faltainformar",
+                    data:{
+                        persona_id:persona_id,
+                        _token: '{{csrf_token()}}'
+                    },
+                    type: "POST",
+                    success : function(json) {
+                        
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+            });
+            $('table').on('click', '.faltainformadacom', function(e) {
+                e.preventDefault();    
+                persona_id =$(this).closest('tr').attr('id');
+                console.log("Falta informada "+persona_id);
+                
+                $.ajax({
+                    url :"../persona/faltainformarcom",
                     data:{
                         persona_id:persona_id,
                         _token: '{{csrf_token()}}'

@@ -820,7 +820,24 @@ class PersonaController extends Controller
         $data=['persona'=>$persona,'apoderados'=>$apoderados,'mensaje'=>$mensaje];
         return response()->json($data);
     }
-
+    public function enviarMensajeFaltonesComputacion(Request $request){
+        $observacion = new Observacion();
+        $observacion->observacion=Auth::user()->name .": Informo sobre la falta de esta clase en fecha y  hora: ". Carbon::now()->format('Y-m-d H:i');
+        $observacion->activo=1;
+        $observacion->observable_id=$request->programacioncom_id;
+        $observacion->observable_type=Programacioncom::class;
+        $observacion->save();
+        $observacion->usuarios()->attach(Auth::user()->id);
+        $programacioncom=Programacioncom::findOrFail($request->programacioncom_id);
+        $programacioncom->estado_id=estado("FALTANOTIFICADA");
+        $programacioncom->save();
+        
+        $mensaje=strip_tags(Mensaje::findOrFail(3)->mensaje);
+        $persona=Persona::findOrFail($request->persona_id);
+        $apoderados= $persona->apoderados;
+        $data=['persona'=>$persona,'apoderados'=>$apoderados,'mensaje'=>$mensaje];
+        return response()->json($data);
+    }
 
     public function CrearContacto($persona_id){
         $persona=Persona::find($persona_id);
