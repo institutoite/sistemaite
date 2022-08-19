@@ -814,11 +814,28 @@ class PersonaController extends Controller
         $programacion->save();
 
         $observacion->usuarios()->attach(Auth::user()->id);
-        $mensaje=strip_tags(Mensaje::findOrFail(2)->mensaje);
+        $mensaje=strip_tags(Mensaje::findOrFail(2)->mensaje)."%0A*Detalle de la clase:*%0A".$this->FormatearProgramacion($programacion);
         $persona=Persona::findOrFail($request->persona_id);
         $apoderados= $persona->apoderados;
-        $data=['persona'=>$persona,'apoderados'=>$apoderados,'mensaje'=>$mensaje];
+        $data=['persona'=>$persona,'apoderados'=>$apoderados,'mensaje'=>$mensaje,'programacion'=>$programacion];
         return response()->json($data);
+    }
+
+    public function FormatearProgramacion($programacion){
+        $texto="*Fecha:* ".$programacion->fecha->format('d-m-Y')."%0A";
+        $texto.="*Horario:* ".$programacion->hora_ini->isoFormat('hh:mm:ss').' - '.$programacion->hora_fin->isoFormat('hh:mm:ss')."%0A";
+        $texto.="*Docente:* ".$programacion->docente->nombre."%0A";
+        $texto.="*Materia:* ".$programacion->materia->materia."%0A";
+        $texto.="*Estado de Clase:* ".$programacion->estado->estado."%0A";
+        return $texto;
+    }
+    public function FormatearProgramacioncom($programacioncom){
+        $texto="*Fecha:* ".$programacioncom->fecha->format('d-m-Y')."%0A";
+        $texto.="*Horario:* ".$programacioncom->horaini->isoFormat('hh:mm:ss').' - '.$programacioncom->horafin->isoFormat('hh:mm:ss')."%0A";
+        //$texto.="*Docente:* ".$programacioncom->docente->nombre."%0A";
+        //$texto.="*Asignatura:* ".$programacioncom->asingatura->asignatura."%0A";
+        $texto.="*Estado de Clase:* ".$programacioncom->estado->estado."%0A";
+        return $texto;
     }
     public function enviarMensajeFaltonesComputacion(Request $request){
         $observacion = new Observacion();
@@ -831,11 +848,12 @@ class PersonaController extends Controller
         $programacioncom=Programacioncom::findOrFail($request->programacioncom_id);
         $programacioncom->estado_id=estado("FALTANOTIFICADA");
         $programacioncom->save();
-        
-        $mensaje=strip_tags(Mensaje::findOrFail(3)->mensaje);
+        $mensaje=strip_tags(Mensaje::findOrFail(3)->mensaje)."%0A*Detalle de la clase:*%0A".$this->FormatearProgramacioncom($programacioncom);
         $persona=Persona::findOrFail($request->persona_id);
         $apoderados= $persona->apoderados;
-        $data=['persona'=>$persona,'apoderados'=>$apoderados,'mensaje'=>$mensaje];
+
+
+        $data=['persona'=>$persona,'apoderados'=>$apoderados,'mensaje'=>$mensaje,'programacioncom'=>$programacioncom];
         return response()->json($data);
     }
 

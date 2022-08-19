@@ -205,6 +205,7 @@ function eliminarObservacion(observacion_id,url){
                 },
                 success: function (result) {
                     tablaobservaciones.ajax.reload();
+                    console.log("se elimino correctamente");
                     $("#modal-mostrar").modal("hide");
                     const Toast = Swal.mixin({
                         toast: true,

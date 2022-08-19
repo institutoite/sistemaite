@@ -33,7 +33,8 @@
             </div>
         </div>
     </div>
-    @include('persona.modalespotenciales')
+    {{-- @include('persona.modalespotenciales') --}}
+    @include('observacion.modalcreate')
 @stop
 
 @section('js')
@@ -56,21 +57,155 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+    
+    
+    <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+    <script src="{{asset('assets/js/observacion.js')}}"></script>
 
+    
 
 
     <script>
+        let tabla;
+        //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR CREAR OBSERVACION  %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        CKEDITOR.replace('editorguardar', {
+            height: 120,
+            width: "100%",
+            removeButtons: 'PasteFromWord'
+        });
+        //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR EDITAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        CKEDITOR.replace('editoreditar', {
+            height: 120,
+            width: "100%",
+            removeButtons: 'PasteFromWord'
+        });
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       JS INSCRIPCION   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CREAR OBSERVACION INSCIRPCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.observacion', function (e) {
+            e.preventDefault();
+            let objeto_id = $(this).closest('tr').attr('id');
+            console.log(objeto_id);
+            $("#observable_id").val(objeto_id);
+            $("#observable_type").val($(this).attr('id'));
+            console.log("click en observacion crear");
+            CKEDITOR.instances.editorguardar.setData("");
+            $("diverror").addClass("d-none");
+            $("#modal-agregar-observacion").modal("show");
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CLICK BOTON GUARDAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('#guardar-observacion').on('click', function (e) {
+            e.preventDefault();
+            console.log("click en guardar obsrvacion");
+            let observable_id = $("#observable_id").val();
+            console.log(observable_id);
+            let observable_type = $("#observable_type").val();
+            console.log(observable_type);
+            for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
+            observacion=$("#editorguardar").val();
+            console.log(observacion);
+            url ="../guardar/observacion"
+            guardarObservacion(observacion,observable_id,observable_type,url);
+            
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.mostrarobservacionespersona', function(e) {
+            e.preventDefault();
+                observable_id =$(this).closest('tr').attr('id');
+                console.log(observable_id);
+                observable_type ="Persona";
+                url="../observaciones/" + observable_id + "/" + observable_type,
+                console.log(url);
+                mostrarCrudObservaciones(url);
+                $("#modal-mostrar-observaciones").modal("show");
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DAR BAJA OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+        $('table').on('click', '.bajaobservacion', function (e) {
+            e.preventDefault();
+            let observacion_id = $(this).closest('tr').attr('id');
+            console.log(observacion_id);
+            url="../darbaja/observacion";
+            darBaja(observacion_id,url);
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DAR ALTA OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.altaobservacion', function (e) {
+            e.preventDefault();
+            let observacion_id = $(this).closest('tr').attr('id');
+            url="../daralta/observacion";
+            darAlta(observacion_id,url);
+        });
+
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.eliminarobservacion', function (e) {
+            e.preventDefault();
+            let observacion_id = $(this).closest('tr').attr('id');
+            url="../eliminar/general"
+            eliminarObservacion(observacion_id,url);
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EDITAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.editarobservacion', function (e) {
+            e.preventDefault();
+            observacion_id =$(this).closest('tr').attr('id');
+            url="../observacion/editar";
+            editarObservacion(observacion_id,url);
+            $("#modal-mostrar-observaciones").modal("hide");
+            $("#modal-editar-observacion").modal("show");
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('#actualizar-observacion').on('click', function (e){ 
+            e.preventDefault();
+            observacion_id =$("#observable_id").val();
+            observacion=CKEDITOR.instances.editoreditar.getData();
+            console.log(observacion);
+            url="../observacion/actualizar";
+            actualizarObservacion(observacion_id,observacion,url)
+            // $("#modal-editar-observacion").modal("hide");
+            // $("#modal-editar-observacion").modal("show");
+        });
+          /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       JS GENERAL       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        
+        /*%%%%%%%%%%%%%%%%%%%%%  OCULTA DIVERROR DE MODAL CUANDO SE CIERRA MODAL GUARDAR %%%%%%*/
+        $('#modal-agregar-observacion').on('hidden.bs.modal', function (e) {
+            $("#diverror").addClass("d-none");
+        });
+        
+        /*%%%%%%%%%%%%%%%%%%%%%  OCULTA DIVERROR DE MODAL CUANDO SE CIERRA MODAL EDITAR %%%%%%*/
+        $('#modal-editar-observacion').on('hidden.bs.modal', function (e) {
+            $(".diverror").addClass("d-none");
+        });
+        
+        /*%%%%%%%%%%%%%%%%%%% JS GENERAL AGREGA UNA CLASE DE FORMA TEMPORAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        ( function ( $ ) {
+            'use strict';
+            $.fn.addTempClass = function ( className, expire, callback ) {
+                className || ( className = '' );
+                expire || ( expire = 2000 );
+                return this.each( function () {
+                    $( this ).addClass( className ).delay( expire ).queue( function () {
+                        $( this ).removeClass( className ).clearQueue();
+                        callback && callback();
+                    } );
+                } );
+            };
+        } ( jQuery ) );
+
         $(document).ready(function() {
-            var tabla=$('#potenciales').DataTable(
+            tabla=$('#potenciales').DataTable(
                     {
                         "serverSide": true,
                         "responsive":true,
                         "autoWidth":false,
                         "ajax": "{{ url('potenciales') }}",
-                        // "createdRow": function( row, data, dataIndex ) {
+                        "createdRow": function( row, data, dataIndex ) {
 
-                        //     $(row).attr('id',data['id']);
-                        // },
+                            $(row).attr('id',data['id']);
+                        },
                         "columns": [
                             {data: 'id'},
                             {data: 'nombre'},
@@ -91,15 +226,7 @@
                         },  
                     }
             );
-            $('table').on('click', '.observacion', function(e) {
-                e.preventDefault(); 
-                persona_id=$(this).parent().parent().find('td').first().html();
-                $("#observable_type").val("App\\Models\\Persona");
-                $("#observable_id").val(persona_id);
-                $("#observacion").val("");
-                $("#modal-gregar-observacion").modal("show");
-            });
-
+           
 
             $('table').on('click', '.unsuscribe', function(e) {
                 e.preventDefault(); 
@@ -199,29 +326,29 @@
 
            
 
-            $('#guardar-observacion').on('click', function(e) {
-                e.preventDefault();
-                $.ajax({
-                    url : "../observacion/guardar",
-                    data : $("#formulario-guardar-observacion").serialize(),
-                    success : function(json) {
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 3000,
-                            })
-                            Toast.fire({
-                            type: 'success',
-                            title: "Guardado corectamente: "+ json.observacion,
-                            })
-                    },
-                    error : function(xhr, status) {
-                        alert('Disculpe, existió un problema');
-                    },
-                });
-                $("#modal-gregar-observacion").modal("hide");
-            });
+            // $('#guardar-observacion').on('click', function(e) {
+            //     e.preventDefault();
+            //     $.ajax({
+            //         url : "../observacion/guardar",
+            //         data : $("#formulario-guardar-observacion").serialize(),
+            //         success : function(json) {
+            //             const Toast = Swal.mixin({
+            //                 toast: true,
+            //                 position: 'top-end',
+            //                 showConfirmButton: false,
+            //                 timer: 3000,
+            //                 })
+            //                 Toast.fire({
+            //                 type: 'success',
+            //                 title: "Guardado corectamente: "+ json.observacion,
+            //                 })
+            //         },
+            //         error : function(xhr, status) {
+            //             alert('Disculpe, existió un problema');
+            //         },
+            //     });
+            //     $("#modal-gregar-observacion").modal("hide");
+            // });
 
             $(document).on("submit","#formulario-editar-observacion",function(e){
                 e.preventDefault();//detenemos el envio
@@ -248,85 +375,85 @@
                     },
                 });
             });
-            $('table').on('click','.eliminarobservacion',function (e) {
-                e.preventDefault(); 
-                let id_programacioncom=$(this).closest('tr').attr('id');
-                console.log(id_programacioncom+"poraqui");
-                Swal.fire({
-                    title: 'Estas seguro(a) de eliminar este registro?',
-                    text: "Si eliminas el registro no lo podras recuperar jamás!",
-                    icon: 'question',
-                    showCancelButton: true,
-                    showConfirmButton:true,
-                    confirmButtonColor: '#25ff80',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Eliminar..!',
-                    position:'center',        
-                }).then((result) => {
-                    if (result.value) {
-                        $.ajax({
-                            url: '../eliminar/observacion/'+id_programacioncom,
-                            type: 'DELETE',
-                            data:{
-                                id:id_programacioncom,
-                                _token:'{{ csrf_token() }}'
-                            },
-                            success: function(result) {
-                                $("#modal-mostrar").modal("hide");
-                                const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 1500,
-                                timerProgressBar: true,
-                                didOpen: (toast) => {
-                                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                }
-                                })
-                                Toast.fire({
-                                icon: 'success',
-                                title: 'Se eliminó correctamente el registro'
-                                })  
-                            },
-                            error: function (xhr, ajaxOptions, thrownError) {
-                                switch (xhr.status) {
-                                    case 500:
-                                        Swal.fire({
-                                            title: 'No se completó esta operación por que este registro está relacionado con otros registros',
-                                            showClass: {
-                                                popup: 'animate__animated animate__fadeInDown'
-                                            },
-                                            hideClass: {
-                                                popup: 'animate__animated animate__fadeOutUp'
-                                            }
-                                        })
-                                        break;
+            // $('table').on('click','.eliminarobservacion',function (e) {
+            //     e.preventDefault(); 
+            //     let id_programacioncom=$(this).closest('tr').attr('id');
+            //     console.log(id_programacioncom+"poraqui");
+            //     Swal.fire({
+            //         title: 'Estas seguro(a) de eliminar este registro?',
+            //         text: "Si eliminas el registro no lo podras recuperar jamás!",
+            //         icon: 'question',
+            //         showCancelButton: true,
+            //         showConfirmButton:true,
+            //         confirmButtonColor: '#25ff80',
+            //         cancelButtonColor: '#d33',
+            //         confirmButtonText: 'Eliminar..!',
+            //         position:'center',        
+            //     }).then((result) => {
+            //         if (result.value) {
+            //             $.ajax({
+            //                 url: '../eliminar/observacion/'+id_programacioncom,
+            //                 type: 'DELETE',
+            //                 data:{
+            //                     id:id_programacioncom,
+            //                     _token:'{{ csrf_token() }}'
+            //                 },
+            //                 success: function(result) {
+            //                     $("#modal-mostrar").modal("hide");
+            //                     const Toast = Swal.mixin({
+            //                     toast: true,
+            //                     position: 'top-end',
+            //                     showConfirmButton: false,
+            //                     timer: 1500,
+            //                     timerProgressBar: true,
+            //                     didOpen: (toast) => {
+            //                         toast.addEventListener('mouseenter', Swal.stopTimer)
+            //                         toast.addEventListener('mouseleave', Swal.resumeTimer)
+            //                     }
+            //                     })
+            //                     Toast.fire({
+            //                     icon: 'success',
+            //                     title: 'Se eliminó correctamente el registro'
+            //                     })  
+            //                 },
+            //                 error: function (xhr, ajaxOptions, thrownError) {
+            //                     switch (xhr.status) {
+            //                         case 500:
+            //                             Swal.fire({
+            //                                 title: 'No se completó esta operación por que este registro está relacionado con otros registros',
+            //                                 showClass: {
+            //                                     popup: 'animate__animated animate__fadeInDown'
+            //                                 },
+            //                                 hideClass: {
+            //                                     popup: 'animate__animated animate__fadeOutUp'
+            //                                 }
+            //                             })
+            //                             break;
                                 
-                                    default:
-                                        break;
-                                }
-                            }
-                        });
-                    }else{
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 4000,
-                            timerProgressBar: true,
-                            onOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
-                        Toast.fire({
-                            icon: 'error',
-                            title: 'No se eliminó el registro'
-                        })
-                    }
-                })
-            });
+            //                         default:
+            //                             break;
+            //                     }
+            //                 }
+            //             });
+            //         }else{
+            //             const Toast = Swal.mixin({
+            //                 toast: true,
+            //                 position: 'top-end',
+            //                 showConfirmButton: false,
+            //                 timer: 4000,
+            //                 timerProgressBar: true,
+            //                 onOpen: (toast) => {
+            //                     toast.addEventListener('mouseenter', Swal.stopTimer)
+            //                     toast.addEventListener('mouseleave', Swal.resumeTimer)
+            //                 }
+            //             })
+            //             Toast.fire({
+            //                 icon: 'error',
+            //                 title: 'No se eliminó el registro'
+            //             })
+            //         }
+            //     })
+            // });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA FORMULARIO EDITAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.editarobservacion', function(e) {
                 e.preventDefault(); 

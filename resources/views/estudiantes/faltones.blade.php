@@ -214,23 +214,22 @@
                             success : function(json) {
                                 console.log(json);
                                 tablamatriculaciones.api().ajax.reload();
-                                $html="<tr id='"+ json.persona.telefono +"'><td>"+ json.persona.nombre +"</td>";
+                                $html="<tr id='"+ json.programacioncom.id +"'><td>"+ json.persona.nombre +"</td>";
                                 $html+="<td>Teléfono personal</td>";
                                 $html+="<td>"+json.persona.telefono+"</td>";
                                 $html+="<td>"+moment(json.persona.created_at).format('L') +"</td>";
                                 $html+="<td>"+moment(json.persona.updated_at).format('L') +"</td>";
                                 if (json.persona.telefono!=0)
-                                    $html+="<td><a target='_blank' href='https://api.whatsapp.com/send?phone=591"+ json.persona.telefono+"&text="+ json.mensaje +"' class='falta'><i class='fab fa-whatsapp'></i></a></td></tr>";
+                                    $html+="<td><a target='_blank' href='https://api.whatsapp.com/send?phone=591"+ json.persona.telefono+"&text="+ json.mensaje +"' class='informarxMensaje'><i class='fab fa-whatsapp'></i></a></td></tr>";
                                 else
                                     $html+="<td><a class=''>No tiene número</a></td></tr>";
                                 for (let j in json.apoderados) {
-                                    el id a enviar tiene que ser el de programacioncom para enviar en el mensaje la fecha por ejemplo
-                                    $html+="<tr id='"+ json.apoderados[j].telefono +"'><td>"+ json.apoderados[j].nombre +"</td>";
+                                    $html+="<tr id='"+ json.programacion.id +"'><td>"+ json.apoderados[j].nombre +"</td>";
                                     $html+="<td>"+json.apoderados[j].pivot.parentesco+"</td>";
                                     $html+="<td>"+json.apoderados[j].telefono+"</td>";
                                     $html+="<td>"+moment(json.apoderados[j].created_at).format('LLL') +"</td>";
                                     $html+="<td>X"+moment(json.apoderados[j].updated_at).format('LLL') +"</td>";
-                                    $html+="<td><a target='_blank' href='https://api.whatsapp.com/send?phone=591"+ json.apoderados[j].telefono +"&text="+ json.mensaje +"' class='falta'><i class='fab fa-whatsapp'></i></a></td></tr>";
+                                    $html+="<td><a target='_blank' href='https://api.whatsapp.com/send?phone=591"+ json.apoderados[j].telefono +"&text="+ json.mensaje +"' class='informarxMensaje'><i class='fab fa-whatsapp'></i></a></td></tr>";
                                 }
                                
                                 $("#tabla-contactos").append($html);
@@ -245,46 +244,46 @@
             //     tabla.ajax.reload();
             // });
             
-            $('table').on('click', '.faltainformada', function(e) {
-                e.preventDefault();    
-                persona_id =$(this).closest('tr').attr('id');
-                console.log("Falta informada "+persona_id);
+            // $('table').on('click', '.faltainformada', function(e) {
+            //     e.preventDefault();    
+            //     persona_id =$(this).closest('tr').attr('id');
+            //     console.log("Falta informada "+persona_id);
                 
-                $.ajax({
-                    url :"../persona/faltainformar",
-                    data:{
-                        persona_id:persona_id,
-                        _token: '{{csrf_token()}}'
-                    },
-                    type: "POST",
-                    success : function(json) {
-                        
-                    },
-                    error : function(xhr, status) {
-                        alert('Disculpe, existió un problema');
-                    },
-                });
-            });
-            $('table').on('click', '.faltainformadacom', function(e) {
-                e.preventDefault();    
-                persona_id =$(this).closest('tr').attr('id');
-                console.log("Falta informada "+persona_id);
+            //     $.ajax({
+            //         url :"../persona/faltainformar",
+            //         data:{
+            //             persona_id:persona_id,
+            //             _token: '{{csrf_token()}}'
+            //         },
+            //         type: "POST",
+            //         success : function(json) {
+            //             console.log("Falta informada" + json);
+            //         },
+            //         error : function(xhr, status) {
+            //             alert('Disculpe, existió un problema');
+            //         },
+            //     });
+            // });
+            // $('table').on('click', '.faltainformadacom', function(e) {
+            //     e.preventDefault();    
+            //     persona_id =$(this).closest('tr').attr('id');
+            //     console.log("Falta informada "+persona_id);
                 
-                $.ajax({
-                    url :"../persona/faltainformarcom",
-                    data:{
-                        persona_id:persona_id,
-                        _token: '{{csrf_token()}}'
-                    },
-                    type: "POST",
-                    success : function(json) {
-                        
-                    },
-                    error : function(xhr, status) {
-                        alert('Disculpe, existió un problema');
-                    },
-                });
-            });
+            //     $.ajax({
+            //         url :"../persona/faltainformarcom",
+            //         data:{
+            //             persona_id:persona_id,
+            //             _token: '{{csrf_token()}}'
+            //         },
+            //         type: "POST",
+            //         success : function(json) {
+            //             console.log("Falta informada COM" + json);
+            //         },
+            //         error : function(xhr, status) {
+            //             alert('Disculpe, existió un problema');
+            //         },
+            //     });
+            // });
                 
             $('table').on('click','.zoomify',function (e){
                 Swal.fire({

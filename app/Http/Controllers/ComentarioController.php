@@ -122,7 +122,6 @@ class ComentarioController extends Controller
 
     public function darbaja(Request $request)
     {
-       // return response()->json(['id'=>$request->all()]);
         $comentario=Comentario::findOrFail($request->comentario_id);
         $comentario->vigente=0;
         $comentario->save();
