@@ -258,6 +258,8 @@ class PersonaController extends Controller
         $apoderado->papelinicial = 'apoderado';
         $apoderado->save();
 
+        $this->CrearContacto($apoderado->id);
+
         $user = new User();
         $user->email =strtolower(Str::substr($apoderado->nombre, 1, 2).$apoderado->apellidop.$apoderado->id)."@ite.com.bo" ;
         $user->name = ucfirst(strtolower($apoderado->nombre).$apoderado->id);
@@ -287,6 +289,7 @@ class PersonaController extends Controller
         $persona->nombre = $request->nombre;
         $persona->apellidop = $request->apellidop;
         $persona->telefono=$request->telefono;
+        $persona->genero=$request->genero;
         $persona->habilitado = 0;
         $persona->votos = 1;
         $persona->papelinicial = 'estudiante';
@@ -636,12 +639,13 @@ class PersonaController extends Controller
         }
         return redirect()->route('personas.index');
     }
-    public function potenciales(Request $request){
+    public function potenciales(){
         $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
         ->join('interests','interests.id','interest_persona.interest_id')
+        
         ->where('habilitado',0)
         ->where('votos',1)
-        ->select('personas.id','personas.nombre','personas.apellidop','interests.interest')  
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest')  
         ->get();
 
         return DataTables::of($potenciales)
@@ -700,6 +704,23 @@ class PersonaController extends Controller
         $observacion=Persona::findOrFail($request->persona_id)->observaciones->last();
         $usuario=$observacion->usuarios->first();
         $data=['observacion'=>$observacion,'usuario'=>$usuario];
+        return response()->json($data);
+    }
+    public function primeraObservacion(Request $request){
+        $observacion=Persona::findOrFail($request->persona_id)->observaciones->first();
+        $usuario=$observacion->usuarios->first();
+        $data=['observacion'=>$observacion,'usuario'=>$usuario];
+        return response()->json($data);
+    }
+    public function ultimaPrimeraObservacion(Request $request){
+        $observacionFirst=Persona::findOrFail($request->persona_id)->observaciones->first();
+        $usuarioFirst=$observacionFirst->usuarios->first();
+        $observacionLast=Persona::findOrFail($request->persona_id)->observaciones->last();
+        $usuarioLast=$observacionLast->usuarios->first();
+        $data=['observacionFirst'=>$observacionFirst,
+                'usuarioFirst'=>$usuarioFirst,
+                'observacionLast'=>$observacionLast,
+                'usuarioLast'=>$usuarioLast];
         return response()->json($data);
     }
 
@@ -787,15 +808,23 @@ class PersonaController extends Controller
             ->where('programacioncoms.matriculacion_id', '=', $matriculacion->id)->get();
         return response()->json($programacioncoms);
     }
+
     public function enviarMensaje(Request $request){
         $persona=Persona::findOrFail($request->persona_id);
         $apoderados= $persona->apoderados;
-        $data=['persona'=>$persona,'apoderados'=>$apoderados];
+        $mensaje= saludo()."%0A".nombre($request->persona_id,1)."%0A".strip_tags(Mensaje::findOrFail(4)->mensaje);
+        $data=['persona'=>$persona,'apoderados'=>$apoderados,'mensaje'=>$mensaje];
+        return response()->json($data);
+    }
+    public function enviarMensajePersonal(Request $request){
+        $persona=Persona::findOrFail($request->persona_id);
+        $mensaje= saludo()."%0A".nombre($request->persona_id,1)."%0A".strip_tags(Mensaje::findOrFail(4)->mensaje);
+        $data=['persona'=>$persona,'mensaje'=>$mensaje];
         return response()->json($data);
     }
     
     public function enviarMensajeCumpleanero(Request $request){
-        $mensaje=strip_tags(Mensaje::findOrFail(1)->mensaje);
+        $mensaje=saludo()."%0A".nombre($request->persona_id,2)."%0A".strip_tags(Mensaje::findOrFail(1)->mensaje);
         $persona=Persona::findOrFail($request->persona_id);
         $apoderados= $persona->apoderados;
         $data=['persona'=>$persona,'apoderados'=>$apoderados,'mensaje'=>$mensaje];
@@ -803,7 +832,7 @@ class PersonaController extends Controller
     }
     public function enviarMensajeFaltones(Request $request){
         $observacion = new Observacion();
-        $observacion->observacion=Auth::user()->name .": Informo sobre la falta de esta clase en fecha y  hora: ". Carbon::now()->format('Y-m-d H:i');
+        $observacion->observacion=Auth::user()->name .": Informó sobre la falta de esta clase en fecha y  hora: ". Carbon::now()->format('Y-m-d H:i');
         $observacion->activo=1;
         $observacion->observable_id=$request->programacion_id;
         $observacion->observable_type=Programacion::class;
@@ -814,7 +843,7 @@ class PersonaController extends Controller
         $programacion->save();
 
         $observacion->usuarios()->attach(Auth::user()->id);
-        $mensaje=strip_tags(Mensaje::findOrFail(2)->mensaje)."%0A*Detalle de la clase:*%0A".$this->FormatearProgramacion($programacion);
+        $mensaje=saludo()."%0A".nombre($request->persona_id,2)."%0A".strip_tags(Mensaje::findOrFail(2)->mensaje)."%0A*Detalle de la clase:*%0A".$this->FormatearProgramacion($programacion);
         $persona=Persona::findOrFail($request->persona_id);
         $apoderados= $persona->apoderados;
         $data=['persona'=>$persona,'apoderados'=>$apoderados,'mensaje'=>$mensaje,'programacion'=>$programacion];
@@ -896,17 +925,13 @@ class PersonaController extends Controller
                 Storage::append($nombre_archivo, "TEL;VALUE=uri;PREF=1;TYPE=voice,home:".$apoderado->telefono);
                 Storage::append($nombre_archivo, "NOTE:Nombre:".$apoderado->nombre.' '.$apoderado->apellidop.' '.$apoderado->apellidom.'\nPARENTESCO:'.$apoderado->pivot->parentesco.'\nTelefono:'.$apoderado->telefono);
                 Storage::append($nombre_archivo, "URL:wa.me/591".$apoderado->telefono);
-
             }
-        
-        
         if (isset($persona->estudiante->inscripciones)){
             $inscripciones=$persona->estudiante->inscripciones;
             foreach ($inscripciones as $inscripcion) {
-                Storage::append($nombre_archivo, "NOTE:Modalidad:".$inscripcion->modalidad->modalidad.'\nObservacion:'.$inscripcion->objetivo.'\nVigente:'.$inscripcion->vigente.'\nMotivo:'.$inscripcion->motivo);
+                Storage::append($nombre_archivo, "NOTE:Modalidad:".$inscripcion->modalidad->modalidad.'\nObservacion:'.$inscripcion->objetivo.'\nVigente:'.$inscripcion->vigente.'\nMotivo:'.$inscripcion->motivo->motivo);
             }
         }    
-        
         if(isset($persona->computacion->matriculaciones)){
             $matriculaciones=$persona->computacion->matriculaciones;
             foreach ($matriculaciones as $matriculacion) {
@@ -941,8 +966,8 @@ class PersonaController extends Controller
         $observacioninicial=$persona->observaciones->first();
         $observacionfinal=$persona->observaciones->last();
         if (isset($observacioninicial->observacion)){
-            Storage::append($nombre_archivo, "NOTE:".$observacioninicial->observacion);
-            Storage::append($nombre_archivo, "NOTE:".$observacionfinal->observacion);
+            Storage::append($nombre_archivo, "NOTE:".($observacioninicial->observacion));
+            Storage::append($nombre_archivo, "NOTE:".($observacionfinal->observacion));
         }
         Storage::append($nombre_archivo, 'END:VCARD');
         $contacto=Storage::disk('public')->put($nombre_archivo,'Contents');

@@ -5,7 +5,7 @@
     <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
 @stop
 
-@section('title', 'Motivos Create')
+@section('title', 'Cumpleañeros')
 @section('plugins.Jquery', true)
 @section('plugins.Sweetalert2', true)
 @section('plugins.Datatables', true)
@@ -132,7 +132,7 @@
                                     $html+="<td>"+json.apoderados[j].pivot.parentesco+"</td>";
                                     $html+="<td>"+json.apoderados[j].telefono+"</td>";
                                     $html+="<td>"+moment(json.apoderados[j].created_at).format('LLL') +"</td>";
-                                    $html+="<td>X"+moment(json.apoderados[j].updated_at).format('LLL') +"</td>";
+                                    $html+="<td>"+moment(json.apoderados[j].updated_at).format('LLL') +"</td>";
                                     $html+="<td><a target='_blank' href='https://api.whatsapp.com/send?phone=591"+ json.apoderados[j].telefono +"&text="+ json.mensaje +"' class=''><i class='fab fa-whatsapp'></i></a></td></tr>";
                                 }
                                 $("#tabla-contactos").append($html);

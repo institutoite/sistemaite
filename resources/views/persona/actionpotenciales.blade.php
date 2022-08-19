@@ -29,3 +29,7 @@
     <i class="far fa-address-card"></i>
 </a>
 
+<a class="btn-accion-tabla tooltipsC mr-1 enviarmensaje text-success" title="Enviar mensaje a su whatsapp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+

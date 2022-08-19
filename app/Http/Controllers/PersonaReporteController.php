@@ -34,6 +34,7 @@ class PersonaReporteController extends Controller
         ->join('userables','userables.userable_id','personas.id')
         ->join('users','users.id','userables.user_id') 
         ->where('observacions.observable_type',Persona::class)
+        ->where('userables.userable_type',Persona::class)
         ->where('votos',1)
         ->where('habilitado',0)
         ->select('personas.id','nombre','apellidop','telefono','observacions.observacion','interest','personas.created_at','name')

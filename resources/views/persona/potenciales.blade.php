@@ -2,11 +2,11 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css"> --}}
 @stop
 
-@section('title', 'Personas')
+@section('title', 'Potenciales')
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
 
@@ -15,6 +15,7 @@
         <div class="card">
             <div class="card-header bg-primary">
                 {{-- Lista de Estudiantes <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('personas.create')}}">Crear Estudiante</a> --}}
+                CLIENTES POTENCIALES
             </div>
             
             <div class="card-body">
@@ -26,6 +27,7 @@
                             <th>NOMBRE</th>
                             <th>APELLIDOP</th>
                             <th>INTEREST</th>
+                            <th>Requerimiento</th>
                             <th>ACCIONES</th>
                         </tr>
                     </thead>
@@ -35,6 +37,7 @@
     </div>
     {{-- @include('persona.modalespotenciales') --}}
     @include('observacion.modalcreate')
+    @include('estudiantes.modal')
 @stop
 
 @section('js')
@@ -42,6 +45,7 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="{{asset('dist/js/moment.js')}}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
@@ -50,15 +54,14 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    {{-- <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
-    
-    
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script> --}}
+
     <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
     <script src="{{asset('assets/js/observacion.js')}}"></script>
 
@@ -203,14 +206,25 @@
                         "autoWidth":false,
                         "ajax": "{{ url('potenciales') }}",
                         "createdRow": function( row, data, dataIndex ) {
-
                             $(row).attr('id',data['id']);
+                            persona_id=data['id'];
+                            $.ajax({
+                                url:"{{url('persona/primeraultima/observacion')}}",
+                                data:{persona_id:persona_id},
+                                success : function(json) {
+                                    if(json.observacionFirst.id != json.observacionLast.id)
+                                    $('td', row).eq(4).html(json.observacionFirst.observacion +'<strong>'+ json.usuarioFirst.name +'</strong><br>'+json.observacionLast.observacion +'<strong>'+ json.usuarioLast.name +'</strong>');  
+                                    else
+                                    $('td', row).eq(4).html(json.observacionFirst.observacion +'<strong>'+ json.usuarioFirst.name +'</strong>');  
+                                },
+                            }); 
                         },
                         "columns": [
                             {data: 'id'},
                             {data: 'nombre'},
                             {data: 'apellidop'},
                             {data: 'interest'},
+                            {data: 'apellidom'},
                             {
                                 "name":"btn",
                                 "data": 'btn',
@@ -227,6 +241,65 @@
                     }
             );
            
+            $('table').on('click', '.enviarmensaje', function(e) {
+                e.preventDefault();
+                console.log("enviar mensajes");
+                persona_id =$(this).closest('tr').attr('id');
+                console.log(persona_id); 
+                $("#modal-mostrar-contactos").modal("show");
+                $("#tabla-contactos").empty();
+                    $.ajax({
+                    url :"../persona/enviar/mensaje",
+                    data:{
+                        persona_id:persona_id,
+                    },
+                    success : function(json) {
+                        tabla.ajax.reload();
+                        $html="<tr id='"+ json.persona.id +"'><td>"+ json.persona.nombre +"</td>";
+                        $html+="<td>Teléfono personal</td>";
+                        $html+="<td>"+json.persona.telefono+"</td>";
+                        $html+="<td>"+moment(json.persona.created_at).format('L') +"</td>";
+                        $html+="<td>"+moment(json.persona.updated_at).format('L') +"</td>";
+                        if (json.persona.telefono!=0)
+                            $html+="<td class='enviopersonal'><a><i class='fab fa-whatsapp'></i></a></td></tr>";
+                        else
+                            $html+="<td><a class=''>No tiene número</a></td></tr>";
+                        for (let j in json.apoderados) {
+                            $html+="<tr id='"+ json.apoderados[j].id +"'><td>"+ json.apoderados[j].nombre +"</td>";
+                            $html+="<td>"+json.apoderados[j].pivot.parentesco+"</td>";
+                            $html+="<td>"+json.apoderados[j].telefono+"</td>";
+                            $html+="<td>"+moment(json.apoderados[j].created_at).format('LLL') +"</td>";
+                            $html+="<td>"+moment(json.apoderados[j].updated_at).format('LLL') +"</td>";
+                            $html+="<td class='enviopersonal'><a><i class='fab fa-whatsapp'></i></a></td></tr>";
+                        }
+                        $("#tabla-contactos").append($html);
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+            });
+
+             $('table').on('click', '.enviopersonal',function(e) {
+                e.preventDefault();
+                persona_id =$(this).closest('tr').attr('id');
+                console.log("Click");
+
+                console.log(persona_id);
+                $.ajax({
+                    url : "../persona/enviar/mensaje/personal",
+                    data : {
+                        persona_id:persona_id,
+                    },
+                    success : function(json) {
+                        window.open("https://api.whatsapp.com/send?phone=591"+ json.persona.telefono +"&text="+ json.mensaje,'_blank');
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+                $("#modal-gregar-observacion").modal("hide");
+            });
 
             $('table').on('click', '.unsuscribe', function(e) {
                 e.preventDefault(); 
@@ -326,29 +399,7 @@
 
            
 
-            // $('#guardar-observacion').on('click', function(e) {
-            //     e.preventDefault();
-            //     $.ajax({
-            //         url : "../observacion/guardar",
-            //         data : $("#formulario-guardar-observacion").serialize(),
-            //         success : function(json) {
-            //             const Toast = Swal.mixin({
-            //                 toast: true,
-            //                 position: 'top-end',
-            //                 showConfirmButton: false,
-            //                 timer: 3000,
-            //                 })
-            //                 Toast.fire({
-            //                 type: 'success',
-            //                 title: "Guardado corectamente: "+ json.observacion,
-            //                 })
-            //         },
-            //         error : function(xhr, status) {
-            //             alert('Disculpe, existió un problema');
-            //         },
-            //     });
-            //     $("#modal-gregar-observacion").modal("hide");
-            // });
+         
 
             $(document).on("submit","#formulario-editar-observacion",function(e){
                 e.preventDefault();//detenemos el envio

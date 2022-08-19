@@ -36,7 +36,7 @@
                             <table id="interests" class="table table-striped table-hover table-borderless">
                                 <thead class="">
                                     <tr>
-                                        <th>ID</th>
+                                        <th>IDx</th>
 										<th>NOMBRE</th>
                                         <th>PERSONAL</th>
                                         <th>REQUERIMIENTO</th>
@@ -87,7 +87,7 @@
                 "createdRow": function( row, data, dataIndex ) {
                     $(row).attr('id',data['id']);
                     $('td', row).eq(2).html("<a target='_blank' href='https://wa.me/591"+ data['telefono'] +"'>"+ data['telefono']+"</a>"+"<a href='../telefono/vista/"+ data['id'] +"'> <i class='fa-solid fa-people-roof'></i> </a>");                    
-                    $('td', row).eq(5).html(moment(data['created_at']).format('MM/DD/YYYY HH:mm'));
+                    $('td', row).eq(5).html(moment(data['created_at']).format('D_M-Y'));
                 },
                 "ajax":{
                         'url':"../reporte/potenciales/interest",

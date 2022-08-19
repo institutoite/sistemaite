@@ -13,6 +13,7 @@
     <div class="container-fluid pt-4">
         <div class="row">
             <div class="col-sm-12">
+                
                 <div class="card">
                     <div class="card-header bg-secondary">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -30,6 +31,14 @@
                     
 
                     <div class="card-body">
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <h4 class="alert-heading"><i class="fas fa-exclamation-triangle text-danger"></i>No eliminar</h4>
+                            <strong>Solo!</strong> puedes editar los mensajes por que estan reservados para la automatizacion 
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <hr>
+                            1.- Cumpleañeros 2.-Faltones clases 3.- Faltones Computacion 4.-Saludo
+                        </div>
+
                         <div class="table-responsive">
                             <table id="mensajes" class="table table-striped table-hover table-borderless">
                                 <thead class="">

@@ -20,7 +20,7 @@ class DocenteSeeder extends Seeder
             'sueldo'=>2000.00,
             'fecha_ingreso'=>'2000-10-12',
             'nombre'=>'DAVID F',
-            'estado'=>'activo',
+            'estado_id'=>1,
             'dias_prueba'=>2,
             'persona_id'=>1,
             ]);
