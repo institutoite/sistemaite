@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Docente;
+use Carbon\Carbon;
 
 
 class DocenteSeeder extends Seeder
@@ -17,13 +18,24 @@ class DocenteSeeder extends Seeder
     {
       
         Docente::create([
-            'sueldo'=>2000.00,
-            'fecha_ingreso'=>'2000-10-12',
-            'nombre'=>'DAVID F',
-            'estado_id'=>1,
+            'nombrecorto'=>'DAVID F',
             'dias_prueba'=>2,
+            'fecha_inicio'=>Carbon::now()->format('Y-m-d'),
+            'sueldo'=>2000.00,
+            'mododocente_id' =>1,
+            'perfil'=>'Sin perfil',
+            'estado_id'=>11,
             'persona_id'=>1,
             ]);
+
+                // $docente->nombrecorto=$request->nombrecorto;
+                // $docente->fecha_ingreso=$request->fecha_ingreso;
+                // $docente->dias_prueba = $request->dias_prueba;
+                // $docente->sueldo = $request->sueldo;
+                // $docente->modo = $request->modo;
+                // $docente->perfil = $request->perfil;
+                // $docente->estado_id = $request->estado_id;
+                // $docente->persona_id = $persona->id;
         // Docente::create([
         //     'sueldo' => 2000.00,
         //     'fecha_ingreso' => '1998-10-12',

@@ -12,7 +12,7 @@ class Docente extends Model
 
 
     protected $fillable = [
-        'fecha_ingreso',
+        'fecha_inicio',
         'dias_prueba',
         'nombre',
         'sueldo',
@@ -20,7 +20,7 @@ class Docente extends Model
         'persona_id',
     ];
     protected $dates = [
-        'fecha_ingreso',
+        'fecha_inicio',
     ];
 
 

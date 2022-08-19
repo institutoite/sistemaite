@@ -9,13 +9,9 @@
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
 
-@section('content_header')
-    <h1 class="text-center text-primary">Docentes</h1>
-@stop
-
 @section('content')
     <div class="card-header bg-primary">
-                Lista de Estudiantes <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('personas.create')}}">Crear Estudiante</a>
+                Lista de Docentes <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('docente.create')}}">Crear Docente</a>
             </div>
 
     <table id="docentes" class="table table-bordered table-hover table-striped">
@@ -30,7 +26,6 @@
             </tr>
         </thead>
     </table>
-    @include('observacion.modalcreate')
 @stop
 
 @section('js')

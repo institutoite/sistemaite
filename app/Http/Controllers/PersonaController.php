@@ -182,15 +182,18 @@ class PersonaController extends Controller
                 break;         
             case 'docente':
                 $docente = new Docente();
-                $docente->nombre=$persona->nombre.' '.Str::substr($request->apellidop, 0, 1);
-                $docente->fecha_ingreso=Carbon::now()->isoFormat('YYYY-MM-DD');
-                $docente->dias_prueba = 2;
-                $docente->estado = 'activo';
+                $docente->nombrecorto=$request->nombre.$request->apellidop;
+                $docente->fecha_inicio=Carbon::now()->format('Y-m-d');
+                $docente->dias_prueba = 3;
+                $docente->sueldo =2000;
+                $docente->modo = 1;
+                $docente->perfil = "SIN PERFIL";
+                $docente->estado_id =11;
                 $docente->persona_id = $persona->id;
                 $docente->save();
+                
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  D O C E N T E   %%%%%%%%%%%%%%%%*/
                 $docente->usuarios()->attach(Auth::user()->id);
-                
                 $observacion = new Observacion();
                 $observacion->observacion = $request->observacion;
                 $observacion->activo = 1;

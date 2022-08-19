@@ -12,7 +12,7 @@
     <div class="pt-4">
         <div class="card">
             <div class="card-header bg-secondary">
-                FORMULARIO CREAR PERSONAS
+                FORMULARIO CREAR DOCENTE
             </div>
             <div class="card-body">
                 <div class="tab-content">
@@ -20,7 +20,7 @@
                         <form action="{{route('personas.store')}}" id="formulario" method="post" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
                             @csrf
                             @include('persona.form')
-
+                            @include('docente.form')
                             @include('include.botones')
                         </form>
                     </div>

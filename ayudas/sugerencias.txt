@@ -54,12 +54,6 @@ mensajes recordatorio de que tienen clases
 CUANDO CREAMOS UN ESTUDIANTE NUEVO LLEGA A AGREGAR TELEFONO Y NO APARECE NINGUN BOTON COMO PARA CONTINUAR
 algundos moment estan en ingles españolizar seria la tarea unicamente agregar la url del JSON <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
 
-
-
-
-
-
-
 hacer componente la muestra de mostrar bueno esta en show de ciudades
 daralta una inscripcion y una matriculacion
 condonar inscripcion

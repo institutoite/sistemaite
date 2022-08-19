@@ -3,6 +3,12 @@ namespace App\Http\Controllers;
 use App\Models\Docente;
 use App\Models\Nivel;
 use App\Models\Persona;
+use App\Models\Pais;
+use App\Models\Ciudad;
+use App\Models\Zona;
+use App\Models\Interest;
+use App\Models\Observacion;
+use App\Models\Mododocente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
@@ -27,7 +33,11 @@ class DocenteController extends Controller
      */
     public function create()
     {
-        //
+        $paises=Pais::get();
+        $ciudades=Ciudad::get();
+        $zonas=Zona::get();
+        $interests=Interest::all();
+        return view('docente.create',compact('paises', 'zonas', 'ciudades','interests'));
     }
 
     /**
@@ -38,7 +48,7 @@ class DocenteController extends Controller
      */
     public function store(Request $request)
     {
-        //se guarda como persona
+        
     }
 
     /**
@@ -60,7 +70,54 @@ class DocenteController extends Controller
      */
     public function edit($id)
     {
-        //se edita como persona
+        $persona=Persona::findOrFail($id);
+        $docente=$persona->docente;
+        $ciudades = Ciudad::get();
+        $paises = Pais::get();
+        $zonas = Zona::get();
+        $mododocentes = Mododocente::get();
+        $observacion = Observacion::where('observable_id', $persona->id)
+            ->where('observable_type', Persona::class)->get()->first();
+        if($observacion!=null){
+            $observacion=$observacion->observacion;
+        }
+        $interests_currents=$persona->interests; 
+        $ids=[];
+        foreach ($interests_currents as $interest) {
+            $ids[] = $interest->id;
+        }
+        $interests_faltantes = Interest::whereNotIn('id', $ids)->get();
+        //dd($interests_faltantes);
+        
+        switch ($persona->papelinicial) {
+
+            case 'estudiante':
+                $estudiante=$persona->estudiante;
+                break;
+            case 'docente':
+                $docente = $persona->docente;
+                break;
+            case 'cliservicio':
+                $cliservicio = $persona->cliservicio;
+                
+                break;
+            case 'clicopy':
+                $clicopy = $persona->clicopy;
+                break;
+
+            case 'administrativo':
+                $administrativo = $persona->administrativo;
+                break;
+            case 'proveedor':
+                $proveedor = $persona->proveedor;
+                break;
+            default:
+                # code...ite.com.bo
+                break;
+        }
+
+        
+        return view('docente.edit',compact('docente','persona','paises','ciudades','zonas','observacion','interests_currents','interests_faltantes'));
     }
 
     /**

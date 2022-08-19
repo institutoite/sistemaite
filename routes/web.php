@@ -74,6 +74,9 @@ Route::get('personas/opciones/{id}', function ($id) {
     return view('persona.opciones');
 })->name('personas.opciones');
 
+
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%PERSONA RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
 Route::put('persona/{persona}/subirfoto','PersonaController@guardarfoto')->name('guardarfoto');
 Route::put('persona/{persona}/subirfotojpg', 'PersonaController@guardarfotojpg')->name('guardarfotojpg');
 Route::get('personas/crear/rapidingo/',[PersonaController::class,'crearRapido'] )->name('crear.persona.rapido');
@@ -159,11 +162,13 @@ Route::delete('eliminar/comentario/{comentario}', [ComentarioController::class,'
 Route::get('darbaja/comentario',[ComentarioController::class,'darbaja'])->name('comentario.darbaja');
 Route::get('daralta/comentario/',[ComentarioController::class,'daralta'])->name('comentario.daralta');
 
-/**%%%%%%%%%%%%%%%%%%%%%%%%%%%       D O C E N T E S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%DOCENTES RUTAS        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+Route::get('docentes/create',[DocenteController::class,'create'])->name('docente.create');
 Route::get('docentes','DocenteController@index')->name('docentes.index');
 Route::get('docentes/niveles/{persona}', 'DocenteController@configurar_niveles')->name('docentes.gestionar.niveles');
 Route::post('docentes/niveles/configurar/{docente}', 'DocenteController@GuardarConfigurarNiveles')->name('docentes.niveles.configurar');
 Route::get('opciones/docentes/{persona}',[OpcionController::class,'docentes'])->name('opcion.docentes');
+Route::get('docente/edit/{docente}',[DocenteController::class,'edit'])->name('docente.edit');
 Route::get('misclases/{persona_id}',[DocenteController::class,'misclases'])->name('misestudiantes.actuales.view');
 Route::get('misclases/actuales',[DocenteController::class,'ClasesDeUnDocente'])->name('misestudiantes.actuales.ajax');
 Route::delete('eliminar/docente/{docente}', 'DocenteController@destroy')->name('eliminar.docente');

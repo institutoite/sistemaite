@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             MunicipioSeeder::class,
             AulaSeeder::class,
             EstadoSeeder::class,
+            MododocenteSeeder::class,
             DocenteSeeder::class,
             TipomotivoSeeder::class,
             MotivoSeeder::class,

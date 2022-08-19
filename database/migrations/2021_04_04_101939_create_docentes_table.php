@@ -15,16 +15,19 @@ class CreateDocentesTable extends Migration
     {
         Schema::create('docentes', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre',25);
-            $table->date('fecha_ingreso');
+            $table->string('nombrecorto',25);
+            $table->date('fecha_inicio');
             $table->tinyInteger('dias_prueba');
             $table->decimal('sueldo', 6, 2)->nullable();
-            $table->tinyInteger('presencial')->default(1);
+            $table->string('perfil', 500)->nullable();
             
+            $table->unsignedBigInteger('mododocente_id');
+            $table->foreign('mododocente_id')
+                ->references('id')->on('mododocentes');
+                
             $table->unsignedBigInteger('estado_id');
             $table->foreign('estado_id')
                 ->references('id')->on('estados');
-
             $table->unsignedBigInteger('persona_id');
             $table->foreign('persona_id')
                 ->references('id')->on('personas');

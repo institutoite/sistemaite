@@ -19,6 +19,7 @@
                         {{ @method_field('PUT') }}
                         @csrf
                         @include('persona.form')
+                        @include('docente.form')
                         @include('include.botones')
                 </form>
             </div>

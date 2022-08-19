@@ -1,18 +1,18 @@
 
 @isset($id)
     
-<a href="{{route('personas.edit', $id)}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Editar esta persona">
+<a href="{{route('docente.edit', $id)}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Editar como docente">
     <i class="fa fa-fw fa-edit text-primary"></i>
 </a>
 
-<a href="{{route('personas.show', $id)}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Ver esta persona">
+<a href="{{route('personas.show', $id)}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Ver esta docente">
     <i class="fa fa-fw fa-eye text-primary"></i>
 </a>
 
 <form action=""  class="d-inline formulario">
     @csrf
     @method("delete")
-    <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn eliminar" title="Eliminar esta persona">
+    <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn eliminar" title="Eliminar esta docente">
         <i class="fa fa-fw fa-trash text-danger"></i>   
     </button>
 </form> 
