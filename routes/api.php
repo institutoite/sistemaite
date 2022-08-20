@@ -49,16 +49,6 @@ Route::get('estudiantes',function(){
         ->toJson();
 });
 
-Route::get('docentes',function(){
-    $docentes=Persona::join('docentes','docentes.persona_id','=','personas.id')
-        ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','foto');
-    return datatables()->of($docentes)
-        ->addColumn('btn','docente.action')
-        ->rawColumns(['btn','foto'])
-        ->toJson();
-});
-
-
 Route::get('computaciones',function(){
     $computaciones=Persona::join('computacions','computacions.persona_id','=','personas.id')
         ->select('personas.id','nombre','apellidop','apellidom','foto');

@@ -90,7 +90,6 @@ class PersonaController extends Controller
     // public function store(PersonaStoreRequest $request)
     public function store(PersonaStoreRequest $request)
     {
-       
         $persona=new Persona();
         $persona->nombre = $request->nombre;
         $persona->apellidop = $request->apellidop;
@@ -100,17 +99,13 @@ class PersonaController extends Controller
         $persona->carnet = $request->carnet;
         $persona->expedido = $request->expedido;
         $persona->genero = $request->genero;
-        //$persona->observacion = $request->observacion;
-        /* Guardar una imagen en storage si llega una foto*/
         if ($request->hasFile('foto')){
             $foto=$request->file('foto');
             $nombreImagen='estudiantes/'.Str::random(20).'.jpg';
-            /** las convertimos en jpg y la redimensionamos */
             $imagen= Image::make($foto)->encode('jpg',75);
             $imagen->resize(300,300,function($constraint){
                 $constraint->upsize();
             });
-            /* las guarda en en la carpeta estudiantes  */
             $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
             $persona->foto = $nombreImagen;
         }
@@ -186,7 +181,7 @@ class PersonaController extends Controller
                 $docente->fecha_inicio=Carbon::now()->format('Y-m-d');
                 $docente->dias_prueba = 3;
                 $docente->sueldo =2000;
-                $docente->modo = 1;
+                $docente->mododocente_id = 1;
                 $docente->perfil = "SIN PERFIL";
                 $docente->estado_id =11;
                 $docente->persona_id = $persona->id;
@@ -459,42 +454,30 @@ class PersonaController extends Controller
         $persona->expedido = $request->expedido;
         $persona->genero = $request->genero;
         $persona->habilitado=1;
-        
         if ($request->hasFile('foto')) {
-            // verificando si exites la foto actual
             if (Storage::disk('public')->exists($persona->foto)) {
-                // aquí la borro
                 Storage::disk('public')->delete($persona->foto);
             }
             $foto = $request->file('foto');
             $nombreImagen = 'estudiantes/' . Str::random(20) . '.jpg';
-            /** las convertimos en jpg y la redimensionamos */
             $imagen = Image::make($foto)->encode('jpg', 75);
             $imagen->resize(300, 300, function ($constraint) {
                 $constraint->upsize();
             });
-            /* las guarda en en la carpeta estudiantes  */
             $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
-
             $persona->foto = $nombreImagen;
         }
         $persona->como = $request->como;
-
         $persona->papelinicial = $request->papel;
         $persona->telefono = $request->telefono;
         $persona->persona_id = $request->persona_id;
         $persona->pais_id = $request->pais_id;
         $persona->ciudad_id = $request->ciudad_id;
         $persona->zona_id = $request->zona_id;
-        //dd($persona);
         $persona->save();
-        
         $persona->interests()->sync(array_keys($request->interests));
-
-
         $observacion_actual = Observacion::where('observable_id',$persona->id)
                                 ->where('observable_type',Persona::class)->get()->first();
-        
         if($observacion_actual!=null)
         {
             $observacion_actual->observacion = $request->observacion;
@@ -816,6 +799,21 @@ class PersonaController extends Controller
         $persona=Persona::findOrFail($request->persona_id);
         $apoderados= $persona->apoderados;
         $mensaje= saludo()."%0A".nombre($request->persona_id,1)."%0A".strip_tags(Mensaje::findOrFail(4)->mensaje);
+        $data=['persona'=>$persona,'apoderados'=>$apoderados,'mensaje'=>$mensaje];
+        return response()->json($data);
+    }
+
+    public function Saludar(Request $request){
+        $persona=Persona::findOrFail($request->persona_id);
+        $apoderados= $persona->apoderados;
+        $mensaje= saludo()."%0A".nombre($request->persona_id,1)."%0A";
+        $data=['persona'=>$persona,'apoderados'=>$apoderados,'mensaje'=>$mensaje];
+        return response()->json($data);
+    }
+    public function enviarGenericoSaludoMensaje(Request $request){
+        $persona=Persona::findOrFail($request->persona_id);
+        $apoderados= $persona->apoderados;
+        $mensaje= saludo()."%0A".nombre($request->persona_id,$request->modo_nombre)."%0A".strip_tags(Mensaje::findOrFail($request->mensaje_id)->mensaje);;
         $data=['persona'=>$persona,'apoderados'=>$apoderados,'mensaje'=>$mensaje];
         return response()->json($data);
     }

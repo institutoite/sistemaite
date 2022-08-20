@@ -55,6 +55,7 @@ class DatabaseSeeder extends Seeder
             HomescheduleSeeder::class,
             RoleSeeder::class,
             InterestSeeder::class,
+            MensajeSeeder::class,
         ]);
     }  
 }

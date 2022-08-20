@@ -33,4 +33,8 @@ class Estado extends Model
     {
         return $this->hasMany(Matriculacion::class);
     }
+     public function docente()
+    {
+        return $this->hasOne(Docente::class);
+    } 
 }

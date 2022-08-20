@@ -9,11 +9,20 @@ use App\Models\Estado;
 use App\Models\Zona;
 use App\Models\Interest;
 use App\Models\Observacion;
+use App\Models\User;
 use App\Models\Mododocente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Carbon\Carbon;
+use App\Http\Controllers\PersonaController;
+
+use App\Http\Requests\DocenteUpdateRequest;
+use App\Http\Requests\PersonaStoreRequest;
 
 class DocenteController extends Controller
 {
@@ -53,9 +62,83 @@ class DocenteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PersonaStoreRequest $request)
     {
+
+        if(($request->nombrecorto=="")||($request->fecha_inicio=="")||
+            ($request->dias_prueba=="")||($request->sueldo=="")||
+            ($request->mododocente_id=="")||($request->estado_id=="")||($request->perfil==""))
+        {
+            return back()->withInput()->with(['mensaje'=>"Faltan llenar datos"]);
+        }
+
+        $persona=new Persona();
+        $persona->nombre = $request->nombre;
+        $persona->apellidop = $request->apellidop;
+        $persona->apellidom = $request->apellidom;
+        $persona->fechanacimiento = $request->fechanacimiento;
+        $persona->direccion = $request->direccion;
+        $persona->carnet = $request->carnet;
+        $persona->expedido = $request->expedido;
+        $persona->genero = $request->genero;
+        if ($request->hasFile('foto')){
+            $foto=$request->file('foto');
+            $nombreImagen='estudiantes/'.Str::random(20).'.jpg';
+            $imagen= Image::make($foto)->encode('jpg',75);
+            $imagen->resize(300,300,function($constraint){
+                $constraint->upsize();
+            });
+            $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
+            $persona->foto = $nombreImagen;
+        }
+        $persona->como = $request->como;
+        $persona->habilitado = 1;
+        $persona->papelinicial = $request->papel;
+        $persona->telefono=$request->telefono;
+        $persona->persona_id = $request->persona_id;
+        $persona->pais_id = $request->pais_id;
+        $persona->ciudad_id = $request->ciudad_id;
+        $persona->zona_id = $request->zona_id;
+        $persona->save();
+        $ObjetoPersona=new PersonaController();
+        $ObjetoPersona->CrearContacto($persona->id);
+        $persona->interests()->sync(array_keys($request->interests));
+
+        $user = new User();
+        $user->email =strtolower(Str::substr($persona->nombre, 1, 2).$persona->apellidop.$persona->id)."@ite.com.bo" ;
+        $user->name = ucfirst(strtolower($persona->nombre).$persona->id);
+        $user->persona_id = $persona->id;
+        // $user->password = Crypt::encryptString($user->name."*");
+        $user->password = Hash::make($user->name."*");
+        $user->foto = "estudiantes/sinperfil.png";
+        $user->save();
+        $user->assignRole('Estudiante');
+        //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A    P E R S O N A   %%%%%%%%%%%%%%%%*/
+        $persona->usuarios()->attach(Auth::user()->id);
+        $docente = new Docente();
+
         
+
+        $docente->nombrecorto=$request->nombrecorto;
+        $docente->fecha_inicio=$request->fecha_inicio;
+        $docente->dias_prueba = $request->dias_prueba;
+        $docente->sueldo = $request->sueldo;
+        $docente->mododocente_id = $request->mododocente_id;
+        $docente->perfil = $request->perfil;
+        $docente->estado_id = $request->estado_id;
+        $docente->persona_id = $persona->id;
+        $docente->save();
+        
+        $docente->usuarios()->attach(Auth::user()->id);
+        $observacion = new Observacion();
+        $observacion->observacion = $request->observacion;
+        $observacion->activo = 1;
+        $observacion->observable_id = $persona->id;
+        $observacion->observable_type = "App\Models\Persona";
+        $observacion->save();
+        //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  O B S E R V A C I O N   %%%%%%%%%%%%%%%%*/
+        $observacion->usuarios()->attach(Auth::user()->id);
+        return redirect()->route('home');
     }
 
     /**
@@ -66,7 +149,11 @@ class DocenteController extends Controller
      */
     public function show($id)
     {
-        //se muestra comoo persona
+        $docente = Docente::findOrFail($id);
+        $persona=$docente->persona;
+        // dd($persona);
+        $user=$persona->usuarios->first();
+        return view('docente.show',compact('user','docente','persona'));
     }
 
     /**
@@ -75,9 +162,10 @@ class DocenteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Docente $docente)
     {
-        $persona=Persona::findOrFail($id);
+        
+        $persona=$docente->persona;
         $docente=$persona->docente;
         $ciudades = Ciudad::get();
         $paises = Pais::get();
@@ -91,6 +179,7 @@ class DocenteController extends Controller
         }
         $interests_currents=$persona->interests; 
         $ids=[];
+        //dd($interests_currents);
         foreach ($interests_currents as $interest) {
             $ids[] = $interest->id;
         }
@@ -133,9 +222,17 @@ class DocenteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DocenteUpdateRequest $request,Docente $docente)
     {
-        dd($id);
+        $docente->nombrecorto=$request->nombrecorto;
+        $docente->fecha_inicio=$request->fecha_inicio;
+        $docente->dias_prueba = $request->dias_prueba;
+        $docente->sueldo =$request->sueldo;
+        $docente->mododocente_id = $request->mododocente_id;
+        $docente->perfil = $request->perfil;
+        $docente->estado_id =$request->estado_id;
+        $docente->save();
+        return redirect()->Route('docentes.show',$docente);
     }
 
     /**
@@ -167,10 +264,10 @@ class DocenteController extends Controller
         return redirect()->route('docentes.gestionar.niveles',$docente->persona->id);
     } 
 
-    public function misclases(Request $request){
-        $persona_id = $request->id;
-        return view('docente.estudiantesactuales',compact('persona_id'));
-    }
+    // public function misclases(Request $request){
+    //     $persona_id = $request->id;
+    //     return view('docente.estudiantesactuales',compact('persona_id'));
+    // }
 
     public function EstudiantesDeUnDocente($estudiante_id){
         $estudiantes=Docente::findOrFail($estudiante_id)
@@ -182,6 +279,16 @@ class DocenteController extends Controller
                 ->rawColumns(['btn', 'foto'])
                 ->toJson();
         
+    }
+    public function listarDocentes(){
+        $docentes=Persona::join('docentes','docentes.persona_id','=','personas.id')
+        ->join('mododocentes','mododocentes.id','docentes.mododocente_id')
+        ->select('docentes.id','personas.id as persona_id','personas.nombre','personas.apellidop','personas.apellidom','foto','docentes.perfil','mododocente','personas.telefono')->get();
+
+        return datatables()->of($docentes)
+            ->addColumn('btn','docente.action')
+            ->rawColumns(['btn','perfil'])
+            ->toJson();    
     }
 
     public function misEstudiatescomActuales(){

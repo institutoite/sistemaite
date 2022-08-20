@@ -10,11 +10,12 @@
             <div class="card-header bg-primary text-white">
                 EDITAR DOCENTE
             </div>
+            
             <div class="card-body">
-                <form action="{{route('docente.update',$persona)}}" id="formulario" method="POST" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
+                <form action="{{route('docentes.update',$docente)}}" id="formulario" method="POST" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
                         {{ method_field('PATCH') }}
                         @csrf
-                        @include('persona.form')
+                        {{-- @include('persona.form') --}}
                         @include('docente.form')
                         @include('include.botones')
                 </form>

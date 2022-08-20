@@ -10,22 +10,28 @@
 @section('plugins.Datatables',true)
 
 @section('content')
-    <div class="card-header bg-primary">
-                Lista de Docentes <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('docente.create')}}">Crear Docente</a>
-            </div>
-
-    <table id="docentes" class="table table-bordered table-hover table-striped">
-        <thead class="bg-primary text-center">
-            <tr>
-                <th>ID</th>
-                <th>NOMBRE</th>
-                <th>APELLIDOP</th>
-                <th>APELLIDOM</th>
-                <th>FOTO</th>
-                <th>ACCIONES</th>
-            </tr>
-        </thead>
-    </table>
+    <div class="card">
+        <div class="card-header bg-primary">
+            Lista de Docentes <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('docentes.create')}}">Crear Docente</a>
+        </div>
+        <div class="card-body">
+            <table id="docentes" class="table table-bordered table-hover table-striped">
+                <thead class="bg-primary text-center">
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>APELLIDOMP</th>
+                        <th>APELLIDOM</th>
+                        <th>MODO</th>
+                        <th>PERFIL</th>
+                        <th>FOTO</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    @include('estudiantes.modal')
 @stop
 
 @section('js')
@@ -60,12 +66,12 @@
         } ( jQuery ) );
         
         $(document).ready(function() {
-        var tabla=$('#docentes').DataTable(
+            var tabla=$('#docentes').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
                     "autoWidth":false,
-                    "ajax": "{{ url('api/docentes') }}",
+                    "ajax":"{{url('listar/docentes')}}",
                     "createdRow": function( row, data, dataIndex ) {
                         $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
                     },
@@ -74,6 +80,8 @@
                         {data: 'nombre'},
                         {data: 'apellidop'},
                         {data: 'apellidom'},
+                        {data: 'mododocente'},
+                        {data: 'perfil'},    
                         {
                             "name": "foto",
                             "data": "foto",
@@ -82,7 +90,7 @@
                             },
                             "title": "FOTO",
                             "orderable": false,
-                        },     
+                        }, 
                         {
                             "name":"btn",
                             "data": 'btn',
@@ -94,7 +102,7 @@
                     },  
                 }
             );
-    /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ZOOMIFY %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ZOOMIFY %%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click','.zoomify',function (e){
                 Swal.fire({
                     title: 'Codigo: '+ $(this).closest('tr').find('td').eq(0).text(),
@@ -110,84 +118,45 @@
                     
                 })
             });
-/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  P E R S O N A %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-            $('table').on('click','.eliminar',function (e) {
-                e.preventDefault(); 
-                id=$(this).parent().parent().parent().find('td').first().html();
-                console.log(id)
-                Swal.fire({
-                    title: 'Estas seguro(a) de eliminar este registro?',
-                    text: "Si eliminas el registro no lo podras recuperar jamás!",
-                    type: 'question',
-                    showCancelButton: true,
-                    showConfirmButton:true,
-                    confirmButtonColor: '#25ff80',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Eliminar..!',
-                    position:'center',        
-                }).then((result) => {
-                    if (result.value) {
-                        $.ajax({
-                            url: 'eliminar/docente/'+id,
-                            type: 'DELETE',
+            $('table').on('click', '.enviarmensaje', function(e) {
+                e.preventDefault();
+                console.log("enviar mensajes");
+                persona_id =$(this).attr('id');
+                    $("#modal-mostrar-contactos").modal("show");
+                    $("#tabla-contactos").empty();
+                            $.ajax({
+                            url :"persona/enviar/mensaje",
                             data:{
-                                id:id,
-                                _token:'{{ csrf_token() }}'
+                                persona_id:persona_id,
                             },
-                            success: function(result) {
-                                //console.log(result);
-                                tabla.ajax.reload();
-                                const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 1500,
-                                })
-                                Toast.fire({
-                                type: 'success',
-                                title: 'Se eliminó correctamente el registro'
-                                })   
-                            },
-                            error: function (xhr, ajaxOptions, thrownError) {
-                                switch (xhr.status) {
-                                    case 500:
-                                        Swal.fire({
-                                            title: 'No se completó esta operación por que este registro está relacionado con otros registros',
-                                            showClass: {
-                                                popup: 'animate__animated animate__fadeInDown'
-                                            },
-                                            hideClass: {
-                                                popup: 'animate__animated animate__fadeOutUp'
-                                            }
-                                        })
-                                        break;
-                                
-                                    default:
-                                        break;
+                            success : function(json) {
+                                console.log(json);
+                                //tabla.ajax.reload();
+                                $html="<tr id='"+ json.persona.telefono +"'><td>"+ json.persona.nombre +"</td>";
+                                $html+="<td>Teléfono personal</td>";
+                                $html+="<td>"+json.persona.telefono+"</td>";
+                                $html+="<td>"+moment(json.persona.created_at).format('L') +"</td>";
+                                $html+="<td>"+moment(json.persona.updated_at).format('L') +"</td>";
+                                if (json.persona.telefono!=0)
+                                    $html+="<td><a target='_blank' href='https://api.whatsapp.com/send?phone=591"+ json.persona.telefono+"&text="+ json.mensaje +"' class='falta'><i class='fab fa-whatsapp'></i></a></td></tr>";
+                                else
+                                    $html+="<td><a class=''>No tiene número</a></td></tr>";
+                                for (let j in json.apoderados) {
+                                    $html+="<tr id='"+ json.apoderados[j].telefono +"'><td>"+ json.apoderados[j].nombre +"</td>";
+                                    $html+="<td>"+json.apoderados[j].pivot.parentesco+"</td>";
+                                    $html+="<td>"+json.apoderados[j].telefono+"</td>";
+                                    $html+="<td>"+moment(json.apoderados[j].created_at).format('LLL') +"</td>";
+                                    $html+="<td>X"+moment(json.apoderados[j].updated_at).format('LLL') +"</td>";
+                                    $html+="<td><a target='_blank' href='https://api.whatsapp.com/send?phone=591"+ json.apoderados[j].telefono +"&text="+ json.mensaje +"' class='falta'><i class='fab fa-whatsapp'></i></a></td></tr>";
                                 }
-                                
-                            }
+                                tabla.ajax.reload();
+                                $("#tabla-contactos").append($html);
+                            },
+                            error : function(xhr, status) {
+                                alert('Disculpe, existió un problema');
+                            },
                         });
-                    }else{
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 4000,
-                           //type
-                            onOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
-
-                        Toast.fire({
-                            type: 'error',
-                            title: 'No se eliminó el registro'
-                        })
-                    }
-                })
-            });
+                });
         } );
         
     </script>

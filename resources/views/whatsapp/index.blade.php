@@ -36,7 +36,9 @@
                             <strong>Solo!</strong> puedes editar los mensajes por que estan reservados para la automatizacion 
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             <hr>
-                            1.- Cumpleañeros 2.-Faltones clases 3.- Faltones Computacion 4.-Saludo
+                            1.- Cumpleañeros 2.-Faltones clases 3.- Faltones Computacion 4.-Saludo 
+                            <hr>
+                            %0A salto de linea %20 Espacio ~ Tachado  * Negrita _Cursiva
                         </div>
 
                         <div class="table-responsive">

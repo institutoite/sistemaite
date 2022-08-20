@@ -44,10 +44,10 @@ ocultar text inscripcion y matriculaicon de configurarion respectivamente
 en potenciales que se muestre las observaciones e insertar observacion que sea con el componente ambos en realidad agregar descargar contacto
 cuando se registra un telefono de apoderado no se crea el contacto
 reporte general en potenciales al parecer esta mal la consulta por que salen repetidos tres veces
+profesores para resolver practicos tienen que estar registrados para enviarles un practicos
  
 
 crear un contacto o un link rapidito
-profesores para resolver practicos tienen que estar registrados para enviarles un practicos
 mensajes de bienvenida y mensajes de ultimo dia de clases
 mensajes a los que no se faltan nunca
 mensajes recordatorio de que tienen clases
@@ -60,8 +60,10 @@ condonar inscripcion
 hacer ite business/familiar/persona/Colegios
 en todos los mostrar el foto del usuario es muy grande 
 Falta terminar el crud de requisitos y metas
+
 crear un buson de sugerencias
-graficos estadisticos 
+graficos estadisticos
+google calendar 
 
 crud para licencias en computacion y nivelacion
 arreglar css de reportes 

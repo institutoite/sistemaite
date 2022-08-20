@@ -78,6 +78,14 @@ class Docente extends Model
     {
         return $this->hasOne(Programacioncom::class);
     }
+    public function mododocente()
+    {
+        return $this->belongsTo(mododocente::class);
+    } 
+    public function estado()
+    {
+        return $this->belongsTo(estado::class);
+    } 
     
 
 }

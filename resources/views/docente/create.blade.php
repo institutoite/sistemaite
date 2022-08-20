@@ -17,9 +17,16 @@
             <div class="card-body">
                 <div class="tab-content">
                     <div class="active tab-pane" id="estudiante">
-                        <form action="{{route('personas.store')}}" id="formulario" method="post" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
+                        <form action="{{route('docentes.store')}}" id="formulario" method="post" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
                             @csrf
                             @include('persona.form')
+                            @if(session('mensaje'))
+                                <div class="alert alert-danger" role="alert">
+                                    <h4 class="alert-heading">Faltan Datos!</h4>
+                                    <p>{{session('mensaje')}}</p>
+                
+                                </div>
+                            @endif
                             @include('docente.form')
                             @include('include.botones')
                         </form>
@@ -50,22 +57,47 @@
             .catch( error => {
                 console.error(error);
             } );
+       
     </script>
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% FIN CKEDITOR --}}
 
 
 
     <script>
-        $(document).ready(function(){
+          $(document).ready(function(){
+             $('#personas').DataTable(
+                {
+                    "serverSide": true,
+                    "responsive":true,
+                    "autoWidth":false,
+                    "ajax": "{{ url('api/referencias') }}",
+                    "columns": [
+                        {data: 'id'},
+                        {data: 'nombre'},
+                        {data: 'apellidop'},
+                        {data: 'apellidom'},
+                        {
+                            "name": "foto",
+                            "data": "foto",
+                            "render": function (data, type, full, meta) {
+                                return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
+                            },
+                            "title": "Image",
+                            "orderable": true,
             
-       
-
+                        }, 
+                        {
+                            data: 'btn'
+                        },  
+                    ],
+                    "language":{
+                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    },  
+                });
             var url1 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg',
                 url2 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg';
- 
             $("#foto").fileinput(
                 {
-            
                 initialPreview: [url1, url2],
                 initialPreviewAsData: true,
                 initialPreviewConfig: [
@@ -84,23 +116,22 @@
             $('#formulario').trigger("reset");
             function cargarciudades(){
                 var country_id = $('#country').val();
-                console.log(country_id);
+                console.log(country_id+"click");
                 if(!country_id){
                 $('#city').html('<option value="6" required selected>Santa Cruz de la Sierra </option>');
                     return;
                 }
                 $.get('../api/pais/'+ country_id +'/ciudades',function (data) {
                     var html_select='<option value="6" required selected>Santa Cruz de la Sierra </option>';
+                    console.log(data);
                     for (var i = 0; i < data.length; i++) {
                         html_select+='<option value="'+ data[i].id +'">' +data[i].ciudad +'</option>';
-                    //console.log(html_select);
                     }
                     $('#city').html(html_select);
                 });
             }
             function cargarzonas(){
                 var city_id = $('#city').val();
-                
                 if(!city_id){
                 $('#zona').html('<option value="" required>Seleccione una Zona </option>');
                     return;
@@ -117,19 +148,17 @@
         cargarciudades();
         $('#country').on('change', cargarciudades); 
         $('#city').on('change', cargarzonas);
-
         $('table').on('click','#ok',selecciona);
         function selecciona() {
+            console.log("clickeaste");
             $("#persona_id").val($(this).closest('tr').children(0).html());
             $("#persona_id").addClass('bg-primary');
             $('#modal-ite').modal('toggle');
             $('#modal-ite .close').remove();
         }
-
         
-
-        });	
-        function  mostrarModal(){
+    });	
+    function  mostrarModal(){
             var ElementoSeleccionado=$('#como option:selected').val();
                 if(ElementoSeleccionado=="REFERENCIA"){
                     $("#modal-ite").modal("show");

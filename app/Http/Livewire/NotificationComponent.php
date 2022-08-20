@@ -2,15 +2,24 @@
 
 namespace App\Http\Livewire;
 
+
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationComponent extends Component
 {
     public $notifications, $count;
 
     public function mount(){
-        $this->notifications = auth()->user()->notifications;
-        $this->count = auth()->user()->unreadNotifications->count();
+        // if(Auth::check()){
+        //     //return redirect()->route('login');
+        //     $this->count = 1;
+        // }else{
+            
+        //     return redirect()->route('login');
+            $this->count = auth()->user()->unreadNotifications->count();
+            $this->notifications = auth()->user()->notifications;
+        // }
     }
 
     public function render()

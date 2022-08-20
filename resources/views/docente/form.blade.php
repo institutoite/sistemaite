@@ -24,7 +24,11 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" > 
             <div class="form-floating mb-3 text-gray">
-                <input  type="text" name="nombrecorto" class="form-control @error('nombrecorto') is-invalid @enderror" value="{{old('nombrecorto',$docente->nombrecorto ?? '')}}">
+                @isset($docente)
+                    <input  type="text" name="nombrecorto" class="form-control @error('nombrecorto') is-invalid @enderror" value="{{old('nombrecorto',$docente->nombrecorto ?? '')}}">
+                @else
+                    <input  type="text" name="nombrecorto" class="form-control @error('nombrecorto') is-invalid @enderror" value="{{old('nombrecorto')}}">
+                @endisset
                 <label for="nombrecorto">nombre corto</label>
             </div>
         </div>
@@ -32,7 +36,11 @@
         <!-- %%%%%%%%%%%%%%% CAMPO APELLIDO PATERNO -->
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
-                <input  type="date" name="fecha_inicio" class="form-control @error('fecha_inicio') is-invalid @enderror" value="{{old('fecha_inicio',$docente->fecha_inicio->format('Y-m-d') ?? '')}}">
+                @isset($docente)
+                    <input  type="date" name="fecha_inicio" class="form-control @error('fecha_inicio') is-invalid @enderror" value="{{old('fecha_inicio',$docente->fecha_inicio->format('Y-m-d') ?? '')}}">
+                @else
+                    <input  type="date" name="fecha_inicio" class="form-control @error('fecha_inicio') is-invalid @enderror" value="{{old('fecha_inicio')}}">
+                @endisset
                 <label for="fecha_inicio">Fecha Ingreso</label>
             </div>    
         </div>

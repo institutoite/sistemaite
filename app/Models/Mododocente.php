@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Mododocente extends Model
 {
     use HasFactory;
+
+    public function docente()
+    {
+        return $this->hasOne(Docente::class);
+    } 
 }

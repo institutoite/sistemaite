@@ -45,7 +45,7 @@ use App\Http\Controllers\EstudianteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[PersonaController::class,'enviarMensajeFaltonesComputacion'])->name('prueba');
+Route::get('prueba',[DocenteController::class,'listarDocentes'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -169,10 +169,14 @@ Route::get('docentes/niveles/{persona}', 'DocenteController@configurar_niveles')
 Route::post('docentes/niveles/configurar/{docente}', 'DocenteController@GuardarConfigurarNiveles')->name('docentes.niveles.configurar');
 Route::get('opciones/docentes/{persona}',[OpcionController::class,'docentes'])->name('opcion.docentes');
 Route::get('docente/edit/{docente}',[DocenteController::class,'edit'])->name('docente.edit');
-Route::get('misclases/{persona_id}',[DocenteController::class,'misclases'])->name('misestudiantes.actuales.view');
+//Route::get('misclases/{persona_id}',[DocenteController::class,'misclases'])->name('misestudiantes.actuales.view');
 Route::get('misclases/actuales',[DocenteController::class,'ClasesDeUnDocente'])->name('misestudiantes.actuales.ajax');
+Route::get('listar/docentes',[DocenteController::class,'listarDocentes'])->name('listar.docentes');
 Route::delete('eliminar/docente/{docente}', 'DocenteController@destroy')->name('eliminar.docente');
-Route::put('docente/actualizar/{docente}', [DocenteController::class,'update'])->name('docente.update');
+Route::patch('docente/actualizar/{docente}', [DocenteController::class,'update'])->name('docente.update');
+Route::resource('docentes', "DocenteController");
+// Route::post('docente/store', [DocenteController::class,'store'])->name('docente.store');
+
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       A D M I N I S T R AT I V O S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('administrativos','AdministrativoController@index')->name('administrativo.index');
