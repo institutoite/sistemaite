@@ -172,7 +172,7 @@ Route::get('docente/edit/{docente}',[DocenteController::class,'edit'])->name('do
 Route::get('misclases/{persona_id}',[DocenteController::class,'misclases'])->name('misestudiantes.actuales.view');
 Route::get('misclases/actuales',[DocenteController::class,'ClasesDeUnDocente'])->name('misestudiantes.actuales.ajax');
 Route::delete('eliminar/docente/{docente}', 'DocenteController@destroy')->name('eliminar.docente');
-
+Route::put('docente/actualizar/{docente}', [DocenteController::class,'update'])->name('docente.update');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       A D M I N I S T R AT I V O S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('administrativos','AdministrativoController@index')->name('administrativo.index');

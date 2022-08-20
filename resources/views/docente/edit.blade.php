@@ -4,19 +4,15 @@
 @stop
 
 @section('title', 'Persona Editar')
-
-@section('content_header')
-@stop
-
 @section('content')
     <div class="container pt-4">
         <div class="card">
             <div class="card-header bg-primary text-white">
-                EDITAR PERSONA
+                EDITAR DOCENTE
             </div>
             <div class="card-body">
-                <form action="{{route('personas.update',$persona)}}" id="formulario" method="POST" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
-                        {{ @method_field('PUT') }}
+                <form action="{{route('docente.update',$persona)}}" id="formulario" method="POST" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
+                        {{ method_field('PATCH') }}
                         @csrf
                         @include('persona.form')
                         @include('docente.form')
@@ -41,6 +37,11 @@
     <script>
         ClassicEditor
             .create( document.querySelector('#observacion'))
+            .catch( error => {
+                console.error(error);
+            } );
+        ClassicEditor
+            .create( document.querySelector('#perfil'))
             .catch( error => {
                 console.error(error);
             } );

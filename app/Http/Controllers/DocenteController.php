@@ -5,6 +5,7 @@ use App\Models\Nivel;
 use App\Models\Persona;
 use App\Models\Pais;
 use App\Models\Ciudad;
+use App\Models\Estado;
 use App\Models\Zona;
 use App\Models\Interest;
 use App\Models\Observacion;
@@ -37,7 +38,13 @@ class DocenteController extends Controller
         $ciudades=Ciudad::get();
         $zonas=Zona::get();
         $interests=Interest::all();
-        return view('docente.create',compact('paises', 'zonas', 'ciudades','interests'));
+        //$docente=$persona->docente;
+        $ciudades = Ciudad::get();
+        $estados = Estado::get();
+        $mododocentes = Mododocente::get();
+
+
+        return view('docente.create',compact('mododocentes','estados','paises', 'zonas', 'ciudades','interests'));
     }
 
     /**
@@ -75,6 +82,7 @@ class DocenteController extends Controller
         $ciudades = Ciudad::get();
         $paises = Pais::get();
         $zonas = Zona::get();
+        $estados = Estado::get();
         $mododocentes = Mododocente::get();
         $observacion = Observacion::where('observable_id', $persona->id)
             ->where('observable_type', Persona::class)->get()->first();
@@ -115,9 +123,7 @@ class DocenteController extends Controller
                 # code...ite.com.bo
                 break;
         }
-
-        
-        return view('docente.edit',compact('docente','persona','paises','ciudades','zonas','observacion','interests_currents','interests_faltantes'));
+        return view('docente.edit',compact('docente','persona','mododocentes','estados','paises','ciudades','zonas','observacion','interests_currents','interests_faltantes'));
     }
 
     /**
@@ -129,7 +135,7 @@ class DocenteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //se actaliza como persona
+        dd($id);
     }
 
     /**
