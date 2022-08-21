@@ -321,10 +321,11 @@ class PersonaController extends Controller
         $pais=Pais::findOrFail($persona->pais_id);
         $ciudad = Ciudad::findOrFail($persona->ciudad_id);
         $zona = Zona::findOrFail($persona->zona_id);
-
+        
         $observacion = Observacion::where('observable_id', $persona->id)
-            ->where('observable_type', Persona::class)->get();
-
+        ->where('observable_type', Persona::class)->get();
+        //dd($persona);
+        
         if(count($observacion)>0){
             $observacion=$observacion->first();
         }   
@@ -344,7 +345,7 @@ class PersonaController extends Controller
             $micalificacion=$persona->calificaciones->where('user_id',Auth::user()->id)->first()->calificacion;
         else 
             $micalificacion=null;
-            $user=$persona->usuarios->first();
+        $user=$persona->usuarios->first();
         $observaciones=$persona->observaciones;
         return view('persona.mostrar',compact('persona','pais','ciudad','zona','observacion','recomendado','apoderados','calificado','promedio','calificaciones','micalificacion','user','observaciones'));
     }

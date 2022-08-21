@@ -15,7 +15,7 @@
                 <form action="{{route('docentes.update',$docente)}}" id="formulario" method="POST" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
                         {{ method_field('PATCH') }}
                         @csrf
-                        {{-- @include('persona.form') --}}
+                        @include('persona.form')
                         @include('docente.form')
                         @include('include.botones')
                 </form>

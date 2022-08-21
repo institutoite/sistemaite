@@ -151,9 +151,30 @@ class DocenteController extends Controller
     {
         $docente = Docente::findOrFail($id);
         $persona=$docente->persona;
-        // dd($persona);
+        
         $user=$persona->usuarios->first();
-        return view('docente.show',compact('user','docente','persona'));
+        $pais=Pais::findOrFail($persona->pais_id);
+        $ciudad = Ciudad::findOrFail($persona->ciudad_id);
+        $zona = Zona::findOrFail($persona->zona_id);
+        $observacion = Observacion::where('observable_id', $persona->id)
+        ->where('observable_type', Persona::class)->get()->first();
+        //dd($user);
+        $observaciones=$persona->observaciones;
+        $recomendado=Persona::find($persona->persona_id);
+        $apoderados=$persona->apoderados;
+
+        $calificaciones=Persona::join('calificacions','personas.id','calificacions.persona_id')
+            ->join('users','users.id','calificacions.user_id')
+            ->where('calificacions.persona_id',$persona->id)
+            ->select('calificacion','users.foto','calificacions.created_at')
+            ->get();
+        $calificado=$persona->calificaciones->where('user_id',Auth::user()->id)->count();
+        $promedio=round($persona->calificaciones->avg('calificacion'),1);
+        if($persona->calificaciones->where('user_id',Auth::user()->id)->first()!=null)
+            $micalificacion=$persona->calificaciones->where('user_id',Auth::user()->id)->first()->calificacion;
+        else 
+            $micalificacion=null;
+        return view('docente.show',compact('docente','persona','pais','ciudad','zona','observacion','recomendado','apoderados','calificado','promedio','calificaciones','micalificacion','user','observaciones'));
     }
 
     /**
@@ -177,14 +198,14 @@ class DocenteController extends Controller
         if($observacion!=null){
             $observacion=$observacion->observacion;
         }
+        //dd($observacion);
         $interests_currents=$persona->interests; 
         $ids=[];
-        //dd($interests_currents);
         foreach ($interests_currents as $interest) {
             $ids[] = $interest->id;
         }
         $interests_faltantes = Interest::whereNotIn('id', $ids)->get();
-        //dd($interests_faltantes);
+        //dd($interests_currents);
         
         switch ($persona->papelinicial) {
 
@@ -224,6 +245,44 @@ class DocenteController extends Controller
      */
     public function update(DocenteUpdateRequest $request,Docente $docente)
     {
+        /*DESDE */
+        if(($request->nombrecorto=="")||($request->fecha_inicio=="")||
+            ($request->dias_prueba=="")||($request->sueldo=="")||
+            ($request->mododocente_id=="")||($request->estado_id=="")||($request->perfil==""))
+        {
+            return back()->withInput()->with(['mensaje'=>"Faltan llenar datos"]);
+        }
+
+        $persona=$docente->persona;
+        $persona->nombre = $request->nombre;
+        $persona->apellidop = $request->apellidop;
+        $persona->apellidom = $request->apellidom;
+        $persona->fechanacimiento = $request->fechanacimiento;
+        $persona->direccion = $request->direccion;
+        $persona->carnet = $request->carnet;
+        $persona->expedido = $request->expedido;
+        $persona->genero = $request->genero;
+        if ($request->hasFile('foto')){
+            $foto=$request->file('foto');
+            $nombreImagen='estudiantes/'.Str::random(20).'.jpg';
+            $imagen= Image::make($foto)->encode('jpg',75);
+            $imagen->resize(300,300,function($constraint){
+                $constraint->upsize();
+            });
+            $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
+            $persona->foto = $nombreImagen;
+        }
+        $persona->como = $request->como;
+        $persona->habilitado = 1;
+        $persona->papelinicial = $request->papel;
+        $persona->telefono=$request->telefono;
+        $persona->persona_id = $request->persona_id;
+        $persona->pais_id = $request->pais_id;
+        $persona->ciudad_id = $request->ciudad_id;
+        $persona->zona_id = $request->zona_id;
+        $persona->save();
+        $persona->interests()->sync(array_keys($request->interests));
+        /*HASTA*/
         $docente->nombrecorto=$request->nombrecorto;
         $docente->fecha_inicio=$request->fecha_inicio;
         $docente->dias_prueba = $request->dias_prueba;
@@ -232,6 +291,18 @@ class DocenteController extends Controller
         $docente->perfil = $request->perfil;
         $docente->estado_id =$request->estado_id;
         $docente->save();
+        $docente->usuarios()->attach(Auth::user()->id);
+
+        $observacion = new Observacion();
+        $observacion->observacion = $request->observacion;
+        $observacion->activo = 1;
+        $observacion->observable_id = $persona->id;
+        $observacion->observable_type = "App\Models\Persona";
+        $observacion->save();
+        
+        //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  O B S E R V A C I O N   %%%%%%%%%%%%%%%%*/
+        $observacion->usuarios()->attach(Auth::user()->id);
+
         return redirect()->Route('docentes.show',$docente);
     }
 
