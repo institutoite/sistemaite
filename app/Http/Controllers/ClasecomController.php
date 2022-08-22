@@ -237,7 +237,7 @@ class ClasecomController extends Controller
                 ->where('userables.userable_type',Clasecom::class)
                 ->where('clasecoms.estado_id',estado('PRESENTE'))
                 ->where('clasecoms.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clasecoms.id','personas.id as codigo', 'personas.nombre as name','clasecoms.horainicio', 'clasecoms.horafin', 'docentes.nombre', 'asignaturas.asignatura', 'aulas.aula','personas.foto','users.name as user')->get();
+                ->select('clasecoms.id','personas.id as codigo', 'personas.nombre as name','clasecoms.horainicio', 'clasecoms.horafin', 'docentes.nombrecorto as nombre', 'asignaturas.asignatura', 'aulas.aula','personas.foto','users.name as user')->get();
             return datatables()->of($clasecoms)
                 ->addColumn('btn', 'clasecom.action_marcar')
                 ->rawColumns(['btn', 'foto'])

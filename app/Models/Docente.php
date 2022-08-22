@@ -80,11 +80,11 @@ class Docente extends Model
     }
     public function mododocente()
     {
-        return $this->belongsTo(mododocente::class);
+        return $this->belongsTo(Mododocente::class);
     } 
     public function estado()
     {
-        return $this->belongsTo(estado::class);
+        return $this->belongsTo(Estado::class);
     } 
     
 

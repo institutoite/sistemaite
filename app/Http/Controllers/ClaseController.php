@@ -301,7 +301,7 @@ class ClaseController extends Controller
                 ->where('userables.userable_type',Clase::class)
                 ->where('clases.estado_id',estado('PRESENTE'))
                 ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombre', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto','users.name as user')->get();
+                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombrecorto', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto','users.name as user')->get();
             return datatables()->of($clases)
                 ->addColumn('btn', 'clase.action_marcar')
                 ->rawColumns(['btn', 'foto'])

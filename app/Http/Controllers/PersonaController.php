@@ -283,7 +283,7 @@ class PersonaController extends Controller
      public function crearRapido()
     {
         $interests=Interest::get();
-        return view('persona.rapigingo.crearrapido',compact('interests'));
+        return view('persona.rapidingo.crearrapido',compact('interests'));
     }
     
     public function guardarRapidingo(PersonaRapidingoGuardarRequest $request){

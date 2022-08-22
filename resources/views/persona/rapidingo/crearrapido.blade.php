@@ -16,7 +16,7 @@
             <div class="card-body">
                 <form action="{{route('personas.guardar.rapidindo')}}" id="formulario" method="post" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
                     @csrf
-                    @include('persona.formrapido')
+                    @include('persona.rapidingo.formrapido')
                     @include('include.botones')
                 </form>
             </div>

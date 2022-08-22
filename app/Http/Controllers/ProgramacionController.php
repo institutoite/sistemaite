@@ -140,7 +140,7 @@ class ProgramacionController extends Controller
                     ->where('userables.userable_type',Clase::class)
                     
                     ->where('programacions.id',$request->id)
-                    ->select('clases.id','clases.fecha','clases.horainicio','estados.estado','users.name as user','clases.horafin','docentes.nombre','materias.materia', 'aulas.aula','temas.tema')
+                    ->select('clases.id','clases.fecha','clases.horainicio','estados.estado','users.name as user','clases.horafin','docentes.nombrecorto','materias.materia', 'aulas.aula','temas.tema')
                     ->get();
         // $user=User::findOrFail($programacion->inscripcione->userable->user_id);	
         $user=$programacion->inscripcione->usuarios->first();
@@ -156,7 +156,7 @@ class ProgramacionController extends Controller
                     ->join('estados','estados.id','=','programacions.estado_id')
                     ->where('inscripcione_id',$request->inscripcion)
                     ->where('fecha','=', Carbon::now()->isoFormat('Y-M-D'))
-                    ->select('programacions.id','fecha','hora_ini','hora_fin','estados.estado','docentes.nombre','materias.materia','aulas.aula');
+                    ->select('programacions.id','fecha','hora_ini','hora_fin','estados.estado','docentes.nombrecorto','materias.materia','aulas.aula');
         return DataTables::of($programacion)
                 ->addColumn('btn','programacion.actions')
                 ->rawColumns(['btn'])
@@ -248,7 +248,7 @@ class ProgramacionController extends Controller
                 'Estado : ' . $programacion->estado->estado . ' ' .
                 'activo : ' . $programacion->activo . ' ' .
                 'horas por clase: ' . $programacion->horas_por_clase . ' ' .
-                'Docente: ' . $programacion->docente->nombre . ' ' .
+                'Docente: ' . $programacion->docente->nombrecorto . ' ' .
                 'Materia: ' . $programacion->materia->materia . ' ' .
                 'Aula: ' . $programacion->aula->aula,
                 'activo'=> 1,
@@ -646,7 +646,8 @@ class ProgramacionController extends Controller
         $programa=Programacion::findOrFail($programacion_id);
         $inscripcion=Inscripcione::findOrFail($programa->inscripcione_id);
         $docentes=Docente::join('personas','personas.id','=','docentes.persona_id')
-                        ->where('docentes.estado','=','activo')
+                        ->join('estados','estados.id','=','docentes.estado_id')
+                        ->where('docentes.estado_id','=',estado('HABILITADO'))
                         ->select('docentes.id','personas.nombre','personas.apellidop')
                         ->get(); 
         $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
@@ -678,7 +679,7 @@ class ProgramacionController extends Controller
                     ->join('materias','materias.id','=','programacions.materia_id')
                     ->join('estados','estados.id','=','programacions.estado_id')
                     ->where('inscripcione_id',$request->inscripcion)
-                    ->select('programacions.id','fecha','estados.estado','materia','docentes.nombre as docente','programacions.hora_ini','programacions.hora_fin','aulas.aula','programacions.habilitado')->get();
+                    ->select('programacions.id','fecha','estados.estado','materia','docentes.nombrecorto as docente','programacions.hora_ini','programacions.hora_fin','aulas.aula','programacions.habilitado')->get();
         return DataTables::of($programacion)
                 ->addColumn('btn','programacion.actionsfuturo')
                 ->rawColumns(['btn'])
@@ -708,9 +709,9 @@ class ProgramacionController extends Controller
         return response()->json($estados);
     }
     public function asignarFaltasFechasPasadas(){
-        Programacion::where('fecha','<',Carbon::now()->format('Y-m-d'))
+        $programacion = Programacion::where('fecha','<',Carbon::now()->format('Y-m-d'))
                     ->where('estado_id',estado('INDEFINIDO'))->update(['estado_id'=>estado('FALTA')]);
-        return response()->json(['id'=>"Todo Bien"]);
+        return response()->json($programacion);
     }
 
     public function hoy(){
@@ -722,7 +723,7 @@ class ProgramacionController extends Controller
         ->join('estados','programacions.estado_id','estados.id')
 
         ->where('programacions.fecha',Carbon::now()->format('Y-m-d'))
-        ->select('personas.id','personas.nombre as estudiante','estados.estado','personas.apellidop','foto','docentes.nombre as docente','programacions.hora_ini','programacions.hora_fin','materias.materia')  
+        ->select('personas.id','personas.nombre as estudiante','estados.estado','personas.apellidop','foto','docentes.nombrecorto as docente','programacions.hora_ini','programacions.hora_fin','materias.materia')  
         ->get();
 
         return DataTables::of($programas)

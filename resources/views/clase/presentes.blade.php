@@ -90,7 +90,7 @@
                         {data: 'codigo'},
                         {data: 'name'},
                         {data: 'aula'},
-                        {data: 'nombre'},
+                        {data: 'nombrecorto'},
                         {data: 'horainicio'},
                         {data: 'horafin'},
                         {data: 'user'},
@@ -205,9 +205,9 @@
                             $html+="<select class='form-control @error('docente_id') is-invalid @enderror' name='docente_id' id='docente_id'>";
                             for (let j in json.docentes) {
                                 if(json.docentes[j].id==json.clase.docente_id){
-                                    $html+="<option  value='"+json.docentes[j].id +"' selected >"+json.docentes[j].nombre+"</option>";
+                                    $html+="<option  value='"+json.docentes[j].id +"' selected >"+json.docentes[j].nombrecorto+"</option>";
                                 }else{
-                                    $html+="<option  value='"+json.docentes[j].id +"'>"+json.docentes[j].nombre+"</option>";
+                                    $html+="<option  value='"+json.docentes[j].id +"'>"+json.docentes[j].nombrecorto+"</option>";
                                 }
                             }
                             $html+="</select>";                

@@ -264,7 +264,7 @@
                         {"data": "hora_ini"},
                         {"data": "hora_fin"},
 
-                        {"data": "nombre"},
+                        {"data": "nombrecorto"},
                         {"data": "materia"},
                         {"data": "aula"},
 
@@ -523,9 +523,9 @@
                             
                             for (let j in json.docentes) {
                                 if(json.docentes[j].id==json.programacion.docente_id){
-                                    $html+="<option  value='"+json.docentes[j].id +"' selected >"+json.docentes[j].nombre+"</option>";
+                                    $html+="<option  value='"+json.docentes[j].id +"' selected >"+json.docentes[j].nombrecorto+"</option>";
                                 }else{
-                                    $html+="<option  value='"+json.docentes[j].id +"'>"+json.docentes[j].nombre+"</option>";
+                                    $html+="<option  value='"+json.docentes[j].id +"'>"+json.docentes[j].nombrecorto+"</option>";
                                 }
                             }
                             $html+="</select>";                

@@ -115,7 +115,7 @@ class ProgramacioncomController extends Controller
                 'Estado : ' . $programacioncom->estado_id . ' ' .
                 'activo : ' . $programacioncom->activo . ' ' .
                 'horas por clase: ' . $programacioncom->horas_por_clase . ' ' .
-                'Docente: ' . $programacioncom->docente->nombre . ' ' .
+                'Docente: ' . $programacioncom->docente->nombrecorto . ' ' .
                 'Aula: ' . $programacioncom->aula->aula,
                 'activo'=> $programacioncom->activo,
                 'observable_id'=> $programacioncom->id,
@@ -373,6 +373,7 @@ class ProgramacioncomController extends Controller
         $programacioncom=Programacioncom::findOrFail($programacioncom_id);
         $matriculacion=Matriculacion::findOrFail($programacioncom->matriculacion->id);
         $docentes=Docente::join('personas','personas.id','=','docentes.persona_id')
+                        //join('estados','estados.id','=','docentes.estado_id')
                         ->where('docentes.estado','=','activo')
                         ->select('docentes.id','personas.nombre','personas.apellidop')
                         ->get(); 
@@ -389,7 +390,7 @@ class ProgramacioncomController extends Controller
                     ->join('estados','estados.id','=','programacioncoms.estado_id')
                     ->where('matriculacion_id',$request->matriculacion)
                     ->where('fecha','=', Carbon::now()->isoFormat('Y-M-D'))
-                    ->select('programacioncoms.id','fecha','horaini','horafin','estados.estado','docentes.nombre','aulas.aula');
+                    ->select('programacioncoms.id','fecha','horaini','horafin','estados.estado','docentes.nombrecorto','aulas.aula');
         
         return DataTables::of($programacion)
                 ->addColumn('btn','programacioncom.actions')
@@ -403,7 +404,7 @@ class ProgramacioncomController extends Controller
 
                     ->where('matriculacion_id',$request->matriculacion)
                     // ->where('fecha','>', Carbon::now()->isoFormat('Y-M-D'))
-                    ->select('programacioncoms.id','fecha','estados.estado','docentes.nombre as docente','horaini','horafin','aulas.aula','programacioncoms.habilitado');
+                    ->select('programacioncoms.id','fecha','estados.estado','docentes.nombrecorto as docente','horaini','horafin','aulas.aula','programacioncoms.habilitado');
         return DataTables::of($programacion)
                 ->addColumn('btn','programacioncom.actionsfuturo')
                 ->rawColumns(['btn'])
@@ -518,7 +519,7 @@ class ProgramacioncomController extends Controller
                     ->where('userables.userable_type',Clasecom::class)
 
                     ->where('programacioncoms.id',$request->id)
-                    ->select('clasecoms.id','clasecoms.fecha','clasecoms.horainicio','users.name as user','estados.estado','clasecoms.horafin','docentes.nombre', 'aulas.aula')
+                    ->select('clasecoms.id','clasecoms.fecha','clasecoms.horainicio','users.name as user','estados.estado','clasecoms.horafin','docentes.nombrecorto as nombre', 'aulas.aula')
                     ->get();
         $estado=$programacioncom->estado;
                    // return response()->json($clases);

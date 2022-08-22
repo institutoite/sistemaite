@@ -35,9 +35,9 @@
        
     </div>
     
-    <x-header variable="Una Variable" >
+    {{-- <x-header variable="Una Variable" >
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis sed ipsum, voluptates perspiciatis cupiditate est ex aliquid in repellendus tenetur aut libero hic natus, dolor inventore consectetur sequi labore asperiores!
-    </x-header>
+    </x-header> --}}
 @stop
 
 @section('js')
