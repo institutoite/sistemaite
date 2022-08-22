@@ -1,11 +1,14 @@
 
+<a href="{{route('personas.editar.rapidingo', $id)}}" class="tooltipsC mr-2" title="Editar este rapidingo">
+    <i class="fa fa-fw fa-edit text-primary"></i>
+</a>
 
 <a href="{{route('personas.edit', $id)}}" title="Dar de alta">
     <i class="fa-solid fa-upload text-green"></i>
 </a>
-<a href="" class="ver" id='{{$id}}' title="Ver potencial">
+{{-- <a href="" class="ver" id='{{$id}}' title="Ver potencial">
     <i class="far fa-eye"></i>
-</a>
+</a> --}}
 {{-- <a href="" class="observacion" id='{{$id}}' title="Agregar observacion">
     <i class="fa-solid fa-comment-medical text-secondary"></i>
 </a> --}}
@@ -31,5 +34,11 @@
 
 <a class="btn-accion-tabla tooltipsC mr-1 enviarmensaje text-success" title="Enviar mensaje a su whatsapp">
     <i class="fab fa-whatsapp"></i>
+</a>
+<a href="" class="btn-accion-tabla tooltipsC mr-1 fechar" title="Agendar cuando volvera regreso a clases">
+    <i class="fas fa-calendar-check"></i>
+</a>
+<a href="" class="btn-accion-tabla tooltipsC mr-1 calificar" title="Calificar el nivel de regreso 20% a 100% donde 100% es que volvera seguro">
+    <i class="fas fa-thumbs-up"></i>
 </a>
 

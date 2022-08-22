@@ -41,13 +41,19 @@
                     </div>    
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
                         <div class="form-floating mb-3 text-gray">
                             <input class="form-control @error('telefono') is-invalid @enderror" type="tel" id="phone" name="telefono" value="{{old('telefono',$persona->telefono ?? '')}}">
                             <label for="telefono">Telefono*</label>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+                        <div class="form-floating mb-3 text-gray">
+                            <input  type="date" name="vuelvefecha" class="form-control @error('vuelvefecha') is-invalid @enderror" value="{{old('vuelvefecha',$persona->vuelvefecha ?? '')}}">
+                            <label for="vuelvefecha">Cuando vuelve?</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
                         <div class="row">
                             <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" >
                                 <div class="form-floating mb-3 text-gray">
@@ -91,21 +97,36 @@
                             @endif
                     </div>
                 </div>
-                <div class="row">
+               <div class="row">
                     <div class="card bg-warning">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 @error('interests') is-invalid @enderror">
-                            @foreach ($interests as $interest)
-                                <div class="form-check form-switch form-check-inline mb-2 mt-2 ml-2 mr-2">
-                                    <input class="form-check-input" type="checkbox" name="interests[{{$interest->id}}]" value="{{$interest->interest}}" id="{{$interest->interest}}">
-                                    <label class="form-check-label" for="{{$interest->id}}">{{$interest->interest}}</label>
-                                </div>
-                            @endforeach
+                            @isset($persona)
+                                @foreach ($interests_currents as $current)
+                                    <div class="form-check form-switch form-check-inline mb-2 mt-2 ml-2 mr-2">
+                                        <input class="form-check-input" onclick="return false;" type="checkbox" name="interests[{{$current->id}}]" checked value="{{$current->interest}}" id="{{$current->interest}}">
+                                        <label class="form-check-label" for="{{$current->id}}">{{$current->interest}}</label>
+                                    </div>
+                                @endforeach
+                                @foreach ($interests_faltantes as $faltante)
+                                    <div class="form-check form-switch form-check-inline mb-2 mt-2 ml-2 mr-2">
+                                        <input class="form-check-input" type="checkbox" name="interests[{{$faltante->id}}]"  value="{{$faltante->interest}}" id="{{$faltante->interest}}">
+                                        <label class="form-check-label" for="{{$faltante->id}}">{{$faltante->interest}}</label>
+                                    </div>
+                                @endforeach
+                            @else
+                                @foreach ($interests as $interest)
+                                    <div class="form-check form-switch form-check-inline mb-2 mt-2 ml-2 mr-2">
+                                        <input class="form-check-input" type="checkbox" name="interests[{{$interest->id}}]" value="{{$interest->interest}}" id="{{$interest->interest}}">
+                                        <label class="form-check-label" for="{{$interest->id}}">{{$interest->interest}}</label>
+                                    </div>
+                                @endforeach
+                            @endisset
                         </div>
                     </div>
                 </div>
 
-                 <textarea placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" >{{old('observacion',$observacion ?? '')}}</textarea>
 
+                <textarea placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" >{{old('observacion',$observacion ?? '')}}</textarea>
 
 
 

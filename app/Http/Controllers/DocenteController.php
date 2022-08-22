@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use App\Http\Controllers\PersonaController;
 

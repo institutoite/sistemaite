@@ -14,8 +14,8 @@
     <div class="pt-4">
         <div class="card">
             <div class="card-header bg-primary">
-                {{-- Lista de Estudiantes <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('personas.create')}}">Crear Estudiante</a> --}}
-                CLIENTES POTENCIALES
+                <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('crear.persona.rapido')}}">Crear Nuevo</a>
+                CLIENTES QUE VINIERON A PREGUNTAR
             </div>
             
             <div class="card-body">
@@ -28,6 +28,7 @@
                             <th>APELLIDOP</th>
                             <th>INTEREST</th>
                             <th>Requerimiento</th>
+                            <th>NIVEL</th>
                             <th>ACCIONES</th>
                         </tr>
                     </thead>
@@ -38,6 +39,7 @@
     {{-- @include('persona.modalespotenciales') --}}
     @include('observacion.modalcreate')
     @include('estudiantes.modal')
+    @include('persona.rapidingo.modalespotenciales')
 @stop
 
 @section('js')
@@ -217,7 +219,34 @@
                                     else
                                     $('td', row).eq(4).html(json.observacionFirst.observacion +'<strong>'+ json.usuarioFirst.name +'</strong>');  
                                 },
-                            }); 
+                            });
+                            
+                            if (moment(data['vuelvefecha']).format('YY-MM-DD')>moment().format('YY-MM-DD')){
+                                $(row).addClass('text-success')
+                            }else{
+                                $(row).addClass('text-danger')
+                            }
+                            
+                            switch (data['volvera']) {
+                                case 0:
+                                    $('td', row).eq(5).html( data['vuelvefecha']+"<br><i class='far fa-bell-slash'></i><span class='float'><strong>"+0+"</strong></span>"); 
+                                    break;
+                                case 1:
+                                    $('td', row).eq(5).html( data['vuelvefecha']+"<br><i class='fas fa-2x fa-battery-empty'></i><span class='float'><strong>"+1+"</strong></span>"); 
+                                    break;
+                                case 2:
+                                    $('td', row).eq(5).html( data['vuelvefecha']+"<br><i class='fas fa-2x fa-battery-quarter'></i><span class='float'><strong>"+2+"</strong></span>");
+                                    break;
+                                case 3:
+                                    $('td', row).eq(5).html( data['vuelvefecha']+"<br><i class='fas fa-2x fa-battery-half'></i><span class='float'><strong>"+3+"</strong></span>");
+                                    break;
+                                case 4:
+                                    $('td', row).eq(5).html( data['vuelvefecha']+"<br><i class='fas fa-2x fa-battery-three-quarters'></i><span class='float'><strong>"+4+"</strong></span>");
+                                    break;
+                                case 5:
+                                    $('td', row).eq(5).html( data['vuelvefecha']+"<br><i class='fas fa-2x fa-battery-full'></i><span class='float'><strong>"+5+"</strong></span>");
+                                    break;
+                            }
                         },
                         "columns": [
                             {data: 'id'},
@@ -225,6 +254,7 @@
                             {data: 'apellidop'},
                             {data: 'interest'},
                             {data: 'apellidom'},
+                            {data: 'vuelvefecha'},
                             {
                                 "name":"btn",
                                 "data": 'btn',
@@ -240,6 +270,107 @@
                         },  
                     }
             );
+             $('table').on('click', '.fechar', function(e) {
+                e.preventDefault();
+                persona_id =$(this).closest('tr').attr('id');
+                console.log("fechar:"+persona_id);
+                $("#modal-fechar").modal("show");
+                $("#persona_id").val(persona_id);
+                
+            }); 
+             /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('#agendar').on('click', function (e) {
+                e.preventDefault();
+                $("#errores").empty();
+                let vuelvefecha = $("#vuelvefecha").val();
+                let persona_id = $("#persona_id").val();
+                $.ajax({
+                    url: "../persona/actualizar/vuelvefecha",
+                    data: {
+                        vuelvefecha:vuelvefecha,
+                        persona_id:persona_id,
+                    },
+                    success: function (json) {
+                        if(json.error){
+                            console.log(json.error);
+                            $html="";
+                            for (let j in json.error) {
+                                $html+="<li>"+ json.error[0] +"</li>";
+                            }
+                            $("#erroresdiv").removeClass('d-none');
+                            $("#error").append($html);
+                        }else{
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                            })
+                            Toast.fire({
+                                type: 'success',
+                                title: "Guardado corectamente: " + json.observacion,
+                            })
+                            $("#modal-fechar").modal("hide");
+                            tabla.ajax.reload();
+                        }
+                    },
+                    error: function (xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+                
+            });
+            /**%%%%%%%%%%%%%%%%%%%%%%%%%%%% CALIFICAR  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.calificar', function(e) {
+                e.preventDefault();
+                persona_id =$(this).closest('tr').attr('id');
+                console.log("calificar:"+persona_id);
+                $("#modal-calificar").modal("show");
+                $("#persona_id").val(persona_id);
+            }); 
+             /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('#calificar').on('click', function (e) {
+                e.preventDefault();
+                $("#errores").empty();
+                let volvera = $("#volvera").val();
+                let persona_id = $("#persona_id").val();
+                $.ajax({
+                    url: "../persona/actualizar/volvera",
+                    data: {
+                        volvera:volvera,
+                        persona_id:persona_id,
+                    },
+                    success: function (json) {
+                        console.log(json);
+                        if(json.error){
+                            console.log(json.error);
+                            $html="";
+                            for (let j in json.error) {
+                                $html+="<li>"+ json.error[0] +"</li>";
+                            }
+                            $("#erroresdiv").removeClass('d-none');
+                            $("#error").append($html);
+                        }else{
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                            })
+                            Toast.fire({
+                                type: 'success',
+                                title: "Guardado corectamente: " + json.observacion,
+                            })
+                            $("#modal-calificar").modal("hide");
+                            tabla.ajax.reload();
+                        }
+                    },
+                    error: function (xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+                
+            });
            
             $('table').on('click', '.enviarmensaje', function(e) {
                 e.preventDefault();

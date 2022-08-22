@@ -45,7 +45,7 @@ use App\Http\Controllers\EstudianteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[DocenteController::class,'listarDocentes'])->name('prueba');
+Route::get('prueba',[PersonaController::class,'listarContactos'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -79,20 +79,16 @@ Route::get('personas/opciones/{id}', function ($id) {
 
 Route::put('persona/{persona}/subirfoto','PersonaController@guardarfoto')->name('guardarfoto');
 Route::put('persona/{persona}/subirfotojpg', 'PersonaController@guardarfotojpg')->name('guardarfotojpg');
-Route::get('personas/crear/rapidingo/',[PersonaController::class,'crearRapido'] )->name('crear.persona.rapido');
+
 Route::resource('personas', "PersonaController");
 Route::get('persona/papeles/{persona_id}', 'PersonaController@configurar_papeles')->name('personas.agregar.papel');
 Route::post('guardar/papeles/{persona}', 'PersonaController@guardarNuevoPapel')->name('guardar.nuevo.papel');
-Route::post('persona/guardar/rapidingo',[PersonaController::class,'guardarRapidingo'])->name('personas.guardar.rapidindo');
-Route::get('persona/potenciales', function () {return view('persona.potenciales');});
-Route::get('potenciales', [PersonaController::class,'potenciales'])->name('personas.potenciales');
-Route::get('ver/potencial', [PersonaController::class,'verPotencial'])->name('personas.ver.potenciales');
-Route::get('persona/potenciales/unsuscribe', [PersonaController::class,'unsuscribe'])->name('personas.unsuscribe');
-Route::get('persona/potenciales/suscribe', [PersonaController::class,'suscribe'])->name('personas.suscribe');
+
 Route::get('persona/mostrar', [PersonaController::class,'personaMostrarAjax'])->name('persona.mostrar.ajax');
 Route::get('persona/mostrar/ajax', [PersonaController::class,'personaMostrarAjaxInscripcion'])->name('persona.mostrar.ajax');
 Route::get('persona/mostrar/ajax/matriculacion', [PersonaController::class,'personaMostrarAjaxMatriculacion'])->name('persona.mostrar.matriculacion.ajax');
 Route::get('persona/ultimaobservacion', [PersonaController::class,'ultimaObservacion'])->name('persona.ultima.observacion');
+Route::get('persona/primerabservacion', [PersonaController::class,'primeraObservacion'])->name('persona.primera.observacion');
 Route::get('persona/primeraultima/observacion', [PersonaController::class,'ultimaPrimeraObservacion'])->name('persona.ultima.primera.observacion');
 Route::get('persona/ultima/matriculacion', [PersonaController::class,'ultimaMatriculacion'])->name('persona.ultima.matriculacion');
 Route::get('persona/ultima/programacioncom', [PersonaController::class,'ultimaProgramacioncom'])->name('persona.ultima.programacioncom');
@@ -109,6 +105,32 @@ Route::get('persona/ultima/inscripcion', [PersonaController::class,'ultimaInscri
 Route::get('persona/ultima/programacion', [PersonaController::class,'ultimaProgramacion'])->name('persona.ultima.programacion');
 Route::post('persona/felicitado', [PersonaController::class,'felicitado'])->name('persona.felicitado'); //agrega felicitado enla tabla felicitados 
 Route::post('persona/faltainformar', [PersonaController::class,'faltaInformar'])->name('persona.faltaInformar'); //Falta informar 
+
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%CONTACTO EDITAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+Route::get('persona/crear/contacto', [PersonaController::class,'crearSoloContacto'])->name('personas.crear.contacto'); //Falta informar 
+Route::get('persona/editar/contacto/{persona}', [PersonaController::class,'editarSoloContacto'])->name('personas.editar.contacto'); //Falta informar 
+Route::post('persona/contacto/store', [PersonaController::class,'guardarSoloContacto'])->name('personas.store.contacto');
+Route::post('persona/contacto/update/{persona}', [PersonaController::class,'actualizarSoloContacto'])->name('personas.uptate.contacto');
+Route::get('contactos', [PersonaController::class,'contactos'])->name('personas.contactos.view');
+Route::get('persona/contactos', [PersonaController::class,'listarContactos'])->name('personas.contactos');
+
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%RAPIDINGO EDITAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+    Route::get('personas/crear/rapidingo/',[PersonaController::class,'crearRapido'] )->name('crear.persona.rapido');
+    Route::post('persona/guardar/rapidingo',[PersonaController::class,'guardarRapidingo'])->name('personas.guardar.rapidindo');
+    Route::get('persona/potenciales', function () {return view('persona.rapidingo.potenciales');});
+    Route::get('potenciales', [PersonaController::class,'potenciales'])->name('personas.potenciales');
+    Route::get('ver/potencial', [PersonaController::class,'verPotencial'])->name('personas.ver.potenciales');
+    Route::get('persona/potenciales/unsuscribe', [PersonaController::class,'unsuscribe'])->name('personas.unsuscribe');
+    Route::get('persona/potenciales/suscribe', [PersonaController::class,'suscribe'])->name('personas.suscribe');
+    Route::post('persona/rapidingo/update/{persona}', [PersonaController::class,'actualizarRapidingo'])->name('personas.update.rapidingo');
+    Route::get('persona/editar/rapidingo/{persona}', [PersonaController::class,'editarRapidingo'])->name('personas.editar.rapidingo'); //Falta informar 
+// Route::post('persona/guardar/rapidingo',[PersonaController::class,'guardarRapidingo'])->name('personas.guardar.rapidindo');
+// Route::get('persona/potenciales', function () {return view('persona.potenciales');});
+// Route::get('potenciales', [PersonaController::class,'potenciales'])->name('personas.potenciales');
+// Route::get('persona/potenciales/unsuscribe', [PersonaController::class,'unsuscribe'])->name('personas.unsuscribe');
+// Route::get('persona/potenciales/suscribe', [PersonaController::class,'suscribe'])->name('personas.suscribe');
+
+
 
 Route::get('reporte/potenciales', [PersonaReporteController::class,'potencialesPorInteresView']);
 Route::get('potenciales/hoy', [PersonaReporteController::class,'potencialesHoyView']);

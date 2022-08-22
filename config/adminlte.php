@@ -308,17 +308,17 @@ return [
 
         ],
         [
-            'text' => "Rapidingo",
+            'text' => "Potencial",
             'topnav' => true,
-            'url'  => 'personas/crear/rapidingo',
+            'url'  => 'persona/potenciales',
             'icon' => 'fas fa-fighter-jet',
             'icon_color' => 'primary',
 
         ],
         [
-            'text' => "Potenciales",
+            'text' => "Contactos",
             'topnav' => true,
-            'url'  => 'persona/potenciales',
+            'url'  => 'contactos',
             'icon' => 'fas fa-fighter-jet',
             'icon_color' => 'primary',
 
@@ -651,15 +651,39 @@ return [
                     'classes'  => 'text-dark',
                 ],
                 [
+                    'text' => 'Recordatorio',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'recordatorio/view',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Nunca Faltaron',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'nuncafaltaron/view',
+                    'classes'  => 'text-dark',
+                ],
+                [
                     'text' => 'Deudores',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'deudores/view',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Finalizaron hoy',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'finalizaron/view',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Bienvenidas',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'empesaron/view',
                     'classes'  => 'text-dark',
                 ],
                 [
                     'text' => 'Mensaje Masivo',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'masivo/view',
                     'classes'  => 'text-dark',
                 ],
                 [

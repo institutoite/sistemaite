@@ -27,7 +27,7 @@ class CreatePersonasTable extends Migration
             $table->string('papelinicial', 20);
             $table->string('telefono', 10)->nullable()->default(0);
             $table->tinyInteger('votos')->nullable()->unsigned()->default(1);
-            $table->tinyInteger('volvera')->unsigned()->default();// grado de que va volver a ser activo 
+            $table->tinyInteger('volvera')->unsigned()->default(0);// grado de que va volver a ser activo 
             $table->date('vuelvefecha')->nullable();// fecha que dice que va volver 
             $table->string('empresa',25)->nullable();// fecha que dice que va volver 
             $table->boolean('habilitado')->nullable()->default(0);

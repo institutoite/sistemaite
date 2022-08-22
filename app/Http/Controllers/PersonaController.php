@@ -75,11 +75,7 @@ class PersonaController extends Controller
         $interests=Interest::all();
         return view('persona.crear',compact('ciudades','paises','zonas','interests'));
     }
-    public function crearRapido()
-    {
-        $interests=Interest::get();
-        return view('persona.crearrapido',compact('interests'));
-    }
+   
 
     /**
      * Store a newly created resource in storage.
@@ -282,12 +278,22 @@ class PersonaController extends Controller
         return redirect()->route('telefonos.persona',['persona'=>$persona,'apoderados'=>$apoderados])->with('mensaje','Contacto Creado Corectamente');
 
     }
+
+    /*$%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% METODOS DE RAPIDINGO INICIO %%%%%%%%%%%%%%%%%%%%%%% */
+     public function crearRapido()
+    {
+        $interests=Interest::get();
+        return view('persona.rapigingo.crearrapido',compact('interests'));
+    }
+    
     public function guardarRapidingo(PersonaRapidingoGuardarRequest $request){
         $persona=new Persona();
         $persona->nombre = $request->nombre;
         $persona->apellidop = $request->apellidop;
         $persona->telefono=$request->telefono;
         $persona->genero=$request->genero;
+        $persona->como = $request->como;
+        $persona->vuelvefecha=$request->vuelvefecha;
         $persona->habilitado = 0;
         $persona->votos = 1;
         $persona->papelinicial = 'estudiante';
@@ -306,7 +312,158 @@ class PersonaController extends Controller
         $observacion->usuarios()->attach(Auth::user()->id);
         return redirect()->route('telefonos.crear',['persona'=>$persona])->with('mensaje','Contacto Creado Corectamente');
     }
+    public function actualizarRapidingo(Request $request,Persona $persona){
+        //dd($persona);
+        $persona->nombre = $request->nombre;
+        $persona->apellidop = $request->apellidop;
+        $persona->telefono=$request->telefono;
+        $persona->genero=$request->genero;
+        $persona->como = $request->como;
+        $persona->vuelvefecha=$request->vuelvefecha;
+        $persona->habilitado = 0;
+        $persona->votos = 1;
+        $persona->papelinicial = 'estudiante';
+        $persona->save();
+        
+        //dd($persona);
+        $this->CrearContacto($persona->id);
 
+        $persona->interests()->sync(array_keys($request->interests));
+        
+        $observacion =$persona->observaciones->first();
+        $observacion->observacion = $request->observacion;
+        $observacion->save();
+        return redirect()->route('telefonos.crear',['persona'=>$persona])->with('mensaje','Contacto Creado Corectamente');
+    }
+
+    public function editarRapidingo(Persona $persona){
+        $observacion=$persona->observaciones->first()->observacion;
+        $interests_currents=$persona->interests; 
+        $ids=[];
+        foreach ($interests_currents as $interest) {
+            $ids[] = $interest->id;
+        }
+        $interests_faltantes = Interest::whereNotIn('id', $ids)->get();
+        return view('persona.rapidingo.editarrapido',compact('persona','interests_currents','interests_faltantes','observacion'));
+    }
+    public function potenciales(){
+        $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        
+        ->where('habilitado',0)
+        ->where('votos',1)
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->get();
+
+        return DataTables::of($potenciales)
+                ->addColumn('btn','persona.rapidingo.actionpotenciales')
+                ->rawColumns(['btn'])
+                ->toJson();
+    }
+    public function verPotencial(Request $request){
+        $potencial= Persona::findOrFail($request->persona_id);
+        $observaciones=Observacion::join('personas','personas.id','observacions.observable_id')
+        ->join('userables','userables.userable_id','observacions.id')
+        ->join('users','users.id','userables.user_id') 
+        ->where('userables.userable_type',Observacion::class)
+        ->where('observacions.observable_type',Persona::class)
+        ->where('personas.id',$request->persona_id)
+        ->select('observacions.id','observacion','name')
+        ->get();
+        $apoderados=$potencial->apoderados;
+        $interests=$potencial->interests;
+        $autorPotencial=$potencial->usuarios->first()->name;
+
+        $data=['intereses'=>$interests,'potencial'=>$potencial,'observaciones'=>$observaciones,'apoderados'=>$apoderados,'autorPotencial'=>$autorPotencial];
+        return response()->json($data);
+    }
+
+    public function unsuscribe(Request $request){
+        $persona= Persona::findOrFail($request->persona_id);
+        $persona->votos=0;
+        $persona->save();
+        return response()->json(["mensaje"=>"El cambio se realizo correctamente"]);
+    }
+    public function ImprimirPotencial($persona_id){
+        $inscripcion=Persona::findOrFail($inscripcione_id);
+        $programacion = Persona::join('materias', 'programacions.materia_id', '=', 'materias.id')
+            ->join('aulas', 'programacions.aula_id', '=', 'aulas.id')
+            ->join('docentes', 'programacions.docente_id', '=', 'docentes.id')
+            ->join('personas', 'personas.id', '=', 'docentes.persona_id')
+            ->select('programacions.fecha', 'hora_ini','programacions.habilitado', 'hora_fin', 'horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado')
+            ->orderBy('fecha', 'asc')
+            ->where('inscripcione_id', '=', $inscripcione_id)->get();
+        $estudiante = Estudiante::findOrFail($inscripcion->estudiante_id);
+        $persona = $estudiante->persona;
+        $colegio=Colegio::find($estudiante->grados->last()->pivot->colegio_id);
+        $usuario=$inscripcion->usuarios->first();
+        $modalidad=$inscripcion->modalidad;
+        $nivel=Nivel::findOrFail($estudiante->grados->last()->nivel_id);
+        $grado=Grado::findOrFail($estudiante->grados->last()->pivot->grado_id);
+        $dompdf = PDF::loadView('programacion.reporte', compact('grado','nivel','modalidad','usuario','programacion','persona','estudiante','persona','colegio','inscripcion'));
+        /**entrae a la persona al cual corresponde esta inscripcion */
+        $fecha_actual = Carbon::now();
+        $fecha_actual->isoFormat('DD-MM-YYYY-HH:mm:ss');
+        $dompdf->setPaper('letter','portrait');
+        return $dompdf->download($persona->id . '_' . $fecha_actual . '_' . $persona->nombre . '_' . $persona->apellidop . '.pdf');
+    }
+    /*$%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% METODOS DE RAPIDINGO %%%%%%%%%%%%%%%%%%%%%%% */
+
+    /*$%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% METODOS DE CONTACTO UNICAMENTE %%%%%%%%%%%%%%%%%%%%%%% */
+    public function crearSoloContacto()
+    {
+        return view('persona.contacto.crearcontacto');
+    }
+    public function guardarSoloContacto(Request $request){
+        $persona=new Persona();
+        $persona->nombre=$request->nombre;
+        $persona->apellidop=$request->apellidop;
+        $persona->telefono=$request->telefono;
+        $persona->papelinicial='contacto';
+        $persona->save();
+        $persona->usuarios()->attach(Auth::user()->id);
+        $this->CrearContacto($persona->id);
+        $observacion = new Observacion();
+        $observacion->observacion = $request->observacion;
+        $observacion->activo = 1;
+        $observacion->observable_id = $persona->id;
+        $observacion->observable_type = "App\Models\Persona";
+        $observacion->save();
+        $observacion->usuarios()->attach(Auth::user()->id);
+        return redirect()->route('personas.contactos.view');
+    }
+    public function actualizarSoloContacto(Request $request, Persona $persona){
+        
+        $persona->nombre=$request->nombre;
+        $persona->apellidop=$request->apellidop;
+        $persona->telefono=$request->telefono;
+        $persona->save();
+        $this->CrearContacto($persona->id);
+        $observacion =$persona->observaciones->first();
+        $observacion->observacion = $request->observacion;
+        $observacion->save();
+        return redirect()->route('personas.contactos.view');
+    }
+    public function contactos(){
+        return view('persona.contacto.index');
+    }
+    public function editarSoloContacto(Persona $persona){
+        $observacion=$persona->observaciones->first()->observacion;
+        return view('persona.contacto.editarcontacto',compact('persona','observacion'));
+    }
+    public function listarContactos(){
+        $contactos=Persona::where('papelinicial','contacto')
+            ->select('id','nombre','apellidop','apellidom','telefono','created_at','updated_at')
+            ->orderBy('created_at','desc')
+            ->get();
+          
+        return datatables()->of($contactos)
+        ->addColumn('btn', 'persona.contacto.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+    }
+
+    /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  fin metodo de contacto %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     /**
      * Display the specified resource.
      *
@@ -541,9 +698,10 @@ class PersonaController extends Controller
         //eliminarPersona
     }
     public function eliminarPersona($id){
+        //return response()->json(['id'=>$id]);
         $persona = Persona::findOrFail($id);
         $persona->delete();
-        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
+        return response()->json(['message' => 'Registro Eliminado correctamente', 'status' => 200]);
     }
 
     public function tomarfoto(Persona $persona){
@@ -626,67 +784,7 @@ class PersonaController extends Controller
         }
         return redirect()->route('personas.index');
     }
-    public function potenciales(){
-        $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        
-        ->where('habilitado',0)
-        ->where('votos',1)
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest')  
-        ->get();
-
-        return DataTables::of($potenciales)
-                ->addColumn('btn','persona.actionpotenciales')
-                ->rawColumns(['btn'])
-                ->toJson();
-    }
-    public function verPotencial(Request $request){
-        $potencial= Persona::findOrFail($request->persona_id);
-        $observaciones=Observacion::join('personas','personas.id','observacions.observable_id')
-        ->join('userables','userables.userable_id','observacions.id')
-        ->join('users','users.id','userables.user_id') 
-        ->where('userables.userable_type',Observacion::class)
-        ->where('observacions.observable_type',Persona::class)
-        ->where('personas.id',$request->persona_id)
-        ->select('observacions.id','observacion','name')
-        ->get();
-        $apoderados=$potencial->apoderados;
-        $interests=$potencial->interests;
-        $autorPotencial=$potencial->usuarios->first()->name;
-
-        $data=['intereses'=>$interests,'potencial'=>$potencial,'observaciones'=>$observaciones,'apoderados'=>$apoderados,'autorPotencial'=>$autorPotencial];
-        return response()->json($data);
-    }
-
-    public function unsuscribe(Request $request){
-        $persona= Persona::findOrFail($request->persona_id);
-        $persona->votos=0;
-        $persona->save();
-        return response()->json(["mensaje"=>"El cambio se realizo correctamente"]);
-    }
-    public function ImprimirPotencial($persona_id){
-        $inscripcion=Persona::findOrFail($inscripcione_id);
-        $programacion = Persona::join('materias', 'programacions.materia_id', '=', 'materias.id')
-            ->join('aulas', 'programacions.aula_id', '=', 'aulas.id')
-            ->join('docentes', 'programacions.docente_id', '=', 'docentes.id')
-            ->join('personas', 'personas.id', '=', 'docentes.persona_id')
-            ->select('programacions.fecha', 'hora_ini','programacions.habilitado', 'hora_fin', 'horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado')
-            ->orderBy('fecha', 'asc')
-            ->where('inscripcione_id', '=', $inscripcione_id)->get();
-        $estudiante = Estudiante::findOrFail($inscripcion->estudiante_id);
-        $persona = $estudiante->persona;
-        $colegio=Colegio::find($estudiante->grados->last()->pivot->colegio_id);
-        $usuario=$inscripcion->usuarios->first();
-        $modalidad=$inscripcion->modalidad;
-        $nivel=Nivel::findOrFail($estudiante->grados->last()->nivel_id);
-        $grado=Grado::findOrFail($estudiante->grados->last()->pivot->grado_id);
-        $dompdf = PDF::loadView('programacion.reporte', compact('grado','nivel','modalidad','usuario','programacion','persona','estudiante','persona','colegio','inscripcion'));
-        /**entrae a la persona al cual corresponde esta inscripcion */
-        $fecha_actual = Carbon::now();
-        $fecha_actual->isoFormat('DD-MM-YYYY-HH:mm:ss');
-        $dompdf->setPaper('letter','portrait');
-        return $dompdf->download($persona->id . '_' . $fecha_actual . '_' . $persona->nombre . '_' . $persona->apellidop . '.pdf');
-    }
+    
     public function ultimaObservacion(Request $request){
         $observacion=Persona::findOrFail($request->persona_id)->observaciones->last();
         $usuario=$observacion->usuarios->first();
@@ -969,6 +1067,7 @@ class PersonaController extends Controller
         $observacionfinal=$persona->observaciones->last();
         if (isset($observacioninicial->observacion)){
             Storage::append($nombre_archivo, "NOTE:".($observacioninicial->observacion));
+            if($observacioninicial->id!=$observacionfinal->id)
             Storage::append($nombre_archivo, "NOTE:".($observacionfinal->observacion));
         }
         Storage::append($nombre_archivo, 'END:VCARD');

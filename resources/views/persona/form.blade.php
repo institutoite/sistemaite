@@ -223,6 +223,7 @@
                             <option value="administrativo" @if($persona->papelinicial == 'administrativo') {{'selected'}} @endif>Adminitrativo</option>
                             <option value="proveedor" @if($persona->papelinicial == 'proveedor') {{'proveedor'}} @endif>Proveedor</option>
                             <option value="apoderado" @if($persona->papelinicial == 'apoderado') {{'apoderado'}} @endif>Apoderado</option>
+                            <option value="contacto" @if($persona->papelinicial == 'contacto') {{'contacto'}} @endif>Contacto</option>
                         @else 
                             <option value="estudiante" @if(old('papel') == 'estudiante') {{'selected'}} @endif>Estudiante</option>
                             <option value="docente" @if(old('papel') == 'docente') {{'selected'}} @endif>Docente</option>
@@ -232,6 +233,7 @@
                             <option value="administrativo" @if(old('papel') == 'administrativo') {{'selected'}} @endif>Adminitrativo</option>
                             <option value="proveedor" @if(old('papel') == 'proveedor') {{'proveedor'}} @endif>Proveedor</option>
                             <option value="proveedor" @if(old('papel') == 'apoderado') {{'apoderado'}} @endif>Apoderado</option>
+                            <option value="contacto" @if(old('papel') == 'contacto') {{'contacto'}} @endif>Contacto</option>
                         @endisset
                 </select>
                 <label for="papel">papel*</label>

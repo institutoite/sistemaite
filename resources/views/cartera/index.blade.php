@@ -1098,55 +1098,8 @@
                             });
                     });
 
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AGREAGAR OBSERVACION DE INSCRIPCIONES VIGENTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-
-            // CKEDITOR.replace('editor3', {
-            //     height: 120,
-            //     width: "100%",
-            //     removeButtons: 'PasteFromWord'
-            // });
-            //  $('table').on('click', '.agregarobservacioninscripcion', function(e) {
-            //     e.preventDefault();
-            //     $("#editor3").val("");
-            //     let inscripcion_id = $(this).closest('tr').attr('id');
-            //     console.log(inscripcion_id);
-            //     $("#observable_id_inscripcion").val(inscripcion_id);
-            //     $("#observable_type_inscripcion").val("Inscripcione");
-            //     CKEDITOR.instances.editor3.setData('');
-            //     $("#modal-agregar-observacion-inscripcion").modal("show");
-            // });
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AGREAGAR OBSERVACION DE MATRICULACIONES VIGENTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-
-            // CKEDITOR.replace('editor4', {
-            //     height: 120,
-            //     width: "100%",
-            //     removeButtons: 'PasteFromWord'
-            // });
-            //  $('table').on('click', '.agregarobservacionmatriculacion', function(e) {
-            //     e.preventDefault();
-            //     $("#editor4").val("");
-            //     let matriculacion_id = $(this).closest('tr').attr('id');
-            //     console.log(matriculacion_id);
-            //     $("#observable_id_matriculacion").val(matriculacion_id);
-            //     $("#observable_type_matriculacion").val("Matriculacion");
-            //     CKEDITOR.instances.editor4.setData('');
-            //     $("#modal-agregar-observacion-matriculacion").modal("show");
-            // });
-            // CKEDITOR.replace('editor2', {
-            //     height: 120,
-            //     width: "100%",
-            //     removeButtons: 'PasteFromWord'
-            // });
-            //  $('table').on('click', '.agregarobservacionpersona', function(e) {
-            //     e.preventDefault();
-            //     console.log("clicked agregarobservacionpersona");
-            //     $("#editor2").val("");
-            //     let objeto_id = $(this).closest('tr').attr('id');
-            //     $("#observable_id").val(objeto_id);
-            //     $("#observable_type").val("Persona");
-            //     CKEDITOR.instances.editor1.setData('');
-            //     $("#modal-agregar-observacion-persona").modal("show");
-            // });
+     
+     
              
             /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  GUARDA OBSERVACION CON DE UNA INSCRIPCION  AJAX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('#guardar-observacion-inscripcion').on('click', function (e) {
@@ -1243,51 +1196,7 @@
                 });
                 
             });
-            /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  GUARDA OBSERVACION PERSONA DESVIGENTIZADA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            // $('#guardar-observacion-persona').on('click', function (e) {
-            //     e.preventDefault();
-            //     $("#errores").empty();
-            //     let observable_id = $("#observable_id").val();
-            //     let observable_type = $("#observable_type").val();
-            //     for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
-            //     $.ajax({
-            //         url: "../guardar/observacion",
-            //         data: {
-            //             //obs: $("#observacionx").val(),
-            //             observacion: $("#editor2").val(),
-            //             observable_id: observable_id,
-            //             observable_type: observable_type,
-            //         },
-            //         success: function (json) {
-            //             if(json.errores){
-            //                 console.log(json.errores);
-            //                 $html="";
-            //                 for (let j in json.errores) {
-            //                     $html+="<li>"+ json.errores.observacion[0] +"</li>";
-            //                 }
-            //                 $("#erroresdiv").removeClass('d-none');
-            //                 $("#errores").append($html);
-            //             }else{
-            //                 const Toast = Swal.mixin({
-            //                     toast: true,
-            //                     position: 'top-end',
-            //                     showConfirmButton: false,
-            //                     timer: 3000,
-            //                 })
-            //                 Toast.fire({
-            //                     type: 'success',
-            //                     title: "Guardado corectamente: " + json.observacion,
-            //                 })
-            //                 $("#modal-agregar-observacion-persona").modal("hide");
-            //             }
-            //             tablamatriculacionesdesvigentes.ajax.reload();
-            //         },
-            //         error: function (xhr, status) {
-            //             alert('Disculpe, existió un problema');
-            //         },
-            //     });
-                
-            // });
+         
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AGREAGAR MOSTRAR PROGRAMACIONCOM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.mostrarprogramacionmatriculacion', function(e) {
