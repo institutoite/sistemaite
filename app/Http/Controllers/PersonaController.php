@@ -901,6 +901,19 @@ class PersonaController extends Controller
         $data=['persona'=>$persona,'apoderados'=>$apoderados,'mensaje'=>$mensaje];
         return response()->json($data);
     }
+    public function enviarMensajeParaComponente(Request $request){
+    // public function enviarMensajeParaComponente(){
+        $persona_id=$request->persona_id;
+        // $persona_id=2;
+        $persona=Persona::findOrFail($persona_id);
+        $apoderados= $persona->apoderados;
+        $mensaje= saludo()."%0A".nombre($persona_id,1)."%0A".strip_tags(Mensaje::findOrFail(4)->mensaje);
+          return DataTables::of($apoderados)
+                ->addColumn('btn','persona.deudores.actionwhatsapp')
+                ->rawColumns(['btn'])
+                ->toJson();
+        return response()->json($apoderados);
+    }
 
     public function Saludar(Request $request){
         $persona=Persona::findOrFail($request->persona_id);

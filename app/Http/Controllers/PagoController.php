@@ -201,8 +201,8 @@ class PagoController extends Controller
             ->where('pagos.pagable_type',Inscripcione::class)
             ->where('inscripciones.condonado',0)
             ->where('inscripciones.costo','>',DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= inscripciones.id)"))
-            ->select('personas.id','personas.nombre','personas.apellidop','costo','foto','telefono',DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= inscripciones.id) as acuenta"))
-            ->groupBy('personas.id','personas.nombre','personas.apellidop','acuenta','foto','telefono','costo')
+            ->select('personas.id','personas.nombre','personas.apellidop','costo','foto','telefono','fechafin',DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= inscripciones.id) as acuenta"))
+            ->groupBy('personas.id','personas.nombre','personas.apellidop','acuenta','foto','telefono','fechafin','costo')
             ->get();
         return DataTables::of($deudores)
                 ->addColumn('btn','persona.deudores.action')

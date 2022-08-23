@@ -45,7 +45,7 @@ use App\Http\Controllers\EstudianteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[PagoController::class,'deudoresInscripciones'])->name('prueba');
+Route::get('prueba',[PersonaController::class,'enviarMensajeParaComponente'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -93,6 +93,7 @@ Route::get('persona/primeraultima/observacion', [PersonaController::class,'ultim
 Route::get('persona/ultima/matriculacion', [PersonaController::class,'ultimaMatriculacion'])->name('persona.ultima.matriculacion');
 Route::get('persona/ultima/programacioncom', [PersonaController::class,'ultimaProgramacioncom'])->name('persona.ultima.programacioncom');
 Route::get('persona/enviar/mensaje', [PersonaController::class,'enviarMensaje'])->name('persona.enviar.mensaje');
+Route::get('persona/enviar/mensaje/componente', [PersonaController::class,'enviarMensajeParaComponente'])->name('persona.enviar.mensaje.componente');
 Route::get('persona/enviar/mensaje/personal', [PersonaController::class,'enviarMensajePersonal'])->name('persona.enviar.mensaje.personal');
 Route::get('persona/enviar/mensaje/cumpleaneros', [PersonaController::class,'enviarMensajeCumpleanero'])->name('persona.enviar.mensaje.cumpleaneros');
 Route::get('persona/enviar/mensaje/faltones', [PersonaController::class,'enviarMensajeFaltones'])->name('persona.enviar.mensaje.faltones');

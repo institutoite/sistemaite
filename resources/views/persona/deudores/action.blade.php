@@ -8,5 +8,7 @@
 <a href="{{route('descargar.contacto', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Descargar contacto">
     <i class="far fa-address-card"></i>
 </a>
-
-<a target='_blank' href='https://api.whatsapp.com/send?phone=591{{$telefono}}'><i class="fab fa-whatsapp"></i></a>
+{{-- <a target='_blank' href='https://api.whatsapp.com/send?phone=591{{$telefono}}'><i class="fab fa-whatsapp"></i></a> --}}
+<a id={{$id}} class="btn btn-primary btn-accion-tabla tooltipsC mr-1 enviarmensaje text-white" title="Cobrar por mensaje">
+    Cobrar&nbsp;<i class="fab fa-whatsapp"></i>
+</a>

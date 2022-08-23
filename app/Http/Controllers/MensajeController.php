@@ -138,7 +138,6 @@ class MensajeController extends Controller
         return response()->json(['mensaje'=>"Se dió de ALTA el registro correctamente"]);
     }
     public function getMensajeGenerico(Request $request)
-    // public function getMensajeGenerico()
     {
         $mensaje=Mensaje::findOrFail($request->mensaje_id);
         return response()->json($mensaje);
