@@ -30,10 +30,10 @@ class EstudianteController extends Controller
     }
     public function cumpleaneros(Request $request){
         $cumpleaneros=Persona::join('estudiantes','estudiantes.persona_id','personas.id')
-  			    ->whereMonth('fechanacimiento', '=', Carbon::now()->add($request->dias, 'day')->format('m'))
+  			->whereMonth('fechanacimiento', '=', Carbon::now()->add($request->dias, 'day')->format('m'))
                 ->whereDay('fechanacimiento', '=', Carbon::now()->add($request->dias, 'day')->format('d'))
                 ->whereNotIn('personas.id',Felicitado::where('anio',Carbon::now()->year)->select('persona_id')->get()->toArray())
-  			    ->select('personas.id','nombre','apellidop','apellidom','foto','telefono',DB::raw("(SELECT TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) AS viejo FROM personas where personas.id=estudiantes.persona_id GROUP BY nombre,fechanacimiento) as edad"))
+  			->select('personas.id','nombre','apellidop','apellidom','foto','telefono',DB::raw("(SELECT TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) AS viejo FROM personas where personas.id=estudiantes.persona_id GROUP BY nombre,fechanacimiento) as edad"))
                 ->groupBy('personas.id','nombre','fechanacimiento','apellidop','apellidom','foto','telefono','edad')
                 ->get();
         return DataTables::of($cumpleaneros)
@@ -41,7 +41,6 @@ class EstudianteController extends Controller
             ->rawColumns(['btn'])
             ->toJson(); 
     }
-
 
     public function estudiantesFaltones()
     {

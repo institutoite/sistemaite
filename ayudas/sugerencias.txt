@@ -67,3 +67,6 @@ google calendar
 
 crud para licencias en computacion y nivelacion
 arreglar css de reportes 
+cuando cancelan todo igual avanzar hasta ver la programacion 
+
+

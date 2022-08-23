@@ -45,7 +45,7 @@ use App\Http\Controllers\EstudianteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[PersonaController::class,'listarContactos'])->name('prueba');
+Route::get('prueba',[PagoController::class,'deudoresInscripciones'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -124,11 +124,12 @@ Route::get('persona/contactos', [PersonaController::class,'listarContactos'])->n
     Route::get('persona/potenciales/suscribe', [PersonaController::class,'suscribe'])->name('personas.suscribe');
     Route::post('persona/rapidingo/update/{persona}', [PersonaController::class,'actualizarRapidingo'])->name('personas.update.rapidingo');
     Route::get('persona/editar/rapidingo/{persona}', [PersonaController::class,'editarRapidingo'])->name('personas.editar.rapidingo'); //Falta informar 
-// Route::post('persona/guardar/rapidingo',[PersonaController::class,'guardarRapidingo'])->name('personas.guardar.rapidindo');
-// Route::get('persona/potenciales', function () {return view('persona.potenciales');});
-// Route::get('potenciales', [PersonaController::class,'potenciales'])->name('personas.potenciales');
-// Route::get('persona/potenciales/unsuscribe', [PersonaController::class,'unsuscribe'])->name('personas.unsuscribe');
-// Route::get('persona/potenciales/suscribe', [PersonaController::class,'suscribe'])->name('personas.suscribe');
+
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DEUDORES RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+    Route::get('deudores/view', [PagoController::class,'deudoresView'])->name('deudores.index');
+    Route::get('deudores/inscripcion', [PagoController::class,'deudoresInscripcion'])->name('deudores.inscripcion');
+    Route::get('deudores/matriculacion', [PagoController::class,'deudoresMatriculacion'])->name('deudores.matriculacion');
+
 
 
 

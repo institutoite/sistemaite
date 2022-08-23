@@ -9,9 +9,14 @@ use App\Models\User;
 use App\Models\Aula;
 use App\Models\Dia;
 use App\Models\Modalidad;
+use App\Models\Persona;
 use App\Models\Nivel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
 
 
 
@@ -186,6 +191,27 @@ class PagoController extends Controller
         $saldo = $inscripcion->costo - $acuenta;
         $data=['pagos'=>$pagos, 'persona'=>$persona,'acuenta'=>$acuenta, 'saldo'=>$saldo,'total'=>$inscripcion->costo];
         return response()->json($data);
+    }
+
+    public function deudoresInscripcion(){
+        // return response()->json(['e'=>2]);
+        $deudores =Persona::join('estudiantes','estudiantes.persona_id','personas.id')
+            ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+            ->join('pagos','pagos.pagable_id','inscripciones.id')
+            ->where('pagos.pagable_type',Inscripcione::class)
+            ->where('inscripciones.condonado',0)
+            ->where('inscripciones.costo','>',DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= inscripciones.id)"))
+            ->select('personas.id','personas.nombre','personas.apellidop','costo','foto','telefono',DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= inscripciones.id) as acuenta"))
+            ->groupBy('personas.id','personas.nombre','personas.apellidop','acuenta','foto','telefono','costo')
+            ->get();
+        return DataTables::of($deudores)
+                ->addColumn('btn','persona.deudores.action')
+                ->rawColumns(['btn'])
+                ->toJson();
+
+    } 
+    public function deudoresView(){
+        return view('persona.deudores.index');
     }
 
 }
