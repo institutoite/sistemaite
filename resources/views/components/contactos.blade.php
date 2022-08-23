@@ -10,6 +10,11 @@
                 <div class="card">
                     <div class="card-header">
                         {{$header}}
+                        <div class="float-right">
+                            <a id="personal" href="" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
+                                {{ __('Telefono Personal') }}
+                            </a>
+                        </div>
                     </div>
                     <div class="card-body">
                         <table id="contactos" class="table table-bordered table-hover table-striped">
@@ -18,8 +23,8 @@
                                     <th>#</th>
                                     <th>NOMBRE</th>
                                     <th>APELLIDOP</th>
-                                    <th>PARENTESCO</th>
                                     <th>ACTUALIZADO</th>
+                                    <th>PARENTESCO</th>
                                     <th>OPCIONES </th>
                                 </tr>
                             </thead>

@@ -12,3 +12,8 @@
 <a id={{$id}} class="btn btn-primary btn-accion-tabla tooltipsC mr-1 enviarmensaje text-white" title="Cobrar por mensaje">
     Cobrar&nbsp;<i class="fab fa-whatsapp"></i>
 </a>
+
+
+<a class="eliminar" title="Este texto se muestra cuando acercamos el mouse">
+    <i class="fa fa-fw fa-trash text-danger"></i>
+</a>

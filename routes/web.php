@@ -45,7 +45,7 @@ use App\Http\Controllers\EstudianteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[PersonaController::class,'enviarMensajeParaComponente'])->name('prueba');
+Route::get('prueba',[MensajeController::class,'getMensajeGenerico'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');

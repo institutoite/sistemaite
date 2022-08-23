@@ -183,9 +183,13 @@
                 url : "../mensaje/generico",
                 data:{
                     mensaje_id:mensaje_id,
+                    persona_id:persona_id,
                 },
                 success : function(json) {
+                    console.log(json);
                     mensaje=json.mensaje;
+                    $("#personal").attr('href','https://api.whatsapp.com/send?phone=591'+json.persona.telefono+'&text='+mensaje.mensaje);
+                    $("#personal").attr('target','_blank');
                 },
                 error : function(xhr, status) {
                     alert('Disculpe, existió un problema');
@@ -210,10 +214,10 @@
                     },
                     "createdRow": function (row, data, dataIndex) {
                         $(row).attr('id', data['id']); // agrega dinamiacamente el id del row
-                        // $('td', row).eq(3).html(data.pivot.parentesco);
-                        console.log($('td', row).eq(5).children('.cargarmensaje').attr('href','https://api.whatsapp.com/send?phone=591'+data['telefono']+'&text='+mensaje));
+                        $('td', row).eq(3).html(data.pivot.parentesco);
+                        $('td', row).eq(5).children('.cargarmensaje').attr('href','https://api.whatsapp.com/send?phone=591'+data['telefono']+'&text='+mensaje.mensaje);
                         // $('.cargarmensaje').attr("href","www.ite.com.bo")
-                        $('td', row).eq(4).html(moment(data['updated_at']).format('DD-MM-YYYY h:mm'));
+                        $('td', row).eq(4).html(moment(data['updated_at']).format('DD-MM-Y'));
                         if (data['telefono'] == 0) {
                             $(row).addClass('text-danger');
                         } else {

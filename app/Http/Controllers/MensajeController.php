@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mensaje;
+use App\Models\Persona;
 use App\Http\Requests\StoreMensajeRequest;
 use App\Http\Requests\UpdateMensajeRequest;
 use Illuminate\Support\Facades\Auth;
@@ -137,9 +138,15 @@ class MensajeController extends Controller
         $mensaje->save();
         return response()->json(['mensaje'=>"Se dió de ALTA el registro correctamente"]);
     }
+    // public function getMensajeGenerico()
     public function getMensajeGenerico(Request $request)
     {
-        $mensaje=Mensaje::findOrFail($request->mensaje_id);
-        return response()->json($mensaje);
+        //return response()->json($request->all());
+        $mensaje_id=$request->mensaje_id;   
+        $persona_id=$request->persona_id;   
+        $mensaje=Mensaje::findOrFail($mensaje_id);
+        $persona=Persona::findOrFail($persona_id);
+        $data=['mensaje'=>$mensaje,'persona'=>$persona];
+        return response()->json($data);
     }
 }
