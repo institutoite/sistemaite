@@ -130,27 +130,27 @@
             e.preventDefault();
             let observacion_id = $(this).closest('tr').attr('id');
             console.log(observacion_id);
-            url="darbaja/observacion";
+            url="../darbaja/observacion";
             darBaja(observacion_id,url);
         });
         
         $('table').on('click', '.altaobservacion', function (e) {
             e.preventDefault();
             let observacion_id = $(this).closest('tr').attr('id');
-            url="daralta/observacion";
+            url="../daralta/observacion";
             darAlta(observacion_id,url);
         });
 
         $('table').on('click', '.eliminarobservacion', function (e) {
             e.preventDefault();
             let observacion_id = $(this).closest('tr').attr('id');
-            url="eliminar/general"
+            url="../eliminar/general"
             eliminarObservacion(observacion_id,url);
         });
         $('table').on('click', '.editarobservacion', function (e) {
             e.preventDefault();
             observacion_id =$(this).closest('tr').attr('id');
-            url="observacion/editar";
+            url="../observacion/editar";
             editarObservacion(observacion_id,url);
             $("#modal-mostrar-observaciones").modal("hide");
             $("#modal-editar-observacion").modal("show");
@@ -160,13 +160,14 @@
             e.preventDefault();
             observacion_id =$("#observable_id").val();
             observacion=CKEDITOR.instances.editoreditar.getData();
-            url="observacion/actualizar";
+            url="../observacion/actualizar";
             actualizarObservacion(observacion_id,observacion,url);
         });
         $('table').on('click', '.fechar', function(e) {
             e.preventDefault();
             inscripcione_id =$(this).attr('id');
-            console.log("fechar:"+inscripcione_id);
+            $(this).closest('tr').addTempClass('bg-success', 3000)
+            $("#fecha_proximo_pago").val()
             $("#modal-fechar").modal("show");
             $("#inscripcione_id").val(inscripcione_id);
             

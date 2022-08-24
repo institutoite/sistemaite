@@ -67,6 +67,7 @@ class Persona extends Model
     {
         return $this->hasOne(Administrativo::class);
     }
+    
 
     /** OBSRVACIONES  */
     public function observaciones()

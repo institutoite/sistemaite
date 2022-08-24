@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="card card-default">
                     <div class="card-header bg-secondary">
-                        <span class="card-title">Configurar Inscripcion</span>
+                        <span class="card-title">Configurar Matriculación</span>
                         <div class="card-tools" id="divfuera">
                             <button id="botonplus" class="btn btn-primary d-none" type="button">Agregar Sesiones<i class="fas fa-plus-square"></i></button>
                         </div>
@@ -84,7 +84,7 @@
             
             let cantida_sesiones=0;
 
-            $("#titulosesion").html("<h4>Tine: "+cantida_sesiones+" sesiones por semana para esta inscripción</h4>");
+            $("#titulosesion").html("<h4>Tine: "+cantida_sesiones+" sesiones por semana para esta Matriculación</h4>");
 
             $('#horainicio').blur(function() {
                 if(($('#horainicio').val()=='')||(($('#horafin').val()<=$('#horainicio').val()))){

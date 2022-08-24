@@ -1,5 +1,6 @@
-<div class="modal" tabindex="-1" id="modal-fechar">
-    <div class="modal-dialog modal-dialog-centered">
+{{-- <div class="modal" tabindex="-1" id="modal-fechar"> --}}
+<div class="modal fade" id="modal-fechar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-    primary">
                 {{__('AGENDAR O FECHAR UN POSIBLE REGRESO')}}

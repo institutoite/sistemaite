@@ -15,6 +15,7 @@ Instituto ite, [24/02/2022 7:57]
             <div class="card-header bg-secondary">
                 PAPELES DE {{$persona->nombre}}
             </div>
+            
             <div class="card-body">
                 <div class="tab-content">
                     <div class="active tab-pane">

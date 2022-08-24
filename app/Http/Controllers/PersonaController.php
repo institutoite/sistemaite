@@ -709,8 +709,9 @@ class PersonaController extends Controller
     }
     
     public function configurar_papeles($persona_id){
+
         $persona= Persona::findOrFail($persona_id);
-        //dd($persona->administrativo->id);
+        //dd($persona);
         $papelesActuales=collect([]);
         $papelesFaltantes=collect([]);
         
@@ -740,13 +741,18 @@ class PersonaController extends Controller
         }else{
             $papelesActuales->push('cliservicio');
         }
-        
+        //d($persona);
+
         return view('persona.papeles',compact('papelesActuales','papelesFaltantes','persona'));
     }
 
     public function guardarNuevoPapel(Request $request,$persona_id){
         $persona=Persona::findOrFail($persona_id);
-        $cuantas_papeles=count($request->papelesFalta);
+        if(isset($request->papelesFalta))
+            $cuantas_papeles=count($request->papelesFalta);
+        else 
+            $cuantas_papeles=0;
+        //dd($cuantas_papeles);
         $i=0;
         $c="";
         $nuevosPapeles=$request->papelesFalta;
@@ -762,17 +768,28 @@ class PersonaController extends Controller
                 ]);
             }
             if($nuevosPapeles[$i]=='docente'){
-                Docente::create([
-                    'sueldo'=>0,
-                    'fecha_ingreso'=> Carbon::now()->format('Y-m-d'),
-                    'nombre'=>$persona->nombre." ". $persona->apellidop,
-                    'estado'=>'activo',
-                    'dias_prueba'=>2,
-                    'persona_id'=>$persona->id,
-                ]);
+                
+                $docente= new Docente();
+                $docente->nombrecorto=$persona->nombre." ". $persona->apellidop;
+                $docente->fecha_inicio= Carbon::now()->format('Y-m-d');
+                $docente->dias_prueba=2;
+                $docente->sueldo=0;
+                $docente->perfil="Esto es un perfil inicial";
+                $docente->mododocente_id=1;
+                $docente->estado_id=estado("HABILITADO");
+                $docente->persona_id=$persona->id;
+                $docente->save();
             }
             if($nuevosPapeles[$i]=='administrativo'){
-
+                $administrativo=new Administrativo();
+                $administrativo->cargo="Secreataria";
+                $administrativo->fechaingreso=Carbon::now()->format('Y-m-d');
+                $administrativo->diasprueba=3;
+                $administrativo->estado=1;
+                $administrativo->sueldo=2000;
+                $administrativo->persona_id=$persona->id;
+                $administrativo->save();
+            
             }
             if($nuevosPapeles[$i]=='cliservicio'){
                 Cliservicio::create([
