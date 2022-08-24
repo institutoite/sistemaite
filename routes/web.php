@@ -45,7 +45,7 @@ use App\Http\Controllers\EstudianteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[MensajeController::class,'getMensajeGenerico'])->name('prueba');
+Route::get('prueba',[PagoController::class,'deudoresInscripcion'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -511,6 +511,7 @@ Route::get('saldo/inscripcion', [InscripcioneController::class,'Saldo'])->name('
 Route::get('reservar/inscripcion/{inscripcione}', [InscripcioneController::class,'reservar'])->name('reservar.inscripcion');  
 Route::get('darbaja/inscripcion',[InscripcioneController::class,'darbaja'])->name('inscripcion.darbaja');
 Route::get('daralta/inscripcion',[InscripcioneController::class,'daralta'])->name('inscripcion.daralta');
+Route::get('inscripcion/actualizar/fecha_proximo_pago',[InscripcioneController::class,'fecharProximoPago'])->name('inscripcion.fechar.proximo.pago');
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TELEFONOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('telefonos/vista/{persona}','TelefonoController@mostrarvista')->name('telefonos.persona');

@@ -1,6 +1,6 @@
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%% COMPONENTE CONTACTO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 <div class="modal" tabindex="-1" id="{{$idmodal}}">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-primary">
                 {{__($titulo)}}

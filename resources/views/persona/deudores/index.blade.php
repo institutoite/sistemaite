@@ -33,6 +33,7 @@
         </div>
         @include('observacion.modalcreate')
         @include('telefono.modales')
+        @include('persona.deudores.modales')
        
     </div>
     
@@ -76,6 +77,7 @@
     
     <script>
         let tablacontactos;
+        let tabla;
         //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
         CKEDITOR.replace('editorguardar', {
             height: 120,
@@ -161,6 +163,53 @@
             url="observacion/actualizar";
             actualizarObservacion(observacion_id,observacion,url);
         });
+        $('table').on('click', '.fechar', function(e) {
+            e.preventDefault();
+            inscripcione_id =$(this).attr('id');
+            console.log("fechar:"+inscripcione_id);
+            $("#modal-fechar").modal("show");
+            $("#inscripcione_id").val(inscripcione_id);
+            
+        }); 
+           /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('#agendar').on('click', function (e) {
+            e.preventDefault();
+            $("#errores").empty();
+            let fecha_proximo_pago = $("#fecha_proximo_pago").val();
+            console.log(fecha_proximo_pago);
+            let inscripcione_id = $("#inscripcione_id").val();
+            console.log(inscripcione_id);
+            $.ajax({
+                url: "../inscripcion/actualizar/fecha_proximo_pago",
+                data: {
+                    fecha_proximo_pago:fecha_proximo_pago,
+                    inscripcione_id:inscripcione_id,
+                },
+                success: function (json) {
+                        console.log(json);
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                        })
+                        Toast.fire({
+                            type: 'success',
+                            title: "Se actualizó correctamente la fecha próximo pago ",
+                        })
+                        $("#modal-fechar").modal("hide");
+                        
+                           
+                        tabla.ajax.reload();
+                    
+                },
+                error: function (xhr, status) {
+                    alert('Disculpe, existió un problema');
+                },
+            });
+            
+        });
+       
 
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -208,16 +257,12 @@
                         "data":{
                             persona_id:persona_id,
                         },
-                        // "success":function(json){
-                            
-                        // }
                     },
                     "createdRow": function (row, data, dataIndex) {
                         $(row).attr('id', data['id']); // agrega dinamiacamente el id del row
                         $('td', row).eq(3).html(data.pivot.parentesco);
                         $('td', row).eq(5).children('.cargarmensaje').attr('href','https://api.whatsapp.com/send?phone=591'+data['telefono']+'&text='+mensaje.mensaje);
-                        // $('.cargarmensaje').attr("href","www.ite.com.bo")
-                        $('td', row).eq(4).html(moment(data['updated_at']).format('DD-MM-Y'));
+                        $('td', row).eq(4).html(moment(data['updated_at']).format('DD-MM-YYYY'));
                         if (data['telefono'] == 0) {
                             $(row).addClass('text-danger');
                         } else {
@@ -287,7 +332,7 @@
         });
         /*%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE PERSONAS ESTUDIANTES %%%%%%%%%%%%%%%%%%%%*/
         $(document).ready(function() {
-            var tabla=$('#deudores').DataTable(
+                tabla=$('#deudores').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
@@ -298,13 +343,18 @@
                         $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
                         $('td', row).eq(3).html("<strong class='text-success'>"+data['acuenta']+"</strong>+"+"<strong class='text-danger'>"+parseInt(data['costo']-data['acuenta'])+"</strong>"+"="+data['costo']);
                         // $('td', row).eq(5).html(data['fechafin']);
+                        if(moment(data['fecha_proximo_pago']).format('YY-MM-DD')>moment().format('YY-MM-DD'))
+                            $(row).addClass('text-success');
+                        else
+                            $(row).addClass('text-danger');
+                        
                     },
                     "columns": [
                         {data: 'id'},
                         {data: 'nombre'},
                         {data: 'apellidop'},
                         {data: 'acuenta'},
-                        {data: 'fechafin'},
+                        {data: 'fecha_proximo_pago'},
                         {
                             "name": "foto",
                             "data": "foto",

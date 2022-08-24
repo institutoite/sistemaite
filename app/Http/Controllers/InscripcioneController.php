@@ -495,4 +495,14 @@ class InscripcioneController extends Controller
         return response()->json(["mensaje"=>"Se dio de alta exitosamente"]);
     }
 
+    public function fecharProximoPago(Request $request){
+        $fecha_proximo_pago=$request->fecha_proximo_pago;
+        $inscripcione_id=$request->inscripcione_id;
+        $inscripcion=Inscripcione::findOrFail($inscripcione_id);
+        $inscripcion->fecha_proximo_pago=$fecha_proximo_pago;
+        $inscripcion->save();
+        return response()->json($inscripcion);
+        return response()->json(['mensaje'=>"El actualiza correctamente el registro"]);
+    }
+
 }

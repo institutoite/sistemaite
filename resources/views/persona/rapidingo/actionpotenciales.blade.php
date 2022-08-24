@@ -35,7 +35,7 @@
 <a class="btn-accion-tabla tooltipsC mr-1 enviarmensaje text-success" title="Enviar mensaje a su whatsapp">
     <i class="fab fa-whatsapp"></i>
 </a>
-<a href="" class="btn-accion-tabla tooltipsC mr-1 fechar" title="Agendar cuando volvera regreso a clases">
+<a href="" class="btn-accion-tabla tooltipsC mr-1 fechar" title="Agendar cuando piensa venir">
     <i class="fas fa-calendar-check"></i>
 </a>
 <a href="" class="btn-accion-tabla tooltipsC mr-1 calificar" title="Calificar el nivel de regreso 20% a 100% donde 100% es que volvera seguro">
