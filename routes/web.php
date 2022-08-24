@@ -171,7 +171,9 @@ Route::resource('inscripciones', "InscripcioneController");
 Route::get('/historial/{estudiante}','EstudianteController@historia')->name('estudiante.historia');
 Route::get('cumpleaneros',[EstudianteController::class,'cumpleaneros'])->name('cumpleaneros');
 Route::get('estudiante/faltones',[EstudianteController::class,'estudiantesFaltones'])->name('estudiante.faltones');
+Route::get('estudiante/sinfalta',[EstudianteController::class,'estudiantesSinFalta'])->name('estudiante.sinfalta');
 Route::get('faltones/view',[EstudianteController::class,'faltonesView'])->name('estudiante.faltones.view');
+Route::get('sinfalta/view',[EstudianteController::class,'sinfaltaView'])->name('estudiante.sinfalta.view');
 Route::get('cumpleaneros/view',[EstudianteController::class,'cumplenerosView'])->name('cumpleaneros.view');
 // Route::get('yaesta/felicitado/{persona}',[EstudianteController::class,'yaSeFelicito'])->name('yaesta.felicitado');
 

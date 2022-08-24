@@ -657,9 +657,9 @@ return [
                     'classes'  => 'text-dark',
                 ],
                 [
-                    'text' => 'Nunca Faltaron',
+                    'text' => 'Sin Faltas',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => 'nuncafaltaron/view',
+                    'url'  => 'estudiante/sinfalta',
                     'classes'  => 'text-dark',
                 ],
                 [

@@ -52,6 +52,7 @@ class EstudianteController extends Controller
                 ->join('users','users.id','userables.user_id')
                 ->where('userables.userable_type',Inscripcione::class)
                 ->where('estados.estado','FALTA')
+                ->where('inscripciones.vigente',1)
                 ->select('personas.id','programacions.id as programacion_id','nombre','apellidop','apellidom','telefono','users.name','personas.foto')
                 ->get();
         return DataTables::of($faltones)
@@ -59,11 +60,47 @@ class EstudianteController extends Controller
         ->rawColumns(['btn'])
         ->toJson(); 
     }
+    public function estudiantesSinFalta()
+    {
+        $InscripcionesConFalta=Persona::join('estudiantes','personas.id','estudiantes.persona_id')
+                ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+                ->join('programacions','programacions.inscripcione_id','inscripciones.id')
+                ->join('estados','estados.id','programacions.estado_id')
+                ->join('userables','userables.userable_id','inscripciones.id')
+                ->join('users','users.id','userables.user_id')
+                ->where('userables.userable_type',Inscripcione::class)
+                ->where('estados.estado','=','FALTA')
+  				->where('inscripciones.vigente',1)
+                ->select('inscripciones.id')
+                ->get();
+            $InscripcionesSinFalta=Inscripcione::whereNotIn('inscripciones.id',$InscripcionesConFalta)
+                ->where('inscripciones.vigente',1)
+                ->select('inscripciones.id')		
+                ->get();
+
+            $PersonasSinFalta=Persona::join('estudiantes','estudiantes.persona_id','personas.id')
+                ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+                ->join('userables','userables.userable_id','inscripciones.id')
+                ->join('users','users.id','userables.user_id')
+                ->where('userables.userable_type',Inscripcione::class)
+                ->whereIn('inscripciones.id',$InscripcionesSinFalta)
+                ->select('personas.id','nombre','apellidop','apellidom','telefono','users.name','personas.foto')
+                ->get();
+
+            return DataTables::of($PersonasSinFalta)
+            ->addColumn('btn','estudiantes.actionsinfalta')
+            ->rawColumns(['btn'])
+            ->toJson(); 
+    }
 
     
     public function faltonesView()
     {
         return view('estudiantes.faltones');
+    }
+    public function sinfaltaView()
+    {
+        return view('estudiantes.sinfalta');
     }
     public function store(Request $request)
     {
