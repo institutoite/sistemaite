@@ -659,7 +659,7 @@ return [
                 [
                     'text' => 'Sin Faltas',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => 'estudiante/sinfalta',
+                    'url'  => 'sinfalta/view',
                     'classes'  => 'text-dark',
                 ],
                 [

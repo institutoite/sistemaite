@@ -129,12 +129,44 @@ class ComputacionController extends Controller
                 ->join('userables','userables.userable_id','matriculacions.id')
                 ->join('users','users.id','userables.user_id')
                 ->where('userables.userable_type',Matriculacion::class)
-                ->where('estados.estado','FALTA')
+                ->where('estados.estado','FALTANOTIFICADA')
+                ->where('matriculacions.vigente',1)
+                // ->where('estados.estado','FALTANOTIFICADA')
                 ->select('personas.id','programacioncoms.id as programacioncom_id','nombre','apellidop','apellidom','telefono','users.name','personas.foto')
                 ->get();
         return DataTables::of($faltonescom)
         ->addColumn('btn','computacion.actionfaltones')
         ->rawColumns(['btn'])
         ->toJson(); 
+    }
+    public function computacionsSinFalta()
+    {
+             $faltonescom=Persona::join('computacions','personas.id','computacions.persona_id')
+                ->join('matriculacions','matriculacions.computacion_id','computacions.id')
+                ->join('programacioncoms','programacioncoms.matriculacion_id','matriculacions.id')
+                ->join('estados','estados.id','programacioncoms.estado_id')
+                ->join('userables','userables.userable_id','matriculacions.id')
+                ->join('users','users.id','userables.user_id')
+                ->where('userables.userable_type',Matriculacion::class)
+                ->where('estados.estado','FALTA')
+                ->orWhere('estados.estado','FALTANOTIFICADA')
+                ->where('matriculacions.vigente',1)
+                ->select('matriculacions.id')
+                ->get();
+            $MatriculacionesSinFalta=Matriculacion::whereNotIn('matriculacions.id',$faltonescom)
+                ->join('computacions','matriculacions.computacion_id','computacions.id')
+                ->join('personas','personas.id','computacions.persona_id')
+                ->join('userables','userables.userable_id','matriculacions.id')
+                ->join('users','users.id','userables.user_id')
+                ->where('userables.userable_type',Matriculacion::class)
+                ->where('matriculacions.vigente',1)
+                ->select('personas.id', 'matriculacions.id as matriculacion','nombre','apellidop','apellidom','telefono','users.name','personas.foto')
+                ->groupBy('personas.id','matriculacion','nombre','apellidop','apellidom','telefono','users.name','personas.foto')
+                ->get();		
+
+            return DataTables::of($MatriculacionesSinFalta)
+            ->addColumn('btn','computacion.actionsinfalta')
+            ->rawColumns(['btn'])
+            ->toJson(); 
     }
 }

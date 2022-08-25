@@ -62,7 +62,7 @@ class EstudianteController extends Controller
     }
     public function estudiantesSinFalta()
     {
-        $InscripcionesConFalta=Persona::join('estudiantes','personas.id','estudiantes.persona_id')
+            $InscripcionesConFalta=Persona::join('estudiantes','personas.id','estudiantes.persona_id')
                 ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
                 ->join('programacions','programacions.inscripcione_id','inscripciones.id')
                 ->join('estados','estados.id','programacions.estado_id')
@@ -70,6 +70,7 @@ class EstudianteController extends Controller
                 ->join('users','users.id','userables.user_id')
                 ->where('userables.userable_type',Inscripcione::class)
                 ->where('estados.estado','=','FALTA')
+                ->orWhere('estados.estado','=','FALTANOTIFICADA')
   				->where('inscripciones.vigente',1)
                 ->select('inscripciones.id')
                 ->get();

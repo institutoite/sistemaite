@@ -45,7 +45,7 @@ use App\Http\Controllers\EstudianteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[PagoController::class,'deudoresInscripcion'])->name('prueba');
+Route::get('prueba',[ComputacionController::class,'computacionsSinFalta'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -220,6 +220,7 @@ Route::get('computacion/carreras/{persona}', 'ComputacionController@mostrar_carr
 Route::get('opciones/computacion/{persona}',[OpcionController::class,'computacion'])->name('opcion.computacion');
 Route::post('computacion/carreras/configurar/{persona}', 'ComputacionController@GuardarNuevaCarrera')->name('computacion.carreras.guardar');
 Route::get('computacion/faltones',[ComputacionController::class,'computacionsFaltones'])->name('computacion.faltones');
+Route::get('computacion/sinfalta',[ComputacionController::class,'computacionsSinFalta'])->name('computacion.sinfalta');
 //Route::get('faltones/view',[EstudianteController::class,'faltonesView'])->name('estudiante.faltones.view');
 
 

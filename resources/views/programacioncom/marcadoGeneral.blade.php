@@ -266,7 +266,7 @@
                         {"data": "horafin"},
 
                         {"data": "estado"},
-                        {"data": "nombre"},
+                        {"data": "nombrecorto"},
                         {"data": "aula"},
                         {"data": "btn"},
                     ],
