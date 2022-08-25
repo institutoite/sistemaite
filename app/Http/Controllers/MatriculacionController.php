@@ -303,7 +303,6 @@ class MatriculacionController extends Controller
             $matriculacionesVigentes=Matriculacion::join('asignaturas','asignaturas.id','=','matriculacions.asignatura_id')        
             ->join('estados','estados.id','matriculacions.estado_id')
             ->where('computacion_id','=',$computacion->id)
-            ->where('vigente', 1)
             ->select('matriculacions.id','vigente','costo','asignatura','fecha_proximo_pago','estado')
             ->get();
         }

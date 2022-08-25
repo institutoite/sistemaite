@@ -358,6 +358,9 @@
                             $('td', row).eq(2).addClass('text-danger');
                             $('td', row).eq(3).addClass('text-danger');
                         }
+                        if (data['vigente']==0){
+                            $(row).addClass('table-danger text-white')
+                        }
                          $clase="";
                         switch (data['estado']) {
                             case "RESERVADO":

@@ -1,0 +1,30 @@
+BEGIN:VCARD
+VERSION:3.0
+N:CONTRERAS;LIDIA;CATARI;;
+FN:CONTRERAS LIDIA CATARI
+PHOTO;VALUE=urihttp://localhost/sistemaite/public/storage/estudiantes/foto.jpg
+BDAY:2015-05-15
+GENDER:M
+TEL;VALUE=uri;PREF=1;TYPE=voice,work:0
+URL:wa.me/591No tiene numero
+NOTE:Genero:HOMBRE\nDireccion:VILLA 1 DE MAYO Barrio Luis Soruco Barba\nComo eneteró:FACEBOOK
+TEL;VALUE=uri;PREF=1;TYPE=voice,home:71039910
+NOTE:Nombre:DAVID FLORES BELTRAN\nPARENTESCO:ESPOSO\nTelefono:71039910
+URL:wa.me/59171039910
+TEL;VALUE=uri;PREF=1;TYPE=voice,home:71324941
+NOTE:Nombre:ADONIAS FLORES CONTRERAS\nPARENTESCO:OTRO\nTelefono:71324941
+URL:wa.me/59171324941
+NOTE:Modalidad:Mes 1LV1H Primaria\nObservacion:<p>este es el objetivo de esta inscripcion</p>\nVigente:0\nMotivo:Tiene una defenza
+NOTE:Modalidad:Mes 1LV1H Primaria\nObservacion:<p>Es tes el objetivo de esta inscripcion</p>\nVigente:1\nMotivo:En cada no tienen capacidad de ayudar
+NOTE:Modalidad:Mes 1LV1H Primaria\nObservacion:<p>esta es una inscripcion deshabilitado o desvigente&nbsp;</p>\nVigente:1\nMotivo:Tiene un profesor a domicilio, pero le falla mucho
+NOTE:Asignatura:WINDOWS\nVigente:0
+NOTE:Asignatura:MICROSOFT WORD\nVigente:1
+NOTE:Asignatura:MICROSOFT EXCEL\nVigente:1
+LANG;TYPE=work;PREF=2:es
+TITLE:estudiante
+ROLE:ESTUDIANTE,COMPUTACION,
+LOGO:estudiantes/foto.jpg
+ORG:
+NOTE:INTERESES:
+NOTE:<p>esto es una observacion de cobranza</p>
+END:VCARD

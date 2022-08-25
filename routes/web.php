@@ -45,7 +45,7 @@ use App\Http\Controllers\EstudianteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[ComputacionController::class,'computacionsSinFalta'])->name('prueba');
+Route::get('prueba',[PagoController::class,'deudoresMatriculacion'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -172,8 +172,10 @@ Route::get('/historial/{estudiante}','EstudianteController@historia')->name('est
 Route::get('cumpleaneros',[EstudianteController::class,'cumpleaneros'])->name('cumpleaneros');
 Route::get('estudiante/faltones',[EstudianteController::class,'estudiantesFaltones'])->name('estudiante.faltones');
 Route::get('estudiante/sinfalta',[EstudianteController::class,'estudiantesSinFalta'])->name('estudiante.sinfalta');
+Route::get('estudiante/recordatorio',[EstudianteController::class,'estudiantesRecordatorio'])->name('estudiante.recordatorio');
 Route::get('faltones/view',[EstudianteController::class,'faltonesView'])->name('estudiante.faltones.view');
 Route::get('sinfalta/view',[EstudianteController::class,'sinfaltaView'])->name('estudiante.sinfalta.view');
+Route::get('recordatorio/view',[EstudianteController::class,'recordatorioView'])->name('estudiante.recordatorio.view');
 Route::get('cumpleaneros/view',[EstudianteController::class,'cumplenerosView'])->name('cumpleaneros.view');
 // Route::get('yaesta/felicitado/{persona}',[EstudianteController::class,'yaSeFelicito'])->name('yaesta.felicitado');
 
@@ -221,6 +223,7 @@ Route::get('opciones/computacion/{persona}',[OpcionController::class,'computacio
 Route::post('computacion/carreras/configurar/{persona}', 'ComputacionController@GuardarNuevaCarrera')->name('computacion.carreras.guardar');
 Route::get('computacion/faltones',[ComputacionController::class,'computacionsFaltones'])->name('computacion.faltones');
 Route::get('computacion/sinfalta',[ComputacionController::class,'computacionsSinFalta'])->name('computacion.sinfalta');
+Route::get('computacion/recordatorio',[ComputacionController::class,'computacionsRecordatorio'])->name('computacion.recordatorio');
 //Route::get('faltones/view',[EstudianteController::class,'faltonesView'])->name('estudiante.faltones.view');
 
 

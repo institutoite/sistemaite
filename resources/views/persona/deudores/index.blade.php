@@ -12,7 +12,7 @@
     <div class="pt-4">
         <div class="card">
             <div class="card-header bg-primary">
-                Lista de deudores
+                Lista de deudores de cursos de nivelación: <strong> Inscripciones </strong>
             </div>
             
             <div class="card-body">
@@ -24,6 +24,28 @@
                             <th>APELLIDOP</th>
                             <th><strong class="text-success">ACUENTA</strong>+<strong class="text-danger">SALDO</strong>=TOTAL</th>
                             <th>FECHAPAGO</th>
+                            <th>FOTO</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-primary">
+                Lista de deudores de computación <strong> Matriculaciones </strong>
+            </div>
+            
+            <div class="card-body">
+                <table id="deudorescomputacion" class="text-center table table-bordered table-hover table-striped">
+                    <thead class="text-center">
+                        <tr>
+                            <th>ID</th>
+                            <th>NOMBRE</th>
+                            <th>APELLIDOP</th>
+                            <th><strong class="text-success">ACUENTA</strong>+<strong class="text-danger">SALDO</strong>=TOTAL</th>
+                            <th>FECHAPAGO</th>
+                            <th>ASIGNAURA</th>
                             <th>FOTO</th>
                             <th>ACCIONES</th>
                         </tr>
@@ -77,7 +99,8 @@
     
     <script>
         let tablacontactos;
-        let tabla;
+        let tabla_deudores_inscripcion;
+        let tabla_deudores_matriculacion;
         //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
         CKEDITOR.replace('editorguardar', {
             height: 120,
@@ -163,6 +186,7 @@
             url="../observacion/actualizar";
             actualizarObservacion(observacion_id,observacion,url);
         });
+        /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FECHAR PROXIMO PAGO DE INSCRIPCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         $('table').on('click', '.fechar', function(e) {
             e.preventDefault();
             inscripcione_id =$(this).attr('id');
@@ -172,7 +196,7 @@
             $("#inscripcione_id").val(inscripcione_id);
             
         }); 
-           /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+           /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         $('#agendar').on('click', function (e) {
             e.preventDefault();
             $("#errores").empty();
@@ -201,7 +225,54 @@
                         $("#modal-fechar").modal("hide");
                         
                            
-                        tabla.ajax.reload();
+                        tabla_deudores_inscripcion.ajax.reload();
+                    
+                },
+                error: function (xhr, status) {
+                    alert('Disculpe, existió un problema');
+                },
+            });
+            
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%% FECHAR MATRICULACION PROXIMO PAGO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.fechar', function(e) {
+            e.preventDefault();
+            inscripcione_id =$(this).attr('id');
+            $(this).closest('tr').addTempClass('bg-success', 3000)
+            $("#fecha_proximo_pago").val()
+            $("#modal-fechar").modal("show");
+            $("#inscripcione_id").val(inscripcione_id);
+        }); 
+           /**%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR DE MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('#agendar').on('click', function (e) {
+            e.preventDefault();
+            $("#errores").empty();
+            let fecha_proximo_pago = $("#fecha_proximo_pago").val();
+            console.log(fecha_proximo_pago);
+            let inscripcione_id = $("#inscripcione_id").val();
+            console.log(inscripcione_id);
+            $.ajax({
+                url: "../inscripcion/actualizar/fecha_proximo_pago",
+                data: {
+                    fecha_proximo_pago:fecha_proximo_pago,
+                    inscripcione_id:inscripcione_id,
+                },
+                success: function (json) {
+                        console.log(json);
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                        })
+                        Toast.fire({
+                            type: 'success',
+                            title: "Se actualizó correctamente la fecha próximo pago ",
+                        })
+                        $("#modal-fechar").modal("hide");
+                        
+                           
+                        tabla_deudores_inscripcion.ajax.reload();
                     
                 },
                 error: function (xhr, status) {
@@ -333,7 +404,7 @@
         });
         /*%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE PERSONAS ESTUDIANTES %%%%%%%%%%%%%%%%%%%%*/
         $(document).ready(function() {
-                tabla=$('#deudores').DataTable(
+            tabla_deudores_inscripcion=$('#deudores').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
@@ -356,6 +427,53 @@
                         {data: 'apellidop'},
                         {data: 'acuenta'},
                         {data: 'fecha_proximo_pago'},
+                        {
+                            "name": "foto",
+                            "data": "foto",
+                            "render": function (data, type, full, meta) {
+                                return "<img class='materialboxed zoomify' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
+                            },
+                            "title": "FOTO",
+                            "orderable": false,
+            
+                        },     
+                        {
+                            "name":"btn",
+                            "data": 'btn',
+                            "orderable": false,
+                        },
+                    ],
+
+                    "language":{
+                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    },  
+                }
+            );
+         
+            tabla_deudores_matriculacion=$('#deudorescomputacion').DataTable(
+                {
+                    "serverSide": true,
+                    "responsive":true,
+                    "autoWidth":false,
+
+                    "ajax": "{{ url('deudores/matriculacion') }}",
+                    "createdRow": function( row, data, dataIndex ) {
+                        $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
+                        $('td', row).eq(3).html("<strong class='text-success'>"+data['acuenta']+"</strong>+"+"<strong class='text-danger'>"+parseInt(data['costo']-data['acuenta'])+"</strong>"+"="+data['costo']);
+                        // $('td', row).eq(5).html(data['fechafin']);
+                        if(moment(data['fecha_proximo_pago']).format('YY-MM-DD')>moment().format('YY-MM-DD'))
+                            $(row).addClass('text-success');
+                        else
+                            $(row).addClass('text-danger');
+                        
+                    },
+                    "columns": [
+                        {data: 'id'},
+                        {data: 'nombre'},
+                        {data: 'apellidop'},
+                        {data: 'acuenta'},
+                        {data: 'fecha_proximo_pago'},
+                        {data: 'asignatura'},
                         {
                             "name": "foto",
                             "data": "foto",

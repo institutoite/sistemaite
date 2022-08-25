@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PagoStoreRequest;
 use App\Models\Inscripcione;
+use App\Models\Matriculacion;
 use App\Models\Pago;
 use App\Models\User;
 use App\Models\Aula;
@@ -205,7 +206,25 @@ class PagoController extends Controller
             ->groupBy('personas.id','inscripcione_id','personas.nombre','personas.apellidop','acuenta','foto','telefono','fecha_proximo_pago','costo')
             ->get();
         return DataTables::of($deudores)
-                ->addColumn('btn','persona.deudores.action')
+                ->addColumn('btn','persona.deudores.actiondeudoresinscripcion')
+                ->rawColumns(['btn'])
+                ->toJson();
+
+    } 
+    public function deudoresMatriculacion(){
+     
+        $deudorescomputacion =Persona::join('computacions','computacions.persona_id','personas.id')
+        ->join('matriculacions','matriculacions.computacion_id','computacions.id')
+        ->join('asignaturas','matriculacions.asignatura_id','asignaturas.id')
+        ->join('pagos','pagos.pagable_id','matriculacions.id')
+        ->where('pagos.pagable_type',Matriculacion::class)
+        ->where('matriculacions.condonado',0)
+        ->where('matriculacions.costo','>',DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= matriculacions.id)"))
+        ->select('personas.id','matriculacions.id as matriculacion_id','asignatura','personas.nombre','personas.apellidop','costo','foto','telefono','fecha_proximo_pago',DB::raw("(SELECT sum(monto) FROM pagos WHERE pagos.pagable_id= matriculacions.id) as acuenta"))
+        ->groupBy('personas.id','matriculacion_id','asignatura','personas.nombre','personas.apellidop','foto','telefono','fecha_proximo_pago','costo','acuenta')
+        ->get();
+        return DataTables::of($deudorescomputacion)
+                ->addColumn('btn','persona.deudores.actiondeudoresmatriculacion')
                 ->rawColumns(['btn'])
                 ->toJson();
 
@@ -213,5 +232,4 @@ class PagoController extends Controller
     public function deudoresView(){
         return view('persona.deudores.index');
     }
-
 }
