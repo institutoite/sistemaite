@@ -23,6 +23,7 @@
                             <th>APELLIDOP</th>
                             <th>APELLIDOM</th>
                             <th>CALIFICACION</th>
+                            <th>VIENE</th>
                             <th>FOTO</th>
                             <th>ACCIONES</th>
                         </tr>
@@ -31,6 +32,10 @@
             </div>
         </div>
         @include('telefono.modales')
+        @include('observacion.modalcreate')
+        @include('telefono.modales')
+        @include('mensaje.masivo.modales')
+        
     </div>
     
     {{-- <x-header variable="Una Variable" >
@@ -167,70 +172,22 @@
             $(this).closest('tr').addTempClass('bg-success', 3000)
             $("#fecha_proximo_pago").val()
             $("#modal-fechar").modal("show");
-            $("#inscripcione_id").val(inscripcione_id);
-            
+            $("#inscripcion_id").val(inscripcione_id);
         }); 
            /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $('#agendar').on('click', function (e) {
-            e.preventDefault();
-            $("#errores").empty();
-            let fecha_proximo_pago = $("#fecha_proximo_pago").val();
-            console.log(fecha_proximo_pago);
-            let inscripcione_id = $("#inscripcione_id").val();
-            console.log(inscripcione_id);
-            $.ajax({
-                url: "../inscripcion/actualizar/fecha_proximo_pago",
-                data: {
-                    fecha_proximo_pago:fecha_proximo_pago,
-                    inscripcione_id:inscripcione_id,
-                },
-                success: function (json) {
-                        console.log(json);
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 3000,
-                        })
-                        Toast.fire({
-                            type: 'success',
-                            title: "Se actualizó correctamente la fecha próximo pago ",
-                        })
-                        $("#modal-fechar").modal("hide");
-                        
-                           
-                        tabla_deudores_inscripcion.ajax.reload();
-                    
-                },
-                error: function (xhr, status) {
-                    alert('Disculpe, existió un problema');
-                },
-            });
-            
-        });
-        /*%%%%%%%%%%%%%%%%%%%%%%%%% FECHAR MATRICULACION PROXIMO PAGO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $('table').on('click', '.fechar', function(e) {
-            e.preventDefault();
-            inscripcione_id =$(this).attr('id');
-            $(this).closest('tr').addTempClass('bg-success', 3000)
-            $("#fecha_proximo_pago").val()
-            $("#modal-fechar").modal("show");
-            $("#inscripcione_id").val(inscripcione_id);
-        }); 
         
         /**%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR DE MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         $('#agendar').on('click', function (e) {
             e.preventDefault();
-            $("#errores").empty();
-            let fecha_proximo_pago = $("#fecha_proximo_pago").val();
-            console.log(fecha_proximo_pago);
-            let inscripcione_id = $("#inscripcione_id").val();
-            console.log(inscripcione_id);
+            let vuelvefecha = $("#vuelvefecha").val();
+            console.log(vuelvefecha);
+            let persona_id = $("#persona_id").val();
+            console.log(persona_id);
             $.ajax({
-                url: "../inscripcion/actualizar/fecha_proximo_pago",
+                url: "persona/actualizar/vuelvefecha",
                 data: {
-                    fecha_proximo_pago:fecha_proximo_pago,
-                    inscripcione_id:inscripcione_id,
+                    vuelvefecha:vuelvefecha,
+                    persona_id:persona_id,
                 },
                 success: function (json) {
                         console.log(json);
@@ -245,9 +202,7 @@
                             title: "Se actualizó correctamente la fecha próximo pago ",
                         })
                         $("#modal-fechar").modal("hide");
-                        
-                           
-                        tabla_deudores_inscripcion.ajax.reload();
+                        masivocontactar.ajax.reload();
                     
                 },
                 error: function (xhr, status) {

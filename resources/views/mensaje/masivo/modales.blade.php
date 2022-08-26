@@ -17,8 +17,8 @@
                                 </ul>
                             </div>
                         </div>
-                            <input class="form-control" type="date" id="fecha_proximo_pago" name="fecha_proximo_pago">
-                            <input class="form-control" type="text" hidden id="inscripcione_id" name="inscripcione_id">
+                            <input class="form-control" type="date" id="vuelvefecha" name="vuelvefecha">
+                            <input class="form-control" type="text" hidden id="persona_id" name="persona_id">
                             <div class="container-fluid h-100 mt-3"> 
                                 <div class="row w-100 align-items-center">
                                     <div class="col text-center">

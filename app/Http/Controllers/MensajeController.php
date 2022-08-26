@@ -165,7 +165,7 @@ class MensajeController extends Controller
         ->get();
 
         return DataTables::of($EstudiantesCalificacionDesc)
-        ->addColumn('btn','estudiantes.actionsinfalta')
+        ->addColumn('btn','mensaje.masivo.actionmasivo')
         ->rawColumns(['btn'])
         ->toJson(); 
     }
