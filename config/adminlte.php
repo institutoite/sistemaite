@@ -795,6 +795,21 @@ return [
                 ],
             ],
         ],
+//** %%%%%%%%%%%%%%%%%%  MENU eventos %%%%%%%%%%%%% */
+        [
+            'text'    => 'Eventos',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'eventos',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
 //** %%%%%%%%%%%%%%%%%%  MENU Colegios %%%%%%%%%%%%% */
         [
             'text'    => 'Comentario Web',

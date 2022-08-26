@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Tipomotivo;
 use Illuminate\Http\Request;
 
-use Yajra\DataTables\Contracts\DataTable as DataTable; 
-use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
 use App\Models\User;
 
 use Illuminate\Validation\Rule;

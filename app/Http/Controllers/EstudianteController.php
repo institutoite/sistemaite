@@ -103,6 +103,10 @@ class EstudianteController extends Controller
     {
         return view('estudiantes.sinfalta');
     }
+    public function recordatorioView()
+    {
+        return view('estudiantes.recordatorio');
+    }
     public function store(Request $request)
     {
 

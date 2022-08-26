@@ -40,6 +40,7 @@ class EstadoController extends Controller
         $estadonuevo=new Estado();
         $estadonuevo->estado = $request->estado;
         $estadonuevo->save();
+        $estadonuevo->usuarios()->attach(Auth::user()->id);
         return redirect()->route('estado.index');
     }
 

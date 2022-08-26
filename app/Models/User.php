@@ -139,6 +139,9 @@ class User extends Authenticatable
     public function estados(){
         return $this->morphedByMany(Estado::class,'userable');
     } 
+    public function eventos(){
+        return $this->morphedByMany(Estado::class,'userable');
+    } 
     public function estudiantes(){
         return $this->morphedByMany(Estudiante::class,'userable');
     } 

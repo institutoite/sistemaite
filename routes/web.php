@@ -42,10 +42,11 @@ use App\Http\Controllers\ComputacionController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\AdministrativoController;
 use App\Http\Controllers\EstudianteController;
+use App\Http\Controllers\EventoController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[PagoController::class,'deudoresMatriculacion'])->name('prueba');
+Route::get('prueba',[EventoController::class,'listar'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -116,9 +117,9 @@ Route::get('contactos', [PersonaController::class,'contactos'])->name('personas.
 Route::get('persona/contactos', [PersonaController::class,'listarContactos'])->name('personas.contactos');
 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%RAPIDINGO EDITAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-    Route::get('personas/crear/rapidingo/',[PersonaController::class,'crearRapido'] )->name('crear.persona.rapido');
-    Route::post('persona/guardar/rapidingo',[PersonaController::class,'guardarRapidingo'])->name('personas.guardar.rapidindo');
-    Route::get('persona/potenciales', function () {return view('persona.rapidingo.potenciales');});
+Route::get('personas/crear/rapidingo/',[PersonaController::class,'crearRapido'] )->name('crear.persona.rapido');
+Route::post('persona/guardar/rapidingo',[PersonaController::class,'guardarRapidingo'])->name('personas.guardar.rapidindo');
+Route::get('persona/potenciales', function () {return view('persona.rapidingo.potenciales');});
     Route::get('potenciales', [PersonaController::class,'potenciales'])->name('personas.potenciales');
     Route::get('ver/potencial', [PersonaController::class,'verPotencial'])->name('personas.ver.potenciales');
     Route::get('persona/potenciales/unsuscribe', [PersonaController::class,'unsuscribe'])->name('personas.unsuscribe');
@@ -126,11 +127,15 @@ Route::get('persona/contactos', [PersonaController::class,'listarContactos'])->n
     Route::post('persona/rapidingo/update/{persona}', [PersonaController::class,'actualizarRapidingo'])->name('personas.update.rapidingo');
     Route::get('persona/editar/rapidingo/{persona}', [PersonaController::class,'editarRapidingo'])->name('personas.editar.rapidingo'); //Falta informar 
 
-/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DEUDORES RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-    Route::get('deudores/view', [PagoController::class,'deudoresView'])->name('deudores.index');
-    Route::get('deudores/inscripcion', [PagoController::class,'deudoresInscripcion'])->name('deudores.inscripcion');
-    Route::get('deudores/matriculacion', [PagoController::class,'deudoresMatriculacion'])->name('deudores.matriculacion');
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%DEUDORES RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+Route::get('deudores/view', [PagoController::class,'deudoresView'])->name('deudores.index');
+Route::get('deudores/inscripcion', [PagoController::class,'deudoresInscripcion'])->name('deudores.inscripcion');
+Route::get('deudores/matriculacion', [PagoController::class,'deudoresMatriculacion'])->name('deudores.matriculacion');
 
+
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EVENTOS RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+Route::resource('eventos',"EventoController");
+Route::get('listar/eventos',[EventoController::class,'listar'])->name('listar.eventos');
 
 
 
