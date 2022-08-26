@@ -169,16 +169,46 @@
         $('table').on('click', '.recalificar', function(e) {
             e.preventDefault();
             persona_id =$(this).closest('tr').attr('id');
-            // console.log(persona_id);
+            console.log(persona_id);
             $.ajax({
                 url : "../get/calificacion",
                 data:{
                     persona_id:persona_id,
                 },
                 success : function(json) {
-                    console.log(json.calificado);
+                    console.log(json);
                     if(json.calificado=="SI"){
-                        $("#modal-crear-calificacion").modal("show");
+                        /*%%%%%% actualiza %%%%%%%%%%%%%%%%%%*/
+                        $("#id_persona").val(json.calificacion.persona_id);
+                        $("#calificacion option[value="+ json.calificacion.calificacion +"]").attr("selected",true);
+                        $("#storeupdate").val("actualizar");
+                        $("#modal-editar-calificacion").modal("show");
+                    }else{
+                        /*%%%%%%%%%%%%%%%%%  por este lado guarda nuevo %%%%%%%%%%%%*/
+                        $("#id_persona").val(persona_id);
+                        $("#storeupdate").val("guardar");
+                        $("#modal-editar-calificacion").modal("show");
+                        
+                    }
+                },
+                error : function(xhr, status) {
+                    alert('Disculpe, existió un problema');
+                },
+            });
+        }); 
+
+        $('#btn-calificar').on('click', function (e) {
+            $.ajax({
+                url : "../get/calificacion",
+                data:{
+                    persona_id:persona_id,
+                },
+                success : function(json) {
+                    console.log(json);
+                    if(json.calificado=="SI"){
+                        //$("#persona_id").val(persona_id);
+                        $("#modal-editar-calificacion").modal("show");
+                        $("#id_persona").val(json.calificacion.persona_id);
                         console.log("entre al SI");
                     }else{
                         console.log("entre al NO");
@@ -189,7 +219,9 @@
                     alert('Disculpe, existió un problema');
                 },
             });
-        }); 
+        })
+        
+
         $('table').on('click', '.fechar', function(e) {
             e.preventDefault();
             persona_id =$(this).attr('id');
