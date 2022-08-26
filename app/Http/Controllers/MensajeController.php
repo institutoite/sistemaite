@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
+
 
 class MensajeController extends Controller
 {
@@ -148,5 +152,26 @@ class MensajeController extends Controller
         $persona=Persona::findOrFail($persona_id);
         $data=['mensaje'=>$mensaje,'persona'=>$persona];
         return response()->json($data);
+    }
+
+    public function MensajeMasivo()
+    {
+        $EstudiantesCalificacionDesc=Persona::join('estudiantes','personas.id','estudiantes.persona_id')
+        ->join('calificacions','personas.id','calificacions.persona_id')
+        ->select('personas.id','personas.nombre','personas.apellidom','personas.apellidop','vuelvefecha','foto',
+                DB::raw("(select AVG(calificacion) from calificacions where personas.id=calificacions.persona_id) as promedio"))
+        ->groupBy('id','nombre','apellidom','apellidop','vuelvefecha','promedio','personas.foto')
+        ->orderBy('promedio','desc')
+        ->get();
+
+        return DataTables::of($EstudiantesCalificacionDesc)
+        ->addColumn('btn','estudiantes.actionsinfalta')
+        ->rawColumns(['btn'])
+        ->toJson(); 
+    }
+
+    public function masivoView()
+    {
+        return view('mensaje.masivo.index');
     }
 }

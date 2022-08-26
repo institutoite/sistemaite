@@ -6,6 +6,7 @@ use App\Models\Evento;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\StoreEventoRequest;
 use App\Http\Requests\UpdateEventoRequest;
@@ -55,7 +56,8 @@ class EventoController extends Controller
      */
     public function show(Evento $evento)
     {
-        //
+        $user=$evento->usuarios->first();
+        return view('evento.show',compact('evento','user'));
     }
 
     /**
@@ -66,7 +68,7 @@ class EventoController extends Controller
      */
     public function edit(Evento $evento)
     {
-        //
+        return view("evento.edit",compact("evento"));
     }
 
     /**
@@ -78,7 +80,9 @@ class EventoController extends Controller
      */
     public function update(UpdateEventoRequest $request, Evento $evento)
     {
-        //
+        $evento->evento=$request->evento;
+        $evento->save();
+        return redirect()->route('eventos.index');
     }
 
     /**
@@ -89,7 +93,8 @@ class EventoController extends Controller
      */
     public function destroy(Evento $evento)
     {
-        //
+        $evento->delete();
+        return response()->json(["mensaje"=>"Registro eliminado correctamente"]);
     }
 
     public function listar(){

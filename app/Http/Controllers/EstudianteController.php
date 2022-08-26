@@ -93,6 +93,7 @@ class EstudianteController extends Controller
             ->rawColumns(['btn'])
             ->toJson(); 
     }
+    
 
     
     public function faltonesView()
@@ -107,6 +108,7 @@ class EstudianteController extends Controller
     {
         return view('estudiantes.recordatorio');
     }
+  
     public function store(Request $request)
     {
 

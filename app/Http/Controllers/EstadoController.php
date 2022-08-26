@@ -6,6 +6,7 @@ use App\Models\Estado;
 use Illuminate\Http\Request;
 use App\Http\Requests\EstadoStoreRequest;
 use App\Http\Requests\EstadoUpdateRequest;
+use Illuminate\Support\Facades\Auth;
 
 class EstadoController extends Controller
 {

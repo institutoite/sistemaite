@@ -46,7 +46,7 @@ use App\Http\Controllers\EventoController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[EventoController::class,'listar'])->name('prueba');
+Route::get('prueba',[MensajeController::class,'MensajeMasivo'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -131,6 +131,7 @@ Route::get('persona/potenciales', function () {return view('persona.rapidingo.po
 Route::get('deudores/view', [PagoController::class,'deudoresView'])->name('deudores.index');
 Route::get('deudores/inscripcion', [PagoController::class,'deudoresInscripcion'])->name('deudores.inscripcion');
 Route::get('deudores/matriculacion', [PagoController::class,'deudoresMatriculacion'])->name('deudores.matriculacion');
+
 
 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EVENTOS RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -457,6 +458,10 @@ Route::post('mensaje/guardar',[MensajeController::class,'store'])->name('mensaje
 Route::get('darbaja/mensaje',[MensajeController::class,'darbaja'])->name('mensaje.darbaja');
 Route::get('daralta/mensaje/',[MensajeController::class,'daralta'])->name('mensaje.daralta');
 Route::get('mensaje/generico',[MensajeController::class,'getMensajeGenerico'])->name('mensaje.generico');// get mensaje(id)
+
+Route::get('masivo/view', [MensajeController::class,'masivoView'])->name('masivo.index');
+Route::get('estudiantes/masivo/contactar/evento', [MensajeController::class,'MensajeMasivo'])->name('masivo.descente');
+
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MOTIVOS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('aulas', "AulaController");

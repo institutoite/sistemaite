@@ -70,5 +70,6 @@ arreglar css de reportes
 cuando cancelan todo igual avanzar hasta ver la programacion 
 ver como registrar administrativo
 hoy del menu horizontal solo tiene hoyinscripciones falta hoymatriculaciones
+crear una vista para los mensajeados segun el evento por el que fueron mensajeados obsrvaciones volvera , fechavuelve etc
 
 

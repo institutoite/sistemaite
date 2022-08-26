@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
-@section('title', 'Motivos')
+@section('title', 'Eventos')
 @section('plugins.Jquery', true)
 @section('plugins.Sweetalert2', true)
 @section('plugins.Datatables', true)
@@ -19,14 +19,15 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Update Motivo</span>
+                        <span class="card-title">Update Evento</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('motivos.update', $motivo->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('eventos.update', $evento) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('motivo.form')
+                            @include('evento.form')
+                            @include('include.botones')
 
                         </form>
                     </div>
