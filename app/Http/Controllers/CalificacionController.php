@@ -84,9 +84,25 @@ class CalificacionController extends Controller
         $calificacion->calificacion=$request->calificacion;
         $calificacion->save();
         $persona=$calificacion->persona;
-        
-        return redirect()->route('personas.show',$persona);
-        // return response()->json(['calificacion'=>"Guardado correctamente"]);
+        if($request->ajax()){
+            return response()->json(['calificacion'=>"Calificacion Actualizado correctamente"]);
+        }else{
+            return redirect()->route('personas.show',$persona);
+        }
+    }
+    // public function getCalificacion()
+    public function getCalificacion(Request $request)
+    {
+        $persona_id=$request->persona_id;
+        //$persona_id=3;
+        // return response()->json($persona_id);
+        $calificacion=Persona::findOrFail($persona_id)->calificaciones->where('user_id',Auth::user()->id)->first();
+
+        if(is_null($calificacion)){
+            return response()->json(['calificado' => 'NO']);
+        }else{
+            return response()->json(['calificacion' => $calificacion,'calificado'=>"SI"]);
+        }
     }
 
     /**

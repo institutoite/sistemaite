@@ -166,25 +166,49 @@
             actualizarObservacion(observacion_id,observacion,url);
         });
         /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FECHAR PROXIMO PAGO DE INSCRIPCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.recalificar', function(e) {
+            e.preventDefault();
+            persona_id =$(this).closest('tr').attr('id');
+            // console.log(persona_id);
+            $.ajax({
+                url : "../get/calificacion",
+                data:{
+                    persona_id:persona_id,
+                },
+                success : function(json) {
+                    console.log(json.calificado);
+                    if(json.calificado=="SI"){
+                        $("#modal-crear-calificacion").modal("show");
+                        console.log("entre al SI");
+                    }else{
+                        console.log("entre al NO");
+                        $("#modal-editar-calificacion").modal("show");
+                    }
+                },
+                error : function(xhr, status) {
+                    alert('Disculpe, existió un problema');
+                },
+            });
+        }); 
         $('table').on('click', '.fechar', function(e) {
             e.preventDefault();
-            inscripcione_id =$(this).attr('id');
+            persona_id =$(this).attr('id');
             $(this).closest('tr').addTempClass('bg-success', 3000)
             $("#fecha_proximo_pago").val()
             $("#modal-fechar").modal("show");
-            $("#inscripcion_id").val(inscripcione_id);
+            $("#persona_id").val(persona_id);
         }); 
            /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         
         /**%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR DE MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         $('#agendar').on('click', function (e) {
             e.preventDefault();
-            let vuelvefecha = $("#vuelvefecha").val();
+            vuelvefecha = $("#vuelvefecha").val();
             console.log(vuelvefecha);
-            let persona_id = $("#persona_id").val();
+            persona_id = $("#persona_id").val();
             console.log(persona_id);
             $.ajax({
-                url: "persona/actualizar/vuelvefecha",
+                url: "../persona/actualizar/vuelvefecha",
                 data: {
                     vuelvefecha:vuelvefecha,
                     persona_id:persona_id,
@@ -349,6 +373,7 @@
                         //     $(row).addClass('text-success');
                         // else
                         //     $(row).addClass('text-danger');
+                        
                         
                     },
                     "columns": [
