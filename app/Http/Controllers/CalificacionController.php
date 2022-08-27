@@ -90,18 +90,35 @@ class CalificacionController extends Controller
             return redirect()->route('personas.show',$persona);
         }
     }
-    // public function getCalificacion()
+    // %%%%%%%%%%%%%%%%%%%% ESTA FUNCION SE LLAMA DE AJAX Y NO AJAX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     public function getCalificacion(Request $request)
     {
         $persona_id=$request->persona_id;
-        //$persona_id=3;
-        // return response()->json($persona_id);
         $calificacion=Persona::findOrFail($persona_id)->calificaciones->where('user_id',Auth::user()->id)->first();
-
         if(is_null($calificacion)){
             return response()->json(['calificado' => 'NO']);
         }else{
             return response()->json(['calificacion' => $calificacion,'calificado'=>"SI"]);
+        }
+    }
+    public function setCalificacion(Request $request)
+    {
+        $storeupdate=$request->storeupdate; /** esta variabl se usa para saber si se va guardar o actualizar la calificacion*/
+        $persona_id=$request->persona_id;
+        $calificacion=$request->calificacion;
+        $calificacion_id=$request->calificacion_id;
+        if($storeupdate=="guardar"){
+            $calificacion= new Calificacion();
+            $calificacion->calificacion=$request->calificacion;
+            $calificacion->persona_id=$request->persona_id;
+            $calificacion->user_id=Auth::user()->id;
+            $calificacion->save();  
+            return response()->json(['mensaje'=>"Se guardo correctamente"]);
+        }else{
+            $calificacion=Calificacion::findOrFail($calificacion_id);
+            $calificacion->calificacion=$request->calificacion;
+            $calificacion->save();
+            return response()->json(['mensaje'=>"Se actalizó correctamente"]);
         }
     }
 

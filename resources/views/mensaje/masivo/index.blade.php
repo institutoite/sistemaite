@@ -180,6 +180,7 @@
                     if(json.calificado=="SI"){
                         /*%%%%%% actualiza %%%%%%%%%%%%%%%%%%*/
                         $("#id_persona").val(json.calificacion.persona_id);
+                        $("#calificacion_id").val(json.calificacion.id);
                         $("#calificacion option[value="+ json.calificacion.calificacion +"]").attr("selected",true);
                         $("#storeupdate").val("actualizar");
                         $("#modal-editar-calificacion").modal("show");
@@ -198,22 +199,21 @@
         }); 
 
         $('#btn-calificar').on('click', function (e) {
+            e.preventDefault();
+            persona_id=$("#id_persona").val();
+            calificacion=$("#calificacion").val();
+            calificacion_id=$("#calificacion_id").val();
+            storeupdate=$("#storeupdate").val();
             $.ajax({
-                url : "../get/calificacion",
+                url : "../set/calificacion",
                 data:{
                     persona_id:persona_id,
+                    calificacion:calificacion,
+                    calificacion_id:calificacion_id,
+                    storeupdate:storeupdate,
                 },
                 success : function(json) {
                     console.log(json);
-                    if(json.calificado=="SI"){
-                        //$("#persona_id").val(persona_id);
-                        $("#modal-editar-calificacion").modal("show");
-                        $("#id_persona").val(json.calificacion.persona_id);
-                        console.log("entre al SI");
-                    }else{
-                        console.log("entre al NO");
-                        $("#modal-editar-calificacion").modal("show");
-                    }
                 },
                 error : function(xhr, status) {
                     alert('Disculpe, existió un problema');
@@ -224,13 +224,31 @@
 
         $('table').on('click', '.fechar', function(e) {
             e.preventDefault();
-            persona_id =$(this).attr('id');
+            persona_id =$(this).closest('tr').attr('id');
             $(this).closest('tr').addTempClass('bg-success', 3000)
-            $("#fecha_proximo_pago").val()
             $("#modal-fechar").modal("show");
             $("#persona_id").val(persona_id);
         }); 
-           /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+        $('table').on('click', '.mensajeado', function(e) {
+            e.preventDefault();
+            persona_id =$(this).closest('tr').attr('id');
+            $(this).closest('tr').addTempClass('bg-success', 3000)
+            $.ajax({
+                url : "../store/mensajeado",
+                data:{
+                    persona_id:persona_id,
+                },
+                success : function(json) {
+                    console.log(json);
+                },
+                error : function(xhr, status) {
+                    alert('Disculpe, existió un problema');
+                },
+            });
+        }); 
+        
+        /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         
         /**%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR DE MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         $('#agendar').on('click', function (e) {
@@ -279,7 +297,7 @@
             e.preventDefault();
                 persona_id =$(this).closest('tr').attr('id');
                 url="../persona/enviar/mensaje/componente",
-                mensaje_id=4;
+                mensaje_id=5;
                 mostrarContactos(url,persona_id,mensaje_id);
                 $("#modal-listar-contactos-component").modal("show");
         });
@@ -293,10 +311,15 @@
                     persona_id:persona_id,
                 },
                 success : function(json) {
-                    console.log(json);
                     mensaje=json.mensaje;
-                    $("#personal").attr('href','https://api.whatsapp.com/send?phone=591'+json.persona.telefono+'&text='+mensaje.mensaje);
-                    $("#personal").attr('target','_blank');
+                    if(json.persona.telefono!=0){
+                        $("#personal").attr('href','https://api.whatsapp.com/send?phone=591'+json.persona.telefono+'&text='+mensaje.mensaje);
+                        $("#personal").attr('target','_blank');
+                        $("#personal").text('télefono personal '+json.persona.telefono);
+                        $("#personal").show().fadeIn(2000);
+                    }else{
+                        $("#personal").hide().slideUp(2000);
+                    }
                 },
                 error : function(xhr, status) {
                     alert('Disculpe, existió un problema');

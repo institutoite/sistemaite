@@ -39,6 +39,7 @@
                                     <tr>
                                         <th>No</th>
 										<th>Evento</th>
+										<th>Activo</th>
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
@@ -107,7 +108,9 @@
                 "info":     true,
                 "createdRow": function( row, data, dataIndex ) {
                     $(row).attr('id',data['id']); 
-                    // $('td', row).eq(0).html(fila++);
+                    if(data['seleccionado']){
+                        $(row).addClass("text-success table-success");
+                    }
                 },
                 "ajax":{
                         'url':"listar/eventos",
@@ -115,6 +118,7 @@
                 "columns": [
                     {data: 'id'},
                     {data: 'evento'},
+                    {data: 'seleccionado'},
                     {
                         "name":"btn",
                         "data": 'btn',
@@ -134,6 +138,30 @@
        
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  M O T I V O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+            $('table').on('click','.seleccionar',function (e) {
+                e.preventDefault();
+               var evento_id =$(this).closest('tr').attr('id');
+                $.ajax({
+                    url: 'seleccionar/evento/'+evento_id,
+                    success: function(result) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        })
+                        Toast.fire({
+                            type: 'success',
+                            title: result.mensaje,
+                        }) 
+                        $('#eventos').DataTable().ajax.reload();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        console.log('Ajax error!');
+                    }
+                });
+
+            });
             $('#eventos').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
                  var evento_id =$(this).closest('tr').attr('id');

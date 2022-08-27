@@ -9,14 +9,6 @@
             <div class="modal-body">
                 <div class="card">
                     <div class="card-body">
-                        <div id='erroresdiv' class="alert alert-danger danger text-danger d-none" role='alert'>
-                            <div class="alert alert-danger">
-                                <h4 class="alert-heading">Error</h4>
-                                <ul id="error">
-                                    
-                                </ul>
-                            </div>
-                        </div>
                             <input class="form-control" type="date" id="vuelvefecha" name="vuelvefecha">
                             <input class="form-control" type="text" hidden id="persona_id" name="persona_id">
                             <div class="container-fluid h-100 mt-3"> 

@@ -16,6 +16,7 @@ class CreateEventosTable extends Migration
         Schema::create('eventos', function (Blueprint $table) {
             $table->id();
             $table->string('evento', 50)->nullable();
+            $table->tinyInteger('seleccionado')->nullable(0);
             $table->timestamps();
         });
     }

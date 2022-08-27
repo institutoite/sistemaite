@@ -43,6 +43,7 @@ use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\AdministrativoController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\MensajeadoController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
@@ -137,6 +138,7 @@ Route::get('deudores/matriculacion', [PagoController::class,'deudoresMatriculaci
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EVENTOS RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('eventos',"EventoController");
 Route::get('listar/eventos',[EventoController::class,'listar'])->name('listar.eventos');
+Route::get('seleccionar/evento/{evento}',[EventoController::class,'seleccionarEvento'])->name('seleccionar.evento');
 
 
 
@@ -445,6 +447,10 @@ Route::get('motivo/actualizar/', [MotivoController::class,'actualizar'])->name("
 Route::delete('eliminar/motivo/{motivo}', [MotivoController::class,'destroy'])->name('eliminar.motivo');
 
 
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MENSAJEADO %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::get('store/mensajeado',[MensajeadoController::class,'storeMensajeado'])->name("store.mensajeado");
+
+
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MENSAJE %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('mensajes',[MensajeController::class,'index'])->name("mensaje.index");
 Route::get('mensajes/create',[MensajeController::class,'create'])->name("mensaje.create");
@@ -542,7 +548,7 @@ Route::post('calificacion/store', [CalificacionController::class,'store'])->name
 Route::get('calificacion/editar',[CalificacionController::class,'edit'])->name('calificacion.editar');
 Route::post('calificacion/actualizar', [CalificacionController::class,'update'])->name("calificacion.update");
 Route::get('get/calificacion', [CalificacionController::class,'getCalificacion'])->name("get.calificacion");
-
+Route::get('set/calificacion', [CalificacionController::class,'setCalificacion'])->name("set.calificacion");
 
 /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ROUTES P R O G R A M A C I O N   C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::resource('programacions', "ProgramacionController");

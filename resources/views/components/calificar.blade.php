@@ -10,6 +10,7 @@
                     <div class="card-body">
                         <form action="">
                             <input class="form-control" hidden type="number" name="id_persona" id="id_persona">
+                            <input class="form-control" hidden type="number" name="calificacion_id" id="calificacion_id">
                             <input class="form-control" hidden type="text" name="storeupdate" id="storeupdate">
                             <select class="form-control" required name="calificacion" id="calificacion">
                                 <option value="">Selecione...</option>

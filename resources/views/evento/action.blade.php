@@ -6,6 +6,10 @@
     <i class="fa fa-fw fa-eye text-primary"></i>
 </a>
 
+<a  class="btn-accion-tabla tooltipsC mr-2 seleccionar" title="Seleccionar este evento">
+    <i class="fa fa-fw fa-eye text-primary"></i>
+</a>
+
 
 <button name="btn-eliminar" id="{{$id}}" class="btn eliminar" title="Eliminar este evento">
     <i class="fa fa-fw fa-trash text-danger"></i>   

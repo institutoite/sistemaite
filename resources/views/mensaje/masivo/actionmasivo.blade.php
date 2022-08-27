@@ -9,16 +9,16 @@
     <i class="fas fa-comments text-secondary"></i>
 </a>
 
-<a id="{{$id}}" class="btn-accion-tabla tooltipsC mr-1 fechar" title="Agendar cuando piensa venir al instituto">
+<a class="btn-accion-tabla tooltipsC mr-1 fechar" title="Agendar cuando piensa venir al instituto">
     <i class="fas fa-calendar-check"></i>
 </a>
 <a class="btn-accion-tabla tooltipsC mr-1 recalificar text-secondary" title="Recalificar al estudiante">
     <i class="fas fa-star"></i>
 </a>
-<a id={{$id}} class="btn-accion-tabla tooltipsC mr-1 enviarmensaje " title="Cobrar por mensaje">
+<a class="btn-accion-tabla tooltipsC mr-1 enviarmensaje " title="Cobrar por mensaje">
     &nbsp;<i class="fab fa-whatsapp"></i>
 </a>
-<a class="btn-accion-tabla tooltipsC mr-1 mensajeado text-secondary" title="Confirmar que todo esta bien solo si terminó">
-    &nbsp;<i class="fas fa-check-circle"></i>
+<a class="btn-accion-tabla tooltipsC mr-1 mensajeado" title="Confirmar que todo esta bien solo si terminó">
+    &nbsp;<i class="fas fa-check-circle text-success"></i>
 </a>
 
