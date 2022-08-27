@@ -135,12 +135,10 @@
             $('#tipofiles').on('click', '.mostrar', function(e) {
                 e.preventDefault(); 
                 let id_tipofile=$(this).closest('tr').attr('id');
-                console.log(id_tipofile)
                 $.ajax({
                     url : "tipofile/mostrar",
                     data : { id :id_tipofile },
                     success : function(json) {
-                        console.log(json);
                         $("#modal-mostrar").modal("show");
                         $("#tabla-mostrar").empty();
                         $html="";
@@ -171,7 +169,6 @@
                     url : "tipofile/editar/",
                     data : { id :id_tipofile },
                     success : function(json) {
-                        console.log(json);
                         $("#modal-editar").modal("show");
                         $("#errores").addClass('alert-danger');
                         $("#formulario-editar").empty();
@@ -199,7 +196,6 @@
                 $tipofile_id=$('#tipofile_id').val();
                 $programa=$('#programa').val();
                 
-                console.log($tipofile_id);
                 var token = $("input[name=_token]").val();
                 $.ajaxSetup({
                 headers: {
@@ -216,7 +212,6 @@
                             token:token,
                         },
                     success : function(json) {
-                        console.log(json);
                         if(json.error){
                         $("#errores").html(json.error);
                         }else{
@@ -251,7 +246,6 @@
             $('#tipofiles').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
                  var id_tipofile =$(this).closest('tr').attr('id');
-                 console.log(id_tipofile);
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",

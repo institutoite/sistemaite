@@ -123,7 +123,6 @@
             });
             $('table').on('click', '.enviarmensaje', function(e) {
                 e.preventDefault();
-                console.log("enviar mensajes");
                 persona_id =$(this).attr('id');
                     $("#modal-mostrar-contactos").modal("show");
                     $("#tabla-contactos").empty();
@@ -133,7 +132,6 @@
                                 persona_id:persona_id,
                             },
                             success : function(json) {
-                                console.log(json);
                                 //tabla.ajax.reload();
                                 $html="<tr id='"+ json.persona.telefono +"'><td>"+ json.persona.nombre +"</td>";
                                 $html+="<td>Teléfono personal</td>";

@@ -313,12 +313,10 @@
             $('.editar_calificacion').on('click',function(e) {
                 e.preventDefault(); 
                 let persona_id ="{{ $persona->id }}";
-                console.log(persona_id);
                     $.ajax({
                     url : "../calificacion/editar",
                     data : { persona_id :persona_id },
                     success : function(json) {
-                            console.log(json.calificacion.calificacion);
                             $("#editar-calificacion").modal("show");
                             $('#calificacion').val(json.calificacion.calificacion);
                             $('#calificacion_id').val(json.calificacion.id);

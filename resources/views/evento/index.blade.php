@@ -110,7 +110,11 @@
                     $(row).attr('id',data['id']); 
                     if(data['seleccionado']){
                         $(row).addClass("text-success table-success");
+                        $('td', row).eq(2).html('<i class="fas fa-check-circle"></i>');
+                    }else{
+                        $('td', row).eq(2).html('<i class="far fa-times-circle"></i>');
                     }
+
                 },
                 "ajax":{
                         'url':"listar/eventos",

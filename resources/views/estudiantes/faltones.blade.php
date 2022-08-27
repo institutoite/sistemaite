@@ -154,10 +154,8 @@
                                                                         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.enviarmensaje', function(e) {
                 e.preventDefault();
-                console.log("enviar mensajes");
                 persona_id =$(this).closest('tr').attr('id');
                 programacion_id =$(this).attr('id');
-                console.log("Programacion_id" + programacion_id); 
                     $("#modal-mostrar-contactos").modal("show");
                     $("#tabla-contactos").empty();
                             $.ajax({
@@ -167,7 +165,6 @@
                                 programacion_id:programacion_id,
                             },
                             success : function(json) {
-                                console.log(json);
                                 //tabla.ajax.reload();
                                 $html="<tr id='"+ json.persona.telefono +"'><td>"+ json.persona.nombre +"</td>";
                                 $html+="<td>Teléfono personal</td>";
@@ -199,10 +196,8 @@
                                                                         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.enviarmensajecom', function(e) {
                 e.preventDefault();
-                console.log("enviar mensajes");
                 persona_id =$(this).closest('tr').attr('id');
                 programacioncom_id =$(this).attr('id');
-                console.log("Programacion_id" + programacioncom_id); 
                     $("#modal-mostrar-contactos").modal("show");
                     $("#tabla-contactos").empty();
                             $.ajax({
@@ -212,7 +207,6 @@
                                 programacioncom_id:programacioncom_id,
                             },
                             success : function(json) {
-                                console.log(json);
                                 tablamatriculaciones.api().ajax.reload();
                                 $html="<tr id='"+ json.programacioncom.id +"'><td>"+ json.persona.nombre +"</td>";
                                 $html+="<td>Teléfono personal</td>";
@@ -240,14 +234,12 @@
                         });
                 });
             // $('#modal-mostrar-contactos').on('hidden.bs.modal', function () {
-            //     console.log("se cerro");
             //     tabla.ajax.reload();
             // });
             
             // $('table').on('click', '.faltainformada', function(e) {
             //     e.preventDefault();    
             //     persona_id =$(this).closest('tr').attr('id');
-            //     console.log("Falta informada "+persona_id);
                 
             //     $.ajax({
             //         url :"../persona/faltainformar",
@@ -257,7 +249,6 @@
             //         },
             //         type: "POST",
             //         success : function(json) {
-            //             console.log("Falta informada" + json);
             //         },
             //         error : function(xhr, status) {
             //             alert('Disculpe, existió un problema');
@@ -267,7 +258,6 @@
             // $('table').on('click', '.faltainformadacom', function(e) {
             //     e.preventDefault();    
             //     persona_id =$(this).closest('tr').attr('id');
-            //     console.log("Falta informada "+persona_id);
                 
             //     $.ajax({
             //         url :"../persona/faltainformarcom",
@@ -277,7 +267,6 @@
             //         },
             //         type: "POST",
             //         success : function(json) {
-            //             console.log("Falta informada COM" + json);
             //         },
             //         error : function(xhr, status) {
             //             alert('Disculpe, existió un problema');
@@ -305,7 +294,6 @@
             $('table').on('click','.eliminarinscripcion',function (e) {
                 e.preventDefault(); 
                 id=$(this).parent().parent().parent().find('td').first().html();
-                //console.log(id);
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",
@@ -387,7 +375,6 @@
             $('table').on('click','.eliminarmatriculacion',function (e) {
                 e.preventDefault(); 
                 id=$(this).parent().parent().parent().find('td').first().html();
-                //console.log(id);
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",
@@ -408,7 +395,6 @@
                                 _token:'{{ csrf_token() }}'
                             },
                             success: function(result) {
-                                console.log(result);
                                 tablamatriculaciones.api().ajax.reload();
                                 const Toast = Swal.mixin({
                                 toast: true,

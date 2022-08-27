@@ -47,7 +47,7 @@ use App\Http\Controllers\MensajeadoController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[CalificacionController::class,'getCalificacion'])->name('prueba');
+Route::get('prueba',[MensajeController::class,'MensajeMasivo'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');

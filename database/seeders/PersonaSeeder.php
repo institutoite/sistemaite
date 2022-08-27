@@ -57,6 +57,20 @@ class PersonaSeeder extends Seeder
             
         ]);
         
+        
+
+        Observacion::create([
+            "observacion" =>"Esta es una observation insertada desde un seeder inicial",
+            "activo" =>1,
+            "observable_id"=>1,
+            "observable_type"=>"App\Models\Persona",
+        ]);
+        Observacion::create([
+            "observacion" =>"Esta es una observation insertada desde un seeder inicial",
+            "activo" =>1,
+            "observable_id"=>2,
+            "observable_type"=>"App\Models\Persona",
+        ]);
 
         // Persona::create([
         //     'nombre' => 'MAYLIN',

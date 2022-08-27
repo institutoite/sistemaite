@@ -6,7 +6,6 @@ function darBajaInscripcion(inscripcion_id,url) {
             inscripcion_id: inscripcion_id,
         },
         success: function (json) {
-            console.log(json);
             $("#" + inscripcion_id).addTempClass('bg-success', 3000);
             tablainscripciones.ajax.reload();
             const Toast = Swal.mixin({
@@ -35,7 +34,6 @@ function darAltaInscripcion(inscripcion_id,url){
             inscripcion_id: inscripcion_id,
         },
         success: function (json) {
-            console.log(json);
             $("#" + inscripcion_id).addTempClass('bg-success', 3000);
             tablainscripcionesdesvigentes.ajax.reload();
             const Toast = Swal.mixin({

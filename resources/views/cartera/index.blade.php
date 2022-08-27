@@ -383,26 +383,24 @@
             $('table').on('click', '.observacion', function (e) {
                 e.preventDefault();
                 let objeto_id = $(this).closest('tr').attr('id');
-                console.log(objeto_id);
+                
                 $("#observable_id").val(objeto_id);
                 $("#observable_type").val($(this).attr('id'));
-                console.log($("#observable_id").val());
-                console.log($("#observable_type").val());
-                console.log("click en observacion crear");
+                
                 CKEDITOR.instances.editorguardar.setData("");
                 $("#modal-agregar-observacion").modal("show");
             });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CLICK BOTON GUARDAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('#guardar-observacion').on('click', function (e) {
                 e.preventDefault();
-                console.log("click en guardar obsrvacion");
+                
                 let observable_id = $("#observable_id").val();
-                console.log(observable_id);
+                
                 let observable_type = $("#observable_type").val();
-                console.log(observable_type);
+                
                 for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
                 observacion=$("#editorguardar").val();
-                console.log(observacion+"GUARDARNDO...");
+                
                 url ="../guardar/observacion"
                 guardarObservacion(observacion,observable_id,observable_type,url);
                 
@@ -420,7 +418,7 @@
             $('table').on('click', '.bajaobservacion', function (e) {
                 e.preventDefault();
                 let observacion_id = $(this).closest('tr').attr('id');
-                console.log(observacion_id);
+                
                 url="../darbaja/observacion";
                 darBaja(observacion_id,url);
             });
@@ -444,7 +442,7 @@
                 e.preventDefault();
                 observacion_id =$(this).closest('tr').attr('id');
                 url="../observacion/editar";
-                console.log(url);
+                
                 editarObservacion(observacion_id,url);
                 $("#modal-mostrar-observaciones").modal("hide");
                 $("#modal-editar-observacion").modal("show");
@@ -454,7 +452,7 @@
                 e.preventDefault();
                 observacion_id =$("#observable_id").val();
                 observacion=CKEDITOR.instances.editoreditar.getData();
-                console.log(observacion);
+                
                 url="../observacion/actualizar";
                 actualizarObservacion(observacion_id,observacion,url)
                 $("#modal-editar-observacion").modal("hide");
@@ -464,7 +462,7 @@
             $('table').on('click', '.bajainscripcion', function (e) {
                 e.preventDefault();
                 let inscripcion_id = $(this).closest('tr').attr('id');
-                console.log("BajaInscripcion"+inscripcion_id);
+                
                 url="../darbaja/inscripcion";
                 darBajaInscripcion(inscripcion_id,url);
             });
@@ -472,7 +470,7 @@
             $('table').on('click', '.altainscripcion', function (e) {
                 e.preventDefault();
                 let inscripcion_id = $(this).closest('tr').attr('id');
-                console.log(inscripcion_id+"AltaInscripcion");
+                
                 url="../daralta/inscripcion";
                 darAltaInscripcion(inscripcion_id,url);
             });
@@ -480,7 +478,7 @@
              $('table').on('click', '.condonarinscripcion', function (e) {
                 e.preventDefault();
                 let inscripcion_id = $(this).closest('tr').attr('id');
-                console.log(inscripcion_id+"CondonarInscripcion");
+                
                 url="../condonar/inscripcion";
                 condonarInscripcion(inscripcion_id,url);
             });
@@ -495,10 +493,10 @@
             $('table').on('click', '.mostrarobservacionesmatriculacion', function(e) {
                 e.preventDefault();
                     observable_id =$(this).closest('tr').attr('id');
-                    console.log(observable_id);
+                    
                     observable_type ="Matriculacion";
                     url="../observaciones/" + observable_id + "/" + observable_type,
-                    console.log(url);
+                    
                     mostrarCrudObservaciones(url);
                     $("#modal-mostrar-observaciones").modal("show");
             });
@@ -534,7 +532,7 @@
             $('table').on('click', '.mostrarpersona', function(e) {
                 e.preventDefault();
                 let inscripcion_id=$(this).closest('tr').attr('id'); 
-                console.log(inscripcion_id);
+                
                 $("#tabla-mostrar-persona").empty();
                 $html="";
                 $.ajax({
@@ -568,7 +566,7 @@
             $('table').on('click', '.mostrarinscripcion', function(e) {
                 e.preventDefault();
                 let inscripcion_id=$(this).closest('tr').attr('id'); 
-                console.log(inscripcion_id);
+                
                 $("#tabla-mostrar-inscripcion").empty();
                 $html="";
                 $.ajax({
@@ -602,7 +600,7 @@
             $('table').on('click', '.mostrarpagos', function(e) {
                 e.preventDefault();
                 let inscripcion_id=$(this).closest('tr').attr('id'); 
-                console.log(inscripcion_id);
+                
                 $("#tabla-mostrar-pagos").empty();
                 $("#pagos").empty();
                 $html="";
@@ -612,7 +610,7 @@
                         inscripcion_id:inscripcion_id,
                     },
                     success : function(json) {
-                        console.log(json);
+                        
                             $html+="<tr>"+"<td>NOMBRE</td><td>"+ json.persona.nombre+" "+json.persona.apellidop+" "+json.persona.apellidom+"</td><td rowspan='4'><img class='rounded float-end img-thumbnail' alt='"+ json.persona.nombre +"' src={{URL::to('/')}}"+"/storage/"+json.persona.foto +"></td>></tr>";
                             $html+="<tr>"+"<td>ACUENTA</td><td>"+ json.acuenta+"</td></tr>";
                             $html+="<tr>"+"<td>SALDO</td><td>"+ json.saldo+"</td></tr>";
@@ -643,12 +641,12 @@
                 var pago_id =$(this).closest('tr').attr('id');
 
                 var fila=$(this).closest('tr');
-                console.log(pago_id);
+                
                 $.ajax({
                     url : "../pago/mostrar/"+pago_id,
                     
                     success : function(json) {
-                        //console.log(json);
+                        //
                         $("#modal-detallar-pago").modal("show");
                         $("#tabla-billete-pago").empty();
                         $("#tabla-billete-cambio").empty();
@@ -692,11 +690,11 @@
                 
                 $('table').on('click', '.mostrarobservaciones', function(e) {
                     e.preventDefault();
-                    console.log('mostrarobservaciones click'); 
+                    
                     observable_id =$(this).closest('tr').attr('id');
                     observable_type ="Inscripcione";
                         var fila=$(this).closest('tr');
-                        console.log(observable_id);
+                        
                         $("#modal-mostrar-observaciones").modal("show");
                         $("#tabla-observaciones").empty();
                              $.ajax({
@@ -736,7 +734,7 @@
             // });
             //  $('table').on('click', '.agregarobservacion', function(e) {
             //     e.preventDefault();
-            //     console.log("click agregarobservacion inscripcion");
+            //     
             //     $("#editor1").val("");
             //     let objeto_id = $(this).closest('tr').attr('id');
             //     $("#observable_id").val(objeto_id);
@@ -763,7 +761,7 @@
             //         },
             //         success: function (json) {
             //             if(json.errores){
-            //                 console.log(json.errores);
+            //                 
             //                 $html="";
             //                 for (let j in json.errores) {
             //                     $html+="<li>"+ json.errores.observacion[0] +"</li>";
@@ -795,7 +793,7 @@
             $('table').on('click', '.mostrarprogramacion', function(e) {
                  e.preventDefault();
                 let inscripcion_id=$(this).closest('tr').attr('id'); 
-                console.log(inscripcion_id);
+                
                 $programacionHtml="";
                 $("#tabla-programacion").empty();
                 $.ajax({
@@ -829,7 +827,7 @@
             $('table').on('click', '.mostrarpersonamatriculacion', function(e) {
                 e.preventDefault();
                 let matriculacion_id=$(this).closest('tr').attr('id'); 
-                console.log(matriculacion_id+" OK");
+                
                 $("#tabla-mostrar-persona").empty();
                 $html="";
                 $.ajax({
@@ -838,7 +836,7 @@
                         matriculacion_id:matriculacion_id,
                     },
                     success : function(json) {
-                        //console.log(json);
+                        //
                         $html+="<tr>"+"<td>NOMBRE</td><td>"+ json.persona.nombre+" "+json.persona.apellidop+" "+json.persona.apellidom+"</td><td rowspan='4'><img class='img-fluid rounded img-thumbnail' alt='"+ json.persona.nombre +"' src={{URL::to('/')}}"+"/storage/"+json.persona.foto +"></td>></tr>";
                         $html+="<tr>"+"<td>CARNET</td><td>"+ json.persona.carnet+" "+json.persona.expedido+"</td></tr>";
                         $html+="<tr>"+"<td>PAIS</td><td>"+ json.pais.nombrepais +", "+json.ciudad.ciudad+","+json.zona.zona+","+json.persona.direccion+"</td></tr>";
@@ -864,7 +862,7 @@
             $('table').on('click', '.mostrarpersonamatriculaciondesvigente', function(e) {
                 e.preventDefault();
                 let persona_id=$(this).closest('tr').attr('id'); 
-                console.log(persona_id+" OK");
+                
                 $("#tabla-mostrar-persona").empty();
                 $html="";
                 $.ajax({
@@ -873,7 +871,7 @@
                         persona_id:persona_id,
                     },
                     success : function(json) {
-                        //console.log(json);
+                        //
                         $html+="<tr>"+"<td>NOMBRE</td><td>"+ json.persona.nombre+" "+json.persona.apellidop+" "+json.persona.apellidom+"</td><td rowspan='4'><img class='img-fluid rounded img-thumbnail' alt='"+ json.persona.nombre +"' src={{URL::to('/')}}"+"/storage/"+json.persona.foto +"></td>></tr>";
                         $html+="<tr>"+"<td>CARNET</td><td>"+ json.persona.carnet+" "+json.persona.expedido+"</td></tr>";
                         $html+="<tr>"+"<td>PAIS</td><td>"+ json.pais.nombrepais +", "+json.ciudad.ciudad+","+json.zona.zona+","+json.persona.direccion+"</td></tr>";
@@ -898,7 +896,7 @@
             $('table').on('click', '.mostrarmatriculacion', function(e) {
                 e.preventDefault();
                 let matriculacion_id=$(this).closest('tr').attr('id'); 
-                console.log(matriculacion_id+"=>mostrarmatriculacion");
+                
                 $("#tabla-mostrar-matriculacion").empty();
                 $html="";
                 $.ajax({
@@ -907,7 +905,7 @@
                         matriculacion_id:matriculacion_id,
                     },
                     success : function(json) {
-                        console.log(json);
+                        
                         $html+="<tr>"+"<td>NOMBRE</td><td>"+ json.persona.nombre+" "+json.persona.apellidop+" "+json.persona.apellidom+"</td><td rowspan='4'><img class='img-fluid rounded img-thumbnail' alt='"+ json.persona.nombre +"' src={{URL::to('/')}}"+"/storage/"+json.persona.foto +"></td>></tr>";
                         $html+="<tr>"+"<td>OBJETIVO</td><td>"+ json.matriculacion.objetivo+"</td></tr>";
                         $html+="<tr>"+"<td>COSTO</td><td>"+ json.matriculacion.costo+"</td></tr>";
@@ -932,8 +930,8 @@
             $('table').on('click', '.mostrarpagosmatriculacion', function(e) {
                 e.preventDefault();
                 let matriculacion_id=$(this).closest('tr').attr('id'); 
-                console.log(matriculacion_id);
-                console.log('click mostrarpagosmatriculacion');
+                
+                
                 $("#modal-mostrar-pagoscom").modal("show");
                 $("#tabla-mostrar-pagos").empty();
                 $("#pagos").empty();
@@ -944,7 +942,7 @@
                         matriculacion_id:matriculacion_id,
                     },
                     success : function(json) {
-                        console.log(json);
+                        
                             $html+="<tr>"+"<td>NOMBRE</td><td>"+ json.persona.nombre+" "+json.persona.apellidop+" "+json.persona.apellidom+"</td><td rowspan='4'><img class='rounded float-end img-thumbnail' alt='"+ json.persona.nombre +"' src={{URL::to('/')}}"+"/storage/"+json.persona.foto +"></td>></tr>";
                             $html+="<tr>"+"<td>ACUENTA</td><td>"+ json.acuenta+"</td></tr>";
                             $html+="<tr>"+"<td>SALDO</td><td>"+ json.saldo+"</td></tr>";
@@ -975,12 +973,12 @@
                 var pago_id =$(this).closest('tr').attr('id');
 
                 var fila=$(this).closest('tr');
-                console.log(pago_id);
+                
                 $.ajax({
                     url : "../pago/mostrar/"+pago_id,
                     
                     success : function(json) {
-                        //console.log(json);
+                        //
                         $("#modal-detallar-pago").modal("show");
                         $("#tabla-billete-pago").empty();
                         $("#tabla-billete-cambio").empty();
@@ -1024,11 +1022,11 @@
                 
                 $('table').on('click', '.mostrarobservacionesmatriculacion', function(e) {
                     e.preventDefault();
-                    console.log('MostrarClick'); 
+                    
                     observable_id =$(this).closest('tr').attr('id');
                     observable_type ="Matriculacion";
                         var fila=$(this).closest('tr');
-                        console.log(observable_id);
+                        
                         $("#modal-mostrar-observaciones").modal("show");
                         $("#tabla-observaciones").empty();
                              $.ajax({
@@ -1062,11 +1060,11 @@
                 
                 $('table').on('click', '.mostrarobservacionespersona', function(e) {
                     e.preventDefault();
-                    console.log('MostrarClick este metodito'); 
+                    
                     observable_id =$(this).closest('tr').attr('id');
                     observable_type ="Persona";
                         var fila=$(this).closest('tr');
-                        console.log(observable_id);
+                        
                         $("#modal-mostrar-observaciones").modal("show");
                         $("#tabla-observaciones").empty();
                              $.ajax({
@@ -1076,7 +1074,7 @@
                                     observable_type:observable_type,
                                 },
                                 success : function(json) {
-                                    console.log(json);
+                                    
                                     $html="";
                                     $clase="";
                                     for (let j in json) {
@@ -1118,7 +1116,7 @@
                     },
                     success: function (json) {
                         if(json.errores){
-                            console.log(json.errores);
+                            
                             $html="";
                             for (let j in json.errores) {
                                 $html+="<li>"+ json.errores.observacion[0] +"</li>";
@@ -1167,9 +1165,9 @@
                         observable_type: observable_type,
                     },
                     success: function (json) {
-                        console.log(json);
+                        
                         if(json.errores){
-                            console.log(json.errores);
+                            
                             $html="";
                             for (let j in json.errores) {
                                 $html+="<li>"+ json.errores.observacion[0] +"</li>";
@@ -1202,7 +1200,7 @@
             $('table').on('click', '.mostrarprogramacionmatriculacion', function(e) {
                  e.preventDefault();
                 let matriculacion_id=$(this).closest('tr').attr('id'); 
-                console.log(matriculacion_id);
+                
                 $programacionHtml="";
                 $("#tabla-programacioncom").empty();
                 $.ajax({
@@ -1211,7 +1209,7 @@
                         matriculacion_id:matriculacion_id,
                     },
                     success : function(json) {
-                            console.log(json);
+                            
                             for (let j in json) {
                                 $programacionHtml+="<tr id='"+ json[j].id +"' ><td>"+ (parseInt(j)+1) +"</td>";
                                 $programacionHtml+="<td>"+moment(json[j].fecha).format('DD-MM-YYYY')+"</td>";
@@ -1234,10 +1232,10 @@
 
             $('table').on('click', '.ultimamatriculacion', function(e) {
                 e.preventDefault();
-                console.log('ULTIMA MATRICULACION'); 
+                
                 persona_id =$(this).closest('tr').attr('id');
                     var fila=$(this).closest('tr');
-                    console.log(persona_id);
+                    
                     $("#modal-mostrar-ultimamatriculacion").modal("show");
                     $("#tabla-ultimamatriculacion").empty();
                             $.ajax({
@@ -1246,7 +1244,7 @@
                                 persona_id:persona_id,
                             },
                             success : function(json) {
-                                console.log(json);
+                                
                                 $html="";
                                 $html+="<tr>"+"<td>COSTO</td><td>"+ json.matriculacion.costo+"</td></tr>";
                                 $html+="<tr>"+"<td>TOTAL HORAS</td><td>"+ json.matriculacion.totalhoras +"</td></tr>";
@@ -1269,10 +1267,10 @@
 
             $('table').on('click', '.ultimainscripcion', function(e) {
                 e.preventDefault();
-                console.log('ULTIMA INSCRIPCION'); 
+                
                 persona_id =$(this).closest('tr').attr('id');
                     var fila=$(this).closest('tr');
-                    console.log(persona_id);
+                    
                     $("#modal-mostrar-ultimainscripcion").modal("show");
                     $("#tabla-ultimainscripcion").empty();
                             $.ajax({
@@ -1281,7 +1279,7 @@
                                 persona_id:persona_id,
                             },
                             success : function(json) {
-                                console.log(json);
+                                
                                 $html="";
                                 $html+="<tr>"+"<td>COSTO</td><td>"+ json.inscripcion.costo+"</td></tr>";
                                 $html+="<tr>"+"<td>TOTAL HORAS</td><td>"+ json.inscripcion.totalhoras +"</td></tr>";
@@ -1306,7 +1304,7 @@
             $('table').on('click', '.ultimaprogramacion', function(e) {
                 e.preventDefault();
                 persona_id =$(this).closest('tr').attr('id');
-                console.log(persona_id); 
+                
                 $("#modal-mostrar-ultima-programacion").modal("show");
                 $("#tabla-ultima-programacion").empty();
                             $.ajax({
@@ -1315,7 +1313,7 @@
                                 persona_id:persona_id
                             },
                             success : function(json) {
-                                console.log(json);
+                                
                                 $html="";
                                 $clase="";
                                 for (let j in json) {
@@ -1349,7 +1347,7 @@
             $('table').on('click', '.ultimaprogramacioncom', function(e) {
                 e.preventDefault();
                 persona_id =$(this).closest('tr').attr('id');
-                console.log(persona_id); 
+                
                 $("#modal-mostrar-ultima-programacioncom").modal("show");
                 $("#tabla-ultima-programacioncom").empty();
                             $.ajax({
@@ -1358,7 +1356,7 @@
                                 persona_id:persona_id
                             },
                             success : function(json) {
-                                console.log(json);
+                                
                                 $html="";
                                 $clase="";
                                 for (let j in json) {
@@ -1375,8 +1373,8 @@
                                     }
 
                                    
-                                    //console.log();
-                                    // console.log(moment(json[j].fecha).format('DD-MM-YYYY'));
+                                    //
+                                    // 
                                     $html+="<tr class='"+$clase+"'><td>"+ moment(json[j].fecha).format("L") +"</td>";
                                     $html+="<td>"+moment(json[j].horaini).format('hh:mm-ss')+" - "+moment(json[j].horafin).format('hh:mm:ss')+"</td>";
                                     $html+="<td>"+json[j].horas_por_clase+"</td>";
@@ -1393,9 +1391,9 @@
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ENVIAR MENSAJES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.enviarmensaje', function(e) {
                 e.preventDefault();
-                console.log("enviar mensajes");
+                
                 persona_id =$(this).closest('tr').attr('id');
-                console.log(persona_id); 
+                
                     $("#modal-mostrar-contactos").modal("show");
                     $("#tabla-contactos").empty();
                             $.ajax({
@@ -1404,7 +1402,7 @@
                                 persona_id:persona_id,
                             },
                             success : function(json) {
-                                console.log(json);
+                                
                                 $html="<tr id='"+ json.persona.telefono +"'><td>"+ json.persona.nombre +"</td>";
                                 $html+="<td>Teléfono personal</td>";
                                 $html+="<td>"+json.persona.telefono+"</td>";
@@ -1431,7 +1429,7 @@
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HACER LLAMADAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.llamar', function(e) {
                 e.preventDefault();
-                console.log("LLAMAR CLICK");
+                
                 persona_id =$(this).closest('tr').attr('id');
 
                         // $ultimacelda="<td><a class='btn listarmensajes'><i class='far fa-comment-dots fa-2x'></i></a><a target='_blank' onclick='descargar()' title='Envia este mensaje'>";
@@ -1445,7 +1443,7 @@
                                 persona_id:persona_id,
                             },
                             success : function(json) {
-                                console.log(json);
+                                
                                 $html="<tr id='"+ json.persona.telefono +"'><td>"+ json.persona.nombre +"</td>";
                                 $html+="<td>Teléfono personal</td>";
                                 $html+="<td><a href='tel:+591"+json.persona.telefono+"'><i class='fas fa-phone-volume'></i> "+json.persona.telefono+"</a></td>";
@@ -1473,7 +1471,7 @@
             $('table').on('click', '.listarmensajes', function(e) {
                 e.preventDefault();
                 telefono =$(this).closest('tr').attr('id');
-                console.log(telefono);
+                
                     MostrarMensajes(telefono);
                     $("#modal-mensajes").modal("show");
                 }); 
@@ -1499,7 +1497,7 @@
                     },
                     success: function (json) {
                         if(json.error){
-                            console.log(json.error);
+                            
                             $html="";
                             for (let j in json.error) {
                                 $html+="<li>"+ json.error[0] +"</li>";
@@ -1547,9 +1545,9 @@
                         persona_id:persona_id,
                     },
                     success: function (json) {
-                        console.log(json);
+                        
                         if(json.error){
-                            console.log(json.error);
+                            
                             $html="";
                             for (let j in json.error) {
                                 $html+="<li>"+ json.error[0] +"</li>";

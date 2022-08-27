@@ -150,7 +150,6 @@
             $('table').on('click', '.bajacomentario', function (e) {
                 e.preventDefault();
                 let comentario_id = $(this).closest('tr').attr('id');
-                console.log("id"+comentario_id);
                 $.ajax({
                     url: "darbaja/comentario",
                     data: {
@@ -182,7 +181,6 @@
         $('table').on('click', '.altacomentario', function (e) {
             e.preventDefault();
             let comentario_id = $(this).closest('tr').attr('id');
-            console.log(comentario_id);
             $.ajax({
                 url: "daralta/comentario",
                 data: {

@@ -100,15 +100,12 @@
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ENVIAR MENSAJES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             
             // $("#modal-mostrar-contactos").on("hidden.bs.modal", function () {
-            //     //console.log("actualizado");
             //     //tabla.ajax.reload();
             // });
 
             $('table').on('click', '.enviarmensaje', function(e) {
                 e.preventDefault();
-                console.log("enviar mensajes");
                 persona_id =$(this).closest('tr').attr('id');
-                console.log(persona_id); 
                     $("#modal-mostrar-contactos").modal("show");
                     $("#tabla-contactos").empty();
                             $.ajax({
@@ -151,7 +148,6 @@
             $('table').on('click', '.felicitado', function(e) {
                 e.preventDefault();    
                 persona_id =$(this).closest('tr').attr('id');
-                console.log("Felicitado "+persona_id);
                 
                 $.ajax({
                     url :"../persona/felicitado",

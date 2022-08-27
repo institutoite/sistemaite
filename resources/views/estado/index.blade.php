@@ -68,7 +68,6 @@
             $('table').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
                 id=$(this).parent().parent().parent().find('td').first().html();
-                //console.log(id)
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",
@@ -89,7 +88,6 @@
                                 _token:'{{ csrf_token() }}'
                             },
                             success: function(result) {
-                                console.log(result);
                                 tabla.ajax.reload();
                                 const Toast = Swal.mixin({
                                 toast: true,

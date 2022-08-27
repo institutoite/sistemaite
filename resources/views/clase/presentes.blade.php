@@ -121,12 +121,12 @@
                 e.preventDefault(); 
                 var id_estudiante =$(this).closest('tr').attr('id');
                 var           fila=$(this).closest('tr');
-                console.log(id_estudiante);
+                
 		        $.ajax({
                     url : "clase/finalizar/",
                     data : { id :id_estudiante },
                     success : function(json) {
-                            console.log(json);
+                            
                             fila.remove();
                             const Toast = Swal.mixin({
                                 toast: true,
@@ -153,12 +153,12 @@
                 e.preventDefault(); 
                 var id_computacion =$(this).closest('tr').attr('id');
                 var           fila=$(this).closest('tr');
-                console.log(id_computacion);
+                
 		        $.ajax({
                     url : "clasecom/finalizar/",
                     data : { id :id_computacion },
                     success : function(json) {
-                            console.log(json);
+                            
                             fila.remove();
                             const Toast = Swal.mixin({
                                 toast: true,
@@ -186,12 +186,12 @@
             $('table').on('click', '.editar', function(e) {
                 e.preventDefault(); 
                 let id_clase=$(this).closest('tr').attr('id');
-                console.log("idclase: "+id_clase);
+                
                 $.ajax({
                     url : "clase/editar",
                     data : { id :id_clase },
                     success : function(json) {
-                            console.log(json);
+                            
                             $("#modal-editar").modal("show");
                             $("#inputs-creados").empty();
                             //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE DOCENTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -273,7 +273,7 @@
                             $htmlTemas="<option value=''>Elija un tema</option>";
                             var id_tema=$("#tema_id").val();
                             for (let temas_j in json) {
-                                console.log(json[temas_j]);
+                                
                                 if(json[temas_j].id==id_tema){
                                     $htmlTemas+="<option  value='"+json[temas_j].id +"' selected >"+json[temas_j].tema+"</option>";
                                 }else{
@@ -298,7 +298,7 @@
             /* %%%%%%% ACTUALIZA LA CLASE EN LA BASE DE DATOS %%%%%%%%%%%%%%%%%%%%%% */
             $("#actualizar-clase").on("click", function(e) {
                 e.preventDefault();
-                console.log($("#clase_id").val());
+                
 
                 $.ajax({
                     url:'clase/actualizar/'+$("#clase_id").val(),
@@ -312,7 +312,7 @@
                         tema_id :$("#tema_id").val(),
                     },
                     success: function(response) {
-                        console.log(response);
+                        
                             $("#modal-editar").modal("hide");
                             
                             const Toast = Swal.mixin({
@@ -347,7 +347,7 @@
             
             /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  zomify %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
             $('table').on('click','.zoomify',function (e){
-                console.log($(this).attr('src'));
+                
                 Swal.fire({
                     title: 'Estudiantex: '+ $(this).closest('tr').find('td').eq(1).text(),
                     text: 'Materia:'+$(this).closest('tr').find('td').eq(2).text(),
@@ -379,12 +379,12 @@
                 e.preventDefault(); 
                 var id_clase =$(this).closest('tr').attr('id');
                 var fila=$(this).closest('tr');
-                console.log("ID:"+id_clase);
+                
                 $.ajax({
                     url : "clase/mostrar/",
                     data : { id :id_clase },
                     success : function(json) {
-                        console.log(json);
+                        
                         $("#modal-mostrar").modal("show");
                         $("#tabla-modal").empty();
                         $html="";
@@ -415,12 +415,12 @@
                 e.preventDefault(); 
                 var id_clase =$(this).closest('tr').attr('id');
                 var fila=$(this).closest('tr');
-                // console.log(fila);
+                // 
                 $.ajax({
                     url : "clasecom/mostrar/",
                     data : { id :id_clase },
                     success : function(json) {
-                        console.log(json);
+                        
                         $("#tabla-modalcom").empty();
                         $("#modal-mostrarcom").modal("show");
                         $html="";
@@ -447,7 +447,7 @@
                     var horainicio=moment.duration(data['horainicio']);
                     var horafin=moment.duration(data['horafin']);
                     let hinicio=moment(data['horainicio']);
-                    console.log(data);
+                    
                     let hfin=moment(data['horafin']);
                     let ahora=moment();
                     let minutosRestantantes=hfin.diff(ahora,'minutes');

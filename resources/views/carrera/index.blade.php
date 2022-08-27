@@ -139,7 +139,6 @@
             $('#carreras').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
                  var carrera_id =$(this).closest('tr').attr('id');
-                 console.log(carrera_id);
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",

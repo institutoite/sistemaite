@@ -116,14 +116,12 @@
             $('#formulario').trigger("reset");
             function cargarciudades(){
                 var country_id = $('#country').val();
-                console.log(country_id+"click");
                 if(!country_id){
                 $('#city').html('<option value="6" required selected>Santa Cruz de la Sierra </option>');
                     return;
                 }
                 $.get('../api/pais/'+ country_id +'/ciudades',function (data) {
                     var html_select='<option value="6" required selected>Santa Cruz de la Sierra </option>';
-                    console.log(data);
                     for (var i = 0; i < data.length; i++) {
                         html_select+='<option value="'+ data[i].id +'">' +data[i].ciudad +'</option>';
                     }
@@ -140,7 +138,6 @@
                     var html_select='<option value="">Seleccione una Ciudad </option>';
                     for (var i = 0; i < data.length; i++) {
                         html_select+='<option value="'+ data[i].id +'">' +data[i].zona +'</option>';
-                    //console.log(html_select);
                     }
                     $('#zona').html(html_select);
                 });
@@ -150,7 +147,6 @@
         $('#city').on('change', cargarzonas);
         $('table').on('click','#ok',selecciona);
         function selecciona() {
-            console.log("clickeaste");
             $("#persona_id").val($(this).closest('tr').children(0).html());
             $("#persona_id").addClass('bg-primary');
             $('#modal-ite').modal('toggle');

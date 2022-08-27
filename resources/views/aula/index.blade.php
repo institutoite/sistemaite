@@ -136,12 +136,10 @@
             $('#aulas').on('click', '.mostrar', function(e) {
                 e.preventDefault(); 
                 let aula_id=$(this).closest('tr').attr('id');
-                console.log(aula_id)
                 $.ajax({
                     url : "aula/mostrar",
                     data : { id :aula_id },
                     success : function(json) {
-                        console.log(json);
                         $("#modal-mostrar").modal("show");
                         $("#tabla-mostrar").empty();
                         $html="";
@@ -172,7 +170,6 @@
                     url : "aula/editar/",
                     data : { id :aula_id },
                     success : function(json) {
-                        console.log(json);
                         $("#modal-editar").modal("show");
                         $("#errores").addClass('alert-danger');
                         $("#formulario-editar").empty();
@@ -200,7 +197,6 @@
                 $aula_id=$('#aula_id').val();
                 $direccion=$('#direccion').val();
                 
-                console.log($aula_id);
                 var token = $("input[name=_token]").val();
                 $.ajaxSetup({
                 headers: {
@@ -217,7 +213,6 @@
                             token:token,
                         },
                     success : function(json) {
-                        console.log(json);
                         if(json.error){
                         $("#errores").html(json.error);
                         }else{
@@ -252,7 +247,6 @@
             $('#aulas').on('click','.eliminar',function (e) {
                 e.preventDefault(); 
                  var aula_id =$(this).closest('tr').attr('id');
-                 console.log(aula_id);
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",

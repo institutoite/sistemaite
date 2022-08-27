@@ -119,7 +119,6 @@
                     url : "../colegio/all",
                     success : function(json) {
                         $("#colegio_id").empty();
-                        //console.log(json);
                         //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  C A M P O  C O L E G I O S %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                         htmlcolegio="";
                         $.each( json, function( key, value ) {
@@ -128,7 +127,6 @@
                         $("#colegio_id").append(htmlcolegio);
                     },
                     error : function(xhr, status) {
-                        console.log(xhr);
                         Swal.fire({
                         type: 'error',
                         title: 'Ocurrio un Error',
@@ -158,7 +156,6 @@
                         $("#anio").append(htmlanio);
                     },
                     error : function(xhr, status) {
-                        //console.log(xhr);
                         Swal.fire({
                         type: 'error',
                         title: 'Ocurrio un Error',
@@ -190,7 +187,6 @@
                         token:token,
                     },
                     success : function(json) {
-                        console.log(json);
                         /*%%%%%%%%% un item de timeline %%%%%%%%%*/
                         $("#modal-crear-gestion").modal("hide");
                         //$('#time_line').load('#container');

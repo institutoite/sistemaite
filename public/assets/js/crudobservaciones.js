@@ -1,7 +1,6 @@
 $('table').on('click', '.editarobservacion', function (e) {
     e.preventDefault();
     let id_observacion = $(this).closest('tr').attr('id');
-    console.log("editar observacion");
     $htmlobs = "";
     $.ajax({
         url: "../observacion/editar",
@@ -9,7 +8,6 @@ $('table').on('click', '.editarobservacion', function (e) {
             id: id_observacion,
         },
         success: function (json) {
-            console.log(json);
             $("#editor2").html(json.observacion);
             $("#formulario-editar-observacion").empty();
             $("#editar-observacion").modal("show");
@@ -39,7 +37,6 @@ $('table').on('click', '.editarobservacion', function (e) {
 $(document).on("submit", "#formulario-editar-observacion", function (e) {
     e.preventDefault();//detenemos el envio
     $observacion = $('#editor2').val();
-    console.log($observacion);
     $observacion_id = $('#observacion_id').val();
     $.ajaxSetup({
         headers: {
@@ -53,7 +50,6 @@ $(document).on("submit", "#formulario-editar-observacion", function (e) {
             observacion_id: $observacion_id,
         },
         success: function (json) {
-            //console.log(json);
             tabla.ajax.reload();
             $('#editar-observacion').modal('hide');
         },

@@ -108,7 +108,6 @@ function editarObservacion(observacion_id,url){
             id: observacion_id,
         },
         success: function (json) {
-            console.log(json.observacion);
             CKEDITOR.instances.editoreditar.setData(json.observacion);
             $(".observable_id").val(json.id);
         },
@@ -123,11 +122,9 @@ function actualizarObservacion(observacion_id,observacion,url){
             observacion: observacion,
         },
         success: function (json) {
-            console.log(json.errores);
             if (json.errores) {
                 $(".error").html(json.errores.observacion);
                 $(".diverror").removeClass('d-none');
-                console.log("hay errores");
             } else {
                 
                 const Toast = Swal.mixin({
@@ -141,7 +138,6 @@ function actualizarObservacion(observacion_id,observacion,url){
                     title: "Guardado corectamente: " + json.mensaje,
                 })
                 $("#modal-editar-observacion").modal("hide"); 
-                console.log("No hay errores");
             }
         },
     });
@@ -205,7 +201,6 @@ function eliminarObservacion(observacion_id,url){
                 },
                 success: function (result) {
                     tablaobservaciones.ajax.reload();
-                    console.log("se elimino correctamente");
                     $("#modal-mostrar").modal("hide");
                     const Toast = Swal.mixin({
                         toast: true,

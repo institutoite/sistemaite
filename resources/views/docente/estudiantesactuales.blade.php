@@ -52,7 +52,6 @@
                      "ajax" : {
                             'url' : "{{ route('misestudiantes.actuales.ajax',['persona_id'=>$persona_id])}}",
                             "success":function(json){
-                                console.log(json);
                             }
                         },
                     "columns": [

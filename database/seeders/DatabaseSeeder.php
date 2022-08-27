@@ -56,6 +56,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             InterestSeeder::class,
             MensajeSeeder::class,
+            EventoSeeder::class,
         ]);
     }  
 }

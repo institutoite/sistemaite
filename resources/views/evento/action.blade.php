@@ -3,11 +3,11 @@
 </a>
 
 <a href="{{route('eventos.show',$id)}}" class="btn-accion-tabla tooltipsC mr-2 mostrar" title="Ver este evento">
-    <i class="fa fa-fw fa-eye text-primary"></i>
+    <i class="fa fa-fw fa-eye text-secondary"></i>
 </a>
 
 <a  class="btn-accion-tabla tooltipsC mr-2 seleccionar" title="Seleccionar este evento">
-    <i class="fa fa-fw fa-eye text-primary"></i>
+    <i class="fas fa-arrow-alt-circle-up text-primary"></i>
 </a>
 
 

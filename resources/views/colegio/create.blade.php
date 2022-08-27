@@ -41,7 +41,6 @@ $(document).ready(function(){
     $('#formulario').trigger("reset");
     function cargarProvincias(){
                 var departamento_id = $('#departamento_id').val();
-                console.log(departamento_id);
                 if(!departamento_id){
                 $('#provincia_id').html('<option value="1" required selected>Andres Ibañez </option>');
                     return;
@@ -50,26 +49,21 @@ $(document).ready(function(){
                     var html_select='';
                     for (var i = 0; i < data.length; i++) {
                         html_select+='<option value="'+ data[i].id +'">' +data[i].provincia +'</option>';
-                    //console.log(html_select);
                     }
                     $('#provincia_id').html(html_select);
                 });
             }
             
-
             function cargarMunicipios(){
                 var provincia_id = $('#provincia_id').val();
-                console.log(provincia_id+"idpro");
                 if(!provincia_id){
                 $('#municipio_id').html('<option value="" required>Seleccione un municipio </option>');
                     return;
                 }
                 $.get('../api/provincia/'+ provincia_id +'/municipios',function (data) {
                     html_select='';
-                    console.log(data);
                     for (var i = 0; i < data.length; i++) {
                         html_select+='<option value="'+ data[i].id +'">' +data[i].municipio +'</option>';
-                    //console.log(html_select);
                     }
                     $('#municipio_id').html(html_select);
                 });

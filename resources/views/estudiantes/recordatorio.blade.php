@@ -175,7 +175,6 @@
                             persona_id:persona_id,
                         },
                         success : function(json) {
-                            console.log(json);
                             mensaje=json.mensaje;
                             if(json.persona.telefono!=0){
                                 $("#personal").attr('href','https://api.whatsapp.com/send?phone=591'+json.persona.telefono+'&text='+mensaje.mensaje);

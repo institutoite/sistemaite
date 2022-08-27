@@ -76,7 +76,6 @@
 
             function cargarciudades(){
                 var country_id = $('#country').val();
-                console.log(country_id);
                 if(!country_id){
                 $('#city').html('<option value="6" required selected>Santa Cruz de la Sierra </option>');
                     return;
@@ -85,7 +84,6 @@
                     var html_select='<option value="6" required selected>Santa Cruz de la Sierra </option>';
                     for (var i = 0; i < data.length; i++) {
                         html_select+='<option value="'+ data[i].id +'">' +data[i].ciudad +'</option>';
-                    //console.log(html_select);
                     }
                     $('#city').html(html_select);
                 });
@@ -101,7 +99,6 @@
                     var html_select='<option value="">Seleccione una Ciudad </option>';
                     for (var i = 0; i < data.length; i++) {
                         html_select+='<option value="'+ data[i].id +'">' +data[i].zona +'</option>';
-                    //console.log(html_select);
                     }
                     $('#zona').html(html_select);
                 });

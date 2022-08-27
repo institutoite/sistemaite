@@ -353,12 +353,10 @@
         $('.editar_calificacion').on('click', function (e) {
             e.preventDefault();
             let persona_id = "{{ $persona->id }}";
-            console.log(persona_id);
             $.ajax({
                 url: "../calificacion/editar",
                 data: { persona_id: persona_id },
                 success: function (json) {
-                    console.log(json.calificacion.calificacion);
                     $("#editar-calificacion").modal("show");
                     $('#calificacion').val(json.calificacion.calificacion);
                     $('#calificacion_id').val(json.calificacion.id);
@@ -474,7 +472,6 @@
         $('table').on('click', '.editarobservacion', function (e) {
             e.preventDefault();
             let id_observacion = $(this).closest('tr').attr('id');
-            console.log($("#editor1").val());
             $htmlobs = "";
             $.ajax({
                 url: "../observacion/editar",
@@ -482,9 +479,7 @@
                     id: id_observacion,
                 },
                 success: function (json) {
-                    console.log(json);
                     $("#editor1").html(json.observacion);
-                    //console.log($("#editor1").html());
                     //$("#modal-mostrar").modal("hide");
                     $("#formulario-editar-observacion").empty();
                     $("#editar-observacion").modal("show");
@@ -514,7 +509,6 @@
         $(document).on("submit", "#formulario-editar-observacion", function (e) {
             e.preventDefault();//detenemos el envio
             $observacion = $('#editor2').val();
-            console.log($observacion);
             $observacion_id = $('#observacion_id').val();
             $.ajaxSetup({
                 headers: {
@@ -528,7 +522,6 @@
                     observacion_id: $observacion_id,
                 },
                 success: function (json) {
-                    //console.log(json);
                     tabla.ajax.reload();
                     $('#editar-observacion').modal('hide');
                 },

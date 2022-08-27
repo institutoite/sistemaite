@@ -156,8 +156,16 @@ class MensajeController extends Controller
 
     public function MensajeMasivo()
     {
+
+        $yaMensajeados=Persona::join('mensajeados', 'mensajeados.persona_id','personas.id')
+            ->select('personas.id')
+            ->get();
+
         $EstudiantesCalificacionDesc=Persona::join('estudiantes','personas.id','estudiantes.persona_id')
         ->join('calificacions','personas.id','calificacions.persona_id')
+        // ->join('mensajeados','personas.id','mensajeados.persona_id')
+        // ->whereNotIn('personas.id',DB::raw("select persona_id from mensajeados where personas.id=mensajeados.persona_id"))
+        ->whereNotIn('personas.id',$yaMensajeados)
         ->select('personas.id','personas.nombre','personas.apellidom','personas.apellidop','vuelvefecha','foto',
                 DB::raw("(select AVG(calificacion) from calificacions where personas.id=calificacions.persona_id) as promedio"))
         ->groupBy('id','nombre','apellidom','apellidop','vuelvefecha','promedio','personas.foto')

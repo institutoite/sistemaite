@@ -96,21 +96,16 @@
         $('table').on('click', '.observacion', function (e) {
             e.preventDefault();
             let objeto_id = $(this).closest('tr').attr('id');
-            console.log(objeto_id);
             $("#observable_id").val(objeto_id);
             $("#observable_type").val($(this).attr('id'));
             CKEDITOR.instances.editorguardar.setData("");
-            console.log("Click en Observacion crear");
             $("#modal-agregar-observacion").modal("show");
         });
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CLICK BOTON GUARDAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         $('#guardar-observacion').on('click', function (e) {
             e.preventDefault();
-            console.log("click en guardar obsrvacion");
             let observable_id = $("#observable_id").val();
-            console.log(observable_id);
             let observable_type = $("#observable_type").val();
-            console.log(observable_type);
             for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
             observacion=$("#editorguardar").val();
             url = "../guardar/observacion"
@@ -131,7 +126,6 @@
         $('table').on('click', '.bajaobservacion', function (e) {
             e.preventDefault();
             let observacion_id = $(this).closest('tr').attr('id');
-            console.log(observacion_id);
             url="../darbaja/observacion";
             darBaja(observacion_id,url);
         });
@@ -169,14 +163,12 @@
         $('table').on('click', '.recalificar', function(e) {
             e.preventDefault();
             persona_id =$(this).closest('tr').attr('id');
-            console.log(persona_id);
             $.ajax({
                 url : "../get/calificacion",
                 data:{
                     persona_id:persona_id,
                 },
                 success : function(json) {
-                    console.log(json);
                     if(json.calificado=="SI"){
                         /*%%%%%% actualiza %%%%%%%%%%%%%%%%%%*/
                         $("#id_persona").val(json.calificacion.persona_id);
@@ -213,7 +205,7 @@
                     storeupdate:storeupdate,
                 },
                 success : function(json) {
-                    console.log(json);
+                    $("#modal-editar-calificacion").modal("hide");
                 },
                 error : function(xhr, status) {
                     alert('Disculpe, existió un problema');
@@ -240,7 +232,8 @@
                     persona_id:persona_id,
                 },
                 success : function(json) {
-                    console.log(json);
+                    masivocontactar.ajax.reload();
+
                 },
                 error : function(xhr, status) {
                     alert('Disculpe, existió un problema');
@@ -254,9 +247,7 @@
         $('#agendar').on('click', function (e) {
             e.preventDefault();
             vuelvefecha = $("#vuelvefecha").val();
-            console.log(vuelvefecha);
             persona_id = $("#persona_id").val();
-            console.log(persona_id);
             $.ajax({
                 url: "../persona/actualizar/vuelvefecha",
                 data: {
@@ -264,7 +255,6 @@
                     persona_id:persona_id,
                 },
                 success: function (json) {
-                        console.log(json);
                         const Toast = Swal.mixin({
                             toast: true,
                             position: 'top-end',
@@ -422,14 +412,8 @@
                     "ajax": "{{ url('estudiantes/masivo/contactar/evento') }}",
                     "createdRow": function( row, data, dataIndex ) {
                         $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
-                        // $('td', row).eq(3).html("<strong class='text-success'>"+data['acuenta']+"</strong>+"+"<strong class='text-danger'>"+parseInt(data['costo']-data['acuenta'])+"</strong>"+"="+data['costo']);
-                        // // $('td', row).eq(5).html(data['fechafin']);
-                        // if(moment(data['fecha_proximo_pago']).format('YY-MM-DD')>moment().format('YY-MM-DD'))
-                        //     $(row).addClass('text-success');
-                        // else
-                        //     $(row).addClass('text-danger');
-                        
-                        
+                         $('td', row).eq(4).html(Math.round(data['promedio']));
+                         $('td', row).eq(5).html(moment(data['vuelvefecha']).format('DD-MM-YYYY'));
                     },
                     "columns": [
                         {data: 'id'},
