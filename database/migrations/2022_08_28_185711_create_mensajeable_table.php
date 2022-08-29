@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTelefonosTable extends Migration
+class CreateMensajeableTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateTelefonosTable extends Migration
      */
     public function up()
     {
-        Schema::create('telefonos', function (Blueprint $table) {
+        Schema::create('mensajeables', function (Blueprint $table) {
             $table->id();
-            $table->string('telefono', 10)->nullable();
-            $table->string('parentesco', 10)->nullable();
+            $table->unsignedBigInteger('mensajeable_id');
+            $table->string('mensajeable_type',32);
+            $table->unsignedBigInteger('mensaje_id');
+            $table->foreign('mensaje_id')->references('id')->on('mensajes');
             $table->unsignedBigInteger('persona_id');
-            $table->unsignedBigInteger('persona_id_parentesco');
             $table->foreign('persona_id')->references('id')->on('personas');
-            $table->foreign('persona_id_parentesco')->references('id')->on('personas');
-            
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ class CreateTelefonosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('telefonos');
+        Schema::dropIfExists('mensajeables');
     }
 }

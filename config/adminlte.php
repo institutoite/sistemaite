@@ -669,9 +669,9 @@ return [
                     'classes'  => 'text-dark',
                 ],
                 [
-                    'text' => 'Finalizaron hoy',
+                    'text' => 'Finalizando',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => 'finalizaron/view',
+                    'url'  => 'finalizando/view',
                     'classes'  => 'text-dark',
                 ],
                 [

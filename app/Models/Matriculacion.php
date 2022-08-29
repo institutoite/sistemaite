@@ -47,4 +47,8 @@ class Matriculacion extends Model
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }
+    public function mensajes()
+    {
+        return $this->morphToMany('App\Models\Mensaje', 'mensajeable');
+    }
 }

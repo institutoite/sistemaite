@@ -23,8 +23,8 @@
                                     <th>#</th>
                                     <th>NOMBRE</th>
                                     <th>APELLIDOP</th>
-                                    <th>ACTUALIZADO</th>
                                     <th>PARENTESCO</th>
+                                    <th>ACTUALIZADO</th>
                                     <th>OPCIONES </th>
                                 </tr>
                             </thead>

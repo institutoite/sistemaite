@@ -201,6 +201,7 @@ class ProgramacioncomController extends Controller
                 }
             }
             $matriculacion->fechafin = $programa->fecha;
+            $matriculacion->estado_id=estado('CORRIENDO');
             if ($matriculacion->pagos->sum('monto') < $matriculacion->costo) {
                 return redirect()->route('mostrar.programacioncom', $matriculacion);
             } else {

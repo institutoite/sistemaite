@@ -6,11 +6,12 @@ use App\Models\Mensajeado;
 use App\Http\Requests\StoreMensajeadoRequest;
 use App\Http\Requests\UpdateMensajeadoRequest;
 use App\Http\Controllers\EventoController;
-
+use App\Http\Requests\MensajeableStoreRequest;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class MensajeadoController extends Controller
 {
-    
     public function storeMensajeado(StoreMensajeadoRequest $request){
         $eventoObjeto = new EventoController();
         $evento = eventoSeleccionado();
@@ -18,13 +19,9 @@ class MensajeadoController extends Controller
         $mensajeado->persona_id = $request->persona_id;
         $mensajeado->evento_id= $evento->id;
         $mensajeado->save();
-        //$eventoObjeto->seleccionarEvento($evento_id);
         return response()->json(['mensaje'=>"Mensajeado guardo Correctamente"]);
     }
 
-   
-    
-    
     /**
      * Display a listing of the resource.
      *

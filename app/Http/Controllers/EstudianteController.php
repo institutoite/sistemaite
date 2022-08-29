@@ -94,6 +94,23 @@ class EstudianteController extends Controller
             ->toJson(); 
     }
     
+    public function estudiantesFinalizando(){
+        $finalizan=Persona::join('estudiantes', 'estudiantes.persona_id','personas.id')
+        ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+        ->join('userables','userables.userable_id','inscripciones.id')
+        ->join('users','users.id','userables.user_id')
+        ->where('userables.userable_type',Inscripcione::class)
+        ->where('inscripciones.vigente',1)
+        ->where('inscripciones.condonado',0)
+        ->select('personas.id','inscripciones.id as inscripcione_id','nombre','apellidop','apellidom','fechafin','telefono','personas.foto','users.name as usuario')
+        ->orderBy('fechafin','asc')
+        ->get();
+
+        return DataTables::of($finalizan)
+            ->addColumn('btn','estudiantes.actionfinalizando')
+            ->rawColumns(['btn'])
+            ->toJson(); 
+    }
 
     
     public function faltonesView()
@@ -107,6 +124,11 @@ class EstudianteController extends Controller
     public function recordatorioView()
     {
         return view('estudiantes.recordatorio');
+    }
+  
+    public function finalizandoView()
+    {
+        return view('estudiantes.finalizando');
     }
   
     public function store(Request $request)

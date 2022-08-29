@@ -6,6 +6,7 @@ use App\Models\Computacion;
 use App\Models\Matriculacion;
 use App\Models\Persona;
 use App\Models\Carrera;
+use App\Models\Mensajeable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
@@ -169,4 +170,28 @@ class ComputacionController extends Controller
             ->rawColumns(['btn'])
             ->toJson(); 
     }
+
+     public function computacionFinalizando(){
+        $matriculacionesFinalizadas=Mensajeable::where('mensajeable_type',Matriculacion::class)
+            ->where('mensaje_id',7)
+            ->select('mensajeable_id')
+            ->get();
+        $finalizancomputacion=Persona::join('computacions', 'computacions.persona_id','personas.id')
+        ->join('matriculacions','matriculacions.computacion_id','computacions.id')
+        ->join('asignaturas','matriculacions.asignatura_id','asignaturas.id')
+        ->join('userables','userables.userable_id','matriculacions.id')
+        ->join('users','users.id','userables.user_id')
+        ->where('userables.userable_type',Matriculacion::class)
+        ->where('matriculacions.vigente',1)
+        ->where('matriculacions.condonado',0)
+        ->whereNotIn('matriculacions.id',$matriculacionesFinalizadas)
+        ->select('personas.id','matriculacions.id as matriculacion_id','nombre','apellidop','asignatura','fechafin','telefono','personas.foto','users.name as usuario')
+        ->orderBy('fechafin','asc')
+        ->get();        
+        return DataTables::of($finalizancomputacion)
+            ->addColumn('btn','computacion.actionfinalizando')
+            ->rawColumns(['btn'])
+            ->toJson(); 
+    }
+
 }

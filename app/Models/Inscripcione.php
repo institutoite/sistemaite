@@ -77,7 +77,11 @@ class Inscripcione extends Model
     
     
     
-    
+    public function mensajes()
+    {
+        return $this->morphToMany('App\Models\Mensaje', 'mensajeable');
+    }
+
     public function estudiante()
     {
         return $this->belongsTo(Estudiante::class);

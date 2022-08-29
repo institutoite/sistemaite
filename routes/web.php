@@ -44,10 +44,11 @@ use App\Http\Controllers\AdministrativoController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\MensajeadoController;
+use App\Http\Controllers\MensajeableController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[MensajeController::class,'MensajeMasivo'])->name('prueba');
+Route::get('prueba',[ComputacionController::class,'computacionFinalizando'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -181,10 +182,13 @@ Route::get('cumpleaneros',[EstudianteController::class,'cumpleaneros'])->name('c
 Route::get('estudiante/faltones',[EstudianteController::class,'estudiantesFaltones'])->name('estudiante.faltones');
 Route::get('estudiante/sinfalta',[EstudianteController::class,'estudiantesSinFalta'])->name('estudiante.sinfalta');
 Route::get('estudiante/recordatorio',[EstudianteController::class,'estudiantesRecordatorio'])->name('estudiante.recordatorio');
+Route::get('estudiantes/finalizando',[EstudianteController::class,'estudiantesFinalizando'])->name('estudiantes.finalizando');
 Route::get('faltones/view',[EstudianteController::class,'faltonesView'])->name('estudiante.faltones.view');
 Route::get('sinfalta/view',[EstudianteController::class,'sinfaltaView'])->name('estudiante.sinfalta.view');
 Route::get('recordatorio/view',[EstudianteController::class,'recordatorioView'])->name('estudiante.recordatorio.view');
 Route::get('cumpleaneros/view',[EstudianteController::class,'cumplenerosView'])->name('cumpleaneros.view');
+Route::get('finalizando/view',[EstudianteController::class,'finalizandoView'])->name('finalizando.view');
+Route::get('iniciando/view',[EstudianteController::class,'cumplenerosView'])->name('cumpleaneros.view');
 // Route::get('yaesta/felicitado/{persona}',[EstudianteController::class,'yaSeFelicito'])->name('yaesta.felicitado');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       COMENTARIO         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -232,6 +236,7 @@ Route::post('computacion/carreras/configurar/{persona}', 'ComputacionController@
 Route::get('computacion/faltones',[ComputacionController::class,'computacionsFaltones'])->name('computacion.faltones');
 Route::get('computacion/sinfalta',[ComputacionController::class,'computacionsSinFalta'])->name('computacion.sinfalta');
 Route::get('computacion/recordatorio',[ComputacionController::class,'computacionsRecordatorio'])->name('computacion.recordatorio');
+Route::get('computacion/finalizando',[ComputacionController::class,'computacionFinalizando'])->name('computacion.finalizando');
 //Route::get('faltones/view',[EstudianteController::class,'faltonesView'])->name('estudiante.faltones.view');
 
 
@@ -447,8 +452,10 @@ Route::get('motivo/actualizar/', [MotivoController::class,'actualizar'])->name("
 Route::delete('eliminar/motivo/{motivo}', [MotivoController::class,'destroy'])->name('eliminar.motivo');
 
 
-/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MENSAJEADO %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%MENSAJEADO %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('store/mensajeado',[MensajeadoController::class,'storeMensajeado'])->name("store.mensajeado");
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%MENSAJEABLE %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::get('mensajeble/store',[MensajeableController::class,'storeMensajeable'])->name("store.mensajeable");
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MENSAJE %%%%%%%%%%%%%%%%%%%%%%%%%%*/
