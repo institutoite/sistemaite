@@ -194,6 +194,8 @@
                             },
                             success : function(json) {
                                 mensajeGrande(json.mensaje,'success',2000)
+                                tablainscripciones.ajax.reload();
+                                console.log("ya hice todo :"+json.mensaje);
                             },
                             error : function(xhr, status) {
                                 mensajeGrande("Ocurrio un problema...",'error',2000)

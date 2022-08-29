@@ -173,7 +173,7 @@ class ComputacionController extends Controller
 
      public function computacionFinalizando(){
         $matriculacionesFinalizadas=Mensajeable::where('mensajeable_type',Matriculacion::class)
-            ->where('mensaje_id',7)
+            ->where('mensaje_id',idMensaje('FINALIZANDOMATRICULACION'))
             ->select('mensajeable_id')
             ->get();
         $finalizancomputacion=Persona::join('computacions', 'computacions.persona_id','personas.id')

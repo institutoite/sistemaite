@@ -95,6 +95,11 @@ class EstudianteController extends Controller
     }
     
     public function estudiantesFinalizando(){
+        $inscripcionesFinalizadas=Mensajeable::where('mensajeable_type',Inscripcione::class)
+            ->where('mensaje_id',idMensaje('FINALIZANDOINSCRIPCION'))
+            ->select('mensajeable_id')
+            ->get();
+
         $finalizan=Persona::join('estudiantes', 'estudiantes.persona_id','personas.id')
         ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
         ->join('userables','userables.userable_id','inscripciones.id')

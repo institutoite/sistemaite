@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests\MensajeableStoreRequest;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
 
 
 class MensajeableController extends Controller
 {
-    
-     public function storeMensajeable(MensajeableStoreRequest $request){
-
+    public function storeMensajeable(MensajeableStoreRequest $request){
         DB::table('mensajeables')->insert(
             array(
                 'mensaje_id' => $request->mensaje_id,
@@ -21,21 +21,28 @@ class MensajeableController extends Controller
                 'persona_id' => $request->persona_id,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-                
             )
         );        
+        $this->actualizarEstado($request->mensajeable_type,$request->mensajeable_id,$request->mensaje_id);
         return response()->json(['mensaje' =>"Se guardo correctamente mensajeable"]);
     }
 
 
-    public function actualizarEstado(){
-
+    public function actualizarEstado($mensajeable_type,$mensajeable_id,$mensaje_id){
         switch ($mensajeable_type) {
             case 'Inscripcione':
-                # code...
+                    if($mensaje_id==6){
+                        $inscripcion=Inscripcione::findOrFail($mensajeable_id);
+                        $inscripcion->estado_id=estado('FINALIZADO');
+                        $inscripcion->save();
+                    }
                 break;
             case 'Matriculacion':
-                # code...
+                    if($mensaje_id==7){
+                        $matriculacion=Matriculacion::findOrFail($mensajeable_id);
+                        $matriculacion->estado_id=estado('FINALIZADO');
+                        $matriculacion->save();
+                    }
                 break;
                 # code...
                 break;

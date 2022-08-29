@@ -2,6 +2,7 @@
 use App\Models\Estado;
 use App\Models\Persona;
 use App\Models\Evento;
+use App\Models\Mensaje;
 use Carbon\Carbon;
     function estado($estado){
             return Estado::where('estado',$estado)->get()->first()->id;
@@ -57,6 +58,10 @@ use Carbon\Carbon;
         $evento = Evento::where('seleccionado', 1)->first();
         return $evento;
     } 
+
+    function idMensaje($nombreMensaje){
+        return Mensaje::where('nombre',$nombreMensaje)->first()->id;
+    }
 
 
 ?>
