@@ -183,11 +183,13 @@ Route::get('estudiante/faltones',[EstudianteController::class,'estudiantesFalton
 Route::get('estudiante/sinfalta',[EstudianteController::class,'estudiantesSinFalta'])->name('estudiante.sinfalta');
 Route::get('estudiante/recordatorio',[EstudianteController::class,'estudiantesRecordatorio'])->name('estudiante.recordatorio');
 Route::get('estudiantes/finalizando',[EstudianteController::class,'estudiantesFinalizando'])->name('estudiantes.finalizando');
+Route::get('estudiantes/empezando',[EstudianteController::class,'estudiantesEmpezando'])->name('estudiantes.empezando');
 Route::get('faltones/view',[EstudianteController::class,'faltonesView'])->name('estudiante.faltones.view');
 Route::get('sinfalta/view',[EstudianteController::class,'sinfaltaView'])->name('estudiante.sinfalta.view');
 Route::get('recordatorio/view',[EstudianteController::class,'recordatorioView'])->name('estudiante.recordatorio.view');
 Route::get('cumpleaneros/view',[EstudianteController::class,'cumplenerosView'])->name('cumpleaneros.view');
 Route::get('finalizando/view',[EstudianteController::class,'finalizandoView'])->name('finalizando.view');
+Route::get('empezando/view',[EstudianteController::class,'empezandoView'])->name('empezando.view');
 Route::get('iniciando/view',[EstudianteController::class,'cumplenerosView'])->name('cumpleaneros.view');
 // Route::get('yaesta/felicitado/{persona}',[EstudianteController::class,'yaSeFelicito'])->name('yaesta.felicitado');
 
@@ -237,6 +239,7 @@ Route::get('computacion/faltones',[ComputacionController::class,'computacionsFal
 Route::get('computacion/sinfalta',[ComputacionController::class,'computacionsSinFalta'])->name('computacion.sinfalta');
 Route::get('computacion/recordatorio',[ComputacionController::class,'computacionsRecordatorio'])->name('computacion.recordatorio');
 Route::get('computacion/finalizando',[ComputacionController::class,'computacionFinalizando'])->name('computacion.finalizando');
+Route::get('computacion/empezando',[ComputacionController::class,'computacionEmpezando'])->name('computacion.empezando');
 //Route::get('faltones/view',[EstudianteController::class,'faltonesView'])->name('estudiante.faltones.view');
 
 

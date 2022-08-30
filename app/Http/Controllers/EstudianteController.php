@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Estudiante;
 use App\Models\Felicitado;
 use App\Models\Inscripcione;
+use App\Models\Mensajeable;
 use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -107,12 +108,38 @@ class EstudianteController extends Controller
         ->where('userables.userable_type',Inscripcione::class)
         ->where('inscripciones.vigente',1)
         ->where('inscripciones.condonado',0)
+        ->whereNotIn('inscripciones.id',$inscripcionesFinalizadas)
         ->select('personas.id','inscripciones.id as inscripcione_id','nombre','apellidop','apellidom','fechafin','telefono','personas.foto','users.name as usuario')
         ->orderBy('fechafin','asc')
         ->get();
+        //  dd($finalizan);
 
         return DataTables::of($finalizan)
             ->addColumn('btn','estudiantes.actionfinalizando')
+            ->rawColumns(['btn'])
+            ->toJson(); 
+    }
+    public function estudiantesEmpezando(){
+        $inscripcionesEmpezados=Mensajeable::where('mensajeable_type',Inscripcione::class)
+            ->where('mensaje_id',idMensaje('EMPEZANDOINSCRIPCION'))
+            ->select('mensajeable_id')
+            ->get();
+
+        $finalizan=Persona::join('estudiantes', 'estudiantes.persona_id','personas.id')
+        ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+        ->join('userables','userables.userable_id','inscripciones.id')
+        ->join('users','users.id','userables.user_id')
+        ->where('userables.userable_type',Inscripcione::class)
+        ->where('inscripciones.vigente',1)
+        ->where('inscripciones.condonado',0)
+        ->whereNotIn('inscripciones.id',$inscripcionesEmpezados)
+        ->select('personas.id','inscripciones.id as inscripcione_id','nombre','apellidop','apellidom','fechaini','telefono','personas.foto','users.name as usuario')
+        ->orderBy('fechaini','asc')
+        ->get();
+        //  dd($finalizan);
+
+        return DataTables::of($finalizan)
+            ->addColumn('btn','estudiantes.actionempezando')
             ->rawColumns(['btn'])
             ->toJson(); 
     }
@@ -134,6 +161,10 @@ class EstudianteController extends Controller
     public function finalizandoView()
     {
         return view('estudiantes.finalizando');
+    }
+    public function empezandoView()
+    {
+        return view('estudiantes.empezando');
     }
   
     public function store(Request $request)

@@ -171,11 +171,12 @@ class ComputacionController extends Controller
             ->toJson(); 
     }
 
-     public function computacionFinalizando(){
+    public function computacionFinalizando(){
         $matriculacionesFinalizadas=Mensajeable::where('mensajeable_type',Matriculacion::class)
             ->where('mensaje_id',idMensaje('FINALIZANDOMATRICULACION'))
             ->select('mensajeable_id')
             ->get();
+        
         $finalizancomputacion=Persona::join('computacions', 'computacions.persona_id','personas.id')
         ->join('matriculacions','matriculacions.computacion_id','computacions.id')
         ->join('asignaturas','matriculacions.asignatura_id','asignaturas.id')
@@ -190,6 +191,29 @@ class ComputacionController extends Controller
         ->get();        
         return DataTables::of($finalizancomputacion)
             ->addColumn('btn','computacion.actionfinalizando')
+            ->rawColumns(['btn'])
+            ->toJson(); 
+    }
+    public function computacioneEmpezando(){
+        $matriculacionesEmpezados=Mensajeable::where('mensajeable_type',Matriculacion::class)
+            ->where('mensaje_id',idMensaje('EMPEZANDOMATRICULACION'))
+            ->select('mensajeable_id')
+            ->get();
+        
+        $empiezancomputacion=Persona::join('computacions', 'computacions.persona_id','personas.id')
+        ->join('matriculacions','matriculacions.computacion_id','computacions.id')
+        ->join('asignaturas','matriculacions.asignatura_id','asignaturas.id')
+        ->join('userables','userables.userable_id','matriculacions.id')
+        ->join('users','users.id','userables.user_id')
+        ->where('userables.userable_type',Matriculacion::class)
+        ->where('matriculacions.vigente',1)
+        ->where('matriculacions.condonado',0)
+        ->whereNotIn('matriculacions.id',$matriculacionesEmpezados)
+        ->select('personas.id','matriculacions.id as matriculacion_id','nombre','apellidop','asignatura','fechaini','telefono','personas.foto','users.name as usuario')
+        ->orderBy('fechaini','asc')
+        ->get();        
+        return DataTables::of($empiezancomputacion)
+            ->addColumn('btn','computacion.actionempezando')
             ->rawColumns(['btn'])
             ->toJson(); 
     }

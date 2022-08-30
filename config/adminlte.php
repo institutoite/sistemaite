@@ -675,9 +675,9 @@ return [
                     'classes'  => 'text-dark',
                 ],
                 [
-                    'text' => 'Bienvenidas',
+                    'text' => 'Empezando',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => 'empesaron/view',
+                    'url'  => 'empezando/view',
                     'classes'  => 'text-dark',
                 ],
                 [

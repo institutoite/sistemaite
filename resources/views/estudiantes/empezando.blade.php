@@ -12,18 +12,18 @@
     <div class="card">
         <div class="card-header bg-primary" >
             <div style="display: flex; justify-content: space-between; align-items: center;">
-                ESTUDIANTES ESTAN TERMINANDO SUS INSCRIPCIONES
+                ESTUDIANTES ESTAN EMPEZANDO SUS INSCRIPCIONES
             </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table id="inscripcionesfinalizando" class="table table-striped table-hover">
+                <table id="inscripcionesempezando" class="table table-striped table-hover">
                     <thead class="thead">
                         <tr>
                             <th>NOMBRE</th>
                             <th>APELLIDOP</th>
                             <th>APELLIDOM</th>
-                            <th>FECHAFIN</th>
+                            <th>FECHAINI</th>
                             <th>USUARIO</th>
                             <th>FOTO</th>
                             <th>OPTIONS</th>
@@ -38,18 +38,18 @@
     <div class="card">
         <div class="card-header bg-primary" >
             <div style="display: flex; justify-content: space-between; align-items: center;">
-                ITENAUTAS QUE ESTAN POR TERMINAR
+                ITENAUTAS QUE ESTAN EMPEZANDO
             </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table id="matriculacionfinalizando" class="table table-striped table-hover">
+                <table id="matriculacionempezando" class="table table-striped table-hover">
                     <thead class="thead">
                         <tr>
                             <th>NOMBRE</th>
                             <th>APELLIDOP</th>
                             <th>ASIGNATURA</th>
-                            <th>FECHAFIN</th>
+                            <th>FECHAINI</th>
                             <th>USUARIO</th>
                             <th>FOTO</th>
                             <th>OPTIONS</th>
@@ -89,23 +89,23 @@
             let tablainscripciones;
             let tablamatriculaciones;
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE INSCRIPCIONES VIGENTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-                tablainscripciones=$('#inscripcionesfinalizando').DataTable(
+                tablainscripciones=$('#inscripcionesempezando').DataTable(
                     {
                         "serverSide": true,
                         "responsive":true,
                         "autoWidth":false,
                         "ajax":{ 
-                            "url":'../estudiantes/finalizando',
+                            "url":'../estudiantes/empezando',
                         },
                         "createdRow": function( row, data, dataIndex ) {
                             $(row).attr('id',data['id']); 
-                            $('td',row).eq(3).html(moment(data['fechafin']).format('DD-MM-YYYY'));
+                            $('td',row).eq(3).html(moment(data['fechaini']).format('DD-MM-YYYY'));
                         },
                         "columns": [
                             {data:'nombre'},
                             {data:'apellidop'},
                             {data:'apellidom'},
-                            {data:'fechafin'},
+                            {data:'fechaini'},
                             {data:'usuario'},
                             {
                                 "name": "foto",
@@ -130,23 +130,23 @@
                     }
                 );
                 /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE MATRICULACIONES VIGENTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/    
-                tablamatriculaciones=$('#matriculacionfinalizando').dataTable(
+                tablamatriculaciones=$('#matriculacionempezando').dataTable(
                     {
                         "serverSide":true,
                         "responsive":true,
                         "autoWidth":false,
                         "ajax":{ 
-                            "url":'../computacion/finalizando',
+                            "url":'../computacion/empezando',
                         },
                         "createdRow": function( row, data, dataIndex ) {
                             $(row).attr('id',data['id']); 
-                            $('td',row).eq(3).html(moment(data['fechafin']).format('DD-MM-YYYY'));
+                            $('td',row).eq(3).html(moment(data['fechaini']).format('DD-MM-YYYY'));
                         },
                         "columns": [
                             {data:'nombre'},
                             {data:'apellidop'},
                             {data:'asignatura'},
-                            {data:'fechafin'},
+                            {data:'fechaini'},
                             {data:'usuario'},
                             {
                                 "name": "foto",
@@ -180,7 +180,7 @@
                 $('table').on('click', '.mensajeable_inscripcion', function(e) {
                     e.preventDefault();
                         persona_id =$(this).closest('tr').attr('id');
-                        mensaje_id=6;
+                        mensaje_id=8;
                         mensajeable_id = $(this).attr('id');
                         mensajeable_type='Inscripcione';
                         url="../mensajeble/store";
@@ -204,7 +204,7 @@
                 $('table').on('click', '.mensajeable_matriculacion', function(e) {
                     e.preventDefault();
                         persona_id =$(this).closest('tr').attr('id');
-                        mensaje_id=7;
+                        mensaje_id=9;
                         mensajeable_id = $(this).attr('id');
                         mensajeable_type='Matriculacion';
                         url="../mensajeble/store";
@@ -229,7 +229,7 @@
                     e.preventDefault();
                         persona_id =$(this).closest('tr').attr('id');
                         url="../persona/enviar/mensaje/componente",
-                        mensaje_id=6;
+                        mensaje_id=8;
                         mostrarContactos(url,persona_id,mensaje_id);
                         $("#modal-listar-contactos-component").modal("show");
                 });
