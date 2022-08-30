@@ -194,7 +194,7 @@ class ComputacionController extends Controller
             ->rawColumns(['btn'])
             ->toJson(); 
     }
-    public function computacioneEmpezando(){
+    public function computacionEmpezando(){
         $matriculacionesEmpezados=Mensajeable::where('mensajeable_type',Matriculacion::class)
             ->where('mensaje_id',idMensaje('EMPEZANDOMATRICULACION'))
             ->select('mensajeable_id')
