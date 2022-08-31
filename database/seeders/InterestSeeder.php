@@ -18,21 +18,21 @@ class InterestSeeder extends Seeder
         Interest::create(['interest'=>'Guardería']);
         Interest::create(['interest'=>'Secundaria']);
         Interest::create(['interest'=>'Bachilleres']);
-        Interest::create(['interest'=>'PSA UAGRM']);
-        Interest::create(['interest'=>'CUP UAGRM']);
+        Interest::create(['interest'=>'PSA-UAGRM']);
+        Interest::create(['interest'=>'CUP-UAGRM']);
         
         Interest::create(['interest'=>'Universitario']);
         Interest::create(['interest'=>'Robótica']);
         Interest::create(['interest'=>'Computación']);
-        Interest::create(['interest'=>'Diseño Gráfico']);
+        Interest::create(['interest'=>'Diseño-Gráfico']);
         Interest::create(['interest'=>'Programación']);
         
         Interest::create(['interest'=>'Fotocopia']);
         Interest::create(['interest'=>'Impresión']);
         Interest::create(['interest'=>'Prácticos']);
         Interest::create(['interest'=>'Videobooth']);
-        Interest::create(['interest'=>'Desarrollo App Movil']);
-        Interest::create(['interest'=>'Desarrollo App Web']);
+        Interest::create(['interest'=>'Desarrollo-App-Movil']);
+        Interest::create(['interest'=>'Desarrollo-App-Web']);
 
 
         Interest::findOrFail(1)->usuarios()->attach(1);

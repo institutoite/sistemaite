@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateComentarioRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage;
+
 class ComentarioController extends Controller
 {
     /**
@@ -45,6 +47,7 @@ class ComentarioController extends Controller
             'nombre'=>'required|min:4|max:30',
             'telefono'=>'required|min:8|max:10',
             'interests'=>'required',
+            'comentario'=>'required|max:499|min:5',
         ]);
          if ($validator->passes()) {
             $comentario = new Comentario();
@@ -70,8 +73,8 @@ class ComentarioController extends Controller
         Storage::append($nombre_archivo, 'BEGIN:VCARD');
         Storage::append($nombre_archivo, 'VERSION:3.0');
         
-        Storage::append($nombre_archivo, 'N:'.$comentario->nombre.';'.$comentario->id.';'.$comentario->created_at->format('DD-MM-YYYY').";;");
-        Storage::append($nombre_archivo, 'FN:'.$comentario->nombre.' '.$comentario->id.' '.$comentario->created_at->format('DD-MM-YYYY'));
+        Storage::append($nombre_archivo, 'N:;'.$comentario->id.";;".$comentario->nombre.";");
+        Storage::append($nombre_archivo, 'FN:'.$comentario->nombre.' '.$comentario->id);
         
         $telefono = isset($comentario->telefono) ? $comentario->telefono : '0';
         Storage::append($nombre_archivo, "TEL;VALUE=uri;PREF=1;TYPE=voice,work:".$comentario->telefono);
@@ -79,8 +82,21 @@ class ComentarioController extends Controller
         Storage::append($nombre_archivo, "LANG;TYPE=work;PREF=2:es");
         Storage::append($nombre_archivo, "NOTE:COMENTARIO:".$comentario->comentario);
         Storage::append($nombre_archivo, "NOTE:INTERESES:".$comentario->interests);
+        Storage::append($nombre_archivo, "NOTE:FECHA REGISTRO:".$comentario->created_at->format('d-m-Y'));
+        Storage::append($nombre_archivo, "NOTE:HORA REGISTRO:".$comentario->created_at->format('h:i:s'));
         Storage::append($nombre_archivo, 'END:VCARD');
         $contacto=Storage::disk('public')->put($nombre_archivo,'Contents');
+
+        $url=storage_path("app\\comentarios\\".$comentario->id.".vcf");
+        // if(!is_null($url)){
+        //     if (file_exists($url)){
+        //         if (unlink($url)) {
+        //             $this->CrearContacto($comentario);
+        //         }         
+        //     }
+        // }
+       
+        return response()->download($url);
     }
 
     /**

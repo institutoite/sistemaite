@@ -203,6 +203,7 @@ Route::post('comentario/actualizar/{comentario}', [ComentarioController::class,'
 Route::delete('eliminar/comentario/{comentario}', [ComentarioController::class,'destroy'])->name('comentario.delete');
 Route::get('darbaja/comentario',[ComentarioController::class,'darbaja'])->name('comentario.darbaja');
 Route::get('daralta/comentario/',[ComentarioController::class,'daralta'])->name('comentario.daralta');
+Route::get('crear/contacto/{comentario}',[ComentarioController::class,'crearContactoComentario'])->name('comentario.descargar');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%DOCENTES RUTAS        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('docentes/create',[DocenteController::class,'create'])->name('docente.create');

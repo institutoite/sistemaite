@@ -688,15 +688,14 @@
                     k=1;
                     for (let j in json.interests) {
                         if(k % 4 !=0 ){
-                            
                             $html+="<td class='p-4'><div class='form-check form-switch'>";
                             $html+="<input class='form-check-input' id="+ json.interests[j].interest +"  name='interests[]' type='checkbox'>";
                             $html+="<label class='form-check-label' for='"+ json.interests[j].interest +"'>"+json.interests[j].interest+"</label>";
                             $html+="</div></td>";
-                            //console.log("entro al SI "+j);
+                            console.log("entro al SI "+json.interests[j].interest);
                         }
                         else{
-                            //console.log("entro al NO "+j);
+                            console.log("entro al NO "+json.interests[j].interest);
                             $html+="</tr>";
                             $html+="<tr>";
                         }
@@ -765,10 +764,10 @@
                                 contardor++;
                             });
                             $msg+="%0A Descargar contacto:%0A";
-                            $msg+="https://api.whatsapp.com/send?phone=591"+data.comentario.telefono;
+                            $msg+="http://localhost/sistemaite/public/crear/contacto/"+data.comentario.id;
                             $msg+="%0A Link del cliente:%0A";
                             $msg+="https://api.whatsapp.com/send?phone=591"+data.comentario.telefono;
-                            $url="https://api.whatsapp.com/send?phone=59171039910&text="+$msg;
+                            $url="https://api.whatsapp.com/send?phone=591"+data.comentario.telefono+"&text="+$msg;
                             let a= document.createElement('a');
                                 a.target= '_blank';
                                 a.href=$url;
