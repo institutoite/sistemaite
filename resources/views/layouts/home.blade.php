@@ -493,60 +493,12 @@
 <section class="feature-2">
     <div class="container">
         <div class="row mt-3">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="card card-secondary">
-                    <div class="card-header btn-main">
-                        <h3 class="text-white text-center">Visita nuestras redes sociales</h3>
-                    </div>
-                    <div class="card-body">
-                        @include('home.redes')
-                
-                   
-
-                    <section>
-                        <ul id="services">
-                            <h2>Fancy Colorlib Social</h2>
-                            <li>
-                                <div class="facebook">
-                                    <a target="_blank" href="https://www.facebook.com/institutoeducabol">
-                                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                                <span>Facebook</span>
-                            </li>
-                            <li>
-                                <div class="whatsapp">
-                                    <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Visite su pagina. Quiero mas información">
-                                    <i class="fa fa-whatsapp" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                                <span>Whatsapp</span>
-                            </li>
-                            <li>
-                                <div class="youtube">
-                                    <a target="_blank" href="https://www.youtube.com/channel/UCbmRHfG51CGM1foo-6kzunQ">
-                                    <i class="fa fa-youtube" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            <span>YouTube</span>
-                            </li>
-                            <li>
-                                <div class="telegram">
-                                    <a target="_blank" href="https://msng.link/o/?@institutoite=tg">
-                                    <i class="fa fa-telegram" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                                <span>Telegram</span>
-                            </li>
-    
-
-                        </ul>
-                    </section>
-                    
-                    </div>
-                </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                @include('home.redesprincipal')
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        </div>
+        <div class="row mt-3">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 @include('home.formcontacto')
             </div>
         </div>
@@ -732,13 +684,30 @@
                 type: 'GET',
                 success: function(json) {
                     $html="";
+                    $html+="<div class='table-responsive text-left'><table class='table table-bordered'><tbody><tr>";
+                    k=1;
                     for (let j in json.interests) {
-                        $html+="<div class='form-check form-switch form-check-inline'>";
-                            $html+="<input class='form-check-input bg-default' id="+ json.interests[j].interest +"  name='interests[]' type='checkbox'>";
-                            $html+="<label class='form-check-label'>"+json.interests[j].interest+"</label>";
-                        $html+="</div>";
+                        if(k % 4 !=0 ){
+                            
+                            $html+="<td class='p-4'><div class='form-check form-switch'>";
+                            $html+="<input class='form-check-input' id="+ json.interests[j].interest +"  name='interests[]' type='checkbox'>";
+                            $html+="<label class='form-check-label' for='"+ json.interests[j].interest +"'>"+json.interests[j].interest+"</label>";
+                            $html+="</div></td>";
+                            //console.log("entro al SI "+j);
+                        }
+                        else{
+                            //console.log("entro al NO "+j);
+                            $html+="</tr>";
+                            $html+="<tr>";
+                        }
+                        //console.log("TERMINO...");
+                        //if(k % 3 ==0 )
+                        
+                        k++;
                     }
+                    $html+="</tbody></table></div>";
                     $("#interests").append($html);
+                    //console.log($html);
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                    
@@ -761,6 +730,8 @@
 
                 $("#error").empty();
 
+                console.log("mesg ="+$msg);
+
                 jQuery.ajax({
                    headers:{'X-CSRF-TOKEN':token},
                     url: "comentario/guardar",
@@ -768,10 +739,13 @@
                         token:token,
                         nombre:$("#nombre").val(),
                         telefono:$("#telefono").val(),
+                        comentario:$("#comentario").val(),
                         interests:$msg,
                     },
                     success: function(data)
                     {
+
+                        console.log(data);
 
                         if(data.error)
                         $("#error").append("<li class='text-danger'>"+ data.error +"</li>");
@@ -785,15 +759,16 @@
                             
                             console.log(data.vector_intereses);
                             contardor=1;
-                            $msg="Hola. mi nombre es:%0A*"+data.comentario.nombre+"*%0A y mi telefono es:%0A*"+data.comentario.telefono+"* %0AVisite su página estoy interesado en los siguientes servicios o productos:%0A";
+                            $msg="Hola. mi nombre es:%0A*"+data.comentario.nombre+"*%0A y mi telefono es:%0A*"+data.comentario.telefono+"*%0A Requerimiento: %0A*"+data.comentario.comentario+"* %0AVisite su página estoy interesado en los siguientes servicios o productos:%0A";
                             $.each( data.vector_intereses, function( key, value ) {
                                 $msg+="*"+contardor+".- "+value +'*%0A';
-                                // console.log( $msg );
                                 contardor++;
                             });
-                          
+                            $msg+="%0A Descargar contacto:%0A";
+                            $msg+="https://api.whatsapp.com/send?phone=591"+data.comentario.telefono;
+                            $msg+="%0A Link del cliente:%0A";
+                            $msg+="https://api.whatsapp.com/send?phone=591"+data.comentario.telefono;
                             $url="https://api.whatsapp.com/send?phone=59171039910&text="+$msg;
-                            $url+='Mas información por favor';
                             let a= document.createElement('a');
                                 a.target= '_blank';
                                 a.href=$url;

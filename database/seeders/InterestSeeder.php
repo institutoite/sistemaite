@@ -13,11 +13,13 @@ class InterestSeeder extends Seeder
      */
     public function run()
     {
-        Interest::create(['interest'=>'Guardería']);
         Interest::create(['interest'=>'Inicial']);
         Interest::create(['interest'=>'Primaria']);
+        Interest::create(['interest'=>'Guardería']);
         Interest::create(['interest'=>'Secundaria']);
-        Interest::create(['interest'=>'Pre Universitario']);
+        Interest::create(['interest'=>'Bachilleres']);
+        Interest::create(['interest'=>'PSA UAGRM']);
+        Interest::create(['interest'=>'CUP UAGRM']);
         
         Interest::create(['interest'=>'Universitario']);
         Interest::create(['interest'=>'Robótica']);
@@ -26,19 +28,30 @@ class InterestSeeder extends Seeder
         Interest::create(['interest'=>'Programación']);
         
         Interest::create(['interest'=>'Fotocopia']);
-        Interest::create(['interest'=>'Practicos']);
+        Interest::create(['interest'=>'Impresión']);
+        Interest::create(['interest'=>'Prácticos']);
+        Interest::create(['interest'=>'Videobooth']);
+        Interest::create(['interest'=>'Desarrollo App Movil']);
+        Interest::create(['interest'=>'Desarrollo App Web']);
 
-        // Interest::findOrFail(1)->userable()->create(['user_id'=>1]);
-        // Interest::findOrFail(2)->userable()->create(['user_id'=>1]);
-        // Interest::findOrFail(3)->userable()->create(['user_id'=>1]);
-        // Interest::findOrFail(4)->userable()->create(['user_id'=>1]);
-        // Interest::findOrFail(5)->userable()->create(['user_id'=>1]);
-        // Interest::findOrFail(6)->userable()->create(['user_id'=>1]);
-        // Interest::findOrFail(7)->userable()->create(['user_id'=>1]);
-        // Interest::findOrFail(8)->userable()->create(['user_id'=>1]);
-        // Interest::findOrFail(9)->userable()->create(['user_id'=>1]);
-        // Interest::findOrFail(10)->userable()->create(['user_id'=>1]);
-        // Interest::findOrFail(11)->userable()->create(['user_id'=>1]);
-        // Interest::findOrFail(12)->userable()->create(['user_id'=>1]);
+
+        Interest::findOrFail(1)->usuarios()->attach(1);
+        Interest::findOrFail(2)->usuarios()->attach(1);
+        Interest::findOrFail(3)->usuarios()->attach(1);
+        Interest::findOrFail(4)->usuarios()->attach(1);
+        Interest::findOrFail(5)->usuarios()->attach(1);
+
+        Interest::findOrFail(6)->usuarios()->attach(1);
+        Interest::findOrFail(7)->usuarios()->attach(1);
+        Interest::findOrFail(8)->usuarios()->attach(1);
+        Interest::findOrFail(9)->usuarios()->attach(1);
+        Interest::findOrFail(10)->usuarios()->attach(1);
+
+        Interest::findOrFail(11)->usuarios()->attach(1);
+        Interest::findOrFail(12)->usuarios()->attach(1);
+        Interest::findOrFail(13)->usuarios()->attach(1);
+        Interest::findOrFail(14)->usuarios()->attach(1);
+        Interest::findOrFail(15)->usuarios()->attach(1);
+        
     }
 }

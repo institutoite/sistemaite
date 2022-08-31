@@ -74,7 +74,7 @@ crear una vista para los mensajeados segun el evento por el que fueron mensajead
 
 una ventana para pasar contacto de whatsapp a alguien si fuera gruarderia por ejemplo a Lidia
 que se cree un contacto y que envie el link de descarga y  link para chat rapido 
-
+reCaptcha
 
 Swal.fire({
   title: 'How old are you?',

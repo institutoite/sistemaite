@@ -1048,9 +1048,7 @@ class PersonaController extends Controller
             $como=$persona->como;
         }
         Storage::append($nombre_archivo, "NOTE:Genero:".$genero.'\nDireccion:'.$zona.' '.$direccion.'\nComo eneteró:'.$como);
-
         $apoderados=$persona->apoderados;
-            
             foreach ($apoderados as $apoderado) {
                 Storage::append($nombre_archivo, "TEL;VALUE=uri;PREF=1;TYPE=voice,home:".$apoderado->telefono);
                 Storage::append($nombre_archivo, "NOTE:Nombre:".$apoderado->nombre.' '.$apoderado->apellidop.' '.$apoderado->apellidom.'\nPARENTESCO:'.$apoderado->pivot->parentesco.'\nTelefono:'.$apoderado->telefono);
@@ -1103,6 +1101,7 @@ class PersonaController extends Controller
         Storage::append($nombre_archivo, 'END:VCARD');
         $contacto=Storage::disk('public')->put($nombre_archivo,'Contents');
     }
+    
     public function descargarContacto($persona){
         
         $url=storage_path("app\\contactos\\".$persona.".vcf");

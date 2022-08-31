@@ -38,7 +38,8 @@ class ComentarioController extends Controller
      */
     public function guardarComentario(Request $request)
     {
-        //return response()->json($request->all());
+        // return response()->json($request->all());
+        //return response()->json(['e'=>2]);
 
         $validator = Validator::make($request->all(), [
             'nombre'=>'required|min:4|max:30',
@@ -52,13 +53,34 @@ class ComentarioController extends Controller
                 $intereses_limpio=substr($request->interests, 0, -1);
             $comentario->interests = $intereses_limpio;
             $comentario->vigente = 1;
+            $comentario->comentario = $request->comentario;
             $comentario->save();
             $vectorIntereses  = explode(',',$comentario->interests);
+            //return response()->json($comentario);
             return response()->json(['comentario' => $comentario,'vector_intereses'=>$vectorIntereses]);
         }else{
             return response()->json(['error' => $validator->errors()->first()]);
         }
         
+    }
+
+    public function crearContactoComentario($comentario_id){
+        $comentario=Comentario::find($comentario_id);
+        $nombre_archivo='comentarios/'.$comentario->id.'.vcf';
+        Storage::append($nombre_archivo, 'BEGIN:VCARD');
+        Storage::append($nombre_archivo, 'VERSION:3.0');
+        
+        Storage::append($nombre_archivo, 'N:'.$comentario->nombre.';'.$comentario->id.';'.$comentario->created_at->format('DD-MM-YYYY').";;");
+        Storage::append($nombre_archivo, 'FN:'.$comentario->nombre.' '.$comentario->id.' '.$comentario->created_at->format('DD-MM-YYYY'));
+        
+        $telefono = isset($comentario->telefono) ? $comentario->telefono : '0';
+        Storage::append($nombre_archivo, "TEL;VALUE=uri;PREF=1;TYPE=voice,work:".$comentario->telefono);
+        Storage::append($nombre_archivo, "URL:wa.me/591".$telefono);
+        Storage::append($nombre_archivo, "LANG;TYPE=work;PREF=2:es");
+        Storage::append($nombre_archivo, "NOTE:COMENTARIO:".$comentario->comentario);
+        Storage::append($nombre_archivo, "NOTE:INTERESES:".$comentario->interests);
+        Storage::append($nombre_archivo, 'END:VCARD');
+        $contacto=Storage::disk('public')->put($nombre_archivo,'Contents');
     }
 
     /**
