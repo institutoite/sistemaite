@@ -72,8 +72,8 @@ ver como registrar administrativo
 hoy del menu horizontal solo tiene hoyinscripciones falta hoymatriculaciones
 crear una vista para los mensajeados segun el evento por el que fueron mensajeados obsrvaciones volvera , fechavuelve etc
 
-una ventana para pasar contacto de whatsapp a alguien si fuera gruarderia por ejemplo a Lidia
 que se cree un contacto y que envie el link de descarga y  link para chat rapido 
+una ventana para pasar contacto de whatsapp a alguien si fuera gruarderia por ejemplo a Lidia
 reCaptcha
 como volver una crud 
 

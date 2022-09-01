@@ -66,7 +66,7 @@ class DepartamentoController extends Controller
     public function show($id)
     {
         $departamento = Departamento::findOrFail($id);
-        $user=Departamento->usuarios->first();
+        $user=$departamento->usuarios->first();
         return view('departamento.show', compact('departamento','user'));
     }
 
