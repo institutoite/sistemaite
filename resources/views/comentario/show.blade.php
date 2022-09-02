@@ -34,11 +34,15 @@
                                     <td>{{$comentario->nombre}}</td>
                                 </tr>
                                 <tr>
-                                    <td>NOMBRE</td>
+                                    <td>TELEFONO</td>
                                     <td>{{$comentario->telefono}}</td>
                                 </tr>
                                 <tr>
-                                    <td>NOMBRE</td>
+                                    <td>COMENTARIO</td>
+                                    <td>{!!$comentario->comentario!!}</td>
+                                </tr>
+                                <tr>
+                                    <td>VIGENCIA</td>
                                     <td>
                                         @if ($comentario->vigente==1)
                                             Vigente
@@ -48,10 +52,9 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>MENSAJE</td>
-                                    <td>{{$comentario->interests}}</td>
+                                    <td>INTERESES</td>
+                                    <td>{!!$comentario->interests!!}</td>
                                 </tr>
-                                
                             </tbody>
                         </table>    
                     </div>

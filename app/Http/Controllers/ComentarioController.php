@@ -54,15 +54,24 @@ class ComentarioController extends Controller
             $comentario->nombre = $request->nombre;
             $comentario->telefono = $request->telefono;
                 $intereses_limpio=substr($request->interests, 0, -1);
-            $comentario->interests = $intereses_limpio;
-            $comentario->vigente = 1;
-            $comentario->comentario = $request->comentario;
+                $comentario->vigente = 1;
+                $comentario->comentario = $request->comentario;
+                $comentario->interests=$intereses_limpio;
+                $vectorIntereses  = explode(',',$comentario->interests);
+                $vectorParaGuardar=$vectorIntereses;
+                $html="<ol>";
+                foreach ($vectorParaGuardar as $elemento) {
+                    $html.="<li>".$elemento."</li>";
+                }
+                $html.="</ol>";
+            $comentario->interests=$html;
             $comentario->save();
-            $vectorIntereses  = explode(',',$comentario->interests);
+            
+            
             //return response()->json($comentario);
             return response()->json(['comentario' => $comentario,'vector_intereses'=>$vectorIntereses]);
         }else{
-            return response()->json(['error' => $validator->errors()->first()]);
+            return response()->json(['error' => $validator->errors()]);
         }
         
     }
@@ -133,6 +142,7 @@ class ComentarioController extends Controller
        
         $comentario->nombre = $request->nombre;
         $comentario->telefono = $request->telefono;
+        $comentario->comentario = $request->comentario;
         $comentario->interests = $request->interests;
         $comentario->save();
         return redirect()->route("comentario.show",$comentario);
@@ -154,7 +164,7 @@ class ComentarioController extends Controller
         $comentarios=Comentario::all();
         return datatables()->of($comentarios)
         ->addColumn('btn', 'comentario.action')
-        ->rawColumns(['btn'])
+        ->rawColumns(['btn','comentario','interests'])
         ->toJson();
     }
 

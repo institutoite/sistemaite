@@ -31,10 +31,11 @@
                             <table id="comentarios" class="table table-striped table-hover table-borderless">
                                 <thead class="">
                                     <tr>
-                                        <th>No</th>
-										<th>nombre</th>
-										<th>telefono</th>
+										<th>#</th>
+										<th>Act</th>
+										<th>Nombre</th>
 										<th>Intereses</th>
+										<th>Comentario</th>
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
@@ -58,27 +59,10 @@
     <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
     <script src="{{asset('assets/js/observacion.js')}}"></script>
     
-    {{-- %%%%%%%%%%%%%% muestra el ok de la insersion de datos %%%%%%%%%%%%%%%%% --}}
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <script>
-                const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 1500,
-                })
-                Toast.fire({
-                type: 'success',
-                title: 'Se Inserto correctamente el registro'
-            })
-            </script>
-        </div>
-    @endif
+    
 
 
     <script>
-
          /*%%%%%%%%%%%%%%%%%%%%%%  funcion que agrega clase por tiempo x y luego lo destruye %%%%%%%%%%%*/
         ( function ( $ ) {
             'use strict';
@@ -97,7 +81,7 @@
         $(document).ready(function() {
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATA TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             let fila=1;
-            let tabla=$('#comentarios').dataTable({
+            var tabla=$('#comentarios').dataTable({
                 "responsive":true,
                 "searching":true,
                 "paging":   true,
@@ -108,43 +92,37 @@
                     $(row).attr('id',data['id']); 
                     if(data['vigente']==1){
                         $(row).addClass('text-success');
-                        // $('td', row).eq(3).html('Si');
                     }else{
-                        // $('td', row).eq(3).html('No');
                         $(row).addClass('text-danger');
                     }
-                        let str = data['interests'];
-                        let vector_intereses = str.split(',');
-                            vector_intereses
-                        $html="<ol>";
-                            $.each(vector_intereses, function( index, value ) {
-                                $html+="<li>"+value+"</li>";
-                            });
-                        $html+="</ol>";
-                        
-                        $('td', row).eq(3).html($html);
                 },
                 "ajax": "{{ url('listar/comentarios') }}",
                 "columns": [
                     {data: 'id'},
+                    {data: 'vigente'},
                     {data: 'nombre'},
-                    {data: 'telefono'},
-                   
                     {data: 'interests'},
+                    {data: 'comentario'},
                     {
                         "name":"btn",
                         "data": 'btn',
                         "orderable": false,
                     },
                 ],
+                
                 "columnDefs": [
-                    { responsivePriority: 1, targets: 0 },  
-                    { responsivePriority: 2, targets: -1 }
+                    {
+                        "targets": [ 1 ],
+                        "visible": false,
+                        "searchable": false
+                    },
                 ],
+                order: [[1, 'desc']],
                 "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                 },
             });
+            
 
            /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DA DE BAJA UNA OBSERVACION UTILIZA AJAX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.bajacomentario', function (e) {

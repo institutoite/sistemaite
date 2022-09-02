@@ -1,9 +1,15 @@
 <div class="card card-primary">
-    <div class="card-header btn-main">
-        <h3 class="text-white text-center">Déjenos su número</h3>
-    </div>
+    {{-- <div class="card-header btn-main"> --}}
+        <div class="item">
+			<div class="pricing pricing-three">
+				<div class="pricing-top top-three">
+					<h3>ESCRIBANOS</h3>
+				</div>
+			</div>
+		</div>
+    {{-- </div> --}}
               <!-- /.card-header -->
-    <div class="card-body">
+    <div class="card-body table-secondary">
         <form id="formulario">
             @csrf
             <ul id="error">
@@ -11,28 +17,40 @@
             </ul>
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="form-group">
-                        <input type="text" class="form-control border-info" id="nombre" value="DAVID FLORES" placeholder="Ingrese su nombre">
-                    </div>
+                    <p id="error-nombre" class="d-none text-danger text-left"></p>
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <input type="number" class="form-control border-info" id="telefono" value="71039910" placeholder="Ingrese su número de telefono">
+                        <input type="text" class="form-control" id="nombre" value="" placeholder="Ingrese su nombre">
                     </div>
                 </div>
                 <div class="col-sm-12">
+                    <p id="error-telefono" class="d-none text-danger text-left"></p>
+                </div>
+                <div class="col-sm-12">
                     <div class="form-group">
-                        <textarea class="form-control" name="comentario" id="comentario" rows="5">Este curso no tiene requisitos previos. ¿A quién va dirigido el curso? Desarrolladores Laravel que deseen aprender a mejorar la seguridad de sus</textarea>
+                        <input type="number" class="form-control" id="telefono" value="" placeholder="Ingrese su número de telefono">
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <p id="error-comentario" class="d-none text-danger text-left"></p>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Comenteneos su su necesidad..." name="comentario" id="comentario" rows="5"></textarea>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="card card-primary card-outline">
+                    <div id="card-interests" class="card card-primary card-outline">
                         
                         <div class="card-body">
                             
-                            <span class="">Marque los productos o servicios que le gustaría tomar</span>
+                            <p class="alert text-left text-black">Marque los productos o servicios que le gustaría tomar</p>
+                            <div class="col-sm-12">
+                                <p id="error-interests" class="d-none text-danger text-left"></p>
+                            </div>
                             <div id="interests" class="">
 
                             </div>

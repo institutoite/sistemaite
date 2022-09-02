@@ -233,46 +233,7 @@
                             },
                         });
                 });
-            // $('#modal-mostrar-contactos').on('hidden.bs.modal', function () {
-            //     tabla.ajax.reload();
-            // });
             
-            // $('table').on('click', '.faltainformada', function(e) {
-            //     e.preventDefault();    
-            //     persona_id =$(this).closest('tr').attr('id');
-                
-            //     $.ajax({
-            //         url :"../persona/faltainformar",
-            //         data:{
-            //             persona_id:persona_id,
-            //             _token: '{{csrf_token()}}'
-            //         },
-            //         type: "POST",
-            //         success : function(json) {
-            //         },
-            //         error : function(xhr, status) {
-            //             alert('Disculpe, existió un problema');
-            //         },
-            //     });
-            // });
-            // $('table').on('click', '.faltainformadacom', function(e) {
-            //     e.preventDefault();    
-            //     persona_id =$(this).closest('tr').attr('id');
-                
-            //     $.ajax({
-            //         url :"../persona/faltainformarcom",
-            //         data:{
-            //             persona_id:persona_id,
-            //             _token: '{{csrf_token()}}'
-            //         },
-            //         type: "POST",
-            //         success : function(json) {
-            //         },
-            //         error : function(xhr, status) {
-            //             alert('Disculpe, existió un problema');
-            //         },
-            //     });
-            // });
                 
             $('table').on('click','.zoomify',function (e){
                 Swal.fire({

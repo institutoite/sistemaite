@@ -18,8 +18,8 @@
                 @includeif('partials.errors')
 
                 <div class="card card-default">
-                    <div class="card-header">
-                        <span class="card-title">Update Comentario</span>
+                    <div class="card-header bg-primary">
+                        <span class="card-title">Actualizar Comentario</span>
                     </div>
 
                     <div class="card-body">
@@ -27,7 +27,7 @@
                             
                             @csrf
 
-                            @include('whatsapp.form')
+                            @include('comentario.form')
                             @include('include.botones')
                         </form>
                     </div>
@@ -35,4 +35,29 @@
             </div>
         </div>
     </section>
+@endsection
+@section('js')
+    <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+    {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% CKEDITOR --}}
+    <script>
+        CKEDITOR.replace('comentario', {
+            height: 150,
+            width: "100%",
+            removeButtons: 'PasteFromWord'
+        });
+        CKEDITOR.replace('interests', {
+            height: 150,
+            width: "100%",
+            removeButtons: 'PasteFromWord'
+        });
+
+    </script>
+        {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% FIN CKEDITOR --}}
+
+    <script>
+
+        $(document).ready(function() {
+            
+        });
+    </script>
 @endsection
