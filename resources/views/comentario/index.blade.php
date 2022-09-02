@@ -63,6 +63,103 @@
 
 
     <script>
+        //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        CKEDITOR.replace('editorguardar', {
+            height: 120,
+            width: "100%",
+            removeButtons: 'PasteFromWord'
+        });
+        //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        CKEDITOR.replace('editoreditar', {
+            height: 120,
+            width: "100%",
+            removeButtons: 'PasteFromWord'
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CREAR OBSERVACION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.observacion', function (e) {
+            e.preventDefault();
+            let objeto_id = $(this).closest('tr').attr('id');
+            console.log(objeto_id);
+            $("#observable_id").val(objeto_id);
+            $("#observable_type").val($(this).attr('id'));
+            CKEDITOR.instances.editorguardar.setData("");
+            console.log("Click en Observacion crear");
+            $("#modal-agregar-observacion").modal("show");
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CLICK BOTON GUARDAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('#guardar-observacion').on('click', function (e) {
+            e.preventDefault();
+            console.log("click en guardar obsrvacion");
+            let observable_id = $("#observable_id").val();
+            console.log(observable_id);
+            let observable_type = $("#observable_type").val();
+            console.log(observable_type);
+            for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
+            observacion=$("#editorguardar").val();
+            url = "guardar/observacion"
+            guardarObservacion(observacion,observable_id,observable_type,url);
+            
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.mostrarobservacionescomentario', function(e) {
+            e.preventDefault();
+                observable_id =$(this).closest('tr').attr('id');
+                observable_type ="Comentario";
+                url="observaciones/" + observable_id + "/" + observable_type,
+                mostrarCrudObservaciones(url);
+                $("#modal-mostrar-observaciones").modal("show");
+        });
+
+
+        $('table').on('click', '.bajaobservacion', function (e) {
+            e.preventDefault();
+            let observacion_id = $(this).closest('tr').attr('id');
+            console.log(observacion_id);
+            url="darbaja/observacion";
+            darBaja(observacion_id,url);
+        });
+        
+        $('table').on('click', '.altaobservacion', function (e) {
+            e.preventDefault();
+            let observacion_id = $(this).closest('tr').attr('id');
+            url="daralta/observacion";
+            darAlta(observacion_id,url);
+        });
+
+        $('table').on('click', '.eliminarobservacion', function (e) {
+            e.preventDefault();
+            let observacion_id = $(this).closest('tr').attr('id');
+            url="eliminar/general"
+            eliminarObservacion(observacion_id,url);
+        });
+        $('table').on('click', '.editarobservacion', function (e) {
+            e.preventDefault();
+            observacion_id =$(this).closest('tr').attr('id');
+            url="observacion/editar";
+            editarObservacion(observacion_id,url);
+            $("#modal-mostrar-observaciones").modal("hide");
+            $("#modal-editar-observacion").modal("show");
+        });
+        $('#actualizar-observacion').on('click', function (e){ 
+            e.preventDefault();
+            observacion_id =$("#observable_id").val();
+            observacion=CKEDITOR.instances.editoreditar.getData();
+            url="observacion/actualizar";
+            actualizarObservacion(observacion_id,observacion,url);
+        });
+
+
+
+
+        $('#modal-agregar-observacion').on('hidden.bs.modal', function (e) {
+            $("#diverror").addClass("d-none");
+        });
+        
+        $('#modal-editar-observacion').on('hidden.bs.modal', function (e) {
+            $(".diverror").addClass("d-none");
+        });
+        
+
          /*%%%%%%%%%%%%%%%%%%%%%%  funcion que agrega clase por tiempo x y luego lo destruye %%%%%%%%%%%*/
         ( function ( $ ) {
             'use strict';
