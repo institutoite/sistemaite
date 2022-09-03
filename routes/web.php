@@ -274,7 +274,7 @@ Route::resource('materias', "MateriaController");
 Route::get('listar/materias',[MateriaController::class,'listar'])->name('materias.listar');
 Route::get('materias/niveles/{materia}', 'MateriaController@configurar_niveles')->name('materias.gestionar.niveles');
 Route::post('materias/niveles/configurar/{materia}', 'MateriaController@GuardarConfigurarNiveles')->name('materias.configurar.niveles.guardar');
-Route::delete('eliminar/materia/{materia}',[MateriaController::class,'destroy'])->name('eliminar.materia');
+Route::get('eliminar/materia/{materia}',[MateriaController::class,'destroy'])->name('eliminar.materia');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       P  A  G  O  S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('pagos', "PagoController");

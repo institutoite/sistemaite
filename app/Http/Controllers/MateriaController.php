@@ -9,6 +9,10 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
+
+
 use App\Http\Requests\MateriaStoreRequest;
 use App\Http\Requests\MateriaUpdateRequest;
 
@@ -104,7 +108,12 @@ class MateriaController extends Controller
      */
     public function update(MateriaUpdateRequest $request, Materia $materia)
     {
-        //dd($request->all());
+        //$materia = Materia::findOrFail($request->id);
+        // $validator = Validator::make($request->all(), [
+        //     'materia' => ['required','min:5','max:30',Rule::unique('materias', 'materia')->ignore($materia)],
+        //     'niveles' => ['required'],
+        // ]);
+
         $materia->materia=$request->materia;
         $materia->save();
         $materia->niveles()->sync(array_keys($request->niveles));
@@ -117,11 +126,11 @@ class MateriaController extends Controller
      * @param  \App\Materia  $materia
      * @return \Illuminate\Http\Response
      */
-    public function destroy($materia_id)
+    public function destroy($materia)
     {
-        //return response()->json(['r'=>$materia_id]);
-        $materia=Materia::findOrFail($materia_id)->delete();
-        return response()->json(['mensaje'=>"Se elimino correctamente"]);
+        // return response()->json(['r'=>$materia]);
+        Materia::findOrFail($materia)->delete();
+        return response()->json(['mensaje'=>"Se elimino correctamente la Materia"]);
     }
 
     public function configurar_niveles($materia)

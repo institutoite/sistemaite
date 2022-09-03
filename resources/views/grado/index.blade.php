@@ -163,8 +163,8 @@
             $('table').on('click', '.editar', function(e) {
                 e.preventDefault(); 
                 let id_grado =$(this).closest('tr').attr('id');
-                    $("#error_motivo").empty();
-
+                   $("#message-error").addClass('d-none');
+                    $("#error").empty();
                     $.ajax({
                         url : "grado/editar/",
                         data : { id :id_grado },
@@ -202,6 +202,7 @@
                 $nivel_id=$('#nivel_id').val();
                 $grado_id=$('#grado_id').val();
                 var token = $("input[name=_token]").val();
+                
                 $.ajaxSetup({
                 headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -217,25 +218,26 @@
                             grado_id:$grado_id,
                         },
                     success : function(json) {
+                        console.log(json);
                         if($.isEmptyObject(json.error)){
                             $("#message-error").addClass("d-none");
                             $("#modal-editar").modal("hide");
-                            
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 1500,
+                                })
+                                Toast.fire({
+                                type: 'success',
+                                title: 'Se actualizó correctamente el registro'
+                            })   
                         }else{
                             $("#message-error").removeClass("d-none");
                             imprimeErrores(json);
                         }  
                         $('#grados').DataTable().ajax.reload();
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 1500,
-                            })
-                            Toast.fire({
-                            type: 'success',
-                            title: 'Se actualizó correctamente el registro'
-                        })   
+                        
                     },
                     error:function(jqXHR,estado,error){
                         

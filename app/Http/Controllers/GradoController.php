@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Http\Requests\GradoUpdateRequest;
 use App\Http\Requests\GradoStoreRequest;
+use Illuminate\Validation\Rule;
 
 /**
  * Class GradoController
@@ -119,9 +120,11 @@ class GradoController extends Controller
     public function actualizar(GradoUpdateRequest $request)
     {
 
+        //return response()->json(['e'=>2]);
         //return response()->json(['ok'=>2]);
+        $grado = Grado::findOrFail($request->grado_id);
         $validator = Validator::make($request->all(), [
-            'grado' => ['required','min:5','max:30','unique:grados,grado,'.$request->grado_id],  /* https://laraveles.com/foro/viewtopic.php?id=6764 */
+            'grado' => ['required','min:5','max:30',Rule::unique('grados', 'grado')->ignore($grado)],  /* https://laraveles.com/foro/viewtopic.php?id=6764 */
             'nivel_id' => ['required'], 
         ]);
         //return response()->json($validator->passes());

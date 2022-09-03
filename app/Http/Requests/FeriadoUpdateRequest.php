@@ -24,13 +24,10 @@ class FeriadoUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        $departamento=$this->route('departamento');
-                
+        $feriado=$this->route('feriado');
         return [
-            'departamento'=>['required','max:50','min:5',Rule::unique('departamentos')->ignore($departamento)],
-        return [
-            'fecha'=>'required|',Rule::unique('feriados', 'fecha')->ignore($this->fecha),
-            'festividad'=>'required',
+            'fecha'=>['required',Rule::unique('feriados', 'fecha')->ignore($feriado)],
+            'festividad'=>['required'],
         ];
     }
 }

@@ -162,7 +162,8 @@
                 e.preventDefault(); 
                 let id_interest =$(this).closest('tr').attr('id');
                 console.log(id_interest);
-                $("#error_interest").empty();
+                $("#erroresdiv").addClass('d-none');
+
                     $.ajax({
                     url : "interest/editar/",
                     data : { id :id_interest },

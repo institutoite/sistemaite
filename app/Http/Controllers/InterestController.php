@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Interest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 
 use App\Http\Requests\InterestGuardarRequest;
 
@@ -61,6 +61,7 @@ class InterestController extends Controller
     }
     public function mostrar(Request $request)
     {
+
         $interest = Interest::findOrFail($request->id);
         $user = $interest->usuarios->first();
         $data=['interest'=>$interest,'user' => $user];
@@ -94,7 +95,7 @@ class InterestController extends Controller
     {
         $interest = Interest::findOrFail($request->id);
         $validator = Validator::make($request->all(), [
-            'interest' => 'required|min:5|max:30',Rule::unique('interests', 'interest')->ignore($interest),
+            'interest' => ['required','min:5','max:30',Rule::unique('interests', 'interest')->ignore($interest)],
         ]);
 
         if ($validator->passes()) {

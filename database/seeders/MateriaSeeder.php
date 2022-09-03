@@ -49,37 +49,38 @@ class MateriaSeeder extends Seeder
         Materia::create(['materia'=>'EXCEL INTERMEDIO']);
         Materia::create(['materia'=>'EXCEL AVANZADO']);
 
-        // Materia::findOrFail(1)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(2)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(3)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(4)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(5)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(6)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(7)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(8)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(9)->userable()->create(['user_id'=>1]);
-        
-        // Materia::findOrFail(10)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(11)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(12)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(13)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(14)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(15)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(16)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(17)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(18)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(19)->userable()->create(['user_id'=>1]);
-        
-        // Materia::findOrFail(20)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(21)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(22)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(23)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(24)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(25)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(26)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(27)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(28)->userable()->create(['user_id'=>1]);
-        // Materia::findOrFail(29)->userable()->create(['user_id'=>1]);
+        Materia::find(1)->usuarios()->attach(1);
+        Materia::find(2)->usuarios()->attach(1);
+        Materia::find(3)->usuarios()->attach(1);
+        Materia::find(4)->usuarios()->attach(1);
+        Materia::find(5)->usuarios()->attach(1);
+        Materia::find(6)->usuarios()->attach(1);
+        Materia::find(7)->usuarios()->attach(1);
+        Materia::find(8)->usuarios()->attach(1);
+        Materia::find(9)->usuarios()->attach(1);
+
+        Materia::find(10)->usuarios()->attach(1);
+        Materia::find(11)->usuarios()->attach(1);
+        Materia::find(12)->usuarios()->attach(1);
+        Materia::find(13)->usuarios()->attach(1);
+        Materia::find(14)->usuarios()->attach(1);
+        Materia::find(15)->usuarios()->attach(1);
+        Materia::find(16)->usuarios()->attach(1);
+        Materia::find(17)->usuarios()->attach(1);
+        Materia::find(18)->usuarios()->attach(1);
+        Materia::find(19)->usuarios()->attach(1);
+
+        Materia::find(20)->usuarios()->attach(1);
+        Materia::find(21)->usuarios()->attach(1);
+        Materia::find(22)->usuarios()->attach(1);
+        Materia::find(23)->usuarios()->attach(1);
+        Materia::find(24)->usuarios()->attach(1);
+        Materia::find(25)->usuarios()->attach(1);
+        Materia::find(26)->usuarios()->attach(1);
+        Materia::find(27)->usuarios()->attach(1);
+        Materia::find(28)->usuarios()->attach(1);
+        Materia::find(29)->usuarios()->attach(1);
+
         
         Materia::find(1)->niveles()->attach(1, ['materia_id' => 1]);
         Materia::find(1)->niveles()->attach(1, ['materia_id' => 4]);

@@ -23,9 +23,10 @@ class FeriadoStoreRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
             'fecha'=>'required|unique:feriados,fecha',
-            'festividad'=>'required',
+            'festividad'=>'required|unique:feriados,festividad',
         ];
     }
 }

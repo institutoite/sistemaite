@@ -25,8 +25,7 @@
                         <form method="POST" action="{{ route('motivos.update', $motivo->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
-
-                            @include('motivo.form')
+                            @include('interest.form')
 
                         </form>
                     </div>
