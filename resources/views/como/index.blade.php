@@ -2,6 +2,7 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('custom/css/mapa.css')}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
 @section('title', 'Carreras')
@@ -13,7 +14,7 @@
     <div class="card">
             <div class="card-header">
                 <div class="float-right">
-                <a href="{{ route('comos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                <a href="{{ route('como.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                     {{ __('Create Como se enteró') }}
                 </a>
             </div>
@@ -39,7 +40,8 @@
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
-
+    <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
+    <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
     <script>
         $(document).ready(function() {
             let tablacomos;
@@ -72,7 +74,16 @@
                         "paging":   true,
                     }
                 );
-            //*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            //*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    ELIMINAR     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+               
+                $('table').on('click','.eliminargenerico',function (e) {
+                    e.preventDefault(); 
+                    registro_id=$(this).closest('tr').attr('id');
+                    //console.log(registro_id);
+                    eliminarRegistro(registro_id,'como',tablacomos);
+                    
+                    //console.log("eliminando");
+                });
         } );
         
     </script>

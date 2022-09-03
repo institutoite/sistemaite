@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Como;
 use App\Http\Requests\StoreComoRequest;
+use App\Http\Requests\DeleteComoRequest;
 use App\Http\Requests\UpdateComoRequest;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
@@ -42,7 +43,7 @@ class ComoController extends Controller
         $como=new Como();
         $como->como=$request->como;
         $como->save();
-        return redirect()->route('comos.index');
+        return redirect()->route('como.index');
     }
 
     /**
@@ -53,8 +54,8 @@ class ComoController extends Controller
      */
     public function show(Como $como)
     {
-        //return view('como.show', compact('como'));
-        return "soy el show";
+        return view('como.show', compact('como'));
+        // return "soy el show";
     }
 
     /**
@@ -79,13 +80,17 @@ class ComoController extends Controller
     {
         $como->como=$request->como;
         $como->save();
-        return redirect()->route('comos.index');
+        return redirect()->route('como.index');
     }
 
-    public function destroy(Como $como)
+    // public function destroy()
+    public function destroy(DeleteComoRequest $request)
     {
+        // $como_id=4;
+        $como_id=$request->id;
+        $como=Como::findOrFail($como_id);
         $como->delete();
-        return response()->json(['mensaje'=>"El registro fue eliminado correctamente"]);
+        return response()->json(['mensaje'=>"El registro fue eliminado correctamentex"]);
     }
     public function listar(){
         

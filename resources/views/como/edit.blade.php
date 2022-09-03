@@ -18,9 +18,9 @@
             Editar Como se enteróx
         </div>
         <div class="card-body">
-            <form action="{{route('estados.create',$como)}}" method="put">
-                    @csrf
-                    {{ @method_field('PUT') }} 
+            <form action="{{ route('como.update',$como) }}" method="POST">
+                @csrf
+                @method('PUT')
                 @include('como.form')
                 @include('include.botones')
             </form>

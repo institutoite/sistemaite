@@ -49,7 +49,7 @@ use App\Http\Controllers\ComoController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[ComoController::class,'listar'])->name('prueba');
+Route::get('prueba',[ComoController::class,'destroy'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -175,9 +175,17 @@ Route::resource('modalidads', "ModalidadController");
 Route::resource('nivels', "NivelController");
 Route::resource('inscripciones', "InscripcioneController");
 // Route::resource('matriculacion', "MatriculacionController");
-Route::resource('comos', "ComoController");
-Route::get('listar/comos',[ComoController::class,'listar'])->name('como.listar');
+Route::resource('como', "ComoController");
 
+// Route::get('como/guardar',[ComoController::class,'guardarcomo'])->name('como.guardar');
+// Route::get('comos',[ComoController::class,'index'])->name("como.index");
+// Route::get('como/crear',[ComoController::class,'create'])->name("como.create");
+// Route::get('como/mostrar/{como}',[ComoController::class,'show'])->name("como.show");
+// Route::get('como/editar/{como}', [ComoController::class,'edit'])->name("como.edit");
+// Route::get('como/actualizar/{como}', [ComoController::class,'update'])->name("como.update");
+// Route::delete('eliminar/como/{como}', [ComoController::class,'destroy'])->name('como.delete');
+Route::delete('eliminar/como', [ComoController::class,'destroy'])->name('como.delete');
+Route::get('listar/comos',[ComoController::class,'listar'])->name('comos.listar');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%ESTDUDIANTES         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('/historial/{estudiante}','EstudianteController@historia')->name('estudiante.historia');

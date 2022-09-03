@@ -15,10 +15,10 @@
 @section('content')
     <div class="card">
         <div class="card-header bg-primary">
-            Crear Como se entero <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('comos.index')}}">Listar Comos</a>
+            Crear Como se entero <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('como.index')}}">Listar Comos</a>
         </div>
         <div class="card-body">
-            <form action="{{route('comos.store')}}" method="POST">
+            <form action="{{route('como.store')}}" method="POST">
                 @csrf
                 @include('como.form')
                 @include('include.botones')

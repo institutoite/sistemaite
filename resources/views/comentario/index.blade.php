@@ -129,7 +129,7 @@
         $('table').on('click', '.eliminarobservacion', function (e) {
             e.preventDefault();
             let observacion_id = $(this).closest('tr').attr('id');
-            url="eliminar/general"
+            url="eliminar/general";
             eliminarObservacion(observacion_id,url);
         });
         $('table').on('click', '.editarobservacion', function (e) {

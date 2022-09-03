@@ -13,7 +13,7 @@
 @section('content')
         <div class="card">
             <div class="card-header bg-primary">
-                Mostrar Estado <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('comos.index')}}">Listar Como se entero</a>
+                Mostrar Estado <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('como.index')}}">Listar Como se entero</a>
             </div>
             <div class="card-body">
                 <table class="table table-light table-striped table-bordered">
