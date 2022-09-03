@@ -45,10 +45,11 @@ use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\MensajeadoController;
 use App\Http\Controllers\MensajeableController;
+use App\Http\Controllers\ComoController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[ComputacionController::class,'computacionFinalizando'])->name('prueba');
+Route::get('prueba',[ComoController::class,'listar'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -174,6 +175,8 @@ Route::resource('modalidads', "ModalidadController");
 Route::resource('nivels', "NivelController");
 Route::resource('inscripciones', "InscripcioneController");
 // Route::resource('matriculacion', "MatriculacionController");
+Route::resource('comos', "ComoController");
+Route::get('listar/comos',[ComoController::class,'listar'])->name('como.listar');
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%ESTDUDIANTES         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */

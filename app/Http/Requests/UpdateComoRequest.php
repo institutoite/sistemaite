@@ -13,7 +13,7 @@ class UpdateComoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class UpdateComoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            //'como' => 'required|unique:comos,como,'.$this->id,
         ];
     }
 }

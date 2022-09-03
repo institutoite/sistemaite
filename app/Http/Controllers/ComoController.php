@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Como;
 use App\Http\Requests\StoreComoRequest;
 use App\Http\Requests\UpdateComoRequest;
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
 
 class ComoController extends Controller
 {
@@ -15,7 +17,7 @@ class ComoController extends Controller
      */
     public function index()
     {
-        //
+        return view('como.index');
     }
 
     /**
@@ -25,7 +27,7 @@ class ComoController extends Controller
      */
     public function create()
     {
-        //
+        return view("como.create");
     }
 
     /**
@@ -36,7 +38,11 @@ class ComoController extends Controller
      */
     public function store(StoreComoRequest $request)
     {
-        //
+        //dd($request->all());
+        $como=new Como();
+        $como->como=$request->como;
+        $como->save();
+        return redirect()->route('comos.index');
     }
 
     /**
@@ -47,7 +53,8 @@ class ComoController extends Controller
      */
     public function show(Como $como)
     {
-        //
+        //return view('como.show', compact('como'));
+        return "soy el show";
     }
 
     /**
@@ -58,7 +65,7 @@ class ComoController extends Controller
      */
     public function edit(Como $como)
     {
-        //
+        return view('como.edit', compact('como'));
     }
 
     /**
@@ -70,17 +77,23 @@ class ComoController extends Controller
      */
     public function update(UpdateComoRequest $request, Como $como)
     {
-        //
+        $como->como=$request->como;
+        $como->save();
+        return redirect()->route('comos.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Como  $como
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Como $como)
     {
-        //
+        $como->delete();
+        return response()->json(['mensaje'=>"El registro fue eliminado correctamente"]);
     }
+    public function listar(){
+        
+        $comos=Como::all();
+        return datatables()->of($comos)
+        ->addColumn('btn', 'como.action')
+        ->rawColumns(['btn'])
+        ->toJson();
+    }
+
 }
