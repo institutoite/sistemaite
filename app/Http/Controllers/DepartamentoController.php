@@ -90,12 +90,9 @@ class DepartamentoController extends Controller
      * @param  Departamento $departamento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Departamento $departamento)
+    public function update(DepartamentoUpdateRequest $request, Departamento $departamento)
     {
-        request()->validate(Departamento::$rules);
-
         $departamento->update($request->all());
-
         return redirect()->route('departamentos.index')
             ->with('success', 'Departamento updated successfully');
     }

@@ -24,8 +24,9 @@ class DiaUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        $dia=$this->route('dia');
         return [
-            'dia'=>'required',Rule::unique('dias', 'dia')->ignore($this->dia),
+            'dia'=>['required','max:50','min:5',Rule::unique('dias')->ignore($dia)],
         ];
     }
 }

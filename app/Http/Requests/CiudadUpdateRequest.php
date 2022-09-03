@@ -24,8 +24,9 @@ class CiudadUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'ciudad'=>'required|max:80',Rule::unique('ciudads', 'ciudad')->ignore($this->ciudad),
+        $ciudade=$this->route('ciudade');
+            return [
+            'ciudad'=>['required','max:80','min:5',Rule::unique('ciudads')->ignore($ciudade)],
             'pais_id'=>'required'
         ];
     }

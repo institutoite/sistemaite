@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class UpdateComoRequest extends FormRequest
 {
@@ -23,8 +25,10 @@ class UpdateComoRequest extends FormRequest
      */
     public function rules()
     {
+        $como=$this->route('como');
         return [
-            //'como' => 'required|unique:comos,como,'.$this->id,
+            'como' => ['required',
+            Rule::unique('comos')->ignore($como)]
         ];
     }
 }

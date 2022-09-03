@@ -23,6 +23,7 @@ class DiaStoreRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
             'dia'=>'required|unique:dias,dia',
         ];

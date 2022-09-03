@@ -24,6 +24,8 @@ class ColegioUpdateRequest extends FormRequest
      */
     public function rules()
     {
+       
+
         return [
             'nombre'=>'required',Rule::unique('colegios', 'nombre')->ignore($this->colegio),
             'rue'=>'required',

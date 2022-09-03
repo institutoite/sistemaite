@@ -805,7 +805,7 @@ return [
                 [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => 'comos',
+                    'url'  => 'como',
                     'classes'  => 'text-dark',
                 ],
             ],
