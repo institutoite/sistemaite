@@ -23,6 +23,7 @@ class ModalidadStoreRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
             'modalidad'=>'required|unique:modalidads,modalidad',
             'costo' => 'required',

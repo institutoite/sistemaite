@@ -53,34 +53,41 @@ class MotivoSeeder extends Seeder
         Motivo::create(['motivo' => "Problemas sociales",'tipomotivo_id'=>6]); 
         Motivo::create(['motivo' => "Otro Motivo",'tipomotivo_id'=>6]); 
 
-        // Userable::create(["user_id"=>1,"userable_id"=>1,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>2,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>3,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>4,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>5,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>6,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>7,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>8,"userable_type"=>"App\Models\Motivo"]);
-        
-        // Userable::create(["user_id"=>1,"userable_id"=>9,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>10,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>11,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>12,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>13,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>14,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>15,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>16,"userable_type"=>"App\Models\Motivo"]);
-        
-        // Userable::create(["user_id"=>1,"userable_id"=>17,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>18,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>19,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>20,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>21,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>22,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>23,"userable_type"=>"App\Models\Motivo"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>24,"userable_type"=>"App\Models\Motivo"]);
 
-        
+        Motivo::find(1)->usuarios()->attach(1);
+        Motivo::find(2)->usuarios()->attach(1);
+        Motivo::find(3)->usuarios()->attach(1);
+        Motivo::find(4)->usuarios()->attach(1);
+        Motivo::find(5)->usuarios()->attach(1);
+        Motivo::find(6)->usuarios()->attach(1);
+        Motivo::find(7)->usuarios()->attach(1);
+        Motivo::find(8)->usuarios()->attach(1);
+        Motivo::find(9)->usuarios()->attach(1);
 
+        Motivo::find(10)->usuarios()->attach(1);
+        Motivo::find(11)->usuarios()->attach(1);
+        Motivo::find(12)->usuarios()->attach(1);
+        Motivo::find(13)->usuarios()->attach(1);
+        Motivo::find(14)->usuarios()->attach(1);
+        Motivo::find(15)->usuarios()->attach(1);
+        Motivo::find(16)->usuarios()->attach(1);
+        Motivo::find(17)->usuarios()->attach(1);
+        Motivo::find(18)->usuarios()->attach(1);
+        Motivo::find(19)->usuarios()->attach(1);
+
+        Motivo::find(20)->usuarios()->attach(1);
+        Motivo::find(21)->usuarios()->attach(1);
+        Motivo::find(22)->usuarios()->attach(1);
+        Motivo::find(23)->usuarios()->attach(1);
+        Motivo::find(24)->usuarios()->attach(1);
+        Motivo::find(25)->usuarios()->attach(1);
+        Motivo::find(26)->usuarios()->attach(1);
+        Motivo::find(27)->usuarios()->attach(1);
+        Motivo::find(28)->usuarios()->attach(1);
+        Motivo::find(29)->usuarios()->attach(1);
+        
+        Motivo::find(30)->usuarios()->attach(1);
+        Motivo::find(31)->usuarios()->attach(1);
+        Motivo::find(32)->usuarios()->attach(1);
     }
 }

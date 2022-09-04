@@ -24,9 +24,9 @@ class MunicipioUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        
+        $municipio=$this->route('municipio');
         return [
-            'municipio' => 'required',Rule::unique('municipios', 'municipio')->ignore($this->municipio),
+            'municipio'=>['required',Rule::unique('municipios', 'municipio')->ignore($municipio)],
 		    'provincia_id' => 'required',
 		    'departamento_id' => 'required',
 		    'pais_id' => 'required',

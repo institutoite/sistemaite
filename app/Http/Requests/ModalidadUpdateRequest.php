@@ -24,8 +24,9 @@ class ModalidadUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        $modalidad=$this->route('modalidad');
         return [
-            'modalidad'=>'required',Rule::unique('modalidads', 'modalidad')->ignore($this->modalidad),
+            'modalidad'=>['required',Rule::unique('modalidads', 'modalidad')->ignore($modalidad)],
             'costo' => 'required',
             'cargahoraria'=>'required',
             'nivel_id'=>'required',

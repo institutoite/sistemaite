@@ -1,8 +1,15 @@
 
 @extends('adminlte::page')
 @section('css')
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
-@section('title', 'Provincias')
+
+@section('title', 'Motivos')
+@section('plugins.Jquery', true)
+@section('plugins.Sweetalert2', true)
+@section('plugins.Datatables', true)
+
 
 @section('content')
     <div class="container-fluid">

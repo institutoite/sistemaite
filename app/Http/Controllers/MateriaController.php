@@ -126,12 +126,7 @@ class MateriaController extends Controller
      * @param  \App\Materia  $materia
      * @return \Illuminate\Http\Response
      */
-    public function destroy($materia)
-    {
-        // return response()->json(['r'=>$materia]);
-        Materia::findOrFail($materia)->delete();
-        return response()->json(['mensaje'=>"Se elimino correctamente la Materia"]);
-    }
+   
 
     public function configurar_niveles($materia)
     {

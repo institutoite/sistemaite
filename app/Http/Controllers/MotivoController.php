@@ -128,9 +128,10 @@ class MotivoController extends Controller
       //%%%%%%%%%%%%%%%%%%%%%%%%%%%  u p d a t e %%%%%%%%%%%%%%%%%%%
     public function actualizar(Request $request)
     {
+
         $motivo = Motivo::findOrFail($request->id);
         $validator = Validator::make($request->all(), [
-            'motivo'=>'required',Rule::unique('motivos', 'motivo')->ignore($motivo),
+            'motivo'=>['required',Rule::unique('motivos', 'motivo')->ignore($motivo)],
             'tipomotivo_id'=>'required',
         ]);
         

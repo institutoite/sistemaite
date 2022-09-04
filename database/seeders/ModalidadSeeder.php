@@ -59,6 +59,13 @@ class ModalidadSeeder extends Seeder
             'nivel_id' => 3
         ]);
         
+        Modalidad::find(1)->usuarios()->attach(1);
+        Modalidad::find(2)->usuarios()->attach(1);
+        Modalidad::find(3)->usuarios()->attach(1);
+        Modalidad::find(4)->usuarios()->attach(1);
+        Modalidad::find(5)->usuarios()->attach(1);
+        Modalidad::find(6)->usuarios()->attach(1);
+        Modalidad::find(7)->usuarios()->attach(1);
   
         
     }

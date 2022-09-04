@@ -46,10 +46,11 @@ use App\Http\Controllers\EventoController;
 use App\Http\Controllers\MensajeadoController;
 use App\Http\Controllers\MensajeableController;
 use App\Http\Controllers\ComoController;
+use App\Http\Controllers\MaateriaController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[ComoController::class,'destroy'])->name('prueba');
+Route::get('prueba',[MateriaController::class,'listar'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -274,7 +275,7 @@ Route::resource('materias', "MateriaController");
 Route::get('listar/materias',[MateriaController::class,'listar'])->name('materias.listar');
 Route::get('materias/niveles/{materia}', 'MateriaController@configurar_niveles')->name('materias.gestionar.niveles');
 Route::post('materias/niveles/configurar/{materia}', 'MateriaController@GuardarConfigurarNiveles')->name('materias.configurar.niveles.guardar');
-Route::get('eliminar/materia/{materia}',[MateriaController::class,'destroy'])->name('eliminar.materia');
+
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       P  A  G  O  S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('pagos', "PagoController");

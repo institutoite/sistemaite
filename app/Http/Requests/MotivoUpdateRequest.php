@@ -25,7 +25,11 @@ class MotivoUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
+            /**
+             * LA VALIDACION ESTA EN ELCONTROLADOR YA QUE SE IMPLEMENTO CON AJAX
+             */
             // 'motivo'=>'required',Rule::unique('motivos', 'motivo')->ignore($this->motivo),
             // 'tipomotivo_id'=>'required',
         ];
