@@ -60,7 +60,7 @@
             function cargarTemas(){
                 var materia_id = $('#materia_id').val();
                 if(!materia_id){
-                $('#tema_id').html('<option value="" required>Seleccione una Zona </option>');
+                $('#tema_id').html('<option value="" required>Seleccione un tema </option>');
                     return;
                 }
                 $.get('../../../api/temas/'+ materia_id,function (data) {
@@ -69,6 +69,7 @@
                     for (var i = 0; i < data.length; i++) {
                         html_select+='<option value="'+ data[i].id +'">' +data[i].tema +'</option>';
                     }
+                    //$('#tema_id').html("<option value="">Si tema</option>");
                     $('#tema_id').html(html_select);
                 });
 

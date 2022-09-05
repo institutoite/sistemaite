@@ -105,7 +105,7 @@ class TemaController extends Controller
         $tema->tema=$request->tema;
         $tema->materia_id=$request->materia_id;
         $tema->save();
-        return view('tema.index');
+        return redirect()->route('tema.index');
     }
 
     /**

@@ -24,8 +24,9 @@ class PaisUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        $pais=$this->route('paise');
         return [
-            'nombrepais'=>'required',Rule::unique('pais', 'nombrepais')->ignore($this->pais)
+            'nombrepais'=>['required',Rule::unique('pais', 'nombrepais')->ignore($pais)],
         ];
     }
 }

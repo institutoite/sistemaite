@@ -43,7 +43,7 @@ class CreateClasesTable extends Migration
             ->references('id')->on('temas');
 
             $table->foreign('programacion_id')
-                ->references('id')->on('programacions')->ondelete('cascade');
+                ->references('id')->on('programacions');
                 
             $table->timestamps();
         });

@@ -132,18 +132,7 @@
                                 switch (xhr.status) {
                                     case 500:
                                          
-                                    Swal.fire({
-                                        title: 'No se puede eliminar este Registro',
-                                        text: "Por que está relacionado con otros registros!",
-                                        icon: 'warning',
-                                        cancelButtonText: "No hacer cambios",
-                                        showCancelButton: true,
-                                        showConfirmButton: false,
-                                        
-                                        cancelButtonColor: '#78DD25',
-                                        })
-                                    
-                                       
+                                   
                                         break;
                                 
                                     default:

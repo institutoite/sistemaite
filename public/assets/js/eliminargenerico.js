@@ -30,7 +30,7 @@ function eliminarRegistro(registro_id,objeto_type,tabla) {
                     tabla.ajax.reload();
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    mensajeGrande(result.mensaje, 'success', 2000);
+                    mensajeError();
                 }
             });
         } else {

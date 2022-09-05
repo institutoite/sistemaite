@@ -24,8 +24,9 @@ class TemaUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        $tema=$this->route('tema');
         return [
-            'tema'=>'required',Rule::unique('temas', 'tema')->ignore($this->tema),
+            'tema'=>['required',Rule::unique('temas', 'tema')->ignore($tema)],
             'materia_id'=>'required'
         ];
     }
