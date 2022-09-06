@@ -50,10 +50,10 @@ mensajes de bienvenida y mensajes de ultimo dia de clases crar vistar comofalton
 mensajes a los que no se faltan nunca otra ventana
 mensajes recordatorio de que tienen clases
 CUANDO CREAMOS UN ESTUDIANTE NUEVO LLEGA A AGREGAR TELEFONO Y NO APARECE NINGUN BOTON COMO PARA CONTINUAR
-
-
 algundos moment estan en ingles españolizar seria la tarea unicamente agregar la url del JSON <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
 que se cree un contacto y que envie el link de descarga y  link para chat rapido 
+
+
 
 hacer componente la muestra de mostrar bueno esta en show de ciudades
 daralta una inscripcion y una matriculacion

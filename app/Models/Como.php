@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Como extends Model
 {
     use HasFactory;
+     public function personas()
+    {
+        return $this->hasMany(Persona::class);
+    } 
 }

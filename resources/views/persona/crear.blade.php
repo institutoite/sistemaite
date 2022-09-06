@@ -150,8 +150,8 @@
         
     });	
     function  mostrarModal(){
-            var ElementoSeleccionado=$('#como option:selected').val();
-                if(ElementoSeleccionado=="REFERENCIA"){
+            var ElementoSeleccionado=$('#como_id option:selected').val();
+                if(ElementoSeleccionado==2){
                     $("#modal-ite").modal("show");
                 }else{
                     $("#persona_id").val('');  

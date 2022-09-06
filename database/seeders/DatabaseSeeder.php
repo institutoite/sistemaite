@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             PaisSeeder::class,
             CiudadSeeder::class,
             ZonaSeeder::class,
+            ComoSeeder::class,
             PersonaSeeder::class,
             UserSeeder::class,
             AdministrativoSeeder::class,

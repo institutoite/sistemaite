@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
+use App\Models\Como;
 class ComoSeeder extends Seeder
 {
     /**
@@ -13,6 +13,11 @@ class ComoSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Como::create(['como'=>"PASANDO"]);
+        Como::create(['como'=>"REFERENCIA"]);
+        Como::create(['como'=>"FACEBOOK"]);
+        Como::create(['como'=>"GOOGLE"]);
+        Como::create(['como'=>"YOUTUBE"]);
+        Como::create(['como'=>"OTRO"]);
     }
 }

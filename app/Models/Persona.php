@@ -21,7 +21,7 @@ class Persona extends Model
             'genero',
             'observacion',
             'foto',
-            'como',
+            'como_id',
             'persona_id',
             'pais_id',
             'ciudad_id',
@@ -33,6 +33,12 @@ class Persona extends Model
         'fechanacimiento', 'created_at', 'updated_at',
     ];
 
+    public function como()
+    {
+        return $this->belongsTo(Como::class);
+    }
+    
+  
     public function interests() {
         return $this->belongsToMany(Interest::class)->withTimestamps();
     }

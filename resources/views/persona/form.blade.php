@@ -132,8 +132,8 @@
             @endif
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-            @if($errors->has('como'))
-                <span class="text-danger"> {{ $errors->first('como')}}</span>
+            @if($errors->has('como_id'))
+                <span class="text-danger"> {{ $errors->first('como_id')}}</span>
             @endif
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
@@ -174,30 +174,22 @@
         {{--%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO COMO SE INFORMO  --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             <div class="row">
+                {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO REFERENCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
                 <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" >
                     <div class="form-floating mb-3 text-gray">
-                        <select onchange="mostrarModal();" onfocus="this.selectedIndex = -1;" class="form-control @error('como') is-invalid @enderror"  name="como" id="como">
-                            <option value="">Como se enteró</option>
-                                @isset($persona)
-                                    <option value="PASANDO" @if($persona->como == 'PASANDO') {{'selected'}} @endif>Pasando por el lugar</option>
-                                    <option value="REFERENCIA" @if($persona->como == 'REFERENCIA') {{'selected'}} @endif>Por referencia</option>
-                                    <option value="FACEBOOK" @if($persona->como == 'FACEBOOK') {{'selected'}} @endif>Facebook</option>    
-                                    <option value="GOOGLE" @if($persona->como == 'GOOGLE') {{'selected'}} @endif>Google</option>
-                                    <option value="YOUTUBE" @if($persona->como == 'YOUTUBE') {{'selected'}} @endif>Google</option>
-                                    <option value="OTRO" @if($persona->como == 'OTRO') {{'selected'}} @endif>Otra Forma</option>
-                                @else 
-                                    <option value="PASANDO" @if(old('como') == 'PASANDO') {{'selected'}} @endif>Pasando por el lugar</option>
-                                    <option value="REFERENCIA" @if(old('como') == 'REFERENCIA') {{'selected'}} @endif>Por referencia</option>
-                                    <option value="FACEBOOK" @if(old('como') == 'FACEBOOK') {{'selected'}} @endif>Facebook</option>    
-                                    <option value="GOOGLE" @if(old('como') == 'GOOGLE') {{'selected'}} @endif>Google</option>
-                                    <option value="YOUTUBE" @if(old('como') == 'YOUTUBE') {{'selected'}} @endif>Google</option>
-                                    <option value="OTRO" @if(old('como') == 'OTRO') {{'selected'}} @endif>Otra Forma</option>
-                                @endisset
+                        <select onchange="mostrarModal();" onfocus="this.selectedIndex = -1;"  class="form-control @error('como_id') is-invalid @enderror" data-old="{{ old('como_id') }}" name="como_id" id="como_id">
+                            <option value="" selected>Seleccionen como se enteró?</option>
+                            @foreach ($comos as $como)
+                                @isset($persona)     
+                                    <option  value="{{$como->id}}" {{$como->id==$persona->como_id ? 'selected':''}}>{{$como->como}}</option>     
+                                @else
+                                    <option value="{{ $como->id}}" {{ old('como_id') == $como->id ? 'selected':'' }} >{{ $como->como }}</option>
+                                @endisset 
+                            @endforeach
                         </select>
-                        <label for="como">como</label>
+                        <label for="">Como se enteró?</label>  
                     </div>
                 </div>
-                {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO REFERENCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
                     <div class="form-floating mb-3 text-gray">
                         <input  type="text" readonly id="persona_id" name="persona_id" class="form-control @error('carnet') is-invalid @enderror" value="{{old('persona_id',$persona->persona_id ?? '')}}">
@@ -451,3 +443,26 @@
 
 
 
+ {{-- <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" >
+    <div class="form-floating mb-3 text-gray">
+        <select onchange="mostrarModal();" onfocus="this.selectedIndex = -1;" class="form-control @error('como') is-invalid @enderror"  name="como" id="como">
+            <option value="">Como se enteró</option>
+                @isset($persona)
+                    <option value="PASANDO" @if($persona->como == 'PASANDO') {{'selected'}} @endif>Pasando por el lugar</option>
+                    <option value="REFERENCIA" @if($persona->como == 'REFERENCIA') {{'selected'}} @endif>Por referencia</option>
+                    <option value="FACEBOOK" @if($persona->como == 'FACEBOOK') {{'selected'}} @endif>Facebook</option>    
+                    <option value="GOOGLE" @if($persona->como == 'GOOGLE') {{'selected'}} @endif>Google</option>
+                    <option value="YOUTUBE" @if($persona->como == 'YOUTUBE') {{'selected'}} @endif>Google</option>
+                    <option value="OTRO" @if($persona->como == 'OTRO') {{'selected'}} @endif>Otra Forma</option>
+                @else 
+                    <option value="PASANDO" @if(old('como') == 'PASANDO') {{'selected'}} @endif>Pasando por el lugar</option>
+                    <option value="REFERENCIA" @if(old('como') == 'REFERENCIA') {{'selected'}} @endif>Por referencia</option>
+                    <option value="FACEBOOK" @if(old('como') == 'FACEBOOK') {{'selected'}} @endif>Facebook</option>    
+                    <option value="GOOGLE" @if(old('como') == 'GOOGLE') {{'selected'}} @endif>Google</option>
+                    <option value="YOUTUBE" @if(old('como') == 'YOUTUBE') {{'selected'}} @endif>Google</option>
+                    <option value="OTRO" @if(old('como') == 'OTRO') {{'selected'}} @endif>Otra Forma</option>
+                @endisset
+        </select>
+        <label for="como">como</label>
+    </div>
+</div> --}}

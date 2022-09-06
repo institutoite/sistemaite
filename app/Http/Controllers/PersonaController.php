@@ -31,6 +31,7 @@ use App\Models\Interest;
 use App\Models\Programacioncom;
 use App\Models\Programacion;
 use App\Models\Pais;
+use App\Models\Como;
 use App\Models\Felicitado;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
@@ -73,7 +74,8 @@ class PersonaController extends Controller
         $paises=Pais::get();
         $zonas=Zona::get();
         $interests=Interest::all();
-        return view('persona.crear',compact('ciudades','paises','zonas','interests'));
+        $comos=Como::all();
+        return view('persona.crear',compact('ciudades','paises','zonas','interests','comos'));
     }
    
 
@@ -86,6 +88,7 @@ class PersonaController extends Controller
     // public function store(PersonaStoreRequest $request)
     public function store(PersonaStoreRequest $request)
     {
+        //dd($request->all());
         $persona=new Persona();
         $persona->nombre = $request->nombre;
         $persona->apellidop = $request->apellidop;
@@ -105,7 +108,7 @@ class PersonaController extends Controller
             $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
             $persona->foto = $nombreImagen;
         }
-        $persona->como = $request->como;
+        $persona->como_id = $request->como_id;
         $persona->habilitado = 1;
         $persona->papelinicial = $request->papel;
         $persona->telefono=$request->telefono;
@@ -292,7 +295,7 @@ class PersonaController extends Controller
         $persona->apellidop = $request->apellidop;
         $persona->telefono=$request->telefono;
         $persona->genero=$request->genero;
-        $persona->como = $request->como;
+        $persona->como_id = $request->como_id;
         $persona->vuelvefecha=$request->vuelvefecha;
         $persona->habilitado = 0;
         $persona->votos = 1;
@@ -318,7 +321,7 @@ class PersonaController extends Controller
         $persona->apellidop = $request->apellidop;
         $persona->telefono=$request->telefono;
         $persona->genero=$request->genero;
-        $persona->como = $request->como;
+        $persona->como_id = $request->como_id;
         $persona->vuelvefecha=$request->vuelvefecha;
         $persona->habilitado = 0;
         $persona->votos = 1;
@@ -550,6 +553,7 @@ class PersonaController extends Controller
         $ciudades = Ciudad::get();
         $paises = Pais::get();
         $zonas = Zona::get();
+        $comos = Como::get();
         $observacion = Observacion::where('observable_id', $persona->id)
             ->where('observable_type', Persona::class)->get()->first();
         if($observacion!=null){
@@ -625,7 +629,7 @@ class PersonaController extends Controller
             $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
             $persona->foto = $nombreImagen;
         }
-        $persona->como = $request->como;
+        $persona->como_id = $request->como_id;
         $persona->papelinicial = $request->papel;
         $persona->telefono = $request->telefono;
         $persona->persona_id = $request->persona_id;
@@ -1042,12 +1046,12 @@ class PersonaController extends Controller
 
         $zona = isset($persona->zona) ? $persona->zona->zona : '-';
         $direccion = isset($persona->direccion) ? $persona->direccion : '-';
-        $como = isset($persona->como) ? $persona->como : '-';
+        $como_id = isset($persona->como_id) ? $persona->como_id : '-';
         
-        if(isset($persona->como)){
+        if(isset($persona->como_id)){
             $como=$persona->como;
         }
-        Storage::append($nombre_archivo, "NOTE:Genero:".$genero.'\nDireccion:'.$zona.' '.$direccion.'\nComo eneteró:'.$como);
+        Storage::append($nombre_archivo, "NOTE:Genero:".$genero.'\nDireccion:'.$zona.' '.$direccion.'\nComo eneteró:'.$como->como);
         $apoderados=$persona->apoderados;
             foreach ($apoderados as $apoderado) {
                 Storage::append($nombre_archivo, "TEL;VALUE=uri;PREF=1;TYPE=voice,home:".$apoderado->telefono);

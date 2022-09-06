@@ -23,7 +23,6 @@ class CreatePersonasTable extends Migration
             $table->string('genero', 6)->nullable()->default("N/S");
             
             $table->string('foto', 120)->nullable();
-            $table->string('como', 30)->nullable();
             $table->string('papelinicial', 20);
             $table->string('telefono', 10)->nullable()->default(0);
             $table->tinyInteger('votos')->nullable()->unsigned()->default(1);
@@ -35,6 +34,7 @@ class CreatePersonasTable extends Migration
             $table->unsignedBigInteger('pais_id')->nullable();
             $table->unsignedBigInteger('ciudad_id')->nullable();
             $table->unsignedBigInteger('zona_id')->nullable();
+            $table->unsignedBigInteger('como_id')->nullable();
             
             $table->foreign('persona_id', 'fk_persona_persona1_idx')
             ->references('id')->on('personas');
@@ -47,6 +47,9 @@ class CreatePersonasTable extends Migration
             
             $table->foreign('zona_id', 'fk_persona_zona_idx')
             ->references('id')->on('zonas');
+
+            $table->foreign('como_id', 'fk_persona_como_idx')
+            ->references('id')->on('comos');
 
             $table->timestamps();
         });

@@ -31,7 +31,7 @@ class PersonaSeeder extends Seeder
             'pais_id' => 1,
             'ciudad_id' => 6,
             'zona_id' => 1,
-            'como' => "FACEBOOK",
+            'como_id' => 1,
             'foto' => "estudiantes/foto.jpg",
             'papelinicial' => 'docente',
             
@@ -53,7 +53,7 @@ class PersonaSeeder extends Seeder
             'pais_id' => 1,
             'ciudad_id' => 6,
             'zona_id' => 1,
-            'como' => "FACEBOOK",
+            'como_id' => 1,
             'foto' => "estudiantes/foto.jpg",
             'papelinicial' => 'estudiante',
             
