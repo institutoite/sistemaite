@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Validation\Rule;
 class UpdateMododocenteRequest extends FormRequest
 {
     /**
@@ -13,7 +13,7 @@ class UpdateMododocenteRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,9 @@ class UpdateMododocenteRequest extends FormRequest
      */
     public function rules()
     {
+        $mododocente=$this->route('mododocente');
         return [
-            //
+            'mododocente'=>['required',Rule::unique('mododocentes', 'mododocente')->ignore($mododocente)],
         ];
     }
 }

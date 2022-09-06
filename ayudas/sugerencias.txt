@@ -58,8 +58,9 @@ que se cree un contacto y que envie el link de descarga y  link para chat rapido
 hacer componente la muestra de mostrar bueno esta en show de ciudades
 daralta una inscripcion y una matriculacion
 condonar inscripcion
-hacer ite business/familiar/persona/Colegios
+
 en todos los mostrar el foto del usuario es muy grande 
+hacer ite business/familiar/persona/Colegios
 Falta terminar el crud de requisitos y metas
 
 crear un buson de sugerencias

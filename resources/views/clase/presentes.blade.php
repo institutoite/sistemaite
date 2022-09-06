@@ -191,7 +191,7 @@
                     url : "clase/editar",
                     data : { id :id_clase },
                     success : function(json) {
-                            
+                            console.log(json.docentes);
                             $("#modal-editar").modal("show");
                             $("#inputs-creados").empty();
                             //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE DOCENTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

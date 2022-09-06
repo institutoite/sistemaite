@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateEventoRequest extends FormRequest
 {
@@ -23,8 +24,9 @@ class UpdateEventoRequest extends FormRequest
      */
     public function rules()
     {
+        $evento=$this->route('evento');
         return [
-            //
+            'evento' => ['required',Rule::unique('eventos','evento')->ignore($evento)],
         ];
     }
 }

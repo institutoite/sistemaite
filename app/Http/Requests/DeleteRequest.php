@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class TipofileUpdateRequest extends FormRequest
+class DeleteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +23,8 @@ class TipofileUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        $tipofile=$this->route('tipofile');
         return [
-            'tipofile'=>['required',Rule::unique('tipofiles', 'tipofile')->ignore($tipofile)],
-            'programa' => 'required|min:5|max:25',
+            //
         ];
-
-        
     }
-    
 }

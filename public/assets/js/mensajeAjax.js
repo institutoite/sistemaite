@@ -1,14 +1,14 @@
-function mensajeGrande(unMensajaAjax,unColor,unTiempo){
+function mensajeGrande(unMensajaAjax,unIcono,unTiempo){
+    console.log(unIcono);
     Swal.fire({
         position: 'top-end',
-        icon: unColor,
+        icon:'success',
         title: unMensajaAjax,
         showConfirmButton: false,
         timer: unTiempo,
-        icon: unColor,
     });
 }
-function mensajePequenio(unMensajaAjax,unColor, unTiempo){
+function mensajePequenio(unMensajaAjax,unIcono, unTiempo){
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -22,11 +22,11 @@ function mensajePequenio(unMensajaAjax,unColor, unTiempo){
     })
 
     Toast.fire({
-        icon: unColor,
+        icon: unIcono,
         title: unMensajaAjax
     })
 }
-function MensajeError(){
+function mensajeErr(){
     Swal.fire({
         title: "No se puede eliminar este Registro",
         text: "Por que está relacionado con otros registros!",
@@ -35,5 +35,5 @@ function MensajeError(){
         showCancelButton: true,
         showConfirmButton: false,
         cancelButtonColor: '#26BAA5',
-    })
+    });
 }

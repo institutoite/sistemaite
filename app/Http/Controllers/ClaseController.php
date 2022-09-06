@@ -69,14 +69,18 @@ class ClaseController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $clase = Clase::create($request->all());
-        return redirect()->route('clases.index')
-            ->with('success', 'Clase created successfully.');
-    }
+
+    
+    // public function store(Request $request)
+    // {
+    //     dd($request->all());
+    //     $clase = Clase::create($request->all());
+    //     return redirect()->route('clases.index')
+    //         ->with('success', 'Clase created successfully.');
+    // }
 
     public function guardar(Request $request,$programacion_id){
+         //dd($request->all());
         $clase=new Clase();
         $clase->fecha=$request->fecha;
         $clase->horainicio=$request->horainicio;
@@ -84,7 +88,12 @@ class ClaseController extends Controller
         $clase->docente_id=$request->docente_id;
         $clase->materia_id=$request->materia_id;
         $clase->aula_id=$request->aula_id;
-        $clase->tema_id =$request->tema_id;
+        if($request->tema_id==null){
+            $clase->tema_id=1;
+        }else{
+            $clase->tema_id =$request->tema_id;
+        }
+
         $clase->programacion_id=$programacion_id;
 
         $observacion=new Observacion();
@@ -108,9 +117,7 @@ class ClaseController extends Controller
         $programa->save();
         $observacion->observable_id=$programacion_id;
         $observacion->save();
-        
         $clase->usuarios()->attach(Auth::user()->id);
-
         return redirect()->route('clase.presentes');
     }
     
@@ -150,9 +157,10 @@ class ClaseController extends Controller
         
         $clase=Clase::findOrFail($request->id);
         $docentes = Docente::join('personas', 'personas.id', '=', 'docentes.persona_id')
-        ->where('docentes.estado', '=', 'activo')
-            ->select('docentes.id', 'personas.nombre', 'personas.apellidop')
+        ->where('docentes.estado_id', estado('HABILITADO'))
+            ->select('docentes.id', 'personas.nombre','docentes.nombrecorto', 'personas.apellidop')
             ->get();
+        //dd($docentes);
         $programa = $clase->programacion;
         $inscripcion = $programa->inscripcione;
         $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);

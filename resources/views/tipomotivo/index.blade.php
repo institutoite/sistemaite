@@ -38,7 +38,7 @@
                                 <thead class="">
                                     <tr>
                                         <th>No</th>
-										<th>Motivo</th>
+										<th>Tipo Motivo</th>
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
@@ -80,7 +80,7 @@
 
     <script>
 
-         /*%%%%%%%%%%%%%%%%%%%%%%  funcion que agrega clase por tiempo x y luego lo destruye %%%%%%%%%%%*/
+        /*%%%%%%%%%%%%%%%%%%%%%%  funcion que agrega clase por tiempo x y luego lo destruye %%%%%%%%%%%*/
         ( function ( $ ) {
             'use strict';
             $.fn.addTempClass = function ( className, expire, callback ) {
@@ -209,7 +209,7 @@
                         },
                     success : function(json) {
                         if(json.error){
-                        $("#error_motivo").html(json.error);
+                        $("#error_tipomotivo").html(json.error);
                         }else{
                             $("#modal-editar").modal("hide");
                             $('#tipomotivos').DataTable().ajax.reload();

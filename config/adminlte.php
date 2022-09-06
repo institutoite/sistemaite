@@ -795,7 +795,7 @@ return [
                 ],
             ],
         ],
-//** %%%%%%%%%%%%%%%%%%  MENU Colegios %%%%%%%%%%%%% */
+//** %%%%%%%%%%%%%%%%%%  MENU como llego? %%%%%%%%%%%%% */
         [
             'text'    => 'Como llegó?',
             'icon'    => 'fas fa-house-user',
@@ -806,6 +806,21 @@ return [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'como',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+//** %%%%%%%%%%%%%%%%%%  MENU como llego? %%%%%%%%%%%%% */
+        [
+            'text'    => 'Mododocente',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'mododocentes',
                     'classes'  => 'text-dark',
                 ],
             ],

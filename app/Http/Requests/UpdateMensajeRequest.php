@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateMensajeRequest extends FormRequest
 {
@@ -23,8 +24,9 @@ class UpdateMensajeRequest extends FormRequest
      */
     public function rules()
     {
+        $mensaje=$this->route('mensaje');
         return [
-            'nombre'=>'required|unique:mensajes,mensaje',
+            'nombre'=>['required',Rule::unique('mensaje', 'nombre')->ignore($mensaje)],
             'mensaje'=>'required',
         ];
     }

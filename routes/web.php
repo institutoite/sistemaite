@@ -46,11 +46,11 @@ use App\Http\Controllers\EventoController;
 use App\Http\Controllers\MensajeadoController;
 use App\Http\Controllers\MensajeableController;
 use App\Http\Controllers\ComoController;
-use App\Http\Controllers\MaateriaController;
+use App\Http\Controllers\MododocenteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[MateriaController::class,'listar'])->name('prueba');
+Route::get('prueba',[MododocenteController::class,'listar'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -176,17 +176,17 @@ Route::resource('modalidads', "ModalidadController");
 Route::resource('nivels', "NivelController");
 Route::resource('inscripciones', "InscripcioneController");
 // Route::resource('matriculacion', "MatriculacionController");
-Route::resource('como', "ComoController");
 
-// Route::get('como/guardar',[ComoController::class,'guardarcomo'])->name('como.guardar');
-// Route::get('comos',[ComoController::class,'index'])->name("como.index");
-// Route::get('como/crear',[ComoController::class,'create'])->name("como.create");
-// Route::get('como/mostrar/{como}',[ComoController::class,'show'])->name("como.show");
-// Route::get('como/editar/{como}', [ComoController::class,'edit'])->name("como.edit");
-// Route::get('como/actualizar/{como}', [ComoController::class,'update'])->name("como.update");
-// Route::delete('eliminar/como/{como}', [ComoController::class,'destroy'])->name('como.delete');
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%COMO   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+Route::resource('como', "ComoController");
 Route::delete('eliminar/como', [ComoController::class,'destroy'])->name('como.delete');
 Route::get('listar/comos',[ComoController::class,'listar'])->name('comos.listar');
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%MODODOCENTE         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+Route::resource('mododocentes', "MododocenteController");
+Route::delete('eliminar/mododocente', [MododocenteController::class,'destroy'])->name('mododocente.delete');
+Route::get('listar/mododocentes',[MododocenteController::class,'listar'])->name('mododocente.Mododocente');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%ESTDUDIANTES         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('/historial/{estudiante}','EstudianteController@historia')->name('estudiante.historia');
@@ -265,7 +265,7 @@ Route::get('temas',[TemaController::class,'index'])->name('tema.index');
 Route::get('tema/create',[TemaController::class,'create'])->name('tema.create');
 Route::get('tema/show/{tema}',[TemaController::class,'show'])->name('tema.show');
 Route::get('tema/edit/{tema}',[TemaController::class,'edit'])->name('tema.edit');
-Route::delete('eliminar/tema/{tema}',[TemaController::class,'destroy'])->name('eliminar.tema');
+Route::delete('eliminar/tema',[TemaController::class,'destroy'])->name('eliminar.tema');
 Route::patch('tema/actualizar/{tema}', [TemaController::class,'update'])->name('tema.update');
 Route::post('tema/store', [TemaController::class,'store'])->name('tema.store');
 

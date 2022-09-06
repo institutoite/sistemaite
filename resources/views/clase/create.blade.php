@@ -63,16 +63,18 @@
                 $('#tema_id').html('<option value="" required>Seleccione un tema </option>');
                     return;
                 }
+                var html_select="";
                 $.get('../../../api/temas/'+ materia_id,function (data) {
                     
-                    var html_select='<option value="">Seleccione un tema </option>';
+                    html_select='<option value="">Seleccione un tema </option>';
                     for (var i = 0; i < data.length; i++) {
                         html_select+='<option value="'+ data[i].id +'">' +data[i].tema +'</option>';
                     }
+                    
                     //$('#tema_id').html("<option value="">Si tema</option>");
                     $('#tema_id').html(html_select);
+                    //console.log(html_select);
                 });
-
             }
             $('#materia_id').on('change', cargarTemas);
             cargarTemas();

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Http\Requests\TemaUpdateRequest;
 use App\Http\Requests\TemaStoreRequest;
+use App\Http\Requests\DeleteRequest;
 
 class TemaController extends Controller
 {
@@ -114,10 +115,11 @@ class TemaController extends Controller
      * @param  \App\Tema  $tema
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tema $tema)
+    public function destroy(DeleteRequest $request)
     {
+        $tema=Tema::findOrFail($request->id);
         $tema->delete();
-        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
+        return response()->json(['mensaje' => 'Registro Eliminado Correctamente', 'status' => 200]);
     }
      public function tema_of_materia($materia_id){  
         $temas=Tema::where('materia_id',$materia_id)->get();
