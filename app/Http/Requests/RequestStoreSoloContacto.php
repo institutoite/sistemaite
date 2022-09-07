@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PersonaRapidingoGuardarRequest extends FormRequest
+class RequestStoreSoloContacto extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,7 @@ class PersonaRapidingoGuardarRequest extends FormRequest
     public function rules()
     {
         return [
-            'interests'=>'required',
-            "nombre" => 'required|unique_with:personas,apellidop',
-            'apellidop'=>'required|max:50',
-            'telefono'=>'numeric|nullable',
-            'como_id'=>'required',
+            
         ];
     }
 }

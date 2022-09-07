@@ -104,11 +104,11 @@
 </div>
 
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%   MODAL EDITAR OBSERVACION  %$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-<div class="modal" tabindex="-1" id="editar-observacion">
+{{-- <div class="modal" tabindex="-1" id="editar-observacion">
     <div class="modal-dialog modal-xl modalito">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
-                EDITAR OBSERVACION
+                EDITAR OBSERVACIONx
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -127,7 +127,7 @@
            
         </div>
     </div>
-</div>
+</div> --}}
 
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%  MODAL FECHAR  --}}
 <div class="modal" tabindex="-1" id="modal-fechar">

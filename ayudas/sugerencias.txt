@@ -62,12 +62,12 @@ condonar inscripcion
 en todos los mostrar el foto del usuario es muy grande 
 hacer ite business/familiar/persona/Colegios
 Falta terminar el crud de requisitos y metas
+crud para licencias en computacion y nivelacion
 
 crear un buson de sugerencias
 graficos estadisticos
 google calendar 
 
-crud para licencias en computacion y nivelacion
 arreglar css de reportes 
 cuando cancelan todo igual avanzar hasta ver la programacion 
 ver como registrar administrativo

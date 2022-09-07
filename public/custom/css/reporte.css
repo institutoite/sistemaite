@@ -11,10 +11,8 @@ body {
 }
 
 div.table-title {
-   display: block;
-  margin: auto;
-  max-width: 600px;
-  
+  display: block;
+  margin: auto; 
   width: 100%;
 }
 
@@ -29,7 +27,7 @@ div.table-title {
 
 
 
-/*** Table Styles **/
+
 
 .table-fill {
   background: white;
@@ -46,7 +44,7 @@ div.table-title {
 }
  
 th {
-  color:#39393a;;
+  color:#39393a;
   border:1px solid #9ea7af;
   
   font-size:14px;
@@ -82,11 +80,11 @@ tr:last-child {
 }
  
 .table tr:nth-child(odd) td {
-  background:#EBEBEB;
+  background:rgba(38,186,165,0.2);
 }
  
 .table tr:nth-child(odd):hover td {
-  background:#4E5066;
+  background:#000000;
 }
 
 tr:last-child td:first-child {
@@ -138,7 +136,7 @@ td.text-right {
   text-align: right;
 }
 
-/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  E N C A B E Z A D O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  E N C A B E Z A D O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 .titulos{
@@ -208,6 +206,4 @@ hr {
   font-size: 0.7em;
   border-left: solid 0.05em #26bbaa;
 }
-
-/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  C E N T R A R  T E X T O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-
+ */

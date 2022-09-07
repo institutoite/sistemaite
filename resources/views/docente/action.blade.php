@@ -7,7 +7,7 @@
     <i class="fa fa-fw fa-eye text-primary"></i>
 </a>
 
-<a href="{{route('opcion.docentes', $id)}}" class="btn btn-primary text-white tooltipsC btn-sm mr-2" title="ir a opciones de la persona">
+<a href="{{route('opcion.docentes', $persona_id)}}" class="btn btn-primary text-white tooltipsC btn-sm mr-2" title="ir a opciones de la persona">
     Opciones
 </a>
 

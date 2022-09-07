@@ -108,6 +108,7 @@ function editarObservacion(observacion_id,url){
             id: observacion_id,
         },
         success: function (json) {
+            console.log("Se ejecuto este metodo desde observacion.js");
             CKEDITOR.instances.editoreditar.setData(json.observacion);
             $(".observable_id").val(json.id);
         },

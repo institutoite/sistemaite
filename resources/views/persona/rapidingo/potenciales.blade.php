@@ -120,10 +120,10 @@
         $('table').on('click', '.mostrarobservacionespersona', function(e) {
             e.preventDefault();
                 observable_id =$(this).closest('tr').attr('id');
-                console.log(observable_id);
+                // console.log(observable_id);
                 observable_type ="Persona";
                 url="../observaciones/" + observable_id + "/" + observable_type,
-                console.log(url);
+                // console.log(url);
                 mostrarCrudObservaciones(url);
                 $("#modal-mostrar-observaciones").modal("show");
         });

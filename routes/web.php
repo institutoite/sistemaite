@@ -296,8 +296,6 @@ Route::post('pagocom/realizar/{matriculacion}',[PagocomController::class,'guarda
 Route::patch('pagocom/actualizar/{pagocom}', [PagocomController::class,'actualizar'])->name('pagocom.actualizar');
 Route::get('pagoscom/mostrar/ajax',[PagocomController::class,'pagosComMostrarAjax'])->name('pagoscom.mostrar.ajax');
 
-
-
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%BILLETES          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('billetes', "BilleteController");
 Route::get('billetes/crear/{pago}', "BilleteController@crear")->name('billete.crear');

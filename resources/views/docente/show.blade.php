@@ -117,7 +117,7 @@
                     </tr>
                     <tr>
                         <td>Como se enteró</td>
-                        <td>{{$persona->como}} </td>
+                        <td>{{$persona->como->como}} </td>
                     </tr>
                     <tr>
                         <td>Papel Inicial</td>

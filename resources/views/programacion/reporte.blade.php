@@ -14,11 +14,9 @@
     
 
    
-<div class="divencabezado">
-    <div class="logo">    
-        <img src="{{asset('imagenes/logo.png')}}" width="130px" alt="Logotipo de ite">    
-    </div>    
-        <div class="cuadros" id="direccion">
+{{-- <div class="divencabezado">
+       
+        {{-- <div class="cuadros" id="direccion">
             <span class="titulos"> <strong> ENCUENTRANOS </strong> </span>
             <span>Av. Tres pasos al Frente # 4710</span>
             <span>Villa 1 Mayo Calle:16 Oeste #9</span>
@@ -41,14 +39,14 @@
             <span>3-219050</span><br>
             <span>info@ite.com.bo</span>
             
-        </div> 
+        </div>  
 </div>
-<hr>
+<hr> --}}
 
-    <div class="titulos inscripcion" ><h3> CODIGO:{{$persona->id}}<h3></div>
+    {{-- <div class="titulos inscripcion" ><h3> CODIGO:{{$persona->id}}<h3></div> --}}
 
     
-<div class="datos">
+{{-- <div class="datos">
         <div class="personal cuadrosdatos">
             <span class="titulos"> <strong> DATOS PERSONALES </strong> </span><br>
             <span>{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</span><br>
@@ -70,8 +68,16 @@
             <span>{{$colegio->direccion}}</span>
         </div> 
 
-</div>
-
+</div> --}}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="divtabla" styker="page-break-inside: auto;">
         <table class="table-fill table">
             <thead>
@@ -79,10 +85,10 @@
                     <th>#</th>
                     <th>FECHA</th>
                     <th>DIA</th>
-                <th>HORARIO</th>
-                <th>HRAS</th>
-                <th>DOCENTE/MATERIA/AULA</th>
-                <th>PAGO</th>
+                    <th>HORARIO</th>
+                    <th>HRAS</th>
+                    <th>DOCENTE/MATERIA/AULA</th>
+                    <th>FRAC</th>
             </tr>
         </thead>
         <tbody>
@@ -109,15 +115,15 @@
                     <td>
                         @php
                             if($programa->habilitado==1){
-                                echo "ok";
+                                echo "||";
                             }else{
-                                echo "impaga";
+                                echo "~~";
                             }
                             @endphp
                     </td>
                 </tr>
                 @if($loop->iteration%25==0){
-                    <tr> <td colspan="7"> <i style='page-break-before:always;'></i> </td></tr>
+                    <tr> <td colspan="7"> <div style="page-break-before:always;"> </div> </td></tr>
                 @endif
                 @endforeach
             </tbody>

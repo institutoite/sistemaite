@@ -639,6 +639,7 @@ class ProgramacionController extends Controller
         $fecha_actual = Carbon::now();
         $fecha_actual->isoFormat('DD-MM-YYYY-HH:mm:ss');
         $dompdf->setPaper('letter','portrait');
+        // $dompdf->setPaper('A4', 'portrait');
         return $dompdf->download($persona->id . '_' . $fecha_actual . '_' . $persona->nombre . '_' . $persona->apellidop . '.pdf');
     }
 

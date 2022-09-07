@@ -22,6 +22,7 @@ use App\Http\Requests\PersonaStoreRequest;
 use App\Http\Requests\PersonaUpdateRequest;
 use App\Http\Requests\PersonaApoderadaRequestStore;
 use App\Http\Requests\PersonaRapidingoGuardarRequest;
+use App\Http\Requests\RequestStoreSoloContacto;
 
 use App\Models\Inscripcione;
 use App\Models\Matriculacion;
@@ -286,7 +287,8 @@ class PersonaController extends Controller
      public function crearRapido()
     {
         $interests=Interest::get();
-        return view('persona.rapidingo.crearrapido',compact('interests'));
+        $comos=Como::get();
+        return view('persona.rapidingo.crearrapido',compact('interests','comos'));
     }
     
     public function guardarRapidingo(PersonaRapidingoGuardarRequest $request){
@@ -347,7 +349,8 @@ class PersonaController extends Controller
             $ids[] = $interest->id;
         }
         $interests_faltantes = Interest::whereNotIn('id', $ids)->get();
-        return view('persona.rapidingo.editarrapido',compact('persona','interests_currents','interests_faltantes','observacion'));
+        $comos=Como::get();
+        return view('persona.rapidingo.editarrapido',compact('persona','comos','interests_currents','interests_faltantes','observacion'));
     }
     public function potenciales(){
         $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
@@ -415,14 +418,16 @@ class PersonaController extends Controller
     /*$%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% METODOS DE CONTACTO UNICAMENTE %%%%%%%%%%%%%%%%%%%%%%% */
     public function crearSoloContacto()
     {
-        return view('persona.contacto.crearcontacto');
+        $comos=Como::get();
+        return view('persona.contacto.crearcontacto',compact('comos'));
     }
-    public function guardarSoloContacto(Request $request){
+    public function guardarSoloContacto(RequestStoreSoloContacto $request){
         $persona=new Persona();
         $persona->nombre=$request->nombre;
         $persona->apellidop=$request->apellidop;
         $persona->telefono=$request->telefono;
         $persona->papelinicial='contacto';
+        $persona->como_id=3;
         $persona->save();
         $persona->usuarios()->attach(Auth::user()->id);
         $this->CrearContacto($persona->id);
@@ -440,6 +445,7 @@ class PersonaController extends Controller
         $persona->nombre=$request->nombre;
         $persona->apellidop=$request->apellidop;
         $persona->telefono=$request->telefono;
+        $persona->como_id=$request->como_id;
         $persona->save();
         $this->CrearContacto($persona->id);
         $observacion =$persona->observaciones->first();
@@ -452,7 +458,8 @@ class PersonaController extends Controller
     }
     public function editarSoloContacto(Persona $persona){
         $observacion=$persona->observaciones->first()->observacion;
-        return view('persona.contacto.editarcontacto',compact('persona','observacion'));
+        $comos=Como::get();
+        return view('persona.contacto.editarcontacto',compact('persona','observacion','comos'));
     }
     public function listarContactos(){
         $contactos=Persona::where('papelinicial','contacto')
@@ -594,7 +601,7 @@ class PersonaController extends Controller
                 break;
         }
 
-        return view("persona.editar",compact('persona','paises','ciudades','zonas','observacion','interests_currents','interests_faltantes'));
+        return view("persona.editar",compact('persona','paises','comos','ciudades','zonas','observacion','interests_currents','interests_faltantes'));
     } 
 
     /**

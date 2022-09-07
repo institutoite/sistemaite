@@ -7,6 +7,7 @@ use App\Models\Pais;
 use App\Models\Ciudad;
 use App\Models\Estado;
 use App\Models\Zona;
+use App\Models\Como;
 use App\Models\Interest;
 use App\Models\Observacion;
 use App\Models\User;
@@ -93,7 +94,7 @@ class DocenteController extends Controller
             $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
             $persona->foto = $nombreImagen;
         }
-        $persona->como = $request->como;
+        $persona->como_id = $request->como_id;
         $persona->habilitado = 1;
         $persona->papelinicial = $request->papel;
         $persona->telefono=$request->telefono;
@@ -195,6 +196,7 @@ class DocenteController extends Controller
         $zonas = Zona::get();
         $estados = Estado::get();
         $mododocentes = Mododocente::get();
+        $comos=Como::get();
         $observacion = Observacion::where('observable_id', $persona->id)
             ->where('observable_type', Persona::class)->get()->first();
         if($observacion!=null){
@@ -235,7 +237,8 @@ class DocenteController extends Controller
                 # code...ite.com.bo
                 break;
         }
-        return view('docente.edit',compact('docente','persona','mododocentes','estados','paises','ciudades','zonas','observacion','interests_currents','interests_faltantes'));
+        // dd($comos);
+        return view('docente.edit',compact('docente','comos','persona','mododocentes','estados','paises','ciudades','zonas','observacion','interests_currents','interests_faltantes'));
     }
 
     /**
@@ -274,7 +277,7 @@ class DocenteController extends Controller
             $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
             $persona->foto = $nombreImagen;
         }
-        $persona->como = $request->como;
+        $persona->como_id = $request->como_id;
         $persona->habilitado = 1;
         $persona->papelinicial = $request->papel;
         $persona->telefono=$request->telefono;

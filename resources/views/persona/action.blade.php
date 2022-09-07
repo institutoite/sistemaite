@@ -14,11 +14,6 @@
     </button>
 </form> 
 
-<span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Disabled tooltip">
-    <a href="{{route('opcion.principal', App\Models\Persona::findOrFail($id)->estudiante->id)}}" class="text-fuchsia tooltipsC mr-2" title="ir a opciones de matematicas">
-        <i class="fas fa-bars"></i>
-    </a>
-</span>
 
 <a href="" class="tooltipsC mr-2 observacion" id="Persona" title="Agregar Observacion">
     <i class="fas fa-comment-alt"></i>
@@ -29,3 +24,9 @@
 <a href="{{route('descargar.contacto', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Descargar contacto">
     <i class="far fa-address-card"></i>
 </a>
+
+<span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Disabled tooltip">
+    <a href="{{route('opcion.principal', App\Models\Persona::findOrFail($id)->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de matematicas">
+         <i class="fas fa-bars"></i> &nbsp; Opciones
+    </a>
+</span>
