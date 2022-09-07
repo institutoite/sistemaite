@@ -52,12 +52,14 @@ mensajes recordatorio de que tienen clases
 CUANDO CREAMOS UN ESTUDIANTE NUEVO LLEGA A AGREGAR TELEFONO Y NO APARECE NINGUN BOTON COMO PARA CONTINUAR
 algundos moment estan en ingles españolizar seria la tarea unicamente agregar la url del JSON <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
 que se cree un contacto y que envie el link de descarga y  link para chat rapido 
+arreglar css de reportes 
+como se entero volver un crud 
+daralta una inscripcion y una matriculacion
+condonar inscripcion
 
 
 
 hacer componente la muestra de mostrar bueno esta en show de ciudades
-daralta una inscripcion y una matriculacion
-condonar inscripcion
 
 en todos los mostrar el foto del usuario es muy grande 
 hacer ite business/familiar/persona/Colegios
@@ -68,7 +70,6 @@ crear un buson de sugerencias
 graficos estadisticos
 google calendar 
 
-arreglar css de reportes 
 cuando cancelan todo igual avanzar hasta ver la programacion 
 ver como registrar administrativo
 hoy del menu horizontal solo tiene hoyinscripciones falta hoymatriculaciones
@@ -76,7 +77,6 @@ crear una vista para los mensajeados segun el evento por el que fueron mensajead
 
 una ventana para pasar contacto de whatsapp a alguien si fuera gruarderia por ejemplo a Lidia
 reCaptcha
-como volver una crud 
 
 Swal.fire({
   title: 'How old are you?',
