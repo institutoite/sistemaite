@@ -618,7 +618,6 @@ class ProgramacionController extends Controller
     }
 
     public function imprimirPrograma($inscripcione_id){
-         
         $inscripcion=Inscripcione::findOrFail($inscripcione_id);
         $programacion = Programacion::join('materias', 'programacions.materia_id', '=', 'materias.id')
             ->join('aulas', 'programacions.aula_id', '=', 'aulas.id')

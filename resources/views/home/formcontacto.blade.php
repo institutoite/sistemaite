@@ -40,6 +40,7 @@
                         <textarea class="form-control" placeholder="Comenteneos su su necesidad..." name="comentario" id="comentario" rows="5"></textarea>
                     </div>
                 </div>
+                <input type="number" class="form-control" hidden id="como_id" value="6" placeholder="Ingrese su número de telefono">
             </div>
             <div class="row">
                 <div class="col-sm-12">

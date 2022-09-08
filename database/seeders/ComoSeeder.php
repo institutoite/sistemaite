@@ -15,9 +15,12 @@ class ComoSeeder extends Seeder
     {
         Como::create(['como'=>"PASANDO"]);
         Como::create(['como'=>"REFERENCIA"]);
-        Como::create(['como'=>"FACEBOOK"]);
+        Como::create(['como'=>"LETREROS"]);
         Como::create(['como'=>"GOOGLE"]);
         Como::create(['como'=>"YOUTUBE"]);
+        Como::create(['como'=>"PAGINAWEB"]);
+        Como::create(['como'=>"WHATSAPP"]);
+        Como::create(['como'=>"TELEGRAM"]);
         Como::create(['como'=>"OTRO"]);
     }
 }

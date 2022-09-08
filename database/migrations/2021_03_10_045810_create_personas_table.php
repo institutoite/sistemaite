@@ -13,8 +13,8 @@ class CreatePersonasTable extends Migration
     {
         Schema::create('personas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 40);
-            $table->string('apellidop', 25);
+            $table->string('nombre', 50);
+            $table->string('apellidop', 25)->nullable();
             $table->string('apellidom', 25)->nullable();
             $table->date('fechanacimiento')->nullable();
             $table->string('direccion', 120)->nullable()->default("N/S");

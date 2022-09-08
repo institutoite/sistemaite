@@ -29,7 +29,7 @@ class ComentarioController extends Controller
      */
     public function create()
     {
-        //
+        return view("comentarios.create");
     }
 
     /**
@@ -40,9 +40,6 @@ class ComentarioController extends Controller
      */
     public function guardarComentario(Request $request)
     {
-        // return response()->json($request->all());
-        //return response()->json(['e'=>2]);
-
         $validator = Validator::make($request->all(), [
             'nombre'=>'required|min:4|max:30',
             'telefono'=>'required|min:8|max:10',
@@ -55,6 +52,7 @@ class ComentarioController extends Controller
             $comentario->telefono = $request->telefono;
                 $intereses_limpio=substr($request->interests, 0, -1);
                 $comentario->vigente = 1;
+                $comentario->como_id = $request->como_id;
                 $comentario->comentario = $request->comentario;
                 $comentario->interests=$intereses_limpio;
                 $vectorIntereses  = explode(',',$comentario->interests);
@@ -66,16 +64,12 @@ class ComentarioController extends Controller
                 $html.="</ol>";
             $comentario->interests=$html;
             $comentario->save();
-            
-            
-            //return response()->json($comentario);
             return response()->json(['comentario' => $comentario,'vector_intereses'=>$vectorIntereses]);
         }else{
             return response()->json(['error' => $validator->errors()]);
         }
-        
     }
-
+    
     public function crearContactoComentario($comentario_id){
         $comentario=Comentario::find($comentario_id);
         $nombre_archivo='comentarios/'.$comentario->id.'.vcf';
@@ -90,6 +84,7 @@ class ComentarioController extends Controller
         Storage::append($nombre_archivo, "URL:wa.me/591".$telefono);
         Storage::append($nombre_archivo, "LANG;TYPE=work;PREF=2:es");
         Storage::append($nombre_archivo, "NOTE:COMENTARIO:".$comentario->comentario);
+        Storage::append($nombre_archivo, "NOTE:COMENTARIO:".$comentario->como->como);
         Storage::append($nombre_archivo, "NOTE:INTERESES:".$comentario->interests);
         Storage::append($nombre_archivo, "NOTE:FECHA REGISTRO:".$comentario->created_at->format('d-m-Y'));
         Storage::append($nombre_archivo, "NOTE:HORA REGISTRO:".$comentario->created_at->format('h:i:s'));

@@ -208,6 +208,7 @@ Route::get('iniciando/view',[EstudianteController::class,'cumplenerosView'])->na
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       COMENTARIO         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');
 Route::get('comentarios',[ComentarioController::class,'index'])->name("comentario.index");
+Route::get('comentarios/create',[ComentarioController::class,'create'])->name("comentario.create");
 Route::get('comentario/mostrar/{comentario}',[ComentarioController::class,'show'])->name("comentario.show");
 Route::get('listar/comentarios', [ComentarioController::class,'listar'])->name('comentario.ajax');
 Route::get('comentario/editar/{comentario}', [ComentarioController::class,'edit'])->name("comentario.edit");

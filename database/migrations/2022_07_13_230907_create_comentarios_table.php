@@ -20,6 +20,10 @@ class CreateComentariosTable extends Migration
             $table->string("comentario",500);
             $table->string("interests",500);
             $table->boolean("vigente");
+
+            $table->unsignedBigInteger('como_id');
+            $table->foreign('como_id')->references('id')->on('comos');
+
             $table->timestamps();
         });
     }

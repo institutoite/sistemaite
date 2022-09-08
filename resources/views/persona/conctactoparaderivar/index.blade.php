@@ -1,68 +1,73 @@
 @extends('adminlte::page')
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
-    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
-@section('title', 'Comentarios')
-@section('plugins.Jquery', true)
-@section('plugins.Sweetalert2', true)
-@section('plugins.Datatables', true)
+
+@section('title', 'Contactos')
+@section('plugins.Sweetalert2',true)
+@section('plugins.Datatables',true)
 
 @section('content')
-    <div class="container-fluid pt-4">
-        <div class="row">
-           
-            <div class="col-sm-12">
-
-                <div class="card">
-                    <div class="card-header bg-secondary">
-                            <div class="float-right">
-                                <a href="{{ route('comentario.create') }}" class="btn btn-primary text-white float-right"  data-placement="left">
-                                    {{ __('Crear contacto') }}
-                                </a>
-                            </div>
-                    </div>
-                    
-
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="comentarios" class="table table-striped table-hover table-borderless">
-                                <thead class="">
-                                    <tr>
-										<th>#</th>
-										<th>Act</th>
-										<th>Nombre</th>
-										<th>Intereses</th>
-										<th>Comentario</th>
-                                        <th>Opciones</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+    <div class="card">
+        <div class="card-header">
+            CONTACTOS REGISTRADOS
+            <div class="float-right">
+                <a href="{{ route('personas.crear.contacto') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                    {{ __('Crear contacto') }}
+                </a>
             </div>
         </div>
+        <div class="card-body">
+            <table id="contactos" class="table table-bordered table-hover table-striped">
+                <thead class="bg-primary text-center">
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>APELLIDOP</th>
+                        <th>OBSERVACION</th>
+                        <th>TELEFONO</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
-     @include('observacion.modalcreate')
-@endsection
+    @include('observacion.modalcreate')
+@stop
+
 
 @section('js')
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+    
     <script src="{{asset('dist/js/moment.js')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> 
-      
-    <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
-    <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+    
     <script src="{{asset('assets/js/observacion.js')}}"></script>
-    
-    
 
+    
 
     <script>
-        //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
+         //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
         CKEDITOR.replace('editorguardar', {
             height: 120,
             width: "100%",
@@ -100,10 +105,10 @@
             
         });
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $('table').on('click', '.mostrarobservacionescomentario', function(e) {
+        $('table').on('click', '.mostrarobservacionespersona', function(e) {
             e.preventDefault();
                 observable_id =$(this).closest('tr').attr('id');
-                observable_type ="Comentario";
+                observable_type ="Persona";
                 url="observaciones/" + observable_id + "/" + observable_type,
                 mostrarCrudObservaciones(url);
                 $("#modal-mostrar-observaciones").modal("show");
@@ -128,7 +133,7 @@
         $('table').on('click', '.eliminarobservacion', function (e) {
             e.preventDefault();
             let observacion_id = $(this).closest('tr').attr('id');
-            url="eliminar/general";
+            url="eliminar/general"
             eliminarObservacion(observacion_id,url);
         });
         $('table').on('click', '.editarobservacion', function (e) {
@@ -159,7 +164,6 @@
         });
         
 
-         /*%%%%%%%%%%%%%%%%%%%%%%  funcion que agrega clase por tiempo x y luego lo destruye %%%%%%%%%%%*/
         ( function ( $ ) {
             'use strict';
             $.fn.addTempClass = function ( className, expire, callback ) {
@@ -173,147 +177,85 @@
                 } );
             };
         } ( jQuery ) );
-
-        $(document).ready(function() {
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATA TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            let fila=1;
-            var tabla=$('#comentarios').dataTable({
-                "responsive":true,
-                "searching":true,
-                "paging":   true,
-                "autoWidth":false,
-                "ordering": true,
-                "info":     true,
-                "createdRow": function( row, data, dataIndex ) {
-                    $(row).attr('id',data['id']); 
-                    if(data['vigente']==1){
-                        $(row).addClass('text-success');
-                    }else{
-                        $(row).addClass('text-danger');
-                    }
-                },
-                "ajax": "{{ url('listar/comentarios') }}",
-                "columns": [
-                    {data: 'id'},
-                    {data: 'vigente'},
-                    {data: 'nombre'},
-                    {data: 'interests'},
-                    {data: 'comentario'},
-                    {
-                        "name":"btn",
-                        "data": 'btn',
-                        "orderable": false,
-                    },
-                ],
-                
-                "columnDefs": [
-                    {
-                        "targets": [ 1 ],
-                        "visible": false,
-                        "searchable": false
-                    },
-                ],
-                order: [[1, 'desc']],
-                "language":{
-                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-                },
-            });
-            
-
-           /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DA DE BAJA UNA OBSERVACION UTILIZA AJAX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('table').on('click', '.bajacomentario', function (e) {
-                e.preventDefault();
-                let comentario_id = $(this).closest('tr').attr('id');
-                $.ajax({
-                    url: "darbaja/comentario",
-                    data: {
-                        //obs: $("#observacionx").val(),
-                        comentario_id: comentario_id,
-                    },
-                    success: function (json) {
-                        $("#" + comentario_id).addTempClass('bg-danger', 3000);
-                        $('#comentarios').DataTable().ajax.reload();
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 3000,
-                        })
-                        Toast.fire({
-                            type: 'success',
-                            title: json.mensaje,
-                        })
-
-                    },
-                    error: function (xhr, status) {
-                        alert('Disculpe, existió un problema');
-                    },
-                });
-            });
         
-        /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DA DE ALTA UNA OBSERVACION QUE ESTA CON BAJA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $('table').on('click', '.altacomentario', function (e) {
-            e.preventDefault();
-            let comentario_id = $(this).closest('tr').attr('id');
-            $.ajax({
-                url: "daralta/comentario",
-                data: {
-                    //obs: $("#comentariox").val(),
-                    comentario_id: comentario_id,
-                },
-                success: function (json) {
-                    $("#" + comentario_id).addTempClass('bg-success', 3000);
-                    $('#comentarios').DataTable().ajax.reload();
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000,
-                    })
-                    Toast.fire({
-                        type: 'success',
-                        title: json.mensaje,
-                    })
-                },
-                error: function (xhr, status) {
-                    alert('Disculpe, existió un problema');
-                },
-            });
-        });
 
-            
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  M O T I V O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-            $('#comentarios').on('click','.eliminar',function (e) {
+        
+        $(document).ready(function() {
+        var tabla=$('#contactos').DataTable(
+                {
+                    "serverSide": true,
+                    "responsive":true,
+                    "autoWidth":false,
+
+                    "ajax": "{{ url('persona/contactos') }}",
+                    "createdRow": function( row, data, dataIndex ) {
+                        $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
+                        persona_id = data['id'];
+                        $.ajax({
+                            url:"{{url('persona/primerabservacion')}}",
+                            data:{persona_id:persona_id},
+                            success : function(json) {
+                                $('td', row).eq(3).html(json.observacion.observacion +'('+ json.usuario.name +')');  
+                            },
+                        }); 
+                    },
+                    "columns": [
+                        {data: 'id'},
+                        {data: 'nombre'},
+                        {data: 'apellidop'},
+                        {data: 'apellidom'},
+                        {data: 'telefono'},
+                        {
+                            "name":"btn",
+                            "data": 'btn',
+                            "orderable": false,
+                        },
+                    ],
+                    "language":{
+                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    },  
+                }
+            );
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR PERSONA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+            $('table').on('click','.eliminarconacto',function (e) {
                 e.preventDefault(); 
-                 var comentario_id =$(this).closest('tr').attr('id');
+                id=$(this).parent().parent().find('td').first().html();
+                console.log(id);
                 Swal.fire({
-                    title: 'Estas seguro(a) de eliminar este registro?',
+                    title: 'Estas seguro(a) de eliminarx este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",
-                    type: 'question',
+                    icon: 'question',
                     showCancelButton: true,
                     showConfirmButton:true,
-                    confirmButtonColor: '#26baa5',
+                    confirmButtonColor: '#25ff80',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Eliminar..!',
                     position:'center',        
                 }).then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: 'eliminar/comentario/'+comentario_id,
+                            url: 'eliminar/persona/'+id,
                             type: 'DELETE',
                             data:{
+                                id:id,
                                 _token:'{{ csrf_token() }}'
                             },
                             success: function(result) {
-                                $('#comentarios').DataTable().ajax.reload();
+                                console.log(result);
+                                tabla.ajax.reload();
                                 const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
                                 showConfirmButton: false,
                                 timer: 1500,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
                                 })
                                 Toast.fire({
-                                type: 'success',
+                                icon: 'success',
                                 title: 'Se eliminó correctamente el registro'
                                 })   
                             },
@@ -349,15 +291,15 @@
                                 toast.addEventListener('mouseleave', Swal.resumeTimer)
                             }
                         })
+
                         Toast.fire({
-                            type: 'error',
+                            icon: 'error',
                             title: 'No se eliminó el registro'
                         })
                     }
                 })
             });
-
-        });
+        } );
+        
     </script>
-
-@endsection
+@stop
