@@ -35,6 +35,7 @@
 										<th>Nombre</th>
 										<th>Intereses</th>
 										<th>Comentario</th>
+										<th>Como</th>
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
@@ -199,6 +200,7 @@
                     {data: 'nombre'},
                     {data: 'interests'},
                     {data: 'comentario'},
+                    {data: 'como'},
                     {
                         "name":"btn",
                         "data": 'btn',

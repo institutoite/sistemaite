@@ -50,7 +50,7 @@ use App\Http\Controllers\MododocenteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[MododocenteController::class,'listar'])->name('prueba');
+Route::get('prueba',[ComentarioController::class,'listar'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -213,6 +213,7 @@ Route::get('comentario/mostrar/{comentario}',[ComentarioController::class,'show'
 Route::get('listar/comentarios', [ComentarioController::class,'listar'])->name('comentario.ajax');
 Route::get('comentario/editar/{comentario}', [ComentarioController::class,'edit'])->name("comentario.edit");
 Route::post('comentario/actualizar/{comentario}', [ComentarioController::class,'update'])->name("comentario.update");
+Route::post('comontarios/guardar', [ComentarioController::class,'guardarComentarioDesdeSistema'])->name("comentario.guardar.sistema");
 Route::delete('eliminar/comentario/{comentario}', [ComentarioController::class,'destroy'])->name('comentario.delete');
 Route::get('darbaja/comentario',[ComentarioController::class,'darbaja'])->name('comentario.darbaja');
 Route::get('daralta/comentario/',[ComentarioController::class,'daralta'])->name('comentario.daralta');

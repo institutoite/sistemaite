@@ -142,6 +142,10 @@ class Persona extends Model
     {
         return $this->hasMany(Felicitado::class);
     }
+    public function comentario()
+    {
+        return $this->hasOne(Comentario::class);
+    } 
 
 
     

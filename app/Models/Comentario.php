@@ -13,4 +13,11 @@ class Comentario extends Model
     {
         return $this->morphMany(Observacion::class, 'observable');
     }
+    public function como(){
+        return $this->belognsTo(Como::class);
+    }
+    public function persona(){
+        return $this->belognsTo(Persona::class);
+    }
 }
+

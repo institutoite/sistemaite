@@ -23,8 +23,13 @@ class StoreComentarioRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
-            //
+            'nombre'=>'required|min:4|max:30',
+            'telefono'=>'required|min:8|max:10',
+            'intereses'=>'required',
+            'comentario'=>'required|max:499|min:5',
+            'como_id'=>'required',
         ];
     }
 }

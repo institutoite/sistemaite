@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comentario;
+use App\Models\Como;
+use App\Models\Interest;
 use App\Http\Requests\StoreComentarioRequest;
 use App\Http\Requests\UpdateComentarioRequest;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +31,9 @@ class ComentarioController extends Controller
      */
     public function create()
     {
-        return view("comentarios.create");
+        $comos=Como::get();
+        $interests=Interest::get();
+        return view("comentario.create",compact('comos','interests'));
     }
 
     /**
@@ -38,6 +42,7 @@ class ComentarioController extends Controller
      * @param  \App\Http\Requests\StoreComentarioRequest  $request
      * @return \Illuminate\Http\Response
      */
+    /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Guarda desde la web %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     public function guardarComentario(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -45,6 +50,7 @@ class ComentarioController extends Controller
             'telefono'=>'required|min:8|max:10',
             'interests'=>'required',
             'comentario'=>'required|max:499|min:5',
+            'como_id'=>'required',
         ]);
          if ($validator->passes()) {
             $comentario = new Comentario();
@@ -68,6 +74,31 @@ class ComentarioController extends Controller
         }else{
             return response()->json(['error' => $validator->errors()]);
         }
+    }
+    
+    /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Guarda desde sistema %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+    public function guardarComentarioDesdeSistema(StoreComentarioRequest $request)
+    {
+            $comentario = new Comentario();
+            $comentario->nombre = $request->nombre;
+            $comentario->telefono = $request->telefono;
+            $comentario->vigente = 1;
+            $comentario->como_id = $request->como_id;
+            $comentario->comentario = $request->comentario;
+            
+            $vectorIntereses  = array_values($request->intereses);
+            //dd($vectorIntereses);
+            //$comentario->interests=$intereses_limpio;
+                //$vectorParaGuardar=$vectorIntereses;
+                $html="<ol>";
+                foreach ($vectorIntereses as $elemento) {
+                    $html.="<li>".$elemento."</li>";
+                }
+                $html.="</ol>";
+            $comentario->interests=$html;
+            $comentario->save();
+            return redirect()->route('comentario.index');
+       
     }
     
     public function crearContactoComentario($comentario_id){
@@ -122,7 +153,8 @@ class ComentarioController extends Controller
      */
     public function edit(Comentario $comentario)
     {
-        return view('comentario.edit', compact('comentario'));
+        $comos=Como::get();
+        return view('comentario.edit', compact('comentario','comos'));
     }
 
     /**
@@ -134,12 +166,13 @@ class ComentarioController extends Controller
      */
     public function update(UpdateComentarioRequest $request, Comentario $comentario)
     {
-       
         $comentario->nombre = $request->nombre;
         $comentario->telefono = $request->telefono;
         $comentario->comentario = $request->comentario;
         $comentario->interests = $request->interests;
+        $comentario->como_id = $request->como_id;
         $comentario->save();
+
         return redirect()->route("comentario.show",$comentario);
     }
 
@@ -156,7 +189,9 @@ class ComentarioController extends Controller
     }
     
     public function listar(){
-        $comentarios=Comentario::all();
+        $comentarios=Comentario::join('comos','comos.id','comentarios.como_id')
+        ->select('comentarios.id','comentarios.nombre','interests','comentarios.comentario','comos.como','telefono','vigente')
+        ->get();
         return datatables()->of($comentarios)
         ->addColumn('btn', 'comentario.action')
         ->rawColumns(['btn','comentario','interests'])

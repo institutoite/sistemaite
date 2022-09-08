@@ -747,10 +747,12 @@
                         nombre:$("#nombre").val(),
                         telefono:$("#telefono").val(),
                         comentario:$("#comentario").val(),
+                        como_id:$("#como_id").val(),
                         interests:$msg,
                     },
                     success: function(data)
                     {
+                        console.log(data);
                         if(data.error){
                             if(data.error.nombre){
                                 $("#error-nombre").html(data.error.nombre);

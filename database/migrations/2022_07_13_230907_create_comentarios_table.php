@@ -23,6 +23,9 @@ class CreateComentariosTable extends Migration
 
             $table->unsignedBigInteger('como_id');
             $table->foreign('como_id')->references('id')->on('comos');
+            
+            $table->unsignedBigInteger('persona_id')->nullable();
+            $table->foreign('persona_id')->references('id')->on('personas');
 
             $table->timestamps();
         });
