@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" > 
             <div class="form-floating mb-3 text-gray">
-                <input  type="text" name="nombre" class="form-control @error('nombre') is-invalid @enderror" value="{{old('nombre',$persona->nombre ?? '')}}">
+                <input  type="text" name="nombre" class="form-control @error('nombre') is-invalid @enderror" value="{{old('nombre',$comentario->nombre ?? '')}}">
                 <label for="nombre">nombre</label>
             </div>
         </div>
@@ -180,8 +180,8 @@
                         <select onchange="mostrarModal();" onfocus="this.selectedIndex = -1;"  class="form-control @error('como_id') is-invalid @enderror" data-old="{{ old('como_id') }}" name="como_id" id="como_id">
                             <option value="" selected>Seleccionen como se enteró?</option>
                             @foreach ($comos as $como)
-                                @isset($persona)     
-                                    <option  value="{{$como->id}}" {{$como->id==$persona->como_id ? 'selected':''}}>{{$como->como}}</option>     
+                                @isset($comentario)     
+                                    <option  value="{{$como->id}}" {{$como->id==$comentario->como_id ? 'selected':''}}>{{$como->como}}</option>     
                                 @else
                                     <option value="{{ $como->id}}" {{ old('como_id') == $como->id ? 'selected':'' }} >{{ $como->como }}</option>
                                 @endisset 
@@ -413,7 +413,7 @@
     <div class="modal-dialog modal-lg modalito">
         <div class="modal-content">
             <div class="modal-header">
-                Seleccione la persona referenciadora
+                Seleccione la persona referenciadorax
                 <button class="btn btn-danger close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -438,4 +438,3 @@
         </div>
     </div>
 </div>
-

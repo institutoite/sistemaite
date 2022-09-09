@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Comentario;
 use App\Models\Como;
+use App\Models\Persona;
+use App\Models\Ciudad;
+use App\Models\Pais;
+use App\Models\Zona;
 use App\Models\Interest;
 use App\Http\Requests\StoreComentarioRequest;
 use App\Http\Requests\UpdateComentarioRequest;
@@ -74,8 +78,7 @@ class ComentarioController extends Controller
         }else{
             return response()->json(['error' => $validator->errors()]);
         }
-    }
-    
+    }    
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Guarda desde sistema %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     public function guardarComentarioDesdeSistema(StoreComentarioRequest $request)
     {
@@ -98,7 +101,16 @@ class ComentarioController extends Controller
             $comentario->interests=$html;
             $comentario->save();
             return redirect()->route('comentario.index');
-       
+    }
+
+    public function estudiantizarComentario(Comentario $comentario){
+        $persona=new Persona();
+        $ciudades=Ciudad::get();
+        $paises=Pais::get();
+        $zonas=Zona::get();
+        $interests=Interest::all();
+        $comos=Como::all();
+        return view('comentario.estudiantizarComentario',compact('ciudades','paises','zonas','interests','comos','comentario'));
     }
     
     public function crearContactoComentario($comentario_id){
