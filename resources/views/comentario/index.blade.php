@@ -35,7 +35,6 @@
 										<th>Nombre</th>
 										<th>Intereses</th>
 										<th>Comentario</th>
-										<th>Como</th>
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
@@ -192,15 +191,26 @@
                     }else{
                         $(row).addClass('text-danger');
                     }
+                    comentario_id = data['id'];
+                        $.ajax({
+                            url:"comentario/interests/"+comentario_id,
+                            success : function(json) {
+                                $html="<ol>"
+                                $.each(json, function(i, item) {
+                                    $html+="<li>"+item.interest+"</li>";
+                                });
+                                $html+="</ol>";
+                                $('td', row).eq(2).html($html);  
+                            },
+                        }); 
                 },
                 "ajax": "{{ url('listar/comentarios') }}",
                 "columns": [
                     {data: 'id'},
                     {data: 'vigente'},
                     {data: 'nombre'},
-                    {data: 'interests'},
+                    {data: 'nombre'},
                     {data: 'comentario'},
-                    {data: 'como'},
                     {
                         "name":"btn",
                         "data": 'btn',

@@ -50,7 +50,7 @@ use App\Http\Controllers\MododocenteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[ComentarioController::class,'listar'])->name('prueba');
+Route::get('prueba',[ComentarioController::class,'listarInterests'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -211,6 +211,7 @@ Route::get('comentarios',[ComentarioController::class,'index'])->name("comentari
 Route::get('comentarios/create',[ComentarioController::class,'create'])->name("comentario.create");
 Route::get('comentario/mostrar/{comentario}',[ComentarioController::class,'show'])->name("comentario.show");
 Route::get('listar/comentarios', [ComentarioController::class,'listar'])->name('comentario.ajax');
+Route::get('comentario/interests/{comentario_id}', [ComentarioController::class,'listarInterests'])->name('listar.interests.de,comentario');
 Route::get('comentario/editar/{comentario}', [ComentarioController::class,'edit'])->name("comentario.edit");
 Route::post('comentario/actualizar/{comentario}', [ComentarioController::class,'update'])->name("comentario.update");
 Route::post('comontarios/guardar', [ComentarioController::class,'guardarComentarioDesdeSistema'])->name("comentario.guardar.sistema");

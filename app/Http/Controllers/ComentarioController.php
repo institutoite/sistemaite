@@ -60,20 +60,12 @@ class ComentarioController extends Controller
             $comentario = new Comentario();
             $comentario->nombre = $request->nombre;
             $comentario->telefono = $request->telefono;
-                $intereses_limpio=substr($request->interests, 0, -1);
-                $comentario->vigente = 1;
-                $comentario->como_id = $request->como_id;
-                $comentario->comentario = $request->comentario;
-                $comentario->interests=$intereses_limpio;
-                $vectorIntereses  = explode(',',$comentario->interests);
-                $vectorParaGuardar=$vectorIntereses;
-                $html="<ol>";
-                foreach ($vectorParaGuardar as $elemento) {
-                    $html.="<li>".$elemento."</li>";
-                }
-                $html.="</ol>";
-            $comentario->interests=$html;
+            $comentario->vigente = 1;
+            $comentario->como_id = $request->como_id;
+            $comentario->comentario = $request->comentario;
             $comentario->save();
+            $comentario->interests()->sync(array_values($request->interests));
+            $vectorIntereses=$comentario->interests;
             return response()->json(['comentario' => $comentario,'vector_intereses'=>$vectorIntereses]);
         }else{
             return response()->json(['error' => $validator->errors()]);
@@ -88,18 +80,8 @@ class ComentarioController extends Controller
             $comentario->vigente = 1;
             $comentario->como_id = $request->como_id;
             $comentario->comentario = $request->comentario;
-            
-            $vectorIntereses  = array_values($request->intereses);
-            //dd($vectorIntereses);
-            //$comentario->interests=$intereses_limpio;
-                //$vectorParaGuardar=$vectorIntereses;
-                $html="<ol>";
-                foreach ($vectorIntereses as $elemento) {
-                    $html.="<li>".$elemento."</li>";
-                }
-                $html.="</ol>";
-            $comentario->interests=$html;
             $comentario->save();
+            $comentario->interests()->sync(array_values($request->interests));
             return redirect()->route('comentario.index');
     }
 
@@ -109,8 +91,18 @@ class ComentarioController extends Controller
         $paises=Pais::get();
         $zonas=Zona::get();
         $interests=Interest::all();
+
         $comos=Como::all();
-        return view('comentario.estudiantizarComentario',compact('ciudades','paises','zonas','interests','comos','comentario'));
+        
+        $interests_currents=$comentario->interests; 
+        $ids=[];
+        foreach ($interests_currents as $interest) {
+            $ids[] = $interest->id;
+        }
+        $interests_faltantes = Interest::whereNotIn('id', $ids)->get();
+
+        //$interests_currents=
+        return view('comentario.estudiantizarComentario',compact('ciudades','paises','zonas','interests','interests_currents','interests_faltantes','comos','comentario'));
     }
     
     public function crearContactoComentario($comentario_id){
@@ -154,7 +146,8 @@ class ComentarioController extends Controller
      */
     public function show(Comentario $comentario)
     {
-        return view('comentario.show', compact('comentario'));
+        $interests=$comentario->interests;
+        return view('comentario.show', compact('comentario','interests'));
     }
 
     /**
@@ -202,14 +195,18 @@ class ComentarioController extends Controller
     
     public function listar(){
         $comentarios=Comentario::join('comos','comos.id','comentarios.como_id')
-        ->select('comentarios.id','comentarios.nombre','interests','comentarios.comentario','comos.como','telefono','vigente')
+        ->select('comentarios.id','comentarios.nombre','comentarios.comentario','comos.como','telefono','vigente')
         ->get();
         return datatables()->of($comentarios)
         ->addColumn('btn', 'comentario.action')
-        ->rawColumns(['btn','comentario','interests'])
+        ->rawColumns(['btn','comentario'])
         ->toJson();
     }
 
+    public function listarInterests($comentario_id){
+        $interests=Comentario::findOrFail($comentario_id)->interests;
+        return response()->json($interests);
+    }
     public function darbaja(Request $request)
     {
         $comentario=Comentario::findOrFail($request->comentario_id);

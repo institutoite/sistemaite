@@ -89,7 +89,7 @@ class PersonaController extends Controller
     // public function store(PersonaStoreRequest $request)
     public function store(PersonaStoreRequest $request)
     {
-        //dd($request->all());
+        dd($request->all());
         $persona=new Persona();
         $persona->nombre = $request->nombre;
         $persona->apellidop = $request->apellidop;

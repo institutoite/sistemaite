@@ -19,5 +19,8 @@ class Comentario extends Model
     public function persona(){
         return $this->belognsTo(Persona::class);
     }
+    public function interests() {
+        return $this->belongsToMany(Interest::class)->withTimestamps();
+    }
 }
 

@@ -146,6 +146,7 @@
                         <td>
                             {{$user->name}}
                             <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5" width="100"> 
+                            {{URL::to('/').Storage::url("$user->foto")}}
                         </td>
                     </tr>
                 </tbody>

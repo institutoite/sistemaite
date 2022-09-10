@@ -53,7 +53,13 @@
                                 </tr>
                                 <tr>
                                     <td>INTERESES</td>
-                                    <td>{!!$comentario->interests!!}</td>
+                                    <td>
+                                    <ol>
+                                    @foreach ($interests as $interest)
+                                        <li>{{$interest->interest}}</li>
+                                    @endforeach
+                                    </ol>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>    

@@ -12,7 +12,6 @@ class CreateInterestPersonaTable extends Migration
     public function up()
     {
         Schema::create('interest_persona', function (Blueprint $table) {
-            
             $table->unsignedBigInteger('interest_id');
             $table->foreign('interest_id')->references('id')->on('interests');
             $table->unsignedBigInteger('persona_id');

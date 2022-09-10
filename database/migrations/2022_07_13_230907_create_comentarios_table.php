@@ -18,9 +18,7 @@ class CreateComentariosTable extends Migration
             $table->string("nombre",40);
             $table->string("telefono",12);
             $table->string("comentario",500);
-            $table->string("interests",500);
             $table->boolean("vigente");
-
             $table->unsignedBigInteger('como_id');
             $table->foreign('como_id')->references('id')->on('comos');
             

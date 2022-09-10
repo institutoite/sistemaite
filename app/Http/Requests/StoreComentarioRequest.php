@@ -27,7 +27,7 @@ class StoreComentarioRequest extends FormRequest
         return [
             'nombre'=>'required|min:4|max:30',
             'telefono'=>'required|min:8|max:10',
-            'intereses'=>'required',
+            'interests'=>'required',
             'comentario'=>'required|max:499|min:5',
             'como_id'=>'required',
         ];

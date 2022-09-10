@@ -253,7 +253,7 @@
 
 
 <!--course section start-->
-<section class="section-padding video-section" >
+{{-- <section class="section-padding video-section" >
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-6">
@@ -275,7 +275,7 @@
         </div>
     </div>
     <!--course-->
-</section>
+</section> --}}
 
 @include('home.programacion')
 
@@ -670,7 +670,9 @@
     <script src="{{asset('dist/js/booth/jquery-1.9.1.min.js')}}"></script> 
 	<script src="{{asset('dist/js/booth/owl.carousel.js')}}"></script>
 	<script>
+        let vector_intereses=[];
 		$(document).ready(function() { 
+            
 			$("#owl-demo").owlCarousel({
 				
                 autoPlay: 3000, //Set AutoPlay to 3 seconds 
@@ -684,13 +686,13 @@
                 type: 'GET',
                 success: function(json) {
                     $html="";
-                    $html+="<div class='table-responsive text-left ps-5'><table class=''><tbody><tr>";
+                    $html+="<div class='table-responsive text-left ps-5'><table id='tablita' class=''><tbody><tr>";
                     k=1;
                     for (let j in json.interests) {
                         if(k % 4 !=0 ){
                             $html+="<td class=''><div class='form-check form-switch'>";
-                            $html+="<input class='form-check-input' id="+ json.interests[j].interest +"  name='interests[]' type='checkbox'>";
-                            $html+="<label class='form-check-label' for='"+ json.interests[j].interest +"'>"+json.interests[j].interest+"</label>";
+                            $html+="<input class='form-check-input checkinterest' id="+ json.interests[j].id +"  name='interests[]' type='checkbox'>";
+                            $html+="<label class='form-check-label' for='"+ json.interests[j].id +"'>"+json.interests[j].interest+"</label>";
                             $html+="</div></td>";
                         }
                         else{
@@ -711,6 +713,10 @@
                 }
             });
 
+            $("#interests").on("click",'.checkinterest', function (e) {
+                vector_intereses.push($(this).attr('id'));
+                console.log(vector_intereses);
+            });
         
             $("#formulario").submit(function(event) {
                 event.preventDefault();
@@ -720,11 +726,6 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
-                $msg="";
-                $("input:checkbox:checked").each(function() {
-                    $msg+=$(this).attr('id')+',';
-                });
-
                 $("#error").empty();
 
                 $("#error-nombre").addClass("d-none");
@@ -748,7 +749,7 @@
                         telefono:$("#telefono").val(),
                         comentario:$("#comentario").val(),
                         como_id:$("#como_id").val(),
-                        interests:$msg,
+                        interests:vector_intereses,
                     },
                     success: function(data)
                     {
@@ -797,7 +798,7 @@
                             contardor=1;
                             $msg="Hola. mi nombre es:%0A*"+data.comentario.nombre+"*%0A y mi telefono es:%0A*"+data.comentario.telefono+"*%0A Requerimiento: %0A*"+data.comentario.comentario+"* %0AVisite su página estoy interesado en los siguientes servicios o productos:%0A";
                             $.each( data.vector_intereses, function( key, value ) {
-                                $msg+="*"+contardor+".- "+value +'*%0A';
+                                $msg+="*"+contardor+".- "+value.interest +'*%0A';
                                 contardor++;
                             });
                             $msg+="%0A Descargar contacto:%0A";

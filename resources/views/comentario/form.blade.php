@@ -69,34 +69,40 @@
 
 
 @isset($comentario)
-    
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
-        @if($errors->has('interests'))
-        <span class="text-danger"> {{ $errors->first('interests')}}</span>
-        @endif
-    </div>
-</div>
-<label for="interests" class="">INTERESES</label>
-<div class="form-floating">
-    <textarea placeholder="Ingrese intereses del cliente"  name="interests" rows="5" id="interests" class="form-control @error('interests') is-invalid @enderror" >{{old('interests',$comentario->interests ?? '')}}</textarea>
-</div>
+
 @else
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
-            @if($errors->has('intereses'))
-            <span class="text-danger"> {{ $errors->first('intereses')}}</span>
+            @if($errors->has('interests'))
+            <span class="text-danger"> {{ $errors->first('interests')}}</span>
             @endif
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 @error('interests') is-invalid @enderror">
-            @foreach ($interests as $interest)
-            <div class="form-check form-switch form-check-inline mb-2 mt-2 ml-2 mr-2">
-                <input class="form-check-input" type="checkbox" name="intereses[{{$interest->id}}]" value="{{$interest->interest}}" id="{{$interest->interest}}">
-                <label class="form-check-label" for="{{$interest->id}}">{{$interest->interest}}</label>
-            </div>
-            @endforeach
+            <table class="" width="100%">
+                <tbody>
+                <tr>
+                @php
+                    $k=1;
+                @endphp
+                    @foreach ($interests as $interest)
+                        @if($k % 5 != 0)
+                            <td>
+                                <div class='form-check form-switch'>
+                                <input class="form-check-input" type="checkbox" name="interests[{{$interest->id}}]" value="{{$interest->id}}" id="{{$interest->interest}}">
+                                <label class="form-check-label" for="{{$interest->interest}}">{{$interest->interest}}</label>
+                            </div></td>
+                        @else
+                            </tr>
+                            <tr>
+                        @endif
+                        @php
+                            $k=$k+1;
+                        @endphp
+                    @endforeach        
+                </tbody>
+            </table>
         </div>
     </div>
 @endisset
