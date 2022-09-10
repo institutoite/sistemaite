@@ -380,7 +380,7 @@
     
     <textarea placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" >{{old('observacion',$comentario->comentario ?? '')}}</textarea>
     
-
+    <input type="hidden" name="comentario_id" value="{{$comentario->id}}">
 
     
 <div class="modal" tabindex="-1" id="modal-ite">

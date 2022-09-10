@@ -810,6 +810,7 @@
                                 a.target= '_blank';
                                 a.href=$url;
                                 a.click();
+                            vector_intereses=[];
                         }
                     }
                 });

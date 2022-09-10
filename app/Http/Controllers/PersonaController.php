@@ -12,6 +12,7 @@ use App\Models\Administrativo;
 use App\Models\Cliservicio;
 use App\Models\Apoderado;
 use App\Models\Docente;
+use App\Models\Comentario;
 use App\Models\Mensaje;
 use App\Models\Proveedor;
 use App\Models\User;
@@ -89,7 +90,7 @@ class PersonaController extends Controller
     // public function store(PersonaStoreRequest $request)
     public function store(PersonaStoreRequest $request)
     {
-        dd($request->all());
+        //dd($request->all());
         $persona=new Persona();
         $persona->nombre = $request->nombre;
         $persona->apellidop = $request->apellidop;
@@ -118,6 +119,14 @@ class PersonaController extends Controller
         $persona->ciudad_id = $request->ciudad_id;
         $persona->zona_id = $request->zona_id;
         $persona->save();
+
+        if(isset($request->comentario_id)){
+            $comentario=Comentario::findOrFail($request->comentario_id);
+            $comentario->persona_id=$persona->id;
+            $comentario->vigente=0;
+            $comentario->save();
+        }
+
         $this->CrearContacto($persona->id);
         $persona->interests()->sync(array_keys($request->interests));
         $user = new User();
