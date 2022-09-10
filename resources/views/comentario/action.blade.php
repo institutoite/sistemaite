@@ -33,7 +33,10 @@
     <i class="fas fa-user-check"></i>
 </a>
 
-<a href="https://api.whatsapp.com/send?phone=591{{$telefono}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Mostrar Observaciones">
+{{-- <a href="https://api.whatsapp.com/send?phone=591{{$telefono}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Mostrar Observaciones">
+    <i class="fab fa-whatsapp"></i>
+</a> --}}
+<a class="btn-accion-tabla tooltipsC btn-sm mr-2 mostraradministrativos" title="Delegar cliente">
     <i class="fab fa-whatsapp"></i>
 </a>
 

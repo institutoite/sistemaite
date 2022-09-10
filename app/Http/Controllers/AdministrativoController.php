@@ -89,6 +89,16 @@ class AdministrativoController extends Controller
         //
     }
 
+    public function contactarAdministrativos($comentario_id){
+        $administrativos = Administrativo::join('personas','personas.id','administrativos.persona_id')
+        ->select('administrativos.id','personas.nombre','personas.apellidop','personas.telefono')
+        ->get();
+        return datatables()->of($administrativos)
+                ->addColumn('btn', 'administrativo.actiondelegar')
+                ->rawColumns(['btn'])
+                ->toJson();
+    }
+
     public function vistaCartera(){
         return view('cartera.index');
     }

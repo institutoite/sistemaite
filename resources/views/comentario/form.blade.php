@@ -67,25 +67,55 @@
     <textarea placeholder="Ingrese un comentario"  name="comentario" rows="5" id="comentario" class="form-control @error('comentario') is-invalid @enderror" >{{old('comentario',$comentario->comentario ?? '')}}</textarea>
 @endisset
 
-
-@isset($comentario)
-
-@else
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
-            @if($errors->has('interests'))
-            <span class="text-danger"> {{ $errors->first('interests')}}</span>
-            @endif
-        </div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+        @if($errors->has('interests'))
+        <span class="text-danger"> {{ $errors->first('interests')}}</span>
+        @endif
     </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 @error('interests') is-invalid @enderror">
-            <table class="" width="100%">
+</div>
+
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 @error('interests') is-invalid @enderror">
+        <table class="" width="100%">
                 <tbody>
                 <tr>
                 @php
                     $k=1;
                 @endphp
+                @isset($comentario)
+                    @foreach ($interests_currents as $current)
+                        @if($k % 5 != 0)
+                            <td>
+                                <div class='form-check form-switch'>
+                                <input class="form-check-input" type="checkbox" name="interests[{{$current->id}}]" checked value="{{$current->interest}}" id="{{$current->id}}">
+                            <label class="form-check-label" for="{{$current->id}}">{{$current->interest}}</label>
+                            </div></td>
+                        @else
+                            </tr>
+                            <tr>
+                        @endif
+                        @php
+                            $k=$k+1;
+                        @endphp
+                    @endforeach
+                    @foreach ($interests_faltantes as $faltante)
+                        @if($k % 5 != 0)
+                            <td>
+                                <div class='form-check form-switch'>
+                                <input class="form-check-input" type="checkbox" name="interests[{{$faltante->id}}]"  value="{{$faltante->interest}}" id="{{$faltante->id}}">
+                                <label class="form-check-label" for="{{$faltante->id}}">{{$faltante->interest}}</label>
+                            </div></td>
+                        @else
+                            </tr>
+                            <tr>
+                        @endif
+                        @php
+                            $k=$k+1;
+                        @endphp
+                    @endforeach
+                @else
                     @foreach ($interests as $interest)
                         @if($k % 5 != 0)
                             <td>
@@ -101,8 +131,8 @@
                             $k=$k+1;
                         @endphp
                     @endforeach        
-                </tbody>
-            </table>
-        </div>
+                @endisset
+            </tbody>
+        </table>
     </div>
-@endisset
+</div>

@@ -23,8 +23,6 @@
                                 </a>
                             </div>
                     </div>
-                    
-
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="comentarios" class="table table-striped table-hover table-borderless">
@@ -45,7 +43,8 @@
             </div>
         </div>
     </div>
-     @include('observacion.modalcreate')
+    @include('observacion.modalcreate')
+    @include('administrativo.modal')
 @endsection
 
 @section('js')
@@ -57,9 +56,7 @@
     <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
     <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
     <script src="{{asset('assets/js/observacion.js')}}"></script>
-    
-    
-
+    <script src="{{asset('assets/js/administrativos.js')}}"></script>
 
     <script>
         //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -107,6 +104,14 @@
                 url="observaciones/" + observable_id + "/" + observable_type,
                 mostrarCrudObservaciones(url);
                 $("#modal-mostrar-observaciones").modal("show");
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR CONTACTOS  ADMINISTRATIVOS Y DERIVAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.mostraradministrativos', function(e) {
+            e.preventDefault();
+                comentario_id =$(this).closest('tr').attr('id');
+                console.log(comentario_id);
+                mostrarAdministrativos(comentario_id);
+                $("#contacto-administrativos").modal("show");
         });
 
 

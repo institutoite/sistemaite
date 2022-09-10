@@ -105,8 +105,10 @@ class ComentarioController extends Controller
         return view('comentario.estudiantizarComentario',compact('ciudades','paises','zonas','interests','interests_currents','interests_faltantes','comos','comentario'));
     }
     
-    public function crearContactoComentario($comentario_id){
-        $comentario=Comentario::find($comentario_id);
+    // public function crearContactoComentario($comentario_id){
+        public function crearContactoComentario(){
+        $comentario_id=2;
+        $comentario=Comentario::findOrFail($comentario_id);
         $nombre_archivo='comentarios/'.$comentario->id.'.vcf';
         Storage::append($nombre_archivo, 'BEGIN:VCARD');
         Storage::append($nombre_archivo, 'VERSION:3.0');
@@ -119,23 +121,23 @@ class ComentarioController extends Controller
         Storage::append($nombre_archivo, "URL:wa.me/591".$telefono);
         Storage::append($nombre_archivo, "LANG;TYPE=work;PREF=2:es");
         Storage::append($nombre_archivo, "NOTE:COMENTARIO:".$comentario->comentario);
-        Storage::append($nombre_archivo, "NOTE:COMENTARIO:".$comentario->como->como);
-        Storage::append($nombre_archivo, "NOTE:INTERESES:".$comentario->interests);
-        Storage::append($nombre_archivo, "NOTE:FECHA REGISTRO:".$comentario->created_at->format('d-m-Y'));
-        Storage::append($nombre_archivo, "NOTE:HORA REGISTRO:".$comentario->created_at->format('h:i:s'));
-        Storage::append($nombre_archivo, 'END:VCARD');
-        $contacto=Storage::disk('public')->put($nombre_archivo,'Contents');
+        Storage::append($nombre_archivo, "NOTE:COMENTARIO:".$comentario->como);
+        // Storage::append($nombre_archivo, "NOTE:INTERESES:".$comentario->interests);
+        // Storage::append($nombre_archivo, "NOTE:FECHA REGISTRO:".$comentario->created_at->format('d-m-Y'));
+        // Storage::append($nombre_archivo, "NOTE:HORA REGISTRO:".$comentario->created_at->format('h:i:s'));
+        // Storage::append($nombre_archivo, 'END:VCARD');
+        // $contacto=Storage::disk('public')->put($nombre_archivo,'Contents');
 
-        $url=storage_path("app\\comentarios\\".$comentario->id.".vcf");
-        // if(!is_null($url)){
-        //     if (file_exists($url)){
-        //         if (unlink($url)) {
-        //             $this->CrearContacto($comentario);
-        //         }         
-        //     }
-        // }
+        // $url=storage_path("app\\comentarios\\".$comentario->id.".vcf");
+        // // if(!is_null($url)){
+        // //     if (file_exists($url)){
+        // //         if (unlink($url)) {
+        // //             $this->CrearContacto($comentario);
+        // //         }         
+        // //     }
+        // // }
        
-        return response()->download($url);
+        // return response()->download($url);
     }
 
     /**
@@ -159,7 +161,13 @@ class ComentarioController extends Controller
     public function edit(Comentario $comentario)
     {
         $comos=Como::get();
-        return view('comentario.edit', compact('comentario','comos'));
+        $interests_currents=$comentario->interests; 
+        $ids=[];
+        foreach ($interests_currents as $interest) {
+            $ids[] = $interest->id;
+        }
+        $interests_faltantes = Interest::whereNotIn('id', $ids)->get();
+        return view('comentario.edit', compact('comentario','comos','interests_faltantes','interests_currents'));
     }
 
     /**
@@ -174,10 +182,9 @@ class ComentarioController extends Controller
         $comentario->nombre = $request->nombre;
         $comentario->telefono = $request->telefono;
         $comentario->comentario = $request->comentario;
-        $comentario->interests = $request->interests;
         $comentario->como_id = $request->como_id;
         $comentario->save();
-
+        $comentario->interests()->sync(array_keys($request->interests));
         return redirect()->route("comentario.show",$comentario);
     }
 
@@ -191,6 +198,14 @@ class ComentarioController extends Controller
     {
         $comentario->delete();
         return response()->json(['mensaje'=>"Se eliminó correctamente"]);
+    }
+
+    public function comentarioGet($comentario_id){
+        $comentario=Comentario::findOrFail($comentario_id);
+        $comentario->comentario=rtrim(ltrim(trim(str_replace(' ', '%20', $comentario->comentario))));
+        $interests=$comentario->interests;
+        $data=['comentario'=>$comentario,'interests'=>$interests];
+        return response()->json($data);
     }
     
     public function listar(){

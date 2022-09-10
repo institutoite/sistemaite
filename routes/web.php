@@ -50,7 +50,7 @@ use App\Http\Controllers\MododocenteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[ComentarioController::class,'listarInterests'])->name('prueba');
+Route::get('prueba',[ComentarioController::class,'crearContactoComentario'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -210,6 +210,7 @@ Route::get('comentario/guardar',[ComentarioController::class,'guardarComentario'
 Route::get('comentarios',[ComentarioController::class,'index'])->name("comentario.index");
 Route::get('comentarios/create',[ComentarioController::class,'create'])->name("comentario.create");
 Route::get('comentario/mostrar/{comentario}',[ComentarioController::class,'show'])->name("comentario.show");
+Route::get('comentario/get/{comentario_id}',[ComentarioController::class,'comentarioGet'])->name("comentario.get");
 Route::get('listar/comentarios', [ComentarioController::class,'listar'])->name('comentario.ajax');
 Route::get('comentario/interests/{comentario_id}', [ComentarioController::class,'listarInterests'])->name('listar.interests.de,comentario');
 Route::get('comentario/editar/{comentario}', [ComentarioController::class,'edit'])->name("comentario.edit");
@@ -239,6 +240,7 @@ Route::resource('docentes', "DocenteController");
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       A D M I N I S T R AT I V O S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('administrativos','AdministrativoController@index')->name('administrativo.index');
+Route::get('administrativos/contactar/{comentario_id}',[AdministrativoController::class,'contactarAdministrativos'])->name('administrativo.contactar');
 Route::get('micartera/view',[AdministrativoController::class,'vistaCartera'])->name('administrativo.vistaCartera');
 Route::get('micartera/inscripciones',[AdministrativoController::class,'miCarteraInscripciones'])->name('administrativo.micartera.inscripciones');
 Route::get('micartera/inscripciones/desvigentes',[AdministrativoController::class,'miCarteraInscripcionesDesvigentes'])->name('administrativo.micartera.inscripciones.desvigentes');

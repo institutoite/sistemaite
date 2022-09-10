@@ -91,3 +91,4 @@ Swal.fire({
   inputValue: 25
 })
 para calificar 
+https://api.whatsapp.com/send?phone=591{{$telefono}}
