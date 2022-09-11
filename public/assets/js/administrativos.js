@@ -10,7 +10,7 @@ function mostrarAdministrativos(comentario_id) {
             $un_comentario=result.comentario;
             $unos_interests=result.interests;
             $.each($unos_interests, function (key, value) {
-                $men += "*" + value.interest + "*%0A";
+                $men +=(Number(key)+Number(1))+".-%20"+value.interest + "%0A";
             });
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -28,26 +28,17 @@ function mostrarAdministrativos(comentario_id) {
             },
             "createdRow": function (row, data, dataIndex) {
                 $(row).attr('id', data['id']); // agrega dinamiacamente el id del row
-                $mensaje = "https://api.whatsapp.com/send?phone=591" + data['telefono'] + "&text=Nombre:%0A*"+ $un_comentario.nombre +"*%0A";
-                $mensaje += "Telefono:%0A" + $un_comentario.telefono + "%0A";
-                $mensaje += "Comentario:%0A" + ($un_comentario.comentario) + "%0A";
-                
-                // $.each($unos_interests, function (key, value) {
-                //     $men +="*" + value.interest +"*%0A";
-                // });
-                $mensaje +=$men;
-                $mensaje += "%0A%20Descargar%20contacto:%0A";
+                $mensaje = "https://api.whatsapp.com/send?phone=591" + data['telefono'] + "&text=*Nombre:*%0A" + $un_comentario.nombre.replaceAll(' ', '%20') +"%0A%0A";
+                $mensaje += "*Telefono:*%0A" + $un_comentario.telefono + "%0A%0A";
+                $mensaje += "*Comentario:*%0A" + ($un_comentario.comentario) + "%0A%0A";
+                $mensaje += "*Interes%20del%20cliente:*%0A" +$men;
+                $mensaje += "%0A*Descargar%20contacto:*%0A";
                 $mensaje += "http://localhost/sistemaite/public/crear/contacto/" + $un_comentario.id+"%0A";
-                $mensaje += "%0A%20Link%20del%20cliente:%0A";
+                $mensaje += "%0A*Link%20del%20cliente:*%0A";
                 $mensaje += "https://api.whatsapp.com/send?phone=591" + $un_comentario.telefono;
                 $mensaje += $mensaje.replace(/&nbsp[;]?/ig, '');
-                //$mensaje.replaceAll(' ', '%20');
-                console.log($mensaje);
-                //$("#"+data['btn'+" "]).target("_blank");
-                //$("#"+data['id']).href($mensaje);
-                // hacer ajax que traiga el comentario del id leido y que lo convierta en link y se lo agrege a actiondelegar
+                $('td', row).eq(4).html("<a target='_blank' href='" + $mensaje + "'><i class='fas fa-reply-all'></i></>");
             },
-            
             "columns": [
                 { "width": "10%", data: 'id' },
                 { "width": "30%", data: 'nombre' },

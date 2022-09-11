@@ -94,7 +94,7 @@ class AdministrativoController extends Controller
         ->select('administrativos.id','personas.nombre','personas.apellidop','personas.telefono')
         ->get();
         return datatables()->of($administrativos)
-                ->addColumn('btn', 'administrativo.actiondelegar')
+                ->addColumn('btn', '')
                 ->rawColumns(['btn'])
                 ->toJson();
     }

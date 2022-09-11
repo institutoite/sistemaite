@@ -14,7 +14,7 @@ class Comentario extends Model
         return $this->morphMany(Observacion::class, 'observable');
     }
     public function como(){
-        return $this->belognsTo(Como::class);
+        return $this->belongsTo(Como::class);
     }
     public function persona(){
         return $this->belognsTo(Persona::class);
@@ -23,4 +23,3 @@ class Comentario extends Model
         return $this->belongsToMany(Interest::class)->withTimestamps();
     }
 }
-
