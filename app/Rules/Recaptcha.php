@@ -25,7 +25,7 @@ class Recaptcha implements Rule
      */
     public function passes($attribute, $value)
     {
-        return false;
+        //return false;
          $response=Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify',[
              'secret'=>"6LeZpOQhAAAAAE_HhdRCOAWNPMqMuBBGlXwkTJ26",
              'response'=>$value])->object();

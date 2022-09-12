@@ -49,14 +49,20 @@ class ComentarioController extends Controller
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Guarda desde la web %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     public function guardarComentario(Request $request)
     {
+        
         $validator = Validator::make($request->all(), [
             'nombre'=>'required|min:4|max:30',
             'telefono'=>'required|min:8|max:10',
             'interests'=>'required',
             'comentario'=>'required|max:499|min:5',
             'como_id'=>'required',
-        ]);
-         if ($validator->passes()) {
+            'g-recaptcha-response' => 'required|captcha',
+        ],
+        [
+            'g-recaptcha-response.required' => 'Por favor Marque: No soy un robot',
+            ]
+        );
+        if ($validator->passes()) {
             $comentario = new Comentario();
             $comentario->nombre = $request->nombre;
             $comentario->telefono = $request->telefono;
@@ -64,11 +70,21 @@ class ComentarioController extends Controller
             $comentario->como_id = $request->como_id;
             $comentario->comentario = $request->comentario;
             $comentario->save();
+            // return response()->json($request->all());
             $comentario->interests()->sync(array_values($request->interests));
             $vectorIntereses=$comentario->interests;
             return response()->json(['comentario' => $comentario,'vector_intereses'=>$vectorIntereses]);
+            // return response()->json($validator->errors());
         }else{
-            return response()->json(['error' => $validator->errors()]);
+            
+            $errores=[];
+            foreach ($validator->errors()->toArray() as $key => $value) {
+                if($key=="g-recaptcha-response")
+                    $errores['recaptcha']=$value;
+                else
+                    $errores[$key]=$value;
+            }
+            return response()->json(['error' =>$validator->errors()]);
         }
     }    
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Guarda desde sistema %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/

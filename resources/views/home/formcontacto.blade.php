@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="nombre" value="" placeholder="Ingrese su nombre">
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="DAVID" placeholder="Ingrese su nombre">
                     </div>
                 </div>
                 <div class="col-sm-12">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <input type="number" class="form-control" id="telefono" value="" placeholder="Ingrese su número de telefono">
+                        <input type="number" class="form-control" id="telefono" name="telefono" value="71039910" placeholder="Ingrese su número de telefono">
                     </div>
                 </div>
                 <div class="col-sm-12">
@@ -37,10 +37,12 @@
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Comenteneos su su necesidad..." name="comentario" id="comentario" rows="5"></textarea>
+                        <textarea class="form-control" placeholder="Comenteneos su su necesidad..." name="comentario" id="comentario" rows="5">esto es un comentario</textarea>
                     </div>
                 </div>
-                <input type="number" class="form-control" hidden id="como_id" id="como_id" value="6" placeholder="Ingrese su número de telefono">
+                <input type="number" class="form-control" hidden id="como_id" name="como_id" value="6" placeholder="Ingrese su número de telefono">
+                {{-- <input type="text" class="form-control"  id="g-recaptcha-response" name="g-recaptcha-response"  value=""> --}}
+               
             </div>
             <div class="row">
                 <div class="col-sm-12">
@@ -56,6 +58,18 @@
 
                             </div>
 
+                                
+                            <div class="col-sm-12">
+                                <p id="error-recaptcha" class="d-none text-danger text-left"></p>
+                            </div>
+                            <div class="container-fluid h-100 mt-3"> 
+                                <div class="row w-100 align-items-center">
+                                    <div class="col text-center">
+                                        {!! NoCaptcha::renderJs() !!}
+                                        {!! NoCaptcha::display() !!}
+                                    </div>	
+                                </div>
+                            </div>
                             <div class="container-fluid h-100 mt-3"> 
                                 <div class="row w-100 align-items-center">
                                     <div class="col text-center">
@@ -67,6 +81,7 @@
                     </div>
                 </div>
             </div>
+               
         </form>
     </div>
 </div> <!-- /.fin -->

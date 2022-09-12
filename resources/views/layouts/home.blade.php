@@ -669,6 +669,23 @@
     {{-- js de booth --}}
     <script src="{{asset('dist/js/booth/jquery-1.9.1.min.js')}}"></script> 
 	<script src="{{asset('dist/js/booth/owl.carousel.js')}}"></script>
+    {{-- <script src="https://www.google.com/recaptcha/api.js?render=6LeZpOQhAAAAAPy0jqwkFqlBflZYIBYpAPGahcbd"></script> --}}
+    {{-- <script>
+        document.addEventListener('submit', function(e){
+            e.preventDefault();
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6LeZpOQhAAAAAPy0jqwkFqlBflZYIBYpAPGahcbd', {action: 'submit'}).then(function(token) {
+                    let form=e.target;
+                    let input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name="g-recaptcha-response";
+                    input.value = token;
+                    form.appendChild(input);
+                    form.submit();
+                });
+            });
+        });
+    </script> --}}
 	<script>
         let vector_intereses=[];
 		$(document).ready(function() { 
@@ -691,11 +708,15 @@
                     for (let j in json.interests) {
                         if(k % 4 !=0 ){
                             $html+="<td class=''><div class='form-check form-switch'>";
-                            $html+="<input class='form-check-input checkinterest' id="+ json.interests[j].id +"  name='interests[]' type='checkbox'>";
+                            $html+="<input class='form-check-input checkinterest' id="+ json.interests[j].id +" name='interests[]' type='checkbox' value="+ json.interests[j].id+">";
                             $html+="<label class='form-check-label' for='"+ json.interests[j].id +"'>"+json.interests[j].interest+"</label>";
                             $html+="</div></td>";
                         }
                         else{
+                            $html+="<td class=''><div class='form-check form-switch'>";
+                            $html+="<input class='form-check-input checkinterest' id="+ json.interests[j].id +" name='interests[]' type='checkbox' value="+ json.interests[j].id+">";
+                            $html+="<label class='form-check-label' for='"+ json.interests[j].id +"'>"+json.interests[j].interest+"</label>";
+                            $html+="</div></td>";
                             $html+="</tr>";
                             $html+="<tr>";
                         }
@@ -715,11 +736,13 @@
 
             $("#interests").on("click",'.checkinterest', function (e) {
                 vector_intereses.push($(this).attr('id'));
-                console.log(vector_intereses);
+                //console.log(vector_intereses);
             });
         
             $("#formulario").submit(function(event) {
                 event.preventDefault();
+                var formData = $('#formulario').serializeArray();
+
                 var token = $("input[name=_token]").val();
                 $.ajaxSetup({
                     headers: {
@@ -743,14 +766,18 @@
                 jQuery.ajax({
                    headers:{'X-CSRF-TOKEN':token},
                     url: "comentario/guardar",
-                    data:{
-                        token:token,
-                        nombre:$("#nombre").val(),
-                        telefono:$("#telefono").val(),
-                        comentario:$("#comentario").val(),
-                        como_id:$("#como_id").val(),
-                        interests:vector_intereses,
-                    },
+                    // data:{
+                    //     // token:token,
+                    //     // nombre:$("#nombre").val(),
+                    //     // telefono:$("#telefono").val(),
+                    //     // comentario:$("#comentario").val(),
+                    //     // como_id:$("#como_id").val(),
+                    //     // // g-recaptcha-response:$("#g-recaptcha-response").val(),
+                    //     // interests:vector_intereses,
+
+                    // },
+                    data: formData,
+                    type:"POST",
                     success: function(data)
                     {
                         console.log(data);
@@ -783,6 +810,13 @@
                             }else{
                                 $("#card-interests").addClass("border-success");
                             }
+                            if(data.error.recaptcha){
+                                $("#error-recaptcha").html(data.error.recaptcha);
+                                $("#error-recaptcha").removeClass("d-none");
+                                $("#card-recaptcha").addClass("border-danger");
+                            }else{
+                                $("#card-recaptcha").addClass("border-success");
+                            }
 
                         }
                         else{
@@ -805,12 +839,13 @@
                             $msg+="{{URL::to('/')}}/crear/contacto/"+data.comentario.id;
                             $msg+="%0A Link del cliente:%0A";
                             $msg+="https://api.whatsapp.com/send?phone=591"+data.comentario.telefono;
-                            $url="https://api.whatsapp.com/send?phone=591"+data.comentario.telefono+"&text="+$msg;
+                            $url="https://api.whatsapp.com/send?phone=59171039910&text="+$msg;
                             let a= document.createElement('a');
                                 a.target= '_blank';
                                 a.href=$url;
                                 a.click();
                             vector_intereses=[];
+                            //$("#formulario")[0].reset();
                         }
                     }
                 });

@@ -227,7 +227,11 @@ class PersonaController extends Controller
             case 'administrativo':
                 $administrativo = new Administrativo();
                 $administrativo->cargo="Prueba";
+                $administrativo->diasprueba=3;
+                $administrativo->estado=3;
+                $administrativo->fechaingreso=Carbon::now()->format("Y-m-d");
                 $administrativo->persona_id = $persona->id;
+
                 $administrativo->save();
 
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   A D M I N I S T V R V A V T I V O  %%%%%%%%%%%%%%%%*/

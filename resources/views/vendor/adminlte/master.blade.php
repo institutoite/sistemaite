@@ -39,7 +39,7 @@
 
     {{-- <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}"> --}}
 
-    <script src="https://www.google.com/recaptcha/api.js?render=reCAPTCHA_site_key"></script>
+    
 
     {{-- Custom Stylesheets (post AdminLTE) --}}
     @yield('adminlte_css')

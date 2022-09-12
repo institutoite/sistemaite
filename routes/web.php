@@ -206,7 +206,7 @@ Route::get('iniciando/view',[EstudianteController::class,'cumplenerosView'])->na
 // Route::get('yaesta/felicitado/{persona}',[EstudianteController::class,'yaSeFelicito'])->name('yaesta.felicitado');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       COMENTARIO         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-Route::get('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');
+Route::any('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');
 Route::get('comentarios',[ComentarioController::class,'index'])->name("comentario.index");
 Route::get('comentarios/create',[ComentarioController::class,'create'])->name("comentario.create");
 Route::get('comentario/mostrar/{comentario}',[ComentarioController::class,'show'])->name("comentario.show");

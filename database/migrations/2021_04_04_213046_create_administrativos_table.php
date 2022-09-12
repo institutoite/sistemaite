@@ -15,14 +15,15 @@ class CreateAdministrativosTable extends Migration
     {
         Schema::create('administrativos', function (Blueprint $table) {
             $table->id();
-            $table->string('cargo', 20);
-            $table->string('fechaingreso', 20);
+            $table->date('fechaingreso');
             $table->tinyInteger('diasprueba');
-            $table->boolean('estado');
             $table->double('sueldo');
             $table->unsignedBigInteger('persona_id');
-            $table->foreign('persona_id', 'fk_persona_administrativo')
-                ->references('id')->on('personas');
+            $table->foreign('persona_id')->references('id')->on('personas');
+            $table->unsignedBigInteger('cargo_id');
+            $table->foreign('cargo_id')->references('id')->on('cargos');
+            $table->unsignedBigInteger('estado_id');
+            $table->foreign('estado_id')->references('id')->on('estados');
             $table->timestamps();
         });
     }
