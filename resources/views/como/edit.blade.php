@@ -8,14 +8,10 @@
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
 
-@section('content_header')
-    <h1 class="text-center text-primary">Formulario Crear Asignatura</h1>
-@stop
-
 @section('content')
     <div class="card">
         <div class="card-header bg-primary">
-            Editar Como se enteróx
+            Editar Como se enteró
         </div>
         <div class="card-body">
             <form action="{{ route('como.update',$como) }}" method="POST">

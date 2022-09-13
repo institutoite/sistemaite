@@ -13,7 +13,7 @@ class StoreCargoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class StoreCargoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'cargo'=>'required|max:50|unique:cargos,cargo',
         ];
     }
 }

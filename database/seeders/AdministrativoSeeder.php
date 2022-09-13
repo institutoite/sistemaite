@@ -49,18 +49,18 @@ class AdministrativoSeeder extends Seeder
         // ]);
         
         Administrativo::create([
-            'cargo'=>'Secreataria',
             'fechaingreso'=>'2021-05-12',
             'diasprueba'=>3,
-            'estado'=>1,
+            'cargo_id'=>1,
+            'estado_id'=>11,
             'sueldo'=>2000,
             'persona_id'=>3,
         ]);
         Administrativo::create([
-            'cargo'=>'Directora',
             'fechaingreso'=>'2021-05-12',
             'diasprueba'=>3,
-            'estado'=>1,
+            'cargo_id'=>1,
+            'estado_id'=>11,
             'sueldo'=>2000,
             'persona_id'=>2,
         ]);

@@ -46,6 +46,7 @@ use App\Http\Controllers\EventoController;
 use App\Http\Controllers\MensajeadoController;
 use App\Http\Controllers\MensajeableController;
 use App\Http\Controllers\ComoController;
+use App\Http\Controllers\CargoController;
 use App\Http\Controllers\MododocenteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
@@ -177,11 +178,15 @@ Route::resource('nivels', "NivelController");
 Route::resource('inscripciones', "InscripcioneController");
 // Route::resource('matriculacion', "MatriculacionController");
 
-
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%COMO   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('como', "ComoController");
 Route::delete('eliminar/como', [ComoController::class,'destroy'])->name('como.delete');
 Route::get('listar/comos',[ComoController::class,'listar'])->name('comos.listar');
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%COMO   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+Route::resource('cargo', "CargoController");
+Route::delete('eliminar/cargo', [CargoController::class,'destroy'])->name('cargo.delete');
+Route::get('listar/cargos',[CargoController::class,'listar'])->name('cargos.listar');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%MODODOCENTE         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('mododocentes', "MododocenteController");

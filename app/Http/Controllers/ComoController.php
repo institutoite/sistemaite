@@ -90,7 +90,7 @@ class ComoController extends Controller
         $como_id=$request->id;
         $como=Como::findOrFail($como_id);
         $como->delete();
-        return response()->json(['mensaje'=>"El registro fue eliminado correctamentex"]);
+        return response()->json(['mensaje'=>"El registro fue eliminado correctamente"]);
     }
     public function listar(){
         

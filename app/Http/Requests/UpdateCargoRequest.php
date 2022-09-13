@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateCargoRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateCargoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +24,11 @@ class UpdateCargoRequest extends FormRequest
      */
     public function rules()
     {
+       
+        $cargo=$this->route('cargo');
         return [
-            //
+            'cargo' => ['required',
+            Rule::unique('cargos')->ignore($cargo)]
         ];
     }
 }

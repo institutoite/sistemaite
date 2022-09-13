@@ -14,17 +14,17 @@ class EstadoSeeder extends Seeder
      */
     public function run()
     {
-        Estado::create(['estado'=>'INDEFINIDO']);
-        Estado::create(['estado'=>'PRESENTE']);
-        Estado::create(['estado'=>'FALTA']);
-        Estado::create(['estado'=>'CONGELADO']);
-        Estado::create(['estado'=>'LICENCIA']);
-        Estado::create(['estado'=>'FINALIZADO']);
-        Estado::create(['estado'=>'RESERVADO']);
-        Estado::create(['estado'=>'CORRIENDO']);
-        Estado::create(['estado'=>'DESVIGENTE']);
-        Estado::create(['estado'=>'FALTANOTIFICADA']);
-        Estado::create(['estado'=>'HABILITADO']);
-        Estado::create(['estado'=>'DESHABILITADO']);
+        Estado::create(['estado'=>'INDEFINIDO']);//1
+        Estado::create(['estado'=>'PRESENTE']);//2
+        Estado::create(['estado'=>'FALTA']);//3
+        Estado::create(['estado'=>'CONGELADO']);//4
+        Estado::create(['estado'=>'LICENCIA']);//5
+        Estado::create(['estado'=>'FINALIZADO']);//6
+        Estado::create(['estado'=>'RESERVADO']);//7
+        Estado::create(['estado'=>'CORRIENDO']);//8
+        Estado::create(['estado'=>'DESVIGENTE']);//9
+        Estado::create(['estado'=>'FALTANOTIFICADA']);//10
+        Estado::create(['estado'=>'HABILITADO']);//11
+        Estado::create(['estado'=>'DESHABILITADO']);//12
     }
 }

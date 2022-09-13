@@ -1059,7 +1059,6 @@ return [
 
        
         //** %%%%%%%%%%%%%%%%%%  MENU Administrativos %%%%%%%%%%%%% */
-        
         [
             'text'    => 'Administrativos',
             'icon'    => 'fas fa-users-cog',
@@ -1072,10 +1071,19 @@ return [
                     'url'  => '#',
                     'classes'  => 'text-dark',
                 ],
+            ],
+        ],
+        //** %%%%%%%%%%%%%%%%%%  MENU Administrativos %%%%%%%%%%%%% */
+        [
+            'text'    => 'Cargos',
+            'icon'    => 'fas fa-users-cog',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
                 [
-                    'text' => 'Crear',
+                    'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'cargo',
                     'classes'  => 'text-dark',
                 ],
             ],

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cargo;
 use App\Http\Requests\StoreCargoRequest;
 use App\Http\Requests\UpdateCargoRequest;
+use App\Http\Requests\DeleteRequest;
 
 class CargoController extends Controller
 {
@@ -15,7 +16,7 @@ class CargoController extends Controller
      */
     public function index()
     {
-        //
+        return view('cargo.index');
     }
 
     /**
@@ -25,7 +26,7 @@ class CargoController extends Controller
      */
     public function create()
     {
-        //
+        return view("cargo.create");
     }
 
     /**
@@ -36,7 +37,10 @@ class CargoController extends Controller
      */
     public function store(StoreCargoRequest $request)
     {
-        //
+        $cargo=new Cargo();
+        $cargo->cargo=$request->cargo;
+        $cargo->save();
+        return redirect()->route('cargo.index');
     }
 
     /**
@@ -47,7 +51,7 @@ class CargoController extends Controller
      */
     public function show(Cargo $cargo)
     {
-        //
+        return view('cargo.show', compact('cargo'));
     }
 
     /**
@@ -58,7 +62,7 @@ class CargoController extends Controller
      */
     public function edit(Cargo $cargo)
     {
-        //
+        return view('cargo.edit', compact('cargo'));
     }
 
     /**
@@ -70,17 +74,28 @@ class CargoController extends Controller
      */
     public function update(UpdateCargoRequest $request, Cargo $cargo)
     {
-        //
+        $cargo->cargo=$request->cargo;
+        $cargo->save();
+        return redirect()->route('cargo.index');
     }
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Cargo  $cargo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cargo $cargo)
+    public function destroy(DeleteRequest $request)
     {
-        //
+        $cargo_id=$request->id;
+        $cargo=Cargo::findOrFail($cargo_id);
+        $cargo->delete();
+        return response()->json(['mensaje'=>"El registro fue eliminado correctamente"]);
+    }
+    public function listar(){
+        $cargos=Cargo::all();
+        return datatables()->of($cargos)
+        ->addColumn('btn', 'cargo.action')
+        ->rawColumns(['btn'])
+        ->toJson();
     }
 }

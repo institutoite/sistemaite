@@ -15,7 +15,7 @@ class PeriodableController extends Controller
      */
     public function index()
     {
-        //
+        return view('periodable.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class PeriodableController extends Controller
      */
     public function create()
     {
-        //
+        return view("periodable.create");
     }
 
     /**

@@ -5,7 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
-@section('title', 'Carreras')
+@section('title', 'Cargos')
 @section('plugins.jquery', true)
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
@@ -14,17 +14,17 @@
     <div class="card">
             <div class="card-header">
                 <div class="float-right">
-                <a href="{{ route('como.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                    {{ __('Create Como se enteró') }}
+                <a href="{{ route('cargo.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                    {{ __('Create Cargo') }}
                 </a>
             </div>
         </div>
         <div class="card-body">
-            <table id="comos" class="table table-hover table-striped table-bordered">
+            <table id="cargos" class="table table-hover table-striped table-bordered">
                 <thead class="thead-light">
                     <tr>
                         <th>#</th>
-                        <th>COMO</th>
+                        <th>Cargo</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
@@ -44,15 +44,15 @@
     <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
     <script>
         $(document).ready(function() {
-            let tablacomos;
+            let tablacargos;
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE COMOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-                tablacomos=$('#comos').DataTable(
+                tablacargos=$('#cargos').DataTable(
                     {
                         "serverSide": true,
                         "responsive":true,
                         "autoWidth":false,
                         "ajax":{ 
-                            "url":'listar/comos',
+                            "url":'listar/cargos',
                         },
                         "createdRow": function( row, data, dataIndex ) {
                             $(row).attr('id',data['id']); 
@@ -60,7 +60,7 @@
                         },
                         "columns": [
                             {data:'id'},
-                            {data:'como'},
+                            {data:'cargo'},
                             {
                                 "name":"btn",
                                 "data": 'btn',
@@ -78,7 +78,7 @@
                 $('table').on('click','.eliminargenerico',function (e) {
                     e.preventDefault(); 
                     registro_id=$(this).closest('tr').attr('id');
-                    eliminarRegistro(registro_id,'como',tablacomos);
+                    eliminarRegistro(registro_id,'cargo',tablacargos);
                 });
         } );
         

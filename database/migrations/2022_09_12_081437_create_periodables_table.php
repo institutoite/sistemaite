@@ -15,6 +15,11 @@ class CreatePeriodablesTable extends Migration
     {
         Schema::create('periodables', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('periodable_id');
+            $table->string('peridable_type',50);
+            $table->date('fechaini');
+            $table->date('fechafin');
+            $table->boolean('pagado')->default(0);
             $table->timestamps();
         });
     }
