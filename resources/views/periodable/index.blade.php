@@ -12,13 +12,11 @@
 
 @section('content')
     <div class="card">
-            <div class="card-header">
+            <div class="card-header bg-primary">
                 <div class="float-right">
-                <a href="{{ route('como.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                    {{ __('Create Como se enteró') }}
-                </a>
+                    LISTA DE TODOS LOS PERIODOS
+                </div>
             </div>
-        </div>
         <div class="card-body">
             <table id="periodables" class="table table-hover table-striped table-bordered">
                 <thead class="thead-light">
@@ -29,7 +27,7 @@
                         <th>Apellidop</th>
                         <th>fechaIni</th>
                         <th>fechaFin</th>
-                        <th>Estado</th>
+                        <th>$</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
@@ -44,27 +42,39 @@
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
+    <script src="{{asset('dist/js/moment.js')}}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
     <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
     <script>
         $(document).ready(function() {
             let tablacomos;
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE COMOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-                tablacomos=$('#comos').DataTable(
+                tablacomos=$('#periodables').DataTable(
                     {
                         "serverSide": true,
                         "responsive":true,
                         "autoWidth":false,
                         "ajax":{ 
-                            "url":'listar/comos',
+                            "url":'listar/periodables',
                         },
                         "createdRow": function( row, data, dataIndex ) {
                             $(row).attr('id',data['id']); 
-                            //$('td',row).eq(3).html(moment(data['fechaini']).format('DD-MM-YYYY'));
+                            $('td',row).eq(4).html(moment(data['fechaini']).format('DD-MM-YYYY'));
+                            $('td',row).eq(5).html(moment(data['fechafin']).format('DD-MM-YYYY'));
+                            if(data['pagado'==1])
+                                $('td',row).eq(6).html("<i class='fas fa-check-double text-green'></i>");
+                            else
+                                $('td',row).eq(6).html("<i class='fas fa-times text-danger'></i>");
                         },
                         "columns": [
                             {data:'id'},
-                            {data:'como'},
+                            {data:'periodable_type'},
+                            {data:'nombre'},
+                            {data:'apellidop'},
+                            {data:'fechaini'},
+                            {data:'fechafin'},
+                            {data:'pagado'},
                             {
                                 "name":"btn",
                                 "data": 'btn',

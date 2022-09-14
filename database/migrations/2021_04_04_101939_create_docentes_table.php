@@ -17,6 +17,7 @@ class CreateDocentesTable extends Migration
             $table->id();
             $table->string('nombrecorto',25);
             $table->date('fecha_inicio');
+            $table->date('fechapago')->nullable();
             $table->tinyInteger('dias_prueba');
             $table->decimal('sueldo', 6, 2)->nullable();
             $table->string('perfil', 500)->nullable();

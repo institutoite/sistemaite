@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Periodable extends Model
 {
     use HasFactory;
+    protected $dates=[
+        'fechaini','fechafin'
+    ];
+
 }

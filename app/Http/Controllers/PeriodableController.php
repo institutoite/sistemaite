@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Periodable;
 use App\Http\Requests\StorePeriodableRequest;
 use App\Http\Requests\UpdatePeriodableRequest;
+use Carbon\Carbon;
 
 class PeriodableController extends Controller
 {
@@ -25,7 +26,41 @@ class PeriodableController extends Controller
      */
     public function create($periodable_id,$periodable_type)
     {
-        return view("periodable.create",compact('periodable_id', 'periodable_type'));
+        switch ($periodable_type) {
+            case 'Administrativo':
+                $periodable = Periodable::where("periodable_id",$periodable_id)
+                                ->where("periodable_type",$periodable_type)
+                                ->select("fechafin")
+                                ->get()->last();
+                if((is_null($periodable))){
+                    $fechapago=Carbon::now();
+                    $fechafin=Carbon::now();
+                }else{
+                    $fechapago=$periodable->fechafin;
+                }
+                break;
+            
+            case 'Docente':
+                $periodable = Periodable::where("periodable_id",$periodable_id)
+                                ->where("periodable_type",$periodable_type)
+                                ->select("fechafin")
+                                ->get()->last();
+                if((is_null($periodable))){
+                    $fechapago=Carbon::now();
+                    $fechafin=Carbon::now();
+                }else{
+                    $fechapago=$periodable->fechafin;
+                }
+                break;
+                
+            default:
+                
+                break;
+        }
+        
+        $fechafin->addMonth();
+        //dd($fechafin);
+        return view("periodable.create",compact('periodable_id', 'periodable_type','fechapago','fechafin'));
     }
 
     /**
@@ -36,7 +71,14 @@ class PeriodableController extends Controller
      */
     public function store(StorePeriodableRequest $request)
     {
-        dd($request->all());
+        $periodable=new Periodable();
+        $periodable->periodable_type = $request->periodable_type;
+        $periodable->periodable_id = $request->periodable_id;
+        $periodable->fechaini = $request->fechaini;
+        $periodable->fechafin = $request->fechafin;
+        $periodable->pagado=0;
+        $periodable->save();
+        return redirect()->route("periodable.index");
     }
 
     /**
@@ -81,6 +123,16 @@ class PeriodableController extends Controller
      */
     public function destroy(Periodable $periodable)
     {
-        //
+        
+    }
+    public function listar(){
+        $periodables=Periodable::join('administrativos','administrativos.id','periodables.periodable_id')
+                ->join('personas','personas.id','administrativos.persona_id')
+                ->select('periodables.id','personas.nombre','personas.apellidop','periodables.fechaini','periodables.fechafin','periodables.periodable_type','pagado')
+                ->get();
+        return datatables()->of($periodables)
+        ->addColumn('btn', 'periodable.action')
+        ->rawColumns(['btn'])
+        ->toJson();
     }
 }

@@ -127,6 +127,9 @@ Route::get("periodables",[PeriodableController::class,'index'])->name("periodabl
 Route::get("periodables/create/{periodable_id}/{periodable_type}",[PeriodableController::class,'create'])->name("periodable.create");
 Route::get("periodables/edit/{periodable}",[PeriodableController::class,'edit'])->name("periodable.edit");
 Route::post("periodables/store",[PeriodableController::class,'store'])->name("periodable.store");
+Route::delete('eliminar/periodable', [PeriodableController::class,'destroy'])->name('periodable.delete');
+Route::get('listar/periodables',[PeriodableController::class,'listar'])->name('periodables.listar');
+Route::get('periodable/show',[PeriodableController::class,'show'])->name('periodable.show');
 
 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%RAPIDINGO EDITAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */

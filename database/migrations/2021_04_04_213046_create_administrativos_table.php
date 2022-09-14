@@ -16,6 +16,7 @@ class CreateAdministrativosTable extends Migration
         Schema::create('administrativos', function (Blueprint $table) {
             $table->id();
             $table->date('fechaingreso');
+            $table->date('fechapago')->nullable();
             $table->tinyInteger('diasprueba');
             $table->double('sueldo');
             $table->unsignedBigInteger('persona_id');

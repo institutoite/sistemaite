@@ -24,5 +24,19 @@
 @stop
 
 @section('js')
+<script src="{{asset('dist/js/moment.js')}}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#fechaini").change(function(){
+            //moment().add(7, 'd');
+            fechainicio = moment($("#fechaini").val());
+            fechafin=moment(fechainicio.add(1,'months').format('YYYY-MM-DD'));
 
+            $("#fechafin").val(fechafin);
+            console.log(fechainicio);
+            console.log(fechafin);
+        });
+    });
+</script>
 @stop
