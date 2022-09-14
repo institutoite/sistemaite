@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Administrativo extends Model
 {
+    protected $dates=["fechaingreso"];
     use HasFactory;
     public function observaciones()
     {

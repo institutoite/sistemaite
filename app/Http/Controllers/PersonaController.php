@@ -90,7 +90,6 @@ class PersonaController extends Controller
     // public function store(PersonaStoreRequest $request)
     public function store(PersonaStoreRequest $request)
     {
-        //dd($request->all());
         $persona=new Persona();
         $persona->nombre = $request->nombre;
         $persona->apellidop = $request->apellidop;
@@ -226,14 +225,13 @@ class PersonaController extends Controller
 
             case 'administrativo':
                 $administrativo = new Administrativo();
-                $administrativo->cargo="Prueba";
+                $administrativo->cargo_id=1;
                 $administrativo->diasprueba=3;
-                $administrativo->estado=3;
+                $administrativo->estado_id=11;
+                $administrativo->sueldo=2000;
                 $administrativo->fechaingreso=Carbon::now()->format("Y-m-d");
                 $administrativo->persona_id = $persona->id;
-
                 $administrativo->save();
-
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   A D M I N I S T V R V A V T I V O  %%%%%%%%%%%%%%%%*/
                 $administrativo->usuarios()->attach(Auth::user()->id);
                 break;
@@ -776,7 +774,6 @@ class PersonaController extends Controller
             $cuantas_papeles=count($request->papelesFalta);
         else 
             $cuantas_papeles=0;
-        //dd($cuantas_papeles);
         $i=0;
         $c="";
         $nuevosPapeles=$request->papelesFalta;
@@ -806,10 +803,10 @@ class PersonaController extends Controller
             }
             if($nuevosPapeles[$i]=='administrativo'){
                 $administrativo=new Administrativo();
-                $administrativo->cargo="Secreataria";
+                $administrativo->cargo_id=1;
                 $administrativo->fechaingreso=Carbon::now()->format('Y-m-d');
                 $administrativo->diasprueba=3;
-                $administrativo->estado=1;
+                $administrativo->estado_id=11;
                 $administrativo->sueldo=2000;
                 $administrativo->persona_id=$persona->id;
                 $administrativo->save();

@@ -84,7 +84,7 @@ class ComentarioController extends Controller
                 else
                     $errores[$key]=$value;
             }
-            return response()->json(['error' =>$validator->errors()]);
+            return response()->json(['error' =>$validator->errors(),'error_captcha'=>$errores]);
         }
     }    
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Guarda desde sistema %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/

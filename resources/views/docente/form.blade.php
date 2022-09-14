@@ -1,7 +1,4 @@
 
-            {{-- $table->decimal('sueldo', 6, 2)->nullable();
-            $table->tinyInteger('presencial')->default(1);
-            $table->unsignedBigInteger('estado_id'); --}}
 
     <div class="row mt-3">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">

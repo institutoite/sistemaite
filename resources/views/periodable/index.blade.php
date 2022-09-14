@@ -20,18 +20,22 @@
             </div>
         </div>
         <div class="card-body">
-            <table id="comos" class="table table-hover table-striped table-bordered">
+            <table id="periodables" class="table table-hover table-striped table-bordered">
                 <thead class="thead-light">
                     <tr>
                         <th>#</th>
-                        <th>COMO</th>
+                        <th>Periodable</th>
+                        <th>Nombre</th>
+                        <th>Apellidop</th>
+                        <th>fechaIni</th>
+                        <th>fechaFin</th>
+                        <th>Estado</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
             </table>
         </div>
     </div>
-    
 @endsection
 
 @section('js')

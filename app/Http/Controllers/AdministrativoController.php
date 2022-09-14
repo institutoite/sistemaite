@@ -7,10 +7,14 @@ use App\Models\Inscripcione;
 use App\Models\Matriculacion;
 use App\Models\User;
 use App\Models\Persona;
+use App\Models\Cargo;
+use App\Models\Estado;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\DeleteRequest;
+
 class AdministrativoController extends Controller
 {
     /**
@@ -30,7 +34,14 @@ class AdministrativoController extends Controller
      */
     public function create()
     {
-        //
+        
+    }
+    public function crear($persona_id)
+    {
+        $persona=Persona::findOrFail($persona_id);
+        $estados=Estado::get();
+        $cargos=Cargo::get();
+        return view('administrativo.create',compact('estados','cargos','persona'));
     }
 
     /**
@@ -41,7 +52,16 @@ class AdministrativoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $administrativo=new Administrativo();
+        $administrativo->fechaingreso=$request->fechaingreso;
+        $administrativo->diasprueba=$request->get('diasprueba');
+        $administrativo->sueldo=$request->get('sueldo');
+        $administrativo->estado_id=$request->get('estado_id');
+        $administrativo->cargo_id=$request->get('cargo_id');
+        $administrativo->persona_id=$request->get('persona_id');
+        $administrativo->save();
+        return redirect()->route("administrativos.index");
     }
 
     /**
@@ -61,9 +81,11 @@ class AdministrativoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Administrativo $administrativo)
     {
-        //
+        $estados=Estado::get();
+        $cargos=Cargo::get();
+        return view('administrativo.create',compact('estados','cargos','administrativo'));
     }
 
     /**
@@ -73,9 +95,16 @@ class AdministrativoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Administrativo $administrativo)
     {
-        //
+        
+        $administrativo->fechaingreso=$request->fechaingreso;
+        $administrativo->diasprueba=$request->get('diasprueba');
+        $administrativo->sueldo=$request->get('sueldo');
+        $administrativo->estado_id=$request->get('estado_id');
+        $administrativo->cargo_id=$request->get('cargo_id');
+        $administrativo->save();
+        return redirect()->route("administrativos.index");
     }
 
     /**
@@ -84,9 +113,15 @@ class AdministrativoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    //    public function destroy()
+   public function destroy(DeleteRequest $request)
     {
-        //
+        return response()->json($request->all());
+        // $adminitrativo_id=Persona::findOrFail($request->id)->Administrativo;
+        // $adminitrativo_id=1;
+        $adminitrativo=Administrativo::findOrFail($adminitrativo_id);
+        $adminitrativo->delete();
+        return response()->json(['mensaje'=>"El registro fue eliminado correctamente"]);
     }
 
     public function contactarAdministrativos($comentario_id){

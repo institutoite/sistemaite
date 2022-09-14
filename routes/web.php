@@ -51,7 +51,7 @@ use App\Http\Controllers\MododocenteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[ComentarioController::class,'crearContactoComentario'])->name('prueba');
+Route::get('prueba',[AdministrativoController::class,'destroy'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -244,7 +244,7 @@ Route::resource('docentes', "DocenteController");
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       A D M I N I S T R AT I V O S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-Route::get('administrativos','AdministrativoController@index')->name('administrativo.index');
+// Route::get('administrativos','AdministrativoController@index')->name('administrativo.index');
 Route::get('administrativos/contactar/{comentario_id}',[AdministrativoController::class,'contactarAdministrativos'])->name('administrativo.contactar');
 Route::get('micartera/view',[AdministrativoController::class,'vistaCartera'])->name('administrativo.vistaCartera');
 Route::get('micartera/inscripciones',[AdministrativoController::class,'miCarteraInscripciones'])->name('administrativo.micartera.inscripciones');
@@ -252,7 +252,10 @@ Route::get('micartera/inscripciones/desvigentes',[AdministrativoController::clas
 Route::get('micartera/matriculaciones',[AdministrativoController::class,'miCarteraMatriculaciones'])->name('administrativo.micartera.matriculacioenes');
 Route::get('micartera/matriculaciones/desvigentes',[AdministrativoController::class,'miCarteraMatriculacionesDesvigentes'])->name('administrativo.micartera.matriculacioenes.desvigentes');
 Route::get('opciones/administrativos/{persona}',[OpcionController::class,'administrativos'])->name('opcion.administrativos');
-
+Route::delete('eliminar/administrativo', [AdministrativoController::class,'destroy'])->name('administrativo.delete');
+Route::get('administrativos/crar/{persona}', [AdministrativoController::class,'crear'])->name('administrativo.crear');
+Route::get('administrativos/crar/{administrativo}', [AdministrativoController::class,'editar'])->name('administrativo.editar');
+Route::resource('administrativos', "AdministrativoController");
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%COMPUTACIONES         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('computaciones','ComputacionController@index')->name('computacion.index');

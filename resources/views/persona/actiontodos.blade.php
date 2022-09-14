@@ -25,5 +25,10 @@
     <i class="fas fa-comment-alt fa-2x"></i>
 </a> --}}
 <a href="{{route('descargar.contacto', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Descargar contacto">
-    <i class="far fa-address-card"></i>
+    <i class="far fa-address-card fa-2x"></i>
 </a>
+
+<a href="{{route('administrativo.crear', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Hacer administrativo">
+    <i class="fas fa-user-cog fa-2x"></i>
+</a>
+

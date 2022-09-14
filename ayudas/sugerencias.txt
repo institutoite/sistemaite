@@ -90,3 +90,5 @@ Swal.fire({
 })
 para calificar 
 https://api.whatsapp.com/send?phone=591{{$telefono}}
+
+en index de administrativos que se pueda agregar observaciones y mostrar los mismos

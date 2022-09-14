@@ -810,8 +810,8 @@
                             }else{
                                 $("#card-interests").addClass("border-success");
                             }
-                            if(data.error.recaptcha){
-                                $("#error-recaptcha").html(data.error.recaptcha);
+                            if(data.error_captcha.recaptcha){
+                                $("#error-recaptcha").html(data.error_captcha.recaptcha);
                                 $("#error-recaptcha").removeClass("d-none");
                                 $("#card-recaptcha").addClass("border-danger");
                             }else{
