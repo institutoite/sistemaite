@@ -66,13 +66,5 @@ class AdministrativoSeeder extends Seeder
         ]);
         Administrativo::find(1)->usuarios()->attach(1);
         Administrativo::find(2)->usuarios()->attach(1);
-        // Administrativo::create([
-        //     'cargo'=>'empleada domestica',
-        //     'fechaingreso'=>'2021-05-12',
-        //     'diasprueba'=>3,
-        //     'estado'=>1,
-        //     'sueldo'=>2000,
-        //     'persona_id'=>37,
-        // ]);
     }
 }

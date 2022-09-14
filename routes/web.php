@@ -47,6 +47,7 @@ use App\Http\Controllers\MensajeadoController;
 use App\Http\Controllers\MensajeableController;
 use App\Http\Controllers\ComoController;
 use App\Http\Controllers\CargoController;
+use App\Http\Controllers\PeriodableController;
 use App\Http\Controllers\MododocenteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
@@ -122,21 +123,27 @@ Route::get('contactos', [PersonaController::class,'contactos'])->name('personas.
 Route::get('persona/contactos', [PersonaController::class,'listarContactos'])->name('personas.contactos');
 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%RAPIDINGO EDITAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+Route::get("periodables",[PeriodableController::class,'index'])->name("periodable.index");
+Route::get("periodables/create/{periodable_id}/{periodable_type}",[PeriodableController::class,'create'])->name("periodable.create");
+Route::get("periodables/edit/{periodable}",[PeriodableController::class,'edit'])->name("periodable.edit");
+Route::post("periodables/store",[PeriodableController::class,'store'])->name("periodable.store");
+
+
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%RAPIDINGO EDITAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('personas/crear/rapidingo/',[PersonaController::class,'crearRapido'] )->name('crear.persona.rapido');
 Route::post('persona/guardar/rapidingo',[PersonaController::class,'guardarRapidingo'])->name('personas.guardar.rapidindo');
 Route::get('persona/potenciales', function () {return view('persona.rapidingo.potenciales');});
-    Route::get('potenciales', [PersonaController::class,'potenciales'])->name('personas.potenciales');
-    Route::get('ver/potencial', [PersonaController::class,'verPotencial'])->name('personas.ver.potenciales');
-    Route::get('persona/potenciales/unsuscribe', [PersonaController::class,'unsuscribe'])->name('personas.unsuscribe');
-    Route::get('persona/potenciales/suscribe', [PersonaController::class,'suscribe'])->name('personas.suscribe');
-    Route::post('persona/rapidingo/update/{persona}', [PersonaController::class,'actualizarRapidingo'])->name('personas.update.rapidingo');
-    Route::get('persona/editar/rapidingo/{persona}', [PersonaController::class,'editarRapidingo'])->name('personas.editar.rapidingo'); //Falta informar 
+Route::get('potenciales', [PersonaController::class,'potenciales'])->name('personas.potenciales');
+Route::get('ver/potencial', [PersonaController::class,'verPotencial'])->name('personas.ver.potenciales');
+Route::get('persona/potenciales/unsuscribe', [PersonaController::class,'unsuscribe'])->name('personas.unsuscribe');
+Route::get('persona/potenciales/suscribe', [PersonaController::class,'suscribe'])->name('personas.suscribe');
+Route::post('persona/rapidingo/update/{persona}', [PersonaController::class,'actualizarRapidingo'])->name('personas.update.rapidingo');
+Route::get('persona/editar/rapidingo/{persona}', [PersonaController::class,'editarRapidingo'])->name('personas.editar.rapidingo'); //Falta informar 
 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%DEUDORES RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('deudores/view', [PagoController::class,'deudoresView'])->name('deudores.index');
 Route::get('deudores/inscripcion', [PagoController::class,'deudoresInscripcion'])->name('deudores.inscripcion');
 Route::get('deudores/matriculacion', [PagoController::class,'deudoresMatriculacion'])->name('deudores.matriculacion');
-
 
 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EVENTOS RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -242,7 +249,6 @@ Route::patch('docente/actualizar/{docente}', [DocenteController::class,'update']
 Route::resource('docentes', "DocenteController");
 // Route::post('docente/store', [DocenteController::class,'store'])->name('docente.store');
 
-
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       A D M I N I S T R AT I V O S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 // Route::get('administrativos','AdministrativoController@index')->name('administrativo.index');
 Route::get('administrativos/contactar/{comentario_id}',[AdministrativoController::class,'contactarAdministrativos'])->name('administrativo.contactar');
@@ -254,7 +260,7 @@ Route::get('micartera/matriculaciones/desvigentes',[AdministrativoController::cl
 Route::get('opciones/administrativos/{persona}',[OpcionController::class,'administrativos'])->name('opcion.administrativos');
 Route::delete('eliminar/administrativo', [AdministrativoController::class,'destroy'])->name('administrativo.delete');
 Route::get('administrativos/crar/{persona}', [AdministrativoController::class,'crear'])->name('administrativo.crear');
-Route::get('administrativos/crar/{administrativo}', [AdministrativoController::class,'editar'])->name('administrativo.editar');
+Route::get('administrativos/editar/{administrativo}', [AdministrativoController::class,'editar'])->name('administrativo.editar');
 Route::resource('administrativos', "AdministrativoController");
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%COMPUTACIONES         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */

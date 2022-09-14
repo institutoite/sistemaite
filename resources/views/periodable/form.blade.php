@@ -1,3 +1,5 @@
+{{$periodable_id}}
+{{$periodable_type}}
 
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
@@ -16,3 +18,8 @@
     </div>
 </div>
 
+{{-- $table->unsignedBigInteger('periodable_id');
+$table->string('peridable_type',50);
+$table->date('fechaini');
+$table->date('fechafin');
+$table->boolean('pagado')->default(0); --}}

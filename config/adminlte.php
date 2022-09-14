@@ -1089,8 +1089,7 @@ return [
             ],
         ],
 
-        //** %%%%%%%%%%%%%%%%%%  MENU PROVEEDORES %%%%%%%%%%%%% */
-        
+        //** %%%%%%%%%%%%%%%%%%  MENU PROVEEDORES %%%%%%%%%%%%% */        
         [
             'text'    => 'Proveedores',
             'icon'    => 'fas fa-shopping-cart',

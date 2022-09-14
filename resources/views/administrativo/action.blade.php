@@ -1,7 +1,5 @@
 
-@isset($id)
-    
-<a href="{{route('administrativos.editar', $id)}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Editar esta persona">
+<a href="{{route('administrativo.editar', $admin_id)}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Editar esta persona">
     <i class="fa fa-fw fa-edit text-primary"></i>
 </a>
 
@@ -17,13 +15,14 @@
     </button>
 </form> 
 
-<a href="{{route('opcion.administrativos', $id)}}" class="btn btn-primary text-white tooltipsC btn-sm mr-2" title="ir a opciones de la persona">
-    Opciones
-</a>
-@endisset
-
 <a href="" class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" id="Persona" title="Agregar Observacion">
     <i class="fas fa-comment-alt fa-2x"></i>
+</a>
+<a href="{{route("periodable.create",["periodable_id"=>$admin_id,"periodable_type"=>"Administrativo"])}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Agregar Periodo a este Administrativo">
+    <i class="far fa-calendar-plus"></i>
+</a>
+<a href="{{route('opcion.administrativos', $id)}}" class="btn btn-primary text-white tooltipsC btn-sm mr-2" title="ir a opciones de la persona">
+    Opciones
 </a>
 
 

@@ -23,9 +23,9 @@ class PeriodableController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($periodable_id,$periodable_type)
     {
-        return view("periodable.create");
+        return view("periodable.create",compact('periodable_id', 'periodable_type'));
     }
 
     /**
@@ -36,7 +36,7 @@ class PeriodableController extends Controller
      */
     public function store(StorePeriodableRequest $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

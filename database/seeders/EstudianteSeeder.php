@@ -32,15 +32,8 @@ class EstudianteSeeder extends Seeder
 
         // Estudiante::create(['persona_id' => 1]);
         Estudiante::create(['persona_id' => 2]);
-        Persona::find(2)->usuarios()->attach(1);
-        // Estudiante::create(['persona_id' => 3]);
-        // Estudiante::create(['persona_id' => 4]);
-        // Estudiante::create(['persona_id' => 5]);
-        // Estudiante::create(['persona_id' => 6]);
-        // Estudiante::create(['persona_id' => 7]);
-        // Estudiante::create(['persona_id' => 8]);
-        // Estudiante::create(['persona_id' => 9]);
-        // Estudiante::create(['persona_id' => 10]);
+        Persona::find(3)->usuarios()->attach(1);
+       
     }
 }
  

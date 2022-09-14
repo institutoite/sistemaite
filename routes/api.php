@@ -60,7 +60,7 @@ Route::get('computaciones',function(){
 
 Route::get('administrativos',function(){
     $administrativos=Persona::join('administrativos','administrativos.persona_id','=','personas.id')
-        ->select('personas.id','nombre','apellidop','apellidom','foto');
+        ->select('personas.id','administrativos.id as admin_id','nombre','apellidop','apellidom','foto');
     return datatables()->of($administrativos)
         ->addColumn('btn','administrativo.action')
         ->rawColumns(['btn','foto'])

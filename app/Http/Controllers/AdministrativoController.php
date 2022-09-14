@@ -87,6 +87,13 @@ class AdministrativoController extends Controller
         $cargos=Cargo::get();
         return view('administrativo.create',compact('estados','cargos','administrativo'));
     }
+    public function editar(Administrativo $administrativo)
+    {
+        //dd($administrativo);
+        $estados=Estado::get();
+        $cargos=Cargo::get();
+        return view('administrativo.edit',compact('estados','cargos','administrativo'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -97,7 +104,6 @@ class AdministrativoController extends Controller
      */
     public function update(Request $request,Administrativo $administrativo)
     {
-        
         $administrativo->fechaingreso=$request->fechaingreso;
         $administrativo->diasprueba=$request->get('diasprueba');
         $administrativo->sueldo=$request->get('sueldo');
@@ -107,18 +113,9 @@ class AdministrativoController extends Controller
         return redirect()->route("administrativos.index");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    //    public function destroy()
-   public function destroy(DeleteRequest $request)
+    public function destroy(DeleteRequest $request)
     {
-        return response()->json($request->all());
-        // $adminitrativo_id=Persona::findOrFail($request->id)->Administrativo;
-        // $adminitrativo_id=1;
+        $adminitrativo_id=$request->id;
         $adminitrativo=Administrativo::findOrFail($adminitrativo_id);
         $adminitrativo->delete();
         return response()->json(['mensaje'=>"El registro fue eliminado correctamente"]);

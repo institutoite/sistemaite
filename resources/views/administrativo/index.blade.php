@@ -4,14 +4,10 @@
     <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
 @stop
 
-@section('title', 'Docentes')
+@section('title', 'Administrativos')
 @section('title', 'Personas')
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
-
-@section('content_header')
-    <h1 class="text-center text-primary">Administrativos</h1>
-@stop
 
 @section('content')
     <div class="card-header bg-primary">
@@ -76,7 +72,7 @@
 
                     "ajax": "{{ url('api/administrativos') }}",
                     "createdRow": function( row, data, dataIndex ) {
-                        $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
+                        $(row).attr('id',data['admin_id']); // agrega dinamiacamente el id del row
                     },
                     "columns": [
                         {data: 'id'},
