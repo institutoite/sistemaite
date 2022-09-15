@@ -1075,6 +1075,21 @@ return [
         ],
         //** %%%%%%%%%%%%%%%%%%  MENU Administrativos %%%%%%%%%%%%% */
         [
+            'text'    => 'Periodos',
+            'icon'    => 'fas fa-users-cog',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'periodables',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        //** %%%%%%%%%%%%%%%%%%  MENU Administrativos %%%%%%%%%%%%% */
+        [
             'text'    => 'Cargos',
             'icon'    => 'fas fa-users-cog',
             'icon_color' => 'secondary',

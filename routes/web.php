@@ -122,14 +122,16 @@ Route::post('persona/contacto/update/{persona}', [PersonaController::class,'actu
 Route::get('contactos', [PersonaController::class,'contactos'])->name('personas.contactos.view');
 Route::get('persona/contactos', [PersonaController::class,'listarContactos'])->name('personas.contactos');
 
-/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%RAPIDINGO EDITAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%PERIODABLE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get("periodables",[PeriodableController::class,'index'])->name("periodable.index");
 Route::get("periodables/create/{periodable_id}/{periodable_type}",[PeriodableController::class,'create'])->name("periodable.create");
 Route::get("periodables/edit/{periodable}",[PeriodableController::class,'edit'])->name("periodable.edit");
 Route::post("periodables/store",[PeriodableController::class,'store'])->name("periodable.store");
 Route::delete('eliminar/periodable', [PeriodableController::class,'destroy'])->name('periodable.delete');
-Route::get('listar/periodables',[PeriodableController::class,'listar'])->name('periodables.listar');
+Route::get('listar/periodablesadministrativos',[PeriodableController::class,'listarAdministrativos'])->name('periodables.listar.administrativos');
+Route::get('listar/periodablesdocentes',[PeriodableController::class,'listarDocentes'])->name('periodables.listar.docentes');
 Route::get('periodable/show',[PeriodableController::class,'show'])->name('periodable.show');
+Route::post('periodable/actualizar/{periodable}', [PeriodableController::class,'update'])->name("periodable.update");
 
 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%RAPIDINGO EDITAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */

@@ -5,7 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
-@section('title', 'Carreras')
+@section('title', 'Periodos')
 @section('plugins.jquery', true)
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
@@ -14,11 +14,34 @@
     <div class="card">
             <div class="card-header bg-primary">
                 <div class="float-right">
-                    LISTA DE TODOS LOS PERIODOS
+                    LISTA DE TODOS LOS PERIODOS DE ADMINISTRATIVOS
                 </div>
             </div>
         <div class="card-body">
-            <table id="periodables" class="table table-hover table-striped table-bordered">
+            <table id="periodablesadministrativos" class="table table-hover table-striped table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Periodable</th>
+                        <th>Nombre</th>
+                        <th>Apellidop</th>
+                        <th>fechaIni</th>
+                        <th>fechaFin</th>
+                        <th>$</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="card">
+            <div class="card-header bg-primary">
+                <div class="float-right">
+                    LISTA DE TODOS LOS PERIODOS DE DOCENTES
+                </div>
+            </div>
+        <div class="card-body">
+            <table id="periodablesdocentes" class="table table-hover table-striped table-bordered">
                 <thead class="thead-light">
                     <tr>
                         <th>#</th>
@@ -48,15 +71,54 @@
     <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
     <script>
         $(document).ready(function() {
-            let tablacomos;
+            let tablaperiodabledocentes;
+            let tablaperiodableadministrativos;
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE COMOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-                tablacomos=$('#periodables').DataTable(
+                tablaperiodableadministrativos=$('#periodablesadministrativos').DataTable(
                     {
                         "serverSide": true,
                         "responsive":true,
                         "autoWidth":false,
                         "ajax":{ 
-                            "url":'listar/periodables',
+                            "url":'listar/periodablesadministrativos',
+                        },
+                        "createdRow": function( row, data, dataIndex ) {
+                            $(row).attr('id',data['id']); 
+                            $('td',row).eq(4).html(moment(data['fechaini']).format('DD-MM-YYYY'));
+                            $('td',row).eq(5).html(moment(data['fechafin']).format('DD-MM-YYYY'));
+                            if(data['pagado'==1])
+                                $('td',row).eq(6).html("<i class='fas fa-check-double text-green'></i>");
+                            else
+                                $('td',row).eq(6).html("<i class='fas fa-times text-danger'></i>");
+                        },
+                        "columns": [
+                            {data:'id'},
+                            {data:'periodable_type'},
+                            {data:'nombre'},
+                            {data:'apellidop'},
+                            {data:'fechaini'},
+                            {data:'fechafin'},
+                            {data:'pagado'},
+                            {
+                                "name":"btn",
+                                "data": 'btn',
+                                "orderable": false,
+                            },
+                        ],
+                        //order: [[0, 'desc']],
+                        "language":{
+                            "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                        },
+                        "paging":   true,
+                    }
+                );
+                tablaperiodabledocnetes=$('#periodablesdocentes').DataTable(
+                    {
+                        "serverSide": true,
+                        "responsive":true,
+                        "autoWidth":false,
+                        "ajax":{ 
+                            "url":'listar/periodablesdocentes',
                         },
                         "createdRow": function( row, data, dataIndex ) {
                             $(row).attr('id',data['id']); 
@@ -92,8 +154,15 @@
                 $('table').on('click','.eliminargenerico',function (e) {
                     e.preventDefault(); 
                     registro_id=$(this).closest('tr').attr('id');
-                    eliminarRegistro(registro_id,'como',tablacomos);
+                    eliminarRegistro(registro_id,'periodable',tablaperiodableadministrativos);
                 });
+
+                $('table').on('click','.eliminargenerico',function (e) {
+                    e.preventDefault(); 
+                    registro_id=$(this).closest('tr').attr('id');
+                    eliminarRegistro(registro_id,'periodable',tablaperiodabledocentes);
+                });
+                
         } );
         
     </script>

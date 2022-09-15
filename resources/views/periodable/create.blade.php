@@ -33,7 +33,7 @@
             fechainicio = moment($("#fechaini").val());
             fechafin=moment(fechainicio.add(1,'months').format('YYYY-MM-DD'));
 
-            $("#fechafin").val(fechafin);
+            $("#fechafin").val(fechafin.format('YYYY-MM-DD'));
             console.log(fechainicio);
             console.log(fechafin);
         });
