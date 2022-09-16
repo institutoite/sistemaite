@@ -11,5 +11,12 @@ class Periodable extends Model
     protected $dates=[
         'fechaini','fechafin'
     ];
-
+    public function periodable()
+    {
+        return $this->morphTo();
+    }
+     public function pagos()
+    {
+        return $this->morphMany(Pago::class, 'pagable');
+    }
 }

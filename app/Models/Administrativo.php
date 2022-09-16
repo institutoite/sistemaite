@@ -25,4 +25,8 @@ class Administrativo extends Model
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }
+    public function periodos()
+    {
+        return $this->morphMany(Periodable::class, 'periodable');
+    }
 }

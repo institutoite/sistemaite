@@ -130,8 +130,14 @@ Route::post("periodables/store",[PeriodableController::class,'store'])->name("pe
 Route::delete('eliminar/periodable', [PeriodableController::class,'destroy'])->name('periodable.delete');
 Route::get('listar/periodablesadministrativos',[PeriodableController::class,'listarAdministrativos'])->name('periodables.listar.administrativos');
 Route::get('listar/periodablesdocentes',[PeriodableController::class,'listarDocentes'])->name('periodables.listar.docentes');
-Route::get('periodable/show',[PeriodableController::class,'show'])->name('periodable.show');
-Route::post('periodable/actualizar/{periodable}', [PeriodableController::class,'update'])->name("periodable.update");
+Route::get('periodable/show/{periodable}',[PeriodableController::class,'show'])->name('periodable.show');
+Route::put('periodable/actualizar/{periodable}', [PeriodableController::class,'update'])->name("periodable.update");
+Route::get('misperiodos/view/{periodable_id}/{periodable_type}',[PeriodableController::class,'listarMisPeriodosView'])->name('periodos.periodable.view');
+Route::get('listar/misperiodos/{periodable_id}/{periodable_type}',[PeriodableController::class,'listarMisPeriodos'])->name('periodos.de.un.periodable');
+Route::get('periodable/pagar/view/{periodable}',[PeriodableController::class,'createPagoView'])->name('periodable.pago.create.view');
+Route::post("periodable/pago/store/{periodable}",[PeriodableController::class,'storePago'])->name("periodable.pago.store");
+Route::get('periodable/pagos/view/{periodable}',[PeriodableController::class,'listarPagosView'])->name('periodable.ppagos.listar.view');
+Route::get('periodable/pagos/{periodable}',[PeriodableController::class,'listarPagosAjax'])->name('periodable.pagos.listar.ajax');
 
 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%RAPIDINGO EDITAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -204,6 +210,7 @@ Route::get('listar/cargos',[CargoController::class,'listar'])->name('cargos.list
 Route::resource('mododocentes', "MododocenteController");
 Route::delete('eliminar/mododocente', [MododocenteController::class,'destroy'])->name('mododocente.delete');
 Route::get('listar/mododocentes',[MododocenteController::class,'listar'])->name('mododocente.Mododocente');
+
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%ESTDUDIANTES         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('/historial/{estudiante}','EstudianteController@historia')->name('estudiante.historia');

@@ -26,19 +26,54 @@
                     <tbody>
                         <tr>
                             <td>ID</td>
-                            <td>{{$como->id}}</td>
+                            <td>{{$periodo->id}}</td>
                         </tr>
                         <tr>
-                            <td>Como</td>
-                            <td>{{$como->como}}</td>
+                            <td>Nombre</td>
+                            <td>{{$persona->nombre}}</td>
+                        </tr>
+                        <tr>
+                            <td>Apellidop</td>
+                            <td>{{$persona->apellidop}}</td>
+                        </tr>
+                        <tr>
+                            <td>Apellidom</td>
+                            <td>{{$persona->apellidom}}</td>
+                        </tr>
+                        <tr>
+                            <td>Periodable type</td>
+                            <td>{{$periodable_type}}</td>
+                        </tr>
+                        <tr>
+                            <td>FechaInicio</td>
+                            <td>{{$periodo->fechaini}}</td>
+                        </tr>
+                        <tr>
+                            <td>FechaFin</td>
+                            <td>{{$periodo->fechafin}}</td>
+                        </tr>
+                        <tr>
+                            <td>Estado Pago</td>
+                            <td>
+                                @php
+                                    if($periodo->pagado==1){
+                                        $icono="<i class='fas fa-thumbs-up text-success fa-2x'></i><p class='
+                                        text-gray'
+                                        > Pagado</p>";
+                                    }else{
+                                        $icono="<i class='fas fa-thumbs-down text-danger fa-2x'></i><p class='text-gray'> No pagado aún</p>";
+                                    }
+                                @endphp
+                                {!!$icono!!}
+                            </td>
                         </tr>
                         <tr>
                             <td>CREADO</td>
-                            <td>{{$como->created_at}}</td>
+                            <td>{{$periodo->created_at}}</td>
                         </tr>
                         <tr>
                             <td>ACTUALIZADO</td>
-                            <td>{{$como->updated_at}}</td>
+                            <td>{{$periodo->updated_at}}</td>
                         </tr>
                     </tbody>
                 </table>

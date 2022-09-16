@@ -33,6 +33,7 @@ class InterestSeeder extends Seeder
         Interest::create(['interest'=>'Videobooth']);
         Interest::create(['interest'=>'Desarrollo-App-Movil']);
         Interest::create(['interest'=>'Desarrollo-App-Web']);
+        Interest::create(['interest'=>'Experimentos']);
 
 
         Interest::findOrFail(1)->usuarios()->attach(1);
@@ -52,6 +53,7 @@ class InterestSeeder extends Seeder
         Interest::findOrFail(13)->usuarios()->attach(1);
         Interest::findOrFail(14)->usuarios()->attach(1);
         Interest::findOrFail(15)->usuarios()->attach(1);
+        Interest::findOrFail(16)->usuarios()->attach(1);
         
     }
 }

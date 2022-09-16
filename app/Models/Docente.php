@@ -86,6 +86,9 @@ class Docente extends Model
     {
         return $this->belongsTo(Estado::class);
     } 
-    
+    public function periodos()
+    {
+        return $this->morphMany(Periodable::class,'periodable');
+    }
 
 }
