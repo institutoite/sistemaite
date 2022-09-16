@@ -140,6 +140,7 @@ Route::get('periodable/pagos/view/{periodable}',[PeriodableController::class,'li
 Route::get('periodable/pagos/{periodable}',[PeriodableController::class,'listarPagosAjax'])->name('periodable.pagos.listar.ajax');
 
 
+
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%RAPIDINGO EDITAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('personas/crear/rapidingo/',[PersonaController::class,'crearRapido'] )->name('crear.persona.rapido');
 Route::post('persona/guardar/rapidingo',[PersonaController::class,'guardarRapidingo'])->name('personas.guardar.rapidindo');

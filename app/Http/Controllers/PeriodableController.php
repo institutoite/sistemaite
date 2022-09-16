@@ -10,6 +10,12 @@ use App\Http\Requests\PagoStoreRequest;
 use App\Http\Requests\DeleteRequest;
 use Carbon\Carbon;
 
+use Illuminate\Support\Facades\Auth;
+
+// use Illuminate\Support\Facades\DB;
+// use Yajra\DataTables\Contracts\DataTable as DataTable; 
+// use Yajra\DataTables\DataTables;
+
 class PeriodableController extends Controller
 {
     /**
@@ -177,8 +183,8 @@ class PeriodableController extends Controller
     }
     public function createPagoView($periodable_id){
         $periodable=Periodable::findOrFail($periodable_id);
-        $pagos = $periodable->pagos;
-        $acuenta= $periodable->pagos->sum->monto;
+        $pagos = $periodable->periodable->pagos;
+        $acuenta= $periodable->periodable->pagos->sum->monto;
         $saldo=$periodable->periodable->sueldo-$acuenta;
         return view("periodable.pago.crearpago",compact('periodable','pagos','acuenta','saldo'));
     }
@@ -212,15 +218,23 @@ class PeriodableController extends Controller
         $pago->pagable_id=$periodable->id;
         $pago->pagable_type=$periodable->periodable_type;
         $pago->save();
-        
-        $pagos = $periodable->pagos;
-        $acuenta= $periodable->pagos->sum->monto;
+        $pago->usuarios()->attach(Auth::user()->id);
+
+        $pagos = $periodable->periodable->pagos;
+        $acuenta= $periodable->periodable->pagos->sum->monto;
         if($periodable->periodable_type == Docente::class){
             $saldo=$periodable->periodable->sueldo-$acuenta;
         }else{
             $saldo=$periodable->periodable->sueldo-$acuenta;
         }
         return view('periodable.pago.crearpago', compact('periodable', 'pagos','acuenta','saldo'));
+    }
+    public function listarPagosAjax(){
+       $pagos=Pago::all();
+        return datatables()->of($pagos)
+        ->addColumn('btn', 'periodable.actionmisperiodos')
+        ->rawColumns(['btn'])
+        ->toJson();
     }
 
 }
