@@ -219,8 +219,13 @@ class PeriodableController extends Controller
         $pago->pagable_type=$periodable->periodable_type;
         $pago->save();
         $pago->usuarios()->attach(Auth::user()->id);
-
+        
         $pagos = $periodable->periodable->pagos;
+
+        ->join('userables','userables.userable_id','=','pagos.id')
+  ->join('users','users.id','=','userables.user_id')
+  ->where('userable_type','App\\Models\\Pago')
+
         $acuenta= $periodable->periodable->pagos->sum->monto;
         if($periodable->periodable_type == Docente::class){
             $saldo=$periodable->periodable->sueldo-$acuenta;

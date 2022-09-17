@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="<../../assets/template/datatables.net-bs/css/responsive.dataTables.min.css">
 @stop
 
 @section('title', 'Periodo')
@@ -10,7 +11,7 @@
 
 @section('content')
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="row">
                     @php
                         if($saldo>0){
@@ -23,7 +24,7 @@
                     @endphp
                     <div class="card">
                         <div class="card-header">
-                            ESTADO DEL PAGO SUELDO
+                            PAGO SUELDO
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered table-striped table-hover">
@@ -71,7 +72,7 @@
                 
             </div>
 
-            <div class="col-md-5">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                 @isset($periodable)
                     <div class="card">
                         <div class="card-header">
@@ -83,8 +84,6 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Monto</th>
-                                        <th>Concuanto</th>
-                                        <th>Cambio</th>
                                         <th>Fecha</th>
                                         <th>Usuario</th>
                                         <th>Acciones</th>
@@ -119,31 +118,28 @@
                     {
                         "serverSide": true,
                         "responsive":true,
-                        "autoWidth":false,
+                        "autoWidth":true,
                         "ajax":{ 
                             "url":'../../../periodable/pagos/'+"{{$periodable->id}}",
                         },
                         "createdRow": function( row, data, dataIndex ) {
                             $(row).attr('id',data['id']); 
-                            $('td',row).eq(3).html(moment(data['fechaini']).format('DD-MM-YYYY'));
-                            $('td',row).eq(4).html(moment(data['fechafin']).format('DD-MM-YYYY'));
-                            if(data['pagado']==1)
-                                $('td',row).eq(5).html("<i class='fas fa-thumbs-up text-success fa-2x'></i>");
-                            else
-                                $('td',row).eq(5).html("<i class='fas fa-thumbs-down text-danger fa-2x'></i>");
+                            $('td',row).eq(2).html(moment(data['fechafin']).format('DD-MM-YYYY'));
                         },
                         "columns": [
                             {data:'id'},
                             {data:'monto'},
-                            {data:'pagocon'},
-                            {data:'cambio'},
                             {data:'created_at'},
-                            // {data:''},
+                            {data:'user'},
                             {
                                 "name":"btn",
                                 "data": 'btn',
                                 "orderable": false,
                             },
+                        ],
+                        "columnDefs": [
+                            { responsivePriority: 1, targets: 1 },
+                            { responsivePriority: 2, targets: -1 }
                         ],
                         //order: [[0, 'desc']],
                         "language":{
