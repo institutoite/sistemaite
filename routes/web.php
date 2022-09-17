@@ -52,7 +52,7 @@ use App\Http\Controllers\MododocenteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[AdministrativoController::class,'destroy'])->name('prueba');
+Route::get('prueba',[PeriodableController::class,'listarPagosAjax'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');

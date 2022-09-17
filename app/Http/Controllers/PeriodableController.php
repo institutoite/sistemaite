@@ -221,8 +221,6 @@ class PeriodableController extends Controller
         $pago->usuarios()->attach(Auth::user()->id);
         
         $pagos = $periodable->periodable->pagos;
-      
-            
         $acuenta= $periodable->periodable->pagos->sum->monto;
         if($periodable->periodable_type == Docente::class){
             $saldo=$periodable->periodable->sueldo-$acuenta;
@@ -231,7 +229,9 @@ class PeriodableController extends Controller
         }
         return view('periodable.pago.crearpago', compact('periodable','pagos','acuenta','saldo'));
     }
-    public function listarPagosAjax(Periodable $periodable){
+    public function listarPagosAjax($periodable_id){
+        $periodable=Periodable::findOrFail($periodable_id);
+        // return $periodable->periodable_type=="App\\Models\\Docente";
         if($periodable->periodable_type == "App\\Models\\Docente")
             $pagos = Periodable::join('docentes','docentes.id','periodables.periodable_id')
                 ->join('pagos','pagos.pagable_id','=','docentes.id')
@@ -240,6 +240,7 @@ class PeriodableController extends Controller
                 ->where('userable_type','App\\Models\\Pago')
                 ->select('pagos.id','monto','pagos.created_at','name')
                 ->get();
+        //return $pagos;
         if($periodable->periodable_type == "App\\Models\\Administrativo")
             $pagos = Periodable::join('administrativos','administrativos.id','periodables.periodable_id')
                 ->join('pagos','pagos.pagable_id','=','administrativos.id')
@@ -250,7 +251,7 @@ class PeriodableController extends Controller
                 ->get();
 
         return datatables()->of($pagos)
-        ->addColumn('btn', 'periodable.actionmisperiodos')
+        ->addColumn('btn', 'periodable.pago.actionpagos')
         ->rawColumns(['btn'])
         ->toJson();
     }
