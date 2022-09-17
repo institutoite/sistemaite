@@ -221,21 +221,34 @@ class PeriodableController extends Controller
         $pago->usuarios()->attach(Auth::user()->id);
         
         $pagos = $periodable->periodable->pagos;
-
-        ->join('userables','userables.userable_id','=','pagos.id')
-  ->join('users','users.id','=','userables.user_id')
-  ->where('userable_type','App\\Models\\Pago')
-
+      
+            
         $acuenta= $periodable->periodable->pagos->sum->monto;
         if($periodable->periodable_type == Docente::class){
             $saldo=$periodable->periodable->sueldo-$acuenta;
         }else{
             $saldo=$periodable->periodable->sueldo-$acuenta;
         }
-        return view('periodable.pago.crearpago', compact('periodable', 'pagos','acuenta','saldo'));
+        return view('periodable.pago.crearpago', compact('periodable','pagos','acuenta','saldo'));
     }
-    public function listarPagosAjax(){
-       $pagos=Pago::all();
+    public function listarPagosAjax(Periodable $periodable){
+        if($periodable->periodable_type == "App\\Models\\Docente")
+            $pagos = Periodable::join('docentes','docentes.id','periodables.periodable_id')
+                ->join('pagos','pagos.pagable_id','=','docentes.id')
+                ->join('userables','userables.userable_id','=','pagos.id')
+                ->join('users','users.id','=','userables.user_id')
+                ->where('userable_type','App\\Models\\Pago')
+                ->select('pagos.id','monto','pagos.created_at','name')
+                ->get();
+        if($periodable->periodable_type == "App\\Models\\Administrativo")
+            $pagos = Periodable::join('administrativos','administrativos.id','periodables.periodable_id')
+                ->join('pagos','pagos.pagable_id','=','administrativos.id')
+                ->join('userables','userables.userable_id','=','pagos.id')
+                ->join('users','users.id','=','userables.user_id')
+                ->where('userable_type','App\\Models\\Pago')
+                ->select('pagos.id','monto','pagos.created_at','name')
+                ->get();
+
         return datatables()->of($pagos)
         ->addColumn('btn', 'periodable.actionmisperiodos')
         ->rawColumns(['btn'])

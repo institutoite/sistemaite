@@ -1,7 +1,6 @@
 @extends('adminlte::page')
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
-    <link rel="stylesheet" href="<../../assets/template/datatables.net-bs/css/responsive.dataTables.min.css">
 @stop
 
 @section('title', 'Periodo')
@@ -118,19 +117,19 @@
                     {
                         "serverSide": true,
                         "responsive":true,
-                        "autoWidth":true,
+                        "autoWidth":false,
                         "ajax":{ 
                             "url":'../../../periodable/pagos/'+"{{$periodable->id}}",
                         },
                         "createdRow": function( row, data, dataIndex ) {
                             $(row).attr('id',data['id']); 
-                            $('td',row).eq(2).html(moment(data['fechafin']).format('DD-MM-YYYY'));
+                            $('td',row).eq(2).html(moment(data['fechafin']).format('DD-MM-YYYY h:m:s'));
                         },
                         "columns": [
                             {data:'id'},
                             {data:'monto'},
                             {data:'created_at'},
-                            {data:'user'},
+                            {data:'name'},
                             {
                                 "name":"btn",
                                 "data": 'btn',
