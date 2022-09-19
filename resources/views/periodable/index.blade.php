@@ -88,7 +88,7 @@
                             "url":'listar/periodablesadministrativos',
                         },
                         "createdRow": function( row, data, dataIndex ) {
-                            $(row).attr('id',data['id']); 
+                            $(row).attr('id',data['periodable_id']); 
                             $('td',row).eq(3).html(moment(data['fechaini']).format('DD-MM-YYYY'));
                             $('td',row).eq(4).html(moment(data['fechafin']).format('DD-MM-YYYY'));
                             if(data['pagado']==1)
@@ -97,7 +97,7 @@
                                 $('td',row).eq(5).html("<i class='fas fa-thumbs-down text-danger fa-2x'></i>");
                         },
                         "columns": [
-                            {data:'id'},
+                            {data:'periodable_id'},
                             {data:'nombre'},
                             {data:'apellidop'},
                             {data:'fechaini'},
@@ -125,7 +125,7 @@
                             "url":'listar/periodablesdocentes',
                         },
                         "createdRow": function( row, data, dataIndex ) {
-                            $(row).attr('id',data['id']); 
+                            $(row).attr('id',data['periodable_id']); 
                             $('td',row).eq(3).html(moment(data['fechaini']).format('DD-MM-YYYY'));
                             $('td',row).eq(4).html(moment(data['fechafin']).format('DD-MM-YYYY'));
                             if(data['pagado']==1)
@@ -134,7 +134,7 @@
                                 $('td',row).eq(5).html("<i class='fas fa-thumbs-down text-danger fa-2x'></i>");
                         },
                         "columns": [
-                            {data:'id'},
+                            {data:'periodable_id'},
                             {data:'nombre'},
                             {data:'apellidop'},
                             {data:'fechaini'},

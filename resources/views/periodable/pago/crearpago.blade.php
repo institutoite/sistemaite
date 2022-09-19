@@ -10,9 +10,18 @@
 
 @section('content')
         <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a href="{{route("periodos.periodable.view",['periodable_id'=>$periodable->periodable_id,'periodable_type'=>$periodable_type])}}"><button type="button" class="btn btn-primary p-2 text-white">Periodos de {{$persona->nombre}}</button></a>
+                    <a href="{{route('periodable.index')}}"><button type="button" class="btn btn-secondary p-2">Todos los periodos </button></a>
+                    <a href="{{route('docentes.index')}}"><button type="button" class="btn btn-primary p-2 text-white">Docentes</button></a>
+                    <a href="{{route('administrativos.index')}}"><button type="button" class="btn btn-secondary p-2">Administrativos</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                <div class="row">
-                    @php
+                @php
                         if($saldo>0){
                             $clase="bg-danger";
                             $texto="text-danger";
@@ -21,11 +30,15 @@
                             $texto="text-success";
                         }
                     @endphp
+                
+                
+                <div class="row">
                     <div class="card">
                         <div class="card-header">
-                            PAGO SUELDO
+                            PAGO SUELDO:<strong> {{$persona->nombre." ".$persona->apellidop." ".$persona->apellidom}}</strong>
                         </div>
                         <div class="card-body">
+                            
                             <table class="table table-bordered table-striped table-hover">
                                 <thead class="{{$clase}}">
                                     <tr>
@@ -36,15 +49,15 @@
                                 <tbody>
                                     <tr class="{{$texto}}">
                                         <td><strong>Acuenta</strong></td>
-                                        <td><strong>{{ $acuenta }} Bs.</strong></td>
+                                        <td><strong id="acuenta" >{{ $acuenta }} Bs.</strong></td>
                                     </tr>
                                     <tr class="{{$texto}}">
                                         <td><strong>Saldo</strong></td>
-                                        <td><strong>{{$saldo}} Bs.</strong></td>
+                                        <td><strong id="saldo">{{$saldo}} Bs.</strong></td>
                                     </tr>
                                     <tr class="{{$texto}}">
                                         <td><strong>Sueldo Total</strong></td>
-                                        <td><strong>{{$acuenta+$saldo}} Bs.</strong></td>
+                                        <td><strong id="total">{{$acuenta+$saldo}} Bs.</strong></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -147,6 +160,27 @@
                     }
                 );
            
+/*%%%%%%%%%%%%%%%%%%%%%%%%% guardado con ajax %%%%%%%%%%%%%%%%%%%%%%*/
+            $("#guardar").on('click', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '../../../pago/periodable/ajax',
+                    data:{
+                        monto:$("#monto").val(),
+                        pagocon:$("#pagocon").val(),
+                        cambio:$("#cambio").val(),
+                        periodable_id:"{{$periodable->id}}",
+                        periodable_type:"{{$periodable_type}}",
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        tablapagos.ajax.reload();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                    }
+                });
+            });
+
 /*%%%%%%%%%%%%%%%%%%%%%%%%% JS PARA CALCULAR EL CAMBIO AUTOMATICAMENTE %%%%%%%%%%%%%%%%%%%%%%*/
             $('#pagocon').change(function(){
                 $('#cambio').val($(this).val()-$('#monto').val());
@@ -154,6 +188,7 @@
             $('#monto').change(function(){
                 $('#cambio').val($('#pagocon').val()-$('#monto').val());
             });
+
         });
     </script>    
 @endsection

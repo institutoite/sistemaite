@@ -90,8 +90,5 @@ class Docente extends Model
     {
         return $this->morphMany(Periodable::class,'periodable');
     }
-    public function pagos()
-    {
-        return $this->morphMany(Pago::class, 'pagable');
-    }
+   
 }

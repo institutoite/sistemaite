@@ -27,10 +27,7 @@ class Administrativo extends Model
     }
     public function periodos()
     {
-        return $this->morphMany(Periodable::class, 'periodable');
+        return $this->morphMany(Periodable::class,'periodable');
     }
-    public function pagos()
-    {
-        return $this->morphMany(Pago::class, 'pagable');
-    }
+    
 }

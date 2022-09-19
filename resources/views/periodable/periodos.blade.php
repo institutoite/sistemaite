@@ -14,9 +14,16 @@
 @section('content')
     
     <div class="card">
-            <div class="card-header bg-primary">
+            <div class="card-header bg-secondary">
+                LISTA DE TODOS LOS PERIODOS DE ADMINISTRATIVOS
                 <div class="float-right">
-                    LISTA DE TODOS LOS PERIODOS DE ADMINISTRATIVOS
+                        {{-- <a href="{{ route('pagos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                            {{ __('Crear periodo nuevo') }}
+                        </a> --}}
+                        Crear nuevo periodo
+                    <a href="{{route("periodable.create",["periodable_id"=>$periodable_id,"periodable_type"=>$periodable_type])}}" class="text-white btn-accion-tabla tooltipsC btn-sm mr-2" title="Agregar Periodo a este Administrativo">
+                        <i class="far fa-calendar-plus fa-2x"></i>
+                    </a>
                 </div>
             </div>
         <div class="card-body">

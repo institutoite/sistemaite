@@ -62,6 +62,13 @@ use Carbon\Carbon;
     function idMensaje($nombreMensaje){
         return Mensaje::where('nombre',$nombreMensaje)->first()->id;
     }
+    function TipoPeriodableCorto($periodable_type_cadena){
+        $caracter   = '\\';
+        $pos= strripos($periodable_type_cadena, $caracter);
+        $lon=strlen($periodable_type_cadena);
+        $periodable_type=substr($periodable_type_cadena,$pos+1,$lon-$pos);
+        return $periodable_type;
+    }
 
 
 ?>

@@ -14,6 +14,8 @@
             Crear Periodo <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('periodable.index')}}">Listar Periodos</a>
         </div>
         <div class="card-body">
+            {{$persona}}
+            {{$periodable}}
             <form action="{{route('periodable.store')}}" method="POST">
                 @csrf
                 @include('periodable.form')

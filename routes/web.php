@@ -128,14 +128,17 @@ Route::get("periodables/create/{periodable_id}/{periodable_type}",[PeriodableCon
 Route::get("periodables/edit/{periodable}",[PeriodableController::class,'edit'])->name("periodable.edit");
 Route::post("periodables/store",[PeriodableController::class,'store'])->name("periodable.store");
 Route::delete('eliminar/periodable', [PeriodableController::class,'destroy'])->name('periodable.delete');
+
 Route::get('listar/periodablesadministrativos',[PeriodableController::class,'listarAdministrativos'])->name('periodables.listar.administrativos');
 Route::get('listar/periodablesdocentes',[PeriodableController::class,'listarDocentes'])->name('periodables.listar.docentes');
+
 Route::get('periodable/show/{periodable}',[PeriodableController::class,'show'])->name('periodable.show');
 Route::put('periodable/actualizar/{periodable}', [PeriodableController::class,'update'])->name("periodable.update");
 Route::get('misperiodos/view/{periodable_id}/{periodable_type}',[PeriodableController::class,'listarMisPeriodosView'])->name('periodos.periodable.view');
 Route::get('listar/misperiodos/{periodable_id}/{periodable_type}',[PeriodableController::class,'listarMisPeriodos'])->name('periodos.de.un.periodable');
 Route::get('periodable/pagar/view/{periodable}',[PeriodableController::class,'createPagoView'])->name('periodable.pago.create.view');
 Route::post("periodable/pago/store/{periodable}",[PeriodableController::class,'storePago'])->name("periodable.pago.store");
+Route::get("pago/periodable/ajax",[PeriodableController::class,'storePagoAjax'])->name("periodable.pago.store.ajax");
 Route::get('periodable/pagos/view/{periodable}',[PeriodableController::class,'listarPagosView'])->name('periodable.ppagos.listar.view');
 Route::get('periodable/pagos/{periodable}',[PeriodableController::class,'listarPagosAjax'])->name('periodable.pagos.listar.ajax');
 
