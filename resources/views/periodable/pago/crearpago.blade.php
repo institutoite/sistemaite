@@ -174,6 +174,9 @@
                     },
                     success: function (result) {
                         console.log(result);
+                        $("#acuenta").val(result.acuenta);
+                        $("#saldo").val(result.saldo);
+                        $("#total").val(result.total);
                         tablapagos.ajax.reload();
                     },
                     error: function (xhr, ajaxOptions, thrownError) {

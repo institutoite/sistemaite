@@ -12,7 +12,8 @@
 
 
 @section('content')
-    
+    {{$periodable_id}}
+    {{$periodable_type}}
     <div class="card">
             <div class="card-header bg-secondary">
                 LISTA DE TODOS LOS PERIODOS DE ADMINISTRATIVOS
@@ -26,6 +27,7 @@
                     </a>
                 </div>
             </div>
+
         <div class="card-body">
             <table id="periodoadministrativos" class="table table-hover table-striped table-bordered">
                 <thead class="thead-light">

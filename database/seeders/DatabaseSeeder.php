@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
     {
         Storage::deleteDirectory('cursos');
         Storage::makeDirectory('cursos');
+        
         $this->call([
             PaisSeeder::class,
             CiudadSeeder::class,

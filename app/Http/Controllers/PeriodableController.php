@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Periodable;
+use App\Models\Docente;
+use App\Models\Administrativo;
 use App\Models\Pago;
 use App\Http\Requests\StorePeriodableRequest;
 use App\Http\Requests\UpdatePeriodableRequest;
-use App\Http\Requests\Req;
 use App\Http\Requests\PagoStoreRequest;
 use App\Http\Requests\DeleteRequest;
-use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Auth;
@@ -36,41 +36,38 @@ class PeriodableController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create($periodable_id,$periodable_type)
-    {
-        $periodable=Periodable::findOrFail($periodable_id);
-
-        $persona=$periodable->periodable->persona;
+    {   
+        
         switch ($periodable_type) {
             case 'Administrativo':
-                $periodable = Periodable::where("periodable_id",$periodable_id)
+                $LastPeriodable = Periodable::where("periodable_id",$periodable_id)
                                 ->where("periodable_type",$periodable_type)
                                 ->select("fechafin","fechaini")
                                 ->get()->last();
-                if((is_null($periodable))){
-                    $fechaini=Carbon::now()->subMonth();
+                if((is_null($LastPeriodable))){
+                    $fechaini=Carbon::now();
                     $fechafin=Carbon::now();
                 }else{
-                    $fechaini=$periodable->fechaini;
-                    $fechafin=$periodable->fechafin;
+                    $fechaini=$LastPeriodable->fechaini;
+                    $fechafin=$LastPeriodable->fechafin;
                 }
-                
+                $persona=Administrativo::findOrFail($periodable_id)->persona;
                 break;
-            
             case 'Docente':
-                $periodable = Periodable::where("periodable_id",$periodable_id)
+                $LastPeriodable = Periodable::where("periodable_id",$periodable_id)
                                 ->where("periodable_type",$periodable_type)
                                 ->select("fechafin","fechaini")
                                 ->get()->last();
-                if((is_null($periodable))){
-                    $fechaini=Carbon::now()->subMonth();
+                if((is_null($LastPeriodable))){
+                    $fechaini=Carbon::now();
                     $fechafin=Carbon::now();
                 }else{
-                    $fechaini=$periodable->fechaini;
-                    $fechafin=$periodable->fechafin;
+                    $fechaini=$LastPeriodable->fechaini;
+                    $fechafin=$LastPeriodable->fechafin;
                 }
-                // dd($periodable);
-                break;
+                $persona=Docente::findOrFail($periodable_id)->persona;
                 
+                break;
             default:
                 
                 break;
@@ -78,8 +75,7 @@ class PeriodableController extends Controller
         
         $fechafin->addMonth();
         $fechaini->addMonth();
-        //dd($fechafin);
-        return view("periodable.create",compact('periodable_id','persona','periodable', 'periodable_type','fechaini','fechafin'));
+        return view("periodable.create",compact('periodable_id','LastPeriodable','persona','periodable_type','fechaini','fechafin'));
     }
 
     /**
@@ -97,7 +93,7 @@ class PeriodableController extends Controller
         $periodable->fechafin = $request->fechafin;
         $periodable->pagado=0;
         $periodable->save();
-        return redirect()->route("periodos.periodable.view",['periodable_id'=>$periodable->periodable_id,'periodable_type'=>$request->periodable_type]);
+        return redirect()->route("periodable.index");
     }
 
     /**
@@ -110,9 +106,9 @@ class PeriodableController extends Controller
     {
         //$periodable=Periodable::join('')
         $periodable_type_cadena = $periodable->periodable_type;
-        $Periodable=$periodable->periodable;
 
         $caracter   = '\\';
+        $Periodable=$periodable->periodable;
         $pos= strripos($periodable_type_cadena, $caracter);
         $lon=strlen($periodable_type_cadena);
         $periodable_type=substr($periodable_type_cadena,$pos+1,$lon-$pos);
@@ -165,10 +161,10 @@ class PeriodableController extends Controller
         $periodables=Periodable::join('administrativos','administrativos.id','periodables.periodable_id')
                 ->join('personas','personas.id','administrativos.persona_id')
                 ->where('periodable_type',"App\\Models\\Administrativo")
-                ->select('periodables.id','periodables.periodable_id','personas.nombre','personas.apellidop','periodables.fechaini','periodables.fechafin','periodables.periodable_type','pagado')
+                ->select('periodables.id','personas.nombre','personas.apellidop','periodables.fechaini','periodables.fechafin','periodables.periodable_type','pagado')
                 ->get();
         return datatables()->of($periodables)
-        ->addColumn('btn', 'periodable.actionadministrativos')
+        ->addColumn('btn', 'periodable.action')
         ->rawColumns(['btn'])
         ->toJson();
     }
@@ -176,24 +172,23 @@ class PeriodableController extends Controller
         $periodables=Periodable::join('docentes','docentes.id','periodables.periodable_id')
             ->join('personas','personas.id','docentes.persona_id')
             ->where('periodable_type',"App\\Models\\Docente")
-            ->select('periodables.id','periodables.periodable_id','personas.nombre','personas.apellidop','periodables.fechaini','periodables.fechafin','periodables.periodable_type','pagado')
+            ->select('periodables.id','personas.nombre','personas.apellidop','periodables.fechaini','periodables.fechafin','periodables.periodable_type','pagado')
             ->get();
         return datatables()->of($periodables)
-        ->addColumn('btn', 'periodable.actiondocentes')
+        ->addColumn('btn', 'periodable.action')
         ->rawColumns(['btn'])
         ->toJson();
     }
     public function listarMisPeriodosView($periodable_id, $periodable_type){
+        
         return view("periodable.periodos",compact('periodable_id','periodable_type'));
     }
     public function createPagoView($periodable_id){
         $periodable=Periodable::findOrFail($periodable_id);
-        $pagos = $periodable->pagos;
-        $acuenta= $periodable->pagos->sum->monto;
+        $pagos = $periodable->periodable->pagos;
+        $acuenta= $periodable->periodable->pagos->sum->monto;
         $saldo=$periodable->periodable->sueldo-$acuenta;
-        $persona=$periodable->periodable->persona;
-        $periodable_type=TipoPeriodableCorto($periodable->periodable_type);
-        return view("periodable.pago.crearpago",compact('periodable','persona','periodable_type','pagos','acuenta','saldo'));
+        return view("periodable.pago.crearpago",compact('periodable','pagos','acuenta','saldo'));
     }
     public function listarMisPeriodos($periodable_id, $periodable_type){
         if($periodable_type == 'Administrativo')
@@ -223,86 +218,40 @@ class PeriodableController extends Controller
         $pago->pagocon=$request->pagocon;
         $pago->cambio=$request->cambio;
         $pago->pagable_id=$periodable->id;
-        $pago->pagable_type="App\\Models\\Periodable";
+        $pago->pagable_type=$periodable->periodable_type;
         $pago->save();
         $pago->usuarios()->attach(Auth::user()->id);
-        //dd($periodable);
-        // dd($periodable->periodable->pagos);
-        $pagos = $periodable->pagos;
-        $acuenta= $periodable->pagos->sum->monto;
+        
+        $pagos = $periodable->periodable->pagos;
+        $acuenta= $periodable->periodable->pagos->sum->monto;
         if($periodable->periodable_type == Docente::class){
             $saldo=$periodable->periodable->sueldo-$acuenta;
         }else{
             $saldo=$periodable->periodable->sueldo-$acuenta;
         }
-        if($saldo<=0)
-        $periodable->pagado=1;
-        $periodable->save();
-        $periodable_type=TipoPeriodableCorto($periodable->periodable_type);
-        $persona=$periodable->periodable->persona;
-        return view('periodable.pago.crearpago', compact('periodable','pagos','persona','periodable_type','acuenta','saldo'));
-    }
-    public function storePagoAjax(DeleteRequest $request){
-        //return response()->json($request->all());
-        $validator = Validator::make($request->all(), [
-            'monto'=> 'required|numeric|min:0',
-            'pagocon'=> 'required|numeric|min:0',
-            'cambio'=>'required|numeric|min:0',
-            'periodable_id'=>'required|numeric|min:0',
-        ]);
-        if ($validator->passes()) {
-            $pago=new Pago();
-            $pago->monto=$request->monto;
-            $pago->pagocon=$request->pagocon;
-            $pago->cambio=$request->cambio;
-            $pago->pagable_id=$request->periodable_id;
-            $pago->pagable_type="App\\Models\\Periodable";// en realidad no se requiere pagable_type
-            $pago->save();
-            $pago->usuarios()->attach(Auth::user()->id);
-            
-            $periodable=Periodable::findOrFail($request->periodable_id);
-            $pagos = $periodable->pagos;
-            $acuenta= $periodable->pagos->sum->monto;
-            if($periodable->periodable_type == Docente::class){
-                $saldo=$periodable->periodable->sueldo-$acuenta;
-            }else{
-                $saldo=$periodable->periodable->sueldo-$acuenta;
-            }
-            if($saldo<=0)
-            $periodable->pagado=1;
-            $periodable->save();
-            $periodable_type=TipoPeriodableCorto($periodable->periodable_type);
-            $persona=$periodable->periodable->persona;
-            $data=['periodable'=>$periodable,'pagos'=>$pagos,'periodable_type'=>$periodable_type,'persona'=>$persona,'acuenta'=>$acuenta,'saldo'=>$saldo];
-            return response()->json($data);
-        }
-        else{
-             return response()->json(['error' => $validator->errors()->first()]);
-        }
-        // return view('periodable.pago.crearpago', compact('periodable','pagos','persona','periodable_type','acuenta','saldo'));
+        return view('periodable.pago.crearpago', compact('periodable','pagos','acuenta','saldo'));
     }
     public function listarPagosAjax($periodable_id){
         $periodable=Periodable::findOrFail($periodable_id);
         // return $periodable->periodable_type=="App\\Models\\Docente";
         if($periodable->periodable_type == "App\\Models\\Docente")
-            $pagos = Pago::join('periodables','periodables.id','pagos.pagable_id')
+            $pagos = Periodable::join('docentes','docentes.id','periodables.periodable_id')
+                ->join('pagos','pagos.pagable_id','=','docentes.id')
                 ->join('userables','userables.userable_id','=','pagos.id')
                 ->join('users','users.id','=','userables.user_id')
                 ->where('userable_type','App\\Models\\Pago')
-                ->where('pagos.pagable_id',$periodable_id)
-                ->select('pagos.id','pagos.monto','name','pagos.created_at')
+                ->select('pagos.id','monto','pagos.created_at','name')
                 ->get();
-        //return $periodable->periodable_type == "App\\Models\\Administrativo";
-        if($periodable->periodable_type == "App\\Models\\Administrativo"){
-            $pagos = Pago::join('periodables','periodables.id','pagos.pagable_id')
-                    ->join('userables','userables.userable_id','=','pagos.id')
-                    ->join('users','users.id','=','userables.user_id')
-                    ->where('userable_type','App\\Models\\Pago')
-                    ->where('pagos.pagable_id',$periodable_id)
-                    ->select('pagos.id','pagos.monto','name','pagos.created_at')
-                    ->get();
-        }
-        //dd($pagos);
+        //return $pagos;
+        if($periodable->periodable_type == "App\\Models\\Administrativo")
+            $pagos = Periodable::join('administrativos','administrativos.id','periodables.periodable_id')
+                ->join('pagos','pagos.pagable_id','=','administrativos.id')
+                ->join('userables','userables.userable_id','=','pagos.id')
+                ->join('users','users.id','=','userables.user_id')
+                ->where('userable_type','App\\Models\\Pago')
+                ->select('pagos.id','monto','pagos.created_at','name')
+                ->get();
+
         return datatables()->of($pagos)
         ->addColumn('btn', 'periodable.pago.actionpagos')
         ->rawColumns(['btn'])

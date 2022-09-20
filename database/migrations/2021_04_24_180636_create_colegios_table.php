@@ -18,6 +18,7 @@ class CreateColegiosTable extends Migration
             $table->string('nombre', 80)->nullable();
             $table->string('rue', 10)->nullable();
             $table->string('director', 50)->nullable();
+            $table->string('imagen', 50)->nullable();
             $table->string('direccion', 100)->nullable();
             $table->string('telefono', 10)->nullable();
             $table->string('celular', 10)->nullable();
