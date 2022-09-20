@@ -30,8 +30,6 @@
                             $texto="text-success";
                         }
                     @endphp
-                
-                
                 <div class="row">
                     <div class="card">
                         <div class="card-header">
@@ -39,8 +37,8 @@
                         </div>
                         <div class="card-body">
                             
-                            <table class="table table-bordered table-striped table-hover">
-                                <thead class="{{$clase}}">
+                            <table id="tablaresumen" class="table table-bordered table-striped table-hover">
+                                <thead id="tablahead" class="{{$clase}}">
                                     <tr>
                                         <th>Atributo</th>
                                         <th>Valor</th>
@@ -173,10 +171,25 @@
                         periodable_type:"{{$periodable_type}}",
                     },
                     success: function (result) {
-                        console.log(result);
-                        $("#acuenta").val(result.acuenta);
-                        $("#saldo").val(result.saldo);
-                        $("#total").val(result.total);
+                        $("#acuenta").html(result.acuenta+" Bs.");
+                        $("#saldo").html(result.saldo+" Bs.");
+                        $("#total").html(result.total+" Bs.");
+                        $("#monto").val('');
+                        $("#pagocon").val('');
+                        $("#cambio").val('');
+                         if(result.saldo>0){
+                            $("#tablaresumen").removeClass('text-success');
+                            $("#tablaresumen").addClass('text-danger');
+                            $("thead").removeClass('bg-success');
+                            $("thead").addClass('bg-danger');
+                        }else{
+                            $("#tablaresumen").removeClass('text-danger');
+                            $("#tablaresumen").addClass('text-success');
+                            $("thead").addClass('bg-danger');
+                            $("thead").addClass('bg-success');
+                            $("#tablaresumen").addClass('text-success');
+                        }
+                        console.log($("#tablahead"));
                         tablapagos.ajax.reload();
                     },
                     error: function (xhr, ajaxOptions, thrownError) {

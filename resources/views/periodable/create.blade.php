@@ -15,7 +15,7 @@
         </div>
         <div class="card-body">
             {{$persona}}<br>
-            {{$LastPeriodable}}
+            {{-- {{$LastPeriodable}} --}}
             <form action="{{route('periodable.store')}}" method="POST">
                 @csrf
                 @include('periodable.form')
