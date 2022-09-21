@@ -595,7 +595,7 @@ class ProgramacionController extends Controller
             }
         }
 
-        if ($TotalPagado < $inscripcion->costo) {
+        if ($TotalPagado <= $inscripcion->costo) {
             return redirect()->route('mostrar.programa', $inscripcion);
         } else {
             $inscripcion->fecha_proximo_pago = $inscripcion->programaciones->last()->fecha->isoFormat('Y-M-D');
@@ -642,7 +642,7 @@ class ProgramacionController extends Controller
         return $dompdf->download($persona->id . '_' . $fecha_actual . '_' . $persona->nombre . '_' . $persona->apellidop . '.pdf');
     }
 
-    public function marcadoNormal($programacion_id){ //*
+    public function marcadoNormal($programacion_id){
         $programa=Programacion::findOrFail($programacion_id);
         $inscripcion=Inscripcione::findOrFail($programa->inscripcione_id);
         $docentes=Docente::join('personas','personas.id','=','docentes.persona_id')

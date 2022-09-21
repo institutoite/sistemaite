@@ -23,7 +23,7 @@ class CreateColegiosTable extends Migration
             $table->string('telefono', 10)->nullable();
             $table->string('celular', 10)->nullable();
             $table->string('dependencia', 15)->nullable();
-            $table->string('nivel', 20)->nullable();
+            // $table->string('nivel', 20)->nullable();
             $table->string('turno', 15)->nullable();
             $table->unsignedBigInteger('departamento_id');
             $table->unsignedBigInteger('provincia_id');
@@ -32,7 +32,6 @@ class CreateColegiosTable extends Migration
             $table->string('areageografica', 20)->nullable();
             $table->string('coordenadax', 15)->nullable();
             $table->string('coordenaday', 15)->nullable();
-
             $table->foreign('departamento_id', 'fk_colegio_departamento_idx')
             ->references('id')->on('departamentos');
 

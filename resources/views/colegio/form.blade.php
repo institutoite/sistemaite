@@ -67,21 +67,21 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" > 
             <div class="form-floating mb-3 text-gray">
-                <input  type="text" name="rue" class="form-control @error('rue') is-invalid @enderror" value="{{old('rue',$colegio->rue ?? '')}}">
+                <input  type="number" name="rue" class="form-control @error('rue') is-invalid @enderror" value="{{old('rue',$colegio->rue ?? '')}}">
                 <label for="rue">rue</label>
             </div>
         </div>
         {{-- %%%%%%%%%%%%%%% CAMPO APELLIDO PATERNO --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
-                <input  type="text" name="telefono" class="form-control @error('telefono') is-invalid @enderror" value="{{old('telefono',$colegio->telefono ?? '')}}">
+                <input  type="number" name="telefono" class="form-control @error('telefono') is-invalid @enderror" value="{{old('telefono',$colegio->telefono ?? '')}}">
                 <label for="telefono">telefono</label>
             </div>    
         </div>
         {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO APELLIDO MATERNO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
-            <input  type="text" name="celular" class="form-control @error('celular') is-invalid @enderror" value="{{old('celular',$colegio->celular ?? '')}}">
+            <input  type="number" name="celular" class="form-control @error('celular') is-invalid @enderror" value="{{old('celular',$colegio->celular ?? '')}}">
             <label for="celular">celular</label>
             </div>
         </div>
@@ -132,10 +132,12 @@
                         <option value="manana" @if($colegio->turno == 'manana') {{'selected'}} @endif>Mañana</option>
                         <option value="tarde" @if($colegio->turno == 'tarde') {{'selected'}} @endif>Tarde</option>
                         <option value="noche" @if($colegio->turno == 'noche') {{'selected'}} @endif>Noche</option>
+                        <option value="mixto" @if($colegio->turno == 'mixto') {{'selected'}} @endif>Mixto</option>
                     @else 
                         <option value="manana" @if(old('turno') == 'manana') {{'selected'}} @endif>Mañana</option>
                         <option value="tarde" @if(old('turno') == 'tarde') {{'selected'}} @endif>Fiscal</option>
                         <option value="noche" @if(old('turno') == 'noche') {{'selected'}} @endif>Noche</option>
+                        <option value="mixto" @if(old('turno') == 'mixto') {{'selected'}} @endif>Mixto</option>
                     @endisset
                     
                 </select>
@@ -279,14 +281,14 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" > 
             <div class="form-floating mb-3 text-gray">
-                <input  type="text" name="coordenadax" class="form-control @error('coordenadax') is-invalid @enderror" value="{{old('coordenadax',$colegio->coordenadax ?? '')}}">
+                <input  type="number" name="coordenadax" class="form-control @error('coordenadax') is-invalid @enderror" value="{{old('coordenadax',$colegio->coordenadax ?? '')}}">
                 <label for="coordenadax">coordenada X</label>
             </div>
         </div>
         {{-- %%%%%%%%%%%%%%% CAMPO APELLIDO PATERNO --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
             <div class="form-floating mb-3 text-gray">
-                <input  type="text" name="coordenaday" class="form-control @error('coordenaday') is-invalid @enderror" value="{{old('coordenaday',$colegio->coordenaday ?? '')}}">
+                <input  type="number" name="coordenaday" class="form-control @error('coordenaday') is-invalid @enderror" value="{{old('coordenaday',$colegio->coordenaday ?? '')}}">
                 <label for="coordenaday">coordenada Y</label>
             </div>    
         </div>

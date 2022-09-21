@@ -31,7 +31,7 @@ class ColegioFactory extends Factory
             'telefono'=>"3326545",
             'celular'=>"78789898",
             'dependencia'=> $this->faker->randomElement(['FISCAL','PARTICULAR','CONVENIO']),
-            'nivel'=> $this->faker->randomElement(['INICIAL', 'PRIMARIA', 'SECUNDARIA','PRE-UNIVERSITARIO','UNIVERSITARIO','PROFESIONAL']),
+            //'nivel'=> $this->faker->randomElement(['INICIAL', 'PRIMARIA', 'SECUNDARIA','PRE-UNIVERSITARIO','UNIVERSITARIO','PROFESIONAL']),
             'turno'=> $this->faker->randomElement(['MAÑANA', 'TARDE', 'NOCHE']),
             'departamento_id'=> $this->faker->randomElement([1,2,3,4,5,6,7,8,9]),
             'provincia_id'=> $this->faker->randomElement([1,2,3,4,5,6,7,8,9,10]),

@@ -12,7 +12,7 @@
     <div class="pt-4">
         <div class="card">
             <div class="card-header bg-primary">
-                Lista de Estudiantes programados para hoy <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('personas.create')}}">Crear Estudiante</a>
+                Lista de Estudiantes programados para hoy
             </div>
             
             <div class="card-body">
@@ -22,11 +22,34 @@
                         <tr>
                             <th>ID</th>
                             <th>ESTUDIANTE</th>
+                            <th>DOCENTE</th>
+                            <th>HORARIO</th>
+                            <th>ESTADO</th>
+                            <th>MATERIA</th>
                             <th>FOTO</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-primary">
+                Lista de Computación programados para hoy
+            </div>
+            
+            <div class="card-body">
+                
+                <table id="programadoscom" class="table table-bordered table-hover table-striped">
+                    <thead class="bg-primary text-center">
+                        <tr>
+                            <th>ID</th>
+                            <th>ESTUDIANTE</th>
                             <th>DOCENTE</th>
                             <th>H INICIO</th>
                             <th>H FIN</th>
-                            <th>MATERIA</th>
+                            <th>ASIGNATURA</th>
+                            <th>FOTO</th>
                             <th>ACCIONES</th>
                         </tr>
                     </thead>
@@ -62,28 +85,80 @@
                         $(row).addClass('text-dark')
                     }
 
-                    $('td', row).eq(4).html(moment(data['hora_ini']).format('HH:mm')+'-'+moment(data['hora_fin']).format('HH:mm'));
-                    $('td', row).eq(5).html(data['estado']);
+                    $('td', row).eq(3).html(moment(data['hora_ini']).format('HH:mm')+'-'+moment(data['hora_fin']).format('HH:mm'));
+                    $('td', row).eq(4).html(data['estado']);
 
                 },
                     "ajax": "{{ url('hoy') }}",
                     "columns": [
                         {data: 'id'},
                         {data: 'estudiante'},
+                           
+                        {data: 'docente'},
+                        {data: 'hora_ini'},
+                        {data: 'hora_fin'},
+                        {data: 'materia'},
                         {
                             "name": "foto",
                             "data": "foto",
                             "render": function (data, type, full, meta) {
                                 return "<img class='materialboxed zoomify' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
                             },
-                            "title": "FOTO",
+                            
                             "orderable": false,
             
-                        },     
+                        },  
+                        {
+                        "name":"btn",
+                        "data": 'btn',
+                        "orderable": false,
+                    },
+                
+                    ],
+
+                    "language":{
+                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    },  
+                }
+            );
+        var tabla=$('#programadoscom').DataTable(
+                {
+                    "serverSide": true,
+                    "responsive":true,
+                    "autoWidth":false,
+                    "createdRow": function( row, data, dataIndex ) {
+                    if(data['estado']=="PRESENTE"){
+                        $(row).addClass('text-success')
+                    }
+                    if(data['estado']=="FINALIZADO"){
+                        $(row).addClass('text-danger')
+                    }
+                    if(data['estado']=="INDEFINIDO"){
+                        $(row).addClass('text-dark')
+                    }
+
+                    $('td', row).eq(3).html(moment(data['hora_ini']).format('HH:mm')+'-'+moment(data['hora_fin']).format('HH:mm'));
+                    $('td', row).eq(4).html(data['estado']);
+
+                },
+                    "ajax":'hoycom',
+                    "columns": [
+                        {data: 'id'},
+                        {data: 'estudiante'},
                         {data: 'docente'},
                         {data: 'hora_ini'},
                         {data: 'hora_fin'},
-                        {data: 'materia'},
+                        {data: 'asignatura'},
+                        {
+                            "name": "foto",
+                            "data": "foto",
+                            "render": function (data, type, full, meta) {
+                                return "<img class='materialboxed zoomify' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
+                            },
+                            
+                            "orderable": false,
+            
+                        },  
                         {
                         "name":"btn",
                         "data": 'btn',

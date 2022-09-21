@@ -25,7 +25,7 @@ class ColegioStoreRequest extends FormRequest
     {
         return [
             'nombre'=>'required|unique:colegios,nombre',
-            'rue'=>'required',
+            'rue'=>'nullable',
             'director'=>'required',
             'direccion'=>'required',
             'telefono'=>'required',

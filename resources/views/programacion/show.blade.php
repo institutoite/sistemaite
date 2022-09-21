@@ -74,6 +74,11 @@
                                                         $claseBoton.="btn btn-primary text-white";
                                                     }
                                                 }
+                                                $inscripcione=App\Models\Inscripcione::findOrFail($inscripcion);
+                                                if($inscripcione->fecha_proximo_pago->isoFormat('DD/MM/YYYY')==$programa->fecha->isoFormat('DD/MM/YYYY')){
+                                                    $claseHoy.="bg-warning";
+                                                    $claseBotonHoy.="btn btn-warning";
+                                                }
                                         @endphp
                                     <tr class="{{$claseFila.' '.$claseHoy}}">
                                         <td>{{$loop->iteration}}</td>

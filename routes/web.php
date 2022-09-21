@@ -647,6 +647,7 @@ Route::get('inscripciones/vigentes/{estudiante_id}', 'InscripcioneController@ins
 Route::get('programacioncom/asistencia/ajax', [ProgramacioncomController::class,'asisntecia'])->name('asistenciacom.ajax');
 Route::get('programacioncom/asignarfalta/ajax', [ProgramacioncomController::class,'asignarFaltasFechasPasadas'])->name('programacioncom.asignarFaltas');
 Route::get('programacioncom/mostrar/ajax', [ProgramacioncomController::class,'programacioncomMostrarAjax'])->name('programacioncom.mostrar..ajax');
+Route::get('hoycom',[ProgramacioncomController::class,'hoycom'])->name('programascom.hoy');
 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%OBSERVACION RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('observacion/create/{observable_id}/{observable_type}',[ObservacionController::class,'create'])->name('observacion.create');

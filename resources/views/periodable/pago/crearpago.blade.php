@@ -38,22 +38,22 @@
                         <div class="card-body">
                             
                             <table id="tablaresumen" class="table table-bordered table-striped table-hover">
-                                <thead id="tablahead" class="{{$clase}}">
+                                <thead class="{{$clase}}">
                                     <tr>
                                         <th>Atributo</th>
                                         <th>Valor</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="{{$texto}}">
+                                    <tr class="tablacuerpo {{$texto}}">
                                         <td><strong>Acuenta</strong></td>
                                         <td><strong id="acuenta" >{{ $acuenta }} Bs.</strong></td>
                                     </tr>
-                                    <tr class="{{$texto}}">
+                                    <tr class="tablacuerpo {{$texto}}">
                                         <td><strong>Saldo</strong></td>
                                         <td><strong id="saldo">{{$saldo}} Bs.</strong></td>
                                     </tr>
-                                    <tr class="{{$texto}}">
+                                    <tr class="tablacuerpo {{$texto}}">
                                         <td><strong>Sueldo Total</strong></td>
                                         <td><strong id="total">{{$acuenta+$saldo}} Bs.</strong></td>
                                     </tr>
@@ -178,18 +178,18 @@
                         $("#pagocon").val('');
                         $("#cambio").val('');
                          if(result.saldo>0){
-                            $("#tablaresumen").removeClass('text-success');
-                            $("#tablaresumen").addClass('text-danger');
+                            $("#tablacuerpo").removeClass('text-success');
+                            $("#tablacuerpo").addClass('text-danger');
                             $("thead").removeClass('bg-success');
                             $("thead").addClass('bg-danger');
                         }else{
-                            $("#tablaresumen").removeClass('text-danger');
-                            $("#tablaresumen").addClass('text-success');
-                            $("thead").addClass('bg-danger');
+                            $("#tablacuerpo").removeClass('text-danger');
+                            $("#tablacuerpo").addClass('text-success');
+                            $("thead").removeClass('bg-danger');
                             $("thead").addClass('bg-success');
                             $("#tablaresumen").addClass('text-success');
                         }
-                        console.log($("#tablahead"));
+                        console.log($("#tablaresumen"));
                         tablapagos.ajax.reload();
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
