@@ -122,4 +122,6 @@ class MensajeableController extends Controller
     {
         //
     }
+
+    
 }

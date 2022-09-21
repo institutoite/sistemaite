@@ -504,8 +504,13 @@ Route::delete('eliminar/motivo/{motivo}', [MotivoController::class,'destroy'])->
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%MENSAJEADO %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('store/mensajeado',[MensajeadoController::class,'storeMensajeado'])->name("store.mensajeado");
+Route::get('mensajeados/{evento_id}',[MensajeadoController::class,'getMensajeados'])->name("get.mensajeados");
+Route::get('mensajeados/view/{evento}',[MensajeadoController::class,'getMensajeadosView'])->name("mensajeados.view");
+
+
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%MENSAJEABLE %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('mensajeble/store',[MensajeableController::class,'storeMensajeable'])->name("store.mensajeable");
+
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MENSAJE %%%%%%%%%%%%%%%%%%%%%%%%%%*/

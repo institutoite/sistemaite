@@ -10,7 +10,11 @@
     <i class="fas fa-arrow-alt-circle-up text-primary"></i>
 </a>
 
+<a href="{{route('mensajeados.view',$id)}}" class="btn-accion-tabla tooltipsC mr-2" title="Listar los que ya fueron mensajeados">
+    <i class="fas fa-envelope-open-text text-secondary"></i>
+</a>
 
 <button name="btn-eliminar" id="{{$id}}" class="btn eliminar" title="Eliminar este evento">
     <i class="fa fa-fw fa-trash text-danger"></i>   
 </button>
+

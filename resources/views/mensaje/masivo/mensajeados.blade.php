@@ -13,26 +13,24 @@
         <div class="card">
             <div class="card-header bg-primary">
                 Lista de estudiantes ordenados <strong>Descendentemente </strong> por calificación
-
             </div>
-
             <div class="card-body">
                 @isset($eventoSeleccionado)
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <h4 class="alert-heading text-success">Evento seleccionado!</h4>
-                    <hr>
-                    <p class="mb-0">Evento seleccionado: <strong>{{$eventoSeleccionado->evento}}</strong></p>
-                </div>
+                        <h4 class="alert-heading text-success">Evento seleccionado!</h4>
+                        <hr>
+                        <p class="mb-0">El evento seleccionado es {{$eventoSeleccionado->id}}</p>
+                    </div>
                 @else
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <h4 class="alert-heading text-danger">No selecciono ningun evento!</h4>
                         <p class="text-danger">Es necesario seleeciona un evento click en el boton siguiente para seleccionar un evento </p>
                         <hr>
-                        <a href="{{route('eventos.index')}}"> <button class="btn btn-primary" type="button">Ir a Eventos</button> </a>
+                        <a href=""> <button class="btn btn-primary" type="button">Ir a Eventos</button> </a>
                     </div>
                 @endisset
                     
-                <table id="masivocontactar" class="text-center table table-bordered table-hover table-striped">
+                <table id="mensajeados" class="text-center table table-bordered table-hover table-striped">
                     <thead class="text-center">
                         <tr>
                             <th>ID</th>
@@ -95,7 +93,7 @@
     
     <script>
         let tablacontactos;
-        let masivocontactar;
+        let tablamensajeados;
         //let tabla_deudores_matriculacion;
         //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
         CKEDITOR.replace('editorguardar', {
@@ -420,13 +418,13 @@
         });
         /*%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE PERSONAS ESTUDIANTES %%%%%%%%%%%%%%%%%%%%*/
         $(document).ready(function() {
-            masivocontactar=$('#masivocontactar').DataTable(
+            tablamensajeados=$('#mensajeados').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
                     "autoWidth":false,
 
-                    "ajax": "{{ url('estudiantes/masivo/contactar/evento') }}",
+                    "ajax": "mensajeados/{{$evento->id}}",
                     "createdRow": function( row, data, dataIndex ) {
                         $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
                          $('td', row).eq(4).html(Math.round(data['promedio']));
@@ -437,7 +435,6 @@
                         {data: 'nombre'},
                         {data: 'apellidop'},
                         {data: 'apellidom'},
-                        {data: 'promedio'},
                         {data: 'vuelvefecha'},
                         {
                             "name": "foto",
