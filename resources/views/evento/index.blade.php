@@ -33,6 +33,13 @@
                     
 
                     <div class="card-body">
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <h4 class="alert-heading text-danger">Importante!</h4>
+
+                            <p>Esto trabaja con mensajes masivos si o si tiene que estar marcado el evento por el cual se esta mensajeando masivamente</p>
+                            <hr>
+                            <p class="mb-0">El evento que este marcado como activo será el que se gaurde en Mensajeados.</p>
+                        </div>
                         <div class="table-responsive">
                             <table id="eventos" class="table table-striped table-hover table-borderless">
                                 <thead class="">

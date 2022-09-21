@@ -276,15 +276,17 @@ class PeriodableController extends Controller
         }
         // return view('periodable.pago.crearpago', compact('periodable','pagos','persona','periodable_type','acuenta','saldo'));
     }
-    public function listarPagosAjax($periodable_id){
+    public function listarPagosAjax(){
+        $periodable_id=1;
         $periodable=Periodable::findOrFail($periodable_id);
-        // return $periodable->periodable_type=="App\\Models\\Docente";
+        //return response()->json($periodable);
         if($periodable->periodable_type == "App\\Models\\Docente")
             $pagos = Pago::join('periodables','periodables.id','pagos.pagable_id')
                 ->join('userables','userables.userable_id','=','pagos.id')
                 ->join('users','users.id','=','userables.user_id')
                 ->where('userable_type','App\\Models\\Pago')
                 ->where('pagos.pagable_id',$periodable_id)
+                ->where('pagos.pagable_type','App\\Models\\Periodable')
                 ->select('pagos.id','pagos.monto','name','pagos.created_at')
                 ->get();
         //return $pagos;
@@ -294,6 +296,7 @@ class PeriodableController extends Controller
                     ->join('users','users.id','=','userables.user_id')
                     ->where('userable_type','App\\Models\\Pago')
                     ->where('pagos.pagable_id',$periodable_id)
+                    ->where('pagos.pagable_type','App\\Models\\Periodable')
                     ->select('pagos.id','pagos.monto','name','pagos.created_at')
                     ->get();
 

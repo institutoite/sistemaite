@@ -99,7 +99,6 @@
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
-                                
                             </table>
                         </div>
                     </div>
@@ -132,7 +131,7 @@
                             "url":'../../../periodable/pagos/'+"{{$periodable->id}}",
                         },
                         "createdRow": function( row, data, dataIndex ) {
-                            $(row).attr('id',data['id']); 
+                             $(row).attr('id',data['id']); 
                             $('td',row).eq(2).html(moment(data['created_at']).format('DD-MM-YYYY h:m:s'));
                         },
                         "columns": [
@@ -171,6 +170,7 @@
                         periodable_type:"{{$periodable_type}}",
                     },
                     success: function (result) {
+                        console.log(result);
                         $("#acuenta").html(result.acuenta+" Bs.");
                         $("#saldo").html(result.saldo+" Bs.");
                         $("#total").html(result.total+" Bs.");

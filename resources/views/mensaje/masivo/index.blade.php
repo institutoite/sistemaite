@@ -13,8 +13,25 @@
         <div class="card">
             <div class="card-header bg-primary">
                 Lista de estudiantes ordenados <strong>Descendentemente </strong> por calificación
+
             </div>
+
             <div class="card-body">
+                @isset($eventoSeleccionado)
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <h4 class="alert-heading text-success">Evento seleccionado!</h4>
+                    <hr>
+                    <p class="mb-0">El evento seleccionado es {{$eventoSeleccionado->id}}</p>
+                </div>
+                @else
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <h4 class="alert-heading text-danger">No selecciono ningun evento!</h4>
+                        <p class="text-danger">Es necesario seleeciona un evento click en el boton siguiente para seleccionar un evento </p>
+                        <hr>
+                        <a href=""> <button class="btn btn-primary" type="button">Ir a Eventos</button> </a>
+                    </div>
+                @endisset
+                    
                 <table id="masivocontactar" class="text-center table table-bordered table-hover table-striped">
                     <thead class="text-center">
                         <tr>

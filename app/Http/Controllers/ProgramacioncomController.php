@@ -156,6 +156,7 @@ class ProgramacioncomController extends Controller
         //
     }
 
+
      public function generarProgramacom($matriculacion_id){
         $matriculacion=Matriculacion::findOrFail($matriculacion_id);
         $costo_total=$matriculacion->costo;
@@ -382,6 +383,24 @@ class ProgramacioncomController extends Controller
         $hora_inicio=Carbon::now()->isoFormat('HH:mm:ss');
         $hora_fin = Carbon::now()->addMinutes(($programacioncom->horaini->floatDiffInMinutes($programacioncom->horafin)))->isoFormat('HH:mm:ss');
         return view('clasecom.create',compact('docentes','programacioncom','matriculacion','aulas','hora_inicio','hora_fin'));
+    }
+
+    public function hoycom(){
+        $programas= Programacioncom::join('matriculacions','matriculacions.id','programacioncoms.matriculacion_id')
+            ->join('computacions','computacions.id','matriculacions.computacion_id')
+            ->join('personas','personas.id','computacions.persona_id')
+            ->join('docentes','programacioncoms.docente_id','docentes.id')
+            ->join('asignaturas','matriculacions.asignatura_id','asignaturas.id')
+            ->join('estados','programacioncoms.estado_id','estados.id')
+
+            ->where('programacioncoms.fecha',Carbon::now()->format('Y-m-d'))
+            ->select('matriculacions.id','personas.nombre as estudiante','estados.estado','personas.apellidop','foto','docentes.nombrecorto as docente','programacioncoms.horaini','programacioncoms.horafin','asignaturas.asignatura')  
+            ->get();
+
+        return DataTables::of($programas)
+                ->addColumn('btn','programacioncom.actionshoy')
+                ->rawColumns(['btn'])
+                ->toJson();
     }
 
     public function programacionescomHoy(Request $request){

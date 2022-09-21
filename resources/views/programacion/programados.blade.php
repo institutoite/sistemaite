@@ -137,17 +137,17 @@
                         $(row).addClass('text-dark')
                     }
 
-                    $('td', row).eq(3).html(moment(data['hora_ini']).format('HH:mm')+'-'+moment(data['hora_fin']).format('HH:mm'));
+                    $('td', row).eq(3).html(moment(data['horaini']).format('HH:mm')+'-'+moment(data['horafin']).format('HH:mm'));
                     $('td', row).eq(4).html(data['estado']);
 
                 },
-                    "ajax":'hoycom',
+                    "ajax":'../hoycom',
                     "columns": [
                         {data: 'id'},
                         {data: 'estudiante'},
                         {data: 'docente'},
-                        {data: 'hora_ini'},
-                        {data: 'hora_fin'},
+                        {data: 'horaini'},
+                        {data: 'horafin'},
                         {data: 'asignatura'},
                         {
                             "name": "foto",

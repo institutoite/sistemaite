@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mensaje;
+use App\Models\Evento;
 use App\Models\Persona;
 use App\Http\Requests\StoreMensajeRequest;
 use App\Http\Requests\UpdateMensajeRequest;
@@ -180,6 +181,7 @@ class MensajeController extends Controller
 
     public function masivoView()
     {
-        return view('mensaje.masivo.index');
+        $eventoSeleccionado=Evento::where('seleccionado',1)->get()->first();
+        return view('mensaje.masivo.index',compact('eventoSeleccionado'));
     }
 }
