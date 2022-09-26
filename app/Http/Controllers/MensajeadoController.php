@@ -32,7 +32,7 @@ class MensajeadoController extends Controller
             ->select('personas.id','nombre','apellidop','apellidom','foto')
             ->get();
         return DataTables::of($mensajeados)
-                ->addColumn('btn','masivo.actionmensajeados')
+                ->addColumn('btn','mensaje.masivo.actionmensajeados')
                 ->rawColumns(['btn'])
                 ->toJson();
     }

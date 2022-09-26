@@ -15,18 +15,18 @@
                 Lista de estudiantes ordenados <strong>Descendentemente </strong> por calificación
             </div>
             <div class="card-body">
-                @isset($eventoSeleccionado)
+                @isset($evento)
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <h4 class="alert-heading text-success">Evento seleccionado!</h4>
                         <hr>
-                        <p class="mb-0">El evento seleccionado es {{$eventoSeleccionado->id}}</p>
+                        <p class="mb-0">El evento seleccionado es {{$evento->evento}}</p>
                     </div>
                 @else
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <h4 class="alert-heading text-danger">No selecciono ningun evento!</h4>
                         <p class="text-danger">Es necesario seleeciona un evento click en el boton siguiente para seleccionar un evento </p>
                         <hr>
-                        <a href=""> <button class="btn btn-primary" type="button">Ir a Eventos</button> </a>
+                        <a href="{{route('eventos.index')}}"> <button class="btn btn-primary" type="button">Ir a Eventos</button> </a>
                     </div>
                 @endisset
                     
@@ -37,8 +37,6 @@
                             <th>NOMBRE</th>
                             <th>APELLIDOP</th>
                             <th>APELLIDOM</th>
-                            <th>CALIFICACION</th>
-                            <th>VIENE</th>
                             <th>FOTO</th>
                             <th>ACCIONES</th>
                         </tr>
@@ -123,7 +121,7 @@
             let observable_type = $("#observable_type").val();
             for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
             observacion=$("#editorguardar").val();
-            url = "../guardar/observacion"
+            url = "../../guardar/observacion"
             guardarObservacion(observacion,observable_id,observable_type,url);
             
         });
@@ -132,7 +130,7 @@
             e.preventDefault();
                 observable_id =$(this).closest('tr').attr('id');
                 observable_type ="Persona";
-                url="../observaciones/" + observable_id + "/" + observable_type,
+                url="../../observaciones/" + observable_id + "/" + observable_type,
                 mostrarCrudObservaciones(url);
                 $("#modal-mostrar-observaciones").modal("show");
         });
@@ -141,27 +139,27 @@
         $('table').on('click', '.bajaobservacion', function (e) {
             e.preventDefault();
             let observacion_id = $(this).closest('tr').attr('id');
-            url="../darbaja/observacion";
+            url="../../darbaja/observacion";
             darBaja(observacion_id,url);
         });
         
         $('table').on('click', '.altaobservacion', function (e) {
             e.preventDefault();
             let observacion_id = $(this).closest('tr').attr('id');
-            url="../daralta/observacion";
+            url="../../daralta/observacion";
             darAlta(observacion_id,url);
         });
 
         $('table').on('click', '.eliminarobservacion', function (e) {
             e.preventDefault();
             let observacion_id = $(this).closest('tr').attr('id');
-            url="../eliminar/general"
+            url="../../eliminar/general"
             eliminarObservacion(observacion_id,url);
         });
         $('table').on('click', '.editarobservacion', function (e) {
             e.preventDefault();
             observacion_id =$(this).closest('tr').attr('id');
-            url="../observacion/editar";
+            url="../../observacion/editar";
             editarObservacion(observacion_id,url);
             $("#modal-mostrar-observaciones").modal("hide");
             $("#modal-editar-observacion").modal("show");
@@ -171,7 +169,7 @@
             e.preventDefault();
             observacion_id =$("#observable_id").val();
             observacion=CKEDITOR.instances.editoreditar.getData();
-            url="../observacion/actualizar";
+            url="../../observacion/actualizar";
             actualizarObservacion(observacion_id,observacion,url);
         });
         /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FECHAR PROXIMO PAGO DE INSCRIPCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -179,7 +177,7 @@
             e.preventDefault();
             persona_id =$(this).closest('tr').attr('id');
             $.ajax({
-                url : "../get/calificacion",
+                url : "../../get/calificacion",
                 data:{
                     persona_id:persona_id,
                 },
@@ -212,7 +210,7 @@
             calificacion_id=$("#calificacion_id").val();
             storeupdate=$("#storeupdate").val();
             $.ajax({
-                url : "../set/calificacion",
+                url : "../../set/calificacion",
                 data:{
                     persona_id:persona_id,
                     calificacion:calificacion,
@@ -237,24 +235,24 @@
             $("#persona_id").val(persona_id);
         }); 
 
-        $('table').on('click', '.mensajeado', function(e) {
-            e.preventDefault();
-            persona_id =$(this).closest('tr').attr('id');
-            $(this).closest('tr').addTempClass('bg-success', 3000)
-            $.ajax({
-                url : "../store/mensajeado",
-                data:{
-                    persona_id:persona_id,
-                },
-                success : function(json) {
-                    masivocontactar.ajax.reload();
+        // $('table').on('click', '.mensajeado', function(e) {
+        //     e.preventDefault();
+        //     persona_id =$(this).closest('tr').attr('id');
+        //     $(this).closest('tr').addTempClass('bg-success', 3000)
+        //     $.ajax({
+        //         url : "../store/mensajeado",
+        //         data:{
+        //             persona_id:persona_id,
+        //         },
+        //         success : function(json) {
+        //             masivocontactar.ajax.reload();
 
-                },
-                error : function(xhr, status) {
-                    alert('Disculpe, existió un problema');
-                },
-            });
-        }); 
+        //         },
+        //         error : function(xhr, status) {
+        //             alert('Disculpe, existió un problema');
+        //         },
+        //     });
+        // }); 
         
         /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         
@@ -264,7 +262,7 @@
             vuelvefecha = $("#vuelvefecha").val();
             persona_id = $("#persona_id").val();
             $.ajax({
-                url: "../persona/actualizar/vuelvefecha",
+                url: "../../persona/actualizar/vuelvefecha",
                 data: {
                     vuelvefecha:vuelvefecha,
                     persona_id:persona_id,
@@ -301,7 +299,7 @@
         $('table').on('click', '.enviarmensaje', function(e) {
             e.preventDefault();
                 persona_id =$(this).closest('tr').attr('id');
-                url="../persona/enviar/mensaje/componente",
+                url="../../persona/enviar/mensaje/componente",
                 mensaje_id=5;
                 mostrarContactos(url,persona_id,mensaje_id);
                 $("#modal-listar-contactos-component").modal("show");
@@ -310,7 +308,7 @@
         function mostrarContactos(url,persona_id,mensaje_id) {
             let mensaje;
             $.ajax({
-                url : "../mensaje/generico",
+                url : "../../mensaje/generico",
                 data:{
                     mensaje_id:mensaje_id,
                     persona_id:persona_id,
@@ -424,18 +422,15 @@
                     "responsive":true,
                     "autoWidth":false,
 
-                    "ajax": "mensajeados/{{$evento->id}}",
+                    "ajax": "../../mensajeados/{{$evento->id}}",
                     "createdRow": function( row, data, dataIndex ) {
                         $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
-                         $('td', row).eq(4).html(Math.round(data['promedio']));
-                         $('td', row).eq(5).html(moment(data['vuelvefecha']).format('DD-MM-YYYY'));
                     },
                     "columns": [
                         {data: 'id'},
                         {data: 'nombre'},
                         {data: 'apellidop'},
                         {data: 'apellidom'},
-                        {data: 'vuelvefecha'},
                         {
                             "name": "foto",
                             "data": "foto",

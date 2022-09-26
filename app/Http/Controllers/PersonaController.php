@@ -1067,8 +1067,8 @@ class PersonaController extends Controller
         
         if(isset($persona->como_id)){
             $como=$persona->como;
+            Storage::append($nombre_archivo, "NOTE:Genero:".$genero.'\nDireccion:'.$zona.' '.$direccion.'\nComo eneteró:'.$como->como);
         }
-        Storage::append($nombre_archivo, "NOTE:Genero:".$genero.'\nDireccion:'.$zona.' '.$direccion.'\nComo eneteró:'.$como->como);
         $apoderados=$persona->apoderados;
             foreach ($apoderados as $apoderado) {
                 Storage::append($nombre_archivo, "TEL;VALUE=uri;PREF=1;TYPE=voice,home:".$apoderado->telefono);
