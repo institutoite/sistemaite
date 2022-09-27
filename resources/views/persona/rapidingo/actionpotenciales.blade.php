@@ -41,4 +41,7 @@
 <a href="" class="btn-accion-tabla tooltipsC mr-1 calificar" title="Calificar el nivel de regreso 20% a 100% donde 100% es que volvera seguro">
     <i class="fas fa-thumbs-up"></i>
 </a>
+<a class="btn-accion-tabla tooltipsC btn-sm mr-2 mostraradministrativos" title="Delegar cliente">
+    <i class="fab fa-whatsapp"></i>
+</a>
 

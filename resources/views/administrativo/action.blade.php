@@ -15,6 +15,10 @@
     </button>
 </form> 
 
+<a href="" class="tooltipsC mr-1 mostrarobservacionespersona" title="Mostrar observaciones">
+    <i class="fas fa-comments text-secondary fa-2x"></i>
+</a>
+
 <a href="" class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" id="Persona" title="Agregar Observacion">
     <i class="fas fa-comment-alt fa-2x"></i>
 </a>

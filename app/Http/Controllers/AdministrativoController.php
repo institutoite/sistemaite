@@ -121,7 +121,7 @@ class AdministrativoController extends Controller
         return response()->json(['mensaje'=>"El registro fue eliminado correctamente"]);
     }
 
-    public function contactarAdministrativos($comentario_id){
+    public function contactarAdministrativos(){
         $administrativos = Administrativo::join('personas','personas.id','administrativos.persona_id')
         ->select('administrativos.id','personas.nombre','personas.apellidop','personas.telefono')
         ->get();

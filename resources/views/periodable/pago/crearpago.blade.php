@@ -131,7 +131,7 @@
                             "url":'../../../periodable/pagos/'+"{{$periodable->id}}",
                         },
                         "createdRow": function( row, data, dataIndex ) {
-                             $(row).attr('id',data['id']); 
+                            $(row).attr('id',data['id']); 
                             $('td',row).eq(2).html(moment(data['created_at']).format('DD-MM-YYYY h:m:s'));
                         },
                         "columns": [
@@ -160,6 +160,7 @@
 /*%%%%%%%%%%%%%%%%%%%%%%%%% guardado con ajax %%%%%%%%%%%%%%%%%%%%%%*/
             $("#guardar").on('click', function (e) {
                 e.preventDefault();
+                $("#errores").empty();
                 $.ajax({
                     url: '../../../pago/periodable/ajax',
                     data:{
@@ -179,25 +180,27 @@
                         });
                         $("#errores").append(html);
 
-                        $("#acuenta").html(result.acuenta+" Bs.");
-                        $("#saldo").html(result.saldo+" Bs.");
-                        $("#total").html(result.total+" Bs.");
-                        $("#monto").val('');
-                        $("#pagocon").val('');
-                        $("#cambio").val('');
-                        if(result.saldo>0){
-                            $("#tablacuerpo").removeClass('text-success');
-                            $("#tablacuerpo").addClass('text-danger');
-                            $("thead").removeClass('bg-success');
-                            $("thead").addClass('bg-danger');
-                        }else{
-                            $("#tablacuerpo").removeClass('text-danger');
-                            $("#tablacuerpo").addClass('text-success');
-                            $("thead").removeClass('bg-danger');
-                            $("thead").addClass('bg-success');
-                            $("#tablaresumen").addClass('text-success');
+                        if (!result.errores){
+                            $("#acuenta").html(result.acuenta+" Bs.");
+                            $("#saldo").html(result.saldo+" Bs.");
+                            $("#total").html(result.total+" Bs.");
+                            $("#monto").val('');
+                            $("#pagocon").val('');
+                            $("#cambio").val('');
+                            if(result.saldo>0){
+                                $("#tablacuerpo").removeClass('text-success');
+                                $("#tablacuerpo").addClass('text-danger');
+                                $("thead").removeClass('bg-success');
+                                $("thead").addClass('bg-danger');
+                            }else{
+                                $("#tablacuerpo").removeClass('text-danger');
+                                $("#tablacuerpo").addClass('text-success');
+                                $("thead").removeClass('bg-danger');
+                                $("thead").addClass('bg-success');
+                                $("#tablaresumen").addClass('text-success');
+                            }
+                            tablapagos.ajax.reload();
                         }
-                        tablapagos.ajax.reload();
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                     }

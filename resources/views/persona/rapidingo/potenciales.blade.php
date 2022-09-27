@@ -40,6 +40,7 @@
     @include('observacion.modalcreate')
     @include('estudiantes.modal')
     @include('persona.rapidingo.modalespotenciales')
+    @include('administrativo.modal')
 @stop
 
 @section('js')
@@ -66,7 +67,8 @@
 
     <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
     <script src="{{asset('assets/js/observacion.js')}}"></script>
-
+    <script src="{{asset('assets/js/derivarpotenciales.js')}}"></script>
+    
     
 
 
@@ -170,6 +172,14 @@
             actualizarObservacion(observacion_id,observacion,url)
             // $("#modal-editar-observacion").modal("hide");
             // $("#modal-editar-observacion").modal("show");
+        });
+
+         $('table').on('click', '.mostraradministrativos', function(e) {
+            e.preventDefault();
+                comentario_id =$(this).closest('tr').attr('id');
+                console.log(comentario_id);
+                mostrarAdministrativosPotenciales(comentario_id);
+                $("#contacto-administrativos").modal("show");
         });
           /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       JS GENERAL       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

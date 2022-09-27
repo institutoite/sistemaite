@@ -52,7 +52,7 @@ use App\Http\Controllers\MododocenteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[ProgramacionController::class,'hoy'])->name('prueba');
+Route::get('prueba',[PersonaController::class,'personaGet'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -154,6 +154,7 @@ Route::get('persona/potenciales/unsuscribe', [PersonaController::class,'unsuscri
 Route::get('persona/potenciales/suscribe', [PersonaController::class,'suscribe'])->name('personas.suscribe');
 Route::post('persona/rapidingo/update/{persona}', [PersonaController::class,'actualizarRapidingo'])->name('personas.update.rapidingo');
 Route::get('persona/editar/rapidingo/{persona}', [PersonaController::class,'editarRapidingo'])->name('personas.editar.rapidingo'); //Falta informar 
+Route::get('potencial/get/{potencial_id}',[PersonaController::class,'personaGet'])->name("persona.get");
 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%DEUDORES RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('deudores/view', [PagoController::class,'deudoresView'])->name('deudores.index');
@@ -267,7 +268,7 @@ Route::resource('docentes', "DocenteController");
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       A D M I N I S T R AT I V O S         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 // Route::get('administrativos','AdministrativoController@index')->name('administrativo.index');
-Route::get('administrativos/contactar/{comentario_id}',[AdministrativoController::class,'contactarAdministrativos'])->name('administrativo.contactar');
+Route::get('administrativos/contactar',[AdministrativoController::class,'contactarAdministrativos'])->name('administrativo.contactar');
 Route::get('micartera/view',[AdministrativoController::class,'vistaCartera'])->name('administrativo.vistaCartera');
 Route::get('micartera/inscripciones',[AdministrativoController::class,'miCarteraInscripciones'])->name('administrativo.micartera.inscripciones');
 Route::get('micartera/inscripciones/desvigentes',[AdministrativoController::class,'miCarteraInscripcionesDesvigentes'])->name('administrativo.micartera.inscripciones.desvigentes');

@@ -108,9 +108,9 @@
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR CONTACTOS  ADMINISTRATIVOS Y DERIVAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         $('table').on('click', '.mostraradministrativos', function(e) {
             e.preventDefault();
-                comentario_id =$(this).closest('tr').attr('id');
-                console.log(comentario_id);
-                mostrarAdministrativos(comentario_id);
+                objeto_id =$(this).closest('tr').attr('id');
+                console.log(objeto_id);
+                mostrarAdministrativos(objeto_id);
                 $("#contacto-administrativos").modal("show");
         });
 

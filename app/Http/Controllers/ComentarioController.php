@@ -207,7 +207,8 @@ class ComentarioController extends Controller
         $comentario=Comentario::findOrFail($comentario_id);
         $comentario->comentario=rtrim(ltrim(trim(str_replace(' ', '%20', strip_tags($comentario->comentario)))));
         $interests=$comentario->interests;
-        $data=['comentario'=>$comentario,'interests'=>$interests];
+        $como=$comentario->como;
+        $data=['comentario'=>$comentario,'interests'=>$interests,'como'=>$como];
         return response()->json($data);
     }
     
