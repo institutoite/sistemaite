@@ -301,14 +301,18 @@
                 "createdRow": function( row, data, dataIndex ) {
                     
                     if(data['habilitado'] == 1 ){
-                        $(row).addClass('table-success')
+                        // $(row).addClass('')
                         $(row).addClass('text-success')
-                        
+                        if(moment(data['fecha']).format('D-M-Y')==moment().format('D-M-Y')){
+                            $(row).addClass("bg-primary text-white");
+                        }
                     }else{
-                        $(row).addClass('table-danger')
                         $(row).addClass('text-danger')
+                        
+                        if(moment(data['fecha']).format('D-M-Y')==moment().format('D-M-Y')){
+                            $(row).addClass("bg-danger text-white");
+                        }
                     }
-
                     
                     $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
                     $('td', row).eq(1).html(moment(data['fecha']).format('D-M-Y')+'-'+moment(data['fecha']).format('dddd'));

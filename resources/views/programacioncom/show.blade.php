@@ -67,13 +67,15 @@
                                                     }
                                                 }else{
                                                     if($programa->fecha->isoFormat('DD/MM/YYYY')==$hoy->isoFormat('DD/MM/YYYY')){
-                                                        $claseHoy.="bg-primary";
+                                                        $claseHoy.="bg-warning";
                                                         $claseBotonHoy.="btn btn-secondary";
                                                     }else{
                                                         $claseFila.="";
                                                         $claseBoton.="btn btn-primary text-white";
                                                     }
                                                 }
+
+
                                         @endphp
                                     <tr class="{{$claseFila.' '.$claseHoy}}">
                                         <td>{{$loop->iteration}}</td>

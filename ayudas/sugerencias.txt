@@ -62,6 +62,7 @@ reCaptcha
 cuando cancelan todo igual avanzar hasta ver la programacion 
 ver como registrar administrativo
 hoy del menu horizontal solo tiene hoyinscripciones falta hoymatriculaciones
+en ver programacion marcar la clase de hoy y  hasta donde essta pagada
 
 
 
@@ -76,7 +77,6 @@ google calendar
 
 crear una vista para los mensajeados segun el evento por el que fueron mensajeados obsrvaciones volvera , fechavuelve etc
 en index de administrativos que se pueda agregar observaciones y mostrar los mismos
-en ver programacion marcar la clase de hoy y  hasta donde essta pagada
 
 Swal.fire({
   title: 'How old are you?',

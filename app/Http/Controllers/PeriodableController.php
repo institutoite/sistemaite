@@ -272,12 +272,11 @@ class PeriodableController extends Controller
             return response()->json($data);
         }
         else{
-             return response()->json(['error' => $validator->errors()->first()]);
+             return response()->json(['errores' => $validator->errors()]);
         }
-        // return view('periodable.pago.crearpago', compact('periodable','pagos','persona','periodable_type','acuenta','saldo'));
     }
-    public function listarPagosAjax(){
-        $periodable_id=1;
+    public function listarPagosAjax($periodable_id){
+        //$periodable_id=1;
         $periodable=Periodable::findOrFail($periodable_id);
         //return response()->json($periodable);
         if($periodable->periodable_type == "App\\Models\\Docente")

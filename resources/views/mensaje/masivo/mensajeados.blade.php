@@ -38,6 +38,8 @@
                             <th>APELLIDOP</th>
                             <th>APELLIDOM</th>
                             <th>FOTO</th>
+                            <th>VUELVE</th>
+                            <th>OBSERVACION</th>
                             <th>ACCIONES</th>
                         </tr>
                     </thead>
@@ -279,7 +281,7 @@
                             title: "Se actualizó correctamente la fecha próximo pago ",
                         })
                         $("#modal-fechar").modal("hide");
-                        masivocontactar.ajax.reload();
+                        tablamensajeados.ajax.reload();
                     
                 },
                 error: function (xhr, status) {
@@ -424,13 +426,28 @@
 
                     "ajax": "../../mensajeados/{{$evento->id}}",
                     "createdRow": function( row, data, dataIndex ) {
-                        $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
+                        $(row).attr('id',data['id']); 
+                        if (moment(data['vuelvefecha']).format('YY-MM-DD')>moment().format('YY-MM-DD')){
+                            $(row).addClass('text-success')
+                        }else{
+                            $(row).addClass('text-danger')
+                        }
+                        persona_id = data['id'];
+                        $.ajax({
+                            url:"{{url('persona/ultimaobservacion')}}",
+                            data:{persona_id:persona_id},
+                            success : function(json) {
+                                $('td', row).eq(6).html(json.observacion.observacion +'('+ json.usuario.name +')');  
+                            },
+                        });
+          
                     },
                     "columns": [
                         {data: 'id'},
                         {data: 'nombre'},
                         {data: 'apellidop'},
                         {data: 'apellidom'},
+                        
                         {
                             "name": "foto",
                             "data": "foto",
@@ -440,7 +457,9 @@
                             "title": "FOTO",
                             "orderable": false,
             
-                        },     
+                        },
+                        {data: 'vuelvefecha'},
+                        {data: 'volvera'},
                         {
                             "name":"btn",
                             "data": 'btn',

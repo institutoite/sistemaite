@@ -1,3 +1,6 @@
+    <ul id="errores" class="text-danger">
+
+    </ul>
 
     <input type="text" hidden value="{{ $periodable->id}}">
     <div class="row">

@@ -56,7 +56,6 @@
                         },
                         "createdRow": function( row, data, dataIndex ) {
                             $(row).attr('id',data['id']); 
-                            //$('td',row).eq(3).html(moment(data['fechaini']).format('DD-MM-YYYY'));
                         },
                         "columns": [
                             {data:'id'},

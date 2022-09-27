@@ -170,14 +170,22 @@
                         periodable_type:"{{$periodable_type}}",
                     },
                     success: function (result) {
-                        console.log(result);
+                        html="";
+                        $.each(result.errores, function(i, item) {
+                            $.each(item, function(i, error) {
+                                html+="<li>"+ item[0] +"</li>";
+                                console.log(error);
+                            });
+                        });
+                        $("#errores").append(html);
+
                         $("#acuenta").html(result.acuenta+" Bs.");
                         $("#saldo").html(result.saldo+" Bs.");
                         $("#total").html(result.total+" Bs.");
                         $("#monto").val('');
                         $("#pagocon").val('');
                         $("#cambio").val('');
-                         if(result.saldo>0){
+                        if(result.saldo>0){
                             $("#tablacuerpo").removeClass('text-success');
                             $("#tablacuerpo").addClass('text-danger');
                             $("thead").removeClass('bg-success');
@@ -189,7 +197,6 @@
                             $("thead").addClass('bg-success');
                             $("#tablaresumen").addClass('text-success');
                         }
-                        console.log($("#tablaresumen"));
                         tablapagos.ajax.reload();
                     },
                     error: function (xhr, ajaxOptions, thrownError) {

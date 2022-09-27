@@ -29,7 +29,7 @@ class MensajeadoController extends Controller
         $mensajeados=Mensajeado::join('personas','mensajeados.persona_id','personas.id')
             ->join('eventos','eventos.id','mensajeados.evento_id')
             ->where('eventos.id',$unEvento)
-            ->select('personas.id','nombre','apellidop','apellidom','foto')
+            ->select('personas.id','nombre','apellidop','apellidom','foto','vuelvefecha','volvera')
             ->get();
         return DataTables::of($mensajeados)
                 ->addColumn('btn','mensaje.masivo.actionmensajeados')
