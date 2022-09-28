@@ -1039,7 +1039,7 @@ class PersonaController extends Controller
 
     public function CrearContacto($persona_id){
         $persona=Persona::find($persona_id);
-        $nombre_archivo='contactos/'.$persona->id.'.vcf';
+        $nombre_archivo='contactos/'.$persona->nombre.$persona->id.'.vcf';
         Storage::append($nombre_archivo, 'BEGIN:VCARD');
         Storage::append($nombre_archivo, 'VERSION:3.0');
         $apellidoMaterno = isset($persona->apellidom) ? $persona->apellidom : '-';
@@ -1124,8 +1124,8 @@ class PersonaController extends Controller
     }
     
     public function descargarContacto($persona){
-        
-        $url=storage_path("app\\contactos\\".$persona.".vcf");
+        $una_una_persona=Persona::findOrFail($persona);
+        $url=storage_path("app\\contactos\\".$una_una_persona->nombre.$una_una_persona->id.".vcf");
         if(!is_null($url)){
             if (file_exists($url)){
                 if (unlink($url)) {
