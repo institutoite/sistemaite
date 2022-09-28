@@ -245,7 +245,7 @@ Route::get('comentario/interests/{comentario_id}', [ComentarioController::class,
 Route::get('comentario/editar/{comentario}', [ComentarioController::class,'edit'])->name("comentario.edit");
 Route::post('comentario/actualizar/{comentario}', [ComentarioController::class,'update'])->name("comentario.update");
 Route::post('comontarios/guardar', [ComentarioController::class,'guardarComentarioDesdeSistema'])->name("comentario.guardar.sistema");
-Route::delete('eliminar/comentario/{comentario}', [ComentarioController::class,'destroy'])->name('comentario.delete');
+Route::delete('eliminar/comentario', [ComentarioController::class,'destroy'])->name('comentario.delete');
 Route::get('darbaja/comentario',[ComentarioController::class,'darbaja'])->name('comentario.darbaja');
 Route::get('daralta/comentario/',[ComentarioController::class,'daralta'])->name('comentario.daralta');
 Route::get('crear/contacto/{comentario}',[ComentarioController::class,'crearContactoComentario'])->name('comentario.descargar');

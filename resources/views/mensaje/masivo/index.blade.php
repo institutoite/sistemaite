@@ -13,9 +13,7 @@
         <div class="card">
             <div class="card-header bg-primary">
                 Lista de estudiantes ordenados <strong>Descendentemente </strong> por calificación
-
             </div>
-
             <div class="card-body">
                 @isset($eventoSeleccionado)
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -223,6 +221,7 @@
                 },
                 success : function(json) {
                     $("#modal-editar-calificacion").modal("hide");
+                    masivocontactar.ajax.reload();
                 },
                 error : function(xhr, status) {
                     alert('Disculpe, existió un problema');

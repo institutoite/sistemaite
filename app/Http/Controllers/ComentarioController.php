@@ -11,6 +11,7 @@ use App\Models\Zona;
 use App\Models\Interest;
 use App\Http\Requests\StoreComentarioRequest;
 use App\Http\Requests\UpdateComentarioRequest;
+use App\Http\Requests\DeleteRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -197,10 +198,13 @@ class ComentarioController extends Controller
      * @param  \App\Models\Comentario  $comentario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comentario $comentario)
+    public function destroy(DeleteRequest $request)
     {
+        $comentario_id=$request->id;
+        $comentario=Comentario::findOrFail($comentario_id);
+        $comentario->interests()->detach();
         $comentario->delete();
-        return response()->json(['mensaje'=>"Se eliminó correctamente"]);
+        return response()->json(['mensaje'=>"El registro fue eliminado correctamente",'id'=>$comentario]);
     }
 
     public function comentarioGet($comentario_id){

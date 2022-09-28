@@ -221,6 +221,7 @@
             $('table').on('click','.eliminargenerico',function (e) {
                 e.preventDefault(); 
                 registro_id=$(this).closest('tr').attr('id');
+                
                 eliminarRegistro(registro_id,'administrativo',tablaadministrativos);
             });
 

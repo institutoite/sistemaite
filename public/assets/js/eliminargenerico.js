@@ -25,8 +25,7 @@ function eliminarRegistro(registro_id,objeto_type,tabla) {
                     _token: $("meta[name='csrf-token']").attr("content"),
                 },
                 success: function (result) {
-                    console.log(result);
-                    tabla.ajax.reload();
+                    tabla.api().ajax.reload();
                     mensajeGrande(result.mensaje, 'success', 2000);
                     
                 },
