@@ -27,7 +27,9 @@
                                 </td>
 
                                 <td>
-                                    {{$user->name}}
+                                    @isset($user)
+                                        {{$user->name}}
+                                    @endisset
                                 </td>
 
                                 <td>
