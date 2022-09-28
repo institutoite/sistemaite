@@ -45,22 +45,15 @@
                                             <td>{{ $pago->pagocon }}</td>
                                             <td>{{ $pago->cambio }}</td>
                                             <td>
-                                                {{-- @php
-                                                    $user=App\Models\User::findOrFail($pago->userable->user_id);
-                                                @endphp
-                                                    
-                                                {{$user->name."x"}}
-                                                    <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5" width="100">  --}}
-
+                                                {{ $pago->usuarios->first()->name}}
                                             </td>
                                             <td>{{ $pago->created_at }}</td>
                                             <td>
-                                                {{-- {{route('pagos.editar', $pago)}} --}}
                                                 <a href="{{route('pago.editar',$pago->id)}}" class="btn-accion-tabla tooltipsC mr-2 editar" title="Editar esta pago">
                                                     <i class="fa fa-fw fa-edit text-primary"></i>
                                                 </a>
 
-                                                <a href="" class="mostrar btn-accion-tabla tooltipsC mr-2" title="Ver este pago">
+                                                <a href="" class="mostrar btn-accion-tabla tooltipsC mr-2" title="Ver detalle de este pago">
                                                     <i class="fa fa-fw fa-eye text-primary"></i>
                                                 </a>
 
@@ -124,15 +117,11 @@
 /*%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PAGO CON AJAX EN MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.mostrar', function(e) {
                 e.preventDefault(); 
-
                 var pago_id =$(this).closest('tr').attr('id');
                 var fila=$(this).closest('tr');
-                //console.log(pago_id);
                 $.ajax({
                     url : "../../pago/mostrar/"+pago_id,
-                    
                     success : function(json) {
-                        //console.log(json);
                         $("#modal-mostrar").modal("show");
                         $("#tabla-modal").empty();
                         $("#tabla-pago").empty();

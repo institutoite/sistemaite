@@ -52,7 +52,7 @@ use App\Http\Controllers\MododocenteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[PersonaController::class,'personaGet'])->name('prueba');
+Route::get('prueba',[PagoController::class,'listarPagos'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -306,13 +306,11 @@ Route::delete('eliminar/tema',[TemaController::class,'destroy'])->name('eliminar
 Route::patch('tema/actualizar/{tema}', [TemaController::class,'update'])->name('tema.update');
 Route::post('tema/store', [TemaController::class,'store'])->name('tema.store');
 
-
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  M A T E R I A S    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('materias', "MateriaController");
 Route::get('listar/materias',[MateriaController::class,'listar'])->name('materias.listar');
 Route::get('materias/niveles/{materia}', 'MateriaController@configurar_niveles')->name('materias.gestionar.niveles');
 Route::post('materias/niveles/configurar/{materia}', 'MateriaController@GuardarConfigurarNiveles')->name('materias.configurar.niveles.guardar');
-
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       P  A  G  O  S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('pagos', "PagoController");
@@ -323,6 +321,7 @@ Route::get('pagos/inscripcion/{inscripcione}', 'PagoController@detallar')->name(
 Route::post('pagos/realizar/{inscripcione}', 'PagoController@guardar')->name('pagos.guardar');
 Route::patch('pago/actualizar/{pago}', "PagoController@actualizar")->name('pago.actualizar');
 Route::get('pagos/mostrar/ajax',[PagoController::class,'pagosMostrarAjax'])->name('pagos.mostrar.ajax');
+Route::get('listar/pagos',[PagoController::class,'listarPagos'])->name('pagos.pagos');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%PAGOS COMPUTACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('pagocom/crear/{matriculacion}',[PagocomController::class,'crear'])->name('pagocom.crear');

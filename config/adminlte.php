@@ -402,9 +402,9 @@ return [
             'classes'  => 'text-white text-bold bg-primary',
             'submenu' => [
                 [
-                    'text' => 'Ingreso',
+                    'text' => 'Ingresos',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'pagos',
                     'classes'  => 'text-dark',
                 ],
                 [
@@ -448,12 +448,6 @@ return [
                     'url'  => '#',
                     'classes'  => 'text-secondary',
                     'can' => 'Listar Inscripciones',
-                ],
-                [
-                    'text' => 'Ingresos',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-secondary',
                 ],
                 [
                     'text' => 'Salidas',

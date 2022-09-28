@@ -1,4 +1,5 @@
 let tablaadministrativos;
+let $un_potencial;
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATATABLE DE OBSERVACIONES DENTRO DE UNA FUNCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 function mostrarAdministrativosPotenciales(potencial_id) {
     $("#administrativos").dataTable().fnDestroy();
@@ -9,6 +10,7 @@ function mostrarAdministrativosPotenciales(potencial_id) {
             $un_potencial=result.persona;
             $unos_interests=result.interests;
             $una_onservacion=result.observacion;
+            $un_user=result.user;
             $un_como=result.como.como;
             $.each($unos_interests, function (key, value) {
                 $men +=(Number(key)+Number(1))+".-%20"+value.interest + "%0A";
@@ -34,6 +36,7 @@ function mostrarAdministrativosPotenciales(potencial_id) {
                 $mensaje += "*Telefono:*%0A" + $un_potencial.telefono + "%0A%0A";
                 $mensaje += "*Observacion inicial:*%0A" + ($una_onservacion) + "%0A%0A";
                 $mensaje += "*Tipo cliente:*%0A" + 'Potencial' + "%0A%0A";
+                $mensaje += "*Quien atendió:*%0A" + $un_user + "%0A%0A";
                 $mensaje += "*Interes%20del%20cliente:*%0A" +$men;
                 $mensaje += "%0A*Descargar%20contacto:*%0A";
                 $mensaje += "http://localhost/sistemaite/public/crear/contacto/" + $un_potencial.id+"%0A";

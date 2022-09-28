@@ -1,79 +1,142 @@
-@extends('layouts.app')
-
-@section('template_title')
-    Pago
+@extends('adminlte::page')
+@section('css')
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/mapa.css')}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
+@section('title', 'Fractales')
+@section('plugins.jquery', true)
+@section('plugins.Sweetalert2',true)
+@section('plugins.Datatables',true)
+
+
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-
-                            <span id="card_title">
-                                {{ __('Pago') }}
-                            </span>
-
-                             <div class="float-right">
-                                <a href="{{ route('pagos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
-                                </a>
-                              </div>
-                        </div>
-                    </div>
-                    @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @endif
-
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr>
-                                        <th>No</th>
-                                        
-										<th>Monto</th>
-										<th>Pagocon</th>
-										<th>Cambio</th>
-										<th>Pagable Id</th>
-										<th>Pagable Type</th>
-
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($pagos as $pago)
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $pago->monto }}</td>
-											<td>{{ $pago->pagocon }}</td>
-											<td>{{ $pago->cambio }}</td>
-											<td>{{ $pago->pagable_id }}</td>
-											<td>{{ $pago->pagable_type }}</td>
-
-                                            <td>
-                                                <form action="{{ route('pagos.destroy',$pago->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('pagos.show',$pago->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('pagos.edit',$pago->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+    <div class="card">
+            <div class="card-header bg-primary">
+                <div class="float-right">
+                    LISTA DE TODOS LOS FRACTALES INSCRIPCIONES
                 </div>
-                {!! $pagos->links() !!}
             </div>
+        <div class="card-body">
+            <table id="pagos" class="table table-hover table-striped table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>MONTO</th>
+                        <th>PAGOCON</th>
+                        <th>CAMBIO</th>
+                        <th>USUARIO</th>
+                        <th>FECHAHORA</th>
+                        <th>PAGABLE</th>
+                        <th>OPCIONES</th>
+                    </tr>
+                </thead>
+            </table>
         </div>
     </div>
+    
+    @include('pago.modalmostrar')
+@endsection
+
+@section('js')
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+    <script src="{{asset('dist/js/moment.js')}}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
+    <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
+    <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            let tablapagos;
+            let tablapagoscom;
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE COMOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+                tablapagos=$('#pagos').DataTable(
+                    {
+                        "serverSide": true,
+                        "responsive":true,
+                        "autoWidth":false,
+                        "ajax":{ 
+                            "url":'listar/pagos',
+                        },
+                        "createdRow": function( row, data, dataIndex ) {
+                            $(row).attr('id',data['id']); 
+                            $('td',row).eq(4).html(moment(data['created_at']).format('LLLL'));
+                            
+                        },
+                        "columns": [
+                            {data:'monto'},
+                            {data:'pagocon'},
+                            {data:'cambio'},
+                            {data:'user'},
+                            {data:'created_at'},
+                            {data:'pagable_type'},
+                            {
+                                "name":"btn",
+                                "data": 'btn',
+                                "orderable": false,
+                            },
+                        ],
+                        "language":{
+                            "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                        },
+                        "paging":   true,
+                    }
+                );
+               
+            /*%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR DETALLE PAGO CON AJAX EN MODAL %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.mostrar', function(e) {
+                e.preventDefault(); 
+                var pago_id =$(this).closest('tr').attr('id');
+                console.log(pago_id);
+                var fila=$(this).closest('tr');
+                $.ajax({
+                    url : "pago/mostrar/"+pago_id,
+                    success : function(json) {
+                        $("#modal-mostrar").modal("show");
+                        $("#tabla-modal").empty();
+                        $("#tabla-pago").empty();
+                        $("#tabla-cambio").empty();
+                        $html="";
+                        $html+="<tr><td>Monto</td>"+"<td>Bs. "+json.pago.monto+"</td></tr>";
+                        $html+="<tr><td>Pago Con</td>"+"<td>Bs. "+json.pago.pagocon+"</td></tr>";
+                        $html+="<tr><td>Cambio</td>"+"<td>Bs. "+json.pago.cambio+"</td></tr>";
+                        $html+="<tr><td>Usuario</td>"+"<td>"+json.user.name+"</td></tr>";
+                        $html+="<tr><td>Fecha y hora Pago</td>"+"<td>"+moment(json.pago.created_at).format('LLLL')+"</td></tr>";
+                        $html+="<tr><td>Ultima Actualizacion</td>"+"<td>"+moment(json.pago.updated_at).format('LLLL')+"</td></tr>";
+                        $("#tabla-modal").append($html);    
+                        
+                        $htmlBilletesPago="";
+                        $htmlBilletesCambio="";
+                        $sumaPago=0;
+                        $sumaCambio=0;
+                        for (let j in json.billetes) {
+                            if(json.billetes[j].pivot.tipo=='pago'){
+                                $htmlBilletesPago+="<tr><td>Corte de Bs. "+json.billetes[j].corte+"</td>"+"<td>"+json.billetes[j].pivot.cantidad+"</td><td>"+ json.billetes[j].pivot.tipo +"</td><td>Bs. "+  json.billetes[j].pivot.cantidad*json.billetes[j].corte +"</td></tr>";
+                                $sumaPago+=json.billetes[j].corte*json.billetes[j].pivot.cantidad;
+                                
+                            }else{
+                                $htmlBilletesCambio+="<tr><td>Corte de Bs. "+json.billetes[j].corte+"</td>"+"<td>"+json.billetes[j].pivot.cantidad+"</td><td>"+ json.billetes[j].pivot.tipo +"</td><td>Bs. "+  json.billetes[j].pivot.cantidad*json.billetes[j].corte +"</td></tr>";
+                                $sumaCambio+=json.billetes[j].corte*json.billetes[j].pivot.cantidad;
+                            }
+                        }
+                        $htmlBilletesPago+="<tr><td colspan='3'>T&nbsp;&nbsp;O&nbsp;&nbsp;T&nbsp;&nbsp;A&nbsp;&nbsp;L&nbsp;&nbsp;&nbsp;&nbsp;P&nbsp;&nbsp;A&nbsp;&nbsp;G&nbsp;&nbsp;O&nbsp;&nbsp; </td>"+"<td>Bs. "+$sumaPago+"</td></tr>";
+                        $htmlBilletesCambio+="<tr><td colspan='3'>T&nbsp;&nbsp;O&nbsp;&nbsp;T&nbsp;&nbsp;A&nbsp;&nbsp;L&nbsp;&nbsp;&nbsp;&nbsp;C&nbsp;&nbsp;A&nbsp;&nbsp;M&nbsp;&nbsp;B&nbsp;&nbsp;I&nbsp;&nbsp;O&nbsp;&nbsp;</td>"+"<td>Bs. "+$sumaCambio+"</td></tr>";
+                        $("#tabla-pago").append($htmlBilletesPago);
+                        $("#tabla-cambio").append($htmlBilletesCambio);
+
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+            });
+        } );
+        
+    </script>
 @endsection

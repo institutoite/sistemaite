@@ -34,14 +34,11 @@ class PagoController extends Controller
      */
     public function index()
     {
-        $pagos = Pago::paginate();
-
-        return view('pago.index', compact('pagos'))
-            ->with('i', (request()->input('page', 1) - 1) * $pagos->perPage());
+        $pagos = Pago::all();
+        return view('pago.index', compact('pagos'));
     }
     public function detallar($inscripcion_id)
     {
-        //$pagos=Pago::where('pagable_id','=',$inscripcion_id)->get();
         $inscripcion = Inscripcione::findOrFail($inscripcion_id);
         $pagos = $inscripcion->pagos;
         $acuenta = $inscripcion->pagos->sum->monto;
@@ -231,5 +228,16 @@ class PagoController extends Controller
     } 
     public function deudoresView(){
         return view('persona.deudores.index');
+    }
+    public function listarPagos(){
+        $pagos = Pago::join('userables','userables.userable_id','pagos.id')
+                ->join('users','users.id','userables.user_id')
+                ->where('userables.userable_type', "App\\Models\\Pago")
+                ->select('pagos.id','monto','pagocon','cambio','pagos.created_at','name as user','pagos.pagable_type')
+                ->get();
+        return DataTables::of($pagos)
+                ->addColumn('btn','pago.reportes.actionpagos')
+                ->rawColumns(['btn'])
+                ->toJson();
     }
 }

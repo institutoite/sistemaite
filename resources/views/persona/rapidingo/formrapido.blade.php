@@ -96,20 +96,20 @@
                                 @foreach ($interests_currents as $current)
                                     <div class="form-check form-switch form-check-inline mb-2 mt-2 ml-2 mr-2">
                                         <input class="form-check-input" onclick="return false;" type="checkbox" name="interests[{{$current->id}}]" checked value="{{$current->interest}}" id="{{$current->interest}}">
-                                        <label class="form-check-label" for="{{$current->id}}">{{$current->interest}}</label>
+                                        <label class="form-check-label" for="{{$current->interest}}">{{$current->interest}}</label>
                                     </div>
                                 @endforeach
                                 @foreach ($interests_faltantes as $faltante)
                                     <div class="form-check form-switch form-check-inline mb-2 mt-2 ml-2 mr-2">
                                         <input class="form-check-input" type="checkbox" name="interests[{{$faltante->id}}]"  value="{{$faltante->interest}}" id="{{$faltante->interest}}">
-                                        <label class="form-check-label" for="{{$faltante->id}}">{{$faltante->interest}}</label>
+                                        <label class="form-check-label" for="{{$faltante->interest}}">{{$faltante->interest}}</label>
                                     </div>
                                 @endforeach
                             @else
                                 @foreach ($interests as $interest)
                                     <div class="form-check form-switch form-check-inline mb-2 mt-2 ml-2 mr-2">
                                         <input class="form-check-input" type="checkbox" name="interests[{{$interest->id}}]" value="{{$interest->interest}}" id="{{$interest->interest}}">
-                                        <label class="form-check-label" for="{{$interest->id}}">{{$interest->interest}}</label>
+                                        <label class="form-check-label" for="{{$interest->interest}}">{{$interest->interest}}</label>
                                     </div>
                                 @endforeach
                             @endisset

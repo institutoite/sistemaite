@@ -1172,12 +1172,13 @@ class PersonaController extends Controller
         $felicitado->save();
         return response()->json($felicitado);
     }
-    public function personaGet($potencial_id=1){
+    public function personaGet($potencial_id){
         $persona=Persona::findOrFail($potencial_id);
         $observacion=rtrim(ltrim(trim(str_replace(' ', '%20', strip_tags($persona->observaciones->first()->observacion)))));
         $interests=$persona->interests;
         $como=$persona->como;
-        $data=['persona'=>$persona,'interests'=>$interests,'como'=>$como,'observacion'=>$observacion];
+        $user=$persona->usuarios->first()->name;
+        $data=['persona'=>$persona,'interests'=>$interests,'como'=>$como,'observacion'=>$observacion,'user'=>$user];
         return response()->json($data);
     }
 }
