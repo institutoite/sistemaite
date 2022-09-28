@@ -39,11 +39,10 @@
                 <div class="col-lg-4">
                     <div class="course-sidebar">
                         <div class="course-single-thumb">
-                            {{-- {{dd($user)}} --}}
-                            {{-- <img src="{{asset('assets/images/course/course14.jpg')}}" alt="" class=""> --}}
-                            <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="img-fluid w-100 rounded img-thumbnail img-fluid border-primary border-5" width="100"> 
+                            @isset($user)
+                                <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="img-fluid w-100 rounded img-thumbnail img-fluid border-primary border-5" width="100"> 
+                            @endisset
                         </div>
-
                         <div class="course-widget course-details-info">
                             <h4 class="course-title">Autor de Registro: {{$user->name}}</h4>
                             <ul>

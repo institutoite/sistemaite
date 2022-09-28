@@ -214,7 +214,6 @@
             $('#monto').change(function(){
                 $('#cambio').val($('#pagocon').val()-$('#monto').val());
             });
-
         });
     </script>    
 @endsection

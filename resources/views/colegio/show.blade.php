@@ -111,8 +111,10 @@
                                  <tr>
                                     <td>Usuario</td>
                                     <td>
-                                        {{$user->name}}
-                                        <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5"> 
+                                        @isset($user)
+                                            {{$user->name}}
+                                            <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5"> 
+                                        @endisset
                                     </td>
                                 </tr>
                             </tbody>

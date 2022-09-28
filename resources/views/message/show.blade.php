@@ -31,7 +31,11 @@
                             <tbody>
                                 <tr>
                                     <td>NOMBRE USUARIO</td>
-                                    <td>{{$user->name}}</td>
+                                    <td>
+                                        @isset($user)
+                                            {{$user->name}}
+                                        @endisset
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>EMAIL</td>

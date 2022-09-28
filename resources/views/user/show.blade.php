@@ -31,7 +31,9 @@
                             <tbody>
                                 <tr>
                                     <td>NOMBRE USUARIO</td>
-                                    <td>{{$user->name}}</td>
+                                    <td>
+                                        {{$user->name}}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>EMAIL</td>
