@@ -120,7 +120,7 @@
                     },
                 ],
                 "columnDefs": [
-                    { responsivePriority: 1, targets: 0 },  
+                    { responsivePriority: 1, targets: 1 },  
                     { responsivePriority: 2, targets: -1 }
                 ],
                 "language":{

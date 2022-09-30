@@ -225,13 +225,9 @@
                         "orderable": false,
                     },
                 ],
-                
                 "columnDefs": [
-                    {
-                        "targets": [ 1 ],
-                        "visible": false,
-                        "searchable": false
-                    },
+                    { responsivePriority: 1, targets: 0 },  
+                    { responsivePriority: 2, targets: -1 }
                 ],
                 order: [[1, 'desc']],
                 "language":{

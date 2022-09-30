@@ -13,32 +13,21 @@
     
         <div class="card">
             <div class="card-header">
-                Telefonos <span class="text-secondary">{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}} </span>
-
+                <div class="row">
+                    <p class="text-secondary">{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}} </p>
+                </div>
                 <div class="btn-group float-right" role="group" aria-label="Basic example">
                     @if ($persona->isEstudiante())
-                        <button class="btn btn-check">
                             <a href="{{route('inscribir',$persona)}}" class="btn btn-outline-secondary float-right">Inscribir<i class="fas fa-user-edit"></i></a>
-                        </button>
-                        
-                        <button class="btn btn-check">
                             <a class="btn float-right btn-outline-primary" href="{{route('opcion.principal',$persona->estudiante->id)}}">Menú<i class="fas fa-th-list"></i></i></a>
-                        </button>
-                        
                     @endif
 
-                    <button class="btn btn-check">
                             <a href="{{route('telefonos.crear',$persona)}}" class="btn btn-outline-secondary float-right">Teléfono<i class="fas fa-mobile-alt"></i></a>
-                        </button>
                     @if ($persona->isDocente())
-                        <button class="btn btn-check">
-                            <a class="btn" href="{{route('opcion.principal',$persona->id)}}"><i class="fas fa-th-list"></i></i></a>
-                        </button>
+                            <a class="btn btn-outline-secondary float-right" href="{{route('opcion.principal',$persona->id)}}"><i class="fas fa-th-list"></i></i></a>
                     @endif
                     @if ($persona->isAdministrativo())
-                        <button class="btn btn-check">
-                            <a class="btn float-right" href="{{route('opcion.administrativos',$persona->id)}}"><i class="fas fa-th-list"></i></i></a>
-                        </button>
+                            <a class="btn btn-outline-primary float-right" href="{{route('opcion.administrativos',$persona->id)}}"><i class="fas fa-th-list"></i></i></a>
                     @endif
                 </div>
             </div>
