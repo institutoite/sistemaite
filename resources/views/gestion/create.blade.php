@@ -14,39 +14,32 @@
 
 
 @section('content')
-    <section class="content container-fluid pt-4">
-        <div class="row">
-            <div class="col-md-12">
-                @includeif('partials.errors')
-                <div class="card card-default">
-                    @if ($gestion)
-                        <div class="card-header bg-primary">{{$gestion->nombre.'|'.$gestion->grado.'|'.$gestion->anio}}
-                            <a href="{{ route('gestion.index',$estudiante) }}" class="btn btn-secondary btn-sm float-right text-white"  data-placement="left">
-                                        {{ __('Listar Gestiones') }}
-                                    </a>
-                        </div>
-                    @else
-                        @php
-                            $persona=$estudiante->persona;
-                        @endphp
-                        <div class="card-header bg-primary">{{ $persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom }} <strong>Aun no tiene Gestiones</strong>
-                            <a href="{{ route('gestion.index',$estudiante) }}" class="btn btn-secondary btn-sm float-right text-white"  data-placement="left">
-                                        {{ __('Listar Gestiones') }}
-                                    </a>
-                        </div>
-                    @endif
-                    
-                    <div class="card-body">
-                        <form method="POST" action="{{route('gestion.store')}}">
-                            @csrf
-                            @include('gestion.form')
-                            @include('include.botones')
-                        </form>
-                    </div>
-                </div>
+    <div class="card">
+        @if ($gestion)
+            <div class="card-header bg-primary">{{$gestion->nombre.'|'.$gestion->grado.'|'.$gestion->anio}}
+                <a href="{{ route('gestion.index',$estudiante) }}" class="btn btn-secondary btn-sm float-right text-white"  data-placement="left">
+                            {{ __('Listar Gestiones') }}
+                        </a>
             </div>
+        @else
+            @php
+                $persona=$estudiante->persona;
+            @endphp
+            <div class="card-header bg-primary">{{ $persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom }} <strong>Aun no tiene Gestiones</strong>
+                <a href="{{ route('gestion.index',$estudiante) }}" class="btn btn-secondary btn-sm float-right text-white"  data-placement="left">
+                            {{ __('Listar Gestiones') }}
+                        </a>
+            </div>
+        @endif
+        
+        <div class="card-body">
+            <form method="POST" action="{{route('gestion.store')}}">
+                @csrf
+                @include('gestion.form')
+                @include('include.botones')
+            </form>
         </div>
-    </section>
+    </div>
 @endsection
 @section('js')
     <script src="{{asset('dist/js/moment.js')}}"></script>
@@ -64,6 +57,7 @@
                 selectionCssClass: "select2--large", // For Select2 v4.1
                 dropdownCssClass: "select2--large",
             });
+            
             $("#grado_id").select2({
                 //dropdownParent: $("#modal-editar"),
                 placeholder: "Seleccione un grado",

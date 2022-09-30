@@ -8,7 +8,7 @@
 @section('plugins.Datatables', true)
 
 @section('content')
-    <div class="container pt-4">
+    
         <div class="card">
             <div class="card-header bg-primary text-white">
                 EDITAR PERSONA
@@ -22,7 +22,6 @@
                 </form>
             </div>
         </div>
-    </div>
 @stop
 
 @section('js')

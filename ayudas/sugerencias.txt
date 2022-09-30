@@ -94,3 +94,6 @@ Swal.fire({
 para calificar 
 https://api.whatsapp.com/send?phone=591{{$telefono}}
 
+
+crear un usuario y enlazar a una persona 
+
