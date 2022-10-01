@@ -22,6 +22,7 @@ class CreateColegiosTable extends Migration
             $table->string('direccion', 100)->nullable();
             $table->string('telefono', 10)->nullable();
             $table->string('celular', 10)->nullable();
+            $table->boolean('convenio')->default(0);
             $table->string('dependencia', 15)->nullable();
             // $table->string('nivel', 20)->nullable();
             $table->string('turno', 15)->nullable();
