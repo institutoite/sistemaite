@@ -755,3 +755,15 @@ Route::get('messages/{id}',[MessageController::class, 'create'])->name('messages
 Route::get('messages/{message}',[MessageController::class, 'show'])->name('messages.show');
 
 Route::post('messages', [MessageController::class, 'store'])->name('messages.store');
+
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  FRONTED ITE   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
+Route::get('/privacy', [HomeController::class, 'privacy'])->name('privacy');
+
+Route::get('/termscondition', [HomeController::class, 'termscondition'])->name('termscondition');

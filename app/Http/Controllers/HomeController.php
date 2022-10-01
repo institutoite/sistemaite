@@ -27,22 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $hometext = Hometext::get()->last();
-        $homeschedules = Homeschedule::all();
-        $guarderias = Modalidad::all()->where('nivel_id', '1');
-        $inicials = Modalidad::all()->where('nivel_id', '2');
-        $primarias = Modalidad::all()->where('nivel_id', '3');
-        $secundarias = Modalidad::all()->where('nivel_id', '4');
-        $preuniversitarios = Modalidad::all()->where('nivel_id', '5');
-        $institutos = Modalidad::all()->where('nivel_id', '6');
-        $universitarios = Modalidad::all()->where('nivel_id', '7');
-        $profesionals = Modalidad::all()->where('nivel_id', '8');
-        $feriados = Feriado::all();
         $docentes = Docente::all()->where('estado','activo');
-        $cursos = Curso::all();
-
-        
-        return view('home.index', compact(['hometext', 'homeschedules', 'guarderias', 'inicials', 'primarias', 'secundarias', 'preuniversitarios', 'institutos', 'universitarios', 'profesionals', 'feriados', 'docentes', 'cursos']));
+ 
+        return view('home.index', compact(['docentes']));
     }
 
     /**
@@ -77,10 +64,27 @@ class HomeController extends Controller
         //
     }
 
+
     public function about()
     {
-        return view('home.about');
+        return view('home.fronted.about');
+    } 
+    
+    public function contact()
+    {
+        return view('home.fronted.contact');
     }
+
+    public function privacy()
+    {
+        return view('home.fronted.privacy');
+    }
+
+    public function termscondition()
+    {
+        return view('home.fronted.termscondition');
+    }
+    
 
 
     public function questions()

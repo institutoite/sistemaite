@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="nombre" name="nombre" value="" placeholder="Ingrese su nombre">
+                        <input type="text" class="form-control" id="nombre" value="" placeholder="Ingrese su nombre">
                     </div>
                 </div>
                 <div class="col-sm-12">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <input type="number" class="form-control" id="telefono" name="telefono" value="" placeholder="Ingrese su número de telefono">
+                        <input type="number" class="form-control" id="telefono" value="" placeholder="Ingrese su número de telefono">
                     </div>
                 </div>
                 <div class="col-sm-12">
@@ -37,12 +37,10 @@
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Coméntenos su su necesidad aquí..." name="comentario" id="comentario" rows="5"></textarea>
+                        <textarea class="form-control" placeholder="Comenteneos su su necesidad..." name="comentario" id="comentario" rows="5"></textarea>
                     </div>
                 </div>
-                <input type="number" class="form-control" hidden id="como_id" name="como_id" value="6" placeholder="Ingrese su número de telefono">
-                {{-- <input type="text" class="form-control"  id="g-recaptcha-response" name="g-recaptcha-response"  value=""> --}}
-               
+                <input type="number" class="form-control" hidden id="como_id" id="como_id" value="6" placeholder="Ingrese su número de telefono">
             </div>
             <div class="row">
                 <div class="col-sm-12">
@@ -50,19 +48,14 @@
                         
                         <div class="card-body">
                             
-                            <p class="alert text-left text-black">Marque los productos o servicios que de su interes</p>
+                            <p class="alert text-left text-black">Marque los productos o servicios que le gustaría tomar</p>
                             <div class="col-sm-12">
                                 <p id="error-interests" class="d-none text-danger text-left"></p>
                             </div>
                             <div id="interests" class="">
+
                             </div>
-                            <div class="col-sm-12">
-                                <p id="error-recaptcha" class="d-none text-danger text-left"></p>
-                            </div>
-                            <div class="col-sm-12">
-                                {!! NoCaptcha::renderJs() !!}
-                                {!! NoCaptcha::display() !!}
-                            </div>
+
                             <div class="container-fluid h-100 mt-3"> 
                                 <div class="row w-100 align-items-center">
                                     <div class="col text-center">
@@ -74,7 +67,6 @@
                     </div>
                 </div>
             </div>
-               
         </form>
     </div>
 </div> <!-- /.fin -->
