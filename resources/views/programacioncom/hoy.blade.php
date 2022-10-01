@@ -13,8 +13,8 @@
                         <tr>
                             {{-- <th>ID</th> --}}
                             <th>FECHA</th>
-                            <th>H INI</th>
-                            <th>H FIN</th>
+                            <th>INI</th>
+                            <th>FIN</th>
 
                             <th>ESTADO</th>
                             <th>DOCENTE</th>

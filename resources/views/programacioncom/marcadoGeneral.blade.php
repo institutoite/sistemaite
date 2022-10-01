@@ -47,13 +47,8 @@
 
 
 @section('content')
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <div>
                             <span id="card_title">
                                 {{ __('Programacion de Computación') }}
                             </span>
@@ -103,8 +98,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
                     
-                    <div class="container-fluid">
                         <div class="row">
                             @if ($matriculacion->costo==$pago)
                                 @php $clasetabla="bg-success text-white" @endphp
@@ -116,7 +111,7 @@
                                 @endif
                             @endif
 
-                            <div class="col-6">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 text-center">
                                     <div class="card">
                                         <div class="card-header {{$clase}}">
                                             PAGOS
@@ -171,26 +166,14 @@
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="circulo">
-                                <img src="{{URL::to('/').Storage::url("$persona->foto")}}" alt="">
-                            </div> --}}
-                            
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="success"></div>
+                    
+                   
+                
                         @include('programacioncom.hoy')
                         @include('programacioncom.futuro')
                         @include('programacioncom.modales')
-                        {{--@include('programacioncom.pasado')
-                        @include('programacioncom.todo')
-                         --}}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+                       
 @endsection
 
 @section('js')
@@ -721,7 +704,7 @@
                             $html+="<select class='form-control @error('motivo_id') is-invalid @enderror' name='motivo_id' id='motivo_id'>";
                             $html+="<option  value='' >Elije el motivo de la licencia </option>";
                             for (let j in data.motivos) {
-                                console.log(data.motivos[j]);
+                                // console.log(data.motivos[j]);
                                 if(data.motivos[j].id==data.motivos.motivo_id){
                                     $html+="<option  value='"+data.motivos[j].id +"' selected >"+data.motivos[j].motivo+"</option>";
                                 }else{
@@ -732,12 +715,18 @@
                             $html+="<label for='motivo_id'>Motivo</label></div></div>";
                             $html+="</div>";// fin de row
                             $html+="<div class='row'>";
-
+                            
                             $html+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'><div class='form-floating mb-3 text-gray'>";
-                            $html+="<input type='text' name='solicitante' class='form-control @error('solicitante') is-invalid @enderror texto-plomo' id='solicitante'"; 
+                            $html+="<input type='text' autocomplete='off' list='apoderados' name='solicitante' class='form-control @error('solicitante') is-invalid @enderror texto-plomo' id='solicitante'"; 
                             $html+="value=\''\>";
+                            $html+="<datalist id='apoderados'></datalist>";
+                            
+
+
+                            
                             $html+="<label for='solicitante'>Nombre de persona Solicitante</label></div></div>";
                             $html+="</div>";// div del row
+
 
                             $html+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>";
                             $html+="<div class='form-floating mb-3 text-gray'>";
@@ -749,6 +738,7 @@
                                 $html+="<option  value='ESPOSA' >ESPOSA</option>";
                                 $html+="<option  value='TIO' >TIO</option>";
                                 $html+="<option  value='TIA' >TIA</option>";
+                                $html+="<option  value='OTRO' >OTRO</option>";
                                 $html+="<option  value='ELMISMO' >EL O ELLA MISMA</option>";
                             $html+="</select>";                
                             $html+="<label for='parentesco'>Parentesco</label></div></div>";
@@ -768,6 +758,12 @@
                             $html+="</div>";
                             
                             $("#formulario-licencia").append($html);
+                            $lista="";
+                            for (let k in data.apoderados) {
+                                $lista+="<option  value='"+data.apoderados[k].nombre+" "+data.apoderados[k].apellidop+" "+data.apoderados[k].apellidom+"("+data.apoderados[k].pivot.parentesco+")" +"'></option>";
+                            }
+                            console.log($("#apoderados").html());
+                            $("#apoderados").append($lista);
 
                         },
                     error : function(xhr, status) {

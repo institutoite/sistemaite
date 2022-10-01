@@ -41,7 +41,8 @@ class LicenciaController extends Controller
     {
         $motivos=Tipomotivo::findOrFail(4)->motivos;    
         $programacioncom=Programacioncom::findOrFail($request->id);
-        $data=['motivos'=>$motivos, 'programacioncom'=>$programacioncom];
+        $apoderados=$programacioncom->matriculacion->computacion->persona->apoderados;
+        $data=['motivos'=>$motivos, 'programacioncom'=>$programacioncom,'apoderados'=>$apoderados];
         return response()->json($data);
     }
     /**
@@ -53,7 +54,8 @@ class LicenciaController extends Controller
     {
         $motivos=Tipomotivo::findOrFail(4)->motivos;    
         $programacion=Programacion::findOrFail($request->id);
-        $data=['motivos'=>$motivos, 'programacion'=>$programacion];
+        $apoderados=$programacion->inscripcione->estudiante->persona->apoderados;
+        $data=['motivos'=>$motivos, 'programacion'=>$programacion,'apoderados'=>$apoderados];
         return response()->json($data);
     }
 

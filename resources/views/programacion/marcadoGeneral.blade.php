@@ -854,9 +854,11 @@
                             $html+="<div class='row'>";
 
                             $html+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'><div class='form-floating mb-3 text-gray'>";
-                            $html+="<input type='text' name='solicitante' class='form-control @error('solicitante') is-invalid @enderror texto-plomo' id='solicitante'"; 
+                            $html+="<input type='text' autocomplete='off' list='apoderados' name='solicitante' class='form-control @error('solicitante') is-invalid @enderror texto-plomo' id='solicitante'"; 
                             $html+="value=\''\>";
+                            $html+="<datalist id='apoderados'></datalist>";
                             $html+="<label for='solicitante'>Nombre de persona Solicitante</label></div></div>";
+
                             $html+="</div>";// div del row
 
                             $html+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>";
@@ -888,7 +890,12 @@
                             $html+="</div>";
                             
                             $("#formulario-licencia").append($html);
-
+                            $lista="";
+                            for (let k in data.apoderados) {
+                                $lista+="<option  value='"+data.apoderados[k].nombre+" "+data.apoderados[k].apellidop+" "+data.apoderados[k].apellidom+"("+data.apoderados[k].pivot.parentesco+")" +"'></option>";
+                            }
+                            console.log($("#apoderados").html());
+                            $("#apoderados").append($lista);   
                         },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');

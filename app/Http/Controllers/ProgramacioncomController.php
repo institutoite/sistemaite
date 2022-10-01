@@ -203,6 +203,8 @@ class ProgramacioncomController extends Controller
             }
             $matriculacion->fechafin = $programa->fecha;
             $matriculacion->estado_id=estado('CORRIENDO');
+            //dd($matriculacion);
+            $matriculacion->save();
             if ($matriculacion->pagos->sum('monto') < $matriculacion->costo) {
                 return redirect()->route('mostrar.programacioncom', $matriculacion);
             } else {
@@ -457,12 +459,10 @@ class ProgramacioncomController extends Controller
         foreach ($programascom as $programa) {
             $costo_programa = $programa->horaini->floatDiffInHours($programa->horafin)*($costo_por_hora);
             if($TotalPagado>=$costo_programa){
-               // $cuantas=$cuantas.' '.$acuentaTotal.'<br>';
                 $programa->habilitado=1;
                 $programa->save();
                 $TotalPagado=$TotalPagado-$costo_programa;
             }
-           // array_push($cuantas,$programa);
         }
         $programascom = Programacioncom::where('matriculacion_id', '=', $matriculacion_id)
                                         ->get();
