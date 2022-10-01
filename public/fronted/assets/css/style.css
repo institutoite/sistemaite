@@ -215,7 +215,7 @@ kbd {
 }
 
 .cs-preloader_in {
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -608,7 +608,7 @@ kbd {
 }
 
 .cs-gradient_bg {
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
 }
 
 .cs-white_bg {
@@ -693,7 +693,7 @@ kbd {
   left: 0;
   top: 0;
   border-radius: inherit;
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   opacity: 0;
@@ -799,7 +799,7 @@ kbd {
   left: 0;
   top: 0;
   border-radius: inherit;
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   opacity: 0;
@@ -877,7 +877,7 @@ kbd {
 .cs-section_heading.cs-style3 .cs-section_seperator {
   width: 112px;
   height: 2px;
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
 }
 
 .cs-section_heading.cs-style4 {
@@ -1098,7 +1098,7 @@ kbd {
   left: 0;
   height: 50%;
   width: 100%;
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:#26BAA5;
 }
 
 .cs-countdown .cs-countdown_number::before {
@@ -1276,7 +1276,7 @@ kbd {
 }
 
 .cs-modal_close {
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
   height: 33px;
   width: 33px;
   border-radius: 50%;
@@ -2092,7 +2092,7 @@ kbd {
   bottom: 0;
   height: 1px;
   width: 100%;
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
 }
 
 .cs-social_widget {
@@ -2136,7 +2136,7 @@ kbd {
   height: 100%;
   width: 100%;
   border-radius: inherit;
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
   opacity: 0;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
@@ -2807,7 +2807,7 @@ kbd {
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   position: absolute;
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
@@ -3352,7 +3352,7 @@ kbd {
 .cs-pagination.cs-style1 li {
   height: 10px;
   width: 10px;
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
   border-radius: 58px;
   margin: 0 5px;
   cursor: pointer;
@@ -3397,7 +3397,7 @@ kbd {
   left: 0;
   top: 0;
   border-radius: inherit;
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   opacity: 0;
@@ -3456,7 +3456,7 @@ kbd {
   left: 0;
   top: 0;
   border-radius: inherit;
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   opacity: 0;
@@ -3707,7 +3707,7 @@ kbd {
   width: 100%;
   left: 0;
   top: 0;
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
   opacity: 0;
   border-radius: inherit;
   -webkit-transition: all 0.3s ease;
@@ -5202,7 +5202,7 @@ li.menu-item-has-children
   border-radius: inherit;
   left: 0;
   top: 0;
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
   opacity: 0.15;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -5319,12 +5319,12 @@ li.menu-item-has-children
 }
 
 .cs-hero_btn.cs-style1.cs-color3 {
-  background-color: #022136;
-  color: #fff;
+  background-color: #26BAA5;
+  color: #263b5e;
 }
 
 .cs-hero_btn.cs-style1.cs-color4 {
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
   color: #fff;
 }
 
@@ -5344,7 +5344,7 @@ li.menu-item-has-children
   left: 0;
   top: 0;
   border-radius: inherit;
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   opacity: 0;
@@ -5582,7 +5582,7 @@ li.menu-item-has-children
   left: 0;
   top: 0;
   border-radius: inherit;
-  background: linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background: #26BAA5;
 }
 
 .cs-hero.cs-style4 .cs-card.cs-style4 > *:not(span) {
@@ -6284,7 +6284,7 @@ li.menu-item-has-children
 }
 
 .cs-card.cs-style4 hr {
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
   opacity: 0.15;
   margin: 0;
 }
@@ -6489,7 +6489,7 @@ li.menu-item-has-children
 }
 
 .cs-card.cs-style7 .cs-card_label {
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
   border-radius: 0px 52px 52px 0px;
   color: #fff;
   display: inline-block;
@@ -6597,7 +6597,7 @@ li.menu-item-has-children
 }
 
 .cs-card.cs-style8 .cs-card_label {
-  background:  linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(2, 33, 54, 1) 100%);
+  background:  #26BAA5;
   border-radius: 0px 52px 52px 0px;
   color: #fff;
   display: inline-block;
@@ -7459,7 +7459,7 @@ body.cs-dark .cs-large_radio_in,
 body.cs-dark .cs-contact_card,
 body.cs-dark .cs-contact_box,
 body.cs-dark .cs-modal_container_in {
-  background: linear-gradient(116.85deg, rgba(38, 186, 165, 1) 0%, rgba(63, 94, 251, 0.2) 100%);
+  background: #26BAA5;
 }
 
 body.cs-dark .cs-site_header,
@@ -7468,7 +7468,7 @@ body.cs-dark .cs-search .cs-search_input,
 body.cs-dark .cs-nav .cs-nav_list ul,
 body.cs-dark .cs-toggle_box .cs-toggle_body,
 body.cs-dark .cs-profile_box .cs-user_profile_link .cs-user_profile_link_in {
-  background: #110D2E;
+  background: #fff;
 }
 
 body.cs-dark .cs-partner,
