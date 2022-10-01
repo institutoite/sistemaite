@@ -275,53 +275,54 @@ return [
         ],
         
         [
-            'text' => "Estudiantes",
+            'text' =>"Est.",
             'topnav' => true,
             'url'  => '/home',
-            'icon' => 'fas fa-record-vinyl',
-            'icon_color' => 'primary',
-
+            'icon' => 'fas fa-user-graduate',
+            'icon_color' => 'white',
+            'classes'=>'text-xs text-white',
         ],
         
         [
-            'text' => "Actualidad",
+            'text' => "Pres.",
             'topnav' => true,
             'url'    => 'presentes',
-            'icon' => 'fas fa-fw fa-home',
-            'icon_color' => 'primary',
-
+            'icon' => 'fas fa-hand-point-up',
+            'icon_color' => 'secondary',
+            'classes'=>'text-xs text-white',
         ],
         [
             'text' => "Hoy",
             'topnav' => true,
             'url'  => 'programados/hoy',
-            'icon' => 'fas fa-record-vinyl',
-            'icon_color' => 'primary',
-
+            'icon' => 'far fa-clock',
+            'icon_color' => 'white',
+            'classes'=>'text-xs text-white',
         ],
         [
-            'text' => "asistencia",
+            'text' => "Faltas",
             'topnav' => true,
             'url'  => 'inscripcines/vigentes/view',
-            'icon' => 'fas fa-record-vinyl',
-            'icon_color' => 'primary',
-
+            'icon' => 'fas fa-user-times',
+            'icon_color' => 'danger',
+            'classes'=>'text-xs text-white',
         ],
         [
-            'text' => "Potencial",
+            'text' => "Pot",
             'topnav' => true,
             'url'  => 'persona/potenciales',
-            'icon' => 'fas fa-fighter-jet',
-            'icon_color' => 'primary',
-
+            'icon' => 'fas fa-user-friends',
+            'icon_color' => 'white',
+            'classes'=>'text-xs text-white',
         ],
         [
-            'text' => "Contactos",
+            'text' => "Cont.",
             'topnav' => true,
             'url'  => 'contactos',
-            'icon' => 'fas fa-fighter-jet',
-            'icon_color' => 'primary',
-
+            'icon' => 'fas fa-address-book',
+            'icon_color' => 'white',
+            'classes'=>'text-xs text-white',
+            
         ],
         /**
          *  Menu personas 

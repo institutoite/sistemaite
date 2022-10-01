@@ -131,6 +131,10 @@
                 "ordering": true,
                 "info":     true,
                 "order": [[ 2, "desc" ]],
+                "columnDefs": [
+                    { responsivePriority: 1, targets: 0 },  
+                    { responsivePriority: 2, targets: -1 }
+                ],
                 "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                 },

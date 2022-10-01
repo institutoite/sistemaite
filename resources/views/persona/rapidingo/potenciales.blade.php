@@ -274,7 +274,10 @@
                         "aLengthMenu": [[5, 10, 15, 25, 50, 100 , -1], [5, 10, 15, 25, 50, 100, "All"]], 
                         "iDisplayLength" : 10,
                         
-
+                        "columnDefs": [
+                            { responsivePriority: 1, targets: 0 },  
+                            { responsivePriority: 2, targets: -1 }
+                        ],
                         "language":{
                             "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                         },  
