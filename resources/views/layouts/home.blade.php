@@ -553,7 +553,7 @@
 		<div class="row">
 			<div class="col-lg-2 mr-auto col-sm-6 col-md-6">
 				<div class="widget footer-widget mb-5 mb-lg-0">
-					<h5 class="widget-title">Nuestras Redes Sociales</h5>
+					<h5 class="widget-title">Nuestras Redes Sociales Ultimas</h5>
 					{{-- <ul class="list-inline footer-socials">
 						<li class="list-inline-item"><a href="https://api.whatsapp.com/send?phone=59171039910&text=Tengo una pregunta"><i class="fab fa-whatsapp"></i></a></li>
                         <li class="list-inline-item"><a href="https://www.facebook.com/institutoeducabol"><i class="fab fa-facebook-f"></i></a></li>
