@@ -51,7 +51,7 @@ class DocenteController extends Controller
         $zonas=Zona::get();
         $interests=Interest::all();
         $comos=Como::all();
-        $docente=$persona->docente;
+        //$docente=$persona->docente;
         $ciudades = Ciudad::get();
         $estados = Estado::get();
         $mododocentes = Mododocente::get();

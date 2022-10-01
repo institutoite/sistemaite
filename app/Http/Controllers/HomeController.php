@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $docentes = Docente::all()->where('estado','activo');
+        $docentes = Docente::all()->where('estado_id','11');
  
         return view('home.index', compact(['docentes']));
     }
