@@ -1,0 +1,86 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Convenio;
+use App\Http\Requests\StoreConvenioRequest;
+use App\Http\Requests\UpdateConvenioRequest;
+
+class ConvenioController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreConvenioRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreConvenioRequest $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Convenio  $convenio
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Convenio $convenio)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Convenio  $convenio
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Convenio $convenio)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UpdateConvenioRequest  $request
+     * @param  \App\Models\Convenio  $convenio
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdateConvenioRequest $request, Convenio $convenio)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Convenio  $convenio
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Convenio $convenio)
+    {
+        //
+    }
+}

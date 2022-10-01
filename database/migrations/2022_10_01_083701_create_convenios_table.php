@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePeriodablesTable extends Migration
+class CreateConveniosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreatePeriodablesTable extends Migration
      */
     public function up()
     {
-        
-        Schema::create('periodables', function (Blueprint $table) {
+        Schema::create('convenios', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('periodable_id');
-            $table->string('periodable_type',50);
-            $table->date('fechaini');
-            $table->date('fechafin');
-            $table->boolean('pagado')->default(0);
+            $table->string('titulo', 25);
+            $table->string('descripcion', 500)->nullable();
+            $table->string('foto', 50)->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreatePeriodablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('periodables');
+        Schema::dropIfExists('convenios');
     }
 }
