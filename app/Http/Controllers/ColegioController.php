@@ -12,6 +12,10 @@ use App\Models\User;
 use App\Http\Requests\ColegioStoreRequest;
 use App\Http\Requests\ColegioUpdateRequest;
 
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
 use Illuminate\Http\Request;
 
 /**
@@ -70,9 +74,22 @@ class ColegioController extends Controller
      */
     public function store(ColegioStoreRequest $request)
     {
+        
         $colegio = Colegio::create($request->all());
+        if ($request->hasFile('imagen')){
+            $foto=$request->file('imagen');
+            $nombreImagen='colegios/'.trim($colegio->nombre).'.jpg';
+            $imagen= Image::make($foto)->encode('jpg',75);
+            $imagen->resize(300,300,function($constraint){
+                $constraint->upsize();
+            });
+            Storage::disk('public')->put($nombreImagen, $imagen->stream());
+            $colegio->imagen = $nombreImagen;
+        }
+        $colegio->save();
         $colegio->niveles()->sync(array_keys($request->niveles));
         $colegio->usuarios()->attach(Auth::user()->id);
+       
         return redirect()->route('colegios.index')
             ->with('success', 'Colegio created successfully.');
     }
@@ -128,6 +145,19 @@ class ColegioController extends Controller
     public function update(ColegioUpdateRequest $request, Colegio $colegio)
     {
         $colegio->update($request->all());
+        if ($request->hasFile('foto')) {
+            if (Storage::disk('public')->exists($persona->foto)) {
+                Storage::disk('public')->delete($persona->foto);
+            }
+            $foto = $request->file('foto');
+            $nombreImagen = 'estudiantes/' . Str::random(20) . '.jpg';
+            $imagen = Image::make($foto)->encode('jpg', 75);
+            $imagen->resize(300, 300, function ($constraint) {
+                $constraint->upsize();
+            });
+            $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
+            $persona->foto = $nombreImagen;
+        }
         $colegio->niveles()->sync(array_keys($request->niveles));
         return redirect()->route('colegios.index')
             ->with('success', 'Colegio updated successfully');

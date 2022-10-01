@@ -13,7 +13,6 @@
             <div class="col-md-12">
 
                 @includeif('partials.errors')
-{{-- {{dd($municipios)}} --}}
                 <div class="card card-default">
                     <div class="card-header bg-secondary">
                         <span class="card-title">Crear Colegio</span>

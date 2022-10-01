@@ -50,13 +50,12 @@ class DocenteController extends Controller
         $ciudades=Ciudad::get();
         $zonas=Zona::get();
         $interests=Interest::all();
-        //$docente=$persona->docente;
+        $comos=Como::all();
+        $docente=$persona->docente;
         $ciudades = Ciudad::get();
         $estados = Estado::get();
         $mododocentes = Mododocente::get();
-
-
-        return view('docente.create',compact('mododocentes','estados','paises', 'zonas', 'ciudades','interests'));
+        return view('docente.create',compact('mododocentes','estados','paises', 'zonas', 'ciudades','interests','comos'));
     }
 
     /**
