@@ -71,9 +71,12 @@
         $(document).ready(function() {
         var tabla=$('#programados').DataTable(
                 {
-                    "serverSide": true,
                     "responsive":true,
+                    "searching":true,
+                    "paging":   true,
                     "autoWidth":false,
+                    "ordering": true,
+                    "info":     true,
                     "createdRow": function( row, data, dataIndex ) {
                     if(data['estado']=="PRESENTE"){
                         $(row).addClass('text-success')
@@ -115,7 +118,10 @@
                     },
                 
                     ],
-
+                    "columnDefs": [
+                        { responsivePriority: 1, targets: 0 },  
+                        { responsivePriority: 2, targets: -1 }
+                    ],
                     "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                     },  
@@ -123,9 +129,12 @@
             );
         var tabla=$('#programadoscom').DataTable(
                 {
-                    "serverSide": true,
                     "responsive":true,
+                    "searching":true,
+                    "paging":   true,
                     "autoWidth":false,
+                    "ordering": true,
+                    "info":     true,
                     "createdRow": function( row, data, dataIndex ) {
                     if(data['estado']=="PRESENTE"){
                         $(row).addClass('text-success')
@@ -166,7 +175,10 @@
                     },
                 
                     ],
-
+                    "columnDefs": [
+                        { responsivePriority: 1, targets: 0 },  
+                        { responsivePriority: 2, targets: -1 }
+                    ],
                     "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                     },  

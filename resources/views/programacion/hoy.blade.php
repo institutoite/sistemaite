@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-header {{$clase}}">
+    <div class="card-header text-white {{$clase}}">
         <h3 class="card-title">CLASE CORRESPONDIENTE AL DIA DE HOY</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>

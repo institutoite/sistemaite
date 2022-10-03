@@ -114,10 +114,19 @@
             $('#programacion').DataTable(
                 {
                     "iDisplayLength" : 25,
-
+                    "responsive":true,
+                    "searching":false,
+                    "paging":   true,
+                    "autoWidth":false,
+                    "ordering": false,
+                    "info":     false,
                     "language":{
                             "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json",
                     },
+                    "columnDefs": [
+                        { responsivePriority: 1, targets: 0 },  
+                        { responsivePriority: 2, targets: -1 }
+                    ],
                     "drawCallback": function( settings ) {
                         $('ul.pagination').addClass("pagination-sm");
                     },

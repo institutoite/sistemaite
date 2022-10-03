@@ -15,7 +15,7 @@
         <div class="card">
             <div class="card-header bg-primary">
                 <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('crear.persona.rapido')}}">Crear Nuevo</a>
-                CLIENTES QUE VINIERON A PREGUNTAR
+                Potenciales
             </div>
             
             <div class="card-body">

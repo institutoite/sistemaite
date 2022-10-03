@@ -6,7 +6,7 @@
 
 @stop
 
-@section('title', 'Programación')
+@section('title', 'Programacioncom')
 
 @section('plugins.Jquery', true)
 @section('plugins.Sweetalert2', true)
@@ -43,19 +43,27 @@
         @endswitch
     @endif
 @endif
-
+@php
+    $clase.=" text-white";
+@endphp
 
 
 @section('content')
                 <div class="card">
                     <div class="card-header">
-                            <span id="card_title">
-                                {{ __('Programacion de Computación') }}
-                            </span>
+                            <div class="float-left">
+                                {{nombre($matriculacion->computacion->persona_id,3)}}
+                            </div>
+                            <div class="float-right">
+                                <a href="{{route('opcion.principal', $matriculacion->computacion->persona->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
+                                    Opciones&nbsp;<i class="fas fa-bars"></i>
+                                </a>
+                            </div>
+                            
                     </div>
                     <div class="container-fluid mt-2">
                         <div class="row">
-                            <div class="col-md-3 col-sm-6 col-12">
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                                 <div class="info-box">
                                     <span class="info-box-icon bg-info"><i class="fas fa-user-graduate text-white"></i></span>
 
@@ -66,7 +74,7 @@
                                 </div>
                             </div>
                             
-                            <div class="col-md-3 col-sm-6 col-12">
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                                 <div class="info-box">
                                     <span class="info-box-icon bg-success"><i class="far fa-star text-white"></i></span>
 
@@ -76,7 +84,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-6 col-12">
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                                 <div class="info-box">
                                     <span class="info-box-icon bg-primary"><i class="fas fa-file-signature text-white"></i></span>
 
@@ -86,7 +94,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-6 col-12">
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                                 <div class="info-box">
                                 <span class="info-box-icon bg-danger"><i class="fas fa-user-times"></i></span>
 

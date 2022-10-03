@@ -5,8 +5,9 @@
     <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
 
 @stop
+
 @section('title', 'Programación')
-{{-- @section('plugins.Jquery', true) --}}
+@section('plugins.Jquery', true)
 @section('plugins.Sweetalert2', true)
 @section('plugins.Datatables', true)
 
@@ -41,148 +42,139 @@
 @endif
 
 @section('content')
-
-    <div class="container-fluid">
+<div class="card">
+    <div class="card-header">
+         
+        <div class="float-left">
+            {{nombre($inscripcion->estudiante->persona_id,3)}}
+        </div>
+        <div class="float-right">
+            <a href="{{route('opcion.principal', $inscripcion->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
+                Opciones&nbsp;<i class="fas fa-bars"></i>
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
         <div class="row">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <span id="card_title">
-                                {{ __('Marcado General') }}
-                                
-                                <a href="{{route('opcion.principal', $inscripcion->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
-                                    Opciones&nbsp;<i class="fas fa-bars"></i>
-                                </a> 
-                            </span>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info"><i class="fas fa-user-graduate"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Total Clase</span>
+                        <span class="info-box-number">{{$inscripcion->totalhoras}}</span>
                     </div>
-                    <div class="container-fluid mt-2">
-                        <div class="row">
-                            <div class="col-md-3 col-sm-6 col-12">
-                                <div class="info-box">
-                                    <span class="info-box-icon bg-info"><i class="fas fa-user-graduate"></i></span>
+                </div>
+            </div>
+            
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="info-box">
+                    <span class="info-box-icon bg-success"><i class="far fa-star"></i></span>
 
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">Total Clase</span>
-                                        <span class="info-box-number">{{$inscripcion->totalhoras}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-3 col-sm-6 col-12">
-                                <div class="info-box">
-                                    <span class="info-box-icon bg-success"><i class="far fa-star"></i></span>
-
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">Asistencias</span>
-                                        <span class="info-box-number">{{$presentes}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6 col-12">
-                                <div class="info-box">
-                                    <span class="info-box-icon bg-warning"><i class="fas fa-file-signature text-white"></i></span>
-
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">Licencias</span>
-                                        <span class="info-box-number">{{$licencias}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-6 col-12">
-                                <div class="info-box">
-                                <span class="info-box-icon bg-danger"><i class="fas fa-user-times"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Faltas</span>
-                                    <span class="info-box-number">{{$faltas}}</span>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Asistencias</span>
+                        <span class="info-box-number">{{$presentes}}</span>
                     </div>
-                    
-                    <div class="container-fluid">
-                        <div class="row">
-                            @if ($inscripcion->costo==$pago)
-                                @php $clasetabla="bg-success text-white" @endphp
-                            @else
-                                @if ($pago>0)
-                                    @php $clasetabla="bg-warning text-white" @endphp
-                                @else 
-                                    @php $clasetabla="dias-negativos text-white" @endphp
-                                @endif
-                            @endif
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="info-box">
+                    <span class="info-box-icon bg-warning"><i class="fas fa-file-signature text-white"></i></span>
 
-                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                <div class="card text-center">
-                                    <div class="card-header {{$clase}}">
-                                        PAGOS
-                                    </div>
-                                    <div class="card-body">
-                                        <table class="table table-bordered table-hover">
-                                            <tbody class="" >    
-                                                <tr class="">
-                                                    <td><strong>COSTO</strong></td>
-                                                    <td><strong>{{'Bs. '. floor($inscripcion->costo)}}</strong></td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td><strong>PAGOS</strong></td>
-                                                    <td><strong>{{'Bs. '.$pago }}</strong></td>
-                                                </tr>
-                                                <tr class="">
-                                                    <td><strong>DEBE</strong></td>
-                                                    <td> <strong>Bs. {{$inscripcion->costo-$pago}}</strong></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 text-center">
-                                <div class="card">
-                                    <div class="card-header {{$clase}}">
-                                        {{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                                <div class="">
-                                                    <img class="img-thumbnail zoomify" src="{{URL::to('/').Storage::url("$persona->foto")}}" alt="" width="150px" height="150px">
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 text-center">
-                                                <div class="circulo {{$clase}}">
-                                                    @if ($dias_que_faltan_para_pagar==0)
-                                                        <span>PAGA HOY</span> <br>
-                                                    @else
-                                                        @if ($dias_que_faltan_para_pagar>0)
-                                                            <h2>Faltan <br> {{$dias_que_faltan_para_pagar}}  días</h2><br>
-                                                        @else
-                                                            <p> Ya Hace<br> {{$dias_que_faltan_para_pagar}} días</p>
-                                                        @endif
-                                                    @endif
-                                                </div>    
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Licencias</span>
+                        <span class="info-box-number">{{$licencias}}</span>
                     </div>
-                    
-                    <div class="card-body">
-                        <div class="success"></div>
-                        @include('programacion.hoy')
-                        @include('programacion.futuro')
-                        {{-- @include('programacion.pasado')
-                        @include('programacion.todo') --}}
-                        @include('programacion.modales')
-                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="info-box">
+                <span class="info-box-icon bg-danger"><i class="fas fa-user-times"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Faltas</span>
+                    <span class="info-box-number">{{$faltas}}</span>
+                </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+        
+    @if ($inscripcion->costo==$pago)
+        @php $clasetabla="bg-success text-white" @endphp
+    @else
+        @if ($pago>0)
+            @php $clasetabla="bg-warning text-white" @endphp
+        @else 
+            @php $clasetabla="dias-negativos text-white" @endphp
+        @endif
+    @endif
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="card text-center">
+                    <div class="card-header text-white {{$clase}}">
+                        PAGOS
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover">
+                            <tbody class="" >    
+                                <tr class="">
+                                    <td><strong>COSTO</strong></td>
+                                    <td><strong>{{'Bs. '. floor($inscripcion->costo)}}</strong></td>
+                                </tr>
+                                <tr class="">
+                                    <td><strong>PAGOS</strong></td>
+                                    <td><strong>{{'Bs. '.$pago }}</strong></td>
+                                </tr>
+                                <tr class="">
+                                    <td><strong>DEBE</strong></td>
+                                    <td> <strong>Bs. {{$inscripcion->costo-$pago}}</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> 
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 text-center">
+                <div class="card">
+                    <div class="card-header text-white {{$clase}}">
+                        {{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="">
+                                    <img class="img-thumbnail zoomify" src="{{URL::to('/').Storage::url("$persona->foto")}}" alt="" width="150px" height="150px">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 text-center">
+                                <div class="circulo text-white {{$clase}}">
+                                    @if ($dias_que_faltan_para_pagar==0)
+                                        <span>PAGA HOY</span> <br>
+                                    @else
+                                        @if ($dias_que_faltan_para_pagar>0)
+                                            <h2>Faltan <br> {{$dias_que_faltan_para_pagar}}  días</h2><br>
+                                        @else
+                                            <p> Ya Hace<br> {{$dias_que_faltan_para_pagar}} días</p>
+                                        @endif
+                                    @endif
+                                </div>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                    
+                    
+                        @include('programacion.hoy')
+                        @include('programacion.futuro')
+                        @include('programacion.modales')
+                    
+                
+            
 @endsection
 
 @section('js')

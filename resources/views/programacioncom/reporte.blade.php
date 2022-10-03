@@ -13,7 +13,7 @@
 <body>
     
 
-   
+{{--    
 <div class="divencabezado">
     <div class="logo">    
         <img src="{{asset('imagenes/logo.png')}}" width="130px" alt="Logotipo de ite">    
@@ -67,7 +67,7 @@
             
         </div> 
 
-</div>
+</div> --}}
 
     <div class="divtabla">
         <table class="table-fill table">

@@ -5,24 +5,20 @@
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
-@section('title', 'Motivos')
+@section('title', 'Gestiones')
 @section('plugins.Jquery', true)
 @section('plugins.Sweetalert2', true)
 @section('plugins.Datatables', true)
 @section('plugins.Select2',true)
 
 @section('content')
-    <div class="container-fluid pt-4">
-        <div class="row">
-            {{-- {{dd($estudiante)}} --}}
-            <div class="col-sm-12">
 
                 <div class="card">
                     <div class="card-header bg-secondary">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Grados') }}
+                                {{ nombre($estudiante->persona->id,3) }}
                             </span>
 
                             <div class="float-right">
@@ -70,10 +66,7 @@
                         </table>
                     </div>
                 </div>
-                </div>
-            </div>
-        </div>
-    </div>
+         
     @include('gestion.modales')
 @endsection
 

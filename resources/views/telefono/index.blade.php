@@ -1,7 +1,9 @@
 @extends('adminlte::page')
 
 @section('css')
-<link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
+
 @stop
 
 @section('title', 'Telefonos')
@@ -22,7 +24,7 @@
                             <a class="btn float-right btn-outline-primary" href="{{route('opcion.principal',$persona->estudiante->id)}}">Menú<i class="fas fa-th-list"></i></i></a>
                     @endif
 
-                            <a href="{{route('telefonos.crear',$persona)}}" class="btn btn-outline-secondary float-right">Teléfono<i class="fas fa-mobile-alt"></i></a>
+                            <a href="{{route('telefonos.crear',$persona)}}" class="btn btn-outline-secondary float-right">Teléfono<i class="fas fa-phone-plus"></i></a>
                     @if ($persona->isDocente())
                             <a class="btn btn-outline-secondary float-right" href="{{route('opcion.principal',$persona->id)}}"><i class="fas fa-th-list"></i></i></a>
                     @endif
@@ -40,13 +42,19 @@
 
 @section('js')
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> 
-     
+    
+    <script src="https://kit.fontawesome.com/067a2afa7e.js" crossorigin="anonymous"></script>
+
+    
+
     <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
     
     @if (session('mensaje')=='Contacto Creado Corectamente')

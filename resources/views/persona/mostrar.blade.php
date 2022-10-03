@@ -17,8 +17,8 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 @section('content')
-    <div class="card">
-        <div class="card-header">
+    <div class="card mt-3">
+        <div class="card-header bg-primary">
             CALIFICACION
         </div>
         <div class="card-body">
@@ -31,7 +31,7 @@
                 </x-calificacion>
             @else
             <div class="row">
-                <div class="col-10">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-10">
                     <div class="border  position-relative">
                         <div class="text-center col-auto p-5">
                             <div class="progress">
@@ -43,7 +43,7 @@
                         
                     </div>
                 </div>
-                <div class="col-2">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center border">
                         <div class="circulo bg-primary">
                             <h1>{{ $promedio }}</h1> 
@@ -59,12 +59,18 @@
     </div>
 
     <div class="card">
+            <div class="card-header bg-primary">
+                DATOS DE ESTA PERSONA
+            </div>
         <div class="card-body">
-            <table class="table table-bordered table-striped"> 
-                <tr class="bg-primary">
+            <table id="datos" class="table table-bordered table-striped" style="width:100%"> 
+                <thead>
+                    <tr class="">
                         <th>ATRIBUTO</th>
                         <th>VALOR</th>
-                </tr>
+                    </tr>
+                </thead>
+                
                 <tbody>
                     <tr>
                         <td>Codigo</td>
@@ -147,7 +153,7 @@
                         @isset($user)
                             {{$user->name}}
                             <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5" width="100"> 
-                            {{URL::to('/').Storage::url("$user->foto")}}
+                           
                         @endisset
                         </td>
                     </tr>
@@ -162,7 +168,7 @@
             Apoderados
         </div>
         <div class="card-body">
-            <table id="telefonos" class="table table-hover table-bordered table-striped display responsive nowrap" width="100%">
+            <table id="telefonos" class="table table-hover table-bordered table-striped" width="100%">
                 <thead class="bg-primary">
                     <th>#</th>
                     <th>APODERADOS</th>
@@ -322,9 +328,12 @@
         /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATATABLE DE OBSERVACIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         let tabla=$('#observaciones').DataTable(
             {
-                "serverSide": true,
                 "responsive":true,
+                "searching":true,
+                "paging":   true,
                 "autoWidth":false,
+                "ordering": true,
+                "info":     true,
                 "ajax":{
                     "url":"../observaciones/"+observable_id+"/"+observable_type,
                 }, 
@@ -353,6 +362,40 @@
                     "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                 }, 
                 "order": [[ 2, "desc" ]] 
+            }
+        );
+        /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATATABLE DE TELEOFNOS SOLO PARA RESPONSIVE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('#telefonos').DataTable(
+            {
+                "responsive":true,
+                "autoWidth":false,
+                "ordering": true,
+                "columnDefs": [
+                    { responsivePriority: 1, targets: 0 },  
+                    { responsivePriority: 2, targets: 2 }
+                ],
+                "language":{
+                    "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                }, 
+                "order": [[ 2, "desc" ]] 
+            }
+        );
+        /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATATABLE DE TELEOFNOS SOLO PARA RESPONSIVE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('#datos').DataTable(
+            {
+                "responsive":true,
+                "searching":false,
+                "paging":   false,
+                "autoWidth":false,
+                "ordering": true,
+                "info":     false,
+                "columnDefs": [
+                    { responsivePriority: 2, targets: 0 },  
+                    { responsivePriority: 1, targets: 1 }
+                ],
+                "language":{
+                    "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                }, 
             }
         );
         /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MUESTRA LA VENTAN MODAL DE CREAR NUEVO OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/

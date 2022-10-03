@@ -4,20 +4,21 @@
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @endsection
 
-@section('title', 'Programacionx')
+@section('title', 'Programacion')
 
 @section('plugins.Datatables',true)
 
 @section('content')
-    <section class="content container-fluid">
-        <div class="row pt-4">
+    
                 <div class="card">
                     <div class="card-header bg-secondary">
                         <div class="float-left">
-                            <span class="card-title">Programacion de clases</span>
+                            <span class="card-title text-sm"></span>{{$persona->nombre.' '.$persona->apellidop}}&nbsp;<i class="fas fa-user-graduate"></i>
                         </div>
                         <div class="float-right">
-                            {{$persona->nombre.' '.$persona->apellidop}}&nbsp;<i class="fas fa-user-graduate"></i>
+                            <span class="card-title text-sm">{{App\Models\Matriculacion::findOrfail($matriculacion)->asignatura->asignatura}} </span>
+                        </div>
+                        <div class="float-right">
                             
                             <a href="{{route('opcion.principal', $persona->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
                                 Opciones&nbsp;<i class="fas fa-bars"></i> 
@@ -102,8 +103,7 @@
 
                     </div>
                 </div>
-            </div>
-    </section>
+
 @endsection
 @section('js')
     <script>
@@ -111,10 +111,19 @@
             $('#programacion').DataTable(
                 {
                     "iDisplayLength" : 25,
-
+                    "responsive":true,
+                    "searching":false,
+                    "paging":   true,
+                    "autoWidth":false,
+                    "ordering": false,
+                    "info":     false,
                     "language":{
                             "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json",
                     },
+                    "columnDefs": [
+                        { responsivePriority: 1, targets: 0 },  
+                        { responsivePriority: 2, targets: -1 }
+                    ],
                     "drawCallback": function( settings ) {
                         $('ul.pagination').addClass("pagination-sm");
                     },

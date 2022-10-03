@@ -1,5 +1,5 @@
 <div>
-    <div class="col-5 mt-3 mx-auto">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 mt-3 mx-auto">
         <div class="alert alert-{{$color}} border border-primary" role="alert">
             <h4 class="alert-heading text-center">C A L I  F I C A R </h4>
                 <div class="row">

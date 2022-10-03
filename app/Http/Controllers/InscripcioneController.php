@@ -70,7 +70,7 @@ class InscripcioneController extends Controller
     {
         $modalidades = Modalidad::all();
         $motivos = Motivo::all();
-
+        dd($modalidades);
         //desde el menu puede enviar el objeto persona a create:
         return view('inscripcione.create', compact('modalidades','motivos'));
     }
@@ -111,10 +111,12 @@ class InscripcioneController extends Controller
         
         $motivos = Tipomotivo::findOrFail(1)->motivos;
         $ultima_inscripcion=$this->UltimaInscripcion($persona);
+        
         if($ultima_inscripcion!=null)        
-        $ultimo_nivel=Nivel::findOrFail(Modalidad::findOrFail($ultima_inscripcion->modalidad_id)->nivel_id);
+            $ultimo_nivel=Nivel::findOrFail(Modalidad::findOrFail($ultima_inscripcion->modalidad_id)->nivel_id);
         else {
             $ultimo_grado=$persona->estudiante->grados->first();
+            
             if(empty($ultimo_grado->nivel)){
                 return redirect()->route('gestion.create',$persona->estudiante->id);
             }else{
@@ -122,6 +124,7 @@ class InscripcioneController extends Controller
             }
         }
         
+        // dd($ultimo_nivel);/*  */
         $modalidades = $ultimo_nivel->modalidades;
         if($ultimo_nivel->nivel=='GUARDERIA'){
             //dd($ultimo_nivel);
