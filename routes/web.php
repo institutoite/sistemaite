@@ -88,9 +88,11 @@ Route::put('persona/{persona}/subirfoto','PersonaController@guardarfoto')->name(
 Route::put('persona/{persona}/subirfotojpg', 'PersonaController@guardarfotojpg')->name('guardarfotojpg');
 
 Route::resource('personas', "PersonaController");
+
 Route::get('persona/papeles/{persona_id}', 'PersonaController@configurar_papeles')->name('personas.agregar.papel');
 Route::post('guardar/papeles/{persona}', 'PersonaController@guardarNuevoPapel')->name('guardar.nuevo.papel');
 
+Route::get('persona/select', [PersonaController::class,'select'])->name('persona.select.ajax');
 Route::get('persona/mostrar', [PersonaController::class,'personaMostrarAjax'])->name('persona.mostrar.ajax');
 Route::get('persona/mostrar/ajax', [PersonaController::class,'personaMostrarAjaxInscripcion'])->name('persona.mostrar.ajax');
 Route::get('persona/mostrar/ajax/matriculacion', [PersonaController::class,'personaMostrarAjaxMatriculacion'])->name('persona.mostrar.matriculacion.ajax');
@@ -181,6 +183,8 @@ Route::post('reporte/potenciales/between', [PersonaReporteController::class,'pot
 Route::resource('paises', "PaisController");
 Route::resource('telefonos', "TelefonoController");
 Route::resource('users', 'UserController');
+Route::get('user/create',[UserController::class,'crear'])->name('user.crear');
+Route::post('user/guardar',[UserController::class,'guardar'])->name('user.guardar');
 Route::get('quien', [UserController::class,'quien'])->name('quien');
 
 Route::resource('ciudades', "CiudadController");

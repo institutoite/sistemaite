@@ -1172,6 +1172,10 @@ class PersonaController extends Controller
         $felicitado->save();
         return response()->json($felicitado);
     }
+    public function select(){
+        $personas=Persona::all();
+        return response()->json($personas);
+    }
     public function personaGet($potencial_id){
         $persona=Persona::findOrFail($potencial_id);
         $observacion=rtrim(ltrim(trim(str_replace(' ', '%20', strip_tags($persona->observaciones->first()->observacion)))));
