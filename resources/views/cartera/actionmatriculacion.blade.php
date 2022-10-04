@@ -19,7 +19,7 @@
 <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarprogramacionmatriculacion" title="Mostrar Programacion">
     <i class="fas fa-calendar-alt text-secondary"></i>
 </a>
-<a href="" class="btn-accion-tabla tooltipsC mr-1 bajamatriculacion" title="Mostrar Programacion">
+<a href="" class="btn-accion-tabla tooltipsC mr-1 bajamatriculacion" title="Dar baja esta matriculación">
     <i class="fas fa-arrow-down"></i>
 </a>
 

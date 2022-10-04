@@ -64,6 +64,7 @@ ver como registrar administrativo
 hoy del menu horizontal solo tiene hoyinscripciones falta hoymatriculaciones
 en ver programacion marcar la clase de hoy y  hasta donde essta pagada
 aumentar usuario en mensajes de texto derivados
+crear un usuario y enlazar a una persona 
 
 
 
@@ -95,7 +96,6 @@ para calificar
 https://api.whatsapp.com/send?phone=591{{$telefono}}
 
 
-crear un usuario y enlazar a una persona 
 que se pueda enviar mensajes a cualquier estudiantes
 NO SEMUESTRA LA LICENCIA EN programacion coms
 

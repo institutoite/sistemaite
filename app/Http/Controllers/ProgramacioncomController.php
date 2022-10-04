@@ -572,7 +572,7 @@ class ProgramacioncomController extends Controller
             ->join('docentes', 'programacioncoms.docente_id', '=', 'docentes.id')
             ->join('personas', 'personas.id', '=', 'docentes.persona_id')
             ->join('estados','estados.id','programacioncoms.estado_id')
-            ->select('programacioncoms.fecha', 'horaini','estados.estado','programacioncoms.habilitado', 'horafin', 'horas_por_clase', 'personas.nombre', 'asignaturas.asignatura', 'aulas.aula')
+            ->select('programacioncoms.fecha', 'horaini','estados.estado','programacioncoms.habilitado', 'horafin', 'horas_por_clase', 'nombrecorto', 'asignaturas.asignatura', 'aulas.aula')
             ->orderBy('fecha', 'asc')
             // ->where('matriculacion_id', '=', 1)->get();
             ->where('matriculacion_id', '=', $request->matriculacion_id)->get();

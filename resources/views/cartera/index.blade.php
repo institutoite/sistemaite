@@ -11,9 +11,7 @@
 @section('plugins.Datatables', true)
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
+       
                 <div class="card">
                     <div class="card-header bg-secondary">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -40,10 +38,7 @@
                     </div>
                 </div>
                 
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
+      
                 <div class="card">
                     <div class="card-header bg-secondary">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -69,9 +64,7 @@
                         </div>
                     </div>
                 </div>
-                
-            </div>
-        </div>
+
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -132,7 +125,6 @@
                 
             </div>
         </div>
-    </div>
     
     @include('cartera.modalesmatriculacions')
     @include('observacion.modalcreate')
@@ -467,14 +459,22 @@
                 url="../darbaja/inscripcion";
                 darBajaInscripcion(inscripcion_id,url);
             });
-            /*%%%%%%%%%%%%%%%%%%%%% ALTA DE INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('table').on('click', '.altainscripcion', function (e) {
+            /*%%%%%%%%%%%%%%%%%%%%% BAJA DE MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.bajamatriculacion', function (e) {
                 e.preventDefault();
-                let inscripcion_id = $(this).closest('tr').attr('id');
+                let matriculacion_id = $(this).closest('tr').attr('id');
                 
-                url="../daralta/inscripcion";
-                darAltaInscripcion(inscripcion_id,url);
+                url="../darbaja/matriculacion";
+                darBajaMatriculacion(matriculacion_id,url);
             });
+            /*%%%%%%%%%%%%%%%%%%%%% ALTA DE INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            // $('table').on('click', '.altainscripcion', function (e) {
+            //     e.preventDefault();
+            //     let inscripcion_id = $(this).closest('tr').attr('id');
+                
+            //     url="../daralta/inscripcion";
+            //     darAltaInscripcion(inscripcion_id,url);
+            // });
             /*%%%%%%%%%%%%%%%%%%%%% CONDONAR INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
              $('table').on('click', '.condonarinscripcion', function (e) {
                 e.preventDefault();
@@ -496,6 +496,17 @@
                     observable_id =$(this).closest('tr').attr('id');
                     
                     observable_type ="Matriculacion";
+                    url="../observaciones/" + observable_id + "/" + observable_type,
+                    
+                    mostrarCrudObservaciones(url);
+                    $("#modal-mostrar-observaciones").modal("show");
+            });
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.mostrarobservaciones', function(e) {
+                e.preventDefault();
+                    observable_id =$(this).closest('tr').attr('id');
+                    console.log(observable_id);
+                    observable_type ="Inscripcione";
                     url="../observaciones/" + observable_id + "/" + observable_type,
                     
                     mostrarCrudObservaciones(url);
@@ -600,23 +611,25 @@
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PAGOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/    
             $('table').on('click', '.mostrarpagos', function(e) {
                 e.preventDefault();
-                let inscripcion_id=$(this).closest('tr').attr('id'); 
-                
+                let inscripcion_id=$(this).closest('tr').attr('id');
+                console.log(inscripcion_id);
                 $("#tabla-mostrar-pagos").empty();
                 $("#pagos").empty();
-                $html="";
+                $("#modal-mostrar-pagos").modal("show");
                 $.ajax({
-                    url:"{{url('pagos/mostrar/ajax')}}",
+                    url:"../pagos/mostrar/ajax",
                     data:{
                         inscripcion_id:inscripcion_id,
                     },
                     success : function(json) {
-                        
+                            console.log(json.persona.nombre);
+                            $html="";
                             $html+="<tr>"+"<td>NOMBRE</td><td>"+ json.persona.nombre+" "+json.persona.apellidop+" "+json.persona.apellidom+"</td><td rowspan='4'><img class='rounded float-end img-thumbnail' alt='"+ json.persona.nombre +"' src={{URL::to('/')}}"+"/storage/"+json.persona.foto +"></td>></tr>";
                             $html+="<tr>"+"<td>ACUENTA</td><td>"+ json.acuenta+"</td></tr>";
                             $html+="<tr>"+"<td>SALDO</td><td>"+ json.saldo+"</td></tr>";
                             $html+="<tr>"+"<td>TOTAL</td><td>"+ json.total+"</td></tr>";
                             $('#tabla-mostrar-pagos').append($html); 
+                            
                             $pagosHtml="";
                              for (let j in json.pagos) {
                                 $pagosHtml+="<tr id='"+ json.pagos[j].id +"' ><td>"+ json.pagos[j].id +"</td>";
@@ -627,13 +640,13 @@
                                 $pagosHtml+="<td><a class='detallarpago btn-accion-tabla tooltipsC mr-2' title='Ver este pago'><i class='fa fa-fw fa-eye text-primary'></i></a></td>";
                             }
                             $('#pagos').append($pagosHtml); 
-
+                            console.log($pagosHtml);
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
                     },
                 });
-                $("#modal-mostrar-pagos").modal("show");
+               
             });
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DETALLA PAGO DE INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -648,6 +661,7 @@
                     
                     success : function(json) {
                         //
+                        // $("#modal-mostrar-pagos").modal("hidde");
                         $("#modal-detallar-pago").modal("show");
                         $("#tabla-billete-pago").empty();
                         $("#tabla-billete-cambio").empty();
@@ -689,60 +703,113 @@
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES DE INSCRIPCINES VIGENTES  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
                 
-                $('table').on('click', '.mostrarobservaciones', function(e) {
-                    e.preventDefault();
+                // $('table').on('click', '.mostrarobservaciones', function(e) {
+                //     e.preventDefault();
                     
-                    observable_id =$(this).closest('tr').attr('id');
-                    observable_type ="Inscripcione";
-                        var fila=$(this).closest('tr');
+                //     observable_id =$(this).closest('tr').attr('id');
+                //     console.log(observable_id);
+                //     observable_type ="Inscripcione";
+                //         var fila=$(this).closest('tr');
                         
-                        $("#modal-mostrar-observaciones").modal("show");
-                        $("#tabla-observaciones").empty();
-                             $.ajax({
-                                url :"../observaciones/general",
-                                data:{
-                                    observable_id:observable_id,
-                                    observable_type:observable_type,
-                                },
-                                success : function(json) {
-                                    $html="";
-                                    $clase="";
-                                    for (let j in json) {
-                                        if(json[j].activo==1){
-                                            $clase="text-success";
-                                        }else{
-                                            $clase="text-danger";    
-                                        }
-                                        $html+="<tr class='"+$clase+"'><td>"+ json[j].observacion +"</td>";
-                                        $html+="<td>"+json[j].name+"</td>";
-                                        $html+="<td>"+moment(json[j].created_at).format('LLL') +"</td>";
-                                        $html+="<td>"+moment(json[j].updated_at).format('LLL') +"</td></tr>";
-                                    }
-                                    $("#tabla-observaciones").append($html);
-                                },
-                                error : function(xhr, status) {
-                                    alert('Disculpe, existió un problema');
-                                },
-                            });
+                //         $("#tabla-observaciones").empty();
+                //         $("#modal-mostrar-observaciones").modal("show");
+                //              $.ajax({
+                //                 url :"../observaciones/general",
+                //                 data:{
+                //                     observable_id:observable_id,
+                //                     observable_type:observable_type,
+                //                 },
+                //                 success : function(json) {
+                //                     console.log(json);
+                //                     $html="";
+                //                     $clase="";
+                //                     for (let j in json) {
+                //                         if(json[j].activo==1){
+                //                             $clase="text-success";
+                //                         }else{
+                //                             $clase="text-danger";    
+                //                         }
+                //                         $html+="<tr class='"+$clase+"'><td>"+ json[j].observacion +"</td>";
+                //                         $html+="<td>"+json[j].name+"</td>";
+                //                         $html+="<td>"+moment(json[j].created_at).format('LLL') +"</td>";
+                //                         $html+="<td>"+moment(json[j].updated_at).format('LLL') +"</td></tr>";
+                //                     }
+                //                     $("#tabla-observaciones").append($html);
+                //                 },
+                //                 error : function(xhr, status) {
+                //                     alert('Disculpe, existió un problema');
+                //                 },
+                //             });
+                //     });
+
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA AL FRENTE EL ULTIMO MODAL  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+            (function($, window) {
+                'use strict';
+
+                var MultiModal = function(element) {
+                    this.$element = $(element);
+                    this.modalCount = 0;
+                };
+
+                MultiModal.BASE_ZINDEX = 1040;
+
+                MultiModal.prototype.show = function(target) {
+                    var that = this;
+                    var $target = $(target);
+                    var modalIndex = that.modalCount++;
+
+                    $target.css('z-index', MultiModal.BASE_ZINDEX + (modalIndex * 20) + 10);
+
+                
+                    window.setTimeout(function() {
+                        // we only want one backdrop; hide any extras
+                        if(modalIndex > 0)
+                            $('.modal-backdrop').not(':first').addClass('hidden');
+
+                        that.adjustBackdrop();
                     });
+                };
 
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AGREAGAR OBSERVACION INSCRIPCIONES VIGENTES  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+                MultiModal.prototype.hidden = function(target) {
+                    this.modalCount--;
 
-            // CKEDITOR.replace('editor1', {
-            //     height: 120,
-            //     width: "100%",
-            //     removeButtons: 'PasteFromWord'
-            // });
-            //  $('table').on('click', '.agregarobservacion', function(e) {
-            //     e.preventDefault();
-            //     
-            //     $("#editor1").val("");
-            //     let objeto_id = $(this).closest('tr').attr('id');
-            //     $("#observable_id").val(objeto_id);
-            //     $("#observable_type").val("Inscripcione");
-            //     CKEDITOR.instances.editor1.setData('');
-            //     $("#modal-agregar-observacion").modal("show");
-            // });
+                    if(this.modalCount) {
+                    this.adjustBackdrop();
+                        // bootstrap removes the modal-open class when a modal is closed; add it back
+                        $('body').addClass('modal-open');
+                    }
+                };
+
+                MultiModal.prototype.adjustBackdrop = function() {
+                    var modalIndex = this.modalCount - 1;
+                    $('.modal-backdrop:first').css('z-index', MultiModal.BASE_ZINDEX + (modalIndex * 20));
+                };
+
+                function Plugin(method, target) {
+                    return this.each(function() {
+                        var $this = $(this);
+                        var data = $this.data('multi-modal-plugin');
+
+                        if(!data)
+                            $this.data('multi-modal-plugin', (data = new MultiModal(this)));
+
+                        if(method)
+                            data[method](target);
+                    });
+                }
+
+                $.fn.multiModal = Plugin;
+                $.fn.multiModal.Constructor = MultiModal;
+
+                $(document).on('show.bs.modal', function(e) {
+                    $(document).multiModal('show', e.target);
+                });
+
+                $(document).on('hidden.bs.modal', function(e) {
+                    $(document).multiModal('hidden', e.target);
+                });
+            }(jQuery, window));
 
             /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  GUARDA OBSERVACION CON AJAX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
           
@@ -934,8 +1001,8 @@
                 
                 
                 $("#modal-mostrar-pagoscom").modal("show");
-                $("#tabla-mostrar-pagos").empty();
-                $("#pagos").empty();
+                $("#tabla-mostrar-pagoscom").empty();
+                $("#pagoscom").empty();
                 $html="";
                 $.ajax({
                     url:"{{url('pagoscom/mostrar/ajax')}}",
@@ -948,7 +1015,7 @@
                             $html+="<tr>"+"<td>ACUENTA</td><td>"+ json.acuenta+"</td></tr>";
                             $html+="<tr>"+"<td>SALDO</td><td>"+ json.saldo+"</td></tr>";
                             $html+="<tr>"+"<td>TOTAL</td><td>"+ json.total+"</td></tr>";
-                            $('#tabla-mostrar-pagos').append($html); 
+                            $('#tabla-mostrar-pagoscom').append($html); 
                             $pagosHtml="";
                             for (let j in json.pagos) {
                                 $pagosHtml+="<tr id='"+ json.pagos[j].id +"' ><td>"+ json.pagos[j].id +"</td>";
@@ -958,7 +1025,7 @@
                                 $pagosHtml+="<td>"+moment(json.pagos[j].created_at).format('LLL')+"</td>";
                                 $pagosHtml+="<td><a class='detallarpago btn-accion-tabla tooltipsC mr-2' title='Ver este pago'><i class='fa fa-fw fa-eye text-primary'></i></a></td>";
                             }
-                            $('#pagos').append($pagosHtml); 
+                            $('#pagoscom').append($pagosHtml); 
 
                     },
                     error : function(xhr, status) {
@@ -1021,81 +1088,81 @@
 
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES DE MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
                 
-                $('table').on('click', '.mostrarobservacionesmatriculacion', function(e) {
-                    e.preventDefault();
+                // $('table').on('click', '.mostrarobservacionesmatriculacion', function(e) {
+                //     e.preventDefault();
                     
-                    observable_id =$(this).closest('tr').attr('id');
-                    observable_type ="Matriculacion";
-                        var fila=$(this).closest('tr');
+                //     observable_id =$(this).closest('tr').attr('id');
+                //     observable_type ="Matriculacion";
+                //         var fila=$(this).closest('tr');
                         
-                        $("#modal-mostrar-observaciones").modal("show");
-                        $("#tabla-observaciones").empty();
-                             $.ajax({
-                                url :"../observaciones/general",
-                                data:{
-                                    observable_id:observable_id,
-                                    observable_type:observable_type,
-                                },
-                                success : function(json) {
-                                    $html="";
-                                    $clase="";
-                                    for (let j in json) {
-                                        if(json[j].activo==1){
-                                            $clase="text-success";
-                                        }else{
-                                            $clase="text-danger";    
-                                        }
-                                        $html+="<tr class='"+$clase+"'><td>"+ json[j].observacion +"</td>";
-                                        $html+="<td>"+json[j].name+"</td>";
-                                        $html+="<td>"+moment(json[j].created_at).format('LLL') +"</td>";
-                                        $html+="<td>"+moment(json[j].updated_at).format('LLL') +"</td></tr>";
-                                    }
-                                    $("#tabla-observaciones").append($html);
-                                },
-                                error : function(xhr, status) {
-                                    alert('Disculpe, existió un problema');
-                                },
-                            });
-                    });
+                //         $("#modal-mostrar-observaciones").modal("show");
+                //         $("#tabla-observaciones").empty();
+                //              $.ajax({
+                //                 url :"../observaciones/general",
+                //                 data:{
+                //                     observable_id:observable_id,
+                //                     observable_type:observable_type,
+                //                 },
+                //                 success : function(json) {
+                //                     $html="";
+                //                     $clase="";
+                //                     for (let j in json) {
+                //                         if(json[j].activo==1){
+                //                             $clase="text-success";
+                //                         }else{
+                //                             $clase="text-danger";    
+                //                         }
+                //                         $html+="<tr class='"+$clase+"'><td>"+ json[j].observacion +"</td>";
+                //                         $html+="<td>"+json[j].name+"</td>";
+                //                         $html+="<td>"+moment(json[j].created_at).format('LLL') +"</td>";
+                //                         $html+="<td>"+moment(json[j].updated_at).format('LLL') +"</td></tr>";
+                //                     }
+                //                     $("#tabla-observaciones").append($html);
+                //                 },
+                //                 error : function(xhr, status) {
+                //                     alert('Disculpe, existió un problema');
+                //                 },
+                //             });
+                //     });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
                 
-                $('table').on('click', '.mostrarobservacionespersona', function(e) {
-                    e.preventDefault();
+                // $('table').on('click', '.mostrarobservacionespersona', function(e) {
+                //     e.preventDefault();
                     
-                    observable_id =$(this).closest('tr').attr('id');
-                    observable_type ="Persona";
-                        var fila=$(this).closest('tr');
+                //     observable_id =$(this).closest('tr').attr('id');
+                //     observable_type ="Persona";
+                //         var fila=$(this).closest('tr');
                         
-                        $("#modal-mostrar-observaciones").modal("show");
-                        $("#tabla-observaciones").empty();
-                             $.ajax({
-                                url :"../observaciones/general",
-                                data:{
-                                    observable_id:observable_id,
-                                    observable_type:observable_type,
-                                },
-                                success : function(json) {
+                //         $("#modal-mostrar-observaciones").modal("show");
+                //         $("#tabla-observaciones").empty();
+                //              $.ajax({
+                //                 url :"../observaciones/general",
+                //                 data:{
+                //                     observable_id:observable_id,
+                //                     observable_type:observable_type,
+                //                 },
+                //                 success : function(json) {
                                     
-                                    $html="";
-                                    $clase="";
-                                    for (let j in json) {
-                                        if(json[j].activo==1){
-                                            $clase="text-success";
-                                        }else{
-                                            $clase="text-danger";    
-                                        }
-                                        $html+="<tr class='"+$clase+"'><td>"+ json[j].observacion +"</td>";
-                                        $html+="<td>"+json[j].name+"</td>";
-                                        $html+="<td>"+moment(json[j].created_at).format('LLL') +"</td>";
-                                        $html+="<td>"+moment(json[j].updated_at).format('LLL') +"</td></tr>";
-                                    }
-                                    $("#tabla-observaciones").append($html);
-                                },
-                                error : function(xhr, status) {
-                                    alert('Disculpe, existió un problema');
-                                },
-                            });
-                    });
+                //                     $html="";
+                //                     $clase="";
+                //                     for (let j in json) {
+                //                         if(json[j].activo==1){
+                //                             $clase="text-success";
+                //                         }else{
+                //                             $clase="text-danger";    
+                //                         }
+                //                         $html+="<tr class='"+$clase+"'><td>"+ json[j].observacion +"</td>";
+                //                         $html+="<td>"+json[j].name+"</td>";
+                //                         $html+="<td>"+moment(json[j].created_at).format('LLL') +"</td>";
+                //                         $html+="<td>"+moment(json[j].updated_at).format('LLL') +"</td></tr>";
+                //                     }
+                //                     $("#tabla-observaciones").append($html);
+                //                 },
+                //                 error : function(xhr, status) {
+                //                     alert('Disculpe, existió un problema');
+                //                 },
+                //             });
+                //     });
 
      
      
@@ -1215,7 +1282,7 @@
                                 $programacionHtml+="<tr id='"+ json[j].id +"' ><td>"+ (parseInt(j)+1) +"</td>";
                                 $programacionHtml+="<td>"+moment(json[j].fecha).format('DD-MM-YYYY')+"</td>";
                                 $programacionHtml+="<td>"+moment(json[j].horaini).format('hh:mm:ss')+"-"+moment(json[j].horafin).format('hh:mm:ss')+"</td>";
-                                $programacionHtml+="<td>"+json[j].nombre+'/'+json[j].aula+"</td>";
+                                $programacionHtml+="<td>"+json[j].nombrecorto+'/'+json[j].aula+"</td>";
                                 $programacionHtml+="<td>"+json[j].estado+"</td>";
                             }
                             $('#tabla-programacioncom').append($programacionHtml); 
@@ -1333,7 +1400,7 @@
                                     $html+="<td>"+ moment(json[j].fecha).format("L") +"</td>";
                                     $html+="<td>"+moment(json[j].hora_ini).format('hh:mm-ss')+" - "+moment(json[j].hora_fin).format('hh:mm:ss')+"</td>";
                                     $html+="<td>"+json[j].horas_por_clase+"</td>";
-                                    $html+="<td>"+json[j].nombre+"</td>";
+                                    $html+="<td>"+json[j].nombrecorto+"</td>";
                                     $html+="<td>"+json[j].estado+"</td>";
                                     $html+="<td>"+json[j].materia+"</td>";
                                 }
@@ -1379,7 +1446,7 @@
                                     $html+="<tr class='"+$clase+"'><td>"+ moment(json[j].fecha).format("L") +"</td>";
                                     $html+="<td>"+moment(json[j].horaini).format('hh:mm-ss')+" - "+moment(json[j].horafin).format('hh:mm:ss')+"</td>";
                                     $html+="<td>"+json[j].horas_por_clase+"</td>";
-                                    $html+="<td>"+json[j].nombre+"</td>";
+                                    $html+="<td>"+json[j].nombrecorto+"</td>";
                                     $html+="<td>"+json[j].estado+"</td>";
                                 }
                                 $("#tabla-ultima-programacioncom").append($html);

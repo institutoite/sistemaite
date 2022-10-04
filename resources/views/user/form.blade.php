@@ -19,30 +19,7 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm">    
-        @if($errors->has('persona_id'))
-        <span class="text-danger"> {{ $errors->first('persona_id')}}</span>
-        @endif
-    </div>
-</div> 
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group" >
-        <div class="input-group mb-3">
-            <div class="form-floating mb-3">
-                <select class="form-control mb-3" name="persona_id" id="persona_id" style="width: 100%">
-                    
-                </select>
-            </div>
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-user-plus"></span>
-                </div>
-            </div>
-           
-        </div>
-    </div>
-</div>
+
 
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm">    

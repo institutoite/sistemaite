@@ -19,9 +19,7 @@
                             </span>
 
                             <div class="float-right">
-                                {{-- <a href="{{ route('inscripciones.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                    {{ __('Nueva Inscripción') }}
-                                </a> --}}
+                                
                             </div>
                         </div>
                     </div>
@@ -44,7 +42,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('matriculaciones') }}
+                                {{ __('Matriculaciones') }}
                             </span>
 
                             <div class="float-right">

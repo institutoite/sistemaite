@@ -5,28 +5,22 @@
 @stop
 @section('title', 'Inscripcion Configurar')
 @section('content')
-    <section class="content container-fluid">
-        <div class="">
-            <div class="col-md-12">
+    
+    @includeif('partials.errors')
 
-                @includeif('partials.errors')
-
-                <div class="card card-default">
-                    <div class="card-header bg-primary">
-                        <span class="card-title">Actualizar Inscripcion</span>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('inscripciones.update', $inscripcione->id) }}"  role="form">
-                            {{ method_field('PATCH') }}
-                            @csrf
-                            @include('inscripcione.form')
-                            @include('include.botones')
-                        </form>
-                    </div>
-                </div>
-            </div>
+    <div class="card card-default">
+        <div class="card-header bg-primary">
+            <span class="card-title">Actualizar Inscripcion</span>
         </div>
-    </section>
+        <div class="card-body">
+            <form method="POST" action="{{ route('inscripciones.update', $inscripcione->id) }}"  role="form">
+                {{ method_field('PATCH') }}
+                @csrf
+                @include('inscripcione.form')
+                @include('include.botones')
+            </form>
+        </div>
+    </div>
 @endsection
 
 @section('js')

@@ -187,6 +187,7 @@ class PagoController extends Controller
         $pagos = $inscripcion->pagos;
         $acuenta = $inscripcion->pagos->sum->monto;
         $saldo = $inscripcion->costo - $acuenta;
+        // return response()->json($persona);
         $data=['pagos'=>$pagos, 'persona'=>$persona,'acuenta'=>$acuenta, 'saldo'=>$saldo,'total'=>$inscripcion->costo];
         return response()->json($data);
     }

@@ -6,13 +6,14 @@ function darBajaMatriculacion(matriculacion_id,url) {
             matriculacion_id: matriculacion_id,
         },
         success: function (json) {
-            $("#" + matriculacion_id).addTempClass('bg-success', 3000);
-            //table.ajax.reload();
+            //$("#" + matriculacion_id).addTempClass('bg-success', 3000);
+            tablamatriculaciones.ajax.reload();
+            tablamatriculacionesdesvigentes.ajax.reload();
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 1500,
             })
             Toast.fire({
                 type: 'success',

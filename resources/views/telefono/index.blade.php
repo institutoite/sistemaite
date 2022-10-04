@@ -11,8 +11,6 @@
 
 
 @section('content')
-
-    
         <div class="card">
             <div class="card-header">
                 <div class="row">
@@ -23,8 +21,7 @@
                             <a href="{{route('inscribir',$persona)}}" class="btn btn-outline-secondary float-right">Inscribir<i class="fas fa-user-edit"></i></a>
                             <a class="btn float-right btn-outline-primary" href="{{route('opcion.principal',$persona->estudiante->id)}}">Menú<i class="fas fa-th-list"></i></i></a>
                     @endif
-
-                            <a href="{{route('telefonos.crear',$persona)}}" class="btn btn-outline-secondary float-right">Teléfono<i class="fas fa-phone-plus"></i></a>
+                        <a href="{{route('telefonos.crear',$persona)}}" class="btn btn-outline-secondary float-right">Teléfono<i class="fas fa-phone-plus"></i></a>
                     @if ($persona->isDocente())
                             <a class="btn btn-outline-secondary float-right" href="{{route('opcion.principal',$persona->id)}}"><i class="fas fa-th-list"></i></i></a>
                     @endif

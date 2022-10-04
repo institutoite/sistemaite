@@ -882,7 +882,7 @@ class PersonaController extends Controller
                     ->join('materias','materias.id','=','programacions.materia_id')
                     ->join('estados','estados.id','=','programacions.estado_id')
                     ->where('inscripcione_id',$inscripcion->id)
-                    ->select('programacions.id','fecha','estados.estado','materia','docentes.nombre','programacions.hora_ini','programacions.hora_fin','horas_por_clase','aulas.aula','programacions.habilitado')->get();
+                    ->select('programacions.id','fecha','estados.estado','materia','docentes.nombrecorto','programacions.hora_ini','programacions.hora_fin','horas_por_clase','aulas.aula','programacions.habilitado')->get();
         return response()->json($programaciones);
     }
 
@@ -926,7 +926,7 @@ class PersonaController extends Controller
          $programacioncoms = Programacioncom::join('aulas', 'programacioncoms.aula_id', '=', 'aulas.id')
             ->join('docentes', 'programacioncoms.docente_id', '=', 'docentes.id')
             ->join('estados','estados.id','programacioncoms.estado_id')
-            ->select('programacioncoms.fecha','nombre', 'habilitado','horaini','estados.estado', 'horafin', 'horas_por_clase', 'aulas.aula')
+            ->select('programacioncoms.fecha','nombrecorto', 'habilitado','horaini','estados.estado', 'horafin', 'horas_por_clase', 'aulas.aula')
             ->orderBy('fecha', 'asc')
             ->where('programacioncoms.matriculacion_id', '=', $matriculacion->id)->get();
         return response()->json($programacioncoms);

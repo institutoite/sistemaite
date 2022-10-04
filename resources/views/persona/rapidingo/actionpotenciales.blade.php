@@ -42,6 +42,6 @@
     <i class="fas fa-thumbs-up"></i>
 </a>
 <a class="btn-accion-tabla tooltipsC btn-sm mr-2 mostraradministrativos" title="Delegar cliente">
-    <i class="fab fa-whatsapp"></i>
+    <i class="fas fa-share-alt"></i>
 </a>
 

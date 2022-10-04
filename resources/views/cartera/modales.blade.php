@@ -66,7 +66,7 @@
 <div class="modal" tabindex="-1" id="modal-mostrar-pagos">
     <div class="modal-dialog modal-xl modalito">
         <div class="modal-content">
-            <div class="modal-header bg-    primary">
+            <div class="modal-header bg-primary">
                 {{__('MOSTRAR PAGOS')}}
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -82,28 +82,40 @@
                                 </tr>
                             </thead>
                             <tbody id="tabla-mostrar-pagos">
-                                
+                                <tr>
+                                    <td>sdfds</td>
+                                    <td>fdsf</td>
+                                    <td>fdsfd</td>
+                                </tr>
                             </tbody>
                         </table>
-                        <div class="card">
-                            <div class="card-body">
-                                 <table class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>MONTO</th>
-                                            <th>PAGOCON</th>
-                                            <th>CAMBIO</th>
-                                            <th>FECHA</th>
-                                            <th>DETALLAR</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="pagos">
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                        
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                            <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>MONTO</th>
+                                    <th>PAGOCON</th>
+                                    <th>CAMBIO</th>
+                                    <th>FECHA</th>
+                                    <th>DETALLAR</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pagos">
+                                <tr>
+                                    <td>ID</td>
+                                    <td>MONTO</td>
+                                    <td>PAGOCON</td>
+                                    <td>CAMBIO</td>
+                                    <td>FECHA</td>
+                                    <td>DETALLAR</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

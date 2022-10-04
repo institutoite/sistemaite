@@ -81,7 +81,7 @@
                                     <th>FOTOGRAFIA</th>
                                 </tr>
                             </thead>
-                            <tbody id="tabla-mostrar-pagos">
+                            <tbody id="tabla-mostrar-pagoscom">
                                 
                             </tbody>
                         </table>
@@ -98,7 +98,7 @@
                                             <th>DETALLAR</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="pagos">
+                                    <tbody id="pagoscom">
                                         
                                     </tbody>
                                 </table>

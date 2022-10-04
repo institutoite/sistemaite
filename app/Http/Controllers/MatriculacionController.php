@@ -342,14 +342,14 @@ class MatriculacionController extends Controller
     public function darbaja(Request $request)
     {
         $matriculacion=Matriculacion::findOrFail($request->matriculacion_id);
-        $matriculacion->activo=0;
+        $matriculacion->vigente=0;
         $matriculacion->save();
         return response()->json($request->all());
     }
     public function daralta(Request $request)
     {
         $matriculacion=Matriculacion::findOrFail($request->matriculacion_id);
-        $matriculacion->activo=1;
+        $matriculacion->vigente=1;
         $matriculacion->save();
         return response()->json($request->all());
     }

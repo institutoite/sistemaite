@@ -8,6 +8,7 @@ function darBajaInscripcion(inscripcion_id,url) {
         success: function (json) {
             $("#" + inscripcion_id).addTempClass('bg-success', 3000);
             tablainscripciones.ajax.reload();
+            tablainscripcionesdesvigentes.ajax.reload();
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
