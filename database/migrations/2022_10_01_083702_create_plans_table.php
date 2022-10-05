@@ -19,8 +19,8 @@ class CreatePlansTable extends Migration
             $table->string('descripcion', 100)->nullable();
             $table->string('foto', 100)->nullable();
             $table->decimal('costo', 6, 2)->nullable();
-            $table->unsignedBigInteger('conveio_id');
-            $table->foreign('conveio_id')->references('id')->on('convenios');
+            $table->unsignedBigInteger('convenio_id');
+            $table->foreign('convenio_id')->references('id')->on('convenios');
             $table->timestamps();
         });
     }

@@ -30,3 +30,8 @@
          <i class="fas fa-bars"></i> &nbsp; Opciones
     </a>
 </span>
+
+<a class="btn-accion-tabla tooltipsC mr-1 enviarmensaje" title="Cobrar por mensaje">
+    &nbsp;<i class="fab fa-whatsapp"></i>
+</a>
+

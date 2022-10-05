@@ -15,7 +15,7 @@ class CreateObservacionsTable extends Migration
     {
         Schema::create('observacions', function (Blueprint $table) {
             $table->id();
-            $table->string('observacion',400)->nullable();
+            $table->string('observacion',650)->nullable();
             $table->boolean('activo');
             $table->bigInteger('observable_id')->unsigned();
             $table->string('observable_type');

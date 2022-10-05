@@ -29,6 +29,7 @@
         </thead>
     </table>
     @include('observacion.modalcreate')
+    @include('telefono.modales')
 @stop
 
 @section('js')
@@ -45,6 +46,11 @@
 
     <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
     <script src="{{asset('assets/js/observacion.js')}}"></script>
+
+    <script src="{{asset('dist/js/moment.js')}}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
+   
+    <script src="{{asset('assets/js/enviarmensaje/mostrarcontactos.js')}}"></script>
 
     <script>
         ( function ( $ ) {
@@ -115,6 +121,15 @@
                     
                 })
             }); 
+
+            $('table').on('click', '.enviarmensaje', function(e) {
+                e.preventDefault();
+                persona_id =$(this).closest('tr').attr('id');
+                url="../persona/enviar/mensaje/componente",
+                mensaje_id=5;
+                mostrarContactos(url,persona_id,mensaje_id);
+                $("#modal-listar-contactos-component").modal("show");
+            });
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  P E R S O N A %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
             $('table').on('click','.eliminar',function (e) {
                 e.preventDefault(); 

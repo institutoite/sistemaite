@@ -15,7 +15,7 @@
 <a class="btn-accion-tabla tooltipsC mr-1 recalificar text-secondary" title="Recalificar al estudiante">
     <i class="fas fa-star"></i>
 </a>
-<a class="btn-accion-tabla tooltipsC mr-1 enviarmensaje " title="Cobrar por mensaje">
+<a class="btn-accion-tabla tooltipsC mr-1 enviarmensaje" title="Cobrar por mensaje">
     &nbsp;<i class="fab fa-whatsapp"></i>
 </a>
 

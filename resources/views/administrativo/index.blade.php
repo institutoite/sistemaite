@@ -27,6 +27,7 @@
         </thead>
     </table>
     @include('observacion.modalcreate')
+    @include('telefono.modales')
 @stop
 
 @section('js')
@@ -47,6 +48,8 @@
     <script src="{{asset('assets/js/observacion.js')}}"></script>
     <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
     <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
+
+    <script src="{{asset('assets/js/enviarmensaje/mostrarcontactos.js')}}"></script>
     
     <!-- JavaScript Bundle with Popper -->
     
@@ -136,7 +139,14 @@
             url="observacion/actualizar";
             actualizarObservacion(observacion_id,observacion,url);
         });
-
+        $('table').on('click', '.enviarmensaje', function(e) {
+            e.preventDefault();
+                persona_id =$(this).closest('tr').attr('id');
+                url="../persona/enviar/mensaje/componente",
+                mensaje_id=5;
+                mostrarContactos(url,persona_id,mensaje_id);
+                $("#modal-listar-contactos-component").modal("show");
+        });
 
 
 

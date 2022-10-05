@@ -634,6 +634,8 @@ class PersonaController extends Controller
         $persona->expedido = $request->expedido;
         $persona->genero = $request->genero;
         $persona->habilitado=1;
+        $persona->votos=$request->votos;
+        
         if ($request->hasFile('foto')) {
             if (Storage::disk('public')->exists($persona->foto)) {
                 Storage::disk('public')->delete($persona->foto);

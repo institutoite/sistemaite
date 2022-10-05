@@ -32,6 +32,8 @@
             </div>
         </div>
         @include('observacion.modalcreate')
+        {{-- @include('mensaje.masivo.modales') --}}
+        @include('telefono.modales')
        
     </div>
     
@@ -69,6 +71,9 @@
     
     <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
     <script src="{{asset('assets/js/observacion.js')}}"></script>
+
+    {{-- esto funciona con @include('telefono.modales')  unicamente --}}
+    <script src="{{asset('assets/js/enviarmensaje/mostrarcontactos.js')}}"></script>
 
     <script src="{{asset('dist/js/moment.js')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
@@ -157,6 +162,14 @@
             observacion=CKEDITOR.instances.editoreditar.getData();
             url="observacion/actualizar";
             actualizarObservacion(observacion_id,observacion,url);
+        });
+        $('table').on('click', '.enviarmensaje', function(e) {
+            e.preventDefault();
+                persona_id =$(this).closest('tr').attr('id');
+                url="../persona/enviar/mensaje/componente",
+                mensaje_id=5;
+                mostrarContactos(url,persona_id,mensaje_id);
+                $("#modal-listar-contactos-component").modal("show");
         });
 
 
@@ -263,7 +276,7 @@
                 })
             });
         
-        
+            
 
         
         

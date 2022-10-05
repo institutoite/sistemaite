@@ -32,6 +32,8 @@
         </div>
     </div>
     @include('estudiantes.modal')
+    @include('telefono.modales')
+
 @stop
 
 @section('js')
@@ -50,6 +52,9 @@
 
     <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
     <script src="{{asset('assets/js/observacion.js')}}"></script>
+    <script src="{{asset('assets/js/enviarmensaje/mostrarcontactos.js')}}"></script>
+   
+
     <!-- JavaScript Bundle with Popper -->
     
 
@@ -139,6 +144,15 @@
             actualizarObservacion(observacion_id,observacion,url);
         });
 
+        $('table').on('click', '.enviarmensaje', function(e) {
+            e.preventDefault();
+                persona_id =$(this).closest('tr').attr('id');
+                url="../persona/enviar/mensaje/componente/",
+                mensaje_id=5;
+                mostrarContactos(url,persona_id,mensaje_id);
+                $("#modal-listar-contactos-component").modal("show");
+        });
+
 
 
 
@@ -219,43 +233,43 @@
                     
                 })
             });
-            $('table').on('click', '.enviarmensaje', function(e) {
-                e.preventDefault();
-                persona_id =$(this).attr('id');
-                    $("#modal-mostrar-contactos").modal("show");
-                    $("#tabla-contactos").empty();
-                            $.ajax({
-                            url :"persona/enviar/mensaje",
-                            data:{
-                                persona_id:persona_id,
-                            },
-                            success : function(json) {
-                                //tabla.ajax.reload();
-                                $html="<tr id='"+ json.persona.telefono +"'><td>"+ json.persona.nombre +"</td>";
-                                $html+="<td>Teléfono personal</td>";
-                                $html+="<td>"+json.persona.telefono+"</td>";
-                                $html+="<td>"+moment(json.persona.created_at).format('L') +"</td>";
-                                $html+="<td>"+moment(json.persona.updated_at).format('L') +"</td>";
-                                if (json.persona.telefono!=0)
-                                    $html+="<td><a target='_blank' href='https://api.whatsapp.com/send?phone=591"+ json.persona.telefono+"&text="+ json.mensaje +"' class='falta'><i class='fab fa-whatsapp'></i></a></td></tr>";
-                                else
-                                    $html+="<td><a class=''>No tiene número</a></td></tr>";
-                                for (let j in json.apoderados) {
-                                    $html+="<tr id='"+ json.apoderados[j].telefono +"'><td>"+ json.apoderados[j].nombre +"</td>";
-                                    $html+="<td>"+json.apoderados[j].pivot.parentesco+"</td>";
-                                    $html+="<td>"+json.apoderados[j].telefono+"</td>";
-                                    $html+="<td>"+moment(json.apoderados[j].created_at).format('LLL') +"</td>";
-                                    $html+="<td>X"+moment(json.apoderados[j].updated_at).format('LLL') +"</td>";
-                                    $html+="<td><a target='_blank' href='https://api.whatsapp.com/send?phone=591"+ json.apoderados[j].telefono +"&text="+ json.mensaje +"' class='falta'><i class='fab fa-whatsapp'></i></a></td></tr>";
-                                }
-                                tabla.ajax.reload();
-                                $("#tabla-contactos").append($html);
-                            },
-                            error : function(xhr, status) {
-                                alert('Disculpe, existió un problema');
-                            },
-                        });
-                });
+            // $('table').on('click', '.enviarmensaje', function(e) {
+            //     e.preventDefault();
+            //     persona_id =$(this).attr('id');
+            //         $("#modal-mostrar-contactos").modal("show");
+            //         $("#tabla-contactos").empty();
+            //                 $.ajax({
+            //                 url :"persona/enviar/mensaje",
+            //                 data:{
+            //                     persona_id:persona_id,
+            //                 },
+            //                 success : function(json) {
+            //                     //tabla.ajax.reload();
+            //                     $html="<tr id='"+ json.persona.telefono +"'><td>"+ json.persona.nombre +"</td>";
+            //                     $html+="<td>Teléfono personal</td>";
+            //                     $html+="<td>"+json.persona.telefono+"</td>";
+            //                     $html+="<td>"+moment(json.persona.created_at).format('L') +"</td>";
+            //                     $html+="<td>"+moment(json.persona.updated_at).format('L') +"</td>";
+            //                     if (json.persona.telefono!=0)
+            //                         $html+="<td><a target='_blank' href='https://api.whatsapp.com/send?phone=591"+ json.persona.telefono+"&text="+ json.mensaje +"' class='falta'><i class='fab fa-whatsapp'></i></a></td></tr>";
+            //                     else
+            //                         $html+="<td><a class=''>No tiene número</a></td></tr>";
+            //                     for (let j in json.apoderados) {
+            //                         $html+="<tr id='"+ json.apoderados[j].telefono +"'><td>"+ json.apoderados[j].nombre +"</td>";
+            //                         $html+="<td>"+json.apoderados[j].pivot.parentesco+"</td>";
+            //                         $html+="<td>"+json.apoderados[j].telefono+"</td>";
+            //                         $html+="<td>"+moment(json.apoderados[j].created_at).format('LLL') +"</td>";
+            //                         $html+="<td>X"+moment(json.apoderados[j].updated_at).format('LLL') +"</td>";
+            //                         $html+="<td><a target='_blank' href='https://api.whatsapp.com/send?phone=591"+ json.apoderados[j].telefono +"&text="+ json.mensaje +"' class='falta'><i class='fab fa-whatsapp'></i></a></td></tr>";
+            //                     }
+            //                     tabla.ajax.reload();
+            //                     $("#tabla-contactos").append($html);
+            //                 },
+            //                 error : function(xhr, status) {
+            //                     alert('Disculpe, existió un problema');
+            //                 },
+            //             });
+            //     });
         } );
         
     </script>
