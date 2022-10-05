@@ -381,33 +381,55 @@
     
 
     @isset($persona)
-        <div class="row">
+        <div class="row mt-3">
             {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO OBSERVACION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}} 
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group border" style="position: relative" >
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group" >
-                    <div class="form-floating mb-3 text-gray">
-                        <div class="text-center p-4" >
-                            <img with="25" height="25" src="{{URL::to('/').Storage::url("$persona->foto")}}" class="rounded img-thumbnail img-fluid border-primary border-5" alt="{{$persona->nombre}}">        
-                        </div>
+            {{-- <div class="row" style="position: relative" > --}}
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+                <div class="card">
+                    <div class="card-header bg-secondary">
+                        FOTO ACTUAL
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group" >
-                    <div class="form-floating mb-3 text-gray">
-                        <div class="text-center" >
-                            <a href="{{ route('tomar.foto.persona',$persona)}}"> <i class="fas fa-camera"></i> Tomar Foto </a>
+                    <div class="card-body">
+                       <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                                <div class="form-floating mb-3 text-gray">
+                                    <div class="text-center p-4" >
+                                        <img with="25" height="25" src="{{URL::to('/').Storage::url("$persona->foto")}}" class="rounded img-thumbnail img-fluid border-primary border-5" alt="{{$persona->nombre}}" width="400">        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                                <div class="form-floating mb-3 text-gray">
+                                    <div class="text-center" >
+                                        <a href="{{ route('tomar.foto.persona',$persona)}}"> <i class="fas fa-camera"></i> Tomar Foto </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             {{-- $$$$$$$$$$$ CAMPO REPETIR FOTOGRAFIA --}}
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
-                <div class="border-danger input-group text-center">
-                    <input type="file" data-initial-preview="{{isset($persona->foto) ? URL::to('/').Storage::url("$persona->foto") : URL::to('/').Storage::url("estudiantes/foto.jpeg") }}" accept=".png, .jpg, .jpeg, .gif" name="foto" id="foto" data-classButton="btn btn-success" data-input="false" data-classIcon="icon-plus">                
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        NUEVA IMAGEN
+                    </div>
+                    <div class="card-body">
+                        
+                            <div class="border-danger text-center">
+                                {{-- <input type="file" accept=".png, .jpg, .jpeg, .gif" name="foto" id="foto">                 --}}
+                                <input type="file" data-initial-preview="{{isset($persona->foto) ? URL::to('/').Storage::url("$persona->foto") : URL::to('/').Storage::url("estudiantes/foto.jpeg") }}" accept=".png, .jpg, .jpeg, .gif" name="foto" id="foto" data-classButton="btn btn-success" data-input="false" data-classIcon="icon-plus">                
+                            </div>
+                        
+                    </div>
                 </div>
             </div>
         </div>
 
     @endisset
+
+    {{-- <input id="input-b1" name="input-b1" type="file" class="file" data-browse-on-zone-click="true"> --}}
     
 <div class="modal" tabindex="-1" id="modal-ite">
     <div class="modal-dialog modal-lg modalito">

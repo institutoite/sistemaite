@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
 @stop
 
 @section('title', 'Persona Editar')
@@ -27,7 +28,7 @@
 @section('js')
     
      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/plugins/piexif.min.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/plugins/sortable.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/plugins/sortable.min.js" type="text/javascript"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/fileinput.min.js"></script>
@@ -38,6 +39,11 @@
     
     <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% CKEDITOR --}}
+
+
+    <script src="{{asset('dist/js/steepfocus.js') }}"></script>
+    {{-- <script src="{{asset('vendor/inputfile/locales/es.js')}}"></script> --}}
+
     <script>
         ClassicEditor
             .create( document.querySelector('#observacion'))
@@ -60,7 +66,7 @@
                         {data: 'apellidop'},
                         {data: 'apellidom'},
                         {
-                            "name": "foto",
+                            "name": "fotox",
                             "data": "foto",
                             "render": function (data, type, full, meta) {
                                 return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
@@ -77,16 +83,17 @@
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                     },  
                 });
-            var url1 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg',
-                url2 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg';
+            // var url1 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg',
+            //     url2 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg';
 
-            $("#foto").fileinput(
+             $("#foto").fileinput(
                 {
                     initialPreview: [],
                     initialPreviewAsData: true,
                     initialPreviewConfig: [
                         
                     ],
+                    //deleteUrl: "/site/file-delete",
                     overwriteInitial: true,
                     maxFileSize: 2000,
                     initialCaption: "Click en examinar para cambiar imagen",
@@ -97,7 +104,7 @@
                     showCancel: false,
                     
                 }
-            );
+            ); 
             $('#formulario').trigger("reset");
 
             function cargarciudades(){
