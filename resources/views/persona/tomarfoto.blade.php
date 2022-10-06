@@ -98,7 +98,6 @@
                     initialPreview: [],
                     initialPreviewAsData: true,
                     initialPreviewConfig: [
-                        
                     ],
                     //deleteUrl: "/site/file-delete",
                     overwriteInitial: true,

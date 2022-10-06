@@ -76,7 +76,13 @@ class LicenciaController extends Controller
         if ($validator->passes()) {
             $licenciacom    =new Licencia();
             $licenciacom->motivo_id=$request->motivo_id;
-            $licenciacom->solicitante=$request->solicitante;  
+
+            $cadena=$request->solicitante;
+            $pos=stripos($cadena,'(');
+            $apoderado=substr($cadena,0,$pos);
+                
+            $licenciacom->solicitante=$apoderado;  
+            
             $licenciacom->parentesco=$request->parentesco;  
             $licenciacom->licenciable_id=$request->programacioncom_id;
             $licenciacom->licenciable_type=Programacioncom::class;
@@ -106,7 +112,14 @@ class LicenciaController extends Controller
          if ($validator->passes()) {
             $licencia    =new Licencia();
             $licencia->motivo_id=$request->motivo_id;
-            $licencia->solicitante=$request->solicitante;  
+
+            
+            $cadena=$request->solicitante;
+            $pos=stripos($cadena,'(');
+            $apoderado=substr($cadena,0,$pos);
+                
+            $licencia->solicitante=$apoderado;  
+            
             $licencia->parentesco=$request->parentesco;  
             $licencia->licenciable_id=$request->programacion_id;
             $licencia->licenciable_type=Programacion::class;

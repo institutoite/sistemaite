@@ -64,7 +64,7 @@
                             
                         </tbody>
                     </table>
-                    <table id="clases" class="table table-bordered table-hover table-striped">
+                    <table id="clases" class="table table-bordered table-hover table-striped table-responsive">
                         <thead class="bg-primary">
                             <tr>
                                 <th>Fecha</th>
@@ -80,7 +80,7 @@
                         </tbody>
                     </table>
 
-                    <table id="licencias" class="table table-bordered table-hover table-striped">
+                    <table id="licencias" class="table table-bordered table-hover table-striped table-responsive">
                         <thead class="bg-primary">
                             <tr>
                                 <th>MOTIVO</th>

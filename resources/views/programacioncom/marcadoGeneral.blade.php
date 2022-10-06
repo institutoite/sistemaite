@@ -269,6 +269,7 @@
                 ],
             });
 
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('.row').on('click','.zoomify',function (e){
                 Swal.fire({
                     title: 'Código:{{$persona->id}} ',
@@ -535,7 +536,7 @@
 
                         $html+="<tr><td>Estado</td>"+"<td>"+json.estado.estado+"</td></tr>";
                         
-                        $html+="<tr><td>Docente</td>"+"<td>"+json.programacioncom.docente.nombre+"</td></tr>";
+                        $html+="<tr><td>Docente</td>"+"<td>"+json.programacioncom.docente.nombrecorto+"</td></tr>";
                         $html+="<tr><td>Asignatura</td>"+"<td>"+json.asignatura.asignatura+"</td></tr>";
                         $html+="<tr><td>Aula</td>"+"<td>"+json.programacioncom.aula.aula+"</td></tr>";
                         $("#tabla-mostrar-programacioncom").append($html);

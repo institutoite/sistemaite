@@ -400,7 +400,7 @@
 
                         $html+="<tr><td>Estado</td>"+"<td>"+json.estado.estado+"</td></tr>";
                         
-                        $html+="<tr><td>Materia</td>"+"<td>"+json.programacion.docente.nombre+"</td></tr>";
+                        $html+="<tr><td>Docente</td>"+"<td>"+json.programacion.docente.nombrecorto+"</td></tr>";
                         $html+="<tr><td>Materia</td>"+"<td>"+json.programacion.materia.materia+"</td></tr>";
                         $html+="<tr><td>Aula</td>"+"<td>"+json.programacion.aula.aula+"</td></tr>";
                         $html+="<tr><td>Usuario</td>"+"<td>"+json.user.name+"</td></tr>";
