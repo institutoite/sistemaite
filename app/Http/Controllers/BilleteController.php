@@ -65,15 +65,18 @@ class BilleteController extends Controller
 
     public function guardar(Request $request,$pago_id)
     {
+       
         $pago = Pago::findOrFail($pago_id);
         $montoBilletes= $request->billete200*200+ $request->billete100*100+ $request->billete50*50+ $request->billete20*20+
                 $request->billete10*10+ $request->moneda5*5+ $request->moneda2*2+ $request->moneda1*1+ $request->moneda50*0.5+ $request->moneda20*0.2;
         $cambioBilletes = $request->billetecambio200 * 200 + $request->billetecambio100 * 100 + $request->billetecambio50 * 50 + $request->billetecambio20 * 20 +
             $request->billetecambio10 * 10 + $request->monedacambio5 * 5 + $request->monedacambio2 * 2 + $request->monedacambio1 + $request->monedacambio50 * 0.5 + $request->monedacambio20 * 0.2;
         
+        
+
         if(($pago->pagocon!=$montoBilletes)||($pago->cambio!=$cambioBilletes)){
             $mensaje="La cantidad de Billetes es incorrecta: ";
-            return back()->withInput()->with(['mensaje'=>$mensaje,'pagocon'=>$montoBilletes,'cambio'=>$cambioBilletes]);
+            return back()->withInput()->with(['mensaje'=>$mensaje,'monto'=>$montoBilletes,'cambio'=>$cambioBilletes]);
         }else{
             $vector_cantidad_billetes=[];
             if($request->billete200 != 0){ $vector_cantidad_billetes['1']= $request->billete200;}
