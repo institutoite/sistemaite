@@ -633,8 +633,8 @@ class PersonaController extends Controller
         $persona->carnet = $request->carnet;
         $persona->expedido = $request->expedido;
         $persona->genero = $request->genero;
-        $persona->habilitado=1;
-        $persona->votos=$request->votos;
+        $persona->habilitado = $request->habilitado;
+        $persona->votos=1;
         
         if ($request->hasFile('foto')) {
             if (Storage::disk('public')->exists($persona->foto)) {

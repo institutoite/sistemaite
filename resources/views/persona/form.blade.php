@@ -376,10 +376,40 @@
                 @endif
         </div>
     </div>
-    
-    <textarea placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" >{{old('observacion',$observacion ?? '')}}</textarea>
-    
-
+    @isset($persona)
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8" >
+                <textarea rows="10" placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" >{{old('observacion',$observacion ?? '')}}</textarea>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4" >
+                <div class="form-floating mb-3 text-gray">
+                    <select class="form-control @error('habilitado') is-invalid @enderror" name="habilitado" id="habilitado">
+                        <option value=""> Elija tu HABILITADO</option>
+                            @if(isset($persona->habilitado))
+                                @if($persona->habilitado==0)
+                                    <option value="{{ $persona->habilitado }}" {{ 0==$persona->habilitado ? 'selected':''}} >DESHABILITAR</option>
+                                    <option value="1">HABILITAR</option>
+                                @else
+                                    <option value="{{ $persona->habilitado }}" {{ 1==$persona->habilitado ? 'selected':''}} >HABILITAR</option>
+                                    <option value="0" >DESHABILITAR</option>
+                                @endif
+                            @else  
+                                <option value="MUJER" @if(old('habilitado') == 'MUJER') {{'selected'}} @endif>MUJER</option>
+                                <option value="HOMBRE" @if(old('habilitado') == 'HOMBRE') {{'selected'}} @endif>HOMBRE</option>
+                            @endif 
+                    </select>
+                    <label for="habilitado">Elija género*</label>
+                </div>
+            </div>
+        </div>
+    @else
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                <textarea rows="10" placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" >{{old('observacion',$observacion ?? '')}}</textarea>
+            </div>
+        </div>
+    @endisset
+        
     @isset($persona)
         <div class="row mt-3">
             {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO OBSERVACION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}} 
@@ -391,7 +421,7 @@
                     </div>
                     <div class="card-body">
                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 " >
                                 <div class="form-floating mb-3 text-gray">
                                     <div class="text-center p-4" >
                                         <img with="25" height="25" src="{{URL::to('/').Storage::url("$persona->foto")}}" class="rounded img-thumbnail img-fluid border-primary border-5" alt="{{$persona->nombre}}" width="400">        
@@ -416,17 +446,37 @@
                         NUEVA IMAGEN
                     </div>
                     <div class="card-body">
-                        
-                            <div class="border-danger text-center">
-                                {{-- <input type="file" accept=".png, .jpg, .jpeg, .gif" name="foto" id="foto">                 --}}
-                                <input type="file" data-initial-preview="{{isset($persona->foto) ? URL::to('/').Storage::url("$persona->foto") : URL::to('/').Storage::url("estudiantes/foto.jpeg") }}" accept=".png, .jpg, .jpeg, .gif" name="foto" id="foto" data-classButton="btn btn-success" data-input="false" data-classIcon="icon-plus">                
-                            </div>
-                        
+                        <div class="border-danger text-center">
+                            <input type="file" data-initial-preview="{{isset($persona->foto) ? URL::to('/').Storage::url("$persona->foto") : URL::to('/').Storage::url("estudiantes/foto.jpeg") }}" accept=".png, .jpg, .jpeg, .gif" name="foto" id="foto" data-classButton="btn btn-success" data-input="false" data-classIcon="icon-plus">                
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO GENERO  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 
+        {{-- <div class="row"> 
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+                <div class="form-floating mb-3 text-gray">
+                    <select class="form-control @error('habilitado') is-invalid @enderror" name="habilitado" id="habilitado">
+                        <option value=""> Elija tu HABILITADO</option>
+                            @if(isset($persona->habilitado))
+                                @if($persona->habilitado==0)
+                                    <option value="{{ $persona->habilitado }}" {{ 0==$persona->habilitado ? 'selected':''}} >DESHABILITAR</option>
+                                    <option value="1">HABILITAR</option>
+                                @else
+                                    <option value="{{ $persona->habilitado }}" {{ 1==$persona->habilitado ? 'selected':''}} >HABILITAR</option>
+                                    <option value="0" >DESHABILITAR</option>
+                                @endif
+                            @else  
+                                <option value="MUJER" @if(old('habilitado') == 'MUJER') {{'selected'}} @endif>MUJER</option>
+                                <option value="HOMBRE" @if(old('habilitado') == 'HOMBRE') {{'selected'}} @endif>HOMBRE</option>
+                            @endif 
+                    </select>
+                    <label for="habilitado">Elija género*</label>
+                </div>
+            </div>
+        </div> --}}
     @endisset
 
     {{-- <input id="input-b1" name="input-b1" type="file" class="file" data-browse-on-zone-click="true"> --}}
