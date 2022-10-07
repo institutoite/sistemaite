@@ -326,6 +326,9 @@ Route::post('pagos/realizar/{inscripcione}', 'PagoController@guardar')->name('pa
 Route::patch('pago/actualizar/{pago}', "PagoController@actualizar")->name('pago.actualizar');
 Route::get('pagos/mostrar/ajax',[PagoController::class,'pagosMostrarAjax'])->name('pagos.mostrar.ajax');
 Route::get('listar/pagos',[PagoController::class,'listarPagos'])->name('pagos.pagos');
+Route::get('pago/inscripciones/view',[PagoController::class,'pagoInscripcionesView'])->name('pago.inscripciones.view');
+Route::get('pagoinscripciones',[PagoController::class,'pagoInscripciones'])->name('pago.inscripciones');
+
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%PAGOS COMPUTACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('pagocom/crear/{matriculacion}',[PagocomController::class,'crear'])->name('pagocom.crear');
