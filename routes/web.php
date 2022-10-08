@@ -52,7 +52,7 @@ use App\Http\Controllers\MododocenteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[PagoController::class,'listarPagos'])->name('prueba');
+Route::get('prueba',[PagoController::class,'pagoModelo'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -327,7 +327,9 @@ Route::patch('pago/actualizar/{pago}', "PagoController@actualizar")->name('pago.
 Route::get('pagos/mostrar/ajax',[PagoController::class,'pagosMostrarAjax'])->name('pagos.mostrar.ajax');
 Route::get('listar/pagos',[PagoController::class,'listarPagos'])->name('pagos.pagos');
 Route::get('pago/inscripciones/view',[PagoController::class,'pagoInscripcionesView'])->name('pago.inscripciones.view');
-Route::get('pagoinscripciones',[PagoController::class,'pagoInscripciones'])->name('pago.inscripciones');
+Route::get('pagoinscripciones',[PagoController::class,'pagoModelo'])->name('pago.inscripciones');
+Route::get('pago/matriculaciones/view',[PagoController::class,'pagoMatriculacionesView'])->name('pago.matriculaciones.view');
+Route::get('pagomatriculaciones',[PagoController::class,'pagoMatriculaciones'])->name('pago.matriculaciones');
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%PAGOS COMPUTACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */

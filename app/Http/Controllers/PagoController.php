@@ -14,7 +14,7 @@ use App\Models\Persona;
 use App\Models\Nivel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
@@ -246,31 +246,21 @@ class PagoController extends Controller
     public function pagoInscripcionesView(){
         return view('reportes.pago.pagoinscripciones');
     } 
-    
-    /* {data:'id'},
-    {data:'nombre'},
-    {data:'modalidad'},
-    {data:'montro'},
-    {data: 'pagocon'},
-    {data: 'created_at'},*/
-    public function pagoinscripciones(Request $request){
-
-        //return $request->all();
+    public function pagoModelo(Request $request){
+        //return response()->json(['f'=>$request->all()]);
         $pagos=Pago::join('inscripciones','inscripciones.id','pagos.pagable_id')
             ->join('estudiantes','estudiantes.id','inscripciones.estudiante_id')
             ->join('personas','personas.id','estudiantes.persona_id')
             ->join('modalidads','inscripciones.modalidad_id','modalidads.id')
             ->join('userables','userables.userable_id','pagos.id')
             ->join('users','users.id','userables.user_id')
-            //->where('pagos.pagable_type','App\\Models\\'.$request->modelo)
+            ->where('pagos.pagable_type','App\\Models\\'.$request->modelo)
             ->where('userable_type','App\\Models\\Pago')
-            // ->whereDate('pagos.created_at','<=',$request->fechafin)
-            // ->whereDate('pagos.created_at','>=',$request->fechainicio)
+            ->whereDate('pagos.created_at','<=',$request->fechafin)
+            ->whereDate('pagos.created_at','>=',$request->fechaini)
             ->select('personas.id','personas.nombre','apellidop','apellidom','modalidad','monto','users.foto','name','pagocon','pagos.created_at','personas.foto as personafoto')
             ->orderBy('created_at',"asc")
             ->get();
-       
-
         return DataTables::of($pagos)
                 ->rawColumns(['foto'])
                 ->toJson();
