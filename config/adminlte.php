@@ -417,7 +417,7 @@ return [
                 [
                     'text' => 'Matriculaciones',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => 'pagomatriculaciones',
+                    'url'  => 'pago/matriculaciones/view',
                     'classes'  => 'text-dark',
                 ],
                 [
@@ -749,35 +749,63 @@ return [
          * Menú  Docentes  
          */
         [
-            'text'    => 'Docentes',
+            'text'    => 'Gráficos',
             'icon'    => 'fas fa-address-book',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
             'submenu' => [
                 [
-                    'text' => 'Quienes vinieron',
+                    'text' => 'Inscripciones',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
                     'classes'  => 'text-dark',
+                    'submenu' => [
+                        [
+                            'text' => 'Por Usuarios',
+                            'icon'    => 'fas fa-angle-right',
+                            'url'  => 'chart/matriculaciones/for/users',
+                            'classes'  => 'text-dark',
+                        ],
+                        [
+                            'text' => 'Por Meses',
+                            'icon'    => 'fas fa-angle-right',
+                            'url'  => 'chart/matriculaciones',
+                            'classes'  => 'text-dark',
+                        ],
+                        [
+                            'text' => 'Por Modalidades',
+                            'icon'    => 'fas fa-angle-right',
+                            'url'  => 'chart/inscripciones/for/modalidades',
+                            'classes'  => 'text-dark',
+                        ],
+                    ],
                 ],
                 [
-                    'text' => 'Pasando a..',
+                    'text' => 'Matriculaciones',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
                     'classes'  => 'text-dark',
+                    'submenu' => [
+                        [
+                            'text' => 'Por Usuarios',
+                            'icon'    => 'fas fa-angle-right',
+                            'url'  => 'chart/matriculaciones/for/users',
+                            'classes'  => 'text-dark',
+                        ],
+                        [
+                            'text' => 'Por Asignatura',
+                            'icon'    => 'fas fa-angle-right',
+                            'url'  => 'chart/matriculaciones',
+                            'classes'  => 'text-dark',
+                        ],
+                        [
+                            'text' => 'Por Meses',
+                            'icon'    => 'fas fa-angle-right',
+                            'url'  => 'chart/matriculaciones',
+                            'classes'  => 'text-dark',
+                        ],
+                    ],
+                
                 ],
-                [
-                    'text' => 'Ya pasó a..',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Esperando a..',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
+               
             ],
         ],
 
@@ -1633,7 +1661,7 @@ return [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@11',
                 ],
             ],
         ],

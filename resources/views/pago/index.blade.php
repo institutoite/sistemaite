@@ -34,7 +34,44 @@
             </table>
         </div>
     </div>
-    
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" > 
+        <div class="card">
+            <div class="card-header">
+                Gráfico Barras
+            </div>
+            <div class="card-body">
+                <div>
+                    <canvas id="mycanvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" > 
+        <div class="card">
+            <div class="card-header">
+                Gráfico Circular
+            </div>
+            <div class="card-body">
+                <div>
+                    <canvas id="circular"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" > 
+        <div class="card">
+            <div class="card-header">
+                Gráfico Rosquilla
+            </div>
+            <div class="card-body">
+                <div>
+                    <canvas id="rosquilla"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>   
     @include('pago.modalmostrar')
 @endsection
 
@@ -51,10 +88,196 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
     <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
+    <script src="{{asset('vendor/chart/chart.js')}}"></script>
     <script>
         $(document).ready(function() {
             let tablapagos;
             let tablapagoscom;
+            let myChart;
+            let myChartCircular;
+            let myChartRosquilla;
+            let ctx_live_bar;
+            let ctx_liveCirular;
+            let ctx_liveRosquilla;
+    
+    var getData = function() {
+        $.ajax({
+            url: 'grafica/por/pagablestype',
+            success: function(data) {
+                $.each(data, function( k, v ) {
+                    Cadena=v.pagable_type;
+                    pos=Cadena.lastIndexOf('\\');
+                    Modelo=Cadena.substring(pos+1);
+                    myChart.data.labels.push(Modelo);
+                    myChart.data.datasets[0].data.push(v.Suma);
+                    myChart.data.datasets[0].backgroundColor= [
+                            'rgba(55, 95, 122, 0.8)',
+                            'rgba(38, 186, 165, 0.8)',
+                            ],
+                    myChart.update();
+                });
+                
+            }
+        });
+    };
+    var getDataCiruclar = function() {
+        $.ajax({
+            url: 'grafica/por/pagablestype',
+            success: function(data) {
+                $.each(data, function( k, v ) {
+                    Cadena=v.pagable_type;
+                    pos=Cadena.lastIndexOf('\\');
+                    Modelo=Cadena.substring(pos+1);
+                    myChartCircular.data.labels.push(Modelo);
+                    myChartCircular.data.datasets[0].data.push(v.Suma);
+                    myChartCircular.data.datasets[0].backgroundColor= [
+                            'rgba(55, 95, 122, 0.8)',
+                            'rgba(38, 186, 165, 0.8)',
+                            ],
+                    myChartCircular.update();
+                });
+                
+            }
+        });
+    };
+    var getDataRosquilla = function() {
+        $.ajax({
+            url: 'grafica/por/pagablestype',
+            success: function(data) {
+                $.each(data, function( k, v ) {
+                    Cadena=v.pagable_type;
+                    pos=Cadena.lastIndexOf('\\');
+                    Modelo=Cadena.substring(pos+1);
+                    myChartRosquilla.data.labels.push(Modelo);
+                    myChartRosquilla.data.datasets[0].data.push(v.Suma);
+                    myChartRosquilla.data.datasets[0].backgroundColor= [
+                            'rgba(55, 95, 122, 0.8)',
+                            'rgba(38, 186, 165, 0.8)',
+                            ],
+                    myChartRosquilla.update();
+                });
+                
+            }
+        });
+    };
+
+    // get new data every 3 seconds
+    ctx_live = document.getElementById('mycanvas');
+    GraficarBarras('bar',"Este es el titulo",ctx_live);
+    getData();
+
+    ctx_liveCirular = document.getElementById('circular');
+    GraficarCircular('pie',"Este es toro titulo",ctx_liveCirular);
+    getDataCiruclar();
+    ctx_liveRosquilla = document.getElementById('rosquilla');
+    GraficarRosquilla('doughnut',"Este es toro titulo",ctx_liveRosquilla);
+    getDataRosquilla();
+  
+        function GraficarCircular(type,titulo,ctx){
+            
+            myChartCircular = new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: [],
+                    datasets: [{
+                    data: [],
+                    borderWidth: 1,
+                    borderColor:'#00c0ef',
+                    label: 'SubTotal',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: titulo,
+                    },
+                    legend: {
+                        display: true,
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                            beginAtZero: true,
+                            }
+                        }]
+                    },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        formatter: Math.round,
+                        font: {
+                            weight: 'bold',
+                        },
+                        display: true,
+                    }
+                }
+            });
+        }
+        function GraficarBarras(type,titulo,ctx){
+            
+            myChart = new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: [],
+                    datasets: [{
+                    data: [],
+                    borderWidth: 1,
+                    borderColor:'#00c0ef',
+                    label: 'SubTotal',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: titulo,
+                    },
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                            beginAtZero: true,
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+        function GraficarRosquilla(type,titulo,ctx){
+            myChartRosquilla = new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: [],
+                    datasets: [{
+                    data: [],
+                    borderWidth: 1,
+                    borderColor:'#00c0ef',
+                    label: 'SubTotal',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: titulo,
+                    },
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                            beginAtZero: true,
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE COMOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
                 tablapagos=$('#pagos').DataTable(
                     {

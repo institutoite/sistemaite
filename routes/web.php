@@ -328,8 +328,15 @@ Route::get('pagos/mostrar/ajax',[PagoController::class,'pagosMostrarAjax'])->nam
 Route::get('listar/pagos',[PagoController::class,'listarPagos'])->name('pagos.pagos');
 Route::get('pago/inscripciones/view',[PagoController::class,'pagoInscripcionesView'])->name('pago.inscripciones.view');
 Route::get('pagoinscripciones',[PagoController::class,'pagoModelo'])->name('pago.inscripciones');
-Route::get('pago/matriculaciones/view',[PagoController::class,'pagoMatriculacionesView'])->name('pago.matriculaciones.view');
-Route::get('pagomatriculaciones',[PagoController::class,'pagoMatriculaciones'])->name('pago.matriculaciones');
+Route::get('pago/matriculaciones/view',[PagocomController::class,'pagoMatriculacionesView'])->name('pago.matriculaciones.view');
+Route::get('pagomatriculaciones',[PagocomController::class,'pagoModelo'])->name('pago.matriculaciones');
+Route::get('grafica/por/pagablestype',[PagoController::class,'graficaPorPagablestype'])->name('grafica.por.pagablestype');
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%CHART RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+Route::get('chart/inscripciones/for/modalidades', function () {return view('chart.inscripciones.pormodalidades');});
+Route::get('chart/listar/inscripciones/pormodalidades', [ChartController::class,'inscripcionesPorModalidades'])->name('chart.listar.inscripciones.pormodalidades');
+
+
 
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%PAGOS COMPUTACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */

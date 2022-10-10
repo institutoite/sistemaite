@@ -37,3 +37,27 @@ function mensajeErr(){
         cancelButtonColor: '#26BAA5',
     });
 }
+
+function algoSalioMal(){
+    let timerInterval
+        Swal.fire({
+            title: 'Oh que paso!',
+            html: 'Revisa las <b></b> Fechas.',
+            timer: 3000,
+            timerProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading()
+            const b = Swal.getHtmlContainer().querySelector('b')
+            timerInterval = setInterval(() => {
+            b.textContent = Swal.getTimerLeft()
+            }, 100)
+        },
+        willClose: () => {
+            clearInterval(timerInterval)
+        }
+        }).then((result) => {
+        
+        if (result.dismiss === Swal.DismissReason.timer) {
+        }
+        })
+}

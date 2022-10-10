@@ -121,5 +121,5 @@ NO SEMUESTRA LA LICENCIA EN programacion coms
             &nbsp;<i class="fab fa-whatsapp"></i>
         </a>
 
-  
+  "sweetalert2": "^10.12.6",
     --}}

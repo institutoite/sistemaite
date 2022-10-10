@@ -47,6 +47,11 @@ class CreateMatriculacionsTable extends Migration
             $table->decimal('totalhoras', 6, 2);
             $table->boolean('vigente');
             $table->boolean('condonado');
+            $table->tinyInteger('ser')->nullable();
+            $table->tinyInteger('hacer')->nullable();
+            $table->tinyInteger('saber')->nullable();
+            $table->tinyInteger('decidir')->nullable();
+            $table->tinyInteger('calificacion')->nullable();
             $table->timestamps();
         });
     }

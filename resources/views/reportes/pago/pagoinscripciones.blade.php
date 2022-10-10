@@ -21,13 +21,13 @@
            <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3" > 
                     <div class="form-floating mb-3 text-gray">
-                        <input type="date" name='fechaini' class="form-control texto-plomo" id="fechaini" placeholder="fechaini" value="{{old('fechaini')}}">
+                        <input type="date" name='fechaini' class="form-control texto-plomo" id="fechaini" placeholder="fechaini" value="{{old('fechaini','2022-10-01'?? '')}}">
                         <label for="fechaini">Fechaini</label>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3" > 
                     <div class="form-floating mb-3 text-gray">
-                        <input type="date" name='fechafin' class="form-control texto-plomo" id="fechafin" placeholder="fechafin" value="{{old('fechafin')}}">
+                        <input type="date" name='fechafin' class="form-control texto-plomo" id="fechafin" placeholder="fechafin" value="{{old('fechafin','2022-10-01' ?? '')}}">
                         <label for="fechafin">Fechafin</label>
                     </div>
                 </div>
@@ -72,6 +72,8 @@
            
         </div>
     </div>
+
+    
 @endsection
 
 @section('js')
@@ -80,9 +82,13 @@
     <script src="https://cdn.datatables.net/fixedheader/3.2.4/js/dataTables.fixedHeader.min.js"></script>
     <script src="//cdn.datatables.net/plug-ins/1.12.1/api/sum().js"></script>
      <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
+     <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
     <script>
         $(document).ready(function(){
             let sumaMontos=0;
+            $("#fechaini").val(moment().format('YYYY-MM-DD'));
+            $("#fechafin").val(moment().format('YYYY-MM-DD'));
+
             let tablaPagoInscripciones=$('#pagos').DataTable(
                 {
                     "aLengthMenu": [
@@ -97,12 +103,10 @@
                         "url":"../../pagoinscripciones",
                         "data":{
                             modelo:"Inscripcione",
-                            fechaini:"2022-10-01",
-                            fechafin:"2022-10-10",
+                            fechaini:$("#fechaini").val(),
+                            fechafin:$("#fechafin").val(),
                         },
-                        // "success":function(e){
-                        //     console.log(e);
-                        // },
+                        
                     },
                     "createdRow": function( row, data, dataIndex ) {
                         $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
@@ -163,13 +167,15 @@
             );
             
             $("#consultar").on('click',function(){
-                if($("#fechaini").val()!='undefined'){
+                console.log($("#fechaini").val());
+                console.log($("#fechafin").val());
+                if($("#fechaini").val()<=$("#fechafin").val()){
                     $fechaini=$("#fechaini").val();
                     $fechafin=$("#fechafin").val();
                     $modelo="Inscripcione";
                     mostrarPagos($fechaini,$fechafin,$modelo);
                 }else{
-                    Mensa
+                    algoSalioMal();
                 }
             });
 
@@ -282,5 +288,6 @@
                 })
             });
         });
+        
     </script>
 @endsection

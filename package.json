@@ -25,7 +25,7 @@
         "resolve-url-loader": "^3.1.0",
         "sass": "^1.29.0",
         "sass-loader": "^8.0.2",
-        "sweetalert2": "^10.12.6",
+        "sweetalert2": "^11",
         "tailwindcss": "^2.2.19",
         "vue-template-compiler": "^2.6.12"
     }

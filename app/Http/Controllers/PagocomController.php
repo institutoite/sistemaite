@@ -9,6 +9,9 @@ use App\Models\Pagocom;
 use App\Models\Pago;
 use Illuminate\Support\Facades\Auth;
 
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
+
 class PagocomController extends Controller
 {
     /**
@@ -124,4 +127,26 @@ class PagocomController extends Controller
         return response()->json($data);
     }
 
+    public function pagoMatriculacionesView(){
+        return view('reportes.pago.pagomatriculaciones');
+    } 
+    public function pagoModelo(Request $request){
+        //return response()->json($request->all());
+        $pagos=Pago::join('matriculacions','matriculacions.id','pagos.pagable_id')
+            ->join('computacions','computacions.id','matriculacions.computacion_id')
+            ->join('personas','personas.id','computacions.persona_id')
+            ->join('asignaturas','asignaturas.id','matriculacions.asignatura_id')
+            ->join('userables','userables.userable_id','pagos.id')
+            ->join('users','users.id','userables.user_id')
+            ->where('pagos.pagable_type','App\\Models\\'.$request->modelo)
+            ->where('userable_type','App\\Models\\Pago')
+            ->whereDate('pagos.created_at','<=',$request->fechafin)
+            ->whereDate('pagos.created_at','>=',$request->fechaini)
+            ->select('personas.id','personas.nombre','apellidop','apellidom','asignatura','monto','users.foto','name','pagocon','pagos.created_at','personas.foto as personafoto')
+            ->orderBy('created_at',"asc")
+            ->get();
+        return DataTables::of($pagos)
+                ->rawColumns(['foto'])
+                ->toJson();
+    }
 }

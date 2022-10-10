@@ -247,7 +247,7 @@ class PagoController extends Controller
         return view('reportes.pago.pagoinscripciones');
     } 
     public function pagoModelo(Request $request){
-        //return response()->json(['f'=>$request->all()]);
+        // return response()->json($request->all());
         $pagos=Pago::join('inscripciones','inscripciones.id','pagos.pagable_id')
             ->join('estudiantes','estudiantes.id','inscripciones.estudiante_id')
             ->join('personas','personas.id','estudiantes.persona_id')
@@ -264,5 +264,15 @@ class PagoController extends Controller
         return DataTables::of($pagos)
                 ->rawColumns(['foto'])
                 ->toJson();
+    }
+
+    public function graficaPorPagablestype(){
+        $pagos = Pago::join('userables','userables.userable_id','pagos.id')
+            ->join('users','users.id','userables.user_id')
+            ->where('userables.userable_type', "App\\Models\\Pago")
+            ->select('pagable_type',DB::raw('sum(monto) as Suma'))
+            ->groupBy('pagable_type')
+            ->get();
+        return response()->json($pagos);
     }
 }
