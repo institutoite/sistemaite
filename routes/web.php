@@ -49,6 +49,7 @@ use App\Http\Controllers\ComoController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\PeriodableController;
 use App\Http\Controllers\MododocenteController;
+use App\Http\Controllers\ChartController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
@@ -333,8 +334,7 @@ Route::get('pagomatriculaciones',[PagocomController::class,'pagoModelo'])->name(
 Route::get('grafica/por/pagablestype',[PagoController::class,'graficaPorPagablestype'])->name('grafica.por.pagablestype');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%CHART RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-Route::get('chart/inscripciones/for/modalidades', function () {return view('chart.inscripciones.pormodalidades');});
-Route::get('chart/listar/inscripciones/pormodalidades', [ChartController::class,'inscripcionesPorModalidades'])->name('chart.listar.inscripciones.pormodalidades');
+Route::get('chart/inscripciones/for/modalidades', [ChartController::class,'chartCantidadInscripcionesXModaalidades'])->name('chart.listar.inscripciones.pormodalidades');
 
 
 

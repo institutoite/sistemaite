@@ -14,7 +14,6 @@
             <div class="card-header">
                 
             </div>
-        </div>
         <div class="card-body">
             <table id="pormodalidades" class="table table-hover table-striped table-bordered">
                 <thead class="thead-light">
@@ -27,20 +26,79 @@
             </table>
         </div>
     </div>
+    {{$labels}}
+    {{$data}}
     
+    <div class="card">
+        <div class="card-header">
+            Grafico
+        </div>
+        <div class="card-body">
+            <canvas id="chartmodalidades" width="400" height="400"></canvas>
+        </div>
+    </div>
 @endsection
 
 @section('js')
 
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    {{-- <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
-    <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
-    <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script>  --}}
+    {{-- <script src="{{asset('assets/js/mensajeAjax.js')}}"></script> --}}
+    {{-- <script src="{{asset('assets/js/eliminargenerico.js')}}"></script> --}}
+    {{-- <script src="https://cdnjs.com/libraries/Chart.js"></script> --}}
+    <script src="{{asset('vendor/chart/chart.js')}}"></script>
+    {{-- <script src="https://www.jsdelivr.com/package/npm/chart.js?path=dist"></script> --}}
     <script>
         $(document).ready(function() {
-            let tablacargos;
+            const ctx = document.getElementById('chartmodalidades')
+
+            
+
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: {{$labels}},
+                    datasets: [{
+                        label: '# of Votes',
+                        data: "{{$data}}",
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+        });
+        
+    </script>
+@endsection
+
+
+{{-- 
+  let tablacargos;
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE COMOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
                 tablacargos=$('#pormodalidades').DataTable(
                     {
@@ -75,8 +133,4 @@
                     e.preventDefault(); 
                     registro_id=$(this).closest('tr').attr('id');
                     eliminarRegistro(registro_id,'cargo',tablacargos);
-                });
-        } );
-        
-    </script>
-@endsection
+                }); --}}
