@@ -335,6 +335,9 @@ Route::get('grafica/por/pagablestype',[PagoController::class,'graficaPorPagables
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%CHART RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('chart/inscripciones/for/modalidades', [ChartController::class,'chartCantidadInscripcionesXModaalidades'])->name('chart.listar.inscripciones.pormodalidades');
+Route::get('chart/inscripciones/fractales/for/modalidades', [ChartController::class,'charCantidadRecaudadoXModalidades'])->name('chart.inscripciones.fractales.pormodalidades');
+Route::get('chart/cantidad/inscripciones/for/user', [ChartController::class,'charCantidadInscripcionesxUsuario'])->name('chart.cantidad.inscripciones.poruser');
+Route::get('chart/fractales/recaudados/for/user', [ChartController::class,'charFractalesRecaudadosxUser'])->name('chart.fractales.recaudados.poruser');
 
 
 

@@ -760,9 +760,9 @@ return [
                     'classes'  => 'text-dark',
                     'submenu' => [
                         [
-                            'text' => 'Por Usuarios',
+                            'text' => 'Cantidad x Usuario',
                             'icon'    => 'fas fa-angle-right',
-                            'url'  => 'chart/matriculaciones/for/users',
+                            'url'  => 'chart/cantidad/inscripciones/for/user',
                             'classes'  => 'text-dark',
                         ],
                         [
@@ -772,9 +772,15 @@ return [
                             'classes'  => 'text-dark',
                         ],
                         [
-                            'text' => 'Por Modalidades',
+                            'text' => 'Cantidad x Modalidades',
                             'icon'    => 'fas fa-angle-right',
                             'url'  => 'chart/inscripciones/for/modalidades',
+                            'classes'  => 'text-dark',
+                        ],
+                        [
+                            'text' => 'Dinero x Modalidades',
+                            'icon'    => 'fas fa-angle-right',
+                            'url'  => 'chart/inscripciones/fractales/for/modalidades',
                             'classes'  => 'text-dark',
                         ],
                     ],
@@ -788,6 +794,32 @@ return [
                             'text' => 'Por Usuarios',
                             'icon'    => 'fas fa-angle-right',
                             'url'  => 'chart/matriculaciones/for/users',
+                            'classes'  => 'text-dark',
+                        ],
+                        [
+                            'text' => 'Por Asignatura',
+                            'icon'    => 'fas fa-angle-right',
+                            'url'  => 'chart/matriculaciones',
+                            'classes'  => 'text-dark',
+                        ],
+                        [
+                            'text' => 'Por Meses',
+                            'icon'    => 'fas fa-angle-right',
+                            'url'  => 'chart/matriculaciones',
+                            'classes'  => 'text-dark',
+                        ],
+                    ],
+                
+                ],
+                [
+                    'text' => 'Pagos',
+                    'icon'    => 'fas fa-angle-right',
+                    'classes'  => 'text-dark',
+                    'submenu' => [
+                        [
+                            'text' => 'Recaudaciones x Usuario',
+                            'icon'    => 'fas fa-angle-right',
+                            'url'  => 'chart/fractales/recaudados/for/user',
                             'classes'  => 'text-dark',
                         ],
                         [

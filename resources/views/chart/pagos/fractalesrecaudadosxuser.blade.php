@@ -12,7 +12,7 @@
 @section('content')
     <div class="card">
             <div class="card-header bg-primary">
-                CANTIDAD DE INSCRIPCIONES POR MODALIDAD
+                CANTIDAD DE INSCRIPCIONES POR USUARI
             </div>
         <div class="card-body">
             <table id="pormodalidades" class="table table-hover table-striped table-bordered">
@@ -30,40 +30,40 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <div class="card">
                 <div class="card-header">
-                    CANTIDAD DE INSCRIPCIONES POR MODALIDAD GRAFICCO CIRCULAR
+                    CANTIDAD DE INSCRIPCIONES POR USUARIO
                 </div>
                 <div class="card-body">
-                    <canvas id="chartmodalidadespie" width="200" height="200"></canvas>
+                    <canvas id="chartpie" width="200" height="200"></canvas>
                 </div>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <div class="card">
                 <div class="card-header">
-                    CANTIDAD DE INSCRIPCIONES POR MODALIDAD GRAFICO DE BARRAS
+                    CANTIDAD DE INSCRIPCIONES POR USUARIO
                 </div>
                 <div class="card-body">
-                    <canvas id="chartmodalidadesbar" width="200" height="200"></canvas>
+                    <canvas id="chartbar" width="200" height="200"></canvas>
                 </div>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <div class="card">
                 <div class="card-header">
-                    CANTIDAD DE INSCRIPCIONES POR MODALIDAD GRAFICO DE LINEAS
+                    CANTIDAD DE INSCRIPCIONES POR USUARIO
                 </div>
                 <div class="card-body">
-                    <canvas id="chartmodalidadesline" width="200" height="200"></canvas>
+                    <canvas id="chartline" width="200" height="200"></canvas>
                 </div>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <div class="card">
                 <div class="card-header">
-                    CANTIDAD DE INSCRIPCIONES POR MODALIDAD GRAFICO ROSQUILLA
+                    DINERO DE INSCRIPCIONES POR MODALIDAD GRAFICO ROSQUILLA
                 </div>
                 <div class="card-body">
-                    <canvas id="chartmodalidadesdoughnut" width="200" height="200"></canvas>
+                    <canvas id="chartdoughnut" width="200" height="200"></canvas>
                 </div>
             </div>
         </div>
@@ -75,10 +75,10 @@
     <script src="{{asset('vendor/chart/chart.js')}}"></script>
     <script>
         $(document).ready(function() {
-            const ctx = document.getElementById('chartmodalidadespie')
-            const ctxbar = document.getElementById('chartmodalidadesbar')
-            const ctxline = document.getElementById('chartmodalidadesline')
-            const ctxdoughnut = document.getElementById('chartmodalidadesdoughnut')
+            const ctx = document.getElementById('chartpie')
+            const ctxbar = document.getElementById('chartbar')
+            const ctxline = document.getElementById('chartline')
+            const ctxdoughnut = document.getElementById('chartdoughnut')
             const colores =['rgb(38, 186, 165,1)',
                             'rgb(55, 95, 122,1)',
                             'rgb(0, 191, 255,0.8)',// CELESTE
@@ -100,7 +100,7 @@
                 data: {
                     labels: cData.label,
                     datasets: [{
-                        label: '# of Votes',
+                        label: 'Monto recaudado',
                         data: cData.data,
                         backgroundColor:colores,
                         borderColor: colores,
@@ -132,7 +132,7 @@
                 data: {
                     labels: cData.label,
                     datasets: [{
-                        label: 'Cantidad de Inscripciones',
+                        label: 'Monto recaudado',
                         data: cData.data,
                         backgroundColor: colores,
                         borderColor:colores,
@@ -155,7 +155,7 @@
                 data: {
                     labels: cData.label,
                     datasets: [{
-                        label: 'Cantidad de Inscripciones',
+                        label: 'Monto recaudado',
                         data: cData.data,
                         backgroundColor: colores,
                         borderColor:colores,
@@ -182,7 +182,7 @@
                 data: {
                     labels: cData.label,
                     datasets: [{
-                        label: 'Cantidad de Inscripciones',
+                        label: 'Monto reca',
                         data: cData.data,
                         backgroundColor: colores,
                         borderColor:colores,
@@ -206,12 +206,12 @@
                         "responsive":true,
                         "autoWidth":false,
                         "ajax":{ 
-                            "url":"{{url('chart/inscripciones/for/modalidades')}}",
+                            "url":"{{url('chart/fractales/recaudados/for/user')}}",
                         },
                         
                         "columns": [
-                            {data:'modalidad'},
-                            {data:'cantidad'},
+                            {data:'name'},
+                            {data:'monto'},
                         ],
                         "language":{
                             "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"

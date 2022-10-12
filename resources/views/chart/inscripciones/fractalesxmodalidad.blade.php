@@ -12,7 +12,7 @@
 @section('content')
     <div class="card">
             <div class="card-header bg-primary">
-                CANTIDAD DE INSCRIPCIONES POR MODALIDAD
+                DINERO DE INSCRIPCIONES POR MODALIDAD
             </div>
         <div class="card-body">
             <table id="pormodalidades" class="table table-hover table-striped table-bordered">
@@ -30,7 +30,7 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <div class="card">
                 <div class="card-header">
-                    CANTIDAD DE INSCRIPCIONES POR MODALIDAD GRAFICCO CIRCULAR
+                    DINERO DE INSCRIPCIONES POR MODALIDAD GRAFICCO CIRCULAR
                 </div>
                 <div class="card-body">
                     <canvas id="chartmodalidadespie" width="200" height="200"></canvas>
@@ -40,7 +40,7 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <div class="card">
                 <div class="card-header">
-                    CANTIDAD DE INSCRIPCIONES POR MODALIDAD GRAFICO DE BARRAS
+                    DINERO DE INSCRIPCIONES POR MODALIDAD GRAFICO DE BARRAS
                 </div>
                 <div class="card-body">
                     <canvas id="chartmodalidadesbar" width="200" height="200"></canvas>
@@ -50,7 +50,7 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <div class="card">
                 <div class="card-header">
-                    CANTIDAD DE INSCRIPCIONES POR MODALIDAD GRAFICO DE LINEAS
+                    DINERO DE INSCRIPCIONES POR MODALIDAD GRAFICO DE LINEAS
                 </div>
                 <div class="card-body">
                     <canvas id="chartmodalidadesline" width="200" height="200"></canvas>
@@ -60,7 +60,7 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <div class="card">
                 <div class="card-header">
-                    CANTIDAD DE INSCRIPCIONES POR MODALIDAD GRAFICO ROSQUILLA
+                    DINERO DE INSCRIPCIONES POR MODALIDAD GRAFICO ROSQUILLA
                 </div>
                 <div class="card-body">
                     <canvas id="chartmodalidadesdoughnut" width="200" height="200"></canvas>
@@ -100,7 +100,7 @@
                 data: {
                     labels: cData.label,
                     datasets: [{
-                        label: '# of Votes',
+                        label: 'Monto recaudado',
                         data: cData.data,
                         backgroundColor:colores,
                         borderColor: colores,
@@ -132,7 +132,7 @@
                 data: {
                     labels: cData.label,
                     datasets: [{
-                        label: 'Cantidad de Inscripciones',
+                        label: 'Monto recaudado',
                         data: cData.data,
                         backgroundColor: colores,
                         borderColor:colores,
@@ -155,7 +155,7 @@
                 data: {
                     labels: cData.label,
                     datasets: [{
-                        label: 'Cantidad de Inscripciones',
+                        label: 'Monto recaudado',
                         data: cData.data,
                         backgroundColor: colores,
                         borderColor:colores,
@@ -182,7 +182,7 @@
                 data: {
                     labels: cData.label,
                     datasets: [{
-                        label: 'Cantidad de Inscripciones',
+                        label: 'Monto reca',
                         data: cData.data,
                         backgroundColor: colores,
                         borderColor:colores,
@@ -206,12 +206,12 @@
                         "responsive":true,
                         "autoWidth":false,
                         "ajax":{ 
-                            "url":"{{url('chart/inscripciones/for/modalidades')}}",
+                            "url":"{{url('chart/inscripciones/fractales/for/modalidades')}}",
                         },
                         
                         "columns": [
                             {data:'modalidad'},
-                            {data:'cantidad'},
+                            {data:'monto'},
                         ],
                         "language":{
                             "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
