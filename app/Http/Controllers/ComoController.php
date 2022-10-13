@@ -91,7 +91,6 @@ class ComoController extends Controller
         return response()->json(['mensaje'=>"El registro fue eliminado correctamente"]);
     }
     public function listar(){
-        
         $comos=Como::all();
         return datatables()->of($comos)
         ->addColumn('btn', 'como.action')

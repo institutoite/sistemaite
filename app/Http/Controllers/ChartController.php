@@ -97,4 +97,28 @@ class ChartController extends Controller
             return view('chart.pagos.fractalesrecaudadosxuser',$data);
         }
     }
+    public function charCantidadPagosxUser(Request $request){
+        $consulta= Inscripcione::join('pagos','pagos.pagable_id','inscripciones.id')
+            ->join('userables','userables.userable_id','pagos.id')
+            ->join('users','users.id','userables.user_id')
+            ->where('userables.userable_type', "App\\Models\\Pago")
+            ->where('pagos.pagable_type', "App\\Models\\Inscripcione")
+            ->select('users.name',DB::raw('count(*) as cantidad'))
+            ->groupBy('name')
+            ->orderBy('cantidad','desc')
+            ->get();
+                
+        foreach ($consulta as $elemento) {
+            $data['label'][]=$elemento->name;
+            $data['data'][]=$elemento->cantidad;
+        }
+        $data['data']=json_encode($data);
+        
+        if($request->ajax()){
+            return datatables()->of($consulta)
+                ->toJson();
+        }else{
+            return view('chart.pagos.cantidadpagosxuser',$data);
+        }
+    }
 }

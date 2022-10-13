@@ -50,10 +50,13 @@ use App\Http\Controllers\CargoController;
 use App\Http\Controllers\PeriodableController;
 use App\Http\Controllers\MododocenteController;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\ConvenioController;
+use App\Http\Controllers\PlanController;
+use App\Http\Controllers\CaracteristicaController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[PagoController::class,'pagoModelo'])->name('prueba');
+Route::get('prueba',[ConvenioController::class,'listar'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -338,9 +341,7 @@ Route::get('chart/inscripciones/for/modalidades', [ChartController::class,'chart
 Route::get('chart/inscripciones/fractales/for/modalidades', [ChartController::class,'charCantidadRecaudadoXModalidades'])->name('chart.inscripciones.fractales.pormodalidades');
 Route::get('chart/cantidad/inscripciones/for/user', [ChartController::class,'charCantidadInscripcionesxUsuario'])->name('chart.cantidad.inscripciones.poruser');
 Route::get('chart/fractales/recaudados/for/user', [ChartController::class,'charFractalesRecaudadosxUser'])->name('chart.fractales.recaudados.poruser');
-
-
-
+Route::get('chart/cantidad/pagos/for/user', [ChartController::class,'charCantidadPagosxUser'])->name('chart.cantidad.pagos.poruser');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%PAGOS COMPUTACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get('pagocom/crear/{matriculacion}',[PagocomController::class,'crear'])->name('pagocom.crear');
@@ -361,16 +362,12 @@ Route::post('billetes/guardar/{pago}', 'BilleteController@guardar')->name('bille
 Route::get('billetecom/crear/{pago}', "BilletecomController@crear")->name('billetecom.crear');
 Route::post('billetecom/guardar/{pago}', 'BilletecomController@guardar')->name('billetecom.guardar');
 
-
-
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  FERIADOS          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('feriados', "FeriadoController");
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  DIA          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('dias','DiaController');
 Route::get('dia/listar',[DiaController::class,'listar'])->name('dias.listar');
-
-
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  C L A S E S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('clases', "ClaseController");
@@ -436,6 +433,37 @@ Route::get('estado/mostrar/{estado}', [EstadoController::class,'show'])->name("e
 Route::get('estado/editar/{estado}', [EstadoController::class,'edit'])->name("estado.edit");
 Route::get('estado/actualizar/{estado}', [EstadoController::class,'update'])->name("estado.update");
 Route::delete('eliminar/estado/{estado}', [EstadoController::class,'destroy'])->name('estado.destroy');
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  ESTADOS   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::get('convenios', [ConvenioController::class, 'index'])->name('convenio.index');
+Route::get('listar/convenios',[ConvenioController::class,'listar'])->name('convenios.listar');
+Route::get('convenio/create',[ConvenioController::class,'create'])->name('convenio.create');
+Route::get('convenios/show/{convenio}', [ConvenioController::class, 'show'])->name('convenio.show');
+Route::post('convenio/guardar',[ConvenioController::class,'store'])->name('convenio.store');
+Route::get('convenio/mostrar/{convenio}', [ConvenioController::class,'show'])->name("convenio.show");
+Route::get('convenio/editar/{convenio}', [ConvenioController::class,'edit'])->name("convenio.edit");
+Route::get('convenio/actualizar/{convenio}', [ConvenioController::class,'update'])->name("convenio.update");
+Route::delete('eliminar/convenio/{convenio}', [ConvenioController::class,'destroy'])->name('convenio.destroy');
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  ESTADOS   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+Route::get('plans', [PlanController::class, 'index'])->name('plan.index');
+Route::get('plan/create',[PlanController::class,'create'])->name('plan.create');
+Route::get('plans/show/{plan}', [PlanController::class, 'show'])->name('plan.show');
+Route::post('plan/guardar',[PlanController::class,'store'])->name('plan.store');
+Route::get('plan/mostrar/{plan}', [PlanController::class,'show'])->name("plan.show");
+Route::get('plan/editar/{plan}', [PlanController::class,'edit'])->name("plan.edit");
+Route::get('plan/actualizar/{plan}', [PlanController::class,'update'])->name("plan.update");
+Route::delete('eliminar/plan/{plan}', [PlanController::class,'destroy'])->name('plan.destroy');
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  ESTADOS   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+Route::get('caracteristicas', [CaracteristicaController::class, 'index'])->name('caracteristica.index');
+Route::get('caracteristica/create',[CaracteristicaController::class,'create'])->name('caracteristica.create');
+Route::get('caracteristicas/show/{caracteristica}', [CaracteristicaController::class, 'show'])->name('caracteristica.show');
+Route::post('caracteristica/guardar',[CaracteristicaController::class,'store'])->name('caracteristica.store');
+Route::get('caracteristica/mostrar/{caracteristica}', [CaracteristicaController::class,'show'])->name("caracteristica.show");
+Route::get('caracteristica/editar/{caracteristica}', [CaracteristicaController::class,'edit'])->name("caracteristica.edit");
+Route::get('caracteristica/actualizar/{caracteristica}', [CaracteristicaController::class,'update'])->name("caracteristica.update");
+Route::delete('eliminar/caracteristica/{caracteristica}', [CaracteristicaController::class,'destroy'])->name('caracteristica.destroy');
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  C A R R E R A S   %%%%%%%%%%%%%%%%%%%%%%%%%%*/

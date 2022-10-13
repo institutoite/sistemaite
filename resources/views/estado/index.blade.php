@@ -13,7 +13,7 @@
     <div class="card">
             <div class="card-header">
                 <div class="float-right">
-                <a href="{{ route('estado.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                <a href="{{ route('estado.create') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
                     {{ __('Create Estado') }}
                 </a>
             </div>
@@ -58,6 +58,10 @@
                             "data": 'btn',
                             "orderable": false,
                         },
+                    ],
+                    "columnDefs": [
+                        { responsivePriority: 1, targets: 0 },  
+                        { responsivePriority: 2, targets: -1 }
                     ],
                     "language":{
                         "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"

@@ -78,7 +78,7 @@ class ColegioController extends Controller
         $colegio = Colegio::create($request->all());
         if ($request->hasFile('imagen')){
             $foto=$request->file('imagen');
-            $nombreImagen='colegios/'.trim($colegio->nombre).'.jpg';
+            $nombreImagen='colegios/'.str_replace(' ','',$colegio->nombre).'.jpg';
             $imagen= Image::make($foto)->encode('jpg',75);
             $imagen->resize(300,300,function($constraint){
                 $constraint->upsize();

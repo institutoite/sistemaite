@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Convenio;
 use App\Http\Requests\StoreConvenioRequest;
 use App\Http\Requests\UpdateConvenioRequest;
+use Yajra\DataTables\Contracts\DataTable as DataTable;
+
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
 
 class ConvenioController extends Controller
 {
@@ -15,7 +20,7 @@ class ConvenioController extends Controller
      */
     public function index()
     {
-        //
+        return view('convenio.index');
     }
 
     /**
@@ -25,7 +30,7 @@ class ConvenioController extends Controller
      */
     public function create()
     {
-        //
+        return view('convenio.create');
     }
 
     /**
@@ -36,7 +41,18 @@ class ConvenioController extends Controller
      */
     public function store(StoreConvenioRequest $request)
     {
-        //
+        $convenio= new Convenio();
+        $convenio->titulo=$request->titulo;
+        $convenio->descripcion=$request->descripcion;
+         if ($request->hasFile('foto')){
+            $foto=$request->file('foto');
+            $nombreImagen='convenios/'.str_replace(' ','',$request->titulo).'.jpg';
+            $imagen= Image::make($foto)->encode('jpg',90);
+            $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
+            $convenio->foto = $nombreImagen;
+        }
+        $convenio->save();
+        return redirect()->route('convenio.index');
     }
 
     /**
@@ -82,5 +98,12 @@ class ConvenioController extends Controller
     public function destroy(Convenio $convenio)
     {
         //
+    }
+    public function listar(){
+        $convenio=Convenio::all();
+        return datatables()->of($convenio)
+        ->addColumn('btn', 'convenio.action')
+        ->rawColumns(['btn'])
+        ->toJson();
     }
 }

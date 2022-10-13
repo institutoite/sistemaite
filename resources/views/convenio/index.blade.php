@@ -5,7 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
-@section('title', 'Carreras')
+@section('title', 'Convenios')
 @section('plugins.jquery', true)
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
@@ -14,18 +14,20 @@
     <div class="card">
             <div class="card-header">
                 <div class="float-right">
-                <a href="{{ route('como.create') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
-                    {{ __('Create Como se enteró') }}
+                <a href="{{ route('convenio.create') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
+                    {{ __('Create convenio') }}
                 </a>
             </div>
         </div>
         <div class="card-body">
-            <table id="comos" class="table table-hover table-striped table-bordered">
+            <table id="convenios" class="table table-hover table-striped table-bordered">
                 <thead class="thead-light">
                     <tr>
                         <th>#</th>
-                        <th>COMO</th>
-                        <th>Opciones</th>
+                        <th>Titulo</th>
+                        <th>Descripcion</th>
+                        <th>Foto</th>
+                        <th>Option</th>
                     </tr>
                 </thead>
             </table>
@@ -36,30 +38,29 @@
 
 @section('js')
 
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
+    
     <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
     <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
     <script>
         $(document).ready(function() {
-            let tablacomos;
+            let tablaconvenios;
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE COMOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-                tablacomos=$('#comos').DataTable(
+                tablaconvenios=$('#convenios').DataTable(
                     {
                         "serverSide": true,
                         "responsive":true,
                         "autoWidth":false,
                         "ajax":{ 
-                            "url":'listar/comos',
+                            "url":'listar/convenios',
                         },
                         "createdRow": function( row, data, dataIndex ) {
                             $(row).attr('id',data['id']); 
                         },
                         "columns": [
                             {data:'id'},
-                            {data:'como'},
+                            {data:'titulo'},
+                            {data:'descripcion'},
+                            {data:'foto'},
                             {
                                 "name":"btn",
                                 "data": 'btn',
@@ -77,7 +78,7 @@
                 $('table').on('click','.eliminargenerico',function (e) {
                     e.preventDefault(); 
                     registro_id=$(this).closest('tr').attr('id');
-                    eliminarRegistro(registro_id,'como',tablacomos);
+                    eliminarRegistro(registro_id,'como',tablaconvenios);
                 });
         } );
         

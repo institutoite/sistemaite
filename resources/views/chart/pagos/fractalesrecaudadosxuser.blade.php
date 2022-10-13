@@ -227,15 +227,3 @@
 
     </script>
 @endsection
-
-
-{{-- 
-  let tablacargos;
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE COMOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-                
-            //*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    ELIMINAR     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-                $('table').on('click','.eliminargenerico',function (e) {
-                    e.preventDefault(); 
-                    registro_id=$(this).closest('tr').attr('id');
-                    eliminarRegistro(registro_id,'cargo',tablacargos);
-                }); --}}

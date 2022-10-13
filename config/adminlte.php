@@ -823,15 +823,9 @@ return [
                             'classes'  => 'text-dark',
                         ],
                         [
-                            'text' => 'Por Asignatura',
+                            'text' => 'Cantidad x Usuario',
                             'icon'    => 'fas fa-angle-right',
-                            'url'  => 'chart/matriculaciones',
-                            'classes'  => 'text-dark',
-                        ],
-                        [
-                            'text' => 'Por Meses',
-                            'icon'    => 'fas fa-angle-right',
-                            'url'  => 'chart/matriculaciones',
+                            'url'  => 'chart/cantidad/pagos/for/user',
                             'classes'  => 'text-dark',
                         ],
                     ],
@@ -852,6 +846,33 @@ return [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'colegios',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+//** %%%%%%%%%%%%%%%%%%  MENU CONVENIOS %%%%%%%%%%%%% */
+        [
+            'text'    => 'Convenios',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Convenios',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'convenios',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Planes',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'planes',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Caracteristicas',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'caracteristicas',
                     'classes'  => 'text-dark',
                 ],
             ],
