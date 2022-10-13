@@ -34,12 +34,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/locales/es.js"></script>
 
 <script>
-        CKEDITOR.replace('descripcion', {
-            height: 150,
-            width: "100%",
-            removeButtons: 'PasteFromWord'
-        });
-        $("#foto").fileinput(
+    CKEDITOR.replace('descripcion', {
+        height: 150,
+        width: "100%",
+        removeButtons: 'PasteFromWord'
+    });
+    $("#foto").fileinput(
         {
             initialPreview: [],
             initialPreviewAsData: true,

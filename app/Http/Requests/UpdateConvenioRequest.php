@@ -13,7 +13,7 @@ class UpdateConvenioRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**

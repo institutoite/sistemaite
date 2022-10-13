@@ -44,7 +44,7 @@ class ConvenioController extends Controller
         $convenio= new Convenio();
         $convenio->titulo=$request->titulo;
         $convenio->descripcion=$request->descripcion;
-         if ($request->hasFile('foto')){
+        if ($request->hasFile('foto')){
             $foto=$request->file('foto');
             $nombreImagen='convenios/'.str_replace(' ','',$request->titulo).'.jpg';
             $imagen= Image::make($foto)->encode('jpg',90);
@@ -74,7 +74,7 @@ class ConvenioController extends Controller
      */
     public function edit(Convenio $convenio)
     {
-        //
+        return view('convenio.edit', compact('convenio'));
     }
 
     /**
@@ -86,7 +86,22 @@ class ConvenioController extends Controller
      */
     public function update(UpdateConvenioRequest $request, Convenio $convenio)
     {
-        //
+
+        $convenio->titulo=$request->titulo;
+        $convenio->descripcion=$request->descripcion;
+        
+        if ($request->hasFile('foto')){
+            if (Storage::disk('public')->exists($convenio->foto)) {
+                Storage::disk('public')->delete($convenio->foto);
+            }
+            $foto=$request->file('foto');
+            $nombreImagen='convenios/'.str_replace(' ','',$request->titulo).'.jpg';
+            $imagen= Image::make($foto)->encode('jpg',90);
+            $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
+            $convenio->foto = $nombreImagen;
+        }
+        $convenio->save();
+        return redirect()->route('convenio.index');
     }
 
     /**

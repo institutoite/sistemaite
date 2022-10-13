@@ -442,7 +442,7 @@ Route::get('convenios/show/{convenio}', [ConvenioController::class, 'show'])->na
 Route::post('convenio/guardar',[ConvenioController::class,'store'])->name('convenio.store');
 Route::get('convenio/mostrar/{convenio}', [ConvenioController::class,'show'])->name("convenio.show");
 Route::get('convenio/editar/{convenio}', [ConvenioController::class,'edit'])->name("convenio.edit");
-Route::get('convenio/actualizar/{convenio}', [ConvenioController::class,'update'])->name("convenio.update");
+Route::put('convenio/actualizar/{convenio}', [ConvenioController::class,'update'])->name("convenio.update");
 Route::delete('eliminar/convenio/{convenio}', [ConvenioController::class,'destroy'])->name('convenio.destroy');
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  ESTADOS   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
