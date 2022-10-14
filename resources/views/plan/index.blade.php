@@ -5,7 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
-@section('title', 'Convenios')
+@section('title', 'Planes')
 @section('plugins.jquery', true)
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
@@ -14,19 +14,20 @@
     <div class="card">
             <div class="card-header">
                 <div class="float-right">
-                <a href="{{ route('convenio.create') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
-                    {{ __('Create convenio') }}
+                <a href="{{ route('plan.create') }}" class="btn btn-primary btn-sm float-right text-white"  data-placement="left">
+                    {{ __('Create plan') }}
                 </a>
             </div>
         </div>
         <div class="card-body">
-            <table id="convenios" class="table table-hover table-striped table-bordered">
+            <table id="plans" class="table table-hover table-striped table-bordered">
                 <thead class="thead-light">
                     <tr>
                         <th>#</th>
                         <th>Titulo</th>
                         <th>Descripcion</th>
                         <th>Foto</th>
+                        <th>Convenio</th>
                         <th>Option</th>
                     </tr>
                 </thead>
@@ -46,13 +47,13 @@
         $(document).ready(function() {
             
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE COMOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-               var tablaconvenios=$('#convenios').DataTable(
+               var tablaplans=$('#plans').DataTable(
                     {
                         "serverSide": true,
                         "responsive":true,
                         "autoWidth":false,
                         "ajax":{ 
-                            "url":'listar/convenios',
+                            "url":'listar/plans',
                         },
                         "createdRow": function( row, data, dataIndex ) {
                             $(row).attr('id',data['id']); 
@@ -69,15 +70,15 @@
                                 },
                                 "title": "FOTO",
                                 "orderable": false,
-                
                             },     
+                            {data:'convenio'},
                             {
                                 "name":"btn",
                                 "data": 'btn',
                                 "orderable": false,
                             },
                         ],
-                        //order: [[0, 'desc']],
+                        order: [[0, 'desc']],
                         "language":{
                             "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
                         },
@@ -89,7 +90,7 @@
                     e.preventDefault(); 
                     registro_id=$(this).closest('tr').attr('id');
                     console.log(registro_id);
-                    eliminarRegistro(registro_id,'convenio',tablaconvenios);
+                    eliminarRegistro(registro_id,'plan',tablaplans);
                     
                 });
         } );

@@ -866,7 +866,7 @@ return [
                 [
                     'text' => 'Planes',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => 'planes',
+                    'url'  => 'plans',
                     'classes'  => 'text-dark',
                 ],
                 [

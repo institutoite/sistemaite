@@ -4,19 +4,19 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
 @stop
 
-@section('title', 'Convenio Crear')
+@section('title', 'Plan Crear')
 @section('title', 'Personas')
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
 @section('content')
     <div class="card">
         <div class="card-header bg-primary">
-            Crear Convenio <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('convenio.index')}}">Listar Convenios</a>
+            Crear Plan <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('plan.index')}}">Listar Planes</a>
         </div>
         <div class="card-body">
-            <form action="{{route('convenio.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('plan.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
-                @include('convenio.form')
+                @include('plan.form')
                 @include('include.botones')
             </form>
         </div>

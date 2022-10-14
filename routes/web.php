@@ -56,7 +56,7 @@ use App\Http\Controllers\CaracteristicaController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[ConvenioController::class,'listar'])->name('prueba');
+Route::get('prueba',[ConvenioController::class,'destroy'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -311,6 +311,7 @@ Route::get('tema/create',[TemaController::class,'create'])->name('tema.create');
 Route::get('tema/show/{tema}',[TemaController::class,'show'])->name('tema.show');
 Route::get('tema/edit/{tema}',[TemaController::class,'edit'])->name('tema.edit');
 Route::delete('eliminar/tema',[TemaController::class,'destroy'])->name('eliminar.tema');
+
 Route::patch('tema/actualizar/{tema}', [TemaController::class,'update'])->name('tema.update');
 Route::post('tema/store', [TemaController::class,'store'])->name('tema.store');
 
@@ -443,18 +444,21 @@ Route::post('convenio/guardar',[ConvenioController::class,'store'])->name('conve
 Route::get('convenio/mostrar/{convenio}', [ConvenioController::class,'show'])->name("convenio.show");
 Route::get('convenio/editar/{convenio}', [ConvenioController::class,'edit'])->name("convenio.edit");
 Route::put('convenio/actualizar/{convenio}', [ConvenioController::class,'update'])->name("convenio.update");
-Route::delete('eliminar/convenio/{convenio}', [ConvenioController::class,'destroy'])->name('convenio.destroy');
-/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  ESTADOS   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::delete('eliminar/convenio',[ConvenioController::class,'destroy'])->name('eliminar.convenio');
 
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  CONVENIOS   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 Route::get('plans', [PlanController::class, 'index'])->name('plan.index');
+Route::get('listar/plans',[PlanController::class,'listar'])->name('plans.listar');
 Route::get('plan/create',[PlanController::class,'create'])->name('plan.create');
 Route::get('plans/show/{plan}', [PlanController::class, 'show'])->name('plan.show');
 Route::post('plan/guardar',[PlanController::class,'store'])->name('plan.store');
 Route::get('plan/mostrar/{plan}', [PlanController::class,'show'])->name("plan.show");
 Route::get('plan/editar/{plan}', [PlanController::class,'edit'])->name("plan.edit");
-Route::get('plan/actualizar/{plan}', [PlanController::class,'update'])->name("plan.update");
-Route::delete('eliminar/plan/{plan}', [PlanController::class,'destroy'])->name('plan.destroy');
-/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  ESTADOS   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+Route::put('plan/actualizar/{plan}', [PlanController::class,'update'])->name("plan.update");
+Route::delete('eliminar/plan',[PlanController::class,'destroy'])->name('eliminar.plan');
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  PLANES   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
 Route::get('caracteristicas', [CaracteristicaController::class, 'index'])->name('caracteristica.index');
 Route::get('caracteristica/create',[CaracteristicaController::class,'create'])->name('caracteristica.create');

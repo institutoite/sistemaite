@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Convenio;
 use App\Http\Requests\StoreConvenioRequest;
 use App\Http\Requests\UpdateConvenioRequest;
+use App\Http\Requests\DeleteRequest;
 use Yajra\DataTables\Contracts\DataTable as DataTable;
 
 use Illuminate\Support\Facades\Storage;
@@ -63,7 +64,7 @@ class ConvenioController extends Controller
      */
     public function show(Convenio $convenio)
     {
-        //
+        return view('convenio.show',compact('convenio'));
     }
 
     /**
@@ -110,15 +111,19 @@ class ConvenioController extends Controller
      * @param  \App\Models\Convenio  $convenio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Convenio $convenio)
+    // public function destroy(DeleteRequest $request)
+    public function destroy(DeleteRequest $request)
     {
-        //
+        $convenio= Convenio::findOrFail($request->id);
+        // $convenio= Convenio::findOrFail($request->id);
+        $convenio->delete();
+        return response()->json($convenio);
     }
     public function listar(){
         $convenio=Convenio::all();
         return datatables()->of($convenio)
         ->addColumn('btn', 'convenio.action')
-        ->rawColumns(['btn'])
+        ->rawColumns(['btn','descripcion'])
         ->toJson();
     }
 }

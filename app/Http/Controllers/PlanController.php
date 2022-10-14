@@ -3,8 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plan;
+use App\Models\Convenio;
 use App\Http\Requests\StorePlanRequest;
 use App\Http\Requests\UpdatePlanRequest;
+
+use Yajra\DataTables\Contracts\DataTable as DataTable;
+
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
 
 class PlanController extends Controller
 {
@@ -15,7 +22,7 @@ class PlanController extends Controller
      */
     public function index()
     {
-        //
+        return view('plan.index');
     }
 
     /**
@@ -25,7 +32,8 @@ class PlanController extends Controller
      */
     public function create()
     {
-        //
+        $convenios=Convenio::all();
+        return view('plan.create',compact('convenios'));
     }
 
     /**
@@ -36,7 +44,20 @@ class PlanController extends Controller
      */
     public function store(StorePlanRequest $request)
     {
-        //
+        $plan= new Plan();
+        $plan->titulo=$request->titulo;
+        $plan->descripcion=$request->descripcion;
+        $plan->costo=$request->costo;
+        $plan->convenio_id=$request->convenio_id;
+        if ($request->hasFile('foto')){
+            $foto=$request->file('foto');
+            $nombreImagen='planes/'.str_replace(' ','',$request->titulo).'.jpg';
+            $imagen= Image::make($foto)->encode('jpg',90);
+            $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
+            $plan->foto = $nombreImagen;
+        }
+        $plan->save();
+        return redirect()->route('plan.index');
     }
 
     /**
@@ -70,7 +91,21 @@ class PlanController extends Controller
      */
     public function update(UpdatePlanRequest $request, Plan $plan)
     {
-        //
+        $convenio->titulo=$request->titulo;
+        $convenio->descripcion=$request->descripcion;
+        
+        if ($request->hasFile('foto')){
+            if (Storage::disk('public')->exists($convenio->foto)) {
+                Storage::disk('public')->delete($convenio->foto);
+            }
+            $foto=$request->file('foto');
+            $nombreImagen='convenios/'.str_replace(' ','',$request->titulo).'.jpg';
+            $imagen= Image::make($foto)->encode('jpg',90);
+            $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
+            $convenio->foto = $nombreImagen;
+        }
+        $convenio->save();
+        return redirect()->route('convenio.index');
     }
 
     /**
@@ -82,5 +117,14 @@ class PlanController extends Controller
     public function destroy(Plan $plan)
     {
         //
+    }
+    public function listar(){
+        $planes = Plan::join('convenios','plans.convenio_id','convenios.id')
+                ->select('plans.id','plans.titulo','plans.descripcion','plans.foto','plans.costo','convenios.titulo as convenio')
+                ->get();
+        return datatables()->of($planes)
+        ->addColumn('btn', 'plan.action')
+        ->rawColumns(['btn','descripcion'])
+        ->toJson();
     }
 }

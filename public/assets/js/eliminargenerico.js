@@ -25,12 +25,11 @@ function eliminarRegistro(registro_id,objeto_type,tabla) {
                     _token: $("meta[name='csrf-token']").attr("content"),
                 },
                 success: function (result) {
-                    tabla.api().ajax.reload();
+                    $("#" + registro_id).remove();
                     mensajeGrande(result.mensaje, 'success', 2000);
                     
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    // mensajePequenio('El registro NO se eliminó', 'error', 2000);
                     mensajeErr();
                 }
             });

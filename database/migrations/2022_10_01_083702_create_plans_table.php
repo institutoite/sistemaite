@@ -17,7 +17,7 @@ class CreatePlansTable extends Migration
             $table->id();
             $table->string('titulo', 25)->nullable();
             $table->string('descripcion', 100)->nullable();
-            $table->string('foto', 100)->nullable();
+            $table->string('foto', 50)->nullable();
             $table->decimal('costo', 6, 2)->nullable();
             $table->unsignedBigInteger('convenio_id');
             $table->foreign('convenio_id')->references('id')->on('convenios');
