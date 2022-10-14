@@ -6,6 +6,7 @@ use App\Models\Plan;
 use App\Models\Convenio;
 use App\Http\Requests\StorePlanRequest;
 use App\Http\Requests\UpdatePlanRequest;
+use App\Http\Requests\DeleteRequest;
 
 use Yajra\DataTables\Contracts\DataTable as DataTable;
 
@@ -68,7 +69,7 @@ class PlanController extends Controller
      */
     public function show(Plan $plan)
     {
-        //
+        return view('plan.show', compact('plan'));
     }
 
     /**
@@ -79,7 +80,8 @@ class PlanController extends Controller
      */
     public function edit(Plan $plan)
     {
-        //
+        $convenios= Convenio::all();
+        return view('plan.edit', compact('plan','convenios'));
     }
 
     /**
@@ -91,20 +93,22 @@ class PlanController extends Controller
      */
     public function update(UpdatePlanRequest $request, Plan $plan)
     {
-        $convenio->titulo=$request->titulo;
-        $convenio->descripcion=$request->descripcion;
-        
+        $plan->titulo=$request->titulo;
+        $plan->descripcion=$request->descripcion;
+        $plan->costo=$request->costo;
+        $plan->convenio_id=$request->convenio_id;
+
         if ($request->hasFile('foto')){
-            if (Storage::disk('public')->exists($convenio->foto)) {
-                Storage::disk('public')->delete($convenio->foto);
+            if (Storage::disk('public')->exists($plan->foto)) {
+                Storage::disk('public')->delete($plan->foto);
             }
             $foto=$request->file('foto');
-            $nombreImagen='convenios/'.str_replace(' ','',$request->titulo).'.jpg';
+            $nombreImagen='plans/'.str_replace(' ','',$request->titulo).'.jpg';
             $imagen= Image::make($foto)->encode('jpg',90);
             $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
-            $convenio->foto = $nombreImagen;
+            $plan->foto = $nombreImagen;
         }
-        $convenio->save();
+        $plan->save();
         return redirect()->route('convenio.index');
     }
 
@@ -114,9 +118,12 @@ class PlanController extends Controller
      * @param  \App\Models\Plan  $plan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Plan $plan)
+    // public function destroy()
+    public function destroy(DeleteRequest $request)
     {
-        //
+        $plan=Plan::findOrFail($request->id);
+        $plan->delete();
+        return response()->json(['mensaje' => "eliminado correctamente"]);
     }
     public function listar(){
         $planes = Plan::join('convenios','plans.convenio_id','convenios.id')

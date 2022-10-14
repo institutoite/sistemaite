@@ -233,14 +233,14 @@ return [
 
         ],
         [
-            'text'    => 'Actualidad',
+            'text'    => 'Opciones Rapidas',
             'icon'    => 'fas fa-record-vinyl',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
             'submenu' => [
 
                 [
-                    'text' => 'Por materias',
+                    'text' => 'Contacto',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => '#',
                     'classes'  => 'text-dark',

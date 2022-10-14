@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
         <div class="form-floating mb-3 text-gray">
-            <input  type="text" name="titulo" id="titulo"  class="form-control @error('titulo') is-invalid @enderror" value="{{old('titulo',$convenio->titulo ?? '')}}" autocomplete="off">
+            <input  type="text" name="titulo" id="titulo"  class="form-control @error('titulo') is-invalid @enderror" value="{{old('titulo',$plan->titulo ?? '')}}" autocomplete="off">
             <label for="titulo">título plan nuevo</label>
         </div>
     </div>
@@ -26,7 +26,7 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
         <div class="form-floating mb-3 text-gray">
-            <input  type="number" name="costo" id="costo"  class="form-control @error('costo') is-invalid @enderror" value="{{old('costo',$convenio->costo ?? '')}}" autocomplete="off">
+            <input  type="number" name="costo" id="costo"  class="form-control @error('costo') is-invalid @enderror" value="{{old('costo',$plan->costo ?? '')}}" autocomplete="off">
             <label for="costo">Costo de plan</label>
         </div>
     </div>
@@ -45,7 +45,7 @@
                 <option value="">Elija un convenio</option>
                 @foreach ($convenios as $convenio)
                     @isset($plan)     
-                        <option  value="{{$convenio->id}}" {{$convenio->id==$motivo->convenio_id ? 'selected':''}}>{{$convenio->titulo}}</option>     
+                        <option  value="{{$convenio->id}}" {{$convenio->id==$plan->convenio_id ? 'selected':''}}>{{$convenio->titulo}}</option>     
                     @else
                         <option value="{{ $convenio->id }}" {{ old('convenio_id') == $convenio->id ? 'selected':'' }} >{{ $convenio->titulo }}</option>
                     @endisset 

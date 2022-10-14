@@ -1,7 +1,7 @@
-<a href="{{route('plan.edit', $id)}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Editar este plan se entero">
+<a href="{{route('caracteristica.edit', $id)}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Editar este caracteristica se entero">
     <i class="fa fa-fw fa-edit text-primary"></i>
 </a>
-<a href="{{route('plan.show', $id)}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Ver esta plan se entero">
+<a href="{{route('caracteristica.show', $id)}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Ver esta caracteristica se entero">
     <i class="fa fa-fw fa-eye text-primary"></i>
 </a>
 

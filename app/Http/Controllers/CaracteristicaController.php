@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Caracteristica;
+use App\Models\Plan;
+use App\Http\Requests\DeleteRequest;
 use App\Http\Requests\StoreCaracteristicaRequest;
 use App\Http\Requests\UpdateCaracteristicaRequest;
+
+use Yajra\DataTables\Contracts\DataTable as DataTable;
+
 
 class CaracteristicaController extends Controller
 {
@@ -15,7 +20,7 @@ class CaracteristicaController extends Controller
      */
     public function index()
     {
-        //
+        return view('caracteristica.index');
     }
 
     /**
@@ -25,7 +30,8 @@ class CaracteristicaController extends Controller
      */
     public function create()
     {
-        //
+        $planes=Plan::all();
+        return view('caracteristica.create',compact('planes'));
     }
 
     /**
@@ -36,7 +42,11 @@ class CaracteristicaController extends Controller
      */
     public function store(StoreCaracteristicaRequest $request)
     {
-        //
+        $caracteristica= new Caracteristica();
+        $caracteristica->caracteristica=$request->caracteristica;
+        $caracteristica->plan_id=$request->plan_id;
+        $caracteristica->save();
+        return redirect()->route('caracteristica.index');
     }
 
     /**
@@ -47,7 +57,7 @@ class CaracteristicaController extends Controller
      */
     public function show(Caracteristica $caracteristica)
     {
-        //
+        return view('caracteristica.show', compact('caracteristica'));
     }
 
     /**
@@ -58,7 +68,8 @@ class CaracteristicaController extends Controller
      */
     public function edit(Caracteristica $caracteristica)
     {
-        //
+        $planes=Plan::all();
+        return view('caracteristica.edit', compact('caracteristica','planes'));
     }
 
     /**
@@ -70,7 +81,10 @@ class CaracteristicaController extends Controller
      */
     public function update(UpdateCaracteristicaRequest $request, Caracteristica $caracteristica)
     {
-        //
+        $caracteristica->caracteristica=$request->caracteristica;
+        $caracteristica->plan_id=$request->plan_id;
+        $caracteristica->save();
+        return redirect()->route('caracteristica.index');
     }
 
     /**
@@ -79,8 +93,19 @@ class CaracteristicaController extends Controller
      * @param  \App\Models\Caracteristica  $caracteristica
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Caracteristica $caracteristica)
+    public function destroy(DeleteRequest $request)
     {
-        //
+        $caracteristica=Caracteristica::findOrFail($request->id);
+        $caracteristica->delete();
+        return response()->json(['mensaje' => "eliminado correctamente"]);
+    }
+    public function listar(){
+        $caracteristicas = Caracteristica::join('plans','caracteristicas.plan_id','plans.id')
+            ->select('caracteristicas.id','caracteristica','plans.titulo as plan')
+            ->get();
+        return datatables()->of($caracteristicas)
+        ->addColumn('btn', 'caracteristica.action')
+        ->rawColumns(['btn','caracteristica'])
+        ->toJson();
     }
 }

@@ -3,12 +3,12 @@
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
 @stop
 
-@section('title', 'Mostrar Cargos')
+@section('title', 'Mostrar Caracteristica')
 
 @section('content')
         <div class="card">
             <div class="card-header bg-primary">
-                Mostrar Como <a class="btn btn-secondary text-white btn-sm float-right text-white" href="{{route('convenio.index')}}">Listar Convenios</a>
+                Mostrar Caracteristica <a class="btn btn-secondary text-white btn-sm float-right text-white" href="{{route('caracteristica.index')}}">Listar Caracteristica</a>
             </div>
             <div class="card-body">
                 <table class="table table-light table-striped table-bordered">
@@ -21,35 +21,23 @@
                     <tbody>
                         <tr>
                             <td>ID</td>
-                            <td>{{$plan->id}}</td>
+                            <td>{{$caracteristica->id}}</td>
                         </tr>
                         <tr>
                             <td>Título</td>
-                            <td>{{$plan->titulo}}</td>
+                            <td>{!!$caracteristica->caracteristica!!}</td>
                         </tr>
                         <tr>
-                            <td>Descripcion</td>
-                            <td>{!!$plan->descripcion!!}</td>
-                        </tr>
-                        <tr>
-                            <td>Costo</td>
-                            <td>{!!$plan->costo!!}</td>
-                        </tr>
-                        <tr>
-                            <td>Convenio</td>
-                            <td>{!!$plan->convenio->titulo !!}</td>
-                        </tr>
-                        <tr>
-                            <td>Descripcion</td>
-                            <td><img width="75%" src="{{URL::to('/').Storage::url("$plan->foto")}}" alt=""></td>
+                            <td>Plan</td>
+                            <td>{!!$caracteristica->plan->titulo !!}</td>
                         </tr>
                         <tr>
                             <td>CREADO</td>
-                            <td>{{$plan->created_at}}</td>
+                            <td>{{$caracteristica->created_at}}</td>
                         </tr>
                         <tr>
                             <td>ACTUALIZADO</td>
-                            <td>{{$plan->updated_at}}</td>
+                            <td>{{$caracteristica->updated_at}}</td>
                         </tr>
                     </tbody>
                 </table>

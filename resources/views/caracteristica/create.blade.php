@@ -4,21 +4,19 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
 @stop
 
-@section('title', 'Plan Editar')
+@section('title', 'Plan Caracteristica')
 @section('title', 'Personas')
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
-
 @section('content')
     <div class="card">
         <div class="card-header bg-primary">
-            Editar Plan
+            Crear Caracteristica <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('caracteristica.index')}}">Listar Caracteristicas</a>
         </div>
         <div class="card-body">
-            <form action="{{ route('plan.update',$plan) }}" method="POST"  enctype="multipart/form-data">
-                 @csrf
-                {{ @method_field('PUT') }} 
-                @include('plan.form')
+            <form action="{{route('caracteristica.store')}}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @include('caracteristica.form')
                 @include('include.botones')
             </form>
         </div>
@@ -26,15 +24,14 @@
 @stop
 
 @section('js')
-    <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
-    
-
-    <script>
-        CKEDITOR.replace('descripcion', {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+<script>
+        CKEDITOR.replace('caracteristica', {
             height: 150,
             width: "100%",
             removeButtons: 'PasteFromWord'
         });
-       
-    </script>
-@stop   
+</script>
+@stop

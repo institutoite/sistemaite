@@ -117,7 +117,7 @@ class ConvenioController extends Controller
         $convenio= Convenio::findOrFail($request->id);
         // $convenio= Convenio::findOrFail($request->id);
         $convenio->delete();
-        return response()->json($convenio);
+        return response()->json(['mensaje'=>"El registro fue eliminao correctamente"]);
     }
     public function listar(){
         $convenio=Convenio::all();
