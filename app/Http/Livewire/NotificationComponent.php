@@ -17,6 +17,7 @@ class NotificationComponent extends Component
         // }else{
             
         //     return redirect()->route('login');
+        
             $this->count = auth()->user()->unreadNotifications->count();
             $this->notifications = auth()->user()->notifications;
         // }

@@ -151,19 +151,33 @@
                     </svg> 
                   </div>
                   <div class="cs-toggle_body">
-                    <div class="cs-user_info">
-                      <h3 class="cs-user_name">Bienvenido a Instituto ITE</h3>
-                      
-                      <div class="cs-user_profile_link">
+                    @auth
+                      <div class="cs-user_info">
+                        <h3 class="cs-user_balance">{{ Auth::user()->name }} </h3>
+                      </div>
+                      <div class="text-center">
+                        <a class="cs-btn cs-style1" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                            {{ __('Cerrar Sesion') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                         
                       </div>
-                    </div>
-                    <div class="text-center">
-                      <a href="create-items.html" class="cs-btn cs-style1"><span>Iniciar Sesion</span></a>
-                    </div>
+                    @else
+                      <div class="cs-user_info">
+                        <h3 class="cs-user_balance">Ingresar al sistema</h3>
+                      </div>
+                      
+                      <div class="text-center">
+                        <a class="cs-btn cs-style1" href="{{ route('login') }}" ><span>Iniciar Sesion</span></a>
+                      </div>
+                    @endauth
+              
                   </div>
                 </div>
-                <a href="connect-wallet.html" class="cs-btn cs-style1"><span>Connect Wallet</span></a>
               </div>
             </div>
           </div>
@@ -306,15 +320,12 @@
   <div class="cs-height_70 cs-height_lg_40"></div>
   
   <!-- Start New Items -->
-  <section>
+  {{-- <section>
     <div class="container">
       <div class="cs-section_heading cs-style2">
         <div class="cs-section_left">
           <h2 class="cs-section_title">Nuestros Cursos</h2>
         </div>
-        {{-- <div class="cs-section_right">
-          <a href="explore-1.html" class="cs-btn cs-style1"><span>Explore More</span></a>
-        </div> --}}
       </div>
       <div class="cs-height_45 cs-height_lg_45"></div>
       <div class="cs-isotop cs-style1 cs-isotop_col_5 cs-has_gutter_30">
@@ -322,7 +333,6 @@
         <div class="cs-isotop_item fashion">
           <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
             <span class="cs-card_like cs-primary_color">
-              {{-- <i class="fas fa-heart fa-fw"></i> --}}
               2.1K
             </span>
             <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
@@ -349,7 +359,6 @@
         <div class="cs-isotop_item music">
           <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
             <span class="cs-card_like cs-primary_color">
-              {{-- <i class="fas fa-heart fa-fw"></i> --}}
               3.3K
             </span>
             <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
@@ -376,7 +385,6 @@
         <div class="cs-isotop_item fashion">
           <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
             <span class="cs-card_like cs-primary_color">
-              {{-- <i class="fas fa-heart fa-fw"></i> --}}
               3.1K
             </span>
             <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
@@ -403,7 +411,6 @@
         <div class="cs-isotop_item video">
           <div class="cs-card cs-style4 cs-box_shadow cs-white_bg">
             <span class="cs-card_like cs-primary_color">
-              {{-- <i class="fas fa-heart fa-fw"></i> --}}
               2.1K
             </span>
             <a href="explore-details.html" class="cs-card_thumb cs-zoom_effect">
@@ -431,13 +438,13 @@
         
       </div>
     </div>
-  </section>
+  </section> --}}
   <!-- End New Items -->
 
   <div class="cs-height_95 cs-height_lg_70"></div> 
 
   <!-- Start Category -->
-  <section>
+  {{-- <section>
     <div class="container">
       <h2 class="cs-section_heading cs-style1 text-center">Lo más nuevo de Ite</h2>
       <div class="cs-height_45 cs-height_lg_45"></div>
@@ -452,7 +459,7 @@
                   <div class="cs-card_subtitle">Descripcion del Curso</div>
                 </div>
               </a>
-            </div><!-- .cs-slide -->
+            </div>
             <div class="cs-slide">
               <a href="#" class="cs-card cs-style6 cs-box_shadow cs-white_bg text-center">
                 <span class="cs-avatar"><img src="fronted/assets/img/avatar/avatar_39.png" alt="Avatar"></span>
@@ -461,7 +468,7 @@
                   <div class="cs-card_subtitle">Descripcion del Curso</div>
                 </div>
               </a>
-            </div><!-- .cs-slide -->
+            </div>
             <div class="cs-slide">
               <a href="#" class="cs-card cs-style6 cs-box_shadow cs-white_bg text-center">
                 <span class="cs-avatar"><img src="fronted/assets/img/avatar/avatar_40.png" alt="Avatar"></span>
@@ -470,7 +477,7 @@
                   <div class="cs-card_subtitle">Descripcion del Curso</div>
                 </div>
               </a>
-            </div><!-- .cs-slide -->
+            </div>
             <div class="cs-slide">
               <a href="#" class="cs-card cs-style6 cs-box_shadow cs-white_bg text-center">
                 <span class="cs-avatar"><img src="fronted/assets/img/avatar/avatar_41.png" alt="Avatar"></span>
@@ -479,7 +486,7 @@
                   <div class="cs-card_subtitle">Descripcion del Curso</div>
                 </div>
               </a>
-            </div><!-- .cs-slide -->
+            </div>
             <div class="cs-slide">
               <a href="#" class="cs-card cs-style6 cs-box_shadow cs-white_bg text-center">
                 <span class="cs-avatar"><img src="fronted/assets/img/avatar/avatar_42.png" alt="Avatar"></span>
@@ -488,7 +495,7 @@
                   <div class="cs-card_subtitle">Descripcion del Curso</div>
                 </div>
               </a>
-            </div><!-- .cs-slide -->
+            </div>
             <div class="cs-slide">
               <a href="#" class="cs-card cs-style6 cs-box_shadow cs-white_bg text-center">
                 <span class="cs-avatar"><img src="fronted/assets/img/avatar/avatar_43.png" alt="Avatar"></span>
@@ -497,7 +504,7 @@
                   <div class="cs-card_subtitle">Descripcion del Curso</div>
                 </div>
               </a>
-            </div><!-- .cs-slide -->
+            </div>
             <div class="cs-slide">
               <a href="#" class="cs-card cs-style6 cs-box_shadow cs-white_bg text-center">
                 <span class="cs-avatar"><img src="fronted/assets/img/avatar/avatar_38.png" alt="Avatar"></span>
@@ -506,7 +513,7 @@
                   <div class="cs-card_subtitle">Descripcion del Curso</div>
                 </div>
               </a>
-            </div><!-- .cs-slide -->
+            </div>
             <div class="cs-slide">
               <a href="#" class="cs-card cs-style6 cs-box_shadow cs-white_bg text-center">
                 <span class="cs-avatar"><img src="fronted/assets/img/avatar/avatar_40.png" alt="Avatar"></span>
@@ -515,17 +522,17 @@
                   <div class="cs-card_subtitle">Descripcion del Curso</div>
                 </div>
               </a>
-            </div><!-- .cs-slide -->
+            </div>
           </div>
         </div><!-- .cs-slider_container -->
         <div class="cs-height_10 cs-height_lg_10"></div>
         <div class="cs-pagination cs-style1"></div>
       </div><!-- .cs-slider -->
     </div>
-  </section>
+  </section> --}}
   <!-- End Category -->
 
-  <div class="cs-height_95 cs-height_lg_70"></div>
+  {{-- <div class="cs-height_95 cs-height_lg_70"></div> --}}
 
   <!-- Start Video Section -->
   <div class="container">
@@ -552,51 +559,12 @@
   <div class="cs-height_100 cs-height_lg_70"></div>
   <div class="container">
     <div class="cs-section_heading cs-style4">
-      <h2 class="cs-section_title">Membresias Ite</h2>
-      <p class="cs-section_subtitle">Elige el mejor plan de acuerdo a tus necesidades.</p>
+      <h2 class="cs-section_title">Convenios Ite</h2>
+      <p class="cs-section_subtitle">Elige el mejor plan de acuerdo a tus requemientos.</p>
     </div>
     <div class="cs-height_45 cs-height_lg_45"></div>
     <div class="row">
-      <div class="col-lg-3 col-sm-6">
-        <div class="cs-iconbox cs-style1 cs-white_bg">
-          <div class="cs-iconbox_icon">
-            <img src="{{asset('fronted/assets/img/membership/colegio.png')}}" alt="Logo">             
-          </div>
-          <h2 class="cs-iconbox_title">Ite Colegio</h2>
-          <div class="cs-iconbox_subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo ex atque aliquam quos earum. Atque quam totam sequi. Maxime explicabo ipsa eos suscipit corporis quo sapiente eius repellat repudiandae earum.</div>
-        </div>
-        <div class="cs-height_30 cs-height_lg_30"></div>
-      </div>
-      <div class="col-lg-3 col-sm-6">
-        <div class="cs-iconbox cs-style1 cs-white_bg">
-          <div class="cs-iconbox_icon">
-            <img src="{{asset('fronted/assets/img/membership/familia.png')}}" alt="Logo">                                  
-          </div>
-          <h2 class="cs-iconbox_title">Ite Familia</h2>
-          <div class="cs-iconbox_subtitle">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut asperiores nostrum magnam sunt magni sapiente deserunt fugiat mollitia aliquid dolore repudiandae blanditiis autem, sint explicabo pariatur error quibusdam in aliquam.</div>
-        </div>
-        <div class="cs-height_30 cs-height_lg_30"></div>
-      </div>
-      <div class="col-lg-3 col-sm-6">
-        <div class="cs-iconbox cs-style1 cs-white_bg">
-          <div class="cs-iconbox_icon">
-            <img src="{{asset('fronted/assets/img/membership/empresa.png')}}" alt="Logo">                                      
-          </div>
-          <h2 class="cs-iconbox_title">Ite Empresas</h2>
-          <div class="cs-iconbox_subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut dicta architecto maiores maxime distinctio aperiam quibusdam expedita, ducimus quisquam fuga blanditiis nesciunt iusto ex molestiae dignissimos tempore. Officiis, dignissimos sapiente.</div>
-        </div>
-        <div class="cs-height_30 cs-height_lg_30"></div>
-      </div>
-      <div class="col-lg-3 col-sm-6">
-        <div class="cs-iconbox cs-style1 cs-white_bg">
-          <div class="cs-iconbox_icon">
-            <img src="{{asset('fronted/assets/img/membership/proveedor.png')}}" alt="Logo">                                    
-          </div>
-          <h2 class="cs-iconbox_title">Ite Proveedores</h2>
-          <div class="cs-iconbox_subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non, odio alias vel architecto facere hic id. Praesentium quia eius fuga aut, obcaecati debitis voluptas doloribus exercitationem eaque atque consectetur ducimus!</div>
-        </div>
-        <div class="cs-height_30 cs-height_lg_30"></div>
-      </div>
+      @yield('convenios')
     </div>
   </div>
   <div class="cs-height_70 cs-height_lg_40"></div>
@@ -611,80 +579,11 @@
       <div class="cs-height_45 cs-height_lg_45"></div>
     </div>
     <div class="cs-moving_carousel_1">
-      <div class="cs-single_moving_item">
-        <div class="cs-partner">
-          <div class="cs-partner_in cs-center cs-white_bg"><img src="fronted/assets/img/partners/1.svg" alt="Partner logo"></div>
-        </div>
-      </div>
-      <div class="cs-single_moving_item">
-        <div class="cs-partner">
-          <div class="cs-partner_in cs-center cs-white_bg"><img src="fronted/assets/img/partners/2.svg" alt="Partner logo"></div>
-        </div>
-      </div>
-      <div class="cs-single_moving_item">
-        <div class="cs-partner">
-          <div class="cs-partner_in cs-center cs-white_bg"><img src="fronted/assets/img/partners/3.svg" alt="Partner logo"></div>
-        </div>
-      </div>
-      <div class="cs-single_moving_item">
-        <div class="cs-partner">
-          <div class="cs-partner_in cs-center cs-white_bg"><img src="fronted/assets/img/partners/4.svg" alt="Partner logo"></div>
-        </div>
-      </div>
-      <div class="cs-single_moving_item">
-        <div class="cs-partner">
-          <div class="cs-partner_in cs-center cs-white_bg"><img src="fronted/assets/img/partners/5.svg" alt="Partner logo"></div>
-        </div>
-      </div>
-      <div class="cs-single_moving_item">
-        <div class="cs-partner">
-          <div class="cs-partner_in cs-center cs-white_bg"><img src="fronted/assets/img/partners/6.svg" alt="Partner logo"></div>
-        </div>
-      </div>
-      <div class="cs-single_moving_item">
-        <div class="cs-partner">
-          <div class="cs-partner_in cs-center cs-white_bg"><img src="fronted/assets/img/partners/7.svg" alt="Partner logo"></div>
-        </div>
-      </div>
+      
+      @yield('colegios')
+
     </div>
-    <div class="cs-height_30 cs-height_lg_30"></div>
-    <div class="cs-moving_carousel_2">
-      <div class="cs-single_moving_item">
-        <div class="cs-partner">
-          <div class="cs-partner_in cs-center cs-white_bg"><img src="fronted/assets/img/partners/5.svg" alt="Partner logo"></div>
-        </div>
-      </div>
-      <div class="cs-single_moving_item">
-        <div class="cs-partner">
-          <div class="cs-partner_in cs-center cs-white_bg"><img src="fronted/assets/img/partners/9.svg" alt="Partner logo"></div>
-        </div>
-      </div>
-      <div class="cs-single_moving_item">
-        <div class="cs-partner">
-          <div class="cs-partner_in cs-center cs-white_bg"><img src="fronted/assets/img/partners/10.svg" alt="Partner logo"></div>
-        </div>
-      </div>
-      <div class="cs-single_moving_item">
-        <div class="cs-partner">
-          <div class="cs-partner_in cs-center cs-white_bg"><img src="fronted/assets/img/partners/11.svg" alt="Partner logo"></div>
-        </div>
-      </div>
-      <div class="cs-single_moving_item">
-        <div class="cs-partner">
-          <div class="cs-partner_in cs-center cs-white_bg"><img src="fronted/assets/img/partners/12.svg" alt="Partner logo"></div>
-        </div>
-      </div>
-      <div class="cs-single_moving_item">
-        <div class="cs-partner">
-          <div class="cs-partner_in cs-center cs-white_bg"><img src="fronted/assets/img/partners/13.svg" alt="Partner logo"></div>
-        </div>
-      </div>
-      <div class="cs-single_moving_item">
-        <div class="cs-partner">
-          <div class="cs-partner_in cs-center cs-white_bg"><img src="fronted/assets/img/partners/14.svg" alt="Partner logo"></div>
-        </div>
-      </div>
-    </div>
+    
   </section>
   <!-- End Logo Carousel -->
 

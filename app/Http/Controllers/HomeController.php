@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Colegio;
+use App\Models\Convenio;
 use App\Models\Curso;
 use App\Models\Docente;
 use App\Models\Feriado;
@@ -10,6 +12,7 @@ use App\Models\Homeschedule;
 use App\Models\Hometext;
 use App\Models\Modalidad;
 use App\Models\Persona;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -28,8 +31,18 @@ class HomeController extends Controller
     public function index()
     {
         $docentes = Docente::all()->where('estado_id','11');
- 
-        return view('home.index', compact(['docentes']));
+        $convenios = Convenio::all();
+        $colegios = Colegio::all();
+        
+        
+        return view('home.index', compact(['docentes','convenios','colegios']));
+    }
+
+    public function plan($id)
+    {
+        $convenio = Convenio::find($id);
+        $planes = $convenio->planes;
+        return view('home.fronted.plan', compact(['planes']));
     }
 
     /**

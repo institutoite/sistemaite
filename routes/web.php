@@ -824,3 +824,5 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/privacy', [HomeController::class, 'privacy'])->name('privacy');
 
 Route::get('/termscondition', [HomeController::class, 'termscondition'])->name('termscondition');
+
+Route::get('/plan/{id}', [HomeController::class, 'plan'])->name('plan');

@@ -4363,7 +4363,7 @@ kbd {
 .cs-header_icon_btn {
   height: 44px;
   width: 44px;
-  background: linear-gradient(116.85deg, #26BAA5 0%, #022136 100%);
+  background: linear-gradient(116.85deg, #022136 0%, #022136 100%);
   border-radius: 50%;
   color: #fff;
   position: relative;
@@ -4418,7 +4418,7 @@ kbd {
   border: 0px solid;
   border-image-slice: 1;
   border-top-width: 2px;
-  border-image-source: linear-gradient(116.85deg, #FC466B 0%, #3F5EFB 100%);
+  border-image-source: linear-gradient(116.85deg, #022136 0%, #022136 100%);
 }
 
 .cs-profile_box .cs-user_name {
@@ -5344,7 +5344,6 @@ li.menu-item-has-children
   left: 0;
   top: 0;
   border-radius: inherit;
-  background:  #26BAA5;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   opacity: 0;

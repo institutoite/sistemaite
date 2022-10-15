@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
+
+use Spatie\Permission\Traits\HasRoles;
 
 class LoginController extends Controller
 {
@@ -20,12 +26,25 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    use HasRoles;
 
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
+    protected function authenticated(Request $request, $user){
+        
+        if ($user->hasRole(['Admin']))
+            return redirect('/home');
+        else if ($user->hasRole(['Secretaria']))
+            return redirect('/home');
+        else if ($user->hasRole(['Docente']))
+            return redirect('/');
+            else if ($user->hasRole(['Estudiante']))
+            return redirect('/');
+    }
+
     protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
