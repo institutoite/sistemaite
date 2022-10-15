@@ -18,14 +18,14 @@ function eliminarRegistro(registro_id,objeto_type,tabla) {
     }).then((result) => {
         if (result.value) {
             $.ajax({
-                url: 'eliminar/' + objeto_type,
+                url: 'eliminar/' + objeto_type+"/"+registro_id,
                 type: 'DELETE',
                 data: {
-                    id: registro_id,
                     _token: $("meta[name='csrf-token']").attr("content"),
                 },
                 success: function (result) {
                     $("#" + registro_id).remove();
+                    tabla.ajax.reload();
                     mensajeGrande(result.mensaje, 'success', 2000);
                     
                 },

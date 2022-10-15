@@ -58,7 +58,7 @@ use App\Http\Controllers\BilletecomController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[BilleteController::class,'billetesInscripciones'])->name('prueba');
+Route::get('prueba',[PersonaController::class,'eliminarPersona'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -129,6 +129,7 @@ Route::post('persona/contacto/store', [PersonaController::class,'guardarSoloCont
 Route::post('persona/contacto/update/{persona}', [PersonaController::class,'actualizarSoloContacto'])->name('personas.uptate.contacto');
 Route::get('contactos', [PersonaController::class,'contactos'])->name('personas.contactos.view');
 Route::get('persona/contactos', [PersonaController::class,'listarContactos'])->name('personas.contactos');
+Route::get('eliminar/contacto', [PersonaController::class,'eliminarContactos'])->name('eliminar.contactos');
 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%PERIODABLE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::get("periodables",[PeriodableController::class,'index'])->name("periodable.index");

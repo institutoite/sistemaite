@@ -142,3 +142,10 @@ NO ESTA MOSTRARNDO TIPO MOTIVOS
 ESTADO NO ESTA MOSTRANDO USUARIO QUE LO CREO
 Tipo archivo no esta actualizando bien 
 
+$('table').on('click','.eliminargenerico',function (e) {
+    e.preventDefault(); 
+    contacto_id=$(this).parent().parent().find('td').first().html();
+    eliminarRegistro(contacto_id,'persona',tabla);
+});
+<script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
+<script src="{{asset('assets/js/mensajeAjax.js')}}"></script>

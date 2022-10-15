@@ -22,21 +22,21 @@
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" > 
             <div class="form-floating mb-3 text-gray">
                 <input  type="text" name="nombre" class="form-control @error('nombre') is-invalid @enderror" value="{{old('nombre',$persona->nombre ?? '')}}">
-                <label for="nombre">nombre</label>
+                <label class="text-warning" for="nombre">NOMBRE*</label>
             </div>
         </div>
         {{-- %%%%%%%%%%%%%%% CAMPO APELLIDO PATERNO --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
                 <input  type="text" name="apellidop" class="form-control @error('apellidop') is-invalid @enderror" value="{{old('apellidop',$persona->apellidop ?? '')}}">
-                <label for="apellidop">apellidop</label>
+                <label class="text-warning" for="apellidop">APELLIDO PATERNO*</label>
             </div>    
         </div>
         {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO APELLIDO MATERNO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
             <input  type="text" name="apellidom" class="form-control @error('apellidom') is-invalid @enderror" value="{{old('apellidom',$persona->apellidom ?? '')}}">
-            <label for="apellidom">apellidom</label>
+            <label for="apellidom">Apellido Materno</label>
             </div>
         </div>
     </div>
@@ -77,7 +77,7 @@
             @else
                 <div class="form-floating mb-3 text-gray">
                     <input  type="date" name="fechanacimiento" class="form-control @error('fechanacimiento') is-invalid @enderror" value="{{old('fechanacimiento' ?? '')}}">
-                    <label for="fechanacimiento">fechanacimiento</label>
+                    <label class="text-warning" for="fechanacimiento">FECHA NACIMIENTO*</label>
                 </div>
             @endisset
         </div>
@@ -167,7 +167,7 @@
                         <option value="HOMBRE" @if(old('genero') == 'HOMBRE') {{'selected'}} @endif>HOMBRE</option>
                     @endisset    
                 </select>
-                <label for="genero">Elija género*</label>
+                <label class="text-success" for="genero">GENERO*</label>
             </div>
         </div>
 
@@ -187,7 +187,7 @@
                                 @endisset 
                             @endforeach
                         </select>
-                        <label for="">Como se enteró?</label>  
+                        <label class="text-warning" for="">COMO SE ENTERO?</label>  
                     </div>
                 </div>
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
@@ -228,7 +228,7 @@
                             <option value="contacto" @if(old('papel') == 'contacto') {{'contacto'}} @endif>Contacto</option>
                         @endisset
                 </select>
-                <label for="papel">papel*</label>
+                <label class="text-success" for="papel">PAPEL*</label>
             </div> 
         </div>
     </div>
@@ -265,7 +265,7 @@
                         @endisset 
                     @endforeach
                 </select>
-                <label for="pais">Elija pais*</label>
+                <label class="text-success" for="pais">Pais*</label>
             </div>
         </div>
 
@@ -280,7 +280,7 @@
                             @endisset
                         @endforeach 
                 </select>
-                <label for="pais">Elija Ciudad*</label>
+                <label class="text-success" for="pais">Ciudad*</label>
             </div>
         </div>
 
@@ -297,7 +297,7 @@
                         @endisset  
                     @endforeach
                 </select>
-                <label for="zona_id">Elija zona*</label>
+                <label class="text-warning" for="zona_id">ZONA DONDE VIVE*</label>
             </div>
         </div>
 
@@ -322,14 +322,14 @@
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" > 
             <div class="form-floating mb-3 text-gray">
                 <input  type="text" name="direccion" class="form-control @error('direccion') is-invalid @enderror" value="{{old('direccion',$persona->direccion ?? '')}}" >
-                <label for="direccion">Dirección*</label>
+                <label class="text-warning" for="direccion">DIRECCION*</label>
             </div>
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
                 <input class="form-control" type="tel" id="phone" name="telefono" value="{{old('telefono',$persona->telefono ?? '')}}">
-                <label for="telefono">Telefono*</label>
+                <label class="text-warning" for="telefono">TELEFONO ESTUDIANTE*</label>
             </div>
         </div>
     </div>

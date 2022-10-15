@@ -149,7 +149,7 @@
             });
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR PERSONA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
             $('table').on('click','.eliminar',function (e) {
-                e.preventDefault(); 
+                e.preventDefault();
                 id=$(this).parent().parent().parent().find('td').first().html();
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',

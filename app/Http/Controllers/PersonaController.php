@@ -721,9 +721,10 @@ class PersonaController extends Controller
     {
         //eliminarPersona
     }
-    public function eliminarPersona($id){
-        //return response()->json(['id'=>$id]);
-        $persona = Persona::findOrFail($id);
+    public function eliminarPersona(){
+    // public function eliminarPersona($id){
+        // $persona = Persona::findOrFail($id);
+        $persona = Persona::findOrFail(6);
         $persona->delete();
         return response()->json(['message' => 'Registro Eliminado correctamente', 'status' => 200]);
     }

@@ -6,10 +6,10 @@
     <i class="fa fa-fw fa-eye text-primary"></i>
 </a>
 
-<form action=""  class="d-inline formulario eliminar">
+<form action=""  class="d-inline">
     @csrf
     @method("delete")
-    <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn eliminar" title="Eliminar esta persona">
+    <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn eliminargenerico" title="Eliminar este contacto">
         <i class="fa fa-fw fa-trash text-danger"></i>   
     </button>
 </form> 

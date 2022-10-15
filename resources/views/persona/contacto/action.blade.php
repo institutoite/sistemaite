@@ -2,7 +2,7 @@
     <i class="fa fa-fw fa-edit text-primary"></i>
 </a>
 
-<form action=""  class="d-inline formulario eliminarconacto">
+<form action=""  class="d-inline formulario eliminargenerico">
     @csrf
     @method("delete")
     <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn" title="Eliminar este contacto">
