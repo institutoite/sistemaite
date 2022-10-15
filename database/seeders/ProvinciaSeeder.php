@@ -31,21 +31,21 @@ class ProvinciaSeeder extends Seeder
         Provincia::create(['provincia' => 'Sara', 'departamento_id' => 1]);
         Provincia::create(['provincia' => 'Vallegrande', 'departamento_id' => 1]);
 
-        /*Provincia::findOrFail(1)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(2)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(3)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(4)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(5)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(6)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(7)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(8)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(9)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(10)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(11)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(12)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(13)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(14)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(15)->userable()->create(['user_id'=>1]);*/
+        Provincia::find(1)->usuarios()->attach(1);
+        Provincia::find(2)->usuarios()->attach(1);
+        Provincia::find(3)->usuarios()->attach(1);
+        Provincia::find(4)->usuarios()->attach(1);
+        Provincia::find(5)->usuarios()->attach(1);
+        Provincia::find(6)->usuarios()->attach(1);
+        Provincia::find(7)->usuarios()->attach(1);
+        Provincia::find(8)->usuarios()->attach(1);
+        Provincia::find(9)->usuarios()->attach(1);
+        Provincia::find(10)->usuarios()->attach(1);
+        Provincia::find(11)->usuarios()->attach(1);
+        Provincia::find(12)->usuarios()->attach(1);
+        Provincia::find(13)->usuarios()->attach(1);
+        Provincia::find(14)->usuarios()->attach(1);
+        Provincia::find(15)->usuarios()->attach(1);
         
         /** %%%%%%%%%%%%%%%%%%%%  PROVINCIAS DE LA PAZ %%%%%%%%%%%%%%%%%%%%%*/
         Provincia::create(['provincia' => 'Abel Iturralde', 'departamento_id' => 2]);
@@ -69,28 +69,26 @@ class ProvinciaSeeder extends Seeder
         Provincia::create(['provincia' => 'Pedro Domingo Murillo', 'departamento_id' => 2]);
         Provincia::create(['provincia' => 'Sud Yungas', 'departamento_id' => 2]);
 
-       /* Provincia::findOrFail(16)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(17)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(18)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(19)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(20)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(21)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(22)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(23)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(24)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(25)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(26)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(27)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(28)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(29)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(30)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(31)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(32)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(33)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(34)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(35)->userable()->create(['user_id'=>1]);
-*/
-
+        Provincia::find(16)->usuarios()->attach(1);
+        Provincia::find(17)->usuarios()->attach(1);
+        Provincia::find(18)->usuarios()->attach(1);
+        Provincia::find(19)->usuarios()->attach(1);
+        Provincia::find(20)->usuarios()->attach(1);
+        Provincia::find(21)->usuarios()->attach(1);
+        Provincia::find(22)->usuarios()->attach(1);
+        Provincia::find(23)->usuarios()->attach(1);
+        Provincia::find(24)->usuarios()->attach(1);
+        Provincia::find(25)->usuarios()->attach(1);
+        Provincia::find(26)->usuarios()->attach(1);
+        Provincia::find(27)->usuarios()->attach(1);
+        Provincia::find(28)->usuarios()->attach(1);
+        Provincia::find(29)->usuarios()->attach(1);
+        Provincia::find(30)->usuarios()->attach(1);
+        Provincia::find(31)->usuarios()->attach(1);
+        Provincia::find(32)->usuarios()->attach(1);
+        Provincia::find(33)->usuarios()->attach(1);
+        Provincia::find(34)->usuarios()->attach(1);
+        Provincia::find(35)->usuarios()->attach(1);
 
         /** %%%%%%%%%%%%%%%%%%%%  PROVINCIAS DE COCHABAMBA %%%%%%%%%%%%%%%%%%%%%*/
         Provincia::create(['provincia' => 'Arani', 'departamento_id' => 3]);
@@ -110,22 +108,22 @@ class ProvinciaSeeder extends Seeder
         Provincia::create(['provincia' => 'Tapacarí', 'departamento_id' => 3]);
         Provincia::create(['provincia' => 'Tiraque', 'departamento_id' => 3]);
 
-        /*Provincia::findOrFail(36)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(37)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(38)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(39)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(40)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(41)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(42)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(43)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(44)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(45)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(46)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(47)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(48)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(49)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(50)->userable()->create(['user_id'=>1]);
-        Provincia::findOrFail(51)->userable()->create(['user_id'=>1]);*/
+        Provincia::find(36)->usuarios()->attach(1);
+        Provincia::find(37)->usuarios()->attach(1);
+        Provincia::find(38)->usuarios()->attach(1);
+        Provincia::find(39)->usuarios()->attach(1);
+        Provincia::find(40)->usuarios()->attach(1);
+        Provincia::find(41)->usuarios()->attach(1);
+        Provincia::find(42)->usuarios()->attach(1);
+        Provincia::find(43)->usuarios()->attach(1);
+        Provincia::find(44)->usuarios()->attach(1);
+        Provincia::find(45)->usuarios()->attach(1);
+        Provincia::find(46)->usuarios()->attach(1);
+        Provincia::find(47)->usuarios()->attach(1);
+        Provincia::find(48)->usuarios()->attach(1);
+        Provincia::find(49)->usuarios()->attach(1);
+        Provincia::find(50)->usuarios()->attach(1);
+        Provincia::find(51)->usuarios()->attach(1);
 
         /** %%%%%%%%%%%%%%%%%%%%  PROVINCIAS DE CHUQUISACA %%%%%%%%%%%%%%%%%%%%%*/
         Provincia::create(['provincia' => 'Belisario Boeto', 'departamento_id' => 4]);
@@ -139,16 +137,17 @@ class ProvinciaSeeder extends Seeder
         Provincia::create(['provincia' => 'Tomina', 'departamento_id' => 4]);
         Provincia::create(['provincia' => 'Yamparáez', 'departamento_id' => 4]);
 
-        // Provincia::findOrFail(52)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(53)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(54)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(55)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(56)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(57)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(58)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(59)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(60)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(61)->userable()->create(['user_id'=>1]);
+        Provincia::find(52)->usuarios()->attach(1);
+        Provincia::find(53)->usuarios()->attach(1);
+        Provincia::find(54)->usuarios()->attach(1);
+        Provincia::find(55)->usuarios()->attach(1);
+        Provincia::find(56)->usuarios()->attach(1);
+        Provincia::find(57)->usuarios()->attach(1);
+        Provincia::find(58)->usuarios()->attach(1);
+        Provincia::find(59)->usuarios()->attach(1);
+        Provincia::find(60)->usuarios()->attach(1);
+        Provincia::find(61)->usuarios()->attach(1);
+
 
         /** %%%%%%%%%%%%%%%%%%%%  PROVINCIAS DE TARIJA %%%%%%%%%%%%%%%%%%%%%*/
         Provincia::create(['provincia' => 'Aniceto Arce', 'departamento_id' => 5]);
@@ -158,12 +157,7 @@ class ProvinciaSeeder extends Seeder
         Provincia::create(['provincia' => 'Gran Chaco', 'departamento_id' => 5]);
         Provincia::create(['provincia' => 'José María Avilés', 'departamento_id' => 5]);
 
-        // Provincia::findOrFail(62)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(63)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(64)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(65)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(66)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(67)->userable()->create(['user_id'=>1]);
+        
 
         /** %%%%%%%%%%%%%%%%%%%%  PROVINCIAS DE ORURO %%%%%%%%%%%%%%%%%%%%%*/
         Provincia::create(['provincia' => 'Carangas', 'departamento_id' => 6]);
@@ -183,22 +177,7 @@ class ProvinciaSeeder extends Seeder
         Provincia::create(['provincia' => 'Sud Carangas', 'departamento_id' => 6]);
         Provincia::create(['provincia' => 'Tomás Barrón', 'departamento_id' => 6]);
 
-        // Provincia::findOrFail(68)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(69)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(70)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(71)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(72)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(73)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(74)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(75)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(76)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(77)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(78)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(79)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(80)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(81)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(82)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(83)->userable()->create(['user_id'=>1]);
+        
 
         /** %%%%%%%%%%%%%%%%%%%%  PROVINCIAS DE POTOSI %%%%%%%%%%%%%%%%%%%%%*/
         Provincia::create(['provincia' => 'Alonso de Ibáñez', 'departamento_id' => 7]);
@@ -221,22 +200,7 @@ class ProvinciaSeeder extends Seeder
 
         Provincia::create(['provincia' => 'Tomás Frías', 'departamento_id' => 7]);
 
-        // Provincia::findOrFail(84)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(85)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(86)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(87)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(88)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(89)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(90)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(91)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(92)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(93)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(94)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(95)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(96)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(97)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(98)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(99)->userable()->create(['user_id'=>1]);
+        
 
         
 
@@ -250,14 +214,7 @@ class ProvinciaSeeder extends Seeder
         Provincia::create(['provincia' => 'Vaca Díez', 'departamento_id' => 8]);
         Provincia::create(['provincia' => 'Yacuma', 'departamento_id' => 8]);
         
-        // Provincia::findOrFail(100)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(101)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(102)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(103)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(104)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(105)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(106)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(107)->userable()->create(['user_id'=>1]);
+       
  
         /** %%%%%%%%%%%%%%%%%%%%  PROVINCIAS DE PANDO %%%%%%%%%%%%%%%%%%%%%*/
         Provincia::create(['provincia' => 'Abuná', 'departamento_id' => 9]);
@@ -266,11 +223,66 @@ class ProvinciaSeeder extends Seeder
         Provincia::create(['provincia' => 'Manuripi', 'departamento_id' => 9]);
         Provincia::create(['provincia' => 'Nicolás Suárez', 'departamento_id' => 9]);
         
-        // Provincia::findOrFail(108)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(109)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(110)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(111)->userable()->create(['user_id'=>1]);
-        // Provincia::findOrFail(112)->userable()->create(['user_id'=>1]);
+       
+        Provincia::find(62)->usuarios()->attach(1);
+        Provincia::find(63)->usuarios()->attach(1);
+        Provincia::find(64)->usuarios()->attach(1);
+        Provincia::find(65)->usuarios()->attach(1);
+        Provincia::find(66)->usuarios()->attach(1);
+        Provincia::find(67)->usuarios()->attach(1);
+        Provincia::find(68)->usuarios()->attach(1);
+        Provincia::find(69)->usuarios()->attach(1);
+
+        Provincia::find(70)->usuarios()->attach(1);
+        Provincia::find(71)->usuarios()->attach(1);
+        Provincia::find(72)->usuarios()->attach(1);
+        Provincia::find(73)->usuarios()->attach(1);
+        Provincia::find(74)->usuarios()->attach(1);
+        Provincia::find(75)->usuarios()->attach(1);
+        Provincia::find(76)->usuarios()->attach(1);
+        Provincia::find(77)->usuarios()->attach(1);
+        Provincia::find(78)->usuarios()->attach(1);
+        Provincia::find(79)->usuarios()->attach(1);
+        
+
+        Provincia::find(80)->usuarios()->attach(1);
+        Provincia::find(81)->usuarios()->attach(1);
+        Provincia::find(82)->usuarios()->attach(1);
+        Provincia::find(83)->usuarios()->attach(1);
+        Provincia::find(84)->usuarios()->attach(1);
+        Provincia::find(85)->usuarios()->attach(1);
+        Provincia::find(86)->usuarios()->attach(1);
+        Provincia::find(87)->usuarios()->attach(1);
+        Provincia::find(88)->usuarios()->attach(1);
+        Provincia::find(89)->usuarios()->attach(1);
+        
+
+        Provincia::find(90)->usuarios()->attach(1);
+        Provincia::find(91)->usuarios()->attach(1);
+        Provincia::find(92)->usuarios()->attach(1);
+        Provincia::find(93)->usuarios()->attach(1);
+        Provincia::find(94)->usuarios()->attach(1);
+        Provincia::find(95)->usuarios()->attach(1);
+        Provincia::find(96)->usuarios()->attach(1);
+        Provincia::find(97)->usuarios()->attach(1);
+        Provincia::find(98)->usuarios()->attach(1);
+        Provincia::find(99)->usuarios()->attach(1);
+        
+
+        Provincia::find(100)->usuarios()->attach(1);
+        Provincia::find(101)->usuarios()->attach(1);
+        Provincia::find(102)->usuarios()->attach(1);
+        Provincia::find(103)->usuarios()->attach(1);
+        Provincia::find(104)->usuarios()->attach(1);
+        Provincia::find(105)->usuarios()->attach(1);
+        Provincia::find(106)->usuarios()->attach(1);
+        Provincia::find(107)->usuarios()->attach(1);
+        Provincia::find(108)->usuarios()->attach(1);
+        Provincia::find(109)->usuarios()->attach(1);
+
+        Provincia::find(110)->usuarios()->attach(1);
+        Provincia::find(111)->usuarios()->attach(1);
+        Provincia::find(112)->usuarios()->attach(1);
         
 
     }

@@ -9,6 +9,7 @@
     <div class="card">
         <div class="card-header bg-secondary">
             <h3>Zona: {{$zona->zona}}</h3>
+            
         </div>
         <div class="card-body">
             <table class="table table-bordered table-striped table-hover"> 

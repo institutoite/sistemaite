@@ -275,4 +275,8 @@ class PagoController extends Controller
             ->get();
         return response()->json($pagos);
     }
+
+    
+    
+
 }

@@ -17,4 +17,8 @@ class Como extends Model
     {
         return $this->hasOne(Comentario::class);
     } 
+    public function usuarios()
+    {
+        return $this->morphToMany('App\Models\User', 'userable');
+    }
 }

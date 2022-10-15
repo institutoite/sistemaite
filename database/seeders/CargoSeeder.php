@@ -17,5 +17,7 @@ class CargoSeeder extends Seeder
         Cargo::create(['cargo'=>"AUXILIAR"]);
         Cargo::create(['cargo'=>"LIMPIEZA"]);
         Cargo::create(['cargo'=>"COCINA"]);
+
+       
     }
 }

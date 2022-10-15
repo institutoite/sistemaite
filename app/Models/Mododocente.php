@@ -13,4 +13,8 @@ class Mododocente extends Model
     {
         return $this->hasOne(Docente::class);
     } 
+    public function usuarios()
+    {
+        return $this->morphToMany('App\Models\User', 'userable');
+    }
 }

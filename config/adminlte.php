@@ -233,7 +233,7 @@ return [
 
         ],
         [
-            'text'    => 'Opciones Rapidas',
+            'text'    => 'Opciones Rápidas',
             'icon'    => 'fas fa-record-vinyl',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
@@ -242,40 +242,34 @@ return [
                 [
                     'text' => 'Contacto',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'contactos',
                     'classes'  => 'text-dark',
 
                 ],
                 [
-                    'text' => 'Por docentes',
+                    'text' => 'Potenciales',
                     'icon'    => 'fas fa-angle-right',
 
-                    'url'  => '#',
+                    'url'  => 'persona/potenciales',
                     'classes'  => 'text-dark',
                 ],
                 [
-                    'text' => 'Computacion',
+                    'text' => 'Asitencia',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'inscripcines/vigentes/view',
                     'classes'  => 'text-dark',
                 ],
                 [
-                    'text' => 'Guardería',
+                    'text' => 'Presentes',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Por aula',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
+                    'url'  => 'presentes',
                     'classes'  => 'text-dark',
                 ],
             ],
         ],
         
         [
-            'text' =>"Est.",
+            'text' =>"Cliente",
             'topnav' => true,
             'url'  => '/home',
             'icon' => 'fas fa-user-graduate',
@@ -283,14 +277,7 @@ return [
             'classes'=>'text-xs text-white',
         ],
         
-        [
-            'text' => "Pres.",
-            'topnav' => true,
-            'url'    => 'presentes',
-            'icon' => 'fas fa-hand-point-up',
-            'icon_color' => 'secondary',
-            'classes'=>'text-xs text-white',
-        ],
+       
         [
             'text' => "Hoy",
             'topnav' => true,
@@ -300,15 +287,7 @@ return [
             'classes'=>'text-xs text-white',
         ],
         [
-            'text' => "Faltas",
-            'topnav' => true,
-            'url'  => 'inscripcines/vigentes/view',
-            'icon' => 'fas fa-user-times',
-            'icon_color' => 'danger',
-            'classes'=>'text-xs text-white',
-        ],
-        [
-            'text' => "Pot",
+            'text' => "Potencial",
             'topnav' => true,
             'url'  => 'persona/potenciales',
             'icon' => 'fas fa-user-friends',
@@ -316,7 +295,24 @@ return [
             'classes'=>'text-xs text-white',
         ],
         [
-            'text' => "Cont.",
+            'text' => "",
+            'topnav' => true,
+            'url'  => 'inscripcines/vigentes/view',
+            'icon' => 'fas fa-user-times',
+            'icon_color' => 'white',
+            'classes'=>'text-xs text-white',
+        ],
+        [
+            'text' => "",
+            'topnav' => true,
+            'url'    => 'presentes',
+            'icon' => 'fas fa-hand-point-up',
+            'icon_color' => 'white',
+            'classes'=>'text-xs text-white',
+        ],
+       
+        [
+            'text' => "",
             'topnav' => true,
             'url'  => 'contactos',
             'icon' => 'fas fa-address-book',
@@ -327,70 +323,70 @@ return [
         /**
          *  Menu personas 
          */
-        [
-            'text'    => 'Gestionar',
-            'icon'    => 'fas fa-exclamation-triangle',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Un Resumen',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Ya pasaron',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Faltas',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Deudores',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Licencias',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Finalizando',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
+        // [
+        //     'text'    => 'Gestionar',
+        //     'icon'    => 'fas fa-exclamation-triangle',
+        //     'icon_color' => 'secondary',
+        //     'classes'  => 'text-white text-bold bg-primary',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Un Resumen',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-dark',
+        //         ],
+        //         [
+        //             'text' => 'Ya pasaron',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-dark',
+        //         ],
+        //         [
+        //             'text' => 'Faltas',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-dark',
+        //         ],
+        //         [
+        //             'text' => 'Deudores',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-dark',
+        //         ],
+        //         [
+        //             'text' => 'Licencias',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-dark',
+        //         ],
+        //         [
+        //             'text' => 'Finalizando',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-dark',
+        //         ],
                 
-                [
-                    'text' => 'Empezando',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Temas pasados',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Materias pasadas',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
+        //         [
+        //             'text' => 'Empezando',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-dark',
+        //         ],
+        //         [
+        //             'text' => 'Temas pasados',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-dark',
+        //         ],
+        //         [
+        //             'text' => 'Materias pasadas',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-dark',
+        //         ],
 
-            ],
-        ],
+        //     ],
+        // ],
 
         
         /**
@@ -421,17 +417,23 @@ return [
                     'classes'  => 'text-dark',
                 ],
                 [
-                    'text' => 'Billetes',
+                    'text' => 'Billetes Inscripción',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'billetes',
                     'classes'  => 'text-dark',
                 ],
                 [
-                    'text' => 'Detallado',
+                    'text' => 'Billetes Matriculación',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => 'pagodetallado',
+                    'url'  => 'billetescom',
                     'classes'  => 'text-dark',
                 ],
+                // [
+                //     'text' => 'Detallado',
+                //     'icon'    => 'fas fa-angle-right',
+                //     'url'  => 'pagodetallado',
+                //     'classes'  => 'text-dark',
+                // ],
             ],
         ],
 
@@ -443,31 +445,31 @@ return [
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
             'submenu' => [
-                [
-                    'text' => 'Eventos',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-secondary',
-                ],
-                [
-                    'text' => 'Inscripciones',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-secondary',
-                    'can' => 'Listar Inscripciones',
-                ],
-                [
-                    'text' => 'Salidas',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-secondary',
-                ],
-                [
-                    'text' => 'Cobros',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-secondary',
-                ],
+                // [
+                //     'text' => 'Eventos',
+                //     'icon'    => 'fas fa-angle-right',
+                //     'url'  => '#',
+                //     'classes'  => 'text-secondary',
+                // ],
+                // [
+                //     'text' => 'Inscripciones',
+                //     'icon'    => 'fas fa-angle-right',
+                //     'url'  => '#',
+                //     'classes'  => 'text-secondary',
+                //     'can' => 'Listar Inscripciones',
+                // ],
+                // [
+                //     'text' => 'Salidas',
+                //     'icon'    => 'fas fa-angle-right',
+                //     'url'  => '#',
+                //     'classes'  => 'text-secondary',
+                // ],
+                // [
+                //     'text' => 'Cobros',
+                //     'icon'    => 'fas fa-angle-right',
+                //     'url'  => '#',
+                //     'classes'  => 'text-secondary',
+                // ],
                 [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
@@ -478,90 +480,90 @@ return [
         ],
 //** %%%%%%%%%%%%%%%%%%  MENU DOCENTES %%%%%%%%%%%%% */
         
-        [
-            'text'    => 'Gestion clases',
-            'icon'    => 'fas fa-chalkboard-teacher',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Por temas',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-secondary',
-                ],
-                [
-                    'text' => 'Por Materia',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-secondary',
-                ],
-                [
-                    'text' => 'Listar todas',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-secondary',
-                ],
+        // [
+        //     'text'    => 'Gestion clases',
+        //     'icon'    => 'fas fa-chalkboard-teacher',
+        //     'icon_color' => 'secondary',
+        //     'classes'  => 'text-white text-bold bg-primary',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Por temas',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-secondary',
+        //         ],
+        //         [
+        //             'text' => 'Por Materia',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-secondary',
+        //         ],
+        //         [
+        //             'text' => 'Listar todas',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-secondary',
+        //         ],
 
-                [
-                    'text' => 'Notificar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-secondary',
-                ],
-                [
-                    'text' => 'Practicos',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-secondary',
-                ],
-                [
-                    'text' => 'Detallar todos',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-secondary',
-                ],
+        //         [
+        //             'text' => 'Notificar',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-secondary',
+        //         ],
+        //         [
+        //             'text' => 'Practicos',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-secondary',
+        //         ],
+        //         [
+        //             'text' => 'Detallar todos',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-secondary',
+        //         ],
 
-            ],
-        ],
+        //     ],
+        // ],
 
 
         
         /**
          *  Menu personas 
          */
-        [
-            'text'    => 'Inscripciones',
-            'icon'    => 'fas fa-keyboard',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Un Resumen',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Computación',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Capacitación',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Guardería',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
+        // [
+        //     'text'    => 'Inscripciones',
+        //     'icon'    => 'fas fa-keyboard',
+        //     'icon_color' => 'secondary',
+        //     'classes'  => 'text-white text-bold bg-primary',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Un Resumen',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-dark',
+        //         ],
+        //         [
+        //             'text' => 'Computación',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-dark',
+        //         ],
+        //         [
+        //             'text' => 'Capacitación',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-dark',
+        //         ],
+        //         [
+        //             'text' => 'Guardería',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-dark',
+        //         ],
+        //     ],
+        // ],
         /**
          *  Menu potenciales 
          */
@@ -596,38 +598,38 @@ return [
         /**
          *  Menu personas 
          */
-        [
-            'text'    => 'Observaciones',
-            'icon'    => 'fas fa-list-alt',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Un Resumen',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'De Nivelación',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'De Computación',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Prácticos',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
+        // [
+        //     'text'    => 'Observaciones',
+        //     'icon'    => 'fas fa-list-alt',
+        //     'icon_color' => 'secondary',
+        //     'classes'  => 'text-white text-bold bg-primary',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Un Resumen',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-dark',
+        //         ],
+        //         [
+        //             'text' => 'De Nivelación',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-dark',
+        //         ],
+        //         [
+        //             'text' => 'De Computación',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-dark',
+        //         ],
+        //         [
+        //             'text' => 'Prácticos',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => '#',
+        //             'classes'  => 'text-dark',
+        //         ],
+        //     ],
+        // ],
 
         
         /**
@@ -736,12 +738,12 @@ return [
                     'url'  => 'administrativos',
                     'classes'  => 'text-dark',
                 ],
-                [
-                    'text' => 'Proveedores',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'proveedores',
-                    'classes'  => 'text-dark',
-                ],
+                // [
+                //     'text' => 'Proveedores',
+                //     'icon'    => 'fas fa-angle-right',
+                //     'url'  => 'proveedores',
+                //     'classes'  => 'text-dark',
+                // ],
                
             ],
         ],
@@ -983,38 +985,38 @@ return [
                 ],
             ],
         ],
-//** %%%%%%%%%%%%%%%%%%  MENU REQUISITOS %%%%%%%%%%%%% */
+//** %%%%%%%%%%%%%%%%%%  MENU REQUISITOS son las asignaturas %%%%%%%%%%%%% */
         
-        [
-            'text'    => 'Requisitos',
-            'icon'    => 'fas fa-house-user',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'requisito',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-//** %%%%%%%%%%%%%%%%%%  MENU METAS %%%%%%%%%%%%% */
+        // [
+        //     'text'    => 'Requisitos',
+        //     'icon'    => 'fas fa-house-user',
+        //     'icon_color' => 'secondary',
+        //     'classes'  => 'text-white text-bold bg-primary',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Listar',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => 'requisito',
+        //             'classes'  => 'text-dark',
+        //         ],
+        //     ],
+        // ],
+//** %%%%%%%%%%%%%%%%%%  MENU METAS son las carreras %%%%%%%%%%%%% */
         
-        [
-            'text'    => 'Metas',
-            'icon'    => 'fas fa-house-user',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'meta',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
+        // [
+        //     'text'    => 'Metas',
+        //     'icon'    => 'fas fa-house-user',
+        //     'icon_color' => 'secondary',
+        //     'classes'  => 'text-white text-bold bg-primary',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Listar',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => 'meta',
+        //             'classes'  => 'text-dark',
+        //         ],
+        //     ],
+        // ],
 //** %%%%%%%%%%%%%%%%%%  MENU zonas %%%%%%%%%%%%% */
         
         [
@@ -1046,12 +1048,6 @@ return [
                     'url'  => 'feriados',
                     'classes'  => 'text-dark',
                 ],
-                [
-                    'text' => 'Crear',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'feriados/create',
-                    'classes'  => 'text-dark',
-                ],
             ],
         ],
     
@@ -1069,11 +1065,6 @@ return [
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'modalidads',
                 ],
-                [
-                    'text' => 'Crear',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'modalidads/create',
-                ],
             ],
         ],
 //** %%%%%%%%%%%%%%%%%%  MENU GRADOS %%%%%%%%%%%%% */
@@ -1088,12 +1079,6 @@ return [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'grados',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Crear',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'grados/create',
                     'classes'  => 'text-dark',
                 ],
             ],
@@ -1113,12 +1098,6 @@ return [
                     'url'  => 'materias',
                     'classes'  => 'text-dark',
                 ],
-                [
-                    'text' => 'Crear',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'materias/create',
-                    'classes'  => 'text-dark',
-                ],
             ],
         ],
         //** %%%%%%%%%%%%%%%%%%  MENU Aulas %%%%%%%%%%%%% */
@@ -1133,24 +1112,6 @@ return [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'aulas',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-       
-
-       
-        //** %%%%%%%%%%%%%%%%%%  MENU Administrativos %%%%%%%%%%%%% */
-        [
-            'text'    => 'Administrativos',
-            'icon'    => 'fas fa-users-cog',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
                     'classes'  => 'text-dark',
                 ],
             ],
@@ -1181,28 +1142,6 @@ return [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'cargo',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-
-        //** %%%%%%%%%%%%%%%%%%  MENU PROVEEDORES %%%%%%%%%%%%% */        
-        [
-            'text'    => 'Proveedores',
-            'icon'    => 'fas fa-shopping-cart',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Crear',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '#',
                     'classes'  => 'text-dark',
                 ],
             ],
@@ -1389,12 +1328,6 @@ return [
                     'url'  => 'motivos',
                     'classes'  => 'text-dark',
                 ],
-                [
-                    'text' => 'Crear',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'motivos/create',
-                    'classes'  => 'text-dark',
-                ],
             ],
         ],
         //** %%%%%%%%%%%%%%%%%%  MENU TIPOMOTIVOS %%%%%%%%%%%%% */
@@ -1463,20 +1396,20 @@ return [
         ],
         //** %%%%%%%%%%%%%%%%%%  MENU ASIGNATURA %%%%%%%%%%%%% */
         
-        [
-            'text'    => 'Asignaturas',
-            'icon'    => 'fas fa-prescription-bottle fa-2x',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'asignaturas',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
+        // [
+        //     'text'    => 'Asignaturas',
+        //     'icon'    => 'fas fa-prescription-bottle fa-2x',
+        //     'icon_color' => 'secondary',
+        //     'classes'  => 'text-white text-bold bg-primary',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Listar',
+        //             'icon'    => 'fas fa-angle-right',
+        //             'url'  => 'asignaturas',
+        //             'classes'  => 'text-dark',
+        //         ],
+        //     ],
+        // ],
 
         //** %%%%%%%%%%%%%%%%%%  MENU ROLES %%%%%%%%%%%%% */
     
@@ -1534,13 +1467,6 @@ return [
                     'url'  => 'schedule',
                     'classes'  => 'text-dark',
                     'can' => 'Listar Horarios',
-                ],
-
-                [
-                    'text' => 'Create',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'schedule/create',
-                    'classes'  => 'text-dark',
                 ],
             ],
         ],

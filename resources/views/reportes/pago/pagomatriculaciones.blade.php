@@ -126,7 +126,7 @@
                             "orderable": false,
             
                         },
-                        {data:'modalidad'},
+                        {data:'asignatura'},
                         {data:'monto'},
                         {data:'created_at'},
                         {

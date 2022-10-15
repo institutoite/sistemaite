@@ -11,6 +11,11 @@ use App\Models\Nivel;
 use App\Models\Aula;
 use App\Models\Dia;
 use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
 
 /**
  * Class BilleteController
@@ -25,10 +30,7 @@ class BilleteController extends Controller
      */
     public function index()
     {
-        $billetes = Billete::paginate();
-
-        return view('billete.index', compact('billetes'))
-            ->with('i', (request()->input('page', 1) - 1) * $billetes->perPage());
+        return view('billete.index');
     }
 
     /**
@@ -190,6 +192,19 @@ class BilleteController extends Controller
 
         return redirect()->route('billetes.index')
             ->with('success', 'Billete deleted successfully');
+    }
+    public function billetesInscripciones(Request $request){
+        $pagos=Pago::join('billetables','billetables.billetable_id','pagos.id')
+        ->join('billetes','billetables.billete_id','billetes.id')
+        ->where('pagos.pagable_type','App\\Models\\Inscripcione')
+        ->whereDate('pagos.created_at','<=',$request->fechafin)
+        ->whereDate('pagos.created_at','>=',$request->fechaini)
+        ->select('billetes.corte',DB::raw('(cantidad*corte) as subtotal'),DB::raw('sum(cantidad) as cantidad'))
+        ->groupBy('corte','cantidad','subtotal')
+        ->get();
+        // $pagos=Pago::all();
+        return DataTables::of($pagos)
+        ->toJson();
     }
 }
 

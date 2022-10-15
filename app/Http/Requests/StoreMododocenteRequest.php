@@ -24,7 +24,7 @@ class StoreMododocenteRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'mododocente'=>'required|max:20|unique:mododocentes,mododocente',
         ];
     }
 }

@@ -9,6 +9,10 @@ use App\Models\Billete;
 use App\Models\Modalidad;
 use App\Models\Pago;
 use App\Models\Matriculacion;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
 
 
 class BilletecomController extends Controller
@@ -20,7 +24,7 @@ class BilletecomController extends Controller
      */
     public function index()
     {
-        //
+        return view('billetecom.index');
     }
 
     /**
@@ -138,5 +142,17 @@ class BilletecomController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function billetesMatriculaciones(Request $request){
+        $pagos=Pago::join('billetables','billetables.billetable_id','pagos.id')
+        ->join('billetes','billetables.billete_id','billetes.id')
+        ->where('pagos.pagable_type','App\\Models\\Matriculacion')
+        ->whereDate('pagos.created_at','<=',$request->fechafin)
+        ->whereDate('pagos.created_at','>=',$request->fechaini)
+        ->select('billetes.corte',DB::raw('(cantidad*corte) as subtotal'),DB::raw('sum(cantidad) as cantidad'))
+        ->groupBy('corte','cantidad','subtotal')
+        ->get();
+        return DataTables::of($pagos)
+        ->toJson();
     }
 }

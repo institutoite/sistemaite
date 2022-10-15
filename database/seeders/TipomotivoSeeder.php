@@ -20,5 +20,14 @@ class TipomotivoSeeder extends Seeder
         Tipomotivo::create(['tipomotivo' => "Tipo motivo de lincencia Clases Nivelvación"]);
         Tipomotivo::create(['tipomotivo' => "Tipo motivo de licencia clases computación"]);
         Tipomotivo::create(['tipomotivo' => "Tipo motivo de licencia Guardería"]);
+
+        Tipomotivo::find(1)->usuarios()->attach(1);
+        Tipomotivo::find(2)->usuarios()->attach(1);
+        Tipomotivo::find(3)->usuarios()->attach(1);
+
+        Tipomotivo::find(4)->usuarios()->attach(1);
+        Tipomotivo::find(5)->usuarios()->attach(1);
+        Tipomotivo::find(6)->usuarios()->attach(1);
+
     }
 }

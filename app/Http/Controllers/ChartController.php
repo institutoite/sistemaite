@@ -16,6 +16,8 @@ class ChartController extends Controller
         ->groupBy('modalidad')
         ->orderBy('cantidad', 'desc')
         ->get();
+        $data['label'][]=[];
+        $data['data'][]=[];
         foreach ($consulta as $elemento) {
             $data['label'][]=$elemento->modalidad;
             $data['data'][]=$elemento->cantidad;
@@ -37,7 +39,8 @@ class ChartController extends Controller
         ->groupBy('modalidad')
         ->orderBy('monto', 'desc')
         ->get();
-        
+        $data['label'][]=[];
+        $data['data'][]=[];
         foreach ($consulta as $elemento) {
             $data['label'][]=$elemento->modalidad;
             $data['data'][]=$elemento->monto;
@@ -59,7 +62,9 @@ class ChartController extends Controller
             ->groupBy('name')
             ->orderBy('cantidad', 'desc')
             ->get();
-                
+        
+        $data['label'][]=[];
+        $data['data'][]=[];
         foreach ($consulta as $elemento) {
             $data['label'][]=$elemento->name;
             $data['data'][]=$elemento->cantidad;
@@ -83,7 +88,8 @@ class ChartController extends Controller
             ->groupBy('name')
             ->orderBy('monto','desc')
             ->get();
-                
+        $data['label'][]=[];
+        $data['data'][]=[];
         foreach ($consulta as $elemento) {
             $data['label'][]=$elemento->name;
             $data['data'][]=$elemento->monto;
@@ -107,7 +113,8 @@ class ChartController extends Controller
             ->groupBy('name')
             ->orderBy('cantidad','desc')
             ->get();
-                
+        $data['label'][]=[];
+        $data['data'][]=[];
         foreach ($consulta as $elemento) {
             $data['label'][]=$elemento->name;
             $data['data'][]=$elemento->cantidad;

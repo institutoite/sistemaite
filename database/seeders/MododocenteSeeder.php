@@ -18,5 +18,7 @@ class MododocenteSeeder extends Seeder
         Mododocente::create(['mododocente'=>'SOLOPRACTICOS']);
         Mododocente::create(['mododocente'=>'SOLO RESERVAS']);
         Mododocente::create(['mododocente'=>'DISTANCIA']);
+
+        // ok userables
     }
 }

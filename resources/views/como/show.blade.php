@@ -28,6 +28,15 @@
                             <td>{{$como->como}}</td>
                         </tr>
                         <tr>
+                            <td>Usuario</td>
+                            <td>
+                                @isset($user)
+                                    {{$user->name}}
+                                    <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" width="100" class="rounded img-thumbnail img-fluid border-primary border-5"> 
+                                @endisset
+                            </td>
+                        </tr>
+                        <tr>
                             <td>CREADO</td>
                             <td>{{$como->created_at}}</td>
                         </tr>

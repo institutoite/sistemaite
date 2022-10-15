@@ -123,3 +123,22 @@ NO SEMUESTRA LA LICENCIA EN programacion coms
 
   "sweetalert2": "^10.12.6",
     --}}
+
+OK VALIDAR UNIQUE EN MODODOCENTES CRUD 
+OK aumentar userables en los seeder zonas,pais,departamentos,MUNICIPIOS
+
+
+
+
+
+desvigentizar feriados o solo que se muestren los mayores a hoy 
+mostrar no funciona en grados
+ENVELLECER VISTA DE CARRERAS
+revisar todos los eliminar
+ASIGNATURA UPDATE CORREGIR
+NO ELIMINA NIVELES, ZONA CRUD
+NO ESTA MOSTRANDO MOTIVO 
+NO ESTA MOSTRARNDO TIPO MOTIVOS
+ESTADO NO ESTA MOSTRANDO USUARIO QUE LO CREO
+Tipo archivo no esta actualizando bien 
+

@@ -54,8 +54,8 @@ class ComoController extends Controller
      */
     public function show(Como $como)
     {
-        return view('como.show', compact('como'));
-        // return "soy el show";
+        $user=$como->usuarios->first();
+        return view('como.show', compact('como','user'));
     }
 
     /**

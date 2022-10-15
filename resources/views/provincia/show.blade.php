@@ -5,9 +5,7 @@
 @section('title', 'Provincias Mostrar')
 
 @section('content')
-    <section class="content container-fluid">
-        <div class="row">
-            <div class="col-md-12">
+  
                 <div class="card">
                     <div class="card-header bg-secondary">
                         <div class="float-left">
@@ -20,7 +18,7 @@
 
                     <div class="card-body">
                         
-                        <table class="table table-striped table-inverse table-responsive table-bordered table-hover">
+                        <table class="table table-striped table-inverse table-bordered table-hover">
                             <thead class="thead-inverse|thead-default">
                                 <tr>
                                     <th>ATRIBUTO</th>
@@ -65,8 +63,6 @@
                                 </tbody>
                         </table>
                     </div>
-                </div>
-            </div>
-        </div>
+       
     </section>
 @endsection

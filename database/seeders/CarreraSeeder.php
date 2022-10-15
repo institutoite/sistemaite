@@ -41,11 +41,13 @@ class CarreraSeeder extends Seeder
             'description' => 'descripcion de Marketing Digital',
             'precio' => '1750',
         ]);
-        // Userable::create(["user_id"=>1,"userable_id"=>1,"userable_type"=>"App\Models\Carrera"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>2,"userable_type"=>"App\Models\Carrera"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>3,"userable_type"=>"App\Models\Carrera"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>4,"userable_type"=>"App\Models\Carrera"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>5,"userable_type"=>"App\Models\Carrera"]);
+        
+        Carrera::find(1)->usuarios()->attach(1);
+        Carrera::find(2)->usuarios()->attach(1);
+        Carrera::find(3)->usuarios()->attach(1);
+        Carrera::find(4)->usuarios()->attach(1);
+        Carrera::find(5)->usuarios()->attach(1);
+
 
     }
 }

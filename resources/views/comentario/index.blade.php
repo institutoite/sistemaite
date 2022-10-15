@@ -19,7 +19,7 @@
                     <div class="card-header bg-secondary">
                             <div class="float-right">
                                 <a href="{{ route('comentario.create') }}" class="btn btn-primary text-white float-right"  data-placement="left">
-                                    {{ __('Crear contacto') }}
+                                    {{ __('Crear comentario') }}
                                 </a>
                             </div>
                     </div>

@@ -60,7 +60,8 @@ class ProvinciaController extends Controller
             ->join('departamentos','provincias.departamento_id','=','departamentos.id')
             ->join('pais','departamentos.pais_id','=','pais.id')
             ->where('provincias.id','=',$id)->get()->first();
-        $user=$provincias->usuarios->first();
+        $prov= Provincia::findOrFail($id);    
+        $user=$prov->usuarios->first();
         //$departamento=Departamento::findOrFail($provincia->departamento_id);
         return view('provincia.show', compact('provincia','user'));
     }

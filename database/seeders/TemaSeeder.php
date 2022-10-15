@@ -25,8 +25,14 @@ class TemaSeeder extends Seeder
         Tema::create(['tema' => 'Notacion científica', 'materia_id' => 2]);
         Tema::create(['tema' => 'Movimiento rectilineo uniformemente variado MRUV', 'materia_id' => 1]);
         
-
-
-        
+        Tema::find(1)->usuarios()->attach(1);
+        Tema::find(2)->usuarios()->attach(1);
+        Tema::find(3)->usuarios()->attach(1);
+        Tema::find(4)->usuarios()->attach(1);
+        Tema::find(5)->usuarios()->attach(1);
+        Tema::find(6)->usuarios()->attach(1);
+        Tema::find(7)->usuarios()->attach(1);
+        Tema::find(8)->usuarios()->attach(1);
+        Tema::find(9)->usuarios()->attach(1);
     }
 }

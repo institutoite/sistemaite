@@ -72,7 +72,7 @@ class MunicipioController extends Controller
         $provincia = Provincia::findOrFail($municipio->provincia_id);
         $departamento = Departamento::findOrFail($provincia->departamento_id);
         $pais = Pais::findOrFail($departamento->pais_id);
-        $user=User::findOrFail($municipio->userable->user_id);
+        $user=$municipio->usuarios->first();
         return view('municipio.show', compact('municipio','provincia','departamento','pais','user'));
     }
 

@@ -53,10 +53,12 @@ use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ConvenioController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\CaracteristicaController;
+use App\Http\Controllers\BilleteController;
+use App\Http\Controllers\BilletecomController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[CaracteristicaController::class,'destroy'])->name('prueba');
+Route::get('prueba',[BilleteController::class,'billetesInscripciones'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -356,11 +358,14 @@ Route::get('pagoscom/mostrar/ajax',[PagocomController::class,'pagosComMostrarAja
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%BILLETES          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('billetes', "BilleteController");
 Route::get('billetes/crear/{pago}', "BilleteController@crear")->name('billete.crear');
+Route::get('listar/billetes/inscripciones', [BilleteController::class,'billetesInscripciones'])->name('billetes.inscripciones');
 Route::post('billetes/guardar/{pago}', 'BilleteController@guardar')->name('billetes.guardar');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       BILLETES COMPUTACION       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 //Route::get('billetes', [BilleteController::class,'index']);
+Route::resource('billetescom', "BilletecomController");
 Route::get('billetecom/crear/{pago}', "BilletecomController@crear")->name('billetecom.crear');
+Route::get('listar/billetes/matriculaciones', [BilletecomController::class,'billetesMatriculaciones'])->name('billetes.matriculaciones');
 Route::post('billetecom/guardar/{pago}', 'BilletecomController@guardar')->name('billetecom.guardar');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  FERIADOS          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */

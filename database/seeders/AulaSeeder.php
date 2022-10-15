@@ -36,19 +36,6 @@ class AulaSeeder extends Seeder
         Aula::find(8)->usuarios()->attach(1);
         Aula::find(9)->usuarios()->attach(1);
         Aula::find(10)->usuarios()->attach(1);
-        // Userable::create(["user_id"=>1,"userable_id"=>1,"userable_type"=>"App\Models\Aula"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>2,"userable_type"=>"App\Models\Aula"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>3,"userable_type"=>"App\Models\Aula"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>4,"userable_type"=>"App\Models\Aula"]);
-        
-        // Userable::create(["user_id"=>1,"userable_id"=>5,"userable_type"=>"App\Models\Aula"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>6,"userable_type"=>"App\Models\Aula"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>7,"userable_type"=>"App\Models\Aula"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>8,"userable_type"=>"App\Models\Aula"]);
-        
-        // Userable::create(["user_id"=>1,"userable_id"=>9,"userable_type"=>"App\Models\Aula"]);
-        // Userable::create(["user_id"=>1,"userable_id"=>10,"userable_type"=>"App\Models\Aula"]);
-
 
     }
 }

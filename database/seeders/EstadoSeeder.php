@@ -26,5 +26,18 @@ class EstadoSeeder extends Seeder
         Estado::create(['estado'=>'FALTANOTIFICADA']);//10
         Estado::create(['estado'=>'HABILITADO']);//11
         Estado::create(['estado'=>'DESHABILITADO']);//12
+
+        Estado::find(1)->usuarios()->attach(1);
+        Estado::find(2)->usuarios()->attach(1);
+        Estado::find(3)->usuarios()->attach(1);
+        Estado::find(4)->usuarios()->attach(1);
+        Estado::find(5)->usuarios()->attach(1);
+        Estado::find(6)->usuarios()->attach(1);
+        Estado::find(7)->usuarios()->attach(1);
+        Estado::find(8)->usuarios()->attach(1);
+        Estado::find(9)->usuarios()->attach(1);
+        Estado::find(10)->usuarios()->attach(1);
+        Estado::find(11)->usuarios()->attach(1);
+        Estado::find(12)->usuarios()->attach(1);
     }
 }
