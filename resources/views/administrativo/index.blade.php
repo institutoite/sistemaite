@@ -44,7 +44,7 @@
     <script src="{{asset('dist/js/moment.js')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     
-    <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="{{asset('assets/js/observacion.js')}}"></script>
     <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
     <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>

@@ -40,16 +40,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/locales/es.js"></script>
     
     <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
-    
-    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script> --}}
-    <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
-    {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% CKEDITOR --}}
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script>
-        // ClassicEditor
-        //     .create( document.querySelector('#observacion'))
-        //     .catch( error => {
-        //         console.error(error);
-        //     } );
         CKEDITOR.replace('observacion', {
             height: 120,
             width: "100%",

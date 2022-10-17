@@ -80,7 +80,7 @@ class TipofileController extends Controller
 
     public function actualizar(TipofileUpdateRequest $request)
     {
-        return response()->json($request->all());
+        //return response()->json($request->all());
         $tipofile = Tipofile::findOrFail($request->id);
         $tipofile->tipofile = $request->tipofile;
         $tipofile->programa = $request->programa;

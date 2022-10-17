@@ -55,10 +55,11 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\CaracteristicaController;
 use App\Http\Controllers\BilleteController;
 use App\Http\Controllers\BilletecomController;
+use App\Http\Controllers\FeriadoController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
-Route::get('prueba',[PersonaController::class,'eliminarPersona'])->name('prueba');
+Route::get('prueba',[FeriadoController::class,'listar'])->name('prueba');
 
 Route::get('/', function () {
     return view('welcome');
@@ -123,7 +124,7 @@ Route::post('persona/felicitado', [PersonaController::class,'felicitado'])->name
 Route::post('persona/faltainformar', [PersonaController::class,'faltaInformar'])->name('persona.faltaInformar'); //Falta informar 
 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%CONTACTO EDITAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-Route::get('persona/crear/contacto', [PersonaController::class,'crearSoloContacto'])->name('personas.crear.contacto'); //Falta informar 
+Route::get('persona/crear/contacto', [PersonaController::class,'crearSoloContacto'])->name('personas.crear.contacto')->middleware('auth'); //Falta informar 
 Route::get('persona/editar/contacto/{persona}', [PersonaController::class,'editarSoloContacto'])->name('personas.editar.contacto'); //Falta informar 
 Route::post('persona/contacto/store', [PersonaController::class,'guardarSoloContacto'])->name('personas.store.contacto');
 Route::post('persona/contacto/update/{persona}', [PersonaController::class,'actualizarSoloContacto'])->name('personas.uptate.contacto');
@@ -371,6 +372,7 @@ Route::post('billetecom/guardar/{pago}', 'BilletecomController@guardar')->name('
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  FERIADOS          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('feriados', "FeriadoController");
+Route::get('feriados/listar',[FeriadoController::class,'listar'])->name('feriado.listar');
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  DIA          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 Route::resource('dias','DiaController');

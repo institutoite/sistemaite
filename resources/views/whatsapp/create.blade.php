@@ -39,7 +39,7 @@
 @section('js')
         
     {{-- <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script> --}}
-     <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% CKEDITOR --}}
     <script>
         CKEDITOR.replace('mensaje', {

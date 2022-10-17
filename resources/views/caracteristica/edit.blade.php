@@ -26,10 +26,13 @@
 
 @section('js')
     <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+      {{-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script> --}}
+    
     <script>
         CKEDITOR.replace('caracteristica', {
             height: 150,
             width: "100%",
+            maxCharCount:50,
             removeButtons: 'PasteFromWord'
         });
     </script>

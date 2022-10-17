@@ -97,7 +97,7 @@ class MotivoController extends Controller
     public function mostrar(Request $request)
     {
         $motivo = Motivo::findOrFail($request->id);
-        $user = User::findOrFail($motivo->userable->user_id);
+        $user = $motivo->usuarios->first();
         $tipomotivo=$motivo->tipomotivo;
         $data=['motivo'=>$motivo,'user'=>$user ,'tipomotivo'=>$tipomotivo];
         return response()->json($data);

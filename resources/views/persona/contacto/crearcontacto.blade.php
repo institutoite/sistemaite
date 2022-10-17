@@ -15,6 +15,7 @@
             <form action="{{route('personas.store.contacto')}}" id="formulario" method="post" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
                 @csrf
                 @include('persona.contacto.formcontacto')
+                
                 @include('include.botones')
             </form>
         </div>
@@ -23,20 +24,14 @@
 
 @section('js')
 <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% CKEDITOR --}}
     <script>
-        ClassicEditor
-            .create( document.querySelector('#observacion'))
-            .catch( error => {
-                console.error(error);
-            } );
-    </script>
-    {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% FIN CKEDITOR --}}
-    <script>
-        $(document).ready(function(){
 
-        });
+       CKEDITOR.replace('observacion');
+       
+       
     </script>
     
 @stop

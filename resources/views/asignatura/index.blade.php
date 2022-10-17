@@ -10,7 +10,6 @@
 @section('content_header')
     <h1 class="text-center text-primary">Lista de asignaturas</h1>
 @stop
-
 @section('content')
     <div class="card-header bg-primary">
                 Lista de Asignaturas <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('asignatura.create')}}">Crear Asignatura</a>

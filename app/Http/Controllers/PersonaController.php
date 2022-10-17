@@ -251,6 +251,7 @@ class PersonaController extends Controller
     }
 
     public function storeContacto(PersonaApoderadaRequestStore $request,$id){
+        // dd($request->all());
         $persona=Persona::findOrFail($id);
         $apoderado = new Persona();
         $apoderado->nombre = $request->nombre;
@@ -433,6 +434,7 @@ class PersonaController extends Controller
         return view('persona.contacto.crearcontacto',compact('comos'));
     }
     public function guardarSoloContacto(RequestStoreSoloContacto $request){
+        // dd($request->all()   );
         $persona=new Persona();
         $persona->nombre=$request->nombre;
         $persona->apellidop=$request->apellidop;

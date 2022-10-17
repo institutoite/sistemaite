@@ -20,8 +20,8 @@
                         
                         <textarea cols="80" id="{{$id}}" name="{{$nombre}}" rows="10" data-sample-short>
                         </textarea>
-                        <input type="text" class="observable_id" name="observable_id" id="observable_id" value="">
-                        <input type="text" class="observable_type" name="observable_type" id="observable_type" value="{{$observabletype}}">
+                        <input type="text" hidden class="observable_id" name="observable_id" id="observable_id" value="">
+                        <input type="text" hidden class="observable_type" name="observable_type" id="observable_type" value="{{$observabletype}}">
 
                         <div class="container-fluid h-100 mt-3"> 
                             <div class="row w-100 align-items-center">

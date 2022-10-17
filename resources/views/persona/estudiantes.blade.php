@@ -69,7 +69,7 @@
     
     <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
     
-    <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="{{asset('assets/js/observacion.js')}}"></script>
     <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
     <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
@@ -274,15 +274,7 @@
                     imageHeight:400,
                     imageAlt: 'Custom image',
                     confirmButtonText:"Aceptar",
-                
                 })
-            });
-        
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('table').on('click','.eliminargenerico',function (e) {
-                e.preventDefault(); 
-                registro_id=$(this).closest('tr').attr('id');
-                eliminarRegistro(registro_id,'persona',tabla);
             });
         });
                 

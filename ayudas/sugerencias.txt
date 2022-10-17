@@ -126,21 +126,17 @@ NO SEMUESTRA LA LICENCIA EN programacion coms
 
 OK VALIDAR UNIQUE EN MODODOCENTES CRUD 
 OK aumentar userables en los seeder zonas,pais,departamentos,MUNICIPIOS
-
-
-
-
-
-desvigentizar feriados o solo que se muestren los mayores a hoy 
-mostrar no funciona en grados
-ENVELLECER VISTA DE CARRERAS
-revisar todos los eliminar
+ok desvigentizar feriados o solo que se muestren los mayores a hoy 
+OK mostrar no funciona en grados
+OK ENVELLECER VISTA DE CARRERAS
 ASIGNATURA UPDATE CORREGIR
-NO ELIMINA NIVELES, ZONA CRUD
 NO ESTA MOSTRANDO MOTIVO 
 NO ESTA MOSTRARNDO TIPO MOTIVOS
 ESTADO NO ESTA MOSTRANDO USUARIO QUE LO CREO
 Tipo archivo no esta actualizando bien 
+
+revisar todos  los eliminar
+NO ELIMINA NIVELES, ZONA CRUD
 
 $('table').on('click','.eliminargenerico',function (e) {
     e.preventDefault(); 

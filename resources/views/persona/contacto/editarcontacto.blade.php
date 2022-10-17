@@ -24,14 +24,11 @@
 
 @section('js')
 <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script> --}}
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% CKEDITOR --}}
     <script>
-        ClassicEditor
-            .create( document.querySelector('#observacion'))
-            .catch( error => {
-                console.error(error);
-            } );
+        CKEDITOR.replace('observacion');
     </script>
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% FIN CKEDITOR --}}
     <script>

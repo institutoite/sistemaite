@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Http\Requests\FeriadoStoreRequest;
 use App\Http\Requests\FeriadoUpdateRequest;
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
+
 /**
  * Class FeriadoController
  * @package App\Http\Controllers
@@ -57,8 +60,7 @@ class FeriadoController extends Controller
         $feriado->save();
 
         $feriado->usuarios()->attach(Auth::user()->id);
-        return redirect()->route('feriados.index')
-            ->with('success', 'Feriado created successfully.');
+        return redirect()->route('feriados.index');
     }
 
     /**
@@ -112,8 +114,15 @@ class FeriadoController extends Controller
      */
     public function destroy($id)
     {
-
         Feriado::findOrFail($id)->delete();
         return response()->json(['mensaje'=>"Se elimino correctamente"]);
+    }
+    public function listar(){
+        $feriados= Feriado::all();
+        
+        return datatables()->of($feriados)
+        ->addColumn('btn', 'feriado.action')
+        ->rawColumns(['btn'])
+        ->toJson();
     }
 }

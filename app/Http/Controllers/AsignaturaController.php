@@ -78,7 +78,7 @@ class AsignaturaController extends Controller
      */
     public function edit($asignatura)
     {
-        // dd($asignatura);
+        
         $carreras=Carrera::all();
         $asignatura= Asignatura::findOrFail($asignatura);
         return view('asignatura.edit', compact('asignatura','carreras'));

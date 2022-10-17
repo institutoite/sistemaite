@@ -53,7 +53,8 @@ class EstadoController extends Controller
      */
     public function show(Estado $estado)
     {
-        return view('estado.show',compact('estado'));
+        $user=$estado->usuarios->first();
+        return view('estado.show',compact('estado','user'));
     }
 
     /**
