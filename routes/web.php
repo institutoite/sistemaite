@@ -65,7 +65,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
     });
     Auth::routes();
 
-// Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     Route::get('prueba',[FeriadoController::class,'listar'])->name('prueba');
     Route::get('/ninacos', function () {
@@ -811,7 +811,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
     Route::post('messages', [MessageController::class, 'store'])->name('messages.store');
 
-// });
+});
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  FRONTED ITE   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::any('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');

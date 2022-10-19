@@ -70,7 +70,7 @@
 </div> --}}
 
     <div class="divtabla">
-        <table class="table-fill table">
+        <table class="table-fill tabla1">
             <thead>
                 <tr>
                     <th>#</th>

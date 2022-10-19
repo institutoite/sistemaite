@@ -4,7 +4,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+    body {
+    
+    font-family: helvetica, arial, sans-serif, Montserrat;
+    text-rendering: optimizeLegibility;
+    }
+    body {
+    margin: 0;
+    }
+
+    div.table-title {
+    display: block;
+    margin: auto; 
+    width: 100%;
+    }
+
+    .table-title h3 {
+    color: #fafafa;
+    font-size: 20px;
+    font-weight:300;
+    font-style:normal;
+    font-family: helvetica, arial, sans-serif, Montserrat;
+    text-transform:uppercase;
+    }
+    .table-fill {
+    background: white;
+    border-radius:3px;
+    border-collapse: collapse;
+    margin: auto;
+    width: 100%;
+    }
+
+
+    .table{
+    border:1px solid #C1C3D1;
+    position:absolute;
+    }
+    
+    th {
+    color:#4B4B4B;
+    border:1px solid #9ea7af;
+    
+    font-size:14px;
+    font-weight: bold;
+
+    text-align:center;
+    vertical-align:middle;
+    background-color:#ddd;
+    }
+
+   
+    
+    
+    tr {
+    border:1px solid #d1d1d1;
+    border-bottom:1px solid #ddd;
+    border-bottom-color: 1px solid #C1C3D1;
+    color:#1f1e1e;
+    font-size:16px;
+    }
+
+  
+    
+    .table tr:nth-child(odd) td {
+        background:#eee;
+    }
+    
+    .table tr:nth-child(odd):hover td {
+        background:#000000;
+    }
+
+    tr:last-child td:first-child {
+    border-bottom-left-radius:3px;
+    }
+    
+    tr:last-child td:last-child {
+    border-bottom-right-radius:3px;
+    }
+    
+    td {
+    background:#FFFFFF;
+    text-align:center;
+    vertical-align:middle;
+    font-size:15px;
+    font-weight:300;
+    border-right: 1px solid #C1C3D1;
+    border-left: 1px solid #C1C3D1;
+    border-top: 1px solid #C1C3D1;
+    border-bottom: 1px solid #C1C3D1;
+    width: auto;
+    }
+
+    td:last-child {
+    border-right: 0px;
+    }
+
+    th.text-left {
+    text-align: left;
+    }
+
+    th.text-center {
+    text-align: center;
+    }
+
+    th.text-right {
+    text-align: right;
+    }
+
+    td.text-left {
+    text-align: left;
+    }
+
+    td.text-center {
+    text-align: center;
+    }
+
+    td.text-right {
+    text-align: right;
+    }
+    </style>
     
     {{-- <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}"> --}}
     {{-- <link rel="stylesheet" href="{{asset('custom/css/reporte.css')}}"> --}}
@@ -46,13 +167,27 @@
     {{-- <div class="titulos inscripcion" ><h3> CODIGO:{{$persona->id}}<h3></div> --}}
 
     
-{{-- <div class="datos">
-        <div class="personal cuadrosdatos">
-            <span class="titulos"> <strong> DATOS PERSONALES </strong> </span><br>
-            <span>{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</span><br>
-            <span>{{$persona->direccion }}</span><br>
-            <span>{{$persona->carnet}} </span> 
-        </div>
+<div class="">
+   <table class="table">
+    <tbody>
+        <tr>
+            <td>Estudiante</td>
+            <td>{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</td>
+            <td>Documento CI</td>
+            <td>>{{$persona->carnet}}</td>
+            <td>Usuario</td>
+            <td>>{{$usuario->name}}</td>
+        </tr>
+        <tr>
+            <td>Modalidad</td>
+            <td>{{$modalidad->modalidad}}</td>
+            <td>Total horas</td>
+            <td>>{{$inscripcion->totalhoras}}</td>
+            <td>Nivel</td>
+            <td>>{{$nivel->nivel}}</td>
+        </tr>
+    </tbody>
+   </table>
         <div class="inscripciondata cuadrosdatos " >
             <span class="titulos"> <strong> INSCRIPCION</strong> </span><br>
             <span>{{$modalidad->modalidad}}</span>
@@ -68,16 +203,8 @@
             <span>{{$colegio->direccion}}</span>
         </div> 
 
-</div> --}}
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+</div>
+    
     <div class="divtabla" styker="page-break-inside: auto;">
         <table class="table-fill table">
             <thead>
@@ -115,9 +242,9 @@
                     <td>
                         @php
                             if($programa->habilitado==1){
-                                echo "||";
+                                echo "activado";
                             }else{
-                                echo "~~";
+                                echo "inactivo";
                             }
                             @endphp
                     </td>
@@ -126,6 +253,16 @@
                     <tr> <td colspan="7"> <div style="page-break-before:always;"> </div> </td></tr>
                 @endif
                 @endforeach
+
+                <tfoot>
+                    <tr class={{$clase}}>
+                        <th colspan="3"></th>
+                        <th colspan="2">Total:{{round($inscripcion->totalhoras,1)}} Horas</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+
             </tbody>
             <tfoot>
                 este es el pie de pagina
