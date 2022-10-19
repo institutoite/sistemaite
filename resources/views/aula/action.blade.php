@@ -9,7 +9,7 @@
 <form action=""  class="d-inline formulario eliminar">
     @csrf
     @method("delete")
-    <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn eliminar" title="Eliminar este tipo de archivo">
+    <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn eliminargenerico" title="Eliminar este tipo de archivo">
         <i class="fa fa-fw fa-trash text-danger"></i>   
     </button>
 </form> 

@@ -84,10 +84,10 @@ class CargoController extends Controller
      * @param  \App\Models\Cargo  $cargo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DeleteRequest $request)
+    public function destroy(Cargo $cargo)
     {
-        $cargo_id=$request->id;
-        $cargo=Cargo::findOrFail($cargo_id);
+        // $cargo_id=$request->id;
+        // $cargo=Cargo::findOrFail($cargo_id);
         $cargo->delete();
         return response()->json(['mensaje'=>"El registro fue eliminado correctamente"]);
     }

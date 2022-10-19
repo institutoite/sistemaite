@@ -31,7 +31,7 @@
                             </a>
                         </div>
                     </div>
-
+                    {{$inscripcion}}
                     <div class="card-body">
                         
                         <table id="programacion" class="table table-bordered table-striped table-hover">
@@ -80,7 +80,7 @@
                                                     $claseBotonHoy.="btn btn-warning";
                                                 }
                                         @endphp
-                                    <tr class="{{$claseFila.' '.$claseHoy}}">
+                                    <tr id="{{$programa->id}}" class="{{$claseFila.' '.$claseHoy}} filillas">
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$programa->fecha->isoFormat('DD/MM/YYYY')}}</td>
                                         <td>{{$programa->fecha->isoFormat('dddd')}}</td>
@@ -90,7 +90,8 @@
                                         <td>{{$programa->materia}}</td>
                                         <td>{{$programa->aula}}</td>
                                         <td>
-                                            <a class="{{ $claseBoton.' '.$claseBotonHoy }} tooltipsC mr-2" href="{{route('set.fecha.proximo.pago', ['fecha'=>$programa->fecha->isoFormat('YYYY-MM-DD'),'id'=>$programa->inscripcione_id])}}" title="Asignar esta fecha para el proximo pago">
+                                            {{-- <a class="{{ $claseBoton.' '.$claseBotonHoy }} tooltipsC mr-2 fechar" href="{{route('set.fecha.proximo.pago', ['fecha'=>$programa->fecha->isoFormat('YYYY-MM-DD'),'id'=>$programa->inscripcione_id])}}" title="Asignar esta fecha para el proximo pago"> --}}
+                                            <a class="{{ $claseBoton.' '.$claseBotonHoy }} tooltipsC mr-2 fechar" title="Asignar esta fecha para el proximo pago">
                                                 Pagará &nbsp;<i class="fas fa-calendar-check"></i>
                                             </a>
                                         </td>
@@ -120,6 +121,7 @@
                     "autoWidth":false,
                     "ordering": false,
                     "info":     false,
+                    
                     "language":{
                             "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json",
                     },
@@ -132,6 +134,25 @@
                     },
                 }
             );
+            $('table').on('click','.fechar',function (e) {
+                e.preventDefault(); 
+                id_seleccionada=$(this).closest('tr').attr('id');
+
+                $.ajax({
+                    url: '../../fechar/pago/proximo/' + id_seleccionada+"/{{$inscripcion}}",
+                    success: function (result) {
+                        //location.reload();
+
+                        $(".filillas").removeClass("bg-warning");
+                        $(".fechar").removeClass("btn-warning");
+                        $(".fechar").addClass("btn-primary");
+                        $("#"+id_seleccionada).addClass("bg-warning");
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                    }
+                });
+            });
         } );
     </script>
 @stop

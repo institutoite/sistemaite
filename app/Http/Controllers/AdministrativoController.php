@@ -113,11 +113,11 @@ class AdministrativoController extends Controller
         return redirect()->route("administrativos.index");
     }
 
-    public function destroy(DeleteRequest $request)
+    public function destroy(Administrativo $administrativo)
     {
-        $adminitrativo_id=$request->id;
-        $adminitrativo=Administrativo::findOrFail($adminitrativo_id);
-        $adminitrativo->delete();
+        // $adminitrativo_id=$request->id;
+        // $adminitrativo=Administrativo::findOrFail($adminitrativo_id);
+        $administrativo->delete();
         return response()->json(['mensaje'=>"El registro fue eliminado correctamente"]);
     }
 

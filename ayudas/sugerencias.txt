@@ -140,8 +140,8 @@ NO ELIMINA NIVELES, ZONA CRUD
 
 $('table').on('click','.eliminargenerico',function (e) {
     e.preventDefault(); 
-    contacto_id=$(this).parent().parent().find('td').first().html();
-    eliminarRegistro(contacto_id,'persona',tabla);
+    registro_id=$(this).closest('tr').attr('id');
+    eliminarRegistro(registro_id,'administrativo',tablaadministrativos);
 });
 <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
 <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>

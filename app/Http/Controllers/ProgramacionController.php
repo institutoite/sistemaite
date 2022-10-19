@@ -610,7 +610,7 @@ class ProgramacionController extends Controller
         ->join('aulas', 'programacions.aula_id', '=', 'aulas.id')
         ->join('docentes', 'programacions.docente_id', '=', 'docentes.id')
         ->join('personas', 'personas.id', '=', 'docentes.persona_id')
-        ->select('programacions.fecha', 'hora_ini', 'hora_fin','horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado', 'programacions.inscripcione_id')
+        ->select('programacions.id','programacions.fecha', 'hora_ini', 'hora_fin','horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado', 'programacions.inscripcione_id')
         ->orderBy('fecha', 'asc')
         ->where('inscripcione_id', '=', $inscripcion)->get();
         $persona=Persona::findOrFail(Inscripcione::findOrFail($inscripcion)->estudiante->persona_id);

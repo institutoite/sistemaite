@@ -10,7 +10,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
         <div class="form-floating mb-3 text-gray">
             <input  type="text" name="titulo" id="titulo"  class="form-control @error('titulo') is-invalid @enderror" value="{{old('titulo',$plan->titulo ?? '')}}" autocomplete="off">
-            <label for="titulo">título plan nuevo</label>
+            <label for="titulo">Título nuevo plan</label>
         </div>
     </div>
 </div>

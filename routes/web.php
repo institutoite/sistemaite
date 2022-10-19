@@ -60,9 +60,12 @@ use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
 
+  Route::get('/', function () {
+    return view('welcome');
+    });
+    Auth::routes();
 
-
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
 
     Route::get('prueba',[FeriadoController::class,'listar'])->name('prueba');
     Route::get('/ninacos', function () {
@@ -220,7 +223,7 @@ Route::middleware(['auth'])->group(function () {
 
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%COMO   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     Route::resource('cargo', "CargoController");
-    Route::delete('eliminar/cargo', [CargoController::class,'destroy'])->name('cargo.delete');
+    Route::delete('eliminar/cargo/{cargo}', [CargoController::class,'destroy'])->name('cargo.delete');
     Route::get('listar/cargos',[CargoController::class,'listar'])->name('cargos.listar');
 
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%MODODOCENTE         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -286,7 +289,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('micartera/matriculaciones',[AdministrativoController::class,'miCarteraMatriculaciones'])->name('administrativo.micartera.matriculacioenes');
     Route::get('micartera/matriculaciones/desvigentes',[AdministrativoController::class,'miCarteraMatriculacionesDesvigentes'])->name('administrativo.micartera.matriculacioenes.desvigentes');
     Route::get('opciones/administrativos/{persona}',[OpcionController::class,'administrativos'])->name('opcion.administrativos');
-    Route::delete('eliminar/administrativo', [AdministrativoController::class,'destroy'])->name('administrativo.delete');
+    Route::delete('eliminar/administrativo/{administrativo}', [AdministrativoController::class,'destroy'])->name('administrativo.delete');
     Route::get('administrativos/crar/{persona}', [AdministrativoController::class,'crear'])->name('administrativo.crear');
     Route::get('administrativos/editar/{administrativo}', [AdministrativoController::class,'editar'])->name('administrativo.editar');
     Route::resource('administrativos', "AdministrativoController");
@@ -474,7 +477,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('caracteristica/mostrar/{caracteristica}', [CaracteristicaController::class,'show'])->name("caracteristica.show");
     Route::get('caracteristica/editar/{caracteristica}', [CaracteristicaController::class,'edit'])->name("caracteristica.edit");
     Route::put('caracteristica/actualizar/{caracteristica}', [CaracteristicaController::class,'update'])->name("caracteristica.update");
-    Route::delete('eliminar/caracteristica',[CaracteristicaController::class,'destroy'])->name('eliminar.caracteristica');
+    Route::delete('eliminar/caracteristica/{caracteristica}',[CaracteristicaController::class,'destroy'])->name('eliminar.caracteristica');
 
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  C A R R E R A S   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -613,7 +616,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('asignatura/mostrar/{asignatura}', [AsignaturaController::class,'show'])->name("asignatura.show");
     Route::get('asignatura/editar/{asignatura}', [AsignaturaController::class,'edit'])->name("asignatura.edit");
     Route::get('asignatura/actualizar/{asignatura}', [AsignaturaController::class,'update'])->name("asignatura.update");
-    Route::delete('eliminar/asignatura/{asignatura}', [AsignaturaController::class,'destroy'])->name('asignatura.destroy');
+    // Route::delete('eliminar/asignatura/{asignatura}', [AsignaturaController::class,'destroy'])->name('asignatura.destroy');
+    Route::delete('eliminar/asignatura/{asignatura}', [AsignaturaController::class,'destroy'])->name('asignatura.delete');
 
 
     // Route::get('user/crear', "UserController@crear")->name('users.crear');
@@ -644,7 +648,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('inscripcion/guardar/configuracion/{id}', 'InscripcioneController@guardarconfiguracion')->name('inscripcion.guardar.configuracion');
     Route::get('inscripcion/configuracion/{inscripcione}', 'InscripcioneController@configurarView')->name('inscripcion.configuracion');
     Route::post('inscripcion/actualizar/configuracion', 'InscripcioneController@actualizarConfiguracion')->name('inscripcion.actualizar.configuracion');
-    Route::get('inscripcion/actualizar/fechapago/{fecha}/{id}', 'InscripcioneController@actualizar_fecha_proximo_pago')->name('set.fecha.proximo.pago');
+    // Route::get('inscripcion/actualizar/fechapago/{fecha}/{id}', 'InscripcioneController@actualizar_fecha_proximo_pago')->name('set.fecha.proximo.pago');
     Route::get('tusinscripciones', 'InscripcioneController@tusInscripcionesVigentes')->name('inscripciones.de.estudiante');
     Route::get('inscripcines/vigentes/view', function () {return view('inscripcione.vigentes');})->name('inscripciones.vigentes.view');
     Route::get('inscripciones/vigentes/ajax', [InscripcioneController::class,'vigentesAjax'])->name('inscripciones.vigentes.ajax');  
@@ -653,6 +657,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('reservar/inscripcion/{inscripcione}', [InscripcioneController::class,'reservar'])->name('reservar.inscripcion');  
     Route::get('darbaja/inscripcion',[InscripcioneController::class,'darbaja'])->name('inscripcion.darbaja');
     Route::get('daralta/inscripcion',[InscripcioneController::class,'daralta'])->name('inscripcion.daralta');
+    Route::get('fechar/pago/proximo/{fecha}/{inscripcion}',[InscripcioneController::class,'actualizar_fecha_proximo_pago'])->name('set.fecha.proximo.pago');
     Route::get('inscripcion/actualizar/fecha_proximo_pago',[InscripcioneController::class,'fecharProximoPago'])->name('inscripcion.fechar.proximo.pago');
 
     /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TELEFONOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -806,7 +811,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('messages', [MessageController::class, 'store'])->name('messages.store');
 
-});
+// });
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  FRONTED ITE   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::any('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');
@@ -821,7 +826,4 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/plan/{id}', [HomeController::class, 'plan'])->name('plan');
 
-    Route::get('/', function () {
-    return view('welcome');
-    });
-    Auth::routes();
+  

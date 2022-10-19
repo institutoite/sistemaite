@@ -93,9 +93,9 @@ class CaracteristicaController extends Controller
      * @param  \App\Models\Caracteristica  $caracteristica
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DeleteRequest $request)
+    public function destroy(Caracteristica $caracteristica)
     {
-        $caracteristica=Caracteristica::findOrFail($request->id);
+        // $caracteristica=Caracteristica::findOrFail($request->id);
         $caracteristica->delete();
         return response()->json(['mensaje' => "eliminado correctamente"]);
     }

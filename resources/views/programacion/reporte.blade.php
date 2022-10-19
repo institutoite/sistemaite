@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
-    <link rel="stylesheet" href="{{asset('custom/css/reporte.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}"> --}}
+    {{-- <link rel="stylesheet" href="{{asset('custom/css/reporte.css')}}"> --}}
     
 </head>
 <body>
@@ -98,10 +98,10 @@
                     $hoy=Carbon\Carbon::now();
                     $clase="";
                     if($programa->fecha->isoFormat('DD/MM/YYYY')==$hoy->isoFormat('DD/MM/YYYY')){
-                        $clase .= 'bg-success'; 
+                        $clase .= ''; 
                     }else{
                         if($programa->habilitado==0){
-                            $clase .= 'bg-danger'; 
+                            $clase .= ''; 
                         }
                         }
                         @endphp

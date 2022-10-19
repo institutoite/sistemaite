@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 
 body {
   
@@ -134,76 +134,4 @@ td.text-center {
 
 td.text-right {
   text-align: right;
-}
-
-/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  E N C A B E Z A D O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-.titulos{
-  letter-spacing:0.2em;
-  color: #375f7a;
-}
-
-.cuadros { 
-  width: 25%; 
-  padding: 10px;
-  float:left;
-  height:10%;
-  color:gray;
-  font-size: 0.7em;
-}
-.logo { 
-  width: 20%;
-  float: left;
-  height:10%;
-}
-.divencabezado{
-  position: relative;
-  
-}
-.divtabla{
-  top: 23%;
-  position: absolute;
-}
-
-hr {
-  height: 3px;
-  background-color: #26baa5;
-  top: 8.5%;
-  width: 100%;
-  position: absolute;
-  border:none;
-  margin: none;
-}
-.inscripcion{
-  top:7.2%; 
-  font-size:1em;
-  position: absolute;
-  float: right;
-}
-.datos{
-  top:14.5%;
-  position: absolute;
-
-}
-.personal{
-  float:left;
-  width: 40%;
-}
-.inscripciondata{
-  float:left;
-  width: 20%;
-}
-.academico{
-  float:left;
-  width: 40%;
-}
-.cuadrosdatos { 
-  float:left;
-  height:8.5%;
-  padding-left: 0.5em;;
-  color:gray;
-  font-size: 0.7em;
-  border-left: solid 0.05em #26bbaa;
-}
- */
+} */

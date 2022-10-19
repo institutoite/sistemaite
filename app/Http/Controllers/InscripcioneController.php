@@ -426,12 +426,14 @@ class InscripcioneController extends Controller
     }
 
 
-    public function actualizar_fecha_proximo_pago($fecha,$id){
+    public function actualizar_fecha_proximo_pago($programaSelected,$id){
+        $programa=Programacion::findOrFail($programaSelected);
+
         $inscripcion=Inscripcione::findOrFail($id);
-        $inscripcion->fecha_proximo_pago=$fecha;
+        $inscripcion->fecha_proximo_pago=$programa->fecha;
         $inscripcion->save();
 
-        return redirect()->route('imprimir.programa',$inscripcion->id);
+        return response()->json(['e'=>2]);
     }
 
     public function inscripcionesVigentes($persona_id){
