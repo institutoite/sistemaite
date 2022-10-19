@@ -117,6 +117,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Eliminar Preguntas'])->assignRole($admin);
 
         Permission::create(['name' => 'Enviar Mensaje'])->assignRole($admin);
+        
 
         $admin = User::find(1); 
         $admin->assignRole('Admin');

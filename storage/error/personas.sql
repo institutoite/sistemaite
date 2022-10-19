@@ -1,0 +1,182 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.7
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: localhost:3306
+-- Tiempo de generación: 18-10-2022 a las 19:06:00
+-- Versión del servidor: 10.3.36-MariaDB-cll-lve
+-- Versión de PHP: 7.4.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `vaninquz_bd_sistemaite`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `personas`
+--
+
+CREATE TABLE `personas` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nombre` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `apellidop` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `apellidom` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fechanacimiento` date DEFAULT NULL,
+  `direccion` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT 'N/S',
+  `carnet` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `expedido` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `genero` varchar(6) COLLATE utf8mb4_unicode_ci DEFAULT 'N/S',
+  `foto` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `papelinicial` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telefono` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT '0',
+  `votos` tinyint(3) UNSIGNED DEFAULT 1,
+  `volvera` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `vuelvefecha` date DEFAULT NULL,
+  `empresa` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `habilitado` tinyint(1) DEFAULT 0,
+  `persona_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `pais_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `ciudad_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `zona_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `como_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `personas`
+--
+
+INSERT INTO `personas` (`id`, `nombre`, `apellidop`, `apellidom`, `fechanacimiento`, `direccion`, `carnet`, `expedido`, `genero`, `foto`, `papelinicial`, `telefono`, `votos`, `volvera`, `vuelvefecha`, `empresa`, `habilitado`, `persona_id`, `pais_id`, `ciudad_id`, `zona_id`, `como_id`, `created_at`, `updated_at`) VALUES
+(1, 'DAVID EDUARDO', 'FLORES', 'BELTRAN', '2015-05-15', 'Barrio Melgar', '456135', 'BEN', 'HOMBRE', 'estudiantes/Pxtgsbvw4VeLcqGvd2qM.jpg', 'docente', '71324941', 1, 0, NULL, NULL, 1, NULL, 1, 6, 1, 1, '2022-09-28 14:16:01', '2022-09-28 23:11:55'),
+(2, 'LIDIA', 'CONTRERAS', 'CATARI', '2015-05-15', 'Barrio Luis Soruco Barba', '45615535', 'BEN', 'HOMBRE', 'estudiantes/foto.jpg', 'estudiante', '71324941', 1, 0, NULL, NULL, 1, NULL, 1, 6, 1, 1, '2022-09-28 14:16:01', '2022-09-28 14:16:01'),
+(3, 'SUSANA', 'PETIGA', 'MASAI', '2015-05-15', 'PLAN 3000', '45615535', 'BEN', 'MUJER', 'estudiantes/foto.jpg', 'administrativo', '75553338', 1, 0, NULL, NULL, 1, NULL, 1, 6, 1, 1, '2022-09-28 14:16:01', '2022-09-28 14:16:01'),
+(4, 'JOSE EDUARDO', 'FLORES', 'CONTRERAS', '2012-04-10', 'BARRIO SORUCO BARBA', '5613355', 'SCZ', 'HOMBRE', 'estudiantes/3w6eGzrbmHid5WegmHKR.jpg', 'estudiante', '71324941', 1, 0, '2022-09-30', NULL, 1, NULL, 1, 6, 1, 5, '2022-09-28 17:18:10', '2022-09-28 22:07:31'),
+(5, 'DAVID', 'FLORES', 'BELTRAN', NULL, 'N/S', NULL, NULL, 'HOMBRE', NULL, 'apoderado', '71039910', 0, 0, NULL, NULL, 0, NULL, 1, 6, 1, NULL, '2022-09-28 17:18:39', '2022-09-28 17:18:39'),
+(6, 'BEATRIZ', 'DORADO', 'OPIEZ', '1998-08-08', '6º ANILLO ALEMANA Y DOS DE AGOSTO', '8868485', NULL, 'MUJER', NULL, 'estudiante', '76655726', 1, 4, '2022-09-29', NULL, 1, NULL, 1, 6, 19, 6, '2022-09-28 18:47:56', '2022-09-29 22:22:09'),
+(7, 'JESUS ELIEL', 'QUENA', 'ROSSELL', '2008-05-31', 'AVENIDA LA CAMPANA', NULL, NULL, 'HOMBRE', NULL, 'estudiante', NULL, 1, 4, '2022-09-29', NULL, 1, NULL, 1, 6, 2, 2, '2022-09-28 22:24:19', '2022-09-29 16:16:56'),
+(8, 'BLADIMIR', 'QUENA', '-', NULL, 'N/S', NULL, NULL, 'HOMBRE', NULL, 'apoderado', '71088565', 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2022-09-28 22:26:34', '2022-09-28 22:26:34'),
+(9, 'ADONIAS', 'Flores', 'Contreras', '2015-02-20', 'Calle 16 oeste', '588588', 'BEN', 'HOMBRE', NULL, 'estudiante', '71324941', 1, 0, NULL, NULL, 1, NULL, 1, 6, 1, 7, '2022-09-29 01:37:16', '2022-09-29 01:37:16'),
+(10, 'ADONIAS', 'Flores', NULL, '2015-02-20', 'Calle 16 oeste', NULL, NULL, 'HOMBRE', 'estudiantes/32oAPnHEir3zfDCFvayW.jpg', 'estudiante', '71324941', 1, 0, NULL, NULL, 1, NULL, 1, 6, 2, 5, '2022-09-29 01:39:42', '2022-09-29 01:40:55'),
+(11, 'MARISOL', 'DEZA', '-', NULL, 'N/S', NULL, NULL, 'MUJER', NULL, 'apoderado', '75666539', 0, 0, NULL, NULL, 0, NULL, 1, 6, 2, NULL, '2022-09-29 16:19:13', '2022-09-29 16:19:13'),
+(12, 'ISABEL', '-', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '75503303', 0, 0, '2022-09-29', NULL, 0, NULL, NULL, NULL, NULL, 7, '2022-09-29 19:48:43', '2022-10-10 14:07:01'),
+(13, 'ANDY', 'ANTEZANA', 'BORDA', '2006-05-22', 'BARRIO GUAPILO JUNIN ENTRE CUMAVI Y 8º ANILLO', '123456', 'SCZ', 'HOMBRE', NULL, 'estudiante', '68925062', 1, 0, '2022-09-29', NULL, 1, NULL, 1, 6, 1, 1, '2022-09-29 21:15:00', '2022-10-04 14:34:52'),
+(14, 'ELISANDRA', 'GARCIA FLORES', NULL, NULL, 'N/S', NULL, NULL, 'N/S', NULL, 'contacto', '60833664', 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, 3, '2022-09-29 21:20:15', '2022-09-29 21:20:15'),
+(15, 'SONIA', 'RAMOS RODRIGUEZ', NULL, NULL, 'N/S', NULL, NULL, 'N/S', NULL, 'contacto', '68776115', 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, 3, '2022-09-29 21:56:21', '2022-09-29 21:56:21'),
+(16, 'JAVIER', 'ACHO ACHO', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '72628711', 1, 0, '2022-10-03', NULL, 0, NULL, NULL, NULL, NULL, 2, '2022-09-29 22:12:11', '2022-09-29 22:12:11'),
+(17, 'INEZ', 'CAPUNA', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '73183794', 0, 0, '2022-10-03', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-09-29 22:19:09', '2022-10-04 18:31:07'),
+(18, 'JOSE', 'DAVILA MARTINEZ', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '77390657', 0, 0, '2022-10-07', NULL, 0, NULL, NULL, NULL, NULL, 7, '2022-10-03 17:40:45', '2022-10-10 14:20:21'),
+(19, 'ANA', '-', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '76004667', 0, 0, '2022-10-04', NULL, 0, NULL, NULL, NULL, NULL, 7, '2022-10-03 17:47:57', '2022-10-10 14:20:34'),
+(20, 'SHELBI DANIELA', 'SORIOCO', 'MORENO', '2003-12-31', 'AV. RADIAL 10 B. SAN ISIDRO C. 3 Nº 19', '11316178', 'SCZ', 'MUJER', NULL, 'estudiante', '63512359', 1, 0, '2022-10-11', NULL, 1, NULL, 1, 6, 1, 1, '2022-10-04 12:46:32', '2022-10-14 18:31:05'),
+(21, 'LEONARDO', 'ALPIRI', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '76388037', 1, 0, '2022-10-17', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-04 14:16:34', '2022-10-04 14:16:34'),
+(22, 'GLADYS', 'JULIETA BLANCO', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '69113884', 0, 0, '2022-10-05', NULL, 0, NULL, NULL, NULL, NULL, 7, '2022-10-04 17:45:08', '2022-10-05 14:55:42'),
+(23, 'Edgar', '-', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '61531769', 1, 0, '2022-10-06', NULL, 0, NULL, NULL, NULL, NULL, 7, '2022-10-04 17:51:30', '2022-10-04 17:51:30'),
+(24, 'NAYLETH', 'ROJAS', 'MARCE', '2007-05-02', 'VILLA PRIMERO DE MAYO', '123456', NULL, 'MUJER', NULL, 'estudiante', '61374427', 1, 0, '2022-10-05', NULL, 1, NULL, 1, 6, 1, 9, '2022-10-04 18:05:51', '2022-10-05 19:57:51'),
+(25, 'MARIO', 'ANTEQUERA', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '77052187', 1, 0, '2022-10-07', NULL, 0, NULL, NULL, NULL, NULL, 7, '2022-10-04 18:30:54', '2022-10-04 18:30:54'),
+(26, 'YARI RUTH', 'CHAMBI', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '69104817', 0, 0, '2022-10-05', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-04 18:46:11', '2022-10-10 14:21:39'),
+(27, 'YESSENIA', 'AZOGUE', 'RIOS', '2007-02-21', 'AVENIDA TRES PASOS AL FRENTE CALLE D Nº 710 BA VILLA COCHABAMBA', '9022176', 'SCZ', 'MUJER', NULL, 'estudiante', '69040893', 1, 0, '2022-10-06', NULL, 1, NULL, 1, 6, 1, 1, '2022-10-04 18:58:52', '2022-10-07 14:01:40'),
+(28, 'ROY', 'RICALDEZ ARNEZ', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', NULL, 1, 0, '2022-10-05', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-04 21:26:07', '2022-10-04 21:26:07'),
+(29, 'LAURA ESTHER', 'CHURATA RAMOS', NULL, NULL, 'N/S', NULL, NULL, 'N/S', NULL, 'contacto', '60995494', 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, 3, '2022-10-04 22:41:44', '2022-10-04 22:41:44'),
+(30, 'VERONICA', 'CALLYSAYA', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '72587466', 0, 0, '2022-10-06', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-04 22:56:46', '2022-10-07 14:32:52'),
+(31, 'JANELY', 'POZO CRUZ', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '74179084', 0, 0, '2022-10-05', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-04 23:13:54', '2022-10-04 23:16:26'),
+(32, 'MARIA BELEN', 'CHOQUE', 'FLORES', '2004-03-08', 'VILLA PRIMERO DE MAYO B. 06 DE FEBREO C. SUCRE Nº 28', '13597146', 'SCZ', 'MUJER', NULL, 'estudiante', '73661218', 1, 0, '2022-10-06', NULL, 1, NULL, 1, 6, 1, 1, '2022-10-05 14:43:39', '2022-10-14 18:36:21'),
+(33, 'WILMA', '.-', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '73141913', 0, 0, '2022-10-08', NULL, 0, NULL, NULL, NULL, NULL, 9, '2022-10-05 15:33:42', '2022-10-14 18:51:30'),
+(34, 'RUSSLAN GAEL', 'FLORES ARIAS', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', NULL, 1, 0, '2022-10-07', NULL, 0, NULL, NULL, NULL, NULL, 4, '2022-10-05 15:35:19', '2022-10-05 15:35:19'),
+(35, 'KARLA ALEXANDRA', 'ARIAS', 'BELMONT', NULL, 'N/S', NULL, NULL, 'MUJER', NULL, 'apoderado', '69812636', 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2022-10-05 15:36:07', '2022-10-05 15:36:07'),
+(36, 'MADELIN', 'SOLIZ', 'FOLQUERA', '2022-10-10', 'Esto es una direccion', NULL, NULL, 'MUJER', NULL, 'estudiante', '75564952', 1, 0, '2022-10-08', NULL, 1, NULL, 1, 6, 3, 9, '2022-10-05 18:49:48', '2022-10-14 11:41:57'),
+(37, 'JOSE DAVID', 'ROMERO SACA', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '70944371', 1, 0, '2022-10-08', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-05 18:51:46', '2022-10-05 18:51:46'),
+(38, 'THIAGO ZAID', 'OLMOS', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '60027573', 1, 0, '2022-10-07', NULL, 0, NULL, NULL, NULL, NULL, 7, '2022-10-05 19:44:05', '2022-10-06 12:40:08'),
+(39, 'VERONICA', 'AGUILAR', '-', NULL, 'N/S', NULL, NULL, 'MUJER', NULL, 'apoderado', '60027573', 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2022-10-05 19:44:39', '2022-10-05 19:44:39'),
+(40, 'NICOLAS', 'CAVA', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', NULL, 1, 0, '2022-10-06', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-05 21:26:46', '2022-10-05 21:26:46'),
+(41, 'KATERIN', 'HURTADO', '-', NULL, 'N/S', NULL, NULL, 'MUJER', NULL, 'apoderado', '62014577', 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2022-10-05 21:27:32', '2022-10-05 21:27:32'),
+(42, 'THIAGO', 'GUILLEN', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', NULL, 0, 0, '2022-10-10', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-06 12:03:11', '2022-10-15 14:02:58'),
+(43, 'BRAYAN', 'LOAYZA', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '72220215', 1, 0, '2022-10-08', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-06 12:20:34', '2022-10-06 12:20:34'),
+(44, 'TEC', 'BOLIVIA', NULL, NULL, 'N/S', NULL, NULL, 'N/S', NULL, 'contacto', '69508522', 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, 3, '2022-10-06 14:10:19', '2022-10-06 14:10:19'),
+(45, 'LUCAS LUDOVICO', 'GUTIERREZ', 'HERRERA', '2006-07-20', 'VILLA PRIMERO DE MAYO BARRIO GUAPILO JUNIN C/ LOS PINOS 125', '123456', NULL, 'MUJER', NULL, 'estudiante', '70253249', 1, 0, '2022-10-03', NULL, 1, NULL, 1, 6, 1, 1, '2022-10-06 15:46:37', '2022-10-15 14:11:43'),
+(46, 'ROBERTO', 'GUTIERREZ', '-', NULL, 'N/S', NULL, NULL, 'HOMBRE', NULL, 'apoderado', '79870499', 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2022-10-06 15:47:12', '2022-10-06 15:47:12'),
+(47, 'ELSA', 'FLORES JIMENEZ', NULL, NULL, 'N/S', NULL, NULL, 'N/S', NULL, 'contacto', '75542645', 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, 3, '2022-10-06 19:47:37', '2022-10-06 19:47:37'),
+(48, 'HANNA FERNANDA', 'RUIZ', 'VARGAS', '2008-04-15', 'BARRIO VILLA PARAISO ZONA EL QUIOR', '123456', NULL, 'MUJER', NULL, 'estudiante', '77064616', 1, 0, '2022-10-07', NULL, 1, NULL, 1, 6, 2, 1, '2022-10-06 20:03:14', '2022-10-18 14:15:03'),
+(49, 'EDUARDO', 'ROMERO', '-', NULL, 'N/S', NULL, NULL, 'HOMBRE', NULL, 'apoderado', '77314804', 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2022-10-06 20:03:43', '2022-10-06 20:03:43'),
+(50, 'ANDREA', 'LAYME', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '70052341', 1, 0, '2022-10-15', NULL, 0, NULL, NULL, NULL, NULL, 9, '2022-10-06 22:26:28', '2022-10-06 22:26:28'),
+(51, 'MARCO', 'VARGAS', NULL, NULL, 'N/S', NULL, NULL, 'N/S', NULL, 'contacto', '76671065', 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, 3, '2022-10-07 14:52:20', '2022-10-07 14:52:20'),
+(52, 'DANIEL', 'GALARZA SOLIZ', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '60830087', 1, 0, '2022-10-10', NULL, 0, NULL, NULL, NULL, NULL, 2, '2022-10-07 15:36:52', '2022-10-07 15:42:11'),
+(53, 'ERICK RODRIGO', 'VARGAS MAMANI', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '60837900', 0, 0, '2022-10-10', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-07 19:23:23', '2022-10-17 19:00:37'),
+(54, 'JOSE ENRIQUE', 'VALDIVIESO GONZALES', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '79032946', 1, 0, '2022-10-10', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-08 00:52:49', '2022-10-08 00:52:49'),
+(55, 'ANA ROSA', 'VACA', 'GONZALES', NULL, 'N/S', NULL, NULL, 'MUJER', NULL, 'apoderado', '79032946', 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2022-10-08 00:54:05', '2022-10-08 00:54:05'),
+(56, 'LIZMAIRA  JHOEL', 'TORRICO', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '76426587', 1, 0, '2022-10-10', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-08 16:23:43', '2022-10-08 16:23:43'),
+(57, 'JAZIEL', 'CRUZ', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '71033610', 1, 0, '2022-11-30', NULL, 0, NULL, NULL, NULL, NULL, 9, '2022-10-08 17:24:01', '2022-10-08 17:24:01'),
+(58, 'MADELIN TAMARA', 'VARGAS MAMANI', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', NULL, 1, 0, '2022-10-15', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-10 11:43:01', '2022-10-10 13:05:42'),
+(59, 'ARIEL', '-', '-', NULL, 'N/S', NULL, NULL, 'HOMBRE', NULL, 'apoderado', '72632141', 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2022-10-10 11:43:38', '2022-10-10 11:43:38'),
+(60, 'KAROL ALEXANDRA', 'JUSTINIANO', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '65032514', 1, 0, '2022-10-14', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-10 14:39:10', '2022-10-10 14:39:10'),
+(61, 'YESSICA', 'MAMANO CHOQUE', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '73620114', 1, 0, '2022-10-17', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-10 15:57:34', '2022-10-10 15:57:34'),
+(62, 'MARGARETH SANDY', 'ESPEJO TARIFA', NULL, NULL, 'N/S', NULL, NULL, 'N/S', NULL, 'contacto', '73616154', 1, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, 3, '2022-10-11 02:43:30', '2022-10-11 02:43:30'),
+(63, 'JHOAN', 'CATON', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '75317071', 1, 0, '2022-10-24', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-11 14:56:48', '2022-10-11 14:56:48'),
+(64, 'JUAN JOSE', 'CATON', '-', NULL, 'N/S', NULL, NULL, 'HOMBRE', NULL, 'apoderado', '67861777', 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2022-10-11 14:57:19', '2022-10-11 14:57:19'),
+(65, 'SOFIA', 'LLANOS', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '72678283', 1, 0, '2022-11-11', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-12 14:47:53', '2022-10-12 14:47:53'),
+(66, 'FABIO LUIS', 'CANDIA TORRICO', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '71661334', 1, 0, '2022-11-26', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-12 19:19:42', '2022-10-12 19:19:42'),
+(67, 'DEICY', 'TORRICO', '-', NULL, 'N/S', NULL, NULL, 'MUJER', NULL, 'apoderado', '71661334', 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2022-10-12 19:20:14', '2022-10-12 19:20:14'),
+(68, 'Diandra', '-‬', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '69375679', 1, 0, '2022-10-14', NULL, 0, NULL, NULL, NULL, NULL, 7, '2022-10-13 13:34:50', '2022-10-13 13:34:50'),
+(69, 'ELSA', 'FLORES', 'JIMENEZ', '1999-06-11', 'BARRIO MELGAR AV 16 DE  JULIO', '8858334', 'CBBA', 'MUJER', NULL, 'administrativo', NULL, 1, 0, NULL, NULL, 1, NULL, 1, 6, 2, 9, '2022-10-13 16:32:27', '2022-10-13 16:32:27'),
+(70, 'LINSEN STEFANY', 'ZURITA', 'GUZMAN', '2006-04-17', 'ZONA PLAN 3000 RECREO LA PASCANA', '123456', 'SCZ', 'MUJER', NULL, 'estudiante', '71076876', 1, 4, '2022-10-14', NULL, 1, NULL, 1, 6, 2, 1, '2022-10-13 22:14:30', '2022-10-14 22:03:35'),
+(71, 'VICTOR HUGO', 'RAMIREZ', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', NULL, 1, 0, '2022-10-14', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-14 12:20:08', '2022-10-14 12:20:08'),
+(72, 'MARINA', '-', '-', NULL, 'N/S', NULL, NULL, 'MUJER', NULL, 'apoderado', '67823913', 0, 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, '2022-10-14 12:20:48', '2022-10-14 12:20:48'),
+(73, 'YOSELIN', 'TORREZ VALLEJOS', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '74681342', 1, 0, '2022-10-24', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-15 14:38:03', '2022-10-15 14:38:03'),
+(74, 'FRANCO', 'VIDAURRE', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '63479166', 1, 0, '2022-10-20', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-18 00:13:39', '2022-10-18 00:13:39'),
+(75, 'LUIS FERNANDO', 'LEON GONZALES', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '69194350', 1, 0, '2022-10-22', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-18 15:29:30', '2022-10-18 15:29:30'),
+(76, 'YAMIR', 'RALDES HEREDIA', NULL, NULL, 'N/S', NULL, NULL, NULL, NULL, 'estudiante', '78096827', 1, 0, '2022-10-19', NULL, 0, NULL, NULL, NULL, NULL, 1, '2022-10-18 18:21:54', '2022-10-18 18:21:54');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `personas`
+--
+ALTER TABLE `personas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_persona_persona1_idx` (`persona_id`),
+  ADD KEY `fk_persona_pais_idx` (`pais_id`),
+  ADD KEY `fk_persona_ciudad_idx` (`ciudad_id`),
+  ADD KEY `fk_persona_zona_idx` (`zona_id`),
+  ADD KEY `fk_persona_como_idx` (`como_id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `personas`
+--
+ALTER TABLE `personas`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `personas`
+--
+ALTER TABLE `personas`
+  ADD CONSTRAINT `fk_persona_ciudad_idx` FOREIGN KEY (`ciudad_id`) REFERENCES `ciudads` (`id`),
+  ADD CONSTRAINT `fk_persona_como_idx` FOREIGN KEY (`como_id`) REFERENCES `comos` (`id`),
+  ADD CONSTRAINT `fk_persona_pais_idx` FOREIGN KEY (`pais_id`) REFERENCES `pais` (`id`),
+  ADD CONSTRAINT `fk_persona_persona1_idx` FOREIGN KEY (`persona_id`) REFERENCES `personas` (`id`),
+  ADD CONSTRAINT `fk_persona_zona_idx` FOREIGN KEY (`zona_id`) REFERENCES `zonas` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

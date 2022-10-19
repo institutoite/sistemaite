@@ -354,6 +354,7 @@ class PersonaController extends Controller
     }
 
     public function editarRapidingo(Persona $persona){
+        // $p=Persona::findOrFail();
         $observacion=$persona->observaciones->first()->observacion;
         $interests_currents=$persona->interests; 
         $ids=[];
