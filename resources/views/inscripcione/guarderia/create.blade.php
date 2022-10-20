@@ -9,6 +9,7 @@
 @section('content')
 
     <div class="pt-4">
+        
         <div class="card">
             <div class="card-header bg-secondary">
                 <span class="card-title">Formulario Inscripción</span>
@@ -16,6 +17,7 @@
           
             <div class="card-body">
                 {{-- que se diriga directo --}}
+
                 <form method="POST" action="{{ route('inscripciones.store') }}" id="formulario" role="form" enctype="multipart/form-data">
                     @csrf
                     
@@ -78,15 +80,19 @@
                 FechaInicio=moment($('input[name=fechaini]').val());
                 var cantidadDias=getBusinessDays(FechaFin,FechaInicio);
                 $('#horas_total').val(cantidadDias*hours);
-                
+                factorguarderia=$("#factorguarderia").val();
+                factorcostohoraguarderia=$("#factorcostohoraguarderia").val();
+                factorguarderiamenor111=$("#factorguarderiamenor111").val();
+                factorguarderiamayor111=$("#factorguarderiamayor111").val();
+
                 if (edad<=2){
                     var Contador=2;
-                    var costoHora=15; 
+                    var costoHora=factorcostohoraguarderia; 
                     while(Contador<hours*cantidadDias){
                         if(Contador<111){
-                            costoHora=costoHora-costoHora*0.01;
+                            costoHora=costoHora-costoHora*factorguarderiamenor111;
                         }else{
-                            costoHora=costoHora-costoHora*0.00205;
+                            costoHora=costoHora-costoHora*factorguarderiamayor111;
                         }
                         
                         Contador=Contador+1;
@@ -96,19 +102,18 @@
                 if(edad>2)
                 {
                     var Contador=2;
-                    var costoHora=15; 
+                    var costoHora=factorcostohoraguarderia; 
                     while(Contador<hours*cantidadDias){
                         if(Contador<111){
-                            costoHora=costoHora-costoHora*0.01;
+                            costoHora=costoHora-costoHora*factorguarderiamenor111;
                         }else{
-                            costoHora=costoHora-costoHora*0.00205;
+                            costoHora=costoHora-costoHora*factorguarderiamayor111;
                         }
                        
                         Contador=Contador+1;
                     }
-                 
-                    factor=$("#factorguarderia").val();
-                    $('#costo').val((cantidadDias*hours*costoHora*(factor)*diasxsemana/(5.25)).toFixed(2));
+                    
+                    $('#costo').val((cantidadDias*hours*costoHora*(factorguarderia)*diasxsemana/(5.25)).toFixed(2));
                     
                 }
                 

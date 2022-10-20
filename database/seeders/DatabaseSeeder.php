@@ -67,6 +67,7 @@ class DatabaseSeeder extends Seeder
             InterestSeeder::class,
             MensajeSeeder::class,
             EventoSeeder::class,
+            ConstanteSeeder::class,
         ]);
         
         Ciudad::find(1)->usuarios()->attach(1);

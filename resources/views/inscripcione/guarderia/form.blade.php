@@ -1,11 +1,38 @@
 <input  type="date" hidden readonly name="fechanacimiento" id="fechanacimiento" class="form-control @error('fechanacimiento') is-invalid @enderror" value="{{$persona->fechanacimiento->isoFormat('YYYY-MM-DD')}}">    
+
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" >
             <div class="form-floating mb-3 text-gray">
-                <input  type="number" name="factorguarderia" id="factorguarderia" class="form-control @error('factorguarderia') is-invalid @enderror" value="{{$constante->valor}}">    
-                <label for="factorguarderia">Factor de Guardería </label>    
+                <input readonly  class="form-control"  type="number" id="factorguarderia" value="{{$FACTORGUARDERIA->valor}}">    
+                <label for="factorguarderia">factor </label>    
             </div>   
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" >
+            <div class="form-floating mb-3 text-gray">
+                <input readonly  class="form-control"  type="number" id="factorcostohoraguarderia" value="{{$FACTORCOSTOHORAGUARDERIA->valor}}">    
+                <label for="factorguarderia">Costo hora </label>    
+            </div>   
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" >
+            <div class="form-floating mb-3 text-gray">
+                <input readonly  class="form-control"  type="number" id="factorguarderiamenor111" value="{{$FACTORGUARDERIAMENOR111->valor}}">    
+                <label for="factorguarderia">Multiplicador menor 111 </label>    
+            </div>   
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" >
+            <div class="form-floating mb-3 text-gray">
+                <input readonly  class="form-control"  type="number" id="factorguarderiamayor111" value="{{$FACTORGUARDERIAMAYOR111->valor}}">    
+                <label for="factorguarderia">Multiplicador mayo 111 </label>    
+            </div>   
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+            <div class="form-floating mb-3 text-gray">
+                <a class="btn btn-primary" href="{{route('constante.index')}}">Cambiar Valores</a>
+            </div>   
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
                 <select class="form-control @error('modalidad_id') is-invalid @enderror" data-old="{{ old('modalidad_id') }}" name="modalidad_id" id="modalidad_id">
