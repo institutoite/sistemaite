@@ -31,7 +31,6 @@
                             </a>
                         </div>
                     </div>
-                    {{$inscripcion}}
                     <div class="card-body">
                         
                         <table id="programacion" class="table table-bordered table-striped table-hover">

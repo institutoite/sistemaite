@@ -633,7 +633,8 @@ class ProgramacionController extends Controller
         $modalidad=$inscripcion->modalidad;
         $nivel=Nivel::findOrFail($estudiante->grados->last()->nivel_id);
         $grado=Grado::findOrFail($estudiante->grados->last()->pivot->grado_id);
-        $dompdf = PDF::loadView('programacion.reporte', compact('grado','nivel','modalidad','usuario','programacion','persona','estudiante','persona','colegio','inscripcion'));
+        $pago=$inscripcion->pagos->sum('monto');
+        $dompdf = PDF::loadView('programacion.reporte', compact('grado','nivel','modalidad','usuario','programacion','persona','estudiante','persona','colegio','inscripcion','pago'));
         /**entrae a la persona al cual corresponde esta inscripcion */
         $fecha_actual = Carbon::now();
         $fecha_actual->isoFormat('DD-MM-YYYY-HH:mm:ss');

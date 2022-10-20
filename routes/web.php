@@ -56,6 +56,7 @@ use App\Http\Controllers\CaracteristicaController;
 use App\Http\Controllers\BilleteController;
 use App\Http\Controllers\BilletecomController;
 use App\Http\Controllers\FeriadoController;
+use App\Http\Controllers\ConstanteController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
@@ -479,6 +480,16 @@ Route::middleware(['auth'])->group(function () {
     Route::put('caracteristica/actualizar/{caracteristica}', [CaracteristicaController::class,'update'])->name("caracteristica.update");
     Route::delete('eliminar/caracteristica/{caracteristica}',[CaracteristicaController::class,'destroy'])->name('eliminar.caracteristica');
 
+    /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  constantes   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+    Route::get('constantes', [ConstanteController::class, 'index'])->name('constante.index');
+    Route::get('listar/constantes',[ConstanteController::class,'listar'])->name('constantes.listar');
+    Route::get('constante/create',[ConstanteController::class,'create'])->name('constante.create');
+    Route::get('constantes/show/{constante}', [ConstanteController::class, 'show'])->name('constante.show');
+    Route::post('constante/guardar',[ConstanteController::class,'store'])->name('constante.store');
+    Route::get('constante/mostrar/{constante}', [ConstanteController::class,'show'])->name("constante.show");
+    Route::get('constante/editar/{constante}', [ConstanteController::class,'edit'])->name("constante.edit");
+    Route::put('constante/actualizar/{constante}', [ConstanteController::class,'update'])->name("constante.update");
+    Route::delete('eliminar/constante/{constante}',[ConstanteController::class,'destroy'])->name('eliminar.constante');
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  C A R R E R A S   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::get('carreras', [CarreraController::class, 'index'])->name('carrera.index');

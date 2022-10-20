@@ -63,7 +63,7 @@
                 var FechaNacimiento = moment($('#fechanacimiento').val()).format('L');
                 var edad=moment.duration(moment().diff(moment($('#fechanacimiento').val()),'years'));
                 var diasxsemana = $("#diasxsemana").val();
-
+                
                 //console.log("Edad: "+edad);
                 // calculate total duration
                 var durationXporDia = moment.duration(endTime.diff(startTime));
@@ -107,8 +107,8 @@
                         Contador=Contador+1;
                     }
                  
-
-                    $('#costo').val((cantidadDias*hours*costoHora*1.12*diasxsemana/(5.25)).toFixed(2));
+                    factor=$("#factorguarderia").val();
+                    $('#costo').val((cantidadDias*hours*costoHora*(factor)*diasxsemana/(5.25)).toFixed(2));
                     
                 }
                 

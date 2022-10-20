@@ -852,6 +852,21 @@ return [
                 ],
             ],
         ],
+//** %%%%%%%%%%%%%%%%%%  MENU constantes %%%%%%%%%%%%% */
+        [
+            'text'    => 'Constantes',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'constantes',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
 //** %%%%%%%%%%%%%%%%%%  MENU CONVENIOS %%%%%%%%%%%%% */
         [
             'text'    => 'Convenios',

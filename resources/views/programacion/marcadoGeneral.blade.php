@@ -44,9 +44,13 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-         
         <div class="float-left">
             {{nombre($inscripcion->estudiante->persona_id,3)}}
+        </div>
+        <div class="float-right">
+            <a href="{{route('mostrar.programa', $inscripcion)}}" class="btn btn-primary text-white tooltipsC mr-2" title="Ver programación">
+                Ver programación &nbsp;<i class="fas fa-eye"></i>
+            </a>
         </div>
         <div class="float-right">
             <a href="{{route('opcion.principal', $inscripcion->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">

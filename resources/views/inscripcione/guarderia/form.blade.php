@@ -1,24 +1,9 @@
-        {{-- <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                    <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="menores" name='edades[]'>
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Niños de 2 años
-                    </label>
-                    </div>
-                    <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="mayores" name='esdades[]'>
-                    <label class="form-check-label" for="flexCheckChecked">
-                        Niños de 3, 4
-                    </label>
-                    </div>
-            </div>
-        </div> --}}
-        <div class="row">
+<input  type="date" hidden readonly name="fechanacimiento" id="fechanacimiento" class="form-control @error('fechanacimiento') is-invalid @enderror" value="{{$persona->fechanacimiento->isoFormat('YYYY-MM-DD')}}">    
+    <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
-                <input  type="date" name="fechanacimiento" id="fechanacimiento" class="form-control @error('fechanacimiento') is-invalid @enderror" value="{{$persona->fechanacimiento->isoFormat('YYYY-MM-DD')}}">    
-                <label for="fechanacimiento">Fecha Nacimiento </label>    
+                <input  type="number" name="factorguarderia" id="factorguarderia" class="form-control @error('factorguarderia') is-invalid @enderror" value="{{$constante->valor}}">    
+                <label for="factorguarderia">Factor de Guardería </label>    
             </div>   
         </div>
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
@@ -67,13 +52,13 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
-                <input type="time" class="form-control hora" value="07:30" name="horainicio" id="horainicio">
+                <input type="time" class="form-control hora" value="{{ old('horainicio', '07:30' ?? '')}}" name="horainicio" id="horainicio">
                 <label for="costo">Hora Inicio</label>    
         </div> 
         </div>
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
-                <input type="time" class="form-control hora" value="12:30" name="horafin" id="horafin">
+                <input type="time" class="form-control hora" value="{{ old('horafin', '12:30' ?? '')}}" name="horafin" id="horafin">
                 <label for="costo">Hora Fin</label>    
             </div>   
         </div>

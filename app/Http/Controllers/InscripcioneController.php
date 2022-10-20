@@ -20,6 +20,7 @@ use App\Models\Grado;
 use App\Models\Nivel;
 use App\Models\Programacion;
 use App\Models\Tipomotivo;
+use App\Models\Constante;
 use App\Models\Matriculacion;
 use App\Models\User;
 use App\Models\Estado;
@@ -124,11 +125,10 @@ class InscripcioneController extends Controller
             }
         }
         
-        // dd($ultimo_nivel);/*  */
         $modalidades = $ultimo_nivel->modalidades;
         if($ultimo_nivel->nivel=='GUARDERIA'){
-            //dd($ultimo_nivel);
-            return view('inscripcione.guarderia.create', compact('modalidades', 'motivos','persona','ultima_inscripcion'));
+            $constante=Constante::where('constante',"FACTORGUARDERIA")->first();
+            return view('inscripcione.guarderia.create', compact('modalidades', 'motivos','persona','ultima_inscripcion','constante'));
         }
         else{
             return view('inscripcione.create', compact('modalidades', 'motivos', 'persona', 'ultima_inscripcion'));
