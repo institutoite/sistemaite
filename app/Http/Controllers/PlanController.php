@@ -119,9 +119,8 @@ class PlanController extends Controller
      * @return \Illuminate\Http\Response
      */
     // public function destroy()
-    public function destroy(DeleteRequest $request)
+    public function destroy(Plan $plan)
     {
-        $plan=Plan::findOrFail($request->id);
         $plan->delete();
         return response()->json(['mensaje' => "eliminado correctamente"]);
     }

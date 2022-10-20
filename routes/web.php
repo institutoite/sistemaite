@@ -455,7 +455,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('convenio/mostrar/{convenio}', [ConvenioController::class,'show'])->name("convenio.show");
     Route::get('convenio/editar/{convenio}', [ConvenioController::class,'edit'])->name("convenio.edit");
     Route::put('convenio/actualizar/{convenio}', [ConvenioController::class,'update'])->name("convenio.update");
-    Route::delete('eliminar/convenio',[ConvenioController::class,'destroy'])->name('eliminar.convenio');
+    Route::delete('eliminar/convenio/{convenio}',[ConvenioController::class,'destroy'])->name('eliminar.convenio');
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  planes   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::get('plans', [PlanController::class, 'index'])->name('plan.index');
@@ -466,7 +466,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('plan/mostrar/{plan}', [PlanController::class,'show'])->name("plan.show");
     Route::get('plan/editar/{plan}', [PlanController::class,'edit'])->name("plan.edit");
     Route::put('plan/actualizar/{plan}', [PlanController::class,'update'])->name("plan.update");
-    Route::delete('eliminar/plan',[PlanController::class,'destroy'])->name('eliminar.plan');
+    Route::delete('eliminar/plan/{plan}',[PlanController::class,'destroy'])->name('eliminar.plan');
 
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  caracteristicas   %%%%%%%%%%%%%%%%%%%%%%%%%%*/

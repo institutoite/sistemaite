@@ -112,10 +112,8 @@ class ConvenioController extends Controller
      * @return \Illuminate\Http\Response
      */
     // public function destroy(DeleteRequest $request)
-    public function destroy(DeleteRequest $request)
+    public function destroy(Convenio $convenio)
     {
-        $convenio= Convenio::findOrFail($request->id);
-        // $convenio= Convenio::findOrFail($request->id);
         $convenio->delete();
         return response()->json(['mensaje'=>"El registro fue eliminao correctamente"]);
     }
