@@ -365,7 +365,7 @@ class ProgramacioncomController extends Controller
         $usuario=$matriculacion->usuarios->first();
         $asignatura=$matriculacion->asignatura;
         $carrera=$asignatura->carrera;
-        $dompdf = PDF::loadView('programacioncom.reporte', compact('carrera','usuario','programacion','persona','computacion','persona','matriculacion'));
+        $dompdf = PDF::loadView('programacioncom.reporte', compact('carrera','usuario','programacion','persona','computacion','persona','matriculacion','asignatura'));
         /**entrae a la persona al cual corresponde esta inscripcion */
         $fecha_actual = Carbon::now();
         $fecha_actual->isoFormat('DD-MM-YYYY-HH:mm:ss');
@@ -526,7 +526,7 @@ class ProgramacioncomController extends Controller
             ->where('licencias.licenciable_id',$request->id)
             ->where('licencias.licenciable_type',Programacioncom::class)
             ->where('programacioncoms.id','=',$request->id)
-            ->select('motivos.motivo','solicitante','parentesco','users.name as user','licencias.created_at','licencias.updated_at')
+            ->select('licencias.id','motivos.motivo','solicitante','parentesco','users.name as user','licencias.created_at','licencias.updated_at')
             ->get();
 
         $clases=Programacioncom::join('clasecoms','programacioncoms.id','clasecoms.programacioncom_id')

@@ -6,9 +6,143 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
-    <link rel="stylesheet" href="{{asset('custom/css/reporte.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/reporte.css')}}"> --}}
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+    body {
     
+    font-family: helvetica, arial, sans-serif, Montserrat;
+    text-rendering: optimizeLegibility;
+    }
+    body {
+    margin: 0;
+    }
+
+    .titulo{
+        font-size:9px;
+        font-weight:12px; 
+    }
+    .dato{
+        font-size:8px;
+        background-color:white; 
+    }
+    .tabla{
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    div.table-title {
+    display: block;
+    margin: auto; 
+    width: 100%;
+    }
+
+    .table-title h3 {
+    color: #fafafa;
+    font-size: 13px;
+    font-weight:300;
+    font-style:normal;
+    font-family: helvetica, arial, sans-serif, Montserrat;
+    text-transform:uppercase;
+    }
+    .table-fill {
+    background: white;
+    border-radius:3px;
+    border-collapse: collapse;
+    margin: auto;
+    width: 100%;
+    }
+
+
+    .table{
+    border:1px solid #C1C3D1;
+    position:absolute;
+    }
+    
+    th {
+    color:#4B4B4B;
+    border:1px solid #9ea7af;
+    
+    font-size:12px;
+    font-weight: bold;
+
+    text-align:center;
+    vertical-align:middle;
+    background-color:#ddd;
+    }
+
+   
+    
+    
+    tr {
+    border:1px solid #d1d1d1;
+    border-bottom:1px solid #ddd;
+    border-bottom-color: 1px solid #C1C3D1;
+    color:#1f1e1e;
+    font-size:12px;
+    }
+
+  
+    
+    .table tr:nth-child(odd) td {
+        background:#eee;
+    }
+    
+    .table tr:nth-child(odd):hover td {
+        background:#000000;
+    }
+
+    tr:last-child td:first-child {
+    border-bottom-left-radius:3px;
+    }
+    
+    tr:last-child td:last-child {
+    border-bottom-right-radius:3px;
+    }
+    
+    td {
+    background:#FFFFFF;
+    text-align:center;
+    vertical-align:middle;
+    font-size:11px;
+    font-weight:300;
+    border-right: 1px solid #C1C3D1;
+    border-left: 1px solid #C1C3D1;
+    border-top: 1px solid #C1C3D1;
+    border-bottom: 1px solid #C1C3D1;
+    width: auto;
+    }
+
+    td:last-child {
+    border-right: 0px;
+    }
+
+    th.text-left {
+    text-align: left;
+    }
+
+    th.text-center {
+    text-align: center;
+    }
+
+    th.text-right {
+    text-align: right;
+    }
+
+    td.text-left {
+    text-align: left;
+    }
+
+    td.text-center {
+    text-align: center;
+    }
+
+    td.text-right {
+    text-align: right;
+    }
+    </style>
 </head>
 <body>
     
@@ -68,6 +202,35 @@
         </div> 
 
 </div> --}}
+<br>    
+<br>    
+<br>    
+<br>    
+<div class="">
+   <table class="tabla">
+    <tbody>
+        <tr>
+            <td class="titulo">Estudiante</td>
+            <td class="dato">{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</td>
+            <td class="titulo">Documento CI</td>
+            <td class="dato">{{$persona->carnet}}</td>
+            <td class="titulo">Usuario</td>
+            <td class="dato">{{$usuario->name}}</td>
+        </tr>
+        <tr>
+            <td class="titulo">Carrera</td>
+            <td class="dato">{{$carrera->carrera}}</td>
+            <td class="titulo">Total horas</td>
+            <td class="dato">{{$matriculacion->totalhoras}}</td>
+            <td class="titulo">Asignatura</td>
+            <td class="dato">{{$asignatura->asignatura}}</td>
+        </tr>
+        
+        
+    </tbody>
+   </table>
+</div>
+<hr style="height:0.2px;border-width:0;color:rgba(214, 213, 213, 0.1);background-color:gray">
 
     <div class="divtabla">
         <table class="table-fill tabla1">
@@ -89,10 +252,10 @@
                     $hoy=Carbon\Carbon::now();
                     $clase="";
                     if($programa->fecha->isoFormat('DD/MM/YYYY')==$hoy->isoFormat('DD/MM/YYYY')){
-                        $clase .= 'bg-success'; 
+                        $clase .= ''; 
                     }else{
                         if($programa->habilitado==0){
-                            $clase .= 'bg-danger'; 
+                            $clase .= ''; 
                         }
                         }
                         @endphp

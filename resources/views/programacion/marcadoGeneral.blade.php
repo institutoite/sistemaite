@@ -802,17 +802,11 @@
                 let id_licencia=$(this).closest('tr').attr('id');
                 console.log(id_licencia);
                 $htmledit="";
-                $htmllicencia="";
                 $.ajax({
                     url : "../../licencia/editar/"+id_licencia,
                     success : function(data) {
                             $("#formulario-licencia-editar").empty();
                             $("#licencia-editar").modal("show");
-
-                            $htmllicencia+="<li class='list-group-item'>Solicitarnte"+ data.licencia.solicitante +"</li>"
-                            $htmllicencia+="<li class='list-group-item'>Solicitarnte"+ data.licencia.parentesco +"</li>"
-                            $htmllicencia+="<li class='list-group-item'>Solicitarnte"+ data.motivo.motivo +"</li>"
-                            $("#estadolicencia").append($htmllicencia);
                             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO AULA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
                             $htmledit+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>";
                             $htmledit+="<div class='form-floating mb-3 text-gray'>";
@@ -909,7 +903,7 @@
                     
                     success : function(json) {
                         $("#licencia-editar").modal("hide");
-                        $("#licencia-editar")
+                         $("#modal-mostrar").modal("hide");
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');

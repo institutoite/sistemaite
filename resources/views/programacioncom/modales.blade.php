@@ -88,6 +88,7 @@
                                 <th>PARENTESCO</th>
                                 <th>AUTOR</th>
                                 <th>SOLICITADO</th>
+                                <th>ACTION</th>
                             </tr>
                         </thead>
                         <tbody id="tabla-mostrar-licencias">
