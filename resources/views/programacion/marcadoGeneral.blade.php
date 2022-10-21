@@ -908,11 +908,8 @@
                         },
                     
                     success : function(json) {
-                        console.log(json);
-                        let programacioncom_id=$('#programacioncom_id').val(); 
-                        $('#editar-observacion').modal('hide');
-                        $("#"+programacioncom_id).addTempClass( 'bg-success', 3000 );
-                        //$('#futuro').DataTable().ajax.reload();
+                        $("#licencia-editar").modal("hide");
+                        $("#licencia-editar")
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
