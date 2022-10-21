@@ -63,22 +63,7 @@
     <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
     
     {{-- %%%%%%%%%%%%%% muestra el ok de la insersion de datos %%%%%%%%%%%%%%%%% --}}
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <script>
-                const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 1500,
-                })
-                Toast.fire({
-                type: 'success',
-                title: 'Se Inserto correctamente el registro'
-            })
-            </script>
-        </div>
-    @endif
+   
 
 
     <script>

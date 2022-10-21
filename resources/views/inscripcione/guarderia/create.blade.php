@@ -74,12 +74,12 @@
                 var minutes = parseInt(durationXporDia.asMinutes())%60;
                 var hours = parseInt(durationXporDia.asHours())+(minutes/60);
                 
-                $('#totalhoras').val(durationXporDia.asHours());
+                $('#totalhoras').val((durationXporDia.asHours()).toFixed(2));
                 var checkedos = $(".dias:checked").length;
                 FechaFin=moment($('input[name=fechaini]').val()).add(1, 'months');
                 FechaInicio=moment($('input[name=fechaini]').val());
                 var cantidadDias=getBusinessDays(FechaFin,FechaInicio);
-                $('#horas_total').val(cantidadDias*hours);
+                $('#horas_total').val((cantidadDias*hours).toFixed(2));
                 factorguarderia=$("#factorguarderia").val();
                 factorcostohoraguarderia=$("#factorcostohoraguarderia").val();
                 factorguarderiamenor111=$("#factorguarderiamenor111").val();

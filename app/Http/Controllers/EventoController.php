@@ -107,17 +107,17 @@ class EventoController extends Controller
         ->rawColumns(['btn'])
         ->toJson();
     }
-     public function seleccionarEvento($evento_id){
-         $eventos = Evento::all();
-         foreach ($eventos as $evento) {
-             if($evento->id!=$evento_id){
-                 $evento->seleccionado=0;
-                 $evento->save();
-            }else{
-                $evento->seleccionado=1;
-                 $evento->save();
-            }
+    public function seleccionarEvento($evento_id){
+        $eventos = Evento::all();
+        foreach ($eventos as $evento) {
+            if($evento->id!=$evento_id){
+                $evento->seleccionado=0;
+                $evento->save();
+        }else{
+            $evento->seleccionado=1;
+            $evento->save();
         }
+    }
         return response()->json(['mensaje' =>"Evento seleccionado correctamente"]);
     }
     

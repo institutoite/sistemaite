@@ -91,6 +91,6 @@ class EstadoController extends Controller
     public function destroy(Estado $estado)
     {
         $estado->delete();
-        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
+        return response()->json(['message' => 'Registro Eliminado']);
     }
 }

@@ -33,7 +33,7 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
             <div class="form-floating mb-3 text-gray">
                 <select class="form-control @error('modalidad_id') is-invalid @enderror" data-old="{{ old('modalidad_id') }}" name="modalidad_id" id="modalidad_id">
                     <option value="" > Seleccione Modalidad </option>
@@ -48,7 +48,7 @@
                 <label for="modalidad_id">Elija modalidad</label>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
             <div class="form-floating mb-3 text-gray">
                 <select class="form-control @error('motivo_id') is-invalid @enderror" data-old="{{ old('motivo_id') }}" name="motivo_id" id="motivo">
                     <option value="" > Seleccione Motivo </option>
@@ -114,7 +114,7 @@
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" >
             <div class="form-floating mb-3 text-gray">
-                <input id="horas_total" type="number" step="0.01" name="horas_total" class="form-control @error('horas_total') is-invalid @enderror" placeholder="Total Horas">
+                <input id="horas_total" type="number" step="0.01" name="horas_total" class="form-control @error('horas_total') is-invalid @enderror" value="{{old('horas_total')}}" placeholder="Total Horas">
                 <label for="horas_total">Total_horas</label>
             </div> 
         </div>

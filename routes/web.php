@@ -57,6 +57,8 @@ use App\Http\Controllers\BilleteController;
 use App\Http\Controllers\BilletecomController;
 use App\Http\Controllers\FeriadoController;
 use App\Http\Controllers\ConstanteController;
+use App\Http\Controllers\CiudadController;
+use App\Http\Controllers\ColegioController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
@@ -180,7 +182,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('eventos',"EventoController");
     Route::get('listar/eventos',[EventoController::class,'listar'])->name('listar.eventos');
     Route::get('seleccionar/evento/{evento}',[EventoController::class,'seleccionarEvento'])->name('seleccionar.evento');
-
+    Route::delete('eliminar/evento/{evento}', [EventoController::class,'destroy'])->name('evento.delete');
 
 
     Route::get('reporte/potenciales', [PersonaReporteController::class,'potencialesPorInteresView']);
@@ -199,17 +201,23 @@ Route::middleware(['auth'])->group(function () {
     Route::post('user/guardar',[UserController::class,'guardar'])->name('user.guardar');
     Route::get('quien', [UserController::class,'quien'])->name('quien');
 
+    /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CIUDAD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     Route::resource('ciudades', "CiudadController");
+    Route::delete('eliminar/ciudad/{ciudad}', [CiudadController::class,'destroy'])->name('ciudad.delete');
+
     Route::resource('zonas', "ZonaController");
     //Route::resource('usuarios', "UserController");
     Route::resource('menus', "MenuController");
     //Route::resource('grado', "GradoController");
     Route::resource('departamentos', "DepartamentoController");
+    Route::delete('eliminar/departamento/{departamento}', [DepartamentoController::class,'destroy'])->name('departamento.delete');
+
     Route::resource('provincias', "ProvinciaController");
     Route::resource('municipios', "MunicipioController");
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% C O L E G I O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::resource('colegios', "ColegioController");
     Route::get('colegio/all', 'ColegioController@todos');
+    Route::delete('eliminar/colegio/{colegio}', [ColegioController::class,'destroy'])->name('colegio.delete');
 
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  F I N   C O L E G I O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::resource('modalidads', "ModalidadController");
@@ -219,7 +227,7 @@ Route::middleware(['auth'])->group(function () {
 
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%COMO   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     Route::resource('como', "ComoController");
-    Route::delete('eliminar/como', [ComoController::class,'destroy'])->name('como.delete');
+    Route::delete('eliminar/como/{como}', [ComoController::class,'destroy'])->name('como.delete');
     Route::get('listar/comos',[ComoController::class,'listar'])->name('comos.listar');
 
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%COMO   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -260,7 +268,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('comentario/editar/{comentario}', [ComentarioController::class,'edit'])->name("comentario.edit");
     Route::post('comentario/actualizar/{comentario}', [ComentarioController::class,'update'])->name("comentario.update");
     Route::post('comontarios/guardar', [ComentarioController::class,'guardarComentarioDesdeSistema'])->name("comentario.guardar.sistema");
-    Route::delete('eliminar/comentario', [ComentarioController::class,'destroy'])->name('comentario.delete');
+    Route::delete('eliminar/comentario/{comentario}', [ComentarioController::class,'destroy'])->name('comentario.delete');
     Route::get('darbaja/comentario',[ComentarioController::class,'darbaja'])->name('comentario.darbaja');
     Route::get('daralta/comentario/',[ComentarioController::class,'daralta'])->name('comentario.daralta');
     Route::get('crear/contacto/{comentario}',[ComentarioController::class,'crearContactoComentario'])->name('comentario.descargar');
@@ -305,6 +313,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('computacion/recordatorio',[ComputacionController::class,'computacionsRecordatorio'])->name('computacion.recordatorio');
     Route::get('computacion/finalizando',[ComputacionController::class,'computacionFinalizando'])->name('computacion.finalizando');
     Route::get('computacion/empezando',[ComputacionController::class,'computacionEmpezando'])->name('computacion.empezando');
+    Route::delete('eliminar/computacion/{computacion}', [ComputacionController::class,'destroy'])->name('computacion.delete');
     //Route::get('faltones/view',[EstudianteController::class,'faltonesView'])->name('estudiante.faltones.view');
 
 
@@ -380,6 +389,7 @@ Route::middleware(['auth'])->group(function () {
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  DIA          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     Route::resource('dias','DiaController');
     Route::get('dia/listar',[DiaController::class,'listar'])->name('dias.listar');
+    Route::delete('eliminar/dia/{dia}', [DiaController::class,'destroy'])->name('dia.delete');
 
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  C L A S E S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     Route::resource('clases', "ClaseController");
@@ -424,7 +434,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('grado/mostrar/', "GradoController@mostrar")->name("grado.mostrar");
     Route::get('grado/editar/', "GradoController@editar")->name("grado.editar");
     Route::get('grado/actualizar/', "GradoController@actualizar")->name("grado.actualizar");
-    Route::delete('eliminar/grado/{grado}', 'GradoController@destroy')->name('eliminar.grado');
+    Route::delete('eliminar/grado/{grado}', [GradoController::class,'destroy'])->name('eliminar.grado');
 
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  G E S T I O N E S  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -757,17 +767,17 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('eliminar/telefono/{persona}/{id}', 'TelefonoController@eliminarTelefono')->name('telefono.eliminar');
     Route::delete('eliminar/menu/{id}','MenuController@eliminarMenu')->name('eliminar.menu');
     Route::delete('eliminar/grado/{id}', 'GradoController@destroy')->name('eliminar.grado');
-    Route::delete('eliminar/departamento/{id}', 'DepartamentoController@destroy')->name('eliminar.departamento');
+    //Route::delete('eliminar/departamento/{id}', 'DepartamentoController@destroy')->name('eliminar.departamento');
     Route::delete('eliminar/provincia/{id}', 'ProvinciaController@destroy')->name('eliminar.provincia');
     Route::delete('eliminar/municipio/{id}', 'MunicipioController@destroy')->name('eliminar.municipio');
-    Route::delete('eliminar/colegio/{id}', 'ColegioController@destroy')->name('eliminar.colegio');
+    //Route::delete('eliminar/colegio/{id}', 'ColegioController@destroy')->name('eliminar.colegio');
     Route::delete('eliminar/modalidad/{id}', 'ModalidadController@destroy')->name('eliminar.modalidad');
     Route::delete('eliminar/nivel/{id}', 'NivelController@destroy')->name('eliminar.nivel');
     Route::delete('eliminar/inscripcion/{id}', 'InscripcioneController@destroy')->name('eliminar.inscripcione');
     Route::delete('eliminar/matriculacion/{id}', 'MatriculacionController@destroy')->name('eliminar.matriculacion');
     Route::delete('eliminar/usuario/{id}', 'UserController@destroy')->name('eliminar.user');
     Route::delete('eliminar/pago/{pago}', 'PagoController@destroy')->name('eliminar.pago');
-    Route::delete('eliminar/computacion/{computacion}', 'ComputacionController@destroy')->name('eliminar.computacion');
+    //Route::delete('eliminar/computacion/{computacion}', 'ComputacionController@destroy')->name('eliminar.computacion');
     Route::delete('eliminar/carrera/{carrera}', 'CarreraController@destroy')->name('eliminar.carrera');
     Route::delete('eliminar/dia/{carrera}', 'DiaController@destroy')->name('eliminar.dia');
     Route::delete('eliminar/feriado/{carrera}', 'FeriadoController@destroy')->name('eliminar.feriado');

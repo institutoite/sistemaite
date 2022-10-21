@@ -64,7 +64,8 @@
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
     <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
-    
+    <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
+    <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
     <script>
     $(document).ready(function() {
         var tabla=$('#niveles').DataTable(

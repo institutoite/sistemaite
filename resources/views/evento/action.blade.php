@@ -14,7 +14,10 @@
     <i class="fas fa-envelope-open-text text-secondary"></i>
 </a>
 
-<button name="btn-eliminar" id="{{$id}}" class="btn eliminar" title="Eliminar este evento">
-    <i class="fa fa-fw fa-trash text-danger"></i>   
-</button>
-
+<form action=""  class="d-inline formulario">
+    @csrf
+    @method("delete")
+    <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn eliminargenerico" title="Eliminar esta carrera">
+        <i class="fa fa-fw fa-trash text-danger"></i>   
+    </button>
+</form> 

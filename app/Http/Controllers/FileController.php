@@ -136,20 +136,16 @@ class FileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(File $file)
     {
-
+        $direccion=storage_path().'\app\public\files\\'.$file->file;
+        $nombreArchivo=$file->file;
         
-         $file=File::findOrFail($id);
-        
-            $direccion=storage_path().'\app\public\files\\'.$file->file;
-            $nombreArchivo=$file->file;
-            if (file_exists($direccion)) {
-                Storage::delete('public/files/'. $file->file);
-            }
-        
+        if (file_exists($direccion)) {
+            Storage::delete('public/files/'. $file->file);
+        }
         $file->delete();
-        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
+        return response()->json(['mensaje' => 'Registro Eliminado correctamente']);
     }
 
     public function listar(){

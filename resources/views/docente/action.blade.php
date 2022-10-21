@@ -24,3 +24,12 @@
 <a class="btn-accion-tabla tooltipsC mr-1 enviarmensaje" title="Cobrar por mensaje">
     &nbsp;<i class="fab fa-whatsapp"></i>
 </a>
+<form action=""  class="d-inline formulario">
+    @csrf
+    @method("delete")
+    <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn eliminargenerico" title="Eliminar este departamento">
+        <i class="fa fa-fw fa-trash text-danger"></i>   
+    </button>
+</form>     
+
+

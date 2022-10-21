@@ -150,9 +150,9 @@ class GestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_gestion)
+    public function destroy(Gestion $gestion)
     {
-        Gestion::findOrFail($id_gestion)->delete();
-        return response()->json(['ok'=>$id_gestion]);
+        $gestion->delete();
+        return response()->json(['mensaje' =>"El registro fue eliminado correctamente"]);
     }
 }

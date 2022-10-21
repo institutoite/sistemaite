@@ -83,10 +83,8 @@ class ComoController extends Controller
         return redirect()->route('como.index');
     }
 
-    public function destroy(DeleteComoRequest $request)
+    public function destroy(Como $como)
     {
-        $como_id=$request->id;
-        $como=Como::findOrFail($como_id);
         $como->delete();
         return response()->json(['mensaje'=>"El registro fue eliminado correctamente"]);
     }

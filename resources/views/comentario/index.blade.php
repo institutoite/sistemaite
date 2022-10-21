@@ -298,13 +298,13 @@
         });
 
             
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  M O T I V O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-            $('table').on('click','.eliminargenerico',function (e) {
-                e.preventDefault(); 
-                registro_id=$(this).closest('tr').attr('id');
-                console.log(registro_id);
-                eliminarRegistro(registro_id,'comentario',tablacomentario);
-            });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  M O T I V O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+        $('table').on('click','.eliminargenerico',function (e) {
+            e.preventDefault(); 
+            registro_id=$(this).closest('tr').attr('id');
+            console.log(registro_id);
+            eliminarRegistro(registro_id,'comentario',tablacomentario);
+        });
 
 
         });

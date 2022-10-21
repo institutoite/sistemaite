@@ -145,9 +145,9 @@ class GradoController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Grado $grado)
     {
-        $grado = Grado::findOrFail($id)->delete();
-        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
+        $grado->delete();
+        return response()->json(['message' => 'Registro Eliminado correctamente']);
     }
 }

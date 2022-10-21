@@ -137,6 +137,9 @@ Tipo archivo no esta actualizando bien
 
 revisar todos  los eliminar
 NO ELIMINA NIVELES, ZONA CRUD
+OBSERVACIONES DE DOCENTES
+FALTA COGIDO EN LOS REPORTES
+
 
 $('table').on('click','.eliminargenerico',function (e) {
     e.preventDefault(); 

@@ -198,13 +198,11 @@ class ComentarioController extends Controller
      * @param  \App\Models\Comentario  $comentario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DeleteRequest $request)
+    public function destroy(Comentario $comentario)
     {
-        $comentario_id=$request->id;
-        $comentario=Comentario::findOrFail($comentario_id);
         $comentario->interests()->detach();
         $comentario->delete();
-        return response()->json(['mensaje'=>"El registro fue eliminado correctamente",'id'=>$comentario]);
+        return response()->json(['mensaje'=>"El registro fue eliminado correctamente"]);
     }
 
     public function comentarioGet($comentario_id){

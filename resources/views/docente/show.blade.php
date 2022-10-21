@@ -336,7 +336,14 @@
     <script>
     
         /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONFIGURARION DE CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        CKEDITOR.replace('editor1', {
+         //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        CKEDITOR.replace('editorguardar', {
+            height: 120,
+            width: "100%",
+            removeButtons: 'PasteFromWord'
+        });
+        //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        CKEDITOR.replace('editoreditar', {
             height: 120,
             width: "100%",
             removeButtons: 'PasteFromWord'

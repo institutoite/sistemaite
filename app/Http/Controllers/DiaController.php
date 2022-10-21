@@ -83,7 +83,6 @@ class DiaController extends Controller
         $dia=Dia::findOrFail($id);
         $dia->dia=$request->dia;
         $dia->save();
-
         return redirect()->route('dias.index');
     }
 
@@ -93,14 +92,12 @@ class DiaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Dia $dia)
     {
-        $dia = Dia::findOrFail($id);
         $dia->delete();
-        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
+        return response()->json(['mensaje' => 'Registro Eliminado correctamente']);
     }
      public function listar(){
-         //return response()->json(['d'=>2]);
         return datatables()->of(Dia::get())
         ->addColumn('btn', 'dia.action')
         ->rawColumns(['btn'])

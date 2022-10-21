@@ -91,7 +91,7 @@ class ComputacionController extends Controller
     public function destroy(Computacion $computacion)
     {
         $computacion->delete();
-        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
+        return response()->json(['mensaje' => 'Registro Eliminado correctamente']);
     }
 
     public function mostrar_carreras($persona){

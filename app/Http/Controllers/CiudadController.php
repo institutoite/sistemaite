@@ -110,13 +110,10 @@ class CiudadController extends Controller
      */
     public function destroy(Ciudad $ciudad)
     {
-        
-    }
-    public function eliminarCiudad($id) {
-        $ciudad = Ciudad::findOrFail($id);
         $ciudad->delete();
         return response()->json(['message' => 'Registro Eliminado','status'=>200]); 
     }
+    
     public function city_of_country(Request $request,$id){  
         
         if($request->ajax()){

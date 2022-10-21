@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
-@section('title', 'Mis Inscripciones')
+@section('title', 'Inscripciones')
 
 @section('plugins.Jquery',true)
 @section('plugins.SweetAlert2',true)
@@ -316,7 +316,6 @@
                                 url:"{{url('saldo/inscripcion')}}",
                                 data:{inscripcion_id:data['id']},
                                 success : function(json) {
-                                      
                                     $('td', row).eq(2).html('<strong>Acuenta: </strong>'+json.acuenta+'<br>'+'<strong>Costo: </strong>'+json.costo+'<br><strong>Saldo: </strong>'+json.saldo);  
                                     $('td', row).eq(3).html(json.fechaHumamizado+'<br>'+moment(data['fecha_proximo_pago']).format('DD-MM-YYYY'));  
                                 },

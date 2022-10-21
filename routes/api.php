@@ -51,7 +51,7 @@ Route::get('estudiantes',function(){
 
 Route::get('computaciones',function(){
     $computaciones=Persona::join('computacions','computacions.persona_id','=','personas.id')
-        ->select('personas.id','nombre','apellidop','apellidom','foto');
+        ->select('computacions.id','nombre','apellidop','apellidom','foto');
     return datatables()->of($computaciones)
         ->addColumn('btn','computacion.action')
         ->rawColumns(['btn','foto'])
@@ -98,7 +98,7 @@ Route::get('grados', function () {
                 ->select('grados.id','grado','nivel')->get();
 
     return datatables()->of($grados)
-        ->addColumn('btn', 'motivo.action')
+        ->addColumn('btn', 'grado.action')
         ->rawColumns(['btn'])
         ->toJson();
 });

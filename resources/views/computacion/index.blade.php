@@ -34,8 +34,8 @@
 
 @section('js')
     
-     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-     
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
@@ -49,8 +49,10 @@
 
     <script src="{{asset('dist/js/moment.js')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
-   
     <script src="{{asset('assets/js/enviarmensaje/mostrarcontactos.js')}}"></script>
+    
+    <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
+    <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
 
     <script>
         ( function ( $ ) {
@@ -68,7 +70,7 @@
         } ( jQuery ) );
         $(document).ready(function() {
         
-        var tabla=$('#computaciones').DataTable(
+        var tablacomputacion=$('#computaciones').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
@@ -76,7 +78,7 @@
 
                     "ajax": "{{ url('api/computaciones') }}",
                     "createdRow": function( row, data, dataIndex ) {
-                        $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
+                        $(row).attr('id',data['id']);
                     },
                     "columns": [
                         {data: 'id'},
@@ -105,7 +107,7 @@
                 }
             );
             
-        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ZOOMIFY %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ZOOMIFY %%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click','.zoomify',function (e){
                 Swal.fire({
                     title: 'Codigo: '+ $(this).closest('tr').find('td').eq(0).text(),
@@ -130,82 +132,12 @@
                 mostrarContactos(url,persona_id,mensaje_id);
                 $("#modal-listar-contactos-component").modal("show");
             });
-/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  P E R S O N A %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-            $('table').on('click','.eliminar',function (e) {
-                e.preventDefault(); 
-                id=$(this).parent().parent().parent().find('td').first().html();
-                Swal.fire({
-                    title: 'Estas seguro(a) de eliminar este registro?',
-                    text: "Si eliminas el registro no lo podras recuperar jamás!",
-                    type: 'question',
-                    showCancelButton: true,
-                    showConfirmButton:true,
-                    confirmButtonColor: '#25ff80',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Eliminar..!',
-                    position:'center',        
-                }).then((result) => {
-                    if (result.value) {
-                        $.ajax({
-                            url: 'eliminar/computacion/'+id,
-                            type: 'DELETE',
-                            data:{
-                                id:id,
-                                _token:'{{ csrf_token() }}'
-                            },
-                            success: function(result) {
-                                tabla.ajax.reload();
-                                const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 1500,
-                                })
-                                Toast.fire({
-                                type: 'success',
-                                title: 'Se eliminó correctamente el registro'
-                                })   
-                            },
-                            error: function (xhr, ajaxOptions, thrownError) {
-                                switch (xhr.status) {
-                                    case 500:
-                                        Swal.fire({
-                                            title: 'No se completó esta operación por que este registro está relacionado con otros registros',
-                                            showClass: {
-                                                popup: 'animate__animated animate__fadeInDown'
-                                            },
-                                            hideClass: {
-                                                popup: 'animate__animated animate__fadeOutUp'
-                                            }
-                                        })
-                                        break;
-                                
-                                    default:
-                                        break;
-                                }
-                                
-                            }
-                        });
-                    }else{
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 4000,
-                           //type
-                            onOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
-
-                        Toast.fire({
-                            type: 'error',
-                            title: 'No se eliminó el registro'
-                        })
-                    }
-                })
-            });
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  P E R S O N A %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+                $('table').on('click','.eliminargenerico',function (e) {
+                    e.preventDefault(); 
+                    registro_id=$(this).closest('tr').attr('id');
+                    eliminarRegistro(registro_id,'computacion',tablacomputacion);
+                });
         } );
         
     </script>

@@ -2,6 +2,7 @@
 @extends('adminlte::page')
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
 @stop
 
 @section('title', 'Create archivo')
@@ -33,7 +34,7 @@
 @endsection
 
 @section('js')
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/plugins/piexif.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/plugins/piexif.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/plugins/sortable.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
@@ -54,23 +55,25 @@
             // var url1 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg',
             //     url2 = 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg';
             $(document).ready(function(){
-                $("#file").fileinput(
-                {
-                    initialPreview: [url1, url2],
-                    initialPreviewAsData: true,
-                    initialPreviewConfig: [
+                 $("#file").fileinput(
+                    {
+                        initialPreview: [],
+                        initialPreviewAsData: true,
+                        initialPreviewConfig: [
+                            
+                        ],
+                        overwriteInitial: true,
+                        //maxFileSize: 100000,
+                        initialCaption: "Click en examinar para cambiar imagen",
+                        language:'es',
+                        theme:'fas',
+                        showRemove: false,
+                        showUpload: false,
+                        showCancel: false,
                         
-                        // {caption: "Earth.jpg", downloadUrl: url2, size: 1218822, width: "120px", key: 2}
-                    ],
-                    deleteUrl: "/site/file-delete",
-                    overwriteInitial: true,
-                    maxFileSize: 2000,
-                    initialCaption: "The Moon and the Earth",
-                    language:'es',
-                    theme:'fas',
-
                     }
-                );
+                ); 
+            
             });
     </script>
 

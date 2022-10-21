@@ -52,13 +52,7 @@
                                             <a class="editar" href="">
                                                 <i class="fa fa-fw fa-edit text-primary"></i>
                                             </a>
-                                            <form action=""  class="d-inline formulario">
-                                                @csrf
-                                                @method("delete")
-                                                <button name="btn-eliminar" id="{{$gestion->id}}" type="submit" class="btn eliminar" title="Eliminar este motivo">
-                                                    <i class="fa fa-fw fa-trash text-danger"></i>   
-                                                </button>
-                                            </form> 
+                                            <a class="btn eliminargenerico">Eliminar</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -75,28 +69,13 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> 
-    
+    <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
     {{-- %%%%%%%%%%%%%% muestra el ok de la insersion de datos %%%%%%%%%%%%%%%%% --}}
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <script>
-                const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 2000,
-                })
-                Toast.fire({
-                type: 'success',
-                title: 'Se Inserto correctamente el registro'
-            })
-            </script>
-        </div>
-    @endif
 
 
     <script>
 
+        
          /*%%%%%%%%%%%%%%%%%%%%%%  funcion que agrega clase por tiempo x y luego lo destruye %%%%%%%%%%%*/
         ( function ( $ ) {
             'use strict';
@@ -116,7 +95,7 @@
             
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATA TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             let fila=1;
-            $('#gestiones').dataTable({
+           var tablegestiones= $('#gestiones').dataTable({
                 "responsive":true,
                 "searching":true,
                 "paging":   true,
@@ -167,13 +146,8 @@
              /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO MOSTRAR EDITAR PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.editar', function(e) {
                 e.preventDefault(); 
-                // let id_gestion =$(this).closest('tr').attr('id');
                 let id_gestion =$(this).closest('tr').attr('id');
                 let estudiante_id="{{$estudiante->id}}";
-
-                //console.log(id_gestion);
-                    //$("#error_motivo").empty();
-
                     $.ajax({
                     url : "../gestion/editar",
                     data : { id_gestion : id_gestion },
@@ -289,82 +263,51 @@
             }
             
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  M O T I V O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-            $('#gestiones').on('click','.eliminar',function (e) {
+            $('table').on('click','.eliminargenerico',function (e) {
                 e.preventDefault(); 
-                 var id_gestion =$(this).closest('tr').attr('id');
-                 console.log(id_gestion);
+                registro_id=$(this).closest('tr').attr('id');
+                console.log(registro_id);
+                eliminarRegistro(registro_id,'gestion',tablegestiones);
+            });
+            function eliminarRegistro(registro_id,objeto_type,tabla) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
                 Swal.fire({
                     title: 'Estas seguro(a) de eliminar este registro?',
                     text: "Si eliminas el registro no lo podras recuperar jamás!",
                     type: 'question',
                     showCancelButton: true,
-                    showConfirmButton:true,
-                    confirmButtonColor: '#26baa5',
+                    showConfirmButton: true,
+                    confirmButtonColor: '#25ff80',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Eliminar..!',
-                    position:'center',        
+                    position: 'center',
                 }).then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: '../eliminar/gestion/'+id_gestion,
+                            url: '../eliminar/' + objeto_type+"/"+registro_id,
                             type: 'DELETE',
-                            data:{
-                                _token:'{{ csrf_token() }}'
+                            data: {
+                                _token: $("meta[name='csrf-token']").attr("content"),
                             },
-                            success: function(result) {
-                                console.log(result);
-                                $("#"+result.ok).closest('tr').remove();
-                                const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 1500,
-                                })
-                                Toast.fire({
-                                type: 'success',
-                                title: 'Se eliminó correctamente el registro'
-                                })   
+                            success: function (result) {
+                                $("#" + registro_id).remove();
+                                tabla.ajax.reload();
+                                mensajeGrande(result.mensaje, 'success', 2000);
+                                
                             },
                             error: function (xhr, ajaxOptions, thrownError) {
-                                switch (xhr.status) {
-                                    case 500:
-                                        Swal.fire({
-                                            title: 'No se completó esta operación por que este registro está relacionado con otros registros',
-                                            showClass: {
-                                                popup: 'animate__animated animate__fadeInDown'
-                                            },
-                                            hideClass: {
-                                                popup: 'animate__animated animate__fadeOutUp'
-                                            }
-                                        })
-                                        break;
-                                
-                                    default:
-                                        break;
-                                }
-                                
+                                mensajeErr();
                             }
                         });
-                    }else{
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 4000,
-                            timerProgressBar: true,
-                            onOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
-                        Toast.fire({
-                            type: 'error',
-                            title: 'No se eliminó el registro'
-                        })
+                    } else {
+                        mensajePequenio('El registro NO se eliminó', 'error', 2000);
                     }
                 })
-            });
-
+            }
         });
     </script>
 

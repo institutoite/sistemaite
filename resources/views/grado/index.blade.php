@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
-@section('title', 'Motivos')
+@section('title', 'Grados')
 @section('plugins.Jquery', true)
 @section('plugins.Sweetalert2', true)
 @section('plugins.Datatables', true)
@@ -61,22 +61,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> 
     
     {{-- %%%%%%%%%%%%%% muestra el ok de la insersion de datos %%%%%%%%%%%%%%%%% --}}
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <script>
-                const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 2000,
-                })
-                Toast.fire({
-                type: 'success',
-                title: 'Se Inserto correctamente el registro'
-            })
-            </script>
-        </div>
-    @endif
+    <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
+    <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
 
 
     <script>
@@ -99,7 +85,7 @@
         $(document).ready(function() {
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATA TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             // let fila=1;
-            $('#grados').dataTable({
+            var tablagrados=$('#grados').dataTable({
                 "responsive":true,
                 "searching":true,
                 "paging":   true,
@@ -108,7 +94,6 @@
                 "info":     true,
                 "createdRow": function( row, data, dataIndex ) {
                     $(row).attr('id',data['id']); 
-                    // $('td', row).eq(0).html(fila++);
                 },
                 "ajax": "{{ url('api/grados')}}",
                 "columns": [
@@ -259,80 +244,13 @@
             }
             
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  M O T I V O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-            $('#grados').on('click','.eliminar',function (e) {
+            $('table').on('click','.eliminargenerico',function (e) {
                 e.preventDefault(); 
-                var grado_id =$(this).closest('tr').attr('id');
-                    //console.log(grado_id);
-                Swal.fire({
-                    title: 'Estas seguro(a) de eliminar este registro?',
-                    text: "Si eliminas el registro no lo podras recuperar jamás!",
-                    type: 'question',
-                    showCancelButton: true,
-                    showConfirmButton:true,
-                    confirmButtonColor: '#26baa5',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Eliminar..!',
-                    position:'center',        
-                }).then((result) => {
-                    if (result.value) {
-                        $.ajax({
-                            url: 'eliminar/grado/'+grado_id,
-                            type: 'DELETE',
-                            data:{
-                                _token:'{{ csrf_token() }}'
-                            },
-                            success: function(result) {
-                                $('#grados').DataTable().ajax.reload();
-                                const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 1500,
-                                })
-                                Toast.fire({
-                                type: 'success',
-                                title: 'Se eliminó correctamente el registro'
-                                })   
-                            },
-                            error: function (xhr, ajaxOptions, thrownError) {
-                                switch (xhr.status) {
-                                    case 500:
-                                        Swal.fire({
-                                            title: 'No se completó esta operación por que este registro está relacionado con otros registros',
-                                            showClass: {
-                                                popup: 'animate__animated animate__fadeInDown'
-                                            },
-                                            hideClass: {
-                                                popup: 'animate__animated animate__fadeOutUp'
-                                            }
-                                        })
-                                        break;
-                                
-                                    default:
-                                        break;
-                                }
-                                
-                            }
-                        });
-                    }else{
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 4000,
-                            timerProgressBar: true,
-                            onOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
-                        Toast.fire({
-                            type: 'error',
-                            title: 'No se eliminó el registro'
-                        })
-                    }
-                })
+                registro_id=$(this).closest('tr').attr('id');
+                console.log(registro_id);
+                eliminarRegistro(registro_id,'grado',tablagrados);
             });
+
 
         });
     </script>
