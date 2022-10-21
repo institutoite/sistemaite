@@ -570,7 +570,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('interest/mostrar', "InterestController@mostrar")->name("interest.mostrar");
     Route::get('interest/editar/', "InterestController@editar")->name("interest.editar");
     Route::get('interest/actualizar/', "InterestController@actualizar")->name("interest.actualizar");
-    Route::delete('eliminar/interest/{interest}', 'InterestController@destroy')->name('eliminar.interest');
+    Route::delete('eliminar/interest/{interest}', [InterestController::class,'destroy'])->name('eliminar.interest');
     Route::get('interest/create',[InterestController::class,'create'])->name('interest.create');
     Route::post('interest/guardar',[InterestController::class,'store'])->name('interest.store');
 
@@ -680,6 +680,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('daralta/inscripcion',[InscripcioneController::class,'daralta'])->name('inscripcion.daralta');
     Route::get('fechar/pago/proximo/{fecha}/{inscripcion}',[InscripcioneController::class,'actualizar_fecha_proximo_pago'])->name('set.fecha.proximo.pago');
     Route::get('inscripcion/actualizar/fecha_proximo_pago',[InscripcioneController::class,'fecharProximoPago'])->name('inscripcion.fechar.proximo.pago');
+    
 
     /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TELEFONOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::get('telefonos/vista/{persona}','TelefonoController@mostrarvista')->name('telefonos.persona');

@@ -113,9 +113,9 @@ class InterestController extends Controller
      * @param  \App\Models\Interest  $interest
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Interest $interest)
     {
-        Interest::find($id)->delete();
+        $interest->delete();
         return response()->json(['mensaje'=>"Se elimino correctamente"]);
     }
 
@@ -126,8 +126,8 @@ class InterestController extends Controller
         ->toJson();
     }
     public function getParaHome(){
-       $interests=Interest::get();
-       $data=['interests'=>$interests];
-       return response()->json($data);
+        $interests=Interest::get();
+        $data=['interests'=>$interests];
+        return response()->json($data);
     }
 }

@@ -922,6 +922,7 @@
                             programacion_id:$programacion_id,
                         },
                     success : function(json) {
+                        console.log(json);
                         $("#error").empty();
                         if(json.errores.length>0){
                             $html="";

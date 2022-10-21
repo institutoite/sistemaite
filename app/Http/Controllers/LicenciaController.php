@@ -109,16 +109,25 @@ class LicenciaController extends Controller
             'parentesco' => 'required',
         ]);
 
-         if ($validator->passes()) {
-            $licencia    =new Licencia();
-            $licencia->motivo_id=$request->motivo_id;
+        
 
-            
-            $cadena=$request->solicitante;
-            $pos=stripos($cadena,'(');
-            $apoderado=substr($cadena,0,$pos);
+         if ($validator->passes()) {
+             $licencia    =new Licencia();
+             $licencia->motivo_id=$request->motivo_id;
+             
+             
+             $cadena=$request->solicitante;
+             $pos=stripos($cadena,'(');
+            if(!$pos){
+                $licencia->solicitante=$request->solicitante;  
+            }
+            else
+            {
+                $apoderado=substr($cadena,0,$pos);
+                $licencia->solicitante=$apoderado;  
+            } 
                 
-            $licencia->solicitante=$apoderado;  
+                
             
             $licencia->parentesco=$request->parentesco;  
             $licencia->licenciable_id=$request->programacion_id;

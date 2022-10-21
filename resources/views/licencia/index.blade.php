@@ -1,8 +1,13 @@
-@extends('layouts.app')
+@extends('adminlte::page')
+@section('css')
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
+@stop
 
-@section('template_title')
-    Licencia
-@endsection
+@section('title', 'Intereses')
+@section('plugins.Jquery', true)
+@section('plugins.Sweetalert2', true)
+@section('plugins.Datatables', true)
 
 @section('content')
     <div class="container-fluid">
@@ -16,11 +21,9 @@
                                 {{ __('Licencia') }}
                             </span>
 
-                             <div class="float-right">
-                                <a href="{{ route('licencias.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
-                                </a>
-                              </div>
+                            <div class="float-right">
+                                
+                            </div>
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -53,13 +56,9 @@
 											<td>{{ $licencia->parentesco }}</td>
 
                                             <td>
-                                                <form action="{{ route('licencias.destroy',$licencia->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('licencias.show',$licencia->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('licencias.edit',$licencia->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
-                                                </form>
+                                                    {{-- <a class="btn btn-sm btn-primary " href="{{ route('licencias.show',$licencia->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a> --}}
+                                                    {{-- <a class="btn btn-sm btn-success" href="{{ route('licencias.edit',$licencia->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a> --}}
+                                            
                                             </td>
                                         </tr>
                                     @endforeach
