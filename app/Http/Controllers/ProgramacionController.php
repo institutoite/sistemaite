@@ -125,7 +125,7 @@ class ProgramacionController extends Controller
             ->where('licencias.licenciable_type',Programacion::class)
             ->where('programacions.id','=',$request->id)
 
-            ->select('motivos.motivo','solicitante','parentesco','licencias.created_at','users.name as user','licencias.updated_at')
+            ->select('licencias.id','motivos.motivo','solicitante','parentesco','licencias.created_at','users.name as user','licencias.updated_at')
             ->get();
 
         $clases=Programacion::join('clases','programacions.id','clases.programacion_id')

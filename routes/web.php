@@ -653,12 +653,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('guardar/apoderado/existente', 'TelefonoController@guardarApoderadoExistente')->name('guardar.apoderado.existente');
     Route::get('modalidad/cosultar/', 'ModalidadController@consultar')->name('modalidad.consultar');
 
-
-
     /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LICENCIAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::get('licencias', [LicenciaController::class,'index'])->name('licencia.index');
+    Route::get('listar/licencias',[LicenciaController::class,'listar'])->name('listar.licencias');
+    Route::get('licencia/editar/{licencia_id}', [LicenciaController::class,'editar'])->name('licencia.editar');
     Route::get('licenciacom/crear', [LicenciaController::class,'createcom'])->name('licenciacom.crear');
     Route::get('licenciacom/guardar', [LicenciaController::class,'storecom'])->name('licenciacom.storecom');
+    Route::get('licencia/actualizar', [LicenciaController::class,'actualizar'])->name('licencia.actualizar');
     Route::get('licenciaprogramacion/crear', [LicenciaController::class,'createprogramacion'])->name('licenciaprogramacion.crear');
     Route::get('licenciaprogramacion/guardar', [LicenciaController::class,'storeprogramacion'])->name('licenciaprogramacion.guardar');
 

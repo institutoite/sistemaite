@@ -437,11 +437,17 @@
                         $("#tabla-mostrar-clases").append($htmlClases);
                          $htmlLicencia="";
                         for (let j in json.licencias) {
-                            $htmlLicencia+="<tr><td>"+ json.licencias[j].motivo +"</td>";
+                            $htmlLicencia+="<tr id='"+ json.licencias[j].id +"'><td>"+ json.licencias[j].motivo +"</td>";
                             $htmlLicencia+="<td>"+json.licencias[j].solicitante+"</td>";
                             $htmlLicencia+="<td>"+json.licencias[j].parentesco+"</td>";
                             $htmlLicencia+="<td>"+json.licencias[j].user+"</td>";
                             $htmlLicencia+="<td>"+moment(json.licencias[j].created_at).format('LLLL')+"</td>";
+                            $htmlLicencia+="<td>";
+                            $htmlLicencia+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 editarlicencia' title='Editar esta licencia'>";
+                            $htmlLicencia+="<i class='fa fa-fw fa-edit text-primary'></i></a>";
+                            $htmlLicencia+="<a class='btn-accion-tabla tooltipsC btn-sm mr-2 eliminarlicencia' title='Eliminar esta licencia'>";
+                            $htmlLicencia+="<i class='fas fa-trash-alt text-danger'></i></a>";
+                            $htmlLicencia+="</td></tr>";
                         }
                         $("#tabla-mostrar-licencias").append($htmlLicencia);
                     },
@@ -790,8 +796,129 @@
                     },
                 });
             });
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA FORMULARIO EDITAR LICENCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click', '.editarlicencia', function(e) {
+                e.preventDefault(); 
+                let id_licencia=$(this).closest('tr').attr('id');
+                console.log(id_licencia);
+                $htmledit="";
+                $htmllicencia="";
+                $.ajax({
+                    url : "../../licencia/editar/"+id_licencia,
+                    success : function(data) {
+                            $("#formulario-licencia-editar").empty();
+                            $("#licencia-editar").modal("show");
+
+                            $htmllicencia+="<li class='list-group-item'>Solicitarnte"+ data.licencia.solicitante +"</li>"
+                            $htmllicencia+="<li class='list-group-item'>Solicitarnte"+ data.licencia.parentesco +"</li>"
+                            $htmllicencia+="<li class='list-group-item'>Solicitarnte"+ data.motivo.motivo +"</li>"
+                            $("#estadolicencia").append($htmllicencia);
+                            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO AULA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+                            $htmledit+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>";
+                            $htmledit+="<div class='form-floating mb-3 text-gray'>";
+                            $htmledit+="<select class='form-control @error('motivo_id') is-invalid @enderror' name='motivo_id' id='motivo_id'>";
+                            $htmledit+="<option  value='' >Elije el motivo de la licencia </option>";
+                            for (let j in data.motivos) {
+                                if(data.motivos[j].id==data.motivo.id){
+                                    $htmledit+="<option  value='"+data.motivos[j].id +"' selected >"+data.motivos[j].motivo+"</option>";
+                                }else{
+                                    $htmledit+="<option  value='"+data.motivos[j].id +"'>"+data.motivos[j].motivo+"</option>";
+                                }
+                            }
+                            $htmledit+="</select>";                
+                            $htmledit+="<label for='motivo_id'>Motivo</label></div></div>";
+                            $htmledit+="</div>";// fin de row
+                            $htmledit+="<div class='row'>";
+                            $htmledit+="<input type='number' name='licencia_id' id='licencia_id' value='"+data.licencia.id+"'>";
+
+                            $htmledit+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'><div class='form-floating mb-3 text-gray'>";
+                            $htmledit+="<input type='text' autocomplete='off' list='apoderados' name='solicitante' class='form-control @error('solicitante') is-invalid @enderror texto-plomo' id='solicitante'"; 
+                            $htmledit+="value='"+ data.licencia.solicitante+"'>";
+                            $htmledit+="<datalist id='apoderados'></datalist>";
+                            $htmledit+="<label for='solicitante'>Nombre de persona Solicitante</label></div></div>";
+
+                            $htmledit+="</div>";// div del row
+
+                            $htmledit+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>";
+                            $htmledit+="<div class='form-floating mb-3 text-gray'>";
+                            $htmledit+="<select class='form-control @error('parentesco') is-invalid @enderror' name='parentesco' id='parentesco'>";
+                                $htmledit+="<option  value=''>Elije un parentesco</option>";
+                                $htmledit+="<option  value='"+data.licencia.parentesco+"' selected>"+data.licencia.parentesco+"</option>";
+                                $htmledit+="<option  value='PAPA'>PAPA</option>";
+                                $htmledit+="<option  value='MAMA'>MAMA</option>";
+                                $htmledit+="<option  value='ESPOSO'>ESPOSO</option>";
+                                $htmledit+="<option  value='ESPOSA' >ESPOSA</option>";
+                                $htmledit+="<option  value='ABUELO'>ABUELO</option>";
+                                $htmledit+="<option  value='ABUELA' >ABUELA</option>";
+                                $htmledit+="<option  value='TIO' >TIO</option>";
+                                $htmledit+="<option  value='TIA' >TIA</option>";
+                                $htmledit+="<option  value='ELMISMO' >EL O ELLA MISMA</option>";
+                            $htmledit+="</select>";                
+                            $htmledit+="<label for='parentesco'>Parentesco</label></div></div>";
+                            $htmledit+="</div>";// fin de row
+                            $htmledit+="<div class='row'>";
+
+                                console.log(data.licencia.parentesco);
+                            //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                            $htmledit+="<input id='inscripcione_id'  type='text' hidden readonly name='inscripcione_id' value='"+data.programacion.inscripcione_id +"'>";
+                            $htmledit+="<input id='programacion_id'  type='text' hidden readonly name='programacion_id' value='"+data.programacion.id +"'>";
+
+                            $htmledit+="<div class='container-fluid h-100 mt-3'>"; 
+                            $htmledit+="<div class='row w-100 align-items-center'>";
+                            $htmledit+="<div class='col text-center'>";
+                            $htmledit+="<button type='submit' id='guardar' class='btn btn-primary text-white btn-lg'>Guardar <i class='far fa-save'></i></button> ";       
+                            $htmledit+="</div>";
+                            $htmledit+="</div>";
+                            $htmledit+="</div>";
+                            
+                            $("#formulario-licencia-editar").append($htmledit);
+                            $lista="";
+                            for (let k in data.apoderados) {
+                                $lista+="<option  value='"+data.apoderados[k].nombre+" "+data.apoderados[k].apellidop+" "+data.apoderados[k].apellidom+"("+data.apoderados[k].pivot.parentesco+")" +"'></option>";
+                            }
+                            //console.log($("#apoderados").html());
+                            $("#apoderados").append($lista);   
+                        
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+            });
 
              /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR ENVIO DE FORMULARIO OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $(document).on("submit","#formulario-licencia-editar",function(e){
+                e.preventDefault();//detenemos el envio
+                $parentesco=$('#parentesco').val();
+                $motivo_id=$('#motivo_id').val();
+                $solicitante=$('#solicitante').val();
+                $licencia_id=$('#licencia_id').val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url : "../../licencia/actualizar",
+                    data:{
+                            parentesco:$parentesco,
+                            motivo_id:$motivo_id,
+                            solicitante:$solicitante,
+                            licencia_id:$licencia_id,
+                        },
+                    
+                    success : function(json) {
+                        console.log(json);
+                        let programacioncom_id=$('#programacioncom_id').val(); 
+                        $('#editar-observacion').modal('hide');
+                        $("#"+programacioncom_id).addTempClass( 'bg-success', 3000 );
+                        //$('#futuro').DataTable().ajax.reload();
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+            });
             $(document).on("submit","#formulario-editar-observacion",function(e){
                 e.preventDefault();//detenemos el envio
                 $observacion=$('#observacionx').val();

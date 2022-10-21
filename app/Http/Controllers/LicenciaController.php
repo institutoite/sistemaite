@@ -6,6 +6,7 @@ use App\Models\Licencia;
 use App\Models\Programacioncom;
 use App\Models\Programacion;
 use App\Models\Tipomotivo;
+use App\Models\Motivo;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Config;
+use Yajra\DataTables\Contracts\DataTable as DataTable; 
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
+
 
 /**
  * Class LicenciaController
@@ -27,9 +32,7 @@ class LicenciaController extends Controller
      */
     public function index()
     {
-        $licencias = Licencia::paginate();
-        return view('licencia.index', compact('licencias'))
-            ->with('i', (request()->input('page', 1) - 1) * $licencias->perPage());
+        return view("licencia.index");
     }
 
     /**
@@ -168,6 +171,22 @@ class LicenciaController extends Controller
         $licencia = Licencia::find($id);
         return view('licencia.edit', compact('licencia'));
     }
+    // utilizado desde mostrar en marcadoGeneral
+    public function editar($id_lecencia)
+    {
+        //return response()->json($id_lecencia);
+        $licencia = Licencia::find($id_lecencia,);
+        $motivos=Tipomotivo::findOrFail(4)->motivos;    
+        $programacion=Programacion::findOrFail($licencia->licenciable_id);
+        $apoderados=$programacion->inscripcione->estudiante->persona->apoderados;
+        $motivo=Motivo::findOrFail($licencia->motivo_id);
+
+        
+	
+
+        $data=['motivos'=>$motivos, 'programacion'=>$programacion,'apoderados'=>$apoderados,'licencia'=>$licencia,'motivo'=>$motivo];
+        return response()->json($data);
+    }
 
     /**
      * Update the specified resource in storage.
@@ -185,6 +204,32 @@ class LicenciaController extends Controller
         return redirect()->route('licencias.index')
             ->with('success', 'Licencia updated successfully');
     }
+    public function actualizar(Request $request)
+    {
+        
+        $validator = Validator::make($request->all(), [
+            'motivo_id' => 'required',
+            'solicitante' => 'required',
+            'parentesco' => 'required',
+        ]);
+        $licencia= Licencia::find($request->licencia_id);
+        $licencia->motivo_id=$request->motivo_id;
+         $cadena=$request->solicitante;
+             $pos=stripos($cadena,'(');
+            if(!$pos){
+                $licencia->solicitante=$request->solicitante;  
+            }
+            else
+            {
+                $apoderado=substr($cadena,0,$pos);
+                $licencia->solicitante=$apoderado;  
+            } 
+        $licencia->solicitante=$request->solicitante;
+        $licencia->parentesco=$request->parentesco;
+        $licencia->save();
+
+        return response()->json($licencia);
+    }
 
     /**
      * @param int $id
@@ -198,4 +243,19 @@ class LicenciaController extends Controller
         return redirect()->route('licencias.index')
             ->with('success', 'Licencia deleted successfully');
     }
+
+    public function listar(){
+        $licencias=Licencia::join('motivos','licencias.motivo_id','motivos.id')
+            ->select('motivo',DB::raw('count(*) as cantidad'))
+            ->groupBy('motivo')
+            ->orderBy('cantidad','desc')
+            ->get();
+        return datatables()->of($licencias)
+        ->toJson();
+    }
+    /**
+     *%%%%%%%%%%%%%%%%%%%%%%%%% CREAR OTRA CONSULTA POR PARENTESCO 
+     *%%%%%%%%%%%%%%%%%%%%%%%%  CREAR OTRA CONSULTA POR USUARIO QUIEN DA MAS LICENCIA
+     
+     */
 }

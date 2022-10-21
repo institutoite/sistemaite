@@ -59,6 +59,7 @@
 
                                 <th>USUARIO</th>
                                 <th>SOLICITADO</th>
+                                <th>OPTIONS</th>
                             </tr>
                         </thead>
                         <tbody id="tabla-mostrar-licencias">
@@ -213,13 +214,14 @@
     <div class="modal-dialog modal-xl modalito">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                EDITAR PROGRAMACION
+                FORMULARIO LICENCIA
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              
                 <div class="card card-primary">
                     <div class="card-header bg-primary">
-                        <span class="card-title">Actualizar Programacion</span>
+                        <span class="card-title">Licencia</span>
                     </div>
                     <div id="errordiv" class="alert alert-danger d-none">
                         <ul id="error">
@@ -231,6 +233,42 @@
                             @csrf
                             
                             
+                        </form>
+                    </div>
+                </div> 
+            </div>
+           
+        </div>
+    </div>
+</div>
+{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%   MODAL EDITAR LICENCIACOM  %$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+<div class="modal" tabindex="-1" id="licencia-editar">
+    <div class="modal-dialog modal-xl modalito">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                FORMULARIO LICENCIA EDITAR
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul id="estadolicencia" class="list-group">
+                    
+                </ul>
+
+                <div class="card card-primary">
+                    <div class="card-header bg-primary">
+                        <span class="card-title">Licencia</span>
+                    </div>
+                    <div id="errordiveditar" class="alert alert-danger d-none">
+                        <ul id="erroreditar">
+
+                        </ul>
+                    </div>
+
+                    <div class="card-body">
+                        <form id="formulario-licencia-editar" method="POST" action="{{route('licencia.actualizar')}}">
+                            @csrf
+                            
+                           
                         </form>
                     </div>
                 </div> 

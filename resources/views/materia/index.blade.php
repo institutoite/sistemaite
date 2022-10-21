@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'listar Feriados')
+@section('title', 'listar materias')
 @section('plugins.Jquery', true)
 @section('plugins.Sweetalert2', true)
 @section('plugins.Datatables', true)

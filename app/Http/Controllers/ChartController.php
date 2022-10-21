@@ -128,4 +128,30 @@ class ChartController extends Controller
             return view('chart.pagos.cantidadpagosxuser',$data);
         }
     }
+
+    // FALTA DARLE FUNCIONALIDAD LA CONSULTA ESTA PERFECTA
+    public function charCantidadLicenciasxMotivos(Request $request){
+        $consulta=Licencia::join('motivos','licencias.motivo_id','motivos.id')
+            ->select('motivo',DB::raw('count(*) as cantidad'))
+            ->groupBy('motivo')
+            ->orderBy('cantidad','desc')
+            ->get();
+        
+        $data['label'][]=[];
+        $data['data'][]=[];
+        foreach ($consulta as $elemento) {
+            $data['label'][]=$elemento->name;
+            $data['data'][]=$elemento->cantidad;
+        }
+        $data['data']=json_encode($data);
+        
+        if($request->ajax()){
+            return datatables()->of($consulta)
+                ->toJson();
+        }else{
+            return view('chart.pagos.cantidadpagosxuser',$data);
+        }
+    }
+
+
 }

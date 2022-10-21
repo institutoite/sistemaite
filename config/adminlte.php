@@ -438,42 +438,31 @@ return [
         ],
 
 //** %%%%%%%%%%%%%%%%%%  USUARIOS %%%%%%%%%%%%% */
-        
         [
             'text'    => 'Usuarios',
             'icon'    => 'fas fa-user',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
             'submenu' => [
-                // [
-                //     'text' => 'Eventos',
-                //     'icon'    => 'fas fa-angle-right',
-                //     'url'  => '#',
-                //     'classes'  => 'text-secondary',
-                // ],
-                // [
-                //     'text' => 'Inscripciones',
-                //     'icon'    => 'fas fa-angle-right',
-                //     'url'  => '#',
-                //     'classes'  => 'text-secondary',
-                //     'can' => 'Listar Inscripciones',
-                // ],
-                // [
-                //     'text' => 'Salidas',
-                //     'icon'    => 'fas fa-angle-right',
-                //     'url'  => '#',
-                //     'classes'  => 'text-secondary',
-                // ],
-                // [
-                //     'text' => 'Cobros',
-                //     'icon'    => 'fas fa-angle-right',
-                //     'url'  => '#',
-                //     'classes'  => 'text-secondary',
-                // ],
                 [
                     'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
                     'route' => 'users.index',
+                    'classes'  => 'text-secondary',
+                ],
+            ],
+        ],
+//** %%%%%%%%%%%%%%%%%%  LICENCIAS %%%%%%%%%%%%% */
+        [
+            'text'    => 'Licencias',
+            'icon'    => 'fas fa-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url' => 'licencias',
                     'classes'  => 'text-secondary',
                 ],
             ],
