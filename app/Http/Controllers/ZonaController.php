@@ -107,7 +107,8 @@ class ZonaController extends Controller
      */
     public function destroy(Zona $zona)
     {
-        //
+        $zona->delete();
+        return response()->json(['mensaje'=>'El registro fue eliminado correctamente']);
     }
     public function zona_of_city(Request $request,$id){  
         

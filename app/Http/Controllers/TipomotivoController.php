@@ -120,13 +120,14 @@ class TipomotivoController extends Controller
      * @param  \App\Models\Tipomotivo  $tipomotivo
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tipomotivo $tipomotivo)
     {
-        Tipomotivo::find($id)->delete();
+        $tipomotivo->delete();
         return response()->json(['mensaje'=>"Se elimino correctamente"]);
     }
 
     public function listar(){
+        
         return datatables()->of(Tipomotivo::get())
         ->addColumn('btn', 'tipomotivo.action')
         ->rawColumns(['btn'])

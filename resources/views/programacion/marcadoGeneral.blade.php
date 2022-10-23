@@ -188,17 +188,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
-    @if (session('mensaje')=='MarcadoCorrectamente')
-        <script>
-            Swal.fire({
-                position: 'bottom-start',
-                icon: 'success',
-                title: 'Marcado Correctamente',
-                showConfirmButton: false,
-                timer: 1500
-            });
-        </script>
-    @endif
+    <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
+    <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
 
     <script>
     /*%%%%%%%%%%%%%%%%%%%%%%  funcion que agrega clase por tiempo x y luego lo destruye %%%%%%%%%%%*/
@@ -218,7 +209,6 @@
          /*%%%%%%%%%%%%%%%%%%%%%%  CODIGO QUE SE CARGA DESPUES DE CARGAR LA PAGINA %%%%%%%%%%%*/
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();  
-            
             /*%%%%%%%%%%%%%%%%%%%%%%%%% TABLA HOY %%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('#tabla_hoy').dataTable({
                 "responsive":true,
@@ -1070,6 +1060,90 @@
                     },
                 });
             });
+            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR  LICENCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click','.eliminarlicencia',function (e) {
+                e.preventDefault(); 
+                licencia_id=$(this).closest('tr').attr('id');
+                console.log(licencia_id);
+                Swal.fire({
+                    title:'Estas seguro(a) de eliminar este registro?',
+                    text:"Si eliminas el registro no lo podras recuperar jamás!",
+                    type:'question',
+                    showCancelButton: true,
+                    showConfirmButton:true,
+                    confirmButtonColor: '#25ff80',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Eliminar..!',
+                    position:'center',        
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: '../../eliminar/licencia/'+licencia_id,
+                            type: 'DELETE',
+                            data:{
+                                _token:'{{csrf_token()}}'
+                            },
+                            success: function(result) {
+                                $("#"+licencia_id).remove();
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 1500,
+                                })
+                                Toast.fire({
+                                type: 'success',
+                                title: 'Se eliminó correctamente el registro'
+                                })   
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                switch (xhr.status) {
+                                    case 500:
+                                        Swal.fire({
+                                            title: 'No se completó esta operación por que este registro está relacionado con otros registros',
+                                            showClass: {
+                                                popup: 'animate__animated animate__fadeInDown'
+                                            },
+                                            hideClass: {
+                                                popup: 'animate__animated animate__fadeOutUp'
+                                            }
+                                        })
+                                        break;
+                                
+                                    default:
+                                        break;
+                                }
+                                
+                            }
+                        });
+                    }else{
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 4000,
+                           //type
+                            onOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+                        Toast.fire({
+                            type: 'error',
+                            title: 'No se eliminó el registro'
+                        })
+                    }
+                })
+            });
+            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR  LICENCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click','.eliminargenerico',function (e) {
+                e.preventDefault(); 
+                registro_id=$(this).closest('tr').attr('id');
+                console.log(registro_id);
+                url="../../eliminar/programacion/"+registro_id;
+                eliminarRegistroURL(url,tablaFuturo);
+            });
+            
         });
 </script>
 

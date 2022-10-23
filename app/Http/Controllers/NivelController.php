@@ -106,12 +106,10 @@ class NivelController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Nivel $nivel)
     {
-        $nivel = Nivel::findOrFail($id);
         $nivel->delete();
-        // return response()->json(['id'=>$nivel]);
-        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
+        return response()->json(['mensaje' => 'Registro Eliminado']);
     }
     public function destroyer()
     {   

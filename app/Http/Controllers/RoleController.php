@@ -57,6 +57,7 @@ class RoleController extends Controller
 
         $role->permissions()->attach($request->permissions);
 
+        //dd($role);
         return redirect()->route('role.index');
     }
 

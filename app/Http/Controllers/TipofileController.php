@@ -107,9 +107,9 @@ class TipofileController extends Controller
      * @param  \App\Models\Tipofile  $tipofile
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tipofile $tipofile)
     {
-         Tipofile::find($id)->delete();
+        $tipofile->delete();
         return response()->json(['mensaje'=>"Se elimino correctamente"]);
     }
     public function listar(){

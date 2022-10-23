@@ -289,7 +289,8 @@ class ProgramacionController extends Controller
      */
     public function destroy(Programacion $programacion)
     {
-        //
+        $programacion->delete();
+        return response()->json(['mensaje'=>'El registro fue eliminado correctamente']);
     }
 
     /***********************************************************************************************

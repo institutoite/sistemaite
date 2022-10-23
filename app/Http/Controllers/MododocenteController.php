@@ -82,11 +82,8 @@ class MododocenteController extends Controller
     }
 
     // public function destroy()
-    public function destroy(DeleteRequest $request)
+    public function destroy(Mododocente $mododocente)
     {
-        // $como_id=4;
-        $mododocente_id=$request->id;
-        $mododocente=Mododocente::findOrFail($mododocente_id);
         $mododocente->delete();
         return response()->json(['mensaje'=>"El registro fue eliminado correctamentex"]);
     }

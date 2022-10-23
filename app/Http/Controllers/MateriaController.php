@@ -82,6 +82,12 @@ class MateriaController extends Controller
         return view('materia.show',compact('niveles','materia','user'));
     }
 
+    public function destroy(Materia $materia)
+    {
+        $materia->delete();
+        return response()->json($materia);
+        return response()->json(['mensaje'=>"Se elimino correctamente"]);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -108,26 +114,13 @@ class MateriaController extends Controller
      */
     public function update(MateriaUpdateRequest $request, Materia $materia)
     {
-        //$materia = Materia::findOrFail($request->id);
-        // $validator = Validator::make($request->all(), [
-        //     'materia' => ['required','min:5','max:30',Rule::unique('materias', 'materia')->ignore($materia)],
-        //     'niveles' => ['required'],
-        // ]);
-
         $materia->materia=$request->materia;
         $materia->save();
         $materia->niveles()->sync(array_keys($request->niveles));
         return redirect()->route('materias.show',$materia);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Materia  $materia
-     * @return \Illuminate\Http\Response
-     */
    
-
     public function configurar_niveles($materia)
     {
         $Materia = Materia::findOrFail($materia);

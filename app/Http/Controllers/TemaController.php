@@ -115,15 +115,14 @@ class TemaController extends Controller
      * @param  \App\Tema  $tema
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DeleteRequest $request)
+    public function destroy(Tema $tema)
     {
-        $tema=Tema::findOrFail($request->id);
         $tema->delete();
         return response()->json(['mensaje' => 'Registro Eliminado Correctamente', 'status' => 200]);
     }
-     public function tema_of_materia($materia_id){  
+    
+    public function tema_of_materia($materia_id){  
         $temas=Tema::where('materia_id',$materia_id)->get();
         return response()->json($temas);       
-        
     } 
 }

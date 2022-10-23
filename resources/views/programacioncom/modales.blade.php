@@ -130,6 +130,33 @@
         </div>
     </div>
 </div>
+{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%% M O D A L   P A R A   E D I T A R licencia %$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+<div class="modal" tabindex="-1" id="licencia-editar">
+    <div class="modal-dialog modal-xl modalito">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                EDITAR PROGRAMACION
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card card-primary">
+                    <div class="card-header bg-primary">
+                        <span class="card-title">Actualizar Programacion</span>
+                    </div>
+                    <div class="card-body">
+                        {{-- <form method="POST" action="{{ route('programacions.update', $programacion->id) }}"  role="form" enctype="multipart/form-data"> --}}
+                        <form id="formulario-licencia-editar" method="POST" action="{{route('programacioncom.actualizar')}}">
+                            @csrf
+                
+                            @include('include.botones')
+                        </form>
+                    </div>
+                </div> 
+            </div>
+           
+        </div>
+    </div>
+</div>
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%% M O D A L   P A R A  A G R E G A R O B S E R V A C I O N   A LA P R O G R A MA C I O N COM %$$$$$$%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 <div class="modal" tabindex="-1" id="modal-gregar-observacion">
     <div class="modal-dialog modal-xl">

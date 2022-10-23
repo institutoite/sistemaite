@@ -1,15 +1,14 @@
 @extends('adminlte::page')
-
-@section('title', 'Roles')
-
-@section('content_header')
-    <h1 class="text-center text-primary">Formulario Crear Rol</h1>
+@section('css')
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
+@section('title', 'Roles')
 
 @section('content')
     <div class="card">
         <div class="card-header bg-primary">
-            Crear Rol <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('role.index')}}">Listar roles</a>
+            Crear Rolx <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('role.index')}}">Listar roles</a>
         </div>
         <div class="card-body">
             {!! Form::open(['route'=> 'role.store']) !!}

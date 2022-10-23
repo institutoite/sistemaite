@@ -175,16 +175,12 @@ class LicenciaController extends Controller
     public function editar($id_lecencia)
     {
         //return response()->json($id_lecencia);
-        $licencia = Licencia::find($id_lecencia,);
+        $licencia = Licencia::find($id_lecencia);
         $motivos=Tipomotivo::findOrFail(4)->motivos;    
-        $programacion=Programacion::findOrFail($licencia->licenciable_id);
-        $apoderados=$programacion->inscripcione->estudiante->persona->apoderados;
+        $programacioncom=Programacioncom::findOrFail($licencia->licenciable_id);
+        $apoderados=$programacioncom->matriculacion->computacion->persona->apoderados;
         $motivo=Motivo::findOrFail($licencia->motivo_id);
-
-        
-	
-
-        $data=['motivos'=>$motivos, 'programacion'=>$programacion,'apoderados'=>$apoderados,'licencia'=>$licencia,'motivo'=>$motivo];
+        $data=['motivos'=>$motivos, 'programacioncom'=>$programacioncom,'apoderados'=>$apoderados,'licencia'=>$licencia,'motivo'=>$motivo];
         return response()->json($data);
     }
 
@@ -206,7 +202,6 @@ class LicenciaController extends Controller
     }
     public function actualizar(Request $request)
     {
-        
         $validator = Validator::make($request->all(), [
             'motivo_id' => 'required',
             'solicitante' => 'required',
@@ -214,16 +209,16 @@ class LicenciaController extends Controller
         ]);
         $licencia= Licencia::find($request->licencia_id);
         $licencia->motivo_id=$request->motivo_id;
-         $cadena=$request->solicitante;
-             $pos=stripos($cadena,'(');
-            if(!$pos){
-                $licencia->solicitante=$request->solicitante;  
-            }
-            else
-            {
-                $apoderado=substr($cadena,0,$pos);
-                $licencia->solicitante=$apoderado;  
-            } 
+        $cadena=$request->solicitante;
+        $pos=stripos($cadena,'(');
+        if(!$pos){
+            $licencia->solicitante=$request->solicitante;  
+        }
+        else
+        {
+            $apoderado=substr($cadena,0,$pos);
+            $licencia->solicitante=$apoderado;  
+        } 
         $licencia->solicitante=$request->solicitante;
         $licencia->parentesco=$request->parentesco;
         $licencia->save();
@@ -236,12 +231,13 @@ class LicenciaController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy($licencia_id)
     {
-        $licencia = Licencia::find($id)->delete();
-
-        return redirect()->route('licencias.index')
-            ->with('success', 'Licencia deleted successfully');
+        //=8;
+        $licencia = Licencia::findOrFail($licencia_id);
+        $licencia->delete();
+        //return response()->json($licencia);
+        return response()->json(['mensaje'=>"Registro eliminado correctamente"]);
     }
 
     public function listar(){

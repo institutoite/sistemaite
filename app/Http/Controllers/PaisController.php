@@ -100,16 +100,15 @@ class PaisController extends Controller
      * @param  \App\Pais  $pais
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pais $pais)
     {
-        $pais = Pais::findOrFail($id);
         $pais->delete();
-        return redirect()->back()->with('mensaje','Registro eliminado Correctamente');
+        return response()->json(['mensaje'=>"El registro fue elimiando correctamente"]);
     }
     public function eliminarPais($id) {
         $pais = Pais::findOrFail($id);
         $pais->delete();
-        return response()->json(['message' => 'Registro Eliminado','status'=>200]); 
+        return response()->json(['mensaje' => 'Registro Eliminado correctamente']); 
     }
 
     public function departamento_de_pais(Request $request,$id){
@@ -117,5 +116,11 @@ class PaisController extends Controller
         if($request->ajax()){
             return Departamento::where('pais_id',$id)->get();      
         }
+    }
+    public function listar(){
+        return datatables()->of(Pais::all())
+        ->addColumn('btn','pais.action')
+        ->rawColumns(['btn'])
+        ->toJson();
     } 
 }

@@ -19,7 +19,6 @@
                     </div>
 
                     <div class="card-body">
-                        
                         <div class="form-group">
                             <strong>Monto:</strong>
                             {{ $pago->monto }}

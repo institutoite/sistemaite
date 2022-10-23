@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
-@section('title', 'Motivos')
+@section('title', 'Tipo motivos')
 @section('plugins.Jquery', true)
 @section('plugins.Sweetalert2', true)
 @section('plugins.Datatables', true)
@@ -20,7 +20,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Motivos') }}
+                                {{ __('Tipo Motivos') }}
                             </span>
 
                             <div class="float-right">
@@ -61,7 +61,8 @@
     
     {{-- %%%%%%%%%%%%%% muestra el ok de la insersion de datos %%%%%%%%%%%%%%%%% --}}
     
-
+    <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
+    <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
 
     <script>
 
@@ -83,7 +84,7 @@
         $(document).ready(function() {
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATA TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             //let fila=1;
-            $('#tipomotivos').dataTable({
+            var tablatipomotivos=$('#tipomotivos').dataTable({
                 "responsive":true,
                 "searching":true,
                 "paging":   true,
@@ -92,7 +93,6 @@
                 "info":     true,
                 "createdRow": function( row, data, dataIndex ) {
                     $(row).attr('id',data['id']); 
-                    // $('td', row).eq(0).html(fila++);
                 },
                 "ajax":{
                         'url':"listar/tipomotivos",
@@ -215,82 +215,13 @@
                     },
                 });
             });
-            
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  M O T I V O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-            $('#tipomotivos').on('click','.eliminar',function (e) {
+            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  tipomotivo %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+             $('table').on('click','.eliminargenerico',function (e) {
                 e.preventDefault(); 
-                 var id_tipomotivo =$(this).closest('tr').attr('id');
-                Swal.fire({
-                    title: 'Estas seguro(a) de eliminar este registro?',
-                    text: "Si eliminas el registro no lo podras recuperar jamás!",
-                    type: 'question',
-                    showCancelButton: true,
-                    showConfirmButton:true,
-                    confirmButtonColor: '#26baa5',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Eliminar..!',
-                    position:'center',        
-                }).then((result) => {
-                    if (result.value) {
-                        $.ajax({
-                            url: 'eliminar/tipomotivo/'+id_tipomotivo,
-                            type: 'DELETE',
-                            data:{
-                                _token:'{{ csrf_token() }}'
-                            },
-                            success: function(result) {
-                                $('#tipomotivos').DataTable().ajax.reload();
-                                const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 1500,
-                                })
-                                Toast.fire({
-                                type: 'success',
-                                title: 'Se eliminó correctamente el registro'
-                                })   
-                            },
-                            error: function (xhr, ajaxOptions, thrownError) {
-                                switch (xhr.status) {
-                                    case 500:
-                                        Swal.fire({
-                                            title: 'No se completó esta operación por que este registro está relacionado con otros registros',
-                                            showClass: {
-                                                popup: 'animate__animated animate__fadeInDown'
-                                            },
-                                            hideClass: {
-                                                popup: 'animate__animated animate__fadeOutUp'
-                                            }
-                                        })
-                                        break;
-                                
-                                    default:
-                                        break;
-                                }
-                                
-                            }
-                        });
-                    }else{
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 4000,
-                            timerProgressBar: true,
-                            onOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
-                        Toast.fire({
-                            type: 'error',
-                            title: 'No se eliminó el registro'
-                        })
-                    }
-                })
-            });
-
+                registro_id=$(this).closest('tr').attr('id');
+                console.log(registro_id);
+                eliminarRegistro(registro_id,'tipomotivo',tablatipomotivos);
+            });  
         });
     </script>
 

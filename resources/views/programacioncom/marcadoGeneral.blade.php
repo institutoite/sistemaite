@@ -190,17 +190,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/067a2afa7e.js" crossorigin="anonymous"></script>
-    @if (session('mensaje')=='MarcadoCorrectamente')
-        <script>
-            Swal.fire({
-                position: 'bottom-start',
-                icon: 'success',
-                title: 'Marcado Correctamente',
-                showConfirmButton: false,
-                timer: 1500
-            });
-        </script>
-    @endif
+    <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
+    <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
 
     <script>
     /*%%%%%%%%%%%%%%%%%%%%%%  funcion que agrega clase por tiempo x y luego lo destruye %%%%%%%%%%%*/
@@ -786,75 +777,79 @@
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO EDITAR LICENCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.editarlicencia', function(e) {
                 e.preventDefault(); 
-                $html="";
+                $htmleditar="";
                 var licencia_id =$(this).closest('tr').attr('id');
+                    console.log(licencia_id);
+
                     $.ajax({
                         url : "../../licencia/editar/"+licencia_id,
                         success : function(data) {
                             $("#formulario-licencia-editar").empty();
                             $("#licencia-editar").modal("show");
                             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO AULA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-                            $html+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>";
-                            $html+="<div class='form-floating mb-3 text-gray'>";
-                            $html+="<select class='form-control @error('motivo_id') is-invalid @enderror' name='motivo_id' id='motivo_id'>";
-                            $html+="<option  value='' >Elije el motivo de la licencia </option>";
+                            $htmleditar+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>";
+                            $htmleditar+="<div class='form-floating mb-3 text-gray'>";
+                            $htmleditar+="<select class='form-control @error('motivo_id') is-invalid @enderror' name='motivo_id' id='motivo_id'>";
+                            $htmleditar+="<option  value='' >Elije el motivo de la licencia </option>";
                             for (let j in data.motivos) {
                                 // console.log(data.motivos[j]);
-                                if(data.motivos[j].id==data.motivos.id){
-                                    $html+="<option  value='"+data.motivos[j].id +"' selected >"+data.motivos[j].motivo+"</option>";
+                                if(data.motivos[j].id==data.motivo.id){
+                                    $htmleditar+="<option  value='"+data.motivos[j].id +"' selected >"+data.motivos[j].motivo+"</option>";
                                 }else{
-                                    $html+="<option  value='"+data.motivos[j].id +"'>"+data.motivos[j].motivo+"</option>";
+                                    $htmleditar+="<option  value='"+data.motivos[j].id +"'>"+data.motivos[j].motivo+"</option>";
                                 }
                             }
-                            $html+="</select>";                
-                            $html+="<label for='motivo_id'>Motivo</label></div></div>";
-                            $html+="</div>";// fin de row
-                            $html+="<div class='row'>";
+                            $htmleditar+="</select>";                
+                            $htmleditar+="<label for='motivo_id'>Motivo</label></div></div>";
+                            $htmleditar+="</div>";// fin de row
+                            $htmleditar+="<div class='row'>";
+                            $htmleditar+="<input type='number' name='licencia_id' id='licencia_id' value='"+data.licencia.id+"'>";
                             
-                            $html+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'><div class='form-floating mb-3 text-gray'>";
-                            $html+="<input type='text' autocomplete='off' list='apoderados' name='solicitante' class='form-control @error('solicitante') is-invalid @enderror texto-plomo' id='solicitante'"; 
-                            $html+="value=\''\>";
-                            $html+="<datalist id='apoderados'></datalist>";
+                            $htmleditar+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'><div class='form-floating mb-3 text-gray'>";
+                            $htmleditar+="<input type='text' autocomplete='off' list='apoderados' name='solicitante' class='form-control @error('solicitante') is-invalid @enderror texto-plomo' id='solicitante'"; 
+                            $htmleditar+="value='"+data.licencia.solicitante+"'>";
+                            $htmleditar+="<datalist id='apoderados'></datalist>";
                             
-                            $html+="<label for='solicitante'>Nombre de persona Solicitante</label></div></div>";
-                            $html+="</div>";// div del row
+                            $htmleditar+="<label for='solicitante'>Nombre de persona Solicitante</label></div></div>";
+                            $htmleditar+="</div>";// div del row
 
 
-                            $html+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>";
-                            $html+="<div class='form-floating mb-3 text-gray'>";
-                            $html+="<select class='form-control @error('parentesco') is-invalid @enderror' name='parentesco' id='parentesco'>";
-                                $html+="<option  value='' >Elije un parentesco</option>";
-                                $html+="<option  value='PAPA' >PAPA</option>";
-                                $html+="<option  value='MAMA' >MAMA</option>";
-                                $html+="<option  value='ESPOSO' >ESPOSO</option>";
-                                $html+="<option  value='ESPOSA' >ESPOSA</option>";
-                                $html+="<option  value='TIO' >TIO</option>";
-                                $html+="<option  value='TIA' >TIA</option>";
-                                $html+="<option  value='OTRO' >OTRO</option>";
-                                $html+="<option  value='ELMISMO' >EL O ELLA MISMA</option>";
-                            $html+="</select>";                
-                            $html+="<label for='parentesco'>Parentesco</label></div></div>";
-                            $html+="</div>";// fin de row
-                            $html+="<div class='row'>";
+                            $htmleditar+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>";
+                            $htmleditar+="<div class='form-floating mb-3 text-gray'>";
+                            $htmleditar+="<select class='form-control @error('parentesco') is-invalid @enderror' name='parentesco' id='parentesco'>";
+                                $htmleditar+="<option  value='' >Elije un parentesco</option>";
+                                $htmleditar+="<option  value='"+data.licencia.parentesco+"' selected>"+data.licencia.parentesco+"</option>";
+                                $htmleditar+="<option  value='PAPA' >PAPA</option>";
+                                $htmleditar+="<option  value='MAMA' >MAMA</option>";
+                                $htmleditar+="<option  value='ESPOSO' >ESPOSO</option>";
+                                $htmleditar+="<option  value='ESPOSA' >ESPOSA</option>";
+                                $htmleditar+="<option  value='TIO' >TIO</option>";
+                                $htmleditar+="<option  value='TIA' >TIA</option>";
+                                $htmleditar+="<option  value='OTRO' >OTRO</option>";
+                                $htmleditar+="<option  value='ELMISMO' >EL O ELLA MISMA</option>";
+                            $htmleditar+="</select>";                
+                            $htmleditar+="<label for='parentesco'>Parentesco</label></div></div>";
+                            $htmleditar+="</div>";// fin de row
+                            $htmleditar+="<div class='row'>";
 
                             //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                            $html+="<input id='matriculacion_id'  type='text' hidden readonly name='inscripcione_id' value='"+data.programacioncom.matriculacion_id +"'>";
-                            $html+="<input id='programacioncom_id'  type='text' hidden readonly name='programacion_id' value='"+data.programacioncom.id +"'>";
+                            $htmleditar+="<input id='matriculacion_id'  type='text' hidden readonly name='inscripcione_id' value='"+data.programacioncom.matriculacion_id +"'>";
+                            $htmleditar+="<input id='programacioncom_id'  type='text' hidden readonly name='programacion_id' value='"+data.programacioncom.id +"'>";
 
-                            $html+="<div class='container-fluid h-100 mt-3'>"; 
-                            $html+="<div class='row w-100 align-items-center'>";
-                            $html+="<div class='col text-center'>";
-                            $html+="<button type='submit' id='guardar' class='btn btn-primary text-white btn-lg'>Guardar <i class='far fa-save'></i></button> ";       
-                            $html+="</div>";
-                            $html+="</div>";
-                            $html+="</div>";
+                            $htmleditar+="<div class='container-fluid h-100 mt-3'>"; 
+                            $htmleditar+="<div class='row w-100 align-items-center'>";
+                            $htmleditar+="<div class='col text-center'>";
+                            $htmleditar+="<button type='submit' id='guardar' class='btn btn-primary text-white btn-lg'>Guardar <i class='far fa-save'></i></button> ";       
+                            $htmleditar+="</div>";
+                            $htmleditar+="</div>";
+                            $htmleditar+="</div>";
                             
-                            $("#formulario-licencia").append($html);
+                            $("#formulario-licencia-editar").append($htmleditar);
                             $lista="";
                             for (let k in data.apoderados) {
                                 $lista+="<option  value='"+data.apoderados[k].nombre+" "+data.apoderados[k].apellidop+" "+data.apoderados[k].apellidom+"("+data.apoderados[k].pivot.parentesco+")" +"'></option>";
                             }
-                            console.log($("#apoderados").html());
+                            //console.log($("#apoderados").html());
                             $("#apoderados").append($lista);
 
                         },
@@ -915,6 +910,36 @@
                                 title: 'Se guardó correctamente el registro'
                             })   
                         } 
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+            });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR ENVIO DE FORMULARIO LICENCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $(document).on("submit","#formulario-licencia-editar",function(e){
+                e.preventDefault();//detenemos el envio
+                $parentesco=$('#parentesco').val();
+                $motivo_id=$('#motivo_id').val();
+                $solicitante=$('#solicitante').val();
+                $licencia_id=$('#licencia_id').val();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url : "../../licencia/actualizar",
+                    data:{
+                            parentesco:$parentesco,
+                            motivo_id:$motivo_id,
+                            solicitante:$solicitante,
+                            licencia_id:$licencia_id,
+                        },
+                    success : function(json) {
+                        $("#licencia-editar").modal("hide");
+                        $("#modal-mostrar-clase").modal("hide");
+
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
@@ -1010,8 +1035,90 @@
                     },
                 });
             });
+            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR  LICENCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+            $('table').on('click','.eliminarlicencia',function (e) {
+                e.preventDefault(); 
+                licencia_id=$(this).closest('tr').attr('id');
+                console.log(licencia_id);
+                Swal.fire({
+                    title:'Estas seguro(a) de eliminar este registro?',
+                    text:"Si eliminas el registro no lo podras recuperar jamás!",
+                    type:'question',
+                    showCancelButton: true,
+                    showConfirmButton:true,
+                    confirmButtonColor: '#25ff80',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Eliminar..!',
+                    position:'center',        
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            url: '../../eliminar/licencia/'+licencia_id,
+                            type: 'DELETE',
+                            data:{
+                                _token:'{{csrf_token()}}'
+                            },
+                            success: function(result) {
+                                console.log(result);
+                                $("#"+licencia_id).remove();
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 1500,
+                                })
+                                Toast.fire({
+                                type: 'success',
+                                title: 'Se eliminó correctamente el registro'
+                                })   
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                switch (xhr.status) {
+                                    case 500:
+                                        Swal.fire({
+                                            title: 'No se completó esta operación por que este registro está relacionado con otros registros',
+                                            showClass: {
+                                                popup: 'animate__animated animate__fadeInDown'
+                                            },
+                                            hideClass: {
+                                                popup: 'animate__animated animate__fadeOutUp'
+                                            }
+                                        })
+                                        break;
+                                
+                                    default:
+                                        break;
+                                }
+                                
+                            }
+                        });
+                    }else{
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 4000,
+                           //type
+                            onOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+                        Toast.fire({
+                            type: 'error',
+                            title: 'No se eliminó el registro'
+                        })
+                    }
+                })
+            });
+             $('table').on('click','.eliminargenerico',function (e) {
+                e.preventDefault(); 
+                registro_id=$(this).closest('tr').attr('id');
+                console.log(registro_id);
+                url="../../eliminar/programacioncom/"+registro_id;
+                eliminarRegistroURL(url,tablaFuturo);
+            });
 
-            /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ADELANTAR PRO */
         });
 </script>
 

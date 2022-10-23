@@ -22,7 +22,6 @@
                             </div>
                         </div>
                     </div>
-                  
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="materias" class="table table-striped table-hover">
@@ -33,7 +32,6 @@
 										<th>Opciones</th>
                                     </tr>
                                 </thead>
-                               
                             </table>
                         </div>
                     </div>
@@ -56,19 +54,19 @@
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATA TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         //let fila=1;
         tablamateria=$('#materias').dataTable({
-            "responsive": true
-            , "searching": true
-            , "paging": true
-            , "autoWidth": false
-            , "ordering": true
-            , "info": true
-            , "createdRow": function(row, data, dataIndex) {
+            "responsive": true,
+            "searching": true,
+            "paging": true,
+            "autoWidth": false,
+            "ordering": true,
+            "info": true,
+            "createdRow": function(row, data, dataIndex) {
                 $(row).attr('id', data['id']);
-            }
-            , "ajax": {
+            },
+            "ajax": {
                 'url': "listar/materias"
-            , }
-            , "columns": [
+            },
+            "columns": [
                 { data:'id'}, 
                 {data: 'materia'}, 
                 {
@@ -76,19 +74,22 @@
                     "data": 'btn',
                     "orderable": false,
                 },
-             ], 
+            ], 
             "columnDefs": [
                 { responsivePriority: 1, targets: 0 },  
                 { responsivePriority: 2, targets: -1 }
             ],
             "language": {
                 "url": "http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-            }
-            , 
+            },
         });
 
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% E L I M I N A R  M O T I V O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-       
+        $('table').on('click','.eliminargenerico',function (e) {
+            e.preventDefault(); 
+            registro_id=$(this).closest('tr').attr('id');
+            eliminarRegistro(registro_id,'materia',tablamateria);
+        });
     });
 
 </script>

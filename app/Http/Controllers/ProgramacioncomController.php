@@ -153,7 +153,8 @@ class ProgramacioncomController extends Controller
      */
     public function destroy(Programacioncom $programacioncom)
     {
-        //
+        $programacioncom->delete();
+        return response()->json(['mensaje'=>"El registro se eliminó correctamente"]);
     }
 
 

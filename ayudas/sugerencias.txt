@@ -135,11 +135,19 @@ NO ESTA MOSTRARNDO TIPO MOTIVOS
 ESTADO NO ESTA MOSTRANDO USUARIO QUE LO CREO
 Tipo archivo no esta actualizando bien 
 
+
+405  Route::delete('eliminar/tipomotivo/{tipomotivo}',[TipomotivoController::class,'destroy'])->name('eliminar.tipomotivo');
+estaba con get
+
+*itecorporativo1326*
+*Blanco1326* este es el ultimo 
+
 revisar todos  los eliminar
 NO ELIMINA NIVELES, ZONA CRUD
 OBSERVACIONES DE DOCENTES
 FALTA COGIDO EN LOS REPORTES
-
+eliminar, editar pagos de peridables 
+revisar relacion entremodelos de plan, conveions y caracteristicas
 
 $('table').on('click','.eliminargenerico',function (e) {
     e.preventDefault(); 

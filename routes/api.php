@@ -110,12 +110,12 @@ Route::get('referencias',function(){
         ->toJson();
 });
 
-Route::get('paises',function(){
-    return datatables()->of(Pais::all())
-        ->addColumn('btn','pais.action')
-        ->rawColumns(['btn'])
-        ->toJson();
-});
+// Route::get('paises',function(){
+//     return datatables()->of(Pais::all())
+//         ->addColumn('btn','pais.action')
+//         ->rawColumns(['btn'])
+//         ->toJson();
+// });
 Route::get('personas', function () {
     $persona=Persona::select('id','nombre','apellidop','apellidom','foto');
     return datatables()->of($persona)

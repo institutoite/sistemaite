@@ -109,12 +109,11 @@ class MunicipioController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Municipio $municipio)
     {
-        //return response()->json(['id'=>$id]);
-        $municipio = Municipio::findOrFail($id);
+        return response()->json($municipio);
         $municipio->delete();
-        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
+        return response()->json(['mensaje' => 'Registro Eliminado correctamente']);
     }
     public function municipio_of_provincia($id)
     {

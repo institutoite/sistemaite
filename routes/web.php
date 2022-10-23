@@ -59,6 +59,9 @@ use App\Http\Controllers\FeriadoController;
 use App\Http\Controllers\ConstanteController;
 use App\Http\Controllers\CiudadController;
 use App\Http\Controllers\ColegioController;
+use App\Http\Controllers\MunicipioController;
+use App\Http\Controllers\PaisController;
+use App\Http\Controllers\ZonaController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
@@ -68,9 +71,9 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
     });
     Auth::routes();
 
-Route::middleware(['auth'])->group(function () {
+//Route::middleware(['auth'])->group(function () {
 
-    Route::get('prueba',[FeriadoController::class,'listar'])->name('prueba');
+    Route::get('prueba',[TipomotivoController::class,'destroy'])->name('prueba');
     Route::get('/ninacos', function () {
         return view('ninaco.index');
     });
@@ -195,6 +198,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('reporte/potenciales/between', [PersonaReporteController::class,'potencialesBetween'])->name('reporte.potenciales.between');
 
     Route::resource('paises', "PaisController");
+    Route::delete('eliminar/pais/{pais}', [PaisController::class,'destroy'])->name('pais.delete');
+    Route::get('listar/paises',[PaisController::class,'listar'])->name('paises.listar');
+
     Route::resource('telefonos', "TelefonoController");
     Route::resource('users', 'UserController');
     Route::get('user/create',[UserController::class,'crear'])->name('user.crear');
@@ -206,14 +212,21 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('eliminar/ciudad/{ciudad}', [CiudadController::class,'destroy'])->name('ciudad.delete');
 
     Route::resource('zonas', "ZonaController");
+    Route::delete('eliminar/zona/{zona}',[ZonaController::class,'destroy'])->name('eliminar.zona');
     //Route::resource('usuarios', "UserController");
     Route::resource('menus', "MenuController");
     //Route::resource('grado', "GradoController");
     Route::resource('departamentos', "DepartamentoController");
     Route::delete('eliminar/departamento/{departamento}', [DepartamentoController::class,'destroy'])->name('departamento.delete');
 
+    
+    /**%%%%%%%%%%%%%%%%%%%%% PROVINCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::resource('provincias', "ProvinciaController");
+    Route::delete('eliminar/provincia/{provincia}', [ProvinciaController::class,'destroy'])->name('provincia.delete');
+
+
     Route::resource('municipios', "MunicipioController");
+    Route::delete('eliminar/municipio/{municipio}', [MunicipioController::class,'destroy'])->name('municipio.delete');
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% C O L E G I O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::resource('colegios', "ColegioController");
     Route::get('colegio/all', 'ColegioController@todos');
@@ -221,7 +234,10 @@ Route::middleware(['auth'])->group(function () {
 
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  F I N   C O L E G I O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::resource('modalidads', "ModalidadController");
+    
     Route::resource('nivels', "NivelController");
+    Route::delete('eliminar/nivel/{nivel}', [NivelController::class,'destroy'])->name('nivel.delete');
+
     Route::resource('inscripciones', "InscripcioneController");
     // Route::resource('matriculacion', "MatriculacionController");
 
@@ -237,7 +253,7 @@ Route::middleware(['auth'])->group(function () {
 
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%MODODOCENTE         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     Route::resource('mododocentes', "MododocenteController");
-    Route::delete('eliminar/mododocente', [MododocenteController::class,'destroy'])->name('mododocente.delete');
+    Route::delete('eliminar/mododocente/{mododocente}', [MododocenteController::class,'destroy'])->name('mododocente.delete');
     Route::get('listar/mododocentes',[MododocenteController::class,'listar'])->name('mododocente.Mododocente');
 
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%ESTDUDIANTES         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -326,7 +342,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('tema/create',[TemaController::class,'create'])->name('tema.create');
     Route::get('tema/show/{tema}',[TemaController::class,'show'])->name('tema.show');
     Route::get('tema/edit/{tema}',[TemaController::class,'edit'])->name('tema.edit');
-    Route::delete('eliminar/tema',[TemaController::class,'destroy'])->name('eliminar.tema');
+    Route::delete('eliminar/tema/{tema}',[TemaController::class,'destroy'])->name('eliminar.tema');
 
     Route::patch('tema/actualizar/{tema}', [TemaController::class,'update'])->name('tema.update');
     Route::post('tema/store', [TemaController::class,'store'])->name('tema.store');
@@ -336,6 +352,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('listar/materias',[MateriaController::class,'listar'])->name('materias.listar');
     Route::get('materias/niveles/{materia}', 'MateriaController@configurar_niveles')->name('materias.gestionar.niveles');
     Route::post('materias/niveles/configurar/{materia}', 'MateriaController@GuardarConfigurarNiveles')->name('materias.configurar.niveles.guardar');
+    Route::delete('eliminar/materia/{materia}', [MateriaController::class,'destroy'])->name('materia.eliminar');
 
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       P  A  G  O  S          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     Route::resource('pagos', "PagoController");
@@ -547,7 +564,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('tipomotivo/mostrar', "TipomotivoController@mostrar")->name("tipomotivo.mostrar");
     Route::get('tipomotivo/editar/', "TipomotivoController@editar")->name("tipomotivo.editar");
     Route::get('tipomotivo/actualizar/', "TipomotivoController@actualizar")->name("tipomotivo.actualizar");
-    Route::delete('eliminar/tipomotivo/{tipomotivo}', 'TipomotivoController@destroy')->name('eliminar.tipomotivo');
+    Route::delete('eliminar/tipomotivo/{tipomotivo}',[TipomotivoController::class,'destroy'])->name('eliminar.tipomotivo');
     Route::get('tipomotivo/create',[TipomotivoController::class,'create'])->name('tipomotivo.create');
     Route::post('tipomotivo/guardar',[TipomotivoController::class,'store'])->name('tipomotivo.store');
 
@@ -662,7 +679,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('licencia/actualizar', [LicenciaController::class,'actualizar'])->name('licencia.actualizar');
     Route::get('licenciaprogramacion/crear', [LicenciaController::class,'createprogramacion'])->name('licenciaprogramacion.crear');
     Route::get('licenciaprogramacion/guardar', [LicenciaController::class,'storeprogramacion'])->name('licenciaprogramacion.guardar');
-
+    Route::delete('eliminar/licencia/{licencia}', [LicenciaController::class,'destroy'])->name('licencia.eliminar');
+    
     /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%INSCRIPCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::get('tus_inscripciones/{estudiante_id}', 'InscripcioneController@tusinscripciones')->name('tus.inscripciones');
     Route::get('listar/inscripciones/{persona}', 'InscripcioneController@listar')->name('listar_inscripciones');
@@ -719,6 +737,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('programados/hoy', function () {return view('programacion.programados');})->name('programas.hoy.view');
     Route::get('hoy','ProgramacionController@hoy')->name('programas.hoy');
     Route::get('programacion/mostrar/ajax', [ProgramacionController::class,'programacionMostrarAjax'])->name('programacion.mostrar..ajax');
+    Route::delete('eliminar/programacion/{programacion}', [ProgramacionController::class,'destroy'])->name('programacion.delete');
 
     /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% P R O G R A M A C I O N  COMPUTACION  C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::get('generar/programacioncom/{matriculacion}',[ProgramacioncomController::class,'generarProgramacom'])->name('generar.programacioncom');
@@ -739,6 +758,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('programacioncom/asignarfalta/ajax', [ProgramacioncomController::class,'asignarFaltasFechasPasadas'])->name('programacioncom.asignarFaltas');
     Route::get('programacioncom/mostrar/ajax', [ProgramacioncomController::class,'programacioncomMostrarAjax'])->name('programacioncom.mostrar..ajax');
     Route::get('hoycom',[ProgramacioncomController::class,'hoycom'])->name('programascoms.hoy');
+    Route::delete('eliminar/programacioncom/{programacioncom}', [ProgramacioncomController::class,'destroy'])->name('programacioncom.delete');
+
 
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%OBSERVACION RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::get('observacion/create/{observable_id}/{observable_type}',[ObservacionController::class,'create'])->name('observacion.create');
@@ -761,20 +782,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('opciones/{persona}','OpcionController@index')->name('opcion.principal');
 
     //Route::get('principal/{id}', 'OpcionController@principal')->name('opcion.index');
-    Route::delete('eliminar/pais/{id}','PaisController@eliminarPais')->name('eliminar.pais');
-    Route::delete('eliminar/ciudad/{id}','CiudadController@eliminarCiudad')->name('eliminar.ciudad');
-    Route::delete('eliminar/zona/{id}','ZonaController@eliminarZona')->name('eliminar.zona');
+    // Route::delete('eliminar/pais/{id}','PaisController@eliminarPais')->name('eliminar.pais');
+    // Route::delete('eliminar/ciudad/{id}','CiudadController@eliminarCiudad')->name('eliminar.ciudad');
+    
     Route::delete('eliminar/usuario/{id}','UserController@eliminarUsuario')->name('eliminar.usuario');
     Route::delete('eliminar/persona/{id}','PersonaController@eliminarPersona')->name('eliminar.persona');
     Route::delete('eliminar/telefono/{persona}/{id}', 'TelefonoController@eliminarTelefono')->name('telefono.eliminar');
     Route::delete('eliminar/menu/{id}','MenuController@eliminarMenu')->name('eliminar.menu');
-    Route::delete('eliminar/grado/{id}', 'GradoController@destroy')->name('eliminar.grado');
+    // Route::delete('eliminar/grado/{id}', 'GradoController@destroy')->name('eliminar.grado');
     //Route::delete('eliminar/departamento/{id}', 'DepartamentoController@destroy')->name('eliminar.departamento');
-    Route::delete('eliminar/provincia/{id}', 'ProvinciaController@destroy')->name('eliminar.provincia');
-    Route::delete('eliminar/municipio/{id}', 'MunicipioController@destroy')->name('eliminar.municipio');
+    // Route::delete('eliminar/provincia/{id}', 'ProvinciaController@destroy')->name('eliminar.provincia');
+    // Route::delete('eliminar/municipio/{id}', 'MunicipioController@destroy')->name('eliminar.municipio');
     //Route::delete('eliminar/colegio/{id}', 'ColegioController@destroy')->name('eliminar.colegio');
-    Route::delete('eliminar/modalidad/{id}', 'ModalidadController@destroy')->name('eliminar.modalidad');
-    Route::delete('eliminar/nivel/{id}', 'NivelController@destroy')->name('eliminar.nivel');
+    // Route::delete('eliminar/modalidad/{id}', 'ModalidadController@destroy')->name('eliminar.modalidad');
+    // Route::delete('eliminar/nivel/{id}', 'NivelController@destroy')->name('eliminar.nivel');
     Route::delete('eliminar/inscripcion/{id}', 'InscripcioneController@destroy')->name('eliminar.inscripcione');
     Route::delete('eliminar/matriculacion/{id}', 'MatriculacionController@destroy')->name('eliminar.matriculacion');
     Route::delete('eliminar/usuario/{id}', 'UserController@destroy')->name('eliminar.user');
@@ -834,7 +855,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('messages', [MessageController::class, 'store'])->name('messages.store');
 
-});
+//});
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  FRONTED ITE   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::any('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');

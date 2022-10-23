@@ -11,7 +11,7 @@
 <form action=""  class="d-inline formulario">
     @csrf
     @method("delete")
-    <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn eliminar" title="Eliminar esta zona">
+    <button name="btn-eliminar" id="{{$id}}" type="submit" class="btn eliminargenerico" title="Eliminar esta zona">
         <i class="fa fa-fw fa-trash text-danger"></i>   
     </button>
 </form>     
