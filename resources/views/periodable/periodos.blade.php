@@ -82,7 +82,7 @@
             $("#observable_id").val(objeto_id);
             $("#observable_type").val($(this).attr('id'));
             CKEDITOR.instances.editorguardar.setData("");
-            console.log("Click en Observacion crear");
+            console.log("Click en Observacion crear:"+$("#observable_type").val());
             $("#modal-agregar-observacion").modal("show");
         });
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CLICK BOTON GUARDAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -95,7 +95,7 @@
             console.log(observable_type);
             for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
             observacion=$("#editorguardar").val();
-            url = "guardar/observacion"
+            url = "../../../guardar/observacion"
             guardarObservacion(observacion,observable_id,observable_type,url);
             
         });
