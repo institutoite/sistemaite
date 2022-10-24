@@ -17,11 +17,11 @@
     }
 
     .titulo{
-        font-size:9px;
+        font-size:10px;
         font-weight:12px; 
     }
     .dato{
-        font-size:8px;
+        font-size:9px;
         background-color:white; 
     }
     .tabla{
@@ -182,16 +182,19 @@
 <br>    
 <br>    
 <br>    
-<br>    
+<br>
+<div class="float-right">
+    CÓDIGO:{{$persona->id}}    
+</div>
 <div class="">
    <table class="tabla">
     <tbody>
         <tr>
-            <td class="titulo">Estudiante</td>
+            <td class="titulo">ESTUDIANTE</td>
             <td class="dato">{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</td>
             <td class="titulo">Documento CI</td>
             <td class="dato">{{$persona->carnet}}</td>
-            <td class="titulo">Usuario</td>
+            <td class="titulo">USUARIO</td>
             <td class="dato">{{$usuario->name}}</td>
         </tr>
         <tr>
@@ -204,13 +207,15 @@
         </tr>
         <tr>
             <td class="titulo">Colegio</td>
-            <td class="dato" colspan="2">{{$colegio->nombre}}</td>
+            <td class="dato" colspan="3">{{$colegio->nombre}}</td>
             <td class="titulo">Grado</td>
-            <td class="dato" colspan="2">{{$grado->grado}}</td>
+            <td class="dato">{{$grado->grado}}</td>
         </tr>
         <tr>
             <td class="titulo">Requerimiento</td>
-            <td class="dato" colspan="5">{!! strip_tags($inscripcion->objetivo).$pago."/".$inscripcion->costo!!}</td>
+            <td class="dato" colspan="3">{!! strip_tags($inscripcion->objetivo).$pago."/".$inscripcion->costo!!}</td>
+            <td class="titulo">FechaPago</td>
+            <td class="dato">{{$inscripcion->fecha_proximo_pago->isoFormat('D-M-Y')}}</td>
         </tr>
     </tbody>
    </table>

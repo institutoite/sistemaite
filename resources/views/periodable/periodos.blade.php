@@ -56,6 +56,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script src="{{asset('assets/js/addTempClass.js')}}"></script>
     <script src="{{asset('assets/js/observacion.js')}}"></script>
 
     <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
@@ -92,7 +93,7 @@
             let observable_id = $("#observable_id").val();
             console.log(observable_id);
             let observable_type = $("#observable_type").val();
-            console.log(observable_type);
+            console.log(observable_type+"Type");
             for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
             observacion=$("#editorguardar").val();
             url = "../../../guardar/observacion"
@@ -104,7 +105,7 @@
             e.preventDefault();
                 observable_id =$(this).closest('tr').attr('id');
                 observable_type ="Periodable";
-                url="observaciones/" + observable_id + "/" + observable_type,
+                url="../../../observaciones/" + observable_id + "/" + observable_type,
                 mostrarCrudObservaciones(url);
                 $("#modal-mostrar-observaciones").modal("show");
         });
@@ -114,27 +115,27 @@
             e.preventDefault();
             let observacion_id = $(this).closest('tr').attr('id');
             console.log(observacion_id);
-            url="darbaja/observacion";
+            url="../../../darbaja/observacion";
             darBaja(observacion_id,url);
         });
         
         $('table').on('click', '.altaobservacion', function (e) {
             e.preventDefault();
             let observacion_id = $(this).closest('tr').attr('id');
-            url="daralta/observacion";
+            url="../../../daralta/observacion";
             darAlta(observacion_id,url);
         });
 
         $('table').on('click', '.eliminarobservacion', function (e) {
             e.preventDefault();
             let observacion_id = $(this).closest('tr').attr('id');
-            url="eliminar/general"
+            url="../../../eliminar/general"
             eliminarObservacion(observacion_id,url);
         });
         $('table').on('click', '.editarobservacion', function (e) {
             e.preventDefault();
             observacion_id =$(this).closest('tr').attr('id');
-            url="observacion/editar";
+            url="../../../observacion/editar";
             editarObservacion(observacion_id,url);
             $("#modal-mostrar-observaciones").modal("hide");
             $("#modal-editar-observacion").modal("show");
@@ -143,7 +144,7 @@
             e.preventDefault();
             observacion_id =$("#observable_id").val();
             observacion=CKEDITOR.instances.editoreditar.getData();
-            url="observacion/actualizar";
+            url="../../../observacion/actualizar";
             actualizarObservacion(observacion_id,observacion,url);
         });
 

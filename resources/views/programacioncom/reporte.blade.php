@@ -21,11 +21,11 @@
     }
 
     .titulo{
-        font-size:9px;
+        font-size:10px;
         font-weight:12px; 
     }
     .dato{
-        font-size:8px;
+        font-size:9px;
         background-color:white; 
     }
     .tabla{
@@ -205,7 +205,10 @@
 <br>    
 <br>    
 <br>    
-<br>    
+<br>
+<div class="float-right">
+    CÓDIGO:{{$persona->id}}    
+</div>    
 <div class="">
    <table class="tabla">
     <tbody>

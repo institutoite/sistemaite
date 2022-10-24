@@ -138,6 +138,8 @@ revisar todos  los eliminar
 NO ELIMINA NIVELES, ZONA CRUD
 eliminar, editar pagos de peridables 
 revisar relacion entremodelos de plan, conveions y caracteristicas
+OBSERVACIONES DE DOCENTES
+FALTA COGIDO EN LOS REPORTES
 
 
 405  Route::delete('eliminar/tipomotivo/{tipomotivo}',[TipomotivoController::class,'destroy'])->name('eliminar.tipomotivo');
@@ -146,8 +148,6 @@ estaba con get
 *itecorporativo1326*
 *Blanco1326* este es el ultimo 
 
-OBSERVACIONES DE DOCENTES
-FALTA COGIDO EN LOS REPORTES
 
 para eliminiar generico 
 $('table').on('click','.eliminargenerico',function (e) {
