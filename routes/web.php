@@ -158,6 +158,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
     Route::get('periodable/pagar/view/{periodable}',[PeriodableController::class,'createPagoView'])->name('periodable.pago.create.view');
     Route::post("periodable/pago/store/{periodable}",[PeriodableController::class,'storePago'])->name("periodable.pago.store");
     Route::get("pago/periodable/ajax",[PeriodableController::class,'storePagoAjax'])->name("periodable.pago.store.ajax");
+    Route::get("pago/periodable/update/ajax",[PeriodableController::class,'updatePagoAjax'])->name("periodable.pago.update.ajax");
     Route::get('periodable/pagos/view/{periodable}',[PeriodableController::class,'listarPagosView'])->name('periodable.ppagos.listar.view');
     Route::get('periodable/pagos/{periodable}',[PeriodableController::class,'listarPagosAjax'])->name('periodable.pagos.listar.ajax');
 
@@ -359,6 +360,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
     Route::get('pago/crear/{inscripcione}', 'PagoController@crear')->name('pagos.crear');
     Route::get('pago/mostrar/{pago}', 'PagoController@mostrar')->name('pagos.mostrar');
     Route::get('pago/editar/{pago}', 'PagoController@editar')->name('pago.editar');
+    Route::get('pago/edicion/{pago}',[PagoController::class,'edicion'] )->name('pago.edicion');
     Route::get('pagos/inscripcion/{inscripcione}', 'PagoController@detallar')->name('pagos.detallar');
     Route::post('pagos/realizar/{inscripcione}', 'PagoController@guardar')->name('pagos.guardar');
     Route::patch('pago/actualizar/{pago}', "PagoController@actualizar")->name('pago.actualizar');
@@ -369,6 +371,9 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
     Route::get('pago/matriculaciones/view',[PagocomController::class,'pagoMatriculacionesView'])->name('pago.matriculaciones.view');
     Route::get('pagomatriculaciones',[PagocomController::class,'pagoModelo'])->name('pago.matriculaciones');
     Route::get('grafica/por/pagablestype',[PagoController::class,'graficaPorPagablestype'])->name('grafica.por.pagablestype');
+    Route::delete('eliminar/pago/{pago}', [PagoController::class,'destroy'])->name('eliminar.pago');
+    Route::delete('eliminar/pago/periodable/{pago}',[PeriodableController::class,'eliminarPagoPeriodo'])->name('eliminar.pago.periodable');
+    Route::get('pago/actualizar/', [PeriodableController::class,'actualizar'])->name('pago.actualizar');
 
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%CHART RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     Route::get('chart/inscripciones/for/modalidades', [ChartController::class,'chartCantidadInscripcionesXModaalidades'])->name('chart.listar.inscripciones.pormodalidades');
@@ -725,6 +730,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
     Route::get('programacion/hoy/{inscripcion}', "ProgramacionController@programacionesHoy")->name('programaciones.hoy');
     Route::get('programacion/editar/', "ProgramacionController@editar")->name('programacion.editar');
     Route::get('programacion/actualizar/', "ProgramacionController@actualizar")->name('programacion.actualizar');
+    
     Route::get('regenerar/programa/{inscripcione}/{fecha}/{unModo?}', 'ProgramacionController@regenerarPrograma')->name('regenerar.programa');
     Route::get('mostrar/programa/{inscripcione}', 'ProgramacionController@mostrarPrograma')->name('mostrar.programa');
     Route::get('imprimir/programa/{inscripcione}', 'ProgramacionController@imprimirPrograma')->name('imprimir.programa');
@@ -799,7 +805,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
     Route::delete('eliminar/inscripcion/{id}', 'InscripcioneController@destroy')->name('eliminar.inscripcione');
     Route::delete('eliminar/matriculacion/{id}', 'MatriculacionController@destroy')->name('eliminar.matriculacion');
     Route::delete('eliminar/usuario/{id}', 'UserController@destroy')->name('eliminar.user');
-    Route::delete('eliminar/pago/{pago}', 'PagoController@destroy')->name('eliminar.pago');
+    
     //Route::delete('eliminar/computacion/{computacion}', 'ComputacionController@destroy')->name('eliminar.computacion');
     Route::delete('eliminar/carrera/{carrera}', 'CarreraController@destroy')->name('eliminar.carrera');
     Route::delete('eliminar/dia/{carrera}', 'DiaController@destroy')->name('eliminar.dia');

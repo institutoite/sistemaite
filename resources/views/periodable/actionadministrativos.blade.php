@@ -11,4 +11,5 @@
     <button name="btn-eliminar" type="submit" class="btn eliminargenerico" title="Eliminar este periodo">
         <i class="fa fa-fw fa-trash text-danger"></i>   
     </button>
-</form> 
+</form>
+

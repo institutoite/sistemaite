@@ -3,11 +3,18 @@
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
 @stop
 
-@section('title', 'Mostrar Asignatura')
+@section('title', 'Mostrar Tema')
 
 
 @section('content_header')
-    <h1 class="text-center text-primary">Mostrar Tema</h1>
+    <div class="card">
+        <div class="card-header">
+            <h1 class="text-center text-primary">Mostrar Tema</h1>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem cum delectus vero atque officiis dolor sint ex, similique natus laboriosam, neque voluptatum ipsum illum optio expedita maxime, quod sit molestias?</p>
+        </div>
+    </div>
 @stop
 
 @section('content')
@@ -42,11 +49,11 @@
                             <td>
                                 @isset($user)
                                     {{$user->name}}
-                                    <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5"> 
+                                    <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5" width="100"> 
                                 @endisset
                             </td>
                         </tr>
-
+                        
                         <tr>
                             <td>CREADO</td>
                             <td>{{$tema->created_at}}</td>

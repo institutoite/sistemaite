@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
 @section('title', 'Periodo')
@@ -19,6 +20,9 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+           <h1><strong> {{$persona->nombre." ".$persona->apellidop." ".$persona->apellidom}}</strong></h1>
+        </div>
         <div class="row mt-3">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 @php
@@ -31,9 +35,10 @@
                         }
                     @endphp
                 <div class="row">
+                    
                     <div class="card">
                         <div class="card-header">
-                            PAGO SUELDO:<strong> {{$persona->nombre." ".$persona->apellidop." ".$persona->apellidom}}</strong>
+                            RESUMEN
                         </div>
                         <div class="card-body">
                             
@@ -74,7 +79,13 @@
                             <form action="{{route('periodable.pago.store',$periodable)}}" method="POST">
                                 @csrf
                                 @include('periodable.pago.formpago')
-                                @include('include.botones')
+                                <div class="container-fluid h-100 mt-3"> 
+                                    <div class="row w-100 align-items-center">
+                                        <div class="col text-center">
+                                            <button type="submit" id="guardarpago" class="btn btn-primary text-white btn-lg">Guardar <i class="far fa-save"></i></button>        
+                                        </div>	
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -106,18 +117,124 @@
 
             </div>
         </div>
+        @include('periodable.pago.modales')
+        @include('observacion.modalcreate')
 @stop
 
 @section('js')
     
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
     <script src="{{asset('dist/js/moment.js')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
+
+    <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script src="{{asset('assets/js/observacion.js')}}"></script>
     <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
     <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
     
     <script>
+         ( function ( $ ) {
+            'use strict';
+            $.fn.addTempClass = function ( className, expire, callback ) {
+                className || ( className = '' );
+                expire || ( expire = 2000 );
+                return this.each( function () {
+                    $( this ).addClass( className ).delay( expire ).queue( function () {
+                        $( this ).removeClass( className ).clearQueue();
+                        callback && callback();
+                    } );
+                } );
+            };
+        } ( jQuery ) );
+         //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        CKEDITOR.replace('editorguardar', {
+            height: 120,
+            width: "100%",
+            removeButtons: 'PasteFromWord'
+        });
+        //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        CKEDITOR.replace('editoreditar', {
+            height: 120,
+            width: "100%",
+            removeButtons: 'PasteFromWord'
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CREAR OBSERVACION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.observacion', function (e) {
+            e.preventDefault();
+            let objeto_id = $(this).closest('tr').attr('id');
+            console.log(objeto_id+"tipe");
+            $("#observable_id").val(objeto_id);
+            $("#observable_type").val($(this).attr('id'));
+            CKEDITOR.instances.editorguardar.setData("");
+            console.log("Click en Observacion crear");
+            $("#modal-agregar-observacion").modal("show");
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CLICK BOTON GUARDAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('#guardar-observacion').on('click', function (e) {
+            e.preventDefault();
+            console.log("click en guardar obsrvacion");
+            let observable_id = $("#observable_id").val();
+            console.log(observable_id+"ob_id");
+            let observable_type = $("#observable_type").val();
+            console.log(observable_type+"on_type");
+            for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
+            observacion=$("#editorguardar").val();
+            url = "../../../guardar/observacion"
+            guardarObservacion(observacion,observable_id,observable_type,url);
+            
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.mostrarobservacionespago', function(e) {
+            e.preventDefault();
+                observable_id =$(this).closest('tr').attr('id');
+                observable_type ="Pago";
+                url="../../../observaciones/" + observable_id + "/" + observable_type,
+                mostrarCrudObservaciones(url);
+                $("#modal-mostrar-observaciones").modal("show");
+        });
+
+
+        $('table').on('click', '.bajaobservacion', function (e) {
+            e.preventDefault();
+            let observacion_id = $(this).closest('tr').attr('id');
+            console.log(observacion_id);
+            url="../../../darbaja/observacion";
+            darBaja(observacion_id,url);
+        });
+        
+        $('table').on('click', '.altaobservacion', function (e) {
+            e.preventDefault();
+            let observacion_id = $(this).closest('tr').attr('id');
+            url="../../../daralta/observacion";
+            darAlta(observacion_id,url);
+        });
+
+        $('table').on('click', '.eliminarobservacion', function (e) {
+            e.preventDefault();
+            let observacion_id = $(this).closest('tr').attr('id');
+            url="../../../eliminar/general"
+            eliminarObservacion(observacion_id,url);
+        });
+        $('table').on('click', '.editarobservacion', function (e) {
+            e.preventDefault();
+            observacion_id =$(this).closest('tr').attr('id');
+            url="../../../observacion/editar";
+            editarObservacion(observacion_id,url);
+            $("#modal-mostrar-observaciones").modal("hide");
+            $("#modal-editar-observacion").modal("show");
+        });
+        $('#actualizar-observacion').on('click', function (e){ 
+            e.preventDefault();
+            observacion_id =$("#observable_id").val();
+            observacion=CKEDITOR.instances.editoreditar.getData();
+            url="../../../observacion/actualizar";
+            actualizarObservacion(observacion_id,observacion,url);
+        });
         $(document).ready(function(){
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATA TABLE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         let tablapagos;
@@ -156,9 +273,132 @@
                         "paging":   true,
                     }
                 );
-           
+            $("table").on('click',".editarpago", function (e) {
+                e.preventDefault();
+                pago_id=$(this).closest('tr').attr('id');
+                
+                 
+                 $.ajax({
+                    url: "../../../pago/edicion/"+pago_id,
+                   
+                    success: function (result) {
+                        console.log(result);
+                        $("#montoedicion").val(result.monto);
+                        $("#pagoconedicion").val(result.pagocon);
+                        $("#cambioedicion").val(result.cambio);
+                        $("#pago_idedicion").val(result.id);
+                        $("#modal-editar-pago").modal('show');
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        mensajeErr();
+                    }
+                });
+            });
+            $("table").on('click',".eliminarpago", function (e) {
+                e.preventDefault();
+                registro_id=$(this).closest('tr').attr('id');
+                console.log(registro_id);
+                url="../../../eliminar/pago/periodable/"+registro_id;
+                $.ajaxSetup({
+                    headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    console.log(url);
+                    Swal.fire({
+                        title: 'Estas seguro(a) de eliminar este registro?',
+                        text: "Si eliminas el registro no lo podras recuperar jamás!",
+                        type: 'question',
+                        showCancelButton: true,
+                        showConfirmButton: true,
+                        confirmButtonColor: '#25ff80',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Eliminar..!',
+                        position: 'center',
+                    }).then((result) => {
+                        if (result.value) {
+                            $.ajax({
+                                url: url,
+                                type: 'DELETE',
+                                data: {
+                                    _token: $("meta[name='csrf-token']").attr("content"),
+                                },
+                                success: function (result) {
+                                    console.log(result);
+                                    
+                                    $("#" + registro_id).remove();
+                                    tablapagos.ajax.reload();
+                                    mensajeGrande(result.mensaje, 'success', 2000);
+                                    $("#acuenta").html(result.acuenta+" Bs.");
+                                    $("#saldo").html(result.saldo+" Bs.");
+                                    $("#total").html(result.total+" Bs.");
+                                    $("#monto").val('');
+                                    $("#pagocon").val('');
+                                    $("#cambio").val('');
+                                    
+                                },
+                                error: function (xhr, ajaxOptions, thrownError) {
+                                    mensajeErr();
+                                }
+                            });
+                        } else {
+                            mensajePequenio('El registro NO se eliminó', 'error', 2000);
+                        }
+                    })
+            });
 /*%%%%%%%%%%%%%%%%%%%%%%%%% guardado con ajax %%%%%%%%%%%%%%%%%%%%%%*/
-            $("#guardar").on('click', function (e) {
+            $("#actualizarpago").on('click', function (e) {
+                e.preventDefault();
+                $("#erroresedicion").empty();
+                $.ajax({
+                    url: '../../../pago/periodable/update/ajax',
+                    data:{
+                        monto:$("#montoedicion").val(),
+                        pagocon:$("#pagoconedicion").val(),
+                        cambio:$("#cambioedicion").val(),
+                        pago_id:$("#pago_idedicion").val(),
+                        _token: $("meta[name='csrf-token']").attr("content"),
+                    },
+                    success: function (result) {
+                       
+                        html="";
+                        $.each(result.errores, function(i, item) {
+                            $.each(item, function(i, error) {
+                                html+="<li>"+ item[0] +"</li>";
+                                console.log(error);
+                            });
+                        });
+                        $("#erroresedicion").append(html);
+
+                        if (!result.errores){
+                            $("#acuenta").html(result.acuenta+" Bs.");
+                            $("#saldo").html(result.saldo+" Bs.");
+                            $("#total").html(result.total+" Bs.");
+                            $("#monto").val('');
+                            $("#pagocon").val('');
+                            $("#cambio").val('');
+                            if(result.saldo>0){
+                                $("#tablacuerpo").removeClass('text-success');
+                                $("#tablacuerpo").addClass('text-danger');
+                                $("thead").removeClass('bg-success');
+                                $("thead").addClass('bg-danger');
+                            }else{
+                                $("#tablacuerpo").removeClass('text-danger');
+                                $("#tablacuerpo").addClass('text-success');
+                                $("thead").removeClass('bg-danger');
+                                $("thead").addClass('bg-success');
+                                $("#tablaresumen").addClass('text-success');
+                            }
+                            tablapagos.ajax.reload();
+                             $("#modal-editar-pago").modal('hide');
+                        }
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                    }
+                });
+            });
+/*%%%%%%%%%%%%%%%%%%%%%%%%% guardado con ajax %%%%%%%%%%%%%%%%%%%%%%*/
+            $("#guardarpago").on('click', function (e) {
                 e.preventDefault();
                 $("#errores").empty();
                 $.ajax({
@@ -213,6 +453,12 @@
             });
             $('#monto').change(function(){
                 $('#cambio').val($('#pagocon').val()-$('#monto').val());
+            });
+            $('#pagoconedicion').change(function(){
+                $('#cambioedicion').val($(this).val()-$('#montoedicion').val());
+            });
+            $('#montoedicion').change(function(){
+                $('#cambioedicion').val($('#pagoconedicion').val()-$('#montoedicion').val());
             });
         });
     </script>    

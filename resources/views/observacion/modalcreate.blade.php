@@ -33,8 +33,8 @@
         observabletype="Persona"
         btnguardar="guardar-observacion"
         btnlabel="Guardar"
-        titulo="CREAR UNA OBSERVACION DE PERSONA"
-        modo="CREAR NUEVA OBSRVACION"
+        titulo="CREAR UNA OBSERVACION"
+        modo="CREAR NUEVA OBSERVACION"
     >
     </x-createobservation>
 
@@ -45,8 +45,8 @@
         observabletype="Persona"
         btnguardar="actualizar-observacion"
         btnlabel="Actualizar"
-        titulo="EDITAR OBSERVACION DE PERSONA"
-        modo="EDITAR OBSRVACION"
+        titulo="EDITAR OBSERVACION"
+        modo="EDITAR OBSERVACION"
     >
     </x-createobservation>
 

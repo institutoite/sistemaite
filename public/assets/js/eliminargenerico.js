@@ -48,7 +48,7 @@ function eliminarRegistroURL(url,tabla) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    
+    console.log(url);
     Swal.fire({
         title: 'Estas seguro(a) de eliminar este registro?',
         text: "Si eliminas el registro no lo podras recuperar jamás!",

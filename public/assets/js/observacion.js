@@ -33,6 +33,7 @@ function mostrarCrudObservaciones(url) {
                     "orderable": false,
                 },
             ],
+
             "columnDefs": [
                 { responsivePriority: 1, targets: 0 },
                 { responsivePriority: 2, targets: -1 }
@@ -40,7 +41,7 @@ function mostrarCrudObservaciones(url) {
             "language": {
                 "url": "http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
             },
-            "order": [[3, "desc"]]
+            "order": [[3, "desc"],[4,"desc"]],
         });
     /*%%%%%%%%%%%%%%% ENUMARA LA PRIMER COLUMNA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     tablaobservaciones.on('order.dt search.dt', function () {

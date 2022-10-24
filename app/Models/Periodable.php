@@ -19,4 +19,8 @@ class Periodable extends Model
     {
         return $this->morphMany(Pago::class, 'pagable');
     }
+    public function observaciones()
+    {
+        return $this->morphMany(Observacion::class, 'observable');
+    }
 }

@@ -27,9 +27,13 @@
 
 @endisset
 
-<a href="" class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" id="Persona" title="Agregar Observacion">
+<a href="" class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" id="Computacion" title="Agregar Observacion">
     <i class="fas fa-comment-alt fa-2x"></i>
 </a>
+<a href="" class="tooltipsC mr-1 mostrarobservacionescomputacion" title="Mostrar observaciones">
+    <i class="fas fa-comments text-secondary fa-2x"></i>
+</a>
+
 
 <a class="btn-accion-tabla tooltipsC mr-1 enviarmensaje" title="Cobrar por mensaje">
     &nbsp;<i class="fab fa-whatsapp"></i>

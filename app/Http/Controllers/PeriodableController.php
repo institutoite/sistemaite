@@ -272,8 +272,50 @@ class PeriodableController extends Controller
             return response()->json($data);
         }
         else{
-             return response()->json(['errores' => $validator->errors()]);
+            return response()->json(['errores' => $validator->errors()]);
         }
+    }
+    public function updatePagoAjax(DeleteRequest $request){
+        //return response()->json($request->all());
+        $validator = Validator::make($request->all(), [
+            'monto'=> 'required|numeric|min:0',
+            'pagocon'=> 'required|numeric|min:0',
+            'cambio'=>'required|numeric|min:0',
+            'pago_id'=>'required|numeric|min:0',
+        ]);
+        if ($validator->passes()) {
+            $pago=Pago::findOrFail($request->pago_id);
+            $pago->monto=$request->monto;
+            $pago->pagocon=$request->pagocon;
+            $pago->cambio=$request->cambio;
+            $pago->save();
+            $periodable=Periodable::find($pago->pagable->periodable_id);
+            $periodable_type=$periodable->periodable_type;
+            $persona=$periodable->periodable->persona;
+            $pagos=$periodable->pagos;
+            $acuenta= $periodable->pagos->sum->monto;
+            $saldo=$periodable->periodable->sueldo-$acuenta;
+            $total=$periodable->periodable->sueldo;
+            $data=['periodable'=>$periodable,'pagos'=>$pagos,'periodable_type'=>$periodable_type,'persona'=>$persona,'acuenta'=>$acuenta,'saldo'=>$saldo,'total'=>$total];
+            return response()->json($data);
+        }
+        else{
+            return response()->json(['errores' => $validator->errors()]);
+        }
+    }
+
+    public function eliminarPagoPeriodo(Pago $pago){
+        $periodable=Periodable::find($pago->pagable->periodable_id);
+        $periodable_type=$periodable->periodable_type;
+        $persona=$periodable->periodable->persona;
+        $pago->billetes()->detach();
+        $pago->delete(); 
+        $pagos=$periodable->pagos;
+        $acuenta= $periodable->pagos->sum->monto;
+        $saldo=$periodable->periodable->sueldo-$acuenta;
+        $total=$periodable->periodable->sueldo;
+        $data=['periodable'=>$periodable,'pagos'=>$pagos,'periodable_type'=>$periodable_type,'persona'=>$persona,'acuenta'=>$acuenta,'saldo'=>$saldo,'total'=>$total];
+        return response()->json($data);   
     }
     public function listarPagosAjax($periodable_id){
         //$periodable_id=1;

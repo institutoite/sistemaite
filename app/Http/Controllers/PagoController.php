@@ -146,6 +146,10 @@ class PagoController extends Controller
         $inscripcion=$pago->pagable; 
         return view('pago.edit',compact('pago','inscripcion'));
     }
+    public function edicion(Pago $pago)
+    {
+        return response()->json($pago);
+    }
 
     /**
      * Update the specified resource in storage.
