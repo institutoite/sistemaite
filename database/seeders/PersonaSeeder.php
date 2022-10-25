@@ -77,27 +77,6 @@ class PersonaSeeder extends Seeder
             'papelinicial' => 'administrativo',
             
         ]);
-        Persona::create([
-            'nombre' => 'EDUARDO',
-            'apellidop' => 'LLANOS',
-            'apellidom' => '',
-            'fechanacimiento' => '15-05-2015',
-            'direccion' => 'PLAN 3000',
-            'carnet' => '45615535',
-            'expedido' => 'BEN',
-            'genero' => 'MUJER',
-            'habilitado' => 1,
-            'telefono' => "75553338",
-            'pais_id' => 1,
-            'ciudad_id' => 6,
-            'zona_id' => 1,
-            'como_id' => 1,
-            'foto' => "estudiantes/foto.jpg",
-            'papelinicial' => 'administrativo',
-            
-        ]);
-        
-        
 
         Observacion::create([
             "observacion" =>"Esta es una observation insertada desde un seeder inicial",

@@ -62,6 +62,8 @@ use App\Http\Controllers\ColegioController;
 use App\Http\Controllers\MunicipioController;
 use App\Http\Controllers\PaisController;
 use App\Http\Controllers\ZonaController;
+use App\Http\Controllers\PermissionController;
+//use App\Http\Controllers\RolUsersController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
@@ -73,7 +75,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
 //Route::middleware(['auth'])->group(function () {
 
-    Route::get('prueba',[TipomotivoController::class,'destroy'])->name('prueba');
+    Route::get('prueba',[PermissionController::class,'store'])->name('prueba');
     Route::get('/ninacos', function () {
         return view('ninaco.index');
     });
@@ -162,6 +164,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
     Route::get('periodable/pagos/view/{periodable}',[PeriodableController::class,'listarPagosView'])->name('periodable.ppagos.listar.view');
     Route::get('periodable/pagos/{periodable}',[PeriodableController::class,'listarPagosAjax'])->name('periodable.pagos.listar.ajax');
 
+    /*ROLES PERMISOS USUARIOS*/
 
 
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%RAPIDINGO EDITAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -667,7 +670,11 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
     // Route::post('user/guardar', "UserController@guardar")->name('users.guardar');
     Route::get('share/credential/{user}', [UserController::class,'share'])->name('share.credentials');
 
-
+    /*ROLES PERMISOS USUARIOS*/
+    Route::get('permisos', [PermissionController::class,"index"])->name('permisos.index');
+    Route::get('listar/permisos', [PermissionController::class,"listar"])->name('permisos.listar');
+    Route::get('permiso/create', [PermissionController::class,"create"])->name('permiso.create');
+    Route::get('permiso/store', [PermissionController::class,"store"])->name('permiso.store');
 
 
     Route::get('apoderado/existente/{persona}', 'TelefonoController@apoderadoExistente')->name('apoderado.existente');
@@ -852,8 +859,10 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
     Route::resource('requisito', RequisitoController::class)->names('requisito');
 
     Route::resource('role', RoleController::class)->names('role');
+    //Route::resource('permision', RoleController::class)->names('permission');
 
-    Route::resource('rolusers', RolUsersController::class)->only(['index', 'edit', 'update'])->names('rolusers');
+
+    Route::resource('rolusers', RolUsersController::class)->only(['index', 'edit', 'update','store'])->names('rolusers');
 
     Route::get('messages/{id}',[MessageController::class, 'create'])->name('messages.create');
 

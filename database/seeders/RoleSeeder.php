@@ -115,6 +115,11 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Crear Preguntas'])->assignRole($admin);
         Permission::create(['name' => 'Editar Preguntas'])->assignRole($admin);
         Permission::create(['name' => 'Eliminar Preguntas'])->assignRole($admin);
+        
+        Permission::create(['name' => 'Listar Permisos'])->assignRole($admin);
+        Permission::create(['name' => 'Crear Permisos'])->assignRole($admin);
+        Permission::create(['name' => 'Editar Permisos'])->assignRole($admin);
+        Permission::create(['name' => 'Eliminar Permisos'])->assignRole($admin);
 
         Permission::create(['name' => 'Enviar Mensaje'])->assignRole($admin);
         

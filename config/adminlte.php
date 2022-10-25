@@ -1436,6 +1436,12 @@ return [
                     'url'  => 'rolusers',
                     'classes'  => 'text-dark',
                 ],
+                [
+                    'text' => 'Permisos listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'permisos',
+                    'classes'  => 'text-dark',
+                ],
             ],
         ],
 
