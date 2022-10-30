@@ -1,0 +1,10 @@
+.starrr {
+  display: inline-block; }
+  .starrr a {
+    font-size: 50px;
+    padding: 0 1px;
+    cursor: pointer;
+    color: rgb(55,95,122);
+    text-decoration: none; 
+    width: 100%;
+  }

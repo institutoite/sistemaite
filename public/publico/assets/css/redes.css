@@ -1,0 +1,215 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ccc;
+}
+
+
+.ul {
+    /* position: absolute; */
+    top: 50%;
+    left: 5%;
+    /* x e y de las redes */
+    transform: translate(10%,80%);
+    margin: 0;
+    padding: 5px;
+    display: flex; 
+
+}
+/* separacion de cada red */
+.ul li {
+    list-style: none;
+    margin: 0 25px;
+
+}
+
+/* fuentes de la tapa */
+.ul li .fa {
+    font-size: 30px;
+    color: #262626;
+    line-height: 40px;
+    transition: .5s;
+
+}
+
+/* es la tapa */
+.ul li a {
+    position: relative; 
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    text-align: center;
+    transform: perspective(100px) rotate(-30deg) skew(25deg) translate(0, 0);
+    transition: .5s;
+    box-shadow: -20px 20px 10px rgb(0, 0, 0, 0.5);
+}
+
+.ul li a::before {
+    content: "";
+    position: absolute; 
+    top: 10px;
+    left: -20px;
+    height: 100%;
+    width: 20px;
+    background: #b1b1b1;
+    transition: .5s;
+    transform: rotate(0deg) skewY(-45deg);
+}
+
+.ul li a::after {
+    content: "";
+    position: absolute;
+    top: 40px;
+    left: -11px;
+    height: 20px;
+    width: 100%;
+    background: #b1b1b1;
+    transition: .5s;
+    transform: rotate(0deg) skewX(-45deg);
+}
+
+.ul li a:hover {
+    transform: perspective(1000px) rotate(-30deg) skew(25deg) translate(20px, -20px);
+    box-shadow: -50px 50px 50px rgb(0, 0, 0, 0.5);
+}
+
+.ul li:hover .fa {
+    color: #fff;
+}
+
+.ul li a:hover {
+    transform: perspective(1000px) rotate(-30deg) skew(25deg) translate(20px, -20px);
+    box-shadow: -50px 50px 50px rgb(0, 0, 0, 0.5);
+}
+
+.ul li:hover:nth-child(1) a {
+    background: #3b5999;
+}
+
+.ul li:hover:nth-child(1) a:before {
+    background: #2e4a86;
+}
+
+.ul li:hover:nth-child(1) a:after {
+    background: #4a69ad;
+}
+
+.ul li:hover:nth-child(2) a {
+    background: #13b829;
+}
+
+.ul li:hover:nth-child(2) a:before {
+    background: #0b781d;
+}
+
+.ul li:hover:nth-child(2) a:after {
+    background: #0e8825;
+}
+
+.ul li:hover:nth-child(3) a {
+    background: #2AABEE;
+}
+
+.ul li:hover:nth-child(3) a:before {
+    background: #229ED9;
+}
+
+.ul li:hover:nth-child(3) a:after {
+    background: #2AABEE;
+}
+
+.ul li:hover:nth-child(4) a {
+    background: #c4302b;
+}
+
+.ul li:hover:nth-child(4) a:before {
+    background: #c4302b;
+}
+
+.ul li:hover:nth-child(4) a:after {
+    background: #c4302b;
+}
+
+.ul li:hover:nth-child(5) a {
+    background: #3b5999;
+}
+
+.ul li:hover:nth-child(5) a:before {
+    background: #2e4a86;
+}
+.ul li:hover:nth-child(5) a:after {
+    background: #4a69ad;
+}
+
+
+html,
+body {
+    margin: 0;
+    background-color: #26baa5;
+    font-family: 'Raleway Dots', sans-serif;
+}
+
+section #services {
+    text-align: center;
+    transform: translatez(0);
+}
+
+section #services h2 {
+    margin: 80px 0px 40px;
+    color: #fff;
+    font-size: 2.4em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+section #services li {
+    width: 120px;
+    height: 140px;
+    display: inline-block;
+    margin: 0px;
+    list-style: none;
+}
+
+section #services li div {
+    width: 120px;
+    height: 120px;
+    color: rgb(38,186,165);
+    font-size: 3.4em;
+    text-align: center;
+    line-height: 120px;
+    background-color: #fff;
+    transition: all 0.5s ease;
+}
+
+section #services li a {
+    color: #022E5A;
+}
+
+section #services li div:hover {
+    transform: rotate(360deg);
+    border-radius: 100px;
+}
+
+section #services li span {
+    width: 120px;
+    height: 20px;
+    display: block;
+    padding: 15px 0px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.credits a {
+    display: block;
+    text-align: center;
+    color: #74d4b3;
+    text-decoration: none;
+    font-size: 24px;
+    margin-top: 50px;
+    background: white;
+    padding: 20px;
+    max-width: 300px;
+}

@@ -275,4 +275,5 @@ para observaciones generico
     eliminar el metodo listar desde Administradores hasta Modalidades
     verificar si hay eliminar pago y pagocom mas que todo pago computacion 
     hacer un componente para que nos escriban por wahtsatpp
+    titulo de billete crear esta mal
     

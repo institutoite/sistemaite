@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
     {
         $user = new User();
         $user->name = 'David';
-        $user->email = 'adonias@ite.com.bo';
+        $user->email = 'informaciones.ite@gmail.com';
         $user->persona_id = 1;
         $user->password = Hash::make('*educabol1326*');
         $user->foto = "estudiantes/foto.jpg";

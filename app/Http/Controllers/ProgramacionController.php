@@ -40,10 +40,10 @@ class ProgramacionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:Listar Programaciones Nivelación')->only("mostrar","mostrarClases","programacionesHoy","mostrarPrograma","imprimirPrograma","controlAsitencia");
-        $this->middleware('can:Crear Programaciones Nivelación')->only("marcadoNormal","generarPrograma","generarProgramaGuarderia");
-        $this->middleware('can:Editar Programaciones Nivelación')->only("edit","editar","update","actualizar","regenerarPrograma","actualizarProgramaSegunPago");
-        $this->middleware('can:Eliminar Programaciones Nivelación')->only("destroy");
+        $this->middleware('can:Listar Programaciones')->only("mostrar","mostrarClases","programacionesHoy","mostrarPrograma","imprimirPrograma","controlAsitencia");
+        $this->middleware('can:Crear Programaciones')->only("marcadoNormal","generarPrograma","generarProgramaGuarderia");
+        $this->middleware('can:Editar Programaciones')->only("edit","editar","update","actualizar","regenerarPrograma","actualizarProgramaSegunPago");
+        $this->middleware('can:Eliminar Programaciones')->only("destroy");
     }
     
     public function mostrar(Request $request)
