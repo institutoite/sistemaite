@@ -30,9 +30,9 @@ class ProgramacioncomController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:Listar Programacion computacion')->only('marcadoNormal',"imprimirProgramacom","mostrarProgramacom");
-        $this->middleware('can:Editar Programacion computacion')->only("editar","agregarClase","actualizar","generarProgramacom","EliminarTodosLosProgramascom","regenerarProgramacom");
-        $this->middleware('can:Eliminar Programacion computacion')->only("destroy");
+        $this->middleware('can:Listar Programacioncom')->only('marcadoNormal',"imprimirProgramacom","mostrarProgramacom");
+        $this->middleware('can:Editar Programacioncom')->only("editar","agregarClase","actualizar","generarProgramacom","EliminarTodosLosProgramascom","regenerarProgramacom");
+        $this->middleware('can:Eliminar Programacioncom')->only("destroy");
     }
 
     public function editar(Request $request)

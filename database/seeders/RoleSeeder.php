@@ -269,9 +269,9 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Editar Potenciales'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Eliminar Potenciales'])->syncRoles([$admin]);
 
-        Permission::create(['name' => 'Listar Programacion'])->syncRoles([$admin,$secre]);
-        Permission::create(['name' => 'Editar Programacion'])->syncRoles([$admin,$secre]);
-        Permission::create(['name' => 'Eliminar Programacion'])->syncRoles([$admin,$secre]);
+        Permission::create(['name' => 'Listar Programacioncom'])->syncRoles([$admin,$secre]);
+        Permission::create(['name' => 'Editar Programacioncom'])->syncRoles([$admin,$secre]);
+        Permission::create(['name' => 'Eliminar Programacioncom'])->syncRoles([$admin,$secre]);
 
         Permission::create(['name' => 'Listar Programaciones'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Crear Programaciones'])->syncRoles([$admin,$secre]);
