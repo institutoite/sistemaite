@@ -25,11 +25,14 @@ use Illuminate\Support\Facades\DB;
  */
 class LicenciaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   public function __construct()
+    {
+        $this->middleware('can:Listar Licencias')->only('index','show','listar');
+        $this->middleware('can:Crear Licencias')->only('createcom','createprogramacion','storecom','storeprogramacion');
+        $this->middleware('can:Editar Licencias')->only('actualizar','edit','update','editar');
+        $this->middleware('can:Eliminar Licencias')->only('destroy');
+    }
+
     public function index()
     {
         return view("licencia.index");
@@ -249,9 +252,4 @@ class LicenciaController extends Controller
         return datatables()->of($licencias)
         ->toJson();
     }
-    /**
-     *%%%%%%%%%%%%%%%%%%%%%%%%% CREAR OTRA CONSULTA POR PARENTESCO 
-     *%%%%%%%%%%%%%%%%%%%%%%%%  CREAR OTRA CONSULTA POR USUARIO QUIEN DA MAS LICENCIA
-     
-     */
 }

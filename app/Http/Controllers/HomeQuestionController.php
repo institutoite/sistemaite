@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class HomeQuestionController extends Controller
 {
+
+
     public function __construct()
     {
-        $this->middleware('can:Listar Preguntas')->only('index');
         $this->middleware('can:Crear Preguntas')->only('create','store');
         $this->middleware('can:Editar Preguntas')->only('edit','update');
         $this->middleware('can:Eliminar Preguntas')->only('destroy');
@@ -48,46 +49,6 @@ class HomeQuestionController extends Controller
         return redirect()->route('homequestion.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $homequestion = homequestion::find($id);

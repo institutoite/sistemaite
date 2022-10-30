@@ -14,6 +14,11 @@ use Yajra\DataTables\DataTables;
 
 class MensajeadoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:Listar Mensajeados')->only("getMensajeadosView");
+        $this->middleware('can:Crear Mensajeados')->only("storeMensajeado");
+    }
     public function storeMensajeado(StoreMensajeadoRequest $request){
         $eventoObjeto = new EventoController();
         $evento = eventoSeleccionado();
@@ -41,81 +46,4 @@ class MensajeadoController extends Controller
         // dd($evento);
         return view("mensaje.masivo.mensajeados",compact('evento'));
     }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreMensajeadoRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreMensajeadoRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Mensajeado  $mensajeado
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Mensajeado $mensajeado)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Mensajeado  $mensajeado
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Mensajeado $mensajeado)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateMensajeadoRequest  $request
-     * @param  \App\Models\Mensajeado  $mensajeado
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateMensajeadoRequest $request, Mensajeado $mensajeado)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Mensajeado  $mensajeado
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Mensajeado $mensajeado)
-    {
-        //
-    }
-
 }

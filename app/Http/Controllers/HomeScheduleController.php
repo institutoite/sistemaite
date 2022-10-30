@@ -9,7 +9,6 @@ class HomeScheduleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:Listar Horarios')->only('index');
         $this->middleware('can:Crear Horarios')->only('create','store');
         $this->middleware('can:Editar Horarios')->only('edit','update');
         $this->middleware('can:Eliminar Horarios')->only('destroy');
@@ -91,12 +90,6 @@ class HomeScheduleController extends Controller
         return redirect()->route('homeschedule.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $homeschedule = homeschedule::find($id);

@@ -21,9 +21,9 @@ class MateriaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:Listar Materias')->only('index');
-        $this->middleware('can:Crear Materias')->only('create','store');
-        $this->middleware('can:Editar Materias')->only('edit','update');
+        $this->middleware('can:Listar Materias')->only('index','show','listar');
+        $this->middleware('can:Crear Materias')->only('create','store','GuardarConfigurarNiveles');
+        $this->middleware('can:Editar Materias')->only('edit','update','configurar_niveles');
         $this->middleware('can:Eliminar Materias')->only('destroy');
     }
     /**

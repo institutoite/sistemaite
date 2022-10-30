@@ -23,72 +23,18 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Config;
 
 use Illuminate\Support\Facades\Auth;
-
-
-
 use PDF;
-
 use Illuminate\Http\Request;
 
 class ProgramacioncomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        //
+        $this->middleware('can:Listar Programacion computacion')->only('marcadoNormal',"imprimirProgramacom","mostrarProgramacom");
+        $this->middleware('can:Editar Programacion computacion')->only("editar","agregarClase","actualizar","generarProgramacom","EliminarTodosLosProgramascom","regenerarProgramacom");
+        $this->middleware('can:Eliminar Programacion computacion')->only("destroy");
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Programacioncom  $programacioncom
-     * @return \Illuminate\Http\Response
-     */
-    public function mostrar(Request $request)
-    {   
-        //$programacioncom=Programacioncom::findOrFail(56);
-        // $programacioncom=Programacioncom::findOrFail($request->id);
-        // $observaciones=$programacioncom->observaciones;
-        // $docente=$programacioncom->docente;
-        // $aula=$programacioncom->aula;
-        // $clasescom=$programacioncom->clasescom;
-        // $asignatura=$programacioncom->matriculacion->asignatura;
-        // $data=['programacioncom'=>$programacioncom, 'observaciones'=>$observaciones,'docente'=>$docente,'asignatura' => $asignatura, 'aula' => $aula,'clasescom'=>$clasescom];
-        // return response()->json($data);
-        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Programacioncom  $programacioncom
-     * @return \Illuminate\Http\Response
-     */
     public function editar(Request $request)
     {
 
@@ -145,12 +91,6 @@ class ProgramacioncomController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Programacioncom  $programacioncom
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Programacioncom $programacioncom)
     {
         $programacioncom->delete();
@@ -158,7 +98,7 @@ class ProgramacioncomController extends Controller
     }
 
 
-     public function generarProgramacom($matriculacion_id){
+    public function generarProgramacom($matriculacion_id){
         $matriculacion=Matriculacion::findOrFail($matriculacion_id);
         $costo_total=$matriculacion->costo;
         $total_horas=$matriculacion->totalhoras;
@@ -339,7 +279,7 @@ class ProgramacioncomController extends Controller
         return $respuesta;
     }
 
-     public function mostrarProgramacom($matriculacion){
+    public function mostrarProgramacom($matriculacion){
         $programacioncom = Programacioncom::join('aulas', 'programacioncoms.aula_id', '=', 'aulas.id')
         ->join('docentes', 'programacioncoms.docente_id', '=', 'docentes.id')
         ->join('personas', 'personas.id', '=', 'docentes.persona_id')
@@ -485,7 +425,7 @@ class ProgramacioncomController extends Controller
         }
     }
 
-     public function guardarObservacion(Request $request){
+    public function guardarObservacion(Request $request){
         $observacion=new Observacion();
         $observacion->observacion=$request->observacion;
         $observacion->activo=1;
@@ -500,10 +440,7 @@ class ProgramacioncomController extends Controller
 
     public function mostrarClases(Request $request)
     {
-        
         $programacioncom = Programacioncom::findOrFail($request->id);
-        // $observaciones = $programacioncom->observaciones;
-
         $observaciones=Observacion::join('programacioncoms','programacioncoms.id','observacions.observable_id')
 						->join('userables','userables.userable_id','observacions.id')
                         ->join('users','userables.user_id','users.id')
@@ -512,15 +449,12 @@ class ProgramacioncomController extends Controller
                         ->where('programacioncoms.id',$request->id)
                         ->select('observacions.id','observacion','name')
                         ->get();
-
         $docente = $programacioncom->docente;
         $materia = $programacioncom->materia;
         $asignatura=$programacioncom->matriculacion->asignatura;
         $aula = $programacioncom->aula;
-
         $licencias=Licencia::join('motivos','motivos.id','=','licencias.motivo_id')
             ->join('programacioncoms','programacioncoms.id','=','licencias.licenciable_id')
-
             ->join('userables','userables.userable_id','licencias.id')
             ->join('users','userables.user_id','users.id')
             ->where('userables.userable_type',Licencia::class)
@@ -529,22 +463,17 @@ class ProgramacioncomController extends Controller
             ->where('programacioncoms.id','=',$request->id)
             ->select('licencias.id','motivos.motivo','solicitante','parentesco','users.name as user','licencias.created_at','licencias.updated_at')
             ->get();
-
         $clases=Programacioncom::join('clasecoms','programacioncoms.id','clasecoms.programacioncom_id')
                     ->join('docentes','docentes.id','programacioncoms.docente_id')
                     ->join('aulas','aulas.id','programacioncoms.aula_id')
                     ->join('estados','estados.id','clasecoms.estado_id')
-
                     ->join('userables','userables.userable_id','clasecoms.id')
                     ->join('users','userables.user_id','users.id')
                     ->where('userables.userable_type',Clasecom::class)
-
                     ->where('programacioncoms.id',$request->id)
                     ->select('clasecoms.id','clasecoms.fecha','clasecoms.horainicio','users.name as user','estados.estado','clasecoms.horafin','docentes.nombrecorto as nombre', 'aulas.aula')
                     ->get();
         $estado=$programacioncom->estado;
-                   // return response()->json($clases);
-        
         $data = ['programacioncom' => $programacioncom, 'observaciones' => $observaciones, 'docente' => $docente,'estado' => $estado, 'aula' => $aula,'licencias'=>$licencias, 'clasescom' => $clases,'asignatura'=>$asignatura];
         return response()->json($data);
     }

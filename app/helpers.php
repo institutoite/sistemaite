@@ -70,6 +70,15 @@ use Carbon\Carbon;
         $periodable_type=substr($periodable_type_cadena,$pos+1,$lon-$pos);
         return $periodable_type;
     }
+    function contactarsecretaria(){
+        //return location();
+    }
+    function contactarguarderia(){
+
+    }
+    function contactarprincipal(){
+
+    }
 
 
 ?>

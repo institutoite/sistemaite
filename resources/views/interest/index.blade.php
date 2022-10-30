@@ -59,10 +59,14 @@
     {{-- %%%%%%%%%%%%%% muestra el ok de la insersion de datos %%%%%%%%%%%%%%%%% --}}
     <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
     <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
-
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 
     <script>
-
+            CKEDITOR.replace('descripcion', {
+                height: 150,
+                width: "100%",
+                removeButtons: 'PasteFromWord'
+            });
          /*%%%%%%%%%%%%%%%%%%%%%%  funcion que agrega clase por tiempo x y luego lo destruye %%%%%%%%%%%*/
         ( function ( $ ) {
             'use strict';
@@ -98,6 +102,7 @@
                 "columns": [
                     {data: 'id'},
                     {data: 'interest'},
+                    {data: 'descripcion'},
                     {
                         "name":"btn",
                         "data": 'btn',
@@ -130,6 +135,7 @@
                         $html+="<tr><td>ID</td>"+"<td>"+ json.interest.id +"</td></tr>";
                         $html+="<tr><td>INTEREST</td>"+"<td>"+json.interest.interest+"</td></tr>";
                         $html+="<tr><td>CREADO POR </td>"+"<td>"+json.user.name+"</td></tr>";
+                        $html+="<tr><td>DESCRIPCION </td>"+"<td>"+json.descripcion+"</td></tr>";
                         $html+="<tr><td>CREADO</td>"+"<td>"+ moment(json.interest.created_at).format('LLLL') +"</td></tr>";
                         $html+="<tr><td>ACTUALIZADO</td>"+"<td>"+moment(json.interest.updated_at).format('LLLL')+"</td></tr>";
                         $("#tabla-mostrar").append($html);
@@ -161,6 +167,7 @@
                             $html="<div class='row'>";
                             $("#interest").val(json.interest);
                             $("#interest_id").val(json.id);
+                            $("#descripcion").val(json.descripcion);
                             $("#formulario-editar").append($html);
                     },
                     error : function(xhr, status) {

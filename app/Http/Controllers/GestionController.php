@@ -17,11 +17,15 @@ use App\Http\Requests\GestionUpdateRequest;
 
 class GestionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    public function __construct()
+    {
+        $this->middleware('can:Listar Archivos')->only("index");
+        $this->middleware('can:Crear Archivos')->only("create","store");
+        $this->middleware('can:Editar Archivos')->only("editar","actualizar");
+        $this->middleware('can:Eliminar Archivos')->only("destroy");
+    }
+
     public function index($estudiante_id)
     {
         $estudiante = Estudiante::findOrFail($estudiante_id);
@@ -85,18 +89,6 @@ class GestionController extends Controller
         }
     }
 
-    
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function show($id)
-    // {
-    //     //
-    // }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -121,23 +113,17 @@ class GestionController extends Controller
      */
     public function actualizar(Request $request)
     {
-        
-       
         $validator = Validator::make($request->all(), [
             'grado_id' => ['required'],  
             'colegio_id' => ['required'],
             'anio' => ['required'],
         ]);
-        //return response()->json($validator->passes());
-
         if ($validator->passes()) {
             $gestion=Gestion::findOrFail($request->gestion_id);
-
             $gestion->colegio_id=$request->colegio_id;
             $gestion->grado_id=$request->grado_id;
             $gestion->anio=$request->anio;
             $gestion->save();
-
             return response()->json($gestion);
         } else {
             return response()->json(['error' => $validator->errors()->all()]);

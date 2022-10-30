@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         Storage::makeDirectory('cursos');
         
         $this->call([
+            ConvenioSeeder::class,
             PaisSeeder::class,
             CiudadSeeder::class,
             ZonaSeeder::class,
@@ -68,6 +69,7 @@ class DatabaseSeeder extends Seeder
             MensajeSeeder::class,
             EventoSeeder::class,
             ConstanteSeeder::class,
+            
         ]);
         
         Ciudad::find(1)->usuarios()->attach(1);

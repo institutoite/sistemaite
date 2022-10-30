@@ -38,47 +38,14 @@ use PDF;
 
 class ProgramacionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        //
+        $this->middleware('can:Listar Programaciones Nivelación')->only("mostrar","mostrarClases","programacionesHoy","mostrarPrograma","imprimirPrograma","controlAsitencia");
+        $this->middleware('can:Crear Programaciones Nivelación')->only("marcadoNormal","generarPrograma","generarProgramaGuarderia");
+        $this->middleware('can:Editar Programaciones Nivelación')->only("edit","editar","update","actualizar","regenerarPrograma","actualizarProgramaSegunPago");
+        $this->middleware('can:Eliminar Programaciones Nivelación')->only("destroy");
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Programacion  $programacion
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Programacion $programacion)
-    {
-        //
-    }
+    
     public function mostrar(Request $request)
     {       
         $programacion=Programacion::findOrFail($request->id);
@@ -165,12 +132,6 @@ class ProgramacionController extends Controller
 
     
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Programacion  $programacion
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Programacion $programacion)
     {
         $docentes=Docente::all();

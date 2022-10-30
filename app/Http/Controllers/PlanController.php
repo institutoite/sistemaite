@@ -16,11 +16,13 @@ use Intervention\Image\Facades\Image;
 
 class PlanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Crear Planes')->only("create","store");
+        $this->middleware('can:Editar Planes')->only("edit","update");
+        $this->middleware('can:Eliminar Planes')->only("destroy");
+    }
+    
     public function index()
     {
         return view('plan.index');
@@ -132,5 +134,10 @@ class PlanController extends Controller
         ->addColumn('btn', 'plan.action')
         ->rawColumns(['btn','descripcion'])
         ->toJson();
+    }
+    public function listarDeConvenio(Convenio $convenio){
+        $planes = Plan::where('convenio_id',$convenio->id)
+                ->get();
+        return view('plan.mostrar',compact('planes'));
     }
 }

@@ -24,9 +24,10 @@ use Illuminate\Http\Request;
  */
 class ColegioController extends Controller
 {
+    
     public function __construct()
     {
-        $this->middleware('can:Listar Colegios')->only('index');
+        $this->middleware('can:Listar Colegios')->only('index','show','todos');
         $this->middleware('can:Crear Colegios')->only('create','store');
         $this->middleware('can:Editar Colegios')->only('edit','update');
         $this->middleware('can:Eliminar Colegios')->only('destroy');

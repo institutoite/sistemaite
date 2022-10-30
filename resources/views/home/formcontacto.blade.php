@@ -1,11 +1,7 @@
-<div class="card card-primary">
+<div class="card card-primary card-items bg-primary">
     {{-- <div class="card-header btn-main"> --}}
-        <div class="item">
-			<div class="pricing pricing-three">
-				<div class="pricing-top top-three">
-					<h3>ESCRIBANOS</h3>
-				</div>
-			</div>
+        <div class="card-header text-center">
+					<h3 class="text-white">ESCRIBANOS</h3>
 		</div>
     {{-- </div> --}}
               <!-- /.card-header -->
@@ -21,7 +17,7 @@
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="nombre" value="" placeholder="Ingrese su nombre">
+                        <input type="text" class="form-control card-items" name="nombre" id="nombre" value="" placeholder="Ingrese su nombre">
                     </div>
                 </div>
                 <div class="col-sm-12">
@@ -29,7 +25,7 @@
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <input type="number" class="form-control" id="telefono" value="" placeholder="Ingrese su número de telefono">
+                        <input type="number" class="form-control card-items" name="telefono" id="telefono" value="" placeholder="Ingrese su número de telefono">
                     </div>
                 </div>
                 <div class="col-sm-12">
@@ -37,10 +33,10 @@
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Comenteneos su su necesidad..." name="comentario" id="comentario" rows="5"></textarea>
+                        <textarea class="form-control card-items" placeholder="Coméntenos su su necesidad..." name="comentario" id="comentario" rows="5"></textarea>
                     </div>
                 </div>
-                <input type="number" class="form-control" hidden id="como_id" id="como_id" value="6" placeholder="Ingrese su número de telefono">
+                <input type="number" class="form-control" hidden name="como_id" id="como_id" value="6" placeholder="Ingrese su número de telefono">
             </div>
             <div class="row">
                 <div class="col-sm-12">
@@ -55,11 +51,12 @@
                             <div id="interests" class="">
 
                             </div>
-
+                                {!! NoCaptcha::renderJs() !!}
+                                {!! NoCaptcha::display() !!}
                             <div class="container-fluid h-100 mt-3"> 
                                 <div class="row w-100 align-items-center">
                                     <div class="col text-center">
-                                        <button type="submit" id="enviar" class="btn btn-main">Enviar <i class="far fa-save"></i></button>        
+                                        <button type="submit" id="enviar" class="btn form-inline btn-outline-primary boton-line-turqueza">Enviar <i class="far fa-save"></i></button>        
                                     </div>	
                                 </div>
                             </div>

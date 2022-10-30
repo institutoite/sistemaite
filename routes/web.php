@@ -73,7 +73,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
     });
     Auth::routes();
 
-//Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     Route::get('prueba',[PermissionController::class,'store'])->name('prueba');
     Route::get('/ninacos', function () {
@@ -495,6 +495,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  planes   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::get('plans', [PlanController::class, 'index'])->name('plan.index');
     Route::get('listar/plans',[PlanController::class,'listar'])->name('plans.listar');
+    Route::get('listar/plans/convenio/{convenio}',[PlanController::class,'listarDeConvenio'])->name('plans.convenio');
     Route::get('plan/create',[PlanController::class,'create'])->name('plan.create');
     Route::get('plans/show/{plan}', [PlanController::class, 'show'])->name('plan.show');
     Route::post('plan/guardar',[PlanController::class,'store'])->name('plan.store');
@@ -870,7 +871,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
     Route::post('messages', [MessageController::class, 'store'])->name('messages.store');
 
-//});
+});
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  FRONTED ITE   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::any('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');

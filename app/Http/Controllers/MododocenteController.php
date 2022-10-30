@@ -9,11 +9,14 @@ use App\Http\Requests\DeleteRequest;
 
 class MododocenteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Mododocentes')->only('index','show');
+        $this->middleware('can:Crear Mododocentes')->only('create','store');
+        $this->middleware('can:Editar Mododocentes')->only('edit','update');
+        $this->middleware('can:Eliminar Mododocentes')->only('destroy');
+    }
+    
     public function index()
     {
         return view('mododocente.index');
@@ -81,7 +84,6 @@ class MododocenteController extends Controller
         return redirect()->route('mododocentes.index');
     }
 
-    // public function destroy()
     public function destroy(Mododocente $mododocente)
     {
         $mododocente->delete();

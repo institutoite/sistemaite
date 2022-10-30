@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 
 class PotencialController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Potenciales')->only("index","show");
+        $this->middleware('can:Crear Potenciales')->only("create","store");
+        $this->middleware('can:Editar Potenciales')->only("edit","update");
+        $this->middleware('can:Eliminar Potenciales')->only("destroy");
+    }
+    
     public function index()
     {
         //

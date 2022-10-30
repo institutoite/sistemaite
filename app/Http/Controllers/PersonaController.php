@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Arr;
-
 use App\Models\Persona;
-
 use App\Models\Ciudad;
 use App\Models\Estudiante;
 use App\Models\Zona;
@@ -17,14 +15,12 @@ use App\Models\Mensaje;
 use App\Models\Proveedor;
 use App\Models\User;
 use Carbon\Carbon;
-
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonaStoreRequest;
 use App\Http\Requests\PersonaUpdateRequest;
 use App\Http\Requests\PersonaApoderadaRequestStore;
 use App\Http\Requests\PersonaRapidingoGuardarRequest;
 use App\Http\Requests\RequestStoreSoloContacto;
-
 use App\Models\Inscripcione;
 use App\Models\Matriculacion;
 use App\Models\Observacion;
@@ -42,24 +38,19 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
-
-
 use Illuminate\Support\Facades\Hash;
-
-
 use Illuminate\Support\Facades\Crypt;
-
-
 class PersonaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Personas')->only("index","tomarfoto","show","verPotencial","contactos");
+        $this->middleware('can:Crear Personas')->only("guardarSoloContacto","create","CrearContacto","guardarNuevoPapel","guardarfotojpg","guardarfoto","store","storeContacto","crearRapido","guardarRapidingo","crearSoloContacto");
+        $this->middleware('can:Editar Personas')->only("editarSoloContacto","actualizarSoloContacto","edit","actualizarVolvera","actualizarVuelveFecha","configurar_papeles","update","actualizarRapidingo","editarRapidingo","unsuscribe");
+    }
+    
     public function index()
     {
         return view('persona.index');
@@ -87,7 +78,6 @@ class PersonaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(PersonaStoreRequest $request)
     public function store(PersonaStoreRequest $request)
     {
         $persona=new Persona();
@@ -232,6 +222,12 @@ class PersonaController extends Controller
                 $administrativo->fechaingreso=Carbon::now()->format("Y-m-d");
                 $administrativo->persona_id = $persona->id;
                 $administrativo->save();
+                $observacion=new Observacion();
+                $observacion->observacion=$request->observacion;
+                $observacion->activo=1;
+                $observacion->observable_id=$persona->id;
+                $observacion->observable_type="App\Models\Persona";
+                $observacion->save();
                 //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   A D M I N I S T V R V A V T I V O  %%%%%%%%%%%%%%%%*/
                 $administrativo->usuarios()->attach(Auth::user()->id);
                 break;
@@ -506,7 +502,7 @@ class PersonaController extends Controller
         $observacion = Observacion::where('observable_id', $persona->id)
         ->where('observable_type', Persona::class)->get();
         //dd($persona);
-        
+        //dd($observacion);
         if(count($observacion)>0){
             $observacion=$observacion->first();
         }   
@@ -714,24 +710,6 @@ class PersonaController extends Controller
         return redirect()->Route('telefonos.crear',['persona'=>$persona]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Persona  $persona
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Persona $persona)
-    {
-        //eliminarPersona
-    }
-    public function eliminarPersona(){
-    // public function eliminarPersona($id){
-        // $persona = Persona::findOrFail($id);
-        $persona = Persona::findOrFail(6);
-        $persona->delete();
-        return response()->json(['message' => 'Registro Eliminado correctamente', 'status' => 200]);
-    }
-
     public function tomarfoto(Persona $persona){
         return view('persona.tomarfoto', compact('persona'));
     }
@@ -877,7 +855,6 @@ class PersonaController extends Controller
 
         return response()->json($data);
     }
-    // public function ultimaProgramacion(Request $request){
     public function ultimaProgramacion(Request $request){
         $inscripcion=Persona::findOrFail($request->persona_id)->estudiante->inscripciones->last();
         // $inscripcion=Persona::findOrFail(2)->estudiante->inscripciones->last();
@@ -946,7 +923,6 @@ class PersonaController extends Controller
         return response()->json($data);
     }
     public function enviarMensajeParaComponente(Request $request){
-    // public function enviarMensajeParaComponente(){
         $persona_id=$request->persona_id;
         // $persona_id=2;
         $persona=Persona::findOrFail($persona_id);
@@ -1018,8 +994,6 @@ class PersonaController extends Controller
     public function FormatearProgramacioncom($programacioncom){
         $texto="*Fecha:* ".$programacioncom->fecha->format('d-m-Y')."%0A";
         $texto.="*Horario:* ".$programacioncom->horaini->isoFormat('hh:mm:ss').' - '.$programacioncom->horafin->isoFormat('hh:mm:ss')."%0A";
-        //$texto.="*Docente:* ".$programacioncom->docente->nombre."%0A";
-        //$texto.="*Asignatura:* ".$programacioncom->asingatura->asignatura."%0A";
         $texto.="*Estado de Clase:* ".$programacioncom->estado->estado."%0A";
         return $texto;
     }
@@ -1132,11 +1106,14 @@ class PersonaController extends Controller
     public function descargarContacto($persona){
         $una_una_persona=Persona::findOrFail($persona);
         $url=storage_path("app\\contactos\\".$una_una_persona->nombre.$una_una_persona->id.".vcf");
+        
         if(!is_null($url)){
             if (file_exists($url)){
                 if (unlink($url)) {
                     $this->CrearContacto($persona);
                 }         
+            }else{
+                $this->CrearContacto($persona);
             }
         }
        
@@ -1144,7 +1121,6 @@ class PersonaController extends Controller
     }
     public function actualizarVuelveFecha(Request $request)
     {
-        //return response()->json($request->all());
         $validator = Validator::make($request->all(), [
             'vuelvefecha' => ['required','min:5','max:30'],  /* https://laraveles.com/foro/viewtopic.php?id=6764 */
         ]);

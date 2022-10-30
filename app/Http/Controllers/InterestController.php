@@ -13,11 +13,14 @@ use App\Http\Requests\InterestGuardarRequest;
 
 class InterestController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Intereses')->only('index','getParaHome','mostrar');
+        $this->middleware('can:Crear Intereses')->only('create','store');
+        $this->middleware('can:Editar Intereses')->only('editar','actualizar');
+        $this->middleware('can:Eliminar Intereses')->only('destroy');
+    }
+
     public function index()
     {
         return view('interest.index');
@@ -49,16 +52,7 @@ class InterestController extends Controller
             ->with('success', 'Motivo created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Interest  $interest
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Interest $interest)
-    {
-        //
-    }
+    
     public function mostrar(Request $request)
     {
 
@@ -68,16 +62,7 @@ class InterestController extends Controller
         return response()->json($data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Interest  $interest
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Tipomotivo $tipomotivo)
-    {
-        //
-    }
+    
 
     public function editar(Request $request)
     {

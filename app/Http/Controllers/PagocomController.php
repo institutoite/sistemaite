@@ -14,24 +14,15 @@ use Yajra\DataTables\DataTables;
 
 class PagocomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        //
+        $this->middleware('can:Listar Pagoscomputacion')->only("detallar","pagoMatriculacionesView","pagoModelo");
+        $this->middleware('can:Crear Pagoscomputacion')->only("crear","guardar");
+        $this->middleware('can:Editar Pagoscomputacion')->only("editar","actualizar");
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function crear($matriculacion_id)
     {
-        
         $matriculacion=Matriculacion::findOrFail($matriculacion_id);
         $pagoscom = $matriculacion->pagos;
         $acuenta= $matriculacion->pagos->sum->monto;
@@ -40,7 +31,7 @@ class PagocomController extends Controller
         return view('pagocom.create', compact('matriculacion','pagoscom','acuenta','saldo'));
     }
 
-   public function guardar(PagocomStoreRequest $request,$matriculacion_id){
+    public function guardar(PagocomStoreRequest $request,$matriculacion_id){
         $matriculacion=Matriculacion::findOrFail($matriculacion_id);
         $pago=new Pago();
         $pago->monto=$request->monto;
@@ -55,17 +46,7 @@ class PagocomController extends Controller
         return redirect()->route('billetecom.crear',['pago'=>$pago]);
     }
 
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function editar($pago_id)
     {
         $pago = Pago::find($pago_id);
@@ -73,29 +54,6 @@ class PagocomController extends Controller
         return view('pagocom.editar',compact('pago','matriculacion'));
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
     public function detallar($matriculacion_id){
         //dd($matriculacion_id);
@@ -131,7 +89,6 @@ class PagocomController extends Controller
         return view('reportes.pago.pagomatriculaciones');
     } 
     public function pagoModelo(Request $request){
-        //return response()->json($request->all());
         $pagos=Pago::join('matriculacions','matriculacions.id','pagos.pagable_id')
             ->join('computacions','computacions.id','matriculacions.computacion_id')
             ->join('personas','personas.id','computacions.persona_id')

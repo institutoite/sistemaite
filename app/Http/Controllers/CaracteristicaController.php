@@ -13,11 +13,14 @@ use Yajra\DataTables\Contracts\DataTable as DataTable;
 
 class CaracteristicaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct(){
+        $this->middleware('can:Listar Caracteristica')->only('index','show','listar');
+        $this->middleware('can:Crear Caracteristica')->only('create','store');
+        $this->middleware('can:Editar Caracteristica')->only('edit','update');
+        $this->middleware('can:Eliminar Caracteristica')->only('destroy');
+    }
+
     public function index()
     {
         return view('caracteristica.index');

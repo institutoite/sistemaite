@@ -66,6 +66,11 @@
                                     <input class="form-control" hidden type="text" name="interest_id" id="interest_id" value="">
                                 </div>
                             </div>
+                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                                <div class="form-floating mb-3 text-gray">
+                                    <textarea rows="12" placeholder="Ingrese una descripción de este convenio"  name="descripcion" id="descripcion" class="form-control @error('descripcion') is-invalid @enderror" >{{old('descripcion',$plan->descripcion ?? '')}}</textarea>
+                                </div>
+                            </div>
                              <div class="row">
                                 <div class="col-3"></div>
                                 <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" >

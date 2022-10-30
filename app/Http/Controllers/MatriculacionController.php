@@ -28,15 +28,16 @@ use App\Models\User;
 
 class MatriculacionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Computacion $computacion)
+    public function __construct()
     {
-        //
+        $this->middleware('can:Listar Matriculaciones')->only("misCarreras","show");
+        $this->middleware('can:Crear Matriculaciones')->only("create","store","guardarconfiguracion");
+        $this->middleware('can:Editar Matriculaciones')->only("configurarView","darbaja","daralta","edit","update","actualizarConfiguracion","actualizar_fecha_proximo_pago");
+        $this->middleware('can:Eliminar Matriculaciones')->only("destroy");
     }
+
+    
+    
     public function misCarreras(Computacion $computacion)
     {
         $carreras=$computacion->carreras;
@@ -294,7 +295,6 @@ class MatriculacionController extends Controller
     }
 
 
-    // public function tusMatriculacionesVigentes(Request $request){
     public function tusMatriculacionesVigentes(Request $request){
 
         $computacion=Estudiante::findOrFail($request->estudiante_id)->persona->computacion;
@@ -312,9 +312,7 @@ class MatriculacionController extends Controller
                 ->toJson();
     }
 
-    public function imprimirProgramacom(){
-
-    }
+   
 
     public function vigentesAjax(){
         $matriculacionesVigentes=Matriculacion::join('computacions','computacions.id','matriculacions.computacion_id')

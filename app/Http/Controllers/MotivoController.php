@@ -26,9 +26,9 @@ class MotivoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:Listar Motivos')->only('index');
+        $this->middleware('can:Listar Motivos')->only('index','show','mostrar');
         $this->middleware('can:Crear Motivos')->only('create','store');
-        $this->middleware('can:Editar Motivos')->only('edit','update');
+        $this->middleware('can:Editar Motivos')->only('edit','update','actualizar','destroy');
         $this->middleware('can:Eliminar Motivos')->only('destroy');
     }
     /**

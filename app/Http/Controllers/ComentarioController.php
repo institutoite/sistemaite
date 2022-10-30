@@ -19,11 +19,17 @@ use Illuminate\Support\Facades\Storage;
 
 class ComentarioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
+
+    public function __construct()
+    {
+        $this->middleware('can:Listar Comentarios')->only('index','show','listar');
+        $this->middleware('can:Crear Comentarios')->only('guardarComentarioDesdeSistema');
+        $this->middleware('can:Editar Comentarios')->only('edit','darbaja','daralta','update','estudiantizarComentario');
+        $this->middleware('can:Eliminar Comentarios')->only('destroy');
+    }
+
     public function index()
     {
        return view('comentario.index'); 
@@ -51,6 +57,7 @@ class ComentarioController extends Controller
     public function guardarComentario(Request $request)
     {
         
+        // return response()->json($request->all());
         $validator = Validator::make($request->all(), [
             'nombre'=>'required|min:4|max:30',
             'telefono'=>'required|min:8|max:10',

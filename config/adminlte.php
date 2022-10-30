@@ -389,84 +389,7 @@ return [
         // ],
 
         
-        /**
-         *  Menu personas 
-         */
-        [
-            'text'    => 'Pagos y caja',
-            'icon'    => 'fas fa-donate',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Ingresos',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'pagos',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Inscripciones',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'pago/inscripciones/view',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Matriculaciones',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'pago/matriculaciones/view',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Billetes Inscripción',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'billetes',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Billetes Matriculación',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'billetescom',
-                    'classes'  => 'text-dark',
-                ],
-                // [
-                //     'text' => 'Detallado',
-                //     'icon'    => 'fas fa-angle-right',
-                //     'url'  => 'pagodetallado',
-                //     'classes'  => 'text-dark',
-                // ],
-            ],
-        ],
-
-//** %%%%%%%%%%%%%%%%%%  USUARIOS %%%%%%%%%%%%% */
-        [
-            'text'    => 'Usuarios',
-            'icon'    => 'fas fa-user',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'route' => 'users.index',
-                    'classes'  => 'text-secondary',
-                ],
-            ],
-        ],
-//** %%%%%%%%%%%%%%%%%%  LICENCIAS %%%%%%%%%%%%% */
-        [
-            'text'    => 'Licencias',
-            'icon'    => 'fas fa-user',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url' => 'licencias',
-                    'classes'  => 'text-secondary',
-                ],
-            ],
-        ],
+    
 //** %%%%%%%%%%%%%%%%%%  MENU DOCENTES %%%%%%%%%%%%% */
         
         // [
@@ -553,35 +476,7 @@ return [
         //         ],
         //     ],
         // ],
-        /**
-         *  Menu potenciales 
-         */
-        [
-            'text'    => 'Potenciales',
-            'icon'    => 'fas fa-keyboard',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Reporte general',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'reporte/potenciales',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Potenciales Hoy',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'potenciales/hoy',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'entre 2 fechas',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'potenciales/between',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
+      
 
         
         /**
@@ -624,6 +519,76 @@ return [
         /**
          *  Menu personas 
          */
+       
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO GRUPO PERSONAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        [
+            'header' => 'PERSONAS Y SEGUIMIENTO',
+            'classes'  => 'text-white bg-secondary',
+        ],
+        [
+            'text'    => 'Personas',
+            'icon'    => 'fas fa-address-book',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Todos',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => '/personas',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Estudiantes',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => '/home',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Computacion',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'computaciones',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Docentes',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'docentes',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Administrativos',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'administrativos',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Potenciales',
+            'icon'    => 'fas fa-keyboard',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Reporte general',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'reporte/potenciales',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Potenciales Hoy',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'potenciales/hoy',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'entre 2 fechas',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'potenciales/between',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
         [
             'text'    => 'Mensajes llamadas',
             'icon'    => 'fas fa-phone',
@@ -686,59 +651,76 @@ return [
                 ],
             ],
         ],
-
-        
-        /**
-         *  Menu personas 
-         */
         [
-            'text'    => 'Personas',
-            'icon'    => 'fas fa-address-book',
+            'text'    => 'Cartera',
+            'icon'    => 'fas fa-house-user',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
             'submenu' => [
                 [
-                    'text' => 'Todos',
+                    'text' => 'Mi Cartera',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => '/personas',
+                    'url'  => 'micartera/view',
                     'classes'  => 'text-dark',
                 ],
-                [
-                    'text' => 'Estudiantes',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => '/home',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Computacion',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'computaciones',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Docentes',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'docentes',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Administrativos',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'administrativos',
-                    'classes'  => 'text-dark',
-                ],
-                // [
-                //     'text' => 'Proveedores',
-                //     'icon'    => 'fas fa-angle-right',
-                //     'url'  => 'proveedores',
-                //     'classes'  => 'text-dark',
-                // ],
-               
             ],
         ],
-        /**
-         * Menú  Docentes  
-         */
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO GRUPO PERSONAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO GRUPO USUARIOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        [
+            'header' => 'USUARIOS ROLES Y PERMISOS',
+            'classes'  => 'text-white bg-secondary',
+        ],
+        [
+            'text'    => 'Roles',
+            'icon'    => 'fas fa-fw fa-users-cog',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'can' => ['Listar Roles'],
+            'submenu' => [
+                [
+                    'text' => 'Listar Roles',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'role',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Asignar Rol a Usuario',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'rolusers',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'listar Permisos',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'permisos',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Usuarios',
+            'icon'    => 'fas fa-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'can' => ['Listar Roles'],
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'route' => 'users.index',
+                    'classes'  => 'text-secondary',
+                ],
+            ],
+        ],
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN GRUPO USUARIOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO GRUPO REPORTES CONSULTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        [
+            'header' => 'REPORTES Y CONSULTAS',
+            'classes'  => 'text-white bg-secondary',
+        ],
         [
             'text'    => 'Gráficos',
             'icon'    => 'fas fa-address-book',
@@ -825,38 +807,114 @@ return [
                
             ],
         ],
+        [
+            'text'    => 'Licencias',
+            'icon'    => 'fas fa-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url' => 'licencias',
+                    'classes'  => 'text-secondary',
+                ],
+            ],
+        ],
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN GRUPO REPORTES CONSULTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO GRUPO CAJA Y DINERO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        [
+            'header' => 'CAJA Y DINERO',
+            'classes'  => 'text-white bg-secondary',
+        ],
+           [
+            'text'    => 'Pagos y caja',
+            'icon'    => 'fas fa-donate',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Ingresos',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'pagos',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Inscripciones',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'pago/inscripciones/view',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Matriculaciones',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'pago/matriculaciones/view',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Billetes Inscripción',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'billetes',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Billetes Matriculación',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'billetescom',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Periodos',
+            'icon'    => 'fas fa-users-cog',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'periodables',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Cargos',
+            'icon'    => 'fas fa-users-cog',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'cargo',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
 
-//** %%%%%%%%%%%%%%%%%%  MENU Colegios %%%%%%%%%%%%% */
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO GRUPO CAJA Y DINERO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO GRUPO ADMINISTRACION MENUHOMEMENU %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         [
-            'text'    => 'Colegios',
-            'icon'    => 'fas fa-house-user',
+            'header' => 'ADMINISTRACION HOME',
+            'classes'  => 'text-white bg-secondary',
+        ],
+        [
+            'text'    => 'Pagina Inicio',
+            'icon'    => 'fas fa-home',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
             'submenu' => [
                 [
-                    'text' => 'Listar',
+                    'text' => 'Texto home',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => 'colegios',
+                    'url'  => 'home/edit',
                     'classes'  => 'text-dark',
                 ],
             ],
         ],
-//** %%%%%%%%%%%%%%%%%%  MENU constantes %%%%%%%%%%%%% */
-        [
-            'text'    => 'Constantes',
-            'icon'    => 'fas fa-house-user',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'constantes',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-//** %%%%%%%%%%%%%%%%%%  MENU CONVENIOS %%%%%%%%%%%%% */
         [
             'text'    => 'Convenios',
             'icon'    => 'fas fa-house-user',
@@ -883,52 +941,6 @@ return [
                 ],
             ],
         ],
-//** %%%%%%%%%%%%%%%%%%  MENU como llego? %%%%%%%%%%%%% */
-        [
-            'text'    => 'Como llegó?',
-            'icon'    => 'fas fa-house-user',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'como',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-//** %%%%%%%%%%%%%%%%%%  MENU como llego? %%%%%%%%%%%%% */
-        [
-            'text'    => 'Mododocente',
-            'icon'    => 'fas fa-house-user',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'mododocentes',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-//** %%%%%%%%%%%%%%%%%%  MENU eventos %%%%%%%%%%%%% */
-        [
-            'text'    => 'Eventos',
-            'icon'    => 'fas fa-house-user',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'eventos',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-//** %%%%%%%%%%%%%%%%%%  MENU Colegios %%%%%%%%%%%%% */
         [
             'text'    => 'Comentario Web',
             'icon'    => 'fas fa-house-user',
@@ -943,6 +955,313 @@ return [
                 ],
             ],
         ],
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN GRUPO REPORTES ADMINISTRACION HOME %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO GRUPO CRUD CONFIGURACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        [
+            'header' => 'OPCIONES CONFIGURACION',
+            'classes'  => 'text-white bg-secondary',
+        ],
+        [
+            'text'    => 'Constantes',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'constantes',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Como llegó?',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'como',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Mododocente',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'mododocentes',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+         [
+            'text'    => 'Motivos',
+            'icon'    => 'fas fa-prescription-bottle fa-2x',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'Listar Motivos',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'motivos',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Tipomotivos',
+            'icon'    => 'fas fa-prescription-bottle fa-2x',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'tipomotivos',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        //** %%%%%%%%%%%%%%%%%%  MENU ESTADO %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Estado',
+            'icon'    => 'fas fa-prescription-bottle fa-2x',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'estados',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Dias',
+            'icon'    => 'fas fa-calendar-day',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'dias',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Intereses',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'interests',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Eventos',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'eventos',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN GRUPO REPORTES CRUD CONFIGURACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO GRUPO ADMINISTRACION DATOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        [
+            'header' => 'ADMINISTRACION DATOS',
+            'classes'  => 'text-white bg-secondary',
+        ],
+        [
+            'text'    => 'Tipo Archivos',
+            'icon'    => 'fas fa-prescription-bottle fa-2x',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'tipofiles',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        //** %%%%%%%%%%%%%%%%%%  MENU FILE %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Archivos',
+            'icon'    => 'fas fa-prescription-bottle fa-2x',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'files',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO GRUPO ADMINISTRACION DATOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO GRUPO ADMINISTRACION LOCALIZACION GEOGRAFICA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        [
+            'header' => 'OPCIONES GEOGRAFICAS',
+            'classes'  => 'text-white bg-secondary',
+        ],
+        [
+            'text'    => 'Paises',
+            'icon'    => 'fas fa-flag',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'paises',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        //** %%%%%%%%%%%%%%%%%%  MENU Departamentos %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Departamentos',
+            'icon'    => 'fas fa-map-marker-alt',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'departamentos',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        //** %%%%%%%%%%%%%%%%%%  MENU PROVINCIA %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Provincias',
+            'icon'    => 'fas fa-map-marker',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'provincias',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+
+        //** %%%%%%%%%%%%%%%%%%  MENU CIUDADES %%%%%%%%%%%%% */
+        
+        [
+            'text'    => 'Ciudades',
+            'icon'    => 'fas fa-city',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'ciudades',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+         [
+            'text'    => 'Municipios',
+            'icon'    => 'fas fa-map-marked-alt',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'municipios',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+
+        //** %%%%%%%%%%%%%%%%%%  MENU ZONAS %%%%%%%%%%%%% */
+
+        [
+            'text'    => 'Zonas',
+            'icon'    => 'fas fa-street-view',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'zonas',
+                    'classes'  => 'text-dark',
+                ],
+               
+            ],
+        ],
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO GRUPO ADMINISTRACION LOCALIZACION GEOGRAFICA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO GRUPO ADMINISTRACION ACADEMICO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        [
+            'header' => 'ADMINISTRACION ACADEMICA',
+            'classes'  => 'text-white bg-secondary',
+        ],
+
+        
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO GRUPO ADMINISTRACION ACADEMICO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+//** %%%%%%%%%%%%%%%%%%  MENU Colegios %%%%%%%%%%%%% */
+        [
+            'text'    => 'Colegios',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'colegios',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+       
+
+       
+       
+//** %%%%%%%%%%%%%%%%%%  MENU como llego? %%%%%%%%%%%%% */
+       
+//** %%%%%%%%%%%%%%%%%%  MENU eventos %%%%%%%%%%%%% */
+       
+       
 //** %%%%%%%%%%%%%%%%%%  MENU TEMAS %%%%%%%%%%%%% */
         [
             'text'    => 'Temas',
@@ -958,103 +1277,8 @@ return [
                 ],
             ],
         ],
-//** %%%%%%%%%%%%%%%%%% MI CARTERA %%%%%%%%%%%%% */
-        [
-            'text'    => 'Cartera',
-            'icon'    => 'fas fa-house-user',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Mi Cartera',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'micartera/view',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-//** %%%%%%%%%%%%%%%%%%  MENU INTERESTS %%%%%%%%%%%%% */
-        
-        [
-            'text'    => 'Intereses',
-            'icon'    => 'fas fa-house-user',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'interests',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-//** %%%%%%%%%%%%%%%%%%  MENU REQUISITOS son las asignaturas %%%%%%%%%%%%% */
-        
-        // [
-        //     'text'    => 'Requisitos',
-        //     'icon'    => 'fas fa-house-user',
-        //     'icon_color' => 'secondary',
-        //     'classes'  => 'text-white text-bold bg-primary',
-        //     'submenu' => [
-        //         [
-        //             'text' => 'Listar',
-        //             'icon'    => 'fas fa-angle-right',
-        //             'url'  => 'requisito',
-        //             'classes'  => 'text-dark',
-        //         ],
-        //     ],
-        // ],
-//** %%%%%%%%%%%%%%%%%%  MENU METAS son las carreras %%%%%%%%%%%%% */
-        
-        // [
-        //     'text'    => 'Metas',
-        //     'icon'    => 'fas fa-house-user',
-        //     'icon_color' => 'secondary',
-        //     'classes'  => 'text-white text-bold bg-primary',
-        //     'submenu' => [
-        //         [
-        //             'text' => 'Listar',
-        //             'icon'    => 'fas fa-angle-right',
-        //             'url'  => 'meta',
-        //             'classes'  => 'text-dark',
-        //         ],
-        //     ],
-        // ],
-//** %%%%%%%%%%%%%%%%%%  MENU zonas %%%%%%%%%%%%% */
-        
-        [
-            'text'    => 'Zonas',
-            'icon'    => 'fas fa-house-user',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'zonas',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-//** %%%%%%%%%%%%%%%%%%  MENU Feriados %%%%%%%%%%%%% */
-        
-        [
-            'text'    => 'Feriados',
-            'icon'    => 'fas fa-calendar-times',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'can' => 'Listar Feriados',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'feriados',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-    
+
+
 //** %%%%%%%%%%%%%%%%%%  MENU MODALIDADES %%%%%%%%%%%%% */
         
         [
@@ -1120,102 +1344,11 @@ return [
                 ],
             ],
         ],
-        //** %%%%%%%%%%%%%%%%%%  MENU Administrativos %%%%%%%%%%%%% */
-        [
-            'text'    => 'Periodos',
-            'icon'    => 'fas fa-users-cog',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'periodables',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-        //** %%%%%%%%%%%%%%%%%%  MENU Administrativos %%%%%%%%%%%%% */
-        [
-            'text'    => 'Cargos',
-            'icon'    => 'fas fa-users-cog',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'cargo',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
+       
 
         //** %%%%%%%%%%%%%%%%%%  MENU Paises %%%%%%%%%%%%% */
         
-        [
-            'text'    => 'Paises',
-            'icon'    => 'fas fa-flag',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'paises',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-        //** %%%%%%%%%%%%%%%%%%  MENU Departamentos %%%%%%%%%%%%% */
         
-        [
-            'text'    => 'Departamentos',
-            'icon'    => 'fas fa-map-marker-alt',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'departamentos',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-        //** %%%%%%%%%%%%%%%%%%  MENU PROVINCIA %%%%%%%%%%%%% */
-        
-        [
-            'text'    => 'Provincias',
-            'icon'    => 'fas fa-map-marker',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'provincias',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-
-        //** %%%%%%%%%%%%%%%%%%  MENU CIUDADES %%%%%%%%%%%%% */
-        
-        [
-            'text'    => 'Ciudades',
-            'icon'    => 'fas fa-city',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'ciudades',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
         //** %%%%%%%%%%%%%%%%%%  MENU CARRERAS %%%%%%%%%%%%% */
         
         [
@@ -1267,200 +1400,12 @@ return [
                 ],
             ],
         ],
-        //** %%%%%%%%%%%%%%%%%%  MENU MUNICIPIOS %%%%%%%%%%%%% */
-    
-        [
-            'text'    => 'Municipios',
-            'icon'    => 'fas fa-map-marked-alt',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'municipios',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
+      
 
-        //** %%%%%%%%%%%%%%%%%%  MENU ZONAS %%%%%%%%%%%%% */
+       
+       
 
-        [
-            'text'    => 'Zonas',
-            'icon'    => 'fas fa-street-view',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'zonas',
-                    'classes'  => 'text-dark',
-                ],
-               
-            ],
-        ],
-        //** %%%%%%%%%%%%%%%%%%  MENU DIAS %%%%%%%%%%%%% */
         
-        [
-            'text'    => 'Dias',
-            'icon'    => 'fas fa-',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'dias',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-        //** %%%%%%%%%%%%%%%%%%  MENU MOTIVOS %%%%%%%%%%%%% */
-        
-        [
-            'text'    => 'Motivos',
-            'icon'    => 'fas fa-prescription-bottle fa-2x',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'can' => 'Listar Motivos',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'motivos',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-        //** %%%%%%%%%%%%%%%%%%  MENU TIPOMOTIVOS %%%%%%%%%%%%% */
-        
-        [
-            'text'    => 'Tipomotivos',
-            'icon'    => 'fas fa-prescription-bottle fa-2x',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'tipomotivos',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-        //** %%%%%%%%%%%%%%%%%%  MENU ESTADO %%%%%%%%%%%%% */
-        
-        [
-            'text'    => 'Estado',
-            'icon'    => 'fas fa-prescription-bottle fa-2x',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'estados',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-        //** %%%%%%%%%%%%%%%%%%  MENU TIPOFILE %%%%%%%%%%%%% */
-        
-        [
-            'text'    => 'Tipo Archivos',
-            'icon'    => 'fas fa-prescription-bottle fa-2x',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'tipofiles',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-        //** %%%%%%%%%%%%%%%%%%  MENU FILE %%%%%%%%%%%%% */
-        
-        [
-            'text'    => 'Archivos',
-            'icon'    => 'fas fa-prescription-bottle fa-2x',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'files',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-        //** %%%%%%%%%%%%%%%%%%  MENU ASIGNATURA %%%%%%%%%%%%% */
-        
-        // [
-        //     'text'    => 'Asignaturas',
-        //     'icon'    => 'fas fa-prescription-bottle fa-2x',
-        //     'icon_color' => 'secondary',
-        //     'classes'  => 'text-white text-bold bg-primary',
-        //     'submenu' => [
-        //         [
-        //             'text' => 'Listar',
-        //             'icon'    => 'fas fa-angle-right',
-        //             'url'  => 'asignaturas',
-        //             'classes'  => 'text-dark',
-        //         ],
-        //     ],
-        // ],
-
-        //** %%%%%%%%%%%%%%%%%%  MENU ROLES %%%%%%%%%%%%% */
-    
-        [
-            'text'    => 'Roles',
-            'icon'    => 'fas fa-fw fa-users-cog',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'can' => 'Listar Roles',
-            'submenu' => [
-                [
-                    'text' => 'Listar Roles',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'role',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Asignar Rol a Usuario',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'rolusers',
-                    'classes'  => 'text-dark',
-                ],
-                [
-                    'text' => 'Permisos listar',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'permisos',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
-
-        //** %%%%%%%%%%%%%%%%%%  HOME ITE %%%%%%%%%%%%% */
-        
-        [
-            'text'    => 'Pagina Inicio',
-            'icon'    => 'fas fa-home',
-            'icon_color' => 'secondary',
-            'classes'  => 'text-white text-bold bg-primary',
-            'submenu' => [
-                [
-                    'text' => 'Texto de la Pagina de Inicio',
-                    'icon'    => 'fas fa-angle-right',
-                    'url'  => 'home/edit',
-                    'classes'  => 'text-dark',
-                ],
-            ],
-        ],
 
         //** %%%%%%%%%%%%%%%%%%  HORARIOS %%%%%%%%%%%%% */
         

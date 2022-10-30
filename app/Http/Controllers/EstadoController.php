@@ -10,11 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class EstadoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Estados')->only('index','show');
+        $this->middleware('can:Crear Estados')->only('create','store');
+        $this->middleware('can:Editar Estados')->only('edit','update');
+        $this->middleware('can:Eliminar Estados')->only('destroy');
+    }
+
     public function index()
     {
         return view('estado.index');

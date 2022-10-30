@@ -21,11 +21,14 @@ use Illuminate\Support\Facades\Validator;
 
 class PeriodableController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Periodos Trabajo')->only("index","show","listarMisPeriodosView","createPagoView");
+        $this->middleware('can:Crear Periodos Trabajo')->only("create","store","storePago","storePagoAjax");
+        $this->middleware('can:Editar Periodos Trabajo')->only("edit","update","updatePagoAjax");
+        $this->middleware('can:Eliminar Periodos Trabajo')->only("destroy","eliminarPagoPeriodo");
+    }
+    
     public function index()
     {
         return view('periodable.index');

@@ -43,11 +43,13 @@ use Illuminate\Http\Request;
  */
 class InscripcioneController extends Controller
 {
+
+
     public function __construct()
     {
-        $this->middleware('can:Listar Inscripciones')->only('index');
-        $this->middleware('can:Crear Inscripciones')->only('create','store');
-        $this->middleware('can:Editar Inscripciones')->only('edit','update');
+        $this->middleware('can:Listar Inscripciones')->only('index','show','UltimaInscripcion','tusInscripcionesVigentes','tusinscripciones','inscripcionesVigentes','Saldo');
+        $this->middleware('can:Crear Inscripciones')->only('crear','store','configurarView');
+        $this->middleware('can:Editar Inscripciones')->only('daralta','fecharProximoPago','edit','darbaja','guardarconfiguracion','edit','configurarView','update','actualizarConfiguracion','actualizar_fecha_proximo_pago','reservar');
         $this->middleware('can:Eliminar Inscripciones')->only('destroy');
     }
     /**
@@ -510,7 +512,6 @@ class InscripcioneController extends Controller
         $inscripcion->fecha_proximo_pago=$fecha_proximo_pago;
         $inscripcion->save();
         return response()->json($inscripcion);
-        return response()->json(['mensaje'=>"El actualiza correctamente el registro"]);
     }
 
 }

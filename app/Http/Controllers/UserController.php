@@ -25,17 +25,17 @@ use Illuminate\Support\Facades\Crypt;
  */
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Usuarios')->only("index","show","share");
+        $this->middleware('can:Crear Usuarios')->only("create","crear","store","guardar");
+        $this->middleware('can:Editar Usuarios')->only("edit","update");
+        $this->middleware('can:Eliminar Usuarios')->only("destroy");
+    }
+    
     public function index()
     {
         $users = User::paginate();
-        //Alert::success('Success Title', 'Success Message');
-        //
-        //dd($v);
         return view('user.index', compact('users'))
             ->with('i', (request()->input('page', 1) - 1) * $users->perPage());
     }
@@ -140,45 +140,28 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $request, User $user)
     {
-        //dd($request->all());
-        
         $user->name=$request->name;
         $user->email=$request->email;
-
         if($request->password != null){
             $user->password=$request->password;
         }
         if ($request->hasFile('foto')) {
-            // verificando si exites la foto actual
             if (Storage::disk('public')->exists($user->foto)) {
-                // aquí la borro
                 Storage::disk('public')->delete($user->foto);
             }
-            //       leandro bruno leaandro
             $foto = $request->file('foto');
             $nombreImagen = 'usuarios/' . Str::random(20) . '.jpg';
-            /** las convertimos en jpg y la redimensionamos */
             $imagen = Image::make($foto)->encode('jpg', 75);
             $imagen->resize(160, 160, function ($constraint) {
                 $constraint->upsize();
             });
-            /* las guarda en en la carpeta correpondiente  */
             $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
-
             $user->foto = $nombreImagen;
         }
-
         $user->save();
-
         return redirect()->route('users.index')
             ->with('success', 'Usuario actualizado correctamente');
     }
-
-    /**
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
     public function destroy($id)
     {
         $usuario = User::findOrFail($id);
@@ -191,18 +174,15 @@ class UserController extends Controller
         $apoderados= $persona->apoderados;
         $user=$persona->user;
         $pass=ucfirst(strtolower($persona->nombre).$persona->id).'*';
-        //dd(Crypt::decryptString($user->password));
-        //dd($pass);
         return view('user.telefonos',compact('persona','apoderados','user','pass'));
     }
-    public function quien(Request $request){
-        $useres=User::join('userables','userables.user_id','users.id')
-            ->where('userable_id',69)
-            ->where('userables.userable_type',"App\\Models\\Observacion")
-            ->select('name')
-            ->get();
-            
-        return response()->json(['user'=>$useres,'d'=>2]);
-    }
+    // public function quien(Request $request){
+    //     $useres=User::join('userables','userables.user_id','users.id')
+    //         ->where('userable_id',69)
+    //         ->where('userables.userable_type',"App\\Models\\Observacion")
+    //         ->select('name')
+    //         ->get();
+    //     return response()->json(['user'=>$useres,'d'=>2]);
+    // }
 
 }

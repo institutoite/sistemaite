@@ -17,11 +17,14 @@ use App\Http\Requests\DepartamentoUpdateRequest;
  */
 class DepartamentoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Departamentos')->only('index','show');
+        $this->middleware('can:Crear Departamentos')->only('create','store');
+        $this->middleware('can:Editar Departamentos')->only('edit','update');
+        $this->middleware('can:Eliminar Departamentos')->only('destroy');
+    }
+
     public function index()
     {
         $departamentos = Departamento::paginate();

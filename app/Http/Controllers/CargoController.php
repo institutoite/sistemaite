@@ -9,11 +9,14 @@ use App\Http\Requests\DeleteRequest;
 
 class CargoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct(){
+        $this->middleware('can:Listar Cargos')->only('index','show','listar');
+        $this->middleware('can:Crear Cargos')->only('create','store');
+        $this->middleware('can:Editar Cargos')->only('edit','update');
+        $this->middleware('can:Eliminar Cargos')->only('destroy');
+    }
+
     public function index()
     {
         return view('cargo.index');

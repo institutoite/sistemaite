@@ -14,11 +14,14 @@ use Intervention\Image\Facades\Image;
 
 class ConvenioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct()
+    {
+        $this->middleware('can:Crear Convenios')->only('create','store');
+        $this->middleware('can:Editar Convenios')->only('edit','update');
+        $this->middleware('can:Eliminar Convenios')->only('destroy');
+    }
+    
     public function index()
     {
         return view('convenio.index');

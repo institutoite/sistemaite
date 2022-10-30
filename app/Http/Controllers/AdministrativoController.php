@@ -17,25 +17,27 @@ use App\Http\Requests\DeleteRequest;
 
 class AdministrativoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct(){
+        $this->middleware('can:Administrar Cartera')->only(['miCarteraMatriculacionesDesvigentes',
+                                                            'miCarteraMatriculaciones',
+                                                            "miCarteraInscripcionesDesvigentes",
+                                                            "vistaCartera",
+                                                            "miCarteraInscripciones"
+                                                        ]);
+        $this->middleware('can:Contactar Administrativos')->only('contactarAdministrativos');
+        $this->middleware('can:Listar Administrativos')->only('index','listar');
+        $this->middleware('can:Crear Administrativos')->only('store','crear');
+        $this->middleware('can:Editar Administrativos')->only('edit','update','editar');
+        $this->middleware('can:Eliminar Administrativos')->only('destroy');
+    }
+
+   
     public function index()
     {
         return view('administrativo.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-    }
     public function crear($persona_id)
     {
         $persona=Persona::findOrFail($persona_id);
@@ -44,16 +46,17 @@ class AdministrativoController extends Controller
         return view('administrativo.create',compact('estados','cargos','persona'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
+
     public function store(Request $request)
     {
-        //dd($request->all());
-        $administrativo=new Administrativo();
+        $persona=Persona::findOrFail($request->get('persona_id')); 
+        if(!$persona->isAdministrativo())
+            $administrativo=new Administrativo();
+        else{
+            $administrativo=$persona->Administrativo;
+        }
+
         $administrativo->fechaingreso=$request->fechaingreso;
         $administrativo->diasprueba=$request->get('diasprueba');
         $administrativo->sueldo=$request->get('sueldo');
@@ -64,23 +67,6 @@ class AdministrativoController extends Controller
         return redirect()->route("administrativos.index");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Administrativo $administrativo)
     {
         $estados=Estado::get();
@@ -115,8 +101,6 @@ class AdministrativoController extends Controller
 
     public function destroy(Administrativo $administrativo)
     {
-        // $adminitrativo_id=$request->id;
-        // $adminitrativo=Administrativo::findOrFail($adminitrativo_id);
         $administrativo->delete();
         return response()->json(['mensaje'=>"El registro fue eliminado correctamente"]);
     }
@@ -170,7 +154,7 @@ class AdministrativoController extends Controller
                 ->rawColumns(['btn'])
                 ->toJson();
         
-     }   
+    }   
     public function listar(Persona $persona){
         $persona=Persona::findOrFail($persona->id);
         $inscripcionesVigentes = Inscripcione::join('pagos','pagos.pagable_id','=','inscripciones.id')
@@ -208,8 +192,7 @@ class AdministrativoController extends Controller
     }
     public function miCarteraMatriculacionesDesvigentes(){
         $userActual = Auth::user();
-       
-       $personas=Persona::join('computacions','computacions.persona_id','personas.id')
+        $personas=Persona::join('computacions','computacions.persona_id','personas.id')
                 ->join('matriculacions','matriculacions.computacion_id','computacions.id')
                 ->join('userables','userables.userable_id','matriculacions.id')
                 ->join('users','users.id','userables.user_id')

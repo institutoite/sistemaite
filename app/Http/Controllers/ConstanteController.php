@@ -10,11 +10,15 @@ use Yajra\DataTables\DataTables;
 
 class ConstanteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct()
+    {
+        $this->middleware('can:Listar Constantes')->only('index','show');
+        $this->middleware('can:Crear Constantes')->only('create','store');
+        $this->middleware('can:Editar Constantes')->only('edit','update');
+        $this->middleware('can:Eliminar Constantes')->only('destroy');
+    }
+
     public function index()
     {
         return view('constante.index');

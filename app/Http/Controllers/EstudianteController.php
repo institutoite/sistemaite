@@ -14,7 +14,13 @@ use Yajra\DataTables\DataTables;
 use Carbon\Carbon;
 class EstudianteController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('can:Listar Estudiantes')->only("cumplenerosView","historia","cumpleaneros","faltonesView","sinfaltaView","recordatorioView","finalizandoView","empezandoView");
+        $this->middleware('can:Crear Estudiantes')->only("store","show");
+        $this->middleware('can:Editar Estudiantes')->only("edit","update");
+        $this->middleware('can:Eliminar Estudiantes')->only("destroy");
+    }
     public function cumplenerosView()
     {
         return view('estudiantes.cumpleaneros');

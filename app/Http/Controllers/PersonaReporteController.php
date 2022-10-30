@@ -14,6 +14,12 @@ use App\Http\Requests\ReportePotencialesBetween;
 class PersonaReporteController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:Listar Reporte Personas')->all();
+        //$this->middleware('can:Ver Reporte Personas')->only("potencialesPorInteresView","potencialesHoyView","potencialesBetweenView","potencialesPorInteres","potencialesDeHoy","potencialesBetween");
+    }
+    
     public function potencialesPorInteresView(){
         $interests=Interest::all();
         return view('reportes.potenciales_por_interest', compact('interests'));

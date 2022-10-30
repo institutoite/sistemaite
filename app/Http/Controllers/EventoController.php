@@ -13,11 +13,14 @@ use App\Http\Requests\UpdateEventoRequest;
 
 class EventoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Eventos')->only("index","show");
+        $this->middleware('can:Crear Eventos')->only("create","store");
+        $this->middleware('can:Editar Eventos')->only("edit","update","seleccionarEvento");
+        $this->middleware('can:Eliminar Eventos')->only("destroy");
+    }
+
     public function index()
     {
         return view('evento.index');

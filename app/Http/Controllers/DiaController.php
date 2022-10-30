@@ -13,11 +13,14 @@ use App\Http\Requests\DiaUpdateRequest;
 
 class DiaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   public function __construct()
+    {
+        $this->middleware('can:Listar Dias')->only('index','show');
+        $this->middleware('can:Crear Dias')->only('create','store');
+        $this->middleware('can:Editar Dias')->only('edit','update');
+        $this->middleware('can:Eliminar Dias')->only('destroy');
+    }
+
     public function index()
     {
         return view('dia.index');

@@ -20,11 +20,13 @@ use App\Http\Requests\MunicipioStoreRequest;
  */
 class MunicipioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Municipios')->only("index","show");
+        $this->middleware('can:Crear Municipios')->only("create","store");
+        $this->middleware('can:Editar Municipios')->only("edit","update");
+        $this->middleware('can:Eliminar Municipios')->only("destroy");
+    }
     public function index()
     {
         $municipios = Municipio::paginate();

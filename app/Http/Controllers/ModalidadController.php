@@ -20,7 +20,7 @@ class ModalidadController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:Listar Modalidades')->only('index');
+        $this->middleware('can:Listar Modalidades')->only('index','show','consultar');
         $this->middleware('can:Crear Modalidades')->only('create','store');
         $this->middleware('can:Editar Modalidades')->only('edit','update');
         $this->middleware('can:Eliminar Modalidades')->only('destroy');

@@ -747,7 +747,7 @@ kbd {
   display: inline-block;
   line-height: 1.5em;
   font-weight: 500;
-  background: linear-gradient(116.85deg, rgba(252, 70, 107, 0.3) 0%, rgba(63, 94, 251, 0.3) 100%);
+  /* background: linear-gradient(116.85deg, rgba(252, 70, 107, 0.3) 0%, rgba(63, 94, 251, 0.3) 100%); */
   border-radius: 1.6em;
   padding: 1px;
   position: relative;
@@ -1777,25 +1777,31 @@ kbd {
 .cs-partner {
   background: linear-gradient(116.85deg, rgba(252, 70, 107, 0.5) 0%, rgba(63, 94, 251, 0.5) 100%);
   padding: 1px;
-  height: 72px;
-  width: 235px;
+  
+  height: 10%;
+  width: 300px;
   border-radius: 5px;
   -webkit-box-flex: 0;
       -ms-flex: none;
           flex: none;
 }
 
+/*
+iteizado
+*/
 .cs-partner_in {
-  border-radius: inherit;
+  border-radius: 0.5em 0.5em 0px 0px;
   background-color: #fff;
   height: 100%;
   width: 100%;
   padding: 10px;
   text-align: center;
 }
-
+.cs-partner_in:hover{
+  background-color: rgba(38, 186, 165, 0.5);
+}
 .cs-single_moving_item {
-  padding: 0 15px;
+  padding: 15px 15px;
   width: initial !important;
 }
 
@@ -1819,10 +1825,24 @@ kbd {
 .cs-text_box.cs-style1 p {
   margin: 0;
 }
-
+/*--------------------------------------------------------------
+19. Dark Mode iteizado color de hover de los cuadros horarios 
+----------------------------------------------------------------*/
 .cs-text_box.cs-style1:hover {
-  background-color: #022136;
+  background-color: #0b2e45;
+  font-size: 1.5em;
+  border:0.2em solid #26BAA5;
   color: #fff;
+}
+.cs-section_heading:hover {
+  transition-duration: 1s;
+  font-size: 2.2em;
+  color: #fff;
+}
+.cs-section_heading:before {
+  transition-duration: 1s;
+  font-size: 2.2em;
+  color: rgb(230, 49, 49);
 }
 
 .cs-text_box.cs-style1:hover h3 {
@@ -5071,10 +5091,10 @@ li.menu-item-has-children
 }
 
 /*--------------------------------------------------------------
-10. Footer
+10. Footer parte inferior iteizado
 ----------------------------------------------------------------*/
 .cs-footer.cs-style1 {
-  background-color: #050023;
+  background-color: #0b2e45;
   position: relative;
   color: #d4d4d4;
   font-weight: 500;
@@ -5213,7 +5233,8 @@ li.menu-item-has-children
 }
 
 .cs-footer_social_btns a:hover::after {
-  opacity: 0.5;
+  opacity: 1;
+  /* background-color: #26BAA5; */
 }
 
 .cs-footer_newsletter {
@@ -5298,8 +5319,8 @@ li.menu-item-has-children
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  border-radius: 1.6em;
-  line-height: 1.55em;
+  border-radius: 0.9em;
+  line-height: 0.9em;
   position: relative;
 }
 
@@ -5319,8 +5340,8 @@ li.menu-item-has-children
 }
 
 .cs-hero_btn.cs-style1.cs-color3 {
-  background-color: #26BAA5;
-  color: #263b5e;
+  background-color:#375F7A ;
+  color:#26BAA5;
 }
 
 .cs-hero_btn.cs-style1.cs-color4 {
@@ -5349,9 +5370,10 @@ li.menu-item-has-children
   opacity: 0;
 }
 
+/* hover de  boton de la parte superior*/
 .cs-hero_btn.cs-style1:hover {
-  background-color: transparent;
-  color: #fff;
+  color: #16665a;
+  /* background-color: #375F7A; */
 }
 
 .cs-hero_btn.cs-style1:hover::after {
@@ -7360,10 +7382,10 @@ li.menu-item-has-children
 }
 
 /*--------------------------------------------------------------
-19. Dark Mode
+19. Dark Mode iteizado color de fondo
 ----------------------------------------------------------------*/
 body.cs-dark {
-  background-color: #080326;
+  background-color: #0b2e45;
   color: rgba(255, 255, 255, 0.8);
 }
 
@@ -7372,8 +7394,11 @@ body.cs-dark .cs-form_field,
 body.cs-dark .cs-select_arrow:before,
 body.cs-dark .cs-form_field.cs-white_bg,
 body.cs-dark .cs-btn.cs-style2 > span,
+/*--------------------------------------------------------------
+19. Dark Mode iteizado dobotn ingresas a educabol.com
+----------------------------------------------------------------*/
 body.cs-dark .cs-modal_container {
-  background: #0f0935;
+  background: #2c4d63;
 }
 
 body.cs-dark .cs-collection_info,
@@ -7477,7 +7502,7 @@ body.cs-dark .cs-iconbox.cs-style1.cs-type1 {
 
 body.cs-dark .cs-card.cs-style4 .cs-avatar {
   background-color: #fff;
-  color: #050023;
+  color: #05dd23;
 }
 
 body.cs-dark .cs-card_like,

@@ -14,11 +14,14 @@ use App\Http\Requests\TipofileUpdateRequest;
 
 class TipofileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Tipoarchivos')->only("index","mostrar");
+        $this->middleware('can:Crear Tipoarchivos')->only("create","store");
+        $this->middleware('can:Editar Tipoarchivos')->only("editar","actualizar");
+        $this->middleware('can:Eliminar Tipoarchivos')->only("destroy");
+    }
+    
     public function index()
     {
         return view('tipofile.index');
@@ -62,16 +65,7 @@ class TipofileController extends Controller
         $data=['tipofile'=>$tipofile];
         return response()->json($data);
     }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Tipofile  $tipofile
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Tipofile $tipofile)
-    {
-        //
-    }
+    
     public function editar(Request $request)
     {
         $tipofile = Tipofile::find($request->id);
@@ -86,19 +80,6 @@ class TipofileController extends Controller
         $tipofile->programa = $request->programa;
         $tipofile->save();
         return response()->json(['tipofile'=>$tipofile]);
-    }
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tipofile  $tipofile
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Tipofile $tipofile)
-    {
-        //
     }
 
     /**

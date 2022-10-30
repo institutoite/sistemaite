@@ -20,7 +20,7 @@ class CarreraController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:Listar Carreras')->only('index','show');
+        $this->middleware('can:Listar Carreras')->only('index','show','listar');
         $this->middleware('can:Crear Carreras')->only('create','store');
         $this->middleware('can:Editar Carreras')->only('edit','update');
         $this->middleware('can:Eliminar Carreras')->only('destroy');

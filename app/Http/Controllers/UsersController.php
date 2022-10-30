@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // public function __construct()
+    // {
+    //     $this->middleware('can:Listar Comentarios')->only();
+    //     $this->middleware('can:Crear Comentarios')->only();
+    //     $this->middleware('can:Editar Comentarios')->only();
+    //     $this->middleware('can:Eliminar Comentarios')->only();
+    // }
+
     public function index()
     {
         $users = User::all();

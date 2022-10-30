@@ -12,28 +12,25 @@ use App\Models\Persona;
 
 class OpcionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct()
+    {
+        $this->middleware('can:Opciones Index')->only("index");
+        $this->middleware('can:Opciones Docentes')->only("docentes");
+        $this->middleware('can:Opciones Computacion')->only("computacion");
+        $this->middleware('can:Opciones Administrativos')->only("administrativos");
+    }
+    
     public function index($estudiante_id)
     {
-        
-        
         $estudiante=Estudiante::findOrFail($estudiante_id);
         if(!is_null($estudiante->grados()->first())){ 
             $anioUltimo = $estudiante->grados()->orderBy('anio', 'desc')->get()->first()->pivot->anio;
         }
-
-        
         $colegios=Colegio::all();
-        
         $objetoGrado = new GradoController();
         $grados = $objetoGrado->gradosAunNoCursados($estudiante_id);
-        
         $colegios=Colegio::all();
-        
         $gestiones = Estudiante::join('estudiante_grado', 'estudiantes.id', '=', 'estudiante_grado.estudiante_id')
         ->join('grados', 'grados.id', '=', 'estudiante_grado.grado_id')
         ->join('colegios', 'colegios.id', '=', 'estudiante_grado.colegio_id')
@@ -41,7 +38,6 @@ class OpcionController extends Controller
         ->select('estudiante_grado.id', 'colegio_id', 'colegios.nombre', 'grados.grado', 'anio')
         ->orderBy('anio', 'desc')
         ->get();
-        
         
         if (empty($anioUltimo)) {
             return redirect()->route('gestion.create',$estudiante_id);
@@ -71,70 +67,4 @@ class OpcionController extends Controller
         return view('opcion.principal', compact('persona'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-    
 }

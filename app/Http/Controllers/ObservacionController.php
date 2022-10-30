@@ -14,11 +14,14 @@ use App\Models\User;
  */
 class ObservacionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Observaciones')->only("index","show");
+        $this->middleware('can:Crear Observaciones')->only("create","store","guardarObservacionGeneral","GuardarObservacion");
+        $this->middleware('can:Editar Observaciones')->only("edit","update","darbaja","daralta");
+        $this->middleware('can:Eliminar Observaciones')->only("destroy","eliminarGeneral");
+    }
+    
     public function index()
     {
         $observacions = Observacion::paginate();

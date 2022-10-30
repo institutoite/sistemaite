@@ -32,3 +32,13 @@
         </div>
     </section>
 @endsection
+@section('js')
+<script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('descripcion', {
+        height: 150,
+        width: "100%",
+        removeButtons: 'PasteFromWord'
+    });
+</script>
+@stop

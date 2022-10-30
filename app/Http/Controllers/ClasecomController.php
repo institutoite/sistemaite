@@ -24,32 +24,14 @@ use Yajra\DataTables\DataTables;
 
 class ClasecomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+  
+    public function __construct()
     {
-        //
+        $this->middleware('can:Listar Clasescom')->only('clasesPresentes','mostrarcom');
+        $this->middleware('can:Crear Clasescom')->only('guardar');
+        $this->middleware('can:Editar Clasescom')->only('edit','actualizar','editar','marcadoGeneral','marcadoRapido','finalizarClasecom');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
 
     public function guardar(Request $request,$programacioncom_id){
         $clasecom=new Clasecom();
@@ -171,10 +153,7 @@ class ClasecomController extends Controller
      * @param  \App\Models\Clasecom  $clasecom
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Clasecom $clasecom)
-    {
-        //
-    }
+    
     public function marcadoGeneral($matriculacion_id){
        
         

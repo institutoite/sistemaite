@@ -29,11 +29,24 @@ use App\Http\Requests\PersonaStoreRequest;
 
 class DocenteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+
+
+
+
+
+
+
+
+    public function __construct()
+    {
+        $this->middleware('can:Listar Docentes')->only('index','show');
+        $this->middleware('can:Crear Docentes')->only('create','store','GuardarConfigurarNiveles','configurar_niveles');
+        $this->middleware('can:Editar Docentes')->only('edit','update');
+        $this->middleware('can:Eliminar Docentes')->only('destroy');
+        $this->middleware('can:Consultas Docentes de clases')->only("misEstudiatescomActuales","misEstudiatesProgramados","misEstudiatescomProgramados","misEsperados","misEsperadoscom");
+    }
+
     public function index()
     {
         return view('docente.index');
@@ -339,11 +352,7 @@ class DocenteController extends Controller
         return redirect()->route('docentes.gestionar.niveles',$docente->persona->id);
     } 
 
-    // public function misclases(Request $request){
-    //     $persona_id = $request->id;
-    //     return view('docente.estudiantesactuales',compact('persona_id'));
-    // }
-
+   
     public function EstudiantesDeUnDocente($estudiante_id){
         $estudiantes=Docente::findOrFail($estudiante_id)
         ->estudiantes

@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 
 class SesionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // public function __construct()
+    // {
+    //     $this->middleware('can:Listar Sesiones Nivelación')->only();
+    //     $this->middleware('can:Crear Sesiones Nivelación')->only();
+    //     $this->middleware('can:Editar Sesiones Nivelación')->only();
+    //     $this->middleware('can:Eliminar Sesiones Nivelación')->only();
+    // }
+    
     public function index()
     {
         //

@@ -15,11 +15,13 @@ use App\Http\Requests\CiudadUpdateRequest;
 
 class CiudadController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Ciudades')->only('index','show');
+        $this->middleware('can:Crear Ciudades')->only('create','store');
+        $this->middleware('can:Editar Ciudades')->only('edit','update');
+        $this->middleware('can:Eliminar Ciudades')->only('destroy');
+    }
     public function index()
     {
         return view('ciudad.index');

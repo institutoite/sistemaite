@@ -15,11 +15,14 @@ use App\Models\User;
 
 class ZonaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Zonas')->only("index","show");
+        $this->middleware('can:Crear Zonas')->only("create","store");
+        $this->middleware('can:Editar Zonas')->only("update","edit");
+        $this->middleware('can:Eliminar Zonas')->only("destroy");
+    }
+    
     public function index()
     {
         return view('zona.index');

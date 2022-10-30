@@ -10,7 +10,6 @@ use App\Http\Requests\UpdateMensajeRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
@@ -18,11 +17,15 @@ use Yajra\DataTables\DataTables;
 
 class MensajeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Mensajes')->only("index","show","masivoView");
+        $this->middleware('can:Crear Mensajes')->only("create","store");
+        $this->middleware('can:Editar Mensajes')->only("edit","darbaja","daralta","update");
+        $this->middleware('can:Eliminar Mensajes')->only("destroy");
+    }
+
+    
     public function index()
     {
         return view('whatsapp.index');

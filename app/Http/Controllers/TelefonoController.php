@@ -11,11 +11,14 @@ use App\Http\Requests\TelefonoUpdateRequest;
 
 class TelefonoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Telefonos')->only("index","mostrarvista","mostrarvistaConIdPersona","apoderadoExistente");
+        $this->middleware('can:Crear Telefonos')->only("crear","agregarApoderado");
+        $this->middleware('can:Editar Telefonos')->only("editar","actualizar");
+        $this->middleware('can:Eliminar Telefonos')->only("eliminarTelefono");
+    }
+    
     public function index(Persona $persona)
     {
         if (request()->ajax()) {
@@ -45,26 +48,13 @@ class TelefonoController extends Controller
         return view('telefono.index',compact('persona','apoderados'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function crear(Persona $persona)
     {
         return view('telefono.crear',compact('persona'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        
-    }
+   
 
     public function apoderadoExistente(Persona $persona){
         $apoderados=Persona::get();
@@ -78,42 +68,17 @@ class TelefonoController extends Controller
     }
 
     public function guardarApoderadoExistente(GuardarApoderadoExistenteRequest $request){
-       
-        //dd($request->all());
         $estudiante_id=$request->persona_id;
         $apoderado_id=$request->apoderado_id;
-        
         $apoderado=Persona::findOrFail($apoderado_id);
-        
         $persona=Persona::findOrFail($estudiante_id);
-        
         $apoderado->telefono=$request->telefono;
         $apoderado->save();
         $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
         return redirect()->Route('telefonos.persona', ['persona' => $persona]);
-        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Telefono  $telefono
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Telefono $telefono)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Telefono  $telefono
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Telefono $telefono)
-    {
-    }
+    
     public function editar(Persona $persona,$apoderado_id)
     {
         
@@ -124,26 +89,13 @@ class TelefonoController extends Controller
         return view('telefono.editar',compact('persona','registro_pivot'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Telefono  $telefono
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Telefono $telefono)
-    {
-        //
-    }
+    
     public function actualizar(TelefonoUpdateRequest $request, $persona_id, $apoderado_id)
     {
-        /** en el registro pivot vienen ambas ids */
         $persona=Persona::findOrFail($persona_id);
         $registro_pivot = DB::table('persona_persona')->select('id', 'persona_id', 'persona_id_apoderado', 'parentesco', 'telefono')
         ->where('persona_id_apoderado', '=', $apoderado_id)
             ->where('persona_id', '=', $persona->id)->get();
-
-        // dd($registro_pivot);
         $apoderado=Persona::findOrFail($registro_pivot[0]->persona_id_apoderado);
         $apoderado->nombre = $request->nombre;
         $apoderado->apellidop = $request->apellidop;
@@ -151,21 +103,9 @@ class TelefonoController extends Controller
         $apoderado->genero = $request->genero;
         $apoderado->telefono = $request->telefono;
         $apoderado->save();
-        
         $persona->apoderados()->updateExistingPivot($registro_pivot[0]->persona_id_apoderado,['telefono'=>$request->telefono,'parentesco'=>$request->parentesco],false);
         $apoderados = $persona->apoderados;
         return view('telefono.index', compact('persona', 'apoderados'));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Telefono  $telefono
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Telefono $telefono)
-    {
-        //
     }
     public function eliminarTelefono(Persona $persona,$id)
     {

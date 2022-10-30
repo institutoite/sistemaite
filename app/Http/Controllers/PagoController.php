@@ -18,20 +18,21 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
-
-
-
 /**
  * Class PagoController
  * @package App\Http\Controllers
  */
 class PagoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Pagos')->only("index","detallar","show","mostrar","deudoresInscripcion","deudoresMatriculacion","deudoresView","listarPagos","pagoInscripcionesView","pagoModelo",);
+        $this->middleware('can:Crear Pagos')->only("create","store","crear","guardar");
+        $this->middleware('can:Editar Pagos')->only("edit","editar","edicion","update","actualizar");
+        $this->middleware('can:Eliminar Pagos')->only("destroy");
+        $this->middleware('can:Graficar Pagos')->only("graficaPorPagablestype");
+    }
+    
     public function index()
     {
         $pagos = Pago::all();

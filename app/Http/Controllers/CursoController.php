@@ -8,11 +8,14 @@ use Illuminate\Support\Facades\Storage;
 
 class CursoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   public function __construct()
+    {
+        $this->middleware('can:Listar Cursos')->only('index','show');
+        $this->middleware('can:Crear Cursos')->only('create','store');
+        $this->middleware('can:Editar Cursos')->only('edit','update');
+        $this->middleware('can:Eliminar Cursos')->only('destroy');
+    }
+
     public function index()
     {
         $cursos = Curso::all();

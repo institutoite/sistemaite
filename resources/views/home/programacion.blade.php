@@ -21,11 +21,7 @@
 							<p>Turno Tarde  &nbsp; <i class="fas fa-times text-danger"></i></p> 
 							<p>Turno Noche &nbsp; <i class="fas fa-times text-danger"></i></p> 
 							<p> <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20mas%20información%20del%20PROGRAMACION%20HORALIBRE%20">Mas Información</a>  </p>
-							{{-- <div class="agileits-buy">
-									<a class="a_demo_four text-white" target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20reservar%20el%20PROGRAMACION%20HORALIBRE">
-										Reservar
-									</a>
-							</div> --}}
+							
 							<div class="agileits-buy">
 								<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quiero%20comprar%20el%20Videobooth360%20modelo%20BASICO60">Comprar</a>
 							</div>

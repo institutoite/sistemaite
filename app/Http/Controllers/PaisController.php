@@ -14,11 +14,14 @@ use App\Models\Departamento;
 
 class PaisController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Paises')->only("index","show");
+        $this->middleware('can:Crear Paises')->only("create","store");
+        $this->middleware('can:Editar Paises')->only("edit","update");
+        $this->middleware('can:Eliminar Paises')->only("destroy","eliminarPais");
+    }
+    
     public function index()
     {
         return view('pais.index');

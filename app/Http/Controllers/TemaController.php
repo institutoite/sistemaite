@@ -16,11 +16,14 @@ use App\Http\Requests\DeleteRequest;
 
 class TemaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Temas')->only("index","show");
+        $this->middleware('can:Crear Temas')->only("create","store");
+        $this->middleware('can:Editar Temas')->only("edit","update");
+        $this->middleware('can:Eliminar Temas')->only("destroy");
+    }
+    
     public function index()
     {
         return view('tema.index');
@@ -33,7 +36,6 @@ class TemaController extends Controller
     }
 
     public function Lista(){
-        //return response()->json(['e'=>3]);
         $temas=Tema::join('materias','materias.id','temas.materia_id')
                     ->select('temas.id','temas.tema','materias.materia')
                     ->get();

@@ -34,11 +34,14 @@ use Yajra\DataTables\DataTables;
  */
 class ClaseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct()
+    {
+        $this->middleware('can:Listar Clases')->only('index','clasesPresentes','mostrar','show');
+        $this->middleware('can:Crear Clases')->only('create','crear','guardar');
+        $this->middleware('can:Editar Clases')->only('edit','update','actualizar','editar','marcadoGeneral','marcadoRapido','finalizarClase');
+        $this->middleware('can:Eliminar Clases')->only('destroy');
+    }
     public function index()
     {
         $clases = Clase::paginate();
@@ -59,7 +62,6 @@ class ClaseController extends Controller
     }
     public function crear()
     {
-        
         return view('clase.create');
     }
 
@@ -71,13 +73,7 @@ class ClaseController extends Controller
      */
 
     
-    // public function store(Request $request)
-    // {
-    //     dd($request->all());
-    //     $clase = Clase::create($request->all());
-    //     return redirect()->route('clases.index')
-    //         ->with('success', 'Clase created successfully.');
-    // }
+    
 
     public function guardar(Request $request,$programacion_id){
          //dd($request->all());
@@ -130,7 +126,6 @@ class ClaseController extends Controller
     public function show($id)
     {
         $clase = Clase::find($id);
-
         return view('clase.show', compact('clase'));
     }
     public function mostrar(Request $request)
@@ -329,15 +324,4 @@ class ClaseController extends Controller
         return response()->json(['message' => 'Despidete deseale el bien', 'status' => 200]);
     }
     
-    public function infoClase(){
-        /*
-         * aqui informar al profesor que clase le toca el clase
-         * materia
-         * tema
-         * objetivo de la inscripcion
-         * y objetivo de la clase
-         * de que hora a que hora  pasa la clase
-         * los dias que viene   
-         */
-    }
 }

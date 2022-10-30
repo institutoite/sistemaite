@@ -16,11 +16,14 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 class AulaController extends Controller
 {
-   /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    public function __construct(){
+        $this->middleware('can:Listar Aulas')->only('index','mostrar','listar');
+        $this->middleware('can:Crear Aulas')->only('create','store');
+        $this->middleware('can:Editar Aulas')->only('actualizar','editar');
+        $this->middleware('can:Eliminar Aulas')->only('destroy');
+    }
+
     public function index()
     {
         return view('aula.index');
@@ -71,16 +74,7 @@ class AulaController extends Controller
 
         return response()->json($data);
     }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Tipofile  $tipofile
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Tipofile $tipofile)
-    {
-        //
-    }
+    
     public function editar(Request $request)
     {
         $aula = Aula::findOrFail($request->id);
@@ -105,28 +99,9 @@ class AulaController extends Controller
         }
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tipofile  $tipofile
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Tipofile $tipofile)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Tipofile  $tipofile
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-         Aula::findOrFail($id)->delete();
+        Aula::findOrFail($id)->delete();
         return response()->json(['mensaje'=>"Se elimino correctamente"]);
     }
     public function listar(){

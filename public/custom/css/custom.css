@@ -88,10 +88,35 @@ table.dataTable td,th {
 i{
     font-size: 1.5em;
 }
-/* .modal{
-    opacity: 0.9;
-} */
 
+.card-items{
+    border-radius: 0.8em;
+}
+.boton-line-turqueza{
+    border-radius: 0.8em;
+}
+.boton-line-azul{
+    border-radius: 0.8em;
+}
+.boton-line-turqueza:hover{
+    color:white;
+    
+    transition-duration:0.6s;
+    border:2px solid rgb(55,95,125);
+}
+.boton-line-azul:hover{
+    color:white;
+   
+    transition-duration: 0.6s;
+    border: 2px solid rgb(38, 186, 165);
+}
+a:link, a:visited, a:active {
+    text-decoration:none;
+}
+.tarjeta:hover{
+    transform: scale(1.1);
+    transition-duration:1s;
+}
 
 
 

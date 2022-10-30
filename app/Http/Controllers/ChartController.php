@@ -10,6 +10,20 @@ use App\Models\Inscripcione;
 
 class ChartController extends Controller
 {
+
+     public function __construct()
+    {
+        $this->middleware('can:Graficar Informes')->only([
+            "chartCantidadInscripcionesXModaalidades",
+            "charCantidadRecaudadoXModalidades",
+            "charCantidadInscripcionesxUsuario",
+            "charFractalesRecaudadosxUser",
+            "charCantidadPagosxUser",
+            "charCantidadLicenciasxMotivos",
+        ]);
+        
+    }
+
     public function chartCantidadInscripcionesXModaalidades(Request $request){
         $consulta = Inscripcione::join('modalidads','inscripciones.modalidad_id','modalidads.id')
         ->select('modalidad',DB::raw('count(*) as cantidad'))

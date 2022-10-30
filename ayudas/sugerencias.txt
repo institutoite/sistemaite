@@ -260,3 +260,19 @@ para observaciones generico
             url="observacion/actualizar";
             actualizarObservacion(observacion_id,observacion,url);
         });
+
+    public function __construct()
+    {
+        $this->middleware('can:Listar Comentarios')->only();
+        $this->middleware('can:Crear Comentarios')->only();
+        $this->middleware('can:Editar Comentarios')->only();
+        $this->middleware('can:Eliminar Comentarios')->only();
+    }
+
+    Falta editar y actualizar preguntas frecuentes 
+    verificar si eliminar modalidades esta funcionando 
+    no se sabe si se esta trabajando con user o Userscontroller verificar
+    eliminar el metodo listar desde Administradores hasta Modalidades
+    verificar si hay eliminar pago y pagocom mas que todo pago computacion 
+    hacer un componente para que nos escriban por wahtsatpp
+    

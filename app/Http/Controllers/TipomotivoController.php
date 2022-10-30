@@ -20,11 +20,15 @@ use App\Http\Requests\TipomotivoGuardarRequest;
 
 class TipomotivoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct()
+    {
+        $this->middleware('can:Listar Tipomotivos')->only("index","mostrar");
+        $this->middleware('can:Crear Tipomotivos')->only("create","store");
+        $this->middleware('can:Editar Tipomotivos')->only("editar","actualizar");
+        $this->middleware('can:Eliminar Tipomotivos')->only("destroy");
+    }
+
     public function index()
     {
         return view('tipomotivo.index');
@@ -56,16 +60,7 @@ class TipomotivoController extends Controller
             ->with('success', 'Motivo created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Tipomotivo  $tipomotivo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Tipomotivo $tipomotivo)
-    {
-        //
-    }
+    
     public function mostrar(Request $request)
     {
         $tipomotivo = Tipomotivo::findOrFail($request->id);
@@ -75,17 +70,7 @@ class TipomotivoController extends Controller
         return response()->json($data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Tipomotivo  $tipomotivo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Tipomotivo $tipomotivo)
-    {
-        //
-    }
-
+    
     public function editar(Request $request)
     {
         $tipomotivo = Tipomotivo::find($request->id);

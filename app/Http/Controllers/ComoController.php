@@ -11,11 +11,15 @@ use Yajra\DataTables\DataTables;
 
 class ComoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Comos')->only('index','show','listar');
+        $this->middleware('can:Crear Comos')->only('create','store');
+        $this->middleware('can:Editar Comos')->only('edit','update');
+        $this->middleware('can:Eliminar Comos')->only('destroy');
+    }
+
+    
     public function index()
     {
         return view('como.index');

@@ -20,11 +20,14 @@ use Illuminate\Support\Str;
 
 class FileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Archivos')->only("index","show");
+        $this->middleware('can:Crear Archivos')->only("create","store");
+        $this->middleware('can:Editar Archivos')->only("edit","update","seleccionarEvento");
+        $this->middleware('can:Eliminar Archivos')->only("destroy");
+    }
+
     public function index()
     {
         return view('file.index');

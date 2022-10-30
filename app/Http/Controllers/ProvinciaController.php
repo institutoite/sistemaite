@@ -16,11 +16,13 @@ use App\Http\Requests\ProvinciaUpdateRequest;
  */
 class ProvinciaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:Listar Provincias')->only("index","show");
+        $this->middleware('can:Crear Provincias')->only("create","store");
+        $this->middleware('can:Editar Provincias')->only("edit","update");
+        $this->middleware('can:Eliminar Provincias')->only("destroy");
+    }
     public function index()
     {
         $provincias = Provincia::paginate();

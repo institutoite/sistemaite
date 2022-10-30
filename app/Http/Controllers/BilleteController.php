@@ -23,11 +23,15 @@ use Yajra\DataTables\DataTables;
  */
 class BilleteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct(){
+        $this->middleware('can:Listar Billete')->only('index','show');
+        $this->middleware('can:Crear Billete')->only('create','crear','guardar','store');
+        $this->middleware('can:Editar Billete')->only('edit','update');
+        $this->middleware('can:Graficar Billete')->only('billetesInscripciones');
+        $this->middleware('can:Eliminar Billete')->only('destroy');
+    }
+
     public function index()
     {
         return view('billete.index');
