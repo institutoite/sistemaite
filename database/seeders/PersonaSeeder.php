@@ -16,7 +16,7 @@ class PersonaSeeder extends Seeder
      */
     public function run()
     {
-        
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
         Persona::create([
             'nombre' => 'DAVID EDUARDO',
             'apellidop' => 'FLORES',
@@ -38,7 +38,7 @@ class PersonaSeeder extends Seeder
         ]);
 
         
-
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
         Persona::create([
             'nombre' => 'LIDIA',
             'apellidop' => 'CONTRERAS',
@@ -58,7 +58,7 @@ class PersonaSeeder extends Seeder
             'papelinicial' => 'estudiante',
             
         ]);
-        
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
         Persona::create([
             'nombre' => 'BENJAMIN',
             'apellidop' => 'CALLATA',
@@ -77,6 +77,7 @@ class PersonaSeeder extends Seeder
             'foto' => "estudiantes/foto.jpg",
             'papelinicial' => 'docente',
         ]);
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
         Persona::create([
             'nombre' => 'EDUARDO',
             'apellidop' => 'LOZA',
@@ -95,6 +96,7 @@ class PersonaSeeder extends Seeder
             'foto' => "estudiantes/foto.jpg",
             'papelinicial' => 'docente',
         ]);
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
         Persona::create([
             'nombre' => 'EDSON',
             'apellidop' => 'MANCILLA',
@@ -113,6 +115,7 @@ class PersonaSeeder extends Seeder
             'foto' => "estudiantes/foto.jpg",
             'papelinicial' => 'docente',
         ]);
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
         Persona::create([
             'nombre' => 'EDUARDO',
             'apellidop' => 'LLANOS',
@@ -131,6 +134,7 @@ class PersonaSeeder extends Seeder
             'foto' => "estudiantes/foto.jpg",
             'papelinicial' => 'docente',
         ]);
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
         Persona::create([
             'nombre' => 'WILBERTH JHONNY',
             'apellidop' => 'ALEJO',
@@ -149,7 +153,7 @@ class PersonaSeeder extends Seeder
             'foto' => "estudiantes/foto.jpg",
             'papelinicial' => 'docente',
         ]);
-       
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
         Persona::create([
             'nombre' => 'ELSA',
             'apellidop' => 'FLORES',
@@ -168,6 +172,7 @@ class PersonaSeeder extends Seeder
             'foto' => "estudiantes/foto.jpg",
             'papelinicial' => 'docente',
         ]);
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 9 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
         Persona::create([
             'nombre' => 'MAYLIN',
             'apellidop' => 'RODAS',
@@ -186,6 +191,7 @@ class PersonaSeeder extends Seeder
             'foto' => "estudiantes/foto.jpg",
             'papelinicial' => 'docente',
         ]);
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
         Persona::create([
             'nombre' => 'MARIA ISABEL',
             'apellidop' => 'NINA',
@@ -204,6 +210,7 @@ class PersonaSeeder extends Seeder
             'foto' => "estudiantes/foto.jpg",
             'papelinicial' => 'docente',
         ]);
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 11 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
          Persona::create([
             'nombre' => 'SUSANA',
             'apellidop' => 'PETIGA',

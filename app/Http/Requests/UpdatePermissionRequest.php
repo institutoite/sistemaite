@@ -24,10 +24,10 @@ class UpdatePermissionRequest extends FormRequest
      */
     public function rules()
     {
-       $permission=$this->route('como');
+       $permission=$this->route('permission');
         return [
-            'como' => ['required',
-            Rule::unique('comos')->ignore($como)]
+            'name' => ['required',
+            Rule::unique('permissions')->ignore($permission)]
         ];
     }
 }
