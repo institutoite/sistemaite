@@ -26,10 +26,7 @@ class ComoSeeder extends Seeder
         Como::create(['como'=>"PUBLICIDAD"]);
         Como::create(['como'=>"OTRO"]);
 
-        Como::find(1)->usuarios()->attach(1);
-        Como::find(2)->usuarios()->attach(1);
-        Como::find(3)->usuarios()->attach(1);
-        Como::find(4)->usuarios()->attach(1);
+       
         
 
     }

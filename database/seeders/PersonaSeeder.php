@@ -285,8 +285,8 @@ class PersonaSeeder extends Seeder
             'telefono' => "65043997",
             'pais_id' => 1,
             'ciudad_id' => 6,
-            'zona_id' => 2,
-            'como_id' => 21,
+            'zona_id' => 21,
+            'como_id' => 1,
             'foto' => "estudiantes/daniel.jpg",
             'papelinicial' => 'docente',
             
