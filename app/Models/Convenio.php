@@ -12,4 +12,8 @@ class Convenio extends Model
     {
         return $this->hasMany(Plan::class);
     }
+     public function usuarios()
+    {
+        return $this->morphToMany('App\Models\User', 'userable');
+    }
 }

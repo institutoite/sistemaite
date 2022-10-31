@@ -12,4 +12,8 @@ class Caracteristica extends Model
     {
         return $this->belongsTo(Plan::class);
     }
+    public function usuarios()
+    {
+        return $this->morphToMany('App\Models\User', 'userable');
+    }
 }

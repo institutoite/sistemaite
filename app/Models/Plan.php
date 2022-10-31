@@ -16,4 +16,8 @@ class Plan extends Model
     {
         return $this->hasMany(Caracteristica::class);
     }
+     public function usuarios()
+    {
+        return $this->morphToMany('App\Models\User', 'userable');
+    }
 }

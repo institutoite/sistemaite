@@ -18,6 +18,9 @@ class CargoSeeder extends Seeder
         Cargo::create(['cargo'=>"LIMPIEZA"]);
         Cargo::create(['cargo'=>"COCINA"]);
 
-       
+        Cargo::find(1)->usuarios()->attach(1);
+        Cargo::find(2)->usuarios()->attach(1);
+        Cargo::find(3)->usuarios()->attach(1);
+        Cargo::find(4)->usuarios()->attach(1);
     }
 }

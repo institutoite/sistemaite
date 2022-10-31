@@ -54,7 +54,7 @@ class PersonaSeeder extends Seeder
             'ciudad_id' => 6,
             'zona_id' => 1,
             'como_id' => 1,
-            'foto' => "estudiantes/foto.jpg",
+            'foto' => "estudiantes/lidia.jpg",
             'papelinicial' => 'estudiante',
             
         ]);
@@ -74,7 +74,7 @@ class PersonaSeeder extends Seeder
             'ciudad_id' => 6,
             'zona_id' => 6,
             'como_id' => 2,
-            'foto' => "estudiantes/foto.jpg",
+            'foto' => "estudiantes/benjamin.jpg",
             'papelinicial' => 'docente',
         ]);
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -93,7 +93,7 @@ class PersonaSeeder extends Seeder
             'ciudad_id' => 6,
             'zona_id' => 1,
             'como_id' => 2,
-            'foto' => "estudiantes/foto.jpg",
+            'foto' => "estudiantes/loza.jpg",
             'papelinicial' => 'docente',
         ]);
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -112,7 +112,7 @@ class PersonaSeeder extends Seeder
             'ciudad_id' => 6,
             'zona_id' => 19,
             'como_id' => 1,
-            'foto' => "estudiantes/foto.jpg",
+            'foto' => "estudiantes/edson.jpg",
             'papelinicial' => 'docente',
         ]);
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -131,7 +131,7 @@ class PersonaSeeder extends Seeder
             'ciudad_id' => 6,
             'zona_id' => 6,
             'como_id' => 2,
-            'foto' => "estudiantes/foto.jpg",
+            'foto' => "estudiantes/llanos.jpg",
             'papelinicial' => 'docente',
         ]);
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -150,7 +150,7 @@ class PersonaSeeder extends Seeder
             'ciudad_id' => 6,
             'zona_id' => 16,
             'como_id' => 1,
-            'foto' => "estudiantes/foto.jpg",
+            'foto' => "estudiantes/wilberth.jpg",
             'papelinicial' => 'docente',
         ]);
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -169,7 +169,7 @@ class PersonaSeeder extends Seeder
             'ciudad_id' => 6,
             'zona_id' => 16,
             'como_id' => 1,
-            'foto' => "estudiantes/foto.jpg",
+            'foto' => "estudiantes/elsa.jpg",
             'papelinicial' => 'docente',
         ]);
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 9 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -188,7 +188,7 @@ class PersonaSeeder extends Seeder
             'ciudad_id' => 6,
             'zona_id' => 20,
             'como_id' => 1,
-            'foto' => "estudiantes/foto.jpg",
+            'foto' => "estudiantes/maylin.jpg",
             'papelinicial' => 'docente',
         ]);
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -207,11 +207,11 @@ class PersonaSeeder extends Seeder
             'ciudad_id' => 6,
             'zona_id' => 2,
             'como_id' => 1,
-            'foto' => "estudiantes/foto.jpg",
+            'foto' => "estudiantes/isabel.jpg",
             'papelinicial' => 'docente',
         ]);
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 11 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-         Persona::create([
+        Persona::create([
             'nombre' => 'SUSANA',
             'apellidop' => 'PETIGA',
             'apellidom' => 'MASAI',
@@ -226,8 +226,69 @@ class PersonaSeeder extends Seeder
             'ciudad_id' => 6,
             'zona_id' => 1,
             'como_id' => 1,
-            'foto' => "estudiantes/foto.jpg",
+            'foto' => "estudiantes/susana.jpg",
             'papelinicial' => 'administrativo',
+            
+        ]);
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 12 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+        Persona::create([
+            'nombre' => 'GABRIELA',
+            'apellidop' => 'GUASASE',
+            'apellidom' => 'ORTIZ',
+            'fechanacimiento' => '15-05-2015',
+            'direccion' => 'PLAN 3000',
+            'carnet' => '45615535',
+            'expedido' => 'BEN',
+            'genero' => 'MUJER',
+            'habilitado' => 1,
+            'telefono' => "65937318",
+            'pais_id' => 1,
+            'ciudad_id' => 6,
+            'zona_id' => 1,
+            'como_id' => 1,
+            'foto' => "estudiantes/gabriela.jpg",
+            'papelinicial' => 'docente',
+            
+        ]);
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 13 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+        Persona::create([
+            'nombre' => 'MIRIAN',
+            'apellidop' => 'ROJAS',
+            'apellidom' => 'POWELL',
+            'fechanacimiento' => '23-05-1983',
+            'direccion' => 'BARRIO SAN MARTIN CALLE 2',
+            'carnet' => '6229461',
+            'expedido' => 'SCZ',
+            'genero' => 'MUJER',
+            'habilitado' => 1,
+            'telefono' => "65043997",
+            'pais_id' => 1,
+            'ciudad_id' => 6,
+            'zona_id' => 2,
+            'como_id' => 10,
+            'foto' => "estudiantes/mirian.jpg",
+            'papelinicial' => 'docente',
+            
+        ]);
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PERSONA 14 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+        Persona::create([
+            'nombre' => 'DANIEL',
+            'apellidop' => 'ORTEGA',
+            'apellidom' => 'TEJERINA',
+            'fechanacimiento' => '13-09-1988',
+            'direccion' => 'Av. Centenario Tercer Anillo',
+            'carnet' => '',
+            'expedido' => 'SCZ',
+            'genero' => 'MUJER',
+            'habilitado' => 1,
+            'telefono' => "65043997",
+            'pais_id' => 1,
+            'ciudad_id' => 6,
+            'zona_id' => 2,
+            'como_id' => 21,
+            'foto' => "estudiantes/daniel.jpg",
+            'papelinicial' => 'docente',
             
         ]);
 
@@ -295,6 +356,24 @@ class PersonaSeeder extends Seeder
             "observacion" =>"Esta es una observation insertada desde un seeder inicial de administrativos",
             "activo" =>1,
             "observable_id"=>11,
+            "observable_type"=>"App\Models\Persona",
+        ]);
+        Observacion::create([
+            "observacion" =>"Esta es una observation insertada desde un seeder inicial de administrativos",
+            "activo" =>1,
+            "observable_id"=>12,
+            "observable_type"=>"App\Models\Persona",
+        ]);
+        Observacion::create([
+            "observacion" =>"Esta es una observation insertada desde un seeder inicial de administrativos",
+            "activo" =>1,
+            "observable_id"=>13,
+            "observable_type"=>"App\Models\Persona",
+        ]);
+        Observacion::create([
+            "observacion" =>"Esta es una observation insertada desde un seeder inicial de administrativos",
+            "activo" =>1,
+            "observable_id"=>14,
             "observable_type"=>"App\Models\Persona",
         ]);
 

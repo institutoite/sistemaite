@@ -29,5 +29,17 @@ class EventoSeeder extends Seeder
 
         Persona::findOrFail(1)->usuarios()->attach(1);
         Persona::findOrFail(2)->usuarios()->attach(1);
+        Persona::findOrFail(3)->usuarios()->attach(1);
+        Persona::findOrFail(4)->usuarios()->attach(1);
+        Persona::findOrFail(5)->usuarios()->attach(1);
+        Persona::findOrFail(6)->usuarios()->attach(1);
+        Persona::findOrFail(7)->usuarios()->attach(1);
+        Persona::findOrFail(8)->usuarios()->attach(1);
+        Persona::findOrFail(9)->usuarios()->attach(1);
+        Persona::findOrFail(10)->usuarios()->attach(1);
+        Persona::findOrFail(11)->usuarios()->attach(1);
+        Persona::findOrFail(12)->usuarios()->attach(1);
+        Persona::findOrFail(13)->usuarios()->attach(1);
+        Persona::findOrFail(14)->usuarios()->attach(1);
     }
 }

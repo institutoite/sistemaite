@@ -54,17 +54,35 @@ class AdministrativoSeeder extends Seeder
             'cargo_id'=>1,
             'estado_id'=>11,
             'sueldo'=>2000,
-            'persona_id'=>3,
+            'persona_id'=>1,
         ]);
         Administrativo::create([
             'fechaingreso'=>'2021-05-12',
-            'diasprueba'=>3,
+            'diasprueba'=>2,
             'cargo_id'=>1,
             'estado_id'=>11,
             'sueldo'=>2000,
             'persona_id'=>2,
         ]);
+        Administrativo::create([
+            'fechaingreso'=>'2021-05-12',
+            'diasprueba'=>2,
+            'cargo_id'=>1,
+            'estado_id'=>11,
+            'sueldo'=>2000,
+            'persona_id'=>11,
+        ]);
+        Administrativo::create([
+            'fechaingreso'=>'2021-05-12',
+            'diasprueba'=>2,
+            'cargo_id'=>1,
+            'estado_id'=>11,
+            'sueldo'=>2000,
+            'persona_id'=>8,
+        ]);
         Administrativo::find(1)->usuarios()->attach(1);
         Administrativo::find(2)->usuarios()->attach(1);
+        Administrativo::find(3)->usuarios()->attach(1);
+        Administrativo::find(4)->usuarios()->attach(1);
     }
 }

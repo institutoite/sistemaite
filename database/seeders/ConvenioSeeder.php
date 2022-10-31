@@ -21,6 +21,8 @@ class ConvenioSeeder extends Seeder
         Convenio::create(['titulo' => 'ite robóticas','descripcion' =>'Realizamos trabajos atumatización decoraciones led para todo tipo de edificios','foto'=>"convenios/iterobotica.jpg"]);
         Convenio::create(['titulo' => 'ite Emprendedores','descripcion' =>'Capacticiones constantes para emprendedores. Consultenos en el siguiente botón','foto'=>"convenios/iteemprendedor.jpg"]);
         Convenio::create(['titulo' => 'ite Emprendedores','descripcion' =>'Capacticiones constantes para emprendedores. Consultenos en el siguiente botón','foto'=>"convenios/iteayuda.jpg"]);
+
+        
     }
 }
 

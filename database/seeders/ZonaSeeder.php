@@ -37,6 +37,8 @@ class ZonaSeeder extends Seeder
         Zona::create(['zona' => 'PAURITO', 'ciudad_id' => 6]);
         Zona::create(['zona' => 'ZONA NORTE', 'ciudad_id' => 6]);
         Zona::create(['zona' => 'ZONA SUR', 'ciudad_id' => 6]);
+        
+        Zona::create(['zona' => 'ZONA 4 DE NOVIEMBRE', 'ciudad_id' => 6]);
 
  
         

@@ -324,6 +324,12 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Eliminar Zonas'])->syncRoles([$admin,$secre]);
 
         $admin = User::find(1); 
+        $lidia = User::find(2); 
+        $susana = User::find(3); 
+        $elsa = User::find(4); 
         $admin->assignRole('Admin');
+        $lidia->assignRole('Admin');
+        $susana->assignRole('Secretaria');
+        $elsa->assignRole('Secretaria');
     }
 }

@@ -261,6 +261,7 @@ class CiudadSeeder extends Seeder
         Ciudad::create(['ciudad' => 'Yucumo', 'pais_id' => 1]);
         Ciudad::create(['ciudad' => 'Zudáñez', 'pais_id' => 1]);
 
+        
     
     }
 }
