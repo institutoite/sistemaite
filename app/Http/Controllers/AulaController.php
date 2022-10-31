@@ -18,7 +18,7 @@ class AulaController extends Controller
 {
     
     public function __construct(){
-        $this->middleware('can:Listar Aulas')->only('index','mostrar','listar');
+        $this->middleware('can:Listar Aulas')->only('index','mostrar');
         $this->middleware('can:Crear Aulas')->only('create','store');
         $this->middleware('can:Editar Aulas')->only('actualizar','editar');
         $this->middleware('can:Eliminar Aulas')->only('destroy');

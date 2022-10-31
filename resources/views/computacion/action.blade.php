@@ -17,9 +17,14 @@
     </button>
 </form> 
 
-<a href="{{route('opcion.computacion', $id)}}" class="btn btn-primary text-white tooltipsC btn-sm mr-2" title="ir a opciones de la persona">
-    Opciones
-</a>
+
+
+<span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Disabled tooltip">
+    <a href="{{route('opcion.principal', App\Models\Computacion::findOrFail($id)->persona->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de matematicas">
+         <i class="fas fa-bars"></i> &nbsp; Opciones
+    </a>
+</span>
+
 
 <a href="{{route('opcion.computacion', $id)}}" class="btn btn-primary text-white tooltipsC btn-sm mr-2" title="ir a opciones de la persona">
     agregar

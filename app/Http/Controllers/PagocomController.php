@@ -56,7 +56,6 @@ class PagocomController extends Controller
 
 
     public function detallar($matriculacion_id){
-        //dd($matriculacion_id);
         $pagos=Pago::where('pagable_id','=',$matriculacion_id)->get();
         $matriculacion = Matriculacion::findOrFail($matriculacion_id);
         $pagos = $matriculacion->pagos;

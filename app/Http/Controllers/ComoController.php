@@ -13,7 +13,7 @@ class ComoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:Listar Comos')->only('index','show','listar');
+        $this->middleware('can:Listar Comos')->only('index','show');
         $this->middleware('can:Crear Comos')->only('create','store');
         $this->middleware('can:Editar Comos')->only('edit','update');
         $this->middleware('can:Eliminar Comos')->only('destroy');

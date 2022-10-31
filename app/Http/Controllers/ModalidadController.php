@@ -117,10 +117,9 @@ class ModalidadController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Modalidad $modalidad)
     {
-        $modalidad = Modalidad::findOrFail($id);
         $modalidad->delete();
-        return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
+        return response()->json(['mensaje' => 'Registro Eliminado correctamente', 'status' => 200]);
     }
 }

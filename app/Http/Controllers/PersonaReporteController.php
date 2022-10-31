@@ -16,7 +16,7 @@ class PersonaReporteController extends Controller
 
     public function __construct()
     {
-        $this->middleware('can:Listar Reporte Personas')->all();
+        $this->middleware('can:Listar Reportepersona')->all();
         //$this->middleware('can:Ver Reporte Personas')->only("potencialesPorInteresView","potencialesHoyView","potencialesBetweenView","potencialesPorInteres","potencialesDeHoy","potencialesBetween");
     }
     

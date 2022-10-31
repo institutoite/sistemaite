@@ -726,10 +726,10 @@
               </button>
             </form> --}}
             <div class="cs-footer_social_btns">
-              <a href="https://api.whatsapp.com/send?phone=59171039910&text=Visite su pagina. Quiero mas información"><i class="fab fa-whatsapp fa-fw"></i></a>
-              <a href="https://msng.link/o/?@institutoite=tg"><i class="fab fa-telegram fa-fw"></i></a>
-              <a href="https://www.facebook.com/educabolite"><i class="fab fa-facebook-f fa-fw"></i></a>
-              <a href="https://www.youtube.com/channel/UCbmRHfG51CGM1foo-6kzunQ"><i class="fab fa-youtube fa-fw"></i></a>
+              <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Visite su pagina. Quiero mas información"><i class="fab fa-whatsapp fa-fw"></i></a>
+              <a target="_blank" href="https://msng.link/o/?@institutoite=tg"><i class="fab fa-telegram fa-fw"></i></a>
+              <a target="_blank" href="https://www.facebook.com/educabolite"><i class="fab fa-facebook-f fa-fw"></i></a>
+              <a target="_blank" href="https://www.youtube.com/channel/UCbmRHfG51CGM1foo-6kzunQ"><i class="fab fa-youtube fa-fw"></i></a>
             </div>
           </div>
         </div>
@@ -740,7 +740,7 @@
       <div class="container">
         <div class="cs-footer_separetor"></div>
         <div class="cs-footer_bottom_in">
-          <div class="cs-copyright">Copyright 2022. Desarrollado por Instituto Educabol Ite.</div>
+          <div class="cs-copyright">Copyright 2022. Desarrollado por David Eduardo Flores.</div>
           <ul class="cs-footer_menu">
             <li><a href="{{ route('privacy') }}">Privacidad</a></li>
             <li><a href="{{ route('termscondition') }}">Términos y Condiciones</a></li>

@@ -136,17 +136,13 @@
             $('table').on('click','.fechar',function (e) {
                 e.preventDefault(); 
                 id_seleccionada=$(this).closest('tr').attr('id');
-
                 $.ajax({
                     url: '../../fechar/pago/proximo/' + id_seleccionada+"/{{$inscripcion}}",
                     success: function (result) {
-                        //location.reload();
-
                         $(".filillas").removeClass("bg-warning");
                         $(".fechar").removeClass("btn-warning");
                         $(".fechar").addClass("btn-primary");
                         $("#"+id_seleccionada).addClass("bg-warning");
-
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                     }

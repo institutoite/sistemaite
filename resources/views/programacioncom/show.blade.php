@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @endsection
 
-@section('title', 'Programacion')
+@section('title', 'Programacioncom')
 
 @section('plugins.Datatables',true)
 
@@ -16,7 +16,7 @@
                             <span class="card-title text-sm"></span>{{$persona->nombre.' '.$persona->apellidop}}&nbsp;<i class="fas fa-user-graduate"></i>
                         </div>
                         <div class="float-right">
-                            <span class="card-title text-sm">{{App\Models\Matriculacion::findOrfail($matriculacion)->asignatura->asignatura}} </span>
+                            <span class="card-title text-sm">{{App\Models\Matriculacion::findOrfail($matriculacion)->asignatura->asignatura}}x </span>
                         </div>
                         <div class="float-right">
                             
@@ -78,7 +78,7 @@
 
 
                                         @endphp
-                                    <tr class="{{$claseFila.' '.$claseHoy}}">
+                                    <tr id="{{$programa->id}}" class="{{$claseFila.' '.$claseHoy}} filillas">
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$programa->fecha->isoFormat('DD/MM/YYYY')}}</td>
                                         <td>{{$programa->fecha->isoFormat('dddd')}}</td>
@@ -88,9 +88,11 @@
                                         <td>{{ App\Models\Programacioncom::findOrFail($programa->id)->estado->estado }}</td>
                                         <td>{{$programa->aula}}</td>
                                         <td>
-                                <a class="{{ $claseBoton.' '.$claseBotonHoy }} tooltipsC mr-2" href="{{route('setcom.fecha.proximo.pago', ['fecha'=>$programa->fecha->isoFormat('YYYY-MM-DD'),'id'=>$programa->matriculacion_id])}}" title="Asignar esta fecha para el proximo pago">
+                                {{-- <a class="{{ $claseBoton.' '.$claseBotonHoy }} tooltipsC mr-2" href="{{route('setcom.fecha.proximo.pago', ['fecha'=>$programa->fecha->isoFormat('YYYY-MM-DD'),'id'=>$programa->matriculacion_id])}}" title="Asignar esta fecha para el proximo pago"> --}}
+                                            <a class="{{ $claseBoton.' '.$claseBotonHoy }} tooltipsC mr-2 fechar" title="Asignar esta fecha para el proximo pago">
                                                 Pagará &nbsp;<i class="fas fa-calendar-check"></i>
                                             </a>
+                                            
                                         </td>
                                     </tr>
 
@@ -129,6 +131,22 @@
                     },
                 }
             );
+            $('table').on('click','.fechar',function (e) {
+                e.preventDefault(); 
+                id_seleccionada=$(this).closest('tr').attr('id');
+                console.log(id_seleccionada);
+                $.ajax({
+                    url: '../../fechar/pagocom/proximo/' + id_seleccionada+"/{{$matriculacion}}",
+                    success: function (result) {
+                        $(".filillas").removeClass("bg-warning");
+                        $(".fechar").removeClass("btn-warning");
+                        $(".fechar").addClass("btn-primary");
+                        $("#"+id_seleccionada).addClass("bg-warning");
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                    }
+                });
+            });
         } );
     </script>
 @stop

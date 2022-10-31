@@ -142,8 +142,7 @@ OBSERVACIONES DE DOCENTES
 FALTA COGIDO EN LOS REPORTES
 
 
-405  Route::delete('eliminar/tipomotivo/{tipomotivo}',[TipomotivoController::class,'destroy'])->name('eliminar.tipomotivo');
-estaba con get
+
 
 *itecorporativo1326*
 *Blanco1326* este es el ultimo 
@@ -269,11 +268,22 @@ para observaciones generico
         $this->middleware('can:Eliminar Comentarios')->only();
     }
 
-    Falta editar y actualizar preguntas frecuentes 
+    solucionado 
     verificar si eliminar modalidades esta funcionando 
     no se sabe si se esta trabajando con user o Userscontroller verificar
     eliminar el metodo listar desde Administradores hasta Modalidades
     verificar si hay eliminar pago y pagocom mas que todo pago computacion 
-    hacer un componente para que nos escriban por wahtsatpp
     titulo de billete crear esta mal
+    en programacioncom falta volver ajax programar fechaproximo pago 
+    opciones de computaciones no funciona
+    no hay permisos para todos los que tienen tres palabras en el permiso 
+    Editar un permiso no se puede 
+    en el home las redes sociales tienen que abrirse en otra pestaña target="_blanck"
     
+    
+    falta
+    permiso unico en permission update y verificar si en el store esta con Request 
+    revsar length de las validaciones
+
+    Falta editar y actualizar preguntas frecuentes 
+    hacer un componente para que nos escriban por wahtsatpp

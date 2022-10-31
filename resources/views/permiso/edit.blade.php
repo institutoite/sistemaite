@@ -22,12 +22,12 @@
                     <div class="card-header bg-secondary">
                         <span class="card-title">Actualizar Nivel</span>
                     </div>
+                    {{-- {{dd($permission)}} --}}
                     <div class="card-body">
-                        <form method="POST" action="{{ route('nivels.update', $nivel->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
+                        <form method="POST" action="{{ route('permiso.update', $permission) }}" role="form">
                             @csrf
-
-                            @include('nivel.form')
+                            {{ @method_field('PUT') }} 
+                            @include('permiso.form')
                             @include('include.botones')
                         </form>
                     </div>

@@ -24,7 +24,7 @@ class ComentarioController extends Controller
 
     public function __construct()
     {
-        $this->middleware('can:Listar Comentarios')->only('index','show','listar');
+        $this->middleware('can:Listar Comentarios')->only('index','show');
         $this->middleware('can:Crear Comentarios')->only('guardarComentarioDesdeSistema');
         $this->middleware('can:Editar Comentarios')->only('edit','darbaja','daralta','update','estudiantizarComentario');
         $this->middleware('can:Eliminar Comentarios')->only('destroy');

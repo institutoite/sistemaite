@@ -1,0 +1,6 @@
+error 405 
+    solucion particular 
+        cambiar en web el verbo a put 
+        en el formulario y en el method a POST
+        en el formulario estas dos lineas  @csrf {{ @method_field('PUT') }}
+        405  Route::delete('eliminar/tipomotivo/{tipomotivo}',[TipomotivoController::class,'destroy'])->name('eliminar.tipomotivo'); estaba con get

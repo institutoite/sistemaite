@@ -18,6 +18,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
+use App\Http\Controllers\ProgramacionController;
+
 /**
  * Class PagoController
  * @package App\Http\Controllers
@@ -183,7 +185,16 @@ class PagoController extends Controller
     {
         $pago = Pago::find($pago_id);
         $pago->billetes()->detach();
-        $pago->delete();    
+        $pago->delete(); 
+        
+        if($pago->pagable_type=="App\\Models\\Inscripcione"){
+            $objeto = new ProgramacionController();
+            $objeto->actualizarProgramaSegunPago(Inscripcione::findOrFail($pago->pagable_id)->id);
+        }
+        if($pago->pagable_type=="App\\Models\\Matriculacion"){
+            $objeto = new ProgramacioncomController();
+            $objeto->actualizarProgramaSegunPagocom(Matriculacion::findOrFail($pago->pagable_id)->id);
+        }
         return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
     }
     public function pagosMostrarAjax(Request $request){

@@ -6,6 +6,6 @@
     </div>
 </div>
 <div class="form-floating mb-3">
-    <input  type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{old('name',$permiso->name ?? '')}}">
+    <input  type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{old('name',$permission->name ?? '')}}">
     <label for="floatingInput">Inserte nuevo Permiso</label>
 </div>

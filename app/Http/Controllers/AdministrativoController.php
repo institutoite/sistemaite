@@ -26,7 +26,7 @@ class AdministrativoController extends Controller
                                                             "miCarteraInscripciones"
                                                         ]);
         $this->middleware('can:Contactar Administrativos')->only('contactarAdministrativos');
-        $this->middleware('can:Listar Administrativos')->only('index','listar');
+        $this->middleware('can:Listar Administrativos')->only('index');
         $this->middleware('can:Crear Administrativos')->only('store','crear');
         $this->middleware('can:Editar Administrativos')->only('edit','update','editar');
         $this->middleware('can:Eliminar Administrativos')->only('destroy');

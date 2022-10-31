@@ -27,7 +27,7 @@ class LicenciaController extends Controller
 {
    public function __construct()
     {
-        $this->middleware('can:Listar Licencias')->only('index','show','listar');
+        $this->middleware('can:Listar Licencias')->only('index','show');
         $this->middleware('can:Crear Licencias')->only('createcom','createprogramacion','storecom','storeprogramacion');
         $this->middleware('can:Editar Licencias')->only('actualizar','edit','update','editar');
         $this->middleware('can:Eliminar Licencias')->only('destroy');

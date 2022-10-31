@@ -54,6 +54,11 @@
                             <div class="float-left">
                                 {{nombre($matriculacion->computacion->persona_id,3)}}
                             </div>
+                             <div class="float-right">
+                                <a href="{{route('mostrar.programacioncom', $matriculacion)}}" class="btn btn-primary text-white tooltipsC mr-2" title="Ver programación">
+                                    Ver programación computación &nbsp;<i class="fas fa-eye"></i>
+                                </a>
+                            </div>
                             <div class="float-right">
                                 <a href="{{route('opcion.principal', $matriculacion->computacion->persona->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
                                     Opciones&nbsp;<i class="fas fa-bars"></i>

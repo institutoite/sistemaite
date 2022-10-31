@@ -438,7 +438,7 @@ class InscripcioneController extends Controller
         $inscripcion->fecha_proximo_pago=$programa->fecha;
         $inscripcion->save();
 
-        return response()->json(['e'=>2]);
+        return response()->json(['mensaje'=>"Fecha proximo pago asignada correctamente"]);
     }
 
     public function inscripcionesVigentes($persona_id){

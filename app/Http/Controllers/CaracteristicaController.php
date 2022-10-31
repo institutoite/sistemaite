@@ -15,7 +15,7 @@ class CaracteristicaController extends Controller
 {
 
     public function __construct(){
-        $this->middleware('can:Listar Caracteristica')->only('index','show','listar');
+        $this->middleware('can:Listar Caracteristica')->only('index','show');
         $this->middleware('can:Crear Caracteristica')->only('create','store');
         $this->middleware('can:Editar Caracteristica')->only('edit','update');
         $this->middleware('can:Eliminar Caracteristica')->only('destroy');

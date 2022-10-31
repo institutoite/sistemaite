@@ -262,12 +262,14 @@ class MatriculacionController extends Controller
         }
     }
 
-    public function actualizar_fecha_proximo_pago($fecha,$matriculacion_id){
-       
-        $matriculacion=Matriculacion::findOrFail($matriculacion_id);
-        $matriculacion->fecha_proximo_pago=$fecha;
+    public function actualizar_fecha_proximo_pago($programacomSelected,$id){
+        $programa=Programacioncom::findOrFail($programacomSelected);
+
+        $matriculacion=Matriculacion::findOrFail($id);
+        $matriculacion->fecha_proximo_pago=$programa->fecha;
         $matriculacion->save();
-        return redirect()->route('imprimir.programacioncom',$matriculacion->id);
+
+        return response()->json(['mensaje'=>"Fecha proximo pago asignada correctamente"]);
     }
 
     public function matriculacionMostrarAjax(Request $request){
@@ -351,7 +353,6 @@ class MatriculacionController extends Controller
         $matriculacion->save();
         return response()->json($request->all());
     }
-
 }
 
 

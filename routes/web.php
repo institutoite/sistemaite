@@ -63,6 +63,7 @@ use App\Http\Controllers\MunicipioController;
 use App\Http\Controllers\PaisController;
 use App\Http\Controllers\ZonaController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\ModalidadController;
 //use App\Http\Controllers\RolUsersController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
@@ -238,6 +239,7 @@ Route::middleware(['auth'])->group(function () {
 
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  F I N   C O L E G I O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::resource('modalidads', "ModalidadController");
+    Route::delete('eliminar/modalidad/{modalidad}', [ModalidadController::class,'destroy'])->name('modalidad.delete');
     
     Route::resource('nivels', "NivelController");
     Route::delete('eliminar/nivel/{nivel}', [NivelController::class,'destroy'])->name('nivel.delete');
@@ -565,6 +567,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('reservar/matriculacion/{matriculacion}', [MatriculacionController::class,'reservar'])->name('reservar.matriculacion');
     Route::get('darbaja/matriculacion',[MatriculacionController::class,'darbaja'])->name('matriculacion.darbaja');
     Route::get('daralta/matriculacion',[MatriculacionController::class,'daralta'])->name('matriculacion.daralta');
+    Route::get('fechar/pagocom/proximo/{fecha}/{matriculacion}',[MatriculacionController::class,'actualizar_fecha_proximo_pago'])->name('set.fecha.proximo.pagocom');
     // Route::get('gestiones/editar78', [GestionController::class, 'edition'])->name('gestion.editar');
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  TIPOMOTIVOS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -674,9 +677,11 @@ Route::middleware(['auth'])->group(function () {
     /*ROLES PERMISOS USUARIOS*/
     Route::get('permisos', [PermissionController::class,"index"])->name('permisos.index');
     Route::get('listar/permisos', [PermissionController::class,"listar"])->name('permisos.listar');
+    Route::get('permiso/editar/{permission}', [PermissionController::class,"edit"])->name('permiso.edit');
     Route::get('permiso/create', [PermissionController::class,"create"])->name('permiso.create');
     Route::get('permiso/store', [PermissionController::class,"store"])->name('permiso.store');
-
+    Route::put('permiso/update/{permission}', [PermissionController::class,'update'])->name('permiso.update');
+    Route::delete('eliminar/permiso/{permission}', [PermissionController::class,'destroy'])->name('permiso.delete');
 
     Route::get('apoderado/existente/{persona}', 'TelefonoController@apoderadoExistente')->name('apoderado.existente');
     Route::get('telefono/agregar/{persona_id}/{apoderado_id}', 'TelefonoController@agregarApoderado')->name('agregar.apoderado');

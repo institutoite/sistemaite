@@ -250,15 +250,17 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Crear Periodos'])->syncRoles([$admin]);
         Permission::create(['name' => 'Editar Periodos'])->syncRoles([$admin]);
         Permission::create(['name' => 'Eliminar Periodos'])->syncRoles([$admin]);
-
+        
         Permission::create(['name' => 'Listar Permisos'])->syncRoles([$admin]);
         Permission::create(['name' => 'Crear Permisos'])->syncRoles([$admin]);
+        Permission::create(['name' => 'Editar Permisos'])->syncRoles([$admin]);
+        Permission::create(['name' => 'Eliminar Permisos'])->syncRoles([$admin]);
 
         Permission::create(['name' => 'Listar Personas'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Crear Personas'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Editar Personas'])->syncRoles([$admin,$secre]);
 
-        Permission::create(['name' => 'Listar Reporte'])->syncRoles([$admin,$secre]);
+        Permission::create(['name' => 'Listar Reportepersona'])->syncRoles([$admin,$secre]);
 
         Permission::create(['name' => 'Crear Planes'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Editar Planes'])->syncRoles([$admin,$secre]);

@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StorePermissionRequest extends FormRequest
+class UpdatePermissionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +24,10 @@ class StorePermissionRequest extends FormRequest
      */
     public function rules()
     {
+       $permission=$this->route('como');
         return [
-            'name'=>'required|max:250|unique:name,permissions',
+            'como' => ['required',
+            Rule::unique('comos')->ignore($como)]
         ];
     }
 }
