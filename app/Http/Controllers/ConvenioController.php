@@ -56,6 +56,7 @@ class ConvenioController extends Controller
             $convenio->foto = $nombreImagen;
         }
         $convenio->save();
+        $convenio->usuarios()->attach(Auth::user()->id);
         return redirect()->route('convenio.index');
     }
 

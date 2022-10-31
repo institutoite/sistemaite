@@ -279,11 +279,13 @@ para observaciones generico
     no hay permisos para todos los que tienen tres palabras en el permiso 
     Editar un permiso no se puede 
     en el home las redes sociales tienen que abrirse en otra pestaña target="_blanck"
+    permiso unico en permission update y verificar si en el store esta con Request 
+    que guarde userable en las ultimas tablas plan convenios y caracteristica 
     
     
     falta
-    permiso unico en permission update y verificar si en el store esta con Request 
     revsar length de las validaciones
+
 
     Falta editar y actualizar preguntas frecuentes 
     hacer un componente para que nos escriban por wahtsatpp

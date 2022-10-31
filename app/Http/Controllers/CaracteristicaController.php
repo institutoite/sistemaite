@@ -49,6 +49,7 @@ class CaracteristicaController extends Controller
         $caracteristica->caracteristica=$request->caracteristica;
         $caracteristica->plan_id=$request->plan_id;
         $caracteristica->save();
+        $caracteristica->usuarios()->attach(Auth::user()->id);
         return redirect()->route('caracteristica.index');
     }
 

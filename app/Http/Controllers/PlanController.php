@@ -60,6 +60,7 @@ class PlanController extends Controller
             $plan->foto = $nombreImagen;
         }
         $plan->save();
+        $plan->usuarios()->attach(Auth::user()->id);
         return redirect()->route('plan.index');
     }
 
