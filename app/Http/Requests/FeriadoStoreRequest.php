@@ -26,7 +26,7 @@ class FeriadoStoreRequest extends FormRequest
         
         return [
             'fecha'=>'required|unique:feriados,fecha',
-            'festividad'=>'required|unique:feriados,festividad',
+            'festividad'=>'required|max:30|min:5|unique:feriados,festividad',
         ];
     }
 }

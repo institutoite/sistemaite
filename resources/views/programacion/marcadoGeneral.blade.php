@@ -236,7 +236,7 @@
                 "ordering": false,
                 "info":     false,
                 "language":{
-                    "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    "url":"https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
                 }, 
                 "ajax" : {
                     'url' : "{{ route('programaciones.hoy',['inscripcion'=>$inscripcion->id])}}",
@@ -310,7 +310,7 @@
                 "ordering": true,
                 "info":     true,
                 "language":{
-                    "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    "url":"https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
                 }, 
                 "ajax" : {
                     'url' : "{{ route('programacion.futuro',['inscripcion'=>$inscripcion->id])}}",

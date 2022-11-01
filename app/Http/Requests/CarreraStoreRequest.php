@@ -23,10 +23,11 @@ class CarreraStoreRequest extends FormRequest
      */
     public function rules()
     {
+       
         return [
-           'carrera'=>'required|unique:carreras,carrera',
-           'description'=>'required',
-           'precio' => 'required', 
+           'carrera'=>'required|min:5|max:50|unique:carreras,carrera',
+           'description'=>'required|min:5|max:2000|',
+           'precio' => 'required|numeric', 
         ];
     }
 }

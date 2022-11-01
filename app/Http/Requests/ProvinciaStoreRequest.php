@@ -24,7 +24,7 @@ class ProvinciaStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'provincia' => 'required',
+            'provincia' => 'required|max:40',
             'departamento_id' => 'required',
             'pais_id' => 'required',
         ];

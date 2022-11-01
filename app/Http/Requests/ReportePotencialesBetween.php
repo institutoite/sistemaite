@@ -26,7 +26,6 @@ class ReportePotencialesBetween extends FormRequest
         return [
             'fechaini'=>'required',
             'fechafin'=>'required',
-
         ];
     }
 }

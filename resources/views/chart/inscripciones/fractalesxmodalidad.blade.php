@@ -214,7 +214,7 @@
                             {data:'monto'},
                         ],
                         "language":{
-                            "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                            "url":"https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
                         },
                         "paging":   true,
                         "order": [[1, 'desc']],

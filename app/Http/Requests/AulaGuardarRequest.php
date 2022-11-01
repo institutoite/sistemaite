@@ -24,8 +24,8 @@ class AulaGuardarRequest extends FormRequest
     public function rules()
     {
         return [
-            'aula'=> 'required',
-            'direccion'=> 'required',
+            'aula'=> 'required|min:5|max:20|unique:aulas,aula',
+            'direccion'=> 'required|min:5|max:200',
         ];
     }
 }

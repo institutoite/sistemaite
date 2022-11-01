@@ -24,7 +24,7 @@ class DepartamentoStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'departamento'=>'required|unique:departamentos,departamento',
+            'departamento'=>'required|max:20|min:5|unique:departamentos,departamento',
             'pais_id'=>'required',
         ];
     }

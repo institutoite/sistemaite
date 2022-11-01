@@ -8,6 +8,7 @@ use App\Http\Requests\DeleteRequest;
 use App\Http\Requests\StoreCaracteristicaRequest;
 use App\Http\Requests\UpdateCaracteristicaRequest;
 
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Contracts\DataTable as DataTable;
 
 

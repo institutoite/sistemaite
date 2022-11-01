@@ -25,8 +25,11 @@ class UpdateConstanteRequest extends FormRequest
     {
        $constante=$this->route('constante');
         return [
-            'constante' => ['required',
+            'constante' => ['required','max:25',
             Rule::unique('constantes')->ignore($constante)],
+            'valor'=>'required|max:20',
         ];
     }
 }
+
+            

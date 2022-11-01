@@ -24,7 +24,7 @@ class StoreCargoRequest extends FormRequest
     public function rules()
     {
         return [
-            'cargo'=>'required|max:50|unique:cargos,cargo',
+            'cargo'=>'required|max:20|unique:cargos,cargo',
         ];
     }
 }

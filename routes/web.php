@@ -72,9 +72,17 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
   Route::get('/', function () {
     return view('welcome');
     });
-    Auth::routes();
+    
+Auth::routes();  
+Route::get('/',[HomeController::class, 'index']);
 
 Route::middleware(['auth'])->group(function () {
+
+     Route::get('/home',function(){
+        return view('persona.estudiantes');
+    })->name('home');
+
+    
 
     Route::get('prueba',[PermissionController::class,'store'])->name('prueba');
     Route::get('/ninacos', function () {
@@ -82,9 +90,6 @@ Route::middleware(['auth'])->group(function () {
     });
 
     
-    Route::get('/home',function(){
-        return view('persona.estudiantes');
-    })->name('home');
 
     Route::get('personas.todos', function () {
         return view('persona.index');
@@ -843,7 +848,7 @@ Route::middleware(['auth'])->group(function () {
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  HOME ITE   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-    Route::get('/',[HomeController::class, 'index']);
+    
 
     Route::get('home/edit', [HomeController::class, 'edit'])->name('home.edit');
 

@@ -24,8 +24,8 @@ class TipofileGuardarRequest extends FormRequest
     public function rules()
     {
         return [
-            'tipofile'=>'required|unique:tipofiles,tipofile',
-            'programa'=>'required',
+            'tipofile'=>'required|max:10|unique:tipofiles,tipofile',
+            'programa'=>'required|max:25',
         ];
     }
 }

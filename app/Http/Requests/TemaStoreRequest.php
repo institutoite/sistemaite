@@ -24,7 +24,7 @@ class TemaStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'tema'=>'required|unique:temas,tema',
+            'tema'=>'required|max:65|unique:temas,tema',
             'materia_id'=>'required'
         ];
     }

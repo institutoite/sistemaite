@@ -24,7 +24,7 @@ class PersonaStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            "nombre" => 'required|unique_with:personas,apellidop,apellidom',
+            "nombre" => 'required|max:50|unique_with:personas,apellidop,apellidom',
             "apellidop" =>'required|string|max:25',
             "apellidom" => 'nullable|string|max:25',
             "fechanacimiento" =>'required|date',
@@ -35,7 +35,7 @@ class PersonaStoreRequest extends FormRequest
             "carnet" => 'nullable|string',
             "expedido" => 'nullable|string',
             "genero" => 'required|string',
-            "observacion" =>'required|string|max:250',
+            "observacion" =>'required|string|max:400',
             "como_id" =>'required|string|max:30',
             "foto" => 'nullable|file',
             "papel" =>'required|string',

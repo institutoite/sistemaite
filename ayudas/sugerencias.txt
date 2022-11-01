@@ -281,11 +281,9 @@ para observaciones generico
     en el home las redes sociales tienen que abrirse en otra pestaña target="_blanck"
     permiso unico en permission update y verificar si en el store esta con Request 
     que guarde userable en las ultimas tablas plan convenios y caracteristica 
-    
-    
-    falta
     revsar length de las validaciones
-
-
+    revisar cuando se crea periodable se inicina fechainicio y fechafin con la misma fecha
+        
+    falta
     Falta editar y actualizar preguntas frecuentes 
     hacer un componente para que nos escriban por wahtsatpp

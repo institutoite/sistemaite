@@ -65,7 +65,7 @@
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm" >
             <div class="input-group mb-2" >
                 <p class="col-3 form-control bg-secondary p-1 p-1" for="">Número</p> 
-                <input class="form-control" type="tel" id="phone" name="telefono" placeholder="71039910" pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]" value="{{old('apellidop',$persona->telefono ?? '')}}">
+                <input class="form-control" type="tel" id="phone" name="telefono" placeholder="71039910" pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]" value="{{old('telefono',$persona->telefono ?? '')}}">
             </div>
         </div>
         {{--%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO COMO SE INFORMO  --}}

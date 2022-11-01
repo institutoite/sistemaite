@@ -41,14 +41,16 @@ class PeriodableController extends Controller
      */
     public function create($periodable_id,$periodable_type)
     {   
+        //dd($periodable_type);
         switch ($periodable_type) {
             case 'Administrativo':
                 $LastPeriodable = Periodable::where("periodable_id",$periodable_id)
-                                ->where("periodable_type",$periodable_type)
+                                ->where("periodable_type","App\\Models\\".$periodable_type)
                                 ->select("fechafin","fechaini")
                                 ->get()->last();
+                //dd($LastPeriodable);
                 if(is_null($LastPeriodable)){
-                    $fechaini=Carbon::now();
+                    $fechaini=Carbon::now()->subMonth();;
                     $fechafin=Carbon::now();
                 }else{
                     $fechaini=$LastPeriodable->fechaini;
@@ -58,26 +60,26 @@ class PeriodableController extends Controller
                 break;
             case 'Docente':
                 $LastPeriodable = Periodable::where("periodable_id",$periodable_id)
-                                ->where("periodable_type",$periodable_type)
+                                ->where("periodable_type","App\\Models\\".$periodable_type)
                                 ->select("fechafin","fechaini")
                                 ->get()->last();
+                //dd($LastPeriodable);
                 if((is_null($LastPeriodable))){
-                    $fechaini=Carbon::now();
+                    $fechaini=Carbon::now()->subMonth();
                     $fechafin=Carbon::now();
                 }else{
                     $fechaini=$LastPeriodable->fechaini;
                     $fechafin=$LastPeriodable->fechafin;
                 }
                 $persona=Docente::findOrFail($periodable_id)->persona;
-                
                 break;
             default:
-                
                 break;
         }
         
         $fechafin->addMonth();
         $fechaini->addMonth();
+        //dd($fechaini);
         return view("periodable.create",compact('periodable_id','persona','LastPeriodable','periodable_type','fechaini','fechafin'));
         
     }

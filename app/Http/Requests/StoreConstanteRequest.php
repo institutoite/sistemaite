@@ -24,7 +24,8 @@ class StoreConstanteRequest extends FormRequest
     public function rules()
     {
         return [
-            'constante'=>'required|max:20|unique:constantes,constante',
+            'constante'=>'required|max:25|unique:constantes,constante',
+            'valor'=>'required|max:20',
         ];
     }
 }

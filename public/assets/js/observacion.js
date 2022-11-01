@@ -39,7 +39,7 @@ function mostrarCrudObservaciones(url) {
                 { responsivePriority: 2, targets: -1 }
             ],
             "language": {
-                "url": "http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                "url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
             },
             "order": [[3, "desc"],[4,"desc"]],
         });

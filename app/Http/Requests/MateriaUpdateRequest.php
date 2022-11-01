@@ -26,7 +26,7 @@ class MateriaUpdateRequest extends FormRequest
     {
         $materia=$this->route('materia');
         return [
-            'materia'=>['required',Rule::unique('materias', 'materia')->ignore($materia)],
+            'materia'=>['required','max:25',Rule::unique('materias', 'materia')->ignore($materia)],
             'niveles'=>'required', 
         ];
     }

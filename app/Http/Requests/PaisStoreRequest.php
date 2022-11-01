@@ -24,7 +24,7 @@ class PaisStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombrepais'=>'required|max:40|unique:pais,nombrepais',
+            'nombrepais'=>'required|max:80|unique:pais,nombrepais',
         ];
     }
 

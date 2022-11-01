@@ -27,7 +27,7 @@ class UpdateCargoRequest extends FormRequest
        
         $cargo=$this->route('cargo');
         return [
-            'cargo' => ['required',
+            'cargo' => ['required','max:20',
             Rule::unique('cargos')->ignore($cargo)]
         ];
     }

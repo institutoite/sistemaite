@@ -26,7 +26,7 @@ class EstadoUpdateRequest extends FormRequest
     {
         $estado=$this->route('estado');
         return [
-            'estado'=>['required','max:50','min:5',Rule::unique('estados')->ignore($estado)],
+            'estado'=>['required','max:25','min:5',Rule::unique('estados')->ignore($estado)],
         ];
     }
 }

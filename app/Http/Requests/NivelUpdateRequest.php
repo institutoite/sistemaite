@@ -26,7 +26,7 @@ class NivelUpdateRequest extends FormRequest
     {
         $nivel=$this->route('nivel');
         return [
-            'nivel'=>['required',Rule::unique('nivels', 'nivel')->ignore($nivel)],
+            'nivel'=>['required','max:25',Rule::unique('nivels', 'nivel')->ignore($nivel)],
         ];
     }
 }

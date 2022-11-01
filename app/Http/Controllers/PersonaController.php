@@ -438,6 +438,7 @@ class PersonaController extends Controller
         $persona->telefono=$request->telefono;
         $persona->papelinicial='contacto';
         $persona->como_id=3;
+        
         $persona->save();
         $persona->usuarios()->attach(Auth::user()->id);
         $this->CrearContacto($persona->id);

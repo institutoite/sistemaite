@@ -131,7 +131,7 @@ class MotivoController extends Controller
 
         $motivo = Motivo::findOrFail($request->id);
         $validator = Validator::make($request->all(), [
-            'motivo'=>['required',Rule::unique('motivos', 'motivo')->ignore($motivo)],
+            'motivo'=>['required','max:80',Rule::unique('motivos', 'motivo')->ignore($motivo)],
             'tipomotivo_id'=>'required',
         ]);
         

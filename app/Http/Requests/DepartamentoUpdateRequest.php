@@ -25,10 +25,9 @@ class DepartamentoUpdateRequest extends FormRequest
     public function rules()
     {
         
-         $departamento=$this->route('departamento');
-                
+        $departamento=$this->route('departamento');
         return [
-            'departamento'=>['required','max:50','min:5',Rule::unique('departamentos')->ignore($departamento)],
+            'departamento'=>['required','max:20','min:5',Rule::unique('departamentos')->ignore($departamento)],
             'pais_id'=>'required',
         ];
     }

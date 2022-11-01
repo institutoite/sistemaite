@@ -24,9 +24,11 @@ class UpdateComentarioRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre'=>'required|min:4|max:30',
-            'telefono'=>'required|min:8|max:10',
+            'nombre'=>'required|max:40',
+            'telefono'=>'required|min:8|max:12',
             'interests'=>'required',
+            'comentario'=>'required|max:400|min:5',
+            'como_id'=>'required',
         ];
     }
 }

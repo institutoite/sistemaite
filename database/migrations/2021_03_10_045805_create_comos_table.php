@@ -15,7 +15,7 @@ class CreateComosTable extends Migration
     {
         Schema::create('comos', function (Blueprint $table) {
             $table->id();
-            $table->string('como', 50);
+            $table->string('como', 25);
             $table->timestamps();
         });
     }

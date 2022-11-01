@@ -27,7 +27,7 @@ class UpdateComoRequest extends FormRequest
     {
         $como=$this->route('como');
         return [
-            'como' => ['required',
+            'como' => ['required','max:25',
             Rule::unique('comos')->ignore($como)]
         ];
     }

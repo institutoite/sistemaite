@@ -25,7 +25,7 @@ class UpdateMododocenteRequest extends FormRequest
     {
         $mododocente=$this->route('mododocente');
         return [
-            'mododocente'=>['required',Rule::unique('mododocentes', 'mododocente')->ignore($mododocente)],
+            'mododocente'=>['required','max:20',Rule::unique('mododocentes', 'mododocente')->ignore($mododocente)],
         ];
     }
 }

@@ -27,7 +27,7 @@ class FeriadoUpdateRequest extends FormRequest
         $feriado=$this->route('feriado');
         return [
             'fecha'=>['required',Rule::unique('feriados', 'fecha')->ignore($feriado)],
-            'festividad'=>['required'],
+            'festividad'=>['required','max:30','min:5'],
         ];
     }
 }

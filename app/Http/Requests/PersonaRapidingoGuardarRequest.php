@@ -25,8 +25,8 @@ class PersonaRapidingoGuardarRequest extends FormRequest
     {
         return [
             'interests'=>'required',
-            "nombre" => 'required|unique_with:personas,apellidop',
-            'apellidop'=>'required|max:50',
+            "nombre" => 'required|max:50|unique_with:personas,apellidop',
+            'apellidop'=>'required|max:25',
             'telefono'=>'numeric|nullable',
             'como_id'=>'required',
         ];

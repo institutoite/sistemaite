@@ -24,7 +24,7 @@ class StoreComoRequest extends FormRequest
     public function rules()
     {
         return [
-            'como'=>'required|max:50|unique:comos,como',
+            'como'=>'required|max:25|unique:comos,como',
         ];
     }
 }

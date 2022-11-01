@@ -10,6 +10,7 @@ use Yajra\DataTables\Contracts\DataTable as DataTable;
 
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Auth;
 
 
 class ConvenioController extends Controller

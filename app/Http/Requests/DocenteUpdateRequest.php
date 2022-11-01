@@ -25,9 +25,12 @@ class DocenteUpdateRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
-            "nombrecorto" => 'required',
+            "nombrecorto" => 'required|max:25|min:5|',
             "sueldo" =>'required|string|max:25',        
+            "fecha_inicio" =>'required|date',        
+            "fechapago" =>'required',        
         ];
     }
 }

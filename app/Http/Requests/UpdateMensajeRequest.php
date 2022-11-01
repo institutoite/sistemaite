@@ -27,7 +27,7 @@ class UpdateMensajeRequest extends FormRequest
         $mensaje=$this->route('mensaje');
         return [
             'nombre'=>['required',Rule::unique('mensaje', 'nombre')->ignore($mensaje)],
-            'mensaje'=>'required',
+            'mensaje'=>'required|max:500',
         ];
     }
 }

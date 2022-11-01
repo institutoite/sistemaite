@@ -25,6 +25,7 @@ class InterestGuardarRequest extends FormRequest
     {
         return [
             'interest'=>'required|min:5|max:30|unique:interests,interest',
+            'descripcion'=>'required|min:5|max:100',
         ];
     }
 }

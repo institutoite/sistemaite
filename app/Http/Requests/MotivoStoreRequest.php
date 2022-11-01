@@ -25,7 +25,7 @@ class MotivoStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'motivo'=>'required|unique:motivos|max:5|min:2',
+            'motivo'=>'required|unique:motivos|max:80|min:5',
             'tipomotivo_id'=>'required',
         ];
     }

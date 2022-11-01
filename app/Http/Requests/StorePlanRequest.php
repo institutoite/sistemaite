@@ -24,7 +24,11 @@ class StorePlanRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'titulo'=>'required|max:25|unique:plans,titulo',
+            'descripcion'=>'required|max:100',
+            'foto'=>'required',
+            'costo'=>'required',
+            'convenio_id'=>'required',
         ];
     }
 }

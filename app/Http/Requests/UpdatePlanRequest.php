@@ -23,8 +23,13 @@ class UpdatePlanRequest extends FormRequest
      */
     public function rules()
     {
+        $plan=$this->route('plan');
         return [
-            //
+            'titulo' => ['required','max:250',Rule::unique('permissions')->ignore($plan)],
+            'descripcion'=>'required|max:100',
+            'foto'=>'required',
+            'costo'=>'required',
+            'convenio_id'=>'required',
         ];
     }
 }

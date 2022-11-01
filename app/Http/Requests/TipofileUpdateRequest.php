@@ -26,8 +26,8 @@ class TipofileUpdateRequest extends FormRequest
     {
         $tipofile=$this->route('tipofile');
         return [
-            'tipofile'=>['required',Rule::unique('tipofiles', 'tipofile')->ignore($tipofile)],
-            'programa' => 'required|min:5|max:25',
+            'tipofile'=>['required','max:10',Rule::unique('tipofiles', 'tipofile')->ignore($tipofile)],
+            'programa' => 'required|max:25',
         ];
 
         

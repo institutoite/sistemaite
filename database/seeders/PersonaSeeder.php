@@ -32,7 +32,7 @@ class PersonaSeeder extends Seeder
             'ciudad_id' => 6,
             'zona_id' => 1,
             'como_id' => 1,
-            'foto' => "estudiantes/foto.jpg",
+            'foto' => "estudiantes/david.jpg",
             'papelinicial' => 'docente',
             
         ]);

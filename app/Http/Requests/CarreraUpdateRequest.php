@@ -23,10 +23,12 @@ class CarreraUpdateRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
-        return [
-            'carrera'=>'required',Rule::unique('carreras', 'carrera')->ignore($this->carrera),
-            'description'=>'required'
+    {   
+        $carrera=$this->route('carrera');
+            return [
+            'carrera'=>['required','max:50','min:5',Rule::unique('carreras')->ignore($carrera)],
+            'description'=>'required|min:5|max:2000|',
+            'precio' => 'required|numeric', 
         ];
     }
 }

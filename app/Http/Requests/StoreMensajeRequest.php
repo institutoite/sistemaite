@@ -24,8 +24,8 @@ class StoreMensajeRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre'=>'required|unique:mensajes,mensaje',
-            'mensaje'=>'required',
+            'nombre'=>'required|max:25|unique:mensajes,mensaje',
+            'mensaje'=>'required|max:500',
         ];
     }
 }

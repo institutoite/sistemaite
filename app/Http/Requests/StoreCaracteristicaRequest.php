@@ -24,7 +24,8 @@ class StoreCaracteristicaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'caracteristica'=>'required|max:100|min:5',
+            'plan_id'=>'required',
         ];
     }
 }

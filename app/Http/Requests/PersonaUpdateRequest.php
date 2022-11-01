@@ -26,7 +26,7 @@ class PersonaUpdateRequest extends FormRequest
         $persona=$this->route('persona');
         return [
             
-            "nombre" => 'required|unique_with:personas,apellidop,apellidom,'.$persona->id,
+            "nombre" => 'required|max:50|unique_with:personas,apellidop,apellidom,'.$persona->id,
             "apellidop" =>'required|string|max:25',
             "apellidom" => 'nullable|string|max:25',
             "fechanacimiento" =>'required|date',

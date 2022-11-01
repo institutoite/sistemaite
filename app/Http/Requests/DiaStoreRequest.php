@@ -25,7 +25,7 @@ class DiaStoreRequest extends FormRequest
     {
         
         return [
-            'dia'=>'required|unique:dias,dia',
+            'dia'=>'required|min:5|max:20|unique:dias,dia',
         ];
     }
 }

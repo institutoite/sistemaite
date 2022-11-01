@@ -16,7 +16,8 @@ class CreateFilesTable extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->id();
             $table->string('file',60);
-            $table->string('descripcion',500);
+            $table->string('descripcion',400);
+            $table->string('orginalname',64)->nullable();
             $table->string('tipofile',12);
             $table->integer('frecuencia')->unsigned()->default(0);
             $table->timestamps();

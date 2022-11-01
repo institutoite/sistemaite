@@ -24,25 +24,23 @@ class ColegioUpdateRequest extends FormRequest
      */
     public function rules()
     {
-       
-
+            $colegio=$this->route('colegio');
         return [
-            'nombre'=>'required',Rule::unique('colegios', 'nombre')->ignore($this->colegio),
-            'rue'=>'required',
-            'director'=>'required',
-            'direccion'=>'required',
-            'telefono'=>'required',
-            'celular'=>'required',
-            'dependencia'=>'required',
-            'turno'=>'required',
+            'nombre'=>['required','max:50','min:5',Rule::unique('colegios')->ignore($colegio)],
+            'nombre'=>'required|max:80|min:5|unique:colegios,nombre',
+            'rue'=>'nullable|max:10|min:2',
+            'director'=>'required|max:50|min:5',
+            'direccion'=>'required|max:100|min:5',
+            'telefono'=>'required|max:10|min:4',
+            'celular'=>'required|max:10|min:8',
+            'dependencia'=>'required|max:15|min:2',
+            'turno'=>'required|max:15|min:2',
             'departamento_id'=>'required',
-            'niveles'=>'required',
             'provincia_id'=>'required',
             'municipio_id'=>'required',
-            // 'distrito'=>'required',
-            'areageografica'=>'required',
-            'coordenadax'=>'required',
-            'coordenaday'=>'required',
+            'areageografica'=>'required|max:20',
+            'coordenadax'=>'required|max:15|min:1',
+            'coordenaday'=>'required|max:15|min:1',
         ];
     }
 }

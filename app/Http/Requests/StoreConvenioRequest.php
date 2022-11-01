@@ -24,7 +24,9 @@ class StoreConvenioRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'titulo'=>'required|max:25|min:5|unique:convenios,titulo',
+            'descripcion'=>'required|max:500|min:25',
+            'foto'=>'required',
         ];
     }
 }

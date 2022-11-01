@@ -67,7 +67,7 @@
                         {data: 'btn'},
                     ],
                     "language":{
-                        "url":"http://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                        "url":"https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
                     },
                     "headers": {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

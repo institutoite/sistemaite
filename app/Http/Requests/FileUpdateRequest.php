@@ -24,8 +24,8 @@ class FileUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'file'=>'max:5000',
-            'descripcion'=>'required',
+            'file'=>'required|file',
+            'descripcion'=>'required|max:400|min:10',
         ];
     }
 }

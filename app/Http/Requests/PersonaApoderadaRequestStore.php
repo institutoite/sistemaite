@@ -24,7 +24,7 @@ class PersonaApoderadaRequestStore extends FormRequest
     public function rules()
     {
         return [
-            "nombre" => 'required|unique_with:personas,apellidop,apellidom',
+            "nombre" => 'required|max:50|unique_with:personas,apellidop,apellidom',
             "apellidop" => 'required|string|max:25',
             "apellidom" => 'required|string|max:25',
             "genero" => 'required|string',

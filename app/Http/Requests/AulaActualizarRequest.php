@@ -26,9 +26,8 @@ class AulaActualizarRequest extends FormRequest
         $aula=$this->route('aula');
         // dd($aula);
             return [
-            'aula'=>['required','max:50','min:5',Rule::unique('aulas')->ignore($aula)],
-            'aula'=>'required',
-            'direccion'=>'required',
+            'aula'=>['required','max:20','min:5',Rule::unique('aulas')->ignore($aula)],
+            'direccion'=>'required|min:5|max:200',
         ];
     }
 }

@@ -24,7 +24,7 @@ class NivelStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nivel'=>'required|unique:nivels,nivel'
+            'nivel'=>'required|max:25|unique:nivels,nivel'
         ];
     }
 }

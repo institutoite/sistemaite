@@ -26,7 +26,7 @@ class UpdateEventoRequest extends FormRequest
     {
         $evento=$this->route('evento');
         return [
-            'evento' => ['required',Rule::unique('eventos','evento')->ignore($evento)],
+            'evento' => ['required','max:50',Rule::unique('eventos','evento')->ignore($evento)],
         ];
     }
 }
