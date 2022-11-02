@@ -54,6 +54,7 @@
   <link rel="stylesheet" href="{{asset('fronted/assets/css/style.css')}}">
   <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
   <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
+  
 </head>
 
 <body class="cs-dark">
@@ -194,10 +195,10 @@
                   <div class="cs-toggle_body">
                     @auth
                       <div class="cs-user_info">
-                        <h3 class="cs-user_balance">{{ Auth::user()->name }} </h3>
+                        <h3 class="cs-user_balance"><a class="" href="{{ route('home')}}"> <img class="perfil img-thumbnail" src="{{URL::to('/')."/storage/".Auth::user()->foto}}" alt="" width="100"> </a> </h3>
                       </div>
                       <div class="text-center">
-                        <a class="cs-btn cs-style1" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <a class="btn form-inline btn-outline-primary boton-line-turqueza" href="{{ route('logout') }}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                             {{ __('Cerrar Sesion') }}
                         </a>

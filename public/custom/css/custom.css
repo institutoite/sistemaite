@@ -117,6 +117,10 @@ a:link, a:visited, a:active {
     transform: scale(1.1);
     transition-duration:1s;
 }
+.perfil{
+    border-radius: 50%;
+    
+}
 
 
 
