@@ -17,20 +17,12 @@
     <i class="fab fa-btc"></i>
 </a>
 
-<a href="{{route('opcion.docentes', $persona_id)}}" class="btn btn-primary text-white tooltipsC btn-sm mr-2" title="ir a opciones de la persona">
-    Opciones
-</a>
 
 <a class="btn-accion-tabla tooltipsC mr-1 enviarmensaje" title="Cobrar por mensaje">
     &nbsp;<i class="fab fa-whatsapp"></i>
 </a>
 
-<a href="" class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" id="Docente" title="Agregar Observacion">
-    <i class="fas fa-comment-alt fa-2x"></i>
-</a>
-<a href="" class="tooltipsC mr-1 mostrarobservacionesdocente" title="Mostrar observaciones">
-    <i class="fas fa-comments text-secondary fa-2x"></i>
-</a>
+
 
 <form action=""  class="d-inline formulario">
     @csrf
@@ -39,5 +31,13 @@
         <i class="fa fa-fw fa-trash text-danger"></i>   
     </button>
 </form>     
-
+<a href="" class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" id="Docente" title="Agregar Observacion">
+    <i class="fas fa-comment-alt fa-2x"></i>
+</a>
+<a href="" class="tooltipsC mr-1 mostrarobservacionesdocente" title="Mostrar observaciones">
+    <i class="fas fa-comments text-secondary fa-2x"></i>
+</a>
+<a href="{{route('opcion.docentes', $persona_id)}}" class="btn btn-primary text-white tooltipsC btn-sm mr-2" title="ir a opciones de la persona">
+    Opciones
+</a>
 

@@ -287,3 +287,11 @@ para observaciones generico
     falta
     Falta editar y actualizar preguntas frecuentes 
     hacer un componente para que nos escriban por wahtsatpp
+
+
+
+
+    $falta detalles 
+    periodables 
+    char no esta funcionando al parecer es por que estaba la char con minusculas 
+    

@@ -11,18 +11,19 @@
 
 @section('content')
         <div class="row">
+           <h5> {{$persona->nombre." ".$persona->apellidop." ".$persona->apellidom}}</h5>
+        </div>
+        <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="{{route("periodos.periodable.view",['periodable_id'=>$periodable->periodable_id,'periodable_type'=>$periodable_type])}}"><button type="button" class="btn btn-primary p-2 text-white">Periodos de {{$persona->nombre}}</button></a>
-                    <a href="{{route('periodable.index')}}"><button type="button" class="btn btn-secondary p-2">Todos los periodos </button></a>
+                    <a href="{{route("periodos.periodable.view",['periodable_id'=>$periodable->periodable_id,'periodable_type'=>$periodable_type])}}"><button type="button" class="btn btn-primary p-2 text-white">MisPeriodos</button></a>
+                    <a href="{{route('periodable.index')}}"><button type="button" class="btn btn-secondary p-2">Todos </button></a>
                     <a href="{{route('docentes.index')}}"><button type="button" class="btn btn-primary p-2 text-white">Docentes</button></a>
                     <a href="{{route('administrativos.index')}}"><button type="button" class="btn btn-secondary p-2">Administrativos</button></a>
                 </div>
             </div>
         </div>
-        <div class="row">
-           <h1><strong> {{$persona->nombre." ".$persona->apellidop." ".$persona->apellidom}}</strong></h1>
-        </div>
+        
         <div class="row mt-3">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 @php

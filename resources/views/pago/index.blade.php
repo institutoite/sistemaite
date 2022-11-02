@@ -88,7 +88,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
     <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
-    <script src="{{asset('vendor/chart/chart.js')}}"></script>
+    <script src="{{asset('vendor/chart/Chart.js')}}"></script>
     <script>
         $(document).ready(function() {
             let tablapagos;

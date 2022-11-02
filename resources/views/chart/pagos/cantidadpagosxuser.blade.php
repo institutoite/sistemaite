@@ -72,7 +72,7 @@
 @endsection
 
 @section('js')
-    <script src="{{asset('vendor/chart/chart.js')}}"></script>
+    <script src="{{asset('vendor/chart/Chart.js')}}"></script>
     <script src="{{asset('assets/js/graficos.js')}}"></script>
     <script>
         $(document).ready(function() {

@@ -14,6 +14,7 @@ use App\Http\Requests\UpdateComentarioRequest;
 use App\Http\Requests\DeleteRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Stevebauman\Purify\Facades\Purify;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -72,11 +73,11 @@ class ComentarioController extends Controller
         );
         if ($validator->passes()) {
             $comentario = new Comentario();
-            $comentario->nombre = $request->nombre;
-            $comentario->telefono = $request->telefono;
+            $comentario->nombre = Purify::clean($request->nombre);
+            $comentario->telefono = Purify::clean($request->telefono);
             $comentario->vigente = 1;
             $comentario->como_id = $request->como_id;
-            $comentario->comentario = $request->comentario;
+            $comentario->comentario = Purify::clean($request->comentario);
             $comentario->save();
             // return response()->json($request->all());
             $comentario->interests()->sync(array_values($request->interests));

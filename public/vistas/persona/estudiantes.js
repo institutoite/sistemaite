@@ -1,67 +1,4 @@
-@extends('adminlte::page')
-@section('css')
-    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
-    <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
-@stop
-
-@section('title', 'Docentes')
-@section('title', 'Personas')
-@section('plugins.Sweetalert2',true)
-@section('plugins.Datatables',true)
-
-@section('content')
-    <div class="card">
-        <div class="card-header bg-primary">
-            Lista de Docentes <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('docentes.create')}}">Crear Docente</a>
-        </div>
-        <div class="card-body">
-            <table id="docentes" class="table table-bordered table-hover table-striped">
-                <thead class="bg-primary text-center">
-                    <tr>
-                        <th>ID</th>
-                        <th>NOMBRE</th>
-                        <th>APELLIDOMP</th>
-                        <th>APELLIDOM</th>
-                        <th>MODO</th>
-                        <th>PERFIL</th>
-                        <th>FOTO</th>
-                        <th>ACCIONESx</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-    </div>
-    @include('estudiantes.modal')
-    @include('telefono.modales')
-    @include('observacion.modalcreate')
-
-@stop
-
-@section('js')
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
-    
-
-    <script src="{{asset('dist/js/moment.js')}}"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    <script src="{{asset('assets/js/observacion.js')}}"></script>
-    <script src="{{asset('assets/js/enviarmensaje/mostrarcontactos.js')}}"></script>
-    <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
-    <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
-
-    <!-- JavaScript Bundle with Popper -->
-    
-
-    <script>
-        //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
+ //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
         CKEDITOR.replace('editorguardar', {
             height: 120,
             width: "100%",
@@ -99,10 +36,10 @@
             
         });
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $('table').on('click', '.mostrarobservacionesdocente', function(e) {
+        $('table').on('click', '.mostrarobservacionespersona', function(e) {
             e.preventDefault();
                 observable_id =$(this).closest('tr').attr('id');
-                observable_type ="Docente";
+                observable_type ="Persona";
                 url="observaciones/" + observable_id + "/" + observable_type,
                 mostrarCrudObservaciones(url);
                 $("#modal-mostrar-observaciones").modal("show");
@@ -155,16 +92,6 @@
         });
 
 
-        $('table').on('click', '.enviarmensaje', function(e) {
-            e.preventDefault();
-                persona_id =$(this).closest('tr').attr('id');
-                url="../persona/enviar/mensaje/componente/",
-                mensaje_id=5;
-                mostrarContactos(url,persona_id,mensaje_id);
-                $("#modal-listar-contactos-component").modal("show");
-        });
-
-
 
 
         $('#modal-agregar-observacion').on('hidden.bs.modal', function (e) {
@@ -175,7 +102,6 @@
             $(".diverror").addClass("d-none");
         });
         
-
 
         ( function ( $ ) {
             'use strict';
@@ -191,32 +117,45 @@
             };
         } ( jQuery ) );
         
+        $('.starrr').starrr({
+            max: 5,
+            change: function(e, value){
+                if (value) {
+                    $("#calificacion").val(value);
+                } else {
+                    $('.your-choice-was').hide();
+                }
+                
+            }
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE PERSONAS ESTUDIANTES %%%%%%%%%%%%%%%%%%%%*/
         $(document).ready(function() {
-            var tabladocente=$('#docentes').DataTable(
+            var tabla=$('#personas').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
                     "autoWidth":false,
-                    "ajax":"{{url('listar/docentes')}}",
+
+                    "ajax": "api/estudiantes",
                     "createdRow": function( row, data, dataIndex ) {
-                        $(row).attr('id',data['id']); 
-                    },
+                    $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
+                },
                     "columns": [
                         {data: 'id'},
                         {data: 'nombre'},
                         {data: 'apellidop'},
                         {data: 'apellidom'},
-                        {data: 'mododocente'},
-                        {data: 'perfil'},    
                         {
                             "name": "foto",
                             "data": "foto",
                             "render": function (data, type, full, meta) {
-                                return "<img class='materialboxed zoomify' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
+                               
+                               return "<img class='materialboxed zoomify' src='../../../storage/" + data + "' height=\"50\"/>";
                             },
                             "title": "FOTO",
                             "orderable": false,
-                        }, 
+            
+                        },     
                         {
                             "name":"btn",
                             "data": 'btn',
@@ -224,15 +163,15 @@
                         },
                     ],
                     "columnDefs": [
-                        { responsivePriority: 1, targets: 0 },  
-                        { responsivePriority: 2, targets: -1 }
+                        { responsivePriority: 1, targets: 0 },
+                        { responsivePriority: 2, targets: -1 },
                     ],
+
                     "language":{
                         "url":"https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
                     },  
                 }
             );
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ZOOMIFY %%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click','.zoomify',function (e){
                 Swal.fire({
                     title: 'Codigo: '+ $(this).closest('tr').find('td').eq(0).text(),
@@ -245,16 +184,6 @@
                     imageHeight:400,
                     imageAlt: 'Custom image',
                     confirmButtonText:"Aceptar",
-                    
                 })
             });
-            
-            $('table').on('click','.eliminargenerico',function (e) {
-                e.preventDefault(); 
-                registro_id=$(this).closest('tr').attr('id');
-                eliminarRegistro(registro_id,'docente',tabladocente);
-            });
-        } );
-        
-    </script>
-@stop
+        });

@@ -18,7 +18,7 @@
                 LISTA DE TODOS LOS PERIODOS DE ADMINISTRATIVOS
                 <div class="float-right">
                         
-                        Crear nuevo periodo
+                        Nuevo periodo
                     <a href="{{route("periodable.create",["periodable_id"=>$periodable_id,"periodable_type"=>$periodable_type])}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Agregar Periodo a este Administrativo">
                         <i class="far fa-calendar-plus fa-2x text-primary"></i>
                     </a>
@@ -181,7 +181,11 @@
                                 "orderable": false,
                             },
                         ],
-                        //order: [[0, 'desc']],
+                        order: [[0, 'desc']],
+                        "columnDefs": [
+                            { responsivePriority: 1, targets: 0 },
+                            { responsivePriority: 2, targets: -1 },
+                        ],
                         "language":{
                             "url":"https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
                         },

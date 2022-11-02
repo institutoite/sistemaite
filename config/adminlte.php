@@ -294,32 +294,32 @@ return [
             'icon_color' => 'white',
             'classes'=>'text-xs text-white',
         ],
-        [
-            'text' => "",
-            'topnav' => true,
-            'url'  => 'inscripcines/vigentes/view',
-            'icon' => 'fas fa-user-times',
-            'icon_color' => 'white',
-            'classes'=>'text-xs text-white',
-        ],
-        [
-            'text' => "",
-            'topnav' => true,
-            'url'    => 'presentes',
-            'icon' => 'fas fa-hand-point-up',
-            'icon_color' => 'white',
-            'classes'=>'text-xs text-white',
-        ],
+        // [
+        //     'text' => "",
+        //     'topnav' => true,
+        //     'url'  => 'inscripcines/vigentes/view',
+        //     'icon' => 'fas fa-user-times',
+        //     'icon_color' => 'white',
+        //     'classes'=>'text-xs text-white',
+        // ],
+        // [
+        //     'text' => "",
+        //     'topnav' => true,
+        //     'url'    => 'presentes',
+        //     'icon' => 'fas fa-hand-point-up',
+        //     'icon_color' => 'white',
+        //     'classes'=>'text-xs text-white',
+        // ],
        
-        [
-            'text' => "",
-            'topnav' => true,
-            'url'  => 'contactos',
-            'icon' => 'fas fa-address-book',
-            'icon_color' => 'white',
-            'classes'=>'text-xs text-white',
+        // [
+        //     'text' => "",
+        //     'topnav' => true,
+        //     'url'  => 'contactos',
+        //     'icon' => 'fas fa-address-book',
+        //     'icon_color' => 'white',
+        //     'classes'=>'text-xs text-white',
             
-        ],
+        // ],
         /**
          *  Menu personas 
          */
