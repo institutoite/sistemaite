@@ -493,7 +493,8 @@ class PersonaController extends Controller
      */
     public function show(Persona $persona)
     {   
-        if(is_null($persona->pais_id)){
+        // dd(isset($persona->zona_id));
+        if(!isset($persona->zona_id)){
             return redirect()->route('personas.edit',$persona);
         }
         $pais=Pais::findOrFail($persona->pais_id);
