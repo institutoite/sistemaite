@@ -24,24 +24,15 @@ class CreateColegiosTable extends Migration
             $table->string('celular', 10)->nullable();
             $table->boolean('convenio')->default(0);
             $table->string('dependencia', 15)->nullable();
-            // $table->string('nivel', 20)->nullable();
+            $table->string('nivel', 40)->nullable();
             $table->string('turno', 15)->nullable();
-            $table->unsignedBigInteger('departamento_id');
-            $table->unsignedBigInteger('provincia_id');
-            $table->unsignedBigInteger('municipio_id');
+            $table->string('departamento',25);
+            $table->string('provincia',25);
+            $table->string('municipio',25);
             $table->string('distrito', 20)->nullable();
             $table->string('areageografica', 20)->nullable();
             $table->string('coordenadax', 15)->nullable();
             $table->string('coordenaday', 15)->nullable();
-            $table->foreign('departamento_id', 'fk_colegio_departamento_idx')
-            ->references('id')->on('departamentos');
-
-            $table->foreign('provincia_id', 'fk_colegio_provincia_idx')
-            ->references('id')->on('provincias');
-
-            $table->foreign('municipio_id', 'fk_colegio_municipio_idx')
-            ->references('id')->on('municipios');
-            
             $table->timestamps();
         });
     }
