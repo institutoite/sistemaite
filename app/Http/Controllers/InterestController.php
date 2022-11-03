@@ -15,7 +15,7 @@ class InterestController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:Listar Intereses')->only('index','getParaHome','mostrar');
+        $this->middleware('can:Listar Intereses')->only('index','mostrar');
         $this->middleware('can:Crear Intereses')->only('create','store');
         $this->middleware('can:Editar Intereses')->only('editar','actualizar');
         $this->middleware('can:Eliminar Intereses')->only('destroy');

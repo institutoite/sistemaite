@@ -38,8 +38,9 @@ def vectorar(rue):
         
     return datos
 
-rue=81984490  
-while(rue<81999999):
+
+rue = 81986840
+while(rue<81989999):
     archivo = open('colegios.txt', 'a', encoding='utf-8')
     while (rue % 10!=0):
         datos=[]
