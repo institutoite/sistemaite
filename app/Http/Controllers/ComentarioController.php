@@ -55,31 +55,30 @@ class ComentarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Guarda desde la web %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+    // public function guardarComentario()
     public function guardarComentario(Request $request)
     {
         
-        // return response()->json($request->all());
         $validator = Validator::make($request->all(), [
             'nombre'=>'required|min:4|max:30',
             'telefono'=>'required|min:8|max:10',
             'interests'=>'required',
             'comentario'=>'required|max:499|min:5',
-            'como_id'=>'required',
             'g-recaptcha-response' => 'required|captcha',
         ],
         [
-            'g-recaptcha-response.required' => 'Por favor Marque: No soy un robot',
-            ]
+        'g-recaptcha-response.required' => 'Por favor Marque: No soy un robot',
+        ],
         );
         if ($validator->passes()) {
+            // return response()->json($request->all());
             $comentario = new Comentario();
             $comentario->nombre = Purify::clean($request->nombre);
             $comentario->telefono = Purify::clean($request->telefono);
             $comentario->vigente = 1;
-            $comentario->como_id = $request->como_id;
+            $comentario->como_id = 6;
             $comentario->comentario = Purify::clean($request->comentario);
             $comentario->save();
-            // return response()->json($request->all());
             $comentario->interests()->sync(array_values($request->interests));
             $vectorIntereses=$comentario->interests;
             return response()->json(['comentario' => $comentario,'vector_intereses'=>$vectorIntereses]);

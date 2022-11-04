@@ -61,7 +61,7 @@ $(document).ready(function () {
             data: formData,
             type: "POST",
             success: function (data) {
-                console.log("Intente guardar datos enviados");
+                console.log("Datos enviados desde el controlador");
                 console.log(data);
                 if (data.error) {
                     if (data.error.nombre) {

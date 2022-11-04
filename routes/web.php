@@ -76,7 +76,8 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 Auth::routes();  
 Route::get('/',[HomeController::class, 'index']);
 Route::get('interests/get', [InterestController::class,'getParaHome'])->name('interest.para.home');
-Route::post('interest/guardar',[InterestController::class,'store'])->name('interest.store');
+
+
 Route::middleware(['auth'])->group(function () {
 
      Route::get('/home',function(){
@@ -602,7 +603,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('interest/actualizar/', "InterestController@actualizar")->name("interest.actualizar");
     Route::delete('eliminar/interest/{interest}', [InterestController::class,'destroy'])->name('eliminar.interest');
     Route::get('interest/create',[InterestController::class,'create'])->name('interest.create');
-    
+    Route::post('interest/guardar',[InterestController::class,'store'])->name('interest.store');
 
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MOTIVOS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
