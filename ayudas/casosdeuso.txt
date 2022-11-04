@@ -1,0 +1,5 @@
+Ingresar al sistema
+Registrar un cliente 
+Registrar un docente 
+Registrar un administrativo
+Agregar un papel a una persona
