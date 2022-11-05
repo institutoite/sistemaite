@@ -14,6 +14,9 @@
 
 
 @section('content')
+
+    {{ Breadcrumbs::render('gestion_create', $estudiante) }}
+
     <div class="card">
         @if ($gestion)
             <div class="card-header bg-primary">{{$gestion->nombre.'|'.$gestion->grado.'|'.$gestion->anio}}

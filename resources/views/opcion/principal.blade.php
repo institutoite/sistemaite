@@ -10,7 +10,9 @@
 @section('plugins.Datatables', true)
 
 @section('content')
-   
+        
+        {{ Breadcrumbs::render('opciones_principal', $persona) }}
+
         @if ($persona->isEstudiante())
             @include('opcion.menu_estudiante')
         @endif

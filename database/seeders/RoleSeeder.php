@@ -327,6 +327,9 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Crear Zonas'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Editar Zonas'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Eliminar Zonas'])->syncRoles([$admin,$secre]);
+        
+        Permission::create(['name' => 'Crear Calificacion'])->syncRoles([$admin,$secre]);
+
 
         $admin = User::find(1); 
         $lidia = User::find(2); 

@@ -10,6 +10,8 @@
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
 @section('content')
+    {{ Breadcrumbs::render('home') }}
+    
     <div class="pt-4">
         <div class="card">
             <div class="card-header bg-primary">

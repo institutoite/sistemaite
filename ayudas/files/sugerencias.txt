@@ -77,6 +77,9 @@ crud para licencias en computacion y nivelacion
 crear un buson de sugerencias
 graficos estadisticos
 google calendar 
+enums en laravel 
+migas de pan laravel 
+
 
 crear una vista para los mensajeados segun el evento por el que fueron mensajeados obsrvaciones volvera , fechavuelve etc
 en index de administrativos que se pueda agregar observaciones y mostrar los mismos
@@ -295,3 +298,6 @@ para observaciones generico
     periodables 
     char no esta funcionando al parecer es por que estaba la char con minusculas 
     
+
+
+
