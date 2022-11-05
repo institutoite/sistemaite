@@ -237,6 +237,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
        // 'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+       
         
     ],
 
