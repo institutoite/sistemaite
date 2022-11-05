@@ -79,6 +79,7 @@ graficos estadisticos
 google calendar 
 enums en laravel 
 migas de pan laravel 
+larevel excel 
 
 
 crear una vista para los mensajeados segun el evento por el que fueron mensajeados obsrvaciones volvera , fechavuelve etc
