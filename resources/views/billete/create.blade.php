@@ -8,6 +8,8 @@
 @section('content')
     <section class="content container-fluid pt-3">
         <div class="row">
+            {{-- {{dd($pago->pagable->estudiante)}} --}}
+            {{ Breadcrumbs::render('billete.crear',$pago->pagable->estudiante,$pago->pagable->estudiante->persona, $pago->pagable,$pago) }}
             <div class="col-md-12">
                 @if(Session::has('mensaje'))
                     <div class="alert alert-danger" role="alert">

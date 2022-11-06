@@ -11,6 +11,7 @@
 @section('content')
     <section class="content container-fluid">
         <div class="row pt-4">
+            {{ Breadcrumbs::render('mostrar.programa', $persona->estudiante,$persona,$inscripcion) }}
                 <div class="card">
                     <div class="card-header bg-secondary">
                         <div class="float-left">
@@ -19,14 +20,14 @@
                         <div class="float-right">
                             {{$persona->nombre.' '.$persona->apellidop}}&nbsp; <i class="fas fa-user-graduate"></i>
 
-                            <a href="{{route('opcion.principal', App\Models\Inscripcione::findOrFail($inscripcion)->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
+                            <a href="{{route('opcion.principal', $inscripcion->estudiante->persona->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
                                 Opciones&nbsp;<i class="fas fa-bars"></i>
                             </a> 
-                            <a href="{{route('clases.marcado.general', $inscripcion)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
+                            <a href="{{route('clases.marcado.general', $inscripcion->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
                                 Marcar &nbsp; <i class="fas fa-user-check"></i>
                             </a> 
 
-                            <a class="btn btn-primary text-white" href="{{ route('imprimir.programa',$inscripcion) }}">
+                            <a class="btn btn-primary text-white" href="{{ route('imprimir.programa',$inscripcion->id) }}">
                                 Imprimir &nbsp;<i class="fas fa-print"></i>
                             </a>
                         </div>
@@ -73,8 +74,8 @@
                                                         $claseBoton.="btn btn-primary text-white";
                                                     }
                                                 }
-                                                $inscripcione=App\Models\Inscripcione::findOrFail($inscripcion);
-                                                if($inscripcione->fecha_proximo_pago->isoFormat('DD/MM/YYYY')==$programa->fecha->isoFormat('DD/MM/YYYY')){
+                                               // $inscripcione=App\Models\Inscripcione::findOrFail($inscripcion);
+                                                if($inscripcion->fecha_proximo_pago->isoFormat('DD/MM/YYYY')==$programa->fecha->isoFormat('DD/MM/YYYY')){
                                                     $claseHoy.="bg-warning";
                                                     $claseBotonHoy.="btn btn-warning";
                                                 }
@@ -137,7 +138,7 @@
                 e.preventDefault(); 
                 id_seleccionada=$(this).closest('tr').attr('id');
                 $.ajax({
-                    url: '../../fechar/pago/proximo/' + id_seleccionada+"/{{$inscripcion}}",
+                    url: '../../fechar/pago/proximo/' + id_seleccionada+"/{{$inscripcion->id}}",
                     success: function (result) {
                         $(".filillas").removeClass("bg-warning");
                         $(".fechar").removeClass("btn-warning");

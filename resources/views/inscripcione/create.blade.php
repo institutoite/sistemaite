@@ -7,6 +7,10 @@
 @section('plugins.Jquery', true)
 
 @section('content')
+
+{{-- {{dd($persona)}} --}}
+{{ Breadcrumbs::render('inscribir', $persona->estudiante,$persona) }}
+
     <div class="pt-4">
         <div class="card">
             <div class="card-header bg-secondary">

@@ -702,7 +702,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('eliminar/licencia/{licencia}', [LicenciaController::class,'destroy'])->name('licencia.eliminar');
     
     /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%INSCRIPCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-    Route::get('tus_inscripciones/{estudiante_id}', 'InscripcioneController@tusinscripciones')->name('tus.inscripciones');
+    Route::get('tus_inscripciones/{estudiante}', 'InscripcioneController@tusinscripciones')->name('tus.inscripciones');
     Route::get('listar/inscripciones/{persona}', 'InscripcioneController@listar')->name('listar_inscripciones');
     Route::get('inscripcione/crear/{persona}', 'InscripcioneController@crear')->name('inscribir');
     Route::post('inscripcion/guardar/configuracion/{id}', 'InscripcioneController@guardarconfiguracion')->name('inscripcion.guardar.configuracion');
@@ -717,7 +717,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('reservar/inscripcion/{inscripcione}', [InscripcioneController::class,'reservar'])->name('reservar.inscripcion');  
     Route::get('darbaja/inscripcion',[InscripcioneController::class,'darbaja'])->name('inscripcion.darbaja');
     Route::get('daralta/inscripcion',[InscripcioneController::class,'daralta'])->name('inscripcion.daralta');
-    Route::get('fechar/pago/proximo/{fecha}/{inscripcion}',[InscripcioneController::class,'actualizar_fecha_proximo_pago'])->name('set.fecha.proximo.pago');
+    Route::get('fechar/pago/proximo/{fecha}/{inscripcione}',[InscripcioneController::class,'actualizar_fecha_proximo_pago'])->name('set.fecha.proximo.pago');
     Route::get('inscripcion/actualizar/fecha_proximo_pago',[InscripcioneController::class,'fecharProximoPago'])->name('inscripcion.fechar.proximo.pago');
     
 

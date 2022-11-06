@@ -7,6 +7,8 @@
 @section('content')
  
     <section class="content container-fluid">
+            {{ Breadcrumbs::render('inscripcion.configuracion',$inscripcion->estudiante,$inscripcion->estudiante->persona, $inscripcion) }}
+
         <div class="row">
             @isset($datos)
             <table class="table table-dark">
@@ -30,11 +32,11 @@
             <div class="col-md-12">
                 <div class="card card-default">
                     <div class="card-header bg-secondary">
-                        <span class="card-title">Configurar Inscripcion</span>
+                         <a href="{{route('opcion.principal', $inscripcion->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
+                            Conservar clases sin modificar &nbsp;<i class="fas fa-bars"></i>
+                        </a>
                         <div class="card-tools" id="divfuera">
-                            <a href="{{route('opcion.principal', $inscripcion->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
-                                Conservar clases sin modificar &nbsp;<i class="fas fa-bars"></i>
-                            </a>
+                           
                             <button id="botonplus" class="btn btn-primary d-none" type="button">Agregar Sesiones &nbsp;<i class="fas fa-plus-square"></i></button>
                         </div>
                     </div>

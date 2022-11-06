@@ -10,6 +10,7 @@
 @section('plugins.Datatables',true)
 
 @section('content')
+{{ Breadcrumbs::render('inscripciones_estudiante', $persona->estudiante,$persona) }}
     <div class="card">
         <div class="card-header bg-primary" >
             <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -35,7 +36,7 @@
                             <th>PAGO</th>
                             <th>Fecha Pago</th>
                             <th>Modalidades</th>
-                            <th>Options</th>
+                            <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -9,6 +9,7 @@
 @section('plugins.Datatables', true)
 
 @section('content')
+    {{ Breadcrumbs::render('persona_create') }}
     <div class="pt-4">
         <div class="card">
             <div class="card-header bg-secondary">

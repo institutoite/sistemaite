@@ -342,20 +342,23 @@ class InscripcioneController extends Controller
     }
     
 
-    public function tusinscripciones($estudiante_id){
+    public function tusinscripciones(Estudiante $estudiante){
         
-        $inscripciones=Inscripcione::where('estudiante_id', '=', $estudiante_id)->select('id', 'objetivo', 'costo')->get();
+        $inscripciones=Inscripcione::where('estudiante_id', '=', $estudiante->id)->select('id', 'objetivo', 'costo')->get();
 
-        $persona=Estudiante::findOrFail($estudiante_id)->persona;
+        // $persona=Estudiante::findOrFail($estudiante_id)->persona;
+        $persona=$estudiante->persona;
         $inscripcionesVigentes = Inscripcione::join('pagos', 'pagos.pagable_id', '=', 'inscripciones.id')
-            ->where('estudiante_id', '=', $persona->estudiante->id)
+            // ->where('estudiante_id', '=', $persona->estudiante->id)
+            ->where('estudiante_id', '=', $estudiante->id)
             ->where('vigente', 1)
             ->where('pagos.pagable_id', '=', 'inscripciones.id')
             ->where('pagos.pagable_type', '=', 'App\Models\Inscripcione')
             ->select('inscripciones.id','vigente', 'objetivo', 'costo', DB::raw("(SELECT avg(monto) FROM pagos where pagos.id = inscripciones.id and inscripciones.id=1) as acuenta"))
             ->groupBy('inscripciones.id', 'vigente','objetivo', 'acuenta', 'costo')
             ->get();
-        $inscripcionesOtras = Inscripcione::where('estudiante_id', '=', $persona->estudiante->id)
+        // $inscripcionesOtras = Inscripcione::where('estudiante_id', '=', $persona->estudiante->id)
+        $inscripcionesOtras = Inscripcione::where('estudiante_id', '=', $estudiante->id)
             ->where('vigente', 0)
             ->select('id', 'objetivo', 'costo')->get();
         

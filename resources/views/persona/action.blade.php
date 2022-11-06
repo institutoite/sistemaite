@@ -29,7 +29,8 @@
 </a>
 
 <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Disabled tooltip">
-    <a href="{{route('opcion.principal', App\Models\Persona::findOrFail($id)->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de matematicas">
+    {{-- <a href="{{route('opcion.principal', App\Models\Persona::findOrFail($id)->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de matematicas"> --}}
+    <a href="{{route('opcion.principal', $id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de matematicas">
          <i class="fas fa-bars"></i> &nbsp; Opciones
     </a>
 </span>

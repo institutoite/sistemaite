@@ -21,33 +21,42 @@ class OpcionController extends Controller
         $this->middleware('can:Opciones Administrativos')->only("administrativos");
     }
     
-    public function index($estudiante_id)
+    // public function index($estudiante_id)
+    public function index(Persona $persona)
     {
-        $estudiante=Estudiante::findOrFail($estudiante_id);
+        //dd($persona);
+        // $estudiante=Estudiante::findOrFail($estudiante_id);
+        $estudiante=$persona->estudiante;
+        //dd($estudiante);
         if(!is_null($estudiante->grados()->first())){ 
             $anioUltimo = $estudiante->grados()->orderBy('anio', 'desc')->get()->first()->pivot->anio;
         }
         $colegios=Colegio::all();
         $objetoGrado = new GradoController();
-        $grados = $objetoGrado->gradosAunNoCursados($estudiante_id);
+        // $grados = $objetoGrado->gradosAunNoCursados($estudiante_id);
+        $grados = $objetoGrado->gradosAunNoCursados($estudiante->id);
         $colegios=Colegio::all();
         $gestiones = Estudiante::join('estudiante_grado', 'estudiantes.id', '=', 'estudiante_grado.estudiante_id')
         ->join('grados', 'grados.id', '=', 'estudiante_grado.grado_id')
         ->join('colegios', 'colegios.id', '=', 'estudiante_grado.colegio_id')
-        ->where('estudiante_id','=',$estudiante_id)
+        // ->where('estudiante_id','=',$estudiante_id)
+        ->where('estudiante_id','=',$estudiante->id)
         ->select('estudiante_grado.id', 'colegio_id', 'colegios.nombre', 'grados.grado', 'anio')
         ->orderBy('anio', 'desc')
         ->get();
         
         if (empty($anioUltimo)) {
-            return redirect()->route('gestion.create',$estudiante_id);
+            // return redirect()->route('gestion.create',$estudiante_id);
+            return redirect()->route('gestion.create',$estudiante->id);
         } else {
             if ($anioUltimo != Carbon::now()->isoFormat('Y')) {
                 //dd("Empty: " . $estudiante_id);
-                return redirect()->route('gestion.index',$estudiante_id);
+                // return redirect()->route('gestion.index',$estudiante_id);
+                return redirect()->route('gestion.index',$estudiante->id);
             } else {
                 
-                $persona = $estudiante->persona;
+                // $persona = $estudiante->persona;
+                //$persona = $estudiante->persona;
                 $grados = $estudiante->grados;
                 return view('opcion.principal', compact('persona','grados','estudiante'));
             }

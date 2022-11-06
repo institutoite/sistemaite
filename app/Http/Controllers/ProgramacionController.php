@@ -567,15 +567,19 @@ class ProgramacionController extends Controller
         }    
     }
     
-    public function mostrarPrograma($inscripcion){
+    // public function mostrarPrograma(Inscripcione $inscripcion){
+    public function mostrarPrograma($inscripcion_id){ //llegaba un id de inscripcion
+        $inscripcion=Inscripcione::findOrFail($inscripcion_id);
         $programacion = Programacion::join('materias', 'programacions.materia_id', '=', 'materias.id')
         ->join('aulas', 'programacions.aula_id', '=', 'aulas.id')
         ->join('docentes', 'programacions.docente_id', '=', 'docentes.id')
         ->join('personas', 'personas.id', '=', 'docentes.persona_id')
         ->select('programacions.id','programacions.fecha', 'hora_ini', 'hora_fin','horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado', 'programacions.inscripcione_id')
         ->orderBy('fecha', 'asc')
-        ->where('inscripcione_id', '=', $inscripcion)->get();
-        $persona=Persona::findOrFail(Inscripcione::findOrFail($inscripcion)->estudiante->persona_id);
+        ->where('inscripcione_id', '=', $inscripcion->id)->get();
+        // $persona=Persona::findOrFail(->estudiante->persona_id);
+        $persona=$inscripcion->estudiante->persona;
+        
         return view('programacion.show', compact('programacion','inscripcion','persona'));
     }
 
