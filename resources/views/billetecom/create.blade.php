@@ -8,6 +8,9 @@
 @section('content')
     <section class="content container-fluid pt-3">
         <div class="row">
+            {{ Breadcrumbs::render('billetecom.crear', $computacion,$carrera,$persona,$matriculacion,$pago) }}
+        </div>
+        <div class="row">
             <div class="col-md-12">
                 @if(Session::has('mensaje'))
                     <div class="alert alert-danger" role="alert">

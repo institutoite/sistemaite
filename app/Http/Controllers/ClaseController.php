@@ -240,8 +240,12 @@ class ClaseController extends Controller
         return redirect()->route('clases.index')
             ->with('success', 'Clase deleted successfully');
     }
+    // public function marcadoGeneral($inscripcion_id){
     public function marcadoGeneral($inscripcion_id){
-        $programaciones=Programacion::where('inscripcione_id', '=', $inscripcion_id)->get();
+        //dd($inscripcion);
+        $inscripcion=Inscripcione::findOrFail($inscripcion_id);
+        // $programaciones=Programacion::where('inscripcione_id', '=', $inscripcion_id)->get();
+        $programaciones=$inscripcion->programaciones;
         $programacionesHoy = Programacion::join('inscripciones', 'inscripciones.id', '=', 'programacions.inscripcione_id') //ok
         ->join('sesions', 'sesions.inscripcione_id', '=', 'inscripciones.id')
         ->join('materias', 'sesions.materia_id', '=', 'materias.id')
@@ -250,13 +254,14 @@ class ClaseController extends Controller
         ->join('docentes', 'sesions.docente_id', '=', 'docentes.id')
         ->join('personas', 'docentes.persona_id', '=', 'personas.id')
         ->join('estados', 'estados.id', '=', 'programacions.estado_id')
-        ->where('inscripciones.id', '=', $inscripcion_id)
+        // ->where('inscripciones.id', '=', $inscripcion_id)
+        ->where('inscripciones.id', '=', $inscripcion->id)
         ->where('programacions.fecha', '=',DB::raw('date(now())'))
             ->where('dias.id', '=', DB::raw("DAYOFWEEK(programacions.fecha)-1"))
-            
         ->select('programacions.id', 'programacions.fecha', 'estados.estado', 'hora_ini', 'hora_fin', 'programacions.habilitado', 'personas.nombre', 'materia','programacions.docente_id','programacions.materia_id')
         ->get();
-        $inscripcion=Inscripcione::findOrFail($inscripcion_id);
+        
+        //dd($inscripcion);
         $dias_que_faltan_para_pagar= $inscripcion->fecha_proximo_pago->diffInDays(now());
         
         $pago=$inscripcion->pagos->sum('monto');

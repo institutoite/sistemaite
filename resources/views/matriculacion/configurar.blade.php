@@ -8,6 +8,9 @@
  
     <section class="content container-fluid">
         <div class="row">
+            {{ Breadcrumbs::render('matriculacion.configuracion', $computacion,$carrera,$computacion->persona,$matriculacion) }}
+        </div>
+        <div class="row">
             <div class="col-md-12">
                 <div class="card card-default">
                     <div class="card-header bg-secondary">

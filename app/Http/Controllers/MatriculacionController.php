@@ -72,12 +72,14 @@ class MatriculacionController extends Controller
         $ids=Arr::pluck($inscritas, 'asignatura_id');
         $motivos = Tipomotivo::findOrFail(2)->motivos;
         $asignaturasFaltantes=$carrera->asignaturas->whereNotIn('id', $ids);
-        return view('matriculacion.create',compact('computacion','asignaturasFaltantes','motivos'));
+        return view('matriculacion.create',compact('computacion','asignaturasFaltantes','carrera','motivos'));
     }
     
     public function configurarView($matriculacion_id)
     {
         $matriculacion=Matriculacion::findOrFail($matriculacion_id);
+        
+        
         $nivel=Nivel::findOrFail(6);
         $aulas = Aula::get();
         $docentes = $nivel->docentes;
@@ -119,7 +121,8 @@ class MatriculacionController extends Controller
         $dias = Dia::get();
         $computacion=$matriculacion->computacion;
         $matriculacion->usuarios()->attach(Auth::user()->id);
-        return view('matriculacion.configurar', compact('computacion','matriculacion', 'aulas', 'docentes','dias')); 
+        $carrera=$matriculacion->asignatura->carrera;
+        return view('matriculacion.configurar', compact('computacion','matriculacion','carrera','aulas', 'docentes','dias')); 
     }
 
     /**

@@ -299,6 +299,14 @@ para observaciones generico
     periodables 
     char no esta funcionando al parecer es por que estaba la char con minusculas 
     
+    Falta 
+    Que los colegios en registrar gestion se muestre rue direccion y turno solamente tratar de hacer con pluck
+    Seeder de modaliades 
+    Seeder de temas 
+    Seeder para motivos de licencias, motivo guarderia, motivo de inscripciones, motivos de Matriculaciones 
+    
+
+
 
 
 

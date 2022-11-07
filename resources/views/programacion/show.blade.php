@@ -12,6 +12,7 @@
     <section class="content container-fluid">
         <div class="row pt-4">
             {{ Breadcrumbs::render('mostrar.programa', $persona->estudiante,$persona,$inscripcion) }}
+            
                 <div class="card">
                     <div class="card-header bg-secondary">
                         <div class="float-left">

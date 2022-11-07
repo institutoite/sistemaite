@@ -9,18 +9,21 @@
 @section('plugins.Datatables',true)
 
 @section('content')
-    
+        <div class="row">
+            {{ Breadcrumbs::render('mostrar.programacioncom', $estudiante,$persona,$matriculacion) }}
+        </div>        
+
                 <div class="card">
                     <div class="card-header bg-secondary">
                         <div class="float-left">
-                            <span class="card-title text-sm"></span>{{$persona->nombre.' '.$persona->apellidop}}&nbsp;<i class="fas fa-user-graduate"></i>
+                            <span class="card-title text-sm"></span>{{$matriculacion->asignatura->asignatura}}&nbsp; <i class="fas fa-user-graduate"></i>
+
+                            <span class="card-title text-sm"></span>
                         </div>
-                        <div class="float-right">
-                            <span class="card-title text-sm">{{App\Models\Matriculacion::findOrfail($matriculacion)->asignatura->asignatura}}x </span>
-                        </div>
+                       
                         <div class="float-right">
                             
-                            <a href="{{route('opcion.principal', $persona->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
+                            <a href="{{route('opcion.principal', $persona)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
                                 Opciones&nbsp;<i class="fas fa-bars"></i> 
                             </a> 
                             <a href="{{route('clases.marcadocom.general', $matriculacion)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">

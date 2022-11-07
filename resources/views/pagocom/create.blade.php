@@ -13,6 +13,9 @@
 @section('content')
     <section class="content container-fluid pt-3">
         <div class="row">
+            {{ Breadcrumbs::render('pagocom.crear', $matriculacion->computacion,$matriculacion->asignatura->carrera,$matriculacion->computacion->persona,$matriculacion) }}
+        </div>
+        <div class="row">
             <div class="col-md-7">
                 <div class="card card-default">
                     <div class="card-header bg-secondary">

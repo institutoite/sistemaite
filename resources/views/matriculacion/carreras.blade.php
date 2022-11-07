@@ -13,7 +13,7 @@
     
     <div class="card">
         <div class="card-header">
-
+            {{ Breadcrumbs::render('miscarreras.listar', $computacion,$computacion->persona) }}
         </div>
         <div class="card-body">
             <table id="carreras" class="table table-bordered table-striped">

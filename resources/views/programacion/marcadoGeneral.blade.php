@@ -42,6 +42,7 @@
 @endif
 
 @section('content')
+{{ Breadcrumbs::render('clases.marcado.general', $persona->estudiante,$persona,$inscripcion) }}
 <div class="card">
     <div class="card-header">
         <div class="float-left">

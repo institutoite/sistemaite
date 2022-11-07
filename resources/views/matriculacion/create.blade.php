@@ -6,6 +6,9 @@
 @section('content')
     <section class="content container-fluid">
         <div class="row">
+            
+            {{ Breadcrumbs::render('matriculacion.create', $computacion,$carrera,$computacion->persona) }}
+            
             <div class="col-md-12 mt-3">
                 @includeif('partials.errors')
                 <div class="card card-default">

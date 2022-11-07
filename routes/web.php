@@ -430,7 +430,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('clase/finalizar/', 'ClaseController@finalizarClase')->name('clases.finalizar');
     Route::get('clases/presentes/ahorita', [ClaseController::class,'clasesPresentes'])->name('clases.presente');
     Route::get('presentes', function () {return view('clase.presentes');})->name('clase.presentes');
-    Route::get('programa/marcar/{inscripcine_id}', 'ClaseController@marcadoGeneral')->name('clases.marcado.general');
+    // Route::get('programa/marcar/{inscripcine_id}', 'ClaseController@marcadoGeneral')->name('clases.marcado.general');
+    Route::get('programa/marcar/{inscripcione}', 'ClaseController@marcadoGeneral')->name('clases.marcado.general');
     Route::get('clases/de/docente/{docente_id}', 'ClaseController@clasesDeDocete')->name('clases.de.un.docente');
 
     Route::get('marcar/asistencia/', 'ClaseController@marcado')->name('marcado');

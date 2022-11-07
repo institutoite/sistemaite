@@ -154,10 +154,11 @@ class ClasecomController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function marcadoGeneral($matriculacion_id){
-       
+    public function marcadoGeneral(Matriculacion $matriculacion){
         
-        $programaciones=Programacioncom::where('matriculacion_id', '=', $matriculacion_id)->get();
+        // $programaciones=Programacioncom::where('matriculacion_id', '=', $matriculacion_id)->get();
+        $programaciones=$matriculacion->programacionescom;
+
         $programacionesHoy = Programacioncom::join('matriculacions', 'matriculacions.id', '=', 'programacioncoms.matriculacion_id') //ok
         ->join('sesioncoms', 'sesioncoms.matriculacion_id', '=', 'matriculacions.id')
         ->join('dias', 'dias.id', '=', 'sesioncoms.dia_id')
@@ -166,14 +167,15 @@ class ClasecomController extends Controller
         ->join('personas', 'docentes.persona_id', '=', 'personas.id')
         ->join('estados', 'estados.id', '=', 'programacioncoms.estado_id')
 
-        ->where('matriculacions.id', '=', $matriculacion_id)
+        // ->where('matriculacions.id', '=', $matriculacion_id)
+        ->where('matriculacions.id', '=', $matriculacion->id)
         ->where('programacioncoms.fecha', '=',DB::raw('date(now())'))
             ->where('dias.id', '=', DB::raw("DAYOFWEEK(programacioncoms.fecha)-1"))
             
         ->select('programacioncoms.id', 'programacioncoms.fecha', 'estados.estado','aulas.aula' ,'programacioncoms.horaini', 'programacioncoms.horafin', 'programacioncoms.habilitado', 'personas.nombre','programacioncoms.docente_id')
         ->get();
 
-        $matriculacion=Matriculacion::findOrFail($matriculacion_id);
+        // $matriculacion=Matriculacion::findOrFail($matriculacion_id);
         $dias_que_faltan_para_pagar= $matriculacion->fecha_proximo_pago->diffInDays(now());
         
         $pago=$matriculacion->pagos->sum('monto');

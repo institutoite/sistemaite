@@ -36,7 +36,11 @@ class BilletecomController extends Controller
     public function crear($pago)
     {
         $pago=Pago::findOrFail($pago);
-        return view('billetecom.create', compact('pago'));
+        $matriculacion=$pago->pagable;
+        $carrera=$matriculacion->asignatura->carrera;
+        $computacion=$matriculacion->computacion;
+        $persona=$computacion->persona;
+        return view('billetecom.create', compact('computacion','carrera','persona','matriculacion','pago'));
     }
 
    public function guardar(Request $request,$pago_id)

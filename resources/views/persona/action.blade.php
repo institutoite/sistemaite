@@ -27,12 +27,17 @@
 <a class="btn-accion-tabla tooltipsC mr-1 enviarmensaje" title="Cobrar por mensaje">
     &nbsp;<i class="fab fa-whatsapp"></i>
 </a>
+<a href="{{route('tus.inscripciones',App\Models\Persona::findOrFail($id)->estudiante)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ir a Inscripciones">
+    &nbsp;<i class="fas fa-table"></i>
+</a>
 
 <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Disabled tooltip">
-    {{-- <a href="{{route('opcion.principal', App\Models\Persona::findOrFail($id)->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de matematicas"> --}}
+{{-- <a href="{{route('opcion.principal', App\Models\Persona::findOrFail($id)->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de matematicas"> --}}
     <a href="{{route('opcion.principal', $id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de matematicas">
-         <i class="fas fa-bars"></i> &nbsp; Opciones
+        <i class="fas fa-bars"></i> &nbsp; Opciones
     </a>
 </span>
-
+    
+    
+    
 
