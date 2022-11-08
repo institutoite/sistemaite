@@ -1108,7 +1108,7 @@ class PersonaController extends Controller
     public function descargarContacto($persona){
         $una_una_persona=Persona::findOrFail($persona);
         // $url=storage_path("app//contactos//".$una_una_persona->nombre.$una_una_persona->id.".vcf");
-        $url=storage_path("app\contactos\\".$una_una_persona->nombre.$una_una_persona->id.".vcf");
+        $url=storage_path("app/contactos/".$una_una_persona->nombre.$una_una_persona->id.".vcf");
         dd($url);
         if(!is_null($url)){
             if (file_exists($url)){
