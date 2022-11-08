@@ -151,7 +151,7 @@ class MensajeController extends Controller
         $persona_id=$request->persona_id;   
         $mensaje=Mensaje::findOrFail($mensaje_id);
         $persona=Persona::findOrFail($persona_id);
-        $texto= "Estimado ".nombre($persona_id,2)."%0A".$mensaje->mensaje."%0A"."*Tus amigos de ite*";
+        $texto= saludo()."%0AEstimado(a) ".nombre($persona_id,2)."%0A".strip_tags($mensaje->mensaje)."%0A"."*Tus amigos de ite*";
         $data=['texto'=>$texto,'mensaje'=>$mensaje,'persona'=>$persona];
         return response()->json($data);
     }

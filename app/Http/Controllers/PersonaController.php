@@ -959,7 +959,8 @@ class PersonaController extends Controller
     }
     
     public function enviarMensajeCumpleanero(Request $request){
-        $mensaje=saludo()."%0A".nombre($request->persona_id,2)."%0A".strip_tags(Mensaje::findOrFail(1)->mensaje);
+        // $mensaje=saludo()."%0A".nombre($request->persona_id,2)."%0A".strip_tags(Mensaje::findOrFail(1)->mensaje);
+        $mensaje=saludo()."%0AEstimado(a) ".nombre($request->persona_id,2)."%0A".strip_tags(Mensaje::findOrFail(1)->mensaje)."%0A"."*Tus amigos de ite*";
         $persona=Persona::findOrFail($request->persona_id);
         $apoderados= $persona->apoderados;
         $data=['persona'=>$persona,'apoderados'=>$apoderados,'mensaje'=>$mensaje];

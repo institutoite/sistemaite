@@ -240,6 +240,7 @@
 
                 function mostrarContactos(url,persona_id,mensaje_id) {
                     let mensaje;
+                    let texto;
                     $.ajax({
                         url : "../mensaje/generico",
                         data:{
@@ -249,8 +250,9 @@
                         success : function(json) {
                             console.log(json);
                             mensaje=json.mensaje;
+                            texto=json.texto;
                             if(json.persona.telefono!=0){
-                                $("#personal").attr('href','https://api.whatsapp.com/send?phone=591'+json.persona.telefono+'&text='+json.texto);
+                                $("#personal").attr('href','https://api.whatsapp.com/send?phone=591'+json.persona.telefono+'&text='+texto);
                                 $("#personal").attr('target','_blank');
                                 $("#personal").text('télefono personal '+json.persona.telefono);
                                 $("#personal").show().fadeIn(2000);
@@ -280,7 +282,7 @@
                             "createdRow": function (row, data, dataIndex) {
                                 $(row).attr('id', data['id']); // agrega dinamiacamente el id del row
                                 $('td', row).eq(3).html(data.pivot.parentesco);
-                                $('td', row).eq(5).children('.cargarmensaje').attr('href','https://api.whatsapp.com/send?phone=591'+data['telefono']+'&text='+mensaje.mensaje);
+                                $('td', row).eq(5).children('.cargarmensaje').attr('href','https://api.whatsapp.com/send?phone=591'+data['telefono']+'&text='+texto);
                                 $('td', row).eq(4).html(moment(data['updated_at']).format('DD-MM-YYYY'));
                                 if (data['telefono'] == 0) {
                                     $(row).addClass('text-danger');
