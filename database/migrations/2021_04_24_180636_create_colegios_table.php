@@ -17,10 +17,10 @@ class CreateColegiosTable extends Migration
             $table->id();
             $table->string('nombre', 80)->nullable();
             $table->string('rue', 10)->nullable();
-            $table->string('director', 50)->nullable();
-            $table->string('imagen', 50)->nullable();
+            $table->string('director', 75)->nullable();
+            $table->string('imagen', 75)->nullable();
             $table->string('direccion', 100)->nullable();
-            $table->string('telefono', 10)->nullable();
+            $table->string('telefono', 25)->nullable();
             $table->string('celular', 10)->nullable();
             $table->boolean('convenio')->default(0);
             $table->string('dependencia', 15)->nullable();
@@ -28,11 +28,11 @@ class CreateColegiosTable extends Migration
             $table->string('turno', 15)->nullable();
             $table->string('departamento',25);
             $table->string('provincia',25);
-            $table->string('municipio',25);
+            $table->string('municipio',35);
             $table->string('distrito', 20)->nullable();
             $table->string('areageografica', 20)->nullable();
-            $table->string('coordenadax', 15)->nullable();
-            $table->string('coordenaday', 15)->nullable();
+            $table->string('coordenadax', 20)->nullable();
+            $table->string('coordenaday', 20)->nullable();
             $table->timestamps();
         });
     }

@@ -17,6 +17,8 @@ class MateriaSeeder extends Seeder
         Materia::create(['materia'=>'MATEMATICA']);
         Materia::create(['materia'=>'FISICA']);
         Materia::create(['materia'=>'QUIMICA']);
+        Materia::create(['materia'=>'ALGEBRA I II']);
+        Materia::create(['materia'=>'ALGEBRA I II']);
         Materia::create(['materia'=>'LENGUAJE']);
         Materia::create(['materia'=>'FILOSOFIA']);
         

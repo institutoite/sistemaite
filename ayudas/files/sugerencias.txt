@@ -26,6 +26,7 @@ a Todos los seeder Nivel::findOrFail(1)->userable()->create(['user_id'=>1]);
 
 /%%%%%%%%%%%%% postergado agragar chat por mesenger a las paginas 
 /%%%%%%%%%%%%% a la hora de marcar clase que se muestre la programacion real  
+
 Ver las carteras
 que en detalle de pagos se muestre el total
 cuando computacion se paga todo la ultima clase se queda impaga
@@ -287,10 +288,12 @@ para observaciones generico
     que guarde userable en las ultimas tablas plan convenios y caracteristica 
     revsar length de las validaciones
     revisar cuando se crea periodable se inicina fechainicio y fechafin con la misma fecha
+    Seeder de modaliades 
         
     falta
     Falta editar y actualizar preguntas frecuentes 
     hacer un componente para que nos escriban por wahtsatpp
+    Seeder para motivos de licencias, motivo guarderia, motivo de inscripciones, motivos de Matriculaciones 
 
 
 
@@ -301,9 +304,8 @@ para observaciones generico
     
     Falta 
     Que los colegios en registrar gestion se muestre rue direccion y turno solamente tratar de hacer con pluck
-    Seeder de modaliades 
+    
     Seeder de temas 
-    Seeder para motivos de licencias, motivo guarderia, motivo de inscripciones, motivos de Matriculaciones 
     
 
 
