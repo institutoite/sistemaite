@@ -31,15 +31,15 @@ class UserSeeder extends Seeder
         
         $user = new User();
         $user->name = 'Lidia';
-        $user->email = 'guarderia@gmail.com';
+        $user->email = 'guarderia.ite@gmail.com';
         $user->persona_id = 2;
         $user->password = Hash::make('*Educabol1326*');
         $user->foto = "estudiantes/lidia.jpg";
         $user->save();
         
         $user = new User();
-        $user->name = 'Susana';
-        $user->email = 'Susana@ite.com.bo';
+        $user->name = 'susana';
+        $user->email = 'susana@ite.com.bo';
         $user->persona_id = 11;
         $user->password = Hash::make('*Susana25*');
         $user->foto = "estudiantes/susana.jpg";
