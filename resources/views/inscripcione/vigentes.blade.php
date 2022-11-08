@@ -113,14 +113,35 @@
                                 type : 'GET',
                                 dataType : 'json',
                                 success : function(json) {
+                                    // console.log(json);
                                     $.each(json, function(i, item) {
-                                        var clase=ConfiguraClase(item.estado.charAt(0));
-                                        if (item.estado.charAt(0)=='I'){
-                                            $("#"+data['id']).append("<td>"+ "&nbsp" +"</td>")
-                                        }else{
-                                            $("#"+data['id']).append("<td>"+ item.estado.charAt(0) +"</td>")
-                                        }
-                                        $("#"+data['id']).find("td:last").addClass(clase);
+                                        
+                                        var clase=ConfiguraClase(item.estado);
+                                        switch (item.estado) {
+                                                case "FINALIZADO":
+                                                    $icono ="<i class='"+clase+" far fa-check-circle'></i>";
+                                                    break;
+                                                case "PRESENTE":
+                                                    $icono ="<i class='"+clase+" far fa-user-check'></i>";
+                                                    break;
+                                                case "FALTA":
+                                                     $icono ="<i class='"+clase+" far fa-times-circle'></i>";
+                                                    break;
+                                            
+                                                case "LICENCIA":
+                                                     $icono ="<i class='"+clase+" fas fa-user-injured'></i>";
+                                                    break;
+                                            
+                                                case "INDEFINIDO":
+                                                    // $icono ="<i class='"+clase+" far fa-calendar-check'></i>";
+                                                    $icono ="<i class='"+clase+" far fa-question-circle'></i>";
+                                                    break;
+                                            
+                                                default:
+                                                    break;
+                                            }
+                                            $("#"+data['id']).append("<td>"+$icono+"</td>")
+                                        //$("#"+data['id']).find("td:last").addClass(clase);
                                         
                                     });
                                 },
@@ -158,14 +179,33 @@
                                 type : 'GET',
                                 dataType : 'json',
                                 success : function(json) {
+
                                     $.each(json, function(i, item) {
-                                        var clase=ConfiguraClase(item.estado.charAt(0));
-                                        if (item.estado.charAt(0)=='I'){
-                                            $("#"+data['id']+"com").append("<td>"+ "&nbsp" +"</td>")
-                                        }else{
-                                            $("#"+data['id']+"com").append("<td>"+ item.estado.charAt(0) +"</td>")
-                                        }
-                                        $("#"+data['id']+"com").find("td:last").addClass(clase);
+                                        var clase=ConfiguraClase(item.estado);
+                                        switch (item.estado) {
+                                                case "FINALIZADO":
+                                                    $icono ="<i class='"+clase+" far fa-check-circle'></i>";
+                                                    break;
+                                                case "PRESENTE":
+                                                    $icono ="<i class='"+clase+" far fa-user-check'></i>";
+                                                    break;
+                                                case "FALTA":
+                                                     $icono ="<i class='"+clase+" far fa-times-circle'></i>";
+                                                    break;
+                                            
+                                                case "LICENCIA":
+                                                     $icono ="<i class='"+clase+" fas fa-user-injured'></i>";
+                                                    break;
+                                            
+                                                case "INDEFINIDO":
+                                                    // $icono ="<i class='"+clase+" far fa-calendar-check'></i>";
+                                                    $icono ="<i class='"+clase+" far fa-question-circle'></i>";
+                                                    break;
+                                            
+                                                default:
+                                                    break;
+                                            }
+                                            $("#"+data['id']+"com").append("<td>"+$icono+"</td>");
                                         
                                     });
                                 },
@@ -185,18 +225,19 @@
             );
 
             function ConfiguraClase(unEstado) {
+                console.log(unEstado);
                 var clase="";
-                    if(unEstado =="P"){
-                        clase="text-success p-1";
+                    if(unEstado =="FINALIZADO"){
+                        clase="text-success";
                     }
-                    if(unEstado =="F"){
-                        clase="text-danger p-1";
+                    if(unEstado =="FALTA"){
+                        clase="text-danger";
                     }
-                    if(unEstado =="L"){
-                        clase="text-blue p-1";
+                    if(unEstado =="LICENCIA"){
+                        clase="text-blue";
                     }
-                    if(unEstado =="I"){
-                        clase="text-gray p-1"; 
+                    if(unEstado =="INDEFINIDO"){
+                        clase="text-gray"; 
                     }
                 return clase;
             }

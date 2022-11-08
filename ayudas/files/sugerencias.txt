@@ -306,7 +306,12 @@ para observaciones generico
     Que los colegios en registrar gestion se muestre rue direccion y turno solamente tratar de hacer con pluck
     
     Seeder de temas 
-    
+
+
+
+    si se realiza otro seeder 
+    asignar todos los niveles a los profesores en seeder 
+    materias para niveles 
 
 
 
