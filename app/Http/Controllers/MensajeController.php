@@ -67,7 +67,7 @@ class MensajeController extends Controller
     public function show(Mensaje $mensaje)
     {
         //dd($mensaje);
-        $user=$mensaje->usuarios->first();
+        $user=$mensaje->usuarios()->first();
         
         return view('whatsapp.show',compact('mensaje','user'));
     }
@@ -95,8 +95,6 @@ class MensajeController extends Controller
         $mensaje->nombre=$request->nombre;
         $mensaje->mensaje=$request->mensaje;
         $mensaje->save();
-        
-        //dd($mensaje);
         return redirect()->route("mensaje.show",$mensaje);
     }
 

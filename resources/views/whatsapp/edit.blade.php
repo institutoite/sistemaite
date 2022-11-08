@@ -19,11 +19,11 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Update Mensaje</span>
+                        <span class="card-title">Update x Mensaje</span>
                     </div>
-
+{{-- {{dd($mensaje)}} --}}
                     <div class="card-body">
-                        <form method="POST" action="{{ route('mensaje.update', $mensaje->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('mensaje.update', $mensaje) }}"  role="form" enctype="multipart/form-data">
                             
                             @csrf
 

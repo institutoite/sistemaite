@@ -32,10 +32,10 @@ class MensajeSeeder extends Seeder
 
         Mensaje::findOrFail(5)->usuarios()->attach(1);
         Mensaje::findOrFail(6)->usuarios()->attach(1);
-        Mensaje::findOrFail(6)->usuarios()->attach(1);
-        Mensaje::findOrFail(6)->usuarios()->attach(1);
-
         Mensaje::findOrFail(7)->usuarios()->attach(1);
+        Mensaje::findOrFail(8)->usuarios()->attach(1);
+
+        Mensaje::findOrFail(9)->usuarios()->attach(1);
     }
 }
 
