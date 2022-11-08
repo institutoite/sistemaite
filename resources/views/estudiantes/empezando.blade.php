@@ -250,7 +250,7 @@
                             console.log(json);
                             mensaje=json.mensaje;
                             if(json.persona.telefono!=0){
-                                $("#personal").attr('href','https://api.whatsapp.com/send?phone=591'+json.persona.telefono+'&text='+mensaje.mensaje);
+                                $("#personal").attr('href','https://api.whatsapp.com/send?phone=591'+json.persona.telefono+'&text='+json.texto);
                                 $("#personal").attr('target','_blank');
                                 $("#personal").text('télefono personal '+json.persona.telefono);
                                 $("#personal").show().fadeIn(2000);

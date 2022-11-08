@@ -21,7 +21,7 @@ class MensajeSeeder extends Seeder
         Mensaje::create(['vigente'=>1,'nombre'=>'MASIVO','mensaje'=>'Este mensaje es para enviar masivamente']);
         Mensaje::create(['vigente'=>1,'nombre'=>'FINALIZANDOINSCRIPCION','mensaje'=>'Este mensaje es para enviar al finalizar una inscripcion']);
         Mensaje::create(['vigente'=>1,'nombre'=>'FINALIZANDOMATRICULACION','mensaje'=>'Este mensaje es para enviar al finalizar una matriculacioón']);
-        Mensaje::create(['vigente'=>1,'nombre'=>'EMPEZANDOINSCRIPCION','mensaje'=>'Este mensaje es para enviar al finalizar una inscripcion']);
+        Mensaje::create(['vigente'=>1,'nombre'=>'EMPEZANDOINSCRIPCION','mensaje'=>'¡Gracias por adquirir nuestros servicios! Estamos muy contentos de que hayas encontrado lo que estabas buscando. Trabajamos para que siempre obtengas los resultados deseados. ¡Bienvenido y Disfruta aprendiendo con nosotros!']);
         
         Mensaje::create(['vigente'=>1,'nombre'=>'EMPEZANDOMATRICULACION','mensaje'=>'Este mensaje es para enviar al finalizar una matriculacioón']);
 

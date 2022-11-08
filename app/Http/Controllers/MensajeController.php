@@ -147,12 +147,12 @@ class MensajeController extends Controller
     // public function getMensajeGenerico()
     public function getMensajeGenerico(Request $request)
     {
-        //return response()->json($request->all());
         $mensaje_id=$request->mensaje_id;   
         $persona_id=$request->persona_id;   
         $mensaje=Mensaje::findOrFail($mensaje_id);
         $persona=Persona::findOrFail($persona_id);
-        $data=['mensaje'=>$mensaje,'persona'=>$persona];
+        $texto= "Estimado ".nombre($persona_id,2)."%0A".$mensaje->mensaje."%0A"."*Tus amigos de ite*";
+        $data=['texto'=>$texto,'mensaje'=>$mensaje,'persona'=>$persona];
         return response()->json($data);
     }
 
@@ -165,8 +165,6 @@ class MensajeController extends Controller
 
         $EstudiantesCalificacionDesc=Persona::join('estudiantes','personas.id','estudiantes.persona_id')
         ->join('calificacions','personas.id','calificacions.persona_id')
-        // ->join('mensajeados','personas.id','mensajeados.persona_id')
-        // ->whereNotIn('personas.id',DB::raw("select persona_id from mensajeados where personas.id=mensajeados.persona_id"))
         ->whereNotIn('personas.id',$yaMensajeados)
         ->select('personas.id','personas.nombre','personas.apellidom','personas.apellidop','vuelvefecha','foto',
                 DB::raw("(select AVG(calificacion) from calificacions where personas.id=calificacions.persona_id) as promedio"))
