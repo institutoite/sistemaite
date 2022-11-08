@@ -332,7 +332,7 @@ class InscripcioneController extends Controller
             ->join('estados','estados.id','inscripciones.estado_id')
             ->where('estudiante_id','=',$estudiante_id)
             // ->where('vigente', 1)
-            ->select('inscripciones.id','vigente', 'objetivo', 'inscripciones.costo','fecha_proximo_pago','modalidads.modalidad','estado')
+            ->select('inscripciones.id','inscripciones.vigente', 'objetivo', 'inscripciones.costo','fecha_proximo_pago','modalidads.modalidad','estado')
             ->get();
         return datatables()->of($inscripcionesVigentes)
                             ->addColumn('btn', 'inscripcione.actiontusinscripciones')
