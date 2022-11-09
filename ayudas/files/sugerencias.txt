@@ -303,15 +303,19 @@ para observaciones generico
     char no esta funcionando al parecer es por que estaba la char con minusculas 
     
     Falta 
-    Que los colegios en registrar gestion se muestre rue direccion y turno solamente tratar de hacer con pluck
     
+
+
+
     Seeder de temas 
-
-
-
     si se realiza otro seeder 
     asignar todos los niveles a los profesores en seeder 
     materias para niveles 
+    Que los colegios en registrar gestion se muestre rue direccion y turno solamente tratar de hacer con pluck
+
+    Falta 
+    corregir guardar un colegio no esta creando
+
 
 
 

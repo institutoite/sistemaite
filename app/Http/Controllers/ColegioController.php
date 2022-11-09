@@ -76,7 +76,25 @@ class ColegioController extends Controller
     public function store(ColegioStoreRequest $request)
     {
         
-        $colegio = Colegio::create($request->all());
+        $colegio =new Colegio();
+        $colegio->nombre= $request->nombre;
+        $colegio->rue= $request->rue;
+        $colegio->director=$request->director;
+        $colegio->direccion=$request->direccion;
+        $colegio->telefono=$request->telefono;
+        $colegio->dependencia=$request->dependencia;
+        $colegio->turno=$request->turno;
+        $colegio->nivel=$request->nivel;
+
+        $colegio->departamento=Departamento::findOrFail($request->departamento)->departamento;
+        $colegio->provincia=Provincia::findOrFail($request->provincia)->provincia;
+        $colegio->municipio=municipio::findOrFail($request->municipio)->municipio;
+        
+        $colegio->areageografica=$request->areageografica;
+        $colegio->coordenadax=$request->coordenadax;
+        $colegio->coordenaday=$request->coordenaday;
+        $colegio->save();
+     
         if ($request->hasFile('imagen')){
             $foto=$request->file('imagen');
             $nombreImagen='colegios/'.str_replace(' ','',$colegio->nombre).'.jpg';
@@ -88,7 +106,7 @@ class ColegioController extends Controller
             $colegio->imagen = $nombreImagen;
         }
         $colegio->save();
-        $colegio->niveles()->sync(array_keys($request->niveles));
+        // $colegio->niveles()->sync(array_keys($request->niveles));
         $colegio->usuarios()->attach(Auth::user()->id);
        
         return redirect()->route('colegios.index')
@@ -123,17 +141,18 @@ class ColegioController extends Controller
         $colegio = Colegio::find($id);
         $departamentos = Departamento::get();
         $provincias = Provincia::get();
-        $municipios = Municipio::where('provincia_id','=',$colegio->provincia_id)->get();
+        $municipios = Municipio::get();
 
-
-        $niveles_currents=$colegio->niveles; 
-        $ids=[];
-        foreach ($niveles_currents as $nivel) {
-            $ids[] = $nivel->id;
-        }
-        $niveles_faltantes = Nivel::whereNotIn('id', $ids)->get();
-
-        return view('colegio.edit', compact('colegio','departamentos','provincias','municipios','niveles_currents','niveles_faltantes'));
+        $departamento= Departamento::orWhere('departamento',$colegio->departamento)
+        ->first();
+        
+        $provincia= Provincia::orWhere('provincia',$colegio->provincia)
+        ->first();
+        
+        $municipio= Municipio::orWhere('municipio',$colegio->municipio)
+        ->first();
+        // dd($municipios);
+        return view('colegio.edit', compact('colegio','departamentos','provincias','municipios','departamento','provincia','municipio'));
     }
 
     /**
@@ -159,7 +178,7 @@ class ColegioController extends Controller
             $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
             $persona->foto = $nombreImagen;
         }
-        $colegio->niveles()->sync(array_keys($request->niveles));
+        // $colegio->niveles()->sync(array_keys($request->niveles));
         return redirect()->route('colegios.index')
             ->with('success', 'Colegio updated successfully');
     }

@@ -28,7 +28,6 @@ class DepartamentoController extends Controller
     public function index()
     {
         $departamentos = Departamento::paginate();
-
         return view('departamento.index', compact('departamentos'))
             ->with('i', (request()->input('page', 1) - 1) * $departamentos->perPage());
     }
@@ -110,4 +109,10 @@ class DepartamentoController extends Controller
         $departamento->delete();
         return response()->json(['mensaje' => 'Registro Eliminado correctamente']);
     }
+    public function misProvincias(Departamento $departamento){
+        // $departamento= Departamento::findOrFail($departamento);
+        $provinacias=$departamento->provincias;
+        return response()->json($provinacias);
+    }
+
 }

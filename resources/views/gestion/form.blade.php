@@ -34,7 +34,7 @@
             <select class="form-control @error('colegio_id') is-invalid @enderror" style="width:100%" name="colegio_id" id="colegio_id">
                 <option value="">Seleccione Colegio</option>
                 @foreach ($colegios as $colegio)
-                <option value="{{$colegio->id}}">{{$colegio->nombre}}</option>
+                <option value="{{$colegio->id}}">{{$colegio->nombre."-".$colegio->rue."-".$colegio->direccion."-".$colegio->nivel}}</option>
                 @endforeach
             </select>
             {{-- <label for="colegio_id">Colegios</label> --}}

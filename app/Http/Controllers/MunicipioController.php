@@ -122,4 +122,6 @@ class MunicipioController extends Controller
         $municipios=Municipio::where('provincia_id', $id)->get();
         return response()->json($municipios);
     } 
+    
+   
 }

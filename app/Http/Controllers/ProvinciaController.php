@@ -110,6 +110,11 @@ class ProvinciaController extends Controller
         $provincias=Provincia::where('departamento_id', $id)->get();
         return response()->json($provincias);
     } 
-
+     public function misProvincias(Provincia $provincia){
+    // public function misMunicipios(){
+        //$provincia= Provincia::findOrFail(1);
+        $municipios=$provincia->municipios;
+        return response()->json($municipios);
+    }
     
 }

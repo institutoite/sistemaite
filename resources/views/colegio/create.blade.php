@@ -20,10 +20,8 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('colegios.store') }}"  role="form" enctype="multipart/form-data" id="formulario">
                             @csrf
-
                             @include('colegio.form')
                             @include('include.botones')
-
                         </form>
                     </div>
                 </div>
@@ -34,44 +32,41 @@
 
 @section('js')
 <script>
-
-   
 $(document).ready(function(){
     $('#formulario').trigger("reset");
     function cargarProvincias(){
-                var departamento_id = $('#departamento_id').val();
-                if(!departamento_id){
-                $('#provincia_id').html('<option value="1" required selected>Andres Ibañez </option>');
+                var departamento = $('#departamento').val();
+                if(!departamento){
+                $('#provincia').html('<option value="1" required selected>Andres Ibañez </option>');
                     return;
                 }
-                $.get('../api/departamento/'+ departamento_id +'/provincias',function (data) {
+                $.get('../departamento/mis/provincias/'+departamento,function (data) {
+                    console.log(data); //cambiar dpto es constante en el controlador
                     var html_select='';
                     for (var i = 0; i < data.length; i++) {
                         html_select+='<option value="'+ data[i].id +'">' +data[i].provincia +'</option>';
                     }
-                    $('#provincia_id').html(html_select);
+                    $('#provincia').html(html_select);
                 });
             }
             
             function cargarMunicipios(){
-                var provincia_id = $('#provincia_id').val();
-                if(!provincia_id){
-                $('#municipio_id').html('<option value="" required>Seleccione un municipio </option>');
+                var provincia = $('#provincia').val();
+                if(!provincia){
+                $('#municipio').html('<option value="" required>Seleccione un municipio </option>');
                     return;
                 }
-                $.get('../api/provincia/'+ provincia_id +'/municipios',function (data) {
+                $.get('../api/provincia/'+ provincia +'/municipios',function (data) {
                     html_select='';
                     for (var i = 0; i < data.length; i++) {
-                        html_select+='<option value="'+ data[i].id +'">' +data[i].municipio +'</option>';
+                        html_select+='<option value="'+ data[i].municipio +'">' +data[i].municipio +'</option>';
                     }
-                    $('#municipio_id').html(html_select);
+                    $('#municipio').html(html_select);
                 });
             }
-        
-        
         cargarProvincias();
-        $('#departamento_id').on('change', cargarProvincias); 
-        $('#provincia_id').on('change', cargarMunicipios); 
+        $('#departamento').on('change', cargarProvincias); 
+        $('#provincia').on('change', cargarMunicipios); 
         // cargarMunicipios();
         //$('#city').on('change', cargarzonas);
     });

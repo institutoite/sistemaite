@@ -84,7 +84,7 @@ Route::middleware(['auth'])->group(function () {
         return view('persona.estudiantes');
     })->name('home');
 
-    Route::get('prueba',[PermissionController::class,'store'])->name('prueba');
+    Route::get('prueba',[ProvinciaController::class,'misMunicipios'])->name('prueba');
     Route::get('/ninacos', function () {
         return view('ninaco.index');
     });
@@ -225,14 +225,17 @@ Route::middleware(['auth'])->group(function () {
     //Route::resource('grado', "GradoController");
     Route::resource('departamentos', "DepartamentoController");
     Route::delete('eliminar/departamento/{departamento}', [DepartamentoController::class,'destroy'])->name('departamento.delete');
-
+    Route::get('departamento/mis/provincias/{departamento}', [DepartamentoController::class,'misProvincias'])->name('departamento.mis.provincias');
+    
+    
     
     /**%%%%%%%%%%%%%%%%%%%%% PROVINCIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::resource('provincias', "ProvinciaController");
     Route::delete('eliminar/provincia/{provincia}', [ProvinciaController::class,'destroy'])->name('provincia.delete');
-
-
+    
+    
     Route::resource('municipios', "MunicipioController");
+    Route::get('provincia/mis/municipios/{provincia}', [ProvinciaController::class,'misMunicipios'])->name('provincia.mis.municipios');
     Route::delete('eliminar/municipio/{municipio}', [MunicipioController::class,'destroy'])->name('municipio.delete');
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% C O L E G I O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::resource('colegios', "ColegioController");
