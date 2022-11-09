@@ -126,7 +126,7 @@ class AdministrativoController extends Controller
             ->join('personas','personas.id','estudiantes.persona_id')
             ->join('users','users.id','userables.user_id')
             ->where('users.id', $userActual->id)
-            ->where('vigente',1)
+            ->where('inscripciones.vigente',1)
             ->where('userables.userable_type',Inscripcione::class)
             ->select('inscripciones.id','personas.nombre','modalidads.modalidad','inscripciones.costo','fecha_proximo_pago')
             ->get();
