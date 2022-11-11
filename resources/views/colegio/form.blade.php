@@ -206,7 +206,7 @@
                         @isset($colegio)     
                             <option  value="{{$item->id}}" {{$municipio->id==$item->id ? 'selected':''}}>{{$item->municipio}}</option>     
                         @else
-                            <option value="{{ $item->id }}" {{ old('municipio') == $municipio->id ? 'selected':'' }} >{{ $item->municipio }}</option>
+                            <option value="{{ $item->id }}" {{ old('municipio') == $item->id ? 'selected':'' }} >{{ $item->municipio }}</option>
                         @endisset  
                     @endforeach
                 </select>
