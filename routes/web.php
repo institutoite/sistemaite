@@ -210,7 +210,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('telefonos', "TelefonoController");
     Route::resource('users', 'UserController');
-    Route::get('user/create',[UserController::class,'crear'])->name('user.crear');
+    Route::get('user/create/{persona}',[UserController::class,'crear'])->name('user.crear');
     Route::post('user/guardar',[UserController::class,'guardar'])->name('user.guardar');
     Route::get('quien', [UserController::class,'quien'])->name('quien');
 

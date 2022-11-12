@@ -53,11 +53,9 @@ class UserController extends Controller
         return view('auth.register', compact('user'));
     }
     
-    public function crear()
+    public function crear(Persona $persona)
     {
-        //dd("hola");
-        //return view('vendor.adminlte.auth.register');
-        return view('user.create');
+        return view('user.create',compact('persona'));
         
     }
 

@@ -23,7 +23,6 @@
                             <span id="card_title">
                                 {{ __('User') }}
                             </span>
-                            <a class="btn btn-primary float-right" href="{{route('user.crear')}}">Crear Usuario &nbsp;<i class="fas fa-user-plus"></i></a>
                         </div>
                     </div>
                     @if (Session::has('success'))

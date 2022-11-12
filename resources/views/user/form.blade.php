@@ -1,3 +1,4 @@
+<input class="form-control" hidden type="text" name="persona_id" value="{{$persona->id}}">
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm">    
         @if($errors->has('name'))
@@ -9,7 +10,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group" >
         <div class="input-group mb-3">
             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-            value="{{old('name',$user->name ?? '')}}" placeholder="introduzca nombre de usuario" autofocus>
+            value="{{old('name',$user->name ?? strtolower(str_replace(' ','',$persona->nombre).($persona->id)))}}" placeholder="introduzca nombre de usuario" autofocus>
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-user "></span>
@@ -32,7 +33,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group" >
         <div class="input-group mb-3">
             <input type="text" name="email" class="form-control @error('email') is-invalid @enderror"
-                value="{{old('email',$user->email ?? '')}}" placeholder="Escriba correo eletronico">
+                value="{{old('email',$user->email ?? strtolower(str_replace(' ','',$persona->nombre).($persona->id).'@ite.com.bo'))}}" placeholder="Escriba correo eletronico">
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-envelope"></span>
@@ -55,7 +56,9 @@
         <div class="input-group mb-3">
             <input type="password" name="password"
             class="form-control @error('password') is-invalid @enderror"
-            placeholder="Introduzca la contraseña">
+            placeholder="Introduzca la contraseña"
+            value="*{{ucfirst(strtolower(str_replace(' ','',$persona->nombre).($persona->id).'*'))}}"
+            >
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-lock"></span>
@@ -76,11 +79,12 @@
 </div>
 <div class="row">
      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group" >
-                     {{-- Confirm password field --}}
         <div class="input-group mb-3">
             <input type="password" name="password_confirmation"
                 class="form-control @error('password_confirmation') is-invalid @enderror"
-                placeholder="Vuelva a escribir la contraseña para confirmar">
+                placeholder="Vuelva a escribir la contraseña para confirmar"
+                value="*{{ucfirst(strtolower(str_replace(' ','',$persona->nombre).($persona->id).'*'))}}"
+                >
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-lock"></span>
