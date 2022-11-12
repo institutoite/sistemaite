@@ -98,7 +98,7 @@ class UserController extends Controller
 
         }
         $usuario->save();
-        
+        $usuario->assignRole('Docente');
         return redirect()->route('users.index')
             ->with('success', 'User created successfully.');
     }
