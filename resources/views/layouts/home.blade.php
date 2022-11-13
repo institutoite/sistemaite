@@ -200,7 +200,7 @@
                       <div class="text-center">
                         <a class="btn form-inline btn-outline-primary boton-line-turqueza" href="{{ route('logout') }}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
-                            {{ __('Cerrar Sesion') }}Cerrar
+                            {{ __('Cerrar Sesion') }}
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

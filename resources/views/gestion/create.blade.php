@@ -38,6 +38,7 @@
         <div class="card-body">
             <form method="POST" action="{{route('gestion.store')}}">
                 @csrf
+                <a href="https://seie.minedu.gob.bo/reportes/mapas_unidades_educativas">Buscar colegios nuevos</a>
                 @include('gestion.form')
                 @include('include.botones')
             </form>

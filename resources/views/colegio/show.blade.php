@@ -72,15 +72,15 @@
                                 </tr>
                                 <tr>
                                     <td>DEPARTAMENTO</td>
-                                    <td>{{ $departamento->departamento }}</td>
+                                    <td>{{ $colegio->departamento }}</td>
                                 </tr>
                                 <tr>
                                     <td>PROVINCIA</td>
-                                    <td>{{ $provincia->provincia }}</td>
+                                    <td>{{ $colegio->provincia }}</td>
                                 </tr>
                                 <tr>
                                     <td>NUNICIPIO</td>
-                                    <td>{{ $municipio->municipio }}</td>
+                                    <td>{{ $colegio->municipio }}</td>
                                 </tr>
                                 <tr>
                                     <td>DISTRITO</td>
@@ -93,20 +93,15 @@
                                 <tr>
                                     <td>NIVELES</td>
                                     <td>
-                                        <ul class="list-group list-group-flush">
-                                            @foreach ($niveles as $nivel)
-                                                <li class="list-group-item">{{$nivel->nivel}}</li>
-                                            @endforeach
-                                            
-                                        </ul>
+                                        {{$colegio->nivel}}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>CORDENADAS</td>
                                     @php
-                                        $direccion="https://www.google.com.bo/maps/@".$colegio->coordenadax.",".$colegio->coordenaday;
+                                        $direccion="https://maps.google.com/?q=".$colegio->coordenadax.",".$colegio->coordenaday."&z=5&t=k";
                                     @endphp
-                                    <td> <a href="{{$direccion}}">Ubicación</a> </td>
+                                    <td> <a target="_blank" href="{{$direccion}}">Ubicación</a> </td>
                                 </tr>
                                  <tr>
                                     <td>Usuario</td>
