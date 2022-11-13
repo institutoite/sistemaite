@@ -1,4 +1,4 @@
-<input class="form-control" hidden type="text" name="persona_id" value="{{$persona->id}}">
+<input class="form-control" hidden type="text" name="persona_id" value="{{old('persona_id','' ?? $persona->id)}}">
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm">    
         @if($errors->has('name'))
@@ -10,7 +10,12 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group" >
         <div class="input-group mb-3">
             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-            value="{{old('name',$user->name ?? strtolower(str_replace(' ','',$persona->nombre).($persona->id)))}}" placeholder="introduzca nombre de usuario" autofocus>
+            @isset ($persona)
+                value="{{old('name',$user->name ?? strtolower(str_replace(' ','',$persona->nombre).($persona->id)))}}"
+            @else
+                value="{{old('name',$user->name ?? '')}}" placeholder="introduzca nombre de usuario" autofocus
+            @endisset
+            >
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-user "></span>
@@ -57,7 +62,9 @@
             <input type="password" name="password"
             class="form-control @error('password') is-invalid @enderror"
             placeholder="Introduzca la contraseña"
-            value="*{{ucfirst(strtolower(str_replace(' ','',$persona->nombre).($persona->id).'*'))}}"
+            @isset($persona)
+                value="*{{ucfirst(strtolower(str_replace(' ','',$persona->nombre).($persona->id).'*'))}}"
+            @endisset
             >
             <div class="input-group-append">
                 <div class="input-group-text">
@@ -83,7 +90,9 @@
             <input type="password" name="password_confirmation"
                 class="form-control @error('password_confirmation') is-invalid @enderror"
                 placeholder="Vuelva a escribir la contraseña para confirmar"
-                value="*{{ucfirst(strtolower(str_replace(' ','',$persona->nombre).($persona->id).'*'))}}"
+                @isset($persona)
+                    value="*{{ucfirst(strtolower(str_replace(' ','',$persona->nombre).($persona->id).'*'))}}"
+                @endisset
                 >
             <div class="input-group-append">
                 <div class="input-group-text">

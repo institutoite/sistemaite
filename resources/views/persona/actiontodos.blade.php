@@ -40,9 +40,12 @@
 <a href="" class="tooltipsC mr-1 mostrarobservacionespersona" title="Mostrar observaciones">
     <i class="fas fa-comments text-secondary fa-2x"></i>
 </a>
-<a href="{{route('user.crear', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Enviar mensaje">
-    <i class="fas fa-user-check text-primary"></i>
-</a>
+@isset(App\Models\Persona::findOrFail($id)->user)
+@else
+    <a href="{{route('user.crear', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Enviar mensaje">
+        <i class="fas fa-user-check text-primary"></i>
+    </a>
+@endisset
 
 
 
