@@ -312,9 +312,12 @@ para observaciones generico
     asignar todos los niveles a los profesores en seeder 
     materias para niveles 
     Que los colegios en registrar gestion se muestre rue direccion y turno solamente tratar de hacer con pluck
+    corregir guardar un colegio no esta creando
 
     Falta 
-    corregir guardar un colegio no esta creando
+    no esta creando observaciones en inscripcines 
+    no se esta podiendo descargar contactos de potenciales
+    
 
 
 
