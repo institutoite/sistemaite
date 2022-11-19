@@ -303,6 +303,10 @@ para observaciones generico
     char no esta funcionando al parecer es por que estaba la char con minusculas 
     
     Falta 
+    Al crear telefono o un familiar existente el cargado de datos tarda mucho
+    No caraga obervaciones en inscripciones 
+    Cuando se marca clase el docente esta marcando con edson cuando se marca con Eduardo LLanos
+    
     
 
 
@@ -317,7 +321,7 @@ para observaciones generico
     Falta 
     no esta creando observaciones en inscripcines 
     no se esta podiendo descargar contactos de potenciales
-    
+    no esta editando licencias en inscripciones 404 
 
 
 
