@@ -254,7 +254,7 @@ return [
                     'classes'  => 'text-dark',
                 ],
                 [
-                    'text' => 'Asitencia',
+                    'text' => 'Asistencia',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'inscripcines/vigentes/view',
                     'classes'  => 'text-dark',

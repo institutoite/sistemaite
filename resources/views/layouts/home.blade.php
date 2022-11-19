@@ -74,88 +74,12 @@
           </div>
           <div class="cs-main_header_right">
             <div class="cs-search_wrap">
-              {{-- <form action="#" class="cs-search">
-                <input type="text" class="cs-search_input" placeholder="Search">
-                <button class="cs-search_btn">
-                  <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9.16667 16.3333C12.8486 16.3333 15.8333 13.3486 15.8333 9.66667C15.8333 5.98477 12.8486 3 9.16667 3C5.48477 3 2.5 5.98477 2.5 9.66667C2.5 13.3486 5.48477 16.3333 9.16667 16.3333Z" stroke="currentColor" stroke-opacity="0.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M17.5 18L13.875 14.375" stroke="currentColor" stroke-opacity="0.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>                  
-                </button>
-              </form> --}}
             </div>
             <div class="cs-nav_wrap">
               <div class="cs-nav_out">
                 <div class="cs-nav_in">
                   <div class="cs-nav">
                     <ul class="cs-nav_list">
-                        <!--
-                      <li class="menu-item-has-children">
-                        <a href="index.html">Home</a>
-                        <ul>
-                          <li><a href="index.html">Home Default</a></li>
-                          <li><a href="index_2.html">Home Style 2</a></li>
-                          <li><a href="index_3.html">Home Style 3</a></li>
-                          <li><a href="index_4.html">Home Style 4</a></li>
-                          <li><a href="index_5.html">Home Style 5</a></li>
-                        </ul>
-                      </li>
-                      <li class="menu-item-has-children">
-                        <a href="explore-1.html">Explore</a>
-                        <ul>
-                          <li><a href="explore-1.html">Explore Style 1</a></li>
-                          <li><a href="explore-2.html">Explore Style 2</a></li>
-                          <li><a href="explore-details.html">Explore Details</a></li>
-                          <li><a href="live-action.html">Live Auction</a></li>
-                          <li><a href="collection.html">Collection</a></li>
-                          <li><a href="collection-details.html">Collection Details</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="how-it-works.html">How It Works</a></li>
-                      <li class="menu-item-has-children">
-                        <a href="blog.html">Community</a>
-                        <ul>
-                          <li><a href="blog.html">Blog</a></li>
-                          <li><a href="blog-with-sidebar.html">Blog With Sidebar</a></li>
-                          <li><a href="blog-details.html">Blog Details</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="activity.html">Activity</a></li>
-                      <li class="menu-item-has-children cs-mega-menu">
-                        <a href="#">Pages</a>
-                        <ul class="cs-mega-wrapper">
-                          <li class="menu-item-has-children">
-                            <a href="">Column One</a>
-                            <ul>
-                              <li><a href="connect-wallet.html">Connect Wallet</a></li>
-                              <li><a href="about.html">About Us</a></li>
-                              <li><a href="help-center.html">Help Center</a></li>
-                              <li><a href="help-center-browser-by-category.html">Help Center Catagory</a></li>
-                              <li><a href="help-details.html">Help Center Details</a></li>
-                              <li><a href="terms-condition.html">Terms & Conditions</a></li>
-                              <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                              <li><a href="faq.html">FAQ</a></li>
-                              <li><a href="404.html">404</a></li>
-                            </ul>
-                          </li>
-                          <li class="menu-item-has-children">
-                            <a href="">Column Two</a>
-                            <ul>
-                              <li><a href="user-profile.html">Edit Profile</a></li>
-                              <li><a href="user-account-settings.html">Profile Settings</a></li>
-                              <li><a href="user-items.html">My Item</a></li>
-                              <li><a href="create-items.html">Create Items</a></li>
-                              <li><a href="user-activity.html">My Activity</a></li>
-                              <li><a href="user-wallet.html">My Wallet</a></li>
-                              <li><a href="login.html">Login</a></li>
-                              <li><a href="register.html">Register</a></li>
-                              <li><a href="forget-password.html">Forget Password</a></li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a href="contact.html">Contact</a></li>
-                        -->
                         <li><a href="{{ url('/') }}" class="cs-hero_btn text-secondary cs-style2 cs-color2">Inicio</a></li>
                         <li><a href="{{ route('about') }}" class="cs-hero_btn text-secondary cs-style2 cs-color2">Acerca de Nosotros</a></li>
                         <li><a href="{{ route('contact') }}" class="cs-hero_btn text-secondary cs-style2 cs-color2">Contactenos</a></li>
@@ -171,19 +95,6 @@
                     <path d="M9.16667 16.3333C12.8486 16.3333 15.8333 13.3486 15.8333 9.66667C15.8333 5.98477 12.8486 3 9.16667 3C5.48477 3 2.5 5.98477 2.5 9.66667C2.5 13.3486 5.48477 16.3333 9.16667 16.3333Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M17.5 18L13.875 14.375" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>  
-                </div>
-                <div class="cs-toggle_box cs-notification_box">
-                  {{-- <div class="cs-toggle_btn cs-header_icon_btn cs-center">
-                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M14 6.63916C14 5.44569 13.5259 4.30109 12.682 3.45718C11.8381 2.61327 10.6935 2.13916 9.5 2.13916C8.30653 2.13916 7.16193 2.61327 6.31802 3.45718C5.47411 4.30109 5 5.44569 5 6.63916C5 11.8892 2.75 13.3892 2.75 13.3892H16.25C16.25 13.3892 14 11.8892 14 6.63916Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M10.7981 16.3887C10.6663 16.616 10.477 16.8047 10.2493 16.9358C10.0216 17.067 9.76341 17.136 9.50063 17.136C9.23784 17.136 8.97967 17.067 8.75196 16.9358C8.52424 16.8047 8.33498 16.616 8.20312 16.3887" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>                  
-                    <span class="cs-btn_badge">8</span>
-                  </div> --}}
-                  {{-- <div class="cs-toggle_body">
-                    <h3 class="cs-notification_title">Notificaciones 10</h3>
-                    
-                  </div> --}}
                 </div>
                 <div class="cs-toggle_box cs-profile_box">
                   <div class="cs-toggle_btn cs-header_icon_btn cs-center">
@@ -232,6 +143,10 @@
   <div class="cs-height_90 cs-height_lg_80"></div>
 
   <!-- Start Hero -->
+
+  
+
+
   <section class="cs-hero cs-style4 cs-bg cs-center" data-src="fronted/assets/img/hero_bg4.jpeg">
     <div class="container-fluid">
       <div class="cs-hero_in">
@@ -240,8 +155,10 @@
             <h1 class="cs-hero_title cs-white_color">{{ $hometext->first()->subheading }}</h1>
             <div class="cs-hero_subtitle cs-medium cs-white_color">{{$hometext->first()->header}}</div>
             <div class="cs-hero_btns">
-              <a href="https://api.whatsapp.com/send?phone=59171039910" target="_blank" class="btn form-inline btn-outline-primary boton-line-turqueza"><span>Contactanos</span></a>
+
+              <a href="https://api.whatsapp.com/send?phone=59171039910" target="_blank" class="btn form-inline btn-outline-primary boton-line-turqueza"><span><i class="fab fa-whatsapp"></i>Contactanos</span></a>
               <a href="#servicios" class="btn form-inline btn-outline-primary boton-line-azul"><span>Leer mas...</span></a>
+              <a href="" class="btn form-inline btn-outline-primary boton-line-azul"><span>Cursos vacacionales</span></a>
             </div>
           </div>
         </div>
@@ -342,6 +259,17 @@
   </section>
   <!-- End Icon Boxes -->
 
+    <div class="container">
+    <div class="cs-section_heading cs-style4">
+      <a name="servicios" id="servicios"></a>
+      <h2 class="cs-section_title">Tenemos la solución de aprendizaje ideal para usted.</h2>
+      <p class="cs-section_subtitle">Elige el mejor plan de acuerdo a tus necesidades.</p>
+    </div>
+    <div class="cs-height_45 cs-height_lg_45"></div>
+    <div class="row text-primary">
+           @yield('modalidades')
+    </div>
+  </div>
   <div class="cs-height_70 cs-height_lg_40"></div>
   
   
