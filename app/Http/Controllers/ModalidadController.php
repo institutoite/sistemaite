@@ -122,4 +122,16 @@ class ModalidadController extends Controller
         $modalidad->delete();
         return response()->json(['mensaje' => 'Registro Eliminado correctamente', 'status' => 200]);
     }
+    public function cambiarVigente(Modalidad $modalidad)
+    {
+        if($modalidad->vigente==1){
+            $modalidad->vigente =0;
+        }
+        else{ 
+            $modalidad->vigente=1;
+        }
+        $modalidad->save();
+
+        return response()->json(['mensaje' => 'Registro actualizado correctamente', 'status' => 200]);
+    }
 }

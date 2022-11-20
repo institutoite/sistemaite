@@ -31,7 +31,13 @@
     <link rel="stylesheet" href="{{asset('assets/css/botonTurqueza.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/demo.css')}}">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'> --}}
- 
+
+  {{-- admin lte --}}
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+      <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css">
+      <link rel="stylesheet" href="{{asset('vendor/adminlte/dist/css/adminlte.min.css')}}">
+
+  {{-- fin adminlte --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="assets/css/responsive.css">
@@ -192,7 +198,53 @@
     </div>
   </section>
   <!-- End Hero -->
-  
+    <div class="container">
+      <div class="cs-section_heading cs-style4">
+        <a name="servicios" id="servicios"></a>
+        <h2 class="cs-section_title">Servicio de guardería</h2>
+        <p class="cs-section_subtitle">Enseñamos squienes mas quieres</p>
+      </div>
+      <div class="cs-height_45 cs-height_lg_45"></div>
+      <div class="row text-primary">
+        @yield('modalidadesguarderia')
+      </div>
+    </div>
+    
+    <div class="container">
+      <div class="cs-section_heading cs-style4">
+        <a name="servicios" id="servicios"></a>
+        <h2 class="cs-section_title">Clases de nivelación nivel primaria</h2>
+        <p class="cs-section_subtitle">Te preparamos para la gestion 2023</p>
+      </div>
+      <div class="cs-height_45 cs-height_lg_45"></div>
+      <div class="row text-primary">
+        @yield('modalidadesprimaria')
+      </div>
+    </div>
+    <div class="container">
+      <div class="cs-section_heading cs-style4">
+        <a name="servicios" id="servicios"></a>
+        <h2 class="cs-section_title">Clases vacacionales Verano 2023.</h2>
+        <p class="cs-section_subtitle">No es suficiente pasar de curso</p>
+      </div>
+      <div class="cs-height_45 cs-height_lg_45"></div>
+      <div class="row text-primary">
+        @yield('modalidadessecundaria')
+      </div>
+    </div>
+    <div class="container">
+      <div class="cs-section_heading cs-style4">
+        <a name="servicios" id="servicios"></a>
+        <h2 class="cs-section_title">Cursos preuniversitarios, PSA CUP 2023</h2>
+        <p class="cs-section_subtitle">Aprobado si o si</p>
+      </div>
+      <div class="cs-height_45 cs-height_lg_45"></div>
+      <div class="row text-primary">
+        @yield('modalidadespreuniversitario')
+      </div>
+    </div>
+
+
   <!-- Start Icon Boxes -->
   <section>
     <div class="container">
@@ -236,6 +288,7 @@
           <div class="cs-height_30 cs-height_lg_30"></div>
         </div>
        
+        
         <div class="col-lg-4 col-sm-6">
           <div class="cs-text_box cs-style1 cs-box_shadow text-center cs-white_bg">
             <div class="cs-iconbox_icon">
@@ -259,18 +312,8 @@
   </section>
   <!-- End Icon Boxes -->
 
-    <div class="container">
-    <div class="cs-section_heading cs-style4">
-      <a name="servicios" id="servicios"></a>
-      <h2 class="cs-section_title">Tenemos la solución de aprendizaje ideal para usted.</h2>
-      <p class="cs-section_subtitle">Elige el mejor plan de acuerdo a tus necesidades.</p>
-    </div>
-    <div class="cs-height_45 cs-height_lg_45"></div>
-    <div class="row text-primary">
-           @yield('modalidades')
-    </div>
-  </div>
-  <div class="cs-height_70 cs-height_lg_40"></div>
+  
+  {{-- <div class="cs-height_70 cs-height_lg_40"></div> --}}
   
   
   <div class="cs-height_95 cs-height_lg_70"></div> 

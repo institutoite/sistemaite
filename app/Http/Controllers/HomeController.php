@@ -39,9 +39,17 @@ class HomeController extends Controller
         $hometext= Hometext::all();
         $horarios= Homeschedule::all();
         $intereses= Interest::where('id',"<",10)->get();
+        $modalidadesguarderia=Modalidad::where('vigente',1)->where('nivel_id',1)->get();
+        $modalidadesprimaria=Modalidad::where('vigente',1)->where('nivel_id',3)->get();
+        $modalidadessecundaria=Modalidad::where('vigente',1)->where('nivel_id',4)->get();
+        $modalidadespreuniversitario=Modalidad::where('vigente',1)->where('nivel_id',5)->get();
+        $modalidadesinstituto=Modalidad::where('vigente',1)->where('nivel_id',6)->get();
+        $modalidadesuniversitario=Modalidad::where('vigente',1)->where('nivel_id',7)->get();
+        $modalidadesprofesional=Modalidad::where('vigente',1)->where('nivel_id',8)->get();
         
-        
-        return view('home.index', compact(['docentes','convenios','colegios','hometext','intereses','horarios']));
+        return view('home.index', compact(['docentes','convenios','colegios','hometext','intereses','horarios'
+                    ,'modalidadesguarderia','modalidadesprimaria','modalidadessecundaria','modalidadespreuniversitario','modalidadesinstituto'
+                    ,'modalidadesuniversitario','modalidadesprofesional']));
     }
 
     public function plan($id)

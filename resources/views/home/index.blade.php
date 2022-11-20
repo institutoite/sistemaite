@@ -17,6 +17,65 @@
     @endforeach
 @stop
 
+@section('modalidadesguarderia')
+    @foreach ($modalidadesguarderia as $modalidadg)
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box bg-info">
+                <span class="info-box-icon"><i class="fas fa-baby"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">{{$modalidadg->modalidad}}</span>
+                    <span class="info-box-number">{{"Bs. ".$modalidadg->costo}}</span>
+                    <div class="progress">
+                    <div class="progress-bar" style="width: 70%"></div>
+                    </div>
+                    <span class="progress-description">
+                    <a href="#">Mas información</a>
+                    </span>
+                </div>
+            </div>
+          </div>
+    @endforeach
+@stop
+@section('modalidadesprimaria')
+    @foreach ($modalidadesprimaria as $modalidadp)
+            <div class="col-sm-4 mb-2">
+                <div class="position-relative p-3 bg-gray" style="height: 180px">
+                    <div class="ribbon-wrapper ribbon-lg text-gray">
+                    <div class="ribbon bg-info">
+                        Nuevo
+                    </div>
+                    </div>
+                        {{$modalidadp->modalidad}} <br />
+                    <h4><small>{{"Bs. ".$modalidadp->costo}}</small></h4>
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary text-white">Mas información</a>
+                    </div>
+                </div>
+            </div>
+    @endforeach
+@stop
+@section('modalidadessecundaria')
+    @foreach ($modalidadesguarderia as $modalidadg)
+            <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>150</h3>
+
+                <p>New Orders</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+    @endforeach
+@stop
+
+
 
 @section('convenios')
     @foreach ($convenios as $convenio)

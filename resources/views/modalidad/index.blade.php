@@ -67,6 +67,7 @@
     <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
     <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
     <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
+    <script src="{{asset('assets/js/addTempClass.js')}}"></script>
     <script>
     $(document).ready(function() {
         var tablamodalidades=$('#modalidades').DataTable(
@@ -97,6 +98,33 @@
                 registro_id=$(this).closest('tr').attr('id');
                 eliminarRegistro(registro_id,'modalidad',tablamodalidades);
             });
+            $('table').on('click','.cambiarvigente',function (e) {
+                e.preventDefault(); 
+                registro_id=$(this).closest('tr').attr('id');
+                $.ajax({
+                        url: "cambiar/vigente/modalidad/"+registro_id,
+                        success: function (json) {
+                            console.log(json);
+                            $("#" + registro_id).addTempClass('bg-success', 3000);
+                            tablamodalidades.ajax.reload();
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                            })
+                            Toast.fire({
+                                type: 'success',
+                                title: "Actualizado corectamente",
+                            })
+
+                        },
+                        error: function (xhr, status) {
+                            alert('Disculpe, existió un problema');
+                        },
+                    });
+                });
+           
        
         } );
 

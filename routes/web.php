@@ -242,9 +242,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('colegio/all', 'ColegioController@todos');
     Route::delete('eliminar/colegio/{colegio}', [ColegioController::class,'destroy'])->name('colegio.delete');
 
-    /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  F I N   C O L E G I O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+    /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  F I N   MODALIDAD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::resource('modalidads', "ModalidadController");
     Route::delete('eliminar/modalidad/{modalidad}', [ModalidadController::class,'destroy'])->name('modalidad.delete');
+    Route::get('cambiar/vigente/modalidad/{modalidad}',[ModalidadController::class,'cambiarVigente'])->name('cambiar.vigente');
     
     Route::resource('nivels', "NivelController");
     Route::delete('eliminar/nivel/{nivel}', [NivelController::class,'destroy'])->name('nivel.delete');

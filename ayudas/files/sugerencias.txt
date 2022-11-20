@@ -322,6 +322,7 @@ para observaciones generico
     no esta creando observaciones en inscripcines 
     no se esta podiendo descargar contactos de potenciales
     no esta editando licencias en inscripciones 404 
+    en inscripcion y matriculaicon no permite .3 horas total con decimales
 
 
 

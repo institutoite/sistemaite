@@ -15,3 +15,14 @@
         <i class="fa fa-fw fa-trash text-danger"></i>   
     </button>
 </form>     
+
+@if ($vigente)
+    <a href="" class="btn-accion-tabla tooltipsC mr-1 cambiarvigente" title="Dar de Baja esta modalidad">
+        <i class="fas fa-arrow-down text-danger"></i>
+    </a>
+@else
+    <a href="" class="btn-accion-tabla tooltipsC mr-1 cambiarvigente" title="Dar de Alta esta modalidad">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+@endif
+
