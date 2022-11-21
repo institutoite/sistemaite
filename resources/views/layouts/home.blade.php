@@ -10,28 +10,6 @@
   <!-- Site Title -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('assets/vendors/bootstrap/bootstrap.css')}}">
-    <!-- Iconfont Css -->
-    {{-- <link rel="stylesheet" href="{{asset('assets/vendors/fontawesome/css/all.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendors/bicon/css/bicon.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/vendors/themify/themify-icons.css')}}">
-    <!-- animate.css -->
-    <link rel="stylesheet" href="assets/vendors/animate-css/animate.css">
-    <!-- WooCOmmerce CSS -->
-    <link rel="stylesheet" href="assets/vendors/woocommerce/woocommerce-layouts.css">
-    <link rel="stylesheet" href="assets/vendors/woocommerce/woocommerce-small-screen.css">
-    <link rel="stylesheet" href="assets/vendors/woocommerce/woocommerce.css">
-    <!-- Owl Carousel  CSS -->
-    <link rel="stylesheet" href="assets/vendors/owl/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/vendors/owl/assets/owl.theme.default.min.css"> --}}
-
-    <!-- Main Stylesheet -->
-    {{-- <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/redes.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/botones.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/botonTurqueza.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/demo.css')}}">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'> --}}
-
   {{-- admin lte --}}
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
       <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css">
@@ -201,24 +179,26 @@
     <div class="container">
       <div class="cs-section_heading cs-style4">
         <a name="servicios" id="servicios"></a>
-        <h2 class="cs-section_title">Servicio de guardería</h2>
-        <p class="cs-section_subtitle">Enseñamos squienes mas quieres</p>
+        <h2 class="cs-section_title">Apoyo escolar gestión 2023 </h2>
+        <p class="cs-section_subtitle">Elige tu nivel: Tú decides desde y hasta donde llegar</p>
       </div>
-      <div class="cs-height_45 cs-height_lg_45"></div>
+      <div class="cs-height_30 cs-height_lg_30"></div>
       <div class="row text-primary">
-        @yield('modalidadesguarderia')
+        @yield('niveles')
       </div>
     </div>
     
+    <div class="cs-height_95 cs-height_lg_70"></div>
+
     <div class="container">
       <div class="cs-section_heading cs-style4">
         <a name="servicios" id="servicios"></a>
-        <h2 class="cs-section_title">Clases de nivelación nivel primaria</h2>
-        <p class="cs-section_subtitle">Te preparamos para la gestion 2023</p>
+        <h2 class="cs-section_title">También te puede interesar</h2>
+        <p class="cs-section_subtitle">Cursos vacacionales</p>
       </div>
       <div class="cs-height_45 cs-height_lg_45"></div>
       <div class="row text-primary">
-        @yield('modalidadesprimaria')
+        @yield('intereses')
       </div>
     </div>
     <div class="container">
@@ -229,20 +209,10 @@
       </div>
       <div class="cs-height_45 cs-height_lg_45"></div>
       <div class="row text-primary">
-        @yield('modalidadessecundaria')
+        @yield('carreras')
       </div>
     </div>
-    <div class="container">
-      <div class="cs-section_heading cs-style4">
-        <a name="servicios" id="servicios"></a>
-        <h2 class="cs-section_title">Cursos preuniversitarios, PSA CUP 2023</h2>
-        <p class="cs-section_subtitle">Aprobado si o si</p>
-      </div>
-      <div class="cs-height_45 cs-height_lg_45"></div>
-      <div class="row text-primary">
-        @yield('modalidadespreuniversitario')
-      </div>
-    </div>
+
 
 
   <!-- Start Icon Boxes -->

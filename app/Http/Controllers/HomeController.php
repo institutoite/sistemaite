@@ -11,7 +11,9 @@ use App\Models\Homequestion;
 use App\Models\Homeschedule;
 use App\Models\Hometext;
 use App\Models\Modalidad;
+use App\Models\Carrera;
 use App\Models\Persona;
+use App\Models\Nivel;
 use App\Models\Plan;
 use App\Models\Interest;
 use Illuminate\Http\Request;
@@ -38,18 +40,20 @@ class HomeController extends Controller
         $colegios = Colegio::all();
         $hometext= Hometext::all();
         $horarios= Homeschedule::all();
-        $intereses= Interest::where('id',"<",10)->get();
-        $modalidadesguarderia=Modalidad::where('vigente',1)->where('nivel_id',1)->get();
-        $modalidadesprimaria=Modalidad::where('vigente',1)->where('nivel_id',3)->get();
-        $modalidadessecundaria=Modalidad::where('vigente',1)->where('nivel_id',4)->get();
-        $modalidadespreuniversitario=Modalidad::where('vigente',1)->where('nivel_id',5)->get();
-        $modalidadesinstituto=Modalidad::where('vigente',1)->where('nivel_id',6)->get();
-        $modalidadesuniversitario=Modalidad::where('vigente',1)->where('nivel_id',7)->get();
-        $modalidadesprofesional=Modalidad::where('vigente',1)->where('nivel_id',8)->get();
-        
-        return view('home.index', compact(['docentes','convenios','colegios','hometext','intereses','horarios'
-                    ,'modalidadesguarderia','modalidadesprimaria','modalidadessecundaria','modalidadespreuniversitario','modalidadesinstituto'
-                    ,'modalidadesuniversitario','modalidadesprofesional']));
+        $intereses= Interest::all();
+        $carreras= Carrera::all();
+        // $modalidadesguarderia=Modalidad::where('vigente',1)->where('nivel_id',1)->get();
+        // $modalidadesprimaria=Modalidad::where('vigente',1)->where('nivel_id',3)->get();
+        // $modalidadessecundaria=Modalidad::where('vigente',1)->where('nivel_id',4)->get();
+        // $modalidadespreuniversitario=Modalidad::where('vigente',1)->where('nivel_id',5)->get();
+        // $modalidadesinstituto=Modalidad::where('vigente',1)->where('nivel_id',6)->get();
+        // $modalidadesuniversitario=Modalidad::where('vigente',1)->where('nivel_id',7)->get();
+        // $modalidadesprofesional=Modalidad::where('vigente',1)->where('nivel_id',8)->get();
+        $niveles=Nivel::all();
+        return view('home.index', compact(['docentes','convenios','colegios','hometext','intereses','horarios','niveles','carreras']));
+                    // ,'modalidadesguarderia','modalidadesprimaria','modalidadessecundaria','modalidadespreuniversitario','modalidadesinstituto'
+                    // ,'modalidadesuniversitario','modalidadesprofesional']));
+
     }
 
     public function plan($id)

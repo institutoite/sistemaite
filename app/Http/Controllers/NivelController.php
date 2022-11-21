@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nivel;
+use App\Models\Modalidad;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -18,7 +19,7 @@ class NivelController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:Listar Niveles')->only('index');
+        //$this->middleware('can:Listar Niveles')->only('index','show');
         $this->middleware('can:Crear Niveles')->only('create','store');
         $this->middleware('can:Editar Niveles')->only('edit','update');
         $this->middleware('can:Eliminar Niveles')->only('destroy');
@@ -67,11 +68,13 @@ class NivelController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Nivel $nivel)
     {
-        $nivel = Nivel::find($id);
-        $user=$nivel->usuarios->first();
-        return view('nivel.show', compact('nivel','user'));
+        //$nivel = Nivel::find($id);
+        //$user=$nivel->usuarios->first();
+        $modalidades=Modalidad::where('nivel_id',$nivel->id)->get();
+        // dd($modalidades);
+        return view('nivel.show', compact('nivel','modalidades'));
     }
 
     /**

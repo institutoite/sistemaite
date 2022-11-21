@@ -76,7 +76,7 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 Auth::routes();  
 Route::get('/',[HomeController::class, 'index']);
 Route::get('interests/get', [InterestController::class,'getParaHome'])->name('interest.para.home');
-
+Route::get('nivel/mostrar/{nivel}',[NivelController::class,'show'])->name("nivel.mostrar");
 
 Route::middleware(['auth'])->group(function () {
 
@@ -248,6 +248,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('cambiar/vigente/modalidad/{modalidad}',[ModalidadController::class,'cambiarVigente'])->name('cambiar.vigente');
     
     Route::resource('nivels', "NivelController");
+    
     Route::delete('eliminar/nivel/{nivel}', [NivelController::class,'destroy'])->name('nivel.delete');
 
     Route::resource('inscripciones', "InscripcioneController");

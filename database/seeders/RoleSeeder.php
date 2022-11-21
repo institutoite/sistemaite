@@ -217,6 +217,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Editar Municipios'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Eliminar Municipios'])->syncRoles([$admin,$secre]);
 
+        Permission::create(['name' => 'Listar Niveles'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Crear Niveles'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Editar Niveles'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Eliminar Niveles'])->syncRoles([$admin,$secre]);

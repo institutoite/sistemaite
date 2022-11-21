@@ -17,60 +17,85 @@
     @endforeach
 @stop
 
-@section('modalidadesguarderia')
-    @foreach ($modalidadesguarderia as $modalidadg)
-        <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box bg-info">
-                <span class="info-box-icon"><i class="fas fa-baby"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">{{$modalidadg->modalidad}}</span>
-                    <span class="info-box-number">{{"Bs. ".$modalidadg->costo}}</span>
-                    <div class="progress">
-                    <div class="progress-bar" style="width: 70%"></div>
+@section('niveles')
+    @php
+        $k=100/count($niveles);
+        $porcentaje=$k;
+    @endphp
+    @foreach ($niveles as $nivel)
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <a href="{{route('nivel.mostrar',$nivel)}}">
+                @if($nivel->id % 2==0)
+                    <div class="info-box bg-primary tarjeta">
+                @else
+                    <div class="info-box bg-secondary tarjeta">
+                @endif
+                    <span class="info-box-icon"><i class="fas fa-school text-white"></i></span>
+                    <div class="info-box-content">
+                        <h6><span class="info-box-text text-white">{{$nivel->nivel}}</span></h6>
+                        <span class="info-box-number text-white">Vacacional</span>
+                        <div class="progress">
+                        <div class="progress-bar" style="width:{{$porcentaje}}%"></div>
+                        </div>
+                        
+                        <a href="{{route('nivel.mostrar',$nivel)}}" class="small-box-footer text-white">
+                            Mas información <i class="fas fa-arrow-circle-right text-white"></i>
+                        </a>
+                       
+                        
                     </div>
-                    <span class="progress-description">
-                    <a href="#">Mas información</a>
-                    </span>
                 </div>
-            </div>
-          </div>
+            </a>
+        </div>
+        @php
+            $porcentaje=$porcentaje+$k;
+        @endphp
     @endforeach
 @stop
-@section('modalidadesprimaria')
-    @foreach ($modalidadesprimaria as $modalidadp)
-            <div class="col-sm-4 mb-2">
-                <div class="position-relative p-3 bg-gray" style="height: 180px">
+@section('intereses')
+    @foreach ($intereses as $interes)
+        
+        <div class="col-sm-4 mb-2">
+                <div class="position-relative p-3 bg-gray card-items" > {{-- style="height: 180px" --}}
                     <div class="ribbon-wrapper ribbon-lg text-gray">
-                    <div class="ribbon bg-info">
-                        Nuevo
+                        <div class="ribbon bg-info">
+                            
+                            Vacacional
+                        </div>
                     </div>
+                       <div class="small-box bg-info">
+                        <div class="inner">
+                            <h4>{{$interes->interest}}</h4>
+
+                            <p>{{$interes->descripcion}}</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">
+                            Mas información <i class="fas fa-arrow-circle-right"></i>
+                        </a>
+                    </div> 
                     </div>
-                        {{$modalidadp->modalidad}} <br />
-                    <h4><small>{{"Bs. ".$modalidadp->costo}}</small></h4>
-                    <div class="text-center">
-                        <a href="#" class="btn btn-primary text-white">Mas información</a>
-                    </div>
-                </div>
             </div>
     @endforeach
 @stop
-@section('modalidadessecundaria')
-    @foreach ($modalidadesguarderia as $modalidadg)
+@section('carreras')
+    @foreach ($carreras as $carrera)
             <div class="col-lg-3 col-6">
-            <!-- small card -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>150</h3>
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h5>{{$carrera->carrera}}</h5>
 
-                <p>New Orders</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-shopping-cart"></i>
-              </div>
-              <a href="#" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
-              </a>
-            </div>
+                        <p>{{$carrera->description}}</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                </div>
           </div>
     @endforeach
 @stop
