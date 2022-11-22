@@ -323,6 +323,7 @@ para observaciones generico
     no se esta podiendo descargar contactos de potenciales
     no esta editando licencias en inscripciones 404 
     en inscripcion y matriculaicon no permite .3 horas total con decimales
+    con nivel obervabable podemos solucionar dinamismo en las ventanajas de estudiar en ite y tambien en las carreras
 
 
 

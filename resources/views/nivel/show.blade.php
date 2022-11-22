@@ -143,18 +143,29 @@
                 <li>Dentro del proyecto pedagógico incluimos, como parte importante en el logro de objetivos globales de la educación infantil, la colaboración y comunicación continuada con las familias, tanto en el proceso de adaptación inicial a la guardería, donde los padres participan activamente, como a posteriori en las reuniones anuales de evaluación del niño, o en el intercambio de información diario.</li>
             </ul>
         @else
-            card
-
-              <p><i class="fas fa-check text-success"></i>Horarios a elegir</li>
-              <li><i class="fas fa-check text-success"></i>Horarios a elegir</li>
-            </ul>
+         <div class="row">
+            <div class="col-6">
+                <p><i class="fas fa-check text-success"></i>&nbsp;Explicamos hasta entera comprensión.</p>
+                <p><i class="fas fa-check text-success"></i>&nbsp;Empezamos cuando se inscriba el estudiante.</p>
+                <p><i class="fas fa-check text-success"></i>&nbsp;Avanzamos al ritmo de comprensión del estudiante.</p>
+                <p><i class="fas fa-check text-success"></i>&nbsp;Clases para todos los niveles y todas las materias.</p>
+                <p><i class="fas fa-check text-success"></i>&nbsp;El estudiante adquirirá buenas practicas y hábitos de estudio.</p>  
+            </div>
+            <div class="col-6">
+                <p><i class="fas fa-check text-success"></i>&nbsp;Motivación a nuestros estudiantes en los procesos de aprendizaje.</p>
+                <p><i class="fas fa-check text-success"></i>&nbsp;Seguimiento personalizado e individual de las tareas escolares.</p>
+                <p><i class="fas fa-check text-success"></i>&nbsp;Desarrollamos habilidades que favorecen el aprendizaje: atención,  memoria, comprensión, razonamiento.</p>
+                <p><i class="fas fa-check text-success"></i>&nbsp;Somos un centro con más de 10 años de experiencia de formación y educación de estudiantes de todas las edades.</p>
+            </div>
+         </div>
+                
+                
+          
+              
         @endif
-        
-        
 
       <div class="cs-section_heading cs-style4">
         <a name="servicios" id="servicios"></a>
-        
         <h5 class="cs-section_subtitle">Elige la modalidad que se ajuste a tu necesidad</h5>
        
       </div>

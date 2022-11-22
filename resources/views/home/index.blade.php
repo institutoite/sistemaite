@@ -55,11 +55,10 @@
 @section('intereses')
     @foreach ($intereses as $interes)
         
-        <div class="col-sm-4 mb-2">
+        <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4 mb-2 tarjeta">
                 <div class="position-relative p-3 bg-gray card-items" > {{-- style="height: 180px" --}}
                     <div class="ribbon-wrapper ribbon-lg text-gray">
-                        <div class="ribbon bg-info">
-                            
+                        <div class="ribbon bg-danger">
                             Vacacional
                         </div>
                     </div>
@@ -73,7 +72,7 @@
                             <i class="fas fa-shopping-cart"></i>
                         </div>
                         <a href="#" class="small-box-footer">
-                            Mas información <i class="fas fa-arrow-circle-right"></i>
+                            Más información <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div> 
                     </div>
@@ -82,21 +81,16 @@
 @stop
 @section('carreras')
     @foreach ($carreras as $carrera)
-            <div class="col-lg-3 col-6">
-                <div class="small-box bg-info">
-                    <div class="inner">
-                        <h5>{{$carrera->carrera}}</h5>
-
-                        <p>{{$carrera->description}}</p>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                 <div class="info-box tarjeta">
+                    <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-number text-secondary">Vacacional</span>
+                        <span class="info-box-number">{{$carrera->carrera}}</span>
                     </div>
-                    <div class="icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">
-                        More info <i class="fas fa-arrow-circle-right"></i>
-                    </a>
                 </div>
           </div>
+       
     @endforeach
 @stop
 
