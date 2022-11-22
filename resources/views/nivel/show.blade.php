@@ -136,12 +136,20 @@
     <div class="container">
         <h2 class="cs-section_title">NIVEL {{$nivel->nivel}}</h2>
         
-        <ul>
-            <li>Favorecemos su desarrollo en el aspecto social e intelectual, respetando sus necesidades.</li>
-            <li>Trabajamos todos los días para fomentar la autonomía del niño, estimulando su creatividad y autoestima, así como la adquisición de valores tales como el respeto, la empatía, la tolerancia, etc. por lo que tenemos en cuenta el principio del aprendizaje a través del juego sustentado siempre en pilares tan importantes como el cariño y el sentimiento de seguridad.</li>
-            <li>Dentro del proyecto pedagógico incluimos, como parte importante en el logro de objetivos globales de la educación infantil, la colaboración y comunicación continuada con las familias, tanto en el proceso de adaptación inicial a la guardería, donde los padres participan activamente, como a posteriori en las reuniones anuales de evaluación del niño, o en el intercambio de información diario.</li>
-        </ul>
+        @if ($nivel->nivel==1)
+            <ul>
+                <li>Favorecemos su desarrollo en el aspecto social e intelectual, respetando sus necesidades.</li>
+                <li>Trabajamos todos los días para fomentar la autonomía del niño, estimulando su creatividad y autoestima, así como la adquisición de valores tales como el respeto, la empatía, la tolerancia, etc. por lo que tenemos en cuenta el principio del aprendizaje a través del juego sustentado siempre en pilares tan importantes como el cariño y el sentimiento de seguridad.</li>
+                <li>Dentro del proyecto pedagógico incluimos, como parte importante en el logro de objetivos globales de la educación infantil, la colaboración y comunicación continuada con las familias, tanto en el proceso de adaptación inicial a la guardería, donde los padres participan activamente, como a posteriori en las reuniones anuales de evaluación del niño, o en el intercambio de información diario.</li>
+            </ul>
+        @else
+            card
 
+              <p><i class="fas fa-check text-success"></i>Horarios a elegir</li>
+              <li><i class="fas fa-check text-success"></i>Horarios a elegir</li>
+            </ul>
+        @endif
+        
         
 
       <div class="cs-section_heading cs-style4">
@@ -176,8 +184,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link {{ $modalidad->vigente==0 ? "text-success" : "text-danger" }}">
-                            Estado<span class="float-right badge {{ $modalidad->vigente==0 ? "bg-success" : "bg-danger" }}">{{ $resultado = $modalidad->vigente==0 ? 'Habilitado' : 'deshabilitado';}}</span>
+                            <a href="#" class="nav-link {{ $modalidad->vigente==1 ? "text-success" : "text-danger" }}">
+                            Estado<span class="float-right badge {{ $modalidad->vigente==1 ? "bg-success" : "bg-danger" }}">{{ $resultado = $modalidad->vigente==1 ? 'Habilitado' : 'deshabilitado';}}</span>
                             </a>
                         </li>
                        
