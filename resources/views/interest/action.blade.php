@@ -6,6 +6,15 @@
     <i class="fa fa-fw fa-eye text-primary"></i>
 </a>
 
+<a class="btn-accion-tabla tooltipsC btn-sm mr-2 observacion" id="Interest" title="Agregar Observacion">
+    <i class="fas fa-comment-alt"></i>
+</a>
+
+<a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarobservacionesintereses" title="Mostrar observaciones">
+    <i class="fas fa-comments text-secondary"></i>
+</a>
+
+
 <form action=""  class="d-inline formulario">
     @csrf
     @method("delete")
@@ -13,3 +22,4 @@
         <i class="fa fa-fw fa-trash text-danger"></i>   
     </button>
 </form> 
+

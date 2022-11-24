@@ -1,0 +1,32 @@
+use App\Models\Docente; $docentes=Docente::join('personas','personas.id','=','docentes.persona_id')
+                        ->join('estados','estados.id','=','docentes.estado_id')
+                        ->where('docentes.estado_id','=',estado('HABILITADO'))
+                        ->select('docentes.id','personas.nombre','personas.apellidop')
+                        ->get();
+use App\Models\Docente;
+
+
+
+$docentes=Docente::join('personas','personas.id','=','docentes.persona_id')
+                        ->join('estados','estados.id','=','docentes.estado_id')
+                        ->where('docentes.estado_id','=',estado('HABILITADO'))
+                        ->select('docentes.id','personas.nombre','personas.apellidop','estado_id')
+                        ->get();
+use App\Models\Docente;
+
+
+
+$docentes=Docente::join('personas','personas.id','=','docentes.persona_id')
+                        ->join('estados','estados.id','=','docentes.estado_id')
+                        ->where('docentes.estado_id','=',estado('HABILITADO'))
+                        ->select('docentes.id','personas.nombre','personas.apellidop','estado_id','docentes.nombrecorto')
+                        ->get();
+use App\Models\Docente;
+
+
+
+$docentes=Docente::join('personas','personas.id','=','docentes.persona_id')
+                        ->join('estados','estados.id','=','docentes.estado_id')
+                        ->where('docentes.estado_id','=',estado('HABILITADO'))
+                        ->select('docentes.id','personas.apellidop','estado_id','docentes.nombrecorto')
+                        ->get();

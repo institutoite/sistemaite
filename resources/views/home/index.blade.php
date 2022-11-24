@@ -56,6 +56,7 @@
     @foreach ($intereses as $interes)
         
         <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4 mb-2 tarjeta">
+            <a href="{{route('interest.show',$interes)}}">
                 <div class="position-relative p-3 bg-gray card-items" > {{-- style="height: 180px" --}}
                     <div class="ribbon-wrapper ribbon-lg text-gray">
                         <div class="ribbon bg-danger">
@@ -75,8 +76,9 @@
                             Más información <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div> 
-                    </div>
-            </div>
+                </div>
+            </a>
+        </div>
     @endforeach
 @stop
 @section('carreras')

@@ -128,34 +128,27 @@
 
   <!-- Start Hero -->
 
-  
-
-
 
   <!-- End Hero -->
     <div class="container">
-        <h2 class="cs-section_title">NIVEL {{$nivel->nivel}}</h2>
+        <h2 class="cs-section_title">NIVEL {{$interest->interest}}</h2>
         <div class="cs-height_30 cs-height_lg_30"></div>
-        @if ($nivel->nivel==1)
+        @if ($interest->id==1)
             <ul>
                 <li>Favorecemos su desarrollo en el aspecto social e intelectual, respetando sus necesidades.</li>
                 <li>Trabajamos todos los días para fomentar la autonomía del niño, estimulando su creatividad y autoestima, así como la adquisición de valores tales como el respeto, la empatía, la tolerancia, etc. por lo que tenemos en cuenta el principio del aprendizaje a través del juego sustentado siempre en pilares tan importantes como el cariño y el sentimiento de seguridad.</li>
                 <li>Dentro del proyecto pedagógico incluimos, como parte importante en el logro de objetivos globales de la educación infantil, la colaboración y comunicación continuada con las familias, tanto en el proceso de adaptación inicial a la guardería, donde los padres participan activamente, como a posteriori en las reuniones anuales de evaluación del niño, o en el intercambio de información diario.</li>
             </ul>
+              @foreach ($observaciones as $observacion)
+                    <p>&nbsp;{!!$observacion->observacion!!}</p>
+              @endforeach
         @else
          <div class="row">
             <div class="col-6">
-                <p><i class="fas fa-check text-success"></i>&nbsp;Explicamos hasta entera comprensión.</p>
-                <p><i class="fas fa-check text-success"></i>&nbsp;Empezamos cuando se inscriba el estudiante.</p>
-                <p><i class="fas fa-check text-success"></i>&nbsp;Avanzamos al ritmo de comprensión del estudiante.</p>
-                <p><i class="fas fa-check text-success"></i>&nbsp;Clases para todos los niveles y todas las materias.</p>
-                <p><i class="fas fa-check text-success"></i>&nbsp;El estudiante adquirirá buenas practicas y hábitos de estudio.</p>  
-            </div>
-            <div class="col-6">
-                <p><i class="fas fa-check text-success"></i>&nbsp;Motivación a nuestros estudiantes en los procesos de aprendizaje.</p>
-                <p><i class="fas fa-check text-success"></i>&nbsp;Seguimiento personalizado e individual de las tareas escolares.</p>
-                <p><i class="fas fa-check text-success"></i>&nbsp;Desarrollamos habilidades que favorecen el aprendizaje: atención,  memoria, comprensión, razonamiento.</p>
-                <p><i class="fas fa-check text-success"></i>&nbsp;Somos un centro con más de 10 años de experiencia de formación y educación de estudiantes de todas las edades.</p>
+                {{-- {{$observaciones}} --}}
+                @foreach ($observaciones as $observacion)
+                    <p>&nbsp;{!!$observacion->observacion!!}</p>
+                @endforeach
             </div>
          </div>
         @endif
@@ -163,13 +156,13 @@
       <div class="cs-height_30 cs-height_lg_30"></div>
       <div class="cs-section_heading cs-style4">
         <a name="servicios" id="servicios"></a>
-        <h5 class="cs-section_subtitle">Elige la modalidad que se ajuste a tu necesidad</h5>
+        <h5 class="cs-section_subtitle">Elija el servio de su interest que se ajuste a tu necesidad</h5>
        
       </div>
       <div class="cs-height_30 cs-height_lg_30"></div>
       <div class="row text-primary">
         {{-- {{$modalidades}} --}}
-        @foreach ($modalidades as $modalidad)
+        {{-- @foreach ($modalidades as $modalidad)
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
                 <div class="card card-widget widget-user-2 shadow-sm tarjeta">
                     <div class="widget-user-header bg-primary">
@@ -204,7 +197,7 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @endforeach --}}
       </div>
     </div>
     

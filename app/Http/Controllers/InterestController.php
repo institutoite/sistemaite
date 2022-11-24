@@ -55,11 +55,18 @@ class InterestController extends Controller
     
     public function mostrar(Request $request)
     {
-
         $interest = Interest::findOrFail($request->id);
         $user = $interest->usuarios->first();
         $data=['interest'=>$interest,'user' => $user];
         return response()->json($data);
+    }
+
+    
+    
+    public function show(Interest $interest)
+    {
+        $observaciones=$interest->observaciones;
+        return view("interest.show", compact('observaciones','interest'));
     }
 
     

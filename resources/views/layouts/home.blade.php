@@ -208,7 +208,7 @@
         <p class="cs-section_subtitle">No es suficiente pasar de curso</p>
       </div>
       <div class="cs-height_45 cs-height_lg_45"></div>
-      <div class="row text-primary">
+      <div class="row text-primary p-1">
         @yield('carreras')
       </div>
     </div>

@@ -47,6 +47,7 @@
         </div>
     </div>
     @include('interest.modales')
+    @include('observacion.modalcreate')
 @endsection
 
 @section('js')
@@ -61,12 +62,112 @@
     <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 
+    <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
+    <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+    <script src="{{asset('assets/js/observacion.js')}}"></script>
+
     <script>
-            CKEDITOR.replace('descripcion', {
-                height: 150,
-                width: "100%",
-                removeButtons: 'PasteFromWord'
-            });
+         //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR CREAR OBSERVACION  %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        CKEDITOR.replace('editorguardar', {
+            height: 120,
+            width: "100%",
+            removeButtons: 'PasteFromWord'
+        });
+        //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR EDITAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%
+        CKEDITOR.replace('editoreditar', {
+            height: 120,
+            width: "100%",
+            removeButtons: 'PasteFromWord'
+        });
+
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       JS INSCRIPCION   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CREAR OBSERVACION INSCIRPCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.observacion', function (e) {
+            e.preventDefault();
+            let objeto_id = $(this).closest('tr').attr('id');
+            console.log(objeto_id);
+            $("#observable_id").val(objeto_id);
+            $("#observable_type").val($(this).attr('id'));
+            console.log("click en observacion crear");
+            CKEDITOR.instances.editorguardar.setData("");
+            $("diverror").addClass("d-none");
+            $("#modal-agregar-observacion").modal("show");
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CLICK BOTON GUARDAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('#guardar-observacion').on('click', function (e) {
+            e.preventDefault();
+            console.log("click en guardar obsrvacion");
+            let observable_id = $("#observable_id").val();
+            console.log(observable_id);
+            let observable_type = $("#observable_type").val();
+            console.log(observable_type);
+            for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
+            observacion=$("#editorguardar").val();
+            console.log(observacion);
+            url ="../guardar/observacion"
+            guardarObservacion(observacion,observable_id,observable_type,url);
+            
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.mostrarobservacionesintereses', function(e) {
+            e.preventDefault();
+                observable_id =$(this).closest('tr').attr('id');
+                console.log(observable_id);
+                observable_type ="Interest";
+                url="../observaciones/" + observable_id + "/" + observable_type,
+                console.log(url);
+                mostrarCrudObservaciones(url);
+                $("#modal-mostrar-observaciones").modal("show");
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DAR BAJA OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+        $('table').on('click', '.bajaobservacion', function (e) {
+            e.preventDefault();
+            let observacion_id = $(this).closest('tr').attr('id');
+            console.log(observacion_id);
+            url="../darbaja/observacion";
+            darBaja(observacion_id,url);
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DAR ALTA OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.altaobservacion', function (e) {
+            e.preventDefault();
+            let observacion_id = $(this).closest('tr').attr('id');
+            url="../daralta/observacion";
+            darAlta(observacion_id,url);
+        });
+
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ELIMINAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.eliminarobservacion', function (e) {
+            e.preventDefault();
+            let observacion_id = $(this).closest('tr').attr('id');
+            url="../eliminar/general"
+            eliminarObservacion(observacion_id,url);
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EDITAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.editarobservacion', function (e) {
+            e.preventDefault();
+            observacion_id =$(this).closest('tr').attr('id');
+            url="../observacion/editar";
+            editarObservacion(observacion_id,url);
+            $("#modal-mostrar-observaciones").modal("hide");
+            $("#modal-editar-observacion").modal("show");
+        });
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACTUALIZAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('#actualizar-observacion').on('click', function (e){ 
+            e.preventDefault();
+            observacion_id =$("#observable_id").val();
+            observacion=CKEDITOR.instances.editoreditar.getData();
+            console.log(observacion);
+            url="../observacion/actualizar";
+            actualizarObservacion(observacion_id,observacion,url)
+            // $("#modal-editar-observacion").modal("hide");
+            // $("#modal-editar-observacion").modal("show");
+        });
+       
          /*%%%%%%%%%%%%%%%%%%%%%%  funcion que agrega clase por tiempo x y luego lo destruye %%%%%%%%%%%*/
         ( function ( $ ) {
             'use strict';

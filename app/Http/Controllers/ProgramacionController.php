@@ -616,7 +616,8 @@ class ProgramacionController extends Controller
                         ->join('estados','estados.id','=','docentes.estado_id')
                         ->where('docentes.estado_id','=',estado('HABILITADO'))
                         ->select('docentes.id','personas.nombre','personas.apellidop')
-                        ->get(); 
+                        ->get();
+        
         $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
         $materias = $nivel->materias;
         $aulas=Aula::all();

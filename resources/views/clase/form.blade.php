@@ -22,7 +22,7 @@
     <div class="form-floating mb-3">
         <select class="form-control mb-3" name="docente_id" id="docente_id">
             @foreach ($docentes as $docente)
-                <option value="{{$docente->id}}" {{($docente->id==$programa->docente_id) ? 'selected':''}} >{{$docente->nombre.' '.$docente->apellidop}}</option>
+                <option value="{{$docente->id}}" {{($docente->id==$programa->docente_id) ? 'selected':''}} >{{$docente->nombre.' '.$docente->apellidop.' '.$docente->id}}</option>
             @endforeach
         </select>
         <label for="docente_id">Docente</label>

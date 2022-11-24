@@ -77,6 +77,7 @@ Auth::routes();
 Route::get('/',[HomeController::class, 'index']);
 Route::get('interests/get', [InterestController::class,'getParaHome'])->name('interest.para.home');
 Route::get('nivel/mostrar/{nivel}',[NivelController::class,'show'])->name("nivel.mostrar");
+Route::get('interes/mostrar/{interest}',[InterestController::class,'show'])->name("interest.show");
 
 Route::middleware(['auth'])->group(function () {
 

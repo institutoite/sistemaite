@@ -61,4 +61,8 @@ class Nivel extends Model
     return $this->hasMany(Nivel::class);
   }
 
+  public function observaciones()
+    {
+        return $this->morphMany(Observacion::class, 'observable');
+    }
 }

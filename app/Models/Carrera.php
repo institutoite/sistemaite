@@ -27,4 +27,8 @@ class Carrera extends Model
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }
+    public function observaciones()
+    {
+        return $this->morphMany(Observacion::class, 'observable');
+    }
 }
