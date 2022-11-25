@@ -186,15 +186,29 @@ class EstudianteController extends Controller
     {
         //
     }
-    public function update(Request $request, $id)
+    public function ultimoAnio(Estudiante $estudiante)
     {
-        //
+        if(!is_null($estudiante->grados()->first())){ 
+            return $estudiante->grados()->orderBy('anio', 'desc')->get()->first()->pivot->anio;
+        }else{
+            return null;
+        }
     }
 
-    public function destroy($id)
+    public function yaEstaGestionado(Estudiante $estudiante)
     {
-        //
+        $ultimoAnio=$this->ultimoAnio($estudiante);
+        if (is_null($ultimoAnio)) {
+            return false;
+        } else {
+            if ($ultimoAnio != Carbon::now()->isoFormat('Y')) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
+    
     
 
     

@@ -300,6 +300,7 @@ class PersonaController extends Controller
     }
     
     public function guardarRapidingo(PersonaRapidingoGuardarRequest $request){
+        
         $persona=new Persona();
         $persona->nombre = $request->nombre;
         $persona->apellidop = $request->apellidop;
@@ -324,6 +325,7 @@ class PersonaController extends Controller
         $observacion->save();
         $observacion->usuarios()->attach(Auth::user()->id);
         return redirect()->route('telefonos.crear',['persona'=>$persona])->with('mensaje','Contacto Creado Corectamente');
+        
     }
     public function actualizarRapidingo(Request $request,Persona $persona){
         //dd($persona);

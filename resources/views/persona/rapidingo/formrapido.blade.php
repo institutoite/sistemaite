@@ -117,7 +117,13 @@
                     </div>
                 </div>
 
-
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                            @if($errors->has('observacion'))
+                                <span class="text-danger"> {{ $errors->first('observacion')}}</span>
+                            @endif
+                    </div>
+                </div>
                 <textarea placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" >{{old('observacion',$observacion ?? '')}}</textarea>
 
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO NOMBRE %%%%%%%%%%%%%%%%%%%%%% --}}
@@ -125,7 +131,7 @@
     <div class="modal-dialog modal-lg modalito">
         <div class="modal-content">
             <div class="modal-header">
-                Seleccione la persona referenciadorax
+                Seleccione la persona referenciadora
                 <button class="btn btn-danger close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">

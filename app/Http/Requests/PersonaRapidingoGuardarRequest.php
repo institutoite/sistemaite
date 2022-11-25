@@ -29,6 +29,7 @@ class PersonaRapidingoGuardarRequest extends FormRequest
             'apellidop'=>'required|max:25',
             'telefono'=>'numeric|nullable',
             'como_id'=>'required',
+            "observacion" => 'required|max:400',
         ];
     }
 }

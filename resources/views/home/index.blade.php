@@ -66,7 +66,6 @@
                        <div class="small-box bg-info">
                         <div class="inner">
                             <h4>{{$interes->interest}}</h4>
-
                             <p>{{$interes->descripcion}}</p>
                         </div>
                         <div class="icon">
