@@ -39,7 +39,7 @@ function mostrarAdministrativosPotenciales(potencial_id) {
                 $mensaje += "*Quien atendió:*%0A" + $un_user + "%0A%0A";
                 $mensaje += "*Interes%20del%20cliente:*%0A" +$men;
                 $mensaje += "%0A*Descargar%20contacto:*%0A";
-                $mensaje += "http://localhost/sistemaite/public/crear/contacto/" + $un_potencial.id+"%0A";
+                $mensaje += "http://www.ite.com.bo/crear/contacto/" + $un_potencial.id+"%0A";
                 $mensaje += "%0A*Link%20del%20cliente:*%0A";
                 $mensaje += "https://api.whatsapp.com/send?phone=591" + $un_potencial.telefono;
                 $mensaje += $mensaje.replace(/&nbsp[;]?/ig, '');
