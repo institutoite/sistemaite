@@ -198,10 +198,11 @@ class EstudianteController extends Controller
     public function yaEstaGestionado(Estudiante $estudiante)
     {
         $ultimoAnio=$this->ultimoAnio($estudiante);
+        //dd($ultimoAnio == Carbon::now()->isoFormat('Y'));
         if (is_null($ultimoAnio)) {
             return false;
         } else {
-            if ($ultimoAnio != Carbon::now()->isoFormat('Y')) {
+            if ($ultimoAnio == Carbon::now()->isoFormat('Y')) {
                 return true;
             } else {
                 return false;

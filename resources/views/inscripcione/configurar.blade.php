@@ -30,11 +30,14 @@
         </div>
         <div class="row">
             <div class="col-md-12">
+                <a href="{{route('opcion.principal', $inscripcion->estudiante->id)}}" class="btn text-primary btn-outline-primary tooltipsC mr-2" title="No realizar ninguna modificacion en los clases">
+                    Conservar clases sin modificar &nbsp;<i class="fas fa-bars"></i>
+                </a>
                 <div class="card card-default">
                     <div class="card-header bg-secondary">
-                         <a href="{{route('opcion.principal', $inscripcion->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
+                         {{-- <a href="{{route('opcion.principal', $inscripcion->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
                             Conservar clases sin modificar &nbsp;<i class="fas fa-bars"></i>
-                        </a>
+                        </a> --}}
                         <div class="card-tools" id="divfuera">
                            
                             <button id="botonplus" class="btn btn-primary d-none" type="button">Agregar Sesiones &nbsp;<i class="fas fa-plus-square"></i></button>
@@ -127,8 +130,13 @@
             <div class="col text-center">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{route('reservar.inscripcion',$inscripcion->id )}}">
+                        {{-- <a href="{{route('reservar.inscripcion',$inscripcion->id )}}">
                             <button type="button" class="btn btn-danger text-white btn-lg" data-bs-toggle="tooltip" data-bs-placement="left" title="Click aqui si solo va reservar sin pagar: solo si no trajo dinero el Supercliente">
+                                Solo reservar: Sin dinero <i class="fas fa-times-circle"></i>
+                            </button>
+                        </a> --}}
+                        <a href="{{route('reservar.inscripcion',$inscripcion->id )}}">
+                            <button type="button" class="btn text-warning btn-outline-danger" data-bs-toggle="tooltip" data-bs-placement="left" title="Click aqui si solo va reservar sin pagar: solo si no trajo dinero el Supercliente">
                                 Solo reservar: Sin dinero <i class="fas fa-times-circle"></i>
                             </button>
                         </a>
@@ -173,6 +181,34 @@
         })
         $(document).ready(function() {
             
+            // let cantida_sesiones=0;
+
+            // $("#titulosesion").html("<h4>Tine: "+cantida_sesiones+" sesiones por semana para esta inscripción</h4>");
+
+            // $('#horainicio').blur(function() {
+            //     if(($('#horainicio').val()=='')||(($('#horafin').val()<=$('#horainicio').val()))){
+            //         $('#horainicio').addClass('is-invalid');
+            //         $('#botonplus').hide();
+            //     }else{
+            //         $(this).addClass('is-valid');
+            //         $(this).removeClass('is-invalid');
+            //     }    
+            // });
+            // $('#horafin').blur(function() {
+            //     if(($('#horafin').val()=='')||($('#horafin').val()<=$('#horainicio').val())){
+            //         $('#horafin').addClass('is-invalid');
+            //         $('#horainicio').addClass('is-invalid');
+            //         $('#botonplus').hide();
+            //     }else{
+            //         $(this).addClass('is-valid');
+            //         $('#horainicio').blur();
+            //         $("#botonplus").removeClass('d-none');
+            //         $(this).removeClass('is-invalid');
+            //         $('#botonplus').show(300);
+                    
+            //     }    
+            // });
+
             let cantida_sesiones=0;
 
             $("#titulosesion").html("<h4>Tine: "+cantida_sesiones+" sesiones por semana para esta inscripción</h4>");
@@ -187,7 +223,7 @@
                 }    
             });
             $('#horafin').blur(function() {
-                if(($('#horafin').val()=='')||($('#horafin').val()<=$('#horainicio').val())){
+                if((($('#horainicio').val()=='')&&($('#horafin').val()==''))||($('#horafin').val()<=$('#horainicio').val())){
                     $('#horafin').addClass('is-invalid');
                     $('#horainicio').addClass('is-invalid');
                     $('#botonplus').hide();
@@ -200,7 +236,6 @@
                     
                 }    
             });
-
             //console.log($('input[type=time]').size);
 
             $('input[type=radio][name=radioconfig]').on('change',function(){

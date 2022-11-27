@@ -1,32 +1,58 @@
-use App\Models\Docente; $docentes=Docente::join('personas','personas.id','=','docentes.persona_id')
-                        ->join('estados','estados.id','=','docentes.estado_id')
-                        ->where('docentes.estado_id','=',estado('HABILITADO'))
-                        ->select('docentes.id','personas.nombre','personas.apellidop')
-                        ->get();
-use App\Models\Docente;
+use App\Models\Estudiante;
+user App\Models\Grado;
 
+$estudiante->grados()->first();
+use App\Models\Estudiante;
+user App\Models\Grado;
 
+$estudiante->grados->first();
+use App\Models\Estudiante;
+user App\Models\Grado;
 
-$docentes=Docente::join('personas','personas.id','=','docentes.persona_id')
-                        ->join('estados','estados.id','=','docentes.estado_id')
-                        ->where('docentes.estado_id','=',estado('HABILITADO'))
-                        ->select('docentes.id','personas.nombre','personas.apellidop','estado_id')
-                        ->get();
-use App\Models\Docente;
+$estudiante->grados->first();
+use App\Models\Estudiante;
+user App\Models\Grado;
 
+$estudiante=Estudiante::find(1);
+$estudiante->grados->first();
+use App\Models\Estudiante;
+user App\Models\Grado;
 
+$estudiante=Estudiante::find(1);
+$estudiante->grados->first();
+use App\Models\Estudiante;
+user App\Models\Grado;
 
-$docentes=Docente::join('personas','personas.id','=','docentes.persona_id')
-                        ->join('estados','estados.id','=','docentes.estado_id')
-                        ->where('docentes.estado_id','=',estado('HABILITADO'))
-                        ->select('docentes.id','personas.nombre','personas.apellidop','estado_id','docentes.nombrecorto')
-                        ->get();
-use App\Models\Docente;
+$estudiante=Estudiante::find(1);
+$estudiante->grados()->first();
+use App\Models\Estudiante;
+user App\Models\Grado;
 
+$estudiante=Estudiante::find(1);
+$estudiante->grados()->first();
+use App\Models\Estudiante;
+user App\Models\Grado;
 
+$estudiante=Estudiante::find(1);
 
-$docentes=Docente::join('personas','personas.id','=','docentes.persona_id')
-                        ->join('estados','estados.id','=','docentes.estado_id')
-                        ->where('docentes.estado_id','=',estado('HABILITADO'))
-                        ->select('docentes.id','personas.apellidop','estado_id','docentes.nombrecorto')
-                        ->get();
+use App\Models\Estudiante;
+user App\Models\Grado;
+
+$estudiante=Estudiante::find(1);
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+
+$estudiante=Estudiante::find(1);
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+
+$estudiante=Estudiante::find(1);
+$estudiante->grados()->first();
+use App\Models\Estudiante;
+use App\Models\Grado;
+
+$estudiante=Estudiante::find(1);
+$estudiante->grados()->first();
+$estudiante->grados()->orderBy('anio', 'desc')->get()->first()->pivot->anio;

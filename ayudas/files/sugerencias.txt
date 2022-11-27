@@ -318,16 +318,19 @@ para observaciones generico
     Que los colegios en registrar gestion se muestre rue direccion y turno solamente tratar de hacer con pluck
     corregir guardar un colegio no esta creando
     validar cuando guardamos potencial validar observacion 
+    en inscripcion y matriculaicon no permite .3 horas total con decimales
 
     Falta 
     no esta creando observaciones en inscripcines 
-    no se esta podiendo descargar contactos de potenciales
     no esta editando licencias en inscripciones 404 
-    en inscripcion y matriculaicon no permite .3 horas total con decimales
-    con nivel obervabable podemos solucionar dinamismo en las ventanajas de estudiar en ite y tambien en las carreras
-    los nombres de persona Eduardo y Edson estan cruzados so9lucion modificar el movimineto
-    
+    no esta guardando modalidades 
+    agreagar boton next configurar matriculacion 
 
+
+
+    los nombres de persona Eduardo y Edson estan cruzados so9lucion modificar el movimineto
+    con nivel obervabable podemos solucionar dinamismo en las ventanajas de estudiar en ite y tambien en las carreras
+    no se esta podiendo descargar contactos de potenciales los crea en Local seria probar en produccion 
 
 
 

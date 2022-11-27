@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\EstudianteController;
+
 use Illuminate\Support\Facades\Config;
 use App\Http\Requests\ConfigurarionInscripcionRequest;
 use App\Http\Requests\ActualizarConfigurarionInscripcionRequest;
@@ -361,8 +363,11 @@ class InscripcioneController extends Controller
         $inscripcionesOtras = Inscripcione::where('estudiante_id', '=', $estudiante->id)
             ->where('vigente', 0)
             ->select('id', 'objetivo', 'costo')->get();
-        
 
+            $objetoEstudiante = new EstudianteController();
+            $gestionado=$objetoEstudiante->yaEstaGestionado($estudiante);
+
+             //dd($gestionado);
             if($persona->computacion!==null){
                 $matriculaciones=Matriculacion::where('computacion_id','=',$persona->computacion->id)->get();
                 $matriculacionesVigentes=Matriculacion::join('pagos','pagos.pagable_id','=','matriculacions.id')
@@ -372,10 +377,16 @@ class InscripcioneController extends Controller
                 ->groupBy('matriculacions.id', 'vigente', 'costo','asignatura','acuenta')->get();
                 //dd($matriculacionesVigentes);
                 $matriculacionesOtras=Matriculacion::where('computacion_id','=',$persona->computacion->id)->where('vigente',0)->get();
-
-                return view('inscripcione.tusinscripciones',compact('inscripciones','persona','inscripcionesVigentes','inscripcionesOtras','matriculaciones','matriculacionesVigentes','matriculacionesOtras'));
+                if($gestionado)
+                    return view('inscripcione.tusinscripciones',compact('inscripciones','persona','inscripcionesVigentes','inscripcionesOtras','matriculaciones','matriculacionesVigentes','matriculacionesOtras'));
+                else {
+                    return redirect()->route('gestion.create',$estudiante->id);
+                }
             }else{
-                return view('inscripcione.tusinscripciones',compact('inscripciones','persona','inscripcionesVigentes','inscripcionesOtras'));
+                if($gestionado)
+                    return view('inscripcione.tusinscripciones',compact('inscripciones','persona','inscripcionesVigentes','inscripcionesOtras'));
+                else 
+                    return redirect()->route('gestion.create',$estudiante->id);
             }    
     }
 
@@ -491,7 +502,8 @@ class InscripcioneController extends Controller
         $inscripcion=Inscripcione::findOrFail($inscripcion_id);
         $inscripcion->estado_id=estado('RESERVADO');
         $inscripcion->save();
-        return redirect()->route("opcion.principal",$inscripcion->estudiante->id);
+        //dd($inscripcion->estudiante);
+        return redirect()->route("opcion.principal",$inscripcion->estudiante->persona);
     }
     public function darbaja(Request $request)
     {
