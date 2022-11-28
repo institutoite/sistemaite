@@ -56,7 +56,7 @@
                 <div class="card">
                     <div class="card-header">
                         <a href="{{route('reservar.matriculacion',$matriculacion->id )}}">
-                            <button type="button" class="btn btn-danger text-white btn-lg" data-bs-toggle="tooltip" data-bs-placement="left" title="Click aqui si solo va reservar sin pagar: solo si no trajo dinero el Supercliente">
+                            <button type="button" class="btn text-warning btn-outline-danger btn-lg" data-bs-toggle="tooltip" data-bs-placement="left" title="Click aqui si solo va reservar sin pagar: solo si no trajo dinero el Supercliente">
                                 Solo reservar: Sin dinero <i class="fas fa-times-circle"></i>
                             </button>
                         </a>

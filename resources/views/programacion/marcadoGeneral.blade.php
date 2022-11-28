@@ -54,7 +54,7 @@
             </a>
         </div>
         <div class="float-right">
-            <a href="{{route('opcion.principal', $inscripcion->estudiante->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
+            <a href="{{route('opcion.principal', $inscripcion->estudiante->persona->id)}}" class="btn btn-primary text-white tooltipsC mr-2" title="ir a opciones de la persona">
                 Opciones&nbsp;<i class="fas fa-bars"></i>
             </a>
         </div>
@@ -796,6 +796,7 @@
                 $.ajax({
                     url : "../../licencia/editar/"+id_licencia,
                     success : function(data) {
+                        console.log(data);
                             $("#formulario-licencia-editar").empty();
                             $("#licencia-editar").modal("show");
                             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO AULA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -814,7 +815,7 @@
                             $htmledit+="<label for='motivo_id'>Motivo</label></div></div>";
                             $htmledit+="</div>";// fin de row
                             $htmledit+="<div class='row'>";
-                            $htmledit+="<input type='number' name='licencia_id' id='licencia_id' value='"+data.licencia.id+"'>";
+                            $htmledit+="<input type='number' hidden name='licencia_id' id='licencia_id' value='"+data.licencia.id+"'>";
 
                             $htmledit+="<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'><div class='form-floating mb-3 text-gray'>";
                             $htmledit+="<input type='text' autocomplete='off' list='apoderados' name='solicitante' class='form-control @error('solicitante') is-invalid @enderror texto-plomo' id='solicitante'"; 

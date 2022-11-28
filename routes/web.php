@@ -700,7 +700,8 @@ Route::middleware(['auth'])->group(function () {
     /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LICENCIAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::get('licencias', [LicenciaController::class,'index'])->name('licencia.index');
     Route::get('listar/licencias',[LicenciaController::class,'listar'])->name('listar.licencias');
-    Route::get('licencia/editar/{licencia_id}', [LicenciaController::class,'editar'])->name('licencia.editar');
+    Route::get('licenciacom/editar/{licencia}', [LicenciaController::class,'editarcom'])->name('licenciacom.editar');
+    Route::get('licencia/editar/{licencia}', [LicenciaController::class,'editar'])->name('licencia.editar');
     Route::get('licenciacom/crear', [LicenciaController::class,'createcom'])->name('licenciacom.crear');
     Route::get('licenciacom/guardar', [LicenciaController::class,'storecom'])->name('licenciacom.storecom');
     Route::get('licencia/actualizar', [LicenciaController::class,'actualizar'])->name('licencia.actualizar');

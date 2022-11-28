@@ -175,15 +175,22 @@ class LicenciaController extends Controller
         return view('licencia.edit', compact('licencia'));
     }
     // utilizado desde mostrar en marcadoGeneral
-    public function editar($id_lecencia)
+    public function editarcom(Licencia $licencia)
     {
-        //return response()->json($id_lecencia);
-        $licencia = Licencia::find($id_lecencia);
         $motivos=Tipomotivo::findOrFail(4)->motivos;    
         $programacioncom=Programacioncom::findOrFail($licencia->licenciable_id);
         $apoderados=$programacioncom->matriculacion->computacion->persona->apoderados;
         $motivo=Motivo::findOrFail($licencia->motivo_id);
         $data=['motivos'=>$motivos, 'programacioncom'=>$programacioncom,'apoderados'=>$apoderados,'licencia'=>$licencia,'motivo'=>$motivo];
+        return response()->json($data);
+    }
+    public function editar(Licencia $licencia)
+    {
+        $motivos=Tipomotivo::findOrFail(4)->motivos;    
+        $programacion=Programacion::findOrFail($licencia->licenciable_id);
+        $apoderados=$programacion->inscripcione->estudiante->persona->apoderados;
+        $motivo=Motivo::findOrFail($licencia->motivo_id);
+        $data=['motivos'=>$motivos, 'programacion'=>$programacion,'apoderados'=>$apoderados,'licencia'=>$licencia,'motivo'=>$motivo];
         return response()->json($data);
     }
 

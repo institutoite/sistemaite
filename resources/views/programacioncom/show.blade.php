@@ -70,7 +70,7 @@
                                                         $claseBoton.="btn btn-danger";
                                                     }
                                                 }else{
-                                                    if($programa->fecha->isoFormat('DD/MM/YYYY')==$hoy->isoFormat('DD/MM/YYYY')){
+                                                    if($matriculacion->fecha_proximo_pago->isoFormat('DD/MM/YYYY')==$programa->fecha->isoFormat('DD/MM/YYYY')){
                                                         $claseHoy.="bg-warning";
                                                         $claseBotonHoy.="btn btn-secondary";
                                                     }else{
@@ -139,8 +139,9 @@
                 id_seleccionada=$(this).closest('tr').attr('id');
                 console.log(id_seleccionada);
                 $.ajax({
-                    url: '../../fechar/pagocom/proximo/' + id_seleccionada+"/{{$matriculacion}}",
+                    url: '../../fechar/pagocom/proximo/' + id_seleccionada+"/{{$matriculacion->id}}",
                     success: function (result) {
+                        console.log(result);
                         $(".filillas").removeClass("bg-warning");
                         $(".fechar").removeClass("btn-warning");
                         $(".fechar").addClass("btn-primary");

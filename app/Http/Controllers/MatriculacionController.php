@@ -267,11 +267,10 @@ class MatriculacionController extends Controller
 
     public function actualizar_fecha_proximo_pago($programacomSelected,$id){
         $programa=Programacioncom::findOrFail($programacomSelected);
-
         $matriculacion=Matriculacion::findOrFail($id);
         $matriculacion->fecha_proximo_pago=$programa->fecha;
         $matriculacion->save();
-
+        //return response()->json(['p'=>$matriculacion]);
         return response()->json(['mensaje'=>"Fecha proximo pago asignada correctamente"]);
     }
 
