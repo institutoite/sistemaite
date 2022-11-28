@@ -56,7 +56,7 @@ class MatriculacionController extends Controller
 
                 $motivos = Tipomotivo::findOrFail(2)->motivos;
                 $asignaturasFaltantes=$carrera->asignaturas->whereNotIn('id', $ids);
-                return view('matriculacion.create',compact('computacion','asignaturasFaltantes','motivos'));
+                return view('matriculacion.create',compact('computacion','carrera','asignaturasFaltantes','motivos'));
             }
         }
     }
