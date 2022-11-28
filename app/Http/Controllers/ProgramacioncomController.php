@@ -320,7 +320,7 @@ class ProgramacioncomController extends Controller
         $matriculacion=Matriculacion::findOrFail($programacioncom->matriculacion->id);
         $docentes=Docente::join('personas','personas.id','=','docentes.persona_id')
                         //join('estados','estados.id','=','docentes.estado_id')
-                        ->where('docentes.estado','=','activo')
+                        ->where('docentes.estado_id','=',estado('HABILITADO'))
                         ->select('docentes.id','personas.nombre','personas.apellidop')
                         ->get(); 
         $aulas=Aula::all();
