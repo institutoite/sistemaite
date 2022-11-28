@@ -76,7 +76,7 @@ class ClaseController extends Controller
     
 
     public function guardar(Request $request,$programacion_id){
-        dd($request->all());
+        //dd($request->all());
         $clase=new Clase();
         $clase->fecha=$request->fecha;
         $clase->horainicio=$request->horainicio;

@@ -446,7 +446,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/clase/guardar/normal/{progrmacion_id}', 'ClaseController@guardar')->name('clases.guardar');
     Route::post('programa/estado/general/', 'ClaseController@marcadoGeneral')->name('programa.estado.general');
 
-
+    //julio andrade requena
 
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       R O U T E S  C L A S E S C O M         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     Route::get('programacioncom/marcar/{matriculacion}', [ClasecomController::class,'marcadoGeneral'])->name('clases.marcadocom.general');
