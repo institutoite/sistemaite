@@ -49,6 +49,7 @@ class MatriculacionController extends Controller
             }else{
                 
                 $carrera=$computacion->carreras->first();
+                
                 $asignaturas=$carrera->asignaturas;
                 $inscritas =$computacion->matriculaciones;
                 $ids=Arr::pluck($inscritas, 'asignatura_id');

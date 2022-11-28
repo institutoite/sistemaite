@@ -7,7 +7,9 @@
     <section class="content container-fluid">
         <div class="row">
             
-            {{ Breadcrumbs::render('matriculacion.create', $computacion,$carrera,$computacion->persona) }}
+            @if ($carrera)
+                {{ Breadcrumbs::render('matriculacion.create', $computacion,$carrera,$computacion->persona) }}
+            @endif
             
             <div class="col-md-12 mt-3">
                 @includeif('partials.errors')
