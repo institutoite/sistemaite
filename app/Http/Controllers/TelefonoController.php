@@ -34,6 +34,7 @@ class TelefonoController extends Controller
         
        return Telefono::select('id', 'numero', 'parentesco')->where('persona_id', '=', $persona->id);
     }
+    
 
     public function mostrarvista(Persona $persona){
         $apoderados= $persona->apoderados;
@@ -60,6 +61,14 @@ class TelefonoController extends Controller
         $apoderados=Persona::get();
         return view('persona.existente',compact('persona','apoderados'));
     }
+    public function listarApoderados(){
+        $personas=Persona::all();
+        return datatables()->of($personas)
+        ->addColumn('btn', 'persona.apoderadoaction')
+        ->rawColumns(['btn'])
+        ->toJson();
+    }
+
     public function agregarApoderado($persona_id,$apoderado_id){
 
         $estudiante=Persona::findOrFail($persona_id);
