@@ -39,6 +39,7 @@
                 </form>
             </div>
         </div>
+        <a class="btn btn-warning" href="{{route('telefonos.crear',$persona)}}">Omitir<i class="fas fa-arrow-circle-right fa-2x"></i></a>
     </div>
     <div id="sincamera" class="d-none">
         <div class="alert alert-danger" role="alert">
