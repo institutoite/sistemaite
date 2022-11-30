@@ -86,7 +86,7 @@ Route::middleware(['auth'])->group(function () {
         return view('persona.estudiantes');
     })->name('home');
 
-    Route::get('prueba',[TelefonoController::class,'listarApoderados'])->name('prueba');
+    //Route::get('prueba/',[TelefonoController::class,'listarApoderados'])->name('prueba');
     Route::get('/ninacos', function () {
         return view('ninaco.index');
     });
@@ -112,7 +112,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('personas', "PersonaController");
 
-    Route::get('persona/apoderados', 'TelefonoController@listarApoderados')->name('listar.apoderados');
+    Route::get('persona/apoderados/{persona}', 'TelefonoController@listarApoderados')->name('listar.apoderados');
     Route::get('persona/papeles/{persona_id}', 'PersonaController@configurar_papeles')->name('personas.agregar.papel');
     Route::post('guardar/papeles/{persona}', 'PersonaController@guardarNuevoPapel')->name('guardar.nuevo.papel');
 

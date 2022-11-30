@@ -43,7 +43,7 @@
                     "responsive":true,
                     "autoWidth":false,
 
-                   "ajax": "/persona/apoderados",
+                   "ajax": "/persona/apoderados/{{$persona->id}}",
                     "columns": [
                         {data: 'id'},
                         {data: 'nombre'},
@@ -56,6 +56,7 @@
                             "title": "FOTO",
                             "orderable": false,
                         },     
+                     
                         {
                             "name":"btn",
                             "data": 'btn',

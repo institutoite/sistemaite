@@ -62,12 +62,25 @@ class TelefonoController extends Controller
         return view('persona.existente',compact('persona'));
         // return view('persona.existente');
     }
-    public function listarApoderados(){
-        $apoderados=Persona::get();
-        return datatables()->of($apoderados)
-        ->addColumn('btn', 'persona.apoderadoaction')
+    public function listarApoderados(Persona $persona){
+        
+        // $persona = Persona::find($persona);
+        $apoderados=Persona::all();
+        return $persona;
+        // return datatables()
+        //     ->eloquent($query)
+        //     ->addColumn('action', static function (Customers $customer) {
+        
+        return datatables()->eloquent($apoderados)
+        ->addColumn('btn', function (Persona $persona,$apoderados)
+        {
+            return '<a class="btn btn-primary" href="'. route("prueba", ['persona'=>$persona->id,'apoderado'=>$apoderados->id]).'">Seleccionar</a>';
+        })
         ->rawColumns(['btn'])
         ->toJson();
+    }
+    public function prueba($persona,$apoderado){
+        return $persona.$apoderado;
     }
 
     public function agregarApoderado($persona_id,$apoderado_id){
