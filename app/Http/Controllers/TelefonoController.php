@@ -58,12 +58,13 @@ class TelefonoController extends Controller
    
 
     public function apoderadoExistente(Persona $persona){
-        $apoderados=Persona::get();
-        return view('persona.existente',compact('persona','apoderados'));
+        
+        return view('persona.existente',compact('persona'));
+        // return view('persona.existente');
     }
     public function listarApoderados(){
-        $personas=Persona::all();
-        return datatables()->of($personas)
+        $apoderados=Persona::get();
+        return datatables()->of($apoderados)
         ->addColumn('btn', 'persona.apoderadoaction')
         ->rawColumns(['btn'])
         ->toJson();

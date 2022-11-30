@@ -14,9 +14,9 @@
 @stop
 
 @section('content')
+    {{$persona}}
     <table id="apoderados" class="table table-bordered table-hover table-striped">
         <thead class="bg-primary text-center">
-
             <tr>
                 <th>ID</th>
                 <th>NOMBRE</th>
@@ -24,20 +24,7 @@
                 <th>ACCIONESx</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach ($apoderados as $apoderado)
-                <tr>
-                    <td>{{$apoderado->id}}</td>
-                    <td>{{$apoderado->nombre.' '.$apoderado->apellidop.' '.$apoderado->apellidom}}</td>
-                    <td><img width="100" class="img-thumbnail" src="{{URL::to('/').'/'.'storage/'.$apoderado->foto}}" alt=""></td>
-                    <td>
-                        <a href="{{route('agregar.apoderado',['persona_id'=>$persona->id,'apoderado_id'=>$apoderado->id])}}" class="btn btn-outline-primary" title="ir a opciones de la persona">
-                            Seleccionar<i class="fas fa-user-check"></i>
-                        </a>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
+       
     </table>
 @stop
 
@@ -52,29 +39,29 @@
         
         var tabla=$('#apoderados').DataTable(
                 {
-                //     "serverSide": true,
-                //     "responsive":true,
-                //     "autoWidth":false,
+                    "serverSide": true,
+                    "responsive":true,
+                    "autoWidth":false,
 
-                //    "ajax": "{{ url('api/apoderados')}}",
-                    // "columns": [
-                    //     {data: 'id'},
-                    //     {data: 'nombre'},
-                    //     {
-                    //         "name": "foto",
-                    //         "data": "foto",
-                    //         "render": function (data, type, full, meta) {
-                    //             return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
-                    //         },
-                    //         "title": "FOTO",
-                    //         "orderable": false,
-                    //     },     
-                    //     {
-                    //         "name":"btn",
-                    //         "data": 'btn',
-                    //         "orderable": false,
-                    //     },
-                    // ],
+                   "ajax": "/persona/apoderados",
+                    "columns": [
+                        {data: 'id'},
+                        {data: 'nombre'},
+                        {
+                            "name": "foto",
+                            "data": "foto",
+                            "render": function (data, type, full, meta) {
+                                return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
+                            },
+                            "title": "FOTO",
+                            "orderable": false,
+                        },     
+                        {
+                            "name":"btn",
+                            "data": 'btn',
+                            "orderable": false,
+                        },
+                    ],
                     "language":{
                         "url":"https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
                     },  
