@@ -35,7 +35,7 @@
                                 @endif
                         </div>
                     </div>
-
+                    
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group text-sm" > 
                         <div class="input-group mb-2" >
                             <p class="col-3 form-control bg-secondary p-1" for="">Parentesco</p> 

@@ -1173,4 +1173,7 @@ class PersonaController extends Controller
         $data=['persona'=>$persona,'interests'=>$interests,'como'=>$como,'observacion'=>$observacion,'user'=>$user];
         return response()->json($data);
     }
+    public function getPersona(Persona $persona){
+        return response()->json($persona);
+    }
 }

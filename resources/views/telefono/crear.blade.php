@@ -3,10 +3,10 @@
     
 @stop
 
-@section('title', 'Dashboard')
+@section('title', 'Crear apoderado')
 
-@section('content_header')
-@stop
+@section('plugins.Jquery', true)
+@section('plugins.Datatables', true)
 
 @section('content')
     
@@ -22,9 +22,14 @@
                 @endisset
             </div>
             <div class="float-right mr-3">
-                <a href="{{route('apoderado.existente',$persona)}}" class="btn btn-warning btn-sm float-right"  data-placement="left">
+                {{-- <a href="{{route('apoderado.existente',$persona)}}" class="btn btn-warning btn-sm float-right"  data-placement="left">
+                    {{ __('Familiar Existente') }}<i class="fas fa-arrow-circle-right fa-2x"></i>
+                </a> --}}
+                
+                <a href="" class="btn btn-warning btn-sm float-right" id="existente"  data-placement="left">
                     {{ __('Familiar Existente') }}<i class="fas fa-arrow-circle-right fa-2x"></i>
                 </a>
+
             </div>
         </div>
         <div class="card-body">
@@ -102,7 +107,7 @@
                     </div>
                     {{--%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO COMO SE INFORMO  --}}
 
-                    {{--dd($parentesco->parentesco)--}}
+                    
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm" >
                         <div class="input-group mb-2" >
                             <p class="col-3 form-control bg-secondary p-1" for="">Papel*</p> 
@@ -150,15 +155,179 @@
             </form>
         </div>
     </div>
+
+
+    <div class="modal" tabindex="-1" id="modal-existente">
+        <div class="modal-dialog modal-lg modalito">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Seleccione la persona referenciadora
+                    <button class="btn btn-danger close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <table id="personas" class="table table-bordered table-hover table-striped">
+                        <thead class="bg-primary">
+                            <tr>
+                                <th>ID</th>
+                                <th>OLD</th>
+                                <th>NOMBRE</th>
+                                <th>APATERNO</th>
+                                <th>AMATERNO</th>
+                                <th>FOTO</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    pie del modal 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" id="modal-formulario-existente">
+        <div class="modal-dialog modal-lg modalito">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Seleccione la persona referenciadora
+                    <button class="btn btn-danger close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="formapoderado" action="" method="POST">
+                        @csrf 
+                        {{ @method_field('PUT') }}
+                        <input hidden class="form-control mb-3" type="text" name="" value="" id="apoderado_id">
+                        <input hidden class="form-control mb-3" type="text" name="" value="" id="persona_id">
+                        <input class="form-control mb-3" type="text" name="" value="" id="telefono">
+                        
+                        <select name="" id="pariente" class="form-control">
+                            <option value="">Seleccion parentesco</option>
+                            <option value="PAPA" @if(old('parentesco') == 'PAPA') {{'selected'}} @endif>PAPA</option>
+                            <option value="MAMA" @if(old('parentesco') == 'MAMA') {{'selected'}} @endif>MAMA</option>    
+                            <option value="ABUELO" @if(old('parentesco') == 'ABUELO') {{'selected'}} @endif>ABUELO</option>
+                            <option value="ABUELA" @if(old('parentesco') == 'ABUELA') {{'selected'}} @endif>ABUELA</option>
+                            <option value="HERMANO" @if(old('parentesco') == 'HERMANO') {{'selected'}} @endif>HERMANO</option>
+                            <option value="HERMANA" @if(old('parentesco') == 'HERMANA') {{'selected'}} @endif>HERMANA</option>
+                        
+                            <option value="TIO" @if(old('parentesco') == 'TIO') {{'selected'}} @endif>TIO</option>
+                            <option value="TIA" @if(old('parentesco') == 'TIA') {{'selected'}} @endif>TIA</option>
+                        
+                            <option value="ESPOSO" @if(old('parentesco') == 'ESPOSO') {{'selected'}} @endif>ESPOSO</option>
+                            <option value="ESPOSA" @if(old('parentesco') == 'ESPOSA') {{'selected'}} @endif>ESPOSA</option>
+                        
+                            <option value="OTRO" @if(old('parentesco') == 'OTRO') {{'selected'}} @endif>OTRO</option>
+                        </select>
+                        <div class="container-fluid h-100 mt-3"> 
+                            <div class="row w-100 align-items-center">
+                                <div class="col text-center">
+                                    <button id="guardarapoderado" class="btn btn-primary text-white btn-lg">Guardar <i class="far fa-save"></i></button>        
+                                </div>	
+                            </div>
+                        </div>
+
+
+                    </form> 
+                </div>
+                <div class="modal-footer">
+                    pie del modal 
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 @stop
 
 @section('js')
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+    
+    {{-- <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script> --}}
+
+
     <script src="{{asset('dist/js/steepfocus.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
 
     <script>
         $(document).ready(function() {
+            $('#personas').DataTable(
+                {
+                    "serverSide": true,
+                    "responsive":true,
+                    "autoWidth":false,
+                    "ajax": "{{ url('api/referencias') }}",
+                    "columns": [
+                        {data: 'id'},
+                        {data: 'nombre'},
+                        {data: 'apellidop'},
+                        {data: 'apellidom'},
+                        {
+                            "name": "foto",
+                            "data": "foto",
+                            "render": function (data, type, full, meta) {
+                                return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
+                            },
+                            "title": "Image",
+                            "orderable": true,
             
+                        }, 
+                        {
+                            data: 'btn'
+                        },  
+                    ],
+                    "language":{
+                        "url":"https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
+                    },  
+                });
+            $('table').on('click','#ok',function(e) {
+                 persona_id=$(this).closest('tr').children(0).html();
+                    $.ajax({
+                        url:"{{url('persona/get/')}}/"+persona_id,
+                        success: function(persona){
+                            $("#apoderado_id").val(persona.id);
+                            $("#persona_id").val("{{$persona->id}}");
+                            $("#telefono").val(persona.telefono);
+                            $("#modal-formulario-existente").modal("show");
+                        }
+                    })
+                    $("#modal-existente").modal("hide");
+            });
+            
+            $("#existente").on("click", function(e){
+                e.preventDefault();
+                $("#modal-existente").modal("show");
+                
+            })
+            $(document).on("submit","#formapoderado",function(e){
+                e.preventDefault();
+                persona_id=$("#persona_id").val();
+                apoderado_id=$("#apoderado_id").val();
+                telefono=$("#telefono").val();
+                pariente=$("#pariente").val();
+                //console.log(persona_id,apoderado_id);
+                 $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url:"{{url('guardar/apoderado/existente/ajax')}}",
+                    data:{
+                        persona_id:persona_id,
+                        apoderado:apoderado_id,
+                        telefono:telefono,
+                        pariente:pariente,
+                        // parentesco:parentesco,
+                    },
+                    success: function(json){
+                        console.log(json);
+                        
+                    },
+                });
+            });
         } );
     </script>
 @stop

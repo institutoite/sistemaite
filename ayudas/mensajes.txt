@@ -1,0 +1,99 @@
+
+clases de nivelación
+
+trabajamos a medida segun la necesidad del o la estudiante
+explicamos hasta entera comprension 
+generalmente en las vacaciones los nivelamos respecto al curso que acaban de terminar
+y los preparamos para el siguiente curso.
+
+Turno: Mañana y tarde
+
+--------------------------
+costo mensual: 350 Bs.
+Mes 3 veces por semana
+01:30 horas por clase 
+Lunes miercoles y viernes
+o
+Martes jueves y sábado
+--------------------------
+costo Mensual: 420 Bs. 
+Lunes a viernes
+01:00 hora por clase 
+
+-------------------------
+costo Mensual: 550 Bs.
+Mes Lunes a viernes
+01:30 horas por clase 
+
+horarios
+07:30 a 09:00
+09:00 a 10:30
+10:30 a 12:00
+
+12:00 a 15:30
+15:30 a 17:00
+17:00 a 18:30
+
+
+La tecnología Java
+El lenguaje de programación Java
+La plataforma Java
+Tipos de programas en Java
+Compilación y ejecución de programas
+Creación de aplicaciones con el JDK
+Creación de applets con el JDK
+
+Estructura del lenguaje
+Comentarios
+Identificadores
+Palabras clave
+Literales
+Expresiones y operadores
+Variables y tipos de datos
+Bloques y sentencias
+
+Conceptos de la Programación Orientada a Objetos
+Clases y objetos
+Mensaje y métodos
+Encapsulamiento
+Herencia, Superclase y Subclases
+Polimorfismo
+Abstracción
+
+Trabajando con clases y objetos en Java
+Definición de clases
+Constructores y creación de objetos
+Acceso a variables y métodos
+Variables y métodos de clase
+Heredando clases en Java
+Sobrecarga de métodos
+Sobreescritura de métodos
+Clases abstractas
+Interfaces
+
+Paquetes y Modificadores de acceso
+Paquetes
+Modificadores de acceso
+Restricciones del modificador protected
+Ejemplos
+
+Excepciones
+Causa de las excepciones
+Manejo de las excepciones
+Jerarquía de las excepciones
+
+AWT, creación de applets y aplicaciones
+
+Flujos de Entrada/Salida (E/S)
+
+Programación en red con sockets
+Conceptos
+Modelo de red en Java
+Mínimo servidor TCP y mínimo cliente TCP
+
+JDBC
+Conceptos
+
+Servlets
+Conceptos
+

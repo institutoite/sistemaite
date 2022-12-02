@@ -36,14 +36,19 @@
 
     <script>
         $(document).ready(function() {
-        
+        let $apoderado;
         var tabla=$('#apoderados').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
                     "autoWidth":false,
 
-                   "ajax": "/persona/apoderados/{{$persona->id}}",
+                    "ajax":{
+                        url:"/persona/apoderados/{{$persona->id}}",
+                        success:function(json){
+                            console.log(json);
+                        },
+                    },
                     "columns": [
                         {data: 'id'},
                         {data: 'nombre'},
@@ -56,7 +61,7 @@
                             "title": "FOTO",
                             "orderable": false,
                         },     
-                     
+                        
                         {
                             "name":"btn",
                             "data": 'btn',

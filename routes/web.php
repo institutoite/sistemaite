@@ -184,6 +184,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('persona/rapidingo/update/{persona}', [PersonaController::class,'actualizarRapidingo'])->name('personas.update.rapidingo');
     Route::get('persona/editar/rapidingo/{persona}', [PersonaController::class,'editarRapidingo'])->name('personas.editar.rapidingo'); //Falta informar 
     Route::get('potencial/get/{potencial_id}',[PersonaController::class,'personaGet'])->name("persona.get");
+    Route::get('persona/get/{persona}',[PersonaController::class,'getPersona'])->name("get.persona");
+    
+    //Route::get("persona/update/ajax",[PersonaController::class,'updatePersonaAjax'])->name("persona.update.ajax");
 
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%DEUDORES RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     Route::get('deudores/view', [PagoController::class,'deudoresView'])->name('deudores.index');
@@ -697,6 +700,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('apoderado/existente/{persona}', 'TelefonoController@apoderadoExistente')->name('apoderado.existente');
     Route::get('telefono/agregar/{persona_id}/{apoderado_id}', 'TelefonoController@agregarApoderado')->name('agregar.apoderado');
     Route::post('guardar/apoderado/existente', 'TelefonoController@guardarApoderadoExistente')->name('guardar.apoderado.existente');
+    Route::get('guardar/apoderado/existente/ajax', 'TelefonoController@guardarApoderadoExistenteAjax')->name('guardar.apoderado.existente.ajax');
     Route::get('modalidad/cosultar/', 'ModalidadController@consultar')->name('modalidad.consultar');
 
     /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LICENCIAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/

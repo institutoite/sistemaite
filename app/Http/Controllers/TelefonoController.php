@@ -63,19 +63,9 @@ class TelefonoController extends Controller
         // return view('persona.existente');
     }
     public function listarApoderados(Persona $persona){
-        
-        // $persona = Persona::find($persona);
         $apoderados=Persona::all();
-        return $persona;
-        // return datatables()
-        //     ->eloquent($query)
-        //     ->addColumn('action', static function (Customers $customer) {
-        
         return datatables()->eloquent($apoderados)
-        ->addColumn('btn', function (Persona $persona,$apoderados)
-        {
-            return '<a class="btn btn-primary" href="'. route("prueba", ['persona'=>$persona->id,'apoderado'=>$apoderados->id]).'">Seleccionar</a>';
-        })
+        ->addColumn('btn','persona.apoderadoaction')
         ->rawColumns(['btn'])
         ->toJson();
     }
@@ -91,14 +81,30 @@ class TelefonoController extends Controller
     }
 
     public function guardarApoderadoExistente(GuardarApoderadoExistenteRequest $request){
-        $estudiante_id=$request->persona_id;
-        $apoderado_id=$request->apoderado_id;
-        $apoderado=Persona::findOrFail($apoderado_id);
-        $persona=Persona::findOrFail($estudiante_id);
-        $apoderado->telefono=$request->telefono;
-        $apoderado->save();
-        $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
-        return redirect()->Route('telefonos.persona', ['persona' => $persona]);
+            $estudiante_id=$request->persona_id;
+            $apoderado_id=$request->apoderado_id;
+            $apoderado=Persona::findOrFail($apoderado_id);
+            $persona=Persona::findOrFail($estudiante_id);
+            $apoderado->telefono=$request->telefono;
+            $apoderado->save();
+            $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
+
+            return redirect()->Route('telefonos.persona', ['persona' => $persona]);
+        
+    }
+    public function guardarApoderadoExistenteAjax(Request $request){
+            
+       
+            $estudiante_id=$request->persona_id;
+            $apoderado_id=$request->apoderado_id;
+            $apoderado=Persona::findOrFail($apoderado_id);
+            $persona=Persona::findOrFail($estudiante_id);
+            $apoderado->telefono=$request->telefono;
+            $apoderado->save();
+            $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->pariente]);
+
+            return response()->json(['mensaje' =>'Registro guardardo correctamente']);
+        
     }
 
     
