@@ -329,7 +329,7 @@ para observaciones generico
     no esta editando licencias en inscripciones 404 
     los nombres de persona Eduardo y Edson estan cruzados so9lucion modificar el movimineto
     no se esta podiendo descargar contactos de potenciales los crea en Local seria probar en produccion 
-
+    no esta guardando interest no se esta enviando observacion o detalle unicamente ello 
 
 
     con nivel obervabable podemos solucionar dinamismo en las ventanajas de estudiar en ite y tambien en las carreras

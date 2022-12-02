@@ -1,11 +1,12 @@
 @extends('adminlte::page')
 @section('css')
-    
+    {{-- <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}"> --}}
 @stop
 
 @section('title', 'Crear apoderado')
 
 @section('plugins.Jquery', true)
+@section('plugins.Sweetalert2', true)
 @section('plugins.Datatables', true)
 
 @section('content')
@@ -17,17 +18,17 @@
                 
                 @isset($persona->estudiante)
                     <a href="{{route('opcion.principal', $persona->estudiante->id)}}" class="btn btn-success btn-sm float-right"  data-placement="left">
-                    {{ __('Inscribir') }}<i class="fas fa-arrow-circle-right fa-2x"></i>
+                    {{ __('Inscribir ') }}<i class="fas fa-arrow-circle-right fa-2x"></i>
                     </a>
                 @endisset
             </div>
             <div class="float-right mr-3">
-                {{-- <a href="{{route('apoderado.existente',$persona)}}" class="btn btn-warning btn-sm float-right"  data-placement="left">
-                    {{ __('Familiar Existente') }}<i class="fas fa-arrow-circle-right fa-2x"></i>
-                </a> --}}
-                
+           
+                <a href="{{ route('telefonos.persona',$persona) }}" class="btn btn-secondary btn-sm float-right ml-1" data-placement="left">
+                    {{ __('Listar telefonos ') }} <i class="fas fa-phone"></i>
+                </a>
                 <a href="" class="btn btn-warning btn-sm float-right" id="existente"  data-placement="left">
-                    {{ __('Familiar Existente') }}<i class="fas fa-arrow-circle-right fa-2x"></i>
+                    {{ __('Familiar Existente ') }}<i class="fas fa-arrow-circle-right fa-2x"></i>
                 </a>
 
             </div>
@@ -198,9 +199,17 @@
                         @csrf 
                         {{ @method_field('PUT') }}
                         <input hidden class="form-control mb-3" type="text" name="" value="" id="apoderado_id">
-                        <input hidden class="form-control mb-3" type="text" name="" value="" id="persona_id">
-                        <input class="form-control mb-3" type="text" name="" value="" id="telefono">
+                        <input hidden class="form-control mb-3" type="text" name="" value="{{$persona->id}}" id="persona_id">
                         
+                        <label for="pais">Teléfono*</label>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+                            <div class="form-floating mb-3 text-gray">
+                                <input class="form-control mb-3" type="text" name="" value="" id="telefono">
+                                
+                            </div>
+                        </div>
+                        
+                        <label class="text-danger" for="pais">Parentesco*</label>
                         <select name="" id="pariente" class="form-control">
                             <option value="">Seleccion parentesco</option>
                             <option value="PAPA" @if(old('parentesco') == 'PAPA') {{'selected'}} @endif>PAPA</option>
@@ -250,6 +259,7 @@
 
     <script src="{{asset('dist/js/steepfocus.js') }}"></script>
     <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
+    <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
 
     <script>
         $(document).ready(function() {
@@ -288,12 +298,11 @@
                         url:"{{url('persona/get/')}}/"+persona_id,
                         success: function(persona){
                             $("#apoderado_id").val(persona.id);
-                            $("#persona_id").val("{{$persona->id}}");
                             $("#telefono").val(persona.telefono);
                             $("#modal-formulario-existente").modal("show");
                         }
                     })
-                    $("#modal-existente").modal("hide");
+                    //$("#modal-existente").modal("hide");
             });
             
             $("#existente").on("click", function(e){
@@ -317,13 +326,15 @@
                     url:"{{url('guardar/apoderado/existente/ajax')}}",
                     data:{
                         persona_id:persona_id,
-                        apoderado:apoderado_id,
+                        apoderado_id:apoderado_id,
                         telefono:telefono,
                         pariente:pariente,
                         // parentesco:parentesco,
                     },
                     success: function(json){
-                        console.log(json);
+                        $("#modal-existente").modal("hide");
+                        $("#modal-formulario-existente").modal("hide");
+                        mensajePequenio("Apoderado guradado correctamente..",'success', 1000);
                         
                     },
                 });

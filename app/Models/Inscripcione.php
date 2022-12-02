@@ -48,6 +48,7 @@ class Inscripcione extends Model
 		'objetivo' => 'required|min:10',
 		'estudiante_id' => 'required',
 		'modalidad_id' => 'required',
+		'objetivo' => 'required|min:10|max:255',
         'motivo_id' => 'required',
     ];
     protected $perPage = 20;

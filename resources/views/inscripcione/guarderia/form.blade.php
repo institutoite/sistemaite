@@ -35,6 +35,23 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
             <div class="form-floating mb-3 text-gray">
+                @if($errors->has('modalidad_id'))
+                    <span class="text-danger"> {{ $errors->first('modalidad_id')}}</span>
+                @endif
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+            <div class="form-floating mb-3 text-gray">
+                @if($errors->has('motivo_id'))
+                    <span class="text-danger"> {{ $errors->first('motivo_id')}}</span>
+                @endif
+            </div>    
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+            <div class="form-floating mb-3 text-gray">
                 <select class="form-control @error('modalidad_id') is-invalid @enderror" data-old="{{ old('modalidad_id') }}" name="modalidad_id" id="modalidad_id">
                     <option value="" > Seleccione Modalidad </option>
                     @foreach ($modalidades as $modalidad)
@@ -68,6 +85,29 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
             <div class="form-floating mb-3 text-gray">
+                @if($errors->has('fechaini'))
+                    <span class="text-danger"> {{ $errors->first('fechaini')}}</span>
+                @endif
+            </div>    
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+            <div class="form-floating mb-3 text-gray">
+                @if($errors->has('horainicio'))
+                    <span class="text-danger"> {{ $errors->first('hora')}}</span>
+                @endif
+            </div> 
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+            <div class="form-floating mb-3 text-gray">
+                @if($errors->has('horafin'))
+                    <span class="text-danger"> {{ $errors->first('horafin')}}</span>
+                @endif
+            </div>   
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+            <div class="form-floating mb-3 text-gray">
                 @isset($ultima_inscripcion)
                     <input  type="date" name="fechaini" class="form-control @error('fechaini') is-invalid @enderror" value="{{ old('fechaini', $ultima_inscripcion->fechaini->format('Y-m-d') ?? '')}}">    
                 @else
@@ -89,6 +129,39 @@
                 <label for="costo">Hora Fin</label>    
             </div>   
         </div>
+    </div>
+    
+    
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" >
+            <div class="form-floating mb-3 text-gray">
+                @if($errors->has('diasxsemana'))
+                    <span class="text-danger"> {{ $errors->first('diasxsemana')}}</span>
+                @endif
+            </div>   
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" >
+            <div class="form-floating mb-3 text-gray">
+                @if($errors->has('totalhoras'))
+                    <span class="text-danger"> {{ $errors->first('totalhoras')}}</span>
+                @endif
+            </div>    
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" >
+            <div class="form-floating mb-3 text-gray">
+                @if($errors->has('horas_total'))
+                    <span class="text-danger"> {{ $errors->first('horas_total')}}</span>
+                @endif
+            </div> 
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" >
+            <div class="form-floating mb-3 text-gray">
+                @if($errors->has('costo'))
+                    <span class="text-danger"> {{ $errors->first('costo')}}</span>
+                @endif
+            </div>   
+        </div>
+        
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" >
@@ -129,22 +202,11 @@
 <hr>
 
     <input  type="text" name="estudiante_id"  value="{{ $persona->estudiante->id }}" hidden>    
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm">
-            @if($errors->has('modalidad_id'))
-                <span class="text-danger"> {{ $errors->first('modalidad_id')}}</span>
-            @endif
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm">    
-            @if($errors->has('costo'))
-                <span class="text-danger"> {{ $errors->first('costo')}}</span>
-            @endif
-        </div>  
-    </div>
+    
 
 
 
-    <div class="row">
+    {{-- <div class="row">
          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 input-group text-sm">    
             @if($errors->has('fechaini'))
                 <span class="text-danger"> {{ $errors->first('fechaini')}}</span>
@@ -156,11 +218,11 @@
             @endif
         </div>
         
-    </div>
+    </div> --}}
 
   
 
-
+{{-- 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
             @if($errors->has('motivo_id'))
@@ -168,7 +230,7 @@
             @endif
         </div>
     </div>
-  
+   --}}
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">

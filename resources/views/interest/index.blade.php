@@ -195,7 +195,7 @@
                 "info":     true,
                 "createdRow": function( row, data, dataIndex ) {
                     $(row).attr('id',data['id']); 
-                    // $('td', row).eq(0).html(fila++);
+                    $('td', row).eq(2).html(data['descripcion']);
                 },
                 "ajax":{
                         'url':"listar/interests",

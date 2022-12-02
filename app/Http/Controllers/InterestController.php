@@ -46,6 +46,7 @@ class InterestController extends Controller
     {
         $interest = new interest();
         $interest->interest = $request->interest;
+        $interest->descripcion = $request->descripcion;
         $interest->save();
         $interest->usuarios()->attach(Auth::user()->id);
         return redirect()->route('interest.index')

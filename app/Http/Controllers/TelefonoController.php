@@ -93,17 +93,16 @@ class TelefonoController extends Controller
         
     }
     public function guardarApoderadoExistenteAjax(Request $request){
-            
-       
-            $estudiante_id=$request->persona_id;
-            $apoderado_id=$request->apoderado_id;
-            $apoderado=Persona::findOrFail($apoderado_id);
-            $persona=Persona::findOrFail($estudiante_id);
-            $apoderado->telefono=$request->telefono;
-            $apoderado->save();
-            $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->pariente]);
+        
+        $estudiante_id=$request->persona_id;
+        $apoderado_id=$request->apoderado_id;
+        $apoderado=Persona::findOrFail($apoderado_id);
+        $persona=Persona::findOrFail($estudiante_id);
+        $apoderado->telefono=$request->telefono;
+        $apoderado->save();
+        $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->pariente]);
 
-            return response()->json(['mensaje' =>'Registro guardardo correctamente']);
+        return response()->json(['mensaje' =>'Registro guardardo correctamente']);
         
     }
 
