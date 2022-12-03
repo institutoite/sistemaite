@@ -28,9 +28,11 @@ class OpcionController extends Controller
         // $estudiante=Estudiante::findOrFail($estudiante_id);
         $estudiante=$persona->estudiante;
         //dd($estudiante);
-        if(!is_null($estudiante->grados()->first())){ 
-            $anioUltimo = $estudiante->grados()->orderBy('anio', 'desc')->get()->first()->pivot->anio;
-        }
+        //if()
+            if(!is_null($estudiante->grados()->first())){ 
+                $anioUltimo = $estudiante->grados()->orderBy('anio', 'desc')->get()->first()->pivot->anio;
+            }
+
         $colegios=Colegio::all();
         $objetoGrado = new GradoController();
         // $grados = $objetoGrado->gradosAunNoCursados($estudiante_id);

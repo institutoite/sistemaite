@@ -26,6 +26,9 @@
 
 
 {{-- %%%%%%%%%%%%%%  MODALES CREAR Y EDITAR PERSONA DE ESTUDIANTES.BLADE.PHP %%%%%%%%%% --}}
+
+
+    
     <x-createobservation 
         idmodalformulario="modal-agregar-observacion"
         id="editorguardar"
