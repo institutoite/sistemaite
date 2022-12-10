@@ -36,7 +36,7 @@ class ObservacionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create($observable_id, $observable_type)
-    {
+    { 
         return view('observacion.create',compact('observable_id','observable_type'));
     }
 

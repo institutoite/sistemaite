@@ -139,18 +139,27 @@
                 <li>Trabajamos todos los días para fomentar la autonomía del niño, estimulando su creatividad y autoestima, así como la adquisición de valores tales como el respeto, la empatía, la tolerancia, etc. por lo que tenemos en cuenta el principio del aprendizaje a través del juego sustentado siempre en pilares tan importantes como el cariño y el sentimiento de seguridad.</li>
                 <li>Dentro del proyecto pedagógico incluimos, como parte importante en el logro de objetivos globales de la educación infantil, la colaboración y comunicación continuada con las familias, tanto en el proceso de adaptación inicial a la guardería, donde los padres participan activamente, como a posteriori en las reuniones anuales de evaluación del niño, o en el intercambio de información diario.</li>
             </ul>
+            <div class="row">
               @foreach ($observaciones as $observacion)
-                    <p>&nbsp;{!!$observacion->observacion!!}</p>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">  
+                      <div class="card">
+                        <div class="card-body">
+                          {!!$observacion->observacion!!}
+                        </div>
+                      </div>
+                    </div>    
               @endforeach
-        @else
-         <div class="row">
-            <div class="col-6">
-                {{-- {{$observaciones}} --}}
-                @foreach ($observaciones as $observacion)
-                    <p>&nbsp;{!!$observacion->observacion!!}</p>
-                @endforeach
             </div>
-         </div>
+        @else
+                @foreach ($observaciones as $observacion)
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">  
+                    <div class="card">
+                      <div class="card-body">
+                        {!!$observacion->observacion!!}
+                      </div>
+                    </div>
+                  </div>      
+                @endforeach
         @endif
 
       <div class="cs-height_30 cs-height_lg_30"></div>
