@@ -133,7 +133,7 @@ class ProgramacioncomController extends Controller
                         $acuenta = $acuenta - $costo_x_sesion;
                         $total_horas = $total_horas - $hora_x_sesion;
                         $siguiente_sesion= $this->siguienteSesion($matriculacion, $sesion);
-                        if(($siguiente_sesion->dia_id!=$sesion->dia_id)||($siguiente_sesion->id== Sesion::where('matriculacion_id', $matriculacion->id)->get()->first()->id)){
+                        if(($siguiente_sesion->dia_id!=$sesion->dia_id)||($siguiente_sesion->id== Sesioncom::where('matriculacion_id', $matriculacion->id)->get()->first()->id)){
                             $fecha->addDay();
                             while ((!in_array($fecha->isoFormat('dddd'), $vector_dias))||($this->esFeriado($fecha))) {
                                 $fecha->addDay();
