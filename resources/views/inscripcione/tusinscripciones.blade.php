@@ -79,6 +79,7 @@
                     </table>
                     
                     @include('observacion.modalcreate')
+                    @include('matriculacion.modaleditarnotas')
                     {{-- @include('inscripcione.modales') --}}
                     {{-- @include('observacion.modaleditar') --}}
                 </div>
@@ -223,7 +224,14 @@
                 mostrarCrudObservaciones(url);
                 $("#modal-mostrar-observaciones").modal("show");
         });
-       
+    
+        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CALIFICAR MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $('table').on('click', '.editarnotas', function(e) {
+            e.preventDefault();
+            matriculacion_id =$(this).closest('tr').attr('id');
+            console.log(matriculacion_id);
+            $("#modal-editarnotas").modal("show");
+        });
 
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       JS GENERAL       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -39,4 +39,9 @@
     <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarobservacionesmatriculacion" title="Mostrar observaciones">
         <i class="fas fa-comments text-secondary"></i>
     </a>
+    
+    <a href="" class="btn-accion-tabla tooltipsC mr-1 editarnotas" title="Calificar">
+        <i class="fas fa-sort-numeric-up"></i>
+    </a>
+    
 
