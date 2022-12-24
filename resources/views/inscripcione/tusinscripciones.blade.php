@@ -107,6 +107,10 @@
     <script src="{{asset('assets/js/observacion.js')}}"></script>
     
     <script>
+        let ser;
+        let hacer;
+        let saber;
+        let decidir;
      //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR CREAR OBSERVACION  %%%%%%%%%%%%%%%%%%%%%%%%%%%
         CKEDITOR.replace('editorguardar', {
             height: 120,
@@ -204,8 +208,6 @@
             console.log(observacion);
             url="../observacion/actualizar";
             actualizarObservacion(observacion_id,observacion,url)
-            // $("#modal-editar-observacion").modal("hide");
-            // $("#modal-editar-observacion").modal("show");
         });
 
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -229,10 +231,58 @@
         $('table').on('click', '.editarnotas', function(e) {
             e.preventDefault();
             matriculacion_id =$(this).closest('tr').attr('id');
-            console.log(matriculacion_id);
+            $.ajax({
+                url:"{{url('editarnotas')}}",
+                data:{
+                    matriculacion_id:matriculacion_id,
+                },
+                success : function(json) {
+                    ser=$("#matriculacion_id").val(matriculacion_id);
+                    ser=$("#ser").val(json.matriculacion.ser);
+                    hacer=$("#hacer").val(json.matriculacion.hacer);
+                    saber=$("#saber").val(json.matriculacion.saber);
+                    decidir=$("#decidir").val(json.matriculacion.decidir);
+                    
+                },
+            }); 
             $("#modal-editarnotas").modal("show");
         });
 
+        $("#form-editar-nota").on("submit", function( e ) {
+            e.preventDefault();
+            console.log("click");
+            
+                $.ajax({
+                    url : "{{url('actualizarnota')}}",
+                    data : $(this).serialize(),
+                    success : function(json) {
+                        console.log(json);
+                        $("#modal-editarnotas").modal("hide");
+                        MOSTRARMENSAJE
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                });
+        });
+
+         // if (json.errores) {
+        //     $(".error").html(json.errores.observacion);
+        //     $(".diverror").removeClass('d-none');
+        // } else {
+            
+        //     const Toast = Swal.mixin({
+        //         toast: true,
+        //         position: 'top-end',
+        //         showConfirmButton: false,
+        //         timer: 3000,
+        //     })
+        //     Toast.fire({
+        //         type: 'success',
+        //         title: "Guardado corectamente: " + json.mensaje,
+        //     })
+        //     $("#modal-editar-observacion").modal("hide"); 
+        // }
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       JS GENERAL       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/

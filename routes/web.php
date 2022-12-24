@@ -581,7 +581,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('reservar/matriculacion/{matriculacion}', [MatriculacionController::class,'reservar'])->name('reservar.matriculacion');
     Route::get('darbaja/matriculacion',[MatriculacionController::class,'darbaja'])->name('matriculacion.darbaja');
     Route::get('daralta/matriculacion',[MatriculacionController::class,'daralta'])->name('matriculacion.daralta');
+    Route::get('editarnotas',[MatriculacionController::class,'editarNotas'])->name('matriculacion.editarnotas');
     Route::get('fechar/pagocom/proximo/{fecha}/{matriculacion}',[MatriculacionController::class,'actualizar_fecha_proximo_pago'])->name('set.fecha.proximo.pagocom');
+    Route::get('actualizarnota',[MatriculacionController::class,'actualizarNotas'])->name('notas.actualizar');
     // Route::get('gestiones/editar78', [GestionController::class, 'edition'])->name('gestion.editar');
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  TIPOMOTIVOS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -800,6 +802,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('observacion/create/{observable_id}/{observable_type}',[ObservacionController::class,'create'])->name('observacion.create');
     Route::get('observacion/editar',[ObservacionController::class,'edit'])->name('observacion.editar');
     Route::get('observacion/actualizar',[ObservacionController::class,'update'])->name('observacion.actualizar');
+    
     Route::get('darbaja/observacion',[ObservacionController::class,'darbaja'])->name('observacion.darbaja');
     Route::get('daralta/observacion',[ObservacionController::class,'daralta'])->name('observacion.daralta');
     Route::get('observacion/guardar',[ObservacionController::class,'GuardarObservacion'])->name('observacion.guardar');

@@ -112,10 +112,14 @@ class MatriculacionController extends Controller
         $matriculacion->totalhoras=$request->totalhoras;
         $matriculacion->vigente=1;
         $matriculacion->condonado=0;
+
+        $matriculacion->hacer=0;
+        $matriculacion->saber=0;
+        $matriculacion->decidir=0;
+        $matriculacion->calificacion=0;
+        
         $matriculacion->motivo_id=$request->motivo_id;
-
         $matriculacion->save();
-
         $nivel=Nivel::findOrFail(6);
         $aulas = Aula::get();
         $docentes = $nivel->docentes;
@@ -195,6 +199,23 @@ class MatriculacionController extends Controller
         $clasesConsumidas=count($programacioncoms->where('estado_id','<>',estado('INDEFINIDO')));
         $ultimaclasepasada=$programacioncoms->where('estado_id','<>',estado('INDEFINIDO'))->max();
         return view('matriculacion.configurarupdate', compact('ultimaclasepasada','computacion','matriculacion', 'aulas', 'docentes','dias','programacioncoms','clasesConsumidas'));
+    }
+    public function actualizarNotas(Request $request)
+    {
+        $matriculacion = Matriculacion::findOrFail($request->matriculacion_id);
+        $matriculacion->ser=$request->ser;
+        $matriculacion->hacer=$request->hacer;
+        $matriculacion->saber=$request->saber;
+        $matriculacion->decidir=$request->decidir;
+        $matriculacion->save();
+        //$matriculacion->calificacion=$request->calificacion;
+        return response()->json(['mensaje' => "la nota fue actualizada correctamente"]);
+        // return response()->json(['mensaje' => $matriculacion]);
+    }
+    public function editarNotas(Request $request)
+    {
+        $matriculacion=Matriculacion::findOrFail($request->matriculacion_id);
+        return response()->json(["matriculacion"=>$matriculacion]);
     }
 
     /**
