@@ -38,12 +38,17 @@ class ProgramacioncomController extends Controller
     public function editar(Request $request)
     {
 
+        
+       
+
         //$programacioncom = Programacioncom::findOrFail(3);
         $programacioncom = Programacioncom::findOrFail($request->id);
         $nivel = Nivel::findOrFail(6);
-        $docentes = $nivel->docentes;
+        // $docentes = $nivel->docentes;
+        $docentes=Docente::all();
         $aulas= Aula::all();
         $estados=Estado::all();
+
         $data=['programacioncom'=>$programacioncom,'docentes'=>$docentes,'aulas'=>$aulas,'estados'=>$estados];
         return response()->json($data);
     }

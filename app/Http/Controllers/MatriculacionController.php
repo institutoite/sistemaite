@@ -207,6 +207,7 @@ class MatriculacionController extends Controller
         $matriculacion->hacer=$request->hacer;
         $matriculacion->saber=$request->saber;
         $matriculacion->decidir=$request->decidir;
+        $matriculacion->calificacion=$request->ser*20/100 +$request->hacer*20/100+$request->saber*40/100+$request->decidir*20/100;
         $matriculacion->save();
         //$matriculacion->calificacion=$request->calificacion;
         return response()->json(['mensaje' => "la nota fue actualizada correctamente"]);
@@ -329,7 +330,7 @@ class MatriculacionController extends Controller
             $matriculacionesVigentes=Matriculacion::join('asignaturas','asignaturas.id','=','matriculacions.asignatura_id')        
             ->join('estados','estados.id','matriculacions.estado_id')
             ->where('computacion_id','=',$computacion->id)
-            ->select('matriculacions.id','vigente','costo','asignatura','fecha_proximo_pago','estado')
+            ->select('matriculacions.id','vigente','costo','asignatura','fecha_proximo_pago','estado','calificacion')
             ->get();
         }
         return datatables()->of($matriculacionesVigentes)

@@ -614,7 +614,7 @@
 
                             //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                             $html+="<input id='matriculacion_id'  type='text' hidden readonly name='inscripcione_id' value='"+data.programacioncom.matriculacion_id +"'>";
-                            $html+="<input id='programacioncom_id'  type='text' readonly name='programacion_id' value='"+data.programacioncom.id +"'>";
+                            $html+="<input id='programacioncom_id'  type='text' hidden readonly name='programacion_id' value='"+data.programacioncom.id +"'>";
                             //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CAMPO OCULTO DE DOCENTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                             $html+="<div class='row'>";
                             $html+="<div class='col-xs-12 col-sm-12 col-md-6 col-lg-4'>";
@@ -623,9 +623,9 @@
                             
                             for (let j in data.docentes) {
                                 if(data.docentes[j].id==data.programacioncom.docente_id){
-                                    $html+="<option  value='"+data.docentes[j].id +"' selected >"+data.docentes[j].nombre+"</option>";
+                                    $html+="<option  value='"+data.docentes[j].id +"' selected >"+data.docentes[j].nombrecorto+"</option>";
                                 }else{
-                                    $html+="<option  value='"+data.docentes[j].id +"'>"+data.docentes[j].nombre+"</option>";
+                                    $html+="<option  value='"+data.docentes[j].id +"'>"+data.docentes[j].nombrecorto+"</option>";
                                 }
                             }
                             $html+="</select>";                

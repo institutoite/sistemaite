@@ -51,6 +51,30 @@
                         <td>Modalidad</td>
                         <td>{{$matriculacion->asignatura->asignatura}}</td>
                     </tr>
+                    <tr>
+                        <td>Ser</td>
+                        <td>{{$matriculacion->ser}}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Hacer</td>
+                        <td>{{$matriculacion->hacer}}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Saber</td>
+                        <td>{{$matriculacion->saber}}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Decidir</td>
+                        <td>{{$matriculacion->decidir}}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Calificacion</td>
+                        <td>{{$matriculacion->calificacion}}</td>
+                    </tr>
                     
                     <tr>
                         <td>Creado</td>

@@ -108,13 +108,13 @@
     <div class="modal-dialog modal-xl modalito">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                EDITAR PROGRAMACION
+                EDITAR CLASE
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="card card-primary">
                     <div class="card-header bg-primary">
-                        <span class="card-title">Actualizar Programacion</span>
+                        <span class="card-title">Actualizar Clase</span>
                     </div>
                     <div class="card-body">
                         {{-- <form method="POST" action="{{ route('programacions.update', $programacion->id) }}"  role="form" enctype="multipart/form-data"> --}}

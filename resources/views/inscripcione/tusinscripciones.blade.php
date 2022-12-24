@@ -70,6 +70,7 @@
                                 <th>Objetivo</th>
                                 <th>acuenta</th>
                                 <th>costo</th>
+                                <th>Nota</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
@@ -105,6 +106,7 @@
     <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
     <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
     <script src="{{asset('assets/js/observacion.js')}}"></script>
+    <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
     
     <script>
         let ser;
@@ -237,9 +239,9 @@
                     matriculacion_id:matriculacion_id,
                 },
                 success : function(json) {
-                    ser=$("#matriculacion_id").val(matriculacion_id);
-                    ser=$("#ser").val(json.matriculacion.ser);
-                    hacer=$("#hacer").val(json.matriculacion.hacer);
+                    $("#matriculacion_id").val(matriculacion_id);
+                    $("#ser").val(json.matriculacion.ser);
+                    $("#hacer").val(json.matriculacion.hacer);
                     saber=$("#saber").val(json.matriculacion.saber);
                     decidir=$("#decidir").val(json.matriculacion.decidir);
                     
@@ -258,7 +260,7 @@
                     success : function(json) {
                         console.log(json);
                         $("#modal-editarnotas").modal("hide");
-                        MOSTRARMENSAJE
+                        mensajeGrande(json.mensaje,"success",2000)
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
@@ -470,6 +472,7 @@
                         {data:'asignatura'},
                         {data:'costo'},
                         {data:'fecha_proximo_pago'},
+                        {data:'calificacion'},
                         {
                             "name":"btn",
                             "data": 'btn',

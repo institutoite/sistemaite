@@ -104,7 +104,7 @@ class ClasecomController extends Controller
         //$request->id=1;
         $clasecom=Clasecom::findOrFail($request->id);
         $docentes = Docente::join('personas', 'personas.id', '=', 'docentes.persona_id')
-        ->where('docentes.estado', '=', 'activo')
+        ->where('docentes.estado_id', '=', estado("HABILITADO"))
             ->select('docentes.id', 'personas.nombre', 'personas.apellidop')
             ->get();
         $programacom = $clasecom->programacioncom;
@@ -118,7 +118,7 @@ class ClasecomController extends Controller
     {
         $clasecom = Clasecom::find($id);
         $docentes = Docente::join('personas', 'personas.id', '=', 'docentes.persona_id')
-        ->where('docentes.estado', '=', 'activo')
+        ->where('docentes.estado_id', '=', estado("HABILITADO"))
             ->select('docentes.id', 'personas.nombre', 'personas.apellidop')
             ->get();
         $programacioncom=$clasecom->programacioncom;
