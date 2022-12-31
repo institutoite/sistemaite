@@ -595,12 +595,15 @@ class ProgramacionController extends Controller
         $estudiante = Estudiante::findOrFail($inscripcion->estudiante_id);
         $persona = $estudiante->persona;
         $colegio=Colegio::find($estudiante->grados->last()->pivot->colegio_id);
+        //$grado=Grado::find($estudiante->grados->last()->pivot->grado_id);
+        $dias=$inscripcion->dias;
         $usuario=$inscripcion->usuarios->first();
         $modalidad=$inscripcion->modalidad;
+        $edad = Carbon::parse($persona->fechanacimiento)->age; 
         $nivel=Nivel::findOrFail($estudiante->grados->last()->nivel_id);
         $grado=Grado::findOrFail($estudiante->grados->last()->pivot->grado_id);
         $pago=$inscripcion->pagos->sum('monto');
-        $dompdf = PDF::loadView('programacion.reporte', compact('grado','nivel','modalidad','usuario','programacion','persona','estudiante','persona','colegio','inscripcion','pago'));
+        $dompdf = PDF::loadView('programacion.reporte', compact('grado','nivel','modalidad','usuario','programacion','persona','estudiante','persona','colegio','inscripcion','pago','dias','edad'));
         /**entrae a la persona al cual corresponde esta inscripcion */
         $fecha_actual = Carbon::now();
         $fecha_actual->isoFormat('DD-MM-YYYY-HH:mm:ss');

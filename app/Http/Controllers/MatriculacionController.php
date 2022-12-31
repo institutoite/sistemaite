@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\ClasecomController;
 
 use Illuminate\Http\Request;
 use App\Models\Computacion;
@@ -25,6 +26,8 @@ use Illuminate\Support\Facades\Config;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+
+use Carbon\Carbon;
 
 class MatriculacionController extends Controller
 {
@@ -213,9 +216,40 @@ class MatriculacionController extends Controller
         return response()->json(['mensaje' => "la nota fue actualizada correctamente"]);
         // return response()->json(['mensaje' => $matriculacion]);
     }
-    public function editarNotas(Request $request)
+    // public function editarNotas(Request $request)
+    public function editarNotas()
     {
-        $matriculacion=Matriculacion::findOrFail($request->matriculacion_id);
+
+        $clasecom=new ClasecomController();
+        //$matriculacion=Matriculacion::findOrFail($request->matriculacion_id);
+        $matriculacion=Matriculacion::findOrFail(3);
+        $faltas=$clasecom->CantidadDeFaltasCom($matriculacion);
+        $fechaDeberiaTerminar = $matriculacion->fechafin;
+        $fechaTerminaRealmente = Carbon::now();
+        
+        if($fechaTerminaRealmente>$fechaDeberiaTerminar){
+            $atraso=$fechaTerminaRealmente->diffInDays($fechaDeberiaTerminar);
+        }else{
+            $atraso=(-1)*$fechaTerminaRealmente->diffInDays($fechaDeberiaTerminar);
+        }
+
+        
+        
+        $licencias=$clasecom->CantidadDeLicenciasCom($matriculacion);
+
+        if($atraso>0)
+            $decidir=100-$faltas*10-$atraso*10-$licencias*5;
+        else {
+            $decidir=100-$faltas*10-$licencias*5;
+        }
+        if($decidir<0){
+            $decidir=0;
+        }
+
+        //return response()->json($decidir);
+
+        $matriculacion->decidir=$decidir;
+        $matriculacion->save();
         return response()->json(["matriculacion"=>$matriculacion]);
     }
 
@@ -227,9 +261,6 @@ class MatriculacionController extends Controller
      */
     public function destroy($id)
     {
-        
-        //return response()->json(['message' => $id]);
-        // $matriculacion = $matriculacion::findOrFail($id);
         $matriculacion = Matriculacion::findOrFail($id);
         $matriculacion->delete();
         return response()->json(['message' => 'Registro Eliminado']);

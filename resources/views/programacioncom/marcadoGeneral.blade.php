@@ -13,7 +13,6 @@
 @section('plugins.Datatables', true)
 
 
-
 @if ($dias_que_faltan_para_pagar<0)
     @php $clase="dias-negativos" @endphp
 @else
@@ -68,6 +67,23 @@
                     </div>
                     <div class="container-fluid mt-2">
                         <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-info"><i class="fas fa-tasks"></i></span>
+                                    <div class="info-box-content">
+                                        MOTIVO: {!!$matriculacion->motivo->motivo!!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-info"><i class="fas fa-check-double"></i></span>
+                                    <div class="info-box-content">
+                                        ASIGNATURA: {!!$matriculacion->asignatura->asignatura !!}
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                                 <div class="info-box">
                                     <span class="info-box-icon bg-info"><i class="fas fa-user-graduate text-white"></i></span>
@@ -125,27 +141,31 @@
                             @endif
 
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 text-center">
+                                    
                                     <div class="card">
                                         <div class="card-header {{$clase}}">
                                             PAGOS
                                         </div>
                                         <div class="card-body">
-                                            <table class="table table-bordered table-borderless table-hover bg-white">
-                                                <tbody>    
-                                                    <tr class="">
-                                                        <td><strong>COSTO</strong></td>
-                                                        <td><strong>{{'Bs. '. floor($matriculacion->costo)}}</strong></td>
-                                                    </tr>
-                                                    <tr class="">
-                                                        <td><strong>PAGOS</strong></td>
-                                                        <td><strong>{{'Bs. '.$pago }}</strong></td>
-                                                    </tr>
-                                                    <tr class="">
-                                                        <td><strong>DEBE</strong></td>
-                                                        <td> <strong>Bs. {{$matriculacion->costo-$pago}}</strong></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                            @can('reporte pagos', $pago)
+                                                <table class="table table-bordered table-borderless table-hover bg-white">
+                                                    <tbody>    
+                                                        <tr class="">
+                                                            <td><strong>COSTO</strong></td>
+                                                            <td><strong>{{'Bs. '. floor($matriculacion->costo)}}</strong></td>
+                                                        </tr>
+                                                        <tr class="">
+                                                            <td><strong>PAGOS</strong></td>
+                                                            <td><strong>{{'Bs. '.$pago }}</strong></td>
+                                                        </tr>
+                                                        <tr class="">
+                                                            <td><strong>DEBE</strong></td>
+                                                            <td> <strong>Bs. {{$matriculacion->costo-$pago}}</strong></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            @endcan
+                                            
                                         </div>
                                     </div>
                             </div> 

@@ -79,14 +79,14 @@ Route::get('/',[HomeController::class, 'index']);
 Route::get('interests/get', [InterestController::class,'getParaHome'])->name('interest.para.home');
 Route::get('nivel/mostrar/{nivel}',[NivelController::class,'show'])->name("nivel.mostrar");
 Route::get('interes/mostrar/{interest}',[InterestController::class,'show'])->name("interest.show");
-
+Route::get('prueba',[MatriculacionController::class,'editarNotas'])->name('prueba');
 Route::middleware(['auth'])->group(function () {
 
      Route::get('/home',function(){
         return view('persona.estudiantes');
     })->name('home');
 
-    //Route::get('prueba/',[TelefonoController::class,'listarApoderados'])->name('prueba');
+    
     Route::get('/ninacos', function () {
         return view('ninaco.index');
     });

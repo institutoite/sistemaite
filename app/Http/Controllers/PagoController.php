@@ -28,7 +28,8 @@ class PagoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:Listar Pagos')->only("index","detallar","show","mostrar","deudoresInscripcion","deudoresMatriculacion","deudoresView","listarPagos","pagoInscripcionesView","pagoModelo",);
+        $this->middleware('can:Listar Pagos')->only("index","detallar","show","mostrar","deudoresInscripcion","deudoresMatriculacion","deudoresView","listarPagos");
+        $this->middleware('can:Reporte Pagos')->only("pagoInscripcionesView","pagoModelo");
         $this->middleware('can:Crear Pagos')->only("create","store","crear","guardar");
         $this->middleware('can:Editar Pagos')->only("edit","editar","edicion","update","actualizar");
         $this->middleware('can:Eliminar Pagos')->only("destroy");

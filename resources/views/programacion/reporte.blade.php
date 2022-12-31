@@ -212,10 +212,18 @@
             <td class="dato">{{$grado->grado}}</td>
         </tr>
         <tr>
-            <td class="titulo">Requerimiento</td>
-            <td class="dato" colspan="3">{!! strip_tags($inscripcion->objetivo).$pago."/".$inscripcion->costo!!}</td>
-            <td class="titulo">FechaPago</td>
+            <td class="titulo">Edad</td>
+            <td class="dato" colspan="2">{!! $edad !!} años</td>
+            <td class="titulo" colspan="2">FechaPago</td>
             <td class="dato">{{$inscripcion->fecha_proximo_pago->isoFormat('D-M-Y')}}</td>
+        </tr>
+        <tr>
+            <td class="titulo">Objetivo</td>
+            <td class="dato" colspan="5">{!! strip_tags($inscripcion->objetivo).$pago."/".$inscripcion->costo!!}</td>
+        </tr>
+        <tr>
+            <td class="titulo">Motivo</td>
+            <td class="dato" colspan="5">{!! $inscripcion->motivo->motivo !!}</td>
         </tr>
     </tbody>
    </table>

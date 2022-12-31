@@ -61,6 +61,23 @@
     </div>
     <div class="card-body">
         <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info"><i class="fas fa-tasks"></i></span>
+                    <div class="info-box-content">
+                        OBJETIVO: {!!$inscripcion->objetivo!!}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info"><i class="fas fa-check-double"></i></span>
+                    <div class="info-box-content">
+                        MOTIVO: {!!$inscripcion->motivo->motivo !!}
+                    </div>
+                </div>
+            </div>
+                
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="info-box">
                     <span class="info-box-icon bg-info"><i class="fas fa-user-graduate"></i></span>
@@ -118,29 +135,31 @@
     @endif
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                <div class="card text-center">
-                    <div class="card-header text-white {{$clase}}">
-                        PAGOS
+                @can('Listar pago', $pago)
+                    <div class="card text-center">
+                        <div class="card-header text-white {{$clase}}">
+                            PAGOS
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered table-hover">
+                                <tbody class="" >    
+                                    <tr class="">
+                                        <td><strong>COSTO</strong></td>
+                                        <td><strong>{{'Bs. '. floor($inscripcion->costo)}}</strong></td>
+                                    </tr>
+                                    <tr class="">
+                                        <td><strong>PAGOS</strong></td>
+                                        <td><strong>{{'Bs. '.$pago }}</strong></td>
+                                    </tr>
+                                    <tr class="">
+                                        <td><strong>DEBE</strong></td>
+                                        <td> <strong>Bs. {{$inscripcion->costo-$pago}}</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <table class="table table-bordered table-hover">
-                            <tbody class="" >    
-                                <tr class="">
-                                    <td><strong>COSTO</strong></td>
-                                    <td><strong>{{'Bs. '. floor($inscripcion->costo)}}</strong></td>
-                                </tr>
-                                <tr class="">
-                                    <td><strong>PAGOS</strong></td>
-                                    <td><strong>{{'Bs. '.$pago }}</strong></td>
-                                </tr>
-                                <tr class="">
-                                    <td><strong>DEBE</strong></td>
-                                    <td> <strong>Bs. {{$inscripcion->costo-$pago}}</strong></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                @endcan
             </div> 
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 text-center">
                 <div class="card">

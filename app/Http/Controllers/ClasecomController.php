@@ -180,15 +180,34 @@ class ClasecomController extends Controller
         
         $pago=$matriculacion->pagos->sum('monto');
         $indefinido=$matriculacion->programacionescom->where('estado_id',estado("INDEFINIDO"))->count();
-        $presentes = $matriculacion->programacionescom->where('estado_id',estado("FINALIZADO"))->count();
-        $faltas = $matriculacion->programacionescom->where('estado_id',estado("FALTA"))->count();
-        $congelados = $matriculacion->programacionescom->where('estado_id',estado("CONGELADO"))->count();
-        $licencias = $matriculacion->programacionescom->where('estado_id',estado("LICENCIA"))->count();
+        
+        $presentes = $this->CantidadDePresentesCom($matriculacion);
+        $faltas = $this->CantidadDeFaltasCom($matriculacion);
+        $congelados = $this->CantidadDeCongeladosCom($matriculacion);
+        $licencias = $this->CantidadDeLicenciasCom($matriculacion);
+
         $persona = $matriculacion->computacion->persona;
 
         return view('programacioncom.marcadoGeneral',compact('programaciones', 'faltas', 'presentes', 'licencias', 'pago','persona', 'matriculacion', 'dias_que_faltan_para_pagar'));
         //return redirect()->route('clases.marcado.general',$inscripcion_id)->with('programaciones', 'programacionesHoy', 'faltas', 'presentes', 'licencias', 'pago', 'inscripcion','dias_que_faltan_para_pagar');
     }
+
+    public function CantidadDePresentesCom($matriculacion){
+        return $matriculacion->programacionescom->where('estado_id',estado("FINALIZADO"))->count();
+    }
+    public function CantidadDeFaltasCom($matriculacion){
+        return $matriculacion->programacionescom->where('estado_id',estado("FALTA"))->count();
+    }
+
+    public function CantidadDeCongeladosCom($matriculacion){
+        return $matriculacion->programacionescom->where('estado_id',estado("CONGELADO"))->count();
+    }
+    public function CantidadDeLicenciasCom($matriculacion){
+        return $matriculacion->programacionescom->where('estado_id',estado("LICENCIA"))->count();
+    }
+
+
+
     public function marcadoRapido($programacioncom_id){
         $programa = Programacioncom::findOrFail($programacioncom_id);
         $clase=new Clasecom();

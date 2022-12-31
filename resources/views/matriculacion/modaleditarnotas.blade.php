@@ -36,7 +36,7 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
                                 <div class="form-floating mb-3 text-gray">
-                                    <input class="form-control" type="text" name="decidir" id="decidir">
+                                    <input class="form-control" readonly type="text" name="decidir" id="decidir">
                                     <label for="grado_id">Alfa</label>
                                 </div>  
                             </div>

@@ -322,8 +322,6 @@ para observaciones generico
     no esta creando observaciones en inscripcines hay que agregar papel de computacion para solucionar el problema 
     agreagar boton next configurar matriculacion 
     
-
-    
     no esta guardando modalidades en local ya esta guardando 
     Falta 
     no esta editando licencias en inscripciones 404 
@@ -331,8 +329,14 @@ para observaciones generico
     no se esta podiendo descargar contactos de potenciales los crea en Local seria probar en produccion 
     no esta guardando interest no se esta enviando observacion o detalle unicamente ello 
 
-
     con nivel obervabable podemos solucionar dinamismo en las ventanajas de estudiar en ite y tambien en las carreras
+
+
+    Consulta de alumnos de un profesor para cierto dia 
+    consulta para cupos por horarios de matematicas 
+    cupos para computacion por carrera
+    
+
 
 
 
