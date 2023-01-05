@@ -555,7 +555,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('listar/carreras', [CarreraController::class,'listar'])->name('carrera.ajax');
     //Route::resource('carrera', "CarreraController")->names('carrera');
 
-
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%MATRICULACION  RUTAS  %%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::get('matriculacion/create/{computacion}/{carrera}',[MatriculacionController::class,'create'])->name('matriculacion.create');
     Route::get('miscarreras/{computacion}', [MatriculacionController::class, 'misCarreras'])->name('miscarreras.listar');
@@ -595,7 +594,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('eliminar/tipomotivo/{tipomotivo}',[TipomotivoController::class,'destroy'])->name('eliminar.tipomotivo');
     Route::get('tipomotivo/create',[TipomotivoController::class,'create'])->name('tipomotivo.create');
     Route::post('tipomotivo/guardar',[TipomotivoController::class,'store'])->name('tipomotivo.store');
-
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  TIPOFILES %%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::get('tipofiles', [TipofileController::class,'index'])->name('tipofile.index');

@@ -79,6 +79,7 @@ class InscripcioneController extends Controller
         //desde el menu puede enviar el objeto persona a create:
         return view('inscripcione.create', compact('modalidades','motivos'));
     }
+    
     public function configurarView($inscripcion_id)
     {
         $inscripcion=Inscripcione::findOrFail($inscripcion_id);
@@ -92,10 +93,8 @@ class InscripcioneController extends Controller
         return view('inscripcione.configurar', compact('nivel','inscripcion','materias','aulas','docentes','dias','tipo','programacion'));
     }
 
-
-
     public function UltimaInscripcion(Persona $persona){
-        return Inscripcione::where('estudiante_id','=',$persona->id)->orderBy('id','desc')->first();
+        return Inscripcione::where('estudiante_id','=',$persona->estudiante->id)->orderBy('id','desc')->first();
     }
     public function UltimoNivel(Persona $persona){
         $ultima_inscripcion=$this->UltimaInscripcion($persona);
@@ -244,19 +243,45 @@ class InscripcioneController extends Controller
     public function edit($id)
     {
         $inscripcione = Inscripcione::find($id);
+        $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcione->modalidad_id)->nivel_id);
+
         $persona=$inscripcione->estudiante->persona;
         $ultima_inscripcion=$this->UltimaInscripcion($persona);
         $ultimo_nivel= $this->ultimoNivel($persona);
+        //dd($persona);
+        // if($ultima_inscripcion==null){
+        //     $ultima_inscripcion=$inscripcione;
+        // }
 
-        if($ultima_inscripcion==null){
-            $ultima_inscripcion=$inscripcione;
+
+        if($ultima_inscripcion!=null)        
+            $ultimo_nivel=Nivel::findOrFail(Modalidad::findOrFail($ultima_inscripcion->modalidad_id)->nivel_id);
+        else {
+            $ultimo_grado=$persona->estudiante->grados->first();
+            
+            if(empty($ultimo_grado->nivel)){
+                return redirect()->route('gestion.create',$persona->estudiante->id);
+            }else{
+                $ultimo_nivel=$ultimo_grado->nivel;
+            }
         }
-
+        
+        
         $modalidades = $ultimo_nivel->modalidades;
         $motivos = Tipomotivo::findOrFail(1)->motivos;
         $estados=Estado::get();
         $editando=true;
-        return view('inscripcione.edit', compact('editando','inscripcione','persona','estados', 'ultima_inscripcion','modalidades','motivos'));
+        if ($nivel->nivel=='GUARDERIA'){
+            $FACTORGUARDERIA=Constante::where('constante',"FACTORGUARDERIA")->first();
+            $FACTORCOSTOHORAGUARDERIA=Constante::where('constante',"FACTORCOSTOHORAGUARDERIA")->first();
+            $FACTORGUARDERIAMENOR111=Constante::where('constante',"FACTORGUARDERIAMENOR111")->first();
+            $FACTORGUARDERIAMAYOR111=Constante::where('constante',"FACTORGUARDERIAMAYOR111")->first();
+            //return view('inscripcione.guarderia.create', compact('modalidades', 'motivos','persona','ultima_inscripcion',));
+            return view('inscripcione.guarderia.edit', compact('editando','inscripcione','estados','persona','modalidades','ultima_inscripcion','motivos','FACTORGUARDERIA','FACTORCOSTOHORAGUARDERIA','FACTORGUARDERIAMENOR111','FACTORGUARDERIAMAYOR111')); 
+        }else{
+             return view('inscripcione.edit', compact('editando','inscripcione','persona','estados', 'ultima_inscripcion','modalidades','motivos')); 
+        }
+       
     }
 
     /**
@@ -269,6 +294,7 @@ class InscripcioneController extends Controller
     public function update(Request $request, Inscripcione $inscripcione)
     {
         request()->validate(Inscripcione::$rules);
+        $datos=$request->all();
         $inscripcione->fechaini = $request->fechaini;
         $inscripcione->totalhoras = $request->totalhoras;
         $inscripcione->costo = $request->costo;
@@ -289,7 +315,15 @@ class InscripcioneController extends Controller
         $tipo='actualizando';
         $programacion=$inscripcione->programaciones;
         $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcione->modalidad_id)->nivel_id);
-        return view('inscripcione.configurar', compact('nivel','inscripcion', 'materias', 'aulas', 'docentes','tipo','dias','programacion'));
+
+        //dd($nivel);
+
+        if ($nivel->nivel=='GUARDERIA'){
+            return view('inscripcione.guarderia.config', compact('datos','nivel','inscripcion', 'materias', 'aulas', 'docentes','tipo', 'dias', 'programacion')); 
+        }else{
+            return view('inscripcione.configurar', compact('nivel','inscripcion', 'materias', 'aulas', 'docentes','tipo', 'dias', 'programacion')); 
+        }
+        //return view('inscripcione.configurar', compact('nivel','inscripcion', 'materias', 'aulas', 'docentes','tipo','dias','programacion'));
     }
 
     /**

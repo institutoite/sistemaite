@@ -61,7 +61,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/themes/fas/theme.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/locales/es.js"></script>
     
-    <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
+    
     
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="{{asset('assets/js/observacion.js')}}"></script>
@@ -69,9 +69,10 @@
     <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
 
     {{-- telefono modales --}}
-    <script src="{{asset('assets/js/enviarmensaje/mostrarcontactos.js')}}"></script>
     <script src="{{asset('dist/js/moment.js')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     {{-- js --}}
+    <script type="text/javascript" src="{{asset('dist/js/jquery.leanModal.min.js')}}"></script>
+    <script src="{{asset('assets/js/enviarmensaje/mostrarcontactos.js')}}"></script>
     <script src="{{asset('vistas/persona/estudiantes.js')}}"></script>
 @stop

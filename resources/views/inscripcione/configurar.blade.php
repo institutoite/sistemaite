@@ -10,6 +10,7 @@
             {{ Breadcrumbs::render('inscripcion.configuracion',$inscripcion->estudiante,$inscripcion->estudiante->persona, $inscripcion) }}
 
         <div class="row">
+            
             @isset($datos)
             <table class="table table-dark">
                 <thead class="thead-light">
