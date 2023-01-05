@@ -135,7 +135,7 @@
     @endif
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                @can('Listar pago', $pago)
+                @can('Reporte Pagos')
                     <div class="card text-center">
                         <div class="card-header text-white {{$clase}}">
                             PAGOS

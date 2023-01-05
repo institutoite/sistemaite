@@ -147,7 +147,7 @@
                                             PAGOS
                                         </div>
                                         <div class="card-body">
-                                            @can('reporte pagos', $pago)
+                                            @can('Reporte Pagos')
                                                 <table class="table table-bordered table-borderless table-hover bg-white">
                                                     <tbody>    
                                                         <tr class="">
