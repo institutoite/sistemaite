@@ -286,6 +286,7 @@
             
                 $interest=$('#interest').val();
                 $interest_id=$('#interest_id').val();
+                $descripcion=$('#descripcion').val();
                 
                 var token = $("input[name=_token]").val();
                 $.ajaxSetup({
@@ -299,6 +300,7 @@
                     data:{
                             interest:$interest,
                             id:$interest_id,
+                            descripcion:$descripcion,
                             token:token,
                         },
                     success : function(json) {

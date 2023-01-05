@@ -89,11 +89,13 @@ class InterestController extends Controller
         $interest = Interest::findOrFail($request->id);
         $validator = Validator::make($request->all(), [
             'interest' => ['required','min:5','max:30',Rule::unique('interests', 'interest')->ignore($interest)],
+            'descripcion' => ['required','min:5'],
         ]);
 
         if ($validator->passes()) {
             $interest = Interest::findOrFail($request->id);
             $interest->interest = $request->interest;
+            $interest->descripcion = $request->descripcion;
             $interest->save();
             return response()->json(['interest'=>$interest]);
         }else{
