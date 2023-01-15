@@ -621,13 +621,39 @@ class ProgramacionController extends Controller
                         ->select('docentes.id','personas.nombre','personas.apellidop')
                         ->get();
         
+
+
         $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
         $materias = $nivel->materias;
         $aulas=Aula::all();
         $temas=Tema::all();
         $hora_inicio=Carbon::now()->isoFormat('HH:mm:ss');
         $hora_fin = Carbon::now()->addMinutes($programa->hora_ini->floatDiffInMinutes($programa->hora_fin))->isoFormat('HH:mm:ss');
-        return view('clase.create',compact('docentes','programa','inscripcion','materias','aulas','hora_inicio','hora_fin','temas'));
+
+        // enviar tambien cuantos alumnos tienen cada profe
+         $alumnado=Docente::join('clases','clases.docente_id','=','docentes.id')                   
+        ->select('docentes.id','nombrecorto',DB::raw('count(*) as cantidad'))
+   		->groupBy('docentes.id','nombrecorto')				
+        ->get();
+      
+        // el profesor anterior y todo el historial 
+        $historia=Clase::join('programacions','clases.programacion_id','programacions.id')
+  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
+  		->join('docentes','docentes.id','clases.docente_id')
+  		->join('materias','materias.id','clases.materia_id')
+  		->join('temas','temas.id','clases.tema_id')
+  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto','materias.materia','temas.tema')
+  		->orderBy('fecha','asc')
+  		->get();
+
+        $data['label'][]=[];
+        $data['data'][]=[];
+        foreach ($alumnado as $elemento) {
+            $data['label'][]=$elemento->nombrecorto;
+            $data['data'][]=$elemento->cantidad;
+        }
+        $data['data']=json_encode($data);
+        return view('clase.create',compact('docentes','programa','inscripcion','materias','aulas','hora_inicio','hora_fin','temas'),$data);
     }
 
     public function guardarObservacion(Request $request){

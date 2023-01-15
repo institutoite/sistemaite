@@ -94,7 +94,7 @@
                             'rgb(255, 0, 0,0.8)',// ROJO
                             'rgb(0, 0, 255,0.8)', //ASUL OSCURO
                         ];
-         const cData=JSON.parse('<?php echo $data ?>');
+            const cData=JSON.parse('<?php echo $data ?>');
             const myChart = new Chart(ctx, {
                 type: 'pie',
                 data: {

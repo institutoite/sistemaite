@@ -1,58 +1,198 @@
 use App\Models\Estudiante;
-user App\Models\Grado;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
 
-$estudiante->grados()->first();
-use App\Models\Estudiante;
-user App\Models\Grado;
 
-$estudiante->grados->first();
-use App\Models\Estudiante;
-user App\Models\Grado;
-
-$estudiante->grados->first();
-use App\Models\Estudiante;
-user App\Models\Grado;
-
-$estudiante=Estudiante::find(1);
-$estudiante->grados->first();
-use App\Models\Estudiante;
-user App\Models\Grado;
-
-$estudiante=Estudiante::find(1);
-$estudiante->grados->first();
-use App\Models\Estudiante;
-user App\Models\Grado;
-
-$estudiante=Estudiante::find(1);
-$estudiante->grados()->first();
-use App\Models\Estudiante;
-user App\Models\Grado;
-
-$estudiante=Estudiante::find(1);
-$estudiante->grados()->first();
-use App\Models\Estudiante;
-user App\Models\Grado;
-
-$estudiante=Estudiante::find(1);
-
-use App\Models\Estudiante;
-user App\Models\Grado;
-
-$estudiante=Estudiante::find(1);
-
+ $docentes=Docente::join('clases','clases.docente_id','=','docentes.id')                   
+                        ->select('docentes.id','nombrecorto')
+                        ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
 
-$estudiante=Estudiante::find(1);
 
+ $docentes=Docente::join('clases','clases.docente_id','=','docentes.id')                   
+                        ->select('docentes.id','nombrecorto')
+                        ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
 
-$estudiante=Estudiante::find(1);
-$estudiante->grados()->first();
+
+ $docentes=Docente::join('clases','clases.docente_id','=','docentes.id')                   
+        ->select('docentes.id','nombrecorto',DB::raw('count(*) as cantidad'))
+   		->groupBy('name')				
+        ->get()
 use App\Models\Estudiante;
 use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
 
-$estudiante=Estudiante::find(1);
-$estudiante->grados()->first();
-$estudiante->grados()->orderBy('anio', 'desc')->get()->first()->pivot->anio;
+
+ $docentes=Docente::join('clases','clases.docente_id','=','docentes.id')                   
+        ->select('docentes.id','nombrecorto',DB::raw('count(*) as cantidad'))
+   		->groupBy('docentes.id')				
+        ->get()
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+
+
+ $docentes=Docente::join('clases','clases.docente_id','=','docentes.id')                   
+        ->select('docentes.id','nombrecorto',DB::raw('count(*) as cantidad'))
+   		->groupBy('docentes.id','nombrecorto')				
+        ->get()
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+
+
+
+
+
+$historia=Clase::join('programacions','clases.programacion_id','programacions.id')
+  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
+  		->select('clases.estado','clases.fecha')
+  		->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+
+
+
+
+
+$historia=Clase::join('programacions','clases.programacion_id','programacions.id')
+  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
+  		->select('clases.estado_id','clases.fecha')
+  		->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+
+
+
+
+
+$historia=Clase::join('programacions','clases.programacion_id','programacions.id')
+  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
+  		->join('docentes','docentes.id','clases.docente_id')
+  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto')
+  		->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+
+
+
+
+
+$historia=Clase::join('programacions','clases.programacion_id','programacions.id')
+  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
+  		->join('docentes','docentes.id','clases.docente_id')
+  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto')
+  		->orderBy('asc','fecha')
+  		->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+
+
+
+
+
+$historia=Clase::join('programacions','clases.programacion_id','programacions.id')
+  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
+  		->join('docentes','docentes.id','clases.docente_id')
+  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto')
+  		->orderBy('fecha','asc')
+  		->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+
+
+
+
+
+$historia=Clase::join('programacions','clases.programacion_id','programacions.id')
+  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
+  		->join('docentes','docentes.id','clases.docente_id')
+  		->join('materias','materia.id','clases.materia_id')
+  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto','materias.materia')
+  		->orderBy('fecha','asc')
+  		->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+
+
+
+
+
+$historia=Clase::join('programacions','clases.programacion_id','programacions.id')
+  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
+  		->join('docentes','docentes.id','clases.docente_id')
+  		->join('materias','materias.id','clases.materia_id')
+  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto','materias.materia')
+  		->orderBy('fecha','asc')
+  		->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+
+
+
+
+
+$historia=Clase::join('programacions','clases.programacion_id','programacions.id')
+  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
+  		->join('docentes','docentes.id','clases.docente_id')
+  		->join('materias','materias.id','clases.materia_id')
+  		->join('temas','temas.id','clases.tema_id')
+  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto','materias.materia')
+  		->orderBy('fecha','asc')
+  		->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+
+
+
+
+
+$historia=Clase::join('programacions','clases.programacion_id','programacions.id')
+  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
+  		->join('docentes','docentes.id','clases.docente_id')
+  		->join('materias','materias.id','clases.materia_id')
+  		->join('temas','temas.id','clases.tema_id')
+  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto','materias.materia','temas.tema')
+  		->orderBy('fecha','asc')
+  		->get();
