@@ -29,7 +29,7 @@
         
         <div class="card card-default">
             <div class="card-header bg-primary">
-                <span class="card-title">Create Clase</span>
+                <span class="card-title">CREAR CLASES</span>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped table-hover table-responsive-sm">
@@ -45,7 +45,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($historia as $clase)
+                        @foreach ($historiaclases as $clase)
                             <tr>
                                 <td>{{$clase->estado}}</td>
                                 <td>{{$clase->fecha->isoFormat("L")}}</td>
@@ -72,6 +72,31 @@
                 </form>
             </div>
         </div>
+        <table class="table table-bordered table-striped table-hover table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th>ESTADO</th>
+                            <th>FECHA</th>
+                            <th>ASISTIO</th>
+                            <th>DOCENTE</th>
+                            <th>MATERIA</th>
+                            <th>TEMA</th>
+                            <th>AULA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($historiaprogramas as $programa)
+                            <tr>
+                                <td>{{$programa->estado}}</td>
+                                <td>{{$programa->fecha->isoFormat("L")}}</td>
+                                <td>{{$programa->hora_ini->isoFormat('HH:mm:ss').'-'.$programa->hora_fin->isoFormat('HH:mm:ss')}}</td>
+                                <td>{{$programa->nombrecorto}}</td>
+                                <td>{{$programa->materia}}</td>
+                                <td>{{$programa->aula}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
     </section>
 @endsection
 

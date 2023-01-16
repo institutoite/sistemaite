@@ -663,18 +663,28 @@ class ProgramacionController extends Controller
         // //dd($datafin);
         // return view('clase.create',compact('docentes','programa','inscripcion','materias','aulas','hora_inicio','hora_fin','temas','historia'),$data);
         // el profesor anterior y todo el historial 
-        $historia=Clase::join('programacions','clases.programacion_id','programacions.id')
+        $historiaclases=Clase::join('programacions','clases.programacion_id','programacions.id')
   		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
   		->join('docentes','docentes.id','clases.docente_id')
   		->join('materias','materias.id','clases.materia_id')
   		->join('temas','temas.id','clases.tema_id')
-  		->join('aulas','aulas.id','clases.aula_id')
   		->join('estados','estados.id','clases.estado_id')
-        ->where('inscripciones.id',$inscripcion->id)
-  		->select('estados.estado','clases.fecha','clases.horainicio','clases.horafin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
+  		->join('aulas','aulas.id','clases.aula_id')
+   		->where('inscripciones.id',$inscripcion->id)
+  		->select('clases.estado_id','clases.fecha','estados.estado','clases.horainicio','clases.horafin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
   		->orderBy('fecha','asc')
   		->get();
 
+        $historiaprogramas=Programacion::join('inscripciones','programacions.inscripcione_id','inscripciones.id')
+            ->join('docentes','docentes.id','programacions.docente_id')
+            ->join('materias','materias.id','programacions.materia_id')
+            ->join('aulas','aulas.id','programacions.aula_id')
+            ->join('estados','estados.id','programacions.estado_id')
+            ->where('inscripciones.id',31)
+            ->where('programacions.fecha','<',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','aulas.aula')
+            ->orderBy('fecha','asc')
+            ->get();
         $docenteshabilitados=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id','nombrecorto')->get();
         
         $data['label'][]=[];
@@ -728,7 +738,7 @@ class ProgramacionController extends Controller
         $data['data']=json_encode($data);
         // $datafin['dato']=json_encode($datafin);
         //dd($datafin);
-        return view('clase.create',compact('docentes','programa','inscripcion','materias','aulas','hora_inicio','hora_fin','temas','historia'),$data);
+        return view('clase.create',compact('docentes','programa','inscripcion','materias','aulas','hora_inicio','hora_fin','temas','historiaclases','historiaprogramas'),$data);
     }
 
     public function guardarObservacion(Request $request){
