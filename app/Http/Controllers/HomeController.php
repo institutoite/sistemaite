@@ -35,7 +35,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $docentes = Docente::where('estado_id','11')->get();
+        $docentes = Docente::where('estado_id',estado('HABILITADO'))->get();
         $convenios = Convenio::all();
         $colegios = Colegio::all();
         $hometext= Hometext::all();

@@ -614,7 +614,9 @@ class ProgramacionController extends Controller
 
     public function marcadoNormal($programacion_id){
         $programa=Programacion::findOrFail($programacion_id);
+        
         $inscripcion=Inscripcione::findOrFail($programa->inscripcione_id);
+        //$programasAnteriores=
         $docentes=Docente::join('personas','personas.id','=','docentes.persona_id')
                         ->join('estados','estados.id','=','docentes.estado_id')
                         ->where('docentes.estado_id','=',estado('HABILITADO'))
@@ -631,29 +633,103 @@ class ProgramacionController extends Controller
         $hora_fin = Carbon::now()->addMinutes($programa->hora_ini->floatDiffInMinutes($programa->hora_fin))->isoFormat('HH:mm:ss');
 
         // enviar tambien cuantos alumnos tienen cada profe
-         $alumnado=Docente::join('clases','clases.docente_id','=','docentes.id')                   
-        ->select('docentes.id','nombrecorto',DB::raw('count(*) as cantidad'))
-   		->groupBy('docentes.id','nombrecorto')				
-        ->get();
-      
+        // $presentes=Docente::join('clases','clases.docente_id','=','docentes.id')
+        // ->where('clases.estado_id',estado("PRESENTE"))
+        // ->select('docentes.id','nombrecorto',DB::raw('count(*) as cantidad'))
+   		// ->groupBy('docentes.id','nombrecorto')				
+        // ->get();
+
+        //  $finalizados=Docente::join('clases','clases.docente_id','=','docentes.id')                   
+        // ->where('clases.estado_id',estado("FINALIZADO"))
+        // ->orWhere('clases.estado_id',estado("PRESENTE"))
+        // ->select('docentes.id','nombrecorto',DB::raw('count(*) as cantidad'))
+   		// ->groupBy('docentes.id','nombrecorto')				
+        // // ->get();
+        // $data['label'][]=[];
+        // $data['data'][]=[];
+        // $data['dato'][]=[];
+          //$datafin['dato'][]=[];
+        // foreach ($presentes as $elemento) {
+        //     $data['label'][]=$elemento->nombrecorto;
+        //     $data['data'][]=$elemento->cantidad;
+        // }
+        // $K=0;
+
+        // dd($data['data']);
+        // foreach ($finalizados as $ele) {
+        //     $data['dato'][]=$ele->cantidad-$data['data'][$K+1];
+        //     $K++;
+        // }
+        // $data['data']=json_encode($data);
+        // // $datafin['dato']=json_encode($datafin);
+        // //dd($datafin);
+        // return view('clase.create',compact('docentes','programa','inscripcion','materias','aulas','hora_inicio','hora_fin','temas','historia'),$data);
         // el profesor anterior y todo el historial 
         $historia=Clase::join('programacions','clases.programacion_id','programacions.id')
   		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
   		->join('docentes','docentes.id','clases.docente_id')
   		->join('materias','materias.id','clases.materia_id')
   		->join('temas','temas.id','clases.tema_id')
-  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto','materias.materia','temas.tema')
+  		->join('aulas','aulas.id','clases.aula_id')
+  		->join('estados','estados.id','clases.estado_id')
+  		->select('estados.estado','clases.fecha','clases.horainicio','clases.horafin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
   		->orderBy('fecha','asc')
   		->get();
 
+        $docenteshabilitados=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id','nombrecorto')->get();
+        
         $data['label'][]=[];
-        $data['data'][]=[];
-        foreach ($alumnado as $elemento) {
-            $data['label'][]=$elemento->nombrecorto;
-            $data['data'][]=$elemento->cantidad;
+        $data['presente'][]=[];
+        $data['finalizado'][]=[];
+        $data['indefinido'][]=[];
+
+        //dd($data);
+        
+        foreach ($docenteshabilitados as $docente) {
+            $finalizados=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('FINALIZADO'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(*) as cantidad'))
+            ->groupBy('nombrecorto')
+            ->get()->first();
+            $presentes=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('PRESENTE'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(*) as cantidad'))
+            ->groupBy('nombrecorto')
+            ->get()->first();
+            $indefinidos=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('INDEFINIDO'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(*) as cantidad'))
+            ->groupBy('nombrecorto')
+            ->get()->first();
+            $data['label'][]=$docente->nombrecorto;
+		  	
+            if(empty($presentes->cantidad))
+				$data['presente'][]=0;  
+			else
+			  $data['presente'][]=$presentes->cantidad;
+		  
+            if(empty($finalizados->cantidad))
+				$data['finalizado'][]=0;  
+			else
+                $data['finalizado'][]=$finalizados->cantidad;
+			if(empty($indefinidos->cantidad))
+				$data['indefinido'][]=0;  
+			else		  
+                $data['indefinido'][]=$indefinidos->cantidad;
+
         }
+       // dd($data);
+        
         $data['data']=json_encode($data);
-        return view('clase.create',compact('docentes','programa','inscripcion','materias','aulas','hora_inicio','hora_fin','temas'),$data);
+        // $datafin['dato']=json_encode($datafin);
+        //dd($datafin);
+        return view('clase.create',compact('docentes','programa','inscripcion','materias','aulas','hora_inicio','hora_fin','temas','historia'),$data);
     }
 
     public function guardarObservacion(Request $request){

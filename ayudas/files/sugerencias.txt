@@ -337,6 +337,9 @@ para observaciones generico
     cupos para computacion por carrera
     
 
+    que en el home muestre unicamente los docentes habilitado
+    
+
 
 
 

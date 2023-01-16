@@ -17,23 +17,48 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 @stop
 @section('content')
+{{-- {{dd($data->dato)}} --}}
     <section class="content container-fluid">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+       
             <div class="card">
-                <div class="card-header">
-                    CANTIDAD DE ALUMNOS POR DOCENTES EN SISTEMA
-                </div>
                 <div class="card-body">
-                    <canvas id="chartmodalidadesbar" width="100%" height="25"></canvas>
+                    <canvas id="chart-rea3" class="pie"></canvas>
                 </div>
             </div>
-        </div>
-
+        
+        
         <div class="card card-default">
             <div class="card-header bg-primary">
                 <span class="card-title">Create Clase</span>
             </div>
             <div class="card-body">
+                <table class="table table-bordered table-striped table-hover table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th>ESTADO</th>
+                            <th>FECHA</th>
+                            <th>ASISTIO</th>
+                            <th>DOCENTE</th>
+                            <th>MATERIA</th>
+                            <th>TEMA</th>
+                            <th>AULA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($historia as $clase)
+                            <tr>
+                                <td>{{$clase->estado}}</td>
+                                <td>{{$clase->fecha->isoFormat("L")}}</td>
+                                <td>{{$clase->horainicio->isoFormat('HH:mm:ss').'-'.$clase->horafin->isoFormat('HH:mm:ss')}}</td>
+                                <td>{{$clase->nombrecorto}}</td>
+                                <td>{{$clase->materia}}</td>
+                                <td>{{$clase->tema}}</td>
+                                <td>{{$clase->aula}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+               
                 <div class="alert alert-primary" role="alert">
                     <h4 class="alert-heading">{!! "Horario: ".$programa->hora_ini->toTimeString().' '.($programa->hora_fin)->toTimeString() !!}</h4>
                     {!! $inscripcion->objetivo !!}
@@ -55,70 +80,73 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <script src="{{asset('vendor/chart/Chart.js')}}"></script>
-
+  
+    
     <script>
         $(document).ready(function() {
             //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CONFIGURACION DE GRAFICO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            const ctx = document.getElementById('chartmodalidadespie')
-            const ctxbar = document.getElementById('chartmodalidadesbar')
-            const ctxline = document.getElementById('chartmodalidadesline')
-            const ctxdoughnut = document.getElementById('chartmodalidadesdoughnut')
-            const colores =['rgb(38, 186, 165,0.3)',
-                            'rgb(55, 95, 122,0.3)',
-                            'rgb(0, 191, 255,0.3)',// CELESTE
-                            'rgb(0, 139, 139,0.3)', // TURQUESA MAS CLARO
-                            'rgb(255, 20, 147,0.3)',// ROSADO
-                            'rgb(0, 128, 0,0.3)',//VERDE OSCURO HOJA
-                            'rgb(50, 205, 50,0.3)',// VERDE LECHUGA
-                            'rgb(255, 0, 255,0.3)', //FUCCIA CÑARP
-                            'rgb(255, 69, 0,0.3)',// NARANJA
-                            'rgb(148, 0, 211,0.3)', // LILA
-                            'rgb(255, 140, 0,0.3)', // NARANJA CLARO
-                            'rgb(199, 21, 133,0.3)',// ROSADO OSCURO
-                            'rgb(255, 0, 0,0.3)',// ROJO
-                            'rgb(0, 0, 255,0.3)', //ASUL OSCURO
-                        ];
-                const cData=JSON.parse('<?php echo $data ?>');
-                const myChartBar = new Chart(ctxbar, {
-                    type: 'bar',
-                    data: {
-                        labels: cData.label,
-                        datasets: [{
-                            label: 'Estudiantes',
-                            data: cData.data,
-                            backgroundColor: colores,
-                            borderColor:colores,
-                            borderWidth:2
-                        }]
+            const cData = JSON.parse('<?php echo $data ?>');
+            
+            var barChartData = {
+               labels: cData.label,
+
+                datasets: [
+                     {
+                        fillColor: "rgba(250, 0, 0 ,0.3)",
+                        strokeColor: "rgba(250,0,0,0.5)",
+                        highlightFill: "#ee7f49",
+                        highlightStroke: "#ffffff",
+                        data: cData.finalizado,
                     },
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                display: true,
-                                ticks: {
-                                    suggestedMin: 0,
-                                }
-                            }]
-                        }
-                        // y: {
-                        //     beginAtZero: true,
-                        //     scaleLabel: {
-                        //         display: true,
-                        //         labelString: 'Ventas'
-                        //     },
-                        //     ticks: {
-                        //         callback: function(value) {
-                        //             if (value % 1 === 0) {
-                        //                 return value;
-                        //             }
-                        //         }
-                        //     }
-                        // }
-                    }
+                    {
+                        fillColor: "rgba(13,185,55,0.5)",
+                        strokeColor: "rgba(13,185,55,0.6)",//bordes
+                        highlightFill: "#1864f2",
+                        highlightStroke: "#ff0000",
+                        data: cData.presente,
+                    },
+                    {
+                        fillColor: "rgba(204, 209, 209 ,0.5)",
+                        strokeColor: "rgba(133, 146, 158 ,0.6)",
+                        highlightFill: "#ee7f49",
+                        highlightStroke: "#ffffff",
+                        data: cData.indefinido,
+                    },
+                ]
+
+            }
+            
+            var options = {
+            responsive: true,
+            showTooltips: false,
+            onAnimationComplete: function() {
+
+                var ctx = this.chart.ctx;
+                ctx.font = this.scale.font;
+                
+                ctx.fillStyle = this.scale.textColor
+                ctx.textAlign = "center";
+                ctx.textBaseline = "bottom";
+                
+
+                this.datasets.forEach(function(dataset) {
+                    
+                dataset.bars.forEach(function(bar) {
+                    ctx.fillText(bar.value, bar.x, bar.y +3 );
+                    
                 });
+                })
+            }
+            };
+        Mycanva=document.getElementById("chart-rea3");  
+        var ctx3 = document.getElementById("chart-rea3").getContext("2d");
+        Mycanva.height=100;
+        window.myPie = new Chart(ctx3).Bar(barChartData, options);
             //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN GRAFICO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
 
             $("#tema_id").select2({

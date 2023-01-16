@@ -5,177 +5,17 @@ use App\Models\Clase;
 use App\Models\Programacion;
 
 
- $docentes=Docente::join('clases','clases.docente_id','=','docentes.id')                   
-                        ->select('docentes.id','nombrecorto')
-                        ->get();
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Programacion;
-
-
- $docentes=Docente::join('clases','clases.docente_id','=','docentes.id')                   
-                        ->select('docentes.id','nombrecorto')
-                        ->get();
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Programacion;
-
-
- $docentes=Docente::join('clases','clases.docente_id','=','docentes.id')                   
-        ->select('docentes.id','nombrecorto',DB::raw('count(*) as cantidad'))
-   		->groupBy('name')				
-        ->get()
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Programacion;
-
-
- $docentes=Docente::join('clases','clases.docente_id','=','docentes.id')                   
-        ->select('docentes.id','nombrecorto',DB::raw('count(*) as cantidad'))
-   		->groupBy('docentes.id')				
-        ->get()
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Programacion;
-
-
- $docentes=Docente::join('clases','clases.docente_id','=','docentes.id')                   
-        ->select('docentes.id','nombrecorto',DB::raw('count(*) as cantidad'))
-   		->groupBy('docentes.id','nombrecorto')				
-        ->get()
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Programacion;
 
 
 
 
-
-$historia=Clase::join('programacions','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->select('clases.estado','clases.fecha')
-  		->get();
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Programacion;
-
-
-
-
-
-$historia=Clase::join('programacions','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->select('clases.estado_id','clases.fecha')
-  		->get();
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Programacion;
-
-
-
-
-
-$historia=Clase::join('programacions','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto')
-  		->get();
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Programacion;
-
-
-
-
-
-$historia=Clase::join('programacions','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto')
-  		->orderBy('asc','fecha')
-  		->get();
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Programacion;
-
-
-
-
-
-$historia=Clase::join('programacions','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto')
-  		->orderBy('fecha','asc')
-  		->get();
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Programacion;
-
-
-
-
-
-$historia=Clase::join('programacions','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materia.id','clases.materia_id')
-  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto','materias.materia')
-  		->orderBy('fecha','asc')
-  		->get();
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Programacion;
-
-
-
-
-
-$historia=Clase::join('programacions','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto','materias.materia')
-  		->orderBy('fecha','asc')
-  		->get();
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Programacion;
-
-
-
-
-
-$historia=Clase::join('programacions','clases.programacion_id','programacions.id')
+ $historia=Clase::join('programacions','clases.programacion_id','programacions.id')
   		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
   		->join('docentes','docentes.id','clases.docente_id')
   		->join('materias','materias.id','clases.materia_id')
   		->join('temas','temas.id','clases.tema_id')
-  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto','materias.materia')
+  		->where('clases.estado_id',estado("PRESENTE"))
+  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto','materias.materia','temas.tema')
   		->orderBy('fecha','asc')
   		->get();
 use App\Models\Estudiante;
@@ -188,7 +28,69 @@ use App\Models\Programacion;
 
 
 
-$historia=Clase::join('programacions','clases.programacion_id','programacions.id')
+
+  $presentes=Docente::join('clases','clases.docente_id','=','docentes.id')                   
+        ->where('clases.estado_id',estado("PRESENTE"))
+        ->select('docentes.id','nombrecorto',DB::raw('count(*) as cantidad'))
+   		->groupBy('docentes.id','nombrecorto')				
+        ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+
+
+
+
+
+
+  $presentes=Docente::join('clases','clases.docente_id','=','docentes.id')                   
+        ->where('clases.estado_id',estado("PRESENTE"))
+        ->select('docentes.id','nombrecorto',DB::raw('count(*) as cantidad'))
+   		->groupBy('docentes.id','nombrecorto')				
+        ->get();
+$presentedata['label'][]=[];
+        $presentedata['data'][]=[];
+        foreach ($presentes as $elemento) {
+            $presentedata['label'][]=$elemento->nombrecorto;
+            $presentedata['data'][]=$elemento->cantidad;
+        }
+        foreach ($finalizados as $ele) {
+            $finalizadodata['data'][]=$ele->cantidad;
+        }
+        $presentedata['data']=json_encode($presentedata);
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+
+
+
+
+
+
+  $presentes=Docente::join('clases','clases.docente_id','=','docentes.id')                   
+        ->where('clases.estado_id',estado("PRESENTE"))
+        ->select('docentes.id','nombrecorto',DB::raw('count(*) as cantidad'))
+   		->groupBy('docentes.id','nombrecorto')				
+        ->get();
+
+        $finalizados=Docente::join('clases','clases.docente_id','=','docentes.id')                   
+        ->where('clases.estado_id',estado("FINALIZADO"))
+        ->select('docentes.id','nombrecorto',DB::raw('count(*) as cantidad'))
+   		->groupBy('docentes.id','nombrecorto')				
+        ->get();
+
+        
+        
+        
+   		
+        
+      
+        
+        $historia=Clase::join('programacions','clases.programacion_id','programacions.id')
   		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
   		->join('docentes','docentes.id','clases.docente_id')
   		->join('materias','materias.id','clases.materia_id')
@@ -196,3 +98,1394 @@ $historia=Clase::join('programacions','clases.programacion_id','programacions.id
   		->select('clases.estado_id','clases.fecha','docentes.nombrecorto','materias.materia','temas.tema')
   		->orderBy('fecha','asc')
   		->get();
+
+        $data['label'][]=[];
+        $data['data'][]=[];
+       
+        $datafin['data'][]=[];
+        foreach ($presentes as $elemento) {
+            $data['label'][]=$elemento->nombrecorto;
+            $data['data'][]=$elemento->cantidad;
+        }
+        foreach ($finalizados as $ele) {
+            $datafin['dato'][]=$ele->cantidad;
+        }
+        $data['data']=json_encode($data);
+        $datafin['dato']=json_encode($datafin);
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+
+
+
+
+
+
+  $presentes=Docente::join('clases','clases.docente_id','=','docentes.id')                   
+        ->where('clases.estado_id',estado("PRESENTE"))
+        ->select('docentes.id','nombrecorto',DB::raw('count(*) as cantidad'))
+   		->groupBy('docentes.id','nombrecorto')				
+        ->get();
+
+          $finalizados=Docente::join('clases','clases.docente_id','=','docentes.id')                   
+        ->where('clases.estado_id',estado("FINALIZADO"))
+        ->orWhere('clases.estado_id',estado("PRESENTE"))
+        ->select('docentes.id','nombrecorto',DB::raw('count(*) as cantidad'))
+   		->groupBy('docentes.id','nombrecorto')				
+        ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('estados.id',estado('PRESENTE'))
+  ->where('docentes.nombrecorto')
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('estados.id',estado('PRESENTE'))
+  ->where('docentes.nombrecorto')
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('estados.id',estado('PRESENTE'))
+  ->where('programacions.fecha',Carbon::now()->isoFormat('L'))
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('PRESENTE'))
+  ->where('programacions.fecha',Carbon::now()->isoFormat('L'))
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('PRESENTE'))
+  ->where('programacions.fecha','<',Carbon::now()->isoFormat('L'))
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('PRESENTE'))
+  ->where('programacions.fecha','>',Carbon::now()->isoFormat('L'))
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('PRESENTE'))
+  ->where('programacions.fecha','>',Carbon::now()->isoFormat('L'))
+  ->get();
+
+$t=Carbon::now()->isoFormat('L');
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('PRESENTE'))
+  ->where('programacions.fecha','>',Carbon::now()->isoFormat('Y-M-D'))
+  ->get();
+
+$t=Carbon::now()->isoFormat('Y-M-D');
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('PRESENTE'))
+  ->where('programacions.fecha','>',Carbon::now()->isoFormat('Y-M-D'))
+  ->get();
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('PRESENTE'))
+  ->where('programacions.fecha','=
+  ',Carbon::now()->isoFormat('Y-M-D'))
+  ->get();
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('PRESENTE'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->get();
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('PRESENTE'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(*) as cantidad'))
+  ->get();
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('PRESENTE'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(*) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(*) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(*) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(*) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(FINALIZADO) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->get()
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->get()
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::whereIn('docente_id',$p)->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::whereIn('docente_id',$p)
+  ->where('estado_id',estado("PRESENTE"))
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::whereIn('docente_id',$p)
+  ->select(DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::whereIn('docente_id',$p)
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::whereIn('docente_id',$p)
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::whereIn('docente_id',$p)
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::whereIn('docente_id',$p)
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::join('docentes','docentes.id','programacions.docente_id')
+	->whereIn('docente_id',$p)
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::join('docentes','docentes.id','programacions.docente_id')
+	->whereIn('docente_id',1)
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::join('docentes','docentes.id','programacions.docente_id')
+	->whereIn('docente_id',[1])
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::join('docentes','docentes.id','programacions.docente_id')
+	->whereIn('docente_id',[2])
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::join('docentes','docentes.id','programacions.docente_id')
+	->whereIn('docente_id',[3])
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::join('docentes','docentes.id','programacions.docente_id')
+	->where('docente_id',3)
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::join('docentes','docentes.id','programacions.docente_id')
+  ->where('docente_id',3)
+  ->where('programacions.estado_id',estado('PRESENTE'))
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::join('docentes','docentes.id','programacions.docente_id')
+  ->where('docente_id',3)
+  ->where('programacions.estado_id',estado('FALTA'))
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::join('docentes','docentes.id','programacions.docente_id')
+  ->where('docente_id',3)
+  ->where('programacions.estado_id',estado('INDEFINIDO'))
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::join('docentes','docentes.id','programacions.docente_id')
+  ->where('docente_id',3)
+  ->where('programacions.estado_id',estado('INDEFINIDO'))
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::join('docentes','docentes.id','programacions.docente_id')
+  ->where('docente_id',1)
+  ->where('programacions.estado_id',estado('INDEFINIDO'))
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::join('docentes','docentes.id','programacions.docente_id')
+  ->where('docente_id',1)
+  ->where('programacions.estado_id',estado('FALTA'))
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::join('docentes','docentes.id','programacions.docente_id')
+  ->where('docente_id',1)
+  ->where('programacions.estado_id',estado('PRESENTE'))
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::join('docentes','docentes.id','programacions.docente_id')
+  ->where('docente_id',1)
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$presentes=Programacion::join('docentes','programacions.docente_id','docentes.id')
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  ->select('docentes.nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  
+  ->groupBy('nombrecorto')
+  ->get();
+
+
+$p=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id')->get();
+
+$pro=Programacion::join('docentes','docentes.id','programacions.docente_id')
+  ->where('docente_id',1)
+  ->where('programacions.estado_id',estado('FINALIZADO'))
+  ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+  ->groupBy('nombrecorto')
+  ->get();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$docenteshabilitados=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id','nombrecorto')->get();
+        
+        $data['label'][]=[];
+        $data['prensente'][]=[];
+        $data['finalizado'][]=[];
+        $data['indefinido'][]=[];
+        
+        foreach ($docentesHabilitados as $docente) {
+            $finalizados=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('FINALIZADO'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+            ->groupBy('nombrecorto','cantidad')
+            ->get();
+            $presentes=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('PRESENTE'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+            ->groupBy('nombrecorto','cantidad')
+            ->get();
+            $indefinidos=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('INDEFINIDO'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+            ->groupBy('nombrecorto','cantidad')
+            ->get();
+            $data['label'][]=$docente->nombrecorto;
+            $data['presente'][]=$presentes->cantidad;
+            $data['finalizado'][]=$finalizados->cantidad;
+            $data['indefinido'][]=$indefinidos->cantidad;
+
+        }
+        $data['data']=json_encode($data);
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$docenteshabilitados=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id','nombrecorto')->get();
+        
+        $data['label'][]=[];
+        $data['prensente'][]=[];
+        $data['finalizado'][]=[];
+        $data['indefinido'][]=[];
+        
+        foreach ($docentesHabilitados as $docente) {
+            $finalizados=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('FINALIZADO'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+            ->groupBy('nombrecorto','cantidad')
+            ->get();
+            $presentes=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('PRESENTE'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+            ->groupBy('nombrecorto','cantidad')
+            ->get();
+            $indefinidos=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('INDEFINIDO'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+            ->groupBy('nombrecorto','cantidad')
+            ->get();
+            $data['label'][]=$docente->nombrecorto;
+            $data['presente'][]=$presentes->cantidad;
+            $data['finalizado'][]=$finalizados->cantidad;
+            $data['indefinido'][]=$indefinidos->cantidad;
+
+        }
+        $data
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$docenteshabilitados=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id','nombrecorto')->get();
+        
+        $data['label'][]=[];
+        $data['prensente'][]=[];
+        $data['finalizado'][]=[];
+        $data['indefinido'][]=[];
+        
+        foreach ($docenteshabilitados as $docente) {
+            $finalizados=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('FINALIZADO'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+            ->groupBy('nombrecorto','cantidad')
+            ->get();
+            $presentes=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('PRESENTE'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+            ->groupBy('nombrecorto','cantidad')
+            ->get();
+            $indefinidos=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('INDEFINIDO'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(programacions.estado_id) as cantidad'))
+            ->groupBy('nombrecorto','cantidad')
+            ->get();
+            $data['label'][]=$docente->nombrecorto;
+            $data['presente'][]=$presentes->cantidad;
+            $data['finalizado'][]=$finalizados->cantidad;
+            $data['indefinido'][]=$indefinidos->cantidad;
+
+        }
+        $data
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$docenteshabilitados=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id','nombrecorto')->get();
+        
+        $data['label'][]=[];
+        $data['prensente'][]=[];
+        $data['finalizado'][]=[];
+        $data['indefinido'][]=[];
+        
+        foreach ($docenteshabilitados as $docente) {
+            $finalizados=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('FINALIZADO'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(*) as cantidad'))
+            ->groupBy('nombrecorto','cantidad')
+            ->get();
+            $presentes=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('PRESENTE'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(*) as cantidad'))
+            ->groupBy('nombrecorto','cantidad')
+            ->get();
+            $indefinidos=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('INDEFINIDO'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(*) as cantidad'))
+            ->groupBy('nombrecorto','cantidad')
+            ->get();
+            $data['label'][]=$docente->nombrecorto;
+            $data['presente'][]=$presentes->cantidad;
+            $data['finalizado'][]=$finalizados->cantidad;
+            $data['indefinido'][]=$indefinidos->cantidad;
+
+        }
+        $data
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$docenteshabilitados=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id','nombrecorto')->get();
+        
+        $data['label'][]=[];
+        $data['prensente'][]=[];
+        $data['finalizado'][]=[];
+        $data['indefinido'][]=[];
+        
+        foreach ($docenteshabilitados as $docente) {
+            $finalizados=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('FINALIZADO'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(*) as cantidad'))
+            ->groupBy('nombrecorto')
+            ->get();
+            $presentes=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('PRESENTE'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(*) as cantidad'))
+            ->groupBy('nombrecorto')
+            ->get();
+            $indefinidos=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('INDEFINIDO'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(*) as cantidad'))
+            ->groupBy('nombrecorto')
+            ->get();
+            $data['label'][]=$docente->nombrecorto;
+            $data['presente'][]=$presentes->cantidad;
+            $data['finalizado'][]=$finalizados->cantidad;
+            $data['indefinido'][]=$indefinidos->cantidad;
+
+        }
+        $data
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$docenteshabilitados=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id','nombrecorto')->get();
+        
+        $data['label'][]=[];
+        $data['prensente'][]=[];
+        $data['finalizado'][]=[];
+        $data['indefinido'][]=[];
+        
+        foreach ($docenteshabilitados as $docente) {
+            $finalizados=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('FINALIZADO'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(*) as cantidad'))
+            ->groupBy('nombrecorto')
+            ->get()->first();
+            $presentes=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('PRESENTE'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(*) as cantidad'))
+            ->groupBy('nombrecorto')
+            ->get()->first();
+            $indefinidos=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('INDEFINIDO'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(*) as cantidad'))
+            ->groupBy('nombrecorto')
+            ->get()->first();
+            $data['label'][]=$docente->nombrecorto;
+            $data['presente'][]=$presentes->cantidad;
+            $data['finalizado'][]=$finalizados->cantidad;
+            $data['indefinido'][]=$indefinidos->cantidad;
+
+        }
+        $data
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+
+$docenteshabilitados=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id','nombrecorto')->get();
+        
+        $data['label'][]=[];
+        $data['prensente'][]=[];
+        $data['finalizado'][]=[];
+        $data['indefinido'][]=[];
+        
+        foreach ($docenteshabilitados as $docente) {
+            $finalizados=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('FINALIZADO'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(*) as cantidad'))
+            ->groupBy('nombrecorto')
+            ->get()->first();
+            $presentes=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('PRESENTE'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(*) as cantidad'))
+            ->groupBy('nombrecorto')
+            ->get()->first();
+            $indefinidos=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->where('docente_id',$docente->id)
+            ->where('programacions.estado_id',estado('INDEFINIDO'))
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->select('nombrecorto',DB::raw('count(*) as cantidad'))
+            ->groupBy('nombrecorto')
+            ->get()->first();
+            $data['label'][]=$docente->nombrecorto;
+		  	if(is_null($presentes->cantidad))
+				$data['presente'][]=0;  
+			else
+			  $data['presente'][]=$presentes->cantidad;
+		  
+            if(is_null($finalizados->cantidad))
+				$data['finalizado'][]=0;  
+			else
+            $data['finalizado'][]=$finalizados->cantidad;
+			if(is_null($indefinidos->cantidad))
+				$data['indefinido'][]=0;  
+			else		  
+            $data['indefinido'][]=$indefinidos->cantidad;
+
+        }
+        $data
+

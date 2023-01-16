@@ -267,6 +267,7 @@ class DocenteController extends Controller
             ($request->dias_prueba=="")||($request->sueldo=="")||
             ($request->mododocente_id=="")||($request->estado_id=="")||($request->perfil==""))
         {
+            dd($request->all());
             return back()->withInput()->with(['mensaje'=>"Faltan llenar datos"]);
         }
 
