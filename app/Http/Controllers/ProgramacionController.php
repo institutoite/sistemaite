@@ -622,8 +622,6 @@ class ProgramacionController extends Controller
                         ->where('docentes.estado_id','=',estado('HABILITADO'))
                         ->select('docentes.id','personas.nombre','personas.apellidop')
                         ->get();
-        
-
 
         $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
         $materias = $nivel->materias;
@@ -672,6 +670,7 @@ class ProgramacionController extends Controller
   		->join('temas','temas.id','clases.tema_id')
   		->join('aulas','aulas.id','clases.aula_id')
   		->join('estados','estados.id','clases.estado_id')
+        ->where('inscripciones.id',$inscripcion->id)
   		->select('estados.estado','clases.fecha','clases.horainicio','clases.horafin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
   		->orderBy('fecha','asc')
   		->get();
