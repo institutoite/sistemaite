@@ -95,15 +95,19 @@ class ClaseController extends Controller
         $observacion=new Observacion();
         $observacion->activo=1;
         $observacion->observable_type= Programacion::class;
-
+        $programa=Programacion::findOrFail($programacion_id);
+        
+        $programa->docente_id=$request->docente_id;
+        $programa->materia_id=$request->materia_id;
+        $programa->aula_id=$request->aula_id;
+        
         if($request->fecha < Carbon::now()->format('Y-m-d')){
-            $programa=Programacion::findOrFail($programacion_id);
+           
             $programa->estado_id = estado('FINALIZADO');
             $clase->estado_id= estado('FINALIZADO');
             $observacion->observacion="Esta programacion se marco fuera de fecha: ".Carbon::now()->isoFormat('LLLL');
             
         }else{
-            $programa=Programacion::findOrFail($programacion_id);
             $programa->estado_id = estado('PRESENTE');
             $clase->estado_id= estado('PRESENTE');
             $observacion->observacion="Esta programacion se marcó en fecha adecuada: ".Carbon::now()->isoFormat('LLLL');
