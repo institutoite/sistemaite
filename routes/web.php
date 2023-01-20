@@ -445,6 +445,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('programa/marcar/{inscripcione}', 'ClaseController@marcadoGeneral')->name('clases.marcado.general');
     Route::get('clases/de/docente/{docente_id}', 'ClaseController@clasesDeDocete')->name('clases.de.un.docente');
 
+    Route::get('asistencia/estado',[ProgramacionController::class,'estadoAsistencia'])->name('estado.asistencia');
     Route::get('marcar/asistencia/', 'ClaseController@marcado')->name('marcado');
     Route::get('clase/crear', 'ClaseController@crear')->name('clase.crear');
     Route::get('clase/marcar/rapido/{programacion_id}', 'ClaseController@marcadoRapido')->name('marcado.presente.rapido');

@@ -1,4 +1,3 @@
-
 @extends('adminlte::page')
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
@@ -17,7 +16,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 @stop
 @section('content')
-{{-- {{dd($data->dato)}} --}}
     <section class="content container-fluid">
        
             <div class="card">

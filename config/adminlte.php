@@ -276,8 +276,6 @@ return [
             'icon_color' => 'white',
             'classes'=>'text-xs text-white',
         ],
-        
-       
         [
             'text' => "Hoy",
             'topnav' => true,
@@ -291,6 +289,14 @@ return [
             'topnav' => true,
             'url'  => 'persona/potenciales',
             'icon' => 'fas fa-user-friends',
+            'icon_color' => 'white',
+            'classes'=>'text-xs text-white',
+        ],
+        [
+            'text' => "",
+            'topnav' => true,
+            'url'  => 'asistencia/estado',
+            'icon' => 'fas fa-chart-bar',
             'icon_color' => 'white',
             'classes'=>'text-xs text-white',
         ],
