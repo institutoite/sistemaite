@@ -12,13 +12,53 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 @stop
 @section('content')
-{{ $data }}
+{{-- {{ $data }} --}}
     <section class="content container-fluid">
         <div class="card">
             <div class="card-body">
                 <canvas id="chart-rea3" class="pie"></canvas>
             </div>
         </div>
+        @php
+            $i=0;
+        @endphp
+        @foreach ($docenteshabilitados as $docente)
+            
+                <div class="card">
+                    <div class="card-header {{ $i%2 == 0 ? "bg-primary" : "bg-secondary" }}">
+                        <h4>{{$docente->nombrecorto}}</h4> 
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-light">
+                            <thead>
+                                <th>COD</th>
+                                <th>NOMBRE</th>
+                                <th>APELLIDOP</th>
+                                <th>APELLIDOM</th>
+                                <th>MATERIA</th>
+                                <th>TEMA</th>
+                            </thead>
+                            <tbody>
+                                @foreach ($estudiantes[$i] as $estudent)
+                                    <tr>
+                                        <td>{{$estudent->id}}</td>
+                                        <td>{{$estudent->nombre}}</td>
+                                        <td>{{$estudent->apellidop}}</td>
+                                        <td>{{$estudent->apellidom}}</td>
+                                        <td>{{$estudent->materia}}</td>
+                                        <td>{{$estudent->tema}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                </div>
+                @php
+                    $i++;
+                @endphp
+            
+        @endforeach
     </section>
 @endsection
 

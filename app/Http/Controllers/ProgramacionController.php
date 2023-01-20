@@ -660,7 +660,7 @@ class ProgramacionController extends Controller
         $data['finalizado'][]=[];
         $data['indefinido'][]=[];
 
-        //dd($data);
+        
         
         foreach ($docenteshabilitados as $docente) {
             $finalizados=Programacion::join('docentes','docentes.id','programacions.docente_id')
@@ -701,14 +701,27 @@ class ProgramacionController extends Controller
                 $data['indefinido'][]=$indefinidos->cantidad;
 
         }
-       // dd($data);
         
         $data['data']=json_encode($data);
-        // $datafin['dato']=json_encode($datafin);
-        //dd($datafin);
         return view('clase.create',compact('docentes','programa','inscripcion','materias','aulas','hora_inicio','hora_fin','temas','historiaclases','historiaprogramas'),$data);
     }
 
+    public function estudiantesDeUnProfesor($docente_id){
+        $estudiantes=Estudiante::join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+            ->join('programacions','programacions.inscripcione_id','inscripciones.id')
+            ->join('clases','clases.programacion_id','programacions.id')
+            ->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.persona_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materias.id','clases.materia_id')
+            ->where('docentes.id',$docente_id)
+            ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+            ->where('clases.estado_id',estado('PRESENTE'))
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            ->get();
+        return $estudiantes;
+    }
+    
     public function estadoAsistencia(){
         $docenteshabilitados=Docente::where('docentes.estado_id',estado('HABILITADO'))->select('id','nombrecorto')->get();
        
@@ -716,6 +729,7 @@ class ProgramacionController extends Controller
         $data['presente'][]=[];
         $data['finalizado'][]=[];
         $data['indefinido'][]=[];
+        $estudiantes=array();
         foreach ($docenteshabilitados as $doc) {
             $finalizados=Programacion::join('docentes','docentes.id','programacions.docente_id')
             ->where('docente_id',$doc->id)
@@ -738,8 +752,11 @@ class ProgramacionController extends Controller
             ->select('nombrecorto',DB::raw('count(*) as cantidad'))
             ->groupBy('nombrecorto')
             ->get()->first();
-            
+
+            $estudiantesDeUnDocente=$this->estudiantesDeUnProfesor($doc->id);
+            array_push($estudiantes,$estudiantesDeUnDocente);
             $data['label'][]=$doc->nombrecorto;
+            
             if(empty($presentes->cantidad))
 				$data['presente'][]=0;  
 			else
@@ -753,9 +770,10 @@ class ProgramacionController extends Controller
 			else		  
                 $data['indefinido'][]=$indefinidos->cantidad;
         }
+        
         $data['data']=json_encode($data);
-        dd($data);
-        return view('clase.estado',$data);
+        //dd($estudiantes);
+        return view('clase.estado',compact('estudiantes','docenteshabilitados'),$data);
     }
 
     public function guardarObservacion(Request $request){

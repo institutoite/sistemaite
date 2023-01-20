@@ -296,6 +296,7 @@ class ProgramacioncomController extends Controller
         return view('programacioncom.show', compact('programacioncom','matriculacion','persona','estudiante'));
     }
 
+
     public function imprimirProgramacom($matriculacion_id){
         $matriculacion=Matriculacion::findOrFail($matriculacion_id);
         $programacion = Programacioncom::join('aulas', 'programacioncoms.aula_id', '=', 'aulas.id')
@@ -515,4 +516,19 @@ class ProgramacioncomController extends Controller
         return response()->json($programacion);
 
     }
+    // public function estudiantesDeUnProfesorCom($docente_id){
+    //     $estudiantes=Computacion::join('matriculacions','matriculacions.computacion_id','computacions.id')
+    //         ->join('programacions','programacions.inscripcione_id','inscripciones.id')
+    //         ->join('clasecoms','clases.programacion_id','programacions.id')
+    //         ->join('docentes','docentes.id','clases.docente_id')
+    //         ->join('personas','personas.id','estudiantes.persona_id')
+    //         ->join('temas','temas.id','clases.tema_id')
+    //         ->join('materias','materias.id','clases.materia_id')
+    //         ->where('docentes.id',$docente_id)
+    //         ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+    //         ->where('clases.estado_id',estado('PRESENTE'))
+    //         ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+    //         ->get();
+    //     return $estudiantes;
+    // }
 }

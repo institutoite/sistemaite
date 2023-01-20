@@ -6,20 +6,16 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Clase::join('programacions','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-  		->join('aulas','aulas.id','clases.aula_id')
-  		->join('estados','estados.id','clases.estado_id')
-        ->where('inscripciones.id',31)
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$estudiantes=Estudiante::join('inscripciones','programacions.inscripcione_id','inscripciones.id')
+            ->join('programacions','clases.programacion_id','programacions.id')
+            ->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.estudiante_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materia.id','clases.materia_id')
+            ->where('estudiantes.id',$estudiante->id)
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            ->orderBy('fecha','asc')
+            ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -28,20 +24,16 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Clase::join('programacions','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-  		->join('aulas','aulas.id','clases.aula_id')
-  		->join('estados','estados.id','clases.estado_id')
-        ->where('inscripciones.id',33)
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$estudiantes=Estudiante::join('inscripciones','programacions.inscripcione_id','inscripciones.id')
+            ->join('programacions','clases.programacion_id','programacions.id')
+            ->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.estudiante_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materia.id','clases.materia_id')
+            ->where('estudiantes.id',1)
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            ->orderBy('fecha','asc')
+            ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -50,20 +42,16 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Clase::join('programacions','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-  		->join('aulas','aulas.id','clases.aula_id')
-  		->join('estados','estados.id','clases.estado_id')
-        ->where('inscripciones.id',31)
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$estudiantes=Estudiante::join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+            ->join('programacions','clases.programacion_id','programacions.id')
+            ->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.estudiante_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materia.id','clases.materia_id')
+            ->where('estudiantes.id',1)
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            ->orderBy('fecha','asc')
+            ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -72,21 +60,16 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Clase::join('programacions','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-  		->join('aulas','aulas.id','clases.aula_id')
-  		->join('estados','estados.id','clases.estado_id')
-        ->where('inscripciones.id',31)
-   		->where('programacions.fecha','<',Carbon::now()->isoFormat("Y-M-D"))
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$estudiantes=Estudiante::join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+            ->join('programacions','programacions.inscripcione_id','inscripciones.id')
+            ->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.estudiante_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materia.id','clases.materia_id')
+            ->where('estudiantes.id',1)
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            ->orderBy('fecha','asc')
+            ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -95,21 +78,17 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Clase::join('programacions','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-  		->join('aulas','aulas.id','clases.aula_id')
-  		->join('estados','estados.id','clases.estado_id')
-        ->where('inscripciones.id',31)
-   		->where('programacions.fecha','<=',Carbon::now()->isoFormat("Y-M-D"))
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$estudiantes=Estudiante::join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+            ->join('programacions','programacions.inscripcione_id','inscripciones.id')
+            ->join('clases','clases.programacion_id','programacions.id')
+  			->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.estudiante_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materia.id','clases.materia_id')
+            ->where('estudiantes.id',1)
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            ->orderBy('fecha','asc')
+            ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -118,21 +97,17 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Clase::join('programacions','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-  		->join('aulas','aulas.id','clases.aula_id')
-  		->join('estados','estados.id','clases.estado_id')
-        ->where('inscripciones.id',31)
-   		->where('programacions.fecha','<=',Carbon::now()->isoFormat("Y-M-D"))
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$estudiantes=Estudiante::join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+            ->join('programacions','programacions.inscripcione_id','inscripciones.id')
+            ->join('clases','clases.programacion_id','programacions.id')
+  			->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.estudiante_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materia.id','clases.materia_id')
+            ->where('estudiantes.id',1)
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            ->orderBy('fecha','asc')
+            ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -141,21 +116,17 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Clase::join('programacions','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-  		->join('aulas','aulas.id','clases.aula_id')
-  		->join('estados','estados.id','clases.estado_id')
-        ->where('inscripciones.id',31)
-   		->where('programacions.fecha','<=',Carbon::now()->isoFormat('Y-M-D'))
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$estudiantes=Estudiante::join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+            ->join('programacions','programacions.inscripcione_id','inscripciones.id')
+            ->join('clases','clases.programacion_id','programacions.id')
+  			->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.estudiante_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materia.id','clases.materia_id')
+            ->where('estudiantes.id',1)
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            ->orderBy('fecha','asc')
+            ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -164,21 +135,17 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Programacion::join('clases','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-  		->join('aulas','aulas.id','clases.aula_id')
-  		->join('estados','estados.id','clases.estado_id')
-        ->where('inscripciones.id',31)
-   		->where('programacions.fecha','<=',Carbon::now()->isoFormat('Y-M-D'))
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$estudiantes=Estudiante::join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+            ->join('programacions','programacions.inscripcione_id','inscripciones.id')
+            ->join('clases','clases.programacion_id','programacions.id')
+  			->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.persona_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materia.id','clases.materia_id')
+            ->where('estudiantes.id',1)
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            ->orderBy('fecha','asc')
+            ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -187,22 +154,17 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Programacion::join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-  		
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-  		->join('aulas','aulas.id','clases.aula_id')
-  		->join('estados','estados.id','clases.estado_id')
-        ->where('inscripciones.id',31)
-   		->where('programacions.fecha','<=',Carbon::now()->isoFormat('Y-M-D'))
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$estudiantes=Estudiante::join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+            ->join('programacions','programacions.inscripcione_id','inscripciones.id')
+            ->join('clases','clases.programacion_id','programacions.id')
+  			->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.persona_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materias.id','clases.materia_id')
+            ->where('estudiantes.id',1)
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            ->orderBy('fecha','asc')
+            ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -211,21 +173,17 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Programacion::join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-  		->join('aulas','aulas.id','clases.aula_id')
-  		->join('estados','estados.id','clases.estado_id')
-        ->where('inscripciones.id',33)
-   		->where('programacions.fecha','<=',Carbon::now()->isoFormat('Y-M-D'))
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$estudiantes=Estudiante::join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+            ->join('programacions','programacions.inscripcione_id','inscripciones.id')
+            ->join('clases','clases.programacion_id','programacions.id')
+  			->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.persona_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materias.id','clases.materia_id')
+            ->where('estudiantes.id',1)
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            
+     ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -234,21 +192,17 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Programacion::join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-  		->join('aulas','aulas.id','clases.aula_id')
-  		->join('estados','estados.id','clases.estado_id')
-        ->where('inscripciones.id',31)
-   		->where('programacions.fecha','<=',Carbon::now()->isoFormat('Y-M-D'))
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$estudiantes=Estudiante::joi('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+            ->join('programacions','programacions.inscripcione_id','inscripciones.id')
+            ->join('clases','clases.programacion_id','programacions.id')
+  			->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.persona_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materias.id','clases.materia_id')
+            ->where('estudiantes.id',1)
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            
+     ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -257,21 +211,17 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Programacion::join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-  		->join('aulas','aulas.id','clases.aula_id')
-  		->join('estados','estados.id','clases.estado_id')
-        ->where('inscripciones.id',31)
-   		->where('programacions.fecha','>',Carbon::now()->isoFormat('Y-M-D'))
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$estudiantes=Estudiante::join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+            ->join('programacions','programacions.inscripcione_id','inscripciones.id')
+            ->join('clases','clases.programacion_id','programacions.id')
+  			->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.persona_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materias.id','clases.materia_id')
+            ->where('estudiantes.id',1)
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            
+     ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -280,20 +230,17 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Programacion::join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-  		->join('aulas','aulas.id','clases.aula_id')
-        ->where('inscripciones.id',31)
-   		->where('programacions.fecha','>',Carbon::now()->isoFormat('Y-M-D'))
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$estudiantes=Estudiante::join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+            ->join('programacions','programacions.inscripcione_id','inscripciones.id')
+            ->join('clases','clases.programacion_id','programacions.id')
+  			->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.persona_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materias.id','clases.materia_id')
+            ->where('estudiantes.id',2)
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            
+     ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -302,20 +249,18 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Programacion::join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-  		->join('aulas','aulas.id','clases.aula_id')
-        ->where('inscripciones.id',31)
-   		->where('programacions.fecha','<',Carbon::now()->isoFormat('Y-M-D'))
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$estudiantes=Estudiante::join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+            ->join('programacions','programacions.inscripcione_id','inscripciones.id')
+            ->join('clases','clases.programacion_id','programacions.id')
+  			->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.persona_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materias.id','clases.materia_id')
+            ->where('estudiantes.id',1)
+  			->where('clases.estado',estado('PRESENTE'))
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            
+     ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -324,21 +269,18 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Programacion::join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-  		->join('aulas','aulas.id','clases.aula_id')
-  		->join('estados','estados.id','programacions.estado_id')
-        ->where('inscripciones.id',31)
-   		->where('programacions.fecha','>',Carbon::now()->isoFormat('Y-M-D'))
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$estudiantes=Estudiante::join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+            ->join('programacions','programacions.inscripcione_id','inscripciones.id')
+            ->join('clases','clases.programacion_id','programacions.id')
+  			->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.persona_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materias.id','clases.materia_id')
+            ->where('estudiantes.id',1)
+  			->where('clases.estado_id',estado('PRESENTE'))
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            
+     ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -347,21 +289,18 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Programacion::join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-  		->join('aulas','aulas.id','clases.aula_id')
-  		->join('estados','estados.id','programacions.estado_id')
-        ->where('inscripciones.id',31)
-   		->where('programacions.fecha','<',Carbon::now()->isoFormat('Y-M-D'))
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$estudiantes=Estudiante::join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+            ->join('programacions','programacions.inscripcione_id','inscripciones.id')
+            ->join('clases','clases.programacion_id','programacions.id')
+  			->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.persona_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materias.id','clases.materia_id')
+            
+  			->where('clases.estado_id',estado('PRESENTE'))
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            
+     ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -370,21 +309,18 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Programacion::join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-		
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-  		->join('aulas','aulas.id','clases.aula_id')
-  		->join('estados','estados.id','programacions.estado_id')
-        ->where('inscripciones.id',31)
-   		->where('programacions.fecha','<',Carbon::now()->isoFormat('Y-M-D'))
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$estudiantes=Estudiante::join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+            ->join('programacions','programacions.inscripcione_id','inscripciones.id')
+            ->join('clases','clases.programacion_id','programacions.id')
+  			->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.persona_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materias.id','clases.materia_id')
+            ->where('docentes.id',1)
+  			->where('clases.estado_id',estado('PRESENTE'))
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            
+     ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -393,21 +329,19 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Programacion::join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-		
-  		->join('docentes','docentes.id','programacions.docente_id')
-  		->join('materias','materias.id','programacions.materia_id')
-  		->join('temas','temas.id','programacions.tema_id')
-  		->join('aulas','aulas.id','programacions.aula_id')
-  		->join('estados','estados.id','programacions.estado_id')
-        ->where('inscripciones.id',31)
-   		->where('programacions.fecha','<',Carbon::now()->isoFormat('Y-M-D'))
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$estudiantes=Estudiante::join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+            ->join('programacions','programacions.inscripcione_id','inscripciones.id')
+            ->join('clases','clases.programacion_id','programacions.id')
+  			->join('docentes','docentes.id','clases.docente_id')
+            ->join('personas','personas.id','estudiantes.persona_id')
+            ->join('temas','temas.id','clases.tema_id')
+            ->join('materias','materias.id','clases.materia_id')
+            ->where('docentes.id',1)
+  			->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
+  			->where('clases.estado_id',estado('PRESENTE'))
+            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            
+     ->get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -416,21 +350,7 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
-
-
-
- $historia=Programacion::join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-		
-  		->join('docentes','docentes.id','programacions.docente_id')
-  		->join('materias','materias.id','programacions.materia_id')
-  		
-  		->join('aulas','aulas.id','programacions.aula_id')
-  		->join('estados','estados.id','programacions.estado_id')
-        ->where('inscripciones.id',31)
-   		->where('programacions.fecha','<',Carbon::now()->isoFormat('Y-M-D'))
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','temas.tema','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
+$docentes=Docente::get();
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
@@ -439,97 +359,6 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
+$docentes=Docente::join("programacioncoms",'programacioncoms.docente_id','docentes.id')
 
-
-
- $historia=Programacion::join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-		
-  		->join('docentes','docentes.id','programacions.docente_id')
-  		->join('materias','materias.id','programacions.materia_id')
-  		
-  		->join('aulas','aulas.id','programacions.aula_id')
-  		->join('estados','estados.id','programacions.estado_id')
-        ->where('inscripciones.id',31)
-   		->where('programacions.fecha','<',Carbon::now()->isoFormat('Y-M-D'))
-  		->select('estados.estado','programacions.fecha','programacions.hora_ini','programacions.hora_fin','docentes.nombrecorto','materias.materia','aulas.aula')
-  		->orderBy('fecha','asc')
-  		->get();
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Programacion;
-use Carbon\Carbon;
-
-
-
-
-
- $historia=Clase::join('programacions','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto','materias.materia','temas.tema')
-  		->orderBy('fecha','asc')
-  		->get();
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Programacion;
-use Carbon\Carbon;
-
-
-
-
-
- $historia=Clase::join('programacions','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-   		->where('inscripcines.id',31)
-  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto','materias.materia','temas.tema')
-  		->orderBy('fecha','asc')
-  		->get();
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Programacion;
-use Carbon\Carbon;
-
-
-
-
-
- $historia=Clase::join('programacions','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-   		->where('inscripciones.id',31)
-  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto','materias.materia','temas.tema')
-  		->orderBy('fecha','asc')
-  		->get();
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Programacion;
-use Carbon\Carbon;
-
-
-
-
-
- $historia=Clase::join('programacions','clases.programacion_id','programacions.id')
-  		->join('inscripciones','programacions.inscripcione_id','inscripciones.id')
-  		->join('docentes','docentes.id','clases.docente_id')
-  		->join('materias','materias.id','clases.materia_id')
-  		->join('temas','temas.id','clases.tema_id')
-   		->where('inscripciones.id',33)
-  		->select('clases.estado_id','clases.fecha','docentes.nombrecorto','materias.materia','temas.tema')
-  		->orderBy('fecha','asc')
-  		->get();
+->get();
