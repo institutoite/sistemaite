@@ -717,7 +717,7 @@ class ProgramacionController extends Controller
             ->where('docentes.id',$docente_id)
             ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
             ->where('clases.estado_id',estado('PRESENTE'))
-            ->select('personas.id','personas.nombre','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            ->select('personas.id','personas.nombre','personas.foto','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
             ->get();
         return $estudiantes;
     }
@@ -840,7 +840,7 @@ class ProgramacionController extends Controller
         ->join('estados','programacions.estado_id','estados.id')
 
         ->where('programacions.fecha',Carbon::now()->format('Y-m-d'))
-        ->select('inscripciones.id','personas.nombre as estudiante','estados.estado','personas.apellidop','foto','docentes.nombrecorto as docente','programacions.hora_ini','programacions.hora_fin','materias.materia')  
+        ->select('inscripciones.id','personas.id as persona_id','personas.nombre as estudiante','estados.estado','personas.apellidop','foto','docentes.nombrecorto as docente','programacions.hora_ini','programacions.hora_fin','materias.materia')  
         ->get();
 
         return DataTables::of($programas)

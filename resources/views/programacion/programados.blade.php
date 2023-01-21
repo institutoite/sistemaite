@@ -21,6 +21,7 @@
                     <thead class="bg-primary text-center">
                         <tr>
                             <th>ID</th>
+                            <th>CODIGO</th>
                             <th>ESTUDIANTE</th>
                             <th>DOCENTE</th>
                             <th>HORARIO</th>
@@ -95,8 +96,8 @@
                     "ajax": "{{ url('hoy') }}",
                     "columns": [
                         {data: 'id'},
+                        {data: 'persona_id'},
                         {data: 'estudiante'},
-                           
                         {data: 'docente'},
                         {data: 'hora_ini'},
                         {data: 'hora_fin'},
@@ -120,7 +121,12 @@
                     ],
                     "columnDefs": [
                         { responsivePriority: 1, targets: 0 },  
-                        { responsivePriority: 2, targets: -1 }
+                        { responsivePriority: 2, targets: -1 },
+                        {
+                            "targets": [0],
+                            "visible": false,
+                            "searchable": false
+                        },
                     ],
                     "language":{
                         "url":"https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"

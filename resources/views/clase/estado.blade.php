@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
+    <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
 @endsection
 
 @section('title', 'Estado actual')
 @section('plugins.Jquery',true)
 @section('plugins.Datatables',true)
 @section('plugins.Sweetalert2',true)
-
 @section('content_header')
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 @stop
@@ -23,7 +23,7 @@
             $i=0;
         @endphp
         @foreach ($docenteshabilitados as $docente)
-            
+            @if (count($estudiantes[$i])>0)
                 <div class="card">
                     <div class="card-header {{ $i%2 == 0 ? "bg-primary" : "bg-secondary" }}">
                         <h4>{{$docente->nombrecorto}}</h4> 
@@ -36,6 +36,7 @@
                                 <th>APELLIDOP</th>
                                 <th>APELLIDOM</th>
                                 <th>MATERIA</th>
+                                <th>FOTO</th>
                                 <th>TEMA</th>
                             </thead>
                             <tbody>
@@ -46,6 +47,9 @@
                                         <td>{{$estudent->apellidop}}</td>
                                         <td>{{$estudent->apellidom}}</td>
                                         <td>{{$estudent->materia}}</td>
+                                        <td>
+                                            <img class="rounded img-thumbnail img-fluid zoomify" src="{{URL::to('/').Storage::url("$estudent->foto")}}" width="80"> 
+                                        </td>
                                         <td>{{$estudent->tema}}</td>
                                     </tr>
                                 @endforeach
@@ -57,7 +61,7 @@
                 @php
                     $i++;
                 @endphp
-            
+            @endif
         @endforeach
     </section>
 @endsection
@@ -117,6 +121,21 @@
             var ctx3 = document.getElementById("chart-rea3").getContext("2d");
             Mycanva.height=100;
             window.myPie = new Chart(ctx3).Bar(barChartData, options);
+            $('table').on('click','.zoomify',function (e){
+                
+                Swal.fire({
+                    title: 'Estudiante: '+ $(this).closest('tr').find('td').eq(1).text(),
+                    text: 'Materia:'+$(this).closest('tr').find('td').eq(4).text(),
+                    imageUrl: $(this).attr('src'),
+                    imageWidth: 400,
+                    imageHeight:400,
+                    showCloseButton:true,
+                    confirmButtonColor:'#26baa5',
+                    confirmButtonText:"Aceptar",
+                    
+                })
+            });
+
         });
     </script>
 @endsection
