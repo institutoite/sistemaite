@@ -519,9 +519,11 @@ class InscripcioneController extends Controller
         $inscripcionesVigentes=Inscripcione::join('estudiantes','estudiantes.id','inscripciones.estudiante_id')
         ->join('personas','personas.id','estudiantes.persona_id')
         ->where('vigente',1)
-        ->select('inscripciones.id','personas.nombre','personas.apellidop','personas.apellidom')->get();
+        ->select('inscripciones.id','personas.id as persona_id','personas.nombre','personas.apellidop','personas.apellidom')->get();
         return datatables()->of($inscripcionesVigentes)
-                            ->toJson();
+        ->addColumn('btn', 'inscripcione.actionvigentes')
+        ->rawColumns(['btn'])
+        ->toJson();
     }
     public function Saldo(Request $request){
         $inscripcion=Inscripcione::findOrFail($request->inscripcion_id);

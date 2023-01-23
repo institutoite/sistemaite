@@ -29,28 +29,51 @@
                         <h4>{{$docente->nombrecorto}}</h4> 
                     </div>
                     <div class="card-body">
-                        <table class="table table-light">
+                        <table class="table table-hover table-striped table-bordered table-borderless">
                             <thead>
                                 <th>COD</th>
                                 <th>NOMBRE</th>
-                                <th>APELLIDOP</th>
-                                <th>APELLIDOM</th>
                                 <th>MATERIA</th>
+                                <th>HORARIO</th>
                                 <th>FOTO</th>
                                 <th>TEMA</th>
+                                <th>ACTION</th>
                             </thead>
                             <tbody>
+                                
                                 @foreach ($estudiantes[$i] as $estudent)
-                                    <tr>
+                                    @php
+                                        $hora_inicio=new Carbon\Carbon($estudent->horafin);
+                                        $hora_fin=Carbon\Carbon::now();
+                                        $minutosRestantes=$hora_fin->diffInMinutes($hora_inicio,false);
+                                        // dd($minutosRestantes);
+                                        if ($minutosRestantes<=-10){
+                                            $clase="danger";
+                                        }
+                                        if($minutosRestantes>15){
+                                            $clase="success";
+                                        }
+                                        if(($minutosRestantes>0)&&($minutosRestantes<15)){
+                                            $clase="warning";
+                                        }
+                                        if(($minutosRestantes<=0)&&($minutosRestantes>-10)){
+                                            $clase="danger";
+                                        }
+                                    @endphp
+                                    <tr class="{{'text-'.$clase}}" id="{{$estudent->clase_id}}">
                                         <td>{{$estudent->id}}</td>
-                                        <td>{{$estudent->nombre}}</td>
-                                        <td>{{$estudent->apellidop}}</td>
-                                        <td>{{$estudent->apellidom}}</td>
+                                        <td>{{$estudent->nombre.' '.$estudent->apellidop.' '.$estudent->apellidom}}</td>
                                         <td>{{$estudent->materia}}</td>
+                                        <td>{{$estudent->horainicio.'-'.$estudent->horafin}}</td>
                                         <td>
                                             <img class="rounded img-thumbnail img-fluid zoomify" src="{{URL::to('/').Storage::url("$estudent->foto")}}" width="80"> 
                                         </td>
                                         <td>{{$estudent->tema}}</td>
+                                        <td>
+                                            <button class="mr-1 finalizar btn {{'btn-'.$clase}}" title="Finalizar esta clase">
+                                               Finalizar
+                                            </button>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -135,6 +158,37 @@
                     
                 })
             });
+            $('table').on('click', '.finalizar', function(e) { 
+                e.preventDefault(); 
+                var id_estudiante =$(this).closest('tr').attr('id');
+                var           fila=$(this).closest('tr');
+		        $.ajax({
+                    url : "{{url('clase/finalizar')}}",
+                    data : { id :id_estudiante },
+                    success : function(json) {
+                            
+                            fila.remove();
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                })
+
+                                Toast.fire({
+                                icon: 'success',
+                                title: "Clase finalizada correctamente"
+                                })
+                    },
+                    error : function(xhr, status) {
+                        Swal.fire({
+                        type: 'error',
+                        title: 'Ocurrio un Error',
+                        text: 'Saque una captura para mostrar al servicio Técnico!',
+                        })
+                    },
+                });
+	        });
 
         });
     </script>

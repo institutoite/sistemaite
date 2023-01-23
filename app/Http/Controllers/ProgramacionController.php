@@ -717,7 +717,7 @@ class ProgramacionController extends Controller
             ->where('docentes.id',$docente_id)
             ->where('programacions.fecha','=',Carbon::now()->isoFormat('Y-M-D'))
             ->where('clases.estado_id',estado('PRESENTE'))
-            ->select('personas.id','personas.nombre','personas.foto','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
+            ->select('personas.id','clases.id as clase_id','personas.nombre','clases.horafin','clases.horainicio','personas.foto','personas.apellidop','personas.apellidom','temas.tema','materias.materia')
             ->get();
         return $estudiantes;
     }
