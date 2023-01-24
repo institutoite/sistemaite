@@ -1,6 +1,5 @@
 @extends('adminlte::page')
 @section('css')
-    {{-- <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}"> --}}
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
@@ -132,8 +131,6 @@
     @include('whatsapp.modalmensajes')
 @endsection
 @section('js')
-    {{-- <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script> --}}
-    {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
@@ -150,13 +147,14 @@
     <script src="{{asset('assets/js/configmatriculacion.js')}}"></script>
     
 <script>
-    let tablamensajes;
-    let tablainscripciones;
-    let tablamatriculaciones;
-    let tablainscripcionesdesvigentes;
-    let tablamatriculacionesdesvigentes;
+        let tablamensajes;
+        let tablainscripciones;
+        let tablamatriculaciones;
+        let tablainscripcionesdesvigentes;
+        let tablamatriculacionesdesvigentes;
         $(document).ready(function() {
         
+
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    DATATABLE INSCRIPCIONES  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             tablainscripciones=$('#inscripciones').DataTable(
                 {
@@ -466,16 +464,9 @@
                 url="../darbaja/matriculacion";
                 darBajaMatriculacion(matriculacion_id,url);
             });
-            /*%%%%%%%%%%%%%%%%%%%%% ALTA DE INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            // $('table').on('click', '.altainscripcion', function (e) {
-            //     e.preventDefault();
-            //     let inscripcion_id = $(this).closest('tr').attr('id');
-                
-            //     url="../daralta/inscripcion";
-            //     darAltaInscripcion(inscripcion_id,url);
-            // });
+            
             /*%%%%%%%%%%%%%%%%%%%%% CONDONAR INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-             $('table').on('click', '.condonarinscripcion', function (e) {
+            $('table').on('click', '.condonarinscripcion', function (e) {
                 e.preventDefault();
                 let inscripcion_id = $(this).closest('tr').attr('id');
                 
@@ -659,8 +650,6 @@
                     url : "../pago/mostrar/"+pago_id,
                     
                     success : function(json) {
-                        //
-                        // $("#modal-mostrar-pagos").modal("hidde");
                         $("#modal-detallar-pago").modal("show");
                         $("#tabla-billete-pago").empty();
                         $("#tabla-billete-cambio").empty();
@@ -700,48 +689,6 @@
                 });
             });
 
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES DE INSCRIPCINES VIGENTES  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-                
-                // $('table').on('click', '.mostrarobservaciones', function(e) {
-                //     e.preventDefault();
-                    
-                //     observable_id =$(this).closest('tr').attr('id');
-                //     console.log(observable_id);
-                //     observable_type ="Inscripcione";
-                //         var fila=$(this).closest('tr');
-                        
-                //         $("#tabla-observaciones").empty();
-                //         $("#modal-mostrar-observaciones").modal("show");
-                //              $.ajax({
-                //                 url :"../observaciones/general",
-                //                 data:{
-                //                     observable_id:observable_id,
-                //                     observable_type:observable_type,
-                //                 },
-                //                 success : function(json) {
-                //                     console.log(json);
-                //                     $html="";
-                //                     $clase="";
-                //                     for (let j in json) {
-                //                         if(json[j].activo==1){
-                //                             $clase="text-success";
-                //                         }else{
-                //                             $clase="text-danger";    
-                //                         }
-                //                         $html+="<tr class='"+$clase+"'><td>"+ json[j].observacion +"</td>";
-                //                         $html+="<td>"+json[j].name+"</td>";
-                //                         $html+="<td>"+moment(json[j].created_at).format('LLL') +"</td>";
-                //                         $html+="<td>"+moment(json[j].updated_at).format('LLL') +"</td></tr>";
-                //                     }
-                //                     $("#tabla-observaciones").append($html);
-                //                 },
-                //                 error : function(xhr, status) {
-                //                     alert('Disculpe, existió un problema');
-                //                 },
-                //             });
-                //     });
-
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA AL FRENTE EL ULTIMO MODAL  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
             (function($, window) {
                 'use strict';

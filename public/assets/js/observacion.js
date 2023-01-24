@@ -68,7 +68,7 @@ function darBaja(observacion_id,url) {
                 timer: 3000,
             })
             Toast.fire({
-                type: 'success',
+                icon: 'success',
                 title: "Actualizado corectamente",
             })
 
@@ -96,7 +96,7 @@ function darAlta(observacion_id,url){
                 timer: 3000,
             })
             Toast.fire({
-                type: 'success',
+                icon: 'success',
                 title: "Actualizado corectamente",
             })
         },
@@ -140,7 +140,7 @@ function actualizarObservacion(observacion_id,observacion,url){
                     timer: 3000,
                 })
                 Toast.fire({
-                    type: 'success',
+                    icon: 'success',
                     title: "Guardado corectamente: " + json.mensaje,
                 })
                 $("#modal-editar-observacion").modal("hide"); 
@@ -172,7 +172,7 @@ function actualizarObservacion(observacion_id,observacion,url){
                         timer: 3000,
                     })
                     Toast.fire({
-                        type: 'success',
+                        icon: 'success',
                         title: "Guardado corectamente: " + json.mensaje,
                     })
                     $("#modal-agregar-observacion").modal("hide");

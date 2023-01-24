@@ -376,8 +376,10 @@ class MatriculacionController extends Controller
         $matriculacionesVigentes=Matriculacion::join('computacions','computacions.id','matriculacions.computacion_id')
         ->join('personas','personas.id','computacions.persona_id')
         ->where('vigente',1)
-        ->select('matriculacions.id','personas.nombre','personas.apellidop','personas.apellidom')->get();
+        ->select('matriculacions.id','personas.id as persona_id','personas.nombre','personas.apellidop','personas.apellidom')->get();
         return datatables()->of($matriculacionesVigentes)
+            ->addColumn('btn', 'inscripcione.actionmatriculacionesvigentes')
+            ->rawColumns(['btn'])
             ->toJson();
     }
     public function Saldo(Request $request){
