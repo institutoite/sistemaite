@@ -15,7 +15,7 @@
     <i class="fas fa-comments text-secondary"></i>
 </a>
 
-<a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarprogramacionmatriculacion" title="Mostrar Programacion">
+<a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarprogramacionmatriculacion" title="Mostrar Programacion de matriculacion">
     <i class="fas fa-calendar-alt text-secondary"></i>
 </a>
 <a href="" class="btn-accion-tabla tooltipsC mr-1 bajamatriculacion" title="Dar baja esta matriculación">

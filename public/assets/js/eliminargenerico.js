@@ -5,9 +5,7 @@ function eliminarRegistro(registro_id,objeto_type,tabla) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    console.log(registro_id);
-    console.log(objeto_type);
-    console.log(tabla);
+    
     Swal.fire({
         title: 'Estas seguro(a) de eliminar este registro?',
         text: "Si eliminas el registro no lo podras recuperar jamás!",

@@ -123,7 +123,7 @@
             let observable_id = $("#observable_id").val();
             
             let observable_type = $("#observable_type").val();
-            
+            //alert(observable_id);
             for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
             observacion=$("#editorguardar").val();
             
@@ -187,31 +187,52 @@
         /*%%%%%%%%%%%%%%%%%%%%% BAJA DE INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         $('table').on('click', '.bajainscripcion', function (e) {
             e.preventDefault();
-            let inscripcion_id = $(this).closest('tr').attr('id');
-            url="../../darbaja/inscripcion";
-            darBajaInscripcion(inscripcion_id,url);
+            Swal.fire({
+                title: 'Estas seguro(a) de dar Baja esta inscripción?',
+                text: "Si le das de baja el registro sera complicado recuperarlo!",
+                icon: 'question',
+                showCancelButton: true,
+                showConfirmButton: true,
+                confirmButtonColor: '#25ff80',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Dar Baja..!',
+                position: 'center',
+            }).then((result) => {
+                if (result.value) {
+                    let inscripcion_id = $(this).closest('tr').attr('id');
+                    url="../../darbaja/inscripcion";
+                    darBajaInscripcion(inscripcion_id,url);
+                } else {
+                    mensajePequenio('El registro NO se eliminó', 'error', 2000);
+                }
+            })
+            
         });
         /*%%%%%%%%%%%%%%%%%%%%% BAJA DE MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         $('table').on('click', '.bajamatriculacion', function (e) {
             e.preventDefault();
-            let matriculacion_id = $(this).closest('tr').attr('id');
+                Swal.fire({
+                    title: 'Estas seguro(a) de dar Baja esta inscripción?',
+                    text: "Si le das de baja el registro sera complicado recuperarlo!",
+                    icon: 'question',
+                    showCancelButton: true,
+                    showConfirmButton: true,
+                    confirmButtonColor: '#25ff80',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Dar Baja..!',
+                    position: 'center',
+                }).then((result) => {
+                    if (result.value) {
+                        let matriculacion_id = $(this).closest('tr').attr('id');
+                        url="../../darbaja/matriculacion";
+                        darBajaMatriculacionv(matriculacion_id,url);
+                    } else {
+                        mensajePequenio('El registro NO se eliminó', 'error', 2000);
+                    }
+                })
             
-            url="../../darbaja/matriculacion";
-            darBajaMatriculacion(matriculacion_id,url);
         });
-        /*%%%%%%%%%%%%%%%%%%%%% CONDONAR INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        // $('table').on('click', '.condonarinscripcion', function (e) {
-        //     e.preventDefault();
-        //     let inscripcion_id = $(this).closest('tr').attr('id');
-            
-        //     url="../condonar/inscripcion";
-        //     condonarInscripcion(inscripcion_id,url);
-        // });
-        /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       JS MATRICULACION   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
-    
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR OBSERVACIONES MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         $('table').on('click', '.mostrarobservacionesmatriculacion', function(e) {
             e.preventDefault();
@@ -227,7 +248,6 @@
         $('table').on('click', '.mostrarobservaciones', function(e) {
             e.preventDefault();
                 observable_id =$(this).closest('tr').attr('id');
-                console.log(observable_id);
                 observable_type ="Inscripcione";
                 url="../../observaciones/" + observable_id + "/" + observable_type,
                 
@@ -257,6 +277,33 @@
         $('#modal-editar-observacion').on('hidden.bs.modal', function (e) {
             $(".diverror").addClass("d-none");
         });
+        function darBajaMatriculacionv(matriculacion_id,url) {
+            $.ajax({
+                url: url,
+                data: {
+                    matriculacion_id: matriculacion_id,
+                },
+                success: function (json) {
+                    //$("#" + matriculacion_id).addTempClass('bg-success', 3000);
+                    tablamatriculaciones.ajax.reload();
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    })
+                    Toast.fire({
+                        icon: 'success',
+                        title: "Actualizado corectamente",
+                    })
+
+                },
+                error: function (xhr, status) {
+                    alert('Disculpe, existió un problema');
+                },
+            });
+        }
+
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR PERSONA DE INSCRIPCIONES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/    
             $('table').on('click', '.mostrarpersona', function(e) {
                 e.preventDefault();
@@ -273,7 +320,7 @@
                         $html+="<tr>"+"<td>NOMBRE</td><td>"+ json.persona.nombre+" "+json.persona.apellidop+" "+json.persona.apellidom+"</td><td rowspan='4'><img class='img-fluid rounded img-thumbnail' alt='"+ json.persona.nombre +"' src={{URL::to('/')}}"+"/storage/"+json.persona.foto +"></td>></tr>";
                         $html+="<tr>"+"<td>CARNET</td><td>"+ json.persona.carnet+" "+json.persona.expedido+"</td></tr>";
                         $html+="<tr>"+"<td>PAIS</td><td>"+ json.pais.nombrepais +", "+json.ciudad.ciudad+","+json.zona.zona+","+json.persona.direccion+"</td></tr>";
-                        $html+="<tr>"+"<td>COMO LLEGO</td><td>"+ json.persona.como +"</td></tr>";
+                        $html+="<tr>"+"<td>COMO LLEGOx</td><td>"+ json.persona.como +"</td></tr>";
                         $html+="<tr>"+"<td>FECHA NACIMIENTO</td><td colspan='2'>"+ moment(json.persona.fechanacimiento).format('DD-MM-YYYY')+ " "+json.edad+"</td></tr>";
                         $html+="<tr>"+"<td>GENERO</td><td colspan='2'>"+ json.persona.genero +"</td></tr>";
                         $html+="<tr>"+"<td>HABILITADO</td><td colspan='2'>"+ json.persona.habilitado +"</td></tr>";
@@ -329,7 +376,6 @@
             $('table').on('click', '.mostrarpagos', function(e) {
                 e.preventDefault();
                 let inscripcion_id=$(this).closest('tr').attr('id');
-                console.log(inscripcion_id);
                 $("#tabla-mostrar-pagos").empty();
                 $("#pagos").empty();
                 $("#modal-mostrar-pagos").modal("show");
@@ -339,7 +385,6 @@
                         inscripcion_id:inscripcion_id,
                     },
                     success : function(json) {
-                            console.log(json.persona.nombre);
                             $html="";
                             $html+="<tr>"+"<td>NOMBRE</td><td>"+ json.persona.nombre+" "+json.persona.apellidop+" "+json.persona.apellidom+"</td><td rowspan='4'><img class='rounded float-end img-thumbnail' alt='"+ json.persona.nombre +"' src={{URL::to('/')}}"+"/storage/"+json.persona.foto +"></td>></tr>";
                             $html+="<tr>"+"<td>ACUENTA</td><td>"+ json.acuenta+"</td></tr>";
@@ -357,7 +402,6 @@
                                 $pagosHtml+="<td><a class='detallarpago btn-accion-tabla tooltipsC mr-2' title='Ver este pago'><i class='fa fa-fw fa-eye text-primary'></i></a></td>";
                             }
                             $('#pagos').append($pagosHtml); 
-                            console.log($pagosHtml);
                     },
                     error : function(xhr, status) {
                         alert('Disculpe, existió un problema');
@@ -496,8 +540,15 @@
                         inscripcion_id:inscripcion_id,
                     },
                     success : function(json) {
-                             for (let j in json) {
-                                $programacionHtml+="<tr id='"+ json[j].id +"' ><td>"+ (parseInt(j)+1) +"</td>";
+                            clase="";
+                            for (let j in json) {
+                                if(moment(json[j].fecha)<moment.now())
+                                    clase="table-success text-success";
+                                else 
+                                    clase="table-danger text-danger";
+                                if(moment(json[j].fecha).format('Y-MM-DD')==(moment().format('Y-MM-DD')))
+                                    clase="bg-success text-white";
+                                $programacionHtml+="<tr class='"+clase+"' id='"+ json[j].id +"' ><td>"+ (parseInt(j)+1) +"</td>";
                                 $programacionHtml+="<td>"+moment(json[j].fecha).format('DD-MM-YYYY')+"</td>";
                                 $programacionHtml+="<td>"+moment(json[j].hora_ini).format('hh:mm:ss')+"-"+moment(json[j].hora_fin).format('hh:mm:ss')+"</td>";
                                 $programacionHtml+="<td>"+json[j].nombre+'/'+json[j].aula+"</td>";
@@ -565,7 +616,6 @@
                         persona_id:persona_id,
                     },
                     success : function(json) {
-                        //
                         $html+="<tr>"+"<td>NOMBRE</td><td>"+ json.persona.nombre+" "+json.persona.apellidop+" "+json.persona.apellidom+"</td><td rowspan='4'><img class='img-fluid rounded img-thumbnail' alt='"+ json.persona.nombre +"' src={{URL::to('/')}}"+"/storage/"+json.persona.foto +"></td>></tr>";
                         $html+="<tr>"+"<td>CARNET</td><td>"+ json.persona.carnet+" "+json.persona.expedido+"</td></tr>";
                         $html+="<tr>"+"<td>PAIS</td><td>"+ json.pais.nombrepais +", "+json.ciudad.ciudad+","+json.zona.zona+","+json.persona.direccion+"</td></tr>";
@@ -824,9 +874,15 @@
                         matriculacion_id:matriculacion_id,
                     },
                     success : function(json) {
-                            
+                            clase="";
                             for (let j in json) {
-                                $programacionHtml+="<tr id='"+ json[j].id +"' ><td>"+ (parseInt(j)+1) +"</td>";
+                                if(moment(json[j].fecha)<moment.now())
+                                    clase="table-success text-success";
+                                else 
+                                    clase="table-danger text-danger";
+                                if(moment(json[j].fecha).format('Y-MM-DD')==(moment().format('Y-MM-DD')))
+                                    clase="bg-success text-white";
+                                $programacionHtml+="<tr class='"+ clase +"' id='"+ json[j].id +"' ><td>"+ (parseInt(j)+1) +"</td>";
                                 $programacionHtml+="<td>"+moment(json[j].fecha).format('DD-MM-YYYY')+"</td>";
                                 $programacionHtml+="<td>"+moment(json[j].horaini).format('hh:mm:ss')+"-"+moment(json[j].horafin).format('hh:mm:ss')+"</td>";
                                 $programacionHtml+="<td>"+json[j].nombrecorto+'/'+json[j].aula+"</td>";
@@ -843,406 +899,13 @@
                 
             });
 
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR LA ULTIMA MATRICULACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-
-            // $('table').on('click', '.ultimamatriculacion', function(e) {
-            //     e.preventDefault();
-                
-            //     persona_id =$(this).closest('tr').attr('id');
-            //         var fila=$(this).closest('tr');
-                    
-            //         $("#modal-mostrar-ultimamatriculacion").modal("show");
-            //         $("#tabla-ultimamatriculacion").empty();
-            //                 $.ajax({
-            //                 url :"/../persona/ultima/matriculacion",
-            //                 data:{
-            //                     persona_id:persona_id,
-            //                 },
-            //                 success : function(json) {
-                                
-            //                     $html="";
-            //                     $html+="<tr>"+"<td>COSTO</td><td>"+ json.matriculacion.costo+"</td></tr>";
-            //                     $html+="<tr>"+"<td>TOTAL HORAS</td><td>"+ json.matriculacion.totalhoras +"</td></tr>";
-            //                     $html+="<tr>"+"<td>INICIO</td><td colspan='2'>"+ moment(json.matriculacion.fechaini).format('DD-MM-YYYY')+ " "+json.empezo+"</td></tr>";
-            //                     $html+="<tr>"+"<td>FINALIZA</td><td colspan='2'>"+ moment(json.matriculacion.fechafin).format('DD-MM-YYYY')+ " "+json.finaliza+"</td></tr>";
-            //                     $html+="<tr>"+"<td>FECHA PAGO</td><td colspan='2'>"+ moment(json.matriculacion.fecha_proximo_pago).format('DD-MM-YYYY')+ " "+json.proximo_pago+"</td></tr>";
-            //                     $html+="<tr>"+"<td>CONDONADO</td><td colspan='2'>"+ json.matriculacion.condonado +"</td></tr>";
-            //                     $html+="<tr>"+"<td>MODALIDAD</td><td colspan='2'>"+ json.asignatura.asignatura +"</td></tr>";
-            //                     $html+="<tr>"+"<td>MOTIVO</td><td colspan='2'>"+ json.motivo.motivo +"</td></tr>";
-            //                     $html+="<tr>"+"<td>CREADO</td><td colspan='2'>"+ moment(json.matriculacion.created_at).format('DD-MM-YYYY') + " "+ json.creado+"</td></tr>";                        
-            //                     $html+="<tr>"+"<td>ACTUALIZADO</td><td colspan='2'>"+ moment(json.matriculacion.updated_at).format('DD-MM-YYYY')+ " "+ json.actualizado +"</td></tr>";  
-            //                     $("#tabla-ultimamatriculacion").append($html);
-            //                 },
-            //                 error : function(xhr, status) {
-            //                     alert('Disculpe, existió un problema');
-            //                 },
-            //             });
-            //     });
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRAR LA ULTIMA INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-
-            // $('table').on('click', '.ultimainscripcion', function(e) {
-            //     e.preventDefault();
-                
-            //     persona_id =$(this).closest('tr').attr('id');
-            //         var fila=$(this).closest('tr');
-                    
-            //         $("#modal-mostrar-ultimainscripcion").modal("show");
-            //         $("#tabla-ultimainscripcion").empty();
-            //                 $.ajax({
-            //                 url :"../persona/ultima/inscripcion",
-            //                 data:{
-            //                     persona_id:persona_id,
-            //                 },
-            //                 success : function(json) {
-                                
-            //                     $html="";
-            //                     $html+="<tr>"+"<td>COSTO</td><td>"+ json.inscripcion.costo+"</td></tr>";
-            //                     $html+="<tr>"+"<td>TOTAL HORAS</td><td>"+ json.inscripcion.totalhoras +"</td></tr>";
-            //                     $html+="<tr>"+"<td>INICIO</td><td colspan='2'>"+ moment(json.inscripcion.fechaini).format('DD-MM-YYYY')+ " "+json.empezo+"</td></tr>";
-            //                     $html+="<tr>"+"<td>FINALIZA</td><td colspan='2'>"+ moment(json.inscripcion.fechafin).format('DD-MM-YYYY')+ " "+json.finaliza+"</td></tr>";
-            //                     $html+="<tr>"+"<td>FECHA PAGO</td><td colspan='2'>"+ moment(json.inscripcion.fecha_proximo_pago).format('DD-MM-YYYY')+ " "+json.proximo_pago+"</td></tr>";
-            //                     if(json.inscripcion.condonado==0)
-            //                         $html+="<tr>"+"<td>CONDONADO</td><td colspan='2'>"+  "No condanado" +"</td></tr>";
-            //                     else
-            //                         $html+="<tr>"+"<td>CONDONADO</td><td colspan='2'>"+"Si esta condonado" +"</td></tr>";
-            //                     $html+="<tr>"+"<td>MOTIVO</td><td colspan='2'>"+ json.motivo.motivo +"</td></tr>";
-            //                     $html+="<tr>"+"<td>CREADO</td><td colspan='2'>"+ moment(json.inscripcion.created_at).format('DD-MM-YYYY') + " "+ json.creado+"</td></tr>";                        
-            //                     $html+="<tr>"+"<td>ACTUALIZADO</td><td colspan='2'>"+ moment(json.inscripcion.updated_at).format('DD-MM-YYYY')+ " "+ json.actualizado +"</td></tr>";  
-            //                     $("#tabla-ultimainscripcion").append($html);
-            //                 },
-            //                 error : function(xhr, status) {
-            //                     alert('Disculpe, existió un problema');
-            //                 },
-            //             });
-            //     });
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRA LA ULTIMA PROGRAMACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            // $('table').on('click', '.ultimaprogramacion', function(e) {
-            //     e.preventDefault();
-            //     persona_id =$(this).closest('tr').attr('id');
-                
-            //     $("#modal-mostrar-ultima-programacion").modal("show");
-            //     $("#tabla-ultima-programacion").empty();
-            //                 $.ajax({
-            //                 url :"../persona/ultima/programacion",
-            //                 data:{
-            //                     persona_id:persona_id
-            //                 },
-            //                 success : function(json) {
-                                
-            //                     $html="";
-            //                     $clase="";
-            //                     for (let j in json) {
-            //                         if(json[j].habilitado==1){
-            //                             $clase="text-success";
-            //                             if(moment(json[j].fecha).format('DD-MM-YYYY')==moment().format('DD-MM-YYYY')){
-            //                                 $clase+=" bg-success text-white";
-            //                             }
-            //                         }else{
-            //                             $clase="text-danger";    
-            //                             if(moment(json[j].fecha).format('DD-MM-YYYY')==moment().format('DD-MM-YYYY')){
-            //                                 $clase+=" bg-danger text-white";
-            //                             }
-            //                         }
-            //                         $html+="<tr class='"+$clase+"'><td>"+ parseInt(parseInt(j)+1) +"</td>";
-            //                         $html+="<td>"+ moment(json[j].fecha).format("L") +"</td>";
-            //                         $html+="<td>"+moment(json[j].hora_ini).format('hh:mm-ss')+" - "+moment(json[j].hora_fin).format('hh:mm:ss')+"</td>";
-            //                         $html+="<td>"+json[j].horas_por_clase+"</td>";
-            //                         $html+="<td>"+json[j].nombrecorto+"</td>";
-            //                         $html+="<td>"+json[j].estado+"</td>";
-            //                         $html+="<td>"+json[j].materia+"</td>";
-            //                     }
-            //                     $("#tabla-ultima-programacion").append($html);
-            //                 },
-            //                 error : function(xhr, status) {
-            //                     alert('Disculpe, existió un problema');
-            //                 },
-            //             });
-            //     }); 
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOSTRA LA ULTIMA PROGRAMACIONCOM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            // $('table').on('click', '.ultimaprogramacioncom', function(e) {
-            //     e.preventDefault();
-            //     persona_id =$(this).closest('tr').attr('id');
-                
-            //     $("#modal-mostrar-ultima-programacioncom").modal("show");
-            //     $("#tabla-ultima-programacioncom").empty();
-            //                 $.ajax({
-            //                 url :"../persona/ultima/programacioncom",
-            //                 data:{
-            //                     persona_id:persona_id
-            //                 },
-            //                 success : function(json) {
-                                
-            //                     $html="";
-            //                     $clase="";
-            //                     for (let j in json) {
-            //                         if(json[j].habilitado==1){
-            //                             $clase="text-success";
-            //                             if(moment(json[j].fecha).format('DD-MM-YYYY')==moment().format('DD-MM-YYYY')){
-            //                                 $clase+=" bg-success text-white";
-            //                             }
-            //                         }else{
-            //                             $clase="text-danger";    
-            //                             if(moment(json[j].fecha).format('DD-MM-YYYY')==moment().format('DD-MM-YYYY')){
-            //                                 $clase+=" bg-danger text-white";
-            //                             }
-            //                         }
-
-                                   
-            //                         //
-            //                         // 
-            //                         $html+="<tr class='"+$clase+"'><td>"+ moment(json[j].fecha).format("L") +"</td>";
-            //                         $html+="<td>"+moment(json[j].horaini).format('hh:mm-ss')+" - "+moment(json[j].horafin).format('hh:mm:ss')+"</td>";
-            //                         $html+="<td>"+json[j].horas_por_clase+"</td>";
-            //                         $html+="<td>"+json[j].nombrecorto+"</td>";
-            //                         $html+="<td>"+json[j].estado+"</td>";
-            //                     }
-            //                     $("#tabla-ultima-programacioncom").append($html);
-            //                 },
-            //                 error : function(xhr, status) {
-            //                     alert('Disculpe, existió un problema');
-            //                 },
-            //             });
-            //     }); 
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ENVIAR MENSAJES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('table').on('click', '.enviarmensaje', function(e) {
-                e.preventDefault();
-                
-                persona_id =$(this).closest('tr').attr('id');
-                
-                    $("#modal-mostrar-contactos").modal("show");
-                    $("#tabla-contactos").empty();
-                            $.ajax({
-                            url :"../persona/enviar/mensaje",
-                            data:{
-                                persona_id:persona_id,
-                            },
-                            success : function(json) {
-                                
-                                $html="<tr id='"+ json.persona.telefono +"'><td>"+ json.persona.nombre +"</td>";
-                                $html+="<td>Teléfono personal</td>";
-                                $html+="<td>"+json.persona.telefono+"</td>";
-                                $html+="<td>"+moment(json.persona.created_at).format('L') +"</td>";
-                                $html+="<td>"+moment(json.persona.updated_at).format('L') +"</td>";
-                                $html+="<td><a class='btn listarmensajes'><i class='far fa-comment-dots fa-2x'></i></a></td></tr>";
-
-                                for (let j in json.apoderados) {
-                                    $html+="<tr id='"+ json.apoderados[j].telefono +"'><td>"+ json.apoderados[j].nombre +"</td>";
-                                    $html+="<td>"+json.apoderados[j].pivot.parentesco+"</td>";
-                                    $html+="<td>"+json.apoderados[j].telefono+"</td>";
-                                    $html+="<td>"+moment(json.apoderados[j].created_at).format('LLL') +"</td>";
-                                    $html+="<td>"+moment(json.apoderados[j].updated_at).format('LLL') +"</td>";
-                                    $html+="<td><a class='btn listarmensajes'><i class='far fa-comment-dots fa-2x'></i></a></td></tr>";
-
-                                }
-                                $("#tabla-contactos").append($html);
-                            },
-                            error : function(xhr, status) {
-                                alert('Disculpe, existió un problema');
-                            },
-                        });
-                }); 
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HACER LLAMADAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('table').on('click', '.llamar', function(e) {
-                e.preventDefault();
-                
-                persona_id =$(this).closest('tr').attr('id');
-
-                        // $ultimacelda="<td><a class='btn listarmensajes'><i class='far fa-comment-dots fa-2x'></i></a><a target='_blank' onclick='descargar()' title='Envia este mensaje'>";
-                        // $ultimacelda+="<i class='fas fa-download fa-2x'></i></a> </td></tr>";
-
-                    $("#modal-mostrar-contactos").modal("show");
-                    $("#tabla-contactos").empty();
-                            $.ajax({
-                            url :"../persona/enviar/mensaje",
-                            data:{
-                                persona_id:persona_id,
-                            },
-                            success : function(json) {
-                                
-                                $html="<tr id='"+ json.persona.telefono +"'><td>"+ json.persona.nombre +"</td>";
-                                $html+="<td>Teléfono personal</td>";
-                                $html+="<td><a href='tel:+591"+json.persona.telefono+"'><i class='fas fa-phone-volume'></i> "+json.persona.telefono+"</a></td>";
-                                $html+="<td>"+moment(json.persona.created_at).format('L') +"</td>";
-                                $html+="<td>"+moment(json.persona.updated_at).format('L') +"</td>";
-                                // $html+=$ultimacelda;
-
-                                for (let j in json.apoderados) {
-                                    $html+="<tr id='"+ json.apoderados[j].telefono +"'><td>"+ json.apoderados[j].nombre +"</td>";
-                                    $html+="<td>"+json.apoderados[j].pivot.parentesco+"</td>";
-                                    $html+="<td><a href='tel:+591"+json.apoderados[j].telefono+"'><i class='fas fa-phone-volume'></i>"+json.apoderados[j].telefono+"</a></td>";
-                                    $html+="<td>"+moment(json.apoderados[j].created_at).format('L') +"</td>";
-                                    $html+="<td>"+moment(json.apoderados[j].updated_at).format('L') +"</td>";
-                                    // $hhtml+=$ultimacelda;
-
-                                }
-                                $("#tabla-contactos").append($html);
-                            },
-                            error : function(xhr, status) {
-                                alert('Disculpe, existió un problema');
-                            },
-                        });
-                }); 
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LLAMAR  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('table').on('click', '.listarmensajes', function(e) {
-                e.preventDefault();
-                telefono =$(this).closest('tr').attr('id');
-                
-                    MostrarMensajes(telefono);
-                    $("#modal-mensajes").modal("show");
-                }); 
-            /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FECHAR UNA FECHA A PROXIMADA DE REGRESO A CLASES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('table').on('click', '.fechar', function(e) {
-                e.preventDefault();
-                persona_id =$(this).closest('tr').attr('id');
-                $("#modal-fechar").modal("show");
-                $("#persona_id").val(persona_id);
-                
-            }); 
-             /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('#agendar').on('click', function (e) {
-                e.preventDefault();
-                $("#errores").empty();
-                let vuelvefecha = $("#vuelvefecha").val();
-                let persona_id = $("#persona_id").val();
-                $.ajax({
-                    url: "../persona/actualizar/vuelvefecha",
-                    data: {
-                        vuelvefecha:vuelvefecha,
-                        persona_id:persona_id,
-                    },
-                    success: function (json) {
-                        if(json.error){
-                            
-                            $html="";
-                            for (let j in json.error) {
-                                $html+="<li>"+ json.error[0] +"</li>";
-                            }
-                            $("#erroresdiv").removeClass('d-none');
-                            $("#error").append($html);
-                        }else{
-                            const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 3000,
-                            })
-                            Toast.fire({
-                                type: 'success',
-                                title: "Guardado corectamente: " + json.observacion,
-                            })
-                            $("#modal-fechar").modal("hide");
-                            tablamatriculacionesdesvigentes.ajax.reload();
-                        }
-                    },
-                    error: function (xhr, status) {
-                        alert('Disculpe, existió un problema');
-                    },
-                });
-                
-            });
-            /**%%%%%%%%%%%%%%%%%%%%%%%%%%%% CALIFICAR  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('table').on('click', '.calificar', function(e) {
-                e.preventDefault();
-                persona_id =$(this).closest('tr').attr('id');
-                $("#modal-calificar").modal("show");
-                $("#persona_id").val(persona_id);
-            }); 
-             /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% GUARDAR LA FECHA O HACE AGENDAR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-            $('#calificar').on('click', function (e) {
-                e.preventDefault();
-                $("#errores").empty();
-                let volvera = $("#volvera").val();
-                let persona_id = $("#persona_id").val();
-                $.ajax({
-                    url: "../persona/actualizar/volvera",
-                    data: {
-                        volvera:volvera,
-                        persona_id:persona_id,
-                    },
-                    success: function (json) {
-                        
-                        if(json.error){
-                            
-                            $html="";
-                            for (let j in json.error) {
-                                $html+="<li>"+ json.error[0] +"</li>";
-                            }
-                            $("#erroresdiv").removeClass('d-none');
-                            $("#error").append($html);
-                        }else{
-                            const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 3000,
-                            })
-                            Toast.fire({
-                                type: 'success',
-                                title: "Guardado corectamente: " + json.observacion,
-                            })
-                            $("#modal-calificar").modal("hide");
-                        }
-                    },
-                    error: function (xhr, status) {
-                        alert('Disculpe, existió un problema');
-                    },
-                });
-                
-            });
-        
-        function MostrarMensajes(UnTelefono){
-                $("#mensajes").dataTable().fnDestroy();
-                tablamensajes=$('#mensajes').DataTable({
-                    "responsive":true,
-                    "searching":true,
-                    "paging":   true,
-                    "autoWidth":false,
-                    "ordering": true,
-                    "info":     true,
-                    "createdRow": function( row, data, dataIndex ) {
-                        $(row).attr('id',data['id']); 
-                        if(data['vigente']==1){
-                            $(row).addClass('text-success');
-                        }else{
-                            $(row).addClass('text-danger');
-                        }
-                        $('td', row).eq(3).html(data['telefono']);
-                        
-                    },
-                    "ajax":{
-                        "url": "../listar/mensajes/enviar",
-                        "data":{
-                            telefono:UnTelefono,
-                        },
-                    },
-                    "columns": [
-                        {data: 'id'},
-                        {data: 'nombre'},
-                        {data: 'mensaje'},
-                        {data: 'telefono'},
-                        {
-                            "name":"btn",
-                            "data": 'btn',
-                            "orderable": false,
-                        },
-                    ],
-                    "columnDefs": [
-                        { responsivePriority: 1, targets: 0 },  
-                        { responsivePriority: 2, targets: -1 }
-                    ],
-                    "language":{
-                            "url":"https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
-                    },
-                });
-                
-        }
 
         //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  script %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         /* este codigo o algoritmo coloca falta a todas las clases anterior que no hayan sido marcados*/
         $.ajax({
             url : '../../programacion/asignarfalta/ajax',
             success : function(json) {
-                //console.log(json);
+
             },
             error : function(xhr, status) {
                 alert('Disculpe, existió un SXXX problema');
@@ -1251,7 +914,6 @@
         $.ajax({
             url : '../../programacioncom/asignarfalta/ajax',
             success : function(json) {
-               // console.log(json);
             },
             error : function(xhr, status) {
                 alert('Disculpe, existió un SXXX problema');
@@ -1266,9 +928,6 @@
                     "autoWidth":false, 
                     "ajax": {
                             "url":"{{ url('inscripciones/vigentes/ajax')}}",
-                            // "success": function(result) {
-                            //     console.log(result);
-                            // },
                         },
                         "createdRow": function( row, data, dataIndex ) {
                             $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
@@ -1279,7 +938,6 @@
                                 type : 'GET',
                                 dataType : 'json',
                                 success : function(json) {
-                                    // console.log(json);
                                     $.each(json, function(i, item) {
                                         
                                         var clase=ConfiguraClase(item.estado);
@@ -1332,12 +990,9 @@
                     "autoWidth":false, 
                     "ajax": {
                             "url":"{{ url('matriculaciones/vigentes/ajax')}}",
-                            // "success": function(result) {
-                            //     console.log(result);
-                            // },
                         },
                         "createdRow": function( row, data, dataIndex ) {
-                            $(row).attr('id',data['id']+"com"); // agrega dinamiacamente el id del row
+                            $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
                             // estudiar este com
                             $.ajax({
                                 url : '../../programacioncom/asistencia/ajax',
@@ -1372,7 +1027,7 @@
                                                 default:
                                                     break;
                                             }
-                                            $("#"+data['id']+"com").append("<td>"+$icono+"</td>");
+                                            $("#"+data['id']).append("<td>"+$icono+"</td>");
                                         
                                     });
                                 },
@@ -1393,7 +1048,6 @@
             );
 
             function ConfiguraClase(unEstado) {
-                console.log(unEstado);
                 var clase="";
                     if(unEstado =="FINALIZADO"){
                         clase="text-success";
@@ -1409,8 +1063,6 @@
                     }
                 return clase;
             }
-
-            
         } );
     </script>
 @stop

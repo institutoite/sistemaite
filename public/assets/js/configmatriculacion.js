@@ -16,7 +16,7 @@ function darBajaMatriculacion(matriculacion_id,url) {
                 timer: 1500,
             })
             Toast.fire({
-                type: 'success',
+                icon: 'success',
                 title: "Actualizado corectamente",
             })
 
@@ -44,7 +44,7 @@ function darAltaMatriculacion(matriculacion_id,url){
                 timer: 3000,
             })
             Toast.fire({
-                type: 'success',
+                icon: 'success',
                 title: "Actualizado corectamente",
             })
         },
@@ -70,7 +70,7 @@ function CondonarMatriculacion(matriculacion_id, url) {
                 timer: 3000,
             })
             Toast.fire({
-                type: 'success',
+                icon: 'success',
                 title: "Actualizado corectamente",
             })
         },

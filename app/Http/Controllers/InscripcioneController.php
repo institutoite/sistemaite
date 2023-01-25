@@ -518,8 +518,9 @@ class InscripcioneController extends Controller
     public function vigentesAjax(){
         $inscripcionesVigentes=Inscripcione::join('estudiantes','estudiantes.id','inscripciones.estudiante_id')
         ->join('personas','personas.id','estudiantes.persona_id')
+        ->join('comos','comos.id','personas.como_id')
         ->where('vigente',1)
-        ->select('inscripciones.id','personas.id as persona_id','personas.nombre','personas.apellidop','personas.apellidom')->get();
+        ->select('inscripciones.id','personas.id as persona_id','comos.como','personas.nombre','personas.apellidop','personas.apellidom')->get();
         return datatables()->of($inscripcionesVigentes)
         ->addColumn('btn', 'inscripcione.actionvigentes')
         ->rawColumns(['btn'])
