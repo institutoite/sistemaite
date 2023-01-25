@@ -771,6 +771,7 @@ class ProgramacionController extends Controller
                 $data['indefinido'][]=$indefinidos->cantidad;
         }
         
+        
         $data['data']=json_encode($data);
         //dd($estudiantes);
         return view('clase.estado',compact('estudiantes','docenteshabilitados'),$data);

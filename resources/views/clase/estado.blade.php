@@ -20,9 +20,12 @@
             </div>
         </div>
         @php
-            $i=0;
+            $i=-1;
         @endphp
         @foreach ($docenteshabilitados as $docente)
+            @php
+                $i=$i+1;
+            @endphp
             @if (count($estudiantes[$i])>0)
                 <div class="card">
                     <div class="card-header {{ $i%2 == 0 ? "bg-primary" : "bg-secondary" }}">
@@ -81,9 +84,6 @@
                         
                     </div>
                 </div>
-                @php
-                    $i++;
-                @endphp
             @endif
         @endforeach
     </section>
