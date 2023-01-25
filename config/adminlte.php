@@ -300,6 +300,22 @@ return [
             'icon_color' => 'white',
             'classes'=>'text-xs text-white',
         ],
+        [
+            'text' => "",
+            'topnav' => true,
+            'url'  => 'inscripcines/vigentes/view',
+            'icon' => 'fas fa-hand-pointer',
+            'icon_color' => 'white',
+            'classes'=>'text-xs text-white',
+        ],
+        [
+            'text' => "",
+            'topnav' => true,
+            'url'  => 'presentes',
+            'icon' => 'fab fa-product-hunt',
+            'icon_color' => 'white',
+            'classes'=>'text-xs text-white',
+        ],
         // [
         //     'text' => "",
         //     'topnav' => true,
