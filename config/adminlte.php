@@ -316,6 +316,14 @@ return [
             'icon_color' => 'white',
             'classes'=>'text-xs text-white',
         ],
+        [
+            'text' => "",
+            'topnav' => true,
+            'url'  => 'cupos',
+            'icon' => 'fas fa-users-cog',
+            'icon_color' => 'white',
+            'classes'=>'text-xs text-white',
+        ],
         // [
         //     'text' => "",
         //     'topnav' => true,

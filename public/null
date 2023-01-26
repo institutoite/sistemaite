@@ -6,8 +6,1510 @@ use App\Models\Programacion;
 use Carbon\Carbon;
 
 
- $matriculacionesVigentes=Matriculacion::join('computacions','computacions.id','matriculacions.computacion_id')
-        ->join('personas','personas.id','computacions.persona_id')
-        ->join('comos','comos.id','personas.como_id')
-        ->where('vigente',1)
-        ->select('matriculacions.id','personas.id as persona_id','comos.como','personas.nombre','personas.apellidop','personas.apellidom')->get();
+$Es=Estudiante::find(1);
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$Es=Estudiante::find(1);
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$Es=Estudiante::find(1)->grados;
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$Es=Estudiante::find(1)->grados->first();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$Es=Estudiante::find(1)->grados->last
+ ();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$Es=Estudiante::find(1)->grados->last();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$Es=Estudiante::find(1)->grados->last();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->where('anio',2023);
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(2)->grados->where('anio',2023);
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(2)->grados;
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(2)->grados()->where('grado_id',9);
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(2)->grados->where('grado_id',9);
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(2)->grados->where('grado_id',9);
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->where('grado_id',9);
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+$e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+
+
+$e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+$e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+$e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+$e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+$e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('HABILITADO'))
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+$e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+$e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('sesions','inscripciones.id','sesions.inscripcione_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+   
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id')
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','fechaini','fechafin','costo')
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','fechaini','fechafin','costo')
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+$sesiones=Estudiante::find(1)
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+$sesiones=Inscripcione::find(1);
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripcines.id','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+$sesiones=Inscripcione::find(26)->sesiones;
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+$sesiones=Inscripcione::find(26)->sesiones->first()->dia;
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+$sesiones=Inscripcione::find(26)->sesiones->first->dia;
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+$sesiones=Inscripcione::find(26)->sesiones->first()->dia;
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+$sesiones=Inscripcione::find(26)->sesiones->first()->dia;
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+$sesiones=Inscripcione::find(26)->sesiones->first();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+$sesiones=Inscripcione::find(26)->sesiones->first()->dia;
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+$sesiones=Inscripcione::find(26)->sesiones->first();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+$sesiones=Inscripcione::find(26)->sesiones->first();
+$s=Sesion::find(31);
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+$sesiones=Inscripcione::find(26)->sesiones->first();
+$s=Sesion::find(31)->dia;
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+$sesiones=Inscripcione::find(26)->sesiones->first();
+$s=Sesion::find(31)->dia();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+$sesiones=Inscripcione::find(26)->sesiones->first();
+$s=Sesion::find(31)->dia;
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+$sesiones=Inscripcione::find(26)->sesiones->first();
+$s=Sesion::find(31)->inscripcion;
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+$sesiones=Inscripcione::find(26)->sesiones->first();
+$s=Sesion::find(31)->inscripcion();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+$sesiones=Inscripcione::find(26)->sesiones->first();
+$s=Sesion::find(31)->inscripcion();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+$sesiones=Inscripcione::find(26)->sesiones->first();
+$s=Sesion::find(31)->inscripcion();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+$sesiones=Inscripcione::find(26)->sesiones->first();
+$s=Sesion::find(31)->inscripcion();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+$sesiones=Inscripcione::find(26)->sesiones->first();
+
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+$sesiones=Inscripcione::find(26)->sesiones->first();
+$s=Sesion::find(31)->inscripcion;
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+$sesiones=Inscripcione::find(26)->sesiones->first();
+$s=Sesion::find(31)->inscripcion;
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+$sesiones=Inscripcione::find(26)->sesiones->first();
+$s=Sesion::find(31);
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+$sesiones=Inscripcione::find(26)->sesiones->first();
+$s=Sesion::find(31)->dia;
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+
+$sesiones=Sesion::join('inscripcines','inscripciones.id','sesions.inscripcione_id')
+  
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+
+$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
+  
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+
+$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
+  ->join('dias','sesions.dia_id','dias.dia')
+  ->join('materias','sesions.materia_id','materias.id')
+  ->join('docentes','sesions.docente_id','docentes.id')
+  ->join('aulas','sesions.aula_id','aulas.id')
+  ->select('dias.dia','materias.materia','docentes.nombrecorto','sesions.horainicio','sessions.horafin','aulas.aula')
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+
+$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
+  ->join('dias','sesions.dia_id','dias.dia')
+  ->join('materias','sesions.materia_id','materias.id')
+  ->join('docentes','sesions.docente_id','docentes.id')
+  ->join('aulas','sesions.aula_id','aulas.id')
+  ->select('dias.dia','materias.materia','docentes.nombrecorto','sesions.horainicio','sesions.horafin','aulas.aula')
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+
+$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
+  ->join('dias','sesions.dia_id','dias.dia')
+  ->join('materias','sesions.materia_id','materias.id')
+  ->join('docentes','sesions.docente_id','docentes.id')
+  ->join('aulas','sesions.aula_id','aulas.id')
+  
+  ->select('dias.dia','materias.materia','docentes.nombrecorto','sesions.horainicio','sesions.horafin','aulas.aula')
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+
+$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
+  
+  
+  ->select('dias.dia','materias.materia','docentes.nombrecorto','sesions.horainicio','sesions.horafin','aulas.aula')
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+
+$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
+  ->join('dias','sesions.dia_id','dias.dia')
+  ->join('materias','sesions.materia_id','materias.id')
+  ->join('docentes','sesions.docente_id','docentes.id')
+  ->join('aulas','sesions.aula_id','aulas.id')
+  
+  
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+
+$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
+  
+  
+  
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+
+$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
+  ->join('aulas','sesions.aula_id','aulas.aula')
+  
+  
+  
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+
+$sesiones=Sesion::
+  ->join('aulas','sesions.aula_id','aulas.aula')
+  
+  
+  
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+
+$sesiones=Sesion::
+  join('aulas','sesions.aula_id','aulas.aula')
+  
+  
+  
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+
+$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
+  ->join('aulas','sesions.aula_id','aulas.id')
+  
+  
+  
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+
+$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
+  ->join('aulas','sesions.aula_id','aulas.id')
+  ->join('materias','sesions.materia_id','materias.id')
+  ->join('docentes','sesions.docente_id','docentes.id')
+  ->join('aulas','sesions.aula_id','aulas.id')*/
+  
+  
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+
+$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
+  ->join('aulas','sesions.aula_id','aulas.id')
+  ->join('materias','sesions.materia_id','materias.id')
+  ->join('docentes','sesions.docente_id','docentes.id')
+  ->join('aulas','sesions.aula_id','aulas.id')
+  
+  
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+
+$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
+  ->join('aulas','sesions.aula_id','aulas.id')
+  ->join('materias','sesions.materia_id','materias.id')
+  ->join('docentes','sesions.docente_id','docentes.id')
+  ->join('dias','sesions.dia_id','dias.id')
+  
+  
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+
+$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
+  ->join('aulas','sesions.aula_id','aulas.id')
+  ->join('materias','sesions.materia_id','materias.id')
+  ->join('docentes','sesions.docente_id','docentes.id')
+  ->join('dias','sesions.dia_id','dias.id')
+  
+  ->select('dias.dia','materias.materia','docentes.nombrecorto','sesions.horainicio','sesions.horafin','aulas.aula')
+  ->get();
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+
+$grado=Estudiante::find(1)->grados->last();
+
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+
+
+$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
+  ->join('aulas','sesions.aula_id','aulas.id')
+  ->join('materias','sesions.materia_id','materias.id')
+  ->join('docentes','sesions.docente_id','docentes.id')
+  ->join('dias','sesions.dia_id','dias.id')
+  ->where('inscripciones.id',26)
+  ->select('dias.dia','materias.materia','docentes.nombrecorto','sesions.horainicio','sesions.horafin','aulas.aula')
+  ->get();

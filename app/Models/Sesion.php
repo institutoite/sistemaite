@@ -64,4 +64,7 @@ class Sesion extends Model
     }
 
     
+
+
+    
 }

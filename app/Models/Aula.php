@@ -13,6 +13,7 @@ class Aula extends Model
     {
         return $this->hasOne(Sesion::class);
     }
+  
     public function clases()
     {
         return $this->hasMany(Clase::class);

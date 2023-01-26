@@ -339,7 +339,34 @@ para observaciones generico
 
     que en el home muestre unicamente los docentes habilitado
     
+    que en el momento de mostrar muestre los estudiantes que estan inscritos en el mismo curso 
+    que muestre la cantidad de estudiantes que tienen inscritos en el mismo curso mañana y tarde agrupados por curso y por horarios 
 
 
+
+
+// este es el grado de un estudiante 
+$grado=Estudiante::find(1)->grados->last();
+// estos son los estudiantes que estan en ese curso y tienen una inscripcion vigente 
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+// estas son las sesiones de cada una de esas inscripcines 
+// seria hacer la consulta mostrando los dias que viene, las materias, horarios y mas
+$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
+  ->join('aulas','sesions.aula_id','aulas.id')
+  ->join('materias','sesions.materia_id','materias.id')
+  ->join('docentes','sesions.docente_id','docentes.id')
+  ->join('dias','sesions.dia_id','dias.id')
+  ->where('inscripciones.id',26)
+  ->select('dias.dia','materias.materia','docentes.nombrecorto','sesions.horainicio','sesions.horafin','aulas.aula')
+  ->get();
+// seria mostrar cada compañero de grado con su sesiones y con los datos de la inscripcion
 
 
