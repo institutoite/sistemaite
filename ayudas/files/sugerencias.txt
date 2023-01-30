@@ -370,3 +370,49 @@ $sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_
 // seria mostrar cada compañero de grado con su sesiones y con los datos de la inscripcion
 
 
+use App\Models\Estudiante;
+use App\Models\Grado;
+use App\Models\Docente;
+use App\Models\Clase;
+use App\Models\Dia;
+use App\Models\Sesion;
+use App\Models\Inscripcione;
+use App\Models\Programacion;
+use Carbon\Carbon;
+
+// este es el grado de un estudiante 
+$grado=Estudiante::find(1)->grados->last();
+// estos son los estudiantes que estan en ese curso y tienen una inscripcion vigente 
+ $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
+  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
+  ->join('personas','personas.id','estudiantes.persona_id')
+  ->where('estudiante_grado.grado_id',$grado->id)
+  ->where('inscripciones.estado_id',estado('CORRIENDO'))
+  ->where('estudiante_grado.anio',2023)
+  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
+  ->get();
+
+// estas son las sesiones de cada una de esas inscripcines 
+// seria hacer la consulta mostrando los dias que viene, las materias, horarios y mas
+$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
+  ->join('aulas','sesions.aula_id','aulas.id')
+  ->join('materias','sesions.materia_id','materias.id')
+  ->join('docentes','sesions.docente_id','docentes.id')
+  ->join('dias','sesions.dia_id','dias.id')
+  ->where('inscripciones.id',26)
+  ->select('dias.dia','materias.materia','docentes.nombrecorto','sesions.horainicio','sesions.horafin','aulas.aula')
+  ->get();
+// seria mostrar cada compañero de grado con su sesiones y con los datos de la inscripcion
+//$i=Carbon::now()->format('Y-m-d');
+
+
+// consulta que muestra la cantidad de alumnos que estan programados para cada profe
+$cupos=Programacion::join('docentes','docentes.id','programacions.docente_id')
+  	->join('materias','materias.id','programacions.materia_id')
+  	->join('aulas','aulas.id','programacions.aula_id')
+	->where('fecha','=',Carbon::now()->format('Y-m-d'))
+  	//->where('docentes.id',1) // un docente sin esto es para todos los docentes 
+  	->select('hora_ini','docentes.nombrecorto',DB::raw('count(*) as cantidad'))
+  	->groupBy('docentes.nombrecorto','hora_ini')
+  	->orderBy('cantidad','desc')
+  ->get();

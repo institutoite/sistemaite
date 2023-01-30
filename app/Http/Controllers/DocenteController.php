@@ -253,6 +253,8 @@ class DocenteController extends Controller
         return view('docente.edit',compact('docente','comos','persona','mododocentes','estados','paises','ciudades','zonas','observacion','interests_currents','interests_faltantes'));
     }
 
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -376,6 +378,13 @@ class DocenteController extends Controller
             ->toJson();    
     }
 
+
+
+    public function docentesEstado($estado='HABILITADO'){
+        // dd($estado);
+        $docenteshabilitados=Docente::where('docentes.estado_id',estado($estado))->select('id','nombrecorto')->get();
+        return $docenteshabilitados;
+    }
     public function misEstudiatescomActuales(){
       
     }

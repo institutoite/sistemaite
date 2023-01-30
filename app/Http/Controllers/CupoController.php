@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Programacion;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
+use App\Http\Controllers\DocenteController;
 
 class CupoController extends Controller
 {
@@ -13,7 +18,39 @@ class CupoController extends Controller
      */
     public function index()
     {
+        $unaFecha=Carbon::now()->format('Y-m-d');
         
+        $data['label'][]=[];
+        $data['cantidad'][]=[];
+        $horarios=array();
+        $ObjetoDocente=new DocenteController();
+        $docentes=$ObjetoDocente->docentesEstado("HABILITADO");
+        foreach ($docentes as $docente) {
+                $horarios=$this->cupos($unaFecha,$docente->id);
+                foreach ($horarios as $elemento) {
+                    $data['label'][]=$elemento->hora_ini->isoFormat('H:mm').'-'.$elemento->hora_fin->isoFormat('H:mm');
+                    $data['cantidad'][]=$elemento->cantidad;
+                    //echo $elemento;
+                }
+        }
+        $data['data']=json_encode($data);
+       
+        return view('cupos.index',$data);
+    }
+    public function cupos($unaFecha,$unDocente){
+        //dd($unDocente);
+        $cupos=Programacion::join('docentes','docentes.id','programacions.docente_id')
+            ->join('materias','materias.id','programacions.materia_id')
+            ->join('aulas','aulas.id','programacions.aula_id')
+            // ->where('fecha','=',Carbon::now()->format('Y-m-d'))
+            ->where('fecha','=',$unaFecha)
+            ->where('docentes.id',$unDocente) // un docente sin esto es para todos los docentes 
+            ->select('hora_ini','hora_fin','docentes.nombrecorto',DB::raw('count(*) as cantidad'))
+            ->groupBy('docentes.nombrecorto','hora_ini','hora_fin')
+            ->orderBy('cantidad','desc')
+        ->get();
+        
+        return $cupos;
     }
 
     /**
@@ -104,4 +141,6 @@ class CupoController extends Controller
         ->get();
         return response()->json($data);
     }
+
+    
 }

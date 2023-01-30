@@ -65,6 +65,7 @@ use App\Http\Controllers\PaisController;
 use App\Http\Controllers\ZonaController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ModalidadController;
+use App\Http\Controllers\CupoController;
 //use App\Http\Controllers\RolUsersController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
@@ -98,7 +99,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/paises/listar',function(){
         return view('pais.index');
     })->name('listar');
-
 
     Route::get('personas/opciones/{id}', function ($id) {
         return view('persona.opciones');
@@ -726,7 +726,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('inscripcion/actualizar/fechapago/{fecha}/{id}', 'InscripcioneController@actualizar_fecha_proximo_pago')->name('set.fecha.proximo.pago');
     Route::get('tusinscripciones', 'InscripcioneController@tusInscripcionesVigentes')->name('inscripciones.de.estudiante');
     Route::get('inscripcines/vigentes/view', function () {return view('inscripcione.vigentes');})->name('inscripciones.vigentes.view');
-    Route::get('cupos/primaria', function () {return view('inscripcione.cupos');})->name('inscripciones.cupos.view');
+    //Route::get('cupos/primaria', function () {return view('inscripcione.cupos');})->name('inscripciones.cupos.view');
     Route::get('inscripciones/vigentes/ajax', [InscripcioneController::class,'vigentesAjax'])->name('inscripciones.vigentes.ajax');  
     Route::get('inscripcion/mostrar/ajax', [InscripcioneController::class,'inscripcionMostrarAjax'])->name('inscripcion.mostrar.ajax');  
     Route::get('saldo/inscripcion', [InscripcioneController::class,'Saldo'])->name('inscripcion.saldo.ajax');  
@@ -736,6 +736,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('fechar/pago/proximo/{fecha}/{inscripcione}',[InscripcioneController::class,'actualizar_fecha_proximo_pago'])->name('set.fecha.proximo.pago');
     Route::get('inscripcion/actualizar/fecha_proximo_pago',[InscripcioneController::class,'fecharProximoPago'])->name('inscripcion.fechar.proximo.pago');
     
+
+    /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%CUPOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+    Route::get('cupos',[CupoController::class,'index'])->name('cupo.index');
+
 
     /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TELEFONOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::get('telefonos/vista/{persona}','TelefonoController@mostrarvista')->name('telefonos.persona');
