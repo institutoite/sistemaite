@@ -13,12 +13,8 @@
 @stop
 @section('content')
 {{-- {{ $data }} --}}
-    <section class="content container-fluid">
-        <div class="card">
-            <div class="card-body">
-                <canvas id="chart-rea3" class="pie"></canvas>
-            </div>
-        </div>
+    <section id="contenedor" class="content container-fluid">
+        
     </section>
 @endsection
 
@@ -29,86 +25,81 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js"></script>
     
     <script>
+        //crear canvas 
+        //conid diferente 
+
+
         $(document).ready(function() {
-            const cData = JSON.parse('<?php echo $data ?>');
-            var barChartData = {
-                labels: cData.label,
-                datasets: [
-                    {
-                        fillColor: "rgba(250, 0, 0 ,0.3)",
-                        strokeColor: "rgba(250,0,0,0.5)",
-                        highlightFill: "#ee7f49",
-                        highlightStroke: "#ffffff",
-                        data: cData.cantidad,
-                    },
-                ]
-            }
+            
             var options = {
-            responsive: true,
-            showTooltips: false,
-            onAnimationComplete: function() {
-                var ctx = this.chart.ctx;
-                ctx.font = this.scale.font;
-                ctx.fillStyle = this.scale.textColor
-                ctx.textAlign = "center";
-                ctx.textBaseline = "bottom";
-                this.datasets.forEach(function(dataset) {
-                dataset.bars.forEach(function(bar) {
-                    ctx.fillText(bar.value, bar.x, bar.y +3 );
-                });
-                })
-            }
+                responsive: true,
+                showTooltips: false,
+                onAnimationComplete: function() {
+                    var ctx = this.chart.ctx;
+                    ctx.font = this.scale.font;
+                    ctx.fillStyle = this.scale.textColor
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "bottom";
+                    this.datasets.forEach(function(dataset) {
+                        dataset.bars.forEach(function(bar) {
+                            ctx.fillText(bar.value, bar.x, bar.y +3 );
+                        });
+                    })
+                }
             };
-            Mycanva=document.getElementById("chart-rea3");  
-            var ctx3 = document.getElementById("chart-rea3").getContext("2d");
-            Mycanva.height=100;
-            window.myPie = new Chart(ctx3).Bar(barChartData, options);
-            $('table').on('click','.zoomify',function (e){
+            
+            function graficar(cData,cLabel,canva_id){
+                var barChartData = {
+                    labels: cLabel,
+                    datasets:[
+                        {
+                            fillColor: "rgba(250, 0, 0 ,0.3)",
+                            strokeColor: "rgba(250,0,0,0.5)",
+                            highlightFill: "#ee7f49",
+                            highlightStroke: "#ffffff",
+                            data: cData,
+                        },
+                    ]
+                }
                 
-                Swal.fire({
-                    title: 'Estudiante: '+ $(this).closest('tr').find('td').eq(1).text(),
-                    text: 'Materia:'+$(this).closest('tr').find('td').eq(4).text(),
-                    imageUrl: $(this).attr('src'),
-                    imageWidth: 400,
-                    imageHeight:400,
-                    showCloseButton:true,
-                    confirmButtonColor:'#26baa5',
-                    confirmButtonText:"Aceptar",
-                    
-                })
-            });
-            $('table').on('click', '.finalizar', function(e) { 
-                e.preventDefault(); 
-                var id_estudiante =$(this).closest('tr').attr('id');
-                var           fila=$(this).closest('tr');
-		        $.ajax({
-                    url : "{{url('clase/finalizar')}}",
-                    data : { id :id_estudiante },
-                    success : function(json) {
-                            
-                            fila.remove();
-                            const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 3000,
-                                })
-
-                                Toast.fire({
-                                icon: 'success',
-                                title: "Clase finalizada correctamente"
-                                })
+                Mycanva=document.getElementById(canva_id);  
+                var ctx3 = document.getElementById(canva_id).getContext("2d");
+                Mycanva.height=100;
+                window.myPie = new Chart(ctx3).Bar(barChartData, options);
+            }
+            
+            function graficarTodos(fecha){
+                $html="";
+                $.ajax({
+                    url: "getdata/cupos",
+                    data: {
+                        fecha:fecha,
                     },
-                    error : function(xhr, status) {
-                        Swal.fire({
-                        type: 'error',
-                        title: 'Ocurrio un Error',
-                        text: 'Saque una captura para mostrar al servicio Técnico!',
-                        })
+                    success: function (json) {
+                        $html="";
+                        for (let j in json.docentes){
+                            
+                            $html="<div class='card'>";
+                            $html+="<div class='card-header'>"+json.docentes[j].nombrecorto+"</div>";
+                            $html+="<div class='card-body'>";
+                            $html+="<canvas id='"+ "docente"+json.docentes[j].id +"' class='pie'></canvas>";
+                            $html+="</div>";
+                            $html+="</div>";
+                            $("#contenedor").append($html);
+                            console.log(json.label[j].label);
+                            //graficar(json.cantidad[j],json.label[j],"docente"+json.docentes[j].id);
+                        }
+                       
+                    },
+                    error: function (xhr, status) {
+                        alert('Disculpe, existió un problema');
                     },
                 });
-	        });
+            }
 
+            graficarTodos("2023-01-30");
+
+        
         });
     </script>
 @endsection

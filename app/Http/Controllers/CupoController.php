@@ -18,24 +18,28 @@ class CupoController extends Controller
      */
     public function index()
     {
-        $unaFecha=Carbon::now()->format('Y-m-d');
-        
+        return view('cupos.index');
+    }
+    public function getDataCupos(Request $request){
+        $unaFecha=Carbon::now()->format('Y-m-d'); 
         $data['label'][]=[];
         $data['cantidad'][]=[];
+        $cantidad[][]=[];
         $horarios=array();
         $ObjetoDocente=new DocenteController();
         $docentes=$ObjetoDocente->docentesEstado("HABILITADO");
+        
         foreach ($docentes as $docente) {
                 $horarios=$this->cupos($unaFecha,$docente->id);
+                $data['docentes'][]=$docente;
                 foreach ($horarios as $elemento) {
-                    $data['label'][]=$elemento->hora_ini->isoFormat('H:mm').'-'.$elemento->hora_fin->isoFormat('H:mm');
-                    $data['cantidad'][]=$elemento->cantidad;
-                    //echo $elemento;
+                    $data[$docente->id][]=$elemento->hora_ini->isoFormat('H:mm').'-'.$elemento->hora_fin->isoFormat('H:mm');
+                    $cantidad[$docente->id][]=$elemento->cantidad;
                 }
         }
+        dd($cantidad);
         $data['data']=json_encode($data);
-       
-        return view('cupos.index',$data);
+        return response()->json($data);
     }
     public function cupos($unaFecha,$unDocente){
         //dd($unDocente);

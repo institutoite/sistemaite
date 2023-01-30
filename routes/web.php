@@ -80,7 +80,7 @@ Route::get('/',[HomeController::class, 'index']);
 Route::get('interests/get', [InterestController::class,'getParaHome'])->name('interest.para.home');
 Route::get('nivel/mostrar/{nivel}',[NivelController::class,'show'])->name("nivel.mostrar");
 Route::get('interes/mostrar/{interest}',[InterestController::class,'show'])->name("interest.show");
-Route::get('prueba',[MatriculacionController::class,'editarNotas'])->name('prueba');
+Route::get('prueba',[CupoController::class,'getDataCupos'])->name('prueba');
 Route::middleware(['auth'])->group(function () {
 
      Route::get('/home',function(){
@@ -739,6 +739,7 @@ Route::middleware(['auth'])->group(function () {
 
     /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%CUPOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::get('cupos',[CupoController::class,'index'])->name('cupo.index');
+    Route::get('getdata/cupos',[CupoController::class,'getDataCupos'])->name('cupo.getdata');
 
 
     /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%TELEFONOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
