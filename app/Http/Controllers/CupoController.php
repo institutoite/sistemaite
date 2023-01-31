@@ -62,7 +62,7 @@ class CupoController extends Controller
             ->where('docentes.id',$unDocente) // un docente sin esto es para todos los docentes 
             ->select('hora_ini','hora_fin','docentes.nombrecorto',DB::raw('count(*) as cantidad'))
             ->groupBy('docentes.nombrecorto','hora_ini','hora_fin')
-            ->orderBy('cantidad','desc')
+            ->orderBy('hora_ini','asc')
         ->get();
         
         return $cupos;

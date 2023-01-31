@@ -79,9 +79,6 @@
                        
                         $html="";
                         for (let j in json.datos){
-                            // console.log(json.datos[j].cantidad);
-                            //console.log(Object.keys(json.datos[j].cantidad).length-1);
-                            
                             $html="<div class='card'>";
                             $html+="<div class='card-header'>"+json.docente[j].nombrecorto+"</div>";
                             $html+="<div class='card-body'>";
@@ -89,16 +86,9 @@
                             $html+="</div>";
                             $html+="</div>";
                             $("#contenedor").append($html);
-                            //console.log("docente")
-                            //console.log(json.datos[j]);
-                            // console.log(json.datos[j]);
-
                             if(Object.keys(json.datos[j].cantidad).length-1 > 0){
                                 graficar(json.datos[j].cantidad,json.datos[j].label,"docente"+json.docente[j].id);
-                            }else{
-                                console.log("no hay nada");
                             }
-                            
                         }
                        
                     },
@@ -107,7 +97,7 @@
                     },
                 });
             }
-
+            
             graficarTodos("2023-01-31");
             
         
