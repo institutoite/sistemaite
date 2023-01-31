@@ -20,28 +20,38 @@ class CupoController extends Controller
     {
         return view('cupos.index');
     }
-    public function getDataCupos(Request $request){
+    public function getDataCupos(){
         $unaFecha=Carbon::now()->format('Y-m-d'); 
-        $data['label'][]=[];
-        $data['cantidad'][]=[];
-        $cantidad[][]=[];
-        $horarios=array();
+        //$data['datos'][]=[];
+        //$data['docente'][]=[];
         $ObjetoDocente=new DocenteController();
         $docentes=$ObjetoDocente->docentesEstado("HABILITADO");
         
         foreach ($docentes as $docente) {
-                $horarios=$this->cupos($unaFecha,$docente->id);
-                
-                foreach ($horarios as $elemento) {
-                    $data['docentes'][]=$docente;
-                    $data['label'][0][]=$elemento->hora_ini->isoFormat('H:mm').'-'.$elemento->hora_fin->isoFormat('H:mm');
-                    $data['label'][0][]=$elemento->cantidad;
-                }
+            $cuposDeUnDocente=$this->getCupo($unaFecha,$docente->id);
+            //dd($cuposDeUnDocente);
+            if(count($cuposDeUnDocente)>0){
+                $data["docente"][]=$docente;
+                $data['datos'][]=$cuposDeUnDocente;
+            }
         }
 
         $data['data']=json_encode($data);
         return response()->json($data);
     }
+
+    public function getCupo($unaFecha,$unDocente){
+        $data['label'][]=[];
+        $data['cantidad'][]=[];
+        $horarios=$this->cupos($unaFecha,$unDocente);
+        foreach ($horarios as $elemento) {
+            $data['label'][]=$elemento->hora_ini->isoFormat('H:mm').'-'.$elemento->hora_fin->isoFormat('H:mm');
+            $data['cantidad'][]=$elemento->cantidad;
+        }
+        $data['data']=json_encode($data);
+        return $data;
+    }
+
     public function cupos($unaFecha,$unDocente){
         //dd($unDocente);
         $cupos=Programacion::join('docentes','docentes.id','programacions.docente_id')
