@@ -31,13 +31,14 @@ class CupoController extends Controller
         
         foreach ($docentes as $docente) {
                 $horarios=$this->cupos($unaFecha,$docente->id);
-                $data['docentes'][]=$docente;
+                
                 foreach ($horarios as $elemento) {
-                    $data[$docente->id][]=$elemento->hora_ini->isoFormat('H:mm').'-'.$elemento->hora_fin->isoFormat('H:mm');
-                    $cantidad[$docente->id][]=$elemento->cantidad;
+                    $data['docentes'][]=$docente;
+                    $data['label'][0][]=$elemento->hora_ini->isoFormat('H:mm').'-'.$elemento->hora_fin->isoFormat('H:mm');
+                    $data['label'][0][]=$elemento->cantidad;
                 }
         }
-        dd($cantidad);
+
         $data['data']=json_encode($data);
         return response()->json($data);
     }

@@ -86,7 +86,7 @@
                             $html+="</div>";
                             $html+="</div>";
                             $("#contenedor").append($html);
-                            console.log(json.label[j].label);
+                            console.log(json.label[j]);
                             //graficar(json.cantidad[j],json.label[j],"docente"+json.docentes[j].id);
                         }
                        
