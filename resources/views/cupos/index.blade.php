@@ -2,6 +2,7 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="sweetalert2.min.css">
 @endsection
 
 @section('title', 'Estado actual')
@@ -16,6 +17,7 @@
     <section id="contenedor" class="content container-fluid">
         
     </section>
+    @include('cupos.modal')
 @endsection
 
 @section('js')
@@ -23,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js"></script>
-    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         //crear canvas 
         //conid diferente 
@@ -47,6 +49,19 @@
                     })
                 }
             };
+
+            function pedirFecha(){
+                $("#modal-pedir-fecha").modal("show");
+                
+            }
+
+            $("#btn-consultar").on("click", function(e){
+                e.preventDefault();
+                fecha = $("#fecha").val();
+                console.log(fecha);
+                graficarTodos(fecha);
+            });
+           
             
             function graficar(cData,cLabel,canva_id){
                 var barChartData = {
@@ -69,6 +84,7 @@
             }
             
             function graficarTodos(fecha){
+               
                 $html="";
                 $.ajax({
                     url: "getdata/cupos",
@@ -89,6 +105,7 @@
                             if(Object.keys(json.datos[j].cantidad).length-1 > 0){
                                 graficar(json.datos[j].cantidad,json.datos[j].label,"docente"+json.docente[j].id);
                             }
+                            $("#modal-pedir-fecha").modal('hide');
                         }
                        
                     },
@@ -97,8 +114,9 @@
                     },
                 });
             }
+             pedirFecha();
             
-            graficarTodos("2023-01-31");
+        
             
         
         });
