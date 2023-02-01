@@ -62,9 +62,25 @@
                 graficarTodos(fecha);
             });
            
-            
+             var options = {
+                responsive: true,
+                showTooltips: false,
+                onAnimationComplete: function() {
+                    var ctx = this.chart.ctx;
+                    ctx.font = this.scale.font;
+                    ctx.fillStyle = this.scale.textColor
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "bottom";
+                    this.datasets.forEach(function(dataset) {
+                        dataset.bars.forEach(function(bar) {
+                            ctx.fillText(bar.value, bar.x, bar.y +3 );
+                        });
+                    })
+                }
+            };
             function graficar(cData,cLabel,canva_id){
                 var barChartData = {
+                    
                     labels: cLabel,
                     datasets:[
                         {
