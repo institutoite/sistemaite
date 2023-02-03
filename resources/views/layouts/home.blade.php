@@ -79,19 +79,18 @@
                 <div class="inner-container clearfix">
 					<!-- Top Left -->
 					<div class="top-left clearfix">
-						<div class="text">Bespoke Solutions Tailored to Your Business. Free Sermons</div>
+						<div class="text">Apoyo escolar 2023</div>
 					</div>
 					
 					<!-- Top Right -->
                     <div class="top-right pull-right clearfix">
-						<div class="location">684 West College St. Sun City, USA</div>
+						<div class="location">Av. 3 pasos al frente y che guevara, Bolivia</div>
 						<!-- Social Box -->
 						<ul class="social-box">
-							<li><a href="https://www.facebook.com/" class="fa fa-facebook"></a></li>
-							<li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-							<li><a href="https://www.instagram.com/" class="fa fa-instagram"></a></li>
-							<li><a href="https://youtube.com/" class="fa fa-youtube"></a></li>
-							<li><a href="https://www.pinterest.com/" class="fa fa-pinterest-p"></a></li>
+							<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook"></a></li>
+							<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
+							<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
+							<li><a href="https://www.youtube.com/channel/UCbmRHfG51CGM1foo-6kzunQ" class="fa fa-youtube"></a></li>
 						</ul>
                     </div>
 					
@@ -114,7 +113,7 @@
 						<div class="upper-column info-box">
 							<div class="icon-box fas fa-envelope-open-text"></div>
 							<ul>
-								<li><strong>Mail Address</strong> <a href="mailto:mailto:info@website.com">info@website.com</a></li>
+								<li><strong>email</strong> <a href="mailto:mailto:info@ite.com">info@ite.com</a></li>
 							</ul>
 						</div>
 						
@@ -122,7 +121,7 @@
 						<div class="upper-column info-box">
 							<div class="icon-box fas fa-tty"></div>
 							<ul>
-								<li><strong>Phone Number</strong> <a href="tel:+860-272-9738">+860 -272 -9738</a></li>
+								<li><strong>celular</strong> <a href="tel:+591 71039910">+591 71039910</a></li>
 							</ul>
 						</div>
 						
@@ -155,23 +154,9 @@
 							
 							<div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
 								<ul class="navigation clearfix">
-									<li class="current dropdown"><a href="#">Home</a>
-										<ul>
-											<li><a href="index.html">HomePage 01</a></li>
-											<li><a href="index-2.html">HomePage 02</a></li>
-											<li class="dropdown"><a href="#">Header Styles</a>
-												<ul>
-													<li><a href="index.html">Header Style One</a></li>
-													<li><a href="index-2.html">Header Style Two</a></li>
-												</ul>
-											</li>
-										</ul>
+									<li class="current dropdown"><a href="#">Inicio</a>
 									</li>
-									<li class="dropdown"><a href="#">About</a>
-										<ul>
-											<li><a href="about.html">About us</a></li>
-											<li><a href="team.html">Team</a></li>
-										</ul>
+									<li class="dropdown"><a href="#">Acerca de nosotros</a>
 									</li>
 									<li class="dropdown"><a href="#">Services</a>
 										<ul>
@@ -973,20 +958,10 @@
 			<div class="sec-title">
 				<div class="clearfix">
 					<div class="pull-left">
-						<div class="title">Offering Services</div>
-						<h2>We Provide Exclusive <br> <span>Digital</span> Service</h2>
+						<div class="title">Mas cursos</div>
+						<h2>También te puede <br> <span>interesar</span> algun curso</h2>
 					</div>
-					<div class="pull-right">
-						<!-- More Members -->
-						<div class="more-members">
-							<ul class="members">
-								<li><img src="assetshome/images/resource/member-1.jpg" alt="" /></li>
-								<li><img src="assetshome/images/resource/member-2.jpg" alt="" /></li>
-								<li><img src="assetshome/images/resource/member-3.jpg" alt="" /></li>
-								<li><a href="team.html">More Members</a></li>
-							</ul>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -998,17 +973,7 @@
 				<div class="team-block col-lg-3 col-md-6 col-sm-12">
 					<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
 						<div class="image">
-							<!-- Social Box -->
-							<div class="social-outer">
-								<span class="plus-icon fas fa-plus"></span>
-								<!-- Social Box -->
-								<ul class="social-box">
-									<li><a href="https://www.facebook.com/" class="fa fa-facebook"></a></li>
-									<li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-									<li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
-									<li><a href="https://youtube.com/" class="fa fa-youtube"></a></li>
-								</ul>
-							</div>
+							
 							<img src="assetshome/images/resource/team-1.png" alt="" />
 							<div class="content">
 								<div class="icon-layer-one" style="background-image: url(assetshome/images/icons/plus-icon.png)"></div>
@@ -1024,17 +989,7 @@
 				<div class="team-block col-lg-3 col-md-6 col-sm-12">
 					<div class="inner-box wow fadeInLeft" data-wow-delay="150ms" data-wow-duration="1500ms">
 						<div class="image">
-							<!-- Social Box -->
-							<div class="social-outer">
-								<span class="plus-icon fas fa-plus"></span>
-								<!-- Social Box -->
-								<ul class="social-box">
-									<li><a href="https://www.facebook.com/" class="fa fa-facebook"></a></li>
-									<li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-									<li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
-									<li><a href="https://youtube.com/" class="fa fa-youtube"></a></li>
-								</ul>
-							</div>
+							
 							<img src="assetshome/images/resource/team-2.png" alt="" />
 							<div class="content">
 								<div class="icon-layer-one" style="background-image: url(assetshome/images/icons/plus-icon.png)"></div>
@@ -1050,17 +1005,7 @@
 				<div class="team-block col-lg-3 col-md-6 col-sm-12">
 					<div class="inner-box wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
 						<div class="image">
-							<!-- Social Box -->
-							<div class="social-outer">
-								<span class="plus-icon fas fa-plus"></span>
-								<!-- Social Box -->
-								<ul class="social-box">
-									<li><a href="https://www.facebook.com/" class="fa fa-facebook"></a></li>
-									<li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-									<li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
-									<li><a href="https://youtube.com/" class="fa fa-youtube"></a></li>
-								</ul>
-							</div>
+							
 							<img src="assetshome/images/resource/team-3.png" alt="" />
 							<div class="content">
 								<div class="icon-layer-one" style="background-image: url(assetshome/images/icons/plus-icon.png)"></div>
@@ -1076,17 +1021,7 @@
 				<div class="team-block col-lg-3 col-md-6 col-sm-12">
 					<div class="inner-box wow fadeInLeft" data-wow-delay="450ms" data-wow-duration="1500ms">
 						<div class="image">
-							<!-- Social Box -->
-							<div class="social-outer">
-								<span class="plus-icon fas fa-plus"></span>
-								<!-- Social Box -->
-								<ul class="social-box">
-									<li><a href="https://www.facebook.com/" class="fa fa-facebook"></a></li>
-									<li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-									<li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
-									<li><a href="https://youtube.com/" class="fa fa-youtube"></a></li>
-								</ul>
-							</div>
+							
 							<img src="assetshome/images/resource/team-4.png" alt="" />
 							<div class="content">
 								<div class="icon-layer-one" style="background-image: url(assetshome/images/icons/plus-icon.png)"></div>
