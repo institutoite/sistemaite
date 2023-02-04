@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Agenco Digital Agency HTML-5 Template | Homepage 01</title>
+<title>Instituto Ite</title>
 <!-- Stylesheets -->
 <link href="{{asset('assetshome/css/bootstrap.css')}}" rel="stylesheet">
 
@@ -45,23 +45,14 @@
 				<div class="animation-preloader">
 					<div class="spinner"></div>
 					<div class="txt-loading">
-						<span data-text-preloader="A" class="letters-loading">
-							A
-						</span>
-						<span data-text-preloader="G" class="letters-loading">
-							G
-						</span>
 						<span data-text-preloader="I" class="letters-loading">
 							I
 						</span>
-						<span data-text-preloader="N" class="letters-loading">
-							N
+						<span data-text-preloader="T" class="letters-loading">
+							T
 						</span>
-						<span data-text-preloader="C" class="letters-loading">
-							C
-						</span>
-						<span data-text-preloader="O" class="letters-loading">
-							O
+						<span data-text-preloader="E" class="letters-loading">
+							E
 						</span>
 					</div>
 				</div>  
@@ -84,7 +75,7 @@
 					
 					<!-- Top Right -->
                     <div class="top-right pull-right clearfix">
-						<div class="location">Av. 3 pasos al frente y che guevara, Bolivia</div>
+						<div class="location">Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</div>
 						<!-- Social Box -->
 						<ul class="social-box">
 							<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook"></a></li>
@@ -103,10 +94,10 @@
 			<div class="auto-container">
 				<div class="clearfix">
 					
-					<div class="logo pull-left">
+					{{-- <div class="logo pull-left">
 						<div class="logo"><a href="index.html"><img src="assetshome/images/logo.png" alt="" title=""></a></div>
 					</div>
-					
+					 --}}
 					<div class="pull-right upper-right clearfix">
 						
 						<!--Info Box-->
@@ -191,9 +182,9 @@
 						<div class="nav-btn navSidebar-button"><span class="icon flaticon-menu-2"></span></div>
 						
 						<!-- Button Box -->
-						<div class="button-box">
+						{{-- <div class="button-box">
 							<a href="mailto:tunadummy@gmail.com" class="theme-btn btn-style-one"><span class="txt"><i class="fas fa-envelope-open-text"></i> TunaDummy@gmail.com</span></a>
-						</div>
+						</div> --}}
 						<!-- End Button Box -->
 						
 					</div>
@@ -266,7 +257,7 @@
 							<div class="contact-info">
 								<h5>Información de contacto</h5>
 								<ul class="list-style-one">
-									<li><span class="icon fas fa-map-marker"></span>Villa 1 de mayo, Santa Cruz, Bolivia</li>
+									<li><span class="icon fas fa-map-marker"></span>Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</li>
 									<li><span class="icon fas fa-phone"></span>+59171039910</li>
 									<li><span class="icon fas fa-phone"></span>+59175553338</li>
 									<li><span class="icon fas fa-phone"></span>+59171324941</li>
@@ -614,7 +605,7 @@
 										<div class="icon-box">
 											<span class="icon flaticon-music-note"></span>
 										</div>
-										<h3><a href="service-detail.html">Media Marketing.</a></h3>
+										<h3><a href="service-detail.html">Robótica</a></h3>
 										<div class="text">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying outing print</div>
 									</div>
 								</div>
@@ -625,7 +616,7 @@
 										<div class="icon-box">
 											<span class="icon flaticon-email-3"></span>
 										</div>
-										<h3><a href="service-detail.html">Email Marketing</a></h3>
+										<h3><a href="service-detail.html">Programación y Algoritmos</a></h3>
 										<div class="text">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying outing print</div>
 									</div>
 								</div>
@@ -636,7 +627,7 @@
 										<div class="icon-box">
 											<span class="icon flaticon-social-reach"></span>
 										</div>
-										<h3><a href="service-detail.html">Social Media Strategy</a></h3>
+										<h3><a href="service-detail.html">Creacion de App</a></h3>
 										<div class="text">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying outing print</div>
 									</div>
 								</div>
@@ -647,7 +638,7 @@
 										<div class="icon-box">
 											<span class="icon flaticon-analytics"></span>
 										</div>
-										<h3><a href="service-detail.html">Reporting & Analyisis.</a></h3>
+										<h3><a href="service-detail.html">Diseño Web</a></h3>
 										<div class="text">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying outing print</div>
 									</div>
 								</div>
@@ -697,7 +688,7 @@
 							<!-- Sec Title -->
 							<div class="sec-title">
 								<div class="title">¿Porque elegirnos?</div>
-								<h2>Nuestros <span>Valores</span> Y <br> Principios.</h2>
+								<h2>Nuestra <span>Mision</span> Y <br> Vision.</h2>
 							</div>
 							<div class="row clearfix">
 							
@@ -712,7 +703,7 @@
 											
 												<!--Tab Btns-->
 												<ul class="tab-btns tab-buttons clearfix">
-													<li data-tab="#prod-integrity" class="tab-btn active-btn">Valores</li>
+													<li data-tab="#prod-integrity" class="tab-btn active-btn">¿Quienes somos?</li>
 													<li data-tab="#prod-obejectives" class="tab-btn">Mision</li>
 													<li data-tab="#prod-excellence" class="tab-btn">Vision</li>
 												</ul>
@@ -722,27 +713,21 @@
 												
 													<!-- Tab / Active Tab -->
 													<div class="tab active-tab" id="prod-integrity">
-														<div class="content">
-			
-																<ul class="list">
-																	<li>Financial Growth</li>
-																	<li>Customer Oriented Program</li>
-																	<li>Dedicated Team member</li>
-																	<li>Customer Oriented Program</li>
-																</ul>
-															
+														<div class="content">ITE es un centro educativo que brinda clases de nivelación en diferentes materias y cursos de programación en todos los lenguajes y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.
 														</div>
 													</div>
 													
 													<!-- Tab -->
 													<div class="tab" id="prod-obejectives">
 														<div class="content">
-															
+
+															Nuestra misión es:
 																<ul class="list">
-																	<li>Financial Growth</li>
-																	<li>Customer Oriented Program</li>
-																	<li>Dedicated Team member</li>
-																	<li>Customer Oriented Program</li>
+																	<li>Proporcionar una educación de calidad y enfocada en el desarrollo integral de los estudiantes.</li>
+																	<li>Fomentar el aprendizaje autónomo y la creatividad en los estudiantes.</li>
+																	<li>Promover valores como la responsabilidad, la tolerancia, la solidaridad y el respeto.</li>
+																	<li>Preparar a los estudiantes para enfrentar desafíos y oportunidades en el mundo actual y futuro.</li>
+																	<li>Proporcionar un ambiente seguro, acogedor y inclusivo para todos los estudiantes.</li>
 																</ul>
 															
 														</div>
@@ -752,12 +737,14 @@
 													<div class="tab" id="prod-excellence">
 														<div class="content">
 													
-																<ul class="list">
-																	<li>Financial Growth</li>
-																	<li>Customer Oriented Program</li>
-																	<li>Dedicated Team member</li>
-																	<li>Customer Oriented Program</li>
-																</ul>
+															Nuestra visión es:
+															<ul class="list">
+																<li>Ser reconocido como una institución de excelencia en educación y formación de jóvenes.</li>
+																<li>Desarrollar un enfoque pedagógico innovador y adaptado a las necesidades de los estudiantes y la sociedad.</li>
+																<li>Proporcionar una educación que prepare a los estudiantes para enfrentar los desafíos y oportunidades del mundo actual y futuro.</li>
+																<li>Ser un modelo de excelencia en la educación integral y personalizada.</li>
+																<li>Fomentar una cultura de aprendizaje continuo y desarrollo personal.</li>
+															</ul>
 															
 														</div>
 													</div>
@@ -785,7 +772,7 @@
 											</li>
 											<li>
 												<span class="number">03</span>
-												<strong>Descubre tu potencialidad rea</strong>
+												<strong>Descubre tu potencial</strong>
 												Te transformamos a una versión mejorada de ti mismo, para que seas mas productivo.
 											</li>
 										</ul>
@@ -802,7 +789,7 @@
 							<ul class="info-list">
 								<li>
 									<strong>Nuestra direccion</strong>
-									Avenida tres pasos al frente y che guevara.
+									Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.
 								</li>
 								<li>
 									<strong>Contacto</strong>
@@ -815,15 +802,15 @@
 							<div class="opening">
 								<span class="icon far fa-clock"></span>
 								<strong>Nuestros horarios</strong>
-								Mon - Sat(8.00am - 6.00pm) <br> Sunday - Closed
+								Lu a Vi: 07:00 a 18:30 <br> Sábados: 07:30 a 17:00
 							</div>
 							
 							<!-- Social Box -->
 							<ul class="social-box">
-								<li><a href="https://www.facebook.com/" class="fa fa-facebook"></a></li>
-								<li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-								<li><a href="https://www.instagram.com/" class="fa fa-instagram"></a></li>
-								<li><a href="https://youtube.com/" class="fa fa-youtube"></a></li>
+								<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook"></a></li>
+								<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
+								<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
+								<li><a href="https://www.youtube.com/channel/UCbmRHfG51CGM1foo-6kzunQ" class="fa fa-youtube"></a></li>
 							</ul>
 							
 						</div>
@@ -854,10 +841,10 @@
 							<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
 								<div class="content">
 									<div class="icon-box">
-										<span class="icon flaticon-padlock"></span>
+										<span class="icon flaticon-bulb"></span>
 									</div>
 									<h4><a href="service-detail.html">Guarderia</a></h4>
-									<div class="text">Lorem ipsum, or lipsum as some known, is dummy text used</div>
+									<div class="text">El aprendizaje en la guardería es crucial para el desarrollo de los niños. En este entorno, los niños aprenden a través de juegos, actividades y experiencias interactivas</div>
 								</div>
 							</div>
 						</div>
@@ -867,10 +854,10 @@
 							<div class="inner-box wow fadeInLeft" data-wow-delay="150ms" data-wow-duration="1500ms">
 								<div class="content">
 									<div class="icon-box">
-										<span class="icon flaticon-seo"></span>
+										<span class="icon flaticon-notebook"></span>
 									</div>
 									<h4><a href="service-detail.html">Primaria</a></h4>
-									<div class="text">Lorem ipsum, or lipsum as some known, is dummy text used</div>
+									<div class="text">Es un período crucial en el desarrollo educativo de un niño. Durante esta etapa, los niños construyen las bases para su futuro aprendizaje y desarrollo.</div>
 								</div>
 							</div>
 						</div>
@@ -883,7 +870,7 @@
 										<span class="icon flaticon-search-engine"></span>
 									</div>
 									<h4><a href="service-detail.html">PreUniversitario</a></h4>
-									<div class="text">Lorem ipsum, or lipsum as some known, is dummy text used</div>
+									<div class="text">Es una oportunidad para que los estudiantes desarrollen su pensamiento crítico, habilidades de investigación y resolución de problemas, y para que se preparen para el desafío académico de la universidad.</div>
 								</div>
 							</div>
 						</div>
@@ -912,10 +899,10 @@
 							<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
 								<div class="content">
 									<div class="icon-box">
-										<span class="icon flaticon-bar-chart"></span>
+										<span class="icon flaticon-learning-support"></span>
 									</div>
 									<h4><a href="service-detail.html">Inicial</a></h4>
-									<div class="text">Lorem ipsum, or lipsum as some known, is dummy text used</div>
+									<div class="text">Los niños aprenden habilidades y conocimientos básicos en áreas como lectura, escritura, matemáticas y ciencias.</div>
 								</div>
 							</div>
 						</div>
@@ -928,7 +915,7 @@
 										<span class="icon flaticon-human-brain"></span>
 									</div>
 									<h4><a href="service-detail.html">Secundaria</a></h4>
-									<div class="text">Lorem ipsum, or lipsum as some known, is dummy text used</div>
+									<div class="text">Durante esta etapa, los estudiantes profundizan y amplían los conocimientos adquiridos en la escuela primaria, y se preparan para futuras oportunidades académicas o profesionales.</div>
 								</div>
 							</div>
 						</div>
@@ -938,10 +925,10 @@
 							<div class="inner-box wow fadeInRight" data-wow-delay="300ms" data-wow-duration="1500ms">
 								<div class="content">
 									<div class="icon-box">
-										<span class="icon flaticon-notebook"></span>
+										<span class="icon flaticon-seo"></span>
 									</div>
 									<h4><a href="service-detail.html">Universitario</a></h4>
-									<div class="text">Lorem ipsum, or lipsum as some known, is dummy text used</div>
+									<div class="text">Los estudiantes profundizan en áreas de interés especializadas y desarrollan habilidades y conocimientos relevantes para su futuro profesional o académico.</div>
 								</div>
 							</div>
 						</div>
@@ -962,7 +949,7 @@
 				<div class="clearfix">
 					<div class="pull-left">
 						<div class="title">Mas cursos</div>
-						<h2>También te puede <br> <span>interesar</span> algun curso</h2>
+						<h2>Tenemos la solución de <br> <span>aprendizaje</span>  ideal para usted</h2>
 					</div>
 					
 				</div>
@@ -976,14 +963,24 @@
 				<div class="team-block col-lg-3 col-md-6 col-sm-12">
 					<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
 						<div class="image">
+							<!-- Social Box -->
+							<div class="social-outer">
+								<span class="plus-icon fas fa-plus"></span>
+								<!-- Social Box -->
+								<ul class="social-box">
+									<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook"></a></li>
+									<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
+									<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
+								</ul>
+							</div>
 							
 							<img src="assetshome/images/resource/team-1.png" alt="" />
-							<div class="content">
+							{{-- <div class="content">
 								<div class="icon-layer-one" style="background-image: url(assetshome/images/icons/plus-icon.png)"></div>
 								<div class="icon-layer-two" style="background-image: url(assetshome/images/icons/circle-icon.png)"></div>
 								<div class="designation">Digital Marketer</div>
 								<h4><a href="team.html">Brooklyn Simmons</a></h4>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 				</div>
@@ -992,14 +989,24 @@
 				<div class="team-block col-lg-3 col-md-6 col-sm-12">
 					<div class="inner-box wow fadeInLeft" data-wow-delay="150ms" data-wow-duration="1500ms">
 						<div class="image">
-							
+							<!-- Social Box -->
+							<div class="social-outer">
+								<span class="plus-icon fas fa-plus"></span>
+								<!-- Social Box -->
+								<ul class="social-box">
+									<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook"></a></li>
+									<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
+									<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
+								</ul>
+							</div>
+
 							<img src="assetshome/images/resource/team-2.png" alt="" />
-							<div class="content">
+							{{-- <div class="content">
 								<div class="icon-layer-one" style="background-image: url(assetshome/images/icons/plus-icon.png)"></div>
 								<div class="icon-layer-two" style="background-image: url(assetshome/images/icons/circle-icon.png)"></div>
 								<div class="designation">seo specialist</div>
 								<h4><a href="team.html">Savannah Nguyen</a></h4>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 				</div>
@@ -1008,14 +1015,24 @@
 				<div class="team-block col-lg-3 col-md-6 col-sm-12">
 					<div class="inner-box wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
 						<div class="image">
-							
+							<!-- Social Box -->
+							<div class="social-outer">
+								<span class="plus-icon fas fa-plus"></span>
+								<!-- Social Box -->
+								<ul class="social-box">
+									<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook"></a></li>
+									<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
+									<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
+								</ul>
+							</div>
+
 							<img src="assetshome/images/resource/team-3.png" alt="" />
-							<div class="content">
+							{{-- <div class="content">
 								<div class="icon-layer-one" style="background-image: url(assetshome/images/icons/plus-icon.png)"></div>
 								<div class="icon-layer-two" style="background-image: url(assetshome/images/icons/circle-icon.png)"></div>
 								<div class="designation">INTERIOR DESIGNER</div>
 								<h4><a href="team.html">Cameron Williamson</a></h4>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 				</div>
@@ -1024,14 +1041,24 @@
 				<div class="team-block col-lg-3 col-md-6 col-sm-12">
 					<div class="inner-box wow fadeInLeft" data-wow-delay="450ms" data-wow-duration="1500ms">
 						<div class="image">
-							
+							<!-- Social Box -->
+							<div class="social-outer">
+								<span class="plus-icon fas fa-plus"></span>
+								<!-- Social Box -->
+								<ul class="social-box">
+									<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook"></a></li>
+									<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
+									<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
+								</ul>
+							</div>
+
 							<img src="assetshome/images/resource/team-4.png" alt="" />
-							<div class="content">
+							{{-- <div class="content">
 								<div class="icon-layer-one" style="background-image: url(assetshome/images/icons/plus-icon.png)"></div>
 								<div class="icon-layer-two" style="background-image: url(assetshome/images/icons/circle-icon.png)"></div>
 								<div class="designation">UI UX Designer</div>
 								<h4><a href="team.html">Savannah Nguyen</a></h4>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 				</div>
@@ -1051,8 +1078,8 @@
 					<div class="inner-column">
 						<!-- Sec Title -->
 						<div class="sec-title">
-							<div class="title">Get Instant Result</div>
-							<h2>Fill out this <span>form</span> now</h2>
+							<div class="title">Escribenos</div>
+							<h2>Rellena nuestro <span>formulario</span> para contactarnos</h2>
 						</div>
 						
 						<!-- Default Form -->
@@ -1062,39 +1089,29 @@
 								
 									<!-- Form Group -->
 									<div class="form-group col-lg-6 col-md-6 col-sm-12">
-										<input type="text" name="firstname" value="" placeholder="Enter your name*" required>
+										<input type="text" name="firstname" value="" placeholder="Ingrese su nombre*" required>
 									</div>
 									
 									<!-- Form Group -->
 									<div class="form-group col-lg-6 col-md-6 col-sm-12">
-										<input type="email" name="email" value="" placeholder="Enter your mail*" required>
-									</div>
-									
-									<!-- Form Group -->
-									<div class="form-group col-lg-6 col-md-6 col-sm-12">
-										<input type="text" name="phone" value="" placeholder="Enter your number*" required>
-									</div>
-									
-									<!-- Form Group -->
-									<div class="form-group col-lg-6 col-md-6 col-sm-12">
-										<input type="text" name="subject" value="" placeholder="Weabsite Link*" required>
+										<input type="text" name="phone" value="" placeholder="Ingrese su numero*" required>
 									</div>
 									
 									<!-- Form Group -->
 									<div class="form-group col-lg-12 col-md-12 col-sm-12">
-										<textarea name="message" placeholder="Enter your Massage*"></textarea>
+										<textarea name="message" placeholder="Ingrese su mensaje*"></textarea>
 									</div>
 									
 									<!-- Form Group -->
-									<div class="form-group col-lg-12 col-md-12 col-sm-12">
+									{{-- <div class="form-group col-lg-12 col-md-12 col-sm-12">
 										<div class="radio-box">
 											<input type="radio" name="remember-password" id="type-1"> 
 											<label for="type-1">Save my name, email, and website in this browser for the next time I comment.</label>
 										</div>
-									</div>
+									</div> --}}
 									
 									<div class="form-group col-lg-12 col-md-12 col-sm-12">
-										<button type="submit" class="theme-btn btn-style-three"><span class="txt">Send Messege <i class="flaticon-next-2"></i></span></button>
+										<button type="submit" class="theme-btn btn-style-three"><span class="txt">Enviar <i class="flaticon-next-2"></i></span></button>
 									</div>
 									
 								</div>
@@ -1133,11 +1150,11 @@
 				<div class="icon-layer-two" style="background-image: url(assetshome/images/icons/vector-8.png)"></div>
 				<div class="icon-layer-three" style="background-image: url(assetshome/images/icons/vector-9.png)"></div>
 				<div class="pull-left">
-					<h3>Want to <span>consult</span> with our team ?</h3>
+					<h3>¿Te gustaria <span>aprender</span> a tu ritmo desde cualquier dispositivo?</h3>
 				</div>
 				<div class="pull-right">
 					<div class="button-box">
-						<a href="contact.html" class="theme-btn btn-style-five"><span class="txt">Get quate now <i class="flaticon-next-2"></i></span></a>
+						<a href="https://www.educabol.com/" class="theme-btn btn-style-five"><span class="txt">Ingresar <i class="flaticon-next-2"></i></span></a>
 					</div>
 				</div>
 			</div>
