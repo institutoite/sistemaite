@@ -259,25 +259,28 @@
 								<a href="index.html"><img src="assetshome/images/logo-2.png" alt="" title=""></a>
 							</div>
 							<div class="content-box">
-								<h5>About Us</h5>
-								<p class="text">The argument in favor of using filler text goes something like this: If you use real content in the Process, anytime you reach a review point you’ll end up reviewing and negotiating the content itself and not the design.</p>
-								<a href="contact.html" class="theme-btn btn-style-two"><span class="txt">Consultation</span></a>
+								<h5>Acerca de Nosotros</h5>
+								<p class="text">ITE es un centro educativo que brinda clases de nivelación en diferentes materias y cursos de programación en todos los lenguajes y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.</p>
+								<a href="contact.html" class="theme-btn btn-style-two"><span class="txt">Consultar</span></a>
 							</div>
 							<div class="contact-info">
-								<h5>Contact Info</h5>
+								<h5>Información de contacto</h5>
 								<ul class="list-style-one">
-									<li><span class="icon fas fa-map-marker"></span>Chicago 12, Melborne City, USA</li>
-									<li><span class="icon fas fa-phone"></span>(111) 111-111-1111</li>
-									<li><span class="icon fas fa-envelope"></span>aginco@gmail.com</li>
-									<li><span class="icon fas fa-clock"></span>Week Days: 09.00 to 18.00 Sunday: Closed</li>
+									<li><span class="icon fas fa-map-marker"></span>Villa 1 de mayo, Santa Cruz, Bolivia</li>
+									<li><span class="icon fas fa-phone"></span>+59171039910</li>
+									<li><span class="icon fas fa-phone"></span>+59175553338</li>
+									<li><span class="icon fas fa-phone"></span>+59171324941</li>
+									<li><span class="icon fas fa-envelope"></span>info@ite.com.bo</li>
+									<li><span class="icon fas fa-clock"></span>Lu a Vi: 07:00 a 18:30 Sábados: 07:30 a 17:00</li>
 								</ul>
 							</div>
 							<!-- Social Box -->
 							<ul class="social-box">
-								<li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
-								<li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-								<li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
-								<li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
+								<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook-f"></a></li>
+								<li><a href="https://wa.me/59171039910" target="_blank" class="fa fa-whatsapp"></a></li>
+								<li><a href="https://wa.me/59171324941" target="_blank" class="fa fa-whatsapp"></a></li>
+								<li><a href="https://wa.me/59175553338" target="_blank" class="fa fa-whatsapp"></a></li>
+								
 							</ul>
 						</div>
 					</div>

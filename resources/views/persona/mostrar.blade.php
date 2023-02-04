@@ -75,9 +75,16 @@
                     <tr>
                         <td>Codigo</td>
                         <td>
-                            <a class="btn btn-primary" href="{{route('opcion.principal', $persona->id)}}">
-                                ({{$persona->id}})Ir a opciones 
-                            </a>
+                            @isset($persona->estudiante)
+                                <a class="btn btn-primary" href="{{route('opcion.principal', $persona->id)}}">
+                                    ({{$persona->id}})Ir a opciones 
+                                </a>
+                            @else
+                                <a class="btn btn-primary" href="{{route('opcion.principal', $persona->id)}}">
+                                    ({{$persona->id}})Ir a opciones 
+                                </a>
+                            @endif
+                            
                         </td>
                     </tr>
                     <tr>
