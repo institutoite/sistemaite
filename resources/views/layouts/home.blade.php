@@ -973,7 +973,7 @@
 									<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
 								</ul>
 							</div>
-							
+
 							<img src="assetshome/images/resource/team-1.png" alt="" />
 							{{-- <div class="content">
 								<div class="icon-layer-one" style="background-image: url(assetshome/images/icons/plus-icon.png)"></div>
@@ -1260,7 +1260,7 @@
 	<!-- End Testimonials Section -->
 	
 	<!-- Counter Section -->
-	<section class="counter-section">
+	{{-- <section class="counter-section">
 		<div class="auto-container">
 			<div class="inner-container">
 				<div class="vector-layer-one" style="background-image: url(assetshome/images/icons/vector-11.png)"></div>
@@ -1330,11 +1330,11 @@
 				
 			</div>
 		</div>
-	</section>
+	</section> --}}
 	<!-- End Counter Section -->
 	
 	<!-- News Section -->
-	<section class="news-section">
+	{{-- <section class="news-section">
 		<div class="auto-container">
 			<!-- Sec Title / Centered -->
 			<div class="sec-title centered">
@@ -1399,7 +1399,7 @@
 				
 			</div>
 		</div>
-	</section>
+	</section> --}}
 	<!-- End News Section -->
 	
 	<!-- Main Footer -->
@@ -1421,8 +1421,8 @@
 					<!-- Title Column -->
 					<div class="title-column col-lg-7 col-md-12 col-sm-12">
 						<div class="inner-column">
-							<h2>Connect us On <span>Social</span> Media ?</h2>
-							<div class="text">Don’t wait make a smart & logical quote here. Its pretty easy.</div>
+							<h2>Contactanos a traves de nuestras <span>redes sociales</span> </h2>
+							{{-- <div class="text">Don’t wait make a smart & logical quote here. Its pretty easy.</div> --}}
 						</div>
 					</div>
 					
@@ -1454,28 +1454,27 @@
                             <div class="footer-column col-lg-7 col-md-6 col-sm-12">
                                 <div class="footer-widget about-widget">
 									<div class="logo"><a href="index.html"><img src="assetshome/images/footer-logo.png" alt="" title=""></a></div>
-									<div class="text">Corporate clients and leisure travelers has
-										been relying on Groundlink for dependable</div>
+									<div class="text">ITE es un centro educativo que brinda clases de nivelación en diferentes materias y cursos de programación en todos los lenguajes y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.</div>
 									<!-- Subscribe Form -->
 
 									<ul class="footer_info">
-										<li><i class="fa fa-map-marker-alt"></i> 684 West College St. Sun City, USA</li>
-										<li><i class="fa fa-phone-alt"></i> 1-888-452-1505</li>
+										<li><i class="fa fa-map-marker-alt"></i> Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</li>
+										<li><i class="fa fa-phone-alt"></i> +591 71039910</li>
 									</ul>
 									
-									<div class="subscribe-form">
+									{{-- <div class="subscribe-form">
 										<form method="post" action="contact.html">
 											<div class="form-group">
 												<input type="email" name="email" value="" placeholder="Enter Your Email" required="">
 												<button type="submit" class="theme-btn btn-style-two"><span class="txt">Subscribe Now</span></button>
 											</div>
 										</form>
-									</div>
+									</div> --}}
 								</div>
 							</div>
 							
 							<!-- Footer Column -->
-                            <div class="footer-column col-lg-5 col-md-6 col-sm-12">
+                            {{-- <div class="footer-column col-lg-5 col-md-6 col-sm-12">
                                 <div class="footer-widget links-widget">
 									<h3>Help?</h3>
 									<ul class="nav-list">
@@ -1487,7 +1486,7 @@
 										<li><a href="#">Privacy</a></li>
 									</ul>
 								</div>
-							</div>
+							</div> --}}
 							
 						</div>
 					</div>
@@ -1497,7 +1496,7 @@
 						<div class="row clearfix">
 						
 							<!-- Footer Column -->
-                            <div class="footer-column col-lg-4 col-md-6 col-sm-12">
+                            {{-- <div class="footer-column col-lg-4 col-md-6 col-sm-12">
                                 <div class="footer-widget links-widget style-two">
 									<h3>Useful Links</h3>
 									<ul class="nav-list">
@@ -1509,10 +1508,10 @@
 										<li><a href="#">Contacts</a></li>
 									</ul>
 								</div>
-							</div>
+							</div> --}}
 							
 							<!-- Footer Column -->
-                            <div class="footer-column col-lg-8 col-md-6 col-sm-12">
+                            {{-- <div class="footer-column col-lg-8 col-md-6 col-sm-12">
                                 <div class="footer-widget news-widget">
 									<h3>Recent Post</h3>
 									<!-- Footer Column -->
@@ -1538,7 +1537,7 @@
 										
 									</div>
 								</div>
-							</div>
+							</div> --}}
 						
 						</div>
 					</div>
@@ -1554,14 +1553,14 @@
 				
 					<!-- Copright Column -->
 					<div class="copyright-column col-lg-6 col-md-6 col-sm-12">
-						<div class="copyright">Copyright &copy; 2022 Theme. All Rights Reserved.</div>
+						<div class="copyright">Copyright &copy; 2023 . All Rights Reserved.</div>
 					</div>
 					
 					<!-- Nav Column -->
 					<div class="nav-column col-lg-6 col-md-6 col-sm-12">
 						<ul class="footer-nav">
-							<li><a href="#">Terms of Use</a></li>
-							<li><a href="#">Privacy Policy</a></li>
+							<li><a href="#">Terminos y condiciones</a></li>
+							<li><a href="#">Politica de privacidad</a></li>
 						</ul>
 					</div>
 					
