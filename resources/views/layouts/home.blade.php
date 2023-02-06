@@ -45,14 +45,14 @@
 				<div class="animation-preloader">
 					<div class="spinner"></div>
 					<div class="txt-loading">
-						<span data-text-preloader="I" class="letters-loading">
-							I
+						<span data-text-preloader="i" class="letters-loading">
+							i
 						</span>
-						<span data-text-preloader="T" class="letters-loading">
-							T
+						<span data-text-preloader="t" class="letters-loading">
+							t
 						</span>
-						<span data-text-preloader="E" class="letters-loading">
-							E
+						<span data-text-preloader="e" class="letters-loading">
+							e
 						</span>
 					</div>
 				</div>  
@@ -1133,7 +1133,7 @@
 							<img src="assetshome/images/resource/author-2.jpg" alt="" />
 						</div>
 						<div class="author-box-two">
-							<img src="assetshome/images/resource/author-3.jpg" alt="" />
+							<img src="assetshome/images/resource/author-3.png" alt="" />
 						</div>
 					</div>
 				</div>

@@ -1,7 +1,7 @@
 /* Preloader */
 
 .handle-preloader{
-	background-color:#ff4a17;
+	background-color:#26BAA5;
 }
 
 .handle-preloader {
@@ -66,13 +66,12 @@
   letter-spacing: 15px;
   display: inline-block;
   position: relative;
-  font-size: 70px;
-  line-height: 70px;
-  text-transform: uppercase;
-  color: transparent;
+  font-size: 150px;
+  line-height: 150px;
+  color:rgba(55, 95, 122, 1);
   -webkit-text-stroke-width: 1px;
-  font-family: 'Nunito Sans', sans-serif;
-  -webkit-text-stroke-color: rgba(255, 255, 255, 0.30);
+  font-family: 'glypha lt std', montserrat;
+  -webkit-text-stroke-color: rgba(55, 95, 122, 0.5);
 }
 
 .handle-preloader .animation-preloader .txt-loading .letters-loading:nth-child(2):before {animation-delay: 0.2s;}
@@ -140,5 +139,5 @@
     height: 7em;
     width: 7em;
   }
-  .handle-preloader .animation-preloader .txt-loading .letters-loading {font-size: 30px; letter-spacing: 10px;}
+  .handle-preloader .animation-preloader .txt-loading .letters-loading {font-size: 120px; letter-spacing: 10px;}
 }
