@@ -147,25 +147,48 @@
 								<ul class="navigation clearfix">
 									<li class="current dropdown"><a href="#">Inicio</a>
 									</li>
-									<li class="dropdown"><a href="#">Acerca de nosotros</a>
-									</li>
-									<li class="dropdown"><a href="#">Services</a>
+									<li class="dropdown"><a href="#">Nosotros</a>
 										<ul>
-											<li><a href="services.html">Services</a></li>
-											<li><a href="service-detail.html">Services Detail</a></li>
+											<li><a href="services.html">Whatsapp</a></li>
+											<li><a href="service-detail.html">Telegram</a></li>
+											<li><a href="service-detail.html">Correo</a></li>
+											<li><a href="service-detail.html">Escríbenos</a></li>
+											<li><a href="service-detail.html">Facebook</a></li>
+											<li><a href="service-detail.html">Youtube</a></li>
+											<li><a href="service-detail.html">Todo</a></li>
+											
 										</ul>
 									</li>
-									<li class="dropdown"><a href="#">Projects</a>
+									<li class="dropdown"><a href="#">Especial</a>
 										<ul>
-											<li><a href="projects.html">Our Projects</a></li>
-											<li><a href="projects-detail.html">Projects Detail</a></li>
+											<li><a href="services.html">Robótica</a></li>
+											<li><a href="service-detail.html">Programación</a></li>
+											<li><a href="service-detail.html">Apps Móviles</a></li>
+											<li><a href="service-detail.html">Apps Webs</a></li>
+											<li><a href="service-detail.html">Libros personalizados</a></li>
+											<li><a href="service-detail.html">Creamos dibujo</a></li>
+											
 										</ul>
 									</li>
-									<li class="dropdown"><a href="#">Blog</a>
+									<li class="dropdown"><a href="#">Proyectos</a>
 										<ul>
-											<li><a href="blog.html">Our Blog</a></li>
-											<li><a href="blog-detail.html">Blog Detail</a></li>
-											<li><a href="not-found.html">Not Found</a></li>
+											<li><a href="service-detail.html">ite 360</a></li>
+											<li><a href="service-detail.html">Asistente ite</a></li>
+											<li><a href="service-detail.html">ite ayuda</a></li>
+											<li><a href="service-detail.html">ite restaurante</a></li>
+										</ul>
+									</li>
+									<li class="dropdown"><a href="#">Clases</a>
+										<ul>
+											<li><a href="blog.html">Inicial</a></li>
+											<li><a href="blog-detail.html">Primaria</a></li>
+											<li><a href="not-found.html">Secundaria</a></li>
+											<li><a href="not-found.html">Preuniversitario</a></li>
+											<li><a href="not-found.html">Institutos</a></li>
+											<li><a href="not-found.html">Colegios Militares</a></li>
+											<li><a href="not-found.html">Escuela de policias</a></li>
+											<li><a href="not-found.html">Universitarios</a></li>
+											<li><a href="not-found.html">Profesionales</a></li>
 										</ul>
 									</li>
 									<li><a href="contact.html">Contact</a></li>
@@ -555,14 +578,18 @@
 						<!-- Sec Title -->
 						<div class="sec-title">
 							<div class="title">Planes Corporativos</div>
-							<h2>Elija un <span>plan</span> adecuado a usted</h2>
-							<div class="text">Tenemos la solución de aprendizaje ideal para usted</div>
+							<h2>Aprende a tu ritmo,<span>elige el plan</span> perfecto para ti.</h2>  
+							<div class="text">Descubre nuevos horizontes con nuestros planes</div>
 						</div>
 						<ul class="about-list">
-							<li>Planes que se acomodan a las necesidades de tu familia</li>
-							<li>Planes especiales para colegios que tengan un convenio interinstitucional.</li>
-							<li>Planes para mejorar los resultados de tu empresa.</li>
-              <li>Planes de resolucion de practicos.</li>.
+							<li>Plan familiar</li>
+							<li>Plan empresarial</li>
+							<li>Plan colegios</li>
+							<li>Plan profesores</li>
+							<li>Plan Referencia</li>
+							<li>Plan familiar</li>
+							<li>Plan Virtual</li>
+							<li>Plan Adultos</li>
 						</ul>
 						<!-- Quote Box -->
 						<div class="quote-box">
@@ -1195,8 +1222,9 @@
 					<div class="inner-column">
 						<!-- Sec Title -->
 						<div class="sec-title">
-							<div class="title">Client Testimonial</div>
-							<h2>client <span>testimonial</span> about <br> Marketing Agency</h2>
+							<div class="title">Experiencias verdaderas de nuestros clientes</div>
+							<h2>Historias <span>de éxito</span>de nuestros <br>súper clientes</h2>
+							   
 						</div>
 						<!-- Slides -->
 						<div class="testimonial-carousel-three owl-carousel owl-theme">
@@ -1204,14 +1232,14 @@
 							<!-- Testimonial Block -->
 							<div class="testimonial-block">
 								<div class="inner-box">
-									<div class="text"><span class="quote-left fas fa-quote-left"></span>The other hand we denounce with righteou indg ation and dislike men who are so beguiled and demorali ed by the of pleasure of the moment.Dislike men who are so beguiled and demoraliz worlds ed by the charms of pleasure of the moment. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<span class="quote-right fas fa-quote-right"></span></div>
+									<div class="text"><span class="quote-left fas fa-quote-left"></span>Desde que comencé a tomar las clases de nivelación, he visto una gran mejora en mis habilidades matemáticas. Los tutores son muy pacientes y explican las cosas de manera clara y fácil de entender. ¡Recomiendo este servicio a cualquiera que busque mejorar sus habilidades matemáticas!<span class="quote-right fas fa-quote-right"></span></div>
 									<div class="author-box">
 										<div class="box-inner">
 											<div class="author-image">
 												<img src="assetshome/images/resource/author-11.jpg" alt="">
 											</div>
-											<h4>Cameron Williamson</h4>
-											<span class="designation">Ui/Ux Designer</span>
+											<h4>Rosly</h4>
+											<span class="designation">Estudiante Nivelada</span>
 										</div>
 									</div>
 								</div>
@@ -1220,14 +1248,14 @@
 							<!-- Testimonial Block -->
 							<div class="testimonial-block">
 								<div class="inner-box">
-									<div class="text"><span class="quote-left fas fa-quote-left"></span>The other hand we denounce with righteou indg ation and dislike men who are so beguiled and demorali ed by the of pleasure of the moment.Dislike men who are so beguiled and demoraliz worlds ed by the charms of pleasure of the moment. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<span class="quote-right fas fa-quote-right"></span></div>
+									<div class="text"><span class="quote-left fas fa-quote-left"></span>Mi experiencia con los cursos de computación e informática ha sido excelente. He aprendido tanto sobre programación y tecnología y ahora tengo muchas más oportunidades de empleo. ¡Gracias por estas excelentes clases!<span class="quote-right fas fa-quote-right"></span></div>
 									<div class="author-box">
 										<div class="box-inner">
 											<div class="author-image">
 												<img src="assetshome/images/resource/author-11.jpg" alt="">
 											</div>
-											<h4>Cameron Williamson</h4>
-											<span class="designation">Ui/Ux Designer</span>
+											<h4>Nahomy</h4>
+											<span class="designation">Alumna de Computación</span>
 										</div>
 									</div>
 								</div>
@@ -1236,14 +1264,70 @@
 							<!-- Testimonial Block -->
 							<div class="testimonial-block">
 								<div class="inner-box">
-									<div class="text"><span class="quote-left fas fa-quote-left"></span>The other hand we denounce with righteou indg ation and dislike men who are so beguiled and demorali ed by the of pleasure of the moment.Dislike men who are so beguiled and demoraliz worlds ed by the charms of pleasure of the moment. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<span class="quote-right fas fa-quote-right"></span></div>
+									<div class="text"><span class="quote-left fas fa-quote-left"></span>Mi hijo ha mejorado mucho en su lectura y escritura gracias a las clases que ha tomado con esta compañía. Los tutores son muy pacientes y han hecho que mi hijo disfrute aprendiendo. ¡Recomendamos altamente este servicio!<span class="quote-right fas fa-quote-right"></span></div>
 									<div class="author-box">
 										<div class="box-inner">
 											<div class="author-image">
 												<img src="assetshome/images/resource/author-11.jpg" alt="">
 											</div>
-											<h4>Cameron Williamson</h4>
-											<span class="designation">Ui/Ux Designer</span>
+											<h4>Emma</h4>
+											<span class="designation">Estudiante de Lectura y Escritura</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="testimonial-block">
+								<div class="inner-box">
+									<div class="text"><span class="quote-left fas fa-quote-left"></span>Mi hija está encantada con las clases de robótica que ha tomado. Los tutores son muy entusiastas y hacen que las clases sean divertidas y educativas al mismo tiempo. ¡Recomendamos este servicio sin duda alguna!<span class="quote-right fas fa-quote-right"></span></div>
+									<div class="author-box">
+										<div class="box-inner">
+											<div class="author-image">
+												<img src="assetshome/images/resource/author-11.jpg" alt="">
+											</div>
+											<h4>Soledad Francia</h4>
+											<span class="designation">Estudiante de Robótica</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="testimonial-block">
+								<div class="inner-box">
+									<div class="text"><span class="quote-left fas fa-quote-left"></span>Desde que comencé a tomar las clases de oratoria, he mejorado mucho en mi confianza y habilidades de comunicación. Los tutores son muy profesionales y han ayudado a mejorar mis habilidades de manera efectiva. ¡Gracias por estas excelentes clases!<span class="quote-right fas fa-quote-right"></span></div>
+									<div class="author-box">
+										<div class="box-inner">
+											<div class="author-image">
+												<img src="assetshome/images/resource/author-11.jpg" alt="">
+											</div>
+											<h4>Daria</h4>
+											<span class="designation">Estudiante de Oratoria</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="testimonial-block">
+								<div class="inner-box">
+									<div class="text"><span class="quote-left fas fa-quote-left"></span>He mejorado mucho en mis habilidades académicas y he obtenido una mejor comprensión de los temas gracias a las clases preuniversitarias que he tomado con esta compañía. Los tutores son muy knowledgeable y explican las cosas de manera clara. ¡Recomiendo este servicio a cualquiera que busque mejorar sus habilidades académicas!<span class="quote-right fas fa-quote-right"></span></div>
+									<div class="author-box">
+										<div class="box-inner">
+											<div class="author-image">
+												<img src="assetshome/images/resource/author-11.jpg" alt="">
+											</div>
+											<h4>Alejandra</h4>
+											<span class="designation">Postulante PSA</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="testimonial-block">
+								<div class="inner-box">
+									<div class="text"><span class="quote-left fas fa-quote-left"></span>Mi experiencia con los cursos universitarios ha sido excelente. He aprendido tanto y estoy mucho más preparado para mis exámenes y tareas. ¡Gracias por estas excelentes clases!<span class="quote-right fas fa-quote-right"></span></div>
+									<div class="author-box">
+										<div class="box-inner">
+											<div class="author-image">
+												<img src="assetshome/images/resource/author-11.jpg" alt="">
+											</div>
+											<h4>Yohan</h4>
+											<span class="designation">Estudinate universitario</span>
 										</div>
 									</div>
 								</div>
@@ -1334,12 +1418,12 @@
 	<!-- End Counter Section -->
 	
 	<!-- News Section -->
-	{{-- <section class="news-section">
+	<section class="news-section">
 		<div class="auto-container">
 			<!-- Sec Title / Centered -->
 			<div class="sec-title centered">
-				<div class="title">News & Blogs</div>
-				<h2>News & <span>Blogs</span></h2>
+				<div class="title">Descubre</div>
+				<h2>Mas & <span>servicios</span></h2>
 			</div>
 			<div class="clearfix">
 				
@@ -1397,9 +1481,99 @@
 					</div>
 				</div>
 				
+				<!-- News Block -->
+				<div class="news-block col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<div class="image">
+							<a href="blog-detail.html"><img src="assetshome/images/resource/news-3.jpg" alt="" /></a>
+							<div class="category">story</div>
+						</div>
+						<div class="lower-content">
+							<ul class="post-info">
+								<li><span class="icon far fa-calendar-alt"></span> 23 April 2021</li>
+								<li><span class="icon fas fa-user"></span> Admin</li>
+							</ul>
+							<h3><a href="blog-detail.html">Facebook design is dedicated to what's new in design</a></h3>
+							<a href="blog-detail.html" class="read-more">Read more</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- News Block -->
+				<div class="news-block col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<div class="image">
+							<a href="blog-detail.html"><img src="assetshome/images/resource/news-3.jpg" alt="" /></a>
+							<div class="category">story</div>
+						</div>
+						<div class="lower-content">
+							<ul class="post-info">
+								<li><span class="icon far fa-calendar-alt"></span> 23 April 2021</li>
+								<li><span class="icon fas fa-user"></span> Admin</li>
+							</ul>
+							<h3><a href="blog-detail.html">Facebook design is dedicated to what's new in design</a></h3>
+							<a href="blog-detail.html" class="read-more">Read more</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- News Block -->
+				<div class="news-block col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<div class="image">
+							<a href="blog-detail.html"><img src="assetshome/images/resource/news-3.jpg" alt="" /></a>
+							<div class="category">story</div>
+						</div>
+						<div class="lower-content">
+							<ul class="post-info">
+								<li><span class="icon far fa-calendar-alt"></span> 23 April 2021</li>
+								<li><span class="icon fas fa-user"></span> Admin</li>
+							</ul>
+							<h3><a href="blog-detail.html">Facebook design is dedicated to what's new in design</a></h3>
+							<a href="blog-detail.html" class="read-more">Read more</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- News Block -->
+				<div class="news-block col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<div class="image">
+							<a href="blog-detail.html"><img src="assetshome/images/resource/news-3.jpg" alt="" /></a>
+							<div class="category">story</div>
+						</div>
+						<div class="lower-content">
+							<ul class="post-info">
+								<li><span class="icon far fa-calendar-alt"></span> 23 April 2021</li>
+								<li><span class="icon fas fa-user"></span> Admin</li>
+							</ul>
+							<h3><a href="blog-detail.html">Facebook design is dedicated to what's new in design</a></h3>
+							<a href="blog-detail.html" class="read-more">Read more</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- News Block -->
+				<div class="news-block col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<div class="image">
+							<a href="blog-detail.html"><img src="assetshome/images/resource/news-3.jpg" alt="" /></a>
+							<div class="category">story</div>
+						</div>
+						<div class="lower-content">
+							<ul class="post-info">
+								<li><span class="icon far fa-calendar-alt"></span> 23 April 2021</li>
+								<li><span class="icon fas fa-user"></span> Admin</li>
+							</ul>
+							<h3><a href="blog-detail.html">Facebook design is dedicated to what's new in design</a></h3>
+							<a href="blog-detail.html" class="read-more">Read more</a>
+						</div>
+					</div>
+				</div>
+				
 			</div>
 		</div>
-	</section> --}}
+	</section>
 	<!-- End News Section -->
 	
 	<!-- Main Footer -->
@@ -1473,8 +1647,8 @@
 								</div>
 							</div>
 							
-							<!-- Footer Column -->
-                            {{-- <div class="footer-column col-lg-5 col-md-6 col-sm-12">
+							{{-- <!-- Footer Column --> --}}
+                            <div class="footer-column col-lg-5 col-md-6 col-sm-12">
                                 <div class="footer-widget links-widget">
 									<h3>Help?</h3>
 									<ul class="nav-list">
@@ -1486,7 +1660,7 @@
 										<li><a href="#">Privacy</a></li>
 									</ul>
 								</div>
-							</div> --}}
+							</div>
 							
 						</div>
 					</div>
@@ -1496,7 +1670,7 @@
 						<div class="row clearfix">
 						
 							<!-- Footer Column -->
-                            {{-- <div class="footer-column col-lg-4 col-md-6 col-sm-12">
+                            <div class="footer-column col-lg-4 col-md-6 col-sm-12">
                                 <div class="footer-widget links-widget style-two">
 									<h3>Useful Links</h3>
 									<ul class="nav-list">
@@ -1508,10 +1682,10 @@
 										<li><a href="#">Contacts</a></li>
 									</ul>
 								</div>
-							</div> --}}
+							</div>
 							
 							<!-- Footer Column -->
-                            {{-- <div class="footer-column col-lg-8 col-md-6 col-sm-12">
+                            <div class="footer-column col-lg-8 col-md-6 col-sm-12">
                                 <div class="footer-widget news-widget">
 									<h3>Recent Post</h3>
 									<!-- Footer Column -->
@@ -1537,7 +1711,7 @@
 										
 									</div>
 								</div>
-							</div> --}}
+							</div>
 						
 						</div>
 					</div>

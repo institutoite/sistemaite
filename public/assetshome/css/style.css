@@ -6328,7 +6328,6 @@
 
 .strategy-tabs .tabs-content .about-list li{
 	position:relative;
-	padding-top:3px;
 	color:var(--text-color);
 	font-size:var(--font-16);
 	padding-left:var(--padding-left-45);
