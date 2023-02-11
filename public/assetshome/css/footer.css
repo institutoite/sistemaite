@@ -538,7 +538,7 @@
 }
 .footer_info li i {
 	margin-right: 5px;
-	color: #FF4A17;
+	color: var(--main-color);
 }
 
 /* Style Two */

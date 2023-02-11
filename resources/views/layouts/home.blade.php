@@ -7,12 +7,12 @@
 <link href="{{asset('assetshome/css/bootstrap.css')}}" rel="stylesheet">
 
 <!-- Revolution Slider -->
-<link href="assetshome/plugins/revolution/css/settings.css" rel="stylesheet" type="text/css"><!-- REVOLUTION SETTINGS STYLES -->
-<link href="assetshome/plugins/revolution/css/layers.css" rel="stylesheet" type="text/css"><!-- REVOLUTION LAYERS STYLES -->
-<link href="assetshome/plugins/revolution/css/navigation.css" rel="stylesheet" type="text/css"><!-- REVOLUTION NAVIGATION STYLES -->
+<link href="{{asset('assetshome/plugins/revolution/css/settings.css')}}" rel="stylesheet" type="text/css"><!-- REVOLUTION SETTINGS STYLES -->
+<link href="{{asset('assetshome/plugins/revolution/css/layers.css')}}" rel="stylesheet" type="text/css"><!-- REVOLUTION LAYERS STYLES -->
+<link href="{{asset('assetshome/plugins/revolution/css/navigation.css')}}" rel="stylesheet" type="text/css"><!-- REVOLUTION NAVIGATION STYLES -->
 
-<link href="assetshome/css/style.css" rel="stylesheet">
-<link href="assetshome/css/responsive.css" rel="stylesheet">
+<link href="{{asset('assetshome/css/style.css')}}" rel="stylesheet">
+<link href="{{asset('assetshome/css/responsive.css')}}" rel="stylesheet">
 
 <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -22,8 +22,8 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-<link rel="shortcut icon" href="assetshome/images/favicon.png" type="image/x-icon">
-<link rel="icon" href="assetshome/images/favicon.png" type="image/x-icon">
+<link rel="shortcut icon" href="{{asset('assetshome/images/favicon.png')}}" type="image/x-icon">
+<link rel="icon" href="{{asset('assetshome/images/favicon.png')}}" type="image/x-icon">
 
 <!-- Responsive -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -95,7 +95,7 @@
 				<div class="clearfix">
 					
 					{{-- <div class="logo pull-left">
-						<div class="logo"><a href="index.html"><img src="assetshome/images/logo.png" alt="" title=""></a></div>
+						<div class="logo"><a href="{{ url('/') }}"><img src="assetshome/images/logo.png" alt="" title=""></a></div>
 					</div>
 					 --}}
 					<div class="pull-right upper-right clearfix">
@@ -112,7 +112,7 @@
 						<div class="upper-column info-box">
 							<div class="icon-box fas fa-tty"></div>
 							<ul>
-								<li><strong>celular</strong> <a href="tel:+591 71039910">+591 71039910</a></li>
+								<li><strong>celular</strong> <a href="tel:+59171039910">+59171039910</a></li>
 							</ul>
 						</div>
 						
@@ -149,46 +149,46 @@
 									</li>
 									<li class="dropdown"><a href="#">Nosotros</a>
 										<ul>
-											<li><a href="services.html">Whatsapp</a></li>
-											<li><a href="service-detail.html">Telegram</a></li>
-											<li><a href="service-detail.html">Correo</a></li>
-											<li><a href="service-detail.html">Escríbenos</a></li>
-											<li><a href="service-detail.html">Facebook</a></li>
-											<li><a href="service-detail.html">Youtube</a></li>
-											<li><a href="service-detail.html">Todo</a></li>
+											<li><a href="#">Whatsapp</a></li>
+											<li><a href="#">Telegram</a></li>
+											<li><a href="#">Correo</a></li>
+											<li><a href="#">Escríbenos</a></li>
+											<li><a href="#">Facebook</a></li>
+											<li><a href="#">Youtube</a></li>
+											<li><a href="#">Todo</a></li>
 											
 										</ul>
 									</li>
 									<li class="dropdown"><a href="#">Especial</a>
 										<ul>
-											<li><a href="services.html">Robótica</a></li>
-											<li><a href="service-detail.html">Programación</a></li>
-											<li><a href="service-detail.html">Apps Móviles</a></li>
-											<li><a href="service-detail.html">Apps Webs</a></li>
-											<li><a href="service-detail.html">Libros personalizados</a></li>
-											<li><a href="service-detail.html">Creamos dibujo</a></li>
+											<li><a href="#">Robótica</a></li>
+											<li><a href="#">Programación</a></li>
+											<li><a href="#">Apps Móviles</a></li>
+											<li><a href="#">Apps Webs</a></li>
+											<li><a href="#">Libros personalizados</a></li>
+											<li><a href="#">Creamos dibujo</a></li>
 											
 										</ul>
 									</li>
 									<li class="dropdown"><a href="#">Proyectos</a>
 										<ul>
-											<li><a href="service-detail.html">ite 360</a></li>
-											<li><a href="service-detail.html">Asistente ite</a></li>
-											<li><a href="service-detail.html">ite ayuda</a></li>
-											<li><a href="service-detail.html">ite restaurante</a></li>
+											<li><a href="#">ite 360</a></li>
+											<li><a href="#">Asistente ite</a></li>
+											<li><a href="#">ite ayuda</a></li>
+											<li><a href="#">ite restaurante</a></li>
 										</ul>
 									</li>
 									<li class="dropdown"><a href="#">Clases</a>
 										<ul>
-											<li><a href="blog.html">Inicial</a></li>
-											<li><a href="blog-detail.html">Primaria</a></li>
-											<li><a href="not-found.html">Secundaria</a></li>
-											<li><a href="not-found.html">Preuniversitario</a></li>
-											<li><a href="not-found.html">Institutos</a></li>
-											<li><a href="not-found.html">Colegios Militares</a></li>
-											<li><a href="not-found.html">Escuela de policias</a></li>
-											<li><a href="not-found.html">Universitarios</a></li>
-											<li><a href="not-found.html">Profesionales</a></li>
+											<li><a href="#">Inicial</a></li>
+											<li><a href="#">Primaria</a></li>
+											<li><a href="#">Secundaria</a></li>
+											<li><a href="#">Preuniversitario</a></li>
+											<li><a href="#">Institutos</a></li>
+											<li><a href="#">Colegios Militares</a></li>
+											<li><a href="#">Escuela de policias</a></li>
+											<li><a href="#">Universitarios</a></li>
+											<li><a href="#">Profesionales</a></li>
 										</ul>
 									</li>
 									<li><a href="contact.html">Contact</a></li>
@@ -205,9 +205,9 @@
 						<div class="nav-btn navSidebar-button"><span class="icon flaticon-menu-2"></span></div>
 						
 						<!-- Button Box -->
-						{{-- <div class="button-box">
-							<a href="mailto:tunadummy@gmail.com" class="theme-btn btn-style-one"><span class="txt"><i class="fas fa-envelope-open-text"></i> TunaDummy@gmail.com</span></a>
-						</div> --}}
+						<div class="button-box">
+							<a href="{{ route('login') }}" class="theme-btn btn-style-one"><span class="txt"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</span></a>
+						</div>
 						<!-- End Button Box -->
 						
 					</div>
@@ -222,7 +222,7 @@
             <div class="auto-container clearfix">
                 <!--Logo-->
                 <div class="logo pull-left">
-                    <a href="index.html"><img src="assetshome/images/logo.png" alt="" title=""></a>
+                    <a href="{{ url('/') }}"><img src="{{asset('assetshome/images/logo.png')}}" alt="" title=""></a>
                 </div>
                 <!--Right Col-->
                 <div class="pull-right">
@@ -246,7 +246,7 @@
             <div class="close-btn"><span class="icon flaticon-multiply"></span></div>
             
             <nav class="menu-box">
-                <div class="nav-logo"><a href="index.html"><img src="assetshome/images/logo.png" alt="" title=""></a></div>
+                <div class="nav-logo"><a href="{{ url('/') }}"><img src="{{asset('assetshome/images/logo.png')}}" alt="" title=""></a></div>
                 <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
             </nav>
         </div><!-- End Mobile Menu -->
@@ -270,12 +270,12 @@
 					<div class="sidebar-info-contents">
 						<div class="content-inner">
 							<div class="logo">
-								<a href="index.html"><img src="assetshome/images/logo-2.png" alt="" title=""></a>
+								<a href="{{ url('/') }}"><img src="{{asset('assetshome/images/logo-2.png')}}" alt="" title=""></a>
 							</div>
 							<div class="content-box">
 								<h5>Acerca de Nosotros</h5>
 								<p class="text">ITE es un centro educativo que brinda clases de nivelación en diferentes materias y cursos de programación en todos los lenguajes y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.</p>
-								<a href="contact.html" class="theme-btn btn-style-two"><span class="txt">Consultar</span></a>
+								<a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="theme-btn btn-style-two"><span class="txt">Consultar</span></a>
 							</div>
 							<div class="contact-info">
 								<h5>Información de contacto</h5>
@@ -407,8 +407,8 @@
 						data-frames='[{"delay":1200,"speed":1500,"frame":"0","from":"y:bottom;rX:-20deg;rY:-20deg;rZ:0deg;","to":"o:1;","ease":"power3.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
 						style="">
 							<div class="button-box">
-								<a href="about.html" class="theme-btn btn-style-three"><span class="txt">Contactanos<i class="flaticon-next-2"></i></span></a>
-								<a href="about.html" class="theme-btn btn-style-four"><span class="txt">Leer mas <i class="flaticon-next-2"></i></span></a>
+								<a href="#" class="theme-btn btn-style-three"><span class="txt">Contactanos<i class="flaticon-next-2"></i></span></a>
+								<a href="#" class="theme-btn btn-style-four"><span class="txt">Leer mas <i class="flaticon-next-2"></i></span></a>
 							</div>
 						</div>
 						
@@ -510,8 +510,8 @@
 						data-frames='[{"delay":1200,"speed":1500,"frame":"0","from":"y:bottom;rX:-20deg;rY:-20deg;rZ:0deg;","to":"o:1;","ease":"power3.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
 						style="">
 							<div class="button-box">
-								<a href="about.html" class="theme-btn btn-style-three"><span class="txt">Discover More <i class="flaticon-next-2"></i></span></a>
-								<a href="about.html" class="theme-btn btn-style-four"><span class="txt">Learn More <i class="flaticon-next-2"></i></span></a>
+								<a href="#" class="theme-btn btn-style-three"><span class="txt">Discover More <i class="flaticon-next-2"></i></span></a>
+								<a href="#" class="theme-btn btn-style-four"><span class="txt">Learn More <i class="flaticon-next-2"></i></span></a>
 							</div>
 						</div>
 						
@@ -547,7 +547,7 @@
 	<!-- End Clients Section -->
 	
 	<!-- About Section -->
-	<section class="about-section">
+	{{-- <section class="about-section">
 		<div class="pattern-layer" style="background-image: url(assetshome/images/background/pattern-1.png)"></div>
 		<div class="auto-container">
 			<div class="row clearfix">
@@ -587,7 +587,6 @@
 							<li>Plan colegios</li>
 							<li>Plan profesores</li>
 							<li>Plan Referencia</li>
-							<li>Plan familiar</li>
 							<li>Plan Virtual</li>
 							<li>Plan Adultos</li>
 						</ul>
@@ -605,8 +604,127 @@
 				
 			</div>
 		</div>
-	</section>
+	</section> --}}
 	<!-- End About Section -->
+	
+	<!-- Business Section -->
+	<section class="business-section" style="background-image: url(assetshome/images/background/pattern-4.png)">
+		<div class="auto-container">
+			<!-- Sec Title / Centered -->
+			<div class="sec-title centered">
+				<div class="title">Apoyo escolar</div>
+				<h2>Te ayudamos en todos los <span>niveles</span> <br> que necesites</h2>
+			</div>
+			<div class="row clearfix">
+			
+				<!-- Left Column -->
+				<div class="left-column col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-column">
+					
+						<!-- Business Block -->
+						<div class="business-block">
+							<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+								<div class="content">
+									<div class="icon-box">
+										<span class="icon flaticon-bulb"></span>
+									</div>
+									<h4><a href="#">Guarderia</a></h4>
+									<div class="text">El aprendizaje en la guardería es crucial para el desarrollo de los niños. En este entorno, los niños aprenden a través de juegos, actividades y experiencias interactivas</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Business Block -->
+						<div class="business-block">
+							<div class="inner-box wow fadeInLeft" data-wow-delay="150ms" data-wow-duration="1500ms">
+								<div class="content">
+									<div class="icon-box">
+										<span class="icon flaticon-notebook"></span>
+									</div>
+									<h4><a href="#">Primaria</a></h4>
+									<div class="text">Es un período crucial en el desarrollo educativo de un niño. Durante esta etapa, los niños construyen las bases para su futuro aprendizaje y desarrollo.</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Business Block -->
+						<div class="business-block">
+							<div class="inner-box wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
+								<div class="content">
+									<div class="icon-box">
+										<span class="icon flaticon-search-engine"></span>
+									</div>
+									<h4><a href="#">PreUniversitario</a></h4>
+									<div class="text">Es una oportunidad para que los estudiantes desarrollen su pensamiento crítico, habilidades de investigación y resolución de problemas, y para que se preparen para el desafío académico de la universidad.</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				
+				<!-- Image Column -->
+				<div class="image-column col-lg-4 col-md-12 col-sm-12">
+					<div class="inner-column">
+						<div class="circle-layer"></div>
+						<div class="circle-layer-two"></div>
+						<div class="pattern-layer" style="background-image: url(assetshome/images/background/pattern-5.png)"></div>
+						<div class="image" data-tilt data-tilt-max="4">
+							<img src="assetshome/images/resource/business-1.jpg" alt="" />
+						</div>
+					</div>
+				</div>
+				
+				<!-- Right Column -->
+				<div class="right-column col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-column">
+						
+						<!-- Business Block -->
+						<div class="business-block">
+							<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
+								<div class="content">
+									<div class="icon-box">
+										<span class="icon flaticon-learning-support"></span>
+									</div>
+									<h4><a href="#">Inicial</a></h4>
+									<div class="text">Los niños aprenden habilidades y conocimientos básicos en áreas como lectura, escritura, matemáticas y ciencias.</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Business Block -->
+						<div class="business-block">
+							<div class="inner-box wow fadeInRight" data-wow-delay="150ms" data-wow-duration="1500ms">
+								<div class="content">
+									<div class="icon-box">
+										<span class="icon flaticon-human-brain"></span>
+									</div>
+									<h4><a href="#">Secundaria</a></h4>
+									<div class="text">Durante esta etapa, los estudiantes profundizan y amplían los conocimientos adquiridos en la escuela primaria, y se preparan para futuras oportunidades académicas o profesionales.</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Business Block -->
+						<div class="business-block">
+							<div class="inner-box wow fadeInRight" data-wow-delay="300ms" data-wow-duration="1500ms">
+								<div class="content">
+									<div class="icon-box">
+										<span class="icon flaticon-seo"></span>
+									</div>
+									<h4><a href="#">Universitario</a></h4>
+									<div class="text">Los estudiantes profundizan en áreas de interés especializadas y desarrollan habilidades y conocimientos relevantes para su futuro profesional o académico.</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+	<!-- End Business Section -->
 	
 	<!-- Services Section -->
 	<section class="services-section">
@@ -630,32 +748,10 @@
 								<div class="service-block col-lg-6 col-md-6 col-sm-12">
 									<div class="inner-box">
 										<div class="icon-box">
-											<span class="icon flaticon-music-note"></span>
-										</div>
-										<h3><a href="service-detail.html">Robótica</a></h3>
-										<div class="text">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying outing print</div>
-									</div>
-								</div>
-								
-								<!-- Service Block -->
-								<div class="service-block col-lg-6 col-md-6 col-sm-12">
-									<div class="inner-box">
-										<div class="icon-box">
-											<span class="icon flaticon-email-3"></span>
-										</div>
-										<h3><a href="service-detail.html">Programación y Algoritmos</a></h3>
-										<div class="text">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying outing print</div>
-									</div>
-								</div>
-								
-								<!-- Service Block -->
-								<div class="service-block col-lg-6 col-md-6 col-sm-12">
-									<div class="inner-box">
-										<div class="icon-box">
 											<span class="icon flaticon-social-reach"></span>
 										</div>
-										<h3><a href="service-detail.html">Creacion de App</a></h3>
-										<div class="text">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying outing print</div>
+										<h3><a href="#">Robótica</a></h3>
+										<div class="text">Aprenderás cómo diseñar y construir circuitos para controlar y alimentar a los robots.</div>
 									</div>
 								</div>
 								
@@ -665,8 +761,30 @@
 										<div class="icon-box">
 											<span class="icon flaticon-analytics"></span>
 										</div>
-										<h3><a href="service-detail.html">Diseño Web</a></h3>
-										<div class="text">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying outing print</div>
+										<h3><a href="#">Programación y Algoritmos</a></h3>
+										<div class="text">Aprenderás los conceptos básicos de la programación, como variables, tipos de datos, estructuras de control de flujo y funciones.</div>
+									</div>
+								</div>
+								
+								<!-- Service Block -->
+								<div class="service-block col-lg-6 col-md-6 col-sm-12">
+									<div class="inner-box">
+										<div class="icon-box">
+											<span class="icon flaticon-web-search-engine"></span>
+										</div>
+										<h3><a href="#">Creacion de App</a></h3>
+										<div class="text">Aprenderás cómo desarrollar aplicaciones para dispositivos móviles, como smartphones y tabletas, y cómo utilizar plataformas como Android o iOS.</div>
+									</div>
+								</div>
+								
+								<!-- Service Block -->
+								<div class="service-block col-lg-6 col-md-6 col-sm-12">
+									<div class="inner-box">
+										<div class="icon-box">
+											<span class="icon flaticon-seo"></span>
+										</div>
+										<h3><a href="#">Diseño Web</a></h3>
+										<div class="text">Aprenderás los conceptos básicos y avanzados necesarios para crear y desarrollar sitios web.</div>
 									</div>
 								</div>
 								
@@ -688,7 +806,7 @@
 								<figure class="video-image">
 									<img class="transition-500ms" src="assetshome/images/resource/service-1.jpg" alt="">
 								</figure>
-								<a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image overlay-box"><span class="fas fa-play"><span class="dott"></span><i class="ripple"></i></span></a>
+								<a href="https://www.youtube.com/embed/lFpc19KsYzs?autoplay=1" class="lightbox-image overlay-box"><span class="fas fa-play"><span class="dott"></span><i class="ripple"></i></span></a>
 							</div>
 							<div class="image wow fadeInRight" data-wow-delay="150ms" data-wow-duration="1500ms">
 								<img src="assetshome/images/resource/service-2.jpg" alt="" />
@@ -715,7 +833,7 @@
 							<!-- Sec Title -->
 							<div class="sec-title">
 								<div class="title">¿Porque elegirnos?</div>
-								<h2>Nuestra <span>Mision</span> Y <br> Vision.</h2>
+								<h2>Nuestra <span>Misión</span> Y <br> Visión.</h2>
 							</div>
 							<div class="row clearfix">
 							
@@ -740,7 +858,7 @@
 												
 													<!-- Tab / Active Tab -->
 													<div class="tab active-tab" id="prod-integrity">
-														<div class="content">ITE es un centro educativo que brinda clases de nivelación en diferentes materias y cursos de programación en todos los lenguajes y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.
+														<div class="content">Instituto ite es una empresas emergente dedicada a la capacitación académica de estudiantes de todos los niveles desde inicial hasta profesionales. Nuestra misión es potenciar el ecosistema educativo con tecnología unificada que ayude a los educadores y estudiantes a desarrollar todo su potencial, a su manera según su ritmo de comprensión. Instituto ite, ampliamente reconocido en la ciudad de Santa Cruz como una empresa educativa más completo en soluciones educativas, conecta a estudiantes, maestros, administradores y padres, con el objetivo compartido de mejorar los resultados de aprendizaje de los estudiantes. Desde la recepción hasta el salón de clases y el hogar, ayuda a los centros educativos como ser colegios, institutos y universidades. Instituto ite apoya a miles de estudiantes por ahora en todo el país Bolivia próximamente en el mundo habla hispana, además cuenta con experiencia de más de una década en la enseñanza y formación.
 														</div>
 													</div>
 													
@@ -820,7 +938,7 @@
 								</li>
 								<li>
 									<strong>Contacto</strong>
-									<a href="mailto:deanna.curtis@example.com"><span class="icon fas fa-comment"></span>info@ite.com</a><br>
+									<a href="mailto:info@ite.com"><span class="icon fas fa-comment"></span>info@ite.com</a><br>
 									<a href="tel:+406-555-0120"><span class="icon fas fa-phone"></span>(+591) 71039910</a><br>
                   <a href="tel:+406-555-0120"><span class="icon fas fa-phone"></span>(+591) 71324941</a><br>
                   <a href="tel:+406-555-0120"><span class="icon fas fa-phone"></span>(+591) 75553338</a><br>
@@ -849,124 +967,7 @@
 	</section>
 	<!-- End Principle Section -->
 	
-	<!-- Business Section -->
-	<section class="business-section" style="background-image: url(assetshome/images/background/pattern-4.png)">
-		<div class="auto-container">
-			<!-- Sec Title / Centered -->
-			<div class="sec-title centered">
-				<div class="title">Apoyo escolar</div>
-				<h2>Te ayudamos en todos los <span>niveles</span> <br> que necesites</h2>
-			</div>
-			<div class="row clearfix">
-			
-				<!-- Left Column -->
-				<div class="left-column col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-column">
-					
-						<!-- Business Block -->
-						<div class="business-block">
-							<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-								<div class="content">
-									<div class="icon-box">
-										<span class="icon flaticon-bulb"></span>
-									</div>
-									<h4><a href="service-detail.html">Guarderia</a></h4>
-									<div class="text">El aprendizaje en la guardería es crucial para el desarrollo de los niños. En este entorno, los niños aprenden a través de juegos, actividades y experiencias interactivas</div>
-								</div>
-							</div>
-						</div>
-						
-						<!-- Business Block -->
-						<div class="business-block">
-							<div class="inner-box wow fadeInLeft" data-wow-delay="150ms" data-wow-duration="1500ms">
-								<div class="content">
-									<div class="icon-box">
-										<span class="icon flaticon-notebook"></span>
-									</div>
-									<h4><a href="service-detail.html">Primaria</a></h4>
-									<div class="text">Es un período crucial en el desarrollo educativo de un niño. Durante esta etapa, los niños construyen las bases para su futuro aprendizaje y desarrollo.</div>
-								</div>
-							</div>
-						</div>
-						
-						<!-- Business Block -->
-						<div class="business-block">
-							<div class="inner-box wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
-								<div class="content">
-									<div class="icon-box">
-										<span class="icon flaticon-search-engine"></span>
-									</div>
-									<h4><a href="service-detail.html">PreUniversitario</a></h4>
-									<div class="text">Es una oportunidad para que los estudiantes desarrollen su pensamiento crítico, habilidades de investigación y resolución de problemas, y para que se preparen para el desafío académico de la universidad.</div>
-								</div>
-							</div>
-						</div>
-						
-					</div>
-				</div>
-				
-				<!-- Image Column -->
-				<div class="image-column col-lg-4 col-md-12 col-sm-12">
-					<div class="inner-column">
-						<div class="circle-layer"></div>
-						<div class="circle-layer-two"></div>
-						<div class="pattern-layer" style="background-image: url(assetshome/images/background/pattern-5.png)"></div>
-						<div class="image" data-tilt data-tilt-max="4">
-							<img src="assetshome/images/resource/business-1.jpg" alt="" />
-						</div>
-					</div>
-				</div>
-				
-				<!-- Right Column -->
-				<div class="right-column col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-column">
-						
-						<!-- Business Block -->
-						<div class="business-block">
-							<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
-								<div class="content">
-									<div class="icon-box">
-										<span class="icon flaticon-learning-support"></span>
-									</div>
-									<h4><a href="service-detail.html">Inicial</a></h4>
-									<div class="text">Los niños aprenden habilidades y conocimientos básicos en áreas como lectura, escritura, matemáticas y ciencias.</div>
-								</div>
-							</div>
-						</div>
-						
-						<!-- Business Block -->
-						<div class="business-block">
-							<div class="inner-box wow fadeInRight" data-wow-delay="150ms" data-wow-duration="1500ms">
-								<div class="content">
-									<div class="icon-box">
-										<span class="icon flaticon-human-brain"></span>
-									</div>
-									<h4><a href="service-detail.html">Secundaria</a></h4>
-									<div class="text">Durante esta etapa, los estudiantes profundizan y amplían los conocimientos adquiridos en la escuela primaria, y se preparan para futuras oportunidades académicas o profesionales.</div>
-								</div>
-							</div>
-						</div>
-						
-						<!-- Business Block -->
-						<div class="business-block">
-							<div class="inner-box wow fadeInRight" data-wow-delay="300ms" data-wow-duration="1500ms">
-								<div class="content">
-									<div class="icon-box">
-										<span class="icon flaticon-seo"></span>
-									</div>
-									<h4><a href="service-detail.html">Universitario</a></h4>
-									<div class="text">Los estudiantes profundizan en áreas de interés especializadas y desarrollan habilidades y conocimientos relevantes para su futuro profesional o académico.</div>
-								</div>
-							</div>
-						</div>
-						
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	</section>
-	<!-- End Business Section -->
+	
 	
 	<!-- Team Section -->
 	<section class="team-section">
@@ -991,7 +992,7 @@
 					<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
 						<div class="image">
 							<!-- Social Box -->
-							<div class="social-outer">
+							{{-- <div class="social-outer">
 								<span class="plus-icon fas fa-plus"></span>
 								<!-- Social Box -->
 								<ul class="social-box">
@@ -999,15 +1000,15 @@
 									<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
 									<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
 								</ul>
-							</div>
+							</div> --}}
 
 							<img src="assetshome/images/resource/team-1.png" alt="" />
-							{{-- <div class="content">
+							<div class="content">
 								<div class="icon-layer-one" style="background-image: url(assetshome/images/icons/plus-icon.png)"></div>
 								<div class="icon-layer-two" style="background-image: url(assetshome/images/icons/circle-icon.png)"></div>
-								<div class="designation">Digital Marketer</div>
-								<h4><a href="team.html">Brooklyn Simmons</a></h4>
-							</div> --}}
+								{{-- <div class="designation">Digital Marketer</div> --}}
+								<h4><a href="#">Dactilografia</a></h4>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -1017,7 +1018,7 @@
 					<div class="inner-box wow fadeInLeft" data-wow-delay="150ms" data-wow-duration="1500ms">
 						<div class="image">
 							<!-- Social Box -->
-							<div class="social-outer">
+							{{-- <div class="social-outer">
 								<span class="plus-icon fas fa-plus"></span>
 								<!-- Social Box -->
 								<ul class="social-box">
@@ -1025,15 +1026,15 @@
 									<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
 									<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
 								</ul>
-							</div>
+							</div> --}}
 
 							<img src="assetshome/images/resource/team-2.png" alt="" />
-							{{-- <div class="content">
+							<div class="content">
 								<div class="icon-layer-one" style="background-image: url(assetshome/images/icons/plus-icon.png)"></div>
 								<div class="icon-layer-two" style="background-image: url(assetshome/images/icons/circle-icon.png)"></div>
-								<div class="designation">seo specialist</div>
-								<h4><a href="team.html">Savannah Nguyen</a></h4>
-							</div> --}}
+								{{-- <div class="designation">seo specialist</div> --}}
+								<h4><a href="#">Operador de Computadoras</a></h4>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -1043,7 +1044,7 @@
 					<div class="inner-box wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
 						<div class="image">
 							<!-- Social Box -->
-							<div class="social-outer">
+							{{-- <div class="social-outer">
 								<span class="plus-icon fas fa-plus"></span>
 								<!-- Social Box -->
 								<ul class="social-box">
@@ -1051,15 +1052,15 @@
 									<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
 									<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
 								</ul>
-							</div>
+							</div> --}}
 
 							<img src="assetshome/images/resource/team-3.png" alt="" />
-							{{-- <div class="content">
+							<div class="content">
 								<div class="icon-layer-one" style="background-image: url(assetshome/images/icons/plus-icon.png)"></div>
 								<div class="icon-layer-two" style="background-image: url(assetshome/images/icons/circle-icon.png)"></div>
-								<div class="designation">INTERIOR DESIGNER</div>
-								<h4><a href="team.html">Cameron Williamson</a></h4>
-							</div> --}}
+								{{-- <div class="designation">INTERIOR DESIGNER</div> --}}
+								<h4><a href="#">Diseño Gráfico</a></h4>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -1069,7 +1070,7 @@
 					<div class="inner-box wow fadeInLeft" data-wow-delay="450ms" data-wow-duration="1500ms">
 						<div class="image">
 							<!-- Social Box -->
-							<div class="social-outer">
+							{{-- <div class="social-outer">
 								<span class="plus-icon fas fa-plus"></span>
 								<!-- Social Box -->
 								<ul class="social-box">
@@ -1077,15 +1078,15 @@
 									<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
 									<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
 								</ul>
-							</div>
+							</div> --}}
 
 							<img src="assetshome/images/resource/team-4.png" alt="" />
-							{{-- <div class="content">
+							<div class="content">
 								<div class="icon-layer-one" style="background-image: url(assetshome/images/icons/plus-icon.png)"></div>
 								<div class="icon-layer-two" style="background-image: url(assetshome/images/icons/circle-icon.png)"></div>
-								<div class="designation">UI UX Designer</div>
-								<h4><a href="team.html">Savannah Nguyen</a></h4>
-							</div> --}}
+								{{-- <div class="designation">UI UX Designer</div> --}}
+								<h4><a href="#">Diseño Web</a></h4>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -1205,14 +1206,7 @@
 							<div class="author_img">
 								<img src="assetshome/images/resource/author_img.png" alt="">
 							</div>
-							<div class="icon-layer" style="background-image: url(assetshome/images/icons/vector-10.png)"></div>
-							<div class="quote-icon">
-								<img src="assetshome/images/icons/tm_quote.png" alt="">
-							</div>
-							<div class="image-one"><img src="assetshome/images/resource/author-6.jpg" alt=""></div>
-							<div class="image-five"><img src="assetshome/images/resource/author-8.jpg" alt=""></div>
-							<div class="image-six"><img src="assetshome/images/resource/author-9.jpg" alt=""></div>
-							<div class="image-four"><img src="assetshome/images/resource/author-7.jpg" alt=""></div>
+							
 						</div>
 					</div>
 				</div>
@@ -1223,7 +1217,7 @@
 						<!-- Sec Title -->
 						<div class="sec-title">
 							<div class="title">Experiencias verdaderas de nuestros clientes</div>
-							<h2>Historias <span>de éxito</span>de nuestros <br>súper clientes</h2>
+							<h2>Historias <span>de éxito</span> de nuestros <br>súper clientes</h2>
 							   
 						</div>
 						<!-- Slides -->
@@ -1235,9 +1229,9 @@
 									<div class="text"><span class="quote-left fas fa-quote-left"></span>Desde que comencé a tomar las clases de nivelación, he visto una gran mejora en mis habilidades matemáticas. Los tutores son muy pacientes y explican las cosas de manera clara y fácil de entender. ¡Recomiendo este servicio a cualquiera que busque mejorar sus habilidades matemáticas!<span class="quote-right fas fa-quote-right"></span></div>
 									<div class="author-box">
 										<div class="box-inner">
-											<div class="author-image">
+											{{-- <div class="author-image">
 												<img src="assetshome/images/resource/author-11.jpg" alt="">
-											</div>
+											</div> --}}
 											<h4>Rosly</h4>
 											<span class="designation">Estudiante Nivelada</span>
 										</div>
@@ -1251,9 +1245,9 @@
 									<div class="text"><span class="quote-left fas fa-quote-left"></span>Mi experiencia con los cursos de computación e informática ha sido excelente. He aprendido tanto sobre programación y tecnología y ahora tengo muchas más oportunidades de empleo. ¡Gracias por estas excelentes clases!<span class="quote-right fas fa-quote-right"></span></div>
 									<div class="author-box">
 										<div class="box-inner">
-											<div class="author-image">
+											{{-- <div class="author-image">
 												<img src="assetshome/images/resource/author-11.jpg" alt="">
-											</div>
+											</div> --}}
 											<h4>Nahomy</h4>
 											<span class="designation">Alumna de Computación</span>
 										</div>
@@ -1267,9 +1261,9 @@
 									<div class="text"><span class="quote-left fas fa-quote-left"></span>Mi hijo ha mejorado mucho en su lectura y escritura gracias a las clases que ha tomado con esta compañía. Los tutores son muy pacientes y han hecho que mi hijo disfrute aprendiendo. ¡Recomendamos altamente este servicio!<span class="quote-right fas fa-quote-right"></span></div>
 									<div class="author-box">
 										<div class="box-inner">
-											<div class="author-image">
+											{{-- <div class="author-image">
 												<img src="assetshome/images/resource/author-11.jpg" alt="">
-											</div>
+											</div> --}}
 											<h4>Emma</h4>
 											<span class="designation">Estudiante de Lectura y Escritura</span>
 										</div>
@@ -1281,9 +1275,9 @@
 									<div class="text"><span class="quote-left fas fa-quote-left"></span>Mi hija está encantada con las clases de robótica que ha tomado. Los tutores son muy entusiastas y hacen que las clases sean divertidas y educativas al mismo tiempo. ¡Recomendamos este servicio sin duda alguna!<span class="quote-right fas fa-quote-right"></span></div>
 									<div class="author-box">
 										<div class="box-inner">
-											<div class="author-image">
+											{{-- <div class="author-image">
 												<img src="assetshome/images/resource/author-11.jpg" alt="">
-											</div>
+											</div> --}}
 											<h4>Soledad Francia</h4>
 											<span class="designation">Estudiante de Robótica</span>
 										</div>
@@ -1295,9 +1289,9 @@
 									<div class="text"><span class="quote-left fas fa-quote-left"></span>Desde que comencé a tomar las clases de oratoria, he mejorado mucho en mi confianza y habilidades de comunicación. Los tutores son muy profesionales y han ayudado a mejorar mis habilidades de manera efectiva. ¡Gracias por estas excelentes clases!<span class="quote-right fas fa-quote-right"></span></div>
 									<div class="author-box">
 										<div class="box-inner">
-											<div class="author-image">
+											{{-- <div class="author-image">
 												<img src="assetshome/images/resource/author-11.jpg" alt="">
-											</div>
+											</div> --}}
 											<h4>Daria</h4>
 											<span class="designation">Estudiante de Oratoria</span>
 										</div>
@@ -1309,9 +1303,9 @@
 									<div class="text"><span class="quote-left fas fa-quote-left"></span>He mejorado mucho en mis habilidades académicas y he obtenido una mejor comprensión de los temas gracias a las clases preuniversitarias que he tomado con esta compañía. Los tutores son muy knowledgeable y explican las cosas de manera clara. ¡Recomiendo este servicio a cualquiera que busque mejorar sus habilidades académicas!<span class="quote-right fas fa-quote-right"></span></div>
 									<div class="author-box">
 										<div class="box-inner">
-											<div class="author-image">
+											{{-- <div class="author-image">
 												<img src="assetshome/images/resource/author-11.jpg" alt="">
-											</div>
+											</div> --}}
 											<h4>Alejandra</h4>
 											<span class="designation">Postulante PSA</span>
 										</div>
@@ -1323,9 +1317,9 @@
 									<div class="text"><span class="quote-left fas fa-quote-left"></span>Mi experiencia con los cursos universitarios ha sido excelente. He aprendido tanto y estoy mucho más preparado para mis exámenes y tareas. ¡Gracias por estas excelentes clases!<span class="quote-right fas fa-quote-right"></span></div>
 									<div class="author-box">
 										<div class="box-inner">
-											<div class="author-image">
+											{{-- <div class="author-image">
 												<img src="assetshome/images/resource/author-11.jpg" alt="">
-											</div>
+											</div> --}}
 											<h4>Yohan</h4>
 											<span class="designation">Estudinate universitario</span>
 										</div>
@@ -1417,165 +1411,6 @@
 	</section> --}}
 	<!-- End Counter Section -->
 	
-	<!-- News Section -->
-	<section class="news-section">
-		<div class="auto-container">
-			<!-- Sec Title / Centered -->
-			<div class="sec-title centered">
-				<div class="title">Descubre</div>
-				<h2>Mas & <span>servicios</span></h2>
-			</div>
-			<div class="clearfix">
-				
-				<!-- News Block -->
-				<div class="news-block col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="image">
-							<a href="blog-detail.html"><img src="assetshome/images/resource/news-1.jpg" alt="" /></a>
-							<div class="category">story</div>
-						</div>
-						<div class="lower-content">
-							<ul class="post-info">
-								<li><span class="icon far fa-calendar-alt"></span> 23 April 2021</li>
-								<li><span class="icon fas fa-user"></span> Admin</li>
-							</ul>
-							<h3><a href="blog-detail.html">Facebook design is dedicated to what's new in design</a></h3>
-							<a href="blog-detail.html" class="read-more">Read more</a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- News Block -->
-				<div class="news-block active col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="image">
-							<a href="blog-detail.html"><img src="assetshome/images/resource/news-2.jpg" alt="" /></a>
-							<div class="category">story</div>
-						</div>
-						<div class="lower-content">
-							<ul class="post-info">
-								<li><span class="icon far fa-calendar-alt"></span> 23 April 2021</li>
-								<li><span class="icon fas fa-user"></span> Admin</li>
-							</ul>
-							<h3><a href="blog-detail.html">Facebook design is dedicated to what's new in design</a></h3>
-							<a href="blog-detail.html" class="read-more">Read more</a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- News Block -->
-				<div class="news-block col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="image">
-							<a href="blog-detail.html"><img src="assetshome/images/resource/news-3.jpg" alt="" /></a>
-							<div class="category">story</div>
-						</div>
-						<div class="lower-content">
-							<ul class="post-info">
-								<li><span class="icon far fa-calendar-alt"></span> 23 April 2021</li>
-								<li><span class="icon fas fa-user"></span> Admin</li>
-							</ul>
-							<h3><a href="blog-detail.html">Facebook design is dedicated to what's new in design</a></h3>
-							<a href="blog-detail.html" class="read-more">Read more</a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- News Block -->
-				<div class="news-block col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="image">
-							<a href="blog-detail.html"><img src="assetshome/images/resource/news-3.jpg" alt="" /></a>
-							<div class="category">story</div>
-						</div>
-						<div class="lower-content">
-							<ul class="post-info">
-								<li><span class="icon far fa-calendar-alt"></span> 23 April 2021</li>
-								<li><span class="icon fas fa-user"></span> Admin</li>
-							</ul>
-							<h3><a href="blog-detail.html">Facebook design is dedicated to what's new in design</a></h3>
-							<a href="blog-detail.html" class="read-more">Read more</a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- News Block -->
-				<div class="news-block col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="image">
-							<a href="blog-detail.html"><img src="assetshome/images/resource/news-3.jpg" alt="" /></a>
-							<div class="category">story</div>
-						</div>
-						<div class="lower-content">
-							<ul class="post-info">
-								<li><span class="icon far fa-calendar-alt"></span> 23 April 2021</li>
-								<li><span class="icon fas fa-user"></span> Admin</li>
-							</ul>
-							<h3><a href="blog-detail.html">Facebook design is dedicated to what's new in design</a></h3>
-							<a href="blog-detail.html" class="read-more">Read more</a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- News Block -->
-				<div class="news-block col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="image">
-							<a href="blog-detail.html"><img src="assetshome/images/resource/news-3.jpg" alt="" /></a>
-							<div class="category">story</div>
-						</div>
-						<div class="lower-content">
-							<ul class="post-info">
-								<li><span class="icon far fa-calendar-alt"></span> 23 April 2021</li>
-								<li><span class="icon fas fa-user"></span> Admin</li>
-							</ul>
-							<h3><a href="blog-detail.html">Facebook design is dedicated to what's new in design</a></h3>
-							<a href="blog-detail.html" class="read-more">Read more</a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- News Block -->
-				<div class="news-block col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="image">
-							<a href="blog-detail.html"><img src="assetshome/images/resource/news-3.jpg" alt="" /></a>
-							<div class="category">story</div>
-						</div>
-						<div class="lower-content">
-							<ul class="post-info">
-								<li><span class="icon far fa-calendar-alt"></span> 23 April 2021</li>
-								<li><span class="icon fas fa-user"></span> Admin</li>
-							</ul>
-							<h3><a href="blog-detail.html">Facebook design is dedicated to what's new in design</a></h3>
-							<a href="blog-detail.html" class="read-more">Read more</a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- News Block -->
-				<div class="news-block col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="image">
-							<a href="blog-detail.html"><img src="assetshome/images/resource/news-3.jpg" alt="" /></a>
-							<div class="category">story</div>
-						</div>
-						<div class="lower-content">
-							<ul class="post-info">
-								<li><span class="icon far fa-calendar-alt"></span> 23 April 2021</li>
-								<li><span class="icon fas fa-user"></span> Admin</li>
-							</ul>
-							<h3><a href="blog-detail.html">Facebook design is dedicated to what's new in design</a></h3>
-							<a href="blog-detail.html" class="read-more">Read more</a>
-						</div>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	</section>
-	<!-- End News Section -->
-	
 	<!-- Main Footer -->
     <footer class="main-footer">
 		<div class="pattern-layer-one" style="background-image:url(assetshome/images/background/pattern-7.png)"></div>
@@ -1595,7 +1430,7 @@
 					<!-- Title Column -->
 					<div class="title-column col-lg-7 col-md-12 col-sm-12">
 						<div class="inner-column">
-							<h2>Contactanos a traves de nuestras <span>redes sociales</span> </h2>
+							<h2>Contactanos a través de nuestras <span>redes sociales</span> </h2>
 							{{-- <div class="text">Don’t wait make a smart & logical quote here. Its pretty easy.</div> --}}
 						</div>
 					</div>
@@ -1604,10 +1439,10 @@
 					<div class="social-column col-lg-5 col-md-12 col-sm-12">
 						<div class="inner-column text-center text-md-end">
 							<ul class="social-box">
-								<li><a href="https://www.facebook.com/" class="fa fa-facebook"></a></li>
-								<li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-								<li><a href="https://youtube.com/" class="fa fa-youtube"></a></li>
-								<li><a href="https://www.pinterest.com/" class="fa fa-pinterest-p"></a></li>
+								<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook"></a></li>
+								<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
+								<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
+								<li><a href="https://www.youtube.com/channel/UCbmRHfG51CGM1foo-6kzunQ" class="fa fa-youtube"></a></li>
 							</ul>
 						</div>
 					</div>
@@ -1627,14 +1462,14 @@
                         	<!-- Footer Column -->
                             <div class="footer-column col-lg-7 col-md-6 col-sm-12">
                                 <div class="footer-widget about-widget">
-									<div class="logo"><a href="index.html"><img src="assetshome/images/footer-logo.png" alt="" title=""></a></div>
+									{{-- <div class="logo"><a href="{{ url('/') }}"><img src="assetshome/images/footer-logo.png" alt="" title=""></a></div> --}}
 									<div class="text">ITE es un centro educativo que brinda clases de nivelación en diferentes materias y cursos de programación en todos los lenguajes y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.</div>
 									<!-- Subscribe Form -->
 
-									<ul class="footer_info">
+									{{-- <ul class="footer_info">
 										<li><i class="fa fa-map-marker-alt"></i> Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</li>
 										<li><i class="fa fa-phone-alt"></i> +591 71039910</li>
-									</ul>
+									</ul> --}}
 									
 									{{-- <div class="subscribe-form">
 										<form method="post" action="contact.html">
@@ -1650,14 +1485,14 @@
 							{{-- <!-- Footer Column --> --}}
                             <div class="footer-column col-lg-5 col-md-6 col-sm-12">
                                 <div class="footer-widget links-widget">
-									<h3>Help?</h3>
+									<h3>Informaciones</h3>
 									<ul class="nav-list">
-										<li><a href="#">FAQ</a></li>
-										<li><a href="#">Term & conditions</a></li>
-										<li><a href="#">Reporting</a></li>
-										<li><a href="#">Documentation</a></li>
-										<li><a href="#">Support Policy</a></li>
-										<li><a href="#">Privacy</a></li>
+										<li><a href="#">¿Quienes Somos?</a></li>
+										<li><a href="#">Misión</a></li>
+										<li><a href="#">Visión</a></li>
+										<li><a href="#">Preguntas frecuentes</a></li>
+										<li><a href="#">Terminos & condiciones</a></li>
+										<li><a href="#">Politica de privacidad</a></li>
 									</ul>
 								</div>
 							</div>
@@ -1672,14 +1507,14 @@
 							<!-- Footer Column -->
                             <div class="footer-column col-lg-4 col-md-6 col-sm-12">
                                 <div class="footer-widget links-widget style-two">
-									<h3>Useful Links</h3>
+									<h3>Niveles</h3>
 									<ul class="nav-list">
-										<li><a href="#">About</a></li>
-										<li><a href="#">News</a></li>
-										<li><a href="#">Partners</a></li>
-										<li><a href="#">Room Details</a></li>
-										<li><a href="#">Gallery</a></li>
-										<li><a href="#">Contacts</a></li>
+										<li><a href="#">Guardería</a></li>
+										<li><a href="#">Primaria</a></li>
+										<li><a href="#">Secundaria</a></li>
+										<li><a href="#">Pre-Universitarios</a></li>
+										<li><a href="#">Universitarios</a></li>
+										<li><a href="#">Profesionales</a></li>
 									</ul>
 								</div>
 							</div>
@@ -1687,29 +1522,16 @@
 							<!-- Footer Column -->
                             <div class="footer-column col-lg-8 col-md-6 col-sm-12">
                                 <div class="footer-widget news-widget">
-									<h3>Recent Post</h3>
-									<!-- Footer Column -->
-									<div class="widget-content">
+									<h3>Contacto</h3>
+									<ul class="footer_info">
+										<li><i class="fa fa-map-marker-alt"></i> Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</li>
+										<li><i class="fa fa-phone-alt"></i> +59171039910</li>
+										<li><i class="fa fa-phone-alt"></i> +59175553338</li>
+										<li><i class="fa fa-phone-alt"></i> +59171324941</li>
+										<li><i class="icon fas fa-envelope"></i> info@ite.com.bo</li>
+										<li><i class="icon fas fa-clock"></i> Lu a Vi: 07:00 a 18:30 Sábados: 07:30 a 17:00</li>
+									</ul>
 									
-										<div class="post">
-											<div class="thumb"><a href="blog-detail.html"><img src="assetshome/images/resource/post-thumb-1.jpg" alt=""></a></div>
-											<span class="date">23 April 2021</span>
-											<h6><a href="blog-detail.html">With billion players .</a></h6>
-										</div>
-
-										<div class="post">
-											<div class="thumb"><a href="blog-detail.html"><img src="assetshome/images/resource/post-thumb-2.jpg" alt=""></a></div>
-											<span class="date">23 April 2021</span>
-											<h6><a href="blog-detail.html">With billion players .</a></h6>
-										</div>
-										
-										<div class="post">
-											<div class="thumb"><a href="blog-detail.html"><img src="assetshome/images/resource/post-thumb-3.jpg" alt=""></a></div>
-											<span class="date">23 April 2021</span>
-											<h6><a href="blog-detail.html">With billion players .</a></h6>
-										</div>
-										
-									</div>
 								</div>
 							</div>
 						
@@ -1733,7 +1555,7 @@
 					<!-- Nav Column -->
 					<div class="nav-column col-lg-6 col-md-6 col-sm-12">
 						<ul class="footer-nav">
-							<li><a href="#">Terminos y condiciones</a></li>
+							<li><a href="#">Terminos & condiciones</a></li>
 							<li><a href="#">Politica de privacidad</a></li>
 						</ul>
 					</div>
@@ -1751,37 +1573,37 @@
 <!-- Scroll To Top -->
 <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-arrow-up"></span></div>
 
-<script src="assetshome/js/jquery.js"></script>
-<script src="assetshome/js/popper.min.js"></script>
-<script src="assetshome/js/bootstrap.min.js"></script>
+<script src="{{asset('assetshome/js/jquery.js')}}"></script>
+<script src="{{asset('assetshome/js/popper.min.js')}}"></script>
+<script src="{{asset('assetshome/js/bootstrap.min.js')}}"></script>
 
 <!-- Revolution Slider -->
-<script src="assetshome/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
-<script src="assetshome/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
-<script src="assetshome/plugins/revolution/js/extensions/revolution.extension.actions.min.js"></script>
-<script src="assetshome/plugins/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
-<script src="assetshome/plugins/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
-<script src="assetshome/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
-<script src="assetshome/plugins/revolution/js/extensions/revolution.extension.migration.min.js"></script>
-<script src="assetshome/plugins/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
-<script src="assetshome/plugins/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
-<script src="assetshome/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-<script src="assetshome/plugins/revolution/js/extensions/revolution.extension.video.min.js"></script>
-<script src="assetshome/plugins/revolution/js/main-slider-script.js"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/jquery.themepunch.revolution.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/jquery.themepunch.tools.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/extensions/revolution.extension.actions.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/extensions/revolution.extension.carousel.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/extensions/revolution.extension.kenburn.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/extensions/revolution.extension.migration.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/extensions/revolution.extension.navigation.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/extensions/revolution.extension.parallax.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/extensions/revolution.extension.video.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/main-slider-script.js')}}"></script>
 <!-- For Js Library -->
 
-<script src="assetshome/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="assetshome/js/jquery.fancybox.js"></script>
-<script src="assetshome/js/appear.js"></script>
-<script src="assetshome/js/parallax.min.js"></script>
-<script src="assetshome/js/tilt.jquery.min.js"></script>
-<script src="assetshome/js/jquery.paroller.min.js"></script>
-<script src="assetshome/js/owl.js"></script>
-<script src="assetshome/js/wow.js"></script>
-<script src="assetshome/js/validate.js"></script>
-<script src="assetshome/js/nav-tool.js"></script>
-<script src="assetshome/js/jquery-ui.js"></script>
-<script src="assetshome/js/script.js"></script>
+<script src="{{asset('assetshome/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+<script src="{{asset('assetshome/js/jquery.fancybox.js')}}"></script>
+<script src="{{asset('assetshome/js/appear.js')}}"></script>
+<script src="{{asset('assetshome/js/parallax.min.js')}}"></script>
+<script src="{{asset('assetshome/js/tilt.jquery.min.js')}}"></script>
+<script src="{{asset('assetshome/js/jquery.paroller.min.js')}}"></script>
+<script src="{{asset('assetshome/js/owl.js')}}"></script>
+<script src="{{asset('assetshome/js/wow.js')}}"></script>
+<script src="{{asset('assetshome/js/validate.js')}}"></script>
+<script src="{{asset('assetshome/js/nav-tool.js')}}"></script>
+<script src="{{asset('assetshome/js/jquery-ui.js')}}"></script>
+<script src="{{asset('assetshome/js/script.js')}}"></script>
 
 </body>
 </html>

@@ -749,7 +749,7 @@
 	opacity:0.15;
 	border-left: 12px solid transparent;
     border-right: 12px solid transparent;
-    border-bottom: 15px solid red;
+    border-bottom: 15px solid rgb(38,186,165);
 }
 
 .quote-box:after{
@@ -760,7 +760,7 @@
 	z-index:1;
 	border-left: 12px solid transparent;
     border-right: 12px solid transparent;
-    border-bottom: 15px solid red;
+    border-bottom: 15px solid rgb(38,186,165);
 }
 
 .quote-box .box-inner{

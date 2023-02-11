@@ -1691,14 +1691,14 @@
 }
 
 .sidebar-info-contents .content-inner h5{
-	color:var(--white-color);
+	color:#0b2e45;
 	text-transform:uppercase;
 	font-family: var(--font-family-Teko);
 	margin-bottom:var(--margin-top-20);
 }
 
 .sidebar-info-contents .content-inner .content-box .text{
-	color:var(--white-color);
+	color:#0b2e45;
 	margin-bottom:var(--margin-top-25);
 }
 
