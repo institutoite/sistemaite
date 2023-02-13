@@ -31,6 +31,14 @@
 
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+<style>
+  .perfil{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border:2px solid #26baa5;
+  }
+</style>
 </head>
 
 <body class="hidden-bar-wrapper">
@@ -203,13 +211,34 @@
 						
 						<!-- Nav Btn -->
 						<div class="nav-btn navSidebar-button"><span class="icon flaticon-menu-2"></span></div>
+						@auth
+							<div class="nav-btn navSidebar-button">
+								<a href="{{ route('home')}}"> <img class="perfil" src="{{URL::to('/')."/storage/".Auth::user()->foto}}" alt=""> </a>
+							</div>
+						@endauth
 						
 						<!-- Button Box -->
-						<div class="button-box">
-							<a href="{{ route('login') }}" class="theme-btn btn-style-one"><span class="txt"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</span></a>
-						</div>
+						@auth
+							<div class="nav-btn navSidebar-button">
+								<a class="btn form-inline" href="{{ route('logout') }}" onclick="event.preventDefault();
+												document.getElementById('logout-form').submit();">
+									<i class="fas fa-sign-out-alt"></i>
+								</a>
+
+								<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+									@csrf
+								</form>
+							</div>
+						@else
+							<div class="button-box">
+								<a href="{{ route('login') }}" class="theme-btn btn-style-one"><span class="txt"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</span></a>
+							</div>
+						@endauth
+						
+						
 						<!-- End Button Box -->
 						
+
 					</div>
 					
 				</div>
