@@ -31,6 +31,14 @@
 
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+<style>
+	img {
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		border:2px solid #26baa5;
+	}
+</style>
 </head>
 
 <body class="hidden-bar-wrapper">
@@ -201,14 +209,39 @@
 					<!-- Main Menu End-->
 					<div class="outer-box clearfix">
 						
-						<!-- Nav Btn -->
+						{{-- <!-- Nav Btn -->
 						<div class="nav-btn navSidebar-button"><span class="icon flaticon-menu-2"></span></div>
 						
 						<!-- Button Box -->
 						<div class="button-box">
 							<a href="{{ route('login') }}" class="theme-btn btn-style-one"><span class="txt"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</span></a>
 						</div>
-						<!-- End Button Box -->
+						<!-- End Button Box --> --}}
+						@auth
+                      <div class="cs-user_info text-center">
+                        <h3><a href="{{ route('home')}}"> <img class="perfil" src="{{URL::to('/')."/storage/".Auth::user()->foto}}" alt=""> </a> </h3>
+                        {{-- <h3><a class="btn btn-primary" href="{{ route('home')}}">Sistema </a> </h3> --}}
+                      </div>
+                      <div class="text-center">
+                        <a class="btn form-inline" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                        
+                      </div>
+                    @else
+                      <div class="cs-user_info">
+                        <h3 class="cs-user_balance">Ingresar al sistema</h3>
+                      </div>
+                      
+                      <div class="text-center">
+                        <a class="cs-btn cs-style1" href="{{ route('login') }}" ><span>Iniciar Sesion</span></a>
+                      </div>
+                    @endauth
 						
 					</div>
 					
