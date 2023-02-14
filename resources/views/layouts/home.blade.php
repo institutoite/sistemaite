@@ -21,6 +21,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+{{-- <link href="{{asset('assetshome/fonts/GlyphaLTStd-Bold')}}" rel="stylesheet"> --}}
+
 
 <link rel="shortcut icon" href="{{asset('assetshome/images/favicon.png')}}" type="image/x-icon">
 <link rel="icon" href="{{asset('assetshome/images/favicon.png')}}" type="image/x-icon">
