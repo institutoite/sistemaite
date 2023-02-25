@@ -21,6 +21,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+{{-- <link href="{{asset('assetshome/fonts/GlyphaLTStd-Bold')}}" rel="stylesheet"> --}}
+
 
 <link rel="shortcut icon" href="{{asset('assetshome/images/favicon.png')}}" type="image/x-icon">
 <link rel="icon" href="{{asset('assetshome/images/favicon.png')}}" type="image/x-icon">
@@ -32,12 +34,21 @@
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
 <style>
+<<<<<<< HEAD
 	img {
 		border-radius: 50%;
 		width: 40px;
 		height: 40px;
 		border:2px solid #26baa5;
 	}
+=======
+  .perfil{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border:2px solid #26baa5;
+  }
+>>>>>>> fd7a556f89a3ec704375928f13326abc636f70c3
 </style>
 </head>
 
@@ -212,7 +223,9 @@
 						{{-- <!-- Nav Btn -->
 						<div class="nav-btn navSidebar-button"><span class="icon flaticon-menu-2"></span></div>
 						
+						
 						<!-- Button Box -->
+<<<<<<< HEAD
 						<div class="button-box">
 							<a href="{{ route('login') }}" class="theme-btn btn-style-one"><span class="txt"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</span></a>
 						</div>
@@ -242,9 +255,32 @@
                         <a class="cs-btn cs-style1" href="{{ route('login') }}" ><span>Iniciar Sesion</span></a>
                       </div>
                     @endauth
+=======
+						@auth
+							
+						@else
+							<div class="button-box">
+								<a href="{{ route('login') }}" class="theme-btn btn-style-one"><span class="txt"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</span></a>
+							</div>
+						@endauth
 						
+						
+						<!-- End Button Box -->
+>>>>>>> fd7a556f89a3ec704375928f13326abc636f70c3
+						
+
 					</div>
-					
+					@auth
+						<a href="{{ route('home')}}"> <img class="perfil" src="{{URL::to('/')."/storage/".Auth::user()->foto}}" alt=""> </a>
+						<a class="btn form-inline" href="{{ route('logout') }}" onclick="event.preventDefault();
+												document.getElementById('logout-form').submit();">
+							<i class="fas fa-sign-out-alt"></i>
+						</a>
+
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+							@csrf
+						</form>
+					@endauth
 				</div>
             </div>
         </div>

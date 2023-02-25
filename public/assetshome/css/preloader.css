@@ -4,6 +4,11 @@
 	background-color:#26BAA5;
 }
 
+@font-face {
+  font-family: "GlyphaLTStd-Bold";
+  src: url("assetshome/vendor/@fortawesome/fontawesome-free/GlyphaLTStd-Bold.otf");
+}
+
 .handle-preloader {
   align-items: center;
   -webkit-align-items: center;
@@ -71,6 +76,7 @@
   color:rgba(55, 95, 122, 1);
   -webkit-text-stroke-width: 1px;
   font-family: 'glypha lt std', montserrat;
+  /* font-family: 'GlyphaLTStd-Bold', arial; */
   -webkit-text-stroke-color: rgba(55, 95, 122, 0.5);
 }
 
