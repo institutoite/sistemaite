@@ -29,32 +29,55 @@ class HomeController extends Controller
     public function __construct()
     {
        
-        $this->middleware('can:Editar Homes')->only('edit','update');
-        $this->middleware('can:Eliminar Homes')->only('destroy');
+        
     }
 
     public function index()
     {
-        $docentes = Docente::where('estado_id',estado('HABILITADO'))->get();
-        $convenios = Convenio::all();
-        $colegios = Colegio::all();
-        $hometext= Hometext::all();
-        $horarios= Homeschedule::all();
-        $intereses= Interest::all();
-        $carreras= Carrera::all();
-        // $modalidadesguarderia=Modalidad::where('vigente',1)->where('nivel_id',1)->get();
-        // $modalidadesprimaria=Modalidad::where('vigente',1)->where('nivel_id',3)->get();
-        // $modalidadessecundaria=Modalidad::where('vigente',1)->where('nivel_id',4)->get();
-        // $modalidadespreuniversitario=Modalidad::where('vigente',1)->where('nivel_id',5)->get();
-        // $modalidadesinstituto=Modalidad::where('vigente',1)->where('nivel_id',6)->get();
-        // $modalidadesuniversitario=Modalidad::where('vigente',1)->where('nivel_id',7)->get();
-        // $modalidadesprofesional=Modalidad::where('vigente',1)->where('nivel_id',8)->get();
-        $niveles=Nivel::all();
-        return view('home.index', compact(['docentes','convenios','colegios','hometext','intereses','horarios','niveles','carreras']));
-                    // ,'modalidadesguarderia','modalidadesprimaria','modalidadessecundaria','modalidadespreuniversitario','modalidadesinstituto'
-                    // ,'modalidadesuniversitario','modalidadesprofesional']));
-
+        return view('layouts.home');
     }
+
+    public function guarderia()
+    {
+        $modalidadesguarderia=Modalidad::where('vigente',1)->where('nivel_id',1)->get();
+        return view('home.fronted.guarderia', compact(['modalidadesguarderia']));
+    }
+
+    public function inicial()
+    {
+        $modalidadesinicial=Modalidad::where('vigente',1)->where('nivel_id',2)->get();
+        return view('home.fronted.inicial', compact(['modalidadesinicial']));
+    }
+
+    public function primaria()
+    {
+        $modalidadesprimaria=Modalidad::where('vigente',1)->where('nivel_id',3)->get();
+        $semana=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%semana%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",3) // el 3 es un id del nivel buscado
+        ->get();
+        return view('home.fronted.primaria', compact(['modalidadesprimaria','modalidadesprimaria']));
+    }
+
+    public function secundaria()
+    {
+        $modalidadessecundaria=Modalidad::where('vigente',1)->where('nivel_id',4)->get();
+        return view('home.fronted.secundaria', compact(['modalidadessecundaria']));
+    }
+
+    public function preuniversitario()
+    {
+        $modalidadespreuniversitario=Modalidad::where('vigente',1)->where('nivel_id',5)->get();
+        return view('home.fronted.preuniversitario', compact(['modalidadespreuniversitario']));
+    }
+
+
+    public function universitario()
+    {
+        $modalidadesuniversitario=Modalidad::where('vigente',1)->where('nivel_id',5)->get();
+        return view('home.fronted.universitario', compact(['modalidadesuniversitario']));
+    }
+
 
     public function plan($id)
     {

@@ -33,23 +33,7 @@
 
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
-<style>
-<<<<<<< HEAD
-	img {
-		border-radius: 50%;
-		width: 40px;
-		height: 40px;
-		border:2px solid #26baa5;
-	}
-=======
-  .perfil{
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    border:2px solid #26baa5;
-  }
->>>>>>> fd7a556f89a3ec704375928f13326abc636f70c3
-</style>
+
 </head>
 
 <body class="hidden-bar-wrapper">
@@ -164,7 +148,7 @@
 							
 							<div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
 								<ul class="navigation clearfix">
-									<li class="current dropdown"><a href="#">Inicio</a>
+									<li class="current dropdown"><a href="{{ url('/') }}">Inicio</a>
 									</li>
 									<li class="dropdown"><a href="#">Nosotros</a>
 										<ul>
@@ -199,14 +183,14 @@
 									</li>
 									<li class="dropdown"><a href="#">Clases</a>
 										<ul>
-											<li><a href="#">Inicial</a></li>
-											<li><a href="#">Primaria</a></li>
-											<li><a href="#">Secundaria</a></li>
-											<li><a href="#">Preuniversitario</a></li>
+											<li><a href="{{ route('inicial') }}">Inicial</a></li>
+											<li><a href="{{ route('primaria') }}">Primaria</a></li>
+											<li><a href="{{ route('secundaria') }}">Secundaria</a></li>
+											<li><a href="{{ route('preuniversitario') }}">Preuniversitario</a></li>
 											<li><a href="#">Institutos</a></li>
 											<li><a href="#">Colegios Militares</a></li>
 											<li><a href="#">Escuela de policias</a></li>
-											<li><a href="#">Universitarios</a></li>
+											<li><a href="{{ route('universitario') }}">Universitarios</a></li>
 											<li><a href="#">Profesionales</a></li>
 										</ul>
 									</li>
@@ -225,7 +209,6 @@
 						
 						
 						<!-- Button Box -->
-<<<<<<< HEAD
 						<div class="button-box">
 							<a href="{{ route('login') }}" class="theme-btn btn-style-one"><span class="txt"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</span></a>
 						</div>
@@ -255,18 +238,6 @@
                         <a class="cs-btn cs-style1" href="{{ route('login') }}" ><span>Iniciar Sesion</span></a>
                       </div>
                     @endauth
-=======
-						@auth
-							
-						@else
-							<div class="button-box">
-								<a href="{{ route('login') }}" class="theme-btn btn-style-one"><span class="txt"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</span></a>
-							</div>
-						@endauth
-						
-						
-						<!-- End Button Box -->
->>>>>>> fd7a556f89a3ec704375928f13326abc636f70c3
 						
 
 					</div>
@@ -697,7 +668,7 @@
 									<div class="icon-box">
 										<span class="icon flaticon-bulb"></span>
 									</div>
-									<h4><a href="#">Guarderia</a></h4>
+									<h4><a href="{{ route('guarderia') }}">Guarderia</a></h4>
 									<div class="text">El aprendizaje en la guardería es crucial para el desarrollo de los niños. En este entorno, los niños aprenden a través de juegos, actividades y experiencias interactivas</div>
 								</div>
 							</div>
@@ -710,7 +681,7 @@
 									<div class="icon-box">
 										<span class="icon flaticon-notebook"></span>
 									</div>
-									<h4><a href="#">Primaria</a></h4>
+									<h4><a href="{{ route('primaria') }}">Primaria</a></h4>
 									<div class="text">Es un período crucial en el desarrollo educativo de un niño. Durante esta etapa, los niños construyen las bases para su futuro aprendizaje y desarrollo.</div>
 								</div>
 							</div>
@@ -723,7 +694,7 @@
 									<div class="icon-box">
 										<span class="icon flaticon-search-engine"></span>
 									</div>
-									<h4><a href="#">PreUniversitario</a></h4>
+									<h4><a href="{{ route('preuniversitario') }}">PreUniversitario</a></h4>
 									<div class="text">Es una oportunidad para que los estudiantes desarrollen su pensamiento crítico, habilidades de investigación y resolución de problemas, y para que se preparen para el desafío académico de la universidad.</div>
 								</div>
 							</div>
@@ -755,7 +726,7 @@
 									<div class="icon-box">
 										<span class="icon flaticon-learning-support"></span>
 									</div>
-									<h4><a href="#">Inicial</a></h4>
+									<h4><a href="{{ route('inicial') }}">Inicial</a></h4>
 									<div class="text">Los niños aprenden habilidades y conocimientos básicos en áreas como lectura, escritura, matemáticas y ciencias.</div>
 								</div>
 							</div>
@@ -768,7 +739,7 @@
 									<div class="icon-box">
 										<span class="icon flaticon-human-brain"></span>
 									</div>
-									<h4><a href="#">Secundaria</a></h4>
+									<h4><a href="{{ route('secundaria') }}">Secundaria</a></h4>
 									<div class="text">Durante esta etapa, los estudiantes profundizan y amplían los conocimientos adquiridos en la escuela primaria, y se preparan para futuras oportunidades académicas o profesionales.</div>
 								</div>
 							</div>
@@ -781,7 +752,7 @@
 									<div class="icon-box">
 										<span class="icon flaticon-seo"></span>
 									</div>
-									<h4><a href="#">Universitario</a></h4>
+									<h4><a href="{{ route('universitario') }}">Universitario</a></h4>
 									<div class="text">Los estudiantes profundizan en áreas de interés especializadas y desarrollan habilidades y conocimientos relevantes para su futuro profesional o académico.</div>
 								</div>
 							</div>
@@ -927,7 +898,8 @@
 												
 													<!-- Tab / Active Tab -->
 													<div class="tab active-tab" id="prod-integrity">
-														<div class="content">Instituto ite es una empresas emergente dedicada a la capacitación académica de estudiantes de todos los niveles desde inicial hasta profesionales. Nuestra misión es potenciar el ecosistema educativo con tecnología unificada que ayude a los educadores y estudiantes a desarrollar todo su potencial, a su manera según su ritmo de comprensión. Instituto ite, ampliamente reconocido en la ciudad de Santa Cruz como una empresa educativa más completo en soluciones educativas, conecta a estudiantes, maestros, administradores y padres, con el objetivo compartido de mejorar los resultados de aprendizaje de los estudiantes. Desde la recepción hasta el salón de clases y el hogar, ayuda a los centros educativos como ser colegios, institutos y universidades. Instituto ite apoya a miles de estudiantes por ahora en todo el país Bolivia próximamente en el mundo habla hispana, además cuenta con experiencia de más de una década en la enseñanza y formación.
+														<div class="content">
+															ITE es un centro educativo que brinda clases de nivelación en diferentes materias y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.
 														</div>
 													</div>
 													
@@ -1578,12 +1550,12 @@
                                 <div class="footer-widget links-widget style-two">
 									<h3>Niveles</h3>
 									<ul class="nav-list">
-										<li><a href="#">Guardería</a></li>
-										<li><a href="#">Primaria</a></li>
-										<li><a href="#">Secundaria</a></li>
-										<li><a href="#">Pre-Universitarios</a></li>
-										<li><a href="#">Universitarios</a></li>
-										<li><a href="#">Profesionales</a></li>
+										<li><a href="{{ route('guarderia') }}">Guardería</a></li>
+										<li><a href="{{ route('inicial') }}">Inicial</a></li>
+										<li><a href="{{ route('primaria') }}">Primaria</a></li>
+										<li><a href="{{ route('secundaria') }}">Secundaria</a></li>
+										<li><a href="{{ route('preuniversitario') }}">Preuniversitario</a></li>
+										<li><a href="{{ route('universitario') }}">Universitarios</a></li>
 									</ul>
 								</div>
 							</div>

@@ -866,7 +866,6 @@ Route::middleware(['auth'])->group(function () {
     Route::view('ninacos', 'livewire.ninacos.index')->middleware('auth');
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  HOME ITE   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
-
     
 
     Route::get('home/edit', [HomeController::class, 'edit'])->name('home.edit');
@@ -903,6 +902,19 @@ Route::middleware(['auth'])->group(function () {
 });
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  FRONTED ITE   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+    Route::get('/guarderia', [HomeController::class, 'guarderia'])->name('guarderia');
+
+    Route::get('/inicial', [HomeController::class, 'inicial'])->name('inicial');
+
+    Route::get('/primaria', [HomeController::class, 'primaria'])->name('primaria');
+
+    Route::get('/secundaria', [HomeController::class, 'secundaria'])->name('secundaria');
+
+    Route::get('/preuniversitario', [HomeController::class, 'preuniversitario'])->name('preuniversitario');
+
+    Route::get('/universitario', [HomeController::class, 'universitario'])->name('universitario');
+
     Route::any('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');
 
     Route::get('/about', [HomeController::class, 'about'])->name('about');
