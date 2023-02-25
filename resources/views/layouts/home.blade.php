@@ -214,44 +214,24 @@
 						</div>
 						<!-- End Button Box --> --}}
 						@auth
-                      <div class="cs-user_info text-center">
-                        <h3><a href="{{ route('home')}}"> <img class="perfil" src="{{URL::to('/')."/storage/".Auth::user()->foto}}" alt=""> </a> </h3>
-                        {{-- <h3><a class="btn btn-primary" href="{{ route('home')}}">Sistema </a> </h3> --}}
-                      </div>
-                      <div class="text-center">
-                        <a class="btn form-inline" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                            <i class="fas fa-sign-out-alt"></i>
-                        </a>
+                     		<div class="button-box">
+								<a href="{{ route('home') }}" class="theme-btn btn-style-one"><span class="txt"><i class="fas fa-sign-in-alt"></i> Sistema</span></a>
+							</div>
+							<a class="btn form-inline" href="{{ route('logout') }}" onclick="event.preventDefault();
+												document.getElementById('logout-form').submit();">
+								<i class="fas fa-sign-out-alt"></i>
+							</a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                        
-                      </div>
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+								@csrf
+							</form>
                     @else
-                      <div class="cs-user_info">
-                        <h3 class="cs-user_balance">Ingresar al sistema</h3>
-                      </div>
-                      
-                      <div class="text-center">
-                        <a class="cs-btn cs-style1" href="{{ route('login') }}" ><span>Iniciar Sesion</span></a>
-                      </div>
+                     		<div class="button-box">
+								<a href="{{ route('login') }}" class="theme-btn btn-style-one"><span class="txt"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</span></a>
+							</div>
                     @endauth
 						
 
-					</div>
-					@auth
-						<a href="{{ route('home')}}"> <img class="perfil" src="{{URL::to('/')."/storage/".Auth::user()->foto}}" alt=""> </a>
-						<a class="btn form-inline" href="{{ route('logout') }}" onclick="event.preventDefault();
-												document.getElementById('logout-form').submit();">
-							<i class="fas fa-sign-out-alt"></i>
-						</a>
-
-						<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-							@csrf
-						</form>
-					@endauth
 				</div>
             </div>
         </div>
