@@ -260,6 +260,15 @@ class HomeController extends Controller
 
     }
 
+    public function robotica()
+    {
+        return view('home.fronted.robotica');
+    } 
+
+    public function programacion()
+    {
+        return view('home.fronted.programacion');
+    } 
 
     public function plan($id)
     {

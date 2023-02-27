@@ -167,8 +167,8 @@
 									</li>
 									<li class="dropdown"><a href="#">Especial</a>
 										<ul>
-											<li><a href="#">Robótica</a></li>
-											<li><a href="#">Programación</a></li>
+											<li><a href="{{ route('robotica') }}">Robótica</a></li>
+											<li><a href="{{ route('programacion') }}">Programación</a></li>
 											<li><a href="#">Apps Móviles</a></li>
 											<li><a href="#">Apps Webs</a></li>
 											<li><a href="#">Libros personalizados</a></li>
@@ -695,7 +695,7 @@
 										<div class="icon-box">
 											<span class="icon flaticon-social-reach"></span>
 										</div>
-										<h3><a href="#">Robótica</a></h3>
+										<h3><a href="{{ route('robotica') }}">Robótica</a></h3>
 										<div class="text">Aprenderás cómo diseñar y construir circuitos para controlar y alimentar a los robots.</div>
 									</div>
 								</div>
@@ -706,7 +706,7 @@
 										<div class="icon-box">
 											<span class="icon flaticon-analytics"></span>
 										</div>
-										<h3><a href="#">Programación y Algoritmos</a></h3>
+										<h3><a href="{{ route('programacion') }}">Programación y Algoritmos</a></h3>
 										<div class="text">Aprenderás los conceptos básicos de la programación, como variables, tipos de datos, estructuras de control de flujo y funciones.</div>
 									</div>
 								</div>
@@ -1186,11 +1186,11 @@
 				<div class="icon-layer-two" style="background-image: url(assetshome/images/icons/vector-8.png)"></div>
 				<div class="icon-layer-three" style="background-image: url(assetshome/images/icons/vector-9.png)"></div>
 				<div class="pull-left">
-					<h3>¿Te gustaria <span>aprender</span> a tu ritmo desde cualquier dispositivo?</h3>
+					<h3>¡Descubre el poder de la <span>inteligencia artificial</span> con nuestro Asistente ITE!</h3>
 				</div>
 				<div class="pull-right">
 					<div class="button-box">
-						<a href="https://www.educabol.com/" class="theme-btn btn-style-five"><span class="txt">Ingresar <i class="flaticon-next-2"></i></span></a>
+						<a href="https://asistente.ite.com.bo/" class="theme-btn btn-style-five"><span class="txt">Ingresar <i class="flaticon-next-2"></i></span></a>
 					</div>
 				</div>
 			</div>
