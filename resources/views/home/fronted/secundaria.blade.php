@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Instituto Ite</title>
+<title>ite</title>
 <!-- Stylesheets -->
 <link href="{{asset('assetshome/css/bootstrap.css')}}" rel="stylesheet">
 

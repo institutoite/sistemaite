@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Instituto Ite</title>
 <!-- Stylesheets -->
-<link href="{{asset('assetshome/css/bootstrap.css')}}" rel="stylesheet">
+  <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
 
 <!-- Revolution Slider -->
 <link href="{{asset('assetshome/plugins/revolution/css/settings.css')}}" rel="stylesheet" type="text/css"><!-- REVOLUTION SETTINGS STYLES -->
@@ -266,21 +266,21 @@
               <div class="sec-title">
                 <div class="title style-two">Horarios y Precios</div>
                 {{-- <h2>We Acheived <span>Success</span> <br> Awards & Reward</h2> --}}
-                <h2>¿Quieres que tu hijo<br>tenga <span>exito</span> en el colegio?</h2>
+                <h2>Reserve su súper clase <span>desde</span> 05:00 a.m.</h2>
               </div>
               <!-- Award Box -->
               <div class="award-box">
                 <div class="box-inner">
                   <span class="icon flaticon-bar-chart"></span>
-                  <h5> Inscribite Hoy!!!</h5>
-                  <div class="text">Dale a tu hijo la oportunidad de alcanzar su maximo potencial</div>
+                  <h5> comienza Hoy!!!</h5>
+                  <div class="text">Horarios flexibles para adaptarnos a tu ritmo de vida.</div>
                 </div>
               </div>
               <!-- End Award Box -->
               
               <!-- Revenue Box -->
               <h4> Horarios para clases de 1 Hora/Diaria</h5>
-              <table class="table table-striped table-hover">
+              <table class="table table-striped table-bordered table-hover">
                 <thead class="table-light">
                   <tr>
                     <th scope="col">Mañana</th>
@@ -320,7 +320,7 @@
 
               <!-- Revenue Box -->
               <h4> Horarios para clases de 1:30 Horas/Diaria</h5>
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-bordered table-hover">
                   <thead class="table-light">
                     <tr>
                       <th scope="col">Mañana</th>
@@ -351,6 +351,7 @@
             </div>
           </div>
           
+          
           <!-- Years Column -->
           <div class="years-column col-lg-5 col-md-12 col-sm-12">
             <div class="inner-column">
@@ -375,10 +376,10 @@
               {{-- <div class="year-block">
                 <div class="block-inner wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
                   <span class="icon flaticon-search-engine"></span>
-                  <h3>( 2023 - 2024 )</h3>
+                  <h3>(2009-2023)</h3>
                 </div>
               </div> --}}
-              
+       
             </div>
           </div>
           
@@ -392,7 +393,7 @@
     	<div class="auto-container">
         	<div class="row clearfix">
 				
-				<!-- Content Side -->
+				 
         
         <div class="sidebar-side col-lg-8 col-md-12 col-sm-12">
           <aside class="sidebar sticky-top">
@@ -402,25 +403,196 @@
 							<div class="widget-content">
 								{{-- <h3>Semanal</h3> --}}
 
-                <table class="table table-hover">
-                  <thead class="table-dark">
-                    <tr>
-                      <th scope="col">Modalidad</th>
-                      <th scope="col">Horas</th>
-                      <th scope="col">Costo</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($modalidadesprimaria as $primaria)
-                    <tr>
-                      <td>{{$primaria->modalidad}}</td>
-                      <td>{{$primaria->cargahoraria}} Hrs.</td>
-                      <td>{{$primaria->costo}} Bs.</td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
+                   {{--%%%%%%%%%%%%%%%%%%%% hora libre primaria %%%%%%%%%%%%%%%%%%  --}}
+                  <div class="card">
+                    <div class="card-header bg-secondary text-white text-center">
+                      <h3 class="text-white"> HORA LIBRE </h3>
+                    </div>
+                    <div class="card-body">
+                      <table class="table table-bordered table-striped table-hover">
+                        <thead class="text-secondary">
+                          <tr>
+                            <th scope="col">Modalidad</th>
+                            <th scope="col">Horas</th>
+                            <th scope="col">Costo</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach ($horalibre as $modalidad)
+                          <tr>
+                            <td>{{$modalidad->modalidad}}</td>
+                            <td>{{$modalidad->cargahoraria}} Hrs.</td>
+                            <td>Bs. {{$modalidad->costo}} </td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+                    </div>
+                  </div> 
+                  
+                  <hr>
 
+                  {{--%%%%%%%%%%%%%%%%%%%% semanal primaria %%%%%%%%%%%%%%%%%%  --}}
+                  <div class="card">
+                    <div class="card-header bg-primary text-white text-center">
+                      <h3 class="text-white"> SEMANAL </h3>
+                    </div>
+                    <div class="card-body">
+                      <table class="table table-bordered table-striped table-hover">
+                        <thead class="text-secondary">
+                          <tr>
+                            <th scope="col">Modalidad</th>
+                            <th scope="col">Horas</th>
+                            <th scope="col">Costo</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach ($semana as $primaria)
+                          <tr>
+                            <td>{{$primaria->modalidad}}</td>
+                            <td>{{$primaria->cargahoraria}} Hrs.</td>
+                            <td>Bs. {{$primaria->costo}} </td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+                    </div>
+                  </div> 
+                  <hr>
+                  {{--%%%%%%%%%%%%%%%%%%%% quincenal primaria %%%%%%%%%%%%%%%%%%  --}}
+                  <div class="card">
+                    <div class="card-header bg-secondary text-white text-center">
+                      <h3 class="text-white"> MODALIDADES QUINCENALES </h3>
+                    </div>
+                    <div class="card-body">
+                      <table class="table table-bordered table-striped table-hover">
+                        <thead class="text-secondary">
+                          <tr>
+                            <th scope="col">Modalidad</th>
+                            <th scope="col">Horas</th>
+                            <th scope="col">Costo</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach ($quincena as $primaria)
+                          <tr>
+                            <td>{{$primaria->modalidad}}</td>
+                            <td>{{$primaria->cargahoraria}} Hrs.</td>
+                            <td>Bs. {{$primaria->costo}} </td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+                    </div>
+                  </div> 
+                  <hr>
+                  {{--%%%%%%%%%%%%%%%%%%%% Mensual primaria %%%%%%%%%%%%%%%%%%  --}}
+                  <div class="card">
+                    <div class="card-header bg-primary text-white text-center">
+                      <h3 class="text-white"> MODALIDADES MENSUALES </h3>
+                    </div>
+                    <div class="card-body">
+                      <table class="table table-bordered table-striped table-hover">
+                        <thead class="text-secondary">
+                          <tr>
+                            <th scope="col">Modalidad</th>
+                            <th scope="col">Horas</th>
+                            <th scope="col">Costo</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach ($mes as $primaria)
+                          <tr>
+                            <td>{{$primaria->modalidad}}</td>
+                            <td>{{$primaria->cargahoraria}} Hrs.</td>
+                            <td>Bs. {{$primaria->costo}} </td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+                    </div>
+                  </div> 
+                  <hr>
+                  {{--%%%%%%%%%%%%%%%%%%%% Mensual primaria %%%%%%%%%%%%%%%%%%  --}}
+                  <div class="card">
+                    <div class="card-header bg-secondary text-white text-center">
+                      <h3 class="text-white"> MODALIDADES BIMESTRALES </h3>
+                    </div>
+                    <div class="card-body">
+                      <table class="table table-bordered table-striped table-hover">
+                        <thead class="text-secondary">
+                          <tr>
+                            <th scope="col">Modalidad</th>
+                            <th scope="col">Horas</th>
+                            <th scope="col">Costo</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach ($bimestre as $primaria)
+                          <tr>
+                            <td>{{$primaria->modalidad}}</td>
+                            <td>{{$primaria->cargahoraria}} Hrs.</td>
+                            <td>Bs. {{$primaria->costo}} </td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+                    </div>
+                  </div> 
+                  <hr>
+                  {{--%%%%%%%%%%%%%%%%%%%% Mensual primaria %%%%%%%%%%%%%%%%%%  --}}
+                  <div class="card">
+                    <div class="card-header bg-primary text-white text-center">
+                      <h3 class="text-white"> MODALIDADES TRIMESTRALES </h3>
+                    </div>
+                    <div class="card-body">
+                      <table class="table table-bordered table-striped table-hover">
+                        <thead class="text-secondary">
+                          <tr>
+                            <th scope="col">Modalidad</th>
+                            <th scope="col">Horas</th>
+                            <th scope="col">Costo</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach ($trimestre as $primaria)
+                          <tr>
+                            <td>{{$primaria->modalidad}}</td>
+                            <td>{{$primaria->cargahoraria}} Hrs.</td>
+                            <td>Bs. {{$primaria->costo}} </td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+                    </div>
+                  </div> 
+                  <hr>
+
+                <div class="card">
+                  <div class="card-header bg-secondary text-white text-center">
+                   <h3 class="text-white"> TODAS LAS MODALIDADES </h3>
+                  </div>
+                  <div class="card-body">
+                     <table class="table table-bordered table-striped table-hover">
+                        <thead class="bg-primary text-white">
+                          <tr>
+                            <th scope="col">Modalidad</th>
+                            <th scope="col">Horas</th>
+                            <th scope="col">Costo</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach ($modalidadesprimaria as $modalidad)
+                          <tr>
+                            <td>{{$modalidad->modalidad}}</td>
+                            <td>{{$modalidad->cargahoraria}} Hrs.</td>
+                            <td>Bs. {{$modalidad->costo}} </td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
 							</div>
 						</div>
 						

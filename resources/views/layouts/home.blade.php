@@ -4,7 +4,10 @@
 <meta charset="utf-8">
 <title>Instituto Ite</title>
 <!-- Stylesheets -->
-<link href="{{asset('assetshome/css/bootstrap.css')}}" rel="stylesheet">
+{{-- <link href="{{asset('assetshome/css/bootstrap.css')}}" rel="stylesheet"> --}}
+<link href="{{asset('dist/css/bootstrap/bootstrap.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
+
 
 <!-- Revolution Slider -->
 <link href="{{asset('assetshome/plugins/revolution/css/settings.css')}}" rel="stylesheet" type="text/css"><!-- REVOLUTION SETTINGS STYLES -->
@@ -544,7 +547,7 @@
 	<!-- End Main Slider -->
 	
 	<!-- Clients Section -->
-	{{-- <section class="clients-section">
+	<section class="clients-section">
 		<div class="auto-container">
 			<div class="inner-container">
 				<div class="carousel-outer">
@@ -563,11 +566,11 @@
 				</div>
 			</div>
 		</div>
-	</section> --}}
+	</section>
 	<!-- End Clients Section -->
 	
 	<!-- About Section -->
-	{{-- <section class="about-section">
+	<section class="about-section">
 		<div class="pattern-layer" style="background-image: url(assetshome/images/background/pattern-1.png)"></div>
 		<div class="auto-container">
 			<div class="row clearfix">
@@ -624,7 +627,7 @@
 				
 			</div>
 		</div>
-	</section> --}}
+	</section>
 	<!-- End About Section -->
 	
 	<!-- Business Section -->
@@ -632,8 +635,8 @@
 		<div class="auto-container">
 			<!-- Sec Title / Centered -->
 			<div class="sec-title centered">
-				<div class="title">Apoyo escolar</div>
-				<h2>Te ayudamos en todos los <span>niveles</span> <br> que necesites</h2>
+				<div class="title">¡Aprende de manera efectiva!</div>
+				<h2>¡Todo lo que <span>necesitas</span> <br> para alcanzar tus metas académicas!</h2>
 			</div>
 			<div class="row clearfix">
 			
@@ -649,7 +652,8 @@
 										<span class="icon flaticon-bulb"></span>
 									</div>
 									<h4><a href="{{ route('guarderia') }}">Guarderia</a></h4>
-									<div class="text">El aprendizaje en la guardería es crucial para el desarrollo de los niños. En este entorno, los niños aprenden a través de juegos, actividades y experiencias interactivas</div>
+									<div class="text">¡Juguemos y aprendamos juntos!</div>
+									<a href="{{ route('guarderia') }}"><button class="boton">Informarme</button></a>
 								</div>
 							</div>
 						</div>
@@ -662,7 +666,8 @@
 										<span class="icon flaticon-notebook"></span>
 									</div>
 									<h4><a href="{{ route('primaria') }}">Primaria</a></h4>
-									<div class="text">Es un período crucial en el desarrollo educativo de un niño. Durante esta etapa, los niños construyen las bases para su futuro aprendizaje y desarrollo.</div>
+									<div class="text">¡Aprende y diviértete al mismo tiempo!</div>
+									<a href="{{ route('primaria') }}"><button class="boton">Informarme</button></a>
 								</div>
 							</div>
 						</div>
@@ -675,7 +680,8 @@
 										<span class="icon flaticon-search-engine"></span>
 									</div>
 									<h4><a href="{{ route('preuniversitario') }}">PreUniversitario</a></h4>
-									<div class="text">Es una oportunidad para que los estudiantes desarrollen su pensamiento crítico, habilidades de investigación y resolución de problemas, y para que se preparen para el desafío académico de la universidad.</div>
+									<div class="text">¡Desafía tus límites y alcance tus metas universitarias!</div>
+									<a href="{{ route('preuniversitario') }}"><button class="boton">Informarme</button></a>
 								</div>
 							</div>
 						</div>
@@ -707,7 +713,8 @@
 										<span class="icon flaticon-learning-support"></span>
 									</div>
 									<h4><a href="{{ route('inicial') }}">Inicial</a></h4>
-									<div class="text">Los niños aprenden habilidades y conocimientos básicos en áreas como lectura, escritura, matemáticas y ciencias.</div>
+									<div class="text">¡Aprende y diviértete al mismo tiempo!</div>
+									<a href="{{ route('inicial') }}"><button class="boton">Informarme</button></a>
 								</div>
 							</div>
 						</div>
@@ -720,7 +727,8 @@
 										<span class="icon flaticon-human-brain"></span>
 									</div>
 									<h4><a href="{{ route('secundaria') }}">Secundaria</a></h4>
-									<div class="text">Durante esta etapa, los estudiantes profundizan y amplían los conocimientos adquiridos en la escuela primaria, y se preparan para futuras oportunidades académicas o profesionales.</div>
+									<div class="text">¡Atrévete a ser el mejor de tu clases! te lo garantizamos</div>
+									<a href="{{ route('secundaria') }}"><button class="boton">Informarme</button></a>
 								</div>
 							</div>
 						</div>
@@ -733,7 +741,8 @@
 										<span class="icon flaticon-seo"></span>
 									</div>
 									<h4><a href="{{ route('universitario') }}">Universitario</a></h4>
-									<div class="text">Los estudiantes profundizan en áreas de interés especializadas y desarrollan habilidades y conocimientos relevantes para su futuro profesional o académico.</div>
+									<div class="text">¡Aprende y avanza en tu carrera con nuestras clases!</div>
+									<a href="{{ route('universitario') }}"><button class="boton">Informarme</button></a>
 								</div>
 							</div>
 						</div>
@@ -954,15 +963,16 @@
 						<div class="inner-column">
 							<ul class="info-list">
 								<li>
-									<strong>Nuestra direccion</strong>
+									<strong>Nuestra dirección</strong>
 									Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.
 								</li>
 								<li>
 									<strong>Contacto</strong>
-									<a href="mailto:info@ite.com"><span class="icon fas fa-comment"></span>info@ite.com</a><br>
+									<a href="mailto:info@ite.com.bo"><span class="icon fas fa-comment"></span>info@ite.com.bo</a><br>
 									<a href="tel:+406-555-0120"><span class="icon fas fa-phone"></span>(+591) 71039910</a><br>
-                  <a href="tel:+406-555-0120"><span class="icon fas fa-phone"></span>(+591) 71324941</a><br>
-                  <a href="tel:+406-555-0120"><span class="icon fas fa-phone"></span>(+591) 75553338</a><br>
+									<a href="tel:+591-71324941"><span class="icon fas fa-phone"></span>(+591) 71324941</a><br>
+									<a href="tel:+59175553338"><span class="icon fas fa-phone"></span>(+591) 75553338</a><br>
+									<a href="tel:+59133919050"><span class="icon fas fa-phone"></span>(3)-219050</a><br>
 								</li>
 							</ul>
 							<div class="opening">

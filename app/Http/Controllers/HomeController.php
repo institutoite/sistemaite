@@ -51,12 +51,32 @@ class HomeController extends Controller
 
     public function primaria()
     {
-        $modalidadesprimaria=Modalidad::where('vigente',1)->where('nivel_id',3)->get();
+        $modalidadesprimaria=Nivel::findOrFail(3)->modalidades;
+        $horalibre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%hora libre%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",3) // el 3 es un id del nivel buscado
+        ->get();
         $semana=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
         ->where("modalidad","like",'%semana%')// semana es la primer palabra del nombre de la modadalidad
         ->where("modalidads.nivel_id",3) // el 3 es un id del nivel buscado
         ->get();
-        return view('home.fronted.primaria', compact(['modalidadesprimaria','modalidadesprimaria']));
+        $quincena=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%quincena%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",3) // el 3 es un id del nivel buscado
+        ->get();
+        $mes=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%MES%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",3) // el 3 es un id del nivel buscado
+        ->get();
+        $bimestre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%bimestre%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",3) // el 3 es un id del nivel buscado
+        ->get();
+        $trimestre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%trimestre%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",3) // el 3 es un id del nivel buscado
+        ->get();
+        return view('home.fronted.primaria', compact(['modalidadesprimaria','horalibre','semana','quincena','mes','bimestre','trimestre']));
     }
 
     public function secundaria()

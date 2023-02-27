@@ -1,184 +1,82 @@
+
+
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
 use App\Models\Clase;
-use App\Models\Dia;
-use App\Models\Sesion;
+use App\Models\Modalidad;
+use App\Models\Nivel;
 use App\Models\Inscripcione;
 use App\Models\Programacion;
 use Carbon\Carbon;
 
+$nivel=Nivel::findOrFail(3);
 
-$grado=Estudiante::find(1)->grados->last();
-
- $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
-  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
-  ->join('personas','personas.id','estudiantes.persona_id')
-  ->where('estudiante_grado.grado_id',$grado->id)
-  ->where('inscripciones.estado_id',estado('CORRIENDO'))
-  ->where('estudiante_grado.anio',2023)
-  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
-  ->get();
-
-
-
-$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
-  ->join('aulas','sesions.aula_id','aulas.id')
-  ->join('materias','sesions.materia_id','materias.id')
-  ->join('docentes','sesions.docente_id','docentes.id')
-  ->join('dias','sesions.dia_id','dias.id')
-  ->where('inscripciones.id',26)
-  ->select('dias.dia','materias.materia','docentes.nombrecorto','sesions.horainicio','sesions.horafin','aulas.aula')
-  ->get();
+$mod_de_nivel=$nivel->modalidades;
 
 
 
 
 
-$cupos=Programacion::join('docentes','docentes.id','programacions.docente_id')
-  	->join('materias','materias.id','programacions.materia_id')
-  	->join('aulas','aulas.id','programacions.aula_id')
-	->where('fecha','=',Carbon::now()->format('Y-m-d'))
-  	->where('docentes.id',1) 
-  	->select('hora_ini','docentes.nombrecorto',DB::raw('count(*) as cantidad'))
-  	->groupBy('docentes.nombrecorto','hora_ini')
-  	->orderBy('cantidad','desc')
-  ->get();
+
+
+
+
+
+
+
+
+
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
 use App\Models\Clase;
-use App\Models\Dia;
-use App\Models\Sesion;
+use App\Models\Modalidad;
+use App\Models\Nivel;
 use App\Models\Inscripcione;
 use App\Models\Programacion;
 use Carbon\Carbon;
 
+$nivel=Nivel::findOrFail(3);
 
-$grado=Estudiante::find(1)->grados->last();
-
- $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
-  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
-  ->join('personas','personas.id','estudiantes.persona_id')
-  ->where('estudiante_grado.grado_id',$grado->id)
-  ->where('inscripciones.estado_id',estado('CORRIENDO'))
-  ->where('estudiante_grado.anio',2023)
-  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
-  ->get();
-
-
-
-$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
-  ->join('aulas','sesions.aula_id','aulas.id')
-  ->join('materias','sesions.materia_id','materias.id')
-  ->join('docentes','sesions.docente_id','docentes.id')
-  ->join('dias','sesions.dia_id','dias.id')
-  ->where('inscripciones.id',26)
-  ->select('dias.dia','materias.materia','docentes.nombrecorto','sesions.horainicio','sesions.horafin','aulas.aula')
-  ->get();
+$mod_de_nivel=$nivel->modalidades;
+ $modalidadesprimaria=Modalidad::where('vigente',1)->where('nivel_id',3)->get();
 
 
 
 
 
-$cupos=Programacion::join('docentes','docentes.id','programacions.docente_id')
-  	->join('materias','materias.id','programacions.materia_id')
-  	->join('aulas','aulas.id','programacions.aula_id')
-	->where('fecha','=',Carbon::now()->format('Y-m-d'))
-  	->where('docentes.id',1) 
-  	->select('hora_ini','docentes.nombrecorto',DB::raw('count(*) as cantidad'))
-  	->groupBy('docentes.nombrecorto','hora_ini')
-  	->orderBy('cantidad','desc')
-  ->get();
+
+
+
+
+
+
+
+
+
 use App\Models\Estudiante;
 use App\Models\Grado;
 use App\Models\Docente;
 use App\Models\Clase;
-use App\Models\Dia;
-use App\Models\Sesion;
+use App\Models\Modalidad;
+use App\Models\Nivel;
 use App\Models\Inscripcione;
 use App\Models\Programacion;
 use Carbon\Carbon;
 
+$nivel=Nivel::findOrFail(3);
 
-$grado=Estudiante::find(1)->grados->last();
-
- $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
-  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
-  ->join('personas','personas.id','estudiantes.persona_id')
-  ->where('estudiante_grado.grado_id',$grado->id)
-  ->where('inscripciones.estado_id',estado('CORRIENDO'))
-  ->where('estudiante_grado.anio',2023)
-  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
-  ->get();
-
-
-
-$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
-  ->join('aulas','sesions.aula_id','aulas.id')
-  ->join('materias','sesions.materia_id','materias.id')
-  ->join('docentes','sesions.docente_id','docentes.id')
-  ->join('dias','sesions.dia_id','dias.id')
-  ->where('inscripciones.id',26)
-  ->select('dias.dia','materias.materia','docentes.nombrecorto','sesions.horainicio','sesions.horafin','aulas.aula')
-  ->get();
+$mod_de_nivel=$nivel->modalidades;
+ 
 
 
 
 
 
-$cupos=Programacion::join('docentes','docentes.id','programacions.docente_id')
-  	->join('materias','materias.id','programacions.materia_id')
-  	->join('aulas','aulas.id','programacions.aula_id')
-	->where('fecha','=',Carbon::now()->format('Y-m-d'))
-  	->where('docentes.id',1) 
-  	->select('hora_ini','docentes.nombrecorto',DB::raw('count(*) as cantidad'))
-  	->groupBy('docentes.nombrecorto','hora_ini')
-  	->orderBy('cantidad','desc')
-  ->get();
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Dia;
-use App\Models\Sesion;
-use App\Models\Inscripcione;
-use App\Models\Programacion;
-use Carbon\Carbon;
-
-
-$grado=Estudiante::find(1)->grados->last();
-
- $e=Estudiante::join("estudiante_grado",'estudiantes.id','estudiante_grado.estudiante_id')
-  ->join('inscripciones','inscripciones.estudiante_id','estudiantes.id')
-  ->join('personas','personas.id','estudiantes.persona_id')
-  ->where('estudiante_grado.grado_id',$grado->id)
-  ->where('inscripciones.estado_id',estado('CORRIENDO'))
-  ->where('estudiante_grado.anio',2023)
-  ->select('estudiantes.id','inscripciones.id as ins','personas.nombre','personas.apellidop','personas.apellidom','fechaini','fechafin','costo')
-  ->get();
-
-
-
-$sesiones=Sesion::join('inscripciones','inscripciones.id','sesions.inscripcione_id')
-  ->join('aulas','sesions.aula_id','aulas.id')
-  ->join('materias','sesions.materia_id','materias.id')
-  ->join('docentes','sesions.docente_id','docentes.id')
-  ->join('dias','sesions.dia_id','dias.id')
-  ->where('inscripciones.id',26)
-  ->select('dias.dia','materias.materia','docentes.nombrecorto','sesions.horainicio','sesions.horafin','aulas.aula')
-  ->get();
 
 
 
 
 
-$cupos=Programacion::join('docentes','docentes.id','programacions.docente_id')
-  	->join('materias','materias.id','programacions.materia_id')
-  	->join('aulas','aulas.id','programacions.aula_id')
-	->where('fecha','=',Carbon::now()->format('Y-m-d'))
-  	->where('docentes.id',1) 
-  	->select('hora_ini','docentes.nombrecorto',DB::raw('count(*) as cantidad'))
-  	->groupBy('docentes.nombrecorto','hora_ini')
-  	->orderBy('cantidad','desc')
-  ->get();
+

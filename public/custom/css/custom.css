@@ -126,6 +126,25 @@ a:link, a:visited, a:active {
     height: 25%;
 }
 
+.boton {
+    /*background-color: rgba(55, 95, 122, 1);*/
+    color: #26baa5;
+    border: 1px solid #26baa5;
+    padding: 2px 12px;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+.boton:hover {
+    background-color: rgba(38, 186, 165,1);
+    color: white;
+    border: 1px solid rgba(55,95,125,0.2);
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
 
 
 
