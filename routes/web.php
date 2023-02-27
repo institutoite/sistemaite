@@ -915,6 +915,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/universitario', [HomeController::class, 'universitario'])->name('universitario');
 
+    Route::get('/robotica', [HomeController::class, 'robotica'])->name('robotica');
+
     Route::any('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');
 
     Route::get('/about', [HomeController::class, 'about'])->name('about');

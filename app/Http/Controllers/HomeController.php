@@ -40,41 +40,110 @@ class HomeController extends Controller
     public function guarderia()
     {
         $modalidadesguarderia=Modalidad::where('vigente',1)->where('nivel_id',1)->get();
-        return view('home.fronted.guarderia', compact(['modalidadesguarderia']));
+        $horalibre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%hora libre%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",1) // el 1 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $semana=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%semana%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",1) // el 1 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $quincena=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%quincena%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",1) // el 1 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $mes=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%MES%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",1) // el 1 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $bimestre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%bimestre%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",1) // el 1 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $trimestre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%trimestre%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",1) // el 1 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        return view('home.fronted.guarderia', compact(['modalidadesguarderia','horalibre','semana','quincena','mes','bimestre','trimestre']));
+
+        /* $modalidadesguarderia=Modalidad::where('vigente',1)->where('nivel_id',1)->get();
+        return view('home.fronted.guarderia', compact(['modalidadesguarderia'])); */
     }
 
     public function inicial()
     {
         $modalidadesinicial=Modalidad::where('vigente',1)->where('nivel_id',2)->get();
-        return view('home.fronted.inicial', compact(['modalidadesinicial']));
+        $horalibre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%hora libre%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",2) // el 2 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $semana=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%semana%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",2) // el 2 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $quincena=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%quincena%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",2) // el 2 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $mes=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%MES%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",2) // el 2 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $bimestre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%bimestre%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",2) // el 2 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $trimestre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%trimestre%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",2) // el 2 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        return view('home.fronted.inicial', compact(['modalidadesinicial','horalibre','semana','quincena','mes','bimestre','trimestre']));
     }
 
     public function primaria()
     {
-        $modalidadesprimaria=Nivel::findOrFail(3)->modalidades;
+        $modalidadesprimaria=Modalidad::where('vigente',1)->where('nivel_id',3)->get();
         $horalibre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
         ->where("modalidad","like",'%hora libre%')// semana es la primer palabra del nombre de la modadalidad
         ->where("modalidads.nivel_id",3) // el 3 es un id del nivel buscado
+        ->where('vigente',1)
         ->get();
         $semana=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
         ->where("modalidad","like",'%semana%')// semana es la primer palabra del nombre de la modadalidad
         ->where("modalidads.nivel_id",3) // el 3 es un id del nivel buscado
+        ->where('vigente',1)
         ->get();
         $quincena=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
         ->where("modalidad","like",'%quincena%')// semana es la primer palabra del nombre de la modadalidad
         ->where("modalidads.nivel_id",3) // el 3 es un id del nivel buscado
+        ->where('vigente',1)
         ->get();
         $mes=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
         ->where("modalidad","like",'%MES%')// semana es la primer palabra del nombre de la modadalidad
         ->where("modalidads.nivel_id",3) // el 3 es un id del nivel buscado
+        ->where('vigente',1)
         ->get();
         $bimestre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
         ->where("modalidad","like",'%bimestre%')// semana es la primer palabra del nombre de la modadalidad
         ->where("modalidads.nivel_id",3) // el 3 es un id del nivel buscado
+        ->where('vigente',1)
         ->get();
         $trimestre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
         ->where("modalidad","like",'%trimestre%')// semana es la primer palabra del nombre de la modadalidad
         ->where("modalidads.nivel_id",3) // el 3 es un id del nivel buscado
+        ->where('vigente',1)
         ->get();
         return view('home.fronted.primaria', compact(['modalidadesprimaria','horalibre','semana','quincena','mes','bimestre','trimestre']));
     }
@@ -82,20 +151,113 @@ class HomeController extends Controller
     public function secundaria()
     {
         $modalidadessecundaria=Modalidad::where('vigente',1)->where('nivel_id',4)->get();
-        return view('home.fronted.secundaria', compact(['modalidadessecundaria']));
+        $horalibre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%hora libre%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",4) // el 4 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $semana=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%semana%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",4) // el 4 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $quincena=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%quincena%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",4) // el 4 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $mes=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%MES%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",4) // el 4 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $bimestre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%bimestre%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",4) // el 4 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $trimestre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%trimestre%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",4) // el 4 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        return view('home.fronted.secundaria', compact(['modalidadessecundaria','horalibre','semana','quincena','mes','bimestre','trimestre']));
     }
 
     public function preuniversitario()
     {
         $modalidadespreuniversitario=Modalidad::where('vigente',1)->where('nivel_id',5)->get();
-        return view('home.fronted.preuniversitario', compact(['modalidadespreuniversitario']));
+        $horalibre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%hora libre%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",5) // el 5 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $semana=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%semana%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",5) // el 5 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $quincena=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%quincena%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",5) // el 5 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $mes=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%MES%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",5) // el 5 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $bimestre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%bimestre%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",5) // el 5 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $trimestre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%trimestre%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",5) // el 5 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        return view('home.fronted.preuniversitario', compact(['modalidadespreuniversitario','horalibre','semana','quincena','mes','bimestre','trimestre']));
+
     }
 
 
     public function universitario()
     {
-        $modalidadesuniversitario=Modalidad::where('vigente',1)->where('nivel_id',5)->get();
-        return view('home.fronted.universitario', compact(['modalidadesuniversitario']));
+        
+        $modalidadesuniversitario=Modalidad::where('vigente',1)->where('nivel_id',7)->get();
+        $horalibre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%hora libre%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",7) // el 7 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $semana=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%semana%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",7) // el 7 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $quincena=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%quincena%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",7) // el 7 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $mes=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%MES%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",7) // el 7 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $bimestre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%bimestre%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",7) // el 7 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        $trimestre=Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+        ->where("modalidad","like",'%trimestre%')// semana es la primer palabra del nombre de la modadalidad
+        ->where("modalidads.nivel_id",7) // el 7 es un id del nivel buscado
+        ->where('vigente',1)
+        ->get();
+        return view('home.fronted.universitario', compact(['modalidadesuniversitario','horalibre','semana','quincena','mes','bimestre','trimestre']));
+
     }
 
 

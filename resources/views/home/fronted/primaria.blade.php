@@ -91,7 +91,7 @@
                 
                 <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
                   <ul class="navigation clearfix">
-                    <li class="dropdown"><a href="{{ url('/') }}">Inicio</a>
+                    <li><a href="{{ url('/') }}">Inicio</a>
                       
                     </li>
                     <li class="dropdown"><a href="#">Nosotros</a>
@@ -127,15 +127,12 @@
                     </li>
                     <li class="dropdown"><a href="#">Clases</a>
                       <ul>
-                        <li><a href="#">Inicial</a></li>
-                        <li><a href="#">Primaria</a></li>
-                        <li><a href="#">Secundaria</a></li>
-                        <li><a href="#">Preuniversitario</a></li>
-                        <li><a href="#">Institutos</a></li>
-                        <li><a href="#">Colegios Militares</a></li>
-                        <li><a href="#">Escuela de policias</a></li>
-                        <li><a href="#">Universitarios</a></li>
-                        <li><a href="#">Profesionales</a></li>
+                        <li><a href="{{ route('guarderia') }}">Guarderia</a></li>
+                        <li><a href="{{ route('inicial') }}">Inicial</a></li>
+                        <li><a href="{{ route('primaria') }}">Primaria</a></li>
+                        <li><a href="{{ route('secundaria') }}">Secundaria</a></li>
+                        <li><a href="{{ route('preuniversitario') }}">Preuniversitario</a></li>
+                        <li><a href="{{ route('universitario') }}">Universitarios</a></li>
                       </ul>
                     </li>
                     <li><a href="$">Contacto</a></li>
@@ -401,7 +398,6 @@
 						<!-- Timing Widget -->
 						<div class="sidebar-widget timing-widget">
 							<div class="widget-content">
-								{{-- <h3>Semanal</h3> --}}
 
                    {{--%%%%%%%%%%%%%%%%%%%% hora libre primaria %%%%%%%%%%%%%%%%%%  --}}
                   <div class="card">
@@ -633,6 +629,19 @@
 						
 						<!-- Gallery Widget -->
 						
+            <!-- Sidebar Widget / Category Widget -->
+						<div class="sidebar-widget category-widget">
+							<div class="widget-content">
+								<!-- Sidebar Title -->
+								<div class="sidebar-title">
+									<h3>Tal vez te pueda interesar</h3>
+								</div>
+								<ul class="cat-list">
+									<li><a href="#">Computación</a></li>
+								</ul>
+							</div>
+						</div>
+						<!-- End Sidebar Widget / Category Widget -->
 						
 					</aside>
 				</div>
@@ -770,16 +779,16 @@
 						<div class="row clearfix">
 						
 							<!-- Footer Column -->
-                            <div class="footer-column col-lg-4 col-md-6 col-sm-12">
-                                <div class="footer-widget links-widget style-two">
+              <div class="footer-column col-lg-4 col-md-6 col-sm-12">
+                <div class="footer-widget links-widget style-two">
 									<h3>Niveles</h3>
 									<ul class="nav-list">
-										<li><a href="#">Guardería</a></li>
-										<li><a href="#">Primaria</a></li>
-										<li><a href="#">Secundaria</a></li>
-										<li><a href="#">Pre-Universitarios</a></li>
-										<li><a href="#">Universitarios</a></li>
-										<li><a href="#">Profesionales</a></li>
+										<li><a href="{{ route('guarderia') }}">Guardería</a></li>
+										<li><a href="{{ route('inicial') }}">Inicial</a></li>
+                    <li><a href="{{ route('primaria') }}">Primaria</a></li>
+										<li><a href="{{ route('secundaria') }}">Secundaria</a></li>
+										<li><a href="{{ route('preuniversitario') }}">Pre-Universitarios</a></li>
+										<li><a href="{{ route('universitario') }}">Universitarios</a></li>
 									</ul>
 								</div>
 							</div>
