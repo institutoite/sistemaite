@@ -167,8 +167,8 @@
 									</li>
 									<li class="dropdown"><a href="#">Especial</a>
 										<ul>
-											<li><a href="#">Robótica</a></li>
-											<li><a href="#">Programación</a></li>
+											<li><a href="{{ route('robotica') }}">Robótica</a></li>
+											<li><a href="{{ route('programacion') }}">Programación</a></li>
 											<li><a href="#">Apps Móviles</a></li>
 											<li><a href="#">Apps Webs</a></li>
 											<li><a href="#">Libros personalizados</a></li>
@@ -190,11 +190,7 @@
 											<li><a href="{{ route('primaria') }}">Primaria</a></li>
 											<li><a href="{{ route('secundaria') }}">Secundaria</a></li>
 											<li><a href="{{ route('preuniversitario') }}">Preuniversitario</a></li>
-											<li><a href="#">Institutos</a></li>
-											<li><a href="#">Colegios Militares</a></li>
-											<li><a href="#">Escuela de policias</a></li>
 											<li><a href="{{ route('universitario') }}">Universitarios</a></li>
-											<li><a href="#">Profesionales</a></li>
 										</ul>
 									</li>
 									<li><a href="contact.html">Contact</a></li>
@@ -547,89 +543,9 @@
 	<!-- End Main Slider -->
 	
 	<!-- Clients Section -->
-	<section class="clients-section">
-		<div class="auto-container">
-			<div class="inner-container">
-				<div class="carousel-outer">
-					<!--Sponsors Slider-->
-					<ul class="sponsors-carousel owl-carousel owl-theme">
-						<li><div class="image-box"><a href="#"><img src="assetshome/images/clients/1.png" alt=""></a></div></li>
-						<li><div class="image-box"><a href="#"><img src="assetshome/images/clients/2.png" alt=""></a></div></li>
-						<li><div class="image-box"><a href="#"><img src="assetshome/images/clients/3.png" alt=""></a></div></li>
-						<li><div class="image-box"><a href="#"><img src="assetshome/images/clients/4.png" alt=""></a></div></li>
-						<li><div class="image-box"><a href="#"><img src="assetshome/images/clients/5.png" alt=""></a></div></li>
-						<li><div class="image-box"><a href="#"><img src="assetshome/images/clients/1.png" alt=""></a></div></li>
-						<li><div class="image-box"><a href="#"><img src="assetshome/images/clients/2.png" alt=""></a></div></li>
-						<li><div class="image-box"><a href="#"><img src="assetshome/images/clients/3.png" alt=""></a></div></li>
-						<li><div class="image-box"><a href="#"><img src="assetshome/images/clients/4.png" alt=""></a></div></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</section>
+	
 	<!-- End Clients Section -->
-	
-	<!-- About Section -->
-	<section class="about-section">
-		<div class="pattern-layer" style="background-image: url(assetshome/images/background/pattern-1.png)"></div>
-		<div class="auto-container">
-			<div class="row clearfix">
-			
-				<!-- Images Column -->
-				<div class="images-column col-lg-6 col-md-12 col-sm-12">
-					<div class="vector-layer-one" style="background-image: url(assetshome/images/icons/vector-1.png)"></div>
-					<div class="vector-layer-two" style="background-image: url(assetshome/images/icons/vector-2.png)"></div>
-					<div class="inner-column clearfix">
-						<div class="image wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-							<img src="assetshome/images/resource/about-1.jpg" alt="" />
-						</div>
-						<div class="image-two wow fadeInRight" data-wow-delay="150ms" data-wow-duration="1500ms">
-							<img src="assetshome/images/resource/about-2.jpg" alt="" />
-						</div>
-						<div class="image-three wow fadeInRight" data-wow-delay="450ms" data-wow-duration="1500ms">
-							<img src="assetshome/images/resource/about-4.jpg" alt="" />
-						</div>
-						<div class="image-four wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
-							<img src="assetshome/images/resource/about-3.jpg" alt="" />
-						</div>
-					</div>
-				</div>
-				
-				<!-- Content Column -->
-				<div class="content-column col-lg-6 col-md-12 col-sm-12">
-					<div class="inner-column">
-						<!-- Sec Title -->
-						<div class="sec-title">
-							<div class="title">Planes Corporativos</div>
-							<h2>Aprende a tu ritmo,<span>elige el plan</span> perfecto para ti.</h2>  
-							<div class="text">Descubre nuevos horizontes con nuestros planes</div>
-						</div>
-						<ul class="about-list">
-							<li>Plan familiar</li>
-							<li>Plan empresarial</li>
-							<li>Plan colegios</li>
-							<li>Plan profesores</li>
-							<li>Plan Referencia</li>
-							<li>Plan Virtual</li>
-							<li>Plan Adultos</li>
-						</ul>
-						<!-- Quote Box -->
-						<div class="quote-box">
-							<div class="box-inner">
-								<span class="quote fas fa-quote-right"></span>
-								<div class="content">
-									<div class="text">“Los planes estan pensados para grupos de personas <br>  con un descuento especial en nuestras tarifas”</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	</section>
-	<!-- End About Section -->
-	
+		
 	<!-- Business Section -->
 	<section class="business-section" style="background-image: url(assetshome/images/background/pattern-4.png)">
 		<div class="auto-container">
@@ -779,7 +695,7 @@
 										<div class="icon-box">
 											<span class="icon flaticon-social-reach"></span>
 										</div>
-										<h3><a href="#">Robótica</a></h3>
+										<h3><a href="{{ route('robotica') }}">Robótica</a></h3>
 										<div class="text">Aprenderás cómo diseñar y construir circuitos para controlar y alimentar a los robots.</div>
 									</div>
 								</div>
@@ -790,7 +706,7 @@
 										<div class="icon-box">
 											<span class="icon flaticon-analytics"></span>
 										</div>
-										<h3><a href="#">Programación y Algoritmos</a></h3>
+										<h3><a href="{{ route('programacion') }}">Programación y Algoritmos</a></h3>
 										<div class="text">Aprenderás los conceptos básicos de la programación, como variables, tipos de datos, estructuras de control de flujo y funciones.</div>
 									</div>
 								</div>
@@ -1128,6 +1044,67 @@
 	</section>
 	<!-- End Team Section -->
 	
+	<!-- About Section -->
+	<section class="about-section">
+		<div class="pattern-layer" style="background-image: url(assetshome/images/background/pattern-1.png)"></div>
+		<div class="auto-container">
+			<div class="row clearfix">
+			
+				<!-- Images Column -->
+				<div class="images-column col-lg-6 col-md-12 col-sm-12">
+					<div class="vector-layer-one" style="background-image: url(assetshome/images/icons/vector-1.png)"></div>
+					<div class="vector-layer-two" style="background-image: url(assetshome/images/icons/vector-2.png)"></div>
+					<div class="inner-column clearfix">
+						<div class="image wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+							<img src="assetshome/images/resource/about-1.jpg" alt="" />
+						</div>
+						<div class="image-two wow fadeInRight" data-wow-delay="150ms" data-wow-duration="1500ms">
+							<img src="assetshome/images/resource/about-2.jpg" alt="" />
+						</div>
+						<div class="image-three wow fadeInRight" data-wow-delay="450ms" data-wow-duration="1500ms">
+							<img src="assetshome/images/resource/about-4.jpg" alt="" />
+						</div>
+						<div class="image-four wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
+							<img src="assetshome/images/resource/about-3.jpg" alt="" />
+						</div>
+					</div>
+				</div>
+				
+				<!-- Content Column -->
+				<div class="content-column col-lg-6 col-md-12 col-sm-12">
+					<div class="inner-column">
+						<!-- Sec Title -->
+						<div class="sec-title">
+							<div class="title">Planes Corporativos</div>
+							<h2>Aprende a tu ritmo,<span>elige el plan</span> perfecto para ti.</h2>  
+							<div class="text">Descubre nuevos horizontes con nuestros planes</div>
+						</div>
+						<ul class="about-list">
+							<li>Plan familiar</li>
+							<li>Plan empresarial</li>
+							<li>Plan colegios</li>
+							<li>Plan profesores</li>
+							<li>Plan Referencia</li>
+							<li>Plan Virtual</li>
+							<li>Plan Adultos</li>
+						</ul>
+						<!-- Quote Box -->
+						<div class="quote-box">
+							<div class="box-inner">
+								<span class="quote fas fa-quote-right"></span>
+								<div class="content">
+									<div class="text">“Los planes estan pensados para grupos de personas <br>  con un descuento especial en nuestras tarifas”</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+	<!-- End About Section -->
+	
 	<!-- Form Section -->
 	<section class="form-section">
 		<div class="auto-container">
@@ -1209,11 +1186,11 @@
 				<div class="icon-layer-two" style="background-image: url(assetshome/images/icons/vector-8.png)"></div>
 				<div class="icon-layer-three" style="background-image: url(assetshome/images/icons/vector-9.png)"></div>
 				<div class="pull-left">
-					<h3>¿Te gustaria <span>aprender</span> a tu ritmo desde cualquier dispositivo?</h3>
+					<h3>¡Descubre el poder de la <span>inteligencia artificial</span> con nuestro Asistente ITE!</h3>
 				</div>
 				<div class="pull-right">
 					<div class="button-box">
-						<a href="https://www.educabol.com/" class="theme-btn btn-style-five"><span class="txt">Ingresar <i class="flaticon-next-2"></i></span></a>
+						<a href="https://asistente.ite.com.bo/" class="theme-btn btn-style-five"><span class="txt">Ingresar <i class="flaticon-next-2"></i></span></a>
 					</div>
 				</div>
 			</div>

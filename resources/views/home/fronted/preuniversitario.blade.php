@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Instituto Ite</title>
 <!-- Stylesheets -->
-<link href="{{asset('assetshome/css/bootstrap.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
 
 <!-- Revolution Slider -->
 <link href="{{asset('assetshome/plugins/revolution/css/settings.css')}}" rel="stylesheet" type="text/css"><!-- REVOLUTION SETTINGS STYLES -->
@@ -41,7 +41,27 @@
   <div class="page-wrapper">
  	
     <!-- Preloader -->
-    
+    <div class="loader-wrap">
+      <div class="preloader">
+        <div class="preloader-close">x</div>
+        <div id="handle-preloader" class="handle-preloader">
+          <div class="animation-preloader">
+            <div class="spinner"></div>
+            <div class="txt-loading">
+              <span data-text-preloader="i" class="letters-loading">
+                i
+              </span>
+              <span data-text-preloader="t" class="letters-loading">
+                t
+              </span>
+              <span data-text-preloader="e" class="letters-loading">
+                e
+              </span>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>
     <!-- Preloader End -->
      
     <!-- Main Header / Hedare Style Two -->
@@ -65,10 +85,10 @@
           </div>
       
       <!-- Header Lower -->
-          <div class="header-lower">
-            <div class="auto-container">
-                <div class="inner-container d-flex justify-content-between align-items-center">
-            
+      {{-- <div class="header-lower">
+        <div class="auto-container">
+          <div class="inner-container d-flex justify-content-between align-items-center">
+          
             <!-- Logo -->
             <div class="logo pull-left">
               <div class="logo"><a href="{{ url('/') }}"><img src="assets/images/logo-3.png" alt="" title=""></a></div>
@@ -91,7 +111,7 @@
                 
                 <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
                   <ul class="navigation clearfix">
-                    <li class="dropdown"><a href="{{ url('/') }}">Inicio</a>
+                    <li><a href="{{ url('/') }}">Inicio</a>
                       
                     </li>
                     <li class="dropdown"><a href="#">Nosotros</a>
@@ -127,15 +147,12 @@
                     </li>
                     <li class="dropdown"><a href="#">Clases</a>
                       <ul>
-                        <li><a href="#">Inicial</a></li>
-                        <li><a href="#">Primaria</a></li>
-                        <li><a href="#">Secundaria</a></li>
-                        <li><a href="#">Preuniversitario</a></li>
-                        <li><a href="#">Institutos</a></li>
-                        <li><a href="#">Colegios Militares</a></li>
-                        <li><a href="#">Escuela de policias</a></li>
-                        <li><a href="#">Universitarios</a></li>
-                        <li><a href="#">Profesionales</a></li>
+                        <li><a href="{{ route('guarderia') }}">Guarderia</a></li>
+                        <li><a href="{{ route('inicial') }}">Inicial</a></li>
+                        <li><a href="{{ route('primaria') }}">Primaria</a></li>
+                        <li><a href="{{ route('secundaria') }}">Secundaria</a></li>
+                        <li><a href="{{ route('preuniversitario') }}">Preuniversitario</a></li>
+                        <li><a href="{{ route('universitario') }}">Universitarios</a></li>
                       </ul>
                     </li>
                     <li><a href="$">Contacto</a></li>
@@ -144,36 +161,94 @@
               </nav>
               
             </div>
-            
-            
-            
+        
           </div>
-              </div>
-          </div>
-          <!-- End Header Lower -->
+        </div>
+      </div> --}}
+      <!-- End Header Lower -->
           
       <!-- Sticky Header  -->
-          <div class="sticky-header">
-              <div class="auto-container clearfix">
-                  <!--Logo-->
-                  <div class="logo pull-left">
-                      <a href="{{ url('/') }}"><img src="{{asset('assetshome/images/logo.png')}}" alt="" title=""></a>
+      <div class="sticky-header">
+        <div class="auto-container clearfix">
+            <!--Logo-->
+            <div class="logo pull-left">
+                <a href="{{ url('/') }}"><img src="{{asset('assetshome/images/logo.png')}}" alt="" title=""></a>
+            </div>
+            <!--Right Col-->
+            <div class="pull-right">
+    
+            <!-- Main Menu -->
+              <nav class="main-menu">
+                <nav class="main-menu navbar-expand-md">
+                  <div class="navbar-header">
+                    <!-- Toggle Button -->
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
                   </div>
-                  <!--Right Col-->
-                  <div class="pull-right">
-          
-                      <!-- Main Menu -->
-                      <nav class="main-menu">
-                          <!--Keep This Empty / Menu will come through Javascript-->
-                      </nav>
+                  
+                  <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
+                    <ul class="navigation clearfix">
+                      <li><a href="{{ url('/') }}">Inicio</a>
+                        
+                      </li>
+                      <li class="dropdown"><a href="#">Nosotros</a>
+                        <ul>
+                          <li><a href="#">Whatsapp</a></li>
+                          <li><a href="#">Telegram</a></li>
+                          <li><a href="#">Correo</a></li>
+                          <li><a href="#">Escríbenos</a></li>
+                          <li><a href="#">Facebook</a></li>
+                          <li><a href="#">Youtube</a></li>
+                          <li><a href="#">Todo</a></li>
+                          
+                        </ul>
+                      </li>
+                      <li class="dropdown"><a href="#">Especial</a>
+                        <ul>
+                          <li><a href="{{ route('robotica') }}">Robótica</a></li>
+                          <li><a href="{{ route('programacion') }}">Programación</a></li>
+                          <li><a href="#">Apps Móviles</a></li>
+                          <li><a href="#">Apps Webs</a></li>
+                          <li><a href="#">Libros personalizados</a></li>
+                          <li><a href="#">Creamos dibujo</a></li>
+                          
+                        </ul>
+                      </li>
+                      <li class="dropdown"><a href="#">Proyectos</a>
+                        <ul>
+                          <li><a href="#">ite 360</a></li>
+                          <li><a href="#">Asistente ite</a></li>
+                          <li><a href="#">ite ayuda</a></li>
+                          <li><a href="#">ite restaurante</a></li>
+                        </ul>
+                      </li>
+                      <li class="dropdown"><a href="#">Clases</a>
+                        <ul>
+                          <li><a href="{{ route('guarderia') }}">Guarderia</a></li>
+                          <li><a href="{{ route('inicial') }}">Inicial</a></li>
+                          <li><a href="{{ route('primaria') }}">Primaria</a></li>
+                          <li><a href="{{ route('secundaria') }}">Secundaria</a></li>
+                          <li><a href="{{ route('preuniversitario') }}">Preuniversitario</a></li>
+                          <li><a href="{{ route('universitario') }}">Universitarios</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="$">Contacto</a></li>
+                    </ul>
+                  </div>
+                </nav>
+              </nav>
             <!-- Main Menu End-->
-            
+      
             <!-- Mobile Navigation Toggler -->
             <div class="mobile-nav-toggler"><span class="icon flaticon-menu-1"></span></div>
-            
-                  </div>
-              </div>
-          </div><!-- End Sticky Menu -->
+      
+            </div>
+        </div>
+      </div>
+      <!-- End Sticky Menu -->
       
       <!-- Mobile Menu  -->
           <div class="mobile-menu">
@@ -238,12 +313,13 @@
     <!-- END sidebar widget item -->
     
     <!-- Page Title -->
-      <section class="page-title" style="background-image: url(assets/images/background/1.jpg)">
+      {{-- <section class="page-title" style="background-image: url(assets/images/background/preuniversitario.jpg)"> --}}
+      <section class="page-title" style="background-image: url('{{ asset('assetshome/images/background/preuniversitario.jpg')}}');">
           <div class="auto-container">
-        <h2>Pre-Universitario</h2>
+        <h2></h2>
         <ul class="bread-crumb clearfix">
-          <li><a href="{{ url('/') }}">Inicio</a></li>
-          <li>Pre-Universitario</li>
+          {{-- <li><a href="{{ url('/') }}">Inicio</a></li>
+          <li>Pre-Universitario</li> --}}
         </ul>
           </div>
       </section>
@@ -400,26 +476,197 @@
 						<!-- Timing Widget -->
 						<div class="sidebar-widget timing-widget">
 							<div class="widget-content">
-								{{-- <h3>Semanal</h3> --}}
+								
+                {{--%%%%%%%%%%%%%%%%%%%% hora libre preuniversitario %%%%%%%%%%%%%%%%%%  --}}
+                <div class="card">
+                  <div class="card-header bg-secondary text-white text-center">
+                    <h3 class="text-white"> HORA LIBRE </h3>
+                  </div>
+                  <div class="card-body">
+                    <table class="table table-bordered table-striped table-hover">
+                      <thead class="text-secondary">
+                        <tr>
+                          <th scope="col">Modalidad</th>
+                          <th scope="col">Horas</th>
+                          <th scope="col">Costo</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($horalibre as $modalidad)
+                        <tr>
+                          <td>{{$modalidad->modalidad}}</td>
+                          <td>{{$modalidad->cargahoraria}} Hrs.</td>
+                          <td>Bs. {{$modalidad->costo}} </td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div> 
+                
+                <hr>
 
-                <table class="table table-hover">
-                  <thead class="table-dark">
-                    <tr>
-                      <th scope="col">Modalidad</th>
-                      <th scope="col">Horas</th>
-                      <th scope="col">Costo</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($modalidadespreuniversitario as $preuniversitario)
-                    <tr>
-                      <td>{{$preuniversitario->modalidad}}</td>
-                      <td>{{$preuniversitario->cargahoraria}} Hrs.</td>
-                      <td>{{$preuniversitario->costo}} Bs.</td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
+                {{--%%%%%%%%%%%%%%%%%%%% semanal preuniversitario %%%%%%%%%%%%%%%%%%  --}}
+                <div class="card">
+                  <div class="card-header bg-primary text-white text-center">
+                    <h3 class="text-white"> SEMANAL </h3>
+                  </div>
+                  <div class="card-body">
+                    <table class="table table-bordered table-striped table-hover">
+                      <thead class="text-secondary">
+                        <tr>
+                          <th scope="col">Modalidad</th>
+                          <th scope="col">Horas</th>
+                          <th scope="col">Costo</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($semana as $preuniversitario)
+                        <tr>
+                          <td>{{$preuniversitario->modalidad}}</td>
+                          <td>{{$preuniversitario->cargahoraria}} Hrs.</td>
+                          <td>Bs. {{$preuniversitario->costo}} </td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div> 
+                <hr>
+                {{--%%%%%%%%%%%%%%%%%%%% quincenal preuniversitario %%%%%%%%%%%%%%%%%%  --}}
+                <div class="card">
+                  <div class="card-header bg-secondary text-white text-center">
+                    <h3 class="text-white"> MODALIDADES QUINCENALES </h3>
+                  </div>
+                  <div class="card-body">
+                    <table class="table table-bordered table-striped table-hover">
+                      <thead class="text-secondary">
+                        <tr>
+                          <th scope="col">Modalidad</th>
+                          <th scope="col">Horas</th>
+                          <th scope="col">Costo</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($quincena as $preuniversitario)
+                        <tr>
+                          <td>{{$preuniversitario->modalidad}}</td>
+                          <td>{{$preuniversitario->cargahoraria}} Hrs.</td>
+                          <td>Bs. {{$preuniversitario->costo}} </td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div> 
+                <hr>
+                {{--%%%%%%%%%%%%%%%%%%%% Mensual preuniversitario %%%%%%%%%%%%%%%%%%  --}}
+                <div class="card">
+                  <div class="card-header bg-primary text-white text-center">
+                    <h3 class="text-white"> MODALIDADES MENSUALES </h3>
+                  </div>
+                  <div class="card-body">
+                    <table class="table table-bordered table-striped table-hover">
+                      <thead class="text-secondary">
+                        <tr>
+                          <th scope="col">Modalidad</th>
+                          <th scope="col">Horas</th>
+                          <th scope="col">Costo</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($mes as $preuniversitario)
+                        <tr>
+                          <td>{{$preuniversitario->modalidad}}</td>
+                          <td>{{$preuniversitario->cargahoraria}} Hrs.</td>
+                          <td>Bs. {{$preuniversitario->costo}} </td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div> 
+                <hr>
+                {{--%%%%%%%%%%%%%%%%%%%% Mensual preuniversitario %%%%%%%%%%%%%%%%%%  --}}
+                <div class="card">
+                  <div class="card-header bg-secondary text-white text-center">
+                    <h3 class="text-white"> MODALIDADES BIMESTRALES </h3>
+                  </div>
+                  <div class="card-body">
+                    <table class="table table-bordered table-striped table-hover">
+                      <thead class="text-secondary">
+                        <tr>
+                          <th scope="col">Modalidad</th>
+                          <th scope="col">Horas</th>
+                          <th scope="col">Costo</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($bimestre as $preuniversitario)
+                        <tr>
+                          <td>{{$preuniversitario->modalidad}}</td>
+                          <td>{{$preuniversitario->cargahoraria}} Hrs.</td>
+                          <td>Bs. {{$preuniversitario->costo}} </td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div> 
+                <hr>
+                {{--%%%%%%%%%%%%%%%%%%%% Mensual preuniversitario %%%%%%%%%%%%%%%%%%  --}}
+                <div class="card">
+                  <div class="card-header bg-primary text-white text-center">
+                    <h3 class="text-white"> MODALIDADES TRIMESTRALES </h3>
+                  </div>
+                  <div class="card-body">
+                    <table class="table table-bordered table-striped table-hover">
+                      <thead class="text-secondary">
+                        <tr>
+                          <th scope="col">Modalidad</th>
+                          <th scope="col">Horas</th>
+                          <th scope="col">Costo</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($trimestre as $preuniversitario)
+                        <tr>
+                          <td>{{$preuniversitario->modalidad}}</td>
+                          <td>{{$preuniversitario->cargahoraria}} Hrs.</td>
+                          <td>Bs. {{$preuniversitario->costo}} </td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div> 
+                <hr>
+
+              <div class="card">
+                <div class="card-header bg-secondary text-white text-center">
+                 <h3 class="text-white"> TODAS LAS MODALIDADES </h3>
+                </div>
+                <div class="card-body">
+                   <table class="table table-bordered table-striped table-hover">
+                      <thead class="bg-primary text-white">
+                        <tr>
+                          <th scope="col">Modalidad</th>
+                          <th scope="col">Horas</th>
+                          <th scope="col">Costo</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($modalidadespreuniversitario as $modalidad)
+                        <tr>
+                          <td>{{$modalidad->modalidad}}</td>
+                          <td>{{$modalidad->cargahoraria}} Hrs.</td>
+                          <td>Bs. {{$modalidad->costo}} </td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                </div>
+              </div>
 
 							</div>
 						</div>
@@ -460,7 +707,22 @@
 						</div>
 						
 						<!-- Gallery Widget -->
-						
+						<div class="sidebar-widget category-widget">
+							<div class="widget-content">
+								<!-- Sidebar Title -->
+								<div class="sidebar-title">
+									<h3>Tal vez te pueda interesar</h3>
+								</div>
+								<ul class="cat-list">
+									<li><a href="{{ route('robotica') }}">Robótica</a></li>
+									<li><a href="#">Computación</a></li>
+									<li><a href="#">Diseño-Gráfico</a></li>
+									<li><a href="{{ route('programacion') }}">Programación y Algoritmos</a></li>
+									<li><a href="#">Diseño Web</a></li>
+                  <li><a href="#">Creacion App Movil</a></li>
+								</ul>
+							</div>
+						</div>
 						
 					</aside>
 				</div>
@@ -534,8 +796,7 @@
 				<!-- Title Column -->
 				<div class="title-column col-lg-7 col-md-12 col-sm-12">
 					<div class="inner-column">
-						<h2>¿Te gustaria aprender a tu <span>ritmo</span> desde cualquier dispositivo?</h2>
-						<div class="text">Ingresa a nuestra plataforma educativa en linea.</div>
+						<h2>¡Descubre el poder de la <span>inteligencia artificial</span> con nuestro Asistente ITE!</h2>
 					</div>
 				</div>
 				
@@ -543,7 +804,7 @@
 				<div class="button-column col-lg-5 col-md-12 col-sm-12">
 					<div class="inner-column text-center text-md-end">
 						<div class="button-box">
-							<a href="https://www.educabol.com/" class="theme-btn btn-style-eight"><span class="txt">Ingresar<i class="flaticon-next-2"></i></span></a>
+							<a href="https://asistente.ite.com.bo/" class="theme-btn btn-style-eight"><span class="txt">Ingresar<i class="flaticon-next-2"></i></span></a>
 						</div>
 					</div>
 				</div>
@@ -602,12 +863,12 @@
                                 <div class="footer-widget links-widget style-two">
 									<h3>Niveles</h3>
 									<ul class="nav-list">
-										<li><a href="#">Guardería</a></li>
-										<li><a href="#">Primaria</a></li>
-										<li><a href="#">Secundaria</a></li>
-										<li><a href="#">Pre-Universitarios</a></li>
-										<li><a href="#">Universitarios</a></li>
-										<li><a href="#">Profesionales</a></li>
+										<li><a href="{{ route('guarderia') }}">Guardería</a></li>
+										<li><a href="{{ route('inicial') }}">Inicial</a></li>
+                    <li><a href="{{ route('primaria') }}">Primaria</a></li>
+										<li><a href="{{ route('secundaria') }}">Secundaria</a></li>
+										<li><a href="{{ route('preuniversitario') }}">Pre-Universitarios</a></li>
+										<li><a href="{{ route('universitario') }}">Universitarios</a></li>
 									</ul>
 								</div>
 							</div>

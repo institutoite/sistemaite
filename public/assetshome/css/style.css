@@ -5383,7 +5383,7 @@
 	top:0px;
 	right:0px;
 	bottom:0px;
-	opacity:0.73;
+	opacity:0.33;
 	background-color: var(--dark-color-four);
 }
 
@@ -5494,7 +5494,7 @@
 }
 .counter_wrap .number {
 	font-size: 85px;
-	color: #FF4A17;
+	color: #26baa5;
 	position: relative;
 }
 .counter_wrap .plus {
