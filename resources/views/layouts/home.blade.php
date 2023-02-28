@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Instituto Ite</title>
+<title>ite</title>
 <!-- Stylesheets -->
 {{-- <link href="{{asset('assetshome/css/bootstrap.css')}}" rel="stylesheet"> --}}
 <link href="{{asset('dist/css/bootstrap/bootstrap.css')}}" rel="stylesheet">
@@ -153,34 +153,25 @@
 								<ul class="navigation clearfix">
 									<li class="current dropdown"><a href="{{ url('/') }}">Inicio</a>
 									</li>
-									<li class="dropdown"><a href="#">Nosotros</a>
-										<ul>
-											<li><a href="#">Whatsapp</a></li>
-											<li><a href="#">Telegram</a></li>
-											<li><a href="#">Correo</a></li>
-											<li><a href="#">Escríbenos</a></li>
-											<li><a href="#">Facebook</a></li>
-											<li><a href="#">Youtube</a></li>
-											<li><a href="#">Todo</a></li>
-											
-										</ul>
+									<li><a href="{{ route('about') }}">¿Quiénes somos?</a>
 									</li>
-									<li class="dropdown"><a href="#">Especial</a>
+									<li class="dropdown"><a href="#">Lo mas nuevo</a>
 										<ul>
 											<li><a href="{{ route('robotica') }}">Robótica</a></li>
 											<li><a href="{{ route('programacion') }}">Programación</a></li>
-											<li><a href="#">Apps Móviles</a></li>
-											<li><a href="#">Apps Webs</a></li>
-											<li><a href="#">Libros personalizados</a></li>
-											<li><a href="#">Creamos dibujo</a></li>
+											<li><a href="{{ route('creacionapp') }}">Creación de App Móviles</a></li>
+											<li><a href="{{ route('disenoweb') }}">Diseño Web</a></li>
+											<li><a href="#">Ajedrez</a></li>
 											
 										</ul>
 									</li>
-									<li class="dropdown"><a href="#">Proyectos</a>
+									<li class="dropdown"><a href="#">Servicios</a>
 										<ul>
-											<li><a href="#">ite 360</a></li>
+											<li><a href="{{ route('fotocopia') }}">Fotocopia e impresión</a></li>
+											<li><a href="#">Resolución de practicos</a></li>
 											<li><a href="#">Asistente ite</a></li>
-											<li><a href="#">ite ayuda</a></li>
+											<li><a href="#">Libros personalizados</a></li>
+											<li><a href="#">Creacion de dibujo</a></li>
 											<li><a href="#">ite restaurante</a></li>
 										</ul>
 									</li>
@@ -293,7 +284,7 @@
 							</div>
 							<div class="content-box">
 								<h5>Acerca de Nosotros</h5>
-								<p class="text">ITE es un centro educativo que brinda clases de nivelación en diferentes materias y cursos de programación en todos los lenguajes y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.</p>
+								<p class="text">ITE es un centro educativo que brinda clases de nivelación en diferentes materias y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.</p>
 								<a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="theme-btn btn-style-two"><span class="txt">Consultar</span></a>
 							</div>
 							<div class="contact-info">
@@ -717,8 +708,8 @@
 										<div class="icon-box">
 											<span class="icon flaticon-web-search-engine"></span>
 										</div>
-										<h3><a href="#">Creacion de App</a></h3>
-										<div class="text">Aprenderás cómo desarrollar aplicaciones para dispositivos móviles, como smartphones y tabletas, y cómo utilizar plataformas como Android o iOS.</div>
+										<h3><a href="{{ route('creacionapp') }}">Creación de App</a></h3>
+										<div class="text">Aprenderás cómo desarrollar aplicaciones para dispositivos móviles.</div>
 									</div>
 								</div>
 								
@@ -728,7 +719,7 @@
 										<div class="icon-box">
 											<span class="icon flaticon-seo"></span>
 										</div>
-										<h3><a href="#">Diseño Web</a></h3>
+										<h3><a href="{{ route('disenoweb') }}">Diseño Web</a></h3>
 										<div class="text">Aprenderás los conceptos básicos y avanzados necesarios para crear y desarrollar sitios web.</div>
 									</div>
 								</div>
@@ -794,8 +785,8 @@
 												<!--Tab Btns-->
 												<ul class="tab-btns tab-buttons clearfix">
 													<li data-tab="#prod-integrity" class="tab-btn active-btn">¿Quienes somos?</li>
-													<li data-tab="#prod-obejectives" class="tab-btn">Mision</li>
-													<li data-tab="#prod-excellence" class="tab-btn">Vision</li>
+													<li data-tab="#prod-obejectives" class="tab-btn">Misión</li>
+													<li data-tab="#prod-excellence" class="tab-btn">Visión</li>
 												</ul>
 												
 												<!-- Tabs Container -->
@@ -913,8 +904,6 @@
 		</div>
 	</section>
 	<!-- End Principle Section -->
-	
-	
 	
 	<!-- Team Section -->
 	<section class="team-section">
@@ -1044,6 +1033,170 @@
 	</section>
 	<!-- End Team Section -->
 	
+	<!-- Project Page Section -->
+	{{-- <section class="project-page-section">
+		<div class="auto-container">
+			<!-- Sec Title -->
+			<div class="sec-title centered">
+				<div class="title style-two">Mas cursos</div>
+				<h2>Tenemos la solución de <span>aprendizaje </span> ideal para usted</h2>
+			</div>
+			<div class="row clearfix">
+			
+				<!-- Project Block Two -->
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="image">
+							<a href="projects-detail.html"><img src="{{asset('assetshome/images/gallery/2.jpg')}}" alt="" /></a>
+						</div>
+						<div class="lower-content">
+							
+							<h3><a href="projects-detail.html">Inicial</a></h3>
+							<a href="projects-detail.html" class="view">Informarme</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Project Block Two -->
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="image">
+							<a href="projects-detail.html"><img src="assetshome/images/gallery/3.jpg" alt="" /></a>
+						</div>
+						<div class="lower-content">
+							
+							<h3><a href="projects-detail.html">Primaria</a></h3>
+							<a href="projects-detail.html" class="view">Informarme</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Project Block Two -->
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="image">
+							<a href="projects-detail.html"><img src="assetshome/images/gallery/4.jpg" alt="" /></a>
+						</div>
+						<div class="lower-content">
+							
+							<h3><a href="projects-detail.html">Secundaria</a></h3>
+							<a href="projects-detail.html" class="view">Informarme</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Project Block Two -->
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="image">
+							<a href="projects-detail.html"><img src="assetshome/images/gallery/5.jpg" alt="" /></a>
+						</div>
+						<div class="lower-content">
+							
+							<h3><a href="projects-detail.html">Bachilleres</a></h3>
+							<a href="projects-detail.html" class="view">Informarme</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Project Block Two -->
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="image">
+							<a href="projects-detail.html"><img src="assetshome/images/gallery/2.jpg" alt="" /></a>
+						</div>
+						<div class="lower-content">
+							
+							<h3><a href="projects-detail.html">Universitario</a></h3>
+							<a href="projects-detail.html" class="view">Informarme</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Project Block Two -->
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="image">
+							<a href="projects-detail.html"><img src="assetshome/images/gallery/2.jpg" alt="" /></a>
+						</div>
+						<div class="lower-content">
+							
+							<h3><a href="projects-detail.html">Robotica</a></h3>
+							<a href="projects-detail.html" class="view">Informarme</a>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</section> --}}
+	<!-- Project Page Section -->
+
+	<!-- Services Section Three -->
+	<section class="services-section-three">
+		<div class="auto-container">
+			<!-- Sec Title -->
+			<div class="sec-title centered">
+				<div class="title style-two">Sevicios</div>
+				<h2>Nuestros <span>Servicios</span></h2>
+			</div>
+			<div class="three-item-carousel owl-carousel owl-theme">
+				
+				<!-- Service Block Two -->
+				<div class="service-block-two">
+					<div class="inner-box">
+						<div class="icon flaticon-menu"></div>
+						<h3><a href="{{ route('fotocopia') }}">Fotocopia e impresión</a></h3>
+						<div class="text">Ya no vayas a la universidad,Copias e impresiones desde 9 centavos</div>
+						<a href="{{ route('fotocopia') }}" class="arrow flaticon-right-arrow"></a>
+					</div>
+				</div>
+				
+				<!-- Service Block Two -->
+				<div class="service-block-two">
+					<div class="inner-box">
+						<div class="icon flaticon-notebook"></div>
+						<h3><a href="service-detail.html">Resolución de prácticos</a></h3>
+						<div class="text">Te ayudamos con tus tareas y prácticos</div>
+						<a href="service-detail.html" class="arrow flaticon-right-arrow"></a>
+					</div>
+				</div>
+				
+				<!-- Service Block Two -->
+				<div class="service-block-two">
+					<div class="inner-box">
+						<div class="icon flaticon-search-engine"></div>
+						<h3><a href="service-detail.html">Asistente Ite</a></h3>
+						<div class="text">¡Descubre el poder de la inteligencia artificial con nuestro Asistente ITE!</div>
+						<a href="service-detail.html" class="arrow flaticon-right-arrow"></a>
+					</div>
+				</div>
+				
+				<!-- Service Block Two -->
+				<div class="service-block-two">
+					<div class="inner-box">
+						<div class="icon flaticon-learning-support"></div>
+						<h3><a href="service-detail.html">Libros Personalizados</a></h3>
+						<div class="text">Realizamos libros personalizados</div>
+						<a href="service-detail.html" class="arrow flaticon-right-arrow"></a>
+					</div>
+				</div>
+				
+				<!-- Service Block Two -->
+				<div class="service-block-two">
+					<div class="inner-box">
+						<div class="icon flaticon-social-reach"></div>
+						<h3><a href="service-detail.html">Creacion de dibujo</a></h3>
+						<div class="text">Realizamos dibujos.</div>
+						<a href="service-detail.html" class="arrow flaticon-right-arrow"></a>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+	<!-- End Services Section Three -->
+
 	<!-- About Section -->
 	<section class="about-section">
 		<div class="pattern-layer" style="background-image: url(assetshome/images/background/pattern-1.png)"></div>
@@ -1177,27 +1330,55 @@
 		</div>
 	</section>
 	<!-- End Form Section -->
-	
-	<!-- CTA Section -->
-	<section class="cta-section">
-		<div class="auto-container">
-			<div class="inner-container clearfix">
-				<div class="icon-layer-one" style="background-image: url(assetshome/images/icons/vector-7.png)"></div>
-				<div class="icon-layer-two" style="background-image: url(assetshome/images/icons/vector-8.png)"></div>
-				<div class="icon-layer-three" style="background-image: url(assetshome/images/icons/vector-9.png)"></div>
-				<div class="pull-left">
-					<h3>¡Descubre el poder de la <span>inteligencia artificial</span> con nuestro Asistente ITE!</h3>
-				</div>
-				<div class="pull-right">
-					<div class="button-box">
-						<a href="https://asistente.ite.com.bo/" class="theme-btn btn-style-five"><span class="txt">Ingresar <i class="flaticon-next-2"></i></span></a>
+		
+	<!-- Contact Page Section -->
+    <section class="contact-page-section">
+    	<div class="auto-container">
+        	<div class="row clearfix mt-none-30">
+			
+				<!-- Contact Info Block -->
+				<div class="contact-info-block col-lg-4 col-md-5 col-sm-12">
+					<div class="inner-box mt-30">
+						<div class="content">
+							<span class="icon flaticon-email-3"></span>
+							<h4>Correo Electronico</h4>
+							<a href="#">info@ite.com</a>
+						</div>
+					</div>
+					<div class="inner-box mt-30">
+						<div class="content">
+							<span class="icon flaticon-map"></span>
+							<h4>Direccion</h4>
+							<div class="text">Av. 3 Pasos al Frente esquina Av. Che Guevara.</div>
+						</div>
+					</div>
+					<div class="inner-box mt-30">
+						<div class="content">
+							<span class="icon flaticon-telephone"></span>
+							<h4>Telefonos</h4>
+							<a href="#">+591 71039910</a>
+							<a href="#">+591 75553338</a>
+							<a href="#">+591 71324941</a>
+						</div>
 					</div>
 				</div>
+				
+				<!-- Contact Map -->
+				<div class="contact-map-section col-lg-8 col-md-7 col-sm-12">
+					<div class="map-boxed mt-30">
+						<!--Map Outer-->
+						<div class="map-outer">
+							<iframe src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d949.696744730421!2d-63.1359772!3d-17.8017059!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTfCsDQ4JzA2LjAiUyA2M8KwMDgnMDcuOSJX!5e0!3m2!1ses!2sbo!4v1677590125133!5m2!1ses!2sbo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+						</div>
+					</div>
+				</div>
+			
 			</div>
-		</div>
-	</section>
-	<!-- End CTA Section -->
-	
+				
+        </div>
+    </section>
+    <!-- End Contact Page Section -->
+
 	<!-- Testimonials Section -->
     <section class="testimonials-section">
 		
@@ -1345,80 +1526,6 @@
     </section>
 	<!-- End Testimonials Section -->
 	
-	<!-- Counter Section -->
-	{{-- <section class="counter-section">
-		<div class="auto-container">
-			<div class="inner-container">
-				<div class="vector-layer-one" style="background-image: url(assetshome/images/icons/vector-11.png)"></div>
-				<div class="vector-layer-two" style="background-image: url(assetshome/images/icons/vector-12.png)"></div>
-				<div class="vector-layer-three" style="background-image: url(assetshome/images/icons/vector-13.png)"></div>
-				<div class="vector-layer-four" style="background-image: url(assetshome/images/icons/vector-14.png)"></div>
-				<div class="vector-layer-five" style="background-image: url(assetshome/images/icons/vector-14.png)"></div>
-				<div class="vector-layer-six" style="background-image: url(assetshome/images/icons/vector-14.png)"></div>
-				<!-- Fact Counter -->
-				<div class="fact-counter">
-					<div class="row clearfix">
-
-						<!-- Column -->
-						<div class="counter-column col-lg-3 col-md-6 col-sm-12">
-							<div class="inner wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-								<div class="content">
-									<span class="icon flaticon-group"></span>
-									<div class="count-outer count-box">
-										<span class="count-text" data-speed="4000" data-stop="560">0</span>+
-									</div>
-									<h5>Worlds Clients</h5>
-								</div>
-							</div>
-						</div>
-						
-						<!-- Column -->
-						<div class="counter-column col-lg-3 col-md-6 col-sm-12">
-							<div class="inner wow fadeInLeft" data-wow-delay="150ms" data-wow-duration="1500ms">
-								<div class="content">
-									<span class="icon flaticon-notepad"></span>
-									<div class="count-outer count-box">
-										<span class="count-text" data-speed="5500" data-stop="2400">0</span>+
-									</div>
-									<h5>Project Done</h5>
-								</div>
-							</div>
-						</div>
-
-						<!-- Column -->
-						<div class="counter-column col-lg-3 col-md-6 col-sm-12">
-							<div class="inner wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
-								<div class="content">
-									<span class="icon flaticon-user-1"></span>
-									<div class="count-outer count-box">
-										<span class="count-text" data-speed="3500" data-stop="60">0</span>
-									</div>
-									<h5>Team Member</h5>
-								</div>
-							</div>
-						</div>
-
-						<!-- Column -->
-						<div class="counter-column col-lg-3 col-md-6 col-sm-12">
-							<div class="inner wow fadeInLeft" data-wow-delay="450ms" data-wow-duration="1500ms">
-								<div class="content">
-									<span class="icon flaticon-customer-review"></span>
-									<div class="count-outer count-box">
-										<span class="count-text" data-speed="3000" data-stop="50">0</span>%
-									</div>
-									<h5>Years Experince</h5>
-								</div>
-							</div>
-						</div>
-						
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	</section> --}}
-	<!-- End Counter Section -->
-	
 	<!-- Main Footer -->
     <footer class="main-footer">
 		<div class="pattern-layer-one" style="background-image:url(assetshome/images/background/pattern-7.png)"></div>
@@ -1471,7 +1578,7 @@
                             <div class="footer-column col-lg-7 col-md-6 col-sm-12">
                                 <div class="footer-widget about-widget">
 									{{-- <div class="logo"><a href="{{ url('/') }}"><img src="assetshome/images/footer-logo.png" alt="" title=""></a></div> --}}
-									<div class="text">ITE es un centro educativo que brinda clases de nivelación en diferentes materias y cursos de programación en todos los lenguajes y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.</div>
+									<div class="text">ITE es un centro educativo que brinda clases de nivelación en diferentes materias y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.</div>
 									<!-- Subscribe Form -->
 
 									{{-- <ul class="footer_info">
@@ -1537,7 +1644,7 @@
 										<li><i class="fa fa-phone-alt"></i> +59175553338</li>
 										<li><i class="fa fa-phone-alt"></i> +59171324941</li>
 										<li><i class="icon fas fa-envelope"></i> info@ite.com.bo</li>
-										<li><i class="icon fas fa-clock"></i> Lu a Vi: 07:00 a 18:30 Sábados: 07:30 a 17:00</li>
+										<li><i class="icon fas fa-clock"></i> Lu a Vi: 07:00 a 21:00 Sábados: 07:30 a 17:00</li>
 									</ul>
 									
 								</div>
@@ -1557,7 +1664,7 @@
 				
 					<!-- Copright Column -->
 					<div class="copyright-column col-lg-6 col-md-6 col-sm-12">
-						<div class="copyright">Copyright &copy; 2023 . All Rights Reserved.</div>
+						<div class="copyright">&copy; 2023.</div>
 					</div>
 					
 					<!-- Nav Column -->

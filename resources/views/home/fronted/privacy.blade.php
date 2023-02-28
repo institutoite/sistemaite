@@ -269,11 +269,11 @@
       <div class="col-lg-8 offset-lg-2">
         <div class="cs-single_post">
           <h3>Politica de privacidad</h3>
-          <p>En Instituto Ite entendemos que usted se preocupa por la privacidad de sus datos, por tanto queremos que su experiencia online sea segura y satisfactoria. <br><br> Periódicamente, podremos modificar la presente política a efectos de reflejar cambios en nuestro Sitio, las tecnologías empleadas por nosotros que puedan incidir en el tratamiento de su información o sobre nuestra actitud respecto del tratamiento de la información recopilada.</p>
+          <p>En ite entendemos que usted se preocupa por la privacidad de sus datos, por tanto queremos que su experiencia online sea segura y satisfactoria. <br><br> Periódicamente, podremos modificar la presente política a efectos de reflejar cambios en nuestro Sitio, las tecnologías empleadas por nosotros que puedan incidir en el tratamiento de su información o sobre nuestra actitud respecto del tratamiento de la información recopilada.</p>
           <h3>¿Como Utilizamos los Datos</h3>
-          <p>Utilizamos los datos personales, para mejorar cada vez más la experiencia de aprendizaje de nuestros alumnos y profesores del Instituto Ite. No compartimos sus informaciones personales.</p>
+          <p>Utilizamos los datos personales, para mejorar cada vez más la experiencia de aprendizaje de nuestros alumnos y profesores del ite. No compartimos sus informaciones personales.</p>
           <h3>Informacion Personal</h3>
-          <p>Instituto Ite solicita su información personal  al momento de registrarse en nuestro sistema. Estos datos, muchos de los cuales son obligatorios, son requeridos por ser necesarios a fin de acceder a ciertas funcionalidades del Sitio.</p>
+          <p>ite solicita su información personal  al momento de registrarse en nuestro sistema. Estos datos, muchos de los cuales son obligatorios, son requeridos por ser necesarios a fin de acceder a ciertas funcionalidades del Sitio.</p>
           <h3>Seguridad</h3>
           <p>Tomamos una serie de medidas para proteger sus informaciones personales introducidas en en nuestro sistema y trabajamos día a día para mejorar nuestros sistemas.</p>
         </div>

@@ -50,7 +50,7 @@ return [
     'logo_img_class' => 'brand-image img-circle',
     'logo_img_xl' => 'vendor/adminlte/dist/img/logo.png',
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'instituto ite',
+    'logo_img_alt' => 'ite',
 
     /*
     |--------------------------------------------------------------------------

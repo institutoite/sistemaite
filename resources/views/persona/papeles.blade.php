@@ -1,4 +1,4 @@
-Instituto ite, [24/02/2022 7:57]
+ite, [24/02/2022 7:57]
 @extends('adminlte::page')
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">

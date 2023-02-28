@@ -270,6 +270,16 @@ class HomeController extends Controller
         return view('home.fronted.programacion');
     } 
 
+    public function creacionapp()
+    {
+        return view('home.fronted.creacionapp');
+    } 
+
+    public function disenoweb()
+    {
+        return view('home.fronted.disenoweb');
+    } 
+
     public function plan($id)
     {
         $convenio = Convenio::find($id);
@@ -282,6 +292,11 @@ class HomeController extends Controller
         return view('home.fronted.about');
     } 
     
+    public function fotocopia()
+    {
+        return view('home.fronted.fotocopia');
+    } 
+
     public function contact()
     {
         return view('home.fronted.contact');

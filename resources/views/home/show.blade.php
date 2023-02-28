@@ -2,11 +2,11 @@
 <html lang="es">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="description" content="Instituto Ite">
+  <meta name="description" content="ite">
   
   <meta name="author" content="ite.com.bo">
 
-  <title>Instituto Ite</title>
+  <title>ite</title>
 
   <!-- Mobile Specific Meta-->
   <meta name="viewport" content="width=device-width, initial-scale=1">

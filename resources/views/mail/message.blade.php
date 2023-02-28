@@ -559,7 +559,7 @@ u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:in
           <td class="center-text" data-text-style="Paragraphs" align="center" style="font-family:'Roboto',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:400;font-style:normal;color:#999999;text-decoration:none;letter-spacing:0px;">
             <multiline>
               <div mc:edit data-text-edit>
-                2022 - Desarrollado por Instituto ITE.<br>
+                2022 - Desarrollado por ite.<br>
                 Villa 1 de mayo avenida tres pasos al frente esquina Che Guevara 4710
               </div>
             </multiline>

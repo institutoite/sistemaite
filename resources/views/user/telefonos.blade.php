@@ -49,7 +49,7 @@
                             </td>
                             <td>{{$persona->updated_at}}</td>
                             <td>
-                                <a target="_blank" href="https://api.whatsapp.com/send?phone={{$persona->telefono}}&text={{'Le escribimos de Instituto ite para pasarle su credenciales del sistema %0A Usuario: *'.$user->email.'* %0A Contraseña: **'.$pass.'* '.'%0A'.' Desde la aplicación podrá ver la programación de su inscripción Ademas le recomendamos cambiar su contraseña y usuario para que sea mas seguro'}}" class="btn-accion-tabla tooltipsC mr-2" title="Compartir credenciales">
+                                <a target="_blank" href="https://api.whatsapp.com/send?phone={{$persona->telefono}}&text={{'Le escribimos de ite para pasarle su credenciales del sistema %0A Usuario: *'.$user->email.'* %0A Contraseña: **'.$pass.'* '.'%0A'.' Desde la aplicación podrá ver la programación de su inscripción Ademas le recomendamos cambiar su contraseña y usuario para que sea mas seguro'}}" class="btn-accion-tabla tooltipsC mr-2" title="Compartir credenciales">
                                     <i class="fas fa-share-square fa-2x"></i>
                                 </a> 
                             </td>
@@ -69,7 +69,7 @@
                             </td>
                             <td>{{$apoderado->updated_at}}</td>
                             <td>
-                                <a target="_blank" href="https://api.whatsapp.com/send?phone={{$apoderado->telefono}}&text={{'Le escribimos de Instituto ite para pasarle su credenciales del sistema %0A Usuario: *'.$user->email.'* %0A Contraseña: **'.$pass.'* '.'%0A'.' Desde la aplicación podrá ver la programación de su inscripción Ademas le recomendamos cambiar su contraseña y usuario para que sea mas seguro'}}" class="btn-accion-tabla tooltipsC mr-2" title="Compartir credenciales">
+                                <a target="_blank" href="https://api.whatsapp.com/send?phone={{$apoderado->telefono}}&text={{'Le escribimos de ite para pasarle su credenciales del sistema %0A Usuario: *'.$user->email.'* %0A Contraseña: **'.$pass.'* '.'%0A'.' Desde la aplicación podrá ver la programación de su inscripción Ademas le recomendamos cambiar su contraseña y usuario para que sea mas seguro'}}" class="btn-accion-tabla tooltipsC mr-2" title="Compartir credenciales">
                                     <i class="fas fa-share-square fa-2x"></i>
                                 </a> 
                             </td>

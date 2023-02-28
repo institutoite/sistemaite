@@ -923,6 +923,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/programacion', [HomeController::class, 'programacion'])->name('programacion');
 
+    Route::get('/creacionapp', [HomeController::class, 'creacionapp'])->name('creacionapp');
+
+    Route::get('/disenoweb', [HomeController::class, 'disenoweb'])->name('disenoweb');
+
+    Route::get('/fotocopia', [HomeController::class, 'fotocopia'])->name('fotocopia');
+
 
     Route::any('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');
 
