@@ -695,6 +695,20 @@ return [
                 ],
             ],
         ],
+        [
+            'text'    => 'CRM',
+            'icon'    => 'fas fa-house-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'POTENCIALES',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'crm/potenciales',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO GRUPO PERSONAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO GRUPO USUARIOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/

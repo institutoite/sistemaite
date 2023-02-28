@@ -1,10 +1,10 @@
                 <div class="row">
-                    <div class="col-xs-122 col-sm-122 col-md-6 col-lg-6">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         @if($errors->has('nombre'))
                             <span class="text-danger"> {{ $errors->first('nombre')}}</span>
                         @endif
                     </div>
-                    <div class="col-xs-122 col-sm-122 col-md-6 col-lg-6">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         @if($errors->has('apellidop'))
                             <span class="text-danger"> {{ $errors->first('apellidop')}}</span>
                         @endif
@@ -12,14 +12,14 @@
                 </div>
                 
                 <div class="row">
-                    <div class="col-xs-122 col-sm-122 col-md-6 col-lg-6" > 
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" > 
                         <div class="form-floating mb-3 text-gray">
                             <input  type="text" name="nombre" class="form-control @error('nombre') is-invalid @enderror" value="{{old('nombre',$persona->nombre ?? '')}}">
                             <label for="nombre">nombre</label>
                         </div>
                     </div>
                     {{-- %%%%%%%%%%%%%%% CAMPO APELLIDO PATERNO --}}
-                    <div class="col-xs-122 col-sm-122 col-md-6 col-lg-6" >
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
                         <div class="form-floating mb-3 text-gray">
                             <input  type="text" name="apellidop" class="form-control @error('apellidop') is-invalid @enderror" value="{{old('apellidop',$persona->apellidop ?? '')}}">
                             <label for="apellidop">apellidop</label>
@@ -29,12 +29,12 @@
                 </div> {{-- FIN DEL ROW DE LOS INPUT DE ESTUDIANTE  --}}
 
                 <div class="row">
-                    <div class="col-xs-122 col-sm-122 col-md-6 col-lg-6">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         @if($errors->has('telefono'))
                             <span class="text-danger"> {{ $errors->first('telefono')}}</span>
                         @endif
                     </div>
-                    <div class="col-xs-122 col-sm-122 col-md-6 col-lg-6">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         @if($errors->has('como_id'))
                             <span class="text-danger"> {{ $errors->first('como_id')}}</span>
                         @endif

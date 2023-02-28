@@ -66,6 +66,7 @@ use App\Http\Controllers\ZonaController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ModalidadController;
 use App\Http\Controllers\CupoController;
+use App\Http\Controllers\CrmController;
 //use App\Http\Controllers\RolUsersController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
@@ -185,6 +186,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('persona/editar/rapidingo/{persona}', [PersonaController::class,'editarRapidingo'])->name('personas.editar.rapidingo'); //Falta informar 
     Route::get('potencial/get/{potencial_id}',[PersonaController::class,'personaGet'])->name("persona.get");
     Route::get('persona/get/{persona}',[PersonaController::class,'getPersona'])->name("get.persona");
+    
+    /** %%%%%%%%%%%%%%%%%%%% CRM $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+    Route::get('crm/potenciales',[CrmController::class,'index'])->name("crm.potenciales");
     
     //Route::get("persona/update/ajax",[PersonaController::class,'updatePersonaAjax'])->name("persona.update.ajax");
 
