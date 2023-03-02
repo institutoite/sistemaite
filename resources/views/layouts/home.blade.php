@@ -161,7 +161,7 @@
 											<li><a href="{{ route('programacion') }}">Programación y Algoritmos</a></li>
 											<li><a href="{{ route('creacionapp') }}">Creación de App Móviles</a></li>
 											<li><a href="{{ route('disenoweb') }}">Diseño Web</a></li>
-											<li><a href="#">Ajedrez</a></li>
+											<li><a href="{{ route('ajedrez') }}">Ajedrez</a></li>
 											
 										</ul>
 									</li>
