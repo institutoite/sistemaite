@@ -158,7 +158,7 @@
 									<li class="dropdown"><a href="#">Lo mas nuevo</a>
 										<ul>
 											<li><a href="{{ route('robotica') }}">Robótica</a></li>
-											<li><a href="{{ route('programacion') }}">Programación</a></li>
+											<li><a href="{{ route('programacion') }}">Programación y Algoritmos</a></li>
 											<li><a href="{{ route('creacionapp') }}">Creación de App Móviles</a></li>
 											<li><a href="{{ route('disenoweb') }}">Diseño Web</a></li>
 											<li><a href="#">Ajedrez</a></li>
@@ -169,13 +169,19 @@
 										<ul>
 											<li><a href="{{ route('fotocopia') }}">Fotocopia e impresión</a></li>
 											<li><a href="#">Resolución de practicos</a></li>
-											<li><a href="#">Asistente ite</a></li>
-											<li><a href="#">Libros personalizados</a></li>
-											<li><a href="#">Creacion de dibujo</a></li>
-											<li><a href="#">ite restaurante</a></li>
+											<li><a href="https://asistente.ite.com.bo/">Asistente ite</a></li>
 										</ul>
 									</li>
-									<li class="dropdown"><a href="#">Clases</a>
+									<li class="dropdown"><a href="#">Carreras</a>
+										<ul>
+											<li><a href="{{ route('operadorcomputadora') }}">Computación</a></li>
+											<li><a href="{{ route('disenografico') }}">Diseño gráfico</a></li>
+											<li><a href="#">Mantenimiento y Reparación de Computadoras</a></li>
+											<li><a href="#">Marketing Digital</a></li>
+											
+										</ul>
+									</li>
+									<li class="dropdown"><a href="#">Niveles</a>
 										<ul>
 											<li><a href="{{ route('inicial') }}">Inicial</a></li>
 											<li><a href="{{ route('primaria') }}">Primaria</a></li>
@@ -183,8 +189,15 @@
 											<li><a href="{{ route('preuniversitario') }}">Preuniversitario</a></li>
 											<li><a href="{{ route('universitario') }}">Universitarios</a></li>
 										</ul>
+									</li><li class="dropdown"><a href="#">Próximamente</a>
+										<ul>
+											<li><a href="#">Libros personalizados</a></li>
+											<li><a href="#">Creacion de dibujo</a></li>
+											<li><a href="#">ite restaurante</a></li>
+											
+										</ul>
 									</li>
-									<li><a href="contact.html">Contact</a></li>
+									<li><a href="#">Contactenos</a></li>
 								</ul>
 							</div>
 						</nav>
@@ -687,7 +700,7 @@
 											<span class="icon flaticon-social-reach"></span>
 										</div>
 										<h3><a href="{{ route('robotica') }}">Robótica</a></h3>
-										<div class="text">Aprenderás cómo diseñar y construir circuitos para controlar y alimentar a los robots.</div>
+										<div class="text">Da vida a tus ideas con nuestro curso de robótica.</div>
 									</div>
 								</div>
 								
@@ -698,7 +711,7 @@
 											<span class="icon flaticon-analytics"></span>
 										</div>
 										<h3><a href="{{ route('programacion') }}">Programación y Algoritmos</a></h3>
-										<div class="text">Aprenderás los conceptos básicos de la programación, como variables, tipos de datos, estructuras de control de flujo y funciones.</div>
+										<div class="text">Codifica tu camino hacia el futuro.</div>
 									</div>
 								</div>
 								
@@ -709,7 +722,7 @@
 											<span class="icon flaticon-web-search-engine"></span>
 										</div>
 										<h3><a href="{{ route('creacionapp') }}">Creación de App</a></h3>
-										<div class="text">Aprenderás cómo desarrollar aplicaciones para dispositivos móviles.</div>
+										<div class="text">Aprende a crear aplicaciones móviles de manera fácil y rápida.</div>
 									</div>
 								</div>
 								
@@ -720,7 +733,7 @@
 											<span class="icon flaticon-seo"></span>
 										</div>
 										<h3><a href="{{ route('disenoweb') }}">Diseño Web</a></h3>
-										<div class="text">Aprenderás los conceptos básicos y avanzados necesarios para crear y desarrollar sitios web.</div>
+										<div class="text">Crea sitios web impresionantes con nuestro curso de diseño web.</div>
 									</div>
 								</div>
 								
@@ -905,136 +918,8 @@
 	</section>
 	<!-- End Principle Section -->
 	
-	<!-- Team Section -->
-	<section class="team-section">
-		<div class="auto-container">
-			<!-- Sec Title -->
-			<div class="sec-title">
-				<div class="clearfix">
-					<div class="pull-left">
-						<div class="title">Mas cursos</div>
-						<h2>Tenemos la solución de <br> <span>aprendizaje</span>  ideal para usted</h2>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-		<!-- Outer Container -->
-		<div class="outer-container">
-			<div class="row clearfix">
-			
-				<!-- Team Block -->
-				<div class="team-block col-lg-3 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="image">
-							<!-- Social Box -->
-							{{-- <div class="social-outer">
-								<span class="plus-icon fas fa-plus"></span>
-								<!-- Social Box -->
-								<ul class="social-box">
-									<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook"></a></li>
-									<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
-									<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
-								</ul>
-							</div> --}}
-
-							<img src="assetshome/images/resource/team-1.png" alt="" />
-							<div class="content">
-								<div class="icon-layer-one" style="background-image: url(assetshome/images/icons/plus-icon.png)"></div>
-								<div class="icon-layer-two" style="background-image: url(assetshome/images/icons/circle-icon.png)"></div>
-								{{-- <div class="designation">Digital Marketer</div> --}}
-								<h4><a href="#">Dactilografia</a></h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<!-- Team Block -->
-				<div class="team-block col-lg-3 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInLeft" data-wow-delay="150ms" data-wow-duration="1500ms">
-						<div class="image">
-							<!-- Social Box -->
-							{{-- <div class="social-outer">
-								<span class="plus-icon fas fa-plus"></span>
-								<!-- Social Box -->
-								<ul class="social-box">
-									<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook"></a></li>
-									<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
-									<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
-								</ul>
-							</div> --}}
-
-							<img src="assetshome/images/resource/team-2.png" alt="" />
-							<div class="content">
-								<div class="icon-layer-one" style="background-image: url(assetshome/images/icons/plus-icon.png)"></div>
-								<div class="icon-layer-two" style="background-image: url(assetshome/images/icons/circle-icon.png)"></div>
-								{{-- <div class="designation">seo specialist</div> --}}
-								<h4><a href="#">Operador de Computadoras</a></h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<!-- Team Block -->
-				<div class="team-block col-lg-3 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
-						<div class="image">
-							<!-- Social Box -->
-							{{-- <div class="social-outer">
-								<span class="plus-icon fas fa-plus"></span>
-								<!-- Social Box -->
-								<ul class="social-box">
-									<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook"></a></li>
-									<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
-									<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
-								</ul>
-							</div> --}}
-
-							<img src="assetshome/images/resource/team-3.png" alt="" />
-							<div class="content">
-								<div class="icon-layer-one" style="background-image: url(assetshome/images/icons/plus-icon.png)"></div>
-								<div class="icon-layer-two" style="background-image: url(assetshome/images/icons/circle-icon.png)"></div>
-								{{-- <div class="designation">INTERIOR DESIGNER</div> --}}
-								<h4><a href="#">Diseño Gráfico</a></h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<!-- Team Block -->
-				<div class="team-block col-lg-3 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInLeft" data-wow-delay="450ms" data-wow-duration="1500ms">
-						<div class="image">
-							<!-- Social Box -->
-							{{-- <div class="social-outer">
-								<span class="plus-icon fas fa-plus"></span>
-								<!-- Social Box -->
-								<ul class="social-box">
-									<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook"></a></li>
-									<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
-									<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
-								</ul>
-							</div> --}}
-
-							<img src="assetshome/images/resource/team-4.png" alt="" />
-							<div class="content">
-								<div class="icon-layer-one" style="background-image: url(assetshome/images/icons/plus-icon.png)"></div>
-								<div class="icon-layer-two" style="background-image: url(assetshome/images/icons/circle-icon.png)"></div>
-								{{-- <div class="designation">UI UX Designer</div> --}}
-								<h4><a href="#">Diseño Web</a></h4>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-		
-	</section>
-	<!-- End Team Section -->
-	
 	<!-- Project Page Section -->
-	{{-- <section class="project-page-section">
+	<section class="project-page-section">
 		<div class="auto-container">
 			<!-- Sec Title -->
 			<div class="sec-title centered">
@@ -1047,12 +932,12 @@
 				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
 					<div class="inner-box">
 						<div class="image">
-							<a href="projects-detail.html"><img src="{{asset('assetshome/images/gallery/2.jpg')}}" alt="" /></a>
+							<a href="{{ route('inicial') }}"><img src="{{asset('assetshome/images/gallery/inicial.jpg')}}" alt="" /></a>
 						</div>
 						<div class="lower-content">
 							
-							<h3><a href="projects-detail.html">Inicial</a></h3>
-							<a href="projects-detail.html" class="view">Informarme</a>
+							<h3><a href="{{ route('inicial') }}">Inicial</a></h3>
+							<a href="{{ route('inicial') }}" class="view">Informarme</a>
 						</div>
 					</div>
 				</div>
@@ -1061,12 +946,12 @@
 				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
 					<div class="inner-box">
 						<div class="image">
-							<a href="projects-detail.html"><img src="assetshome/images/gallery/3.jpg" alt="" /></a>
+							<a href="{{ route('primaria') }}"><img src="{{asset('assetshome/images/gallery/primaria.jpg')}}" alt="" /></a>
 						</div>
 						<div class="lower-content">
 							
-							<h3><a href="projects-detail.html">Primaria</a></h3>
-							<a href="projects-detail.html" class="view">Informarme</a>
+							<h3><a href="{{ route('primaria') }}">Primaria</a></h3>
+							<a href="{{ route('primaria') }}" class="view">Informarme</a>
 						</div>
 					</div>
 				</div>
@@ -1075,12 +960,25 @@
 				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
 					<div class="inner-box">
 						<div class="image">
-							<a href="projects-detail.html"><img src="assetshome/images/gallery/4.jpg" alt="" /></a>
+							<a href="{{ route('secundaria') }}"><img src="{{asset('assetshome/images/gallery/secundaria.jpg')}}" alt="" /></a>
+						</div>
+						<div class="lower-content">
+							<h3><a href="{{ route('secundaria') }}">Secundaria</a></h3>
+							<a href="{{ route('secundaria') }}" class="view">Informarme</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Project Block Two -->
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="image">
+							<a href="{{ route('preuniversitario') }}"><img src="{{asset('assetshome/images/gallery/preuniversitario.jpg')}}" alt="" /></a>
 						</div>
 						<div class="lower-content">
 							
-							<h3><a href="projects-detail.html">Secundaria</a></h3>
-							<a href="projects-detail.html" class="view">Informarme</a>
+							<h3><a href="{{ route('preuniversitario') }}">Pre-Universitario</a></h3>
+							<a href="{{ route('preuniversitario') }}" class="view">Informarme</a>
 						</div>
 					</div>
 				</div>
@@ -1089,12 +987,12 @@
 				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
 					<div class="inner-box">
 						<div class="image">
-							<a href="projects-detail.html"><img src="assetshome/images/gallery/5.jpg" alt="" /></a>
+							<a href="{{ route('ajedrez') }}"><img src="{{asset('assetshome/images/gallery/ajedrez.jpg')}}" alt="" /></a>
 						</div>
 						<div class="lower-content">
 							
-							<h3><a href="projects-detail.html">Bachilleres</a></h3>
-							<a href="projects-detail.html" class="view">Informarme</a>
+							<h3><a href="{{ route('ajedrez') }}">Ajedrez</a></h3>
+							<a href="{{ route('ajedrez') }}" class="view">Informarme</a>
 						</div>
 					</div>
 				</div>
@@ -1103,12 +1001,25 @@
 				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
 					<div class="inner-box">
 						<div class="image">
-							<a href="projects-detail.html"><img src="assetshome/images/gallery/2.jpg" alt="" /></a>
+							<a href="{{ route('operadorcomputadora') }}"><img src="{{asset('assetshome/images/gallery/operadorcomputadora.jpg')}}" alt="" /></a>
+						</div>
+						<div class="lower-content">
+							<h3><a href="{{ route('operadorcomputadora') }}">Computación</a></h3>
+							<a href="{{ route('operadorcomputadora') }}" class="view">Informarme</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Project Block Two -->
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="image">
+							<a href="{{ route('robotica') }}"><img src="{{asset('assetshome/images/gallery/robotica.jpg')}}" alt="" /></a>
 						</div>
 						<div class="lower-content">
 							
-							<h3><a href="projects-detail.html">Universitario</a></h3>
-							<a href="projects-detail.html" class="view">Informarme</a>
+							<h3><a href="{{ route('robotica') }}">Robótica</a></h3>
+							<a href="{{ route('robotica') }}" class="view">Informarme</a>
 						</div>
 					</div>
 				</div>
@@ -1117,19 +1028,73 @@
 				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
 					<div class="inner-box">
 						<div class="image">
-							<a href="projects-detail.html"><img src="assetshome/images/gallery/2.jpg" alt="" /></a>
+							<a href="{{ route('programacion') }}"><img src="{{asset('assetshome/images/gallery/programacion.jpg')}}" alt="" /></a>
 						</div>
 						<div class="lower-content">
 							
-							<h3><a href="projects-detail.html">Robotica</a></h3>
-							<a href="projects-detail.html" class="view">Informarme</a>
+							<h3><a href="{{ route('programacion') }}">Programación y Algoritmos</a></h3>
+							<a href="{{ route('programacion') }}" class="view">Informarme</a>
 						</div>
 					</div>
 				</div>
+				
+				<!-- Project Block Two -->
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="image">
+							<a href="{{ route('disenoweb') }}"><img src="{{asset('assetshome/images/gallery/disenoweb.jpg')}}" alt="" /></a>
+						</div>
+						<div class="lower-content">
+							<h3><a href="{{ route('disenoweb') }}">Diseño Web</a></h3>
+							<a href="{{ route('disenoweb') }}" class="view">Informarme</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Project Block Two -->
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="image">
+							<a href="{{ route('creacionapp') }}"><img src="{{asset('assetshome/images/gallery/creacionapp.jpg')}}" alt="" /></a>
+						</div>
+						<div class="lower-content">
+							
+							<h3><a href="{{ route('creacionapp') }}">Creación de App</a></h3>
+							<a href="{{ route('creacionapp') }}" class="view">Informarme</a>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Project Block Two -->
+				{{-- <div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="image">
+							<a href="{{ route('primaria') }}"><img src="{{asset('assetshome/images/gallery/primaria.jpg')}}" alt="" /></a>
+						</div>
+						<div class="lower-content">
+							
+							<h3><a href="{{ route('primaria') }}">Primaria</a></h3>
+							<a href="{{ route('primaria') }}" class="view">Informarme</a>
+						</div>
+					</div>
+				</div> --}}
+				
+				<!-- Project Block Two -->
+				{{-- <div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="image">
+							<a href="{{ route('secundaria') }}"><img src="{{asset('assetshome/images/gallery/secundaria.jpg')}}" alt="" /></a>
+						</div>
+						<div class="lower-content">
+							<h3><a href="{{ route('secundaria') }}">Secundaria</a></h3>
+							<a href="{{ route('secundaria') }}" class="view">Informarme</a>
+						</div>
+					</div>
+				</div> --}}
 				
 			</div>
 		</div>
-	</section> --}}
+	</section>
 	<!-- Project Page Section -->
 
 	<!-- Services Section Three -->
@@ -1146,7 +1111,7 @@
 				<div class="service-block-two">
 					<div class="inner-box">
 						<div class="icon flaticon-menu"></div>
-						<h3><a href="{{ route('fotocopia') }}">Fotocopia e impresión</a></h3>
+						<h3><a href="{{ route('fotocopia') }}">Fotocopia e Impresión</a></h3>
 						<div class="text">Ya no vayas a la universidad,Copias e impresiones desde 9 centavos</div>
 						<a href="{{ route('fotocopia') }}" class="arrow flaticon-right-arrow"></a>
 					</div>
@@ -1196,6 +1161,8 @@
 		</div>
 	</section>
 	<!-- End Services Section Three -->
+
+
 
 	<!-- About Section -->
 	<section class="about-section">
@@ -1664,7 +1631,7 @@
 				
 					<!-- Copright Column -->
 					<div class="copyright-column col-lg-6 col-md-6 col-sm-12">
-						<div class="copyright">&copy; 2023.</div>
+						<div class="copyright">>Copyright &copy; 2023. All Rights Reserved.</div>
 					</div>
 					
 					<!-- Nav Column -->

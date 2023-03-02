@@ -927,6 +927,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/disenoweb', [HomeController::class, 'disenoweb'])->name('disenoweb');
 
+    Route::get('/operadorcomputadora', [HomeController::class, 'operadorcomputadora'])->name('operadorcomputadora');
+
+    Route::get('/disenografico', [HomeController::class, 'disenografico'])->name('disenografico');
+
+    Route::get('/ajedrez', [HomeController::class, 'ajedrez'])->name('ajedrez');
+
+
     Route::get('/fotocopia', [HomeController::class, 'fotocopia'])->name('fotocopia');
 
 

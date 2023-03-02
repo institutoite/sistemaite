@@ -68,22 +68,26 @@
     <header class="main-header header-style-two">
         
       <!-- Header Top -->
-          <div class="header-top-two">
-            <div class="auto-container">
-              <div class="inner-container clearfix">
-                <!-- Top Left -->
-                <div class="top-left clearfix">
-                  <div class="text">Apoyo escolar 2023. <a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información">Contactanos</a></div>
-                </div>
-                
-                <!-- Top Right -->
-                <div class="top-right pull-right clearfix">
-                  <div class="location">Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</div>
-                </div>
+        <div class="header-top-two">
+          <div class="auto-container">
+            <div class="inner-container clearfix">
+              <!-- Top Left -->
+              <div class="top-left clearfix">
+                <div class="text">Apoyo escolar 2023. <a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información">Contactanos</a></div>
+              </div>
+              
+              <!-- Top Right -->
+              <div class="top-right pull-right clearfix">
+                <div class="location">Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</div>
               </div>
             </div>
           </div>
+        </div>
       
+      <!-- Header Lower -->
+      @include('home.fronted.header')
+      <!-- End Header Lower -->
+
       <!-- Sticky Header  -->
       <div class="sticky-header">
         <div class="auto-container clearfix">
@@ -94,63 +98,17 @@
             <!--Right Col-->
             <div class="pull-right">
     
-            <!-- Main Menu -->
-            <nav class="main-menu navbar-expand-md">
-							<div class="navbar-header">
-								<!-- Toggle Button -->
-								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-								</button>
-							</div>
-							
-							<div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
-								<ul class="navigation clearfix">
-									<li class="current dropdown"><a href="{{ url('/') }}">Inicio</a>
-									</li>
-									<li><a href="{{ route('about') }}">¿Quiénes somos?</a>
-									</li>
-									<li class="dropdown"><a href="#">Lo mas nuevo</a>
-										<ul>
-											<li><a href="{{ route('robotica') }}">Robótica</a></li>
-											<li><a href="{{ route('programacion') }}">Programación</a></li>
-											<li><a href="{{ route('creacionapp') }}">Creación de App Móviles</a></li>
-											<li><a href="{{ route('disenoweb') }}">Diseño Web</a></li>
-											<li><a href="#">Ajedrez</a></li>
-											
-										</ul>
-									</li>
-									<li class="dropdown"><a href="#">Servicios</a>
-										<ul>
-											<li><a href="{{ route('fotocopia') }}">Fotocopia e impresión</a></li>
-											<li><a href="#">Resolución de practicos</a></li>
-											<li><a href="#">Asistente ite</a></li>
-											<li><a href="#">Libros personalizados</a></li>
-											<li><a href="#">Creacion de dibujo</a></li>
-											<li><a href="#">ite restaurante</a></li>
-										</ul>
-									</li>
-									<li class="dropdown"><a href="#">Clases</a>
-										<ul>
-											<li><a href="{{ route('inicial') }}">Inicial</a></li>
-											<li><a href="{{ route('primaria') }}">Primaria</a></li>
-											<li><a href="{{ route('secundaria') }}">Secundaria</a></li>
-											<li><a href="{{ route('preuniversitario') }}">Preuniversitario</a></li>
-											<li><a href="{{ route('universitario') }}">Universitarios</a></li>
-										</ul>
-									</li>
-									<li><a href="contact.html">Contact</a></li>
-								</ul>
-							</div>
-						</nav>
-            <!-- Main Menu End-->
-      
-            <!-- Mobile Navigation Toggler -->
-            <div class="mobile-nav-toggler"><span class="icon flaticon-menu-1"></span></div>
-      
-            </div>
-        </div>
+                <!-- Main Menu -->
+                <nav class="main-menu">
+                    <!--Keep This Empty / Menu will come through Javascript-->
+                </nav>
+                <!-- Main Menu End-->
+                
+                <!-- Mobile Navigation Toggler -->
+                <div class="mobile-nav-toggler"><span class="icon flaticon-menu-1"></span></div>
+                
+              </div>
+          </div>
       </div>
       <!-- End Sticky Menu -->
       
@@ -188,7 +146,7 @@
         <div class="row clearfix">
         
           <!-- Title Column -->
-          <div class="content-column col-lg-6 col-md-12 col-sm-12">
+          <div class="content-column col-lg-7 col-md-12 col-sm-12">
             <div class="inner-column">
               <!-- Sec Title -->
               <div class="sec-title">
@@ -203,13 +161,19 @@
                       <img src="{{asset('')}}" alt="">
                     </div> --}}
                     <div class="content">
-                      <h4>Atendemos de Lunes a Sabados</h4>
+                      <h4>También hacemos:</h4>
                       {{-- <p>Sin Materiales</p> --}}
+                      <ul class="experiance_list mt-30">
+                        <li> Anillado </li>
+                        <li> Plastificado </li>
+                        <li> Transcripciones </li>
+                        <li> Escaner </li>
+                      </ul>
                     </div>
                   </div>
-                  {{-- <ul class="experiance_list mt-30">
+                  <ul class="experiance_list mt-30">
                     <li> </li>
-                  </ul> --}}
+                  </ul>
                   <div class="button-box">
                     <a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información de fotocopia" class="theme-btn btn-style-seven"><span class="txt">Contactanos <i class="flaticon-next-2"></i></span></a>
                   </div>
@@ -234,7 +198,7 @@
           
           <!-- Blocks Column -->
 
-          <div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
+          <div class="sidebar-side col-lg-5 col-md-12 col-sm-12">
             <aside class="sidebar sticky-top">
               
               <!-- Sidebar Widget / Search Widget -->

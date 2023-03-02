@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asignatura;
 use App\Models\Colegio;
 use App\Models\Convenio;
 use App\Models\Curso;
@@ -278,6 +279,23 @@ class HomeController extends Controller
     public function disenoweb()
     {
         return view('home.fronted.disenoweb');
+    } 
+
+    public function operadorcomputadora()
+    {
+        $operadorcomputadora=Asignatura::where('carrera_id',1)->get();
+        return view('home.fronted.operadorcomputadora', compact(['operadorcomputadora']));
+    } 
+
+    public function disenografico()
+    {
+        $disenografico=Asignatura::where('carrera_id',2)->get();
+        return view('home.fronted.disenografico', compact(['disenografico']));
+    } 
+
+    public function ajedrez()
+    {
+        return view('home.fronted.ajedrez');
     } 
 
     public function plan($id)

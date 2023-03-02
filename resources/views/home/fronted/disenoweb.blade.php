@@ -68,24 +68,26 @@
     <header class="main-header header-style-two">
         
       <!-- Header Top -->
-          <div class="header-top-two">
-            <div class="auto-container">
-              <div class="inner-container clearfix">
-                <!-- Top Left -->
-                <div class="top-left clearfix">
-                  <div class="text">Apoyo escolar 2023. <a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información">Contactanos</a></div>
-                </div>
-                
-                <!-- Top Right -->
-                <div class="top-right pull-right clearfix">
-                  <div class="location">Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</div>
-                </div>
+        <div class="header-top-two">
+          <div class="auto-container">
+            <div class="inner-container clearfix">
+              <!-- Top Left -->
+              <div class="top-left clearfix">
+                <div class="text">Apoyo escolar 2023. <a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información">Contactanos</a></div>
+              </div>
+              
+              <!-- Top Right -->
+              <div class="top-right pull-right clearfix">
+                <div class="location">Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</div>
               </div>
             </div>
           </div>
+        </div>
       
-      
-          
+      <!-- Header Lower -->
+      @include('home.fronted.header')
+      <!-- End Header Lower -->
+
       <!-- Sticky Header  -->
       <div class="sticky-header">
         <div class="auto-container clearfix">
@@ -96,66 +98,20 @@
             <!--Right Col-->
             <div class="pull-right">
     
-            <!-- Main Menu -->
-            <nav class="main-menu navbar-expand-md">
-							<div class="navbar-header">
-								<!-- Toggle Button -->
-								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-								</button>
-							</div>
-							
-							<div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
-								<ul class="navigation clearfix">
-									<li class="current dropdown"><a href="{{ url('/') }}">Inicio</a>
-									</li>
-									<li><a href="{{ route('about') }}">¿Quiénes somos?</a>
-									</li>
-									<li class="dropdown"><a href="#">Lo mas nuevo</a>
-										<ul>
-											<li><a href="{{ route('robotica') }}">Robótica</a></li>
-											<li><a href="{{ route('programacion') }}">Programación</a></li>
-											<li><a href="{{ route('creacionapp') }}">Creación de App Móviles</a></li>
-											<li><a href="{{ route('disenoweb') }}">Diseño Web</a></li>
-											<li><a href="#">Ajedrez</a></li>
-											
-										</ul>
-									</li>
-									<li class="dropdown"><a href="#">Servicios</a>
-										<ul>
-											<li><a href="{{ route('fotocopia') }}">Fotocopia e impresión</a></li>
-											<li><a href="#">Resolución de practicos</a></li>
-											<li><a href="#">Asistente ite</a></li>
-											<li><a href="#">Libros personalizados</a></li>
-											<li><a href="#">Creacion de dibujo</a></li>
-											<li><a href="#">ite restaurante</a></li>
-										</ul>
-									</li>
-									<li class="dropdown"><a href="#">Clases</a>
-										<ul>
-											<li><a href="{{ route('inicial') }}">Inicial</a></li>
-											<li><a href="{{ route('primaria') }}">Primaria</a></li>
-											<li><a href="{{ route('secundaria') }}">Secundaria</a></li>
-											<li><a href="{{ route('preuniversitario') }}">Preuniversitario</a></li>
-											<li><a href="{{ route('universitario') }}">Universitarios</a></li>
-										</ul>
-									</li>
-									<li><a href="contact.html">Contact</a></li>
-								</ul>
-							</div>
-						</nav>
-            <!-- Main Menu End-->
-      
-            <!-- Mobile Navigation Toggler -->
-            <div class="mobile-nav-toggler"><span class="icon flaticon-menu-1"></span></div>
-      
-            </div>
-        </div>
+                <!-- Main Menu -->
+                <nav class="main-menu">
+                    <!--Keep This Empty / Menu will come through Javascript-->
+                </nav>
+                <!-- Main Menu End-->
+                
+                <!-- Mobile Navigation Toggler -->
+                <div class="mobile-nav-toggler"><span class="icon flaticon-menu-1"></span></div>
+                
+              </div>
+          </div>
       </div>
       <!-- End Sticky Menu -->
-      
+
       <!-- Mobile Menu  -->
           <div class="mobile-menu">
               <div class="menu-backdrop"></div>
@@ -237,44 +193,51 @@
         <div class="row clearfix">
         
           <!-- Title Column -->
-          <div class="content-column col-lg-6 col-md-12 col-sm-12">
+          <div class="content-column col-lg-7 col-md-12 col-sm-12">
             <div class="inner-column">
               <!-- Sec Title -->
               <div class="sec-title">
                 <div class="title">Desde basico a experto</div>
-                <h2>¡Elige la tecnología y  <span>crea</span> aplicaciones Webs profesionales!</h2>
-                <div class="text">Aprenderás los conceptos básicos y avanzados necesarios para crear y desarrollar sitios web.</div>
+                <h2>Haz que tu creatividad brille en la<span> web.</span></h2>
+                <div class="text">En nuestro curso de diseño web, aprenderás habilidades prácticas y técnicas que te permitirán crear diseños web únicos y personalizados. Desde la creación de sitios web simples hasta proyectos web más complejos, nuestro curso te brindará las habilidades necesarias para crear diseños web impresionantes.</div>
               </div>
               <div class="row mt-none-30">
                 <div class="col-lg-6">
-                  {{-- <div class="experiance_item mt-30">
-                    <div class="icon">
+                  <div class="experiance_item mt-30">
+                    {{-- <div class="icon">
                       <img src="assets/images/icons/a_01.png" alt="">
-                    </div>
+                    </div> --}}
                     <div class="content">
-                      <h4>Inscibite Hoy..!!</h4>
-                      <p>Sin Materiales</p>
+                      <h4>Dirigido a:</h4>
+                      <p></p>
+                      <ul class="experiance_list mt-30">
+                        <li>Cualquier persona que quiera aprender a programar.</li>
+                        <li>Estudiantes de colegios.</li>
+                        <li>Estudiantes de institutos.</li>
+                        <li>Estudiantes universitarios.</li>
+                        <li>Ingenieros.</li>
+                      </ul>
                     </div>
-                  </div> --}}
-                  {{-- <ul class="experiance_list mt-30">
+                  </div>
+                  <ul class="experiance_list mt-30">
                     <li> </li>
-                  </ul> --}}
+                  </ul>
                   <div class="button-box">
                     <a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información de diseño web" class="theme-btn btn-style-seven"><span class="txt">Inscribite Hoy..!! <i class="flaticon-next-2"></i></span></a>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="counter_wrap mt-30">
-                    {{-- <h1><span class="number">350 Bs.<span class="plus">+</span></span> <span class="text"></span></h1> --}}
+                    <h1><span class="number">350 Bs.<span class="plus">+</span></span> <span class="text"></span></h1>
                   </div>
                   <div class="experiance_item mt-30">
                     <div class="icon">
                       <img src="assets/images/icons/a_02.png" alt="">
                     </div>
-                    {{-- <div class="content">
+                    <div class="content">
                       <h4>Mensual</h4>
-                      <p>Sin Materiales</p>
-                    </div> --}}
+                      <p></p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -282,7 +245,7 @@
           </div>
           
           <!-- Blocks Column -->
-          <div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
+          <div class="sidebar-side col-lg-5 col-md-12 col-sm-12">
             <aside class="sidebar sticky-top">
   
               <!-- Timing Widget -->

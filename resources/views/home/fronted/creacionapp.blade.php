@@ -68,24 +68,26 @@
     <header class="main-header header-style-two">
         
       <!-- Header Top -->
-          <div class="header-top-two">
-            <div class="auto-container">
-              <div class="inner-container clearfix">
-                <!-- Top Left -->
-                <div class="top-left clearfix">
-                  <div class="text">Apoyo escolar 2023. <a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información">Contactanos</a></div>
-                </div>
-                
-                <!-- Top Right -->
-                <div class="top-right pull-right clearfix">
-                  <div class="location">Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</div>
-                </div>
+        <div class="header-top-two">
+          <div class="auto-container">
+            <div class="inner-container clearfix">
+              <!-- Top Left -->
+              <div class="top-left clearfix">
+                <div class="text">Apoyo escolar 2023. <a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información">Contactanos</a></div>
+              </div>
+              
+              <!-- Top Right -->
+              <div class="top-right pull-right clearfix">
+                <div class="location">Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</div>
               </div>
             </div>
           </div>
+        </div>
       
-      
-          
+      <!-- Header Lower -->
+      @include('home.fronted.header')
+      <!-- End Header Lower -->
+
       <!-- Sticky Header  -->
       <div class="sticky-header">
         <div class="auto-container clearfix">
@@ -96,63 +98,17 @@
             <!--Right Col-->
             <div class="pull-right">
     
-            <!-- Main Menu -->
-            <nav class="main-menu navbar-expand-md">
-							<div class="navbar-header">
-								<!-- Toggle Button -->
-								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-								</button>
-							</div>
-							
-							<div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
-								<ul class="navigation clearfix">
-									<li class="current dropdown"><a href="{{ url('/') }}">Inicio</a>
-									</li>
-									<li><a href="{{ route('about') }}">¿Quiénes somos?</a>
-									</li>
-									<li class="dropdown"><a href="#">Lo mas nuevo</a>
-										<ul>
-											<li><a href="{{ route('robotica') }}">Robótica</a></li>
-											<li><a href="{{ route('programacion') }}">Programación</a></li>
-											<li><a href="{{ route('creacionapp') }}">Creación de App Móviles</a></li>
-											<li><a href="{{ route('disenoweb') }}">Diseño Web</a></li>
-											<li><a href="#">Ajedrez</a></li>
-											
-										</ul>
-									</li>
-									<li class="dropdown"><a href="#">Servicios</a>
-										<ul>
-											<li><a href="{{ route('fotocopia') }}">Fotocopia e impresión</a></li>
-											<li><a href="#">Resolución de practicos</a></li>
-											<li><a href="#">Asistente ite</a></li>
-											<li><a href="#">Libros personalizados</a></li>
-											<li><a href="#">Creacion de dibujo</a></li>
-											<li><a href="#">ite restaurante</a></li>
-										</ul>
-									</li>
-									<li class="dropdown"><a href="#">Clases</a>
-										<ul>
-											<li><a href="{{ route('inicial') }}">Inicial</a></li>
-											<li><a href="{{ route('primaria') }}">Primaria</a></li>
-											<li><a href="{{ route('secundaria') }}">Secundaria</a></li>
-											<li><a href="{{ route('preuniversitario') }}">Preuniversitario</a></li>
-											<li><a href="{{ route('universitario') }}">Universitarios</a></li>
-										</ul>
-									</li>
-									<li><a href="contact.html">Contact</a></li>
-								</ul>
-							</div>
-						</nav>
-            <!-- Main Menu End-->
-      
-            <!-- Mobile Navigation Toggler -->
-            <div class="mobile-nav-toggler"><span class="icon flaticon-menu-1"></span></div>
-      
-            </div>
-        </div>
+                <!-- Main Menu -->
+                <nav class="main-menu">
+                    <!--Keep This Empty / Menu will come through Javascript-->
+                </nav>
+                <!-- Main Menu End-->
+                
+                <!-- Mobile Navigation Toggler -->
+                <div class="mobile-nav-toggler"><span class="icon flaticon-menu-1"></span></div>
+                
+              </div>
+          </div>
       </div>
       <!-- End Sticky Menu -->
       
@@ -169,54 +125,6 @@
     
     </header>
     <!-- End Main Header -->
-    
-    <!-- Sidebar Cart Item -->
-    <div class="xs-sidebar-group info-group">
-      <div class="xs-overlay xs-bg-black"></div>
-      <div class="xs-sidebar-widget">
-        <div class="sidebar-widget-container">
-          <div class="widget-heading">
-            <a href="#" class="close-side-widget">
-              X
-            </a>
-          </div>
-          <div class="sidebar-textwidget">
-            
-            <!-- Sidebar Info Content -->
-            <div class="sidebar-info-contents">
-              <div class="content-inner">
-                <div class="logo">
-                  <a href="index.html"><img src="assets/images/logo-2.png" alt="" title=""></a>
-                </div>
-                <div class="content-box">
-                  <h5>About Us</h5>
-                  <p class="text">The argument in favor of using filler text goes something like this: If you use real content in the Process, anytime you reach a review point you’ll end up reviewing and negotiating the content itself and not the design.</p>
-                  <a href="contact.html" class="theme-btn btn-style-two"><span class="txt">Consultation</span></a>
-                </div>
-                <div class="contact-info">
-                  <h5>Contact Info</h5>
-                  <ul class="list-style-one">
-                    <li><span class="icon fas fa-map-marker"></span>Chicago 12, Melborne City, USA</li>
-                    <li><span class="icon fas fa-phone"></span>(111) 111-111-1111</li>
-                    <li><span class="icon fas fa-envelope"></span>aginco@gmail.com</li>
-                    <li><span class="icon fas fa-clock"></span>Week Days: 09.00 to 18.00 Sunday: Closed</li>
-                  </ul>
-                </div>
-                <!-- Social Box -->
-                <ul class="social-box">
-                  <li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
-                  <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-                  <li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
-                  <li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
-                </ul>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- END sidebar widget item -->
     
     <!-- Page Title -->
       {{-- <section class="page-title" style="background-image: url(assets/images/background/1.jpg)"> --}}
@@ -242,8 +150,8 @@
               <!-- Sec Title -->
               <div class="sec-title">
                 <div class="title">Desde basico a experto</div>
-                <h2>¡Aprende y <span>crea</span> la aplicación que quieras!</h2>
-                <div class="text">Aprenderás cómo desarrollar aplicaciones para dispositivos móviles.</div>
+                <h2>Haz realidad tus sueños de <span>creación</span> de aplicaciones móviles con nosotros.</h2>
+                <div class="text">¿Quieres ser parte de la revolución de las aplicaciones móviles? ¡Inscríbete en nuestro curso de creación de aplicaciones móviles y aprende a crear tus propias aplicaciones desde cero!</div>
               </div>
               <div class="row mt-none-30">
                 <div class="col-lg-6">

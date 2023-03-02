@@ -68,22 +68,26 @@
     <header class="main-header header-style-two">
         
       <!-- Header Top -->
-          <div class="header-top-two">
-            <div class="auto-container">
-              <div class="inner-container clearfix">
-                <!-- Top Left -->
-                <div class="top-left clearfix">
-                  <div class="text">Apoyo escolar 2023. <a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información">Contactanos</a></div>
-                </div>
-                
-                <!-- Top Right -->
-                <div class="top-right pull-right clearfix">
-                  <div class="location">Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</div>
-                </div>
-              </div>
+      <div class="header-top-two">
+        <div class="auto-container">
+          <div class="inner-container clearfix">
+            <!-- Top Left -->
+            <div class="top-left clearfix">
+              <div class="text">Apoyo escolar 2023. <a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información">Contactanos</a></div>
+            </div>
+            
+            <!-- Top Right -->
+            <div class="top-right pull-right clearfix">
+              <div class="location">Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</div>
             </div>
           </div>
+        </div>
+      </div>
       
+      <!-- Header Lower -->
+      @include('home.fronted.header')
+      <!-- End Header Lower -->
+
       <!-- Sticky Header  -->
       <div class="sticky-header">
         <div class="auto-container clearfix">
@@ -94,76 +98,17 @@
             <!--Right Col-->
             <div class="pull-right">
     
-            <!-- Main Menu -->
-              <nav class="main-menu">
-                <nav class="main-menu navbar-expand-md">
-                  <div class="navbar-header">
-                    <!-- Toggle Button -->
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </button>
-                  </div>
-                  
-                  <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
-                    <ul class="navigation clearfix">
-                      <li><a href="{{ url('/') }}">Inicio</a>
-                        
-                      </li>
-                      <li class="dropdown"><a href="#">Nosotros</a>
-                        <ul>
-                          <li><a href="#">Whatsapp</a></li>
-                          <li><a href="#">Telegram</a></li>
-                          <li><a href="#">Correo</a></li>
-                          <li><a href="#">Escríbenos</a></li>
-                          <li><a href="#">Facebook</a></li>
-                          <li><a href="#">Youtube</a></li>
-                          <li><a href="#">Todo</a></li>
-                          
-                        </ul>
-                      </li>
-                      <li class="dropdown"><a href="#">Especial</a>
-                        <ul>
-                          <li><a href="{{ route('robotica') }}">Robótica</a></li>
-                          <li><a href="{{ route('programacion') }}">Programación</a></li>
-                          <li><a href="#">Apps Móviles</a></li>
-                          <li><a href="#">Apps Webs</a></li>
-                          <li><a href="#">Libros personalizados</a></li>
-                          <li><a href="#">Creamos dibujo</a></li>
-                          
-                        </ul>
-                      </li>
-                      <li class="dropdown"><a href="#">Proyectos</a>
-                        <ul>
-                          <li><a href="#">ite 360</a></li>
-                          <li><a href="#">Asistente ite</a></li>
-                          <li><a href="#">ite ayuda</a></li>
-                          <li><a href="#">ite restaurante</a></li>
-                        </ul>
-                      </li>
-                      <li class="dropdown"><a href="#">Clases</a>
-                        <ul>
-                          <li><a href="{{ route('guarderia') }}">Guarderia</a></li>
-                          <li><a href="{{ route('inicial') }}">Inicial</a></li>
-                          <li><a href="{{ route('primaria') }}">Primaria</a></li>
-                          <li><a href="{{ route('secundaria') }}">Secundaria</a></li>
-                          <li><a href="{{ route('preuniversitario') }}">Preuniversitario</a></li>
-                          <li><a href="{{ route('universitario') }}">Universitarios</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="$">Contacto</a></li>
-                    </ul>
-                  </div>
+                <!-- Main Menu -->
+                <nav class="main-menu">
+                    <!--Keep This Empty / Menu will come through Javascript-->
                 </nav>
-              </nav>
-            <!-- Main Menu End-->
-      
-            <!-- Mobile Navigation Toggler -->
-            <div class="mobile-nav-toggler"><span class="icon flaticon-menu-1"></span></div>
-      
-            </div>
-        </div>
+                <!-- Main Menu End-->
+                
+                <!-- Mobile Navigation Toggler -->
+                <div class="mobile-nav-toggler"><span class="icon flaticon-menu-1"></span></div>
+                
+              </div>
+          </div>
       </div>
       <!-- End Sticky Menu -->
       
