@@ -936,6 +936,17 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/fotocopia', [HomeController::class, 'fotocopia'])->name('fotocopia');
 
+    Route::get('/resolucionpracticos', [HomeController::class, 'resolucionpracticos'])->name('resolucionpracticos');
+
+
+    Route::get('/matematica', [HomeController::class, 'matematica'])->name('matematica');
+
+    Route::get('/fisica', [HomeController::class, 'fisica'])->name('fisica');
+
+    Route::get('/quimica', [HomeController::class, 'quimica'])->name('quimica');
+
+    Route::get('/algebra', [HomeController::class, 'algebra'])->name('algebra');
+
 
     Route::any('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');
 

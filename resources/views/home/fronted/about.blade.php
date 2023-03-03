@@ -126,54 +126,6 @@
     </header>
     <!-- End Main Header -->
     
-    <!-- Sidebar Cart Item -->
-    <div class="xs-sidebar-group info-group">
-      <div class="xs-overlay xs-bg-black"></div>
-      <div class="xs-sidebar-widget">
-        <div class="sidebar-widget-container">
-          <div class="widget-heading">
-            <a href="#" class="close-side-widget">
-              X
-            </a>
-          </div>
-          <div class="sidebar-textwidget">
-            
-            <!-- Sidebar Info Content -->
-            <div class="sidebar-info-contents">
-              <div class="content-inner">
-                <div class="logo">
-                  <a href="index.html"><img src="assets/images/logo-2.png" alt="" title=""></a>
-                </div>
-                <div class="content-box">
-                  <h5>About Us</h5>
-                  <p class="text">The argument in favor of using filler text goes something like this: If you use real content in the Process, anytime you reach a review point you’ll end up reviewing and negotiating the content itself and not the design.</p>
-                  <a href="contact.html" class="theme-btn btn-style-two"><span class="txt">Consultation</span></a>
-                </div>
-                <div class="contact-info">
-                  <h5>Contact Info</h5>
-                  <ul class="list-style-one">
-                    <li><span class="icon fas fa-map-marker"></span>Chicago 12, Melborne City, USA</li>
-                    <li><span class="icon fas fa-phone"></span>(111) 111-111-1111</li>
-                    <li><span class="icon fas fa-envelope"></span>aginco@gmail.com</li>
-                    <li><span class="icon fas fa-clock"></span>Week Days: 09.00 to 18.00 Sunday: Closed</li>
-                  </ul>
-                </div>
-                <!-- Social Box -->
-                <ul class="social-box">
-                  <li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
-                  <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-                  <li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
-                  <li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
-                </ul>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- END sidebar widget item -->
-    
     <!-- Page Title -->
       {{-- <section class="page-title" style="background-image: url(assets/images/background/1.jpg)"> --}}
       <section class="page-title" style="background-image: url('{{ asset('assetshome/images/background/portada.jpg')}}');">
@@ -329,7 +281,7 @@
 					<div class="map-boxed mt-30">
 						<!--Map Outer-->
 						<div class="map-outer">
-							<iframe src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d949.696744730421!2d-63.1359772!3d-17.8017059!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTfCsDQ4JzA2LjAiUyA2M8KwMDgnMDcuOSJX!5e0!3m2!1ses!2sbo!4v1677590125133!5m2!1ses!2sbo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1899.3919022955802!2d-63.13662465664707!3d-17.801855004536545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93f1e9d3360e592d%3A0xbb1ce56a94dcace2!2site!5e0!3m2!1ses-419!2sbo!4v1677855301119!5m2!1ses-419!2sbo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 						</div>
 					</div>
 				</div>
@@ -399,12 +351,12 @@
                                 <div class="footer-widget links-widget">
 									<h3>Informaciones</h3>
 									<ul class="nav-list">
-										<li><a href="#">¿Quienes Somos?</a></li>
-										<li><a href="#">Misión</a></li>
-										<li><a href="#">Visión</a></li>
+										<li><a href="{{ route('about') }}">¿Quienes Somos?</a></li>
+										<li><a href="{{ route('about') }}">Misión</a></li>
+										<li><a href="{{ route('about') }}">Visión</a></li>
 										<li><a href="#">Preguntas frecuentes</a></li>
-										<li><a href="#">Terminos & condiciones</a></li>
-										<li><a href="#">Politica de privacidad</a></li>
+										<li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
+										<li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
 									</ul>
 								</div>
 							</div>

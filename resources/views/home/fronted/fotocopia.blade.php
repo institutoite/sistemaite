@@ -285,11 +285,11 @@
                     <div class="big-column col-lg-6 col-md-12 col-sm-12">
 						<div class="row clearfix">
 							
-                        	<!-- Footer Column -->
-                            <div class="footer-column col-lg-7 col-md-6 col-sm-12">
-                                <div class="footer-widget about-widget">
+              <!-- Footer Column -->
+              <div class="footer-column col-lg-7 col-md-6 col-sm-12">
+                <div class="footer-widget about-widget">
 									<div class="logo">
-										<a href="index.html"><img src="assets/images/logo-4.png" alt="" title=""></a>
+										{{-- <a href="index.html"><img src="assets/images/logo-4.png" alt="" title=""></a> --}}
 									</div>
 									<div class="text">ITE es un centro educativo que brinda clases de nivelación en diferentes materias y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.</div>
 									<div class="opening">
@@ -301,16 +301,16 @@
 							</div>
 							
 							<!-- Footer Column -->
-                            <div class="footer-column col-lg-5 col-md-6 col-sm-12">
-                                <div class="footer-widget links-widget">
+              <div class="footer-column col-lg-5 col-md-6 col-sm-12">
+                <div class="footer-widget links-widget">
 									<h3>Informaciones</h3>
 									<ul class="nav-list">
-										<li><a href="#">¿Quienes Somos?</a></li>
-										<li><a href="#">Misión</a></li>
-										<li><a href="#">Visión</a></li>
+										<li><a href="{{ route('about') }}">¿Quienes Somos?</a></li>
+										<li><a href="{{ route('about') }}">Misión</a></li>
+										<li><a href="{{ route('about') }}">Visión</a></li>
 										<li><a href="#">Preguntas frecuentes</a></li>
-										<li><a href="#">Terminos & condiciones</a></li>
-										<li><a href="#">Politica de privacidad</a></li>
+										<li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
+										<li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
 									</ul>
 								</div>
 							</div>

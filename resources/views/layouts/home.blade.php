@@ -168,7 +168,7 @@
 									<li class="dropdown"><a href="#">Servicios</a>
 										<ul>
 											<li><a href="{{ route('fotocopia') }}">Fotocopia e impresión</a></li>
-											<li><a href="#">Resolución de practicos</a></li>
+											<li><a href="{{ route('resolucionpracticos') }}">Resolución de practicos</a></li>
 											<li><a href="https://asistente.ite.com.bo/">Asistente ite</a></li>
 										</ul>
 									</li>
@@ -177,8 +177,6 @@
 											<li><a href="{{ route('operadorcomputadora') }}">Computación</a></li>
 											<li><a href="{{ route('disenografico') }}">Diseño gráfico</a></li>
 											<li><a href="#">Mantenimiento y Reparación de Computadoras</a></li>
-											<li><a href="#">Marketing Digital</a></li>
-											
 										</ul>
 									</li>
 									<li class="dropdown"><a href="#">Niveles</a>
@@ -197,7 +195,7 @@
 											
 										</ul>
 									</li>
-									<li><a href="#">Contactenos</a></li>
+									<li><a href="{{ route('contact') }}">Contactenos</a></li>
 								</ul>
 							</div>
 						</nav>
@@ -430,8 +428,8 @@
 						data-frames='[{"delay":1200,"speed":1500,"frame":"0","from":"y:bottom;rX:-20deg;rY:-20deg;rZ:0deg;","to":"o:1;","ease":"power3.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
 						style="">
 							<div class="button-box">
-								<a href="#" class="theme-btn btn-style-three"><span class="txt">Contactanos<i class="flaticon-next-2"></i></span></a>
-								<a href="#" class="theme-btn btn-style-four"><span class="txt">Leer mas <i class="flaticon-next-2"></i></span></a>
+								<a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="theme-btn btn-style-three"><span class="txt">Contactanos<i class="flaticon-next-2"></i></span></a>
+								<a href="{{ route('about') }}" class="theme-btn btn-style-four"><span class="txt">Leer mas <i class="flaticon-next-2"></i></span></a>
 							</div>
 						</div>
 						
@@ -1121,9 +1119,9 @@
 				<div class="service-block-two">
 					<div class="inner-box">
 						<div class="icon flaticon-notebook"></div>
-						<h3><a href="service-detail.html">Resolución de prácticos</a></h3>
+						<h3><a href="{{ route('resolucionpracticos') }}">Resolución de prácticos</a></h3>
 						<div class="text">Te ayudamos con tus tareas y prácticos</div>
-						<a href="service-detail.html" class="arrow flaticon-right-arrow"></a>
+						<a href="{{ route('resolucionpracticos') }}" class="arrow flaticon-right-arrow"></a>
 					</div>
 				</div>
 				
@@ -1335,7 +1333,7 @@
 					<div class="map-boxed mt-30">
 						<!--Map Outer-->
 						<div class="map-outer">
-							<iframe src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d949.696744730421!2d-63.1359772!3d-17.8017059!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTfCsDQ4JzA2LjAiUyA2M8KwMDgnMDcuOSJX!5e0!3m2!1ses!2sbo!4v1677590125133!5m2!1ses!2sbo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1899.3919022955802!2d-63.13662465664707!3d-17.801855004536545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93f1e9d3360e592d%3A0xbb1ce56a94dcace2!2site!5e0!3m2!1ses-419!2sbo!4v1677855301119!5m2!1ses-419!2sbo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 						</div>
 					</div>
 				</div>
@@ -1569,12 +1567,12 @@
                                 <div class="footer-widget links-widget">
 									<h3>Informaciones</h3>
 									<ul class="nav-list">
-										<li><a href="#">¿Quienes Somos?</a></li>
-										<li><a href="#">Misión</a></li>
-										<li><a href="#">Visión</a></li>
+										<li><a href="{{ route('about') }}">¿Quienes Somos?</a></li>
+										<li><a href="{{ route('about') }}">Misión</a></li>
+										<li><a href="{{ route('about') }}">Visión</a></li>
 										<li><a href="#">Preguntas frecuentes</a></li>
-										<li><a href="#">Terminos & condiciones</a></li>
-										<li><a href="#">Politica de privacidad</a></li>
+										<li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
+										<li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
 									</ul>
 								</div>
 							</div>
@@ -1631,14 +1629,14 @@
 				
 					<!-- Copright Column -->
 					<div class="copyright-column col-lg-6 col-md-6 col-sm-12">
-						<div class="copyright">>Copyright &copy; 2023. All Rights Reserved.</div>
+						<div class="copyright">Copyright &copy; 2023. All Rights Reserved.</div>
 					</div>
 					
 					<!-- Nav Column -->
 					<div class="nav-column col-lg-6 col-md-6 col-sm-12">
 						<ul class="footer-nav">
-							<li><a href="#">Terminos & condiciones</a></li>
-							<li><a href="#">Politica de privacidad</a></li>
+							<li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
+							<li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
 						</ul>
 					</div>
 					

@@ -284,7 +284,7 @@
               <div class="year-block">
                 <div class="block-inner wow fadeInUp" data-wow-delay="150ms" data-wow-duration="1500ms">
                   <span class="icon flaticon-human-brain"></span>
-                  <h3>Compresión Completa </h3>
+                  <h3>Comprensión Completa </h3>
                 </div>
               </div>
               
@@ -679,12 +679,12 @@
                                 <div class="footer-widget links-widget">
 									<h3>Informaciones</h3>
 									<ul class="nav-list">
-										<li><a href="#">¿Quienes Somos?</a></li>
-										<li><a href="#">Misión</a></li>
-										<li><a href="#">Visión</a></li>
+										<li><a href="{{ route('about') }}">¿Quienes Somos?</a></li>
+										<li><a href="{{ route('about') }}">Misión</a></li>
+										<li><a href="{{ route('about') }}">Visión</a></li>
 										<li><a href="#">Preguntas frecuentes</a></li>
-										<li><a href="#">Terminos & condiciones</a></li>
-										<li><a href="#">Politica de privacidad</a></li>
+										<li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
+										<li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
 									</ul>
 								</div>
 							</div>

@@ -1,286 +1,338 @@
 <!DOCTYPE html>
-<html class="no-js" lang="es">
-
+<html>
 <head>
-  <!-- Meta Tags -->
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="ThemeMarch">
-  <!-- Site Title -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('assets/vendors/bootstrap/bootstrap.css')}}">
-  {{-- admin lte --}}
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-      <link rel="stylesheet" href="assets/vendor/fontawesome-free/css/all.min.css">
-      <link rel="stylesheet" href="{{asset('vendor/adminlte/dist/css/adminlte.min.css')}}">
-
-  {{-- fin adminlte --}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <link rel="stylesheet" href="assets/css/responsive.css">
-
-  <link href="assets/images/faviconite.ico" rel="shortcut icon">
-
-  {{--  css de booth --}}
-{{-- <link href="{{asset('dist/css/booth/style.css')}}" rel="stylesheet" type="text/css" media="all" /> --}}
-<link href="{{asset('dist/css/booth/owl.carousel.css')}}" rel="stylesheet" type="text/css" media="all">
-<!-- //Custom Theme files -->
-<!-- web font -->
-<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'><!--web font-->
-<link href="//fonts.googleapis.com/css?family=Petit+Formal+Script" rel="stylesheet">
-
-
-  <title>Educabol</title>
-  <link rel="stylesheet" href="{{asset('fronted/assets/css/plugins/fontawesome.min.css')}}">
-  <link rel="stylesheet" href="{{asset('fronted/assets/css/plugins/bootstrap.min.css')}}">
-  <link rel="stylesheet" href="{{asset('fronted/assets/css/plugins/slick.css')}}">
-  <link rel="stylesheet" href="{{asset('fronted/assets/css/style.css')}}">
+<meta charset="utf-8">
+<title>ite</title>
+<!-- Stylesheets -->
   <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
-  <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
-  
+
+<!-- Revolution Slider -->
+<link href="{{asset('assetshome/plugins/revolution/css/settings.css')}}" rel="stylesheet" type="text/css"><!-- REVOLUTION SETTINGS STYLES -->
+<link href="{{asset('assetshome/plugins/revolution/css/layers.css')}}" rel="stylesheet" type="text/css"><!-- REVOLUTION LAYERS STYLES -->
+<link href="{{asset('assetshome/plugins/revolution/css/navigation.css')}}" rel="stylesheet" type="text/css"><!-- REVOLUTION NAVIGATION STYLES -->
+
+<link href="{{asset('assetshome/css/style.css')}}" rel="stylesheet">
+<link href="{{asset('assetshome/css/responsive.css')}}" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+{{-- <link href="{{asset('assetshome/fonts/GlyphaLTStd-Bold')}}" rel="stylesheet"> --}}
+
+
+<link rel="shortcut icon" href="{{asset('assetshome/images/favicon.png')}}" type="image/x-icon">
+<link rel="icon" href="{{asset('assetshome/images/favicon.png')}}" type="image/x-icon">
+
+<!-- Responsive -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+
 </head>
 
-<body class="cs-dark">
+<body class="hidden-bar-wrapper">
 
-  <div class="cs-preloader cs-center">
-    <div class="cs-preloader_in"></div>
-    <span>Cargando</span>
-  </div>
-
-  <!-- Start Header Section -->
-  <header class="cs-site_header cs-style1 cs-sticky-header cs-white_bg">
-    <div class="cs-main_header">
-      <div class="container-fluid">
-        <div class="cs-main_header_in">
-          <div class="cs-main_header_left">
-            <a class="cs-site_branding" href="index.html"><img src="{{asset('fronted/assets/img/logoite.png')}}" alt="Logo"></a>
-          </div>
-          <div class="cs-main_header_right">
-            <div class="cs-search_wrap">
+  <div class="page-wrapper">
+ 	
+    <!-- Preloader -->
+    <div class="loader-wrap">
+      <div class="preloader">
+        <div class="preloader-close">x</div>
+        <div id="handle-preloader" class="handle-preloader">
+          <div class="animation-preloader">
+            <div class="spinner"></div>
+            <div class="txt-loading">
+              <span data-text-preloader="i" class="letters-loading">
+                i
+              </span>
+              <span data-text-preloader="t" class="letters-loading">
+                t
+              </span>
+              <span data-text-preloader="e" class="letters-loading">
+                e
+              </span>
             </div>
-            <div class="cs-nav_wrap">
-              <div class="cs-nav_out">
-                <div class="cs-nav_in">
-                  <div class="cs-nav">
-                    <ul class="cs-nav_list">
-                        <li><a href="{{ url('/') }}" class="cs-hero_btn text-secondary cs-style2 cs-color2">Inicio</a></li>
-                        <li><a href="{{ route('about') }}" class="cs-hero_btn text-secondary cs-style2 cs-color2">Acerca de Nosotros</a></li>
-                        <li><a href="{{ route('contact') }}" class="cs-hero_btn text-secondary cs-style2 cs-color2">Contactenos</a></li>
-                    </ul>
-                  </div>
-                </div>
+          </div>  
+        </div>
+      </div>
+    </div>
+    <!-- Preloader End -->
+     
+    <!-- Main Header / Hedare Style Two -->
+    <header class="main-header header-style-two">
+        
+      <!-- Header Top -->
+        <div class="header-top-two">
+          <div class="auto-container">
+            <div class="inner-container clearfix">
+              <!-- Top Left -->
+              <div class="top-left clearfix">
+                <div class="text">Apoyo escolar 2023. <a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información">Contactanos</a></div>
               </div>
-            </div>
-            <div class="cs-header_btns_wrap">
-              <div class="cs-header_btns">
-                <div class="cs-header_icon_btn cs-center cs-mobile_search_toggle">
-                  <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9.16667 16.3333C12.8486 16.3333 15.8333 13.3486 15.8333 9.66667C15.8333 5.98477 12.8486 3 9.16667 3C5.48477 3 2.5 5.98477 2.5 9.66667C2.5 13.3486 5.48477 16.3333 9.16667 16.3333Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M17.5 18L13.875 14.375" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>  
-                </div>
-                <div class="cs-toggle_box cs-profile_box">
-                  <div class="cs-toggle_btn cs-header_icon_btn cs-center">
-                    <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M15.5 15.75V14.25C15.5 13.4544 15.1839 12.6913 14.6213 12.1287C14.0587 11.5661 13.2956 11.25 12.5 11.25H6.5C5.70435 11.25 4.94129 11.5661 4.37868 12.1287C3.81607 12.6913 3.5 13.4544 3.5 14.25V15.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M9.5 8.25C11.1569 8.25 12.5 6.90685 12.5 5.25C12.5 3.59315 11.1569 2.25 9.5 2.25C7.84315 2.25 6.5 3.59315 6.5 5.25C6.5 6.90685 7.84315 8.25 9.5 8.25Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg> 
-                  </div>
-                  <div class="cs-toggle_body">
-                    @auth
-                      <div class="cs-user_info text-center">
-                        <h3><a href="{{ route('home')}}"> <img class="perfil img-thumbnail" src="{{URL::to('/')."/storage/".Auth::user()->foto}}" alt=""> </a> </h3>
-                      </div>
-                      <div class="text-center">
-                        <a class="btn form-inline btn-outline-primary boton-line-turqueza" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                            {{ __('Cerrar Sesion') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                        
-                      </div>
-                    @else
-                      <div class="cs-user_info">
-                        <h3 class="cs-user_balance">Ingresar al sistema</h3>
-                      </div>
-                      
-                      <div class="text-center">
-                        <a class="cs-btn cs-style1" href="{{ route('login') }}" ><span>Iniciar Sesion</span></a>
-                      </div>
-                    @endauth
               
-                  </div>
-                </div>
+              <!-- Top Right -->
+              <div class="top-right pull-right clearfix">
+                <div class="location">Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </header>
-  <!-- End Header Section -->
-<div class="card">
-    <div class="card-header">
-        <h1>Error 404 <i class="fas fa-eye-slash text-danger"></i></h1>
-    </div>
-    <div class="card-body">
-        <p class="text-secondary">
-            El detonante clásico del error 404 es que el contenido de la web ha sido eliminado o trasladado a otro URL. Sin embargo, hay otras razones por las que puede aparecer una página HTTP 404 en tu navegador. Repasamos aquí las más comunes:
-        </p>
-        <p class="text-secondary">
-            La dirección URL o sus contenidos (archivos o imágenes) se han eliminado o cambiado (los enlaces internos del sitio no han redireccionado a la nueva página de destino).
-        </p>
-        <p class="text-secondary">
-            El enlace no se colocó correctamente (por ejemplo, por falta de atención en la creación o rediseño), el URL se enlazó de forma incorrecta (no se marcó adecuadamente) o la dirección que el usuario introdujo en la barra del navegador no concuerda con el URL.  
-        </p>
-        <p class="text-secondary">
-            El servidor web responsable no está en funcionamiento o hay problemas de conexión.
-        </p>
-        <p class="text-secondary">
-            El nombre de dominio solicitado no puede ser convertido en una dirección IP por el Domain Name System.
-        </p>
-        <p class="text-secondary">
-            El nombre de dominio (ya) no existe.
-        </p>
-        <img src="{{URL::to('/')}}/storage/error/404.png" alt="">
       
-    </div>
-</div>
-  <!-- Start Footer -->
-  <footer class="cs-footer cs-style1">
-    <div class="cs-footer_bg"></div>
-    <div class="cs-height_100 cs-height_lg_60"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8">
-          <div class="row">
-            <div class="col-lg-4 col-sm-4">
-              <div class="cs-footer_widget">
-                <h2 class="cs-widget_title">Informaciones</h2>
-                <ul class="cs-widget_nav">
-                  <li><a href="explore-1.html">¿Quienes Somos?</a></li>
-                  <li><a href="explore-2.html">Preguntas frecuentes</a></li>
-                </ul>
-              </div>
-            </div><!-- .col -->
-            <div class="col-lg-4 col-sm-4">
-              <div class="cs-footer_widget">
-                <h2 class="cs-widget_title">Niveles</h2>
-                <ul class="cs-widget_nav">
-                  <li><a href="#">Guardería</a></li>
-                  <li><a href="#">Primaria</a></li>
-                  <li><a href="#">Secundaria</a></li>
-                  <li><a href="#">Pre-Universitarios</a></li>
-                  <li><a href="#">Universidad</a></li>
-                  <li><a href="#">Profesionales</a></li>
-                </ul>
-              </div>
-            </div><!-- .col -->
-            <div class="col-lg-4 col-sm-4">
-              <div class="cs-footer_widget">
-                <h2 class="cs-widget_title">Contacto</h2>
-                <ul class="cs-widget_nav">
-                  <li><a href="blog.html">+591 71039910</a></li>
-                  <li><a href="how-it-works.html">+591 71324941</a></li>
-                  <li><a href="about.html">+591 75553338</a></li>
-                  <li><a href="contact.html">3-219050</a></li>
-                  <li><a href="faq.html">info@ite.com.bo</a></li>
-                </ul>
-              </div>
-            </div><!-- .col -->
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-12">
-          <div class="cs-footer_widget">
-            <h2 class="cs-widget_title">Nuestras Redes Sociales</h2>
-            {{-- <form class="cs-footer_newsletter">
-              <input type="text" placeholder="Enter Your Email" class="cs-newsletter_input">
-              <button class="cs-newsletter_btn">
-                <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M24.7014 9.03523C25.0919 8.64471 25.0919 8.01154 24.7014 7.62102L18.3374 1.25706C17.9469 0.866533 17.3137 0.866533 16.9232 1.25706C16.5327 1.64758 16.5327 2.28075 16.9232 2.67127L22.5801 8.32812L16.9232 13.985C16.5327 14.3755 16.5327 15.0087 16.9232 15.3992C17.3137 15.7897 17.9469 15.7897 18.3374 15.3992L24.7014 9.03523ZM0.806641 9.32812H23.9943V7.32812H0.806641V9.32812Z" fill="white"/>
-                </svg>                  
-              </button>
-            </form> --}}
-            <div class="cs-footer_social_btns">
-              <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Visite su pagina. Quiero mas información"><i class="fab fa-whatsapp fa-fw"></i></a>
-              <a target="_blank" href="https://msng.link/o/?@institutoite=tg"><i class="fab fa-telegram fa-fw"></i></a>
-              <a target="_blank" href="https://www.facebook.com/educabolite"><i class="fab fa-facebook-f fa-fw"></i></a>
-              <a target="_blank" href="https://www.youtube.com/channel/UCbmRHfG51CGM1foo-6kzunQ"><i class="fab fa-youtube fa-fw"></i></a>
+      <!-- Header Lower -->
+      @include('home.fronted.header')
+      <!-- End Header Lower -->
+
+      <!-- Sticky Header  -->
+      <div class="sticky-header">
+        <div class="auto-container clearfix">
+            <!--Logo-->
+            <div class="logo pull-left">
+                <a href="{{ url('/') }}"><img src="{{asset('assetshome/images/logo.png')}}" alt="" title=""></a>
             </div>
+            <!--Right Col-->
+            <div class="pull-right">
+    
+                <!-- Main Menu -->
+                <nav class="main-menu">
+                    <!--Keep This Empty / Menu will come through Javascript-->
+                </nav>
+                <!-- Main Menu End-->
+                
+                <!-- Mobile Navigation Toggler -->
+                <div class="mobile-nav-toggler"><span class="icon flaticon-menu-1"></span></div>
+                
+              </div>
           </div>
-        </div>
       </div>
-    </div>
-    <div class="cs-height_60 cs-height_lg_20"></div>
-    <div class="cs-footer_bottom">
-      <div class="container">
-        <div class="cs-footer_separetor"></div>
-        <div class="cs-footer_bottom_in">
-          <div class="cs-copyright">Copyright 2022. Desarrollado por David Eduardo Flores.</div>
-          <ul class="cs-footer_menu">
-            <li><a href="{{ route('privacy') }}">Privacidad</a></li>
-            <li><a href="{{ route('termscondition') }}">Términos y Condiciones</a></li>
+      <!-- End Sticky Menu -->
+      
+      <!-- Mobile Menu  -->
+      <div class="mobile-menu">
+          <div class="menu-backdrop"></div>
+          <div class="close-btn"><span class="icon flaticon-multiply"></span></div>
+          
+          <nav class="menu-box">
+              <div class="nav-logo"><a href="{{ url('/') }}"><img src="{{asset('assetshome/images/logo.png')}}" alt="" title=""></a></div>
+              <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+          </nav>
+      </div>
+      <!-- End Mobile Menu -->
+    
+    </header>
+    <!-- End Main Header -->
+        
+    <!-- Page Title -->
+      {{-- <section class="page-title" style="background-image: url(assets/images/background/1.jpg)"> --}}
+      <section class="page-title" style="background-image: url('{{ asset('assetshome/images/background/portada.jpg')}}');">
+        <div class="auto-container">
+          <h2></h2>
+          <ul class="bread-crumb clearfix">
+            {{-- <li><a href="{{ url('/') }}">Inicio</a></li>
+            <li>Primaria</li> --}}
           </ul>
         </div>
-      </div>
-    </div>
-  </footer>
-  <!-- End Footer -->
-
- 
-
- 
-  <!-- End Modal -->
-
-  <!-- Start Video Popup -->
-  <div class="cs-video_popup">
-    <div class="cs-video_popup_overlay"></div>
-    <div class="cs-video_popup_content">
-      <div class="cs-video_popup_layer"></div>
-      <div class="cs-video_popup_container">
-        <div class="cs-video_popup_align">
-          <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="about:blank"></iframe>
-          </div>
+      </section>
+      <!--End Page Title-->
+    
+    <!-- Error Section -->
+    <section class="error-section">
+    	<div class="auto-container">
+        	<div class="content">
+            	<h1 class="error_text">404</h1>
+                <h2>Ups ... Parece que estás perdido!</h2>
+                <div class="text">¡Ups! La página que buscas no existe. Es posible que se haya movido o eliminado..</div>
+				<a href="{{ url('/') }}" class="theme-btn btn-style-seven"><span class="txt">Ir al inicio <i class="flaticon-next-2"></i></span></a>
+            </div>
         </div>
-        <div class="cs-video_popup_close"></div>
-      </div>
-    </div>
+    </section>
+    <!-- End Error Section -->
+
+    
+    
+   <!-- Main Footer / Style Two -->
+   <footer class="main-footer">
+		<div class="pattern-layer-six" style="background-image:url(assets/images/icons/vector-24.png)"></div>
+		<div class="pattern-layer-seven" style="background-image:url(assets/images/icons/vector-25.png)"></div>
+		<div class="auto-container">
+
+		<!-- Upper Box -->
+		<div class="upper-box">
+			<div class="row clearfix">
+			
+				<!-- Title Column -->
+				<div class="title-column col-lg-7 col-md-12 col-sm-12">
+					<div class="inner-column">
+						<h2>¡Descubre el poder de la <span>inteligencia artificial</span> con nuestro Asistente ITE!</h2>
+					</div>
+				</div>
+				
+				<!-- Button Column -->
+				<div class="button-column col-lg-5 col-md-12 col-sm-12">
+					<div class="inner-column text-center text-md-end">
+						<div class="button-box">
+							<a href="https://asistente.ite.com.bo/" class="theme-btn btn-style-eight"><span class="txt">Ingresar<i class="flaticon-next-2"></i></span></a>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<!-- End Upper Box -->
+			
+        	<!-- Widgets Section -->
+            <div class="widgets-section">
+            	<div class="row clearfix">
+                	
+                    <!-- Column -->
+                    <div class="big-column col-lg-6 col-md-12 col-sm-12">
+						<div class="row clearfix">
+							
+                        	<!-- Footer Column -->
+                            <div class="footer-column col-lg-7 col-md-6 col-sm-12">
+                                <div class="footer-widget about-widget">
+									<div class="logo">
+										<a href="index.html"><img src="assets/images/logo-4.png" alt="" title=""></a>
+									</div>
+									<div class="text">ITE es un centro educativo que brinda clases de nivelación en diferentes materias y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.</div>
+									<div class="opening">
+										<span class="icon far fa-clock"></span>
+										<strong>Horarios</strong>
+										<div class="time">Lunes - Viernes 7:30 - 21:00 <br> Sabados 7:30 - 17:00 </div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Footer Column -->
+                            <div class="footer-column col-lg-5 col-md-6 col-sm-12">
+                                <div class="footer-widget links-widget">
+									<h3>Informaciones</h3>
+									<ul class="nav-list">
+										<li><a href="{{ route('about') }}">¿Quienes Somos?</a></li>
+										<li><a href="{{ route('about') }}">Misión</a></li>
+										<li><a href="{{ route('about') }}">Visión</a></li>
+										<li><a href="#">Preguntas frecuentes</a></li>
+										<li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
+										<li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
+									</ul>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					
+					<!-- Column -->
+                    <div class="big-column col-lg-6 col-md-12 col-sm-12">
+						<div class="row clearfix">
+						
+							<!-- Footer Column -->
+              <div class="footer-column col-lg-4 col-md-6 col-sm-12">
+                <div class="footer-widget links-widget style-two">
+									<h3>Niveles</h3>
+									<ul class="nav-list">
+										<li><a href="{{ route('guarderia') }}">Guardería</a></li>
+										<li><a href="{{ route('inicial') }}">Inicial</a></li>
+                    <li><a href="{{ route('primaria') }}">Primaria</a></li>
+										<li><a href="{{ route('secundaria') }}">Secundaria</a></li>
+										<li><a href="{{ route('preuniversitario') }}">Pre-Universitarios</a></li>
+										<li><a href="{{ route('universitario') }}">Universitarios</a></li>
+									</ul>
+								</div>
+							</div>
+							
+							<!-- Footer Column -->
+                <div class="footer-column col-lg-8 col-md-6 col-sm-12">
+                    <div class="footer-widget social-widget">
+									<h3>Contacto</h3>
+									<!-- Footer Column -->
+									<ul class="footer_info">
+										<li><i class="fa fa-map-marker-alt"></i> Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</li>
+										<li><i class="fa fa-phone-alt"></i> +59171039910</li>
+										<li><i class="fa fa-phone-alt"></i> +59175553338</li>
+										<li><i class="fa fa-phone-alt"></i> +59171324941</li>
+										<li><i class="icon fas fa-envelope"></i> info@ite.com.bo</li>
+									</ul>
+								</div>
+							</div>
+						
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<!-- Footer Bootom -->
+		<div class="footer-bottom">
+			<div class="auto-container">
+				<div class="row clearfix align-items-center">
+				
+					<!-- Copright Column -->
+					<div class="copyright-column col-lg-6 col-md-6 col-sm-12">
+						<div class="copyright">Copyright &copy; 2023. All Rights Reserved.</div>
+					</div>
+					
+					<!-- Social Column -->
+					<div class="social-column col-lg-6 col-md-6 col-sm-12">
+						<div class="inner-column text-center text-md-end">
+							<ul class="social-box">
+								<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook"></a></li>
+								<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
+								<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
+								<li><a href="https://www.youtube.com/channel/UCbmRHfG51CGM1foo-6kzunQ" class="fa fa-youtube"></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</footer>
+	<!-- End Main Footer -->
+    
   </div>
-  <!-- End Video Popup -->
 
-  <!-- Script -->
-  <script src="{{asset('fronted/assets/js/plugins/jquery-3.6.0.min.js')}}"></script>
-  <script src="{{asset('fronted/assets/js/plugins/isotope.pkg.min.js')}}"></script>
-  <script src="{{asset('fronted/assets/js/plugins/jquery.slick.min.js')}}"></script>
-  <script src="{{asset('fronted/assets/js/main.js')}}"></script>
+<!-- End PageWrapper -->
 
-   {{-- js de booth --}}
-    
-	<script src="{{asset('dist/js/booth/owl.carousel.js')}}"></script>
-    
-    {{-- <script src="{{asset('assets/vendors/jquery/jquery.js')}}"></script> --}}
-    <!-- Bootstrap 4.5 -->
-    <script src="{{asset('assets/vendors/bootstrap/bootstrap.js')}}"></script>
-    <!-- Counterup -->
-    <script src="{{asset('assets/vendors/counterup/waypoint.js')}}"></script>
-    <script src="{{asset('assets/vendors/counterup/jquery.counterup.min.js')}}"></script>
-    <script src="{{asset('assets/vendors/jquery.isotope.js')}}"></script>
-    {{-- <script src="{{asset('assets/vendors/imagesloaded.js')}}"></script> --}}
-    <!--  Owlk Carousel-->
-    <script src="{{asset('assets/vendors/owl/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('assets/js/script.js')}}"></script>
-    <script src="{{asset('vistas/layout/home/home.js')}}"></script>
-    
- 
-	<script>
+<!-- Scroll To Top -->
+<div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-arrow-up"></span></div>
 
-	</script>
+<script src="{{asset('assetshome/js/jquery.js')}}"></script>
+<script src="{{asset('assetshome/js/popper.min.js')}}"></script>
+<script src="{{asset('assetshome/js/bootstrap.min.js')}}"></script>
+
+<!-- Revolution Slider -->
+<script src="{{asset('assetshome/plugins/revolution/js/jquery.themepunch.revolution.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/jquery.themepunch.tools.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/extensions/revolution.extension.actions.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/extensions/revolution.extension.carousel.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/extensions/revolution.extension.kenburn.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/extensions/revolution.extension.migration.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/extensions/revolution.extension.navigation.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/extensions/revolution.extension.parallax.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/extensions/revolution.extension.video.min.js')}}"></script>
+<script src="{{asset('assetshome/plugins/revolution/js/main-slider-script.js')}}"></script>
+<!-- For Js Library -->
+
+<script src="{{asset('assetshome/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+<script src="{{asset('assetshome/js/jquery.fancybox.js')}}"></script>
+<script src="{{asset('assetshome/js/appear.js')}}"></script>
+<script src="{{asset('assetshome/js/parallax.min.js')}}"></script>
+<script src="{{asset('assetshome/js/tilt.jquery.min.js')}}"></script>
+<script src="{{asset('assetshome/js/jquery.paroller.min.js')}}"></script>
+<script src="{{asset('assetshome/js/owl.js')}}"></script>
+<script src="{{asset('assetshome/js/wow.js')}}"></script>
+<script src="{{asset('assetshome/js/validate.js')}}"></script>
+<script src="{{asset('assetshome/js/nav-tool.js')}}"></script>
+<script src="{{asset('assetshome/js/jquery-ui.js')}}"></script>
+<script src="{{asset('assetshome/js/script.js')}}"></script>
+
 </body>
 </html>
-
-

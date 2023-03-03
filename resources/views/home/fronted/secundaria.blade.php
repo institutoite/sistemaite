@@ -126,54 +126,6 @@
     </header>
     <!-- End Main Header -->
     
-    <!-- Sidebar Cart Item -->
-    <div class="xs-sidebar-group info-group">
-      <div class="xs-overlay xs-bg-black"></div>
-      <div class="xs-sidebar-widget">
-        <div class="sidebar-widget-container">
-          <div class="widget-heading">
-            <a href="#" class="close-side-widget">
-              X
-            </a>
-          </div>
-          <div class="sidebar-textwidget">
-            
-            <!-- Sidebar Info Content -->
-            <div class="sidebar-info-contents">
-              <div class="content-inner">
-                <div class="logo">
-                  <a href="index.html"><img src="assets/images/logo-2.png" alt="" title=""></a>
-                </div>
-                <div class="content-box">
-                  <h5>About Us</h5>
-                  <p class="text">The argument in favor of using filler text goes something like this: If you use real content in the Process, anytime you reach a review point you’ll end up reviewing and negotiating the content itself and not the design.</p>
-                  <a href="contact.html" class="theme-btn btn-style-two"><span class="txt">Consultation</span></a>
-                </div>
-                <div class="contact-info">
-                  <h5>Contact Info</h5>
-                  <ul class="list-style-one">
-                    <li><span class="icon fas fa-map-marker"></span>Chicago 12, Melborne City, USA</li>
-                    <li><span class="icon fas fa-phone"></span>(111) 111-111-1111</li>
-                    <li><span class="icon fas fa-envelope"></span>aginco@gmail.com</li>
-                    <li><span class="icon fas fa-clock"></span>Week Days: 09.00 to 18.00 Sunday: Closed</li>
-                  </ul>
-                </div>
-                <!-- Social Box -->
-                <ul class="social-box">
-                  <li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
-                  <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-                  <li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
-                  <li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
-                </ul>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- END sidebar widget item -->
-    
     <!-- Page Title -->
       {{-- <section class="page-title" style="background-image: url(assets/images/background/secundaria.jpg)"> --}}
       <section class="page-title" style="background-image: url('{{ asset('assetshome/images/background/secundaria.jpg')}}');">
@@ -305,7 +257,7 @@
               <div class="year-block">
                 <div class="block-inner wow fadeInUp" data-wow-delay="150ms" data-wow-duration="1500ms">
                   <span class="icon flaticon-human-brain"></span>
-                  <h3>Compresión Completa </h3>
+                  <h3>Comprensión Completa </h3>
                 </div>
               </div>
               
@@ -560,9 +512,10 @@
 							<div class="widget-content">
 								<ul class="service-list">
 									<li><a href="#">Lenguaje</a></li>
-									<li><a href="#">Matemática</a></li>
-									<li><a href="#">Fisica</a></li>
-									<li><a href="#">Quimica</a></li>
+									<li><a href="{{ route('matematica') }}">Matemática</a></li>
+									<li><a href="{{ route('fisica') }}">Física</a></li>
+									<li><a href="{{ route('quimica') }}">Química</a></li>
+                  <li><a href="{{ route('algebra') }}">Álgebra</a></li>
 									<li><a href="#">Inglés</a></li>
 								</ul>
 							</div>
@@ -577,12 +530,13 @@
 									<h3>Tal vez te pueda interesar</h3>
 								</div>
 								<ul class="cat-list">
-									<li><a href="#">Robótica</a></li>
-									<li><a href="#">Computación</a></li>
-									<li><a href="#">Diseño-Gráfico</a></li>
-									<li><a href="#">Programación y Algoritmos</a></li>
-									<li><a href="#">Diseño Web</a></li>
-                  <li><a href="#">Creacion App Movil</a></li>
+									<li><a href="{{ route('robotica') }}">Robótica</a></li>
+									<li><a href="{{ route('operadorcomputadora') }}">Computación</a></li>
+									<li><a href="{{ route('disenografico') }}">Diseño-Gráfico</a></li>
+									<li><a href="{{ route('programacion') }}">Programación y Algoritmos</a></li>
+									<li><a href="{{ route('disenoweb') }}">Diseño Web</a></li>
+                  <li><a href="{{ route('creacionapp') }}">Creacion App Movil</a></li>
+                  <li><a href="{{ route('ajedrez') }}">Ajedrez</a></li>
 								</ul>
 							</div>
 						</div>
@@ -704,12 +658,12 @@
                                 <div class="footer-widget links-widget">
 									<h3>Informaciones</h3>
 									<ul class="nav-list">
-										<li><a href="#">¿Quienes Somos?</a></li>
-										<li><a href="#">Misión</a></li>
-										<li><a href="#">Visión</a></li>
+										<li><a href="{{ route('about') }}">¿Quienes Somos?</a></li>
+										<li><a href="{{ route('about') }}">Misión</a></li>
+										<li><a href="{{ route('about') }}">Visión</a></li>
 										<li><a href="#">Preguntas frecuentes</a></li>
-										<li><a href="#">Terminos & condiciones</a></li>
-										<li><a href="#">Politica de privacidad</a></li>
+										<li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
+										<li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
 									</ul>
 								</div>
 							</div>

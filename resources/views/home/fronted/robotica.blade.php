@@ -126,53 +126,6 @@
     </header>
     <!-- End Main Header -->
     
-    <!-- Sidebar Cart Item -->
-    <div class="xs-sidebar-group info-group">
-      <div class="xs-overlay xs-bg-black"></div>
-      <div class="xs-sidebar-widget">
-        <div class="sidebar-widget-container">
-          <div class="widget-heading">
-            <a href="#" class="close-side-widget">
-              X
-            </a>
-          </div>
-          <div class="sidebar-textwidget">
-            
-            <!-- Sidebar Info Content -->
-            <div class="sidebar-info-contents">
-              <div class="content-inner">
-                <div class="logo">
-                  <a href="index.html"><img src="assets/images/logo-2.png" alt="" title=""></a>
-                </div>
-                <div class="content-box">
-                  <h5>About Us</h5>
-                  <p class="text">The argument in favor of using filler text goes something like this: If you use real content in the Process, anytime you reach a review point you’ll end up reviewing and negotiating the content itself and not the design.</p>
-                  <a href="contact.html" class="theme-btn btn-style-two"><span class="txt">Consultation</span></a>
-                </div>
-                <div class="contact-info">
-                  <h5>Contact Info</h5>
-                  <ul class="list-style-one">
-                    <li><span class="icon fas fa-map-marker"></span>Chicago 12, Melborne City, USA</li>
-                    <li><span class="icon fas fa-phone"></span>(111) 111-111-1111</li>
-                    <li><span class="icon fas fa-envelope"></span>aginco@gmail.com</li>
-                    <li><span class="icon fas fa-clock"></span>Week Days: 09.00 to 18.00 Sunday: Closed</li>
-                  </ul>
-                </div>
-                <!-- Social Box -->
-                <ul class="social-box">
-                  <li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
-                  <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-                  <li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
-                  <li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
-                </ul>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- END sidebar widget item -->
     
     <!-- Page Title -->
       {{-- <section class="page-title" style="background-image: url(assets/images/background/1.jpg)"> --}}
@@ -235,6 +188,54 @@
                 </div>
               </div>
             </div>
+
+            <div class="content-side col-lg-12 col-md-12 col-sm-12">
+              <div class="blog-detail">
+                <div class="inner-box">
+                  <div class="lower-content">
+                    <h4>Materiales básicos para Nivel Inicial</h3>
+                    
+                    <div class="blog_qoute_wrap">
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <ul class="blog_list">
+                            <li>1 Protoboard.</li>
+                            <li>1 Arduino uno.</li>
+                            <li>8 Resistencias 220 ohm.</li>
+                            <li>8 Resistencias 1k.</li>
+                            <li>1 Capacitor.</li>
+                            <li>8 Diodos LED.</li>
+                            <li>4 Pulsadores.</li>
+                            <li>2 Interruptores.</li>
+                            <li>Jumper macho/hembra</li>
+                            <li>Jumper macho/macho.</li>
+                            <li>Sensor ultrasónico.</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <h4>Materiales básicos para Nivel Inicial</h3>
+                    
+                    <div class="blog_qoute_wrap">
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <ul class="blog_list">
+                            <li>1 PC portátil.</li>
+                            <li>1 Tester Sencillo.</li>
+                            <li>1 Fuente de 5V cargador de celular.</li>
+                            <li>1 Cautin.</li>
+                            <li>1 pomada para soldar.</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
           
           <!-- Blocks Column -->
@@ -245,7 +246,7 @@
               <div class="sidebar-widget timing-widget">
                 <div class="widget-content">
   
-                    {{--%%%%%%%%%%%%%%%%%%%% Mensual primaria %%%%%%%%%%%%%%%%%%  --}}
+                    {{--%%%%%%%%%%%%%%%%%%%% Horario Martes y Jueves %%%%%%%%%%%%%%%%%%  --}}
                     <div class="card">
                       <div class="card-header bg-primary text-white text-center">
                         <h3 class="text-white"> Martes y Jueves</h3>
@@ -369,12 +370,12 @@
                                 <div class="footer-widget links-widget">
 									<h3>Informaciones</h3>
 									<ul class="nav-list">
-										<li><a href="#">¿Quienes Somos?</a></li>
-										<li><a href="#">Misión</a></li>
-										<li><a href="#">Visión</a></li>
+										<li><a href="{{ route('about') }}">¿Quienes Somos?</a></li>
+										<li><a href="{{ route('about') }}">Misión</a></li>
+										<li><a href="{{ route('about') }}">Visión</a></li>
 										<li><a href="#">Preguntas frecuentes</a></li>
-										<li><a href="#">Terminos & condiciones</a></li>
-										<li><a href="#">Politica de privacidad</a></li>
+										<li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
+										<li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
 									</ul>
 								</div>
 							</div>

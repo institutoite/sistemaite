@@ -305,7 +305,7 @@
               <div class="year-block">
                 <div class="block-inner wow fadeInUp" data-wow-delay="150ms" data-wow-duration="1500ms">
                   <span class="icon flaticon-human-brain"></span>
-                  <h3>Compresión Completa </h3>
+                  <h3>Comprensión Completa </h3>
                 </div>
               </div>
               
@@ -560,9 +560,9 @@
 								<ul class="service-list">
 									<li><a href="#">PSA</a></li>
                   <li><a href="#">CUP</a></li>
-									<li><a href="#">Matemática</a></li>
-									<li><a href="#">Fisica</a></li>
-									<li><a href="#">Quimica</a></li>
+									<li><a href="{{ route('matematica') }}">Matemática</a></li>
+									<li><a href="{{ route('fisica') }}">Fisica</a></li>
+									<li><a href="{{ route('quimica') }}">Quimica</a></li>
 									<li><a href="#">Inglés</a></li>
 								</ul>
 							</div>
@@ -577,11 +577,12 @@
 								</div>
 								<ul class="cat-list">
 									<li><a href="{{ route('robotica') }}">Robótica</a></li>
-									<li><a href="#">Computación</a></li>
-									<li><a href="#">Diseño-Gráfico</a></li>
+									<li><a href="{{ route('operadorcomputadora') }}">Computación</a></li>
+									<li><a href="{{ route('disenografico') }}">Diseño-Gráfico</a></li>
 									<li><a href="{{ route('programacion') }}">Programación y Algoritmos</a></li>
-									<li><a href="#">Diseño Web</a></li>
-                  <li><a href="#">Creacion App Movil</a></li>
+									<li><a href="{{ route('disenoweb') }}">Diseño Web</a></li>
+                  <li><a href="{{ route('creacionapp') }}">Creación de App Móviles</a></li>
+                  <li><a href="{{ route('ajedrez') }}">Ajedrez</a></li>
 								</ul>
 							</div>
 						</div>
@@ -703,12 +704,12 @@
                                 <div class="footer-widget links-widget">
 									<h3>Informaciones</h3>
 									<ul class="nav-list">
-										<li><a href="#">¿Quienes Somos?</a></li>
-										<li><a href="#">Misión</a></li>
-										<li><a href="#">Visión</a></li>
+										<li><a href="{{ route('about') }}">¿Quienes Somos?</a></li>
+										<li><a href="{{ route('about') }}">Misión</a></li>
+										<li><a href="{{ route('about') }}">Visión</a></li>
 										<li><a href="#">Preguntas frecuentes</a></li>
-										<li><a href="#">Terminos & condiciones</a></li>
-										<li><a href="#">Politica de privacidad</a></li>
+										<li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
+										<li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
 									</ul>
 								</div>
 							</div>

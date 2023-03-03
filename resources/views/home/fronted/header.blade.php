@@ -42,7 +42,7 @@
                 <li class="dropdown"><a href="#">Servicios</a>
                   <ul>
                     <li><a href="{{ route('fotocopia') }}">Fotocopia e impresión</a></li>
-                    <li><a href="#">Resolución de practicos</a></li>
+                    <li><a href="{{ route('resolucionpracticos') }}">Resolución de practicos</a></li>
                     <li><a href="https://asistente.ite.com.bo/">Asistente ite</a></li>
                   </ul>
                 </li>
@@ -50,8 +50,7 @@
                   <ul>
                     <li><a href="{{ route('operadorcomputadora') }}">Computación</a></li>
                     <li><a href="{{ route('disenografico') }}">Diseño gráfico</a></li>
-                    <li><a href="#">Mantenimiento y Reparación de Computadoras</a></li>
-                    <li><a href="#">Marketing Digital</a></li>
+                    <li><a href="">Mantenimiento y Reparación de Computadoras</a></li>
                     
                   </ul>
                 </li>
@@ -71,7 +70,7 @@
                     
                   </ul>
                 </li>
-                <li><a href="#">Contactenos</a></li>
+                <li><a href="{{ route('contact') }}">Contactenos</a></li>
               </ul>
             </div>
           </nav>

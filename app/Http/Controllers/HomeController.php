@@ -315,6 +315,31 @@ class HomeController extends Controller
         return view('home.fronted.fotocopia');
     } 
 
+    public function resolucionpracticos()
+    {
+        return view('home.fronted.resolucionpracticos');
+    } 
+
+    public function matematica()
+    {
+        return view('home.fronted.matematica');
+    } 
+
+    public function fisica()
+    {
+        return view('home.fronted.fisica');
+    } 
+
+    public function quimica()
+    {
+        return view('home.fronted.quimica');
+    } 
+
+    public function algebra()
+    {
+        return view('home.fronted.algebra');
+    } 
+
     public function contact()
     {
         return view('home.fronted.contact');
