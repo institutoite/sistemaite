@@ -876,11 +876,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::put('home/update/{text}', [HomeController::class, 'update'])->name('home.update');
 
-
-    Route::get('/about', [HomeController::class, 'about'])->name('about');
-
-    Route::get('/questions', [HomeController::class, 'questions'])->name('questions');
-
     Route::resource('schedule', HomeScheduleController::class)->names('homeschedule');
 
     Route::resource('question', HomeQuestionController::class)->names('homequestion');
@@ -927,9 +922,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/disenoweb', [HomeController::class, 'disenoweb'])->name('disenoweb');
 
-    Route::get('/operadorcomputadora', [HomeController::class, 'operadorcomputadora'])->name('operadorcomputadora');
+    Route::get('/computacion', [HomeController::class, 'computacion'])->name('computacion');
 
     Route::get('/disenografico', [HomeController::class, 'disenografico'])->name('disenografico');
+
+    Route::get('/mantenimientocomputadoras', [HomeController::class, 'mantenimientocomputadoras'])->name('mantenimientocomputadoras');
 
     Route::get('/ajedrez', [HomeController::class, 'ajedrez'])->name('ajedrez');
 
@@ -947,6 +944,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/algebra', [HomeController::class, 'algebra'])->name('algebra');
 
+    Route::get('/lenguaje', [HomeController::class, 'lenguaje'])->name('lenguaje');
+
+    Route::get('/ingles', [HomeController::class, 'ingles'])->name('ingles');
+
 
     Route::any('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');
 
@@ -957,6 +958,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/privacy', [HomeController::class, 'privacy'])->name('privacy');
 
     Route::get('/termscondition', [HomeController::class, 'termscondition'])->name('termscondition');
+
+    Route::get('/preguntasfrecuentes', [HomeController::class, 'preguntasfrecuentes'])->name('preguntasfrecuentes');
 
     Route::get('/plan/{id}', [HomeController::class, 'plan'])->name('plan');
 

@@ -167,11 +167,10 @@
                         <li><a href="{{ route('fisica') }}">Física</a></li>
                         <li><a href="{{ route('quimica') }}">Química</a></li>
                         <li><a href="{{ route('algebra') }}">Álgebra</a></li>
-                        <li><a href="#">Lenguaje</a></li>
-                        <li><a href="#">Inglés</a></li>
-                        <li><a href="#">Estadística</a></li>
+                        <li><a href="{{ route('lenguaje') }}">Lenguaje</a></li>
+                        <li><a href="{{ route('ingles') }}">Inglés</a></li>
                         <li><a href="#">Cálculo</a></li>
-                        <li><a href="#">Programación</a></li>
+                        <li><a href="{{ route('programacion') }}">Programación</a></li>
                       </ul>
                     </div>
                   </div>
@@ -336,7 +335,7 @@
 										<li><a href="{{ route('about') }}">¿Quienes Somos?</a></li>
 										<li><a href="{{ route('about') }}">Misión</a></li>
 										<li><a href="{{ route('about') }}">Visión</a></li>
-										<li><a href="#">Preguntas frecuentes</a></li>
+										<li><a href="{{ route('preguntasfrecuentes') }}">Preguntas Frecuentes</a></li>
 										<li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
 										<li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
 									</ul>

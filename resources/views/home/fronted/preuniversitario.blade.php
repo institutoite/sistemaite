@@ -558,12 +558,10 @@
 						<div class="sidebar-widget service-widget">
 							<div class="widget-content">
 								<ul class="service-list">
-									<li><a href="#">PSA</a></li>
-                  <li><a href="#">CUP</a></li>
 									<li><a href="{{ route('matematica') }}">Matemática</a></li>
 									<li><a href="{{ route('fisica') }}">Fisica</a></li>
 									<li><a href="{{ route('quimica') }}">Quimica</a></li>
-									<li><a href="#">Inglés</a></li>
+									<li><a href="{{ route('ingles') }}">Inglés</a></li>
 								</ul>
 							</div>
 						</div>
@@ -577,7 +575,7 @@
 								</div>
 								<ul class="cat-list">
 									<li><a href="{{ route('robotica') }}">Robótica</a></li>
-									<li><a href="{{ route('operadorcomputadora') }}">Computación</a></li>
+									<li><a href="{{ route('computacion') }}">Computación</a></li>
 									<li><a href="{{ route('disenografico') }}">Diseño-Gráfico</a></li>
 									<li><a href="{{ route('programacion') }}">Programación y Algoritmos</a></li>
 									<li><a href="{{ route('disenoweb') }}">Diseño Web</a></li>
@@ -707,7 +705,7 @@
 										<li><a href="{{ route('about') }}">¿Quienes Somos?</a></li>
 										<li><a href="{{ route('about') }}">Misión</a></li>
 										<li><a href="{{ route('about') }}">Visión</a></li>
-										<li><a href="#">Preguntas frecuentes</a></li>
+										<li><a href="{{ route('preguntasfrecuentes') }}">Preguntas Frecuentes</a></li>
 										<li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
 										<li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
 									</ul>

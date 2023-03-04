@@ -149,13 +149,14 @@
         <div class="row clearfix">
         
           <!-- Title Column -->
-          <div class="content-column col-lg-6 col-md-12 col-sm-12">
+          <div class="content-column col-lg-7 col-md-12 col-sm-12">
             <div class="inner-column">
               <!-- Sec Title -->
               <div class="sec-title">
-                <div class="title">Horarios y Precios</div>
-                <h2>La creatividad es nuestra herramienta, el  <span>diseño </span> es nuestro lenguaje </h2>
-                <div class="text">Transformando ideas en imágenes impactantes.</div>
+                <div class="title">Curso de Diseño Gráfico</div>
+                <h2><span>Diseña </span>  tu camino hacia el éxito. </h2>
+                <div class="text">En nuestras clases de diseño gráfico, te proporcionaremos las herramientas y habilidades necesarias para crear diseños impactantes y atractivos. Nuestros cursos están diseñados para estudiantes de todos los niveles, desde principiantes hasta avanzados.</div>
+                <div class="text">Aprenderás a utilizar software de diseño gráfico como Adobe Photoshop, Illustrator y InDesign. También te enseñaremos los fundamentos del diseño, como la teoría del color, la composición, la tipografía y la creación de logotipos.</div>
               </div>
               <div class="row mt-none-30">
                 <div class="col-lg-6">
@@ -164,8 +165,8 @@
                       <img src="assets/images/icons/a_01.png" alt="">
                     </div>
                     <div class="content">
-                      <h4>Desde basico a experto</h4>
-                      <p>Aprende computación desde cero hasta avanzado</p>
+                      <h4>Desde básico a experto</h4>
+                      <p></p>
                     </div>
                   </div>
                   <ul class="experiance_list mt-30">
@@ -219,7 +220,7 @@
           </div>
           
           <!-- Blocks Column -->
-          <div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
+          <div class="sidebar-side col-lg-5 col-md-12 col-sm-12">
             <aside class="sidebar sticky-top">
   
               <!-- Timing Widget -->
@@ -408,7 +409,7 @@
 										<li><a href="{{ route('about') }}">¿Quienes Somos?</a></li>
 										<li><a href="{{ route('about') }}">Misión</a></li>
 										<li><a href="{{ route('about') }}">Visión</a></li>
-										<li><a href="#">Preguntas frecuentes</a></li>
+										<li><a href="{{ route('preguntasfrecuentes') }}">Preguntas Frecuentes</a></li>
 										<li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
 										<li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
 									</ul>

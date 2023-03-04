@@ -281,16 +281,22 @@ class HomeController extends Controller
         return view('home.fronted.disenoweb');
     } 
 
-    public function operadorcomputadora()
+    public function computacion()
     {
-        $operadorcomputadora=Asignatura::where('carrera_id',1)->get();
-        return view('home.fronted.operadorcomputadora', compact(['operadorcomputadora']));
+        $computacion=Asignatura::where('carrera_id',1)->get();
+        return view('home.fronted.computacion', compact(['computacion']));
     } 
 
     public function disenografico()
     {
         $disenografico=Asignatura::where('carrera_id',2)->get();
         return view('home.fronted.disenografico', compact(['disenografico']));
+    } 
+
+    public function mantenimientocomputadoras()
+    {
+        $mantenimientocomputadoras=Asignatura::where('carrera_id',3)->get();
+        return view('home.fronted.mantenimientocomputadoras', compact(['mantenimientocomputadoras']));
     } 
 
     public function ajedrez()
@@ -340,6 +346,16 @@ class HomeController extends Controller
         return view('home.fronted.algebra');
     } 
 
+    public function lenguaje()
+    {
+        return view('home.fronted.lenguaje');
+    } 
+
+    public function ingles()
+    {
+        return view('home.fronted.ingles');
+    } 
+
     public function contact()
     {
         return view('home.fronted.contact');
@@ -355,10 +371,10 @@ class HomeController extends Controller
         return view('home.fronted.termscondition');
     }
     
-    public function questions()
+    public function preguntasfrecuentes()
     {
-        $questions = Homequestion::all();
-        return view('home.questions', compact('questions'));
+        $preguntasfrecuentes = Homequestion::all();
+        return view('home.preguntasfrecuentes', compact('preguntasfrecuentes'));
     }
     /**
      * Show the form for editing the specified resource.

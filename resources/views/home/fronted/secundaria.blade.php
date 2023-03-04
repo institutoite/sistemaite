@@ -531,7 +531,7 @@
 								</div>
 								<ul class="cat-list">
 									<li><a href="{{ route('robotica') }}">Robótica</a></li>
-									<li><a href="{{ route('operadorcomputadora') }}">Computación</a></li>
+									<li><a href="{{ route('computacion') }}">Computación</a></li>
 									<li><a href="{{ route('disenografico') }}">Diseño-Gráfico</a></li>
 									<li><a href="{{ route('programacion') }}">Programación y Algoritmos</a></li>
 									<li><a href="{{ route('disenoweb') }}">Diseño Web</a></li>

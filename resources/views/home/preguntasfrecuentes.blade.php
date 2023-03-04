@@ -111,230 +111,70 @@
           </div>
       </div>
       <!-- End Sticky Menu -->
-
+      
       <!-- Mobile Menu  -->
-          <div class="mobile-menu">
-              <div class="menu-backdrop"></div>
-              <div class="close-btn"><span class="icon flaticon-multiply"></span></div>
-              
-              <nav class="menu-box">
-                  <div class="nav-logo"><a href="{{ url('/') }}"><img src="{{asset('assetshome/images/logo.png')}}" alt="" title=""></a></div>
-                  <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
-              </nav>
-          </div><!-- End Mobile Menu -->
+      <div class="mobile-menu">
+          <div class="menu-backdrop"></div>
+          <div class="close-btn"><span class="icon flaticon-multiply"></span></div>
+          
+          <nav class="menu-box">
+              <div class="nav-logo"><a href="{{ url('/') }}"><img src="{{asset('assetshome/images/logo.png')}}" alt="" title=""></a></div>
+              <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+          </nav>
+      </div>
+      <!-- End Mobile Menu -->
     
     </header>
     <!-- End Main Header -->
-    
-    <!-- Sidebar Cart Item -->
-    <div class="xs-sidebar-group info-group">
-      <div class="xs-overlay xs-bg-black"></div>
-      <div class="xs-sidebar-widget">
-        <div class="sidebar-widget-container">
-          <div class="widget-heading">
-            <a href="#" class="close-side-widget">
-              X
-            </a>
-          </div>
-          <div class="sidebar-textwidget">
-            
-            <!-- Sidebar Info Content -->
-            <div class="sidebar-info-contents">
-              <div class="content-inner">
-                <div class="logo">
-                  <a href="index.html"><img src="assets/images/logo-2.png" alt="" title=""></a>
-                </div>
-                <div class="content-box">
-                  <h5>About Us</h5>
-                  <p class="text">The argument in favor of using filler text goes something like this: If you use real content in the Process, anytime you reach a review point you’ll end up reviewing and negotiating the content itself and not the design.</p>
-                  <a href="contact.html" class="theme-btn btn-style-two"><span class="txt">Consultation</span></a>
-                </div>
-                <div class="contact-info">
-                  <h5>Contact Info</h5>
-                  <ul class="list-style-one">
-                    <li><span class="icon fas fa-map-marker"></span>Chicago 12, Melborne City, USA</li>
-                    <li><span class="icon fas fa-phone"></span>(111) 111-111-1111</li>
-                    <li><span class="icon fas fa-envelope"></span>aginco@gmail.com</li>
-                    <li><span class="icon fas fa-clock"></span>Week Days: 09.00 to 18.00 Sunday: Closed</li>
-                  </ul>
-                </div>
-                <!-- Social Box -->
-                <ul class="social-box">
-                  <li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
-                  <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-                  <li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
-                  <li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
-                </ul>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- END sidebar widget item -->
-    
+        
     <!-- Page Title -->
       {{-- <section class="page-title" style="background-image: url(assets/images/background/1.jpg)"> --}}
-      <section class="page-title" style="background-image: url('{{ asset('assetshome/images/background/disenoweb.jpg')}}');">
-          <div class="auto-container">
-        <h2></h2>
-        <ul class="bread-crumb clearfix">
-          {{-- <li><a href="{{ url('/') }}">Inicio</a></li>
-          <li>Robótica</li> --}}
-        </ul>
-          </div>
+      <section class="page-title" style="background-image: url('{{ asset('assetshome/images/background/portada.jpg')}}');">
+        <div class="auto-container">
+          <h2></h2>
+          <ul class="bread-crumb clearfix">
+            {{-- <li><a href="{{ url('/') }}">Inicio</a></li>
+            <li>Primaria</li> --}}
+          </ul>
+        </div>
       </section>
       <!--End Page Title-->
     
-    <!-- Agency Section -->
-    <section class="agency-section">
+    <!-- Sidebar Page Container -->
+    <div class="sidebar-page-container">
       <div class="auto-container">
         <div class="row clearfix">
-        
-          <!-- Title Column -->
-          <div class="content-column col-lg-7 col-md-12 col-sm-12">
-            <div class="inner-column">
-              <!-- Sec Title -->
-              <div class="sec-title">
-                <div class="title">Desde basico a experto</div>
-                <h2>Haz que tu creatividad brille en la<span> web.</span></h2>
-                <div class="text">En nuestro curso de diseño web, aprenderás habilidades prácticas y técnicas que te permitirán crear diseños web únicos y personalizados. Desde la creación de sitios web simples hasta proyectos web más complejos, nuestro curso te brindará las habilidades necesarias para crear diseños web impresionantes.</div>
-              </div>
-              <div class="row mt-none-30">
-                <div class="col-lg-6">
-                  <div class="experiance_item mt-30">
-                    {{-- <div class="icon">
-                      <img src="assets/images/icons/a_01.png" alt="">
-                    </div> --}}
-                    <div class="content">
-                      <h4>Dirigido a:</h4>
-                      <p></p>
-                      <ul class="experiance_list mt-30">
-                        <li>Cualquier persona que quiera aprender a programar.</li>
-                        <li>Estudiantes de colegios.</li>
-                        <li>Estudiantes de institutos.</li>
-                        <li>Estudiantes universitarios.</li>
-                        <li>Ingenieros.</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <ul class="experiance_list mt-30">
-                    <li> </li>
-                  </ul>
-                  <div class="button-box">
-                    <a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información de diseño web" class="theme-btn btn-style-seven"><span class="txt">Inscribite Hoy..!! <i class="flaticon-next-2"></i></span></a>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="counter_wrap mt-30">
-                    <h1><span class="number">350 Bs.<span class="plus">+</span></span> <span class="text"></span></h1>
-                  </div>
-                  <div class="experiance_item mt-30">
-                    <div class="icon">
-                      <img src="assets/images/icons/a_02.png" alt="">
-                    </div>
-                    <div class="content">
-                      <h4>Mensual</h4>
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Blocks Column -->
-          <div class="sidebar-side col-lg-5 col-md-12 col-sm-12">
-            <aside class="sidebar sticky-top">
-  
-              <!-- Timing Widget -->
-              <div class="sidebar-widget timing-widget">
-                <div class="widget-content">
-  
-                    {{--%%%%%%%%%%%%%%%%%%%% Lunes - Viernes %%%%%%%%%%%%%%%%%%  --}}
-                    <div class="card">
-                      <div class="card-header bg-primary text-white text-center">
-                        <h3 class="text-white"> Lunes a Viernes</h3>
-                      </div>
-                      <div class="card-body">
-                        <table class="table table-bordered table-striped table-hover">
-                          <thead class="text-secondary">
-                            <tr>
-                              <th scope="col">Mañana</th>
-                              <th scope="col">Tarde</th>
-                              <th scope="col">Noche</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>7:30 - 9:00</td>
-                              <td>14:00 - 15:30</td>
-                              <td>18:30 - 20:00</td>
-                            </tr>
-                            <tr>
-                              <td>9:00 - 10:30</td>
-                              <td>15:30 - 17:00</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>10:30 - 12:00</td>
-                              <td>17:00 - 18:30</td>
-                              <td></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div> 
-                    <hr>
 
-                    {{--%%%%%%%%%%%%%%%%%%%% Sabados %%%%%%%%%%%%%%%%%%  --}}
-                    <div class="card">
-                      <div class="card-header bg-secondary text-white text-center">
-                        <h3 class="text-white"> Solo Sabados</h3>
-                      </div>
-                      <div class="card-body">
-                        <table class="table table-bordered table-striped table-hover">
-                          <thead class="text-secondary">
-                            <tr>
-                              <th scope="col">7:30 - 12:00</th>
-                            </tr>
-                          </thead>
-                        </table>
-                      </div>
-                    </div> 
-                    <hr>
-  
+          <!-- Sidebar Side -->
+          <div class="sidebar-side col-lg-12 col-md-12 col-sm-12">
+            
+            <aside class="sidebar sticky-top">
+              @foreach ($preguntasfrecuentes as $question)
+              <!-- Sidebar Widget / Search Widget -->
+              <div class="sidebar-widget search-widget timing-widget">
+                <div class="widget-content">
+                  <!-- Sidebar Title -->
+                  
+                  <div class="sidebar-title">
+                    <h3>{{$question->question}}</h3>
+                  </div>
+                  
+                  <ul class="time-list">
+                    <li>{{$question->answer}}</li>
+                  </ul>
                   
                 </div>
               </div>
-              
-              <!-- Gallery Widget -->
-              
+              <!-- End Sidebar Widget / Search Widget -->
+              @endforeach
               
             </aside>
           </div>
-
-          
           
         </div>
       </div>
-    </section>
-    <!-- End Agency Section -->
-    
-    <!-- Clients Section -->
-    <section class="clients-section-two">
-      <div class="auto-container">
-        <div class="inner-container">
-          <div class="carousel-outer">
-            <!--Sponsors Slider-->
-            
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- End Clients Section -->
-    
+    </div>
+	
    <!-- Main Footer / Style Two -->
    <footer class="main-footer">
 		<div class="pattern-layer-six" style="background-image:url(assets/images/icons/vector-24.png)"></div>
@@ -373,11 +213,11 @@
                     <div class="big-column col-lg-6 col-md-12 col-sm-12">
 						<div class="row clearfix">
 							
-                        	<!-- Footer Column -->
-                            <div class="footer-column col-lg-7 col-md-6 col-sm-12">
-                                <div class="footer-widget about-widget">
+              <!-- Footer Column -->
+              <div class="footer-column col-lg-7 col-md-6 col-sm-12">
+                <div class="footer-widget about-widget">
 									<div class="logo">
-										<a href="index.html"><img src="assets/images/logo-4.png" alt="" title=""></a>
+										{{-- <a href="index.html"><img src="assets/images/logo-4.png" alt="" title=""></a> --}}
 									</div>
 									<div class="text">ITE es un centro educativo que brinda clases de nivelación en diferentes materias y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.</div>
 									<div class="opening">
@@ -389,8 +229,8 @@
 							</div>
 							
 							<!-- Footer Column -->
-                            <div class="footer-column col-lg-5 col-md-6 col-sm-12">
-                                <div class="footer-widget links-widget">
+              <div class="footer-column col-lg-5 col-md-6 col-sm-12">
+                <div class="footer-widget links-widget">
 									<h3>Informaciones</h3>
 									<ul class="nav-list">
 										<li><a href="{{ route('about') }}">¿Quienes Somos?</a></li>
@@ -474,19 +314,6 @@
 		
 	</footer>
 	<!-- End Main Footer -->
-    
-    <!-- Search Popup -->
-    <div class="search-popup">
-      <button class="close-search style-two"><span class="flaticon-cancel-1"></span></button>
-      <button class="close-search"><span class="flaticon-up-arrow"></span></button>
-      <form method="post" action="blog.html">
-        <div class="form-group">
-          <input type="search" name="search-field" value="" placeholder="Search Here" required="">
-          <button type="submit"><i class="fa fa-search"></i></button>
-        </div>
-      </form>
-    </div>
-    <!-- End Header Search -->
     
   </div>
 

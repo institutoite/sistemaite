@@ -67,175 +67,30 @@
 	</div>
 	<!-- Preloader End -->
  	
- 	<!-- Main Header -->
-    <header class="main-header">
+ 	<!-- Main Header / Hedare Style Two -->
+	 <header class="main-header header-style-two">
     	
 		<!-- Header Top -->
-        <div class="header-top">
+        <div class="header-top-two">
             <div class="auto-container">
                 <div class="inner-container clearfix">
 					<!-- Top Left -->
 					<div class="top-left clearfix">
-						<div class="text">Apoyo escolar 2023</div>
+						<div class="text">Apoyo escolar 2023. <a href="contact.html">Contactanos</a></div>
 					</div>
 					
 					<!-- Top Right -->
                     <div class="top-right pull-right clearfix">
-						<div class="location">Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</div>
-						<!-- Social Box -->
-						<ul class="social-box">
-							<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook"></a></li>
-							<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
-							<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
-							<li><a href="https://www.youtube.com/channel/UCbmRHfG51CGM1foo-6kzunQ" class="fa fa-youtube"></a></li>
-						</ul>
+						<div class="location">Av. 3 pasos al frente esq. che guevara, Santa Cruz - Bolivia.</div>
+						
                     </div>
 					
                 </div>
             </div>
         </div>
 		
-		<!-- Header Upper -->
-		<div class="header-upper">
-			<div class="auto-container">
-				<div class="clearfix">
-					
-					{{-- <div class="logo pull-left">
-						<div class="logo"><a href="{{ url('/') }}"><img src="assetshome/images/logo.png" alt="" title=""></a></div>
-					</div>
-					 --}}
-					<div class="pull-right upper-right clearfix">
-						
-						<!--Info Box-->
-						<div class="upper-column info-box">
-							<div class="icon-box fas fa-envelope-open-text"></div>
-							<ul>
-								<li><strong>email</strong> <a href="mailto:mailto:info@ite.com">info@ite.com</a></li>
-							</ul>
-						</div>
-						
-						<!--Info Box-->
-						<div class="upper-column info-box">
-							<div class="icon-box fas fa-tty"></div>
-							<ul>
-								<li><strong>celular</strong> <a href="tel:+59171039910">+59171039910</a></li>
-							</ul>
-						</div>
-						
-					</div>
-					
-				</div>
-			</div>
-		</div>
-		<!-- End Header Upper -->
-		
 		<!-- Header Lower -->
-        <div class="header-lower">
-        	<div class="auto-container">
-            	<div class="inner-container d-flex justify-content-between align-items-center">
-					
-					<!-- Nav Outer -->
-					<div class="nav-outer clearfix">
-						<!-- Mobile Navigation Toggler -->
-						<div class="mobile-nav-toggler"><span class="icon flaticon-menu"></span></div>
-						<!-- Main Menu -->
-						<nav class="main-menu navbar-expand-md">
-							<div class="navbar-header">
-								<!-- Toggle Button -->
-								<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-								</button>
-							</div>
-							
-							<div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
-								<ul class="navigation clearfix">
-									<li class="current dropdown"><a href="{{ url('/') }}">Inicio</a>
-									</li>
-									<li><a href="{{ route('about') }}">¿Quiénes somos?</a>
-									</li>
-									<li class="dropdown"><a href="#">Lo mas nuevo</a>
-										<ul>
-											<li><a href="{{ route('robotica') }}">Robótica</a></li>
-											<li><a href="{{ route('programacion') }}">Programación y Algoritmos</a></li>
-											<li><a href="{{ route('creacionapp') }}">Creación de App Móviles</a></li>
-											<li><a href="{{ route('disenoweb') }}">Diseño Web</a></li>
-											<li><a href="{{ route('ajedrez') }}">Ajedrez</a></li>
-											
-										</ul>
-									</li>
-									<li class="dropdown"><a href="#">Servicios</a>
-										<ul>
-											<li><a href="{{ route('fotocopia') }}">Fotocopia e impresión</a></li>
-											<li><a href="{{ route('resolucionpracticos') }}">Resolución de practicos</a></li>
-											<li><a href="https://asistente.ite.com.bo/">Asistente ite</a></li>
-										</ul>
-									</li>
-									<li class="dropdown"><a href="#">Carreras</a>
-										<ul>
-											<li><a href="{{ route('operadorcomputadora') }}">Computación</a></li>
-											<li><a href="{{ route('disenografico') }}">Diseño gráfico</a></li>
-											<li><a href="#">Mantenimiento y Reparación de Computadoras</a></li>
-										</ul>
-									</li>
-									<li class="dropdown"><a href="#">Niveles</a>
-										<ul>
-											<li><a href="{{ route('inicial') }}">Inicial</a></li>
-											<li><a href="{{ route('primaria') }}">Primaria</a></li>
-											<li><a href="{{ route('secundaria') }}">Secundaria</a></li>
-											<li><a href="{{ route('preuniversitario') }}">Preuniversitario</a></li>
-											<li><a href="{{ route('universitario') }}">Universitarios</a></li>
-										</ul>
-									</li><li class="dropdown"><a href="#">Próximamente</a>
-										<ul>
-											<li><a href="#">Libros personalizados</a></li>
-											<li><a href="#">Creacion de dibujo</a></li>
-											<li><a href="#">ite restaurante</a></li>
-											
-										</ul>
-									</li>
-									<li><a href="{{ route('contact') }}">Contactenos</a></li>
-								</ul>
-							</div>
-						</nav>
-						
-					</div>
-					
-					<!-- Main Menu End-->
-					<div class="outer-box clearfix">
-						
-						{{-- <!-- Nav Btn -->
-						<div class="nav-btn navSidebar-button"><span class="icon flaticon-menu-2"></span></div>
-						
-						
-						<!-- Button Box -->
-						<div class="button-box">
-							<a href="{{ route('login') }}" class="theme-btn btn-style-one"><span class="txt"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</span></a>
-						</div>
-						<!-- End Button Box --> --}}
-						@auth
-                     		<div class="button-box">
-								<a href="{{ route('home') }}" class="theme-btn btn-style-one"><span class="txt"><i class="fas fa-sign-in-alt"></i> Sistema</span></a>
-							</div>
-							<a class="btn form-inline" href="{{ route('logout') }}" onclick="event.preventDefault();
-												document.getElementById('logout-form').submit();">
-								<i class="fas fa-sign-out-alt"></i>
-							</a>
-
-							<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-								@csrf
-							</form>
-                    @else
-                     		<div class="button-box">
-								<a href="{{ route('login') }}" class="theme-btn btn-style-one"><span class="txt"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</span></a>
-							</div>
-                    @endauth
-						
-
-				</div>
-            </div>
-        </div>
+        @include('home.fronted.header')
         <!-- End Header Lower -->
         
 		<!-- Sticky Header  -->
@@ -243,7 +98,7 @@
             <div class="auto-container clearfix">
                 <!--Logo-->
                 <div class="logo pull-left">
-                    <a href="{{ url('/') }}"><img src="{{asset('assetshome/images/logo.png')}}" alt="" title=""></a>
+                    <a href="index.html"><img src="assetshome/images/logo.png" alt="" title=""></a>
                 </div>
                 <!--Right Col-->
                 <div class="pull-right">
@@ -267,7 +122,7 @@
             <div class="close-btn"><span class="icon flaticon-multiply"></span></div>
             
             <nav class="menu-box">
-                <div class="nav-logo"><a href="{{ url('/') }}"><img src="{{asset('assetshome/images/logo.png')}}" alt="" title=""></a></div>
+                <div class="nav-logo"><a href="index.html"><img src="assetshome/images/logo.png" alt="" title=""></a></div>
                 <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
             </nav>
         </div><!-- End Mobile Menu -->
@@ -275,72 +130,18 @@
     </header>
     <!-- End Main Header -->
 	
-	<!-- Sidebar Cart Item -->
-	<div class="xs-sidebar-group info-group">
-		<div class="xs-overlay xs-bg-black"></div>
-		<div class="xs-sidebar-widget">
-			<div class="sidebar-widget-container">
-				<div class="widget-heading">
-					<a href="#" class="close-side-widget">
-						X
-					</a>
-				</div>
-				<div class="sidebar-textwidget">
-					
-					<!-- Sidebar Info Content -->
-					<div class="sidebar-info-contents">
-						<div class="content-inner">
-							<div class="logo">
-								<a href="{{ url('/') }}"><img src="{{asset('assetshome/images/logo-2.png')}}" alt="" title=""></a>
-							</div>
-							<div class="content-box">
-								<h5>Acerca de Nosotros</h5>
-								<p class="text">ITE es un centro educativo que brinda clases de nivelación en diferentes materias y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.</p>
-								<a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="theme-btn btn-style-two"><span class="txt">Consultar</span></a>
-							</div>
-							<div class="contact-info">
-								<h5>Información de contacto</h5>
-								<ul class="list-style-one">
-									<li><span class="icon fas fa-map-marker"></span>Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</li>
-									<li><span class="icon fas fa-phone"></span>+59171039910</li>
-									<li><span class="icon fas fa-phone"></span>+59175553338</li>
-									<li><span class="icon fas fa-phone"></span>+59171324941</li>
-									<li><span class="icon fas fa-envelope"></span>info@ite.com.bo</li>
-									<li><span class="icon fas fa-clock"></span>Lu a Vi: 07:00 a 18:30 Sábados: 07:30 a 17:00</li>
-								</ul>
-							</div>
-							<!-- Social Box -->
-							<ul class="social-box">
-								<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook-f"></a></li>
-								<li><a href="https://wa.me/59171039910" target="_blank" class="fa fa-whatsapp"></a></li>
-								<li><a href="https://wa.me/59171324941" target="_blank" class="fa fa-whatsapp"></a></li>
-								<li><a href="https://wa.me/59175553338" target="_blank" class="fa fa-whatsapp"></a></li>
-								
-							</ul>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- END sidebar widget item -->
-	
 	<!-- Main Slider -->
-	<section class="main-slider">
+	<section class="main-slider-two">
 		<div class="rev_slider_wrapper fullwidthbanner-container"  id="rev_slider_one_wrapper" data-source="gallery">
 			<div class="rev_slider fullwidthabanner" id="rev_slider_one" data-version="5.4.1">
 				<ul>
 					
-					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1688" data-slotamount="default" data-thumb="" data-title="Slide Title">
-					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src=""> 
+					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1688" data-slotamount="default" data-thumb="{{ asset('assetshome/images/main-slider/home2.jpg')}}" data-title="Slide Title">
+					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{ asset('assetshome/images/main-slider/home2.jpg')}}"> 
 						
 						<div class="color-layer"></div>
-						<div class="circle-layer"></div>
-						<div class="vector-layer-one" style="background-image: url(assetshome/images/main-slider/vector-1.png)"></div>
-						<div class="vector-layer-two" style="background-image: url(assetshome/images/main-slider/vector-2.png)"></div>
-						<div class="vector-layer-three" style="background-image: url(assetshome/images/main-slider/vector-3.png)"></div>
-						<div class="vector-layer-four" style="background-image: url(assetshome/images/main-slider/vector-4.png)"></div>
+						<div class="vector-layer-one" style="background-image: url(assetshome/images/main-slider/vector-6.png)"></div>
+						<div class="vector-layer-two" style="background-image: url(assetshome/images/main-slider/vector-7.png)"></div>
 						
 						<div class="tp-caption tp-shape tp-shapewrapper tp-resizeme"
 							data-paddingbottom="[0,0,0,0]"
@@ -352,43 +153,16 @@
 							data-height="auto"
 							data-whitespace="nowrap"
 							data-width="none"
-							data-hoffset="['-80','15','15','15']"
-							data-voffset="['-80','-80','0','0']"
+							data-hoffset="['220','15','15','15']"
+							data-voffset="['320','0','0','0']"
 							data-x="['right','right','right','right']"
 							data-y="['bottom','center','bottom','bottom']"
 							data-frames='[{"delay":0,"speed":1500,"frame":"0","from":"x:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"power3.inOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
 							style="">
-							<figure class="content-image">
-								<div class="border-layer"></div>
-								<div class="dark-color-layer"></div>
-								<div class="icon-one fas fa-signal"></div>
-								<div class="icon-two fas fa-bullhorn"></div>
-								<div class="icon-three fas fa-gem"></div>
-								<div class="icon-four fas fa-bullseye"></div>
-								<img src="assetshome/images/main-slider/content-image-1.png" alt="">
-								<div class="vector-layer-five" style="background-image: url(assetshome/images/main-slider/vector-5.png)"></div>
-							</figure>
+							
 						</div>
 						
-						<div class="tp-caption" 
-						data-paddingbottom="[0,0,0,0]"
-						data-paddingleft="[0,0,0,0]"
-						data-paddingright="[0,0,0,0]"
-						data-paddingtop="[0,0,0,0]"
-						data-responsive_offset="on"
-						data-type="text"
-						data-height="none"
-						data-width="['1100','800','800','500']"
-						data-whitespace="normal"
-						data-hoffset="['15','15','15','15']"
-						data-voffset="['-50','-180','-140','-125']"
-						data-x="['left','left','left','left']"
-						data-y="['middle','middle','middle','middle']"
-						data-textalign="['top','top','top','top']"
-						data-frames='[{"delay":600,"speed":1500,"frame":"0","from":"y:bottom;rX:-20deg;rY:-20deg;rZ:0deg;","to":"o:1;","ease":"power3.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
-						style="">
-							<div class="title">Aprende lo que realmente necesites, aprende a tu ritmo de compresión.</div>
-						</div>
+						
 						
 						<div class="tp-caption" 
 						data-paddingbottom="[0,0,0,0]"
@@ -401,16 +175,16 @@
 						data-width="['800','800','800','500']"
 						data-whitespace="normal"
 						data-hoffset="['15','15','15','15']"
-						data-voffset="['90','-70','-40','-35']"
+						data-voffset="['50','-30','-10','-10']"
 						data-x="['left','left','left','left']"
 						data-y="['middle','middle','middle','middle']"
 						data-textalign="['top','top','top','top']"
 						data-frames='[{"delay":900,"speed":1500,"frame":"0","from":"y:bottom;rX:-20deg;rY:-20deg;rZ:0deg;","to":"o:1;","ease":"power3.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
 						style="">
-							<h1>Tú decides desde y hasta donde llegar.</h1>
+							<h1></h1>
 						</div>
 						
-						<div class="tp-caption tp-resizeme"
+						<div class="tp-caption" 
 						data-paddingbottom="[0,0,0,0]"
 						data-paddingleft="[0,0,0,0]"
 						data-paddingright="[0,0,0,0]"
@@ -418,32 +192,28 @@
 						data-responsive_offset="on"
 						data-type="text"
 						data-height="none"
-						data-width="['700','700','700','500']"
+						data-width="['1100','800','800','500']"
 						data-whitespace="normal"
-						data-hoffset="['15','15','15','15']"
-						data-voffset="['250','60','80','80']"
-						data-x="['left','left','left','left']"
-						data-y="['middle','middle','middle','middle']"
+						data-hoffset="['-470','-280','-360','-440']"
+						data-voffset="['-350','-400','-800','-800']"
+						data-x="['right','right','right','right']"
+						data-y="['bottom','bottom','bottom','bottom']"
 						data-textalign="['top','top','top','top']"
-						data-frames='[{"delay":1200,"speed":1500,"frame":"0","from":"y:bottom;rX:-20deg;rY:-20deg;rZ:0deg;","to":"o:1;","ease":"power3.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
+						data-frames='[{"delay":0,"speed":1500,"frame":"0","from":"y:bottom;rX:-20deg;rY:-20deg;rZ:0deg;","to":"o:1;","ease":"power3.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
 						style="">
-							<div class="button-box">
-								<a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="theme-btn btn-style-three"><span class="txt">Contactanos<i class="flaticon-next-2"></i></span></a>
-								<a href="{{ route('about') }}" class="theme-btn btn-style-four"><span class="txt">Leer mas <i class="flaticon-next-2"></i></span></a>
+							<div class="play-outer">
+								<a href="https://www.youtube.com/watch?v=lFpc19KsYzs&ab_channel=INSTITUTOITE" class="lightbox-image play-box"><span class="fas fa-play"><span class="dott"></span><i class="ripple"></i></span></a>
 							</div>
 						</div>
 						
 					</li>
 					
-					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1689" data-slotamount="default" data-thumb="" data-title="Slide Title">
-					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="">
+					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1689" data-slotamount="default" data-thumb="{{ asset('assetshome/images/main-slider/home2.jpg')}}" data-title="Slide Title">
+					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{ asset('assetshome/images/main-slider/home2.jpg')}}">
 					
 						<div class="color-layer"></div>
-						<div class="circle-layer"></div>
-						<div class="vector-layer-one" style="background-image: url(assetshome/images/main-slider/vector-1.png)"></div>
-						<div class="vector-layer-two" style="background-image: url(assetshome/images/main-slider/vector-2.png)"></div>
-						<div class="vector-layer-three" style="background-image: url(assetshome/images/main-slider/vector-3.png)"></div>
-						<div class="vector-layer-four" style="background-image: url(assetshome/images/main-slider/vector-4.png)"></div>
+						<div class="vector-layer-one" style="background-image: url(assetshome/images/main-slider/vector-6.png)"></div>
+						<div class="vector-layer-two" style="background-image: url(assetshome/images/main-slider/vector-7.png)"></div>
 						
 						<div class="tp-caption tp-shape tp-shapewrapper tp-resizeme"
 							data-paddingbottom="[0,0,0,0]"
@@ -455,43 +225,16 @@
 							data-height="auto"
 							data-whitespace="nowrap"
 							data-width="none"
-							data-hoffset="['-80','15','15','15']"
-							data-voffset="['-80','-80','0','0']"
+							data-hoffset="['220','15','15','15']"
+							data-voffset="['320','0','0','0']"
 							data-x="['right','right','right','right']"
 							data-y="['bottom','center','bottom','bottom']"
 							data-frames='[{"delay":0,"speed":1500,"frame":"0","from":"x:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"power3.inOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
 							style="">
-							<figure class="content-image">
-								<div class="border-layer"></div>
-								<div class="dark-color-layer"></div>
-								<div class="icon-one fas fa-signal"></div>
-								<div class="icon-two fas fa-bullhorn"></div>
-								<div class="icon-three fas fa-gem"></div>
-								<div class="icon-four fas fa-bullseye"></div>
-								<img src="assetshome/images/main-slider/content-image-1.png" alt="">
-								<div class="vector-layer-five" style="background-image: url(assetshome/images/main-slider/vector-5.png)"></div>
-							</figure>
+							
 						</div>
 						
-						<div class="tp-caption" 
-						data-paddingbottom="[0,0,0,0]"
-						data-paddingleft="[0,0,0,0]"
-						data-paddingright="[0,0,0,0]"
-						data-paddingtop="[0,0,0,0]"
-						data-responsive_offset="on"
-						data-type="text"
-						data-height="none"
-						data-width="['1100','800','800','500']"
-						data-whitespace="normal"
-						data-hoffset="['15','15','15','15']"
-						data-voffset="['-50','-180','-140','-125']"
-						data-x="['left','left','left','left']"
-						data-y="['middle','middle','middle','middle']"
-						data-textalign="['top','top','top','top']"
-						data-frames='[{"delay":600,"speed":1500,"frame":"0","from":"y:bottom;rX:-20deg;rY:-20deg;rZ:0deg;","to":"o:1;","ease":"power3.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
-						style="">
-							<div class="title">Your Trusted Agency</div>
-						</div>
+						
 						
 						<div class="tp-caption" 
 						data-paddingbottom="[0,0,0,0]"
@@ -504,16 +247,16 @@
 						data-width="['800','800','800','500']"
 						data-whitespace="normal"
 						data-hoffset="['15','15','15','15']"
-						data-voffset="['90','-70','-40','-35']"
+						data-voffset="['50','-30','-10','-10']"
 						data-x="['left','left','left','left']"
 						data-y="['middle','middle','middle','middle']"
 						data-textalign="['top','top','top','top']"
 						data-frames='[{"delay":900,"speed":1500,"frame":"0","from":"y:bottom;rX:-20deg;rY:-20deg;rZ:0deg;","to":"o:1;","ease":"power3.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
 						style="">
-							<h1>Digital marketing agency.</h1>
+							<h1></h1>
 						</div>
 						
-						<div class="tp-caption tp-resizeme"
+						<div class="tp-caption" 
 						data-paddingbottom="[0,0,0,0]"
 						data-paddingleft="[0,0,0,0]"
 						data-paddingright="[0,0,0,0]"
@@ -521,18 +264,17 @@
 						data-responsive_offset="on"
 						data-type="text"
 						data-height="none"
-						data-width="['700','700','700','500']"
+						data-width="['1100','800','800','500']"
 						data-whitespace="normal"
-						data-hoffset="['15','15','15','15']"
-						data-voffset="['250','60','80','80']"
-						data-x="['left','left','left','left']"
-						data-y="['middle','middle','middle','middle']"
+						data-hoffset="['-470','-280','-360','-440']"
+						data-voffset="['-350','-400','-800','-800']"
+						data-x="['right','right','right','right']"
+						data-y="['bottom','bottom','bottom','bottom']"
 						data-textalign="['top','top','top','top']"
-						data-frames='[{"delay":1200,"speed":1500,"frame":"0","from":"y:bottom;rX:-20deg;rY:-20deg;rZ:0deg;","to":"o:1;","ease":"power3.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
+						data-frames='[{"delay":0,"speed":1500,"frame":"0","from":"y:bottom;rX:-20deg;rY:-20deg;rZ:0deg;","to":"o:1;","ease":"power3.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
 						style="">
-							<div class="button-box">
-								<a href="#" class="theme-btn btn-style-three"><span class="txt">Discover More <i class="flaticon-next-2"></i></span></a>
-								<a href="#" class="theme-btn btn-style-four"><span class="txt">Learn More <i class="flaticon-next-2"></i></span></a>
+							<div class="play-outer">
+								<a href="https://www.youtube.com/watch?v=lFpc19KsYzs&ab_channel=INSTITUTOITE" class="lightbox-image play-box"><span class="fas fa-play"><span class="dott"></span><i class="ripple"></i></span></a>
 							</div>
 						</div>
 						
@@ -541,6 +283,14 @@
 				</ul>
 			</div>
 		</div>
+		
+		<!-- Social List -->
+		{{-- <div class="social-list">
+			<a href="#">Twitter</a>
+			<a href="#">Facebook</a>
+			<a href="#">Youtube</a>
+		</div> --}}
+		
 	</section>
 	<!-- End Main Slider -->
 	
@@ -999,11 +749,11 @@
 				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
 					<div class="inner-box">
 						<div class="image">
-							<a href="{{ route('operadorcomputadora') }}"><img src="{{asset('assetshome/images/gallery/operadorcomputadora.jpg')}}" alt="" /></a>
+							<a href="{{ route('computacion') }}"><img src="{{asset('assetshome/images/gallery/computacion.jpg')}}" alt="" /></a>
 						</div>
 						<div class="lower-content">
-							<h3><a href="{{ route('operadorcomputadora') }}">Computación</a></h3>
-							<a href="{{ route('operadorcomputadora') }}" class="view">Informarme</a>
+							<h3><a href="{{ route('computacion') }}">Computación</a></h3>
+							<a href="{{ route('computacion') }}" class="view">Informarme</a>
 						</div>
 					</div>
 				</div>
@@ -1110,7 +860,7 @@
 					<div class="inner-box">
 						<div class="icon flaticon-menu"></div>
 						<h3><a href="{{ route('fotocopia') }}">Fotocopia e Impresión</a></h3>
-						<div class="text">Ya no vayas a la universidad,Copias e impresiones desde 9 centavos</div>
+						<div class="text">Ya no vayas a la universidad, copias e impresiones desde 9 centavos</div>
 						<a href="{{ route('fotocopia') }}" class="arrow flaticon-right-arrow"></a>
 					</div>
 				</div>
@@ -1120,7 +870,7 @@
 					<div class="inner-box">
 						<div class="icon flaticon-notebook"></div>
 						<h3><a href="{{ route('resolucionpracticos') }}">Resolución de prácticos</a></h3>
-						<div class="text">Te ayudamos con tus tareas y prácticos</div>
+						<div class="text">Si no tienes tiempo, te resolvemos tus tareas y prácticos</div>
 						<a href="{{ route('resolucionpracticos') }}" class="arrow flaticon-right-arrow"></a>
 					</div>
 				</div>
@@ -1129,31 +879,31 @@
 				<div class="service-block-two">
 					<div class="inner-box">
 						<div class="icon flaticon-search-engine"></div>
-						<h3><a href="service-detail.html">Asistente Ite</a></h3>
+						<h3><a href="https://asistente.ite.com.bo/">Asistente Ite</a></h3>
 						<div class="text">¡Descubre el poder de la inteligencia artificial con nuestro Asistente ITE!</div>
-						<a href="service-detail.html" class="arrow flaticon-right-arrow"></a>
+						<a href="https://asistente.ite.com.bo/" class="arrow flaticon-right-arrow"></a>
 					</div>
 				</div>
 				
 				<!-- Service Block Two -->
-				<div class="service-block-two">
+				{{-- <div class="service-block-two">
 					<div class="inner-box">
 						<div class="icon flaticon-learning-support"></div>
 						<h3><a href="service-detail.html">Libros Personalizados</a></h3>
 						<div class="text">Realizamos libros personalizados</div>
 						<a href="service-detail.html" class="arrow flaticon-right-arrow"></a>
 					</div>
-				</div>
+				</div> --}}
 				
 				<!-- Service Block Two -->
-				<div class="service-block-two">
+				{{-- <div class="service-block-two">
 					<div class="inner-box">
 						<div class="icon flaticon-social-reach"></div>
 						<h3><a href="service-detail.html">Creacion de dibujo</a></h3>
 						<div class="text">Realizamos dibujos.</div>
 						<a href="service-detail.html" class="arrow flaticon-right-arrow"></a>
 					</div>
-				</div>
+				</div> --}}
 				
 			</div>
 		</div>
@@ -1163,7 +913,7 @@
 
 
 	<!-- About Section -->
-	<section class="about-section">
+	{{-- <section class="about-section">
 		<div class="pattern-layer" style="background-image: url(assetshome/images/background/pattern-1.png)"></div>
 		<div class="auto-container">
 			<div class="row clearfix">
@@ -1220,11 +970,11 @@
 				
 			</div>
 		</div>
-	</section>
+	</section> --}}
 	<!-- End About Section -->
 	
 	<!-- Form Section -->
-	<section class="form-section">
+	{{-- <section class="form-section">
 		<div class="auto-container">
 			<div class="row clearfix">
 				<!-- Form Column -->
@@ -1256,14 +1006,6 @@
 										<textarea name="message" placeholder="Ingrese su mensaje*"></textarea>
 									</div>
 									
-									<!-- Form Group -->
-									{{-- <div class="form-group col-lg-12 col-md-12 col-sm-12">
-										<div class="radio-box">
-											<input type="radio" name="remember-password" id="type-1"> 
-											<label for="type-1">Save my name, email, and website in this browser for the next time I comment.</label>
-										</div>
-									</div> --}}
-									
 									<div class="form-group col-lg-12 col-md-12 col-sm-12">
 										<button type="submit" class="theme-btn btn-style-three"><span class="txt">Enviar <i class="flaticon-next-2"></i></span></button>
 									</div>
@@ -1293,7 +1035,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> --}}
 	<!-- End Form Section -->
 		
 	<!-- Contact Page Section -->
@@ -1570,7 +1312,7 @@
 										<li><a href="{{ route('about') }}">¿Quienes Somos?</a></li>
 										<li><a href="{{ route('about') }}">Misión</a></li>
 										<li><a href="{{ route('about') }}">Visión</a></li>
-										<li><a href="#">Preguntas frecuentes</a></li>
+										<li><a href="{{ route('preguntasfrecuentes') }}">Preguntas Frecuentes</a></li>
 										<li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
 										<li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
 									</ul>

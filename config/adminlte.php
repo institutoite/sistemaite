@@ -946,15 +946,15 @@ return [
             'classes'  => 'text-white bg-secondary',
         ],
         [
-            'text'    => 'Pagina Inicio',
+            'text'    => 'Preguntas Frecuentes',
             'icon'    => 'fas fa-home',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
             'submenu' => [
                 [
-                    'text' => 'Texto home',
+                    'text' => 'Preguntas Frecuentes',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => 'home/edit',
+                    'url'  => 'question',
                     'classes'  => 'text-dark',
                 ],
             ],

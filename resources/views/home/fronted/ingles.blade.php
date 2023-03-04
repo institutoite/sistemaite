@@ -83,7 +83,7 @@
             </div>
           </div>
         </div>
-
+      
       <!-- Header Lower -->
       @include('home.fronted.header')
       <!-- End Header Lower -->
@@ -113,33 +113,30 @@
       <!-- End Sticky Menu -->
       
       <!-- Mobile Menu  -->
-          <div class="mobile-menu">
-              <div class="menu-backdrop"></div>
-              <div class="close-btn"><span class="icon flaticon-multiply"></span></div>
-              
-              <nav class="menu-box">
-                  <div class="nav-logo"><a href="{{ url('/') }}"><img src="{{asset('assetshome/images/logo.png')}}" alt="" title=""></a></div>
-                  <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
-              </nav>
-          </div><!-- End Mobile Menu -->
+      <div class="mobile-menu">
+          <div class="menu-backdrop"></div>
+          <div class="close-btn"><span class="icon flaticon-multiply"></span></div>
+          
+          <nav class="menu-box">
+              <div class="nav-logo"><a href="{{ url('/') }}"><img src="{{asset('assetshome/images/logo.png')}}" alt="" title=""></a></div>
+              <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+          </nav>
+      </div>
+      <!-- End Mobile Menu -->
     
     </header>
     <!-- End Main Header -->
-    
-    <!-- Sidebar Cart Item -->
-    
-    <!-- END sidebar widget item -->
-    
+        
     <!-- Page Title -->
       {{-- <section class="page-title" style="background-image: url(assets/images/background/1.jpg)"> --}}
       <section class="page-title" style="background-image: url('{{ asset('assetshome/images/background/portada.jpg')}}');">
-          <div class="auto-container">
-        <h2></h2>
-        <ul class="bread-crumb clearfix">
-          {{-- <li><a href="{{ url('/') }}">Inicio</a></li>
-          <li>Robótica</li> --}}
-        </ul>
-          </div>
+        <div class="auto-container">
+          <h2></h2>
+          <ul class="bread-crumb clearfix">
+            {{-- <li><a href="{{ url('/') }}">Inicio</a></li>
+            <li>Primaria</li> --}}
+          </ul>
+        </div>
       </section>
       <!--End Page Title-->
     
@@ -149,203 +146,101 @@
         <div class="row clearfix">
         
           <!-- Title Column -->
-          <div class="content-column col-lg-6 col-md-12 col-sm-12">
+          <div class="content-column col-lg-7 col-md-12 col-sm-12">
             <div class="inner-column">
               <!-- Sec Title -->
               <div class="sec-title">
-                <div class="title">Horarios y Precios</div>
-                <h2>El poder de la <span>tecnología </span> a tu alcance </h2>
-                <div class="text">Transformando el futuro a través de la tecnología.</div>
+                <div class="title">Clases de Inglés</div>
+                <h2>Aprende <span>inglés</span>, amplía tus horizontes.</h2>
+                <div class="text">Nuestras clases de inglés están diseñadas para ayudarte a mejorar tus habilidades lingüísticas de manera rápida y efectiva. Aprenderás a hablar, escribir, leer y escuchar en inglés con confianza.</div>
               </div>
               <div class="row mt-none-30">
                 <div class="col-lg-6">
                   <div class="experiance_item mt-30">
-                    <div class="icon">
-                      <img src="assets/images/icons/a_01.png" alt="">
-                    </div>
+                    {{-- <div class="icon">
+                      <img src="{{asset('')}}" alt="">
+                    </div> --}}
                     <div class="content">
-                      <h4>Desde basico a experto</h4>
-                      <p>Aprende computación desde cero hasta avanzado</p>
+                      <h4></h4>
+                      {{-- <p>Sin Materiales</p> --}}
+                      
                     </div>
                   </div>
                   <ul class="experiance_list mt-30">
-                    <li></li>
+                    <li> </li>
                   </ul>
                   <div class="button-box">
-                    <a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información de computación" class="theme-btn btn-style-seven"><span class="txt">Inscribite Hoy..!! <i class="flaticon-next-2"></i></span></a>
+                    <a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información de las clases de ingles" class="theme-btn btn-style-seven"><span class="txt">Contactanos <i class="flaticon-next-2"></i></span></a>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="counter_wrap mt-30">
-                    <h1><span class="number">175 Bs.<span class="plus">+</span></span> <span class="text"></span></h1>
+                    <h1><span class="number"><span class="plus"></span></span> <span class="text"></span></h1>
                   </div>
-                  <div class="experiance_item mt-30">
+                  {{-- <div class="experiance_item mt-30">
                     <div class="icon">
-                      <img src="assets/images/icons/a_02.png" alt="">
+                      <img src="{{asset('assetshome/images/icons/a_02.png')}}" alt="">
                     </div>
                     <div class="content">
-                      <h4>Por asignatura</h4>
-                      <p></p>
+                      <h4>Mensual</h4>
+                      <p>Sin Materiales</p>
                     </div>
-                  </div>
-                </div>
-              </div>
-              <div class="blog-detail">
-                <div class="inner-box">
-                  <div class="image">
-                    <img src="assets/images/resource/news-4.jpg" alt="" />
-                  </div>
-                  <div class="lower-content">
-                    <h3>Asignaturas</h3>
-                    <p></p>
-    
-                    <div class="blog_qoute_wrap">
-                      <div class="row">
-                        <div class="col-lg-6">
-                          @foreach ($operadorcomputadora as $operador)
-                          <ul class="blog_list">
-                            <li>{{$operador->asignatura}}</li>
-                          </ul>
-                          @endforeach
-                        </div>
-                        
-                      </div>
-                    </div>
-                    
-                  </div>
+                  </div> --}}
                 </div>
               </div>
             </div>
           </div>
           
           <!-- Blocks Column -->
-          <div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
-            <aside class="sidebar sticky-top">
-  
-              <!-- Timing Widget -->
-              <div class="sidebar-widget timing-widget">
-                <div class="widget-content">
-  
-                    {{--%%%%%%%%%%%%%%%%%%%% Lunes - Viernes %%%%%%%%%%%%%%%%%%  --}}
-                    <div class="card">
-                      <div class="card-header bg-primary text-white text-center">
-                        <h3 class="text-white"> Lunes a Viernes</h3>
-                      </div>
-                      <div class="card-body">
-                        <table class="table table-bordered table-striped table-hover">
-                          <thead class="text-secondary">
-                            <tr>
-                              <th scope="col">Mañana</th>
-                              <th scope="col">Tarde</th>
-                              <th scope="col">Noche</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>7:30 - 9:00</td>
-                              <td>14:00 - 15:30</td>
-                              <td>18:30 - 20:00</td>
-                            </tr>
-                            <tr>
-                              <td>9:00 - 10:30</td>
-                              <td>15:30 - 17:00</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>10:30 - 12:00</td>
-                              <td>17:00 - 18:30</td>
-                              <td></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div> 
-                    <hr>
 
-                    {{--%%%%%%%%%%%%%%%%%%%% Sabados %%%%%%%%%%%%%%%%%%  --}}
-                    <div class="card">
-                      <div class="card-header bg-secondary text-white text-center">
-                        <h3 class="text-white"> Solo Sabados</h3>
-                      </div>
-                      <div class="card-body">
-                        <table class="table table-bordered table-striped table-hover">
-                          <thead class="text-secondary">
-                            <tr>
-                              <th scope="col">7:30 - 12:00</th>
-                            </tr>
-                          </thead>
-                        </table>
-                      </div>
-                    </div> 
-                    <hr>
-  
+          <div class="sidebar-side col-lg-5 col-md-12 col-sm-12">
+            <aside class="sidebar sticky-top">
+              
+              <!-- Sidebar Widget / Search Widget -->
+              <div class="sidebar-widget search-widget timing-widget">
+                <div class="widget-content">
+                  <!-- Sidebar Title -->
+                  <div class="sidebar-title">
+                    <h3>HORARIOS</h3>
+                  </div>
+                  
+                  <ul class="time-list">
+                    <li>Lunes a Viernes <span>7:30 - 21:00</span></li>
+                    <li>Sábados <span>7:30 - 17:00</span></li>
+                  </ul>
+                  
                 </div>
               </div>
+              <!-- End Sidebar Widget / Search Widget -->
               
-              <!-- Gallery Widget -->
-              
+              <!-- Sidebar Widget / Social Widget -->
+              <div class="sidebar-widget sidebar-social-widget">
+                <div class="widget-content">
+                  <!-- Sidebar Title -->
+                  <div class="sidebar-title">
+                    <h3>Siguenos</h3>
+                  </div>
+                  
+                  <!-- Social Box -->
+                  <ul class="social-box">
+                    {{-- <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li> --}}
+                    <li><a href="https://www.facebook.com/" class="fa fa-facebook"></a></li>
+                    {{-- <li><a href="https://www.instagram.com/" class="fa fa-instagram"></a></li> --}}
+                    <li><a href="https://youtube.com/" class="fa fa-youtube"></a></li>
+                  </ul>
+                  
+                </div>
+              </div>
               
             </aside>
           </div>
 
-          
-          
         </div>
       </div>
     </section>
     <!-- End Agency Section -->
+
     
-    <!-- Support Section -->
-    <section class="support-section">
-      <div class="auto-container">
-        <div class="inner-container">
-          <div class="row clearfix">
-          
-            <!-- Social Column -->
-            <div class="social-column col-lg-4 col-md-12 col-sm-12">
-              <div class="inner-column">
-                <h3>Contactanos:</h3>
-                <!-- Social Box -->
-                <ul class="social-box">
-                  <li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook-f"></a></li>
-                  <li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
-                  <li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
-                  <li><a href="hhttps://www.youtube.com/channel/UCbmRHfG51CGM1foo-6kzunQ" class="fa fa-youtube"></a></li>
-                </ul>
-              </div>
-            </div>
-            
-            <!-- Content Column -->
-            <div class="content-column col-lg-8 col-md-12 col-sm-12">
-              <div class="inner-column" style="background-image: url(assets/images/background/pattern-12.png)">
-                <div class="pattern-layer" style="background-image:url(assets/images/background/pattern-13.png)"></div>
-                <div class="play-box">
-                  <a href="https://www.youtube.com/watch?v=lFpc19KsYzs" class="lightbox-image play-button"><span class="flaticon-media-play-symbol"><i class="ripple"></i></span></a>
-                </div>
-                <div class="phone"><span class="icon fa fa-phone"></span>+591 71039910</div>
-                <h2>¿Tienes alguna duda?</h2>
-                <div class="text">Contactanos a traves de nuestras redes sociales o numeros telefonicos.</div>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- End Support Section -->
-    
-    <!-- Clients Section -->
-    <section class="clients-section-two">
-      <div class="auto-container">
-        <div class="inner-container">
-          <div class="carousel-outer">
-            <!--Sponsors Slider-->
-            
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- End Clients Section -->
     
    <!-- Main Footer / Style Two -->
    <footer class="main-footer">
@@ -385,11 +280,11 @@
                     <div class="big-column col-lg-6 col-md-12 col-sm-12">
 						<div class="row clearfix">
 							
-                        	<!-- Footer Column -->
-                            <div class="footer-column col-lg-7 col-md-6 col-sm-12">
-                                <div class="footer-widget about-widget">
+              <!-- Footer Column -->
+              <div class="footer-column col-lg-7 col-md-6 col-sm-12">
+                <div class="footer-widget about-widget">
 									<div class="logo">
-										<a href="index.html"><img src="assets/images/logo-4.png" alt="" title=""></a>
+										{{-- <a href="index.html"><img src="assets/images/logo-4.png" alt="" title=""></a> --}}
 									</div>
 									<div class="text">ITE es un centro educativo que brinda clases de nivelación en diferentes materias y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.</div>
 									<div class="opening">
@@ -401,14 +296,14 @@
 							</div>
 							
 							<!-- Footer Column -->
-                            <div class="footer-column col-lg-5 col-md-6 col-sm-12">
-                                <div class="footer-widget links-widget">
+              <div class="footer-column col-lg-5 col-md-6 col-sm-12">
+                <div class="footer-widget links-widget">
 									<h3>Informaciones</h3>
 									<ul class="nav-list">
 										<li><a href="{{ route('about') }}">¿Quienes Somos?</a></li>
 										<li><a href="{{ route('about') }}">Misión</a></li>
 										<li><a href="{{ route('about') }}">Visión</a></li>
-										<li><a href="#">Preguntas frecuentes</a></li>
+										<li><a href="{{ route('preguntasfrecuentes') }}">Preguntas Frecuentes</a></li>
 										<li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
 										<li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
 									</ul>
@@ -486,19 +381,6 @@
 		
 	</footer>
 	<!-- End Main Footer -->
-    
-    <!-- Search Popup -->
-    <div class="search-popup">
-      <button class="close-search style-two"><span class="flaticon-cancel-1"></span></button>
-      <button class="close-search"><span class="flaticon-up-arrow"></span></button>
-      <form method="post" action="blog.html">
-        <div class="form-group">
-          <input type="search" name="search-field" value="" placeholder="Search Here" required="">
-          <button type="submit"><i class="fa fa-search"></i></button>
-        </div>
-      </form>
-    </div>
-    <!-- End Header Search -->
     
   </div>
 

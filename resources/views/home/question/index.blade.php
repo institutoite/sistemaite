@@ -3,13 +3,13 @@
 @section('title', 'Preguntas')
 
 @section('content_header')
-    <h1 class="text-center text-primary">Preguntas Frecuentas</h1>
+    <h1 class="text-center text-primary">Preguntas Frecuentes</h1>
 @stop
 
 @section('content')
     <div class="card">
         <div class="card-header bg-primary">
-            Lista de Preguntas Frecuentas<a class="btn btn-secondary text-white btn-sm float-right" href="{{route('homequestion.create')}}">Nuevo Pregunta</a>
+            Lista de Preguntas Frecuentes<a class="btn btn-secondary text-white btn-sm float-right" href="{{route('homequestion.create')}}">Nueva Pregunta</a>
         </div>
         <div class="card-body">
             <table class="table table-striped">

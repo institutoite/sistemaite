@@ -48,7 +48,7 @@
                 </li>
                 <li class="dropdown"><a href="#">Carreras</a>
                   <ul>
-                    <li><a href="{{ route('operadorcomputadora') }}">Computación</a></li>
+                    <li><a href="{{ route('computacion') }}">Computación</a></li>
                     <li><a href="{{ route('disenografico') }}">Diseño gráfico</a></li>
                     <li><a href="">Mantenimiento y Reparación de Computadoras</a></li>
                     
