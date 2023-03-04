@@ -129,7 +129,7 @@
         
     <!-- Page Title -->
       {{-- <section class="page-title" style="background-image: url(assets/images/background/1.jpg)"> --}}
-      <section class="page-title" style="background-image: url('{{ asset('assetshome/images/background/portada.jpg')}}');">
+      <section class="page-title" style="background-image: url('{{ asset('assetshome/images/background/ingles.jpg')}}');">
         <div class="auto-container">
           <h2></h2>
           <ul class="bread-crumb clearfix">

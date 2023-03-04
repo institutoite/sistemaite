@@ -70,6 +70,11 @@
                     
                   </ul>
                 </li>
+                @auth
+                  <li><a href="{{ route('home') }}">Sistema</a></li>
+                @else
+                  <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
+                @endauth
                 <li><a href="{{ route('contact') }}">Contactenos</a></li>
               </ul>
             </div>
