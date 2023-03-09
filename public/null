@@ -1,82 +1,33 @@
-
-
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Modalidad;
-use App\Models\Nivel;
-use App\Models\Inscripcione;
-use App\Models\Programacion;
+$nombre_archivo='contactos/todos'.Carbon::now().'.vcf';
 use Carbon\Carbon;
-
-$nivel=Nivel::findOrFail(3);
-
-$mod_de_nivel=$nivel->modalidades;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Modalidad;
-use App\Models\Nivel;
-use App\Models\Inscripcione;
-use App\Models\Programacion;
+$nombre_archivo='contactos/todos'.Carbon::now().'.vcf';
 use Carbon\Carbon;
-
-$nivel=Nivel::findOrFail(3);
-
-$mod_de_nivel=$nivel->modalidades;
- $modalidadesprimaria=Modalidad::where('vigente',1)->where('nivel_id',3)->get();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-use App\Models\Estudiante;
-use App\Models\Grado;
-use App\Models\Docente;
-use App\Models\Clase;
-use App\Models\Modalidad;
-use App\Models\Nivel;
-use App\Models\Inscripcione;
-use App\Models\Programacion;
+$nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("DD-MM-YY").'.vcf';
 use Carbon\Carbon;
-
-$nivel=Nivel::findOrFail(3);
-
-$mod_de_nivel=$nivel->modalidades;
- 
-
-
-
-
-
-
-
-
-
-
-
+$nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("DD_MM_YY").'.vcf';
+use Carbon\Carbon;
+$nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("ss_DD_MM_YY").'.vcf';
+use Carbon\Carbon;
+$nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("ss_mm_DD_MM_YY").'.vcf';
+use Carbon\Carbon;
+$nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("hh_mm_ss_DD_MM_YY").'.vcf';
+use Carbon\Carbon;
+$nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("hh_mm_ss_DD_MM_YY").'.vcf';
+use Carbon\Carbon;
+$nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("hh_mm_ss_DD_MM_YY").'.vcf';
+use Carbon\Carbon;
+$nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("hh_mm_ss_DD_MM_YY").'.vcf';
+use Carbon\Carbon;
+$nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("hh_mm_ss_DD_MM_YYYY").'.vcf';
+use Carbon\Carbon;
+$nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("hh_mm_ss_DD_MMM_YYYY").'.vcf';
+use Carbon\Carbon;
+$nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("hh_mm_ss_DD_MMMM_YYYY").'.vcf';
+use Carbon\Carbon;
+$nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("_hh_mm_ss_DD_MMMM_YYYY").'.vcf';
+use Carbon\Carbon;
+$nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("_hh_mm_ss_DD_MMMM_YYYY").'.vcf';
+use Carbon\Carbon;
+$nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("_hh_mm_ss_DD_MMMM_YYYY").'.vcf';
+use Carbon\Carbon;
+$nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("_hh_mm_ss_DD_MMMM_YYYY").'.vcf';

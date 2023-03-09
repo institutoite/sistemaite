@@ -133,6 +133,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('persona/enviar/mensaje/faltones', [PersonaController::class,'enviarMensajeFaltones'])->name('persona.enviar.mensaje.faltones');
     Route::get('persona/enviar/mensaje/faltonescom', [PersonaController::class,'enviarMensajeFaltonesComputacion'])->name('persona.enviar.mensaje.faltonescom');
     Route::get('persona/descargar/contacto/{persona}', [PersonaController::class,'descargarContacto'])->name('descargar.contacto');
+    Route::get('desgargar/contactos', [PersonaController::class,'DescargarTodosContacto'])->name('descargar.todos.contactos');
     Route::get('persona/actualizar/vuelvefecha', [PersonaController::class,'actualizarVuelveFecha'])->name('persona.update.vuelvefecha');
     Route::get('persona/actualizar/volvera', [PersonaController::class,'actualizarVolvera'])->name('persona.update.volvera');
 

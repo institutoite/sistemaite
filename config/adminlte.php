@@ -265,6 +265,12 @@ return [
                     'url'  => 'presentes',
                     'classes'  => 'text-dark',
                 ],
+                [
+                    'text' => 'Descargar todo',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'desgargar/contactos',
+                    'classes'  => 'text-dark',
+                ],
             ],
         ],
         

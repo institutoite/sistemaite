@@ -1180,7 +1180,97 @@ class PersonaController extends Controller
         return response()->json($persona);
     }
 
-    public function descargarContactosTodos(){
+    public function DescargarTodosContacto(){
 
+        $personas=Persona::all();
+        foreach ($personas as $persona) {
+            $nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("_hh_mm_ss_DD_MMMM_YYYY").'.vcf';
+            Storage::append($nombre_archivo, 'BEGIN:VCARD');
+            Storage::append($nombre_archivo, 'VERSION:3.0');
+            $apellidoMaterno = isset($persona->apellidom) ? $persona->apellidom : '-';
+            Storage::append($nombre_archivo, 'N:'.$persona->apellidop.';'.$persona->nombre.';'.$apellidoMaterno.";;");
+            Storage::append($nombre_archivo, 'FN:'.$persona->apellidop.' '.$persona->nombre.' '.$apellidoMaterno);
+            $foto = isset($persona->foto) ? $persona->foto : '-';
+            Storage::append($nombre_archivo, "PHOTO;VALUE=uri".URL::to('/').Storage::url($foto));
+            if (isset($persona->fechanacimiento)){
+                Storage::append($nombre_archivo, 'BDAY:'.$persona->fechanacimiento->isoFormat('YYYY-MM-DD'));
+            }
+            $genero = isset($persona->genero) ? $persona->genero : '';
+            if($genero=="MUJER")
+                Storage::append($nombre_archivo, 'GENDER:F');
+            else{
+                Storage::append($nombre_archivo, 'GENDER:M');
+            }
+            $telefono = isset($persona->telefono) ? $persona->telefono : '0';
+            Storage::append($nombre_archivo, "TEL;VALUE=uri;PREF=1;TYPE=voice,work:".$persona->telefono);
+            $whatsapp = ($telefono!=0) ? $telefono : 'No tiene numero';
+            Storage::append($nombre_archivo, "URL:wa.me/591".$whatsapp);
+
+            $zona = isset($persona->zona) ? $persona->zona->zona : '-';
+            $direccion = isset($persona->direccion) ? $persona->direccion : '-';
+            $como_id = isset($persona->como_id) ? $persona->como_id : '-';
+            
+            Storage::append($nombre_archivo, "NOTE:CODIGO:".$persona->id);
+
+            if(isset($persona->como_id)){
+                $como=$persona->como;
+                Storage::append($nombre_archivo, "NOTE:Genero:".$genero.'\nDireccion:'.$zona.' '.$direccion.'\nComo eneteró:'.$como->como);
+            }
+            $apoderados=$persona->apoderados;
+                foreach ($apoderados as $apoderado) {
+                    Storage::append($nombre_archivo, "TEL;VALUE=uri;PREF=1;TYPE=voice,home:".$apoderado->telefono);
+                    Storage::append($nombre_archivo, "NOTE:Nombre:".$apoderado->nombre.' '.$apoderado->apellidop.' '.$apoderado->apellidom.'\nPARENTESCO:'.$apoderado->pivot->parentesco.'\nTelefono:'.$apoderado->telefono);
+                    Storage::append($nombre_archivo, "URL:wa.me/591".$apoderado->telefono);
+                }
+            if (isset($persona->estudiante->inscripciones)){
+                $inscripciones=$persona->estudiante->inscripciones;
+                foreach ($inscripciones as $inscripcion) {
+                    Storage::append($nombre_archivo, "NOTE:Modalidad:".$inscripcion->modalidad->modalidad.'\nObservacion:'.$inscripcion->objetivo.'\nVigente:'.$inscripcion->vigente.'\nMotivo:'.$inscripcion->motivo->motivo);
+                }
+            }    
+            if(isset($persona->computacion->matriculaciones)){
+                $matriculaciones=$persona->computacion->matriculaciones;
+                foreach ($matriculaciones as $matriculacion) {
+                    Storage::append($nombre_archivo, "NOTE:Asignatura:".$matriculacion->asignatura->asignatura.'\nVigente:'.$matriculacion->vigente);
+                }
+            }
+            Storage::append($nombre_archivo, "LANG;TYPE=work;PREF=2:es");
+            Storage::append($nombre_archivo, "TITLE:".$persona->papelinicial);
+            
+            $roles="";
+            if($persona->isEstudiante()){
+                $roles.="ESTUDIANTE,";
+            }
+            if($persona->isDocente()){
+                $roles.="DOCENTE,";
+            }
+            if($persona->isAdministrativo()){
+                $roles.="ADMINISTRATIVO,";
+            }
+            if($persona->isComputacion()){
+                $roles.="COMPUTACION,";
+            }
+            Storage::append($nombre_archivo, "ROLE:".$roles);
+            Storage::append($nombre_archivo, "LOGO:".$persona->foto);
+            Storage::append($nombre_archivo, "ORG:".$persona->empresa);
+            $intereses=$persona->interests;
+            $categorias="";
+            foreach ($intereses as $categoria) {
+                $categorias.=$categoria->interest.",";
+            }
+            Storage::append($nombre_archivo, "NOTE:INTERESES:".$categorias);
+            $observacioninicial=$persona->observaciones->first();
+            $observacionfinal=$persona->observaciones->last();
+            if (isset($observacioninicial->observacion)){
+                Storage::append($nombre_archivo, "NOTE:".(strip_tags($observacioninicial->observacion)));
+                if($observacioninicial->id!=$observacionfinal->id)
+                Storage::append($nombre_archivo, "NOTE:".(strip_tags($observacionfinal->observacion)));
+            }
+            Storage::append($nombre_archivo, 'END:VCARD');
+        }
+        $contacto=Storage::disk('public')->put($nombre_archivo,'Contents');
+        
+        $url=storage_path("app/contactos/".$nombre_archivo);
+        return response()->download($url);
     }
 }
