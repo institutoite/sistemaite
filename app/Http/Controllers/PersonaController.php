@@ -1183,8 +1183,8 @@ class PersonaController extends Controller
     public function DescargarTodosContacto(){
 
         $personas=Persona::all();
+        $nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("_hh_mm_ss_DD_MMMM_YYYY").'.vcf';
         foreach ($personas as $persona) {
-            $nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("_hh_mm_ss_DD_MMMM_YYYY").'.vcf';
             Storage::append($nombre_archivo, 'BEGIN:VCARD');
             Storage::append($nombre_archivo, 'VERSION:3.0');
             $apellidoMaterno = isset($persona->apellidom) ? $persona->apellidom : '-';
