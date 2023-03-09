@@ -1050,6 +1050,8 @@ class PersonaController extends Controller
         $direccion = isset($persona->direccion) ? $persona->direccion : '-';
         $como_id = isset($persona->como_id) ? $persona->como_id : '-';
         
+        Storage::append($nombre_archivo, "NOTE:CODIGO:".$persona->id);
+
         if(isset($persona->como_id)){
             $como=$persona->como;
             Storage::append($nombre_archivo, "NOTE:Genero:".$genero.'\nDireccion:'.$zona.' '.$direccion.'\nComo eneteró:'.$como->como);
@@ -1100,9 +1102,9 @@ class PersonaController extends Controller
         $observacioninicial=$persona->observaciones->first();
         $observacionfinal=$persona->observaciones->last();
         if (isset($observacioninicial->observacion)){
-            Storage::append($nombre_archivo, "NOTE:".($observacioninicial->observacion));
+            Storage::append($nombre_archivo, "NOTE:".(strip_tags($observacioninicial->observacion)));
             if($observacioninicial->id!=$observacionfinal->id)
-            Storage::append($nombre_archivo, "NOTE:".($observacionfinal->observacion));
+            Storage::append($nombre_archivo, "NOTE:".(strip_tags($observacionfinal->observacion)));
         }
         Storage::append($nombre_archivo, 'END:VCARD');
         $contacto=Storage::disk('public')->put($nombre_archivo,'Contents');
@@ -1125,6 +1127,7 @@ class PersonaController extends Controller
        
         return response()->download($url);
     }
+
     public function actualizarVuelveFecha(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -1175,5 +1178,9 @@ class PersonaController extends Controller
     }
     public function getPersona(Persona $persona){
         return response()->json($persona);
+    }
+
+    public function descargarContactosTodos(){
+
     }
 }
