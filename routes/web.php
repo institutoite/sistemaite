@@ -137,7 +137,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('desgargar/contactos', [PersonaController::class,'mostrarArchivos'])->name('descargar.todos.contactos');
 
     Route::get('contacto/view',function () {
-        $directorio = storage_path("app/contactos");
+        $directorio = storage_path("app/contactos/todos");
         $archivos = scandir($directorio);
         return view('persona.contacto.archivos',compact("archivos"));
         

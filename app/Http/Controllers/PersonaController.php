@@ -1185,9 +1185,9 @@ class PersonaController extends Controller
             $ultimo_id=Persona::get()->last()->id;
             if($incremento+$inicio>$ultimo_id)
                 $incremento=$ultimo_id-$inicio;
-            $personas=Persona::whereBetween('id',[$inicio,$inicio+$incremento-1])->get();
+            $personas=Persona::whereBetween('id',[$inicio,$inicio+$incremento])->get();
             // $nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("_hh_mm_ss_DD_MMMM_YYYY").'.vcf';
-            $nombre_archivo='contactos/todos'.$inicio."_".$inicio+$incremento.'.vcf';
+            $nombre_archivo='contactos/todos/'.$inicio."_".$inicio+$incremento.'.vcf';
             foreach ($personas as $persona) {
                 Storage::append($nombre_archivo, 'BEGIN:VCARD');
                 Storage::append($nombre_archivo, 'VERSION:3.0');
@@ -1266,10 +1266,20 @@ class PersonaController extends Controller
                 $observacioninicial=$persona->observaciones->first();
                 $observacionfinal=$persona->observaciones->last();
                 if (isset($observacioninicial->observacion)){
-                    Storage::append($nombre_archivo, "NOTE:".(strip_tags($observacioninicial->observacion)));
+                    $cadena =$observacioninicial->observacion ;
+                    $busqueda = array("<p>", "<li>");
+                    $reemplazo = array("\t", "\t");
+                    $nueva_cadena = str_replace($busqueda, $reemplazo, $cadena);
+                    Storage::append($nombre_archivo, "NOTE:"."\t".(strip_tags($nueva_cadena)));
                     if($observacioninicial->id!=$observacionfinal->id)
-                    Storage::append($nombre_archivo, "NOTE:".(strip_tags($observacionfinal->observacion)));
+                        $cadena =$observacionfinal->observacion ;
+                        $busqueda = array("<p>", "<li>");
+                        $reemplazo = array("\t", "\t");
+                        $nueva_cadena = str_replace($busqueda, $reemplazo, $cadena);
+                        Storage::append($nombre_archivo, "NOTE:"."\r".(strip_tags($nueva_cadena)));
                 }
+               
+                
                 Storage::append($nombre_archivo, 'END:VCARD');
             }
             $contacto=Storage::disk('public')->put($nombre_archivo,'Contents');
@@ -1282,19 +1292,19 @@ class PersonaController extends Controller
         $incremento = $request->incremento;
         
         $this->DescargarTodosContacto($inicio,$incremento);
-        $directorio = storage_path("app/contactos");
+        $directorio = storage_path("app/contactos/todos");
         $archivos = scandir($directorio);
         return view("persona.contacto.archivos", ['archivos' => $archivos]);
     }
     public function descargarArchivo(Request $request) {
         $archivo = $request->input('archivo');
-        $ruta_archivo = storage_path("app/contactos/".$archivo) ; // reemplazar con la ruta completa a la carpeta
+        $ruta_archivo = storage_path("app/contactos/todos/".$archivo) ; // reemplazar con la ruta completa a la carpeta
         return response()->download($ruta_archivo);
     }
     public function eliminar(Request $request)
     {
         $archivo = $request->input('archivo');
-        Storage::delete(storage_path('app/contactos')."/".$archivo); // Eliminar el archivo utilizando la clase Storage
+        Storage::delete(storage_path('app/contactos/todos/').$archivo); // Eliminar el archivo utilizando la clase Storage
         return response()->json(['mensaje' => "El archivo $archivo ha sido eliminado"]); // Retornar una respuesta en formato JSON
     }
 }
