@@ -134,7 +134,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('persona/enviar/mensaje/faltonescom', [PersonaController::class,'enviarMensajeFaltonesComputacion'])->name('persona.enviar.mensaje.faltonescom');
     Route::get('persona/descargar/contacto/{persona}', [PersonaController::class,'descargarContacto'])->name('descargar.contacto');
     
-    Route::get('desgargar/contactos', [PersonaController::class,'mostrarArchivos'])->name('descargar.todos.contactos');
+    Route::post('desgargar/contactos', [PersonaController::class,'mostrarArchivos'])->name('descargar.todos.contactos');
+
+    Route::get('contacto/view',function () {
+        $directorio = storage_path("app/contactos");
+        $archivos = scandir($directorio);
+        return view('persona.contacto.archivos',compact("archivos"));
+        
+    })->name('mostrar_archivo');
     Route::get('descargar-archivo', [PersonaController::class,'descargarArchivo'])->name('descargar_archivo');
     Route::get('eliminar_archivo', [PersonaController::class,'eliminar'])->name('eliminar_archivo');
 

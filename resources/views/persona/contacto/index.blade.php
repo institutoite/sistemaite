@@ -16,7 +16,9 @@
                 <a href="{{ route('personas.crear.contacto') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                     {{ __('Crear contacto') }}
                 </a>
+                
             </div>
+            
         </div>
         <div class="card-body">
             <table id="contactos" class="table table-bordered table-hover table-striped">
@@ -69,6 +71,8 @@
     
 
     <script>
+        
+
          //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
         CKEDITOR.replace('editorguardar', {
             height: 120,

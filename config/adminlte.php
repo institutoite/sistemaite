@@ -268,7 +268,7 @@ return [
                 [
                     'text' => 'Descargar todo',
                     'icon'    => 'fas fa-angle-right',
-                    'url'  => 'desgargar/contactos',
+                    'url'  => 'contacto/view',
                     'classes'  => 'text-dark',
                 ],
             ],

@@ -1180,11 +1180,11 @@ class PersonaController extends Controller
         return response()->json($persona);
     }
 
-    public function DescargarTodosContacto($incremento=500){
-        $inicio=1;
-        $ultimo_id=Persona::get()->last()->id;
-        //dd($ultimo_id);
-        while($inicio<$ultimo_id){
+    public function DescargarTodosContacto($inicio, $incremento){
+        
+            $ultimo_id=Persona::get()->last()->id;
+            if($incremento+$inicio>$ultimo_id)
+                $incremento=$ultimo_id-$inicio;
             $personas=Persona::whereBetween('id',[$inicio,$inicio+$incremento-1])->get();
             // $nombre_archivo='contactos/todos'.Carbon::now()->isoFormat("_hh_mm_ss_DD_MMMM_YYYY").'.vcf';
             $nombre_archivo='contactos/todos'.$inicio."_".$inicio+$incremento.'.vcf';
@@ -1192,8 +1192,8 @@ class PersonaController extends Controller
                 Storage::append($nombre_archivo, 'BEGIN:VCARD');
                 Storage::append($nombre_archivo, 'VERSION:3.0');
                 $apellidoMaterno = isset($persona->apellidom) ? $persona->apellidom : '-';
-                Storage::append($nombre_archivo, 'N:'.$persona->apellidop.';'.$persona->nombre.';'.$apellidoMaterno.";;");
-                Storage::append($nombre_archivo, 'FN:'.$persona->apellidop.' '.$persona->nombre.' '.$apellidoMaterno);
+                Storage::append($nombre_archivo, 'N:'."N_".$persona->apellidop.';'.$persona->nombre.';'.$apellidoMaterno.";;");
+                Storage::append($nombre_archivo, 'FN:'.$persona->apellidop.' N_'.$persona->nombre.' '.$apellidoMaterno);
                 $foto = isset($persona->foto) ? $persona->foto : '-';
                 Storage::append($nombre_archivo, "PHOTO;VALUE=uri".URL::to('/').Storage::url($foto));
                 if (isset($persona->fechanacimiento)){
@@ -1273,16 +1273,15 @@ class PersonaController extends Controller
                 Storage::append($nombre_archivo, 'END:VCARD');
             }
             $contacto=Storage::disk('public')->put($nombre_archivo,'Contents');
-            $inicio=$inicio+$incremento;
-        }
-        
-        
         // $url=storage_path("app/contactos/".$nombre_archivo);
         // return response()->download($url);
     }
 
-    public function mostrarArchivos() {
-        $this->DescargarTodosContacto();
+    public function mostrarArchivos(Request $request) {
+        $inicio=$request->inicio;
+        $incremento = $request->incremento;
+        
+        $this->DescargarTodosContacto($inicio,$incremento);
         $directorio = storage_path("app/contactos");
         $archivos = scandir($directorio);
         return view("persona.contacto.archivos", ['archivos' => $archivos]);
