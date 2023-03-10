@@ -1266,17 +1266,13 @@ class PersonaController extends Controller
                 $observacioninicial=$persona->observaciones->first();
                 $observacionfinal=$persona->observaciones->last();
                 if (isset($observacioninicial->observacion)){
-                    $cadena =$observacioninicial->observacion ;
-                    $busqueda = array("<p>", "<li>");
-                    $reemplazo = array("\t", "\t");
-                    $nueva_cadena = str_replace($busqueda, $reemplazo, $cadena);
-                    Storage::append($nombre_archivo, "NOTE:"."\t".(strip_tags($nueva_cadena)));
+                    $textoConEtiquetas =$observacioninicial->observacion ;
+                    $textoSinEtiquetas = $this->eliminarEtiquetas($textoConEtiquetas);
+                    Storage::append($nombre_archivo, "NOTE:".(strip_tags($textoConEtiquetas)));
                     if($observacioninicial->id!=$observacionfinal->id)
-                        $cadena =$observacionfinal->observacion ;
-                        $busqueda = array("<p>", "<li>");
-                        $reemplazo = array("\t", "\t");
-                        $nueva_cadena = str_replace($busqueda, $reemplazo, $cadena);
-                        Storage::append($nombre_archivo, "NOTE:"."\r".(strip_tags($nueva_cadena)));
+                        $textoConEtiquetas =$observacionfinal->observacion ;
+                        $textoSinEtiquetas = $this->eliminarEtiquetas($textoConEtiquetas);
+                        Storage::append($nombre_archivo, "NOTE:".(strip_tags($textoSinEtiquetas)));
                 }
                
                 
@@ -1286,6 +1282,19 @@ class PersonaController extends Controller
         // $url=storage_path("app/contactos/".$nombre_archivo);
         // return response()->download($url);
     }
+    function eliminarEtiquetas($texto) {
+        // Eliminar todas las etiquetas HTML
+        $textoSinEtiquetas = strip_tags($texto);
+        
+        // Reemplazar saltos de línea y tabulaciones por comas y espacios
+        $textoFormateado = preg_replace('/[\n\r\t]/', ', ', $textoSinEtiquetas);
+        
+        // Reemplazar múltiples espacios por uno solo
+        $textoFormateado = preg_replace('/\s+/', ' ', $textoFormateado);
+        
+        return $textoFormateado;
+    }
+
 
     public function mostrarArchivos(Request $request) {
         $inicio=$request->inicio;
