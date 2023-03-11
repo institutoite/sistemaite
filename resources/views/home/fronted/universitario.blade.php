@@ -560,6 +560,7 @@
                   <li><a href="{{ route('fisica') }}">Fisica</a></li>
 									<li><a href="{{ route('quimica') }}">Quimica</a></li>
 									<li><a href="{{ route('algebra') }}">Álgebra</a></li>
+                  <li><a href="{{ route('estadistica') }}">Estadística</a></li>
 									<li><a href="{{ route('ingles') }}">Inglés</a></li>
 								</ul>
 							</div>

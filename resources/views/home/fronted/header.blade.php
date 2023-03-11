@@ -43,14 +43,14 @@
                   <ul>
                     <li><a href="{{ route('fotocopia') }}">Fotocopia e impresión</a></li>
                     <li><a href="{{ route('resolucionpracticos') }}">Resolución de practicos</a></li>
-                    <li><a href="https://asistente.ite.com.bo/">Asistente ite</a></li>
+                    <li><a href="{{ route('asistenteite') }}">Asistente ite</a></li>
                   </ul>
                 </li>
                 <li class="dropdown"><a href="#">Carreras</a>
                   <ul>
                     <li><a href="{{ route('computacion') }}">Computación</a></li>
                     <li><a href="{{ route('disenografico') }}">Diseño gráfico</a></li>
-                    <li><a href="">Mantenimiento y Reparación de Computadoras</a></li>
+                    <li><a href="{{ route('mantenimientocomputadoras') }}">Mantenimiento y Reparación de Computadoras</a></li>
                     
                   </ul>
                 </li>

@@ -545,9 +545,9 @@
 											
 												<!--Tab Btns-->
 												<ul class="tab-btns tab-buttons clearfix">
-													<li data-tab="#prod-integrity" class="tab-btn active-btn">¿Quienes somos?</li>
-													<li data-tab="#prod-obejectives" class="tab-btn">Misión</li>
-													<li data-tab="#prod-excellence" class="tab-btn">Visión</li>
+													<li data-tab="#prod-integrity" class="tab-btn active-btn">Misión</li>
+													<li data-tab="#prod-obejectives" class="tab-btn">Visión</li>
+													<li data-tab="#prod-excellence" class="tab-btn">¿Quienes Somos?</li>
 												</ul>
 												
 												<!-- Tabs Container -->
@@ -556,14 +556,6 @@
 													<!-- Tab / Active Tab -->
 													<div class="tab active-tab" id="prod-integrity">
 														<div class="content">
-															ITE es un centro educativo que brinda clases de nivelación en diferentes materias y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.
-														</div>
-													</div>
-													
-													<!-- Tab -->
-													<div class="tab" id="prod-obejectives">
-														<div class="content">
-
 															Nuestra misión es:
 																<ul class="list">
 																	<li>Proporcionar una educación de calidad y enfocada en el desarrollo integral de los estudiantes.</li>
@@ -572,14 +564,13 @@
 																	<li>Preparar a los estudiantes para enfrentar desafíos y oportunidades en el mundo actual y futuro.</li>
 																	<li>Proporcionar un ambiente seguro, acogedor y inclusivo para todos los estudiantes.</li>
 																</ul>
-															
 														</div>
 													</div>
 													
 													<!-- Tab -->
-													<div class="tab" id="prod-excellence">
+													<div class="tab" id="prod-obejectives">
 														<div class="content">
-													
+
 															Nuestra visión es:
 															<ul class="list">
 																<li>Ser reconocido como una institución de excelencia en educación y formación de jóvenes.</li>
@@ -588,6 +579,15 @@
 																<li>Ser un modelo de excelencia en la educación integral y personalizada.</li>
 																<li>Fomentar una cultura de aprendizaje continuo y desarrollo personal.</li>
 															</ul>
+															
+														</div>
+													</div>
+													
+													<!-- Tab -->
+													<div class="tab" id="prod-excellence">
+														<div class="content">
+													
+															ITE es un centro educativo que brinda clases de nivelación en diferentes materias y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.
 															
 														</div>
 													</div>
@@ -671,7 +671,7 @@
 		<div class="auto-container">
 			<!-- Sec Title -->
 			<div class="sec-title centered">
-				<div class="title style-two">Mas cursos</div>
+				<div class="title style-two">Nuestros Cursos</div>
 				<h2>Tenemos la solución de <span>aprendizaje </span> ideal para usted</h2>
 			</div>
 			<div class="row clearfix">
@@ -735,12 +735,12 @@
 				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
 					<div class="inner-box">
 						<div class="image">
-							<a href="{{ route('ajedrez') }}"><img src="{{asset('assetshome/images/gallery/ajedrez.jpg')}}" alt="" /></a>
+							<a href="{{ route('universitario') }}"><img src="{{asset('assetshome/images/gallery/universitario.jpg')}}" alt="" /></a>
 						</div>
 						<div class="lower-content">
 							
-							<h3><a href="{{ route('ajedrez') }}">Ajedrez</a></h3>
-							<a href="{{ route('ajedrez') }}" class="view">Informarme</a>
+							<h3><a href="{{ route('universitario') }}">Universitario</a></h3>
+							<a href="{{ route('universitario') }}" class="view">Informarme</a>
 						</div>
 					</div>
 				</div>
@@ -814,31 +814,31 @@
 				</div>
 				
 				<!-- Project Block Two -->
-				{{-- <div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
 					<div class="inner-box">
 						<div class="image">
-							<a href="{{ route('primaria') }}"><img src="{{asset('assetshome/images/gallery/primaria.jpg')}}" alt="" /></a>
+							<a href="{{ route('mantenimientocomputadoras') }}"><img src="{{asset('assetshome/images/gallery/mantenimientocomputadoras.jpg')}}" alt="" /></a>
 						</div>
 						<div class="lower-content">
 							
-							<h3><a href="{{ route('primaria') }}">Primaria</a></h3>
-							<a href="{{ route('primaria') }}" class="view">Informarme</a>
+							<h3><a href="{{ route('mantenimientocomputadoras') }}">Mantemiento de Computadoras</a></h3>
+							<a href="{{ route('mantenimientocomputadoras') }}" class="view">Informarme</a>
 						</div>
 					</div>
-				</div> --}}
+				</div>
 				
 				<!-- Project Block Two -->
-				{{-- <div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
 					<div class="inner-box">
 						<div class="image">
-							<a href="{{ route('secundaria') }}"><img src="{{asset('assetshome/images/gallery/secundaria.jpg')}}" alt="" /></a>
+							<a href="{{ route('ajedrez') }}"><img src="{{asset('assetshome/images/gallery/ajedrez.jpg')}}" alt="" /></a>
 						</div>
 						<div class="lower-content">
-							<h3><a href="{{ route('secundaria') }}">Secundaria</a></h3>
-							<a href="{{ route('secundaria') }}" class="view">Informarme</a>
+							<h3><a href="{{ route('ajedrez') }}">Ajedrez</a></h3>
+							<a href="{{ route('ajedrez') }}" class="view">Informarme</a>
 						</div>
 					</div>
-				</div> --}}
+				</div>
 				
 			</div>
 		</div>
@@ -879,9 +879,9 @@
 				<div class="service-block-two">
 					<div class="inner-box">
 						<div class="icon flaticon-search-engine"></div>
-						<h3><a href="https://asistente.ite.com.bo/">Asistente Ite</a></h3>
+						<h3><a href="{{ route('asistenteite') }}">Asistente Ite</a></h3>
 						<div class="text">¡Descubre el poder de la inteligencia artificial con nuestro Asistente ITE!</div>
-						<a href="https://asistente.ite.com.bo/" class="arrow flaticon-right-arrow"></a>
+						<a href="{{ route('asistenteite') }}" class="arrow flaticon-right-arrow"></a>
 					</div>
 				</div>
 				
@@ -915,7 +915,7 @@
 	<!-- End Team Section Two -->
 
 	<!-- About Section -->
-	{{-- <section class="about-section">
+	<section class="about-section">
 		<div class="pattern-layer" style="background-image: url(assetshome/images/background/pattern-1.png)"></div>
 		<div class="auto-container">
 			<div class="row clearfix">
@@ -932,10 +932,10 @@
 							<img src="assetshome/images/resource/about-2.jpg" alt="" />
 						</div>
 						<div class="image-three wow fadeInRight" data-wow-delay="450ms" data-wow-duration="1500ms">
-							<img src="assetshome/images/resource/about-4.jpg" alt="" />
+							<img src="#" alt="" />
 						</div>
 						<div class="image-four wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
-							<img src="assetshome/images/resource/about-3.jpg" alt="" />
+							<img src="#" alt="" />
 						</div>
 					</div>
 				</div>
@@ -972,7 +972,7 @@
 				
 			</div>
 		</div>
-	</section> --}}
+	</section>
 	<!-- End About Section -->
 	
 	<!-- Form Section -->

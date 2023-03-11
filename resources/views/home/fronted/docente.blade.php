@@ -17,7 +17,7 @@
               <div class="image">
                 <img src="{{URL::to('/')}}/storage/{{$docente->persona->foto}}" alt="" />
               </div>
-              <h3><a href="team.html">{{$docente->persona->nombre}} {{$docente->persona->apellidop}}</a></h3>
+              <h3><a href="#">{{$docente->persona->nombre}} {{$docente->persona->apellidop}}</a></h3>
               <div class="designation"></div>
               <!-- Social Box -->
               {{-- <ul class="social-box">

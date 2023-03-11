@@ -129,7 +129,7 @@
         
     <!-- Page Title -->
       {{-- <section class="page-title" style="background-image: url(assets/images/background/1.jpg)"> --}}
-      <section class="page-title" style="background-image: url('{{ asset('assetshome/images/background/portada.jpg')}}');">
+      <section class="page-title" style="background-image: url('{{ asset('assetshome/images/background/resolucionpracticos.jpg')}}');">
         <div class="auto-container">
           <h2></h2>
           <ul class="bread-crumb clearfix">
@@ -167,9 +167,9 @@
                         <li><a href="{{ route('fisica') }}">Física</a></li>
                         <li><a href="{{ route('quimica') }}">Química</a></li>
                         <li><a href="{{ route('algebra') }}">Álgebra</a></li>
+                        <li><a href="{{ route('estadistica') }}">Estadística</a></li>
                         <li><a href="{{ route('lenguaje') }}">Lenguaje</a></li>
                         <li><a href="{{ route('ingles') }}">Inglés</a></li>
-                        <li><a href="#">Cálculo</a></li>
                         <li><a href="{{ route('programacion') }}">Programación</a></li>
                       </ul>
                     </div>

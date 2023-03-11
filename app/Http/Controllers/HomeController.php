@@ -327,6 +327,11 @@ class HomeController extends Controller
         return view('home.fronted.resolucionpracticos');
     } 
 
+    public function asistenteite()
+    {
+        return view('home.fronted.asistenteite');
+    }
+
     public function matematica()
     {
         return view('home.fronted.matematica');
@@ -350,7 +355,12 @@ class HomeController extends Controller
     public function lenguaje()
     {
         return view('home.fronted.lenguaje');
-    } 
+    }
+    
+    public function estadistica()
+    {
+        return view('home.fronted.estadistica');
+    }
 
     public function ingles()
     {

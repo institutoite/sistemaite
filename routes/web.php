@@ -948,6 +948,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/resolucionpracticos', [HomeController::class, 'resolucionpracticos'])->name('resolucionpracticos');
 
+    Route::get('/asistenteite', [HomeController::class, 'asistenteite'])->name('asistenteite');
+
 
     Route::get('/matematica', [HomeController::class, 'matematica'])->name('matematica');
 
@@ -960,6 +962,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lenguaje', [HomeController::class, 'lenguaje'])->name('lenguaje');
 
     Route::get('/ingles', [HomeController::class, 'ingles'])->name('ingles');
+
+    Route::get('/estadistica', [HomeController::class, 'estadistica'])->name('estadistica');
 
 
     Route::any('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');
