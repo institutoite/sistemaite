@@ -910,7 +910,9 @@
 	</section>
 	<!-- End Services Section Three -->
 
-
+	<!-- Team Section Two -->
+	@include('home.fronted.docente')
+	<!-- End Team Section Two -->
 
 	<!-- About Section -->
 	{{-- <section class="about-section">
