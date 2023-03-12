@@ -1268,7 +1268,7 @@ class PersonaController extends Controller
                 if (isset($observacioninicial->observacion)){
                     $textoConEtiquetas =$observacioninicial->observacion ;
                     $textoSinEtiquetas = $this->eliminarEtiquetas($textoConEtiquetas);
-                    Storage::append($nombre_archivo, "NOTE:".(strip_tags($textoConEtiquetas)));
+                    Storage::append($nombre_archivo, "NOTE:".(strip_tags($textoSinEtiquetas)));
                     if($observacioninicial->id!=$observacionfinal->id)
                         $textoConEtiquetas =$observacionfinal->observacion ;
                         $textoSinEtiquetas = $this->eliminarEtiquetas($textoConEtiquetas);
