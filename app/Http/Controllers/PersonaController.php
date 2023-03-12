@@ -1198,10 +1198,10 @@ class PersonaController extends Controller
                 $foto = isset($persona->foto) ? $persona->foto : '-';
                 //echo $foto;
                 if(isset($persona->foto)){
-                    // Cargar la imagen
-                    $image = Storage::get('storage/app/public/'.$persona->foto);
-                    $base64 = base64_encode($image);
-                    Storage::append($nombre_archivo, "PHOTO;TYPE=JPEG;ENCODING=b:".$base64);
+                    $image_path = public_path('storage/app/'.$persona->foto);
+                    $image_data = file_get_contents($image_path);
+                    $base64_image = base64_encode($image_data);
+                    Storage::append($nombre_archivo, "PHOTO;TYPE=JPEG;ENCODING=b:".$base64_image);
                 }else{
                     Storage::append($nombre_archivo, "PHOTO;TYPE=JPEG;ENCODING=b:"."sin imagen");
                     //dd($persona->foto);
