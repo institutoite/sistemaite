@@ -37,6 +37,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+
 use Intervention\Image\Facades\Image;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
@@ -1192,10 +1193,21 @@ class PersonaController extends Controller
                 Storage::append($nombre_archivo, 'BEGIN:VCARD');
                 Storage::append($nombre_archivo, 'VERSION:3.0');
                 $apellidoMaterno = isset($persona->apellidom) ? $persona->apellidom : '-';
-                Storage::append($nombre_archivo, 'N:'."N_".$persona->apellidop.';'.$persona->nombre.';'.$apellidoMaterno.";;");
-                Storage::append($nombre_archivo, 'FN:'.$persona->apellidop.' N_'.$persona->nombre.' '.$apellidoMaterno);
+                Storage::append($nombre_archivo, 'N:'.$persona->id." ".$persona->apellidop.';'.$persona->nombre.';'.$apellidoMaterno.";;");
+                Storage::append($nombre_archivo, 'FN:'.$persona->apellidop.$persona->id." ".$persona->nombre.' '.$apellidoMaterno);
                 $foto = isset($persona->foto) ? $persona->foto : '-';
-                Storage::append($nombre_archivo, "PHOTO;VALUE=uri".URL::to('/').Storage::url($foto));
+                //echo $foto;
+                if(isset($persona->foto)){
+                    // Cargar la imagen
+                    $image = Storage::get('app/public/'.$persona->foto);
+                    $base64 = base64_encode($image);
+                    Storage::append($nombre_archivo, "PHOTO;TYPE=JPEG;ENCODING=b:".$base64);
+                }else{
+                    Storage::append($nombre_archivo, "PHOTO;TYPE=JPEG;ENCODING=b:"."sin imagen");
+                    //dd($persona->foto);
+                }
+
+                
                 if (isset($persona->fechanacimiento)){
                     Storage::append($nombre_archivo, 'BDAY:'.$persona->fechanacimiento->isoFormat('YYYY-MM-DD'));
                 }
