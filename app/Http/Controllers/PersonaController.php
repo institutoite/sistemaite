@@ -1199,7 +1199,7 @@ class PersonaController extends Controller
                 //echo $foto;
                 if(isset($persona->foto)){
                     // Cargar la imagen
-                    $image = Storage::get('app/public/'.$persona->foto);
+                    $image = Storage::get('storage/app/public/'.$persona->foto);
                     $base64 = base64_encode($image);
                     Storage::append($nombre_archivo, "PHOTO;TYPE=JPEG;ENCODING=b:".$base64);
                 }else{
