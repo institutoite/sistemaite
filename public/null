@@ -1,6 +1,174 @@
 use Carbon\Carbon;
 
-strip_tags("<ul>
-	<li>TRABAJA COMO ALBANIL ES PADRE DE SARA Y ENRIQUE GASPARY&nbsp;</li>
-	<li>COMPLETO&nbsp; QUE LE HABLEMOS CULQUIER COSA</li>
-</ul>")
+   $image_path = public_path('storage/app/'.$persona->foto);
+                    $image_data = file_get_contents($image_path);
+                    $base64_image = base64_encode($image_data);
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+
+use Intervention\Image\Facades\Image;
+
+   $image_path = public_path('storage/app/'.$persona->foto);
+                    $image_data = file_get_contents($image_path);
+                    $base64_image = base64_encode($image_data);
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+
+use Intervention\Image\Facades\Image;
+
+$persona=Persona::findOrFail(1);
+   $image_path = public_path('storage/app/'.$persona->foto);
+                    $image_data = file_get_contents($image_path);
+                    $base64_image = base64_encode($image_data);
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+
+use Intervention\Image\Facades\Image;
+
+$persona=Persona::findOrFail(1);
+   $image_path = public_path('storage\app\'.$persona->foto);
+                    $image_data = file_get_contents($image_path);
+                    $base64_image = base64_encode($image_data);?>
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+
+use Intervention\Image\Facades\Image;
+
+$persona=Persona::findOrFail(1);
+   $image_path = public_path('storage\app\○2'.$persona->foto);
+                    $image_data = file_get_contents($image_path);
+                    $base64_image = base64_encode($image_data);
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+
+use Intervention\Image\Facades\Image;
+
+$persona=Persona::findOrFail(1);
+   $image_path = public_path('storage\app\\'.$persona->foto);
+                    $image_data = file_get_contents($image_path);
+                    $base64_image = base64_encode($image_data);
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+
+use Intervention\Image\Facades\Image;
+
+$persona=Persona::findOrFail(1);
+   $image_path = public_path('storage\app\public\\'.$persona->foto);
+                    $image_data = file_get_contents($image_path);
+                    $base64_image = base64_encode($image_data);
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+
+use Intervention\Image\Facades\Image;
+
+$persona=Persona::findOrFail(1);
+   $image_path = public_path('storage\app\public\estudiantes\david.jpg');
+                    $image_data = file_get_contents($image_path);
+                    $base64_image = base64_encode($image_data);
+use Carbon\Carbon;
+user App\Models\Persona;
+use Illuminate\Support\Facades\Storage;
+
+use Intervention\Image\Facades\Image;
+
+$persona=Persona::findOrFail(1);
+   $image_path = public_path('storage\app\public\estudiantes\david.jpg');
+                    $image_data = file_get_contents($image_path);
+                    $base64_image = base64_encode($image_data);
+use Carbon\Carbon;
+user App\Models\Persona;
+use Illuminate\Support\Facades\Storage;
+
+use Intervention\Image\Facades\Image;
+
+$persona=Persona::findOrFail(1);
+   $image_path = public_path('storage\app\public\estudiantes\david.jpg');
+                    $image_data = file_get_contents($image_path);
+                    $base64_image = base64_encode($image_data);
+use Carbon\Carbon;
+use App\Models\Persona;
+use Illuminate\Support\Facades\Storage;
+
+use Intervention\Image\Facades\Image;
+
+$persona=Persona::findOrFail(1);
+   $image_path = public_path('storage\app\public\estudiantes\david.jpg');
+                    $image_data = file_get_contents($image_path);
+                    $base64_image = base64_encode($image_data);
+use Carbon\Carbon;
+use App\Models\Persona;
+use App\Models\Persona;
+use Illuminate\Support\Facades\Storage;
+
+use Intervention\Image\Facades\Image;
+
+$persona=Persona::findOrFail(1);
+   $image_path = public_path('storage\app\public\estudiantes\david.jpg');
+                    $image_data = file_get_contents($image_path);
+                    $base64_image = base64_encode($image_data);
+use Carbon\Carbon;
+
+use App\Models\Persona;
+use Illuminate\Support\Facades\Storage;
+
+use Intervention\Image\Facades\Image;
+
+$persona=Persona::findOrFail(1);
+   $image_path = public_path('storage\app\public\estudiantes\david.jpg');
+                    $image_data = file_get_contents($image_path);
+                    $base64_image = base64_encode($image_data);
+use App\Models\Persona;
+use Carbon\Carbon;
+
+use Illuminate\Support\Facades\Storage;
+
+use Intervention\Image\Facades\Image;
+
+$persona=Persona::findOrFail(1);
+   $image_path = public_path('storage\app\public\estudiantes\david.jpg');
+                    $image_data = file_get_contents($image_path);
+                    $base64_image = base64_encode($image_data);
+use App\Models\Persona;
+use Carbon\Carbon;
+
+use Illuminate\Support\Facades\Storage;
+
+use Intervention\Image\Facades\Image;
+
+$persona=Persona::findOrFail(1);
+$url=asset('storage/estudiantes/david.jpg');
+   $image_path = public_path('storage\app\public\estudiantes\david.jpg');
+                    $image_data = file_get_contents($image_path);
+                    $base64_image = base64_encode($image_data);
+use App\Models\Persona;
+use Carbon\Carbon;
+
+use Illuminate\Support\Facades\Storage;
+
+use Intervention\Image\Facades\Image;
+
+$persona=Persona::findOrFail(1);
+$url=asset('storage/estudiantes/david.jpg');
+   
+use App\Models\Persona;
+use Carbon\Carbon;
+
+use Illuminate\Support\Facades\Storage;
+
+use Intervention\Image\Facades\Image;
+
+$persona=Persona::findOrFail(1);
+$url=asset('storage/app/public/estudiantes/david.jpg');
+   
+use App\Models\Persona;
+use Carbon\Carbon;
+
+use Illuminate\Support\Facades\Storage;
+
+use Intervention\Image\Facades\Image;
+
+$persona=Persona::findOrFail(1);
+$url=asset('storage/app/public/estudiantes/david.jpg');
+   
+$imagenUrl = asset('storage/estudiantes/david.jpg');
+$imagenBase64 = base64_encode(file_get_contents($imagenUrl));
