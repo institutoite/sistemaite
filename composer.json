@@ -19,6 +19,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.5",
+        "jeroendesloovere/vcard": "^1.7",
         "jeroennoten/laravel-adminlte": "^3.5",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.5",

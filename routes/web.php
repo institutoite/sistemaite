@@ -67,6 +67,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ModalidadController;
 use App\Http\Controllers\CupoController;
 use App\Http\Controllers\CrmController;
+use App\Http\Controllers\VcardController;
 //use App\Http\Controllers\RolUsersController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
@@ -134,7 +135,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('persona/enviar/mensaje/faltonescom', [PersonaController::class,'enviarMensajeFaltonesComputacion'])->name('persona.enviar.mensaje.faltonescom');
     Route::get('persona/descargar/contacto/{persona}', [PersonaController::class,'descargarContacto'])->name('descargar.contacto');
     
-    Route::post('desgargar/contactos', [PersonaController::class,'mostrarArchivos'])->name('descargar.todos.contactos');
+    Route::post('desgargar/contactos', [VcardController::class,'crearContactos'])->name('crear.archivos.vcard');
 
     Route::get('contacto/view',function () {
         $directorio = storage_path("app/contactos/todos");
@@ -835,6 +836,9 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('observaciones',[ObservacionController::class,'listar'])->name('observaciones.listar');
     Route::get('observaciones/general',[ObservacionController::class,'listarGeneral'])->name('observaciones.listar.general');
     Route::get('guardar/observacion', 'ObservacionController@guardarObservacionGeneral')->name('guardar.observacion.general');
+    
+    /*%%%%%%%%%%%%%%%%%%%%%%%%%  vcardFiles routes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+    Route::get('crear/vcard', 'VcardController@crearContactos')->name('crear.card');
 
     /**
      * clases
@@ -864,6 +868,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('eliminar/carrera/{carrera}', 'CarreraController@destroy')->name('eliminar.carrera');
     Route::delete('eliminar/dia/{carrera}', 'DiaController@destroy')->name('eliminar.dia');
     Route::delete('eliminar/feriado/{carrera}', 'FeriadoController@destroy')->name('eliminar.feriado');
+
 
 
 

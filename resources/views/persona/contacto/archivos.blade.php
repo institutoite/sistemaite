@@ -13,7 +13,7 @@
         <div class="card-header">
             LISTADO DE VCF
             <div class="float-right">
-                <a id="creararchivo" href="{{ route('descargar.todos.contactos',['inicio'=>2,'incremento'=>20]) }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                <a id="creararchivo" href="{{ route('crear.archivos.vcard',['inicio'=>2,'incremento'=>20]) }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                     {{('Crear archivo de contactos') }}
                 </a>
             </div>
@@ -21,14 +21,14 @@
         <div class="card-body">
             <div class="card">
                 <div class="card-body">
-                    <form class="row g-3" method="POST" action="{{ route('descargar.todos.contactos') }}">
+                    <form class="row g-3" method="POST" action="{{ route('crear.archivos.vcard') }}">
                         @csrf
                         <div class="col-auto">
                             <input type="text" class="form-control" id="inicio" name="inicio"  placeholder="valor id inicio">
                         </div>
-                        <div class="col-auto">
+                        {{-- <div class="col-auto">
                             <input type="text" class="form-control" id="incremento" name="incremento" placeholder="valor incremento">
-                        </div>
+                        </div> --}}
                         <div class="col-auto">
                             <button type="submit" class="btn btn-primary mb-3">Enviar</button>
                         </div>
