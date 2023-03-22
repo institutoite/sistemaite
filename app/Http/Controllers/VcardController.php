@@ -113,7 +113,8 @@ class VcardController extends Controller
             $notaapoderados="Sin apoderados\n";
         }
         $nota=$notagestiones.$notaobservaciones.$notainscripciones.$notamatriculaciones.$notaapoderados;
-        $vcard->addNote($nota);
+        $cadena_sin_espacios = str_replace(' ', '', trim($nota));
+        $vcard->addNote($cadena_sin_espacios);
         return $vcard->getOutput();
         // // return vcard as a download
         // $pathcontactos = storage_path('app/public/contactos');
