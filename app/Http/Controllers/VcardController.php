@@ -113,13 +113,22 @@ class VcardController extends Controller
             $notaapoderados="Sin apoderados\n";
         }
         $nota=$notagestiones.$notaobservaciones.$notainscripciones.$notamatriculaciones.$notaapoderados;
-        $cadena_sin_espacios = str_replace(' ', '', trim($nota));
-        $vcard->addNote($cadena_sin_espacios);
-        return $vcard->getOutput();
+        $vcard->addNote($nota);
+        $lineas = explode(PHP_EOL, $vcard->getOutput());
+        $lineas_no_vacias = array_filter($lineas, function($linea) {
+            return !empty(trim($linea));
+        });
+        $texto_nuevo = implode(PHP_EOL, $lineas_no_vacias);
+        if($persona->id==22)
+
+        $texto_nuevo= preg_replace("~[\r\n]+~", "\n", $texto_nuevo);
+    
+        // return $vcard->getOutput();
+        return $texto_nuevo;
         // // return vcard as a download
         // $pathcontactos = storage_path('app/public/contactos');
         // $urlcontactos=$pathcontactos = str_replace('\\', '/', $pathcontactos);
-        // //$vcard->addPhoto($urlcontactos);
+        //$vcard->addPhoto($urlcontactos);
          
         // $vcard->setFilename(
         //     $lastName = $inicio."_".$fin,
@@ -164,6 +173,7 @@ class VcardController extends Controller
             fwrite($file, $vcardGrupal);
             fclose($file);
             $directorio = storage_path("app/contactos/todos");
+
             $archivos = scandir($directorio);
             return view("persona.contacto.archivos", ['archivos' => $archivos]);
 
