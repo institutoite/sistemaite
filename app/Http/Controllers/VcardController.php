@@ -63,7 +63,7 @@ class VcardController extends Controller
                 $contador++;
             }
         }else{
-            $notagestiones="Sin gestione\n";
+            $notagestiones="Sin gestiones\n";
         }
         $contador=1;
         if(count($observaciones)>0){
@@ -75,9 +75,6 @@ class VcardController extends Controller
          }else{
             $notaobservaciones="Sin observaciones\n";
          }
-        
-        
-       
         if ($persona->estudiante != null) {
             $inscripciones=$persona->estudiante->inscripciones;
             $notainscripciones="\n%% INSCRIPCIONES %%\n";
@@ -88,12 +85,8 @@ class VcardController extends Controller
             }
         }else{
             $inscripciones=[];
-            $notainscripciones="Sin inscripcines";
+            $notainscripciones="Sin inscripciones\n";
         }
-       
-
-       
-        
         $contador=1;
          if ($persona->computacion != null) {
             $notamatriculaciones="%% MATRICULACIONES %%\n";
@@ -104,23 +97,24 @@ class VcardController extends Controller
         }
         }else{
             $matriculaciones=[];
-            $notamatriculaciones="Sin matriculaciones";
+            $notamatriculaciones="Sin matriculaciones\n";
         }
-
-        $notaapoderados="%% APODERADOS %%\n";
         $contador=1;
         $apoderados=$persona->apoderados;
-        foreach ($apoderados as $apoderado) {
-            $notaapoderados.=$contador.".-\n"."Apoderado:".$apoderado->nombre.$apoderado->apellidop."\nParentesco:".$apoderado->pivot->parentesco."\nteléfono:".$apoderado->telefono."\n";
-            $vcard->addUrl("https://wa.me/591".$apoderado->telefono);
-            $vcard->addPhoneNumber($apoderado->telefono, 'PREF;APODERADO');
-            $contador++;
+        if(count($apoderados)>0){    
+            $notaapoderados="%% APODERADOS %%\n";
+            foreach ($apoderados as $apoderado) {
+                $notaapoderados.=$contador.".-\n"."Apoderado:".$apoderado->nombre.$apoderado->apellidop."\nParentesco:".$apoderado->pivot->parentesco."\nteléfono:".$apoderado->telefono."\n";
+                $vcard->addUrl("https://wa.me/591".$apoderado->telefono);
+                $vcard->addPhoneNumber($apoderado->telefono, 'PREF;APODERADO');
+                $contador++;
+            }
+        }else{
+            $notaapoderados="Sin apoderados\n";
         }
         $nota=$notagestiones.$notaobservaciones.$notainscripciones.$notamatriculaciones.$notaapoderados;
         $vcard->addNote($nota);
-        
         return $vcard->getOutput();
-
         // // return vcard as a download
         // $pathcontactos = storage_path('app/public/contactos');
         // $urlcontactos=$pathcontactos = str_replace('\\', '/', $pathcontactos);
