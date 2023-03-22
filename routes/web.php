@@ -136,6 +136,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('persona/descargar/contacto/{persona}', [PersonaController::class,'descargarContacto'])->name('descargar.contacto');
     
     Route::post('desgargar/contactos', [VcardController::class,'crearContactos'])->name('crear.archivos.vcard');
+    Route::get('actualizar/contacto/{persona_id}', [VcardController::class,'actualizarTarjeta'])->name('actualizar.vcard');
 
     Route::get('contacto/view',function () {
         $directorio = storage_path("app/contactos/todos");

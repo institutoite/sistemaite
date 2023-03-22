@@ -21,25 +21,30 @@ class VcardController extends Controller
         $vcard->addCompany($persona->id);
         $vcard->addJobtitle($persona->papelinicial);
         // $vcard->addRole('addRole');
-        $vcard->addEmail('info@jeroendesloovere.be');
         $vcard->addPhoneNumber($persona->telefono, 'PREF;WORK');
         $vcard->addAddress(null, $persona->zona ==null ? 'Zona sin definir' : $persona->zona->zona , $persona->direccion,$persona->ciudad ==null ? 'Ciudad sin definir' : $persona->ciudad->ciudad ,'', '', $persona->pais ==null ? 'Pais sin definir' : $persona->pais->nombrepais);
         // $vcard->addLabel('street, worktown, workpostcode Belgium');
         $vcard->addURL('https://wa.me/591'.$persona->telefono);
+        $vcard->addURL('https://www.ite.com.bo/actualizar/contacto/'.$persona->id);
         
-        $vcard->addBirthday( $persona->fechanacimiento==null ? "":$persona->fechanacimiento);
+        $vcard->addBirthday( $persona->fechanacimiento==null ? "":$persona->fechanacimiento->isoFormat("Y-m-d"));
         $vcard->addUrl("https://www.ite.com.bo");
         
 
         if($persona->foto!=null){
             $path = storage_path('app/public/'.$persona->foto);
+            $url=$path = str_replace('\\', '/', $path);
             if (file_exists($path)) {
-                $url=$path = str_replace('\\', '/', $path);
                 $vcard->addPhoto($url);    
+            }else{
+                $path = storage_path('app/public/estudiantes/foto.jpg');
+                $url=$path = str_replace('\\', '/', $path);
+                $vcard->addPhoto($url);
             }
-            
         }else{
             $path = storage_path('app/public/estudiantes/foto.jpg');
+            $url=$path = str_replace('\\', '/', $path);
+            $vcard->addPhoto($url);
         }
         
         $observaciones=$persona->observaciones;
@@ -50,51 +55,63 @@ class VcardController extends Controller
         }else{
             $gestiones=[];
         }
-        $notagestiones="% GRADOS Y GESTIONES %\n";
-        foreach ($gestiones as $grado) {
-            $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		    $contador++;
+
+        if(count($gestiones)>0){
+            $notagestiones="% GRADOS Y GESTIONES %\n";
+            foreach ($gestiones as $grado) {
+                $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
+                $contador++;
+            }
+        }else{
+            $notagestiones="Sin gestione\n";
         }
         $contador=1;
-        $notaobservaciones="\n%%  OBSERVACIONES %%\n";
+        if(count($observaciones)>0){
+            $notaobservaciones="\n%%  OBSERVACIONES %%\n";
+            foreach ($observaciones as $value) {
+                $notaobservaciones.=$contador.".-".$value->observacion."\n";
+                $contador++;
+            }
+         }else{
+            $notaobservaciones="Sin observaciones\n";
+         }
         
-        foreach ($observaciones as $value) {
-            $notaobservaciones.=$contador.".-".$value->observacion."\n";
-            $contador++;
-        }
-		//$notaobservaciones
-
-        $notainscripciones="\n%% INSCRIPCIONES %%\n";
+        
+       
         if ($persona->estudiante != null) {
             $inscripciones=$persona->estudiante->inscripciones;
+            $notainscripciones="\n%% INSCRIPCIONES %%\n";
+            $contador=1;
+            foreach ($inscripciones as $inscripcion) {
+                $notainscripciones.=$contador.".-\n"."Modalidad:".$inscripcion->modalidad->modalidad."\nCosto:".$inscripcion->costo."\nEstado:".$inscripcion->estado->estado."\n";
+                $contador++;
+            }
         }else{
             $inscripciones=[];
+            $notainscripciones="Sin inscripcines";
         }
-        
-        $contador=1;
-        foreach ($inscripciones as $inscripcion) {
-            $notainscripciones.=$contador.".-\n"."Modalidad:".$inscripcion->modalidad->modalidad."\nCosto:".$inscripcion->costo."\nEstado:".$inscripcion->estado->estado."\n\n";
-            $contador++;
-        }
+       
 
-        $notamatriculaciones="%% MATRICULACIONES %%\n";
+       
         
         $contador=1;
          if ($persona->computacion != null) {
+            $notamatriculaciones="%% MATRICULACIONES %%\n";
             $matriculaciones=$persona->computacion->matriculaciones;
-        }else{
-            $matriculaciones=[];
-        }
-
-        foreach ($matriculaciones as $matriculacion) {
-            $notamatriculaciones.=$contador.".-\n"."Asignatura:".$matriculacion->asignatura->asignatura."\nCosto:".$matriculacion->costo."\nEstado:".$matriculacion->estado->estado."\n\n";
+            foreach ($matriculaciones as $matriculacion) {
+            $notamatriculaciones.=$contador.".-\n"."Asignatura:".$matriculacion->asignatura->asignatura."\nCosto:".$matriculacion->costo."\nEstado:".$matriculacion->estado->estado."\n";
             $contador++;
         }
+        }else{
+            $matriculaciones=[];
+            $notamatriculaciones="Sin matriculaciones";
+        }
+
         $notaapoderados="%% APODERADOS %%\n";
         $contador=1;
         $apoderados=$persona->apoderados;
         foreach ($apoderados as $apoderado) {
-            $notaapoderados.=$contador.".-\n"."Apoderado:".$apoderado->nombre.$apoderado->apellidop."\nParentesco:".$apoderado->pivot->parentesco."\nteléfono:".$apoderado->telefono."\n\n";
+            $notaapoderados.=$contador.".-\n"."Apoderado:".$apoderado->nombre.$apoderado->apellidop."\nParentesco:".$apoderado->pivot->parentesco."\nteléfono:".$apoderado->telefono."\n";
             $vcard->addUrl("https://wa.me/591".$apoderado->telefono);
             $vcard->addPhoneNumber($apoderado->telefono, 'PREF;APODERADO');
             $contador++;
@@ -129,7 +146,14 @@ class VcardController extends Controller
         return  $nombreSeparado;
     }
 
-    public function crearContactos(Request $request, $incremento=100){
+    public function actualizarTarjeta($persona_id){
+        $vcard = new VCard();
+        $persona=Persona::find($persona_id);
+        $this->createVcard($persona,$vcard);
+        return $vcard->download();
+    }
+
+    public function crearContactos(Request $request,$inicio=1, $incremento=100){
             $inicio=$request->inicio;
             $ultimo_id=Persona::get()->last()->id;
             if($incremento+$inicio>$ultimo_id)
