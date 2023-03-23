@@ -133,7 +133,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('persona/enviar/mensaje/cumpleaneros', [PersonaController::class,'enviarMensajeCumpleanero'])->name('persona.enviar.mensaje.cumpleaneros');
     Route::get('persona/enviar/mensaje/faltones', [PersonaController::class,'enviarMensajeFaltones'])->name('persona.enviar.mensaje.faltones');
     Route::get('persona/enviar/mensaje/faltonescom', [PersonaController::class,'enviarMensajeFaltonesComputacion'])->name('persona.enviar.mensaje.faltonescom');
-    Route::get('persona/descargar/contacto/{persona}', [PersonaController::class,'descargarContacto'])->name('descargar.contacto');
+    Route::get('persona/descargar/contacto/{persona}', [VcardController::class,'actualizarTarjeta'])->name('descargar.contacto');
     
     Route::post('desgargar/contactos', [VcardController::class,'crearContactos'])->name('crear.archivos.vcard');
     Route::get('actualizar/contacto/{persona_id}', [VcardController::class,'actualizarTarjeta'])->name('actualizar.vcard');

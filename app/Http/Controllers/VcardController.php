@@ -57,7 +57,7 @@ class VcardController extends Controller
         }
 
         if(count($gestiones)>0){
-            $notagestiones="% GRADOS Y GESTIONES %\n";
+            $notagestiones="------------GRADOS---------\n";
             foreach ($gestiones as $grado) {
                 $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
                 $contador++;
@@ -67,9 +67,9 @@ class VcardController extends Controller
         }
         $contador=1;
         if(count($observaciones)>0){
-            $notaobservaciones="\n%%  OBSERVACIONES %%\n";
+            $notaobservaciones="\n----------OBSERVACIONES--------\n";
             foreach ($observaciones as $value) {
-                $notaobservaciones.=$contador.".-".$value->observacion."\n";
+                $notaobservaciones.=$contador.".-".strip_tags($value->observacion)."\n";
                 $contador++;
             }
          }else{
@@ -77,7 +77,7 @@ class VcardController extends Controller
          }
         if ($persona->estudiante != null) {
             $inscripciones=$persona->estudiante->inscripciones;
-            $notainscripciones="\n%% INSCRIPCIONES %%\n";
+            $notainscripciones="\n----------INSCRIPCIONES--------\n";
             $contador=1;
             foreach ($inscripciones as $inscripcion) {
                 $notainscripciones.=$contador.".-\n"."Modalidad:".$inscripcion->modalidad->modalidad."\nCosto:".$inscripcion->costo."\nEstado:".$inscripcion->estado->estado."\n";
@@ -89,7 +89,7 @@ class VcardController extends Controller
         }
         $contador=1;
          if ($persona->computacion != null) {
-            $notamatriculaciones="%% MATRICULACIONES %%\n";
+            $notamatriculaciones="----------MATRICULACIONES--------\n";
             $matriculaciones=$persona->computacion->matriculaciones;
             foreach ($matriculaciones as $matriculacion) {
             $notamatriculaciones.=$contador.".-\n"."Asignatura:".$matriculacion->asignatura->asignatura."\nCosto:".$matriculacion->costo."\nEstado:".$matriculacion->estado->estado."\n";
@@ -102,7 +102,7 @@ class VcardController extends Controller
         $contador=1;
         $apoderados=$persona->apoderados;
         if(count($apoderados)>0){    
-            $notaapoderados="%% APODERADOS %%\n";
+            $notaapoderados="----------APODERADOS--------\n";
             foreach ($apoderados as $apoderado) {
                 $notaapoderados.=$contador.".-\n"."Apoderado:".$apoderado->nombre.$apoderado->apellidop."\nParentesco:".$apoderado->pivot->parentesco."\nteléfono:".$apoderado->telefono."\n";
                 $vcard->addUrl("https://wa.me/591".$apoderado->telefono);
