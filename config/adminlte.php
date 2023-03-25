@@ -1450,12 +1450,25 @@ return [
                 ],
             ],
         ],
-      
 
-       
-       
 
+        //** %%%%%%%%%%%%%%%%%%  MENU VENTAJAS %%%%%%%%%%%%% */
         
+        [
+            'text'    => 'Ventajas',
+            'icon'    => 'fas fa-map-marked-alt',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            
+            'submenu' => [
+                [
+                    'text' => 'listar',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'ventajas',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
 
         //** %%%%%%%%%%%%%%%%%%  HORARIOS %%%%%%%%%%%%% */
         

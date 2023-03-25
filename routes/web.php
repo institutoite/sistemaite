@@ -676,7 +676,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('estudiantes/masivo/contactar/evento', [MensajeController::class,'MensajeMasivo'])->name('masivo.descente');
 
 
-    /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  MOTIVOS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+    /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  AULAS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::resource('aulas', "AulaController");
     Route::get('aula/mostrar/',[AulaController::class,'mostrar'])->name("aula.mostrar");
     Route::get('listar/aulas', [AulaController::class,'listar'])->name('aula.ajax');
@@ -707,6 +707,10 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('user/crear', "UserController@crear")->name('users.crear');
     // Route::post('user/guardar', "UserController@guardar")->name('users.guardar');
     Route::get('share/credential/{user}', [UserController::class,'share'])->name('share.credentials');
+
+
+    /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  VENTAJAS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+    Route::resource('ventajas', VentajaController::class)->names('ventaja');
 
     /*ROLES PERMISOS USUARIOS*/
     Route::get('permisos', [PermissionController::class,"index"])->name('permisos.index');

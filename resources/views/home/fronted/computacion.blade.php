@@ -156,66 +156,103 @@
                 <div class="title">Curso de Computación</div>
                 <h2>El poder de la <span>tecnología </span> a tu alcance </h2>
                 <div class="text">En nuestro curso, te enseñaremos todo lo que necesitas saber para operar una computadora de manera segura y efectiva. Aprenderás sobre el hardware y software de una computadora, cómo manejar el sistema operativo, cómo navegar por internet y utilizar aplicaciones como Microsoft Word y Excel.</div>
-              </div>
-              <div class="row mt-none-30">
-                <div class="col-lg-6">
-                  <div class="experiance_item mt-30">
-                    <div class="icon">
-                      <img src="assets/images/icons/a_01.png" alt="">
-                    </div>
-                    <div class="content">
-                      <h4>Desde básico a experto</h4>
-                      <p>Aprende computación desde cero hasta avanzado</p>
-                    </div>
-                  </div>
-                  <ul class="experiance_list mt-30">
-                    <li></li>
-                  </ul>
-                  <div class="button-box">
-                    <a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información de computación" class="theme-btn btn-style-seven"><span class="txt">Inscribite Hoy..!! <i class="flaticon-next-2"></i></span></a>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="counter_wrap mt-30">
-                    <h1><span class="number">175 Bs.<span class="plus">+</span></span> <span class="text"></span></h1>
-                  </div>
-                  <div class="experiance_item mt-30">
-                    <div class="icon">
-                      <img src="assets/images/icons/a_02.png" alt="">
-                    </div>
-                    <div class="content">
-                      <h4>Por asignatura</h4>
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="blog-detail">
-                <div class="inner-box">
-                  <div class="image">
-                    <img src="assets/images/resource/news-4.jpg" alt="" />
-                  </div>
-                  <div class="lower-content">
-                    <h3>Asignaturas</h3>
-                    <p></p>
-    
-                    <div class="blog_qoute_wrap">
-                      <div class="row">
-                        <div class="col-lg-6">
-                          @foreach ($computacion as $operador)
-                          <ul class="blog_list">
-                            <li>{{$operador->asignatura}}</li>
-                          </ul>
-                          @endforeach
-                        </div>
-                        
-                      </div>
-                    </div>
-                    
-                  </div>
+                <div class="service-detail">
+              <div class="inner-box">
+                <div class="lower-content">
+                  <h4>Ventajas</h4>
+                  <p></p>
+                    <ul class="list">
+                      @foreach ($intereses as $interes)
+                        <li>{{$interes->descripcion}}</li>
+                      @endforeach
+                    </ul>
                 </div>
               </div>
             </div>
+              </div>
+              <div class="row mt-none-30">
+                <div class="col-lg-6">
+                  <ul class="experiance_list mt-30">
+                    <h4>Asignaturas</h4>
+                    @foreach ($computacion as $compu)
+                      <li>{{$compu->asignatura}}</li>
+                    @endforeach
+                  </ul>
+                  <br>
+                  <div class="button-box">
+                    <a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información de computación" class="theme-btn btn-style-seven"><span class="txt">Inscribite Hoy..!! <i class="flaticon-next-2"></i></span></a>
+                  </div>
+                  
+                </div>
+                <div class="col-lg-6">  
+                  <div class="experiance_item mt-30">
+                    <div class="icon">
+                      <img src="{{asset('assetshome/images/icons/a_01.png')}}" alt="">
+                    </div>
+                    <div class="content">
+                      <h4>5 meses</h4>
+                      <p>Si el alumno asiste de Lunes a Viernes</p>
+                    </div>
+                  </div>
+                  <div class="experiance_item mt-30">
+                    <div class="icon">
+                      <img src="{{asset('assetshome/images/icons/a_01.png')}}" alt="">
+                    </div>
+                    <div class="content">
+                      <h4>4 meses</h4>
+                      <p>Si el alumno asiste de Lunes a Sábados</p>
+                    </div>
+                  </div> 
+                  <div class="experiance_item mt-30">
+                    <div class="icon">
+                      <img src="{{asset('assetshome/images/icons/a_01.png')}}" alt="">
+                    </div>
+                    <div class="content">
+                      <h4>10 meses</h4>
+                      <p>Si el alumno asiste tres veces por semana o solo sábados</p>
+                    </div>
+                  </div>
+                  <div class="counter_wrap mt-30">
+                    <h1><span class="number">Bs.175<span class="plus">+</span></span> <span class="text">por asignatura</span></h1>
+                  </div>
+                </div>
+              </div>
+            </div>  
+
+            <div class="content-column col-lg-12 col-md-12 col-sm-12">
+              <div class="inner-column">
+                <!-- Sec Title -->
+                <div class="sec-title">
+                  <h4></h4>
+                </div>
+                <div class="row clearfix">
+                
+                  <!-- Service Block -->
+                  <div class="service-block col-lg-6 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                      <div class="icon-box">
+                        <span class="icon flaticon-notepad"></span>
+                      </div>
+                      <h3><a href="#">Descargar Contenido Analitico</a></h3>
+                     
+                    </div>
+                  </div>
+                
+                  <!-- Service Block -->
+                  <div class="service-block col-lg-6 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                      <div class="icon-box">
+                        <span class="icon flaticon-learning-support"></span>
+                      </div>
+                      <h3><a href="https://online.pubhtml5.com/potf/iygd">Ver manual de Computación</a></h3>
+                     
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>     
+                
           </div>
           
           <!-- Blocks Column -->
@@ -288,8 +325,6 @@
             </aside>
           </div>
 
-          
-          
         </div>
       </div>
     </section>

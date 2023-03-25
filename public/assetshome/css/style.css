@@ -6677,7 +6677,7 @@
 
 .service-detail .inner-box .lower-content{
 	position:relative;
-	padding-top:var(--padding-top-40);
+	padding-top:var(--padding-top-10);
 }
 
 .service-detail .inner-box .two-column{

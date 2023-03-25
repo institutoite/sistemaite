@@ -17,6 +17,7 @@ use App\Models\Persona;
 use App\Models\Nivel;
 use App\Models\Plan;
 use App\Models\Interest;
+use App\Models\Ventaja;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -284,8 +285,10 @@ class HomeController extends Controller
 
     public function computacion()
     {
-        $computacion=Asignatura::where('carrera_id',1)->get();
-        return view('home.fronted.computacion', compact(['computacion']));
+        $computacion = Asignatura::where('carrera_id',1)->get();
+        $intereses = Ventaja::where('interest_id',10)->get();
+
+        return view('home.fronted.computacion', compact(['computacion','intereses']));
     } 
 
     public function disenografico()
