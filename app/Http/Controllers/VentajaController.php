@@ -44,10 +44,12 @@ class VentajaController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Ventaja::$rules);
-        $ventaja = Ventaja::create($request->all());
+        $ventaja=new Ventaja();
+        $ventaja->descripcion=$request->descripcion;
+        $ventaja->interest_id=$request->interest_id;
+        $ventaja->save();
         return redirect()->route('ventaja.index')
-            ->with('success', 'Ventaja created successfully.');
+            ->with('success', 'Ventaja Guardado Correctamente.');
     }
 
     public function destroy($id)
