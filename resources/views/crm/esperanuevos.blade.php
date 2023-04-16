@@ -2,180 +2,50 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
-    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css"> --}}
 @stop
 
-@section('title', 'Potenciales')
+@section('title', 'Reinscripcion')
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
 
 @section('content')
-    <div class="pt-4">
-        <div class="card">
-            <div class="card-header bg-primary">
-                <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('crear.persona.rapido')}}">Crear Nuevo</a>
-                EN ESPERA REINSCRIPCION 
-            </div>
-            
-            <div class="card-body">
-                
-                <table id="reinscripcion" class="table table-bordered table-hover table-striped">
-                    <thead class="text-center">
-                        <tr>
-                            <th>ID</th>
-                            <th>NOMBRE</th>
-                            <th>APELLIDOP</th>
-                            <th>INTEREST</th>
-                            <th>Requerimiento</th>
-                            <th>NIVEL</th>
-                            <th>ACCIONES</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+    <div class="pt-1">
+       <div class="row">
+            @foreach ($estados as $estado)
+                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2">
+                    <div class="form-check">
+                        <input class="form-check-input estados" type="radio" name="estado" id="{{ $estado->estado }}">
+                        <label class="form-check-label" for="{{ $estado->estado }}">
+                            {{ $estado->estado }}
+                        </label>
+                    </div>
+                </div>
+            @endforeach
         </div>
-        <div class="card">
-            <div class="card-header bg-secondary">
-                <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('crear.persona.rapido')}}">Crear Nuevo</a>
-                NUEVOS EN ESPERA
-            </div>
-            
-            <div class="card-body">
-                
-                <table id="nuevoenespera" class="table table-bordered table-hover table-striped">
-                    <thead class="text-center">
-                        <tr>
-                            <th>ID</th>
-                            <th>NOMBRE</th>
-                            <th>APELLIDOP</th>
-                            <th>INTEREST</th>
-                            <th>Requerimiento</th>
-                            <th>NIVEL</th>
-                            <th>ACCIONES</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header bg-primary">
-                <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('crear.persona.rapido')}}">Crear Nuevo</a>
-                ESPERARETOMA VA VOLVER RETOMAR PIENSA VOLVER
-            </div>
-            
-            <div class="card-body">
-                
-                <table id="retoma" class="table table-bordered table-hover table-striped">
-                    <thead class="text-center">
-                        <tr>
-                            <th>ID</th>
-                            <th>NOMBRE</th>
-                            <th>APELLIDOP</th>
-                            <th>INTEREST</th>
-                            <th>Requerimiento</th>
-                            <th>NIVEL</th>
-                            <th>ACCIONES</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
-    </div>
-        <div class="card">
-            <div class="card-header bg-secondary">
-                <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('crear.persona.rapido')}}">Crear Nuevo</a>
-                POTENCIAL:PROSPECTO ES UN CLIENTE POTENCIAL NO SEGURO
-            </div>
-            
-            <div class="card-body">
-                
-                <table id="potenciales" class="table table-bordered table-hover table-striped">
-                    <thead class="text-center">
-                        <tr>
-                            <th>ID</th>
-                            <th>NOMBRE</th>
-                            <th>APELLIDOP</th>
-                            <th>INTEREST</th>
-                            <th>Requerimiento</th>
-                            <th>NIVEL</th>
-                            <th>ACCIONES</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header bg-primary">
-                <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('crear.persona.rapido')}}">Crear Nuevo</a>
-                SEGUIMIENTO: HACER SEGUIMIENTO
-            </div>
-            
-            <div class="card-body">
-                
-                <table id="seguimiento" class="table table-bordered table-hover table-striped">
-                    <thead class="text-center">
-                        <tr>
-                            <th>ID</th>
-                            <th>NOMBRE</th>
-                            <th>APELLIDOP</th>
-                            <th>INTEREST</th>
-                            <th>Requerimiento</th>
-                            <th>NIVEL</th>
-                            <th>ACCIONES</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header bg-secondary">
-                <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('crear.persona.rapido')}}">Crear Nuevo</a>
-                CANCELADO: CANCELO LA COMPRA YA NO  LO QUIERE
-            </div>
-            
-            <div class="card-body">
-                
-                <table id="cancelado" class="table table-bordered table-hover table-striped">
-                    <thead class="text-center">
-                        <tr>
-                            <th>ID</th>
-                            <th>NOMBRE</th>
-                            <th>APELLIDOP</th>
-                            <th>INTEREST</th>
-                            <th>Requerimiento</th>
-                            <th>NIVEL</th>
-                            <th>ACCIONES</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header bg-primary">
-                <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('crear.persona.rapido')}}">Crear Nuevo</a>
-                PERDIDO: SE PERDIO AL CLIENTE
-            </div>
-            
-            <div class="card-body">
-                
-                <table id="perdido" class="table table-bordered table-hover table-striped">
-                    <thead class="text-center">
-                        <tr>
-                            <th>ID</th>
-                            <th>NOMBRE</th>
-                            <th>APELLIDOP</th>
-                            <th>INTEREST</th>
-                            <th>Requerimiento</th>
-                            <th>NIVEL</th>
-                            <th>ACCIONES</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
-    </div>
 
+        <div class="card">
+            <div class="card-header bg-primary">
+                <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('crear.persona.rapido')}}">Crear Nuevo</a>
+                EN ESPERA NUEVOS 
+            </div>
+            <div class="card-body">
+                
+                <table id="estadodinamico" class="table table-bordered table-hover table-striped">
+                    <thead class="text-center">
+                        <tr>
+                            <th>ID</th>
+                            <th>NOMBRE</th>
+                            <th>APELLIDOP</th>
+                            <th>INTEREST</th>
+                            <th>Requerimiento</th>
+                            <th>NIVEL</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
     {{-- @include('persona.modalespotenciales') --}}
     @include('observacion.modalcreate')
     @include('estudiantes.modal')
@@ -197,23 +67,14 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
-    {{-- <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script> --}}
-
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="{{asset('assets/js/observacion.js')}}"></script>
-    <script src="{{asset('assets/js/derivarpotenciales.js')}}"></script>
+    {{-- <script src="{{asset('assets/js/derivarpotenciales.js')}}"></script> --}}
     
-    
-
-
     <script>
         let tabla;
+        let tablaadministrativos;
+        let $un_potencial;
         //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR CREAR OBSERVACION  %%%%%%%%%%%%%%%%%%%%%%%%%%%
         CKEDITOR.replace('editorguardar', {
             height: 120,
@@ -236,6 +97,7 @@
             e.preventDefault();
             let objeto_id = $(this).closest('tr').attr('id');
             console.log(objeto_id);
+            console.log($(this).attr('id'));
             $("#observable_id").val(objeto_id);
             $("#observable_type").val($(this).attr('id'));
             console.log("click en observacion crear");
@@ -254,7 +116,7 @@
             for (instance in CKEDITOR.instances) { CKEDITOR.instances[instance].updateElement() }
             observacion=$("#editorguardar").val();
             console.log(observacion);
-            url ="../guardar/observacion"
+            url ="{{ url('guardar/observacion')}}"
             guardarObservacion(observacion,observable_id,observable_type,url);
             
         });
@@ -262,9 +124,9 @@
         $('table').on('click', '.mostrarobservacionespersona', function(e) {
             e.preventDefault();
                 observable_id =$(this).closest('tr').attr('id');
-                // console.log(observable_id);
+                console.log(observable_id);
                 observable_type ="Persona";
-                url="../observaciones/" + observable_id + "/" + observable_type,
+                url="../../observaciones/" + observable_id + "/" + observable_type,
                 // console.log(url);
                 mostrarCrudObservaciones(url);
                 $("#modal-mostrar-observaciones").modal("show");
@@ -275,14 +137,16 @@
             e.preventDefault();
             let observacion_id = $(this).closest('tr').attr('id');
             console.log(observacion_id);
-            url="../darbaja/observacion";
+            url="{{ url('darbaja/observacion') }}";
+            // url="../darbaja/observacion";
             darBaja(observacion_id,url);
         });
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DAR ALTA OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         $('table').on('click', '.altaobservacion', function (e) {
             e.preventDefault();
             let observacion_id = $(this).closest('tr').attr('id');
-            url="../daralta/observacion";
+            // url="../daralta/observacion";
+            url="{{ url('daralta/observacion') }}";
             darAlta(observacion_id,url);
         });
 
@@ -290,14 +154,15 @@
         $('table').on('click', '.eliminarobservacion', function (e) {
             e.preventDefault();
             let observacion_id = $(this).closest('tr').attr('id');
-            url="../eliminar/general"
+            // url="../"
+            url="{{ url('eliminar/general') }}";
             eliminarObservacion(observacion_id,url);
         });
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EDITAR OBSERVACION INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         $('table').on('click', '.editarobservacion', function (e) {
             e.preventDefault();
             observacion_id =$(this).closest('tr').attr('id');
-            url="../observacion/editar";
+            url="{{ url('observacion/editar') }}";
             editarObservacion(observacion_id,url);
             $("#modal-mostrar-observaciones").modal("hide");
             $("#modal-editar-observacion").modal("show");
@@ -308,11 +173,149 @@
             observacion_id =$("#observable_id").val();
             observacion=CKEDITOR.instances.editoreditar.getData();
             console.log(observacion);
-            url="../observacion/actualizar";
+            url="{{ url('observacion/actualizar')}}";
             actualizarObservacion(observacion_id,observacion,url)
             // $("#modal-editar-observacion").modal("hide");
             // $("#modal-editar-observacion").modal("show");
         });
+
+        $(".estados").on("click", function(e){
+            e.preventDefault();
+            console.log("click");
+            let estado=$(this).attr('id');
+            $("#estadodinamico").dataTable().fnDestroy();
+            tabla=$('#estadodinamico').DataTable(
+                    {
+                        "serverSide": true,
+                        "responsive":true,
+                        "autoWidth":false,
+                        "ajax":{
+                            url: "{{ url('potenciales/parametrizada')}}",
+                            data:{
+                                estado: estado,
+                            }
+                        },
+                        "createdRow": function( row, data, dataIndex ) {
+                            $(row).attr('id',data['id']);
+                            persona_id=data['id'];
+                            $.ajax({
+                                url:"{{url('persona/primeraultima/observacion')}}",
+                                data:{persona_id:persona_id},
+                                success : function(json) {
+                                    if(json.observacionFirst.id != json.observacionLast.id)
+                                    $('td', row).eq(4).html(json.observacionFirst.observacion +'<strong>'+ json.usuarioFirst.name +'</strong><br>'+json.observacionLast.observacion +'<strong>'+ json.usuarioLast.name +'</strong>');  
+                                    else
+                                    $('td', row).eq(4).html(json.observacionFirst.observacion +'<strong>'+ json.usuarioFirst.name +'</strong>');  
+                                },
+                            });
+                            
+                            if (moment(data['vuelvefecha']).format('YY-MM-DD')>moment().format('YY-MM-DD')){
+                                $(row).addClass('text-success')
+                            }else{
+                                $(row).addClass('text-danger')
+                            }
+                        },
+                        "columns": [
+                            {data: 'id'},
+                            {data: 'nombre'},
+                            {data: 'apellidop'},
+                            {data: 'interest'},
+                            {data: 'apellidom'},
+                            {data: 'vuelvefecha'},
+                            {
+                                "name":"btn",
+                                "data": 'btn',
+                                "orderable": false,
+                            },
+                        ],
+                        "aLengthMenu": [[5, 10, 15, 25, 50, 100 , -1], [5, 10, 15, 25, 50, 100, "All"]], 
+                        "iDisplayLength" : 10,
+                        "columnDefs": [
+                            { responsivePriority: 1, targets: 0 },  
+                            { responsivePriority: 2, targets: -1 }
+                        ],
+                        order: [[0, 'desc']],
+                        "language":{
+                            "url":"https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
+                        },  
+                    }
+            );
+        });
+
+        function mostrarPotencialesParametrizada(){
+            
+        }
+
+        function mostrarAdministrativosPotenciales(potencial_id) {
+                $("#administrativos").dataTable().fnDestroy();
+                    $men = "";
+                    $.ajax({
+                        // url: '../potencial/get/' + potencial_id,
+                        url: "../../potencial/get/" + potencial_id,
+                        success: function (result) {
+                            $un_potencial=result.persona;
+                            $unos_interests=result.interests;
+                            $una_onservacion=result.observacion;
+                            $un_user=result.user;
+                            $un_como=result.como.como;
+                            $.each($unos_interests, function (key, value) {
+                                $men +=(Number(key)+Number(1))+".-%20"+value.interest + "%0A";
+                            });
+                            console.log($un_potencial);
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                        }
+                    });
+                        
+                    tablaadministrativos = $('#administrativos').DataTable(
+                        {
+                            "serverSide": true,
+                            "responsive": true,
+                            "autoWidth": false,
+                            "targets": 0,
+                            "ajax": {
+                                "url":"{{url('administrativos/contactar')}}"
+                            },
+                            "createdRow": function (row, data, dataIndex) {
+                                $(row).attr('id', data['id']); // agrega dinamiacamente el id del row
+                                $mensaje = "https://api.whatsapp.com/send?phone=591" + data['telefono'] + "&text=*Nombre:*%0A" + $un_potencial.nombre.replaceAll(' ', '%20') +'%20'+ $un_potencial.apellidop.replaceAll(' ', '%20') +"%0A%0A";
+                                $mensaje += "*Telefono:*%0A" + $un_potencial.telefono + "%0A%0A";
+                                $mensaje += "*Observacion inicial:*%0A" + ($una_onservacion) + "%0A%0A";
+                                $mensaje += "*Tipo cliente:*%0A" + 'Potencial' + "%0A%0A";
+                                $mensaje += "*Quien atendió:*%0A" + $un_user + "%0A%0A";
+                                $mensaje += "*Interes%20del%20cliente:*%0A" +$men;
+                                $mensaje += "%0A*Descargar%20contacto:*%0A";
+                                $mensaje += "http://www.ite.com.bo/crear/contacto/" + $un_potencial.id+"%0A";
+                                $mensaje += "%0A*Link%20del%20cliente:*%0A";
+                                $mensaje += "https://api.whatsapp.com/send?phone=591" + $un_potencial.telefono;
+                                $mensaje += $mensaje.replace(/&nbsp[;]?/ig, '');
+                                $('td', row).eq(4).html("<a target='_blank' href='" + $mensaje + "'><i class='fas fa-reply-all'></i></>");
+                            },
+                            "columns": [
+                                { "width": "10%", data: 'id' },
+                                { "width": "30%", data: 'nombre' },
+                                { "width": "30%", data: 'apellidop' },
+                                { data: 'telefono' },
+                                {
+                                    "width": "25%",
+                                    "name": "btn",
+                                    "data": 'btn',
+                                    "orderable": false,
+                                },
+                            ],
+                            "language": {
+                                "url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
+                            },
+                            "order": [[3, "desc"]]
+                        });
+                    /*%%%%%%%%%%%%%%% ENUMARA LA PRIMER COLUMNA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+                    tablaadministrativos.on('order.dt search.dt', function () {
+                        tablaadministrativos.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                            cell.innerHTML = i + 1;
+                        });
+                    }).draw();
+                }
+
 
          $('table').on('click', '.mostraradministrativos', function(e) {
             e.preventDefault();
@@ -351,79 +354,8 @@
         } ( jQuery ) );
 
         $(document).ready(function() {
-            tabla=$('#potenciales').DataTable(
-                    {
-                        "serverSide": true,
-                        "responsive":true,
-                        "autoWidth":false,
-                        "ajax": "{{ url('potenciales') }}",
-                        "createdRow": function( row, data, dataIndex ) {
-                            $(row).attr('id',data['id']);
-                            persona_id=data['id'];
-                            $.ajax({
-                                url:"{{url('persona/primeraultima/observacion')}}",
-                                data:{persona_id:persona_id},
-                                success : function(json) {
-                                    if(json.observacionFirst.id != json.observacionLast.id)
-                                    $('td', row).eq(4).html(json.observacionFirst.observacion +'<strong>'+ json.usuarioFirst.name +'</strong><br>'+json.observacionLast.observacion +'<strong>'+ json.usuarioLast.name +'</strong>');  
-                                    else
-                                    $('td', row).eq(4).html(json.observacionFirst.observacion +'<strong>'+ json.usuarioFirst.name +'</strong>');  
-                                },
-                            });
-                            
-                            if (moment(data['vuelvefecha']).format('YY-MM-DD')>moment().format('YY-MM-DD')){
-                                $(row).addClass('text-success')
-                            }else{
-                                $(row).addClass('text-danger')
-                            }
-                            
-                            switch (data['volvera']) {
-                                case 0:
-                                    $('td', row).eq(5).html( data['vuelvefecha']+"<br><i class='far fa-bell-slash'></i><span class='float'><strong>"+0+"</strong></span>"); 
-                                    break;
-                                case 1:
-                                    $('td', row).eq(5).html( data['vuelvefecha']+"<br><i class='fas fa-2x fa-battery-empty'></i><span class='float'><strong>"+1+"</strong></span>"); 
-                                    break;
-                                case 2:
-                                    $('td', row).eq(5).html( data['vuelvefecha']+"<br><i class='fas fa-2x fa-battery-quarter'></i><span class='float'><strong>"+2+"</strong></span>");
-                                    break;
-                                case 3:
-                                    $('td', row).eq(5).html( data['vuelvefecha']+"<br><i class='fas fa-2x fa-battery-half'></i><span class='float'><strong>"+3+"</strong></span>");
-                                    break;
-                                case 4:
-                                    $('td', row).eq(5).html( data['vuelvefecha']+"<br><i class='fas fa-2x fa-battery-three-quarters'></i><span class='float'><strong>"+4+"</strong></span>");
-                                    break;
-                                case 5:
-                                    $('td', row).eq(5).html( data['vuelvefecha']+"<br><i class='fas fa-2x fa-battery-full'></i><span class='float'><strong>"+5+"</strong></span>");
-                                    break;
-                            }
-                        },
-                        "columns": [
-                            {data: 'id'},
-                            {data: 'nombre'},
-                            {data: 'apellidop'},
-                            {data: 'interest'},
-                            {data: 'apellidom'},
-                            {data: 'vuelvefecha'},
-                            {
-                                "name":"btn",
-                                "data": 'btn',
-                                "orderable": false,
-                            },
-                        ],
-                        "aLengthMenu": [[5, 10, 15, 25, 50, 100 , -1], [5, 10, 15, 25, 50, 100, "All"]], 
-                        "iDisplayLength" : 10,
-                        
-                        "columnDefs": [
-                            { responsivePriority: 1, targets: 0 },  
-                            { responsivePriority: 2, targets: -1 }
-                        ],
-                        order: [[0, 'desc']],
-                        "language":{
-                            "url":"https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
-                        },  
-                    }
-            );
+               
+			//document.getElementById('ESPERANUEVO').click();
              $('table').on('click', '.fechar', function(e) {
                 e.preventDefault();
                 persona_id =$(this).closest('tr').attr('id');
@@ -439,7 +371,7 @@
                 let vuelvefecha = $("#vuelvefecha").val();
                 let persona_id = $("#persona_id").val();
                 $.ajax({
-                    url: "../persona/actualizar/vuelvefecha",
+                    url: "{{ url('persona/actualizar/vuelvefecha') }}",
                     data: {
                         vuelvefecha:vuelvefecha,
                         persona_id:persona_id,
@@ -489,7 +421,7 @@
                 let volvera = $("#volvera").val();
                 let persona_id = $("#persona_id").val();
                 $.ajax({
-                    url: "../persona/actualizar/volvera",
+                    url: "{{ url('persona/actualizar/volvera')}}",
                     data: {
                         volvera:volvera,
                         persona_id:persona_id,
@@ -534,7 +466,7 @@
                 $("#modal-mostrar-contactos").modal("show");
                 $("#tabla-contactos").empty();
                     $.ajax({
-                    url :"../persona/enviar/mensaje",
+                    url :"{{ url('persona/enviar/mensaje') }}",
                     data:{
                         persona_id:persona_id,
                     },
@@ -572,7 +504,7 @@
 
                 console.log(persona_id);
                 $.ajax({
-                    url : "../persona/enviar/mensaje/personal",
+                    url : "{{ url('persona/enviar/mensaje/personal') }}",
                     data : {
                         persona_id:persona_id,
                     },
@@ -591,7 +523,7 @@
                 persona_id=$(this).parent().parent().find('td').first().html();
                 //console.log(persona_id);
                 $.ajax({
-                    url : "../persona/potenciales/unsuscribe",
+                    url : "{{ url('persona/potenciales/unsuscribe') }}",
                     data:{ persona_id:persona_id },
                     success : function(json) {
                         const Toast = Swal.mixin({
@@ -683,7 +615,6 @@
             });
 
            
-
          
 
             $(document).on("submit","#formulario-editar-observacion",function(e){
@@ -711,92 +642,17 @@
                     },
                 });
             });
-            // $('table').on('click','.eliminarobservacion',function (e) {
-            //     e.preventDefault(); 
-            //     let id_programacioncom=$(this).closest('tr').attr('id');
-            //     console.log(id_programacioncom+"poraqui");
-            //     Swal.fire({
-            //         title: 'Estas seguro(a) de eliminar este registro?',
-            //         text: "Si eliminas el registro no lo podras recuperar jamás!",
-            //         icon: 'question',
-            //         showCancelButton: true,
-            //         showConfirmButton:true,
-            //         confirmButtonColor: '#25ff80',
-            //         cancelButtonColor: '#d33',
-            //         confirmButtonText: 'Eliminar..!',
-            //         position:'center',        
-            //     }).then((result) => {
-            //         if (result.value) {
-            //             $.ajax({
-            //                 url: '../eliminar/observacion/'+id_programacioncom,
-            //                 type: 'DELETE',
-            //                 data:{
-            //                     id:id_programacioncom,
-            //                     _token:'{{ csrf_token() }}'
-            //                 },
-            //                 success: function(result) {
-            //                     $("#modal-mostrar").modal("hide");
-            //                     const Toast = Swal.mixin({
-            //                     toast: true,
-            //                     position: 'top-end',
-            //                     showConfirmButton: false,
-            //                     timer: 1500,
-            //                     timerProgressBar: true,
-            //                     didOpen: (toast) => {
-            //                         toast.addEventListener('mouseenter', Swal.stopTimer)
-            //                         toast.addEventListener('mouseleave', Swal.resumeTimer)
-            //                     }
-            //                     })
-            //                     Toast.fire({
-            //                     icon: 'success',
-            //                     title: 'Se eliminó correctamente el registro'
-            //                     })  
-            //                 },
-            //                 error: function (xhr, ajaxOptions, thrownError) {
-            //                     switch (xhr.status) {
-            //                         case 500:
-            //                             Swal.fire({
-            //                                 title: 'No se completó esta operación por que este registro está relacionado con otros registros',
-            //                                 showClass: {
-            //                                     popup: 'animate__animated animate__fadeInDown'
-            //                                 },
-            //                                 hideClass: {
-            //                                     popup: 'animate__animated animate__fadeOutUp'
-            //                                 }
-            //                             })
-            //                             break;
-                                
-            //                         default:
-            //                             break;
-            //                     }
-            //                 }
-            //             });
-            //         }else{
-            //             const Toast = Swal.mixin({
-            //                 toast: true,
-            //                 position: 'top-end',
-            //                 showConfirmButton: false,
-            //                 timer: 4000,
-            //                 timerProgressBar: true,
-            //                 onOpen: (toast) => {
-            //                     toast.addEventListener('mouseenter', Swal.stopTimer)
-            //                     toast.addEventListener('mouseleave', Swal.resumeTimer)
-            //                 }
-            //             })
-            //             Toast.fire({
-            //                 icon: 'error',
-            //                 title: 'No se eliminó el registro'
-            //             })
-            //         }
-            //     })
-            // });
+           
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATATABLE DE OBSERVACIONES DENTRO DE UNA FUNCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MUESTRA FORMULARIO EDITAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click', '.editarobservacion', function(e) {
                 e.preventDefault(); 
                 let id_observacion=$(this).closest('tr').attr('id');
                 $htmlobs="";
                 $.ajax({
-                    url : "../observacion/editar",
+                    url : "{{ url('observacion/editar') }}",
                     data :{
                         id:id_observacion,
                     },

@@ -382,7 +382,7 @@
                 <textarea rows="10" placeholder="Ingrese un requerimiento inicial por que esta registrando el cliente el motivo escuchar bien al cliente"  name="observacion" id="observacion" class="form-control @error('observacion') is-invalid @enderror" >{{old('observacion',$observacion ?? '')}}</textarea>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4" >
-                <div class="form-floating mb-3 text-gray">
+                {{-- <div class="form-floating mb-3 text-gray">
                     <select class="form-control @error('habilitado') is-invalid @enderror" name="habilitado" id="habilitado">
                         <option value=""> Elija tu HABILITADO</option>
                             @if(isset($persona->habilitado))
@@ -399,6 +399,19 @@
                             @endif 
                     </select>
                     <label for="habilitado">Elija género*</label>
+                </div> --}}
+                <div class="form-floating mb-3 text-gray">
+                    <select class="form-control @error('estado_id') is-invalid @enderror" data-old="{{ old('estado_id') }}" name="estado_id" id="estado_id">
+                        <option value="" selected>Seleccion un estado</option>
+                        @foreach ($estados as $estado)
+                            @isset($persona)     
+                                <option  value="{{$estado->id}}" {{$estado->id==$persona->habilitado ? 'selected':''}}>{{$estado->estado}}</option>     
+                            @else
+                                <option value="{{ $estado->id}}" {{ old('estado_id') == $estado->id ? 'selected':'' }} >{{ $estado->estado }}</option>
+                            @endisset 
+                        @endforeach
+                    </select>
+                    <label for="como">Estado</label>
                 </div>
             </div>
         </div>

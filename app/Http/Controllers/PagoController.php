@@ -99,7 +99,27 @@ class PagoController extends Controller
         $pago->save();
         //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   %%%%%%%%%%%%%%%%*/
         $pago->usuarios()->attach(Auth::user()->id);
-        return redirect()->route('billete.crear',['pago'=>$pago]);
+
+            if($inscripcion->estado_id==estado("RESERVADO")){
+                //dd("ESTADO INDEFINIDO");
+                return redirect()->route('inscripcion.configuracion',$inscripcion);
+            }else{
+                if ($inscripcion->programaciones->count() == 0) {
+                    $nivel=Modalidad::findOrFail($inscripcion->modalidad_id)->nivel->nivel;
+                    if($nivel=="GUARDERIA"){
+                        // dd("guarderia");
+                        return redirect()->route('generar.programa.guarderia', $inscripcion->id);
+                    }else {
+                        // dd("FALSO DE guarderia");
+                        return redirect()->route('generar.programa', $inscripcion->id);
+                    }
+                } else {
+                    // dd("FALSO DE cripcion->programaciones->count()");
+                    return redirect()->route('actualizar.programa.segun.pago', ['inscripcione' => $inscripcion->id, 'pago' => $pago_id]);
+                }
+            }
+
+        //return redirect()->route('billete.crear',['pago'=>$pago]);
     }
 
     /**

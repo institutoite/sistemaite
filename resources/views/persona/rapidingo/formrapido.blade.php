@@ -12,18 +12,24 @@
                 </div>
                 
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" > 
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" > 
                         <div class="form-floating mb-3 text-gray">
                             <input  type="text" name="nombre" class="form-control @error('nombre') is-invalid @enderror" value="{{old('nombre',$persona->nombre ?? '')}}">
                             <label for="nombre">nombre</label>
                         </div>
                     </div>
                     {{-- %%%%%%%%%%%%%%% CAMPO APELLIDO PATERNO --}}
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
                         <div class="form-floating mb-3 text-gray">
                             <input  type="text" name="apellidop" class="form-control @error('apellidop') is-invalid @enderror" value="{{old('apellidop',$persona->apellidop ?? '')}}">
                             <label for="apellidop">apellidop</label>
                         </div>    
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+                        <div class="form-floating mb-3 text-gray">
+                            <input class="form-control @error('telefono') is-invalid @enderror" type="tel" id="phone" name="telefono" value="{{old('telefono',$persona->telefono ?? '')}}">
+                            <label for="telefono">Telefono*</label>
+                        </div>
                     </div>
                     {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO APELLIDO MATERNO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
                 </div> {{-- FIN DEL ROW DE LOS INPUT DE ESTUDIANTE  --}}
@@ -41,18 +47,29 @@
                     </div>    
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-                        <div class="form-floating mb-3 text-gray">
-                            <input class="form-control @error('telefono') is-invalid @enderror" type="tel" id="phone" name="telefono" value="{{old('telefono',$persona->telefono ?? '')}}">
-                            <label for="telefono">Telefono*</label>
-                        </div>
-                    </div>
+                    
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
                         <div class="form-floating mb-3 text-gray">
                             <input  type="date" name="vuelvefecha" class="form-control @error('vuelvefecha') is-invalid @enderror" value="{{old('vuelvefecha',$persona->vuelvefecha ?? '')}}">
                             <label for="vuelvefecha">Cuando vuelve?</label>
                         </div>
                     </div>
+                    
+                    <div class="col-xs-9 col-sm-9 col-md-6 col-lg-4" >
+                                <div class="form-floating mb-3 text-gray">
+                                    <select class="form-control @error('estado_id') is-invalid @enderror" data-old="{{ old('estado_id') }}" name="estado_id" id="estado_id">
+                                        <option value="" selected>Seleccion un estado</option>
+                                        @foreach ($estados as $estado)
+                                            @isset($persona)     
+                                                <option  value="{{$estado->id}}" {{$estado->id==$persona->habilitado ? 'selected':''}}>{{$estado->estado}}</option>     
+                                            @else
+                                                <option value="{{ $estado->id}}" {{ old('estado_id') == $estado->id ? 'selected':'' }} >{{ $estado->estado }}</option>
+                                            @endisset 
+                                        @endforeach
+                                    </select>
+                                    <label for="como">Estado</label>
+                                </div>
+                            </div>
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
                         <div class="row">
                             <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" >

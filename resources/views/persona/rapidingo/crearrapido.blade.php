@@ -11,7 +11,7 @@
     
         <div class="card">
             <div class="card-header bg-secondary">
-                CREAR USUARIO SUPER RAPIDOx
+                CREAR USUARIO SUPER RAPIDO
             </div>
             <div class="card-body">
                 <form action="{{route('personas.guardar.rapidindo')}}" id="formulario" method="post" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">

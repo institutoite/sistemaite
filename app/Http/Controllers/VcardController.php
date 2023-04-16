@@ -154,6 +154,7 @@ class VcardController extends Controller
         $vcard = new VCard();
         $persona=Persona::find($persona_id);
         $this->createVcard($persona,$vcard);
+        
         return $vcard->download();
     }
 

@@ -416,3 +416,14 @@ $cupos=Programacion::join('docentes','docentes.id','programacions.docente_id')
   	->groupBy('docentes.nombrecorto','hora_ini')
   	->orderBy('cantidad','desc')
   ->get();
+
+
+ESTADOS PARA CRM
+ESPERANUEVO	  
+ESPERAREINCRIPCION	  
+ESPERAREMATRICULACION
+ESPERARETOMA	  
+PROSPECTO	  
+SEGUIMIENTO	    
+CANCELADO	  
+PERDIDO

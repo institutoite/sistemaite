@@ -601,6 +601,62 @@ return [
         ],
         [
             'text'    => 'Potenciales',
+            'icon'    => 'fas fa-address-book',
+            'icon_color' => 'danger',
+            'classes'  => 'text-white text-bold bg-primary',
+            'submenu' => [
+                [
+                    'text' => 'Nuevos',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'espera/nuevo/view',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Reinscripcion',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => '/esperarescription',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'rematriculacion',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'espeerarematriculacion',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'ESPERARETOMA',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'esperaretoma',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'PROSPECTO',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'prospecto',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'SEGUIMIENTO',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'seguimiento',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'CANCELADO',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'cancelado',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'PERDIDO',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'perdido',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Potenciales',
             'icon'    => 'fas fa-keyboard',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',

@@ -13,6 +13,7 @@ use App\Models\Docente;
 use App\Models\Comentario;
 use App\Models\Mensaje;
 use App\Models\Proveedor;
+use App\Models\Estado;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -297,7 +298,8 @@ class PersonaController extends Controller
     {
         $interests=Interest::get();
         $comos=Como::get();
-        return view('persona.rapidingo.crearrapido',compact('interests','comos'));
+        $estados=Estado::orderBy('id','desc')->get();
+        return view('persona.rapidingo.crearrapido',compact('interests','comos','estados'));
     }
     
     public function guardarRapidingo(PersonaRapidingoGuardarRequest $request){
@@ -309,7 +311,7 @@ class PersonaController extends Controller
         $persona->genero=$request->genero;
         $persona->como_id = $request->como_id;
         $persona->vuelvefecha=$request->vuelvefecha;
-        $persona->habilitado = 0;
+        $persona->habilitado = $request->estado_id;
         $persona->votos = 1;
         $persona->papelinicial = 'estudiante';
         $persona->save();
@@ -362,13 +364,14 @@ class PersonaController extends Controller
         }
         $interests_faltantes = Interest::whereNotIn('id', $ids)->get();
         $comos=Como::get();
-        return view('persona.rapidingo.editarrapido',compact('persona','comos','interests_currents','interests_faltantes','observacion'));
+        $estados=Estado::orderBy('id','desc')->get();
+        return view('persona.rapidingo.editarrapido',compact('persona','comos','interests_currents','interests_faltantes','observacion','estados'));
     }
     public function potenciales(){
         $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
         ->join('interests','interests.id','interest_persona.interest_id')
         
-        ->where('habilitado',0)
+        ->where('habilitado','>',10)
         ->where('votos',1)
         ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
         ->get();
@@ -615,8 +618,8 @@ class PersonaController extends Controller
                 # code...ite.com.bo
                 break;
         }
-
-        return view("persona.editar",compact('persona','paises','comos','ciudades','zonas','observacion','interests_currents','interests_faltantes'));
+        $estados=Estado::get();
+        return view("persona.editar",compact('persona','estados','paises','comos','ciudades','zonas','observacion','interests_currents','interests_faltantes'));
     } 
 
     /**
@@ -637,7 +640,7 @@ class PersonaController extends Controller
         $persona->carnet = $request->carnet;
         $persona->expedido = $request->expedido;
         $persona->genero = $request->genero;
-        $persona->habilitado = $request->habilitado;
+        $persona->habilitado = $request->estado_id;
         $persona->votos=1;
         
         if ($request->hasFile('foto')) {

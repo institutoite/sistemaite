@@ -84,10 +84,12 @@ Route::get('nivel/mostrar/{nivel}',[NivelController::class,'show'])->name("nivel
 Route::get('interes/mostrar/{interest}',[InterestController::class,'show'])->name("interest.show");
 Route::get('prueba',[CupoController::class,'getDataCupos'])->name('prueba');
 Route::middleware(['auth'])->group(function () {
+    
+Route::get('/home',[EstudianteController::class,'home'])->name('home');
+    //  Route::get('/home',function(){
 
-     Route::get('/home',function(){
-        return view('persona.estudiantes');
-    })->name('home');
+    //     
+    // })->name('home');
 
     
     Route::get('/ninacos', function () {
@@ -105,6 +107,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('personas/opciones/{id}', function ($id) {
         return view('persona.opciones');
     })->name('personas.opciones');
+
 
 
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%PERSONA RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -144,6 +147,23 @@ Route::middleware(['auth'])->group(function () {
         return view('persona.contacto.archivos',compact("archivos"));
         
     })->name('mostrar_archivo');
+
+
+    /*%%%%%%%%%%%%%%%%%%%%%%%%%% CRM INICIO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+    Route::get('espera/nuevo/view', [CrmController::class,'esperaNuevoView'])->name('crm.esperanuevo.view');
+    Route::get('esperanuevos', [CrmController::class,'esperanuevo'])->name('crm.esperanuevo');
+
+    Route::get('esperarescription', [CrmController::class,'esperarescription'])->name('crm.esperarescription');
+    Route::get('espeerarematriculacion', [CrmController::class,'espeerarematriculacion'])->name('crm.espeerarematriculacion');
+    Route::get('esperaretoma', [CrmController::class,'esperaretoma'])->name('crm.esperaretoma');
+    Route::get('prospecto', [CrmController::class,'prospecto'])->name('crm.prospecto');
+    Route::get('seguimiento', [CrmController::class,'seguimiento'])->name('crm.seguimiento');
+    Route::get('cancelado', [CrmController::class,'cancelado'])->name('crm.cancelado');
+    Route::get('perdido', [CrmController::class,'perdido'])->name('crm.perdido');
+    /*%%%%%%%%%%%%%%%%%%%%%%%%%% CRM FIN %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+
+    
     Route::get('descargar-archivo', [PersonaController::class,'descargarArchivo'])->name('descargar_archivo');
     Route::get('eliminar_archivo', [PersonaController::class,'eliminar'])->name('eliminar_archivo');
 
@@ -204,6 +224,7 @@ Route::middleware(['auth'])->group(function () {
     
     /** %%%%%%%%%%%%%%%%%%%% CRM $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
     Route::get('crm/potenciales',[CrmController::class,'index'])->name("crm.potenciales");
+    Route::get('potenciales/parametrizada',[CrmController::class,'potencialesParametrizada'])->name("crm.potenciales.parametrizada");
     
     //Route::get("persona/update/ajax",[PersonaController::class,'updatePersonaAjax'])->name("persona.update.ajax");
 

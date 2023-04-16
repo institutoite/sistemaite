@@ -5,7 +5,8 @@ function mostrarAdministrativosPotenciales(potencial_id) {
     $("#administrativos").dataTable().fnDestroy();
     $men = "";
     $.ajax({
-        url: '../potencial/get/' + potencial_id,
+        // url: '../potencial/get/' + potencial_id,
+        url: "{{ url('potencial/get')}}" + potencial_id,
         success: function (result) {
             $un_potencial=result.persona;
             $unos_interests=result.interests;
@@ -28,7 +29,7 @@ function mostrarAdministrativosPotenciales(potencial_id) {
             "autoWidth": false,
             "targets": 0,
             "ajax": {
-                "url": '../administrativos/contactar'
+                "url":"{{url('administrativos/contactar')}}"
             },
             "createdRow": function (row, data, dataIndex) {
                 $(row).attr('id', data['id']); // agrega dinamiacamente el id del row

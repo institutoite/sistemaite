@@ -33,13 +33,40 @@
                 </table>
             </div>
         </div>
+
+        {{ count($nuevos) }}
+        {{ count($reinscripcion) }}
+        {{ count($rematriculacion) }}
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
         @include('observacion.modalcreate')
         @include('telefono.modales')
     </div>
 @stop
 
 @section('js')
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
     
     <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
@@ -61,13 +88,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/themes/fas/theme.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/locales/es.js"></script>
     
-    
-    
+  
+
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="{{asset('assets/js/observacion.js')}}"></script>
     <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
     <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
 
+    <script>
+        
+        $(document).ready(function(){
+            $('#staticBackdrop').modal('show');
+        });
+    </script>
+    
     {{-- telefono modales --}}
     <script src="{{asset('dist/js/moment.js')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>

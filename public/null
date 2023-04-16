@@ -3,1419 +3,201 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(1);
 
-grados =$persona->estudiante->grados;
+ $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        ->where('habilitado','>',estado("ESPERAREINCRIPCION"))
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->get();
 use App\Models\Persona;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(1);
 
-$grados = $persona->estudiante->grados;
+ $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        ->where('habilitado','>',estado("ESPERAREINCRIPCION"))
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->get();
 use App\Models\Persona;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(1);
 
-$grados = $persona->estudiante->grados;
+ $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        ->where('habilitado','>',estado("ESPERAREINCRIPCION"))
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->get();
 use App\Models\Persona;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(1);
 
-$gestiones = $persona->estudiante->grados;
-$notaGestiones="";
-foreach ($gestiones as $grado) {
-$notaGestiones="\n".$notaGestiones.$grado->grado." - ".$grado->pivot->anio;
-}
-$notaGestiones;
+ $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        ->where('habilitado','>',estado("ESPERAREINCRIPCION"))
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->get();
 use App\Models\Persona;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(1);
 
-$gestiones = $persona->estudiante->grados;
-$notaGestiones="";
-foreach ($gestiones as $grado) {
-$notaGestiones="\n".$notaGestiones.$grado->grado." - ".$grado->pivot->anio."\n";
-}
-$notaGestiones;
+ $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        ->where('habilitado','>',estado("ESPERAREINCRIPCION"))
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->get();
 use App\Models\Persona;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(1);
 
-$gestiones = $persona->estudiante->grados;
-$notaGestiones="";
-foreach ($gestiones as $grado) {
-$notaGestiones=$notaGestiones.$grado->grado." - ".$grado->pivot->anio."\n";
-}
-$notaGestiones;
+ $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        ->where('habilitado','>',estado("ESPERAREINCRIPCION"))
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->get();
 use App\Models\Persona;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(1);
 
-$observaciones=$persona->observaciones;
-        
-$nota="";
-foreach ($observaciones as $value) {
-  $nota="\n".$nota.$value->observacion."(".$value->created_at.")\n\n";
-}
-$nota
+ $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        ->where('habilitado','>',estado("ESPERAREINCRIPCION"))
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->get();
 use App\Models\Persona;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(1);
 
-$observaciones=$persona->observaciones;
-        
-$nota="";
-foreach ($observaciones as $value) {
-  $nota=$nota.$value->observacion."(".$value->created_at.")\n\n";
-}
-$nota;
+ $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        ->where('habilitado','>',estado("ESPERAREINCRIPCION"))
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->get();
 use App\Models\Persona;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(1);
 
-$observaciones=$persona->observaciones;
-        
-$nota="";
-foreach ($observaciones as $value) {
-  $nota=$nota.$value->observacion."(".$value->created_at.")\n";
-}
-$nota;
+ $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        ->where('habilitado','=',estado("ESPERAREINCRIPCION"))
+        ->select('personas.id','persona.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->get();
 use App\Models\Persona;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(1)->apoderados;
+
+ $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        ->where('habilitado','=',estado("ESPERAREINSCRIPCION"))
+        ->select('personas.id','persona.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->get();
 use App\Models\Persona;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(2)->apoderados;
+
+ $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        ->where('habilitado','=',estado("ESPERAREINSCRIPCION"))
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->get();
 use App\Models\Persona;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(3)->apoderados;
+
+ $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        ->where('habilitado',estado("ESPERAREINSCRIPCION"))
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->get();
 use App\Models\Persona;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(4)->apoderados;
+
+ $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        ->where('habilitado',estado("ESPERAREINSCRIPCION"))
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->get();
 use App\Models\Persona;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(1)->apoderados;
+
+ $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        ->where('habilitado',estado("ESPERAREINSCRIPCION"))
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->get();
 use App\Models\Persona;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(1);
-$observaciones=$persona->observaciones;
-        
-$gestiones=$persona->estudiante->grados;
-$nota="%%%%%%%%%%%%%  GRADOS Y GESTIONES %%%%%%%%%%%%%\n";
-foreach ($gestiones as $grado) {
-  $nota=$nota.$grado->grado." - ".$grado->pivot->anio."\n";
-}
 
-$nota.="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";;
-foreach ($observaciones as $value) {
-  $nota=$nota.$value->observacion."(".$value->created_at.")\n";
-}
-
-$nota.="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-$inscripciones=$persona->estudiante->inscripciones;
-foreach ($inscripciones as $inscripcion) {
-  $nota="Modalidad:".$nota.$inscripcion->modalidad->modalidad." - Costo:".$inscripcion->costo."Estado:".$inscripcion->estado->estado."\n";
-}
-
-$nota.="%%%%%%%%%%%%% MATRICULACIONES %%%%%%%%%%%%%\n";;
-$matriculaciones=$persona->computacion->matriculaciones;
-foreach ($matriculaciones as $matriculacion) {
-  $nota="Asignatura:".$nota.$matriculacion->asignatura->asignatura." - Costo:".$matriculacion->costo."Estado:".$matriculacion->estado->estado."\n";
-}
-
-$nota.="%%%%%%%%%%%%% APODERADOS %%%%%%%%%%%%%\n";;
-$apoderados=$persona->apoderados;
-foreach ($apoderados as $apoderado) {
-  $nota="Apoderado:".$apoderado->nombre.$apoderado->apellidop." - Parentesco:".$apoderado->pivot->parentesco."teléfono:".$apoderado->telefono."\n";
-
-}
-$nota;
+ $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        ->where('habilitado',estado("ESPERAREINSCRIPCION"))
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->get();
 use App\Models\Persona;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(1);
-$observaciones=$persona->observaciones;
-        
-$gestiones=$persona->estudiante->grados;
-$nota="%%%%%%%%%%%%%  GRADOS Y GESTIONES %%%%%%%%%%%%%\n";
-foreach ($gestiones as $grado) {
-  $nota.=$nota.$grado->grado." - ".$grado->pivot->anio."\n";
-}
 
-$nota.="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";;
-foreach ($observaciones as $value) {
-  $nota.=$nota.$value->observacion."(".$value->created_at.")\n";
-}
-
-$nota.="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-$inscripciones=$persona->estudiante->inscripciones;
-foreach ($inscripciones as $inscripcion) {
-  $nota.="Modalidad:".$nota.$inscripcion->modalidad->modalidad." - Costo:".$inscripcion->costo."Estado:".$inscripcion->estado->estado."\n";
-}
-
-$nota.="%%%%%%%%%%%%% MATRICULACIONES %%%%%%%%%%%%%\n";;
-$matriculaciones=$persona->computacion->matriculaciones;
-foreach ($matriculaciones as $matriculacion) {
-  $nota.="Asignatura:".$nota.$matriculacion->asignatura->asignatura." - Costo:".$matriculacion->costo."Estado:".$matriculacion->estado->estado."\n";
-}
-
-$nota.="%%%%%%%%%%%%% APODERADOS %%%%%%%%%%%%%\n";;
-$apoderados=$persona->apoderados;
-foreach ($apoderados as $apoderado) {
-  $nota.="Apoderado:".$apoderado->nombre.$apoderado->apellidop." - Parentesco:".$apoderado->pivot->parentesco."teléfono:".$apoderado->telefono."\n";
-
-}
-$nota;
+ $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        ->where('habilitado',estado('ESPERAREINSCRIPCION'))
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->get();
 use App\Models\Persona;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(1);
-$observaciones=$persona->observaciones;
-        
-$gestiones=$persona->estudiante->grados;
-$notagestiones="%%%%%%%%%%%%%  GRADOS Y GESTIONES %%%%%%%%%%%%%\n";
-foreach ($gestiones as $grado) {
-  $notagestiones.=$notagestiones.$grado->grado." - ".$grado->pivot->anio."\n";
-}
 
-$notaobservaciones.="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";;
-foreach ($observaciones as $value) {
-  $notaobservaciones.=$notaobservaciones.$value->observacion."(".$value->created_at.")\n";
-}
-
-$notainscripciones.="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-$inscripciones=$persona->estudiante->inscripciones;
-foreach ($inscripciones as $inscripcion) {
-  $notainscripciones.="Modalidad:".$notainscripciones.$inscripcion->modalidad->modalidad." - Costo:".$inscripcion->costo."Estado:".$inscripcion->estado->estado."\n";
-}
-
-$notamatriculaciones.="%%%%%%%%%%%%% MATRICULACIONES %%%%%%%%%%%%%\n";;
-$matriculaciones=$persona->computacion->matriculaciones;
-foreach ($matriculaciones as $matriculacion) {
-  $notamatriculaciones.="Asignatura:".$notamatriculaciones.$matriculacion->asignatura->asignatura." - Costo:".$matriculacion->costo."Estado:".$matriculacion->estado->estado."\n";
-}
-
-$notaapoderados.="%%%%%%%%%%%%% APODERADOS %%%%%%%%%%%%%\n";;
-$apoderados=$persona->apoderados;
-foreach ($apoderados as $apoderado) {
-  $notaapoderados.=$notaapoderados."Apoderado:".$apoderado->nombre.$apoderado->apellidop." - Parentesco:".$apoderado->pivot->parentesco."teléfono:".$apoderado->telefono."\n";
-
-}
-$nota=$notagestiones.$notaobservaciones.$notainscripciones.$notamatriculaciones.$notaapoderados;
+ 
+$f=estado('ESPERAREINSCRIPCION');
 use App\Models\Persona;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(1);
 
-   $observaciones=$persona->observaciones;
-        
-        $gestiones=$persona->estudiante->grados;
-        $notagestiones="%%%%%%%%%%%%%  GRADOS Y GESTIONES %%%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-        $notagestiones.=$notagestiones.$grado->grado." - ".$grado->pivot->anio."\n";
-        }
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";;
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$notaobservaciones.$value->observacion."(".$value->created_at.")\n";
-        }
-
-        $notainscripciones="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-        $inscripciones=$persona->estudiante->inscripciones;
-        foreach ($inscripciones as $inscripcion) {
-        $notainscripciones.="Modalidad:".$notainscripciones.$inscripcion->modalidad->modalidad." - Costo:".$inscripcion->costo."Estado:".$inscripcion->estado->estado."\n";
-        }
-
-        $notamatriculaciones="%%%%%%%%%%%%% MATRICULACIONES %%%%%%%%%%%%%\n";;
-        $matriculaciones=$persona->computacion->matriculaciones;
-        foreach ($matriculaciones as $matriculacion) {
-        $notamatriculaciones.="Asignatura:".$notamatriculaciones.$matriculacion->asignatura->asignatura." - Costo:".$matriculacion->costo."Estado:".$matriculacion->estado->estado."\n";
-        }
-
-        $notaapoderados="%%%%%%%%%%%%% APODERADOS %%%%%%%%%%%%%\n";;
-        $apoderados=$persona->apoderados;
-        foreach ($apoderados as $apoderado) {
-        $notaapoderados.=$notaapoderados."Apoderado:".$apoderado->nombre.$apoderado->apellidop." - Parentesco:".$apoderado->pivot->parentesco."teléfono:".$apoderado->telefono."\n";
-
-        }
-        $nota=$notagestiones.$notaobservaciones.$notainscripciones.$notamatriculaciones.$notaapoderados;
-        $vcard->addNote($nota);
+ 
+$f=estado('ESPERAREINSCRIPCION');
 use App\Models\Persona;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-$persona=Persona::findOrFail(1);
 
-   $observaciones=$persona->observaciones;
-        
-        $gestiones=$persona->estudiante->grados;
-        $notagestiones="%%%%%%%%%%%%%  GRADOS Y GESTIONES %%%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-        $notagestiones.=$notagestiones.$grado->grado." - ".$grado->pivot->anio."\n";
-        }
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";;
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$notaobservaciones.$value->observacion."(".$value->created_at.")\n";
-        }
-
-        $notainscripciones="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-        $inscripciones=$persona->estudiante->inscripciones;
-        foreach ($inscripciones as $inscripcion) {
-        $notainscripciones.="Modalidad:".$notainscripciones.$inscripcion->modalidad->modalidad." - Costo:".$inscripcion->costo."Estado:".$inscripcion->estado->estado."\n";
-        }
-
-        $notamatriculaciones="%%%%%%%%%%%%% MATRICULACIONES %%%%%%%%%%%%%\n";;
-        $matriculaciones=$persona->computacion->matriculaciones;
-        foreach ($matriculaciones as $matriculacion) {
-        $notamatriculaciones.="Asignatura:".$notamatriculaciones.$matriculacion->asignatura->asignatura." - Costo:".$matriculacion->costo."Estado:".$matriculacion->estado->estado."\n";
-        }
-
-        $notaapoderados="%%%%%%%%%%%%% APODERADOS %%%%%%%%%%%%%\n";;
-        $apoderados=$persona->apoderados;
-        foreach ($apoderados as $apoderado) {
-        $notaapoderados.=$notaapoderados."Apoderado:".$apoderado->nombre.$apoderado->apellidop." - Parentesco:".$apoderado->pivot->parentesco."teléfono:".$apoderado->telefono."\n";
-
-        }
-        $nota=$notagestiones.$notaobservaciones.$notainscripciones.$notamatriculaciones.$notaapoderados;
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        
-        $gestiones=$persona->estudiante->grados;
-        $notagestiones="%%%%%%%%%%%%%  GRADOS Y GESTIONES %%%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-        $notagestiones.=$notagestiones.$grado->grado." - ".$grado->pivot->anio."\n";
-        }
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        
-        $gestiones=$persona->estudiante->grados;
-        $notagestiones="";
-        foreach ($gestiones as $grado) {
-        $notagestiones.=$notagestiones.$grado->grado." - ".$grado->pivot->anio."\n";
-        }
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        
-        $gestiones=$persona->estudiante->grados;
-        $notagestiones="";
-        foreach ($gestiones as $grado) {
-        $notagestiones.=$notagestiones.$grado->grado." - ".$grado->pivot->anio."=>\n";
-        }
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        
-        $gestiones=$persona->estudiante->grados;
-        $notagestiones="";
-        foreach ($gestiones as $grado) {
-        $notagestiones.=$notagestiones.$grado->grado." - ".$grado->pivot->anio."=>\n";
-        }
-
-echo $notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        
-        $gestiones=$persona->estudiante->grados;
-        $notagestiones="";
-        foreach ($gestiones as $grado) {
-        	$notagestiones.=$notagestiones.$grado->grado." - ".$grado->pivot->anio."=>\n";
-        }
-
-echo "\n".$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        
-        $gestiones=$persona->estudiante->grados;
-        $notagestiones="";
-        foreach ($gestiones as $grado) {
-        	$notagestiones.=$notagestiones.$grado->grado." - ".$grado->pivot->anio."=>\n";
-        }
-
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        
-        $gestiones=$persona->estudiante->grados;
-        $notagestiones="";
-        foreach ($gestiones as $grado) {
-        	$notagestiones.=$grado->grado." - ".$grado->pivot->anio."=>\n";
-        }
-
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        
-        $gestiones=$persona->estudiante->grados->orderBy("anio","asc");
-        $notagestiones="";
-        foreach ($gestiones as $grado) {
-        	$notagestiones.=$grado->grado." - ".$grado->pivot->anio."=>\n";
-        }
-
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        
-        $gestiones=$persona->estudiante->grados()->orderBy('created_at', 'desc')->get();
-        $notagestiones="";
-        foreach ($gestiones as $grado) {
-        	$notagestiones.=$grado->grado." - ".$grado->pivot->anio."=>\n";
-        }
-
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'desc')->get();
-        $notagestiones="";
-        foreach ($gestiones as $grado) {
-        	$notagestiones.=$grado->grado." - ".$grado->pivot->anio."=>\n";
-        }
-
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="";
-        foreach ($gestiones as $grado) {
-        	$notagestiones.=$grado->grado." - ".$grado->pivot->anio."=>\n";
-        }
-
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=0;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="";
-        foreach ($gestiones as $grado) {
-        	$notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."=>\n";
-        }
-
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=0;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="";
-        foreach ($gestiones as $grado) {
-        	$notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."=>\n";
-		  $contador++;
-        }
-
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="";
-        foreach ($gestiones as $grado) {
-        	$notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."=>\n";
-		  $contador++;
-        }
-
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="";
-        foreach ($gestiones as $grado) {
-        	$notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%%%%%%%%%%%%";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\N";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n;
-		  $contador++;
-        }
-
-$notagestiones;
-/*
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";;
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$notaobservaciones.$value->observacion."(".$value->created_at.")\n";
-        }
-
-        $notainscripciones="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-        $inscripciones=$persona->estudiante->inscripciones;
-        foreach ($inscripciones as $inscripcion) {
-        $notainscripciones.="Modalidad:".$notainscripciones.$inscripcion->modalidad->modalidad." - Costo:".$inscripcion->costo."Estado:".$inscripcion->estado->estado."\n";
-        }
-
-        $notamatriculaciones="%%%%%%%%%%%%% MATRICULACIONES %%%%%%%%%%%%%\n";;
-        $matriculaciones=$persona->computacion->matriculaciones;
-        foreach ($matriculaciones as $matriculacion) {
-        $notamatriculaciones.="Asignatura:".$notamatriculaciones.$matriculacion->asignatura->asignatura." - Costo:".$matriculacion->costo."Estado:".$matriculacion->estado->estado."\n";
-        }
-
-        $notaapoderados="%%%%%%%%%%%%% APODERADOS %%%%%%%%%%%%%\n";;
-        $apoderados=$persona->apoderados;
-        foreach ($apoderados as $apoderado) {
-        $notaapoderados.=$notaapoderados."Apoderado:".$apoderado->nombre.$apoderado->apellidop." - Parentesco:".$apoderado->pivot->parentesco."teléfono:".$apoderado->telefono."\n";
-
-        }
-        $nota=$notagestiones.$notaobservaciones.$notainscripciones.$notamatriculaciones.$notaapoderados;
-        */?>
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio.'\n';
-		  $contador++;
-        }
-
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%% \n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-$notagestiones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";;
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$value->observacion."(".$value->created_at.")\n";
-        }
-$notaobservaciones
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";;
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$value->observacion."\n";
-        }
-$notaobservaciones
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";;
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$value->observacion;
-        }
-$notaobservaciones
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$value->observacion."\n";
-        }
-		$notaobservaciones
-
-        $notainscripciones="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-        $inscripciones=$persona->estudiante->inscripciones;
-        foreach ($inscripciones as $inscripcion) {
-        $notainscripciones.="Modalidad:".$inscripcion->modalidad->modalidad." - Costo:".$inscripcion->costo."Estado:".$inscripcion->estado->estado."\n";
-        }
-$notainscripciones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$value->observacion."\n";
-        }
-		
-
-        $notainscripciones="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-        $inscripciones=$persona->estudiante->inscripciones;
-        foreach ($inscripciones as $inscripcion) {
-        $notainscripciones.="Modalidad:".$inscripcion->modalidad->modalidad." - Costo:".$inscripcion->costo."Estado:".$inscripcion->estado->estado."\n";
-        }
-$notainscripciones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$value->observacion."\n";
-        }
-		
-
-        $notainscripciones="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-        $inscripciones=$persona->estudiante->inscripciones;
-        foreach ($inscripciones as $inscripcion) {
-        $notainscripciones.="Modalidad:".$inscripcion->modalidad->modalidad."\n Costo:".$inscripcion->costo."Estado:".$inscripcion->estado->estado."\n";
-        }
-$notainscripciones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$value->observacion."\n";
-        }
-		
-
-        $notainscripciones="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-        $inscripciones=$persona->estudiante->inscripciones;
-        foreach ($inscripciones as $inscripcion) {
-        $notainscripciones.="Modalidad:".$inscripcion->modalidad->modalidad."\n Costo:".$inscripcion->costo."\nEstado:".$inscripcion->estado->estado."\n";
-        }
-$notainscripciones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$value->observacion."\n";
-        }
-		
-
-        $notainscripciones="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-        $inscripciones=$persona->estudiante->inscripciones;
-        foreach ($inscripciones as $inscripcion) {
-        $notainscripciones.="Modalidad:".$inscripcion->modalidad->modalidad."\nCosto:".$inscripcion->costo."\nEstado:".$inscripcion->estado->estado."\n";
-        }
-$notainscripciones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$value->observacion."\n";
-        }
-		
-
-        $notainscripciones="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-        $inscripciones=$persona->estudiante->inscripciones;
-        foreach ($inscripciones as $inscripcion) {
-        $notainscripciones.="Modalidad:".$inscripcion->modalidad->modalidad."\nCosto:".$inscripcion->costo."\nEstado:".$inscripcion->estado->estado."\n\n";
-        }
-$notainscripciones;
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$value->observacion."\n";
-        }
-		
-
-        $notainscripciones="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-        $inscripciones=$persona->estudiante->inscripciones;
-        foreach ($inscripciones as $inscripcion) {
-        $notainscripciones.="Modalidad:".$inscripcion->modalidad->modalidad."\nCosto:".$inscripcion->costo."\nEstado:".$inscripcion->estado->estado."\n\n";
-        }
-$notainscripciones;
-
-        $notamatriculaciones="%%%%%%%%%%%%% MATRICULACIONES %%%%%%%%%%%%%\n";;
-        $matriculaciones=$persona->computacion->matriculaciones;
-        foreach ($matriculaciones as $matriculacion) {
-        $notamatriculaciones.="Asignatura:".$matriculacion->asignatura->asignatura."\nCosto:".$matriculacion->costo."\nEstado:".$matriculacion->estado->estado."\n\n";
-        }
-
-        $notaapoderados="%%%%%%%%%%%%% APODERADOS %%%%%%%%%%%%%\n";;
-        $apoderados=$persona->apoderados;
-        foreach ($apoderados as $apoderado) {
-        $notaapoderados.=$notaapoderados."Apoderado:".$apoderado->nombre.$apoderado->apellidop." - Parentesco:".$apoderado->pivot->parentesco."teléfono:".$apoderado->telefono."\n";
-
-        }
-        $nota=$notagestiones.$notaobservaciones.$notainscripciones.$notamatriculaciones.$notaapoderados;
-        */
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$value->observacion."\n";
-        }
-		
-
-        $notainscripciones="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-        $inscripciones=$persona->estudiante->inscripciones;
-        foreach ($inscripciones as $inscripcion) {
-        $notainscripciones.="Modalidad:".$inscripcion->modalidad->modalidad."\nCosto:".$inscripcion->costo."\nEstado:".$inscripcion->estado->estado."\n\n";
-        }
-
-        $notamatriculaciones="%%%%%%%%%%%%% MATRICULACIONES %%%%%%%%%%%%%\n";;
-        $matriculaciones=$persona->computacion->matriculaciones;
-        foreach ($matriculaciones as $matriculacion) {
-        $notamatriculaciones.="Asignatura:".$matriculacion->asignatura->asignatura."\nCosto:".$matriculacion->costo."\nEstado:".$matriculacion->estado->estado."\n\n";
-        }
-$notamatriculaciones;
-
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$value->observacion."\n";
-        }
-		
-
-        $notainscripciones="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-        $inscripciones=$persona->estudiante->inscripciones;
-        foreach ($inscripciones as $inscripcion) {
-        $notainscripciones.="Modalidad:".$inscripcion->modalidad->modalidad."\nCosto:".$inscripcion->costo."\nEstado:".$inscripcion->estado->estado."\n\n";
-        }
-
-        $notamatriculaciones="%%%%%%%%%%%%% MATRICULACIONES %%%%%%%%%%%%%\n";;
-        $matriculaciones=$persona->computacion->matriculaciones;
-        foreach ($matriculaciones as $matriculacion) {
-        $notamatriculaciones.="Asignatura:".$matriculacion->asignatura->asignatura."\nCosto:".$matriculacion->costo."\nEstado:".$matriculacion->estado->estado."\n\n";
-        }
-$notamatriculaciones;
-
-
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$value->observacion."\n";
-        }
-		
-
-        $notainscripciones="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-        $inscripciones=$persona->estudiante->inscripciones;
-        foreach ($inscripciones as $inscripcion) {
-        $notainscripciones.="Modalidad:".$inscripcion->modalidad->modalidad."\nCosto:".$inscripcion->costo."\nEstado:".$inscripcion->estado->estado."\n\n";
-        }
-
-        $notamatriculaciones="%%%%%%%%%%%%% MATRICULACIONES %%%%%%%%%%%%%\n";;
-        $matriculaciones=$persona->computacion->matriculaciones;
-        foreach ($matriculaciones as $matriculacion) {
-        $notamatriculaciones.="Asignatura:".$matriculacion->asignatura->asignatura."\nCosto:".$matriculacion->costo."\nEstado:".$matriculacion->estado->estado."\n\n";
-        }
-$notamatriculaciones;
-
-
-        $notaapoderados="%%%%%%%%%%%%% APODERADOS %%%%%%%%%%%%%\n";;
-        $apoderados=$persona->apoderados;
-        foreach ($apoderados as $apoderado) {
-        $notaapoderados.=$notaapoderados."Apoderado:".$apoderado->nombre.$apoderado->apellidop." - Parentesco:".$apoderado->pivot->parentesco."teléfono:".$apoderado->telefono."\n";
-
-        }
-        $nota=$notagestiones.$notaobservaciones.$notainscripciones.$notamatriculaciones.$notaapoderados;
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$value->observacion."\n";
-        }
-		
-
-        $notainscripciones="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-        $inscripciones=$persona->estudiante->inscripciones;
-        foreach ($inscripciones as $inscripcion) {
-        $notainscripciones.="Modalidad:".$inscripcion->modalidad->modalidad."\nCosto:".$inscripcion->costo."\nEstado:".$inscripcion->estado->estado."\n\n";
-        }
-
-        $notamatriculaciones="%%%%%%%%%%%%% MATRICULACIONES %%%%%%%%%%%%%\n";;
-        $matriculaciones=$persona->computacion->matriculaciones;
-        foreach ($matriculaciones as $matriculacion) {
-        $notamatriculaciones.="Asignatura:".$matriculacion->asignatura->asignatura."\nCosto:".$matriculacion->costo."\nEstado:".$matriculacion->estado->estado."\n\n";
-        }
-$notamatriculaciones;
-
-
-        $notaapoderados="%%%%%%%%%%%%% APODERADOS %%%%%%%%%%%%%\n";;
-        $apoderados=$persona->apoderados;
-        foreach ($apoderados as $apoderado) {
-        $notaapoderados.="Apoderado:".$apoderado->nombre.$apoderado->apellidop." - Parentesco:".$apoderado->pivot->parentesco."teléfono:".$apoderado->telefono."\n";
-
-        }
-        $nota=$notagestiones.$notaobservaciones.$notainscripciones.$notamatriculaciones.$notaapoderados;
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$value->observacion."\n";
-        }
-		
-
-        $notainscripciones="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-        $inscripciones=$persona->estudiante->inscripciones;
-        foreach ($inscripciones as $inscripcion) {
-        $notainscripciones.="Modalidad:".$inscripcion->modalidad->modalidad."\nCosto:".$inscripcion->costo."\nEstado:".$inscripcion->estado->estado."\n\n";
-        }
-
-        $notamatriculaciones="%%%%%%%%%%%%% MATRICULACIONES %%%%%%%%%%%%%\n";;
-        $matriculaciones=$persona->computacion->matriculaciones;
-        foreach ($matriculaciones as $matriculacion) {
-        $notamatriculaciones.="Asignatura:".$matriculacion->asignatura->asignatura."\nCosto:".$matriculacion->costo."\nEstado:".$matriculacion->estado->estado."\n\n";
-        }
-$notamatriculaciones;
-
-
-        $notaapoderados="%%%%%%%%%%%%% APODERADOS %%%%%%%%%%%%%\n";;
-        $apoderados=$persona->apoderados;
-        foreach ($apoderados as $apoderado) {
-        $notaapoderados.="Apoderado:".$apoderado->nombre.$apoderado->apellidop."\nParentesco:".$apoderado->pivot->parentesco."\nteléfono:".$apoderado->telefono."\n\n";
-		  
-
-        }
-        $nota=$notagestiones.$notaobservaciones.$notainscripciones.$notamatriculaciones.$notaapoderados;
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$value->observacion."\n";
-        }
-		
-
-        $notainscripciones="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-        $inscripciones=$persona->estudiante->inscripciones;
-        foreach ($inscripciones as $inscripcion) {
-        $notainscripciones.="Modalidad:".$inscripcion->modalidad->modalidad."\nCosto:".$inscripcion->costo."\nEstado:".$inscripcion->estado->estado."\n\n";
-        }
-
-        $notamatriculaciones="%%%%%%%%%%%%% MATRICULACIONES %%%%%%%%%%%%%\n";;
-        $matriculaciones=$persona->computacion->matriculaciones;
-        foreach ($matriculaciones as $matriculacion) {
-        $notamatriculaciones.="Asignatura:".$matriculacion->asignatura->asignatura."\nCosto:".$matriculacion->costo."\nEstado:".$matriculacion->estado->estado."\n\n";
-        }
-$notamatriculaciones;
-
-
-        $notaapoderados="%%%%%%%%%%%%% APODERADOS %%%%%%%%%%%%%\n";;
-        $apoderados=$persona->apoderados;
-        foreach ($apoderados as $apoderado) {
-        $notaapoderados.="Apoderado:".$apoderado->nombre.$apoderado->apellidop."\nParentesco:".$apoderado->pivot->parentesco."\nteléfono:".$apoderado->telefono."\n\n";
-		  
-
-        }
-        $nota=$notagestiones.$notaobservaciones.$notainscripciones.$notamatriculaciones.$notaapoderados;
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-   $observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-          $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		  $contador++;
-        }
-
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";
-        foreach ($observaciones as $value) {
-        $notaobservaciones.=$value->observacion."\n";
-        }
-		
-
-        $notainscripciones="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";;
-        $inscripciones=$persona->estudiante->inscripciones;
-        foreach ($inscripciones as $inscripcion) {
-        $notainscripciones.="Modalidad:".$inscripcion->modalidad->modalidad."\nCosto:".$inscripcion->costo."\nEstado:".$inscripcion->estado->estado."\n\n";
-        }
-
-        $notamatriculaciones="%%%%%%%%%%%%% MATRICULACIONES %%%%%%%%%%%%%\n";;
-        $matriculaciones=$persona->computacion->matriculaciones;
-        foreach ($matriculaciones as $matriculacion) {
-        $notamatriculaciones.="Asignatura:".$matriculacion->asignatura->asignatura."\nCosto:".$matriculacion->costo."\nEstado:".$matriculacion->estado->estado."\n\n";
-        }
-$notamatriculaciones;
-
-
-        $notaapoderados="%%%%%%%%%%%%% APODERADOS %%%%%%%%%%%%%\n";;
-        $apoderados=$persona->apoderados;
-        foreach ($apoderados as $apoderado) {
-        $notaapoderados.="Apoderado:".$apoderado->nombre.$apoderado->apellidop."\nParentesco:".$apoderado->pivot->parentesco."\nteléfono:".$apoderado->telefono."\n\n";
-		  
-
-        }
-        $nota=$notagestiones.$notaobservaciones.$notainscripciones.$notamatriculaciones.$notaapoderados;
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-$persona=Persona::findOrFail(1);
-
-$observaciones=$persona->observaciones;
-        $contador=1;
-        $gestiones=$persona->estudiante->grados()->orderBy('anio', 'asc')->get();
-        $notagestiones="%%%%%%%%%%%% GRADOS Y GESTIONES %%%%%%%%%%%%\n";
-        foreach ($gestiones as $grado) {
-            $notagestiones.=$contador.".-".$grado->grado." - ".$grado->pivot->anio."\n";
-		    $contador++;
-        }
-        $contador=1;
-        $notaobservaciones="%%%%%%%%%%%%%  OBSERVACIONES %%%%%%%%%%%%%\n";
-        foreach ($observaciones as $value) {
-            $notaobservaciones.=$contador.".-".$value->observacion."\n";
-            $contador++;
-        }
-		
-
-        $notainscripciones="%%%%%%%%%%%%% INSCRIPCIONES %%%%%%%%%%%%%\n";
-        $inscripciones=$persona->estudiante->inscripciones;
-        $contador=1;
-        foreach ($inscripciones as $inscripcion) {
-            $notainscripciones.=$contador.".-\n"."Modalidad:".$inscripcion->modalidad->modalidad."\nCosto:".$inscripcion->costo."\nEstado:".$inscripcion->estado->estado."\n\n";
-            $contador++;
-        }
-
-        $notamatriculaciones="%%%%%%%%%%%%% MATRICULACIONES %%%%%%%%%%%%%\n";
-        $matriculaciones=$persona->computacion->matriculaciones;
-        $contador=1;
-        foreach ($matriculaciones as $matriculacion) {
-            $notamatriculaciones.=$contador.".-\n"."Asignatura:".$matriculacion->asignatura->asignatura."\nCosto:".$matriculacion->costo."\nEstado:".$matriculacion->estado->estado."\n\n";
-            $contador++;
-        }
-        $notaapoderados="%%%%%%%%%%%%% APODERADOS %%%%%%%%%%%%%\n";
-        $contador=1;
-        $apoderados=$persona->apoderados;
-        foreach ($apoderados as $apoderado) {
-            $notaapoderados.=$contador.".-\n"."Apoderado:".$apoderado->nombre.$apoderado->apellidop."\nParentesco:".$apoderado->pivot->parentesco."\nteléfono:".$apoderado->telefono."\n\n";
-            $contador++;
-        }
-        $nota=$notagestiones.$notaobservaciones.$notainscripciones.$notamatriculaciones.$notaapoderados;
+ $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        ->join('interests','interests.id','interest_persona.interest_id')
+        ->where('habilitado',estado('ESPERAREINSCRIPCION'))
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->get();
