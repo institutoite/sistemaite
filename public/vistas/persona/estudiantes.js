@@ -150,6 +150,7 @@
                             "data": "foto",
                             "render": function (data, type, full, meta) {
                                
+                                
                                return "<img class='materialboxed zoomify' src='../../../storage/" + data + "' height=\"50\"/>";
                             },
                             "title": "FOTO",

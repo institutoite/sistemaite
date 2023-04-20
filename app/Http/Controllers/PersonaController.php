@@ -100,6 +100,8 @@ class PersonaController extends Controller
             });
             $fotillo = Storage::disk('public')->put($nombreImagen, $imagen->stream());
             $persona->foto = $nombreImagen;
+        }else {
+            $persona->foto = "estudiantes/sinfoto.jpg";
         }
         $persona->como_id = $request->como_id;
         $persona->habilitado = 1;
@@ -714,7 +716,10 @@ class PersonaController extends Controller
             
             $persona->foto = $nombreImagen;
             $persona->save();
+        }else{
+            $persona->foto = "estudiantes/sinfoto.jpg";
         }
+
         return redirect()->Route('telefonos.crear',['persona'=>$persona]);
     }
 
