@@ -338,7 +338,7 @@ class PersonaController extends Controller
         $persona->genero=$request->genero;
         $persona->como_id = $request->como_id;
         $persona->vuelvefecha=$request->vuelvefecha;
-        $persona->habilitado = 0;
+         $persona->habilitado = $request->estado_id;
         $persona->votos = 1;
         $persona->papelinicial = 'estudiante';
         $persona->save();

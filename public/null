@@ -4,200 +4,180 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
- $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado','>',estado("ESPERAREINCRIPCION"))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
-        ->get();
+$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
+    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
+    ->join('comos', 'comos.id', '=', 'personas.como_id')
+    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
+    ->where('vigente', 1)
+    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
+    ->whereRaw('programacions.fecha_programacion > (SELECT MAX(fecha_programacion) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
+    ->get();
 use App\Models\Persona;
+use App\Models\Inscripcine;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
- $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado','>',estado("ESPERAREINCRIPCION"))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
-        ->get();
+$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
+    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
+    ->join('comos', 'comos.id', '=', 'personas.como_id')
+    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
+    ->where('vigente', 1)
+    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
+    ->whereRaw('programacions.fecha_programacion > (SELECT MAX(fecha_programacion) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
+    ->get();
 use App\Models\Persona;
+use App\Models\Inscripcione;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
- $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado','>',estado("ESPERAREINCRIPCION"))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
-        ->get();
+$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
+    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
+    ->join('comos', 'comos.id', '=', 'personas.como_id')
+    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
+    ->where('vigente', 1)
+    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
+    ->whereRaw('programacions.fecha_programacion > (SELECT MAX(fecha_programacion) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
+    ->get();
 use App\Models\Persona;
+use App\Models\Inscripcione;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
- $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado','>',estado("ESPERAREINCRIPCION"))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
-        ->get();
+$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
+    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
+    ->join('comos', 'comos.id', '=', 'personas.como_id')
+    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
+    ->where('vigente', 1)
+    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
+    ->whereRaw('programacions.fecha > (SELECT MAX(fecha_programacion) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
+    ->get();
 use App\Models\Persona;
+use App\Models\Inscripcione;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
- $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado','>',estado("ESPERAREINCRIPCION"))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
-        ->get();
+$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
+    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
+    ->join('comos', 'comos.id', '=', 'personas.como_id')
+    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
+    ->where('vigente', 1)
+    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
+    ->whereRaw('programacions.fecha > (SELECT MAX(fecha) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
+    ->get();
 use App\Models\Persona;
+use App\Models\Inscripcione;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
- $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado','>',estado("ESPERAREINCRIPCION"))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
-        ->get();
+$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
+    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
+    ->join('comos', 'comos.id', '=', 'personas.como_id')
+    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
+    ->where('vigente', 1)
+    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
+    ->whereRaw('NOW() > (SELECT MAX(fecha) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
+    ->get();
 use App\Models\Persona;
+use App\Models\Inscripcione;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
- $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado','>',estado("ESPERAREINCRIPCION"))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
-        ->get();
+$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
+    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
+    ->join('comos', 'comos.id', '=', 'personas.como_id')
+    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
+    ->where('vigente', 1)
+    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
+    ->whereRaw('NOW() > (SELECT MAX(fecha) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
+    ->get();
 use App\Models\Persona;
+use App\Models\Inscripcione;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
- $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado','>',estado("ESPERAREINCRIPCION"))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
-        ->get();
+$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
+    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
+    ->join('comos', 'comos.id', '=', 'personas.como_id')
+    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
+    ->where('vigente', 1)
+    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
+    ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
+    ->get();
 use App\Models\Persona;
+use App\Models\Inscripcione;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
- $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado','=',estado("ESPERAREINCRIPCION"))
-        ->select('personas.id','persona.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
-        ->get();
+$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
+    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
+    ->join('comos', 'comos.id', '=', 'personas.como_id')
+    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
+    ->where('vigente', 1)
+    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
+    ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
+  ->distinc()
+    ->get();
 use App\Models\Persona;
+use App\Models\Inscripcione;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
- $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado','=',estado("ESPERAREINSCRIPCION"))
-        ->select('personas.id','persona.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
-        ->get();
+$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
+    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
+    ->join('comos', 'comos.id', '=', 'personas.como_id')
+    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
+    ->where('vigente', 1)
+    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
+    ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
+  ->distinct()
+    ->get();
 use App\Models\Persona;
+use App\Models\Inscripcione;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
- $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado','=',estado("ESPERAREINSCRIPCION"))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
-        ->get();
+$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
+    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
+    ->join('comos', 'comos.id', '=', 'personas.como_id')
+    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
+    ->where('vigente', 1)
+    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
+    ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
+  ->distinct()
+    ->get();
 use App\Models\Persona;
+use App\Models\Inscripcione;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
- $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado',estado("ESPERAREINSCRIPCION"))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
-        ->get();
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
- $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado',estado("ESPERAREINSCRIPCION"))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
-        ->get();
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
- $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado',estado("ESPERAREINSCRIPCION"))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
-        ->get();
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
- $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado',estado("ESPERAREINSCRIPCION"))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
-        ->get();
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
- $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado',estado('ESPERAREINSCRIPCION'))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
-        ->get();
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
- 
-$f=estado('ESPERAREINSCRIPCION');
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
- 
-$f=estado('ESPERAREINSCRIPCION');
-use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
- $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado',estado('ESPERAREINSCRIPCION'))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
-        ->get();
+$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
+    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
+    ->join('comos', 'comos.id', '=', 'personas.como_id')
+    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
+    ->where('vigente', 1)
+    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
+    ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
+  ->distinct()
+    ->get();

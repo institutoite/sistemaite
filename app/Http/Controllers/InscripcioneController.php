@@ -517,11 +517,26 @@ class InscripcioneController extends Controller
 
     /** INSCIRPCIONES VIGENTES */
     public function vigentesAjax(){
-        $inscripcionesVigentes=Inscripcione::join('estudiantes','estudiantes.id','inscripciones.estudiante_id')
-        ->join('personas','personas.id','estudiantes.persona_id')
-        ->join('comos','comos.id','personas.como_id')
-        ->where('vigente',1)
-        ->select('inscripciones.id','personas.id as persona_id','comos.como','personas.nombre','personas.apellidop','personas.apellidom')->get();
+ 
+
+
+
+        // $inscripcionesVigentes=Inscripcione::join('estudiantes','estudiantes.id','inscripciones.estudiante_id')
+        // ->join('personas','personas.id','estudiantes.persona_id')
+        // ->join('comos','comos.id','personas.como_id')
+        // ->join('programacions','inscripciones.id','programacions.inscripcione_id')
+        // ->where('vigente',1)
+        // ->select('inscripciones.id','personas.id as persona_id','comos.como','personas.nombre','personas.apellidop','personas.apellidom')->get();
+        $inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
+            ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
+            ->join('comos', 'comos.id', '=', 'personas.como_id')
+            ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
+            ->where('vigente', 1)
+            ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
+            ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
+            ->distinct()
+            ->get();
+
         return datatables()->of($inscripcionesVigentes)
         ->addColumn('btn', 'inscripcione.actionvigentes')
         ->rawColumns(['btn'])

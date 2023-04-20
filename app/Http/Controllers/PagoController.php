@@ -115,7 +115,7 @@ class PagoController extends Controller
                     }
                 } else {
                     // dd("FALSO DE cripcion->programaciones->count()");
-                    return redirect()->route('actualizar.programa.segun.pago', ['inscripcione' => $inscripcion->id, 'pago' => $pago_id]);
+                    return redirect()->route('actualizar.programa.segun.pago', ['inscripcione' => $inscripcion->id, 'pago' => $pago->id]);
                 }
             }
 

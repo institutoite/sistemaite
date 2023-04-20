@@ -43,7 +43,19 @@ class PagocomController extends Controller
         //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   %%%%%%%%%%%%%%%%*/
         
         $pago->usuarios()->attach(Auth::user()->id);
-        return redirect()->route('billetecom.crear',['pago'=>$pago]);
+        
+          if($matriculacion->estado_id==estado("RESERVADO")){
+                return redirect()->route('matriculacion.configuracion',$matriculacion);
+            }else{
+                if ($matriculacion->programacionescom->count() == 0) {
+                    return redirect()->route('generar.programacioncom', $matriculacion->id);
+                } else {
+                    
+                    return redirect()->route('actualizar.programacioncom.segun.pago', ['matriculacion' => $matriculacion->id, 'pago' => $pago->id]);
+                }
+            }
+
+        //return redirect()->route('billetecom.crear',['pago'=>$pago]);
     }
 
 

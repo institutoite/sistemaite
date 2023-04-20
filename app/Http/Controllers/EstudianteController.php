@@ -24,23 +24,28 @@ class EstudianteController extends Controller
 
 
     public function home(){
+
         $nuevos= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
         ->join('interests','interests.id','interest_persona.interest_id')
         ->where('habilitado',estado("ESPERANUEVO"))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->where('vuelvefecha',"<=",Carbon::now()->format('Y-m-d'))
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','personas.foto','vuelvefecha')  
         ->get();
-        $reinscripcion= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        $reinscripciones= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
         ->join('interests','interests.id','interest_persona.interest_id')
         ->where('habilitado',estado("ESPERAREINSCRIPCION"))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->where('vuelvefecha',"<=",Carbon::now()->format('Y-m-d'))
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','personas.foto','vuelvefecha')  
         ->get();
-          $rematriculacion= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+          $rematriculaciones= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
         ->join('interests','interests.id','interest_persona.interest_id')
         ->where('habilitado',estado("ESPERAREMATRICULACION"))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
+        ->where('vuelvefecha',"<=",Carbon::now()->format('Y-m-d'))
+        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','personas.foto','vuelvefecha')  
         ->get();
+        return view('persona.estudiantes',compact("nuevos","rematriculaciones","reinscripciones"));
+        // return view('persona.estudiantes');
 
-        return view('persona.estudiantes',compact("nuevos","rematriculacion","reinscripcion"));
     }
 
     public function cumplenerosView()
