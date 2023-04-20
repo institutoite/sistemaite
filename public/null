@@ -181,3 +181,53 @@ $inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '='
     ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
   ->distinct()
     ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+     $matriculacionesVigentes=Matriculacion::join('computacions','computacions.id','matriculacions.computacion_id')
+        ->join('personas','personas.id','computacions.persona_id')
+        ->join('comos','comos.id','personas.como_id')
+        ->join('programacioncoms', 'matriculacions.id', '=', 'programacioncoms.matriculacions_id')
+        ->where('vigente',1)
+        ->select('matriculacions.id','personas.id as persona_id','comos.como','personas.nombre','personas.apellidop','personas.apellidom')
+        ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacioncoms WHERE programacioncoms.matriculacion_id = matriculacions.id)')
+        ->distinct()
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+     $matriculacionesVigentes=Matriculacion::join('computacions','computacions.id','matriculacions.computacion_id')
+        ->join('personas','personas.id','computacions.persona_id')
+        ->join('comos','comos.id','personas.como_id')
+        ->join('programacioncoms', 'matriculacions.id', '=', 'programacioncoms.matriculacions_id')
+        ->where('vigente',1)
+        ->select('matriculacions.id','personas.id as persona_id','comos.como','personas.nombre','personas.apellidop','personas.apellidom')
+        ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacioncoms WHERE programacioncoms.matriculacion_id = matriculacions.id)')
+        ->distinct()
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+     $matriculacionesVigentes=Matriculacion::join('computacions','computacions.id','matriculacions.computacion_id')
+        ->join('personas','personas.id','computacions.persona_id')
+        ->join('comos','comos.id','personas.como_id')
+        ->join('programacioncoms', 'matriculacions.id', '=', 'programacioncoms.matriculacion_id')
+        ->where('vigente',1)
+        ->select('matriculacions.id','personas.id as persona_id','comos.como','personas.nombre','personas.apellidop','personas.apellidom')
+        ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacioncoms WHERE programacioncoms.matriculacion_id = matriculacions.id)')
+        ->distinct()
+        ->get();

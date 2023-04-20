@@ -370,8 +370,8 @@ class PersonaController extends Controller
     public function potenciales(){
         $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
         ->join('interests','interests.id','interest_persona.interest_id')
-        
-        ->where('habilitado','>',10)
+        ->orWhere('habilitado','=',0)
+        ->orWhere('habilitado','>',10)
         ->where('votos',1)
         ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','volvera','vuelvefecha')  
         ->get();

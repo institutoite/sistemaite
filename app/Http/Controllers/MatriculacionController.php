@@ -376,8 +376,15 @@ class MatriculacionController extends Controller
         $matriculacionesVigentes=Matriculacion::join('computacions','computacions.id','matriculacions.computacion_id')
         ->join('personas','personas.id','computacions.persona_id')
         ->join('comos','comos.id','personas.como_id')
+        ->join('programacioncoms', 'matriculacions.id', '=', 'programacioncoms.matriculacion_id')
         ->where('vigente',1)
-        ->select('matriculacions.id','personas.id as persona_id','comos.como','personas.nombre','personas.apellidop','personas.apellidom')->get();
+        ->select('matriculacions.id','personas.id as persona_id','comos.como','personas.nombre','personas.apellidop','personas.apellidom')
+        ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacioncoms WHERE programacioncoms.matriculacion_id = matriculacions.id)')
+        ->distinct()
+        ->get();
+
+       
+
         return datatables()->of($matriculacionesVigentes)
             ->addColumn('btn', 'inscripcione.actionmatriculacionesvigentes')
             ->rawColumns(['btn'])
