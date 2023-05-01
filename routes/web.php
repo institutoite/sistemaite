@@ -68,6 +68,7 @@ use App\Http\Controllers\ModalidadController;
 use App\Http\Controllers\CupoController;
 use App\Http\Controllers\CrmController;
 use App\Http\Controllers\VcardController;
+use App\Http\Controllers\ProspectoController;
 //use App\Http\Controllers\RolUsersController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
@@ -82,7 +83,8 @@ Route::get('/',[HomeController::class, 'index']);
 Route::get('interests/get', [InterestController::class,'getParaHome'])->name('interest.para.home');
 Route::get('nivel/mostrar/{nivel}',[NivelController::class,'show'])->name("nivel.mostrar");
 Route::get('interes/mostrar/{interest}',[InterestController::class,'show'])->name("interest.show");
-Route::get('prueba',[CupoController::class,'getDataCupos'])->name('prueba');
+//Route::get('prueba',[CupoController::class,'getDataCupos'])->name('prueba');
+Route::get('prueba',[ProspectoController::class,'listar'])->name('prueba');
 Route::middleware(['auth'])->group(function () {
     
 Route::get('/home',[EstudianteController::class,'home'])->name('home');
@@ -800,6 +802,17 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::post('calificacion/actualizar', [CalificacionController::class,'update'])->name("calificacion.update");
     Route::get('get/calificacion', [CalificacionController::class,'getCalificacion'])->name("get.calificacion");
     Route::get('set/calificacion', [CalificacionController::class,'setCalificacion'])->name("set.calificacion");
+
+    /** -------------------------------------- PROSPECTO ----------------------------------------- */
+    Route::get('prospectos',[ProspectoController::class,'index'])->name('prospecto.index');
+    Route::get('prospectos/view/{prospecto}',[ProspectoController::class,'show'])->name('prospecto.view');
+    Route::get('prospectos/create',[ProspectoController::class,'create'])->name('prospecto.create');
+    Route::post('prospecto/store', [ProspectoController::class,'store'])->name('prospecto.store');  
+    Route::get('prospecto/editar/{prospecto}',[ProspectoController::class,'edit'])->name('prospecto.edit');
+    Route::post('prospecto/actualizar', [ProspectoController::class,'update'])->name("prospecto.update");
+    Route::get('prospectos/listar', [ProspectoController::class,'listar'])->name("prospectos.listar");
+    Route::get('set/prospecto', [ProspectoController::class,'setprospecto'])->name("set.prospecto");
+    Route::delete('eliminar/prospecto/{prospecto}', [ProspectoController::class,'destroy'])->name('prospecto.delete');
 
     /** %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ROUTES P R O G R A M A C I O N   C O N T R E L L E R %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::resource('programacions', "ProgramacionController");

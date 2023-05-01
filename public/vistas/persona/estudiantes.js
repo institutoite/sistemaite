@@ -149,11 +149,10 @@
                             "name": "foto",
                             "data": "foto",
                             "render": function (data, type, full, meta) {
-                               
-                                if (data==null)
-                                    return "<img class='materialboxed zoomify' src='../../../storage/estudiantes/sinfoto.jpg' height=\"50\"/>";
-                                else
-                                    return "<img class='materialboxed zoomify' src='../../../storage/" + data + "' height=\"50\"/>";
+                            if (data==null)
+                                return "<img class='materialboxed zoomify' src='../../../storage/estudiantes/sinfoto.jpg' height=\"50\"/>";
+                            else
+                                return "<img class='materialboxed zoomify' src='../../../storage/" + data + "' height=\"50\"/>";
                             },
                             "title": "FOTO",
                             "orderable": false,

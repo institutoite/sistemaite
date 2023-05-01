@@ -607,6 +607,13 @@ return [
             'url'  => 'espera/nuevo/view',
         ],
         [
+            'text'    => 'Prospectos',
+            'icon'    => 'fas fa-user-clock',
+            'icon_color' => 'warning',
+            'classes'  => 'text-danger text-bold bg-default',
+            'url'  => 'prospectos',
+        ],
+        [
             'text'    => 'Potenciales',
             'icon'    => 'fas fa-keyboard',
             'icon_color' => 'secondary',

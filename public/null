@@ -1,203 +1,4 @@
 use App\Models\Persona;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
-$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
-    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
-    ->join('comos', 'comos.id', '=', 'personas.como_id')
-    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
-    ->where('vigente', 1)
-    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
-    ->whereRaw('programacions.fecha_programacion > (SELECT MAX(fecha_programacion) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
-    ->get();
-use App\Models\Persona;
-use App\Models\Inscripcine;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
-$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
-    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
-    ->join('comos', 'comos.id', '=', 'personas.como_id')
-    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
-    ->where('vigente', 1)
-    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
-    ->whereRaw('programacions.fecha_programacion > (SELECT MAX(fecha_programacion) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
-    ->get();
-use App\Models\Persona;
-use App\Models\Inscripcione;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
-$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
-    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
-    ->join('comos', 'comos.id', '=', 'personas.como_id')
-    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
-    ->where('vigente', 1)
-    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
-    ->whereRaw('programacions.fecha_programacion > (SELECT MAX(fecha_programacion) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
-    ->get();
-use App\Models\Persona;
-use App\Models\Inscripcione;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
-$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
-    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
-    ->join('comos', 'comos.id', '=', 'personas.como_id')
-    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
-    ->where('vigente', 1)
-    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
-    ->whereRaw('programacions.fecha > (SELECT MAX(fecha_programacion) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
-    ->get();
-use App\Models\Persona;
-use App\Models\Inscripcione;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
-$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
-    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
-    ->join('comos', 'comos.id', '=', 'personas.como_id')
-    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
-    ->where('vigente', 1)
-    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
-    ->whereRaw('programacions.fecha > (SELECT MAX(fecha) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
-    ->get();
-use App\Models\Persona;
-use App\Models\Inscripcione;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
-$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
-    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
-    ->join('comos', 'comos.id', '=', 'personas.como_id')
-    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
-    ->where('vigente', 1)
-    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
-    ->whereRaw('NOW() > (SELECT MAX(fecha) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
-    ->get();
-use App\Models\Persona;
-use App\Models\Inscripcione;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
-$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
-    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
-    ->join('comos', 'comos.id', '=', 'personas.como_id')
-    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
-    ->where('vigente', 1)
-    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
-    ->whereRaw('NOW() > (SELECT MAX(fecha) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
-    ->get();
-use App\Models\Persona;
-use App\Models\Inscripcione;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
-$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
-    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
-    ->join('comos', 'comos.id', '=', 'personas.como_id')
-    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
-    ->where('vigente', 1)
-    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
-    ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
-    ->get();
-use App\Models\Persona;
-use App\Models\Inscripcione;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
-$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
-    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
-    ->join('comos', 'comos.id', '=', 'personas.como_id')
-    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
-    ->where('vigente', 1)
-    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
-    ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
-  ->distinc()
-    ->get();
-use App\Models\Persona;
-use App\Models\Inscripcione;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
-$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
-    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
-    ->join('comos', 'comos.id', '=', 'personas.como_id')
-    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
-    ->where('vigente', 1)
-    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
-    ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
-  ->distinct()
-    ->get();
-use App\Models\Persona;
-use App\Models\Inscripcione;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
-$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
-    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
-    ->join('comos', 'comos.id', '=', 'personas.como_id')
-    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
-    ->where('vigente', 1)
-    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
-    ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
-  ->distinct()
-    ->get();
-use App\Models\Persona;
-use App\Models\Inscripcione;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
-$inscripcionesVigentes = Inscripcione::join('estudiantes', 'estudiantes.id', '=', 'inscripciones.estudiante_id')
-    ->join('personas', 'personas.id', '=', 'estudiantes.persona_id')
-    ->join('comos', 'comos.id', '=', 'personas.como_id')
-    ->join('programacions', 'inscripciones.id', '=', 'programacions.inscripcione_id')
-    ->where('vigente', 1)
-    ->select('inscripciones.id', 'personas.id as persona_id', 'comos.como', 'personas.nombre', 'personas.apellidop', 'personas.apellidom')
-    ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacions WHERE programacions.inscripcione_id = inscripciones.id)')
-  ->distinct()
-    ->get();
-use App\Models\Persona;
-use App\Models\Inscripcione;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
-
-
-     $matriculacionesVigentes=Matriculacion::join('computacions','computacions.id','matriculacions.computacion_id')
-        ->join('personas','personas.id','computacions.persona_id')
-        ->join('comos','comos.id','personas.como_id')
-        ->join('programacioncoms', 'matriculacions.id', '=', 'programacioncoms.matriculacions_id')
-        ->where('vigente',1)
-        ->select('matriculacions.id','personas.id as persona_id','comos.como','personas.nombre','personas.apellidop','personas.apellidom')
-        ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacioncoms WHERE programacioncoms.matriculacion_id = matriculacions.id)')
-        ->distinct()
-        ->get();
-use App\Models\Persona;
 use App\Models\Inscripcione;
 use App\Models\Matriculacion;
 use Carbon\Carbon;
@@ -205,29 +6,621 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
-     $matriculacionesVigentes=Matriculacion::join('computacions','computacions.id','matriculacions.computacion_id')
-        ->join('personas','personas.id','computacions.persona_id')
-        ->join('comos','comos.id','personas.como_id')
-        ->join('programacioncoms', 'matriculacions.id', '=', 'programacioncoms.matriculacions_id')
-        ->where('vigente',1)
-        ->select('matriculacions.id','personas.id as persona_id','comos.como','personas.nombre','personas.apellidop','personas.apellidom')
-        ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacioncoms WHERE programacioncoms.matriculacion_id = matriculacions.id)')
-        ->distinct()
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observaciones 
+                        WHERE observable_type = "App\Models\Prospecto" 
+                        AND observable_id = prospectos.id) as ultima_observacion'))
         ->get();
 use App\Models\Persona;
 use App\Models\Inscripcione;
 use App\Models\Matriculacion;
+use App\Models\Prospecto;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 
-     $matriculacionesVigentes=Matriculacion::join('computacions','computacions.id','matriculacions.computacion_id')
-        ->join('personas','personas.id','computacions.persona_id')
-        ->join('comos','comos.id','personas.como_id')
-        ->join('programacioncoms', 'matriculacions.id', '=', 'programacioncoms.matriculacion_id')
-        ->where('vigente',1)
-        ->select('matriculacions.id','personas.id as persona_id','comos.como','personas.nombre','personas.apellidop','personas.apellidom')
-        ->whereRaw('NOW() < (SELECT MAX(fecha) FROM programacioncoms WHERE programacioncoms.matriculacion_id = matriculacions.id)')
-        ->distinct()
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observaciones 
+                        WHERE observable_type = "App\Models\Prospecto" 
+                        AND observable_id = prospectos.id) as ultima_observacion'))
         ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observables 
+                        WHERE observable_type = "App\Models\Prospecto" 
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\Models\Prospecto" 
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto" 
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto" 
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto" 
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto" 
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto" 
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+						and where observable_id=prospectos.id
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+						AND where observable_id=prospectos.id
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+						AND observable_id=prospectos.id
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\Models\Prospecto"
+						AND observable_id=prospectos.id
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\Models\Prospecto"
+						AND observable_id=prospectos.id
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+						AND observable_id=prospectos.id
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+						AND observable_id=prospectos.id
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+						
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado','updated_at',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+						
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado','observacions.updated_at',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+						
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\Models\Prospecto"
+						
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\Models\Prospecto"
+						AND observable_id=prospectos.id
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\Models\Prospecto"
+						AND observable_id=prospectos.id
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+						AND observable_id = prospectos.id
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+						AND observable_id = prospectos.id
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+						AND observable_id = prospectos.id
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+						AND observable_id = prospectos.id
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+						AND observable_id = prospectos.id
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+						AND observable_id = prospectos.id
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+						AND observable_id = prospectos.id
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+						AND observable_id = prospectos.id
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+						AND observable_id = prospectos.id
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+ $prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->select('prospectos.id', 'telefono', 'estados.estado',
+            DB::raw('(SELECT MAX(updated_at) FROM observacions 
+                        WHERE observable_type = "App\\Models\\Prospecto"
+
+                        AND observable_id = prospectos.id) as ultima_observacion'))
+        ->get();
+
+$o=Prospecto::find(1)->observaciones
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+$prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->join('observacions', function($join) {
+            $join->on('observacions.observable_id', '=', 'prospectos.id')
+                ->where('observacions.observable_type', '=', 'App\Models\Prospecto');
+        })
+        ->select('prospectos.id', 'telefono', 'estados.estado', DB::raw('MAX(observacions.updated_at) as ultima_observacion'))
+        ->groupBy('prospectos.id', 'telefono', 'estados.estado')
+        ->get();
+
+
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+$prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+        ->join('observacions', function($join) {
+            $join->on('observacions.observable_id', '=', 'prospectos.id')
+                ->where('observacions.observable_type', '=', 'App\Models\Prospecto');
+        })
+        ->select('prospectos.id', 'telefono', 'estados.estado', DB::raw('MAX(observacions.updated_at) as ultima_observacion'))
+        ->groupBy('prospectos.id', 'telefono', 'estados.estado')
+        ->get();
+
+
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+$prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+  
+        ->join('observacions', function($join) {
+            $join->on('observacions.observable_id', '=', 'prospectos.id')
+                ->where('observacions.observable_type', '=', 'App\Models\Prospecto');
+        })
+  		->join('userables','userable_id','observacions.id')
+  		->where('userable_type','App\Models\Observacion')
+        ->select('prospectos.id', 'telefono', 'estados.estado', DB::raw('MAX(observacions.updated_at) as ultima_observacion'))
+        ->groupBy('prospectos.id', 'telefono', 'estados.estado')
+        ->get();
+
+
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+$prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+  
+        ->join('observacions', function($join) {
+            $join->on('observacions.observable_id', '=', 'prospectos.id')
+                ->where('observacions.observable_type', '=', 'App\Models\Prospecto');
+        })
+  		->join('userables','userable_id','observacions.id')
+  		->join('users','users.id','userables.user_id')
+  		->where('userable_type','App\Models\Observacion')
+        ->select('prospectos.id','', 'telefono', 'estados.estado', DB::raw('MAX(observacions.updated_at) as ultima_observacion'))
+        ->groupBy('prospectos.id', 'telefono', 'estados.estado')
+        ->get();
+
+
+use App\Models\Persona;
+use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Prospecto;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
+
+$prospectos = Prospecto::join('estados', 'estados.id', '=', 'prospectos.estado_id')
+  
+        ->join('observacions', function($join) {
+            $join->on('observacions.observable_id', '=', 'prospectos.id')
+                ->where('observacions.observable_type', '=', 'App\Models\Prospecto');
+        })
+  		->join('userables','userable_id','observacions.id')
+  		->join('users','users.id','userables.user_id')
+  		->where('userable_type','App\Models\Observacion')
+        ->select('prospectos.id','name', 'telefono', 'estados.estado', DB::raw('MAX(observacions.updated_at) as ultima_observacion'))
+        ->groupBy('prospectos.id','name', 'telefono', 'estados.estado')
+        ->get();
+
+
