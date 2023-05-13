@@ -184,6 +184,7 @@
                   </div>
                   
                 </div>
+                
                 <div class="col-lg-6">  
                   <div class="experiance_item mt-30">
                     <div class="icon">
