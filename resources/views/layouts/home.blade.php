@@ -317,7 +317,7 @@
 							<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
 								<div class="content">
 									<div class="icon-box">
-										<span class="icon flaticon-bulb"></span>
+										<span class="icon flaticon-pen"></span>
 									</div>
 									<h4><a href="{{ route('guarderia') }}">Guarderia</a></h4>
 									<div class="text">¡Juguemos y aprendamos juntos!</div>
@@ -378,7 +378,7 @@
 							<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
 								<div class="content">
 									<div class="icon-box">
-										<span class="icon flaticon-learning-support"></span>
+										<span class="icon flaticon-pencil-and-ruler"></span>
 									</div>
 									<h4><a href="{{ route('inicial') }}">Inicial</a></h4>
 									<div class="text">¡Aprende y diviértete al mismo tiempo!</div>
@@ -1050,21 +1050,21 @@
 					<div class="inner-box mt-30">
 						<div class="content">
 							<span class="icon flaticon-email-3"></span>
-							<h4>Correo Electronico</h4>
+							<h4>Correo electrónico </h4>
 							<a href="#">info@ite.com</a>
 						</div>
 					</div>
 					<div class="inner-box mt-30">
 						<div class="content">
 							<span class="icon flaticon-map"></span>
-							<h4>Direccion</h4>
+							<h4>Dirección</h4>
 							<div class="text">Av. 3 Pasos al Frente esquina Av. Che Guevara.</div>
 						</div>
 					</div>
 					<div class="inner-box mt-30">
 						<div class="content">
 							<span class="icon flaticon-telephone"></span>
-							<h4>Telefonos</h4>
+							<h4>Teléfonos</h4>
 							<a href="#">+591 71039910</a>
 							<a href="#">+591 75553338</a>
 							<a href="#">+591 71324941</a>

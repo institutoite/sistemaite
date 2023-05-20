@@ -136,8 +136,8 @@
 			<div class="rev_slider fullwidthabanner" id="rev_slider_one" data-version="5.4.1">
 				<ul>
 					
-					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1688" data-slotamount="default" data-thumb="{{ asset('assetshome/images/main-slider/secundaria.jpg')}}" data-title="Slide Title">
-					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{ asset('assetshome/images/main-slider/secundaria.jpg')}}"> 
+					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1688" data-slotamount="default" data-thumb="{{ asset('assetshome/images/main-slider/secundariaportada.jpg')}}" data-title="Slide Title">
+					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{ asset('assetshome/images/main-slider/secundariaportada.jpg')}}"> 
 						
 						<div class="color-layer"></div>
 						<div class="vector-layer-one" style="background-image: url(assetshome/images/main-slider/vector-6.png)"></div>
@@ -208,8 +208,8 @@
 						
 					</li>
 					
-					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1689" data-slotamount="default" data-thumb="{{ asset('assetshome/images/main-slider/secundaria.jpg')}}" data-title="Slide Title">
-					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{ asset('assetshome/images/main-slider/secundaria.jpg')}}">
+					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1689" data-slotamount="default" data-thumb="{{ asset('assetshome/images/main-slider/secundariaportada.jpg')}}" data-title="Slide Title">
+					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{ asset('assetshome/images/main-slider/secundariaportada.jpg')}}">
 					
 						<div class="color-layer"></div>
 						<div class="vector-layer-one" style="background-image: url(assetshome/images/main-slider/vector-6.png)"></div>
@@ -357,14 +357,12 @@
 						<!-- Sec Title -->
 						<div class="sec-title">
 							<div class="title style-two">Nivel Secundaria</div>
-              <h2>¿Quieres que tu hijo tenga <span>éxito</span> en el colegio?</h2>
-							<div class="text">En ITE, entendemos lo importante que es para ti entrar a
-              la carrera profesional que deseas y sabemos que, en
-              ocasiones, puede haber brechas en tu educación que
-              debes superar para lograrlo. Es por eso que ofrecemos
-              programas de nivelación diseñados para fortalecer tus
-              habilidades y conocimientos y prepararte para el éxito en
-              tu carrera.</div>
+              				<h2>¿Quieres que tu hijo tenga <span>éxito</span> en el colegio?</h2>
+							<div class="text">Si estás buscando prepararte para la universidad, en (ITE) es
+							el lugar perfecto para ti. Nuestros programas preuniversitarios
+							están diseñados para brindarte la mejor educación posible
+							y prepararte para ingresar a la universidad con confianza
+							y éxito.</div>
 						</div>
 						<!-- Employe Box -->
 						<div class="employe-box">
@@ -447,7 +445,7 @@
 								<div class="service-block col-lg-12 col-md-6 col-sm-12">
 									<div class="inner-box">
 										<div class="icon-box">
-											<span class="icon flaticon-social-reach"></span>
+											<span class="icon flaticon-analytics"></span>
 										</div>
 										<h3><a href="{{ route('matematica') }}">Matemáticas</a></h3>
 									</div>
@@ -483,7 +481,17 @@
 									</div>
 								</div>
 
-                <!-- Service Block -->
+                				<!-- Service Block -->
+								<div class="service-block col-lg-12 col-md-6 col-sm-12">
+									<div class="inner-box">
+										<div class="icon-box">
+											<span class="icon flaticon-human-brain"></span>
+										</div>
+										<h3><a href="{{ route('ingles') }}">Psicología</a></h3>
+									</div>
+								</div>
+
+								<!-- Service Block -->
 								<div class="service-block col-lg-12 col-md-6 col-sm-12">
 									<div class="inner-box">
 										<div class="icon-box">
@@ -774,14 +782,14 @@
 					<div class="inner-box mt-30">
 						<div class="content">
 							<span class="icon flaticon-map"></span>
-							<h4>Direccion</h4>
+							<h4>Dirección</h4>
 							<div class="text">Av. 3 Pasos al Frente esquina Av. Che Guevara.</div>
 						</div>
 					</div>
 					<div class="inner-box mt-30">
 						<div class="content">
 							<span class="icon flaticon-telephone"></span>
-							<h4>Telefonos</h4>
+							<h4>Teléfonos</h4>
 							<a href="#">+591 71039910</a>
 							<a href="#">+591 75553338</a>
 							<a href="#">+591 71324941</a>

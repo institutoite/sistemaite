@@ -136,8 +136,8 @@
 			<div class="rev_slider fullwidthabanner" id="rev_slider_one" data-version="5.4.1">
 				<ul>
 					
-					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1688" data-slotamount="default" data-thumb="{{ asset('assetshome/images/main-slider/primaria.jpg')}}" data-title="Slide Title">
-					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{ asset('assetshome/images/main-slider/primaria.jpg')}}"> 
+					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1688" data-slotamount="default" data-thumb="{{ asset('assetshome/images/main-slider/primariaportada.jpg')}}" data-title="Slide Title">
+					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{ asset('assetshome/images/main-slider/primariaportada.jpg')}}"> 
 						
 						<div class="color-layer"></div>
 						<div class="vector-layer-one" style="background-image: url(assetshome/images/main-slider/vector-6.png)"></div>
@@ -208,8 +208,8 @@
 						
 					</li>
 					
-					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1689" data-slotamount="default" data-thumb="{{ asset('assetshome/images/main-slider/primaria.jpg')}}" data-title="Slide Title">
-					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{ asset('assetshome/images/main-slider/primaria.jpg')}}">
+					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1689" data-slotamount="default" data-thumb="{{ asset('assetshome/images/main-slider/primariaportada.jpg')}}" data-title="Slide Title">
+					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{ asset('assetshome/images/main-slider/primariaportada.jpg')}}">
 					
 						<div class="color-layer"></div>
 						<div class="vector-layer-one" style="background-image: url(assetshome/images/main-slider/vector-6.png)"></div>
@@ -782,21 +782,21 @@
 					<div class="inner-box mt-30">
 						<div class="content">
 							<span class="icon flaticon-email-3"></span>
-							<h4>Correo Electronico</h4>
+							<h4>Correo electrónico </h4>
 							<a href="#">info@ite.com</a>
 						</div>
 					</div>
 					<div class="inner-box mt-30">
 						<div class="content">
 							<span class="icon flaticon-map"></span>
-							<h4>Direccion</h4>
+							<h4>Dirección</h4>
 							<div class="text">Av. 3 Pasos al Frente esquina Av. Che Guevara.</div>
 						</div>
 					</div>
 					<div class="inner-box mt-30">
 						<div class="content">
 							<span class="icon flaticon-telephone"></span>
-							<h4>Telefonos</h4>
+							<h4>Teléfonos</h4>
 							<a href="#">+591 71039910</a>
 							<a href="#">+591 75553338</a>
 							<a href="#">+591 71324941</a>

@@ -254,21 +254,21 @@
 					<div class="inner-box mt-30">
 						<div class="content">
 							<span class="icon flaticon-email-3"></span>
-							<h4>Correo Electronico</h4>
+							<h4>Correo electrónico </h4>
 							<a href="#">info@ite.com</a>
 						</div>
 					</div>
 					<div class="inner-box mt-30">
 						<div class="content">
 							<span class="icon flaticon-map"></span>
-							<h4>Direccion</h4>
+							<h4>Dirección</h4>
 							<div class="text">Av. 3 Pasos al Frente esquina Av. Che Guevara.</div>
 						</div>
 					</div>
 					<div class="inner-box mt-30">
 						<div class="content">
 							<span class="icon flaticon-telephone"></span>
-							<h4>Telefonos</h4>
+							<h4>Teléfonos</h4>
 							<a href="#">+591 71039910</a>
 							<a href="#">+591 75553338</a>
 							<a href="#">+591 71324941</a>
