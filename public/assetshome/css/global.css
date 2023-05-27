@@ -70,13 +70,13 @@
 
 :root {
 	
-	/* ##FF4A17 in decimal RGB */
+	/* ##26baa5 in decimal RGB */
   --main-color: rgb(38,186,165);
   
-  /* #FF4A17 in decimal RGBA */
+  /* #26baa5 in decimal RGBA */
   --main-color-rgba: rgb(255,74,23,0.10);
   
-  /* #FF4A17 in decimal RGBA */
+  /* #26baa5 in decimal RGBA */
   --main-color-rgba-two: rgb(255,74,23,0.05);
   
   /* #efeef5 in decimal RGB */

@@ -517,257 +517,644 @@
 	</section>
 	<!-- End About Section Two -->
 	
-	<!-- Process Section -->
+	<!-- Horarios Section -->
 	<section class="process-section">
 		
 		<div class="auto-container">
 			<!-- Sec Title -->
 			<div class="sec-title centered">
-				<div class="title style-two">Horarios y Precios</div>
+				<div class="title style-two">Horarios</div>
         <h2><span>Horarios flexibles</span> para <br> adaptarnos a tu ritmo de vida </h2>
 			</div>
 
-        <div class="container">
-          <div class="row">
+      <div class="auto-container">
+        <div class="row clearfix">
         
-             
+          <!-- Title Column -->
+          <div class="content-column col-lg-7 col-md-12 col-sm-12">
+            <div class="inner-column">
+              <!-- Sec Title -->
+              
+              <div class="row mt-none-30">
 
-              <div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
-                <aside class="sidebar sticky-top">
-      
-                  <!-- Timing Widget -->
-                  <div class="sidebar-widget timing-widget">
-                    <div class="widget-content">
-      
-                        {{--%%%%%%%%%%%%%%%%%%%% Clases de 1 Hora/ Diaria %%%%%%%%%%%%%%%%%%  --}}
-                        <div class="card">
-                          <div class="card-header bg-primary text-white text-center">
-                            <h3 class="text-white"> Clases de 1 Hora/ Diaria</h3>
-                          </div>
-                          <div class="card-body">
-                            <table class="table table-bordered table-striped table-hover">
-                              <thead class="text-secondary">
-                                <tr>
-                                  <th scope="col">Mañana</th>
-                                  <th scope="col">Tarde</th>
-                                  <th scope="col">Noche</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>8:00 - 9:00</td>
-                                  <td>14:00 - 15:00</td>
-                                  <td>18:00 - 19:00</td>
-                                </tr>
-                                <tr>
-                                  <td>9:00 - 10:00</td>
-                                  <td>15:00 - 16:00</td>
-                                  <td>19:00 - 20:00</td>
-                                </tr>
-                                <tr>
-                                  <td>10:00 - 11:00</td>
-                                  <td>16:00 - 17:00</td>
-                                  <td>20:00 - 21:00</td>
-                                </tr>
-                                <tr>
-                                  <td>11:00 - 12:00</td>
-                                  <td>17:00 - 18:00</td>
-                                  <td></td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div> 
-      
+			  	<div class="col-lg-6">
+					<div class="experiance_item mt-30">
+						<div class="content">
+							<h4>Reserva de clases temprano</h4>
+							<p>Los estudiantes pueden reservar sus súper clases desde las 5 de la mañana</p>
+						</div>
+					</div>
+					<div class="experiance_item mt-30">
+						<div class="content">
+							<h4>Clases personalizadas</h4>
+							<p>Clases personalizadas adaptadas a las necesidades de cada estudiante.</p>
+						</div>
+					</div>
+					<div class="experiance_item mt-30">
+						<div class="content">
+							<h4>Solución de problemas</h4>
+							<p>Resolvemos cualquier problema y ofrecemos soluciones a los estudiantes para asegurar su éxito.</p>
+						</div>
+					</div>
+                </div>
+
+			  	<div class="col-lg-6">  
+                  <div class="experiance_item mt-30">
+                    <div class="icon">
+                      <img src="{{asset('assetshome/images/icons/a_01.png')}}" alt="">
+                    </div>
+                    <div class="content">
+                      <h4>Presenciales</h4>
+                      <p>Lunes a Viernes</p>
+                    </div>
+                  </div>
+                  <div class="experiance_item mt-30">
+                    <div class="icon">
+                      <img src="{{asset('assetshome/images/icons/a_01.png')}}" alt="">
+                    </div>
+                    <div class="content">
+                      <h4>Tres veces por semana</h4>
+                      <p>Opción 1: Lunes, Miercoles y Viernes <br>Opción 2: Martes, Jueves y Sábado </p>
+					  
+                    </div>
+                  </div> 
+                  <div class="experiance_item mt-30">
+                    <div class="icon">
+                      <img src="{{asset('assetshome/images/icons/a_01.png')}}" alt="">
+                    </div>
+                    <div class="content">
+                      <h4>Fines de semana</h4>
+                      <p>Solo Sábados</p>
+                    </div>
+                  </div>
+                </div>
+
+                
+                
+              </div>
+            </div>  
+
+            <div class="content-column col-lg-12 col-md-12 col-sm-12">
+              <div class="inner-column">
+                <!-- Sec Title -->
+                <div class="sec-title">
+                  <h4></h4>
+                </div>
+                <div class="row clearfix">
+                
+                  <!-- Service Block -->
+                  <div class="service-block col-lg-6 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                      <div class="icon-box">
+                        <span class="icon flaticon-pdf"></span>
+                      </div>
+                      <h3><a href="https://drive.google.com/file/d/1GZChPLyWVRIfKMdKz0vlFeR7qGvM9XsV/view?usp=sharing">Visualizar Contenido Analítico</a></h3>
+                     
                     </div>
                   </div>
                   
-                  <!-- Gallery Widget -->
-                  
-                  
-                </aside>
+                </div>
               </div>
-
-
-              <div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
-                <aside class="sidebar sticky-top">
-      
-                  <!-- Timing Widget -->
-                  <div class="sidebar-widget timing-widget">
-                    <div class="widget-content">
-      
-                        {{--%%%%%%%%%%%%%%%%%%%% Clases de 1 Hora/ Diaria %%%%%%%%%%%%%%%%%%  --}}
-                        <div class="card">
-                          <div class="card-header bg-primary text-white text-center">
-                            <h3 class="text-white"> Clases 1,30 Horas/Diaria</h3>
-                          </div>
-                          <div class="card-body">
-                            <table class="table table-bordered table-striped table-hover">
-                              <thead class="text-secondary">
-                                <tr>
-                                  <th scope="col">Mañana</th>
-                                  <th scope="col">Tarde</th>
-                                  <th scope="col">Noche</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>7:30 - 9:00</td>
-                                  <td>14:00 - 15:30</td>
-                                  <td>18:30 - 20:00</td>
-                                </tr>
-                                <tr>
-                                  <td>9:00 - 10:30</td>
-                                  <td>15:30 - 17:00</td>
-                                  <td></td>
-                                </tr>
-                                <tr>
-                                  <td>10:30 - 12:00</td>
-                                  <td>17:00 - 18:30</td>
-                                  <td></td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div> 
-    
-                    </div>
-                  </div>
-                  
-                  <!-- Gallery Widget -->
-                  
-                  
-                </aside>
-              </div>
-
-                        
+            </div>     
+                
           </div>
-        </div>
+          
+          <!-- Blocks Column -->
+          <div class="sidebar-side col-lg-5 col-md-12 col-sm-12">
+            <aside class="sidebar sticky-top">
+  
+              <!-- Timing Widget -->
+              <div class="sidebar-widget timing-widget">
+                <div class="widget-content">
+  
+                    {{--%%%%%%%%%%%%%%%%%%%% Horarios 1 hora %%%%%%%%%%%%%%%%%%  --}}
+                    <div class="card">
+                      <div class="card-header bg-primary text-white text-center">
+                        <h3 class="text-white">Horarios 1 hora / diario</h3>
+                      </div>
+                      <div class="card-body">
+                        <table class="table table-bordered table-striped table-hover">
+                          <thead class="text-secondary">
+                            <tr>
+                              <th scope="col">Mañana</th>
+                              <th scope="col">Tarde</th>
+                              <th scope="col">Noche</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>7:30 - 8:30</td>
+                              <td>14:00 - 15:00</td>
+                              <td>19:00 - 20:00</td>
+                            </tr>
+                            <tr>
+                              <td>8:00 - 9:00</td>
+                              <td>15:00 - 16:00</td>
+                              <td>20:00 - 21:00</td>
+                            </tr>
+                            <tr>
+                              <td>9:00 - 10:00</td>
+                              <td>16:00 - 17:00</td>
+                              <td></td>
+                            </tr>
+							<tr>
+                              <td>10:00 - 11:00</td>
+                              <td>17:00 - 18:00</td>
+                              <td></td>
+                            </tr>
+							<tr>
+                              <td>11:00 - 12:00</td>
+                              <td>18:00 - 19:00</td>
+                              <td></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div> 
+                    <hr>
 
-        <div class="row my-3"></div>
-        
-        <div class="container">
-          <div class="row">
-            
-            <div class="col-md-3">
-              <div class="card mb-5 mb-md-0">
-                <div class="card-body">
-                  <h5 class="card-title text-muted text-uppercase text-center">Hora libre</h5>
-                  <hr>
-                  <h5 class="card-price text-center">Bs.40<span class="period"> / 1h</span></h5>
-                  <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Una hora</li>
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Usted elige el dia</li>
-                    <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Domingos no hay atención</li>
-                  </ul>
-                  <hr>
-                  <h5 class="card-price text-center">Bs.60<span class="period"> / 1,5h</span></h5>
-                  <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Una hora y media</li>
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Usted elige el dia</li>
-                    <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Domingos no hay atención</li>
-                  </ul>
-                  <hr>
-                  <h5 class="card-price text-center">Bs.80<span class="period"> / 2h</span></h5>
-                  <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Dos horas</li>
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Usted elige el dia</li>
-                    <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Domingos no hay atención</li>
-                  </ul>
+                    {{--%%%%%%%%%%%%%%%%%%%% Horarios 1:30 %%%%%%%%%%%%%%%%%%  --}}
+                    <div class="card">
+                      <div class="card-header bg-secondary text-white text-center">
+                        <h3 class="text-white">Horarios 1:30 hora / diario</h3>
+                      </div>
+                      <div class="card-body">
+					  <table class="table table-bordered table-striped table-hover">
+                          <thead class="text-secondary">
+                            <tr>
+                              <th scope="col">Mañana</th>
+                              <th scope="col">Tarde</th>
+                              <th scope="col">Noche</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>7:30 - 9:00</td>
+                              <td>14:00 - 15:30</td>
+                              <td>18:30 - 20:00</td>
+                            </tr>
+                            <tr>
+                              <td>9:00 - 10:30</td>
+                              <td>15:30 - 17:00</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>10:30 - 12:00</td>
+                              <td>17:00 - 18:30</td>
+                              <td></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div> 
+                    <hr>
+  
                 </div>
               </div>
-            </div>
-
-            <div class="col-md-3">
-              <div class="card mb-5 mb-md-0">
-                <div class="card-body">
-                  <h5 class="card-title text-muted text-uppercase text-center">Modalidad Semanal</h5>
-                  <hr>
-                  <h5 class="card-price text-center">Bs.165<span class="period"> / 5h</span></h5>
-                  <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Una hora por dia</li>
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Lunes a Viernes</li>
-                    <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Sábados y domingos</li>
-                  </ul>
-                  <hr>
-                  <h5 class="card-price text-center">Bs.150<span class="period"> / 4,5h</span></h5>
-                  <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
-                    <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Domingos no hay atención</li>
-                  </ul>
-                  <hr>
-                  <h5 class="card-price text-center">Bs.216<span class="period"> / 7,5h</span></h5>
-                  <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Lunes a Viernes</li>
-                    <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Domingos no hay atención</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <div class="card mb-5 mb-md-0">
-                <div class="card-body">
-                  <h5 class="card-title text-muted text-uppercase text-center">Modalidad Quincenal</h5>
-                  <hr>
-                  <h5 class="card-price text-center">Bs.265<span class="period"> / 10h</span></h5>
-                  <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Una hora por dia</li>
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Lunes a Viernes</li>
-                    <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Sábados y domingos</li>
-                  </ul>
-                  <hr>
-                  <h5 class="card-price text-center">Bs.250<span class="period"> / 9h</span></h5>
-                  <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
-                    <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Domingos no hay atención</li>
-                  </ul>
-                  <hr>
-                  <h5 class="card-price text-center">Bs.350<span class="period"> / 15h</span></h5>
-                  <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Lunes a Viernes</li>
-                    <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Domingos no hay atención</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <div class="card mb-5 mb-md-0">
-                <div class="card-body">
-                  <h5 class="card-title text-muted text-uppercase text-center">Modalidad Mensual</h5>
-                  <hr>
-                  <h5 class="card-price text-center">Bs.420<span class="period"> / 20h</span></h5>
-                  <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Una hora por dia</li>
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Lunes a Viernes</li>
-                    <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Sábados y domingos</li>
-                  </ul>
-                  <hr>
-                  <h5 class="card-price text-center">Bs.350<span class="period"> / 18h</span></h5>
-                  <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
-                    <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Domingos no hay atención</li>
-                  </ul>
-                  <hr>
-                  <h5 class="card-price text-center">Bs.550<span class="period"> / 30h</span></h5>
-                  <ul class="fa-ul">
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
-                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Lunes a Viernes</li>
-                    <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Domingos no hay atención</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
+              
+              <!-- Gallery Widget -->
+              
+              
+            </aside>
           </div>
-        </div>
 
+        </div>
+      </div>
+
+		</div>
+	</section>
+	<!-- End Process Section -->
+
+	<!-- Costos Section -->
+	<section class="process-section">
+		
+		<div class="auto-container">
+			<!-- Sec Title -->
+			<div class="sec-title centered">
+				<div class="title style-two">Costos / Modalidades</div>
+        		<h2>Aprende a tu ritmo <span>elige la modalidad</span><br> perfecto para ti </h2>
+			</div>
+
+			<div class="row my-4"></div>
+		
+			<div class="sec-title centered">
+			<div class="title style-two">Hora libre</div>
+			</div>
+
+			<div class="container">
+			<div class="row">
+				
+				<div class="col-md-4">
+				<div class="card mb-5 mb-md-0">
+					<div class="card-body">
+					<div class="text-center mb-4">
+						<h5 class="p-3 mb-2 bg-primary text-white">Plan Básico</h5>
+						<h5 class="card-price">Bs.40<span class="period"> / 1h</span></h5>
+					</div>
+
+					<ul class="fa-ul">
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Una hora</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Usted elige el dia</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Asistente virtual ITEASY</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Taller de robótica</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
+					</ul>
+					
+					</div>
+				</div>
+				</div>
+
+				<div class="col-md-4">
+				<div class="card mb-5 mb-md-0">
+					<div class="card-body">
+					<div class="text-center mb-4">
+						<h5 class="p-3 mb-2 bg-primary text-white">Plan Estándar</h5>
+						<h5 class="card-price">Bs.60<span class="period"> / 1,5h</span></h5>
+					</div>
+
+					<ul class="fa-ul">
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Usted elige el dia</li>  
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Taller de robótica</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
+					</ul>
+					
+					</div>
+				</div>
+				</div>
+
+				<div class="col-md-4">
+				<div class="card mb-5 mb-md-0">
+					<div class="card-body">
+					<div class="text-center mb-4">
+						<h5 class="p-3 mb-2 bg-primary text-white">Plan Premiun</h5>
+						<h5 class="card-price">Bs.80<span class="period"> / 2h</span></h5>
+					</div>
+
+					<ul class="fa-ul">
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Dos horas</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Taller de robótica</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Ajedrez gigante</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
+					</ul>
+					
+					</div>
+				</div>
+				</div>
+				
+			</div>
+			</div>
+
+			<div class="row my-4"></div>
+
+			<div class="sec-title centered">
+			<div class="title style-two">Modalidad Semanal</div>
+			</div>
+
+			<div class="container">
+			<div class="row">
+				
+				<div class="col-md-4">
+				<div class="card mb-5 mb-md-0">
+					<div class="card-body">
+					<div class="text-center mb-4">
+						<h5 class="p-3 mb-2 bg-primary text-white">Plan Básico</h5>
+						<h5 class="card-price">Bs.150<span class="period"> / semana</span></h5>
+					</div>
+
+					<ul class="fa-ul">
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Asistente virtual ITEASY</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Taller de robótica</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
+					</ul>
+					
+					</div>
+				</div>
+				</div>
+
+				<div class="col-md-4">
+				<div class="card mb-5 mb-md-0">
+					<div class="card-body">
+					<div class="text-center mb-4">
+						<h5 class="p-3 mb-2 bg-primary text-white">Plan Estándar</h5>
+						<h5 class="card-price">Bs.165<span class="period"> / semana</span></h5>
+					</div>
+
+					<ul class="fa-ul">
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span> Una Hora por dia</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Lunes a Viernes</li>  
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Taller de robótica</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
+					</ul>
+					
+					</div>
+				</div>
+				</div>
+
+				<div class="col-md-4">
+				<div class="card mb-5 mb-md-0">
+					<div class="card-body">
+					<div class="text-center mb-4">
+						<h5 class="p-3 mb-2 bg-primary text-white">Plan Premiun</h5>
+						<h5 class="card-price">Bs.216<span class="period"> / semana</span></h5>
+					</div>
+
+					<ul class="fa-ul">
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Taller de robótica</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Ajedrez gigante</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
+					</ul>
+					
+					</div>
+				</div>
+				</div>
+				
+			</div>
+			</div>
+			
+			<div class="row my-4"></div>
+
+			<div class="sec-title centered">
+			<div class="title style-two">Modalidad Quincenal</div>
+			</div>
+
+			<div class="container">
+			<div class="row">
+				
+				<div class="col-md-4">
+				<div class="card mb-5 mb-md-0">
+					<div class="card-body">
+					<div class="text-center mb-4">
+						<h5 class="p-3 mb-2 bg-primary text-white">Plan Básico</h5>
+						<h5 class="card-price">Bs.250<span class="period"> / quincena</span></h5>
+					</div>
+
+					<ul class="fa-ul">
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Taller de robótica</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
+					</ul>
+					
+					</div>
+				</div>
+				</div>
+
+				<div class="col-md-4">
+				<div class="card mb-5 mb-md-0">
+					<div class="card-body">
+					<div class="text-center mb-4">
+						<h5 class="p-3 mb-2 bg-primary text-white">Plan Estándar</h5>
+						<h5 class="card-price">Bs.265<span class="period"> / quincena</span></h5>
+					</div>
+
+					<ul class="fa-ul">
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span> Una Hora por dia</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Lunes a Viernes</li>  
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Taller de robótica</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
+					</ul>
+					
+					</div>
+				</div>
+				</div>
+
+				<div class="col-md-4">
+				<div class="card mb-5 mb-md-0">
+					<div class="card-body">
+					<div class="text-center mb-4">
+						<h5 class="p-3 mb-2 bg-primary text-white">Plan Premiun</h5>
+						<h5 class="card-price">Bs.350<span class="period"> / quincena</span></h5>
+					</div>
+
+					<ul class="fa-ul">
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Taller de robótica</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Ajedrez gigante</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
+					</ul>
+					
+					</div>
+				</div>
+				</div>
+				
+			</div>
+			</div>
+
+			<div class="row my-4"></div>
+
+			<div class="sec-title centered">
+			<div class="title style-two">Modalidad Mensual</div>
+			</div>
+
+			<div class="container">
+			<div class="row">
+				
+				<div class="col-md-4">
+				<div class="card mb-5 mb-md-0">
+					<div class="card-body">
+					<div class="text-center mb-4">
+						<h5 class="p-3 mb-2 bg-primary text-white">Plan Básico</h5>
+						<h5 class="card-price">Bs.350<span class="period"> / mensual</span></h5>
+					</div>
+
+					<ul class="fa-ul">
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Taller de robótica</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
+					</ul>
+					
+					</div>
+				</div>
+				</div>
+
+				<div class="col-md-4">
+				<div class="card mb-5 mb-md-0">
+					<div class="card-body">
+					<div class="text-center mb-4">
+						<h5 class="p-3 mb-2 bg-primary text-white">Plan Estándar</h5>
+						<h5 class="card-price">Bs.420<span class="period"> / mensual</span></h5>
+					</div>
+
+					<ul class="fa-ul">
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span> Una Hora por dia</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Lunes a Viernes</li>  
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Taller de robótica</li>
+						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
+					</ul>
+					
+					</div>
+				</div>
+				</div>
+
+				<div class="col-md-4">
+				<div class="card mb-5 mb-md-0">
+					<div class="card-body">
+					<div class="text-center mb-4">
+						<h5 class="p-3 mb-2 bg-primary text-white">Plan Premiun</h5>
+						<h5 class="card-price">Bs.550<span class="period"> / mensual</span></h5>
+					</div>
+
+					<ul class="fa-ul">
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Taller de robótica</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Ajedrez gigante</li>
+						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
+					</ul>
+					
+					</div>
+				</div>
+				</div>
+				
+			</div>
+			</div>
+
+		</div>
+	</section>
+	<!-- End Process Section -->
+
+	<!-- Planes Corporativos Section -->
+	<section class="process-section">
+		
+		<div class="auto-container">
+
+			<!-- Descuentos Niveles -->
+			<div class="sec-title centered">
+				<div class="title style-two">Planes Corporativos</div>
+        		<h2>Descuentos del <span>20%</span> en nuestros planes corporativos </h2>
+			</div>
+
+			<div class="container">
+				<div class="row">
+
+					<!-- Sidebar Side -->
+					<div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
+						<aside class="sidebar sticky-top">
+								
+							<!-- Sidebar Widget / Category Widget -->
+							<div class="sidebar-widget category-widget">
+								<div class="widget-content">
+									<!-- Sidebar Title -->
+									<div class="sidebar-title">
+										<h3>Modalidad Hora Libre</h3>
+									</div>
+									<ul class="cat-list">
+										<li><a href="#">1er estudiante<span>Bs.40</span></a></li>
+										<li class="active"><a href="#">2do estudiante<span>Bs.32</span></a></li>
+										<li><a href="#">3er estudiante<span>Bs.25</span></a></li>
+										<li><a href="#">4to estudiante<span>Bs. 20</span></a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- End Sidebar Widget / Category Widget -->
+							
+						</aside>
+					</div>
+
+					<!-- Sidebar Side -->
+					<div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
+						<aside class="sidebar sticky-top">
+								
+							<!-- Sidebar Widget / Category Widget -->
+							<div class="sidebar-widget category-widget">
+								<div class="widget-content">
+									<!-- Sidebar Title -->
+									<div class="sidebar-title">
+										<h3>Modalidad Semanal</h3>
+									</div>
+									<ul class="cat-list">
+										<li><a href="#">1er estudiante<span>Bs.216</span></a></li>
+										<li class="active"><a href="#">2do estudiante<span>Bs.172</span></a></li>
+										<li><a href="#">3er estudiante<span>Bs.138</span></a></li>
+										<li><a href="#">4to estudiante<span>Bs. 110</span></a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- End Sidebar Widget / Category Widget -->
+							
+						</aside>
+					</div>
+
+					<div class="row my-4"></div>
+
+					<!-- Sidebar Side -->
+					<div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
+						<aside class="sidebar sticky-top">
+								
+							<!-- Sidebar Widget / Category Widget -->
+							<div class="sidebar-widget category-widget">
+								<div class="widget-content">
+									<!-- Sidebar Title -->
+									<div class="sidebar-title">
+										<h3>Modalidad Quincenal</h3>
+									</div>
+									<ul class="cat-list">
+										<li><a href="#">1er estudiante<span>Bs.350</span></a></li>
+										<li class="active"><a href="#">2do estudiante<span>Bs.280</span></a></li>
+										<li><a href="#">3er estudiante<span>Bs.224</span></a></li>
+										<li><a href="#">4to estudiante<span>Bs. 179</span></a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- End Sidebar Widget / Category Widget -->
+							
+						</aside>
+					</div>
+
+					<!-- Sidebar Side -->
+					<div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
+						<aside class="sidebar sticky-top">
+								
+							<!-- Sidebar Widget / Category Widget -->
+							<div class="sidebar-widget category-widget">
+								<div class="widget-content">
+									<!-- Sidebar Title -->
+									<div class="sidebar-title">
+										<h3>Modalidad Mensual</h3>
+									</div>
+									<ul class="cat-list">
+										<li><a href="#">1er estudiante<span>Bs.550</span></a></li>
+										<li class="active"><a href="#">2do estudiante<span>Bs.440</span></a></li>
+										<li><a href="#">3er estudiante<span>Bs.352</span></a></li>
+										<li><a href="#">4to estudiante<span>Bs. 281</span></a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- End Sidebar Widget / Category Widget -->
+							
+						</aside>
+					</div>
+								
+				</div>
+			</div>
+
+			
 		</div>
 	</section>
 	<!-- End Process Section -->

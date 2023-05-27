@@ -390,6 +390,11 @@ class HomeController extends Controller
         $preguntasfrecuentes = Homequestion::all();
         return view('home.preguntasfrecuentes', compact('preguntasfrecuentes'));
     }
+
+    public function planescorporativos()
+    {
+        return view('home.fronted.planescorporativos');
+    }
     /**
      * Show the form for editing the specified resource.
      *

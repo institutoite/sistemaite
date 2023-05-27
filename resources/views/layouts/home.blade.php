@@ -915,59 +915,87 @@
 	<!-- End Team Section Two -->
 
 	<!-- About Section -->
-	<section class="about-section">
-		<div class="pattern-layer" style="background-image: url(assetshome/images/background/pattern-1.png)"></div>
+	<section class="about-section style-two">
+		<div class="pattern-layer" style="background-image: url(assets/images/background/pattern-1.png)"></div>
 		<div class="auto-container">
 			<div class="row clearfix">
 			
-				<!-- Images Column -->
-				<div class="images-column col-lg-6 col-md-12 col-sm-12">
-					<div class="vector-layer-one" style="background-image: url(assetshome/images/icons/vector-1.png)"></div>
-					<div class="vector-layer-two" style="background-image: url(assetshome/images/icons/vector-2.png)"></div>
-					<div class="inner-column clearfix">
-						<div class="image wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-							<img src="assetshome/images/resource/about-1.jpg" alt="" />
-						</div>
-						<div class="image-two wow fadeInRight" data-wow-delay="150ms" data-wow-duration="1500ms">
-							<img src="assetshome/images/resource/about-2.jpg" alt="" />
-						</div>
-						<div class="image-three wow fadeInRight" data-wow-delay="450ms" data-wow-duration="1500ms">
-							<img src="#" alt="" />
-						</div>
-						<div class="image-four wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
-							<img src="#" alt="" />
-						</div>
-					</div>
-				</div>
-				
 				<!-- Content Column -->
-				<div class="content-column col-lg-6 col-md-12 col-sm-12">
+				<div class="content-column col-lg-8 col-md-12 col-sm-12">
 					<div class="inner-column">
 						<!-- Sec Title -->
 						<div class="sec-title">
 							<div class="title">Planes Corporativos</div>
-							<h2>Aprende a tu ritmo,<span>elige el plan</span> perfecto para ti.</h2>  
-							<div class="text">Descubre nuevos horizontes con nuestros planes</div>
+							<h2>¡Ahorra en grande con nuestros <span>planes corporativos!</span></h2>
+							<div class="text"></div>
 						</div>
-						<ul class="about-list">
-							<li>Plan familiar</li>
-							<li>Plan empresarial</li>
-							<li>Plan colegios</li>
-							<li>Plan profesores</li>
-							<li>Plan Referencia</li>
-							<li>Plan Virtual</li>
-							<li>Plan Adultos</li>
-						</ul>
-						<!-- Quote Box -->
-						<div class="quote-box">
-							<div class="box-inner">
-								<span class="quote fas fa-quote-right"></span>
-								<div class="content">
-									<div class="text">“Los planes estan pensados para grupos de personas <br>  con un descuento especial en nuestras tarifas”</div>
+						<div class="row mt-none-30">
+							<div class="col-lg-6">
+								
+								<ul class="experiance_list mt-30">
+									<li>Plan Empresarial </li>
+									<li>Plan Colegios </li>
+									<li>Plan Profesores </li>
+									<li>Plan Familiar </li>
+								</ul>
+								<div class="button-box">
+									<a href="{{ route('planescorporativos') }}" class="theme-btn btn-style-seven"><span class="txt">Informarme <i class="flaticon-next-2"></i></span></a>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="counter_wrap mt-30">
+									<h1><span class="number">20%<span class="plus">+</span></span> <span class="text">descuento</span></h1>
+								</div>
+								<div class="experiance_item mt-30">
+									<!-- <div class="icon">
+										<img src="assets/images/icons/a_02.png" alt="">
+									</div> -->
+									<div class="content">
+										<h4>¡No te pierdas esta oportunidad!</h4>
+										<p>Lanzamos planes corporativos con un descuento del 20% en ITE</p>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+				</div>
+
+				<!-- Sidebar Side -->
+                <div class="info-column sidebar-side col-lg-4 col-md-12 col-sm-12">
+                	<aside class="sidebar sticky-top">
+						
+						<div class="inner-column project_widget mt-35">
+							<ul class="info-list">
+								<li>
+									<strong>Nuestra Dirección</strong>
+									Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.
+								</li>
+								<li>
+									<strong>Contacto</strong>
+									<a href="mailto:info@ite.com"><span class="icon fas fa-comment"></span>info@ite.com.bo</a><br>
+									<a href="tel:+59171039910"><span class="icon fas fa-phone"></span>(+591) 71039910</a><br>
+									<a href="tel:+591771324941"><span class="icon fas fa-phone"></span>(+591) 71324941</a><br>
+									<a href="tel:+59171324941"><span class="icon fas fa-phone"></span>(+591) 71324941</a><br>
+								</li>
+							</ul>
+							<div class="opening">
+								<span class="icon far fa-clock"></span>
+								<strong>Nuestros Horarios</strong>
+								Lu a Vi: 07:00 a 18:30 <br>
+								Sábados: 07:30 a 17:00
+							</div>
+							
+							<!-- Social Box -->
+							<ul class="social-box">
+								<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook"></a></li>
+								<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-twitter"></a></li>
+								<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-instagram"></a></li>
+								<li><a href="https://www.youtube.com/channel/UCbmRHfG51CGM1foo-6kzunQ" class="fa fa-youtube"></a></li>
+							</ul>
+							
+						</div>
+						
+					</aside>
 				</div>
 				
 			</div>

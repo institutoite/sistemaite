@@ -294,7 +294,7 @@
 	</section>
 	<!-- End Main Slider -->
 
-  <!-- Featured Section -->
+  	<!-- Featured Section -->
 	<section class="featured-section" style="background-image: url(assets/images/background/pattern-10.png)">
 		<div class="auto-container">
 			<div class="row clearfix">

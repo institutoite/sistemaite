@@ -1022,6 +1022,8 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
 
     Route::get('/preguntasfrecuentes', [HomeController::class, 'preguntasfrecuentes'])->name('preguntasfrecuentes');
 
+    Route::get('/planescorporativos', [HomeController::class, 'planescorporativos'])->name('planescorporativos');
+
     Route::get('/plan/{id}', [HomeController::class, 'plan'])->name('plan');
 
   

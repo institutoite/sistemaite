@@ -5598,7 +5598,7 @@
 	bottom: -6px;
 	margin: auto;
 	content: "";
-	background: #FF4A17;
+	background: #26baa5;
 	width: 12px;
 	height: 12px;
 	opacity: 0;
@@ -5612,7 +5612,7 @@
 }
 
 .about-tabs .tab-btns .tab-btn.active-btn {
-	background-color: #FF4A17;
+	background-color: #26baa5;
 	color: #fff;
 }
 .about-tabs .tab-btns .tab-btn.active-btn::before {
@@ -5650,7 +5650,7 @@
 	margin-top: 30px;
 }
 .about_tab_list li i {
-	color: #FF4A17;
+	color: #26baa5;
 	margin-right: 5px;
 }
 
@@ -6985,11 +6985,11 @@
 .info-column .project_widget .opening .icon,
 .info-column .project_widget .social-box li a {
 	background-color: #FFEDE8;
-	color: #FF4A17;
+	color: #26baa5;
 }
 .info-column .project_widget .social-box li a:hover {
 	color: #fff;
-	background-color: #FF4A17;
+	background-color: #26baa5;
 }
 .info-column .project_widget .info-list li,
 .info-column .project_widget .opening strong,
@@ -7002,7 +7002,7 @@
 }
 .info-column .project_widget .info-list li strong::before,
 .info-column .project_widget .info-list li a .icon {
-	color: #FF4A17;
+	color: #26baa5;
 }
 
 /* Sponsors Widget */

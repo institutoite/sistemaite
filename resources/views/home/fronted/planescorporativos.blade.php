@@ -136,8 +136,8 @@
 			<div class="rev_slider fullwidthabanner" id="rev_slider_one" data-version="5.4.1">
 				<ul>
 					
-					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1688" data-slotamount="default" data-thumb="{{ asset('assetshome/images/main-slider/secundariaportada.jpg')}}" data-title="Slide Title">
-					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{ asset('assetshome/images/main-slider/secundariaportada.jpg')}}"> 
+					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1688" data-slotamount="default" data-thumb="{{ asset('assetshome/images/main-slider/home2.jpg')}}" data-title="Slide Title">
+					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{ asset('assetshome/images/main-slider/home2.jpg')}}"> 
 						
 						<div class="color-layer"></div>
 						<div class="vector-layer-one" style="background-image: url(assetshome/images/main-slider/vector-6.png)"></div>
@@ -208,8 +208,8 @@
 						
 					</li>
 					
-					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1689" data-slotamount="default" data-thumb="{{ asset('assetshome/images/main-slider/secundariaportada.jpg')}}" data-title="Slide Title">
-					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{ asset('assetshome/images/main-slider/secundariaportada.jpg')}}">
+					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1689" data-slotamount="default" data-thumb="{{ asset('assetshome/images/main-slider/home2.jpg')}}" data-title="Slide Title">
+					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{ asset('assetshome/images/main-slider/home2.jpg')}}">
 					
 						<div class="color-layer"></div>
 						<div class="vector-layer-one" style="background-image: url(assetshome/images/main-slider/vector-6.png)"></div>
@@ -343,696 +343,8 @@
 		</div>
 	</section>
 	<!-- End Featured Section -->
-
-  <!-- About Section Two -->
-	<section class="about-section-two">
-		<div class="pattern-layer" style="background-image: url(assets/images/background/pattern-11.png)"></div>
-		<div class="pattern-layer-two" style="background-image: url(assets/images/icons/vector-18.png)"></div>
-		<div class="auto-container">
-			<div class="row clearfix">
-			
-				<!-- Content Column -->
-				<div class="content-column col-lg-8 col-md-12 col-sm-12">
-					<div class="inner-column">
-						<!-- Sec Title -->
-						<div class="sec-title">
-							<div class="title style-two">Nivel Secundaria</div>
-              				<h2>¿Quieres que tu hijo tenga <span>éxito</span> en el colegio?</h2>
-							<div class="text">Si estás buscando prepararte para la universidad, en (ITE) es
-							el lugar perfecto para ti. Nuestros programas preuniversitarios
-							están diseñados para brindarte la mejor educación posible
-							y prepararte para ingresar a la universidad con confianza
-							y éxito.</div>
-						</div>
-						<!-- Employe Box -->
-						<div class="employe-box">
-							<div class="box-inner">
-								<span class="globe-icon flaticon-earth-globe-with-continents-maps"></span>
-								<ul class="list">
-									<li>Ayudamos a resolver tareas o prácticos</li>
-									<li>Preparamos para exámenes</li>
-									<li>Nivelamos estudiantes atrasados</li>
-									<li>Especialización para estudiantes destacados </li>
-								</ul>
-								<div class="employe">
-									<div class="count-outer count-box">
-										<span class="count-text" data-speed="4000" data-stop="14">0</span><sup>+</sup>
-									</div>
-									<div class="text">años de experiencia</div>
-								</div>
-							</div>
-						</div>
-						<!-- End Employe Box -->
-						
-            <!-- Fact Counter Two -->
-									<div class="fact-counter-two">
-										<div class="row clearfix">
-
-											<!-- Column -->
-											<div class="counter-column col-lg-4 col-md-6 col-sm-12">
-												<div class="inner wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-													<div class="content">
-														<span class="icon flaticon-notebook"></span>
-														<!-- <div class="count-outer count-box">
-															<span class="count-text" data-speed="4000" data-stop="320">0</span>m
-														</div> -->
-														<h5>Aprendizaje efectivo</h5>
-													</div>
-												</div>
-											</div>
-											
-											<!-- Column -->
-											<div class="counter-column col-lg-4 col-md-6 col-sm-12">
-												<div class="inner wow fadeInLeft" data-wow-delay="150ms" data-wow-duration="1500ms">
-													<div class="content">
-														<span class="icon flaticon-human-brain"></span>
-														<!-- <div class="count-outer count-box">
-															<span class="count-text" data-speed="5500" data-stop="980">0</span>+
-														</div> -->
-														<h5>Comprensión Completa</h5>
-													</div>
-												</div>
-											</div>
-
-											<!-- Column -->
-											<div class="counter-column col-lg-4 col-md-6 col-sm-12">
-												<div class="inner wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
-													<div class="content">
-														<span class="icon flaticon-user-1"></span>
-														<!-- <div class="count-outer count-box">
-															<span class="count-text" data-speed="3500" data-stop="1278">0</span>
-														</div> -->
-														<h5>Profesores capacitados</h5>
-													</div>
-												</div>
-											</div>
-											
-										</div>
-									</div>
-					</div>
-				</div>
-
-        <!-- Images Column -->
-				<div class="content-column col-lg-4 col-md-12 col-sm-12">
-						<div class="inner-column">
-							<!-- Sec Title -->
-							<div class="sec-title">
-								
-							</div>
-							<div class="row clearfix">
-							
-								<!-- Service Block -->
-								<div class="service-block col-lg-12 col-md-6 col-sm-12">
-									<div class="inner-box">
-										<div class="icon-box">
-											<span class="icon flaticon-analytics"></span>
-										</div>
-										<h3><a href="{{ route('matematica') }}">Matemáticas</a></h3>
-									</div>
-								</div>
-								
-								<!-- Service Block -->
-								<div class="service-block col-lg-12 col-md-6 col-sm-12">
-									<div class="inner-box">
-										<div class="icon-box">
-											<span class="icon flaticon-analytics"></span>
-										</div>
-										<h3><a href="{{ route('fisica') }}">Física</a></h3>
-									</div>
-								</div>
-								
-								<!-- Service Block -->
-								<div class="service-block col-lg-12 col-md-6 col-sm-12">
-									<div class="inner-box">
-										<div class="icon-box">
-											<span class="icon flaticon-analytics"></span>
-										</div>
-										<h3><a href="{{ route('quimica') }}">Química</a></h3>
-									</div>
-								</div>
-								
-								<!-- Service Block -->
-								<div class="service-block col-lg-12 col-md-6 col-sm-12">
-									<div class="inner-box">
-										<div class="icon-box">
-											<span class="icon flaticon-seo"></span>
-										</div>
-										<h3><a href="{{ route('algebra') }}">Álgebra</a></h3>
-									</div>
-								</div>
-
-                				<!-- Service Block -->
-								<div class="service-block col-lg-12 col-md-6 col-sm-12">
-									<div class="inner-box">
-										<div class="icon-box">
-											<span class="icon flaticon-human-brain"></span>
-										</div>
-										<h3><a href="{{ route('ingles') }}">Psicología</a></h3>
-									</div>
-								</div>
-
-								<!-- Service Block -->
-								<div class="service-block col-lg-12 col-md-6 col-sm-12">
-									<div class="inner-box">
-										<div class="icon-box">
-											<span class="icon flaticon-human-brain"></span>
-										</div>
-										<h3><a href="{{ route('ingles') }}">Inglés</a></h3>
-									</div>
-								</div>
-								
-							</div>
-						</div>
-				</div>
-				
-			</div>
-		</div>
-	</section>
-	<!-- End About Section Two -->
 	
-	<!-- Horarios Section -->
-	<section class="process-section">
-		
-		<div class="auto-container">
-			<!-- Sec Title -->
-			<div class="sec-title centered">
-				<div class="title style-two">Horarios</div>
-        <h2><span>Horarios flexibles</span> para <br> adaptarnos a tu ritmo de vida </h2>
-			</div>
-
-      <div class="auto-container">
-        <div class="row clearfix">
-        
-          <!-- Title Column -->
-          <div class="content-column col-lg-7 col-md-12 col-sm-12">
-            <div class="inner-column">
-              <!-- Sec Title -->
-              
-              <div class="row mt-none-30">
-
-			  	<div class="col-lg-6">
-					<div class="experiance_item mt-30">
-						<div class="content">
-							<h4>Reserva de clases temprano</h4>
-							<p>Los estudiantes pueden reservar sus súper clases desde las 5 de la mañana</p>
-						</div>
-					</div>
-					<div class="experiance_item mt-30">
-						<div class="content">
-							<h4>Clases personalizadas</h4>
-							<p>Clases personalizadas adaptadas a las necesidades de cada estudiante.</p>
-						</div>
-					</div>
-					<div class="experiance_item mt-30">
-						<div class="content">
-							<h4>Solución de problemas</h4>
-							<p>Resolvemos cualquier problema y ofrecemos soluciones a los estudiantes para asegurar su éxito.</p>
-						</div>
-					</div>
-                </div>
-
-			  	<div class="col-lg-6">  
-                  <div class="experiance_item mt-30">
-                    <div class="icon">
-                      <img src="{{asset('assetshome/images/icons/a_01.png')}}" alt="">
-                    </div>
-                    <div class="content">
-                      <h4>Presenciales</h4>
-                      <p>Lunes a Viernes</p>
-                    </div>
-                  </div>
-                  <div class="experiance_item mt-30">
-                    <div class="icon">
-                      <img src="{{asset('assetshome/images/icons/a_01.png')}}" alt="">
-                    </div>
-                    <div class="content">
-                      <h4>Tres veces por semana</h4>
-                      <p>Opción 1: Lunes, Miercoles y Viernes <br>Opción 2: Martes, Jueves y Sábado </p>
-					  
-                    </div>
-                  </div> 
-                  <div class="experiance_item mt-30">
-                    <div class="icon">
-                      <img src="{{asset('assetshome/images/icons/a_01.png')}}" alt="">
-                    </div>
-                    <div class="content">
-                      <h4>Fines de semana</h4>
-                      <p>Solo Sábados</p>
-                    </div>
-                  </div>
-                </div>
-
-                
-                
-              </div>
-            </div>  
-
-            <div class="content-column col-lg-12 col-md-12 col-sm-12">
-              <div class="inner-column">
-                <!-- Sec Title -->
-                <div class="sec-title">
-                  <h4></h4>
-                </div>
-                <div class="row clearfix">
-                
-                  <!-- Service Block -->
-                  <div class="service-block col-lg-6 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                      <div class="icon-box">
-                        <span class="icon flaticon-pdf"></span>
-                      </div>
-                      <h3><a href="https://drive.google.com/file/d/1GZChPLyWVRIfKMdKz0vlFeR7qGvM9XsV/view?usp=sharing">Visualizar Contenido Analítico</a></h3>
-                     
-                    </div>
-                  </div>
-                  
-                </div>
-              </div>
-            </div>     
-                
-          </div>
-          
-          <!-- Blocks Column -->
-          <div class="sidebar-side col-lg-5 col-md-12 col-sm-12">
-            <aside class="sidebar sticky-top">
-  
-              <!-- Timing Widget -->
-              <div class="sidebar-widget timing-widget">
-                <div class="widget-content">
-  
-                    {{--%%%%%%%%%%%%%%%%%%%% Horarios 1 hora %%%%%%%%%%%%%%%%%%  --}}
-                    <div class="card">
-                      <div class="card-header bg-primary text-white text-center">
-                        <h3 class="text-white">Horarios 1 hora / diario</h3>
-                      </div>
-                      <div class="card-body">
-                        <table class="table table-bordered table-striped table-hover">
-                          <thead class="text-secondary">
-                            <tr>
-                              <th scope="col">Mañana</th>
-                              <th scope="col">Tarde</th>
-                              <th scope="col">Noche</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>7:30 - 8:30</td>
-                              <td>14:00 - 15:00</td>
-                              <td>19:00 - 20:00</td>
-                            </tr>
-                            <tr>
-                              <td>8:00 - 9:00</td>
-                              <td>15:00 - 16:00</td>
-                              <td>20:00 - 21:00</td>
-                            </tr>
-                            <tr>
-                              <td>9:00 - 10:00</td>
-                              <td>16:00 - 17:00</td>
-                              <td></td>
-                            </tr>
-							<tr>
-                              <td>10:00 - 11:00</td>
-                              <td>17:00 - 18:00</td>
-                              <td></td>
-                            </tr>
-							<tr>
-                              <td>11:00 - 12:00</td>
-                              <td>18:00 - 19:00</td>
-                              <td></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div> 
-                    <hr>
-
-                    {{--%%%%%%%%%%%%%%%%%%%% Horarios 1:30 %%%%%%%%%%%%%%%%%%  --}}
-                    <div class="card">
-                      <div class="card-header bg-secondary text-white text-center">
-                        <h3 class="text-white">Horarios 1:30 hora / diario</h3>
-                      </div>
-                      <div class="card-body">
-					  <table class="table table-bordered table-striped table-hover">
-                          <thead class="text-secondary">
-                            <tr>
-                              <th scope="col">Mañana</th>
-                              <th scope="col">Tarde</th>
-                              <th scope="col">Noche</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>7:30 - 9:00</td>
-                              <td>14:00 - 15:30</td>
-                              <td>18:30 - 20:00</td>
-                            </tr>
-                            <tr>
-                              <td>9:00 - 10:30</td>
-                              <td>15:30 - 17:00</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>10:30 - 12:00</td>
-                              <td>17:00 - 18:30</td>
-                              <td></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div> 
-                    <hr>
-  
-                </div>
-              </div>
-              
-              <!-- Gallery Widget -->
-              
-              
-            </aside>
-          </div>
-
-        </div>
-      </div>
-
-		</div>
-	</section>
-	<!-- End Process Section -->
-
-	<!-- Costos Section -->
-	<section class="process-section">
-		
-		<div class="auto-container">
-			<!-- Sec Title -->
-			<div class="sec-title centered">
-				<div class="title style-two">Costos / Modalidades</div>
-        		<h2>Aprende a tu ritmo <span>elige la modalidad</span><br> perfecto para ti </h2>
-			</div>
-
-			<div class="row my-4"></div>
-		
-			<div class="sec-title centered">
-			<div class="title style-two">Hora libre</div>
-			</div>
-
-			<div class="container">
-			<div class="row">
-				
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Básico</h5>
-						<h5 class="card-price">Bs.40<span class="period"> / 1h</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Una hora</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Usted elige el dia</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Taller de robótica</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Estándar</h5>
-						<h5 class="card-price">Bs.60<span class="period"> / 1,5h</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Usted elige el dia</li>  
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Taller de robótica</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Premiun</h5>
-						<h5 class="card-price">Bs.80<span class="period"> / 2h</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Dos horas</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Taller de robótica</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Ajedrez gigante</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-				
-			</div>
-			</div>
-
-			<div class="row my-4"></div>
-
-			<div class="sec-title centered">
-			<div class="title style-two">Modalidad Semanal</div>
-			</div>
-
-			<div class="container">
-			<div class="row">
-				
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Básico</h5>
-						<h5 class="card-price">Bs.150<span class="period"> / semana</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Taller de robótica</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Estándar</h5>
-						<h5 class="card-price">Bs.165<span class="period"> / semana</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span> Una Hora por dia</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Lunes a Viernes</li>  
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Taller de robótica</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Premiun</h5>
-						<h5 class="card-price">Bs.216<span class="period"> / semana</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Taller de robótica</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Ajedrez gigante</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-				
-			</div>
-			</div>
-			
-			<div class="row my-4"></div>
-
-			<div class="sec-title centered">
-			<div class="title style-two">Modalidad Quincenal</div>
-			</div>
-
-			<div class="container">
-			<div class="row">
-				
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Básico</h5>
-						<h5 class="card-price">Bs.250<span class="period"> / quincena</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Taller de robótica</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Estándar</h5>
-						<h5 class="card-price">Bs.265<span class="period"> / quincena</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span> Una Hora por dia</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Lunes a Viernes</li>  
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Taller de robótica</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Premiun</h5>
-						<h5 class="card-price">Bs.350<span class="period"> / quincena</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Taller de robótica</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Ajedrez gigante</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-				
-			</div>
-			</div>
-
-			<div class="row my-4"></div>
-
-			<div class="sec-title centered">
-			<div class="title style-two">Modalidad Mensual</div>
-			</div>
-
-			<div class="container">
-			<div class="row">
-				
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Básico</h5>
-						<h5 class="card-price">Bs.350<span class="period"> / mensual</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Taller de robótica</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Estándar</h5>
-						<h5 class="card-price">Bs.420<span class="period"> / mensual</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span> Una Hora por dia</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Lunes a Viernes</li>  
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Taller de robótica</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Premiun</h5>
-						<h5 class="card-price">Bs.550<span class="period"> / mensual</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Taller de robótica</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Ajedrez gigante</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-				
-			</div>
-			</div>
-
-		</div>
-	</section>
-	<!-- End Process Section -->
-
-	<!-- Planes Corporativos Section -->
+	<!-- Process Section -->
 	<section class="process-section">
 		
 		<div class="auto-container">
@@ -1040,7 +352,7 @@
 			<!-- Descuentos Niveles -->
 			<div class="sec-title centered">
 				<div class="title style-two">Planes Corporativos</div>
-        		<h2>Descuentos del <span>20%</span> en nuestros planes corporativos </h2>
+        		<h2><span> Planes Corporativos</span> en los niveles de Primaria, Secundaria, Pre-U y Universitario </h2>
 			</div>
 
 			<div class="container">
@@ -1147,6 +459,185 @@
 				</div>
 			</div>
 
+			<!-- Descuentos Computacion -->
+			<div class="row my-4"></div>
+			<div class="sec-title centered">
+        		<h2><span> Planes Corporativos</span> en Computación </h2>
+			</div>
+
+			<div class="container">
+				<div class="row">
+
+					<!-- Sidebar Side -->
+					<div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
+						<aside class="sidebar sticky-top">
+								
+							<!-- Sidebar Widget / Category Widget -->
+							<div class="sidebar-widget category-widget">
+								<div class="widget-content">
+									<!-- Sidebar Title -->
+									<div class="sidebar-title">
+										<h3>Modalidad Hora Libre</h3>
+									</div>
+									<ul class="cat-list">
+										<li><a href="#">1er estudiante<span>Bs.40</span></a></li>
+										<li class="active"><a href="#">2do estudiante<span>Bs.32</span></a></li>
+										<li><a href="#">3er estudiante<span>Bs.25</span></a></li>
+										<li><a href="#">4to estudiante<span>Bs. 20</span></a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- End Sidebar Widget / Category Widget -->
+							
+						</aside>
+					</div>
+
+					<!-- Sidebar Side -->
+					<div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
+						<aside class="sidebar sticky-top">
+								
+							<!-- Sidebar Widget / Category Widget -->
+							<div class="sidebar-widget category-widget">
+								<div class="widget-content">
+									<!-- Sidebar Title -->
+									<div class="sidebar-title">
+										<h3>Modalidad Mensual</h3>
+									</div>
+									<ul class="cat-list">
+										<li><a href="#">1er estudiante<span>Bs.175</span></a></li>
+										<li class="active"><a href="#">2do estudiante<span>Bs.140</span></a></li>
+										<li><a href="#">3er estudiante<span>Bs.112</span></a></li>
+										<li><a href="#">4to estudiante<span>Bs.89</span></a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- End Sidebar Widget / Category Widget -->
+							
+						</aside>
+					</div>
+								
+				</div>
+			</div>
+
+			<!-- Descuentos Programacion -->
+			<div class="row my-4"></div>
+			<div class="sec-title centered">
+        		<h2><span> Planes Corporativos</span> en Programación </h2>
+			</div>
+
+			<div class="container">
+				<div class="row">
+
+					<!-- Sidebar Side -->
+					<div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
+						<aside class="sidebar sticky-top">
+								
+							<!-- Sidebar Widget / Category Widget -->
+							<div class="sidebar-widget category-widget">
+								<div class="widget-content">
+									<!-- Sidebar Title -->
+									<div class="sidebar-title">
+										<h3>Modalidad Hora Libre</h3>
+									</div>
+									<ul class="cat-list">
+										<li><a href="#">1er estudiante<span>Bs.50</span></a></li>
+										<li class="active"><a href="#">2do estudiante<span>Bs.40</span></a></li>
+										<li><a href="#">3er estudiante<span>Bs.32</span></a></li>
+										<li><a href="#">4to estudiante<span>Bs. 25</span></a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- End Sidebar Widget / Category Widget -->
+							
+						</aside>
+					</div>
+
+					<!-- Sidebar Side -->
+					<div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
+						<aside class="sidebar sticky-top">
+								
+							<!-- Sidebar Widget / Category Widget -->
+							<div class="sidebar-widget category-widget">
+								<div class="widget-content">
+									<!-- Sidebar Title -->
+									<div class="sidebar-title">
+										<h3>Modalidad Mensual</h3>
+									</div>
+									<ul class="cat-list">
+										<li><a href="#">1er estudiante<span>Bs.350</span></a></li>
+										<li class="active"><a href="#">2do estudiante<span>Bs.280</span></a></li>
+										<li><a href="#">3er estudiante<span>Bs.224</span></a></li>
+										<li><a href="#">4to estudiante<span>Bs.179</span></a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- End Sidebar Widget / Category Widget -->
+							
+						</aside>
+					</div>
+								
+				</div>
+			</div>
+
+			<!-- Descuentos Ajedrez -->
+			<div class="row my-4"></div>
+			<div class="sec-title centered">
+        		<h2><span> Planes Corporativos</span> en Ajedrez </h2>
+			</div>
+
+			<div class="container">
+				<div class="row">
+
+					<!-- Sidebar Side -->
+					<div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
+						<aside class="sidebar sticky-top">
+								
+							<!-- Sidebar Widget / Category Widget -->
+							<div class="sidebar-widget category-widget">
+								<div class="widget-content">
+									<!-- Sidebar Title -->
+									<div class="sidebar-title">
+										<h3>Modalidad Mensual Básico</h3>
+									</div>
+									<ul class="cat-list">
+										<li><a href="#">1er estudiante<span>Bs.150</span></a></li>
+										<li class="active"><a href="#">2do estudiante<span>Bs.120</span></a></li>
+										<li><a href="#">3er estudiante<span>Bs.96</span></a></li>
+										<li><a href="#">4to estudiante<span>Bs.76</span></a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- End Sidebar Widget / Category Widget -->
+							
+						</aside>
+					</div>
+
+					<!-- Sidebar Side -->
+					<div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
+						<aside class="sidebar sticky-top">
+								
+							<!-- Sidebar Widget / Category Widget -->
+							<div class="sidebar-widget category-widget">
+								<div class="widget-content">
+									<!-- Sidebar Title -->
+									<div class="sidebar-title">
+										<h3>Modalidad Mensual Estándar</h3>
+									</div>
+									<ul class="cat-list">
+										<li><a href="#">1er estudiante<span>Bs.200</span></a></li>
+										<li class="active"><a href="#">2do estudiante<span>Bs.160</span></a></li>
+										<li><a href="#">3er estudiante<span>Bs.128</span></a></li>
+										<li><a href="#">4to estudiante<span>Bs.102</span></a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- End Sidebar Widget / Category Widget -->
+							
+						</aside>
+					</div>
+								
+				</div>
+			</div>
 			
 		</div>
 	</section>
@@ -1162,7 +653,7 @@
 					<div class="inner-box mt-30">
 						<div class="content">
 							<span class="icon flaticon-email-3"></span>
-							<h4>Correo Electronico</h4>
+							<h4>Correo electrónico </h4>
 							<a href="#">info@ite.com</a>
 						</div>
 					</div>
@@ -1202,9 +693,8 @@
 
 	<!-- Testimonials Section -->
     <section class="testimonials-section">
-		
-		<div class="pattern-layer" style="background-image: url(assetshome/images/background/pattern-6.png)"></div>
-		<div class="auto-container">
+      <div class="pattern-layer" style="background-image: url(assetshome/images/background/pattern-6.png)"></div>
+      <div class="auto-container">
         	<div class="row clearfix">
 				
 				<!-- Thumbs Column -->
