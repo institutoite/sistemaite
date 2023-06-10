@@ -447,7 +447,7 @@
 								<div class="service-block col-lg-12 col-md-6 col-sm-12">
 									<div class="inner-box">
 										<div class="icon-box">
-											<span class="icon flaticon-analytics"></span>
+											<span class="icon flaticon-pencil-and-ruler"></span>
 										</div>
 										<h3><a href="{{ route('matematica') }}">Matemáticas</a></h3>
 										

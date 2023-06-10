@@ -445,7 +445,7 @@
 								<div class="service-block col-lg-12 col-md-6 col-sm-12">
 									<div class="inner-box">
 										<div class="icon-box">
-											<span class="icon flaticon-analytics"></span>
+											<span class="icon flaticon-pencil-and-ruler"></span>
 										</div>
 										<h3><a href="{{ route('matematica') }}">Matemáticas</a></h3>
 									</div>
@@ -465,7 +465,7 @@
 								<div class="service-block col-lg-12 col-md-6 col-sm-12">
 									<div class="inner-box">
 										<div class="icon-box">
-											<span class="icon flaticon-analytics"></span>
+											<span class="icon flaticon-atom"></span>
 										</div>
 										<h3><a href="{{ route('quimica') }}">Química</a></h3>
 									</div>
@@ -495,7 +495,7 @@
 								<div class="service-block col-lg-12 col-md-6 col-sm-12">
 									<div class="inner-box">
 										<div class="icon-box">
-											<span class="icon flaticon-human-brain"></span>
+											<span class="icon flaticon-world"></span>
 										</div>
 										<h3><a href="{{ route('ingles') }}">Inglés</a></h3>
 									</div>
@@ -601,7 +601,7 @@
                       <div class="icon-box">
                         <span class="icon flaticon-pdf"></span>
                       </div>
-                      <h3><a href="https://drive.google.com/file/d/1GZChPLyWVRIfKMdKz0vlFeR7qGvM9XsV/view?usp=sharing">Visualizar Contenido Analítico</a></h3>
+                      <h3><a href="https://drive.google.com/file/d/1AB3l8j2YFZHs00YAfSuUd3MoGxj0l0AG/view?usp=drive_link">Visualizar Contenido Analítico</a></h3>
                      
                     </div>
                   </div>
