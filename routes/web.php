@@ -987,6 +987,8 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
 
     Route::get('/ajedrez', [HomeController::class, 'ajedrez'])->name('ajedrez');
 
+    Route::get('/cuborubik', [HomeController::class, 'cuborubik'])->name('cuborubik');
+
 
     Route::get('/fotocopia', [HomeController::class, 'fotocopia'])->name('fotocopia');
 

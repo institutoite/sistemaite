@@ -136,8 +136,8 @@
 			<div class="rev_slider fullwidthabanner" id="rev_slider_one" data-version="5.4.1">
 				<ul>
 					
-					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1688" data-slotamount="default" data-thumb="{{ asset('assetshome/images/main-slider/home2.jpg')}}" data-title="Slide Title">
-					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{ asset('assetshome/images/main-slider/home2.jpg')}}"> 
+					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1688" data-slotamount="default" data-thumb="{{ asset('assetshome/images/main-slider/cuborubikportada.jpg')}}" data-title="Slide Title">
+					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{ asset('assetshome/images/main-slider/cuborubikportada.jpg')}}"> 
 						
 						<div class="color-layer"></div>
 						<div class="vector-layer-one" style="background-image: url(assetshome/images/main-slider/vector-6.png)"></div>
@@ -208,8 +208,8 @@
 						
 					</li>
 					
-					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1689" data-slotamount="default" data-thumb="{{ asset('assetshome/images/main-slider/home2.jpg')}}" data-title="Slide Title">
-					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{ asset('assetshome/images/main-slider/home2.jpg')}}">
+					<li data-transition="fadefromleft" data-description="Slide Description"  data-index="rs-1689" data-slotamount="default" data-thumb="{{ asset('assetshome/images/main-slider/cuborubikportada.jpg')}}" data-title="Slide Title">
+					<img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{{ asset('assetshome/images/main-slider/cuborubikportada.jpg')}}">
 					
 						<div class="color-layer"></div>
 						<div class="vector-layer-one" style="background-image: url(assetshome/images/main-slider/vector-6.png)"></div>
@@ -293,627 +293,413 @@
 		
 	</section>
 	<!-- End Main Slider -->
-	
-	<!-- Clients Section -->
-	
-	<!-- End Clients Section -->
-		
-	<!-- Business Section -->
-	<section class="business-section" style="background-image: url(assetshome/images/background/pattern-4.png)">
+
+  	<!-- Featured Section -->
+	<section class="featured-section" style="background-image: url(assets/images/background/pattern-10.png)">
 		<div class="auto-container">
-			<!-- Sec Title / Centered -->
-			<div class="sec-title centered">
-				<div class="title">¡Aprende de manera efectiva!</div>
-				<h2>¡Todo lo que <span>necesitas</span> <br> para alcanzar tus metas académicas!</h2>
-			</div>
 			<div class="row clearfix">
-			
-				<!-- Left Column -->
-				<div class="left-column col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-column">
-					
-						<!-- Business Block -->
-						<div class="business-block">
-							<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-								<div class="content">
-									<div class="icon-box">
-										<span class="icon flaticon-pen"></span>
-									</div>
-									<h4><a href="{{ route('guarderia') }}">Guarderia</a></h4>
-									<div class="text">¡Juguemos y aprendamos juntos!</div>
-									<a href="{{ route('guarderia') }}"><button class="boton">Informarme</button></a>
-								</div>
-							</div>
-						</div>
-						
-						<!-- Business Block -->
-						<div class="business-block">
-							<div class="inner-box wow fadeInLeft" data-wow-delay="150ms" data-wow-duration="1500ms">
-								<div class="content">
-									<div class="icon-box">
-										<span class="icon flaticon-notebook"></span>
-									</div>
-									<h4><a href="{{ route('primaria') }}">Primaria</a></h4>
-									<div class="text">¡Aprende y diviértete al mismo tiempo!</div>
-									<a href="{{ route('primaria') }}"><button class="boton">Informarme</button></a>
-								</div>
-							</div>
-						</div>
-						
-						<!-- Business Block -->
-						<div class="business-block">
-							<div class="inner-box wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
-								<div class="content">
-									<div class="icon-box">
-										<span class="icon flaticon-search-engine"></span>
-									</div>
-									<h4><a href="{{ route('preuniversitario') }}">PreUniversitario</a></h4>
-									<div class="text">¡Desafía tus límites y alcance tus metas universitarias!</div>
-									<a href="{{ route('preuniversitario') }}"><button class="boton">Informarme</button></a>
-								</div>
-							</div>
-						</div>
-						
+				
+				<!-- Feature Block -->
+				<div class="feature-block col-lg-3 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<span class="number">01</span>
+						<span class="icon flaticon-learning-support"></span>
+						<h4><a href="#">Clases Personalizadas</a></h4>
+						<div class="text">Ofrecemos clases personalizadas adaptadas a las necesidades de cada estudiante. </div>
 					</div>
 				</div>
 				
-				<!-- Image Column -->
-				<div class="image-column col-lg-4 col-md-12 col-sm-12">
-					<div class="inner-column">
-						<div class="circle-layer"></div>
-						<div class="circle-layer-two"></div>
-						<div class="pattern-layer" style="background-image: url(assetshome/images/background/pattern-5.png)"></div>
-						<div class="image" data-tilt data-tilt-max="4">
-							<img src="assetshome/images/resource/business-1.jpg" alt="" />
-						</div>
+				<!-- Feature Block -->
+				<div class="feature-block col-lg-3 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInLeft" data-wow-delay="150ms" data-wow-duration="1500ms">
+						<span class="number">02</span>
+						<span class="icon flaticon-reload"></span>
+						<h4><a href="#">Horarios Flexibles</a></h4>
+						<div class="text">Ofrecemos horarios flexibles para adaptarnos a los horarios de los estudiantes. </div>
 					</div>
 				</div>
 				
-				<!-- Right Column -->
-				<div class="right-column col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-column">
-						
-						<!-- Business Block -->
-						<div class="business-block">
-							<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
-								<div class="content">
-									<div class="icon-box">
-										<span class="icon flaticon-pencil-and-ruler"></span>
-									</div>
-									<h4><a href="{{ route('inicial') }}">Inicial</a></h4>
-									<div class="text">¡Aprende y diviértete al mismo tiempo!</div>
-									<a href="{{ route('inicial') }}"><button class="boton">Informarme</button></a>
-								</div>
-							</div>
-						</div>
-						
-						<!-- Business Block -->
-						<div class="business-block">
-							<div class="inner-box wow fadeInRight" data-wow-delay="150ms" data-wow-duration="1500ms">
-								<div class="content">
-									<div class="icon-box">
-										<span class="icon flaticon-human-brain"></span>
-									</div>
-									<h4><a href="{{ route('secundaria') }}">Secundaria</a></h4>
-									<div class="text">¡Atrévete a ser el mejor de tu clases! te lo garantizamos</div>
-									<a href="{{ route('secundaria') }}"><button class="boton">Informarme</button></a>
-								</div>
-							</div>
-						</div>
-						
-						<!-- Business Block -->
-						<div class="business-block">
-							<div class="inner-box wow fadeInRight" data-wow-delay="300ms" data-wow-duration="1500ms">
-								<div class="content">
-									<div class="icon-box">
-										<span class="icon flaticon-seo"></span>
-									</div>
-									<h4><a href="{{ route('universitario') }}">Universitario</a></h4>
-									<div class="text">¡Aprende y avanza en tu carrera con nuestras clases!</div>
-									<a href="{{ route('universitario') }}"><button class="boton">Informarme</button></a>
-								</div>
-							</div>
-						</div>
-						
+				<!-- Feature Block -->
+				<div class="feature-block col-lg-3 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
+						<span class="number">03</span>
+						<span class="icon flaticon-notebook"></span>
+						<h4><a href="#">Solución de problemas</a></h4>
+						<div class="text">Resolvemos cualquier problema y ofrecemos soluciones a los estudiantes para asegurar su éxito. </div>
+					</div>
+				</div>
+				
+				<!-- Feature Block -->
+				<div class="feature-block col-lg-3 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInLeft" data-wow-delay="450ms" data-wow-duration="1500ms">
+						<span class="number">04</span>
+						<span class="icon flaticon-bar-chart"></span>
+						<h4><a href="#">Experiencia</a></h4>
+						<div class="text">Nuestro instructores estan altamente capacitados para ayudar a los estudiantes a alcanzar su máximo potencial. </div>
 					</div>
 				</div>
 				
 			</div>
 		</div>
 	</section>
-	<!-- End Business Section -->
-	
-	<!-- Services Section -->
-	<section class="services-section">
-		<div class="pattern-layer-one" style="background-image: url(assetshome/images/background/pattern-2.png)"></div>
-		<div class="pattern-layer-six" style="background-image: url(assetshome/images/background/pattern-3.png)"></div>
+	<!-- End Featured Section -->
+
+  <!-- About Section Two -->
+	<section class="about-section-two">
+		<div class="pattern-layer" style="background-image: url(assets/images/background/pattern-11.png)"></div>
+		<div class="pattern-layer-two" style="background-image: url(assets/images/icons/vector-18.png)"></div>
 		<div class="auto-container">
-			<div class="inner-container">
-				<div class="row clearfix">
-					
-					<!-- Content Column -->
-					<div class="content-column col-lg-6 col-md-12 col-sm-12">
+			<div class="row clearfix">
+			
+			<!-- Content Column -->
+			<div class="content-column col-lg-8 col-md-12 col-sm-12">
+					<div class="inner-column">
+						<!-- Sec Title -->
+						<div class="sec-title">
+							<div class="title style-two">Cubo Rubik </div>
+							<h2><span>¡Resuelve el Cubo de Rubik </span> como un verdadero experto!  </h2>
+							<div class="text">Únete a nuestro curso y aprende los secretos
+							para resolverlo en tiempo récord.  
+							Nuestro curso te enseñará paso a paso cómo resolverlo y 
+							sorprender a todos con tu habilidad.
+							Desafía tus habilidades mentales y diviértete
+							resolviendo el Cubo de Rubik. Únete a nuestro
+							curso y  descubre el enfoque paso a paso para
+							resolverlo con éxito.</div>
+						</div>
+						<!-- Employe Box -->
+						<div class="employe-box">
+							<div class="box-inner">
+								<span class="globe-icon flaticon-full-screen"></span>
+								<ul class="list">
+									<li>Nivel Básico</li>
+									<li>Nivel Intermedio</li>
+									<li>Nivel Avanzado</li>
+									<li>Nivel Experto</li>
+								</ul>
+								<div class="employe">
+									<div class="count-outer count-box">
+										<span class="count-text" data-speed="4000" data-stop="14">0</span><sup>+</sup>
+									</div>
+									<div class="text">años de experiencia</div>
+								</div>
+							</div>
+						</div>
+						<!-- End Employe Box -->
+						
+            <!-- Fact Counter Two -->
+            <div class="fact-counter-two">
+              <div class="row clearfix">
+
+                <!-- Column -->
+                <div class="counter-column col-lg-4 col-md-6 col-sm-12">
+                  <div class="inner wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+                    <div class="content">
+                      <span class="icon flaticon-notebook"></span>
+                      <!-- <div class="count-outer count-box">
+                        <span class="count-text" data-speed="4000" data-stop="320">0</span>m
+                      </div> -->
+                      <h5>Aprendizaje efectivo</h5>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Column -->
+                <div class="counter-column col-lg-4 col-md-6 col-sm-12">
+                  <div class="inner wow fadeInLeft" data-wow-delay="150ms" data-wow-duration="1500ms">
+                    <div class="content">
+                      <span class="icon flaticon-human-brain"></span>
+                      <!-- <div class="count-outer count-box">
+                        <span class="count-text" data-speed="5500" data-stop="980">0</span>+
+                      </div> -->
+                      <h5>Comprensión Completa</h5>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Column -->
+                <div class="counter-column col-lg-4 col-md-6 col-sm-12">
+                  <div class="inner wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
+                    <div class="content">
+                      <span class="icon flaticon-user-1"></span>
+                      <!-- <div class="count-outer count-box">
+                        <span class="count-text" data-speed="3500" data-stop="1278">0</span>
+                      </div> -->
+                      <h5>Profesores capacitados</h5>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+					</div>
+				</div>
+
+        <!-- Images Column -->
+				<div class="content-column col-lg-4 col-md-12 col-sm-12">
 						<div class="inner-column">
 							<!-- Sec Title -->
 							<div class="sec-title">
-								<div class="title">Nuevos Cursos</div>
-								<h2>Elija entre nuestros <span>nuevos</span> cursos que te ofrecemos</h2>
+								
 							</div>
 							<div class="row clearfix">
 							
 								<!-- Service Block -->
-								<div class="service-block col-lg-6 col-md-6 col-sm-12">
+								<div class="service-block col-lg-12 col-md-6 col-sm-12">
 									<div class="inner-box">
 										<div class="icon-box">
 											<span class="icon flaticon-rocket"></span>
 										</div>
 										<h3><a href="{{ route('robotica') }}">Robótica</a></h3>
-										<div class="text">Da vida a tus ideas con nuestro curso de robótica.</div>
 									</div>
 								</div>
 								
 								<!-- Service Block -->
-								<div class="service-block col-lg-6 col-md-6 col-sm-12">
+								<div class="service-block col-lg-12 col-md-6 col-sm-12">
 									<div class="inner-box">
 										<div class="icon-box">
-											<span class="icon flaticon-squares"></span>
-										</div>
-										<h3><a href="{{ route('cuborubik') }}">Cubo Rubik</a></h3>
-										<div class="text">Aprende los secretos para resolverlo en tiempo récord. </div>
-									</div>
-								</div>
-								
-								<!-- Service Block -->
-								<div class="service-block col-lg-6 col-md-6 col-sm-12">
-									<div class="inner-box">
-										<div class="icon-box">
-											<span class="icon flaticon-trophy-1"></span>
+											<span class="icon flaticon-trophy-1""></span>
 										</div>
 										<h3><a href="{{ route('ajedrez') }}">Ajedrez</a></h3>
-										<div class="text">¡Aprende a moverte con inteligencia en el tablero!.</div>
 									</div>
 								</div>
-								
+
 								<!-- Service Block -->
-								<div class="service-block col-lg-6 col-md-6 col-sm-12">
+								<div class="service-block col-lg-12 col-md-6 col-sm-12">
+									<div class="inner-box">
+										<div class="icon-box">
+											<span class="icon flaticon-world""></span>
+										</div>
+										<h3><a href="{{ route('ingles') }}">Inglés</a></h3>
+									</div>
+								</div>
+
+								<!-- Service Block -->
+								<div class="service-block col-lg-12 col-md-6 col-sm-12">
 									<div class="inner-box">
 										<div class="icon-box">
 											<span class="icon flaticon-web-search-engine"></span>
 										</div>
-										<h3><a href="{{ route('disenoweb') }}">Programación y Algoritmos</a></h3>
-										<div class="text">Codifica tu camino hacia el futuro.</div>
+										<h3><a href="{{ route('creacionapp') }}">Creación de App</a></h3>
 									</div>
 								</div>
 								
-							</div>
-						</div>
-					</div>
-					
-					<!-- Images Column -->
-					<div class="images-column col-lg-6 col-md-12 col-sm-12">
-						<div class="inner-column clearfix">
-							<div class="color-box-one"></div>
-							<div class="color-box-two"></div>
-							<div class="pattern-layer-two" style="background-image: url(assetshome/images/icons/vector-3.png)"></div>
-							<div class="pattern-layer-three" style="background-image: url(assetshome/images/icons/vector-4.png)"></div>
-							<div class="pattern-layer-four" style="background-image: url(assetshome/images/icons/vector-5.png)"></div>
-							<div class="pattern-layer-five" style="background-image: url(assetshome/images/icons/vector-6.png)"></div>
-							<!-- Video Box -->
-							<div class="video-box">
-								<figure class="video-image">
-									<img class="transition-500ms" src="assetshome/images/resource/service-1.jpg" alt="">
-								</figure>
-								<a href="https://www.youtube.com/embed/lFpc19KsYzs?autoplay=1" class="lightbox-image overlay-box"><span class="fas fa-play"><span class="dott"></span><i class="ripple"></i></span></a>
-							</div>
-							<div class="image wow fadeInRight" data-wow-delay="150ms" data-wow-duration="1500ms">
-								<img src="assetshome/images/resource/service-2.jpg" alt="" />
-							</div>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Services Section -->
-	
-	<!-- Principle Section -->
-	<section class="principle-section">
-		<div class="pattern-layer-one" style="background-image: url(assetshome/images/background/pattern-2.png)"></div>
-		<div class="auto-container">
-			<div class="inner-container">
-				<div class="row clearfix">
-					
-					<!-- Content Column -->
-					<div class="content-column col-lg-8 col-md-12 col-sm-12">
-						<div class="inner-column">
-							<!-- Sec Title -->
-							<div class="sec-title">
-								<div class="title">¿Porque elegirnos?</div>
-								<h2>Nuestra <span>Misión</span> Y <br> Visión.</h2>
-							</div>
-							<div class="row clearfix">
-							
-								<!-- Tab Column -->
-								<div class="tab-column col-lg-7 col-md-6 col-sm-12">
-									<div class="inner-column">
-										
-										<!-- Principle Info Tabs -->
-										<div class="principle-info-tabs">
-											<!-- Principle Tabs -->
-											<div class="principle-tabs tabs-box">
-											
-												<!--Tab Btns-->
-												<ul class="tab-btns tab-buttons clearfix">
-													<li data-tab="#prod-integrity" class="tab-btn active-btn">Misión</li>
-													<li data-tab="#prod-obejectives" class="tab-btn">Visión</li>
-													<li data-tab="#prod-excellence" class="tab-btn">¿Quienes Somos?</li>
-												</ul>
-												
-												<!-- Tabs Container -->
-												<div class="tabs-content">
-												
-													<!-- Tab / Active Tab -->
-													<div class="tab active-tab" id="prod-integrity">
-														<div class="content">
-															Nuestra misión es:
-																<ul class="list">
-																	<li>Proporcionar una educación de calidad y enfocada en el desarrollo integral de los estudiantes.</li>
-																	<li>Fomentar el aprendizaje autónomo y la creatividad en los estudiantes.</li>
-																	<li>Promover valores como la responsabilidad, la tolerancia, la solidaridad y el respeto.</li>
-																	<li>Preparar a los estudiantes para enfrentar desafíos y oportunidades en el mundo actual y futuro.</li>
-																	<li>Proporcionar un ambiente seguro, acogedor y inclusivo para todos los estudiantes.</li>
-																</ul>
-														</div>
-													</div>
-													
-													<!-- Tab -->
-													<div class="tab" id="prod-obejectives">
-														<div class="content">
-
-															Nuestra visión es:
-															<ul class="list">
-																<li>Ser reconocido como una institución de excelencia en educación y formación de jóvenes.</li>
-																<li>Desarrollar un enfoque pedagógico innovador y adaptado a las necesidades de los estudiantes y la sociedad.</li>
-																<li>Proporcionar una educación que prepare a los estudiantes para enfrentar los desafíos y oportunidades del mundo actual y futuro.</li>
-																<li>Ser un modelo de excelencia en la educación integral y personalizada.</li>
-																<li>Fomentar una cultura de aprendizaje continuo y desarrollo personal.</li>
-															</ul>
-															
-														</div>
-													</div>
-													
-													<!-- Tab -->
-													<div class="tab" id="prod-excellence">
-														<div class="content">
-													
-															ITE es un centro educativo que brinda clases de nivelación en diferentes materias y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.
-															
-														</div>
-													</div>
-													
-												</div>
-											</div>
+								<!-- Service Block -->
+								<div class="service-block col-lg-12 col-md-6 col-sm-12">
+									<div class="inner-box">
+										<div class="icon-box">
+											<span class="icon flaticon-seo"></span>
 										</div>
-										
+										<h3><a href="{{ route('disenoweb') }}">Diseño Web</a></h3>
 									</div>
 								</div>
 								
-								<!-- List Column -->
-								<div class="list-column col-lg-5 col-md-6 col-sm-12">
-									<div class="inner-column">
-										<ul class="number-list">
-											<li>
-												<span class="number">01</span>
-												<strong>¿En que materia deseas optimizarte?</strong>
-												Aprende lo que realmente, necesitas, avanza a tu ritmo de comprensión.
-											</li>
-											<li>
-												<span class="number">02</span>
-												<strong>Logra tus objetivos</strong>
-												No sólo clases: Apoyo académico, motivaciones, orientaciones, sobre todo mucha práctica.
-											</li>
-											<li>
-												<span class="number">03</span>
-												<strong>Descubre tu potencial</strong>
-												Te transformamos a una versión mejorada de ti mismo, para que seas mas productivo.
-											</li>
-										</ul>
-									</div>
-								</div>
+								
 								
 							</div>
 						</div>
-					</div>
-					
-					<!-- Info Column -->
-					<div class="info-column col-lg-4 col-md-12 col-sm-12">
-						<div class="inner-column">
-							<ul class="info-list">
-								<li>
-									<strong>Nuestra dirección</strong>
-									Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.
-								</li>
-								<li>
-									<strong>Contacto</strong>
-									<a href="mailto:info@ite.com.bo"><span class="icon fas fa-comment"></span>info@ite.com.bo</a><br>
-									<a href="tel:+406-555-0120"><span class="icon fas fa-phone"></span>(+591) 71039910</a><br>
-									<a href="tel:+591-71324941"><span class="icon fas fa-phone"></span>(+591) 71324941</a><br>
-									<a href="tel:+59175553338"><span class="icon fas fa-phone"></span>(+591) 75553338</a><br>
-									<a href="tel:+59133919050"><span class="icon fas fa-phone"></span>(3)-219050</a><br>
-								</li>
-							</ul>
-							<div class="opening">
-								<span class="icon far fa-clock"></span>
-								<strong>Nuestros horarios</strong>
-								Lu a Vi: 07:00 a 18:30 <br> Sábados: 07:30 a 17:00
-							</div>
-							
-							<!-- Social Box -->
-							<ul class="social-box">
-								<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook"></a></li>
-								<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
-								<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
-								<li><a href="https://www.youtube.com/channel/UCbmRHfG51CGM1foo-6kzunQ" class="fa fa-youtube"></a></li>
-							</ul>
-							
-						</div>
-					</div>
-					
 				</div>
+				
 			</div>
 		</div>
 	</section>
-	<!-- End Principle Section -->
+	<!-- End About Section Two -->
 	
-	<!-- Project Page Section -->
-	<section class="project-page-section">
+	<!-- Process Section -->
+	<section class="process-section">
+		
 		<div class="auto-container">
 			<!-- Sec Title -->
 			<div class="sec-title centered">
-				<div class="title style-two">Nuestros Cursos</div>
-				<h2>Tenemos la solución de <span>aprendizaje </span> ideal para usted</h2>
+				<div class="title style-two">Horarios y Precios</div>
+        <h2><span>Horarios flexibles</span> para <br> adaptarnos a tu ritmo de vida </h2>
 			</div>
-			<div class="row clearfix">
+
+      <div class="auto-container">
+        <div class="row clearfix">
+        
+          <!-- Title Column -->
+          <div class="content-column col-lg-7 col-md-12 col-sm-12">
+            <div class="inner-column">
+              <!-- Sec Title -->
+              
+              <div class="row mt-none-30">
+                
+			  	<div class="col-lg-6">
+					<div class="experiance_item mt-30">
+						<div class="service-block col-lg-12 col-md-12 col-sm-12">
+							<div class="inner-box">
+							<div class="icon-box">
+								<span class="icon flaticon-pdf"></span>
+							</div>
+							<h3><a href="https://drive.google.com/file/d/1D5Gm6WsqrKvycDCyWU86gIEvXYyVMkGe/view?usp=sharing">Guía Cubo Rubik 3x3</a></h3>
+							
+							</div>
+						</div>
+					</div>
+					
+					<div class="service-block col-lg-12 col-md-12 col-sm-12">
+						<div class="inner-box">
+						<div class="icon-box">
+							<span class="icon flaticon-pdf"></span>
+						</div>
+						<h3><a href="https://drive.google.com/file/d/1t1wWB53bLo2X60EbZlDR-JR12syeviRa/view?usp=sharing">Guía Cubo Rubik 4x4</a></h3>
+						
+						</div>
+					</div>
+					
+					<div class="service-block col-lg-12 col-md-12 col-sm-12">
+						<div class="inner-box">
+						<div class="icon-box">
+							<span class="icon flaticon-pdf"></span>
+						</div>
+						<h3><a href="https://drive.google.com/file/d/1nGTt6YSadr8LK8vNXjO-Ua4tV7jwYlbj/view?usp=drive_link">Guía Cubo Rubik 5x5</a></h3>
+						
+						</div>
+					</div>
+
+					<div class="service-block col-lg-12 col-md-12 col-sm-12">
+						<div class="inner-box">
+						<div class="icon-box">
+							<span class="icon flaticon-pdf"></span>
+						</div>
+						<h3><a href="https://drive.google.com/file/d/1x5Qv0gIdmYeLDforkT6ktCZ8cyaMdEWU/view?usp=drive_link">Guía Cubo Rubik Skewb</a></h3>
+						
+						</div>
+					</div>
+
+					<div class="service-block col-lg-12 col-md-12 col-sm-12">
+						<div class="inner-box">
+						<div class="icon-box">
+							<span class="icon flaticon-pdf"></span>
+						</div>
+						<h3><a href="https://drive.google.com/file/d/12ZYtkOHt_S8KIBWMvVpVT5CcPytMP9Fm/view?usp=drive_link">Guía Cubo Rubik Pyraminx</a></h3>
+						
+						</div>
+					</div>
+
+					<div class="service-block col-lg-12 col-md-12 col-sm-12">
+						<div class="inner-box">
+						<div class="icon-box">
+							<span class="icon flaticon-pdf"></span>
+						</div>
+						<h3><a href="https://drive.google.com/file/d/15AWKUyV1o9cWWlxn_98rmIiElosPz_vk/view?usp=drive_link">Guía Cubo Rubik Megaminx</a></h3>
+						
+						</div>
+					</div>
+					
+                </div>
+
+                <div class="col-lg-6">  
+                  <div class="experiance_item mt-30">
+                    <div class="icon">
+                      <img src="{{asset('assetshome/images/icons/a_01.png')}}" alt="">
+                    </div>
+                    <div class="content">
+                      <h4>Opción 1</h4>
+                      <p>Lunes, Miercoles y Viernes</p>
+                    </div>
+                  </div>
+                  <div class="experiance_item mt-30">
+                    <div class="icon">
+                      <img src="{{asset('assetshome/images/icons/a_01.png')}}" alt="">
+                    </div>
+                    <div class="content">
+                      <h4>Opción 2</h4>
+                      <p>Martes, Jueves y Sábado</p>
+                    </div>
+                  </div> 
+                  <div class="experiance_item mt-30">
+                    <div class="icon">
+                      <img src="{{asset('assetshome/images/icons/a_01.png')}}" alt="">
+                    </div>
+                    <div class="content">
+                      <h4>Opción 3</h4>
+                      <p>Solo Sábados</p>
+                    </div>
+                  </div>
+                  <div class="counter_wrap mt-30">
+                    <h1><span class="number">Bs.150<span class="plus">+</span></span> <span class="text">asignatura</span></h1>
+                  </div>
+                </div>
+              </div>
+            </div>  
+                
+          </div>
+          
+          <!-- Blocks Column -->
+          <div class="sidebar-side col-lg-5 col-md-12 col-sm-12">
+            <aside class="sidebar sticky-top">
+  
+              <!-- Timing Widget -->
+              <div class="sidebar-widget timing-widget">
+                <div class="widget-content">
+  
+                    {{--%%%%%%%%%%%%%%%%%%%% Lunes - Viernes %%%%%%%%%%%%%%%%%%  --}}
+                    <div class="card">
+                      <div class="card-header bg-primary text-white text-center">
+                        <h3 class="text-white"> Lunes a Viernes</h3>
+                      </div>
+                      <div class="card-body">
+                        <table class="table table-bordered table-striped table-hover">
+                          <thead class="text-secondary">
+                            <tr>
+                              <th scope="col">Mañana</th>
+                              <th scope="col">Tarde</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>7:30 - 9:00</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>9:00 - 10:30</td>
+                              <td>15:30 - 17:00</td>
+                            </tr>
+                            <tr>
+                              <td>10:30 - 12:00</td>
+                              <td></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div> 
+                    <hr>
+
+                    {{--%%%%%%%%%%%%%%%%%%%% Sabados %%%%%%%%%%%%%%%%%%  --}}
+                    <div class="card">
+                      <div class="card-header bg-secondary text-white text-center">
+                        <h3 class="text-white"> Solo Sabados</h3>
+                      </div>
+                      <div class="card-body">
+                        <table class="table table-bordered table-striped table-hover">
+                          <thead class="text-secondary">
+                            <tr class="text-center">
+                              <th scope="col">9:00 - 12:00</th>
+                            </tr>
+                          </thead>
+                        </table>
+                      </div>
+                    </div> 
+                    <hr>
+  
+                </div>
+              </div>
+              
+              <!-- Gallery Widget -->
+              
+              
+            </aside>
+          </div>
+
+        </div>
+      </div>
+
+		</div>
+	</section>
+	<!-- End Process Section -->
 			
-				<!-- Project Block Two -->
-				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box">
-						<div class="image">
-							<a href="{{ route('inicial') }}"><img src="{{asset('assetshome/images/gallery/inicial.jpg')}}" alt="" /></a>
-						</div>
-						<div class="lower-content">
-							
-							<h3><a href="{{ route('inicial') }}">Inicial</a></h3>
-							<a href="{{ route('inicial') }}" class="view">Informarme</a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- Project Block Two -->
-				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box">
-						<div class="image">
-							<a href="{{ route('primaria') }}"><img src="{{asset('assetshome/images/gallery/primaria.jpg')}}" alt="" /></a>
-						</div>
-						<div class="lower-content">
-							
-							<h3><a href="{{ route('primaria') }}">Primaria</a></h3>
-							<a href="{{ route('primaria') }}" class="view">Informarme</a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- Project Block Two -->
-				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box">
-						<div class="image">
-							<a href="{{ route('secundaria') }}"><img src="{{asset('assetshome/images/gallery/secundaria.jpg')}}" alt="" /></a>
-						</div>
-						<div class="lower-content">
-							<h3><a href="{{ route('secundaria') }}">Secundaria</a></h3>
-							<a href="{{ route('secundaria') }}" class="view">Informarme</a>
-						</div>
-					</div>
-				</div>
-
-				<!-- Project Block Two -->
-				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box">
-						<div class="image">
-							<a href="{{ route('preuniversitario') }}"><img src="{{asset('assetshome/images/gallery/preuniversitario.jpg')}}" alt="" /></a>
-						</div>
-						<div class="lower-content">
-							
-							<h3><a href="{{ route('preuniversitario') }}">Pre-Universitario</a></h3>
-							<a href="{{ route('preuniversitario') }}" class="view">Informarme</a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- Project Block Two -->
-				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box">
-						<div class="image">
-							<a href="{{ route('universitario') }}"><img src="{{asset('assetshome/images/gallery/universitario.jpg')}}" alt="" /></a>
-						</div>
-						<div class="lower-content">
-							
-							<h3><a href="{{ route('universitario') }}">Universitario</a></h3>
-							<a href="{{ route('universitario') }}" class="view">Informarme</a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- Project Block Two -->
-				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box">
-						<div class="image">
-							<a href="{{ route('computacion') }}"><img src="{{asset('assetshome/images/gallery/computacion.jpg')}}" alt="" /></a>
-						</div>
-						<div class="lower-content">
-							<h3><a href="{{ route('computacion') }}">Computación</a></h3>
-							<a href="{{ route('computacion') }}" class="view">Informarme</a>
-						</div>
-					</div>
-				</div>
-
-				<!-- Project Block Two -->
-				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box">
-						<div class="image">
-							<a href="{{ route('robotica') }}"><img src="{{asset('assetshome/images/gallery/robotica.jpg')}}" alt="" /></a>
-						</div>
-						<div class="lower-content">
-							
-							<h3><a href="{{ route('robotica') }}">Robótica</a></h3>
-							<a href="{{ route('robotica') }}" class="view">Informarme</a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- Project Block Two -->
-				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box">
-						<div class="image">
-							<a href="{{ route('programacion') }}"><img src="{{asset('assetshome/images/gallery/programacion.jpg')}}" alt="" /></a>
-						</div>
-						<div class="lower-content">
-							
-							<h3><a href="{{ route('programacion') }}">Programación y Algoritmos</a></h3>
-							<a href="{{ route('programacion') }}" class="view">Informarme</a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- Project Block Two -->
-				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box">
-						<div class="image">
-							<a href="{{ route('disenoweb') }}"><img src="{{asset('assetshome/images/gallery/disenoweb.jpg')}}" alt="" /></a>
-						</div>
-						<div class="lower-content">
-							<h3><a href="{{ route('disenoweb') }}">Diseño Web</a></h3>
-							<a href="{{ route('disenoweb') }}" class="view">Informarme</a>
-						</div>
-					</div>
-				</div>
-
-				<!-- Project Block Two -->
-				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box">
-						<div class="image">
-							<a href="{{ route('creacionapp') }}"><img src="{{asset('assetshome/images/gallery/creacionapp.jpg')}}" alt="" /></a>
-						</div>
-						<div class="lower-content">
-							
-							<h3><a href="{{ route('creacionapp') }}">Creación de App</a></h3>
-							<a href="{{ route('creacionapp') }}" class="view">Informarme</a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- Project Block Two -->
-				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box">
-						<div class="image">
-							<a href="{{ route('mantenimientocomputadoras') }}"><img src="{{asset('assetshome/images/gallery/mantenimientocomputadoras.jpg')}}" alt="" /></a>
-						</div>
-						<div class="lower-content">
-							
-							<h3><a href="{{ route('mantenimientocomputadoras') }}">Mantemiento de Computadoras</a></h3>
-							<a href="{{ route('mantenimientocomputadoras') }}" class="view">Informarme</a>
-						</div>
-					</div>
-				</div>
-				
-				<!-- Project Block Two -->
-				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box">
-						<div class="image">
-							<a href="{{ route('ajedrez') }}"><img src="{{asset('assetshome/images/gallery/ajedrez.jpg')}}" alt="" /></a>
-						</div>
-						<div class="lower-content">
-							<h3><a href="{{ route('ajedrez') }}">Ajedrez</a></h3>
-							<a href="{{ route('ajedrez') }}" class="view">Informarme</a>
-						</div>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	</section>
-	<!-- Project Page Section -->
-
-	<!-- Services Section Three -->
-	<section class="services-section-three">
-		<div class="auto-container">
-			<!-- Sec Title -->
-			<div class="sec-title centered">
-				<div class="title style-two">Sevicios</div>
-				<h2>Nuestros <span>Servicios</span></h2>
-			</div>
-			<div class="three-item-carousel owl-carousel owl-theme">
-				
-				<!-- Service Block Two -->
-				<div class="service-block-two">
-					<div class="inner-box">
-						<div class="icon flaticon-menu"></div>
-						<h3><a href="{{ route('fotocopia') }}">Fotocopia e Impresión</a></h3>
-						<div class="text">Ya no vayas a la universidad, copias e impresiones desde 9 centavos</div>
-						<a href="{{ route('fotocopia') }}" class="arrow flaticon-right-arrow"></a>
-					</div>
-				</div>
-				
-				<!-- Service Block Two -->
-				<div class="service-block-two">
-					<div class="inner-box">
-						<div class="icon flaticon-notebook"></div>
-						<h3><a href="{{ route('resolucionpracticos') }}">Resolución de prácticos</a></h3>
-						<div class="text">Si no tienes tiempo, te resolvemos tus tareas y prácticos</div>
-						<a href="{{ route('resolucionpracticos') }}" class="arrow flaticon-right-arrow"></a>
-					</div>
-				</div>
-				
-				<!-- Service Block Two -->
-				<div class="service-block-two">
-					<div class="inner-box">
-						<div class="icon flaticon-search-engine"></div>
-						<h3><a href="{{ route('asistenteite') }}">Asistente Ite</a></h3>
-						<div class="text">¡Descubre el poder de la inteligencia artificial con nuestro Asistente ITE!</div>
-						<a href="{{ route('asistenteite') }}" class="arrow flaticon-right-arrow"></a>
-					</div>
-				</div>
-				
-				<!-- Service Block Two -->
-				{{-- <div class="service-block-two">
-					<div class="inner-box">
-						<div class="icon flaticon-learning-support"></div>
-						<h3><a href="service-detail.html">Libros Personalizados</a></h3>
-						<div class="text">Realizamos libros personalizados</div>
-						<a href="service-detail.html" class="arrow flaticon-right-arrow"></a>
-					</div>
-				</div> --}}
-				
-				<!-- Service Block Two -->
-				{{-- <div class="service-block-two">
-					<div class="inner-box">
-						<div class="icon flaticon-social-reach"></div>
-						<h3><a href="service-detail.html">Creacion de dibujo</a></h3>
-						<div class="text">Realizamos dibujos.</div>
-						<a href="service-detail.html" class="arrow flaticon-right-arrow"></a>
-					</div>
-				</div> --}}
-				
-			</div>
-		</div>
-	</section>
-	<!-- End Services Section Three -->
-
-	<!-- Team Section Two -->
-	@include('home.fronted.docente')
-	<!-- End Team Section Two -->
-
 	<!-- About Section -->
 	<section class="about-section style-two">
 		<div class="pattern-layer" style="background-image: url(assets/images/background/pattern-1.png)"></div>
@@ -1002,72 +788,7 @@
 		</div>
 	</section>
 	<!-- End About Section -->
-	
-	<!-- Form Section -->
-	{{-- <section class="form-section">
-		<div class="auto-container">
-			<div class="row clearfix">
-				<!-- Form Column -->
-				<div class="form-column col-lg-7 col-md-12 col-sm-12">
-					<div class="inner-column">
-						<!-- Sec Title -->
-						<div class="sec-title">
-							<div class="title">Escribenos</div>
-							<h2>Rellena nuestro <span>formulario</span> para contactarnos</h2>
-						</div>
-						
-						<!-- Default Form -->
-						<div class="default-form">
-							<form method="post" action="contact.html">
-								<div class="row clearfix">
-								
-									<!-- Form Group -->
-									<div class="form-group col-lg-6 col-md-6 col-sm-12">
-										<input type="text" name="firstname" value="" placeholder="Ingrese su nombre*" required>
-									</div>
-									
-									<!-- Form Group -->
-									<div class="form-group col-lg-6 col-md-6 col-sm-12">
-										<input type="text" name="phone" value="" placeholder="Ingrese su numero*" required>
-									</div>
-									
-									<!-- Form Group -->
-									<div class="form-group col-lg-12 col-md-12 col-sm-12">
-										<textarea name="message" placeholder="Ingrese su mensaje*"></textarea>
-									</div>
-									
-									<div class="form-group col-lg-12 col-md-12 col-sm-12">
-										<button type="submit" class="theme-btn btn-style-three"><span class="txt">Enviar <i class="flaticon-next-2"></i></span></button>
-									</div>
-									
-								</div>
-							</form>
-						</div>
-						<!-- End Default Form -->
-						
-					</div>
-				</div>
-				<!-- Image Column -->
-				<div class="image-column col-lg-5 col-md-12 col-sm-12">
-					<div class="inner-column">
-						<div class="color-layer"></div>
-						<div class="icon far fa-question-circle"></div>
-						<div class="image">
-							<img src="assetshome/images/resource/form-image.jpg" alt="" />
-						</div>
-						<div class="author-box-one">
-							<img src="assetshome/images/resource/author-2.jpg" alt="" />
-						</div>
-						<div class="author-box-two">
-							<img src="assetshome/images/resource/author-3.png" alt="" />
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section> --}}
-	<!-- End Form Section -->
-		
+
 	<!-- Contact Page Section -->
     <section class="contact-page-section">
     	<div class="auto-container">

@@ -36,6 +36,7 @@
                     <li><a href="{{ route('creacionapp') }}">Creación de App Móviles</a></li>
                     <li><a href="{{ route('disenoweb') }}">Diseño Web</a></li>
                     <li><a href="{{ route('ajedrez') }}">Ajedrez</a></li>
+                    <li><a href="{{ route('cuborubik') }}">Cubo Rubik</a></li>
                     
                   </ul>
                 </li>

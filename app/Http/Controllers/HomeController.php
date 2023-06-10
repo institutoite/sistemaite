@@ -308,6 +308,11 @@ class HomeController extends Controller
         return view('home.fronted.ajedrez');
     } 
 
+    public function cuborubik()
+    {
+        return view('home.fronted.cuborubik');
+    } 
+
     public function plan($id)
     {
         $convenio = Convenio::find($id);
