@@ -619,7 +619,7 @@
                     </div>
                   </div>
                   <div class="counter_wrap mt-30">
-                    <h1><span class="number">Bs.150<span class="plus">+</span></span> <span class="text">asignatura</span></h1>
+                    <h1><span class="number">Bs.200<span class="plus">+</span></span> <span class="text">asignatura</span></h1>
                   </div>
                 </div>
               </div>

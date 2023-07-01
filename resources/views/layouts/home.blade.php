@@ -76,7 +76,7 @@
                 <div class="inner-container clearfix">
 					<!-- Top Left -->
 					<div class="top-left clearfix">
-						<div class="text">Apoyo escolar 2023. <a href="contact.html">Contactanos</a></div>
+						<div class="text">Clases Vacacionales. <a href="contact.html">Contactanos</a></div>
 					</div>
 					
 					<!-- Top Right -->
@@ -292,11 +292,119 @@
 		</div> --}}
 		
 	</section>
-	<!-- End Main Slider -->
+	<!-- Vacacion Section -->
+	<section class="process-section">
+		<div class="pattern-layer-one" style="background-image: url(assets/images/background/pattern-14.png)"></div>
+		<div class="pattern-layer-two" style="background-image: url(assets/images/background/pattern-15.png)"></div>
+		<div class="auto-container">
+			<!-- Sec Title -->
+			<div class="sec-title centered">
+				<div class="title style-two">Clases Vacacionales</div>
+				<h2>Aprende y diviértete en <br> nuestras <span>clases de vacacionales</span> </h2>
+			</div>
+			<div class="row clearfix">
+			
+				<!-- Process Block -->
+				<div class="process-block col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<div class="icon-box">
+							<span class="icon"><img src="assetshome/images/icons/feature-1.png" alt="" /></span>
+						</div>
+						<h3><a href="service-detail.html">Aprende en vacaciones</a></h3>
+						<div class="text">Descubre nuestras clases especiales durante las vacaciones, donde podrás adquirir conocimientos y desarrollar habilidades de manera divertida y efectiva.</div>
+					</div>
+				</div>
+				
+				<!-- Process Block -->
+				<div class="process-block col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<div class="icon-box">
+							<span class="icon"><img src="assetshome/images/icons/feature-2.png" alt="" /></span>
+						</div>
+						<h3><a href="service-detail.html">Diversión educativa</a></h3>
+						<div class="text">Disfruta de tus vacaciones mientras aprendes en nuestras clases del instituto, donde combinamos la diversión con el aprendizaje para una experiencia enriquecedora.</div>
+					</div>
+				</div>
+				
+				<!-- Process Block -->
+				<div class="process-block col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
+						<div class="icon-box">
+							<span class="icon"><img src="assetshome/images/icons/feature-3.png" alt="" /></span>
+						</div>
+						<h3><a href="service-detail.html">Vacaciones de crecimiento</a></h3>
+						<div class="text">Únete a nuestras clases de verano en el instituto y experimenta un crecimiento personal y académico significativo durante tus vacaciones.</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+	<!-- End Vacacion Section -->
 	
-	<!-- Clients Section -->
-	
-	<!-- End Clients Section -->
+	<!-- Vacacion Section -->
+	<section class="project-section">
+		<div class="left-curve-box"></div>
+		<div class="right-curve-box"></div>
+		<div class="auto-container">
+			<div class="inner-container">
+			
+				<div class="gallery-carousel-two owl-carousel owl-theme">
+			
+					<!-- Project Block -->
+					<div class="project-block">
+						<div class="inner-box">
+							<div class="image">
+								<img src="assetshome/images/gallery/vacacional1.jpg" alt="" />
+								<div class="overlay-box">
+									<div class="content">
+										<h3><a href="projects-detail.html">Cubos de Rubik</a></h3>
+										<div class="text">Clases Vacacionales</div>
+										<div class="icon icofont-horse-head-2"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Project Block -->
+					<div class="project-block">
+						<div class="inner-box">
+							<div class="image">
+								<img src="assetshome/images/gallery/vacacional2.jpg" alt="" />
+								<div class="overlay-box">
+									<div class="content">
+										<h3><a href="projects-detail.html">Ajedrez</a></h3>
+										<div class="text">Clases Vacacionales</div>
+										<div class="icon icofont-horse-head-2"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Project Block -->
+					<!-- <div class="project-block">
+						<div class="inner-box">
+							<div class="image">
+								<img src="assetshome/images/gallery/1.jpg" alt="" />
+								<div class="overlay-box">
+									<div class="content">
+										<h3><a href="projects-detail.html"></a></h3>
+										<div class="text">High Standard of proffesional</div>
+										<div class="icon icofont-horse-head-2"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> -->
+					
+				</div>
+				
+			</div>
+		</div>
+	</section>
+	<!-- End Vacacion Section -->
 		
 	<!-- Business Section -->
 	<section class="business-section" style="background-image: url(assetshome/images/background/pattern-4.png)">
