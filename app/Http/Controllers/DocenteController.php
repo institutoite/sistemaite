@@ -12,6 +12,11 @@ use App\Models\Interest;
 use App\Models\Observacion;
 use App\Models\User;
 use App\Models\Mododocente;
+use App\Models\Estudiante;
+use App\Models\Programacion;
+use App\Models\Inscripcione;
+use App\Models\Carrera;
+use App\Models\Computacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -385,26 +390,25 @@ class DocenteController extends Controller
         $docenteshabilitados=Docente::where('docentes.estado_id',estado($estado))->select('id','nombrecorto')->get();
         return $docenteshabilitados;
     }
-    public function misEstudiatescomActuales(){
-      
-    }
-
-    public function misEstudiatesProgramados(){
-
-    }
-    public function misEstudiatescomProgramados(){
-
-    }
-
-    public function misEsperados() //
+   
+    public function misestudiantes() 
     {
+        $programacion = Programacion::where('docente_id',Auth::user()->persona->docente->id)->get();
 
+        return view('persona.misestudiantes',compact("programacion"));
+ 
     }
-    
-    public function misEsperadoscom() //
+
+    public function estudiantesinscritos() 
     {
+        
+        $carrera = Carrera::with('computacion')->get();
+        
+        return view('persona.estudiantesinscritos',compact("carrera"));
 
     }
+
+
 
 
 }

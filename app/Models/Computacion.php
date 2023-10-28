@@ -18,9 +18,9 @@ class Computacion extends Model
     // {
     //     return $this->morphOne('App\Models\Userable', 'userable');
     // }
-    public function carreras()
+    public function carrera()
     {
-        return $this->belongsToMany('App\Models\Carrera');
+        return $this->belongsToMany(Carrera::class)->withPivot('computacion_id', 'carrera_id ');;
     }
     public function asignaturas()
     {
@@ -35,4 +35,5 @@ class Computacion extends Model
     {
         return $this->morphToMany('App\Models\User', 'userable');
     }
+
 }

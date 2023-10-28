@@ -778,6 +778,28 @@ return [
                 ],
             ],
         ],
+        [
+            'text'    => 'Estudiantes',
+            'icon'    => 'fas fa-user',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'can' => ['Listar Roles','Listar mis estudiantes'],
+            'submenu' => [
+                [
+                    'text' => 'Mis estudiantes',
+                    'icon'    => 'fas fa-angle-right',
+                    'route' => 'misestudiantes',
+                    'classes'  => 'text-secondary',
+                ],
+                [
+                    'text' => 'Estudiantes por Carrera',
+                    'icon'    => 'fas fa-angle-right',
+                    'route' => 'estudiantesinscritos',
+                    'classes'  => 'text-secondary',
+                ],
+            ],
+        ],
+        
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN GRUPO USUARIOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INICIO GRUPO REPORTES CONSULTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/

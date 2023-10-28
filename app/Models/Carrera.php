@@ -14,9 +14,9 @@ class Carrera extends Model
         'carrera'
     ];
 
-    public function compuptaciones()
+    public function computacion()
     {
-        return $this->belongsToMany('App\Models\Computacion');
+        return $this->belongsToMany(Computacion::class)->withPivot('computacion_id', 'carrera_id ');
     }
 
     public function asignaturas()

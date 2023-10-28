@@ -1028,4 +1028,8 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
 
     Route::get('/plan/{id}', [HomeController::class, 'plan'])->name('plan');
 
+
+    Route::get('/misestudiantes', [DocenteController::class, 'misestudiantes'])->name('misestudiantes');
+    Route::get('/estudiantesinscritos', [DocenteController::class, 'estudiantesinscritos'])->name('estudiantesinscritos');
+
   
