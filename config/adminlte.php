@@ -783,7 +783,7 @@ return [
             'icon'    => 'fas fa-user',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
-            'can' => ['Listar Roles','Listar mis estudiantes'],
+            'can' => ['Listar mis estudiantes'],
             'submenu' => [
                 [
                     'text' => 'Mis estudiantes',
