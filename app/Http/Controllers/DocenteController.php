@@ -393,7 +393,7 @@ class DocenteController extends Controller
    
     public function misestudiantes() 
     {
-        $programacion = Programacion::where('docente_id',Auth::user()->persona->docente->id)->get();
+        $programacion = Programacion::where('docente_id',Auth::user()->persona->docente->id)->where('fecha',Carbon::now()->format('Y-m-d'))->get();
 
         return view('persona.misestudiantes',compact("programacion"));
  
