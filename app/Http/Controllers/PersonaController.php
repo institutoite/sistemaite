@@ -70,7 +70,10 @@ class PersonaController extends Controller
         $zonas=Zona::get();
         $interests=Interest::all();
         $comos=Como::all();
-        return view('persona.crear',compact('ciudades','paises','zonas','interests','comos'));
+
+        $gcontactController = app()->make(GContactController::class);
+        $token=$gcontactController->getToken();
+        return view('persona.crear',compact('ciudades','paises','zonas','interests','comos','token'));
     }
    
 
@@ -82,6 +85,8 @@ class PersonaController extends Controller
      */
     public function store(PersonaStoreRequest $request)
     {
+        $gcontacController = app()->make(GContactController::class);
+        
         $persona=new Persona();
         $persona->nombre = $request->nombre;
         $persona->apellidop = $request->apellidop;
@@ -111,6 +116,13 @@ class PersonaController extends Controller
         $persona->pais_id = $request->pais_id;
         $persona->ciudad_id = $request->ciudad_id;
         $persona->zona_id = $request->zona_id;
+        $persona->save();
+
+        /**%%%%%%%%%%%%%%%%%%%%% google contact %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $data=$gcontacController->createContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->email,$persona->telefono);
+        
+        $persona->resourseName=$data[0];
+        $persona->etag=$data[1];
         $persona->save();
 
         if(isset($request->comentario_id)){
@@ -621,7 +633,12 @@ class PersonaController extends Controller
                 break;
         }
         $estados=Estado::get();
-        return view("persona.editar",compact('persona','estados','paises','comos','ciudades','zonas','observacion','interests_currents','interests_faltantes'));
+
+        $gcontactController = app()->make(GContactController::class);
+        $tokenGoogle=$gcontactController->getToken();
+        $tiempoExpiracion = $gcontactController->getTokenExpiration();
+        
+        return view("persona.editar",compact('tiempoExpiracion','tokenGoogle','persona','estados','paises','comos','ciudades','zonas','observacion','interests_currents','interests_faltantes'));
     } 
 
     /**
@@ -633,6 +650,8 @@ class PersonaController extends Controller
      */
     public function update(PersonaUpdateRequest $request, Persona $persona)
     {
+        $gcontacController = app()->make(GContactController::class);
+
         $observacion=$persona->observaciones;
         $persona->nombre = $request->nombre;
         $persona->apellidop = $request->apellidop;
@@ -682,6 +701,12 @@ class PersonaController extends Controller
             $observacion->observable_type = Persona::class;
             $observacion->save();
         }
+
+          //dd($persona->resourseName);
+          /**%%%%%%%%%%%%%%%%%%%%% google contact %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+          $etag=$gcontacController->updateContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->telefono,$persona->resourseName,$persona->etag);
+          $persona->etag=$etag;
+          $persona->save();
         return redirect()->Route('personas.show', ['persona' => $persona]);
     }
 

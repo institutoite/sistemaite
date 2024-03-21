@@ -21,8 +21,19 @@
                         <form action="{{route('personas.store')}}" id="formulario" method="post" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
                             @csrf
                             @include('persona.form')
-
                             @include('include.botones')
+
+                            @if (Str::length($token)>0)
+                                @php
+                                    $gcontactController = app()->make(GContactController::class);
+                                    $gcontactController->handleCallback("personas.create");
+                                @endphp
+                            @else
+                                <a class="btn" href="{{ url('auth/google') }}">Google Contact</a>
+                            @endif
+
+                            {{-- <a href="{{ url('auth/google') }}">Google Contact</a> --}}
+
                         </form>
                     </div>
                 </div>
@@ -30,7 +41,15 @@
         </div>
     </div>
 @stop
-
+{{-- 
+                            @if ($gcontactController)
+                                {{  route("personas.create")}}
+                                <p>{{ $tiempoExpiracion." Minutos para que expire el token" }}</p>
+                            @else
+                                <a class="btn" href="{{ url('auth/google') }}">Google Contact</a>
+                            @endif
+                                <a class="btn" href="{{ url('logout/gcontact') }}">Google Contact</a> --}}
+                            
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/plugins/piexif.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/plugins/sortable.min.js" type="text/javascript"></script>

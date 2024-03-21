@@ -22,6 +22,7 @@
         "jeroendesloovere/vcard": "^1.7",
         "jeroennoten/laravel-adminlte": "^3.5",
         "laravel/framework": "^8.0",
+        "laravel/socialite": "^5.12",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.0",
         "laravelcollective/html": "^6.3",

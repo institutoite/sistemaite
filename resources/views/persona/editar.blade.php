@@ -15,11 +15,17 @@
                 EDITAR PERSONA
             </div>
             <div class="card-body">
-                <form action="{{route('personas.update',$persona)}}" id="formulario" method="POST" enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
+                <form action="{{route('personas.update',$persona)}}" id="formulario" method="POST"  enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
                         {{ @method_field('PUT') }}
                         @csrf
                         @include('persona.form')
                         @include('include.botones')
+                        @if (Str::length($tokenGoogle)>0)
+                            <p>{{ $tiempoExpiracion." Minutos para que expire el token" }}</p>
+                            <a class="btn" href="{{ url('logout/google') }}">Salir Google Contact</a>
+                        @else
+                            <a class="btn" href="{{ url('auth/google') }}">Google Contact</a>
+                        @endif
                 </form>
             </div>
         </div>

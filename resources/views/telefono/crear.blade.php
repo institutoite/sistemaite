@@ -21,6 +21,11 @@
                     {{ __('Inscribir ') }}<i class="fas fa-arrow-circle-right fa-2x"></i>
                     </a>
                 @endisset
+                {{-- @if (Str::length($tokenGoogle)>0)
+                    <p>{{ $tiempoExpiracion." Minutos para que expire el token" }}</p>
+                @else --}}
+                    <a class="btn" href="{{ url('auth/google') }}">Google Contact</a>
+                {{-- @endif --}}
             </div>
             <div class="float-right mr-3">
            

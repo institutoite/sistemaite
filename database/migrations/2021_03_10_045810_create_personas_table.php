@@ -35,6 +35,9 @@ class CreatePersonasTable extends Migration
             $table->unsignedBigInteger('ciudad_id')->nullable();
             $table->unsignedBigInteger('zona_id')->nullable();
             $table->unsignedBigInteger('como_id')->nullable();
+
+            $table->string("resourceName")->nullable();
+            $table->string("etag")->nullable();
             
             $table->foreign('persona_id', 'fk_persona_persona1_idx')
             ->references('id')->on('personas');

@@ -69,6 +69,7 @@ use App\Http\Controllers\CupoController;
 use App\Http\Controllers\CrmController;
 use App\Http\Controllers\VcardController;
 use App\Http\Controllers\ProspectoController;
+use App\Http\Controllers\GContactController;
 //use App\Http\Controllers\RolUsersController;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
@@ -1032,4 +1033,9 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('/misestudiantes', [DocenteController::class, 'misestudiantes'])->name('misestudiantes');
     Route::get('/estudiantesinscritos', [DocenteController::class, 'estudiantesinscritos'])->name('estudiantesinscritos');
 
-  
+    /** google contact */
+    route::get('logout/google',[GContactController::class,'logout'])->name("google.logout");
+    
+    route::get('auth/google',[GContactController::class,'SignIn'])->name("google.contact");
+    route::get('auth/google/callback',[GContactController::class,'handleCallback']);
+
