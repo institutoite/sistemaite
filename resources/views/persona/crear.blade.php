@@ -22,18 +22,10 @@
                             @csrf
                             @include('persona.form')
                             @include('include.botones')
-
-                            @if (Str::length($token)>0)
-                                @php
-                                    $gcontactController = app()->make(GContactController::class);
-                                    $gcontactController->handleCallback("personas.create");
-                                @endphp
-                            @else
-                                <a class="btn" href="{{ url('auth/google') }}">Google Contact</a>
-                            @endif
-
-                            {{-- <a href="{{ url('auth/google') }}">Google Contact</a> --}}
-
+                            <div id="tokenExpiration"></div>
+                            <a href="{{ route('signIn') }}" id="signIn" class="btn btn-google">
+                                <i class="fab fa-google"></i>Contact
+                            </a>
                         </form>
                     </div>
                 </div>
@@ -41,16 +33,9 @@
         </div>
     </div>
 @stop
-{{-- 
-                            @if ($gcontactController)
-                                {{  route("personas.create")}}
-                                <p>{{ $tiempoExpiracion." Minutos para que expire el token" }}</p>
-                            @else
-                                <a class="btn" href="{{ url('auth/google') }}">Google Contact</a>
-                            @endif
-                                <a class="btn" href="{{ url('logout/gcontact') }}">Google Contact</a> --}}
-                            
+            
 @section('js')
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/plugins/piexif.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/plugins/sortable.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -176,6 +161,30 @@
                 $("#persona_id").val('');  
             }
     }
+    </script>
+        <script>
+        $(document).ready(function() {
+            function actualizarTokenExpiration() {
+                $.ajax({
+                    url: "{{ route('token-expiration') }}",
+                    type: "GET",
+                    success: function(response) {
+                        if (response ==0 || response <=10)  {
+                            $('#signIn').show();
+                            $('#tokenExpiration').hide();
+                        } else {
+                            $('#tokenExpiration').text('Tiempo Token: ' + response);
+                            $('#signIn').hide();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            }
+
+            setInterval(actualizarTokenExpiration, 1000);
+        });
     </script>
 @stop
 

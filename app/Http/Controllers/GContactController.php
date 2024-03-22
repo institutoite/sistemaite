@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use Laravel\Socialite\Facades\Socialite;
-//use App\Models\User;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
@@ -11,20 +10,22 @@ use Illuminate\Http\Request;
 
 class GContactController extends Controller
 {
-    public function signIn()
+    public function signIn(Request $request)
     {
-        return Socialite::driver('google')->scopes(['https://www.googleapis.com/auth/contacts'])->redirect();
+        Session::put('previous_url', url()->previous());
+        return Socialite::driver('google')
+                        ->scopes(['https://www.googleapis.com/auth/contacts'])
+                        ->redirect();
     }
 
-    public function handleCallback()
+    public function handleCallback(Request $request)
     {
-                $user = Socialite::driver('google')->user();
-                $expirationTime = Carbon::now()->addSeconds($user->expiresIn);
-                session(['GContactToken' => $user->token, 'GContactTokenExpiration' => $expirationTime]);
-                
-                
-                //return redirect()->route($unaRuta);
-                
+        $returnUrl = Session::get('previous_url', '/');
+        Session::forget('previous_url');
+        $user = Socialite::driver('google')->user();
+        $expirationTime = Carbon::now()->addSeconds($user->expiresIn);
+        session(['GContactToken' => $user->token, 'GContactTokenExpiration' => $expirationTime]);
+        return redirect($returnUrl);
     }
 
     public function getToken()
@@ -37,12 +38,16 @@ class GContactController extends Controller
     {
         $expiration = session('GContactTokenExpiration');
         if (!$expiration) {
-            return 0;
+            return '0:00';
         }
-        $minutesRemaining = Carbon::now()->diffInMinutes($expiration);
-        return $minutesRemaining;
+    
+        $now = Carbon::now();
+        $diff = $now->diffInSeconds($expiration);
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+        return sprintf('%02d:%02d', $minutes, $seconds);
     }
-
+    
     public function createContact($nombre,$apellidop,$apellidom,$email,$telefono)
     {
     
@@ -130,11 +135,4 @@ class GContactController extends Controller
         return response()->json(['message' => 'Error al procesar la solicitud.'], 500);
     }
 }
-
-    
-
-    public function logout()
-    {
-        Session::forget('GContactToken');
-    }
 }

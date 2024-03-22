@@ -21,11 +21,10 @@
                     {{ __('Inscribir ') }}<i class="fas fa-arrow-circle-right fa-2x"></i>
                     </a>
                 @endisset
-                {{-- @if (Str::length($tokenGoogle)>0)
-                    <p>{{ $tiempoExpiracion." Minutos para que expire el token" }}</p>
-                @else --}}
-                    <a class="btn" href="{{ url('auth/google') }}">Google Contact</a>
-                {{-- @endif --}}
+                <div id="tokenExpiration"></div>
+                            <a href="{{ route('signIn') }}" id="signIn" class="btn btn-google">
+                                <i class="fab fa-google"></i>Contact
+                            </a>
             </div>
             <div class="float-right mr-3">
            
@@ -254,6 +253,8 @@
 
 @stop
 
+
+
 @section('js')
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -345,5 +346,29 @@
                 });
             });
         } );
+    </script>
+        <script>
+        $(document).ready(function() {
+            function actualizarTokenExpiration() {
+                $.ajax({
+                    url: "{{ route('token-expiration') }}",
+                    type: "GET",
+                    success: function(response) {
+                        if (response ==0 || response <=10)  {
+                            $('#signIn').show();
+                            $('#tokenExpiration').hide();
+                        } else {
+                            $('#tokenExpiration').text('Tiempo Token: ' + response);
+                            $('#signIn').hide();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            }
+
+            setInterval(actualizarTokenExpiration, 1000);
+        });
     </script>
 @stop

@@ -1034,8 +1034,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('/estudiantesinscritos', [DocenteController::class, 'estudiantesinscritos'])->name('estudiantesinscritos');
 
     /** google contact */
-    route::get('logout/google',[GContactController::class,'logout'])->name("google.logout");
-    
-    route::get('auth/google',[GContactController::class,'SignIn'])->name("google.contact");
+    route::get('auth/google',[GContactController::class,'signIn'])->name("signIn");
     route::get('auth/google/callback',[GContactController::class,'handleCallback']);
 
+    Route::get('/token-expiration', [GContactController::class, 'getTokenExpiration'])->name('token-expiration');
