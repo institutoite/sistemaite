@@ -162,19 +162,21 @@
             }
     }
     </script>
-        <script>
+    <script>
         $(document).ready(function() {
+            var intervalId;
             function actualizarTokenExpiration() {
                 $.ajax({
                     url: "{{ route('token-expiration') }}",
                     type: "GET",
                     success: function(response) {
-                        if (response ==0 || response <=10)  {
+                        if (response === "00:00" || response === "10:00") {
                             $('#signIn').show();
                             $('#tokenExpiration').hide();
+                            clearInterval(intervalId);
                         } else {
-                            $('#tokenExpiration').text('Tiempo Token: ' + response);
-                            $('#signIn').hide();
+                                $('#tokenExpiration').text('Tiempo Token: ' + response);
+                                $('#signIn').hide();
                         }
                     },
                     error: function(xhr, status, error) {
@@ -182,9 +184,9 @@
                     }
                 });
             }
-
-            setInterval(actualizarTokenExpiration, 1000);
+            intervalId = setInterval(actualizarTokenExpiration, 1000);
         });
     </script>
+
 @stop
 
