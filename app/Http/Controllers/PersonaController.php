@@ -85,7 +85,6 @@ class PersonaController extends Controller
      */
     public function store(PersonaStoreRequest $request)
     {
-        $gcontacController = app()->make(GContactController::class);
         
         $persona=new Persona();
         $persona->nombre = $request->nombre;
@@ -118,12 +117,15 @@ class PersonaController extends Controller
         $persona->zona_id = $request->zona_id;
         $persona->save();
 
-        /**%%%%%%%%%%%%%%%%%%%%% google contact %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        /**%%%%%%%%%%%%%%%%%%%%% google contact inicio %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $gcontacController = app()->make(GContactController::class);
         $data=$gcontacController->createContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->email,$persona->telefono);
-        
         $persona->resourseName=$data[0];
         $persona->etag=$data[1];
         $persona->save();
+        /**%%%%%%%%%%%%%%%%%%%%% google contact fin %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        
+
 
         if(isset($request->comentario_id)){
             $comentario=Comentario::findOrFail($request->comentario_id);
@@ -263,7 +265,6 @@ class PersonaController extends Controller
     }
 
     public function storeContacto(PersonaApoderadaRequestStore $request,$id){
-        // dd($request->all());
         $persona=Persona::findOrFail($id);
         $apoderado = new Persona();
         $apoderado->nombre = $request->nombre;
@@ -279,6 +280,14 @@ class PersonaController extends Controller
         $apoderado->telefono=$request->telefono;
         $apoderado->papelinicial = 'apoderado';
         $apoderado->save();
+
+        /**%%%%%%%%%%%%%%%%%%%%% google contact inicio %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $gcontacController = app()->make(GContactController::class);
+        $data=$gcontacController->createContact($apoderado->nombre,$apoderado->apellidop,$apoderado->apellidom,$apoderado->email,$apoderado->telefono);
+        $apoderado->resourseName=$data[0];
+        $apoderado->etag=$data[1];
+        $apoderado->save();
+        /**%%%%%%%%%%%%%%%%%%%%% google contact fin %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
         $this->CrearContacto($apoderado->id);
 
@@ -330,6 +339,17 @@ class PersonaController extends Controller
         $persona->papelinicial = 'estudiante';
         $persona->save();
         
+
+
+        /**%%%%%%%%%%%%%%%%%%%%% google contact inicio %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $gcontacController = app()->make(GContactController::class);
+        $data=$gcontacController->createContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->email,$persona->telefono);
+        $persona->resourseName=$data[0];
+        $persona->etag=$data[1];
+        $persona->save();
+        /**%%%%%%%%%%%%%%%%%%%%% google contact fin %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+
         $this->CrearContacto($persona->id);
 
         $persona->interests()->sync(array_keys($request->interests));
@@ -357,6 +377,13 @@ class PersonaController extends Controller
         $persona->papelinicial = 'estudiante';
         $persona->save();
         
+         /**%%%%%%%%%%%%%%%%%%%%% google contact editar inicio %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+         $gcontacController = app()->make(GContactController::class);
+         $etag=$gcontacController->updateContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->telefono,$persona->resourseName,$persona->etag);
+         $persona->etag=$etag;
+         $persona->save();
+         /**%%%%%%%%%%%%%%%%%%%%% google contact editar Fin %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
         //dd($persona);
         $this->CrearContacto($persona->id);
 
@@ -460,6 +487,16 @@ class PersonaController extends Controller
         $persona->como_id=3;
         
         $persona->save();
+
+        /**%%%%%%%%%%%%%%%%%%%%% google contact inicio %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $gcontacController = app()->make(GContactController::class);
+        $data=$gcontacController->createContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->email,$persona->telefono);
+        $persona->resourseName=$data[0];
+        $persona->etag=$data[1];
+        $persona->save();
+        /**%%%%%%%%%%%%%%%%%%%%% google contact fin %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+        
         $persona->usuarios()->attach(Auth::user()->id);
         $this->CrearContacto($persona->id);
         $observacion = new Observacion();
@@ -478,6 +515,14 @@ class PersonaController extends Controller
         $persona->telefono=$request->telefono;
         $persona->como_id=$request->como_id;
         $persona->save();
+
+        /**%%%%%%%%%%%%%%%%%%%%% google contact editar inicio %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $gcontacController = app()->make(GContactController::class);
+        $etag=$gcontacController->updateContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->telefono,$persona->resourseName,$persona->etag);
+        $persona->etag=$etag;
+        $persona->save();
+        /**%%%%%%%%%%%%%%%%%%%%% google contact editar Fin %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        
         $this->CrearContacto($persona->id);
         $observacion =$persona->observaciones->first();
         $observacion->observacion = $request->observacion;
@@ -634,11 +679,9 @@ class PersonaController extends Controller
         }
         $estados=Estado::get();
 
-        $gcontactController = app()->make(GContactController::class);
-        $tokenGoogle=$gcontactController->getToken();
-        $tiempoExpiracion = $gcontactController->getTokenExpiration();
+     
         
-        return view("persona.editar",compact('tiempoExpiracion','tokenGoogle','persona','estados','paises','comos','ciudades','zonas','observacion','interests_currents','interests_faltantes'));
+        return view("persona.editar",compact('persona','estados','paises','comos','ciudades','zonas','observacion','interests_currents','interests_faltantes'));
     } 
 
     /**
@@ -650,8 +693,7 @@ class PersonaController extends Controller
      */
     public function update(PersonaUpdateRequest $request, Persona $persona)
     {
-        $gcontacController = app()->make(GContactController::class);
-
+        
         $observacion=$persona->observaciones;
         $persona->nombre = $request->nombre;
         $persona->apellidop = $request->apellidop;
@@ -687,7 +729,7 @@ class PersonaController extends Controller
         $persona->save();
         $persona->interests()->sync(array_keys($request->interests));
         $observacion_actual = Observacion::where('observable_id',$persona->id)
-                                ->where('observable_type',Persona::class)->get()->first();
+        ->where('observable_type',Persona::class)->get()->first();
         if($observacion_actual!=null)
         {
             $observacion_actual->observacion = $request->observacion;
@@ -701,12 +743,14 @@ class PersonaController extends Controller
             $observacion->observable_type = Persona::class;
             $observacion->save();
         }
-
-          //dd($persona->resourseName);
-          /**%%%%%%%%%%%%%%%%%%%%% google contact %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-          $etag=$gcontacController->updateContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->telefono,$persona->resourseName,$persona->etag);
-          $persona->etag=$etag;
-          $persona->save();
+        
+        //dd($persona->resourseName);
+        /**%%%%%%%%%%%%%%%%%%%%% google contact editar inicio %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $gcontacController = app()->make(GContactController::class);
+        $etag=$gcontacController->updateContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->telefono,$persona->resourseName,$persona->etag);
+        $persona->etag=$etag;
+        $persona->save();
+        /**%%%%%%%%%%%%%%%%%%%%% google contact editar Fin %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         return redirect()->Route('personas.show', ['persona' => $persona]);
     }
 

@@ -18,7 +18,7 @@ class Computacion extends Model
     // {
     //     return $this->morphOne('App\Models\Userable', 'userable');
     // }
-    public function carrera()
+    public function carreras()
     {
         return $this->belongsToMany(Carrera::class)->withPivot('computacion_id', 'carrera_id ');;
     }

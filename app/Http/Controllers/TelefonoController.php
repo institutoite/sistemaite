@@ -131,6 +131,15 @@ class TelefonoController extends Controller
         $apoderado->genero = $request->genero;
         $apoderado->telefono = $request->telefono;
         $apoderado->save();
+
+        /**%%%%%%%%%%%%%%%%%%%%% google contact editar inicio %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $gcontacController = app()->make(GContactController::class);
+        $etag=$gcontacController->updateContact($apoderado->nombre,$apoderado->apellidop,$apoderado->apellidom,$apoderado->telefono,$apoderado->resourseName,$apoderado->etag);
+        $apoderado->etag=$etag;
+        $apoderado->save();
+        /**%%%%%%%%%%%%%%%%%%%%% google contact editar Fin %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+
         $persona->apoderados()->updateExistingPivot($registro_pivot[0]->persona_id_apoderado,['telefono'=>$request->telefono,'parentesco'=>$request->parentesco],false);
         $apoderados = $persona->apoderados;
         return view('telefono.index', compact('persona', 'apoderados'));

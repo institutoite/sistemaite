@@ -5,8 +5,8 @@ use App\Models\Evento;
 use App\Models\Mensaje;
 use Carbon\Carbon;
     function estado($estado){
-            //dd($estado);
-            //return Estado::where('estado',$estado)->get()->first()->id;
+            dd($estado);
+            return Estado::where('estado',$estado)->get()->first()->id;
     }
     function saludo(){
         $hora=Carbon::now()->hour;
