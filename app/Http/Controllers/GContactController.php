@@ -73,7 +73,7 @@ class GContactController extends Controller
         ];
     
         try {
-            $response = Http::post('http://localhost:4000/api/contact/create-contact', [
+            $response = Http::post('https://gcontact.ite.com.bo/api/contact/create-contact', [
                 'token' => $this->getToken(),
                 'contacto' => $contact
             ]);
@@ -117,7 +117,7 @@ class GContactController extends Controller
         ];
 
     try {
-        $response = Http::post('http://localhost:4000/api/contact/update-contact', [
+        $response = Http::post('https://gcontact.ite.com.bo/api/contact/update-contact', [
             'token' => $this->getToken(),
             'resourceName'=>$resourseName,
             'etag'=>$etag,
