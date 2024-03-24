@@ -14,6 +14,10 @@
     <div class="card">
         <div class="card-header bg-primary">
             <span class="text-center">{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</span>
+            <div id="tokenExpiration"></div>
+                <a href="{{ route('signIn') }}" id="signIn" class="btn btn-google">
+                   <i class="fab fa-google"></i>Contact
+                </a>
             <div class="float-right">
                 
                 @isset($persona->estudiante)
@@ -21,10 +25,7 @@
                     {{ __('Inscribir ') }}<i class="fas fa-arrow-circle-right fa-2x"></i>
                     </a>
                 @endisset
-                <div id="tokenExpiration"></div>
-                            <a href="{{ route('signIn') }}" id="signIn" class="btn btn-google">
-                                <i class="fab fa-google"></i>Contact
-                            </a>
+                
             </div>
             <div class="float-right mr-3">
            
@@ -355,14 +356,8 @@
                     url: "{{ route('token-expiration') }}",
                     type: "GET",
                     success: function(response) {
-                        if (response === "00:00" || response === "10:00") {
-                            $('#signIn').show();
-                            $('#tokenExpiration').hide();
-                            clearInterval(intervalId);
-                        } else {
-                                $('#tokenExpiration').text('Tiempo Token: ' + response);
-                                $('#signIn').hide();
-                        }
+                        $('#tokenExpiration').text('Tiempo Token: ' + response);
+                        $('#signIn').show();
                     },
                     error: function(xhr, status, error) {
                         console.error(error);

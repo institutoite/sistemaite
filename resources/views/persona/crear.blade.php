@@ -170,14 +170,14 @@
                     url: "{{ route('token-expiration') }}",
                     type: "GET",
                     success: function(response) {
-                        if (response === "00:00" || response === "10:00") {
+                        /*if (response === "00:00" || response === "10:00") {
                             $('#signIn').show();
                             $('#tokenExpiration').hide();
                             clearInterval(intervalId);
-                        } else {
+                        } else {*/
                                 $('#tokenExpiration').text('Tiempo Token: ' + response);
-                                $('#signIn').hide();
-                        }
+                                $('#signIn').show();
+                        
                     },
                     error: function(xhr, status, error) {
                         console.error(error);
