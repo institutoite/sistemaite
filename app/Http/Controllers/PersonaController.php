@@ -223,11 +223,11 @@ class PersonaController extends Controller
                 $cliservicio->usuarios()->attach(Auth::user()->id);
                 break;
             case 'clicopy':
-                $clicopy = new Clicopy();
-                $clicopy->persona_id = $persona->id;
-                $clicopy->save();
-                //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   C L I C O P Y   %%%%%%%%%%%%%%%%*/
-                $clicopy->usuarios()->attach(Auth::user()->id);
+                // $clicopy = new Clicopy();
+                // $clicopy->persona_id = $persona->id;
+                // $clicopy->save();
+                // //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A   C L I C O P Y   %%%%%%%%%%%%%%%%*/
+                // $clicopy->usuarios()->attach(Auth::user()->id);
                 break;
 
             case 'administrativo':
@@ -321,7 +321,11 @@ class PersonaController extends Controller
         $interests=Interest::get();
         $comos=Como::get();
         $estados=Estado::orderBy('id','desc')->get();
-        return view('persona.rapidingo.crearrapido',compact('interests','comos','estados'));
+
+        $gcontactController  = app(GContactController::class);
+        $tiempoToken = tiempoEnSegundos($gcontactController->getTokenExpiration());  // metodo esta en Helper.php
+
+        return view('persona.rapidingo.crearrapido',compact('tiempoToken','interests','comos','estados'));
     }
     
     public function guardarRapidingo(PersonaRapidingoGuardarRequest $request){
@@ -405,7 +409,12 @@ class PersonaController extends Controller
         $interests_faltantes = Interest::whereNotIn('id', $ids)->get();
         $comos=Como::get();
         $estados=Estado::orderBy('id','desc')->get();
-        return view('persona.rapidingo.editarrapido',compact('persona','comos','interests_currents','interests_faltantes','observacion','estados'));
+
+
+        $gcontactController  = app(GContactController::class);
+        $tiempoToken = tiempoEnSegundos($gcontactController->getTokenExpiration());  // metodo esta en Helper.php
+
+        return view('persona.rapidingo.editarrapido',compact('tiempoToken','persona','comos','interests_currents','interests_faltantes','observacion','estados'));
     }
     public function potenciales(){
         $potenciales= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
@@ -474,7 +483,10 @@ class PersonaController extends Controller
     public function crearSoloContacto()
     {
         $comos=Como::get();
-        return view('persona.contacto.crearcontacto',compact('comos'));
+        $gcontactController  = app(GContactController::class);
+        $tiempoToken = tiempoEnSegundos($gcontactController->getTokenExpiration());  // metodo esta en Helper.php
+        
+        return view('persona.contacto.crearcontacto',compact('comos','tiempoToken'));
     }
     public function guardarSoloContacto(RequestStoreSoloContacto $request){
         // dd($request->all()   );
@@ -534,7 +546,11 @@ class PersonaController extends Controller
     public function editarSoloContacto(Persona $persona){
         $observacion=$persona->observaciones->first()->observacion;
         $comos=Como::get();
-        return view('persona.contacto.editarcontacto',compact('persona','observacion','comos'));
+
+        $gcontactController  = app(GContactController::class);
+        $tiempoToken = tiempoEnSegundos($gcontactController->getTokenExpiration());  // metodo esta en Helper.php
+
+        return view('persona.contacto.editarcontacto',compact('tiempoToken','persona','observacion','comos'));
     }
     public function listarContactos(){
         $contactos=Persona::where('papelinicial','contacto')
@@ -678,9 +694,10 @@ class PersonaController extends Controller
         }
         $estados=Estado::get();
 
-     
+        $gcontactController  = app(GContactController::class);
+        $tiempoToken = tiempoEnSegundos($gcontactController->getTokenExpiration());  // metodo esta en Helper.php
         
-        return view("persona.editar",compact('persona','estados','paises','comos','ciudades','zonas','observacion','interests_currents','interests_faltantes'));
+        return view("persona.editar",compact("tiempoToken",'persona','estados','paises','comos','ciudades','zonas','observacion','interests_currents','interests_faltantes'));
     } 
 
     /**

@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 @section('css')
     {{-- <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}"> --}}
+    <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
 @stop
 
 @section('title', 'Crear apoderado')
@@ -13,11 +14,8 @@
     
     <div class="card">
         <div class="card-header bg-primary">
-            <span class="text-center">{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</span>
-            <div id="tokenExpiration"></div>
-                <a href="{{ route('signIn') }}" id="signIn" class="btn btn-google">
-                   <i class="fab fa-google"></i>Contact
-                </a>
+            <span class="text-center">{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</span> <h3 class="text-white float-right" id="tokenExpirationform"></h3>
+           
             <div class="float-right">
                 
                 @isset($persona->estudiante)
@@ -42,17 +40,17 @@
             <form action="{{route('persona.storeContacto',$persona)}}" method="POST">
             @csrf
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                         @if($errors->has('nombre'))
                             <span class="text-danger"> {{ $errors->first('nombre')}}</span>
                         @endif
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm">    
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">    
                         @if($errors->has('apellidop'))
                             <span class="text-danger"> {{ $errors->first('apellidop')}}</span>
                         @endif
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm">    
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">    
                         @if($errors->has('apellidom'))
                             <span class="text-danger"> {{ $errors->first('apellidom')}}</span>
                         @endif
@@ -62,41 +60,41 @@
 
                 {{-- $$$$$$$$$$$ CAMPO NOMBRE INICIO --}}
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm" > 
-                        <div class="input-group mb-2" >
-                            <p class="col-3 form-control bg-secondary p-1" for="">Nombre*</p> 
-                            <input  type="text" name="nombre" class="form-control col-9 @error('nombre') is-invalid @enderror" value="{{old('nombre')}}" placeholder="Ingrese un  nombre">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" > 
+                        <div class="form-floating mb-3 text-gray">
+                            <input  type="text" name="nombre" class="form-control @error('nombre') is-invalid @enderror" value="{{old('nombre')}}" placeholder="Ingrese un  nombre">
+                            <label class="text-secondary" for="nombre">NOMBRE*</label>
                         </div>
                     </div>
                     {{-- %%%%%%%%%%%%%%% CAMPO APELLIDO PATERNO --}}
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm" >
-                        <div class="input-group mb-2" >
-                            <p class="col-3 form-control bg-secondary p-1" for="">Paterno*</p> 
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+                        <div class="form-floating mb-3 text-gray">
                             <input  type="text" name="apellidop" class="form-control @error('apellidop') is-invalid @enderror" value="{{old('apellidop')}}" placeholder="Ingrese  apellido Paterno(Obligatorio)">
+                            <label class="text-secondary" for="nombre">Paterno*</label>
                         </div>    
                     </div>
                     {{-- %%%%%%%%%%%%%%% CAMPO APELLIDO MATERNO --}}
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm" >
-                        <div class="input-group mb-2" >
-                            <p class="col-3 form-control bg-secondary p-1" for="">Materno</p> 
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+                        <div class="form-floating mb-3 text-gray">
                             <input  type="text" name="apellidom" class="form-control @error('apellidom') is-invalid @enderror" value="{{old('apellidom')}}" placeholder="Ingrese  apellido Paterno(Obligatorio)">
+                            <label class="text-secondary" for="apellidom">Materno*</label>
                         </div>    
                     </div>
                 </div>
 
 
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
                         @if($errors->has('telefono'))
                             <span class="text-danger"> {{ $errors->first('telefono')}}</span>
                         @endif
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
                         @if($errors->has('parentesco'))
                             <span class="text-danger"> {{ $errors->first('parentesco')}}</span>
                         @endif
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 input-group text-sm" >
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
                         @if($errors->has('genero'))
                             <span class="text-danger"> {{ $errors->first('genero')}}</span>
                         @endif
@@ -105,18 +103,17 @@
                 {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO GENERO  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 
                 <div class="row"> 
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm" >
-                        <div class="input-group mb-2" >
-                            <p class="col-3 form-control bg-secondary p-1 p-1" for="">Número*</p> 
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+                        <div class="form-floating mb-3 text-gray">
                             <input class="form-control" type="tel" id="phone" name="telefono" placeholder="introduzca un numero telefonico" pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]" value="{{old('telefono')}}">
+                            <label class="text-secondary" for="phone">Número*</label>
                         </div>
                     </div>
                     {{--%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO COMO SE INFORMO  --}}
 
                     
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm" >
-                        <div class="input-group mb-2" >
-                            <p class="col-3 form-control bg-secondary p-1" for="">Papel*</p> 
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+                        <div class="form-floating mb-3 text-gray">
                             <select class="form-control @error('parentesco') is-invalid @enderror"  name="parentesco" id="parentesco">
                                 <option value="">Grado Parentesco</option>
                                     
@@ -139,25 +136,33 @@
                                         <option value="OTRO" @if(old('parentesco') == 'OTRO') {{'selected'}} @endif>OTRO</option>
                                   
                             </select>
+                            <label class="text-secondary" for="parentesco">Papel*</label>
                         </div>
                     </div>
             {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO GENERO DEL FAMILIAR ---}}
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 input-group text-sm" >
-                        <div class="input-group mb-2" >
-                            <p class="col-3 form-control bg-secondary p-1 p-1" for="">Género*</p> 
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" >
+                        <div class="form-floating mb-3 text-gray">
                             <select class="form-control @error('genero') is-invalid @enderror" name="genero" id="genero">
                                 <option value=""> Elija tu género</option>
-                                    <option value="MUJER" @if(old('genero') == 'MUJER') {{'selected'}} @endif>MUJER</option>
-                                    <option value="HOMBRE" @if(old('genero') == 'HOMBRE') {{'selected'}} @endif>HOMBRE</option> 
+                                <option value="MUJER" @if(old('genero') == 'MUJER') {{'selected'}} @endif>MUJER</option>
+                                <option value="HOMBRE" @if(old('genero') == 'HOMBRE') {{'selected'}} @endif>HOMBRE</option> 
                             </select>
+                            <label class="text-secondary" for="genero">Género*</label> 
                         </div>
                     </div>
             </div>
 
-            <div class="row justify-content-center pt-3" >
-                    <button class="btn btn-primary mr-auto" type="submit" id="guardar">Guardar <i class="far fa-save fa-2x"></i></button>        
+         
+            
+            <div class="container-fluid h-100 mt-3"> 
+                <div class="row w-100 align-items-center">
+                    <div class="col text-center">
+                        <button class="btn btn-primary text-white" type="submit" id="guardar">Guardar <i class="far fa-save fa-2x"></i></button>        
+                    </div>	
+                </div>
             </div>
-
+            
+            
             </form>
         </div>
     </div>
@@ -250,7 +255,9 @@
         </div>
     </div>
 
-
+    @if($tiempoToken==0)
+        @include('include.modalGContact')
+    @endif
 
 @stop
 
@@ -267,6 +274,30 @@
     <script src="{{asset('dist/js/steepfocus.js') }}"></script>
     <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
     <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            var intervalId;
+            $('#modalGcontact').modal('show');
+            function actualizarTokenExpiration() {
+                $.ajax({
+                    url: "{{ route('token-expiration') }}",
+                    type: "GET",
+                    success: function(response) {
+
+                        console.log(response);
+                        $('#tokenExpiration').text('Tiempo Restante: ' + response);
+                        $('#tokenExpirationform').text('Tiempo Restante: ' + response);
+                        $('#signIn').show();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            }
+            intervalId = setInterval(actualizarTokenExpiration, 1000);
+        });
+    </script>
 
     <script>
         $(document).ready(function() {
@@ -347,25 +378,6 @@
                 });
             });
         } );
-    </script>
-    <script>
-        $(document).ready(function() {
-            var intervalId;
-            function actualizarTokenExpiration() {
-                $.ajax({
-                    url: "{{ route('token-expiration') }}",
-                    type: "GET",
-                    success: function(response) {
-                        $('#tokenExpiration').text('Tiempo Token: ' + response);
-                        $('#signIn').show();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            }
-            intervalId = setInterval(actualizarTokenExpiration, 1000);
-        });
     </script>
 
 @stop

@@ -12,8 +12,7 @@
                     <strong><p id="tokenExpiration"></p></strong> si tienes tiempo suficiente para registrar no es necesario iniciar ite contactos
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
-                <h1 id="tokenExpiration"></h1>
-
+                  
                 <div class="container-fluid h-100 mt-3"> 
                     <div class="row w-100 align-items-center">
                         <div class="col text-center">

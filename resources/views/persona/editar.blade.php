@@ -12,7 +12,7 @@
     
         <div class="card">
             <div class="card-header bg-primary text-white">
-                EDITAR PERSONA
+                EDITAR PERSONA <h3 class="text-white float-right" id="tokenExpirationform"></h3>
             </div>
             <div class="card-body">
                 <form action="{{route('personas.update',$persona)}}" id="formulario" method="POST"  enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
@@ -20,13 +20,14 @@
                         @csrf
                         @include('persona.form')
                         @include('include.botones')
-                        <div id="tokenExpiration"></div>
-                            <a href="{{ route('signIn') }}" id="signIn" class="btn btn-google">
-                                <i class="fab fa-google"></i>Contact
-                            </a>
+                        
                 </form>
             </div>
         </div>
+
+        @if($tiempoToken==0)
+            @include('include.modalGContact')
+        @endif
 @stop
 
 
@@ -40,12 +41,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/locales/es.js"></script>
     
     <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
-    
     <script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% CKEDITOR --}}
-
-
+    
+    
     <script src="{{asset('dist/js/steepfocus.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     {{-- <script src="{{asset('vendor/inputfile/locales/es.js')}}"></script> --}}
 
     <script>
@@ -56,6 +57,28 @@
             } );
     </script>
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% FIN CKEDITOR --}}
+    <script>
+        $(document).ready(function() {
+            var intervalId;
+            $('#modalGcontact').modal('show');
+            function actualizarTokenExpiration() {
+                $.ajax({
+                    url: "{{ route('token-expiration') }}",
+                    type: "GET",
+                    success: function(response) {
+                        $('#tokenExpiration').text('Tiempo Token: ' + response);
+                        $('#tokenExpirationform').text('Tiempo Restante: ' + response);
+                        $('#signIn').show();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            }
+            intervalId = setInterval(actualizarTokenExpiration, 1000);
+        });
+    </script>
+
     <script>
         $(document).ready(function(){
              $('#personas').DataTable(
@@ -164,25 +187,7 @@
         }
     }
     </script>
-    <script>
-        $(document).ready(function() {
-            var intervalId;
-            function actualizarTokenExpiration() {
-                $.ajax({
-                    url: "{{ route('token-expiration') }}",
-                    type: "GET",
-                    success: function(response) {
-                        $('#tokenExpiration').text('Tiempo Token: ' + response);
-                        $('#signIn').show();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            }
-            intervalId = setInterval(actualizarTokenExpiration, 1000);
-        });
-    </script>
+    
 
 @stop
 

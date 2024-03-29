@@ -22,9 +22,7 @@
                             @csrf
                             @include('persona.form')
                             @include('include.botones')
-                            @php
-                                @dump(session())
-                            @endphp 
+
 
                         </form>
                     </div>
@@ -35,8 +33,6 @@
 
     @if($tiempoToken==0)
         @include('include.modalGContact')
-    @else
-        todo bien
     @endif
 @stop
             
@@ -66,6 +62,7 @@
     <script>
         $(document).ready(function() {
             var intervalId;
+            $('#modalGcontact').modal('show');
             function actualizarTokenExpiration() {
                 $.ajax({
                     url: "{{ route('token-expiration') }}",
@@ -88,7 +85,7 @@
 
     <script>
         $(document).ready(function(){
-            $('#modalGcontact').modal('show');
+            
 
              $('#personas').DataTable(
                 {

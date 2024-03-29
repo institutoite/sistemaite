@@ -11,7 +11,7 @@
     
         <div class="card">
             <div class="card-header bg-secondary">
-                CREAR USUARIO SUPER RAPIDO
+                CREAR USUARIO SUPER RAPIDO <h3 class="text-white float-right" id="tokenExpirationform"></h3>
                 {{-- {{dd($persona);}} --}}
             </div>
             <div class="card-body">
@@ -19,19 +19,12 @@
                     @csrf
                     @include('persona.rapidingo.formrapido')
                     @include('include.botones')
-
-
-                    {{-- GCONTACT --}}
-                        <div id="tokenExpiration"></div>
-                        <a href="{{ route('signIn') }}" id="signIn" class="btn btn-google">
-                            <i class="fab fa-google"></i>Contact
-                        </a>
-                    {{-- GCONTACT --}}
-
                 </form>
             </div>
         </div>
-    
+        @if($tiempoToken==0)
+            @include('include.modalGContact')
+        @endif
 @stop
 
 @section('js')
@@ -55,6 +48,30 @@
         });
     </script>
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% FIN CKEDITOR --}}
+    <script>
+        $(document).ready(function() {
+            var intervalId;
+            $('#modalGcontact').modal('show');
+            function actualizarTokenExpiration() {
+                $.ajax({
+                    url: "{{ route('token-expiration') }}",
+                    type: "GET",
+                    success: function(response) {
+
+                        console.log(response);
+                        $('#tokenExpiration').text('Tiempo Restante: ' + response);
+                        $('#tokenExpirationform').text('Tiempo Restante: ' + response);
+                        $('#signIn').show();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            }
+            intervalId = setInterval(actualizarTokenExpiration, 1000);
+        });
+    </script>
+
     <script>
         $(document).ready(function(){
              $('#personas').DataTable(
@@ -104,27 +121,5 @@
                 }
         }
     </script>
-    <script>
-        $(document).ready(function() {
-            var intervalId;
-            function actualizarTokenExpiration() {
-                $.ajax({
-                    url: "{{ route('token-expiration') }}",
-                    type: "GET",
-                    success: function(response) {
-                        $('#tokenExpiration').text('Tiempo Token: ' + response);
-                        $('#signIn').show();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            }
-            intervalId = setInterval(actualizarTokenExpiration, 1000);
-        });
-    </script>
-
-
-    
 @stop
 

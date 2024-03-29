@@ -1,15 +1,14 @@
-para crear un observacion genericamente se envia el Model desde el accion como id 
+gcontact esta  las vistas:
 
-cuando sale un error de longitu este error sale cuando se sube al servidor
+persona.editar
+persona.crear 
+telefono/crear/14180
+Route::get('personas/crear/rapidingo/',[PersonaController::class,'crearRapido'] )->name('crear.persona.rapido');
+Route::get('telefono/{persona}/{apoderado_id}/editar','TelefonoController@editar')->name('telefono.editar');
+Route::get('personas/crear/rapidingo/',[PersonaController::class,'crearRapido'] )->name('crear.persona.rapido');
+Route::get('persona/editar/rapidingo/{persona}', [PersonaController::class,'editarRapidingo'])->name('personas.editar.rapidingo'); //Falta informar 
+Route::get('persona/crear/contacto', [PersonaController::class,'crearSoloContacto'])->name('personas.crear.contacto')->middleware('auth'); //Falta informar 
+Route::get('persona/editar/contacto/{persona}', [PersonaController::class,'editarSoloContacto'])->name('personas.editar.contacto'); //Falta informar 
 
-public function boot() 
-{ 
-    Schema::defaultStringLength(191); 
-}
-
-/config/database.php 
-'mysql' => [ 
-    ..., 
-    ..., 
-    'engine' => 'InnoDB', 
- ]
+https://www.youtube.com/watch?v=CFnFKBCQxog  para cambiar de estado a un cliente potencial
+notificaciones

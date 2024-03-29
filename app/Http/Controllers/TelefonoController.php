@@ -38,6 +38,7 @@ class TelefonoController extends Controller
 
     public function mostrarvista(Persona $persona){
         $apoderados= $persona->apoderados;
+
         return view('telefono.index',compact('persona','apoderados'));
     }
    
@@ -52,7 +53,10 @@ class TelefonoController extends Controller
    
     public function crear(Persona $persona)
     {
-        return view('telefono.crear',compact('persona'));
+        $gcontactController  = app(GContactController::class);
+        $tiempoToken = tiempoEnSegundos($gcontactController->getTokenExpiration());  // metodo esta en Helper.php
+     
+        return view('telefono.crear',compact('persona','tiempoToken'));
     }
 
    
@@ -114,7 +118,11 @@ class TelefonoController extends Controller
                     ->where('persona_id_apoderado','=',$apoderado_id)
                     ->where('persona_id','=',$persona->id)->get();
         $persona = Persona::findOrFail($apoderado_id);
-        return view('telefono.editar',compact('persona','registro_pivot'));
+
+        $gcontactController  = app(GContactController::class);
+        $tiempoToken = tiempoEnSegundos($gcontactController->getTokenExpiration());  // metodo esta en Helper.php
+
+        return view('telefono.editar',compact('tiempoToken','persona','registro_pivot'));
     }
 
     
