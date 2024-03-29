@@ -14,6 +14,9 @@
         <div class="card">
             <div class="card-header bg-secondary">
                 FORMULARIO CREAR PERSONAS
+                <a href="{{ route('signIn') }}" id="signIn" class="btn btn-primary text-white">
+                    Iniciar ITE CONTACTOS
+                </a>
             </div>
             <div class="card-body">
                 <div class="tab-content">
@@ -22,16 +25,15 @@
                             @csrf
                             @include('persona.form')
                             @include('include.botones')
-                            <div id="tokenExpiration"></div>
-                            <a href="{{ route('signIn') }}" id="signIn" class="btn btn-google">
-                                <i class="fab fa-google"></i>Contact
-                            </a>
                         </form>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    @include('include.modalGContact')
 @stop
             
 @section('js')
@@ -43,9 +45,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/fileinput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/themes/fas/theme.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.1.5/js/locales/es.js"></script>
-    
     <script type="text/javascript" src="{{ asset('dist/js/jquery.leanModal.min.js')}}"></script>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script>
         CKEDITOR.replace('observacion', {
             height: 120,
@@ -60,6 +62,8 @@
 
     <script>
         $(document).ready(function(){
+            $('#modalGcontact').modal('show');
+
              $('#personas').DataTable(
                 {
                     "serverSide": true,
@@ -170,14 +174,8 @@
                     url: "{{ route('token-expiration') }}",
                     type: "GET",
                     success: function(response) {
-                        /*if (response === "00:00" || response === "10:00") {
-                            $('#signIn').show();
-                            $('#tokenExpiration').hide();
-                            clearInterval(intervalId);
-                        } else {*/
-                                $('#tokenExpiration').text('Tiempo Token: ' + response);
-                                $('#signIn').show();
-                        
+                        $('#tokenExpiration').text('Tiempo Restante: ' + response);
+                        $('#signIn').show();
                     },
                     error: function(xhr, status, error) {
                         console.error(error);

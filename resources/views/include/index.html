@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal con Bootstrap</title>
+  <!-- Agrega los estilos de Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Botón para abrir el modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Abrir Modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Título del Modal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Aquí se cargará la página -->
+        <div id="modal-content"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Agrega los scripts de Bootstrap y jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Script para cargar la página en el modal -->
+<script>
+  $(document).ready(function(){
+    $('#exampleModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Botón que activó el modal
+      var url = button.data('url'); // Extraer la URL de los datos atributo
+
+      // Cargar la página en el modal
+      $('#modal-content').load(url);
+    });
+  });
+</script>
+
+</body>
+</html>

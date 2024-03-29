@@ -31,6 +31,7 @@ class EstudianteController extends Controller
         ->where('vuelvefecha',"<=",Carbon::now()->format('Y-m-d'))
         ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','personas.foto','vuelvefecha')  
         ->get();
+        
         $reinscripciones= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
         ->join('interests','interests.id','interest_persona.interest_id')
         ->where('habilitado',estado("ESPERAREINSCRIPCION"))

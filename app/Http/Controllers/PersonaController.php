@@ -70,9 +70,6 @@ class PersonaController extends Controller
         $zonas=Zona::get();
         $interests=Interest::all();
         $comos=Como::all();
-
-        //$gcontactController = app()->make(GContactController::class);
-        //$token=$gcontactController->getToken();
         return view('persona.crear',compact('ciudades','paises','zonas','interests','comos'));
     }
    
