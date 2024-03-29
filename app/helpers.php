@@ -4,6 +4,15 @@ use App\Models\Persona;
 use App\Models\Evento;
 use App\Models\Mensaje;
 use Carbon\Carbon;
+
+
+
+    function tiempoEnSegundos($tiempo)
+    {
+        list($minutos, $segundos) = explode(':', $tiempo);
+        $carbon = Carbon::createFromTime(0, $minutos, $segundos);
+        return $carbon->second;
+    }
     function estado($estado){
             // dd($estado);
             return Estado::where('estado',$estado)->get()->first()->id;

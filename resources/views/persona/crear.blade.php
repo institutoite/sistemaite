@@ -22,15 +22,22 @@
                             @csrf
                             @include('persona.form')
                             @include('include.botones')
-                        </form>
+                            @php
+                                @dump(session())
+                            @endphp 
 
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    @include('include.modalGContact')
+    @if($tiempoToken==0)
+        @include('include.modalGContact')
+    @else
+        todo bien
+    @endif
 @stop
             
 @section('js')
@@ -56,6 +63,28 @@
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% FIN CKEDITOR --}}
 
 
+    <script>
+        $(document).ready(function() {
+            var intervalId;
+            function actualizarTokenExpiration() {
+                $.ajax({
+                    url: "{{ route('token-expiration') }}",
+                    type: "GET",
+                    success: function(response) {
+
+                        console.log(response);
+                        $('#tokenExpiration').text('Tiempo Restante: ' + response);
+                        $('#tokenExpirationform').text('Tiempo Restante: ' + response);
+                        $('#signIn').show();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            }
+            intervalId = setInterval(actualizarTokenExpiration, 1000);
+        });
+    </script>
 
     <script>
         $(document).ready(function(){
@@ -163,26 +192,7 @@
             }
     }
     </script>
-    <script>
-        $(document).ready(function() {
-            var intervalId;
-            function actualizarTokenExpiration() {
-                $.ajax({
-                    url: "{{ route('token-expiration') }}",
-                    type: "GET",
-                    success: function(response) {
-                        $('#tokenExpiration').text('Tiempo Restante: ' + response);
-                        $('#tokenExpirationform').text('Tiempo Restante: ' + response);
-                        $('#signIn').show();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            }
-            intervalId = setInterval(actualizarTokenExpiration, 1000);
-        });
-    </script>
+
 
 @stop
 

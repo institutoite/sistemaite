@@ -70,7 +70,9 @@ class PersonaController extends Controller
         $zonas=Zona::get();
         $interests=Interest::all();
         $comos=Como::all();
-        return view('persona.crear',compact('ciudades','paises','zonas','interests','comos'));
+        $gcontactController  = app(GContactController::class);
+        $tiempoToken = tiempoEnSegundos($gcontactController->getTokenExpiration());  // metodo esta en Helper.php
+        return view('persona.crear',compact('ciudades','paises','zonas','interests','comos','tiempoToken','tiempoToken'));
     }
    
 
