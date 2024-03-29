@@ -44,7 +44,6 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">RECORDAR QUE VIENEN HOY</h5>
-
                         <a href="{{ route('crm.esperanuevo.view') }}" class="btn btn-primary text-white">{{ Auth::user()->name }}, ¡Hazlo ya! </a>
                     </div>
                     <div class="modal-body">

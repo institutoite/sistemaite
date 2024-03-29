@@ -13,10 +13,7 @@
     <div class="pt-4">
         <div class="card">
             <div class="card-header bg-secondary">
-                FORMULARIO CREAR PERSONAS
-                <a href="{{ route('signIn') }}" id="signIn" class="btn btn-primary text-white">
-                    Iniciar ITE CONTACTOS
-                </a>
+                FORMULARIO CREAR PERSONAS <h3 class="text-white float-right" id="tokenExpirationform"></h3>
             </div>
             <div class="card-body">
                 <div class="tab-content">
@@ -175,6 +172,7 @@
                     type: "GET",
                     success: function(response) {
                         $('#tokenExpiration').text('Tiempo Restante: ' + response);
+                        $('#tokenExpirationform').text('Tiempo Restante: ' + response);
                         $('#signIn').show();
                     },
                     error: function(xhr, status, error) {
