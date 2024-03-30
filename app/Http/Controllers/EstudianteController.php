@@ -25,11 +25,20 @@ class EstudianteController extends Controller
 
     public function home(){
 
-        $nuevos= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado',estado("ESPERANUEVO"))
-        ->where('vuelvefecha',"<=",Carbon::now()->format('Y-m-d'))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','personas.foto','vuelvefecha')  
+        // $nuevos= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        // ->join('interests','interests.id','interest_persona.interest_id')
+        // ->where('habilitado',estado("ESPERANUEVO"))
+        // ->where('vuelvefecha',"<=",Carbon::now()->format('Y-m-d'))
+        // ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','personas.foto','vuelvefecha')  
+        // ->get();
+        
+        $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
+        ->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
+        ->join("programacions",'programacions.inscripcione_id','inscripciones.id')
+        //->join('clases','clases.programacion_id','programacions.id')
+        ->where("programacions.fecha",'=',Carbon::now()->toDateString())
+        ->select('personas.id','programacions.estado_id as estado',"nombre",'apellidop','programacions.hora_ini','programacions.hora_fin','personas.foto')
+        ->orderBy('programacions.hora_ini','asc')
         ->get();
         
         $reinscripciones= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
@@ -38,7 +47,7 @@ class EstudianteController extends Controller
         ->where('vuelvefecha',"<=",Carbon::now()->format('Y-m-d'))
         ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','personas.foto','vuelvefecha')  
         ->get();
-          $rematriculaciones= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
+        $rematriculaciones= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
         ->join('interests','interests.id','interest_persona.interest_id')
         ->where('habilitado',estado("ESPERAREMATRICULACION"))
         ->where('vuelvefecha',"<=",Carbon::now()->format('Y-m-d'))

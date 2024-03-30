@@ -55,17 +55,43 @@
                                         <th>NOMBRE COMPLETO</th>
                                         <th>INTERES</th>
                                         <th>FOTO</th>
-                                        <th>VIENE</th>
+                                        <th>HORAINI</th>
+                                        <th>FIN</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($nuevos as $nuevo)
-                                        <tr>
-                                            <td>{{ $nuevo->id }}</td>
-                                            <td>{{ $nuevo->nombre.' '.$nuevo->apellidop.' '.$nuevo->apellidom }}</td>
-                                            <td>{{ $nuevo->interest }}</td>
-                                            <td> <img class="" src="{{URL::to('/').Storage::url("$nuevo->foto")}}" alt="{{$nuevo->nombre.' '.$nuevo->apellidop}}" width="50">  </td>
-                                            <td>{{ $nuevo->vuelvefecha }}</td>
+                                    @foreach ($nuevos as $itenauta)
+                                        @php
+                                        switch ($itenauta->estado) {
+                                            case estado("PRESENTE"):
+                                                $clase="table-success text-success";
+                                                break;
+                                            case estado("FINALIZADO"):
+                                                $clase="bg-success text-white";
+                                                break;
+                                            case estado("INDEFINIDO"):
+                                                $clase="bg-warning text-white";
+                                                break;
+                                            case estado("LICENCIA"):
+                                                $clase="bg-info text-white";
+                                                break;
+                                            case estado("FALTA"):
+                                                $clase="bg-danger text-white";
+                                                break;
+                                            
+                                            default:
+                                                $clase="";
+                                                break;
+                                        }
+                                        @endphp
+                                        <tr class="{{ $clase }}">
+                                            <td>{{ $itenauta->id }}</td>
+                                            <td>{{ $itenauta->nombre.' '.$itenauta->apellidop.' '.$itenauta->apellidom }}</td>
+                                            <td> <img class="zoomify" src="{{URL::to('').Storage::url($itenauta->foto)}}" alt="{{$itenauta->nombre.' '.$itenauta->apellidop}}" width="50">  </td>
+                                            <td>{{ $itenauta->hora_ini }}</td>
+                                            <td>{{ $itenauta->hora_fin }}</td>
+                                            <td >{{ App\Models\Estado::findOrFail($itenauta->estado)->estado}}</td>
+
                                         </tr>
                                     @endforeach
                                 </tbody>
