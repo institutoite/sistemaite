@@ -1,625 +1,3 @@
-use App\Models\Estudiantes;
-use App\Models\Personas;
-use App\Models\
-use App\Models\
-use App\Models\
-use App\Models\
-  
-  $nuevos= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado',estado("ESPERANUEVO"))
-        ->where('vuelvefecha',"<=",Carbon::now()->format('Y-m-d'))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','personas.foto','vuelvefecha')  
-        ->get();
-use App\Models\Estudiantes;
-use App\Models\Personas;
-use Carbon\Carbon;
-use App\Models\
-use App\Models\
-use App\Models\
-  
-  $nuevos= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado',estado("ESPERANUEVO"))
-        ->where('vuelvefecha',"<=",Carbon::now()->format('Y-m-d'))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','personas.foto','vuelvefecha')  
-        ->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-use App\Models\
-use App\Models\
-use App\Models\
-  
-  $nuevos= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado',estado("ESPERANUEVO"))
-        ->where('vuelvefecha',"<=",Carbon::now()->format('Y-m-d'))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','personas.foto','vuelvefecha')  
-        ->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado',estado("ESPERANUEVO"))
-        ->where('vuelvefecha',"<=",Carbon::now()->format('Y-m-d'))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','personas.foto','vuelvefecha')  
-        ->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes")
-		->select("nombre");
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes")
-		->select("nombre")
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes")
-		->select("nombre")
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.od')
-		->select("nombre")
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->select("nombre")
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->select("nombre",'apellidop')
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->select("nombre",'apellidop')
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->select("nombre",'apellidop')
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->select("nombre",'apellidop')
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->select("nombre",'apellidop')
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join('clases','clases.inscripciones_id','clases.id')
-		->select("nombre",'apellidop')
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join('clases','clases.inscripciones_id','inscripciones.id')
-		->select("nombre",'apellidop')
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join('clases','clases.inscripcion_id','inscripcions.id')
-		->select("nombre",'apellidop')
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join('clases','clases.inscripcion_id','inscripciones.id')
-		->select("nombre",'apellidop')
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join('clases','clases.inscripcione_id','inscripcions.id')
-		->select("nombre",'apellidop')
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join('clases','clases.inscripcione_id','inscripciones.id')
-		->select("nombre",'apellidop')
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','programacions.id')
-		->join('clases','clases.inscripcione_id','inscripciones.id')
-		->select("nombre",'apellidop')
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','programacions.id')
-		->join('clases','clases.inscripcione_id','inscripciones.id')
-		->select("nombre",'apellidop')
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.inscripcione_id','inscripciones.id')
-		->select("nombre",'apellidop')
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','inscripciones.id')
-		->select("nombre",'apellidop')
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->select("nombre",'apellidop')
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->select("nombre",'apellidop')
-		->get()->first();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->select("nombre",'apellidop','clases.fecha')
-		->get()->first();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",carbon::now()->date)
-		->select("nombre",'apellidop','clases.fecha',)
-		->get()->;
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",Carbon::now()->date)
-		->select("nombre",'apellidop','clases.fecha',)
-		->get()->;
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",Carbon::now())
-		->select("nombre",'apellidop','clases.fecha',)
-		->get()->;
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",Carbon::now())
-		->select("nombre",'apellidop','clases.fecha',)
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  
-use Carbon\Carbon;
-
-
-$fecha_actual = Carbon::now();
-
-echo "Fecha actual: " . $fecha_actual->toDateString();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",Carbon::now()->toDateString())
-		->select("nombre",'apellidop','clases.fecha',)
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'=',Carbon::now()->toDateString())
-		->select("nombre",'apellidop','clases.fecha',)
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'=',Carbon::now()->toDateString())
-		->select("nombre",'apellidop','clases.fecha',)
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'=',Carbon::now()->toDateString())
-		->select("nombre",'apellidop','clases.fecha',)
-		->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  
-use Carbon\Carbon;
-
-
-$fecha_actual = Carbon::now();
-
-echo "Fecha actual: " . $fecha_actual->toDateString();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",Carbon::now())
-		->select("nombre",'apellidop','clases.fecha',)
-		->get();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		
-		->select("nombre",'apellidop','clases.fecha',)
-		->get();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		
-		->select("nombre",'apellidop','clases.fecha',)
-		->get()->first();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'<',Carbon::now())
-		->select("nombre",'apellidop','clases.fecha',)
-		->get()->first();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'<',Carbon::now())
-		->select("nombre",'apellidop','clases.fecha',)
-		->get();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'<',Carbon::now())
-		->select("nombre",'apellidop','clases.fecha',)
-		->get();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'=',Carbon::now())
-		->select("nombre",'apellidop','clases.fecha',)
-		->get();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'=',Carbon::now())
-		->select("nombre",'apellidop','clases.fecha',)
-		->get();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'=',Carbon::now())
-		->select("nombre",'apellidop','clases.fecha',)
-		->get();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'=',Carbon::now())
-		->select("nombre",'apellidop','clases.fecha',)
-		->get();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'=',Carbon::now())
-		->select("nombre",'apellidop','clases.fecha',)
-		->get();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'=',Carbon::now())
-		->select("nombre",'apellidop','clases.fecha',)
-		->get();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'=',Carbon::now())
-		->select("nombre",'apellidop','clases.fecha')
-		->get();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'=',Carbon::now()->toDateString())
-		->select("nombre",'apellidop','clases.fecha')
-		->get();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'=','2024-03-28')
-		->select("nombre",'apellidop','clases.fecha')
-		->get();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'=','2024-03-28')
-		->select("nombre",'apellidop','clases.fecha')
-		->get();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'=','2024-03-28')
-		->select("nombre",'apellidop','clases.horainicio','horafin')
-		->get();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'=','2024-03-28')
-		->select('persoans.id',"nombre",'apellidop','clases.horainicio','horafin')
-	  	->orderBy('clases.horainicio','asc')
-		->get();
-
 use App\Models\Estudiante;
 use App\Models\Persona;
 use Carbon\Carbon;
@@ -631,53 +9,101 @@ use Carbon\Carbon;
 		->join('clases','clases.programacion_id','programacions.id')
 		->where("clases.fecha",'=','2024-03-28')
 		->select('personas.id',"nombre",'apellidop','clases.horainicio','horafin')
-	  	->orderBy('clases.horainicio','asc')
-		->get();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'=','2024-03-28')
-		->select('personas.id',"nombre",'apellidop','clases.horainicio','horafin')
-	  	->orderBy('clases.horainicio','asc')
-		->groupBy('personas.id') 
-		->get();
-
-use App\Models\Estudiante;
-use App\Models\Persona;
-use Carbon\Carbon;
-
-  
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'=','2024-03-28')
-		->select('personas.id',"nombre",'apellidop','clases.horainicio','horafin')
-	->groupBy('personas.id')  	
 	->orderBy('clases.horainicio','asc')
-		 
 		->get();
-
 use App\Models\Estudiante;
 use App\Models\Persona;
 use Carbon\Carbon;
 
   
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
+  $nuevos=Persona::join("computacions",'computacions.persona_id','personas.id')
+		->join("matriculacions",'matriculacions.computacion_id','computacion.id')
+		->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacion.id')
 		->where("clases.fecha",'=','2024-03-28')
 		->select('personas.id',"nombre",'apellidop','clases.horainicio','horafin')
-	->groupBy('personas.id',"nombre",'apellidop','clases.horainicio','horafin')  	
 	->orderBy('clases.horainicio','asc')
-		 
 		->get();
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
 
+  
+  $nuevos=Persona::join("computacions",'computacions.persona_id','personas.id')
+		->join("matriculacions",'matriculacions.computacion_id','computacion.id')
+		->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacion.id')
+		->where("clases.fecha",'=','2024-03-28')
+		->select('personas.id',"nombre",'apellidop','programacioncoms.horaini','programacioncoms.horafin')
+	->orderBy('clases.horainicio','asc')
+		->get();
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+  $nuevos=Persona::join("computacions",'computacions.persona_id','personas.id')
+		->join("matriculacions",'matriculacions.computacion_id','computacion.id')
+		->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacion.id')
+		->where("clases.fecha",'=','2024-03-28')
+		->select('personas.id',"nombre",'apellidop','programacioncoms.horaini','programacioncoms.horafin')
+	->orderBy('programacioncoms.horaini','asc')
+		->get();
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+  $nuevos=Persona::join("computacions",'computacions.persona_id','personas.id')
+		->join("matriculacions",'matriculacions.computacion_id','computacion.id')
+		->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacion.id')
+		->where("clases.fecha",'=','2024-03-28')
+		->select('personas.id',"nombre",'apellidop','programacioncoms.horaini','programacioncoms.horafin')
+	->orderBy('programacioncoms.horaini','asc')
+		->get();
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+  $nuevos=Persona::join("computacions",'computacions.persona_id','personas.id')
+		->join("matriculacions",'matriculacions.computacion_id','computacion.id')
+		->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacion.id')
+		->where("clases.fecha",'=','2024-03-28')
+		->select('personas.id',"nombre",'apellidop','programacioncoms.horaini','programacioncoms.horafin')
+	->orderBy('programacioncoms.horaini','asc')
+		->get();
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+  $nuevos=Persona::join("computacions",'computacions.persona_id','personas.id')
+		->join("matriculacions",'matriculacions.computacion_id','computacion.id')
+		->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacion.id')
+		->where("programacioncoms.fecha",'=','2024-03-28')
+		->select('personas.id',"nombre",'apellidop','programacioncoms.horaini','programacioncoms.horafin')
+	->orderBy('programacioncoms.horaini','asc')
+		->get();
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+  $nuevos=Persona::join("computacions",'computacions.persona_id','personas.id')
+		->join("matriculacions",'matriculacions.computacion_id','computacions.id')
+		->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacion.id')
+		->where("programacioncoms.fecha",'=','2024-03-28')
+		->select('personas.id',"nombre",'apellidop','programacioncoms.horaini','programacioncoms.horafin')
+	->orderBy('programacioncoms.horaini','asc')
+		->get();
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+  $nuevos=Persona::join("computacions",'computacions.persona_id','personas.id')
+		->join("matriculacions",'matriculacions.computacion_id','computacions.id')
+		->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacions.id')
+		->where("programacioncoms.fecha",'=','2024-03-28')
+		->select('personas.id',"nombre",'apellidop','programacioncoms.horaini','programacioncoms.horafin')
+	->orderBy('programacioncoms.horaini','asc')
+		->get();

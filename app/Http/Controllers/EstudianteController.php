@@ -40,7 +40,15 @@ class EstudianteController extends Controller
         ->select('personas.id','programacions.estado_id as estado',"nombre",'apellidop','programacions.hora_ini','programacions.hora_fin','personas.foto')
         ->orderBy('programacions.hora_ini','asc')
         ->get();
-        
+
+        $matriculaciones=Persona::join("computacions",'computacions.persona_id','personas.id')
+            ->join("matriculacions",'matriculacions.computacion_id','computacions.id')
+            ->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacions.id')
+            ->where("programacioncoms.fecha",'=',Carbon::now()->toDateString())
+            ->select('personas.id',"nombre",'apellidop','apellidom','programacioncoms.horaini','programacioncoms.horafin','programacioncoms.estado_id as estado')
+        ->orderBy('programacioncoms.horaini','asc')
+            ->get();
+            
         $reinscripciones= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
         ->join('interests','interests.id','interest_persona.interest_id')
         ->where('habilitado',estado("ESPERAREINSCRIPCION"))
@@ -53,7 +61,7 @@ class EstudianteController extends Controller
         ->where('vuelvefecha',"<=",Carbon::now()->format('Y-m-d'))
         ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','personas.foto','vuelvefecha')  
         ->get();
-        return view('persona.estudiantes',compact("nuevos","rematriculaciones","reinscripciones"));
+        return view('persona.estudiantes',compact("nuevos","rematriculaciones","reinscripciones",'matriculaciones'));
         // return view('persona.estudiantes');
 
     }

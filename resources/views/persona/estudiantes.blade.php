@@ -98,6 +98,57 @@
                             </table>
                         @endif
                         <hr>
+                        @if(count($matriculaciones)>0)
+                            <table class="table table-bordered table-hover table-striped">
+                                <thead class="">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>NOMBRE COMPLETO</th>
+                                        <th>MATERIA</th>
+                                        <th>FOTO</th>
+                                        <th>HORAINI</th>
+                                        <th>HORAFIN</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($matriculaciones as $matriculacion)
+                                        @php
+                                        switch ($matriculacion->estado) {
+                                            case estado("PRESENTE"):
+                                                $clase="table-success text-success";
+                                                break;
+                                            case estado("FINALIZADO"):
+                                                $clase="bg-success text-white";
+                                                break;
+                                            case estado("INDEFINIDO"):
+                                                $clase="bg-warning text-white";
+                                                break;
+                                            case estado("LICENCIA"):
+                                                $clase="bg-info text-white";
+                                                break;
+                                            case estado("FALTA"):
+                                                $clase="bg-danger text-white";
+                                                break;
+                                            
+                                            default:
+                                                $clase="";
+                                                break;
+                                        }
+                                        @endphp
+                                        <tr class="{{ $clase }}">
+                                            <td>{{ $matriculacion->id }}</td>
+                                            <td>{{ $matriculacion->nombre.' '.$matriculacion->apellidop.' '.$matriculacion->apellidom }}</td>
+                                            <td> <img class="zoomify" src="{{URL::to('').Storage::url($matriculacion->foto)}}" alt="{{$matriculacion->nombre.' '.$matriculacion->apellidop}}" width="50">  </td>
+                                            <td>{{ $matriculacion->horaini }}</td>
+                                            <td>{{ $matriculacion->horafin }}</td>
+                                            <td >{{ App\Models\Estado::findOrFail($matriculacion->estado)->estado}}</td>
+
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @endif
+                        <hr>
                         <h3>Reinscripciones para hoy</h3>
                         @if(count($reinscripciones)>0)
                             <table class="table table-bordered table-hover table-striped">
