@@ -72,7 +72,7 @@ class PersonaController extends Controller
         $comos=Como::all();
         $gcontactController  = app(GContactController::class);
         $tiempoToken = tiempoEnSegundos($gcontactController->getTokenExpiration());  // metodo esta en Helper.php
-        dd($tiempoToken.", ".session('GContactTokenExpiration'));
+        //dd($tiempoToken.", ".session('GContactTokenExpiration'));
         return view('persona.crear',compact('ciudades','paises','zonas','interests','comos','tiempoToken','tiempoToken'));
     }
    
