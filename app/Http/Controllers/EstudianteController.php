@@ -37,7 +37,7 @@ class EstudianteController extends Controller
         ->join("programacions",'programacions.inscripcione_id','inscripciones.id')
         //->join('clases','clases.programacion_id','programacions.id')
         ->where("programacions.fecha",'=',Carbon::now()->toDateString())
-        ->select('personas.id','programacions.estado_id as estado',"nombre",'apellidop','programacions.hora_ini','programacions.hora_fin','personas.foto')
+        ->select('personas.id','inscripciones.id as inscripcion_id','programacions.estado_id as estado',"nombre",'apellidop','programacions.hora_ini','programacions.hora_fin','personas.foto')
         ->orderBy('programacions.hora_ini','asc')
         ->get();
 
@@ -45,7 +45,7 @@ class EstudianteController extends Controller
             ->join("matriculacions",'matriculacions.computacion_id','computacions.id')
             ->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacions.id')
             ->where("programacioncoms.fecha",'=',Carbon::now()->toDateString())
-            ->select('personas.id',"nombre",'apellidop','apellidom','programacioncoms.horaini','programacioncoms.horafin','programacioncoms.estado_id as estado')
+            ->select('personas.id',"matriculacions.id as matriculacion_id","nombre",'apellidop','apellidom','programacioncoms.horaini','programacioncoms.horafin','programacioncoms.estado_id as estado')
         ->orderBy('programacioncoms.horaini','asc')
             ->get();
             

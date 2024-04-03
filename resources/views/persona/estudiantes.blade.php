@@ -84,14 +84,23 @@
                                                 break;
                                         }
                                         @endphp
-                                        <tr class="{{ $clase }}">
+                                        <tr id="{{ $itenauta->id }}" class="{{ $clase }}">
                                             <td>{{ $itenauta->id }}</td>
                                             <td>{{ $itenauta->nombre.' '.$itenauta->apellidop.' '.$itenauta->apellidom }}</td>
                                             <td> <img class="zoomify" src="{{URL::to('').Storage::url($itenauta->foto)}}" alt="{{$itenauta->nombre.' '.$itenauta->apellidop}}" width="50">  </td>
                                             <td>{{ $itenauta->hora_ini }}</td>
                                             <td>{{ $itenauta->hora_fin }}</td>
                                             <td >{{ App\Models\Estado::findOrFail($itenauta->estado)->estado}}</td>
-
+                                            <td> 
+                                                @if($itenauta->estado==estado("INDEFINIDO"))
+                                                    <a href="{{route('clases.marcado.general',$itenauta->inscripcion_id)}}"><i class="fas fa-calendar-check fa-spin"></i></a>
+                                                    <a class="btn-accion-tabla tooltipsC mr-1 enviarmensaje" title="Cobrar por mensaje">
+                                                        &nbsp;<i class="fab fa-whatsapp"></i>
+                                                    </a>
+                                                @else
+                                                    <i class="fas fa-check-double"></i>
+                                                @endif
+                                            </td>     
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -135,14 +144,23 @@
                                                 break;
                                         }
                                         @endphp
-                                        <tr class="{{ $clase }}">
+                                        <tr id="{{ $matriculacion->id }}" class="{{ $clase }}">
                                             <td>{{ $matriculacion->id }}</td>
                                             <td>{{ $matriculacion->nombre.' '.$matriculacion->apellidop.' '.$matriculacion->apellidom }}</td>
                                             <td> <img class="zoomify" src="{{URL::to('').Storage::url($matriculacion->foto)}}" alt="{{$matriculacion->nombre.' '.$matriculacion->apellidop}}" width="50">  </td>
                                             <td>{{ $matriculacion->horaini }}</td>
                                             <td>{{ $matriculacion->horafin }}</td>
                                             <td >{{ App\Models\Estado::findOrFail($matriculacion->estado)->estado}}</td>
-
+                                            <td>
+                                                @if($matriculacion->estado==estado("INDEFINIDO"))
+                                                    <a href="{{route('clases.marcadocom.general',$matriculacion->matriculacion_id)}}"><i class="fas fa-laptop fa-pulse"></i></a>
+                                                    <a class="btn-accion-tabla tooltipsC mr-1 enviarmensaje" title="Cobrar por mensaje">
+                                                        &nbsp;<i class="fab fa-whatsapp"></i>
+                                                    </a>
+                                                @else
+                                                    <i class="fa-solid fa-computer-mouse fa-spin"></i>
+                                                @endif
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
