@@ -60,9 +60,9 @@
 
 
     <script>
-        // $(document).ready(function() {
-        //     var intervalId;
-        //     $('#modalGcontact').modal('show');
+        $(document).ready(function() {
+            var intervalId;
+            $('#modalGcontact').modal('show');
         //     function actualizarTokenExpiration() {
         //         $.ajax({
         //             url: "{{ route('token-expiration') }}",
@@ -80,7 +80,7 @@
         //         });
         //     }
         //     intervalId = setInterval(actualizarTokenExpiration, 1000);
-        // });
+        });
     </script>
 
     <script>
