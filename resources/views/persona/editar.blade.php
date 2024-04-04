@@ -58,25 +58,25 @@
     </script>
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% FIN CKEDITOR --}}
     <script>
-        $(document).ready(function() {
-            var intervalId;
-            $('#modalGcontact').modal('show');
-            function actualizarTokenExpiration() {
-                $.ajax({
-                    url: "{{ route('token-expiration') }}",
-                    type: "GET",
-                    success: function(response) {
-                        $('#tokenExpiration').text('Tiempo Token: ' + response);
-                        $('#tokenExpirationform').text('Tiempo Restante: ' + response);
-                        $('#signIn').show();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            }
-            intervalId = setInterval(actualizarTokenExpiration, 1000);
-        });
+        // $(document).ready(function() {
+        //     var intervalId;
+        //     $('#modalGcontact').modal('show');
+        //     function actualizarTokenExpiration() {
+        //         $.ajax({
+        //             url: "{{ route('token-expiration') }}",
+        //             type: "GET",
+        //             success: function(response) {
+        //                 $('#tokenExpiration').text('Tiempo Token: ' + response);
+        //                 $('#tokenExpirationform').text('Tiempo Restante: ' + response);
+        //                 $('#signIn').show();
+        //             },
+        //             error: function(xhr, status, error) {
+        //                 console.error(error);
+        //             }
+        //         });
+        //     }
+        //     intervalId = setInterval(actualizarTokenExpiration, 1000);
+        // });
     </script>
 
     <script>

@@ -41,27 +41,27 @@
        
     </script>
      <script>
-        $(document).ready(function() {
-            var intervalId;
-            $('#modalGcontact').modal('show');
-            function actualizarTokenExpiration() {
-                $.ajax({
-                    url: "{{ route('token-expiration') }}",
-                    type: "GET",
-                    success: function(response) {
+        // $(document).ready(function() {
+        //     var intervalId;
+        //     $('#modalGcontact').modal('show');
+        //     function actualizarTokenExpiration() {
+        //         $.ajax({
+        //             url: "{{ route('token-expiration') }}",
+        //             type: "GET",
+        //             success: function(response) {
 
-                        console.log(response);
-                        $('#tokenExpiration').text('Tiempo Restante: ' + response);
-                        $('#tokenExpirationform').text('Tiempo Restante: ' + response);
-                        $('#signIn').show();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            }
-            intervalId = setInterval(actualizarTokenExpiration, 1000);
-        });
+        //                 console.log(response);
+        //                 $('#tokenExpiration').text('Tiempo Restante: ' + response);
+        //                 $('#tokenExpirationform').text('Tiempo Restante: ' + response);
+        //                 $('#signIn').show();
+        //             },
+        //             error: function(xhr, status, error) {
+        //                 console.error(error);
+        //             }
+        //         });
+        //     }
+        //     intervalId = setInterval(actualizarTokenExpiration, 1000);
+        // });
     </script>
     
 
