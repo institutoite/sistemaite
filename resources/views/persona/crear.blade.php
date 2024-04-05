@@ -13,7 +13,8 @@
     <div class="pt-4">
         <div class="card">
             <div class="card-header bg-secondary">
-                FORMULARIO CREAR PERSONAS <div class="text-white float-right" id="tokenExpirationform"></div>
+                {{-- FORMULARIO CREAR PERSONAS <div class="text-white float-right" id="tokenExpirationform">x</div> --}}
+                FORMULARIO CREAR PERSONAS <div class="" id="tokenExpirationform">x</div>
             </div>
             <div class="card-body">
                 <div class="tab-content">
@@ -89,6 +90,7 @@
                     }
                 });
             }
+
             function showCountdown(endTime) {
                 const countdownElement = document.getElementById('tokenExpirationform');
                 const timerInterval = setInterval(updateCountdown, 1000);
@@ -109,6 +111,7 @@
                 // Ejecuta la función inicialmente para mostrar el tiempo restante al cargar la página
                 updateCountdown();
             }
+            actualizarTokenExpiration();
         });
     </script>
 
