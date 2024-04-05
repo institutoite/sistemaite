@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>ite</title>
+<title>Grupo ite</title>
 <!-- Stylesheets -->
 {{-- <link href="{{asset('assetshome/css/bootstrap.css')}}" rel="stylesheet"> --}}
 <link href="{{asset('dist/css/bootstrap/bootstrap.css')}}" rel="stylesheet">
@@ -33,7 +33,7 @@
 <!-- Responsive -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-
+<link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
 <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
 
@@ -46,11 +46,30 @@
 	<!-- Preloader -->
 	<div class="loader-wrap">
 		<div class="preloader">
-			<div class="preloader-close">x</div>
+			<div class="preloader-close"></div>
 			<div id="handle-preloader" class="handle-preloader">
 				<div class="animation-preloader">
 					<div class="spinner"></div>
 					<div class="txt-loading">
+						<span data-text-preloader="G" class="letters-loading">
+							G
+						</span>
+						<span data-text-preloader="r" class="letters-loading">
+							r
+						</span>
+						<span data-text-preloader="u" class="letters-loading">
+							u
+						</span>
+						<span data-text-preloader="p" class="letters-loading">
+							p
+						</span>
+						<span data-text-preloader="o" class="letters-loading">
+							o
+						</span>
+					
+						<span data-text-preloader=" " class="letters-loading">
+							&nbsp;
+						</span>
 						<span data-text-preloader="i" class="letters-loading">
 							i
 						</span>
@@ -417,7 +436,7 @@
 		</div>
 	</section>
 	<!-- End Nivels Section -->
-	
+
 	<!-- News Section -->
 	<section class="services-section">
 		<div class="pattern-layer-one" style="background-image: url(assetshome/images/background/pattern-2.png)"></div>
@@ -498,7 +517,8 @@
 								<figure class="video-image">
 									<img class="transition-500ms" src="assetshome/images/resource/service-1.jpg" alt="">
 								</figure>
-								<a href="https://www.youtube.com/embed/lFpc19KsYzs?autoplay=1" class="lightbox-image overlay-box"><span class="fas fa-play"><span class="dott"></span><i class="ripple"></i></span></a>
+								{{-- <a href="https://www.youtube.com/embed/lFpc19KsYzs?autoplay=1" class="lightbox-image overlay-box"><span class="fas fa-play"><span class="dott"></span><i class="ripple"></i></span></a> --}}
+								<a href="https://www.youtube.com/watch?v=68hG0qzXvbs&t=3s" class="lightbox-image overlay-box"><span class="fas fa-play"><span class="dott"></span><i class="ripple"></i></span></a>
 							</div>
 							<div class="image wow fadeInRight" data-wow-delay="150ms" data-wow-duration="1500ms">
 								<img src="assetshome/images/resource/service-2.jpg" alt="" />
@@ -743,6 +763,138 @@
 	<!-- End Principle Section -->
 	
 	<!-- Project Page Section -->
+	<section class="project-page-section">
+		<div class="auto-container">
+			<!-- Sec Title -->
+			<div class="sec-title centered">
+				<div class="title style-two">Grupo educabol ite</div>
+				<h2>Conoce<span>nuestros </span> servicios.</h2>
+			</div>
+			<div class="row clearfix">
+				<!-- Project Block Two -->
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="card">
+							<div class="card-header bg-secondary">
+								<h1 class="text-white"> Cursos virtuales </h1> 
+							</div>
+							<div class="card-body">
+								<span></span>
+								<hr>
+							</div>
+						</div>
+						<div class="lower-content">
+							<h3><a href="https://educabol.com">Educabol</a></h3>
+							<a href="https://educabol.com" class="view">educación en digital</a>
+						</div>
+					</div>
+				</div>
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="card">
+							<div class="card-header bg-secondary">
+								<h1 class="text-white"> ite ayuda </h1> 
+							</div>
+							<div class="card-body">
+								<span></span>
+								<hr>
+							</div>
+						</div>
+						<div class="lower-content">
+							<h3><a href="https://iteayuda.com">iteayuda</a></h3>
+							<a href="https://iteayuda.com" class="view">te ayudamos en todo</a>
+						</div>
+					</div>
+				</div>
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="card">
+							<div class="card-header bg-secondary">
+								<h1 class="text-white">Whaio </h1> 
+							</div>
+							<div class="card-body">
+								<span></span>
+								<hr>
+							</div>
+						</div>
+						<div class="lower-content">
+							<h3><a href="https://whaio.test.iteayuda.com/">Whaio</a></h3>
+							<a href="https://whaio.test.iteayuda.com/" class="view">24/7</a>
+						</div>
+					</div>
+				</div>
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="card">
+							<div class="card-header bg-secondary">
+								<h1 class="text-white">ite fórmulas </h1> 
+							</div>
+							<div class="card-body">
+								<span></span>
+								<hr>
+							</div>
+						</div>
+						<div class="lower-content">
+							<h3><a href="https://formula.ite.com.bo">Fórmulas</a></h3>
+							<a href="https://formula.ite.com.bo" class="view">encuentra tu fórmula</a>
+						</div>
+					</div>
+				</div>
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="card">
+							<div class="card-header bg-secondary">
+								<h1 class="text-white">Primos </h1> 
+							</div>
+							<div class="card-body">
+								<span></span>
+								<hr>
+							</div>
+						</div>
+						<div class="lower-content">
+							<h3><a href="https://tools.ite.com.bo">Números primos</a></h3>
+							<a href="https://tools.ite.com.bo" class="view">Números primos</a>
+						</div>
+					</div>
+				</div>
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="card">
+							<div class="card-header bg-secondary">
+								<h1 class="text-white">Asistente ite </h1> 
+							</div>
+							<div class="card-body">
+								<span></span>
+								<hr>
+							</div>
+						</div>
+						<div class="lower-content">
+							<h3><a href="https://asistente.ite.com.bo">asistente ite</a></h3>
+							<a href="https://asistente.ite.com.bo" class="view">tu asistente</a>
+						</div>
+					</div>
+				</div>
+				<div class="project-block-two col-lg-4 col-md-6 col-sm-12">
+					<div class="inner-box">
+						<div class="card">
+							<div class="card-header bg-secondary">
+								<h1 class="text-white">ite propuestos </h1> 
+							</div>
+							<div class="card-body">
+								<span></span>
+								<hr>
+							</div>
+						</div>
+						<div class="lower-content">
+							<h3><a href="https://propuestos.ite.com.bo">Ejercicios Propuestos</a></h3>
+							<a href="https://propuestos.ite.com.bo" class="view">Generalos aquí</a>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</section>
 	<section class="project-page-section">
 		<div class="auto-container">
 			<!-- Sec Title -->
