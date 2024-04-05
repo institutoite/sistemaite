@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-header bg-secondary">
                 {{-- FORMULARIO CREAR PERSONAS <div class="text-white float-right" id="tokenExpirationform">x</div> --}}
-                FORMULARIO CREAR PERSONAS <div class="" id="tokenExpirationform">x</div>
+                FORMULARIO CREAR PERSONAS <div class="text-white float-right" id="tokenExpirationform"></div>
             </div>
             <div class="card-body">
                 <div class="tab-content">
@@ -55,11 +55,12 @@
             width: "100%",
             removeButtons: 'PasteFromWord'
         });
-    </script>
+        </script>
     
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% FIN CKEDITOR --}}
-
-
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script>
         $(document).ready(function() {
             var intervalId;
