@@ -23,8 +23,6 @@
                             @csrf
                             @include('persona.form')
                             @include('include.botones')
-
-
                         </form>
                     </div>
                 </div>

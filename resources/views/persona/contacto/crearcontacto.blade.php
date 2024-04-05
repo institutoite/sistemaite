@@ -40,30 +40,9 @@
        
        
     </script>
-     <script>
-        // $(document).ready(function() {
-        //     var intervalId;
-        //     $('#modalGcontact').modal('show');
-        //     function actualizarTokenExpiration() {
-        //         $.ajax({
-        //             url: "{{ route('token-expiration') }}",
-        //             type: "GET",
-        //             success: function(response) {
 
-        //                 console.log(response);
-        //                 $('#tokenExpiration').text('Tiempo Restante: ' + response);
-        //                 $('#tokenExpirationform').text('Tiempo Restante: ' + response);
-        //                 $('#signIn').show();
-        //             },
-        //             error: function(xhr, status, error) {
-        //                 console.error(error);
-        //             }
-        //         });
-        //     }
-        //     intervalId = setInterval(actualizarTokenExpiration, 1000);
-        // });
-    </script>
-    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="{{asset('assets/js/tiempoGcontact.js')}}"></script>
 
     
 @stop
