@@ -3,107 +3,1998 @@ use App\Models\Persona;
 use Carbon\Carbon;
 
   
-  $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-		->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-		->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-		->join('clases','clases.programacion_id','programacions.id')
-		->where("clases.fecha",'=','2024-03-28')
-		->select('personas.id',"nombre",'apellidop','clases.horainicio','horafin')
-	->orderBy('clases.horainicio','asc')
-		->get();
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
 use App\Models\Estudiante;
 use App\Models\Persona;
 use Carbon\Carbon;
 
   
-  $nuevos=Persona::join("computacions",'computacions.persona_id','personas.id')
-		->join("matriculacions",'matriculacions.computacion_id','computacion.id')
-		->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacion.id')
-		->where("clases.fecha",'=','2024-03-28')
-		->select('personas.id',"nombre",'apellidop','clases.horainicio','horafin')
-	->orderBy('clases.horainicio','asc')
-		->get();
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
 use App\Models\Estudiante;
 use App\Models\Persona;
 use Carbon\Carbon;
 
   
-  $nuevos=Persona::join("computacions",'computacions.persona_id','personas.id')
-		->join("matriculacions",'matriculacions.computacion_id','computacion.id')
-		->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacion.id')
-		->where("clases.fecha",'=','2024-03-28')
-		->select('personas.id',"nombre",'apellidop','programacioncoms.horaini','programacioncoms.horafin')
-	->orderBy('clases.horainicio','asc')
-		->get();
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
 use App\Models\Estudiante;
 use App\Models\Persona;
 use Carbon\Carbon;
 
   
-  $nuevos=Persona::join("computacions",'computacions.persona_id','personas.id')
-		->join("matriculacions",'matriculacions.computacion_id','computacion.id')
-		->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacion.id')
-		->where("clases.fecha",'=','2024-03-28')
-		->select('personas.id',"nombre",'apellidop','programacioncoms.horaini','programacioncoms.horafin')
-	->orderBy('programacioncoms.horaini','asc')
-		->get();
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
 use App\Models\Estudiante;
 use App\Models\Persona;
 use Carbon\Carbon;
 
   
-  $nuevos=Persona::join("computacions",'computacions.persona_id','personas.id')
-		->join("matriculacions",'matriculacions.computacion_id','computacion.id')
-		->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacion.id')
-		->where("clases.fecha",'=','2024-03-28')
-		->select('personas.id',"nombre",'apellidop','programacioncoms.horaini','programacioncoms.horafin')
-	->orderBy('programacioncoms.horaini','asc')
-		->get();
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
 use App\Models\Estudiante;
 use App\Models\Persona;
 use Carbon\Carbon;
 
   
-  $nuevos=Persona::join("computacions",'computacions.persona_id','personas.id')
-		->join("matriculacions",'matriculacions.computacion_id','computacion.id')
-		->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacion.id')
-		->where("clases.fecha",'=','2024-03-28')
-		->select('personas.id',"nombre",'apellidop','programacioncoms.horaini','programacioncoms.horafin')
-	->orderBy('programacioncoms.horaini','asc')
-		->get();
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
 use App\Models\Estudiante;
 use App\Models\Persona;
 use Carbon\Carbon;
 
   
-  $nuevos=Persona::join("computacions",'computacions.persona_id','personas.id')
-		->join("matriculacions",'matriculacions.computacion_id','computacion.id')
-		->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacion.id')
-		->where("programacioncoms.fecha",'=','2024-03-28')
-		->select('personas.id',"nombre",'apellidop','programacioncoms.horaini','programacioncoms.horafin')
-	->orderBy('programacioncoms.horaini','asc')
-		->get();
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
 use App\Models\Estudiante;
 use App\Models\Persona;
 use Carbon\Carbon;
 
   
-  $nuevos=Persona::join("computacions",'computacions.persona_id','personas.id')
-		->join("matriculacions",'matriculacions.computacion_id','computacions.id')
-		->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacion.id')
-		->where("programacioncoms.fecha",'=','2024-03-28')
-		->select('personas.id',"nombre",'apellidop','programacioncoms.horaini','programacioncoms.horafin')
-	->orderBy('programacioncoms.horaini','asc')
-		->get();
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
 use App\Models\Estudiante;
 use App\Models\Persona;
 use Carbon\Carbon;
 
   
-  $nuevos=Persona::join("computacions",'computacions.persona_id','personas.id')
-		->join("matriculacions",'matriculacions.computacion_id','computacions.id')
-		->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacions.id')
-		->where("programacioncoms.fecha",'=','2024-03-28')
-		->select('personas.id',"nombre",'apellidop','programacioncoms.horaini','programacioncoms.horafin')
-	->orderBy('programacioncoms.horaini','asc')
-		->get();
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+  
+ $now = Carbon::now();
+        $diff = $now->diffInSeconds("00:00 2024-04-03");
+        $minutes = floor($diff / 60);
+        $seconds = $diff % 60;
+ $t=sprintf('%02d:%02d', $minutes, $seconds);
