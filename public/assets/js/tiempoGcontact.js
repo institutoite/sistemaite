@@ -1,9 +1,10 @@
+
 $(document).ready(function() {
     var intervalId;
     $('#modalGcontact').modal('show');
     function actualizarTokenExpiration() {
         $.ajax({
-            url: "{{ route('token-expiration') }}",
+            url: "/token-expiration",
             type: "GET",
             success: function(response) {
                 console.log(response);
