@@ -11,7 +11,7 @@ use Carbon\Carbon;
     {
         list($minutos, $segundos) = explode(':', $tiempo);
         $carbon = Carbon::createFromTime(0, $minutos, $segundos);
-        return $carbon->second;
+        return $minutos*60+$carbon->second;
     }
     function estado($estado){
             // dd($estado);
