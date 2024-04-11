@@ -35,7 +35,7 @@ $(document).ready(function() {
         function updateCountdown() {
             const currentTime = moment();
             const remainingTime = moment.duration(endTime.diff(currentTime));
-            if (remainingTime.asSeconds() <= 0) {
+            if (remainingTime.asSeconds() < 1) {
                 clearInterval(timerInterval);
                 countdownElement.innerHTML = "¡Tiempo terminado!";
                 $.ajax({
