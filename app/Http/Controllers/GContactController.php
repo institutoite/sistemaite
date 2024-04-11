@@ -37,9 +37,11 @@ class GContactController extends Controller
     public function getTokenExpiration()
     {
         $tiempoString = session('GContactTokenExpiration');
-        dd($tiempoString);
+       
         if (!$tiempoString) {
             return '0:00';
+        }else{
+            dd($tiempoString);
         }
         list($minutos, $segundos) = explode(':', $tiempoString);
         $tiempoCarbon = Carbon::today()->minute($minutos)->second($segundos);
