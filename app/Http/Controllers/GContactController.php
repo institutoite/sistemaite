@@ -34,25 +34,21 @@ class GContactController extends Controller
         return $token;
     }
 
+    public function resetTokenExpiration(){
+        session(['GContactTokenExpiration' => '0']);
+        return response()->json(["respuesta"=>"reseteado correctamente"]);
+    }
     public function getTokenExpiration()
     {
         $tiempoString = session('GContactTokenExpiration');
-       
         if (!$tiempoString) {
             return '0:00';
         }
-
         $now = Carbon::now();
         $segundosTranscurridos = $now->diffInSeconds($tiempoString);
-        
-        $minutos = floor($segundosTranscurridos / 60); // Dividir los segundostra$segundosTranscurridos por 60 para obtener los minutos completos
-        $segundos = $segundosTranscurridos % 60;
 
-        dd("TIEMPO : Minutros".$minutos." segundos ".$segundos);
-        // list($minutos, $segundos) = explode(':', $tiempoString);
-        // $tiempoCarbon = Carbon::today()->minute($minutos)->second($segundos);
-        // $minutes = $tiempoCarbon->minute;
-        // $seconds = $tiempoCarbon->second;
+        $minutos = floor($segundosTranscurridos / 60);
+        $segundos = $segundosTranscurridos % 60;
         return sprintf('%02d:%02d', $minutos, $segundos);
     }
     

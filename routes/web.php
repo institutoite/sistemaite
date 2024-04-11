@@ -1038,3 +1038,4 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     route::get('auth/google/callback',[GContactController::class,'handleCallback']);
 
     Route::get('/token-expiration', [GContactController::class, 'getTokenExpiration'])->name('token-expiration');
+    Route::get('reset/token-expiration', [GContactController::class, 'resetTokenExpiration'])->name('reset.token-expiration');

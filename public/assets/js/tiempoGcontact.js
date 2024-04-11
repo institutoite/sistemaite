@@ -38,12 +38,23 @@ $(document).ready(function() {
             if (remainingTime.asSeconds() <= 0) {
                 clearInterval(timerInterval);
                 countdownElement.innerHTML = "¡Tiempo terminado!";
+                $.ajax({
+                    url: "reset/token-expiration",
+                    type: "GET",
+                    success: function(response) {
+                        console.log(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
             } else {
                 const hours = Math.floor(remainingTime.asHours());
                 const minutes = remainingTime.minutes();
                 const seconds = remainingTime.seconds();
                 countdownElement.innerHTML = `Tiempo restante: ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
             }
+
         }
 
         // Ejecuta la función inicialmente para mostrar el tiempo restante al cargar la página
