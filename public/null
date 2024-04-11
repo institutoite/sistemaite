@@ -257,3 +257,59 @@ $tiempoString = Carbon::now();
 
 $tiempoString;
       
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+$tiempoString = Carbon::now();
+
+$diferencia = $tiempoString->diffInSeconds(Carbon::now());
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+$tiempoString = Carbon::now();
+
+$diferencia = $tiempoString->diffInSeconds(Carbon::now());
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+$tiempoString = Carbon::now();
+
+$diferencia = $tiempoString->diffInSeconds(Carbon::now());
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+$tiempoString = Carbon::parse('2024-04-11 04:00:00');
+
+$diferencia = $tiempoString->diffInSeconds(Carbon::now());
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+$tiempoString = Carbon::parse('2024-04-11 03:00:00');
+
+$diferencia = $tiempoString->diffInSeconds(Carbon::now());
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+$tiempoString = Carbon::parse('2024-04-11 03:00:00');
+
+$diferencia = $tiempoString->diffInSeconds(Carbon::now());
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+$tiempoString = Carbon::parse('2024-04-11 6:00:00');
+
+$diferencia = $tiempoString->diffInSeconds(Carbon::now());
+use App\Models\Estudiante;
+use App\Models\Persona;
+use Carbon\Carbon;
+
+$tiempoString = Carbon::parse('2024-04-11 01:00:00');
+
+$diferencia = $tiempoString->diffInSeconds(Carbon::now());
