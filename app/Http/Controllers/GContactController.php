@@ -45,12 +45,15 @@ class GContactController extends Controller
         $now = Carbon::now();
         $segundosTranscurridos = $now->diffInSeconds($tiempoString);
         
-        dd("TIEMPO : ".$segundosTranscurridos);
-        list($minutos, $segundos) = explode(':', $tiempoString);
-        $tiempoCarbon = Carbon::today()->minute($minutos)->second($segundos);
-        $minutes = $tiempoCarbon->minute;
-        $seconds = $tiempoCarbon->second;
-        return sprintf('%02d:%02d', $minutes, $seconds);
+        $minutos = floor($segundosTranscurridos / 60); // Dividir los segundostra$segundosTranscurridos por 60 para obtener los minutos completos
+        $segundos = $segundosTranscurridos % 60;
+
+        dd("TIEMPO : Minutros".$minutos." segundos ".$segundos);
+        // list($minutos, $segundos) = explode(':', $tiempoString);
+        // $tiempoCarbon = Carbon::today()->minute($minutos)->second($segundos);
+        // $minutes = $tiempoCarbon->minute;
+        // $seconds = $tiempoCarbon->second;
+        return sprintf('%02d:%02d', $minutos, $segundos);
     }
     
     public function createContact($nombre,$apellidop,$apellidom,$email,$telefono)
