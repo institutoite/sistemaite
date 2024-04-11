@@ -42,7 +42,7 @@ class GContactController extends Controller
     {
         $tiempoString = session('GContactTokenExpiration');
         if (!$tiempoString) {
-            return '0:00';
+            return '0:10';
         }
         $now = Carbon::now();
         $segundosTranscurridos = $now->diffInSeconds($tiempoString);
