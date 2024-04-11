@@ -35,8 +35,9 @@ class GContactController extends Controller
     }
 
     public function resetTokenExpiration(){
-        session(['GContactTokenExpiration' => '0:00']);
-        return response()->json(["respuesta"=>"reseteado correctamente"]);
+        session(['GContactTokenExpiration' => '0:10']);
+        dd(session(['GContactTokenExpiration']));
+        //return response()->json(["respuesta"=>"reseteado correctamente"]);
     }
     public function getTokenExpiration()
     {
