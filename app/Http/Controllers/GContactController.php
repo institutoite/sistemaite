@@ -37,6 +37,7 @@ class GContactController extends Controller
     public function getTokenExpiration()
     {
         $tiempoString = session('GContactTokenExpiration');
+        dd($tiempoString);
         if (!$tiempoString) {
             return '0:00';
         }
