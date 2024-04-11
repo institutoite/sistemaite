@@ -35,14 +35,14 @@ class GContactController extends Controller
     }
 
     public function resetTokenExpiration(){
-        session(['GContactTokenExpiration' => '01:15']);
+        session(['GContactTokenExpiration' => '0:15']);
         return response()->json(["respuesta"=>"reseteado correctamente"]);
     }
     public function getTokenExpiration()
     {
         $tiempoString = session('GContactTokenExpiration');
         if (!$tiempoString) {
-            return '0:10';
+            return '0:00';
         }
         $now = Carbon::now();
         $segundosTranscurridos = $now->diffInSeconds($tiempoString);
