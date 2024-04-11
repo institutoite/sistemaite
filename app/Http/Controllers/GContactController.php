@@ -41,9 +41,9 @@ class GContactController extends Controller
         if (!$tiempoString) {
             return '0:00';
         }else{
-            dd($tiempoString);
         }
         list($minutos, $segundos) = explode(':', $tiempoString);
+        dd("TIEMPO : ".$minutos.' '. $segundos);
         $tiempoCarbon = Carbon::today()->minute($minutos)->second($segundos);
         $minutes = $tiempoCarbon->minute;
         $seconds = $tiempoCarbon->second;
