@@ -35,7 +35,7 @@ class GContactController extends Controller
     }
 
     public function resetTokenExpiration(){
-        session(['GContactTokenExpiration' => Carbon::now()->addHour()]);
+        session(['GContactTokenExpiration' => '0:10']);
         return response()->json(["respuesta"=>"reseteado correctamente"]);
     }
     public function getTokenExpiration()
