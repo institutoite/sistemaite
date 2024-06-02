@@ -51,14 +51,29 @@
 				<div class="animation-preloader">
 					<div class="spinner"></div>
 					<div class="txt-loading">
+						<span data-text-preloader="P" class="letters-loading">
+							P
+						</span>
+						<span data-text-preloader="r" class="letters-loading">
+							r
+						</span>
 						<span data-text-preloader="i" class="letters-loading">
 							i
 						</span>
-						<span data-text-preloader="t" class="letters-loading">
-							t
+						<span data-text-preloader="m" class="letters-loading">
+							m
 						</span>
-						<span data-text-preloader="e" class="letters-loading">
-							e
+						<span data-text-preloader="a" class="letters-loading">
+							a
+						</span>
+						<span data-text-preloader="r" class="letters-loading">
+							r
+						</span>
+						<span data-text-preloader="i" class="letters-loading">
+							i
+						</span>
+						<span data-text-preloader="a" class="letters-loading">
+							a
 						</span>
 					</div>
 				</div>  
@@ -76,7 +91,7 @@
                 <div class="inner-container clearfix">
 					<!-- Top Left -->
 					<div class="top-left clearfix">
-						<div class="text">Apoyo escolar 2023. <a href="contact.html">Contactanos</a></div>
+						<div class="text">Apoyo escolar 2024. <a href="contact.html">Contactanos</a></div>
 					</div>
 					
 					<!-- Top Right -->
@@ -304,8 +319,8 @@
 					<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
 						<span class="number">01</span>
 						<span class="icon flaticon-learning-support"></span>
-						<h4><a href="#">Clases Personalizadas</a></h4>
-						<div class="text">Ofrecemos clases personalizadas adaptadas a las necesidades de cada estudiante. </div>
+						<h4><a href="#">Clases personalizadas</a></h4>
+						<div class="text">Tú decides el ritmo, nosotros te guiamos.</div>
 					</div>
 				</div>
 				
@@ -315,7 +330,7 @@
 						<span class="number">02</span>
 						<span class="icon flaticon-reload"></span>
 						<h4><a href="#">Horarios Flexibles</a></h4>
-						<div class="text">Ofrecemos horarios flexibles para adaptarnos a los horarios de los estudiantes. </div>
+						<div class="text">Aprender sin límites, en el momento que elijas.</div>
 					</div>
 				</div>
 				
@@ -324,8 +339,8 @@
 					<div class="inner-box wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
 						<span class="number">03</span>
 						<span class="icon flaticon-notebook"></span>
-						<h4><a href="#">Solución de problemas</a></h4>
-						<div class="text">Resolvemos cualquier problema y ofrecemos soluciones a los estudiantes para asegurar su éxito. </div>
+						<h4><a href="#">Métodos innovadores</a></h4>
+						<div class="text">Aprender con creatividad y tecnología. </div>
 					</div>
 				</div>
 				
@@ -334,14 +349,15 @@
 					<div class="inner-box wow fadeInLeft" data-wow-delay="450ms" data-wow-duration="1500ms">
 						<span class="number">04</span>
 						<span class="icon flaticon-bar-chart"></span>
-						<h4><a href="#">Experiencia</a></h4>
-						<div class="text">Nuestro instructores estan altamente capacitados para ayudar a los estudiantes a alcanzar su máximo potencial. </div>
+						<h4><a href="#">Inscríbete</a></h4>
+						<div class="text">Del resto nos encargamos nosotros </div>
 					</div>
 				</div>
 				
 			</div>
 		</div>
 	</section>
+	
 	<!-- End Featured Section -->
 
   <!-- About Section Two -->
@@ -357,24 +373,20 @@
 						<!-- Sec Title -->
 						<div class="sec-title">
 							<div class="title style-two">Nivel Primaria</div>
-              <h2>¿Quieres que tu hijo tenga <span>éxito</span> en el colegio?</h2>
-							<div class="text">En ITE sabemos que muchos estudiantes se sienten abrumados
-              por la cantidad de tareas escolares que tienen que
-              hacer, por eso estamos aquí para ayudarles a hacerlo de
-              manera más eficiente y efectiva. Con nuestra experiencia
-              y metodología de enseñanza, podemos asegurarles que
-              los estudiantes pueden hacer en menos tiempo lo que les
-              llevaría toda una mañana o tarde.</div>
+              				<h2>¿Quieres que tu hijo tenga <span>éxito</span> en el colegio?</h2>
+							<div class="text">¡Descubre el Éxito en ITE con Nuestras Clases de Apoyo Escolar! 📚🌟
+
+								¿Quieres mejorar tus notas y entender mejor tus materias? En ITE, ofrecemos clases de apoyo escolar diseñadas especialmente para estudiantes de primaria, haciendo que aprender sea más fácil y divertido..</div>
 						</div>
 						<!-- Employe Box -->
-						<div class="employe-box">
+						{{-- <div class="employe-box">
 							<div class="box-inner">
 								<span class="globe-icon flaticon-earth-globe-with-continents-maps"></span>
-								<ul class="list">
-									<li>Ayudamos a resolver tareas o prácticos</li>
-									<li>Preparamos para exámenes</li>
-									<li>Nivelamos estudiantes atrasados</li>
-									<li>Especialización para estudiantes destacados </li>
+								<ul class="">
+									<li>Asistencia en la resolución de tareas y ejercicios.</li>
+									<li>Preparación efectiva para exámenes escolares.</li>
+									<li>Programas adaptados para estudiantes en diferentes niveles.</li>
+									<li>Enfoque en áreas específicas para estudiantes sobresalientes. </li>
 								</ul>
 								<div class="employe">
 									<div class="count-outer count-box">
@@ -383,7 +395,7 @@
 									<div class="text">años de experiencia</div>
 								</div>
 							</div>
-						</div>
+						</div> --}}
 						<!-- End Employe Box -->
 						
             <!-- Fact Counter Two -->
@@ -411,7 +423,7 @@
 														<!-- <div class="count-outer count-box">
 															<span class="count-text" data-speed="5500" data-stop="980">0</span>+
 														</div> -->
-														<h5>Comprensión Completa</h5>
+														<h5>Entera Comprensión</h5>
 													</div>
 												</div>
 											</div>
@@ -424,7 +436,7 @@
 														<!-- <div class="count-outer count-box">
 															<span class="count-text" data-speed="3500" data-stop="1278">0</span>
 														</div> -->
-														<h5>Profesores capacitados</h5>
+														<h5>Mentores Experimentados</h5>
 													</div>
 												</div>
 											</div>
@@ -524,36 +536,36 @@
 			<!-- Sec Title -->
 			<div class="sec-title centered">
 				<div class="title style-two">Horarios</div>
-        <h2><span>Horarios flexibles</span> para <br> adaptarnos a tu ritmo de vida </h2>
+        			<h2><span>¡Aprende en tu propio</span> tiempo <br>y a tu propio ritmo con nosotros! </h2>
 			</div>
 
       <div class="auto-container">
         <div class="row clearfix">
         
           <!-- Title Column -->
-          <div class="content-column col-lg-7 col-md-12 col-sm-12">
-            <div class="inner-column">
+          <div class="content-column col-lg-12 col-md-12 col-sm-12">
+            
               <!-- Sec Title -->
               
-              <div class="row mt-none-30">
+              <div class="row">
 
 			  	<div class="col-lg-6">
 					<div class="experiance_item mt-30">
 						<div class="content">
-							<h4>Reserva de clases temprano</h4>
-							<p>Los estudiantes pueden reservar sus súper clases desde las 5 de la mañana</p>
+							<h4>¡Empieza tu día con éxito!</h4>
+							<p>Reserva tus súper clases desde las 5 de la mañana en ITE</p>
 						</div>
 					</div>
 					<div class="experiance_item mt-30">
 						<div class="content">
-							<h4>Clases personalizadas</h4>
-							<p>Clases personalizadas adaptadas a las necesidades de cada estudiante.</p>
+							<h4>¡La Educación no tiene vacaciones!</h4>
+							<p>¡Atendemos todo el año para garantizar tu éxito!</p>
 						</div>
 					</div>
 					<div class="experiance_item mt-30">
 						<div class="content">
-							<h4>Solución de problemas</h4>
-							<p>Resolvemos cualquier problema y ofrecemos soluciones a los estudiantes para asegurar su éxito.</p>
+							<h4>¡Descubre premios!</h4>
+							<p>Becas y sorpresas exclusivas en nuestras redes sociales!</p>
 						</div>
 					</div>
                 </div>
@@ -583,18 +595,16 @@
                       <img src="{{asset('assetshome/images/icons/a_01.png')}}" alt="">
                     </div>
                     <div class="content">
-                      <h4>Fines de semana</h4>
-                      <p>Solo Sábados</p>
+                      <h4>Semipresencial</h4>
+                      <p>Sólo Sábados</p>
                     </div>
                   </div>
                 </div>
-
-                
-                
-              </div>
             </div>  
 
-            <div class="content-column col-lg-12 col-md-12 col-sm-12">
+			
+
+            {{-- <div class="content-column col-lg-12 col-md-12 col-sm-12">
               <div class="inner-column">
                 <!-- Sec Title -->
                 <div class="sec-title">
@@ -615,12 +625,12 @@
                   
                 </div>
               </div>
-            </div>     
+            </div>      --}}
                 
           </div>
           
           <!-- Blocks Column -->
-          <div class="sidebar-side col-lg-5 col-md-12 col-sm-12">
+          {{-- <div class="sidebar-side col-lg-5 col-md-12 col-sm-12">
             <aside class="sidebar sticky-top">
   
               <!-- Timing Widget -->
@@ -628,86 +638,17 @@
                 <div class="widget-content">
   
                     {{--%%%%%%%%%%%%%%%%%%%% Horarios 1 hora %%%%%%%%%%%%%%%%%%  --}}
-                    <div class="card">
+                    {{-- <div class="card">
                       <div class="card-header bg-primary text-white text-center">
                         <h3 class="text-white">Horarios 1 hora / diario</h3>
                       </div>
                       <div class="card-body">
-                        <table class="table table-bordered table-striped table-hover">
-                          <thead class="text-secondary">
-                            <tr>
-                              <th scope="col">Mañana</th>
-                              <th scope="col">Tarde</th>
-                              <th scope="col">Noche</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>7:30 - 8:30</td>
-                              <td>14:00 - 15:00</td>
-                              <td>19:00 - 20:00</td>
-                            </tr>
-                            <tr>
-                              <td>8:00 - 9:00</td>
-                              <td>15:00 - 16:00</td>
-                              <td>20:00 - 21:00</td>
-                            </tr>
-                            <tr>
-                              <td>9:00 - 10:00</td>
-                              <td>16:00 - 17:00</td>
-                              <td></td>
-                            </tr>
-							<tr>
-                              <td>10:00 - 11:00</td>
-                              <td>17:00 - 18:00</td>
-                              <td></td>
-                            </tr>
-							<tr>
-                              <td>11:00 - 12:00</td>
-                              <td>18:00 - 19:00</td>
-                              <td></td>
-                            </tr>
-                          </tbody>
-                        </table>
+                       
                       </div>
-                    </div> 
-                    <hr>
+                    </div>  --}}
 
                     {{--%%%%%%%%%%%%%%%%%%%% Horarios 1:30 %%%%%%%%%%%%%%%%%%  --}}
-                    <div class="card">
-                      <div class="card-header bg-secondary text-white text-center">
-                        <h3 class="text-white">Horarios 1:30 hora / diario</h3>
-                      </div>
-                      <div class="card-body">
-					  <table class="table table-bordered table-striped table-hover">
-                          <thead class="text-secondary">
-                            <tr>
-                              <th scope="col">Mañana</th>
-                              <th scope="col">Tarde</th>
-                              <th scope="col">Noche</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>7:30 - 9:00</td>
-                              <td>14:00 - 15:30</td>
-                              <td>18:30 - 20:00</td>
-                            </tr>
-                            <tr>
-                              <td>9:00 - 10:30</td>
-                              <td>15:30 - 17:00</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>10:30 - 12:00</td>
-                              <td>17:00 - 18:30</td>
-                              <td></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div> 
-                    <hr>
+                    
   
                 </div>
               </div>
@@ -716,15 +657,70 @@
               
               
             </aside>
-          </div>
+          </div> 
 
         </div>
       </div>
 
 		</div>
 	</section>
+
+	<section class="featured-section" style="background-image: url(assets/images/background/pattern-10.png)">
+		<div class="auto-container">
+			<div class="row clearfix">
+				<h1 class="text-primary">HORARIOS</h1>
+				<table class="tablahorario table table-bordered table-striped table-hover table-light text-center">
+					<thead class="text-secondary">
+					  <tr>
+						<th class="">Mañana</th>
+						<th class="">Tarde</th>
+						<th class="">Noche</th>
+					  </tr>
+					</thead>
+					<tbody>
+					  <tr>
+						<td class="celda">07:30 - 09:00</td>
+						<td class="celda">14:00 - 15:30</td>
+						<td class="celda">18:30 - 20:00</td>
+					  </tr>
+					  <tr>
+						<td class="celda">09:00 - 10:30</td>
+						<td class="celda">15:30 - 17:00</td>
+						<td class="celda">19:00 - 20:30</td>
+					  </tr>
+					  <tr>
+						<td class="celda">10:30 - 12:00</td>
+						<td class="celda">17:00 - 18:30</td>
+						<td class="celda">19:30 - 21:00</td>
+					  </tr>
+					 
+					</tbody>
+				  </table>
+				
+			</div>
+		</div>
+	</section>
 	<!-- End Process Section -->
 
+	<section class="process-section">
+		<table class="tablahorario table-responsive table table-bordered table-striped table-hover table-light">
+			<thead>
+				<tr>
+					<th>MODADLIDAD</th>
+					<th>INVERSION</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach ($modalidadesprimaria as $modalidad)
+				<tr>
+					<td>{{ $modalidad->descripcion }}</td>
+					<td>{{ "Bs. ".$modalidad->costo }} <span class="textoplomo">{{ " (".$modalidad->cargahoraria. " horas)"}} </span></td>
+				</tr>
+				
+				@endforeach
+			</tbody>
+		</table>
+	</section>
 	<!-- Costos Section -->
 	<section class="process-section">
 		

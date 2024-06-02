@@ -53,6 +53,10 @@
                                     <td>{{ $nivel->nivel }}</td>
                                 </tr>
                                 <tr>
+                                    <td> <strong>Descripción</strong></td>
+                                    <td>{{ $modalidad->descripcion }}</td>
+                                </tr>
+                                <tr>
                                     <td>Usuario</td>
                                     <td>
                                         @isset($user)

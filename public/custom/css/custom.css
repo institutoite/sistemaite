@@ -145,6 +145,17 @@ a:link, a:visited, a:active {
 }
 
 
+.tablahorario{
+    font-size: 1.5em;
+
+}
+table td {
+    padding: 50px; /* Ajusta el valor según el espaciado deseado */
+}
+.textoplomo{
+    font-size: 0.5em;
+    color: rgb(149, 150, 150);
+}
 
 
 

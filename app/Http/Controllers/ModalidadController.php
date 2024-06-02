@@ -108,6 +108,14 @@ class ModalidadController extends Controller
     public function update(ModalidadUpdateRequest $request, Modalidad $modalidad)
     {
         $modalidad->update($request->all());
+        $modalidad->modalidad=$request->modalidad;
+        $modalidad->costo=$request->costo;
+        $modalidad->cargahoraria=$request->cargahoraria;
+        $modalidad->descripcion=$request->descripcion;
+        $modalidad->vigente=$request->vigente;
+        $modalidad->save();
+
+    
         return redirect()->route('modalidads.index')
             ->with('success', 'Modalidad updated successfully');
     }

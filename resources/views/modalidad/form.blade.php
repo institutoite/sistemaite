@@ -5,8 +5,6 @@
         @endif
     </div>
 </div>
-
-
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
         <div class="form-floating mb-3 text-gray">
@@ -15,6 +13,8 @@
         </div>
     </div>
 </div>
+
+
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
         @if($errors->has('costo'))
@@ -30,6 +30,8 @@
         </div>
     </div>
 </div>
+
+
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
         @if($errors->has('cargahoraria'))
@@ -45,6 +47,24 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+        @if($errors->has('descripcion'))
+        <span class="text-danger"> {{ $errors->first('descripcion')}}</span>
+        @endif
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+        <div class="form-floating mb-3 text-gray">
+            <input type="text" class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" id="descripcion" value="{{old('descripcion',$modalidad->descripcion ?? '')}}">
+            <label for="descripcion">Descripcion</label>    
+        </div>
+    </div>
+</div>
+
+
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
         @if($errors->has('nivel_id'))
