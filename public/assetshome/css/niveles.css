@@ -1,0 +1,188 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+
+#pricing-table {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px; /* Ajusta este valor si necesitas más o menos ancho */
+}
+
+.plan {
+    flex: 1 1 calc(20% - 40px); /* 25% de ancho menos el margen */
+    box-sizing: border-box;
+    font-size:1em ;
+    text-shadow: 0 1px rgba(255,255,255,.8);
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+    padding: 20px;
+    margin: 20px;
+    position: relative;
+    transition: transform 0.3s ease-in-out; /* Para el efecto de zoom */
+    border-radius: 5px;
+    text-align: center;
+}
+.clear{
+    margin-bottom: 500px;
+}
+.plan:hover {
+    transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+    background-color: rgb(255, 252, 252); /* Cambia el color de fondo al hacer hover */
+    color: #fff; /* Cambia el texto a blanco en hover */
+    font-size: 1.2em;
+}
+
+.plan:hover h3, .plan:hover .signup {
+    color: #fff; /* Cambia el color del texto y el botón en hover */
+    font-size: 1.2em;
+}
+
+h3 {
+    font: bold 12px Arial, Helvetica;
+    font-size: 20px;
+    font-weight: normal;
+    padding: 20px;
+    margin: -20px -20px 50px -20px;
+    background-color: rgb(55, 95, 122);
+    color: #fff;
+    border-radius: 5px 5px 0 0;
+}
+
+#most-popular h3 {
+    background-color: rgb(38, 186, 165);
+    color: #fff;
+    margin-top: -30px;
+    padding-top: 30px;
+    border-radius: 5px 5px 0 0;
+}
+
+ul {
+    margin: 20px 0 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+li {
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+    color: rgb(55, 95, 122);
+}
+
+.signup {
+    display: inline-block;
+    padding: 8px 20px;
+    margin: 20px 0 0 0;
+    color: #fff;
+    font: bold 14px Arial, Helvetica;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: rgb(38, 186, 165);
+    background-image: linear-gradient(rgb(38, 186, 165), rgb(55, 95, 122));
+    border-radius: 3px;
+    text-shadow: 0 1px 0 rgba(0,0,0,.3);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .5), 0 2px 0 rgba(0, 0, 0, .7);
+    transition: background 0.3s;
+}
+
+.signup:hover {
+    background-image: linear-gradient(rgb(55, 95, 122), rgb(38, 186, 165));
+}
+
+.signup:active, .signup:focus {
+    background: rgb(38, 186, 165);
+    top: 2px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .7) inset;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 992px) {
+    .plan {
+        flex: 1 1 calc(50% - 40px); /* 2 columnas */
+    }
+}
+
+@media (max-width: 768px) {
+    .plan {
+        flex: 1 1 calc(100% - 40px); /* 1 columna */
+    }
+}
+
+
+
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PARA LOS PRECIOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% **/
+/* Ajustes generales */
+body {
+    font-family: "Roboto", helvetica, arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+    color: #666; /* Color de texto gris suave */
+    background-color: rgb(240, 240, 240); /* Color de fondo muy suave */
+}
+
+/* Estilos de la tabla */
+.table-fill {
+    background: white;
+    border-radius: 3px;
+    border-collapse: collapse;
+    margin: auto;
+    max-width: 95%;
+    width: 100%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 10px; /* Aumenta el espacio alrededor del contenido */
+    text-align: left;
+}
+
+th {
+    background: #fafafa; /* Color de fondo muy suave para los encabezados */
+    color: #333; /* Color de texto gris para los encabezados */
+}
+
+td {
+    border-bottom: 1px solid #C1C3D1;
+}
+
+/* Estilos específicos de las celdas */
+td:first-child {
+    width: 30%; /* Ancho de la primera columna (Nombre Producto) */
+}
+
+td:nth-child(2),
+td:nth-child(3) {
+    background-color: #f2f2f2; /* Color de fondo muy suave para las columnas Inversión y Carga Horaria */
+    color: #333; /* Color de texto gris para estas columnas */
+}
+
+td:last-child {
+    background-color: #e0e0e0; /* Color de fondo muy suave para la columna Reservar */
+}
+
+/* Estilos del botón Reservar */
+.reservar-button {
+    background-color: white;
+    border: none;
+    color: rgb(55,95,122); /* Color de texto según especificación */
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+.reservar-button:hover {
+    background-color: rgba(55,95,122,0.1); /* Cambio de color de fondo en hover */
+}
+
+/* Estilos de la tabla en hover */
+.table-hover tbody tr:hover {
+    background-color: rgba(55,95,122,0.1); /* Cambio de color de fondo en hover */
+}

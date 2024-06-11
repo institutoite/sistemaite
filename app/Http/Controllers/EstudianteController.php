@@ -255,7 +255,8 @@ class EstudianteController extends Controller
         }
     }
     
-    
-
-    
+    public function informarEstadoGeneral(){
+        
+        return 1;
+    }
 }

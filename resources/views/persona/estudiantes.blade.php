@@ -44,6 +44,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">RECORDAR QUE VIENEN HOY</h5>
+                        <a href="{{ route('informar.por.estado.General') }}" class="btn btn-primary text-white">¡Informar estado! </a>
                         <a href="{{ route('crm.esperanuevo.view') }}" class="btn btn-primary text-white">{{ Auth::user()->name }}, ¡Hazlo ya! </a>
                     </div>
                     <div class="modal-body">
@@ -258,6 +259,7 @@
     <script src="{{asset('assets/js/observacion.js')}}"></script>
     <script src="{{asset('assets/js/eliminargenerico.js')}}"></script>
     <script src="{{asset('assets/js/mensajeAjax.js')}}"></script>
+    <script src="{{asset('assets/js/informar.js')}}"></script>
 
     <script>
         

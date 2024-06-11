@@ -1039,3 +1039,4 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
 
     Route::get('/token-expiration', [GContactController::class, 'getTokenExpiration'])->name('token-expiration');
     Route::get('reset/token-expiration', [GContactController::class, 'resetTokenExpiration'])->name('reset.token-expiration');
+    Route::get("informar/estado/general", [EstudianteController::class,'informarEstadoGeneral'])->name("informar.por.estado.General");

@@ -16,6 +16,7 @@
 
 <link href="{{asset('assetshome/css/style.css')}}" rel="stylesheet">
 <link href="{{asset('assetshome/css/responsive.css')}}" rel="stylesheet">
+<link href="{{asset('assetshome/css/niveles.css')}}" rel="stylesheet">
 
 <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -33,10 +34,7 @@
 <!-- Responsive -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-
-<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
-<!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="hidden-bar-wrapper">
@@ -310,6 +308,52 @@
 	<!-- End Main Slider -->
 
   <!-- Featured Section -->
+
+
+  <div id="pricing-table" class="clear">
+    <div class="plan">
+        <h3>Turno Mañana</h3>
+        <a class="signup" href=""> ¡Empieza! <i class="fa-brands fa-whatsapp fa-beat"></i></a>         
+        <ul>
+            <li><b>07:30 - 09:00</b></li>
+            <li><b>09:00 - 10:30</b></li>
+            <li><b>10:30 - 12:00</b></li>
+        </ul> 
+    </div>
+    <div class="plan" id="most-popular">
+        <h3>Turno Tarde</h3>
+       <a class="signup" href=""> ¡Empieza! <i class="fa-brands fa-whatsapp fa-beat"></i></a>        
+        <ul>
+			<li><b>14:00 - 15:30</b></li>
+            <li><b>15:30 - 17:00</b></li>
+            <li><b>17:00 - 18:30</b></li>			
+        </ul>    
+    </div>
+    <div class="plan">
+        <h3>Turno Noche</h3>
+		<a class="signup" href=""> ¡Empieza! <i class="fa-brands fa-whatsapp fa-beat"></i></a>
+        <ul>
+			<li><b>18:30 - 20:00</b></li>
+            <li><b>19:00 - 20:30</b></li>
+            <li><b>19:30 - 21:00</b></li>		
+            <li><b>Excepto Miércoles</b></li>		
+        </ul>
+    </div>
+    <div class="plan">
+        <h3>Horario Especial</h3>
+       <a class="signup" href=""> ¡Empieza! <i class="fa-brands fa-whatsapp fa-beat"></i></a>		
+        <ul>
+            <li>Clases desde el alba, únete ahora </li>
+            <li><b>05:00 - 06:30</b></li>
+            <li><b>05:30 - 07:00</b></li>
+            <li><b>Sujeto a reserva</b></li>			
+        </ul>
+    </div> 	
+</div>
+<br>
+
+
+
 	<section class="featured-section" style="background-image: url(assets/images/background/pattern-10.png)">
 		<div class="auto-container">
 			<div class="row clearfix">
@@ -362,6 +406,44 @@
 
   <!-- About Section Two -->
 	<section class="about-section-two">
+		<table class="table-fill">
+			<thead>
+				<tr>
+					<th class="text-center">MODALIDAD</th>
+					<th class="text-center">INVERSION</th>
+					<th class="text-center">HORAS</th>
+					<th class="text-center">ACTION</th>
+				</tr>
+			</thead>
+			<tbody class="table-hover">
+				@foreach ($modalidadesprimaria as $modalidad)
+				<tr>
+					<tr>
+						<td class="text-left">
+							<strong style="color: rgb(55,95,122);">{{ $modalidad->modalidad  }}</strong><br>
+							<span class="textoplomo">{{ $modalidad->descripcion }}</span>
+						</td>
+						<td class="text-center">{{ "Bs. ".$modalidad->costo }}</td>
+						<td class="text-center"> {{ " (".$modalidad->cargahoraria. " horas)"}}</td>
+						<td class="text-center">
+							<button class="reservar-button">Reservar</button>
+						</td>
+					</tr>
+				</tr>
+				
+				@endforeach
+			
+			
+				
+				<!-- Otras filas de datos -->
+			</tbody>
+		</table>
+		
+		
+		
+		
+	</section>
+	<section class="about-section-two">
 		<div class="pattern-layer" style="background-image: url(assets/images/background/pattern-11.png)"></div>
 		<div class="pattern-layer-two" style="background-image: url(assets/images/icons/vector-18.png)"></div>
 		<div class="auto-container">
@@ -378,27 +460,7 @@
 
 								¿Quieres mejorar tus notas y entender mejor tus materias? En ITE, ofrecemos clases de apoyo escolar diseñadas especialmente para estudiantes de primaria, haciendo que aprender sea más fácil y divertido..</div>
 						</div>
-						<!-- Employe Box -->
-						{{-- <div class="employe-box">
-							<div class="box-inner">
-								<span class="globe-icon flaticon-earth-globe-with-continents-maps"></span>
-								<ul class="">
-									<li>Asistencia en la resolución de tareas y ejercicios.</li>
-									<li>Preparación efectiva para exámenes escolares.</li>
-									<li>Programas adaptados para estudiantes en diferentes niveles.</li>
-									<li>Enfoque en áreas específicas para estudiantes sobresalientes. </li>
-								</ul>
-								<div class="employe">
-									<div class="count-outer count-box">
-										<span class="count-text" data-speed="4000" data-stop="14">0</span><sup>+</sup>
-									</div>
-									<div class="text">años de experiencia</div>
-								</div>
-							</div>
-						</div> --}}
-						<!-- End Employe Box -->
-						
-            <!-- Fact Counter Two -->
+					
 									<div class="fact-counter-two">
 										<div class="row clearfix">
 
@@ -665,41 +727,6 @@
 		</div>
 	</section>
 
-	<section class="featured-section" style="background-image: url(assets/images/background/pattern-10.png)">
-		<div class="auto-container">
-			<div class="row clearfix">
-				<h1 class="text-primary">HORARIOS</h1>
-				<table class="tablahorario table table-bordered table-striped table-hover table-light text-center">
-					<thead class="text-secondary">
-					  <tr>
-						<th class="">Mañana</th>
-						<th class="">Tarde</th>
-						<th class="">Noche</th>
-					  </tr>
-					</thead>
-					<tbody>
-					  <tr>
-						<td class="celda">07:30 - 09:00</td>
-						<td class="celda">14:00 - 15:30</td>
-						<td class="celda">18:30 - 20:00</td>
-					  </tr>
-					  <tr>
-						<td class="celda">09:00 - 10:30</td>
-						<td class="celda">15:30 - 17:00</td>
-						<td class="celda">19:00 - 20:30</td>
-					  </tr>
-					  <tr>
-						<td class="celda">10:30 - 12:00</td>
-						<td class="celda">17:00 - 18:30</td>
-						<td class="celda">19:30 - 21:00</td>
-					  </tr>
-					 
-					</tbody>
-				  </table>
-				
-			</div>
-		</div>
-	</section>
 	<!-- End Process Section -->
 
 	<section class="process-section">
