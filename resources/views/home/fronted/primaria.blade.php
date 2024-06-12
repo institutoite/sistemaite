@@ -354,64 +354,60 @@
 
 
 
-	<section class="featured-section" style="background-image: url(assets/images/background/pattern-10.png)">
-		<div class="auto-container">
-			<div class="row clearfix">
-				
-				<!-- Feature Block -->
-				<div class="feature-block col-lg-3 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<span class="number">01</span>
-						<span class="icon flaticon-learning-support"></span>
-						<h4><a href="#">Clases personalizadas</a></h4>
-						<div class="text">Tú decides el ritmo, nosotros te guiamos.</div>
-					</div>
-				</div>
-				
-				<!-- Feature Block -->
-				<div class="feature-block col-lg-3 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInLeft" data-wow-delay="150ms" data-wow-duration="1500ms">
-						<span class="number">02</span>
-						<span class="icon flaticon-reload"></span>
-						<h4><a href="#">Horarios Flexibles</a></h4>
-						<div class="text">Aprender sin límites, en el momento que elijas.</div>
-					</div>
-				</div>
-				
-				<!-- Feature Block -->
-				<div class="feature-block col-lg-3 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
-						<span class="number">03</span>
-						<span class="icon flaticon-notebook"></span>
-						<h4><a href="#">Métodos innovadores</a></h4>
-						<div class="text">Aprender con creatividad y tecnología. </div>
-					</div>
-				</div>
-				
-				<!-- Feature Block -->
-				<div class="feature-block col-lg-3 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInLeft" data-wow-delay="450ms" data-wow-duration="1500ms">
-						<span class="number">04</span>
-						<span class="icon flaticon-bar-chart"></span>
-						<h4><a href="#">Inscríbete</a></h4>
-						<div class="text">Del resto nos encargamos nosotros </div>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	</section>
+<section class="featured-section" style="background-image: url(assets/images/background/pattern-10.png)">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!-- Feature Block -->
+            <div class="feature-block col-lg-3 col-md-6 col-sm-12">
+                <div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+                    <span class="number">01</span>
+                    <span class="icon flaticon-learning-support"></span>
+                    <h4><a href="#">Clases personalizadas</a></h4>
+                    <div class="text">Tú decides el ritmo, nosotros te guiamos.</div>
+                </div>
+            </div>
+            <!-- Feature Block -->
+            <div class="feature-block col-lg-3 col-md-6 col-sm-12">
+                <div class="inner-box wow fadeInLeft" data-wow-delay="150ms" data-wow-duration="1500ms">
+                    <span class="number">02</span>
+                    <span class="icon flaticon-reload"></span>
+                    <h4><a href="#">Horarios Flexibles</a></h4>
+                    <div class="text">Aprender sin límites, en el momento que elijas.</div>
+                </div>
+            </div>
+            <!-- Feature Block -->
+            <div class="feature-block col-lg-3 col-md-6 col-sm-12">
+                <div class="inner-box wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
+                    <span class="number">03</span>
+                    <span class="icon flaticon-notebook"></span>
+                    <h4><a href="#">Métodos innovadores</a></h4>
+                    <div class="text">Aprender con creatividad y tecnología.</div>
+                </div>
+            </div>
+            <!-- Feature Block -->
+            <div class="feature-block col-lg-3 col-md-6 col-sm-12">
+                <div class="inner-box wow fadeInLeft" data-wow-delay="450ms" data-wow-duration="1500ms">
+                    <span class="number">04</span>
+                    <span class="icon flaticon-bar-chart"></span>
+                    <h4><a href="#">Inscríbete</a></h4>
+                    <div class="text">Del resto nos encargamos nosotros.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 	
 	<!-- End Featured Section -->
 
   <!-- About Section Two -->
 	<section class="about-section-two">
-		<table class="table-fill">
-			<thead>
+		<table class="table table-bordered table-striped table-hover">
+			<thead class="table-head">
 				<tr>
 					<th class="text-center">MODALIDAD</th>
 					<th class="text-center">INVERSION</th>
-					<th class="text-center">HORAS</th>
+					{{-- <th class="text-center">HORAS</th> --}}
 					<th class="text-center">ACTION</th>
 				</tr>
 			</thead>
@@ -420,11 +416,14 @@
 				<tr>
 					<tr>
 						<td class="text-left">
-							<strong style="color: rgb(55,95,122);">{{ $modalidad->modalidad  }}</strong><br>
-							<span class="textoplomo">{{ $modalidad->descripcion }}</span>
+							<div class="info-container">
+								<h1 class="info-title">{{ $modalidad->modalidad }}</h1>
+								<p class="info-description">{{ $modalidad->descripcion }}</p>
+							</div>
+							{{-- {{ $modalidad->modalidad." ".$modalidad->descripcion  }} --}}
 						</td>
 						<td class="text-center">{{ "Bs. ".$modalidad->costo }}</td>
-						<td class="text-center"> {{ " (".$modalidad->cargahoraria. " horas)"}}</td>
+						{{-- <td class="text-center"> {{ " (".$modalidad->cargahoraria. " horas)"}}</td> --}}
 						<td class="text-center">
 							<button class="reservar-button">Reservar</button>
 						</td>

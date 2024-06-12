@@ -128,20 +128,19 @@ body {
     background: white;
     border-radius: 3px;
     border-collapse: collapse;
-    margin: auto;
     max-width: 95%;
     width: 100%;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 th, td {
-    padding: 10px; /* Aumenta el espacio alrededor del contenido */
+    
     text-align: left;
 }
 
 th {
     background: #fafafa; /* Color de fondo muy suave para los encabezados */
-    color: #333; /* Color de texto gris para los encabezados */
+    color: #ffffff; /* Color de texto gris para los encabezados */
 }
 
 td {
@@ -150,7 +149,7 @@ td {
 
 /* Estilos específicos de las celdas */
 td:first-child {
-    width: 30%; /* Ancho de la primera columna (Nombre Producto) */
+    width: 60%; /* Ancho de la primera columna (Nombre Producto) */
 }
 
 td:nth-child(2),
@@ -160,29 +159,280 @@ td:nth-child(3) {
 }
 
 td:last-child {
-    background-color: #e0e0e0; /* Color de fondo muy suave para la columna Reservar */
+    width:10% ;
 }
 
-/* Estilos del botón Reservar */
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Estilos del botón Reservar */
+/* Estilos para el botón de reservar */
 .reservar-button {
-    background-color: white;
+    background: linear-gradient(135deg, rgb(38,186,165) 0%, rgb(55,95,122) 100%);
     border: none;
-    color: rgb(55,95,122); /* Color de texto según especificación */
-    padding: 8px 12px;
+    color: #ffffff;
+    padding: 15px 30px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
     cursor: pointer;
-    border-radius: 3px;
-    transition: background-color 0.3s;
+    position: relative;
+    overflow: hidden;
 }
 
 .reservar-button:hover {
-    background-color: rgba(55,95,122,0.1); /* Cambio de color de fondo en hover */
+    background: linear-gradient(135deg, rgb(55,95,122) 0%, rgb(38,186,165) 100%);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05);
 }
 
-/* Estilos de la tabla en hover */
-.table-hover tbody tr:hover {
-    background-color: rgba(55,95,122,0.1); /* Cambio de color de fondo en hover */
+.reservar-button:active {
+    background: linear-gradient(135deg, rgb(55,95,122) 0%, rgb(38,186,165) 100%);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(0.98);
 }
+
+.reservar-button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.15);
+    transition: all 0.75s;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0.01);
+}
+
+.reservar-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.reservar-button::after {
+    content: ">>>";
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%);
+    transition: right 0.5s ease;
+}
+
+.reservar-button:hover::after {
+    right: -50px;
+}
+
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% para la celda primera */
+/* Contenedor para la información */
+/* Contenedor para la información */
+.info-container {
+    margin: 0; /* Sin margen para encajar mejor en la celda */
+    padding: 5px; /* Espacio reducido */
+
+    text-align: left; /* Alineación a la izquierda */
+}
+
+/* Estilo para el título */
+.info-title {
+    font-size: 14px; /* Tamaño adecuado para celda */
+   
+    color: rgb(55, 95, 122); /* Color azul para destacar */
+    margin: 0; /* Sin margen para reducir espacio vertical */
+    padding: 0; /* Sin padding */
+    line-height: 1.2; /* Línea más compacta */
+}
+
+/* Estilo para la descripción */
+.info-description {
+    font-size: 15px; /* Tamaño de fuente reducido */
+    color: #888888; /* Color gris para menor énfasis */
+    margin: 2px 0 0 0; /* Margen mínimo para separar del título */
+    padding: 0; /* Sin padding */
+    line-height: 1.2; /* Línea más compacta */
+}
+
+@media (max-width: 992px) {
+    .table-head {
+        font-size: 16px; /* Ajuste de tamaño de fuente en pantallas más pequeñas */
+    }
+    .info-description {
+        font-size: 12px;
+    }
+
+    .table-head th {
+        padding: 10px 15px; /* Ajuste de padding en pantallas más pequeñas */
+    }
+}
+
+
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  para head  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+/* Encabezado de la tabla */
+/* Encabezado de la tabla */
+.table-head {
+    background: linear-gradient(135deg, rgb(38,186,165), rgb(14, 140, 121));
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 15px;
+    border-bottom: 2px solid #9ea7af;
+    position: relative;
+    
+}
+
+/* Estilo individual de las celdas del encabezado */
+.table-head th {
+    padding: 15px 20px;
+    border-left: 1px solid #ffffff33; /* Borde sutil entre las celdas */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    text-align: center; /* Centrar el texto en el encabezado */
+    transition: background-color 0.3s ease;
+    text-shadow: 1px 1px 2px rgb(39, 38, 38); /* Sombra de texto para mejorar la legibilidad */
+}
+
+.table-head th:first-child {
+    border-top-left-radius: 10px; /* Redondeado en la esquina superior izquierda */
+    border-left: none; /* Sin borde izquierdo para la primera celda */
+}
+
+.table-head th:last-child {
+    border-top-right-radius: 10px; /* Redondeado en la esquina superior derecha */
+    border-right: none; /* Sin borde derecho para la última celda */
+}
+
+/* Efecto hover en las celdas del encabezado */
+.table-head th:hover {
+    background-color: rgba(55, 95, 122, 1); /* Ligero cambio de color al pasar el ratón */
+    cursor: pointer;
+}
+
+/* Para ajustar la visualización en pantallas pequeñas */
+
+
+/* Ajustes adicionales para mejorar la legibilidad */
+.table-head th {
+    position: relative;
+}
+
+.table-head th::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(135deg, rgba(38, 186, 165, 0.7), rgba(55, 95, 122, 0.7));
+    z-index: -1;
+}
+
+
+
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+/* Contenedor principal de la sección */
+.featured-section {
+    padding: 40px 0;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  /* Contenedor de la característica */
+  .feature-block {
+    padding: 20px;
+    margin: 10px 0;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  /* Estilo para la caja interna */
+  .inner-box {
+    background: #ffffff; /* Fondo blanco */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  /* Efecto hover en la caja interna */
+  .inner-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Estilo para el número */
+  .inner-box .number {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(38, 186, 165); /* Verde */
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilo para el ícono */
+  .inner-box .icon {
+    font-size: 40px;
+    color: rgb(55, 95, 122); /* Azul oscuro */
+    margin-bottom: 15px;
+  }
+  
+  /* Estilo para el título */
+  .inner-box h4 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  
+  /* Estilo para el enlace del título */
+  .inner-box h4 a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+  }
+  
+  /* Efecto hover en el enlace del título */
+  .inner-box h4 a:hover {
+    color: rgb(38, 186, 165); /* Verde */
+  }
+  
+  /* Estilo para la descripción */
+  .inner-box .text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 0;
+  }
+  
+  /* Estilo responsivo para diferentes tamaños de pantalla */
+  @media (min-width: 1200px) {
+    .feature-block {
+      width: 22%;
+      margin: 1%;
+    }
+  }
+  
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .feature-block {
+      width: 45%;
+      margin: 2.5%;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 991px) {
+    .feature-block {
+      width: 45%;
+      margin: 2.5%;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .feature-block {
+      width: 100%;
+      margin: 5% 0;
+    }
+  }
+  
