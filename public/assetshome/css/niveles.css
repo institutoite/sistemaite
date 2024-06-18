@@ -453,7 +453,7 @@ td:last-child {
 }
 
 /* Estilo para el botón */
-.custom-button {
+.custom-button-a {
     display: inline-block;
     padding: 15px 30px; /* Espaciado interno */
     background-color: #19a38e; /* Color del botón */
@@ -465,10 +465,10 @@ td:last-child {
 }
 
 /* Efecto hover para el botón */
-.custom-button:hover {
+.custom-button-a:hover {
     background-color: #26BAA5; /* Cambia el color al hacer hover */
     color: #fff;
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 
@@ -535,6 +535,8 @@ td:last-child {
     font-size: 18px;
     color: rgb(255, 255, 255);
 }
+
+
 /* Estilo responsivo para tabletas */
 @media (max-width: 768px) {
     .schedule-item {
@@ -556,6 +558,8 @@ td:last-child {
         font-size: 20px; /* Tamaño del título reducido */
     }
 }
+
+
 
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                 TEXTO SEPARADOR                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -668,6 +672,8 @@ td:last-child {
 }
 
 
+
+
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                 CARD DIAS A ELEGIR                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
@@ -699,7 +705,7 @@ td:last-child {
 
 .card ul li {
     color: white;
-    font-size: 1.2em;
+    font-size: 1.1em;
     margin: 5px 0;
     text-align: center;
 }
@@ -709,7 +715,7 @@ td:last-child {
     position: absolute;
     width: 100px;
     background-image: linear-gradient(180deg, rgb(38, 186, 165), rgb(255, 255, 255));
-    height: 130%;
+    height: 80%;
     animation: rotBGimg 3s linear infinite;
     transition: all 0.2s linear;
 }
@@ -731,7 +737,7 @@ td:last-child {
     border-radius: 15px;
 }
 
-.card button {
+.card a {
     position: absolute; /* Posiciona el botón de manera absoluta dentro de la tarjeta */
     bottom: 10px; /* Coloca el botón 10px desde la parte inferior */
     background-color: #187e6e; /* Color de fondo del botón */
@@ -745,7 +751,7 @@ td:last-child {
     transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
 }
 
-.card button:hover {
+.card a:hover {
     background-color: #26BAA5; /* Cambia el color de fondo cuando se pasa sobre el botón */
 }
 

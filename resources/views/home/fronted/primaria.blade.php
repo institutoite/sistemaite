@@ -378,10 +378,12 @@
 
 <section class="custom-image-text-section">
     <div class="custom-overlay"></div>
-    <div class="custom-content">
+	<div class="custom-content">
         <h1>Modalidades</h1>
         <p>Elije la modalidad que se acomode a tu necesidad</p>
-        <a href="#" class="custom-button">Inscríbete ahora</a>
+        <a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Hola, estoy interesado en inscribirme en una de las modalidades." class="custom-button">
+            Inscríbete ahora
+        </a>
     </div>
 </section>
 
@@ -410,7 +412,7 @@
 					<td class="text-center">{{ "Bs. ".$modalidad->costo }}</td>
 					{{-- <td class="text-center"> {{ " (".$modalidad->cargahoraria. " horas)"}}</td> --}}
 					<td class="text-center">
-						<button class="reservar-button">Reservar</button>
+						<a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Quisiera, reservar%0A*Modalidad*:{{ $modalidad->modalidad."%0A*Descripción*:".$modalidad->descripcion."%0A*Inversion:* ".$modalidad->costo }}"><button class="reservar-button">Reservar</button></a>
 					</td>
 				</tr>
 			</tr>
@@ -446,10 +448,10 @@
 									<li>Miércoles</li>
 									<li>Viernes</li>
 								</ul>
-								<button>¡Reserva ahora!</button>
+								<a class="custom-button-a" target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Hola, me gustaría reservar para los días Lunes, Miércoles y Viernes.">
+									¡Reservar!
+								</a>
 							</div>
-
-
 						</div>
 						<div class="schedule-item mt-3">
 							<div class="card">
@@ -458,10 +460,10 @@
 									<li>Jueves</li>
 									<li>Sábado</li>
 								</ul>
-								<button>¡Reserva ahora!</button>
+								<a class="custom-button-a" target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Hola, me gustaría reservar para los días Martes, Jueves y Sábado.">
+									¡Reservar!
+								</a>
 							</div>
-
-
 						</div>
 						<div class="schedule-item mt-3">
 							<div class="card">
@@ -472,19 +474,21 @@
 									<li>Jueves</li>
 									<li>Viernes</li>
 								</ul>
-								<button>¡Reserva ahora!</button>
+									<a class="custom-button-a" target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Hola, me gustaría reservar para los días Lunes, Martes, Miércoles, Jueves y Viernes." >
+										¡Reservar!
+									</a>
 							</div>
 						</div>
 						<div class="schedule-item mt-3">
 							<div class="card">
 								<ul>
 									<li>Sólo</li>
-									<li>Sabados</li>
+									<li>Sábados</li>
 								</ul>
-								<button>¡Reserva ahora!</button>
+								<a class="custom-button-a" target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&text=Hola, me gustaría reservar para los días Sábados." >
+									¡Reservar!
+								</a>
 							</div>
-
-
 						</div>
 					</div>
 				</div>
@@ -576,9 +580,9 @@
 						<div class="content">
 							<span class="icon flaticon-telephone"></span>
 							<h4>Teléfonos</h4>
-							<a href="https://wa.me/59171039910">+591 71039910</a>
-							<a href="https://wa.me/59175553338">+591 75553338</a>
-							<a href="https://wa.me/59171324941">+591 71324941</a>
+							<a target="_blank" href="https://wa.me/59171039910">+591 71039910</a>
+							<a target="_blank" href="https://wa.me/59175553338">+591 75553338</a>
+							<a target="_blank" href="https://wa.me/59171324941">+591 71324941</a>
 						</div>
 					</div>
 				</div>
@@ -751,16 +755,16 @@
         <div class="container">
             <div class="footer-upper">
                 <div class="footer-title">
-                    <h2>Contactanos a través de nuestras <span>redes sociales</span></h2>
+                    <h2 class="text-white">Contactanos a través de nuestras <span>redes sociales</span></h2>
                 </div>
                 <div class="footer-social">
                     <ul class="social-icons">
-                        <li><a href="https://www.facebook.com/ite.educabol" class="fab fa-facebook-f"></a></li>
-                        <li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fab fa-whatsapp"></a></li>
-                        <li><a href="https://msng.link/o/?@institutoite=tg" class="fab fa-telegram"></a></li>
-                        <li><a href="https://www.youtube.com/@ite_educabol" class="fab fa-youtube"></a></li>
-                        <li><a href="https://www.tiktok.com/ite_educabol" class="fa-brands fa-tiktok"></a></li>
-                        <li><a href="https://www.instagram.com/ite.educabol/" class="fa-brands fa-square-instagram"></a></li>
+                        <li><a target="_blank" href="https://www.facebook.com/ite.educabol" class="fab fa-facebook-f"></a></li>
+                        <li><a target="_blank" href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fab fa-whatsapp"></a></li>
+                        <li><a target="_blank" href="https://msng.link/o/?@institutoite=tg" class="fab fa-telegram"></a></li>
+                        <li><a target="_blank" href="https://www.youtube.com/@ite_educabol" class="fab fa-youtube"></a></li>
+                        <li><a target="_blank" href="https://www.tiktok.com/@ite_educabol" class="fa-brands fa-tiktok"></a></li>
+                        <li><a target="_blank" href="https://www.instagram.com/ite.educabol/" class="fa-brands fa-square-instagram"></a></li>
                     </ul>
                 </div>
             </div>
@@ -769,46 +773,46 @@
                 <div class="footer-column">
 					<h3>Proyectos</h3>
                     <ul class="footer-links">
-                        <li><a href="https://propuestos.ite.com.bo">Propuestos</a></li>
-                        <li><a href="https://formula.ite.com.bo/">Formulas</a></li>
-                        <li><a href="https://tools.ite.com.bo/">Primos</a></li>
-                        <li><a href="htps://educabol.com">Educabol</a></li>
-                        <li><a href="https://whaio.ite.com.bo">Whaio</a></li>
-                        <li><a href="https://asistente.ite.com.bo">ite ia</a></li>
+                        <li><a target="_blank" href="https://propuestos.ite.com.bo">Propuestos</a></li>
+                        <li><a target="_blank" href="https://formula.ite.com.bo/">Formulas</a></li>
+                        <li><a target="_blank" href="https://tools.ite.com.bo/">Primos</a></li>
+                        <li><a target="_blank" href="htps://educabol.com">Educabol</a></li>
+                        <li><a target="_blank" href="https://whaio.ite.com.bo">Whaio</a></li>
+                        <li><a target="_blank" href="https://asistente.ite.com.bo">ite ia</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
                     <h3>Informaciones</h3>
                     <ul class="footer-links">
-                        <li><a href="{{ route('about') }}">¿Quienes Somos?</a></li>
-                        <li><a href="{{ route('about') }}">Misión</a></li>
-                        <li><a href="{{ route('about') }}">Visión</a></li>
-                        <li><a href="{{ route('preguntasfrecuentes') }}">Preguntas Frecuentes</a></li>
-                        <li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
-                        <li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
+                        <li><a target="_blank" href="{{ route('about') }}">¿Quienes Somos?</a></li>
+                        <li><a target="_blank" href="{{ route('about') }}">Misión</a></li>
+                        <li><a target="_blank" href="{{ route('about') }}">Visión</a></li>
+                        <li><a target="_blank" href="{{ route('preguntasfrecuentes') }}">Preguntas Frecuentes</a></li>
+                        <li><a target="_blank" href="{{ route('termscondition') }}">Términos & condiciones</a></li>
+                        <li><a target="_blank" href="{{ route('privacy') }}">Politica de privacidad</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
                     <h3>Niveles</h3>
                     <ul class="footer-links">
-                        <li><a href="{{ route('inicial') }}">Inicial</a></li>
-                        <li><a href="{{ route('primaria') }}">Primaria</a></li>
-                        <li><a href="{{ route('secundaria') }}">Secundaria</a></li>
-                        <li><a href="{{ route('preuniversitario') }}">Preuniversitario</a></li>
-                        <li><a href="{{ route('universitario') }}">Universitarios</a></li>
+                        <li><a target="_blank" href="{{ route('inicial') }}">Inicial</a></li>
+                        <li><a target="_blank" href="{{ route('primaria') }}">Primaria</a></li>
+                        <li><a target="_blank" href="{{ route('secundaria') }}">Secundaria</a></li>
+                        <li><a target="_blank" href="{{ route('preuniversitario') }}">Preuniversitario</a></li>
+                        <li><a target="_blank" href="{{ route('universitario') }}">Universitarios</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
                     <h3>Contacto</h3>
 					<ul class="footer-links">
-                        <li><a href=""><i class="fas fa-map-marker-alt"></i>Av. 3 pasos al frente y Che Guevara, Santa Cruz</a></li>
-                        <li><a href=""><i class="fas fa-phone-alt"></i>+59171039910</a></li>
-                        <li><a href=""><i class="fas fa-phone-alt"></i>+59175553338</a></li>
-                        <li><a href=""><i class="fas fa-phone-alt"></i>+59171324941</a></li>
-                        <li><a href=""><i class="fa-solid fa-envelope"></i>info@ite.com.bo</a></li>
+                        <li><a target="_blank" href=""><i class="fas fa-map-marker-alt"></i>Av. 3 pasos al frente y Che Guevara, Santa Cruz</a></li>
+                        <li><a target="_blank" href=""><i class="fas fa-phone-alt"></i>+59171039910</a></li>
+                        <li><a target="_blank" href=""><i class="fas fa-phone-alt"></i>+59175553338</a></li>
+                        <li><a target="_blank" href=""><i class="fas fa-phone-alt"></i>+59171324941</a></li>
+                        <li><a target="_blank" href=""><i class="fa-solid fa-envelope"></i>info@ite.com.bo</a></li>
                     </ul>
                 </div>
             </div>
@@ -816,8 +820,8 @@
             <div class="footer-bottom">
                 <p>Copyright &copy; 2024. All Rights Reserved.</p>
                 <ul class="footer-nav">
-                    <li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
-                    <li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
+                    <li><a target="_blank" href="{{ route('termscondition') }}">Términos & condiciones</a></li>
+                    <li><a target="_blank" href="{{ route('privacy') }}">Politica de privacidad</a></li>
                 </ul>
             </div>
         </div>
