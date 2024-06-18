@@ -287,7 +287,7 @@
 						data-frames='[{"delay":0,"speed":1500,"frame":"0","from":"y:bottom;rX:-20deg;rY:-20deg;rZ:0deg;","to":"o:1;","ease":"power3.out"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
 						style="">
 							<div class="play-outer">
-								<a href="https://www.youtube.com/watch?v=lFpc19KsYzs&ab_channel=INSTITUTOITE" class="lightbox-image play-box"><span class="fas fa-play"><span class="dott"></span><i class="ripple"></i></span></a>
+								<a href="https://www.youtube.com/@ite_educabol" class="lightbox-image play-box"><span class="fas fa-play"><span class="dott"></span><i class="ripple"></i></span></a>
 							</div>
 						</div>
 						
@@ -311,44 +311,63 @@
 
 
   <div id="pricing-table" class="clear">
-    <div class="plan">
-        <h3>Turno Mañana</h3>
-        <a class="signup" href=""> ¡Empieza! <i class="fa-brands fa-whatsapp fa-beat"></i></a>         
-        <ul>
-            <li><b>07:30 - 09:00</b></li>
-            <li><b>09:00 - 10:30</b></li>
-            <li><b>10:30 - 12:00</b></li>
-        </ul> 
-    </div>
-    <div class="plan" id="most-popular">
-        <h3>Turno Tarde</h3>
-       <a class="signup" href=""> ¡Empieza! <i class="fa-brands fa-whatsapp fa-beat"></i></a>        
-        <ul>
+	<!-- Turno Mañana -->
+	<div class="plan">
+		<h3>Turno Mañana</h3>
+		<a class="signup" href="https://api.whatsapp.com/send?phone=59171039910&text=Hola, estoy interesado en el Turno Mañana."> 
+			¡Empieza! 
+			<i class="fa-brands fa-whatsapp fa-beat"></i>
+		</a>         
+		<ul>
+			<li><b>07:30 - 09:00</b></li>
+			<li><b>09:00 - 10:30</b></li>
+			<li><b>10:30 - 12:00</b></li>
+		</ul> 
+	</div>
+
+	<!-- Turno Tarde -->
+	<div class="plan" id="most-popular">
+		<h3>Turno Tarde</h3>
+		<a class="signup" href="https://api.whatsapp.com/send?phone=59171039910&text=Hola, estoy interesado en el Turno Tarde."> 
+			¡Empieza! 
+			<i class="fa-brands fa-whatsapp fa-beat"></i>
+		</a>        
+		<ul>
 			<li><b>14:00 - 15:30</b></li>
-            <li><b>15:30 - 17:00</b></li>
-            <li><b>17:00 - 18:30</b></li>			
-        </ul>    
-    </div>
-    <div class="plan">
-        <h3>Turno Noche</h3>
-		<a class="signup" href=""> ¡Empieza! <i class="fa-brands fa-whatsapp fa-beat"></i></a>
-        <ul>
+			<li><b>15:30 - 17:00</b></li>
+			<li><b>17:00 - 18:30</b></li>			
+		</ul>    
+	</div>
+
+	<!-- Turno Noche -->
+	<div class="plan">
+		<h3>Turno Noche</h3>
+		<a class="signup" href="https://api.whatsapp.com/send?phone=59171039910&text=Hola, estoy interesado en el Turno Noche."> 
+			¡Empieza! 
+			<i class="fa-brands fa-whatsapp fa-beat"></i>
+		</a>
+		<ul>
 			<li><b>18:30 - 20:00</b></li>
-            <li><b>19:00 - 20:30</b></li>
-            <li><b>19:30 - 21:00</b></li>		
-            <li><b>Excepto Miércoles</b></li>		
-        </ul>
-    </div>
-    <div class="plan">
-        <h3>Horario Especial</h3>
-       <a class="signup" href=""> ¡Empieza! <i class="fa-brands fa-whatsapp fa-beat"></i></a>		
-        <ul>
-            <li>Clases desde el alba, únete ahora </li>
-            <li><b>05:00 - 06:30</b></li>
-            <li><b>05:30 - 07:00</b></li>
-            <li><b>Sujeto a reserva</b></li>			
-        </ul>
-    </div> 	
+			<li><b>19:00 - 20:30</b></li>
+			<li><b>19:30 - 21:00</b></li>		
+			<li><b>Excepto Miércoles</b></li>		
+		</ul>
+	</div>
+
+	<!-- Horario Especial -->
+	<div class="plan">
+		<h3>Horario Especial</h3>
+		<a class="signup" href="https://api.whatsapp.com/send?phone=59171039910&text=Hola, estoy interesado en el Horario Especial."> 
+			¡Empieza! 
+			<i class="fa-brands fa-whatsapp fa-beat"></i>
+		</a>		
+		<ul>
+			<li>Clases desde el alba, únete ahora </li>
+			<li><b>05:00 - 06:30</b></li>
+			<li><b>05:30 - 07:00</b></li>
+			<li><b>Sujeto a reserva</b></li>			
+		</ul>
+	</div> 	
 </div>
 <br>
 
@@ -479,749 +498,59 @@
 {{-- /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/ --}}
 {{-- /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%            DIAS ASISTENCIA          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/ --}}
 {{-- /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/ --}}
-	
+<section class="corporate-plans">
+	<div class="content-container">
+		<div class="section-title">
+			<h1 class="section-heading">Planes Corporativos</h1>
+			<h2 class="discount-info">Descuentos del <span>20%</span> en nuestros planes corporativos</h2>
+		</div>
 
+		<div class="plans-container">
+			<div class="plan-card">
+				<h3 class="plan-title">Modalidad Hora Libre</h3>
+				<ul class="plan-details">
+					<li class="plan-item">1er estudiante <span>Bs.40</span></li>
+					<li class="plan-item active">2do estudiante <span>Bs.32</span></li>
+					<li class="plan-item">3er estudiante <span>Bs.25</span></li>
+					<li class="plan-item">4to estudiante <span>Bs.20</span></li>
+				</ul>
+			</div>
 
+			<div class="plan-card">
+				<h3 class="plan-title">Modalidad Semanal</h3>
+				<ul class="plan-details">
+					<li class="plan-item">1er estudiante <span>Bs.216</span></li>
+					<li class="plan-item active">2do estudiante <span>Bs.172</span></li>
+					<li class="plan-item">3er estudiante <span>Bs.138</span></li>
+					<li class="plan-item">4to estudiante <span>Bs.110</span></li>
+				</ul>
+			</div>
 
-	<section class="about-section-two">
-		<div class="pattern-layer" style="background-image: url(assets/images/background/pattern-11.png)"></div>
-		<div class="pattern-layer-two" style="background-image: url(assets/images/icons/vector-18.png)"></div>
-		<div class="auto-container">
-			<div class="row clearfix">
-			
-				<!-- Content Column -->
-				<div class="content-column col-lg-8 col-md-12 col-sm-12">
-					<div class="inner-column">
-						<!-- Sec Title -->
-						<div class="sec-title">
-							<div class="title style-two">Nivel Primaria</div>
-              				<h2>¿Quieres que tu hijo tenga <span>éxito</span> en el colegio?</h2>
-							<div class="text">¡Descubre el Éxito en ITE con Nuestras Clases de Apoyo Escolar! 📚🌟
+			<div class="plan-card">
+				<h3 class="plan-title">Modalidad Quincenal</h3>
+				<ul class="plan-details">
+					<li class="plan-item">1er estudiante <span>Bs.350</span></li>
+					<li class="plan-item active">2do estudiante <span>Bs.280</span></li>
+					<li class="plan-item">3er estudiante <span>Bs.224</span></li>
+					<li class="plan-item">4to estudiante <span>Bs.179</span></li>
+				</ul>
+			</div>
 
-								¿Quieres mejorar tus notas y entender mejor tus materias? En ITE, ofrecemos clases de apoyo escolar diseñadas especialmente para estudiantes de primaria, haciendo que aprender sea más fácil y divertido..</div>
-						</div>
-					
-									<div class="fact-counter-two">
-										<div class="row clearfix">
-
-											<!-- Column -->
-											<div class="counter-column col-lg-4 col-md-6 col-sm-12">
-												<div class="inner wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-													<div class="content">
-														<span class="icon flaticon-notebook"></span>
-														<!-- <div class="count-outer count-box">
-															<span class="count-text" data-speed="4000" data-stop="320">0</span>m
-														</div> -->
-														<h5>Aprendizaje efectivo</h5>
-													</div>
-												</div>
-											</div>
-											
-											<!-- Column -->
-											<div class="counter-column col-lg-4 col-md-6 col-sm-12">
-												<div class="inner wow fadeInLeft" data-wow-delay="150ms" data-wow-duration="1500ms">
-													<div class="content">
-														<span class="icon flaticon-human-brain"></span>
-														<!-- <div class="count-outer count-box">
-															<span class="count-text" data-speed="5500" data-stop="980">0</span>+
-														</div> -->
-														<h5>Entera Comprensión</h5>
-													</div>
-												</div>
-											</div>
-
-											<!-- Column -->
-											<div class="counter-column col-lg-4 col-md-6 col-sm-12">
-												<div class="inner wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
-													<div class="content">
-														<span class="icon flaticon-user-1"></span>
-														<!-- <div class="count-outer count-box">
-															<span class="count-text" data-speed="3500" data-stop="1278">0</span>
-														</div> -->
-														<h5>Mentores Experimentados</h5>
-													</div>
-												</div>
-											</div>
-											
-										</div>
-									</div>
-					</div>
-				</div>
-
-        <!-- Images Column -->
-				<div class="content-column col-lg-4 col-md-12 col-sm-12">
-						<div class="inner-column">
-							<!-- Sec Title -->
-							<div class="sec-title">
-								
-							</div>
-							<div class="row clearfix">
-							
-								<!-- Service Block -->
-								<div class="service-block col-lg-12 col-md-6 col-sm-12">
-									<div class="inner-box">
-										<div class="icon-box">
-											<span class="icon flaticon-pencil-and-ruler"></span>
-										</div>
-										<h3><a href="{{ route('matematica') }}">Matemáticas</a></h3>
-										
-									</div>
-								</div>
-								
-								<!-- Service Block -->
-								<div class="service-block col-lg-12 col-md-6 col-sm-12">
-									<div class="inner-box">
-										<div class="icon-box">
-											<span class="icon flaticon-notepad"></span>
-										</div>
-										<h3><a href="{{ route('lenguaje') }}">Lenguaje</a></h3>
-										
-									</div>
-								</div>
-								
-								<!-- Service Block -->
-								<div class="service-block col-lg-12 col-md-6 col-sm-12">
-									<div class="inner-box">
-										<div class="icon-box">
-											<span class="icon flaticon-notebook"></span>
-										</div>
-										<h3><a href="#">Dictado</a></h3>
-									</div>
-								</div>
-								
-								<!-- Service Block -->
-								<div class="service-block col-lg-12 col-md-6 col-sm-12">
-									<div class="inner-box">
-										<div class="icon-box">
-											<span class="icon flaticon-menu"></span>
-										</div>
-										<h3><a href="#">Caligrafía</a></h3>
-									</div>
-								</div>
-
-
-								<!-- Service Block -->
-								<div class="service-block col-lg-12 col-md-6 col-sm-12">
-									<div class="inner-box">
-										<div class="icon-box">
-											<span class="icon flaticon-notepad"></span>
-										</div>
-										<h3><a href="#">Escritura</a></h3>
-										
-									</div>
-								</div>
-
-								<!-- Service Block -->
-								<div class="service-block col-lg-12 col-md-6 col-sm-12">
-									<div class="inner-box">
-										<div class="icon-box">
-											<span class="icon flaticon-human-brain"></span>
-										</div>
-										<h3><a href="#">Vocalización</a></h3>
-										
-									</div>
-								</div>
-								
-							</div>
-						</div>
-				</div>
-				
+			<div class="plan-card">
+				<h3 class="plan-title">Modalidad Mensual</h3>
+				<ul class="plan-details">
+					<li class="plan-item">1er estudiante <span>Bs.550</span></li>
+					<li class="plan-item active">2do estudiante <span>Bs.440</span></li>
+					<li class="plan-item">3er estudiante <span>Bs.352</span></li>
+					<li class="plan-item">4to estudiante <span>Bs.281</span></li>
+				</ul>
 			</div>
 		</div>
-	</section>
-	<!-- End About Section Two -->
-	
-	<!-- Horarios Section -->
-	<section class="process-section">
-		
-		<div class="auto-container">
-			<!-- Sec Title -->
-			<div class="sec-title centered">
-				<div class="title style-two">Horarios</div>
-        			<h2><span>¡Aprende en tu propio</span> tiempo <br>y a tu propio ritmo con nosotros! </h2>
-			</div>
+	</div>
+</section>
 
-      <div class="auto-container">
-        <div class="row clearfix">
-        
-          <!-- Title Column -->
-          <div class="content-column col-lg-12 col-md-12 col-sm-12">
-            
-              <!-- Sec Title -->
-              
-              <div class="row">
 
-			  	<div class="col-lg-6">
-					<div class="experiance_item mt-30">
-						<div class="content">
-							<h4>¡Empieza tu día con éxito!</h4>
-							<p>Reserva tus súper clases desde las 5 de la mañana en ITE</p>
-						</div>
-					</div>
-					<div class="experiance_item mt-30">
-						<div class="content">
-							<h4>¡La Educación no tiene vacaciones!</h4>
-							<p>¡Atendemos todo el año para garantizar tu éxito!</p>
-						</div>
-					</div>
-					<div class="experiance_item mt-30">
-						<div class="content">
-							<h4>¡Descubre premios!</h4>
-							<p>Becas y sorpresas exclusivas en nuestras redes sociales!</p>
-						</div>
-					</div>
-                </div>
 
-			  	<div class="col-lg-6">  
-                  <div class="experiance_item mt-30">
-                    <div class="icon">
-                      <img src="{{asset('assetshome/images/icons/a_01.png')}}" alt="">
-                    </div>
-                    <div class="content">
-                      <h4>Presenciales</h4>
-                      <p>Lunes a Viernes</p>
-                    </div>
-                  </div>
-                  <div class="experiance_item mt-30">
-                    <div class="icon">
-                      <img src="{{asset('assetshome/images/icons/a_01.png')}}" alt="">
-                    </div>
-                    <div class="content">
-                      <h4>Tres veces por semana</h4>
-                      <p>Opción 1: Lunes, Miercoles y Viernes <br>Opción 2: Martes, Jueves y Sábado </p>
-					  
-                    </div>
-                  </div> 
-                  <div class="experiance_item mt-30">
-                    <div class="icon">
-                      <img src="{{asset('assetshome/images/icons/a_01.png')}}" alt="">
-                    </div>
-                    <div class="content">
-                      <h4>Semipresencial</h4>
-                      <p>Sólo Sábados</p>
-                    </div>
-                  </div>
-                </div>
-            </div>  
-
-			
-
-            {{-- <div class="content-column col-lg-12 col-md-12 col-sm-12">
-              <div class="inner-column">
-                <!-- Sec Title -->
-                <div class="sec-title">
-                  <h4></h4>
-                </div>
-                <div class="row clearfix">
-                
-                  <!-- Service Block -->
-                  <div class="service-block col-lg-6 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                      <div class="icon-box">
-                        <span class="icon flaticon-pdf"></span>
-                      </div>
-                      <h3><a href="https://drive.google.com/file/d/1GZChPLyWVRIfKMdKz0vlFeR7qGvM9XsV/view?usp=sharing">Visualizar Contenido Analítico</a></h3>
-                     
-                    </div>
-                  </div>
-                  
-                </div>
-              </div>
-            </div>      --}}
-                
-          </div>
-          
-          <!-- Blocks Column -->
-          {{-- <div class="sidebar-side col-lg-5 col-md-12 col-sm-12">
-            <aside class="sidebar sticky-top">
-  
-              <!-- Timing Widget -->
-              <div class="sidebar-widget timing-widget">
-                <div class="widget-content">
-  
-                    {{--%%%%%%%%%%%%%%%%%%%% Horarios 1 hora %%%%%%%%%%%%%%%%%%  --}}
-                    {{-- <div class="card">
-                      <div class="card-header bg-primary text-white text-center">
-                        <h3 class="text-white">Horarios 1 hora / diario</h3>
-                      </div>
-                      <div class="card-body">
-                       
-                      </div>
-                    </div>  --}}
-
-                    {{--%%%%%%%%%%%%%%%%%%%% Horarios 1:30 %%%%%%%%%%%%%%%%%%  --}}
-                    
-  
-                </div>
-              </div>
-              
-              <!-- Gallery Widget -->
-              
-              
-            </aside>
-          </div> 
-
-        </div>
-      </div>
-
-		</div>
-	</section>
-
-	<!-- End Process Section -->
-
-	<section class="process-section">
-		<table class="tablahorario table-responsive table table-bordered table-striped table-hover table-light">
-			<thead>
-				<tr>
-					<th>MODADLIDAD</th>
-					<th>INVERSION</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach ($modalidadesprimaria as $modalidad)
-				<tr>
-					<td>{{ $modalidad->descripcion }}</td>
-					<td>{{ "Bs. ".$modalidad->costo }} <span class="textoplomo">{{ " (".$modalidad->cargahoraria. " horas)"}} </span></td>
-				</tr>
-				
-				@endforeach
-			</tbody>
-		</table>
-	</section>
-	<!-- Costos Section -->
-	<section class="process-section">
-		
-		<div class="auto-container">
-			<!-- Sec Title -->
-			<div class="sec-title centered">
-				<div class="title style-two">Costos / Modalidades</div>
-        		<h2>Aprende a tu ritmo <span>elige la modalidad</span><br> perfecto para ti </h2>
-			</div>
-
-			<div class="row my-4"></div>
-		
-			<div class="sec-title centered">
-			<div class="title style-two">Hora libre</div>
-			</div>
-
-			<div class="container">
-			<div class="row">
-				
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Básico</h5>
-						<h5 class="card-price">Bs.40<span class="period"> / 1h</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Una hora</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Usted elige el dia</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Taller de robótica</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Estándar</h5>
-						<h5 class="card-price">Bs.60<span class="period"> / 1,5h</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Usted elige el dia</li>  
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Taller de robótica</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Premiun</h5>
-						<h5 class="card-price">Bs.80<span class="period"> / 2h</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Dos horas</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Taller de robótica</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Ajedrez gigante</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-				
-			</div>
-			</div>
-
-			<div class="row my-4"></div>
-
-			<div class="sec-title centered">
-			<div class="title style-two">Modalidad Semanal</div>
-			</div>
-
-			<div class="container">
-			<div class="row">
-				
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Básico</h5>
-						<h5 class="card-price">Bs.150<span class="period"> / semana</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Taller de robótica</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Estándar</h5>
-						<h5 class="card-price">Bs.165<span class="period"> / semana</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span> Una Hora por dia</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Lunes a Viernes</li>  
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Taller de robótica</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Premiun</h5>
-						<h5 class="card-price">Bs.216<span class="period"> / semana</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Taller de robótica</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Ajedrez gigante</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-				
-			</div>
-			</div>
-			
-			<div class="row my-4"></div>
-
-			<div class="sec-title centered">
-			<div class="title style-two">Modalidad Quincenal</div>
-			</div>
-
-			<div class="container">
-			<div class="row">
-				
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Básico</h5>
-						<h5 class="card-price">Bs.250<span class="period"> / quincena</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Taller de robótica</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Estándar</h5>
-						<h5 class="card-price">Bs.265<span class="period"> / quincena</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span> Una Hora por dia</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Lunes a Viernes</li>  
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Taller de robótica</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Premiun</h5>
-						<h5 class="card-price">Bs.350<span class="period"> / quincena</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Taller de robótica</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Ajedrez gigante</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-				
-			</div>
-			</div>
-
-			<div class="row my-4"></div>
-
-			<div class="sec-title centered">
-			<div class="title style-two">Modalidad Mensual</div>
-			</div>
-
-			<div class="container">
-			<div class="row">
-				
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Básico</h5>
-						<h5 class="card-price">Bs.350<span class="period"> / mensual</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Taller de robótica</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Estándar</h5>
-						<h5 class="card-price">Bs.420<span class="period"> / mensual</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span> Una Hora por dia</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Lunes a Viernes</li>  
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Taller de robótica</li>
-						<li class="text-danger mb-2"><span class="fa-li"><i class="fas fa-times"></i></span>Ajedrez gigante</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-
-				<div class="col-md-4">
-				<div class="card mb-5 mb-md-0">
-					<div class="card-body">
-					<div class="text-center mb-4">
-						<h5 class="p-3 mb-2 bg-primary text-white">Plan Premiun</h5>
-						<h5 class="card-price">Bs.550<span class="period"> / mensual</span></h5>
-					</div>
-
-					<ul class="fa-ul">
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Hora y media por dia</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Tres veces por semana</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Asistente virtual ITEASY</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Taller de robótica</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Ajedrez gigante</li>
-						<li class="text-secondary mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Regala conocimiento (un amigo podrá elegir una materia a su elección)</li>
-					</ul>
-					
-					</div>
-				</div>
-				</div>
-				
-			</div>
-			</div>
-
-		</div>
-	</section>
-	<!-- End Process Section -->
-
-	<!-- Planes Corporativos Section -->
-	<section class="process-section">
-		
-		<div class="auto-container">
-
-			<!-- Descuentos Niveles -->
-			<div class="sec-title centered">
-				<div class="title style-two">Planes Corporativos</div>
-        		<h2>Descuentos del <span>20%</span> en nuestros planes corporativos </h2>
-			</div>
-
-			<div class="container">
-				<div class="row">
-
-					<!-- Sidebar Side -->
-					<div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
-						<aside class="sidebar sticky-top">
-								
-							<!-- Sidebar Widget / Category Widget -->
-							<div class="sidebar-widget category-widget">
-								<div class="widget-content">
-									<!-- Sidebar Title -->
-									<div class="sidebar-title">
-										<h3>Modalidad Hora Libre</h3>
-									</div>
-									<ul class="cat-list">
-										<li><a href="#">1er estudiante<span>Bs.40</span></a></li>
-										<li class="active"><a href="#">2do estudiante<span>Bs.32</span></a></li>
-										<li><a href="#">3er estudiante<span>Bs.25</span></a></li>
-										<li><a href="#">4to estudiante<span>Bs. 20</span></a></li>
-									</ul>
-								</div>
-							</div>
-							<!-- End Sidebar Widget / Category Widget -->
-							
-						</aside>
-					</div>
-
-					<!-- Sidebar Side -->
-					<div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
-						<aside class="sidebar sticky-top">
-								
-							<!-- Sidebar Widget / Category Widget -->
-							<div class="sidebar-widget category-widget">
-								<div class="widget-content">
-									<!-- Sidebar Title -->
-									<div class="sidebar-title">
-										<h3>Modalidad Semanal</h3>
-									</div>
-									<ul class="cat-list">
-										<li><a href="#">1er estudiante<span>Bs.216</span></a></li>
-										<li class="active"><a href="#">2do estudiante<span>Bs.172</span></a></li>
-										<li><a href="#">3er estudiante<span>Bs.138</span></a></li>
-										<li><a href="#">4to estudiante<span>Bs. 110</span></a></li>
-									</ul>
-								</div>
-							</div>
-							<!-- End Sidebar Widget / Category Widget -->
-							
-						</aside>
-					</div>
-
-					<div class="row my-4"></div>
-
-					<!-- Sidebar Side -->
-					<div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
-						<aside class="sidebar sticky-top">
-								
-							<!-- Sidebar Widget / Category Widget -->
-							<div class="sidebar-widget category-widget">
-								<div class="widget-content">
-									<!-- Sidebar Title -->
-									<div class="sidebar-title">
-										<h3>Modalidad Quincenal</h3>
-									</div>
-									<ul class="cat-list">
-										<li><a href="#">1er estudiante<span>Bs.350</span></a></li>
-										<li class="active"><a href="#">2do estudiante<span>Bs.280</span></a></li>
-										<li><a href="#">3er estudiante<span>Bs.224</span></a></li>
-										<li><a href="#">4to estudiante<span>Bs. 179</span></a></li>
-									</ul>
-								</div>
-							</div>
-							<!-- End Sidebar Widget / Category Widget -->
-							
-						</aside>
-					</div>
-
-					<!-- Sidebar Side -->
-					<div class="sidebar-side col-lg-6 col-md-12 col-sm-12">
-						<aside class="sidebar sticky-top">
-								
-							<!-- Sidebar Widget / Category Widget -->
-							<div class="sidebar-widget category-widget">
-								<div class="widget-content">
-									<!-- Sidebar Title -->
-									<div class="sidebar-title">
-										<h3>Modalidad Mensual</h3>
-									</div>
-									<ul class="cat-list">
-										<li><a href="#">1er estudiante<span>Bs.550</span></a></li>
-										<li class="active"><a href="#">2do estudiante<span>Bs.440</span></a></li>
-										<li><a href="#">3er estudiante<span>Bs.352</span></a></li>
-										<li><a href="#">4to estudiante<span>Bs. 281</span></a></li>
-									</ul>
-								</div>
-							</div>
-							<!-- End Sidebar Widget / Category Widget -->
-							
-						</aside>
-					</div>
-								
-				</div>
-			</div>
-
-			
-		</div>
-	</section>
-	<!-- End Process Section -->
-			
 	<!-- Contact Page Section -->
     <section class="contact-page-section">
     	<div class="auto-container">
@@ -1233,7 +562,7 @@
 						<div class="content">
 							<span class="icon flaticon-email-3"></span>
 							<h4>Correo electrónico </h4>
-							<a href="#">info@ite.com</a>
+							<a href="#">info@ite.com.com</a>
 						</div>
 					</div>
 					<div class="inner-box mt-30">
@@ -1247,9 +576,9 @@
 						<div class="content">
 							<span class="icon flaticon-telephone"></span>
 							<h4>Teléfonos</h4>
-							<a href="#">+591 71039910</a>
-							<a href="#">+591 75553338</a>
-							<a href="#">+591 71324941</a>
+							<a href="https://wa.me/59171039910">+591 71039910</a>
+							<a href="https://wa.me/59175553338">+591 75553338</a>
+							<a href="https://wa.me/59171324941">+591 71324941</a>
 						</div>
 					</div>
 				</div>
@@ -1418,159 +747,81 @@
 	<!-- End Testimonials Section -->
 	
 	<!-- Main Footer -->
-    <footer class="main-footer">
-		<div class="pattern-layer-one" style="background-image:url(assetshome/images/background/pattern-7.png)"></div>
-		<div class="pattern-layer-two" style="background-image:url(assetshome/images/background/pattern-8.png)"></div>
-		<div class="pattern-layer-three" style="background-image:url(assetshome/images/background/pattern-9.png)"></div>
-		<div class="pattern-layer-four" style="background-image:url(assetshome/images/icons/vector-15.png)"></div>
-		<div class="pattern-layer-five" style="background-image:url(assetshome/images/icons/vector-16.png)"></div>
-		<span class="circle-one"></span>
-		<span class="circle-two"></span>
-		<span class="circle-three"></span>
-    	<div class="auto-container">
-			
-			<!-- Upper Box -->
-			<div class="upper-box">
-				<div class="row clearfix">
-				
-					<!-- Title Column -->
-					<div class="title-column col-lg-7 col-md-12 col-sm-12">
-						<div class="inner-column">
-							<h2>Contactanos a través de nuestras <span>redes sociales</span> </h2>
-							{{-- <div class="text">Don’t wait make a smart & logical quote here. Its pretty easy.</div> --}}
-						</div>
-					</div>
-					
-					<!-- Social Column -->
-					<div class="social-column col-lg-5 col-md-12 col-sm-12">
-						<div class="inner-column text-center text-md-end">
-							<ul class="social-box">
-								<li><a href="https://www.facebook.com/educabolite" class="fa fa-facebook"></a></li>
-								<li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fa fa-whatsapp"></a></li>
-								<li><a href="https://msng.link/o/?@institutoite=tg" class="fa fa-telegram"></a></li>
-								<li><a href="https://www.youtube.com/channel/UCbmRHfG51CGM1foo-6kzunQ" class="fa fa-youtube"></a></li>
-							</ul>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-			<!-- End Upper Box -->
-			
-        	<!-- Widgets Section -->
-            <div class="widgets-section">
-            	<div class="row clearfix">
-                	
-                    <!-- Column -->
-                    <div class="big-column col-lg-7 col-md-12 col-sm-12">
-						<div class="row clearfix">
-							
-                        	<!-- Footer Column -->
-                            <div class="footer-column col-lg-7 col-md-6 col-sm-12">
-                                <div class="footer-widget about-widget">
-									{{-- <div class="logo"><a href="{{ url('/') }}"><img src="assetshome/images/footer-logo.png" alt="" title=""></a></div> --}}
-									<div class="text">ITE es un centro educativo que brinda clases de nivelación en diferentes materias y niveles, con explicaciones detalladas y fáciles de comprender para asegurar un aprendizaje efectivo.</div>
-									<!-- Subscribe Form -->
+	<footer class="footer">
+        <div class="container">
+            <div class="footer-upper">
+                <div class="footer-title">
+                    <h2>Contactanos a través de nuestras <span>redes sociales</span></h2>
+                </div>
+                <div class="footer-social">
+                    <ul class="social-icons">
+                        <li><a href="https://www.facebook.com/ite.educabol" class="fab fa-facebook-f"></a></li>
+                        <li><a href="https://api.whatsapp.com/send?phone=59171039910&amp;text=Visite su pagina. Quiero mas información" class="fab fa-whatsapp"></a></li>
+                        <li><a href="https://msng.link/o/?@institutoite=tg" class="fab fa-telegram"></a></li>
+                        <li><a href="https://www.youtube.com/@ite_educabol" class="fab fa-youtube"></a></li>
+                        <li><a href="https://www.tiktok.com/ite_educabol" class="fa-brands fa-tiktok"></a></li>
+                        <li><a href="https://www.instagram.com/ite.educabol/" class="fa-brands fa-square-instagram"></a></li>
+                    </ul>
+                </div>
+            </div>
 
-									{{-- <ul class="footer_info">
-										<li><i class="fa fa-map-marker-alt"></i> Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</li>
-										<li><i class="fa fa-phone-alt"></i> +591 71039910</li>
-									</ul> --}}
-									
-									{{-- <div class="subscribe-form">
-										<form method="post" action="contact.html">
-											<div class="form-group">
-												<input type="email" name="email" value="" placeholder="Enter Your Email" required="">
-												<button type="submit" class="theme-btn btn-style-two"><span class="txt">Subscribe Now</span></button>
-											</div>
-										</form>
-									</div> --}}
-								</div>
-							</div>
-							
-							{{-- <!-- Footer Column --> --}}
-                            <div class="footer-column col-lg-5 col-md-6 col-sm-12">
-                                <div class="footer-widget links-widget">
-									<h3>Informaciones</h3>
-									<ul class="nav-list">
-										<li><a href="{{ route('about') }}">¿Quienes Somos?</a></li>
-										<li><a href="{{ route('about') }}">Misión</a></li>
-										<li><a href="{{ route('about') }}">Visión</a></li>
-										<li><a href="{{ route('preguntasfrecuentes') }}">Preguntas Frecuentes</a></li>
-										<li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
-										<li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
-									</ul>
-								</div>
-							</div>
-							
-						</div>
-					</div>
-					
-					<!-- Column -->
-                    <div class="big-column col-lg-5 col-md-12 col-sm-12">
-						<div class="row clearfix">
-						
-							<!-- Footer Column -->
-                            <div class="footer-column col-lg-4 col-md-6 col-sm-12">
-                                <div class="footer-widget links-widget style-two">
-									<h3>Niveles</h3>
-									<ul class="nav-list">
-										<li><a href="{{ route('guarderia') }}">Guardería</a></li>
-										<li><a href="{{ route('inicial') }}">Inicial</a></li>
-										<li><a href="{{ route('primaria') }}">Primaria</a></li>
-										<li><a href="{{ route('secundaria') }}">Secundaria</a></li>
-										<li><a href="{{ route('preuniversitario') }}">Preuniversitario</a></li>
-										<li><a href="{{ route('universitario') }}">Universitarios</a></li>
-									</ul>
-								</div>
-							</div>
-							
-							<!-- Footer Column -->
-                            <div class="footer-column col-lg-8 col-md-6 col-sm-12">
-                                <div class="footer-widget news-widget">
-									<h3>Contacto</h3>
-									<ul class="footer_info">
-										<li><i class="fa fa-map-marker-alt"></i> Av. 3 pasos al frente y che guevara, Santa Cruz, Bolivia.</li>
-										<li><i class="fa fa-phone-alt"></i> +59171039910</li>
-										<li><i class="fa fa-phone-alt"></i> +59175553338</li>
-										<li><i class="fa fa-phone-alt"></i> +59171324941</li>
-										<li><i class="icon fas fa-envelope"></i> info@ite.com.bo</li>
-										<li><i class="icon fas fa-clock"></i> Lu a Vi: 07:00 a 21:00 Sábados: 07:30 a 17:00</li>
-									</ul>
-									
-								</div>
-							</div>
-						
-						</div>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-		
-		<!-- Footer Bootom -->
-		<div class="footer-bottom-two">
-			<div class="auto-container">
-				<div class="row clearfix">
-				
-					<!-- Copright Column -->
-					<div class="copyright-column col-lg-6 col-md-6 col-sm-12">
-						<div class="copyright">Copyright &copy; 2023. All Rights Reserved.</div>
-					</div>
-					
-					<!-- Nav Column -->
-					<div class="nav-column col-lg-6 col-md-6 col-sm-12">
-						<ul class="footer-nav">
-							<li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
-							<li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
-						</ul>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-		
-	</footer>
+            <div class="footer-widgets">
+                <div class="footer-column">
+					<h3>Proyectos</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://propuestos.ite.com.bo">Propuestos</a></li>
+                        <li><a href="https://formula.ite.com.bo/">Formulas</a></li>
+                        <li><a href="https://tools.ite.com.bo/">Primos</a></li>
+                        <li><a href="htps://educabol.com">Educabol</a></li>
+                        <li><a href="https://whaio.ite.com.bo">Whaio</a></li>
+                        <li><a href="https://asistente.ite.com.bo">ite ia</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Informaciones</h3>
+                    <ul class="footer-links">
+                        <li><a href="{{ route('about') }}">¿Quienes Somos?</a></li>
+                        <li><a href="{{ route('about') }}">Misión</a></li>
+                        <li><a href="{{ route('about') }}">Visión</a></li>
+                        <li><a href="{{ route('preguntasfrecuentes') }}">Preguntas Frecuentes</a></li>
+                        <li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
+                        <li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Niveles</h3>
+                    <ul class="footer-links">
+                        <li><a href="{{ route('inicial') }}">Inicial</a></li>
+                        <li><a href="{{ route('primaria') }}">Primaria</a></li>
+                        <li><a href="{{ route('secundaria') }}">Secundaria</a></li>
+                        <li><a href="{{ route('preuniversitario') }}">Preuniversitario</a></li>
+                        <li><a href="{{ route('universitario') }}">Universitarios</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+					<ul class="footer-links">
+                        <li><a href=""><i class="fas fa-map-marker-alt"></i>Av. 3 pasos al frente y Che Guevara, Santa Cruz</a></li>
+                        <li><a href=""><i class="fas fa-phone-alt"></i>+59171039910</a></li>
+                        <li><a href=""><i class="fas fa-phone-alt"></i>+59175553338</a></li>
+                        <li><a href=""><i class="fas fa-phone-alt"></i>+59171324941</a></li>
+                        <li><a href=""><i class="fa-solid fa-envelope"></i>info@ite.com.bo</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>Copyright &copy; 2024. All Rights Reserved.</p>
+                <ul class="footer-nav">
+                    <li><a href="{{ route('termscondition') }}">Términos & condiciones</a></li>
+                    <li><a href="{{ route('privacy') }}">Politica de privacidad</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 	<!-- End Main Footer -->
 	
 </div>
