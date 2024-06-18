@@ -66,7 +66,7 @@ ul {
 }
 
 li {
-    border-top: 1px solid #ddd;
+    /* border-top: 1px solid #ddd; */
     padding: 10px 0;
     color: rgb(55, 95, 122);
 }
@@ -333,106 +333,380 @@ td:last-child {
 
 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-/* Contenedor principal de la sección */
-.featured-section {
-    padding: 40px 0;
-    background-size: cover;
-    background-position: center;
-  }
-  
-  /* Contenedor de la característica */
-  .feature-block {
-    padding: 20px;
-    margin: 10px 0;
-    text-align: center;
-    transition: all 0.3s ease;
-  }
-  
-  /* Estilo para la caja interna */
-  .inner-box {
-    background: #ffffff; /* Fondo blanco */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+
+/* Estilo general para la sección */
+.custom-image-text-section {
     position: relative;
-    transition: all 0.3s ease;
-  }
-  
-  /* Efecto hover en la caja interna */
-  .inner-box:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Estilo para el número */
-  .inner-box .number {
-    font-size: 24px;
-    font-weight: bold;
-    color: rgb(38, 186, 165); /* Verde */
-    display: block;
-    margin-bottom: 10px;
-  }
-  
-  /* Estilo para el ícono */
-  .inner-box .icon {
-    font-size: 40px;
-    color: rgb(55, 95, 122); /* Azul oscuro */
-    margin-bottom: 15px;
-  }
-  
-  /* Estilo para el título */
-  .inner-box h4 {
+    width: 100%;
+    height: 500px; /* Puedes ajustar la altura según tus necesidades */
+    background-image:url("{{ asset('assets/images/logoite.png') }}") no-repeat center center; /* Ruta de la imagen */
+    background-size: cover; /* Asegura que la imagen cubra toda la sección */
+    display: flex;
+    align-items: center; /* Centra verticalmente el contenido */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    overflow: hidden; /* Oculta cualquier desbordamiento */
+    color: white; /* Color del texto */
+}
+
+/* Superposición de color para hacer el texto más legible */
+.custom-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(55, 95, 122); /* Color negro semitransparente */
+    z-index: 1; /* Coloca la superposición debajo del contenido */
+}
+
+/* Estilo para el contenido */
+.custom-content {
+    position: relative;
+    z-index: 2; /* Coloca el contenido encima de la superposición */
+    text-align: center; /* Centra el texto */
+}
+
+/* Estilo para el encabezado */
+.custom-content h1 {
+    font-size: 3.5em; /* Tamaño del texto del encabezado */
+    color: #fff;
+    margin: 0 0 20px; /* Espaciado */
+    text-shadow: 1px 1px 2px rgb(7, 45, 71); 
+}
+
+/* Estilo para el párrafo */
+.custom-content p {
+    font-size: 1.5em; /* Tamaño del texto del párrafo */
+    margin: 0 0 30px; /* Espaciado */
+    color: #a2a5a8;
+    text-shadow: 1px 1px 2px rgb(7, 45, 71); 
+}
+
+/* Estilo para el botón */
+.custom-button {
+    display: inline-block;
+    padding: 15px 30px; /* Espaciado interno */
+    background-color: #19a38e; /* Color del botón */
+    color: white; /* Color del texto del botón */
+    text-decoration: none; /* Quita el subrayado */
+    font-size: 1.2em; /* Tamaño del texto */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease; /* Transición suave al hacer hover */
+}
+
+/* Efecto hover para el botón */
+.custom-button:hover {
+    background-color: #26BAA5; /* Cambia el color al hacer hover */
+    color: #fff;
+    font-size: 2em;
+}
+
+
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                 DIAS DE ASISTENCIA               %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+/* Sección principal */
+.schedule-section {
+    background-color: #f7f7f7; /* Fondo gris claro */
+    padding: 12px 0; /* Espaciado superior e inferior */
+    text-align: center;
+    font-family: 'Roboto', sans-serif; /* Fuente */
+}
+
+/* Contenedor automático */
+.auto-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Espaciado lateral */
+}
+
+/* Lista de horarios */
+.schedule-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/* Elementos de la lista de horarios */
+.schedule-item {
+    background-color: rgba(0, 0, 0, .2); /* Fondo blanco */
+    /* border: 2px solid rgb(38,186,165); Borde verde */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 10px;
+    margin: 10px;
+    flex: 0 0 calc(25% - 20px); /* Ancho flexible */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Sombra */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transición */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto hover para los elementos */
+.schedule-item:hover {
+    transform: translateY(-10px); /* Elevar al pasar el cursor */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+}
+
+/* Número de la lista */
+.schedule-number {
+    font-size: 25px;
+    color: rgb(55,95,122); /* Azul oscuro */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0.1; /* Transparencia */
+}
+
+/* Título de la lista */
+.schedule-title {
+    font-family: 'Courier New', 'Courier';
     font-size: 18px;
-    color: #333;
+    color: rgb(255, 255, 255);
+}
+/* Estilo responsivo para tabletas */
+@media (max-width: 768px) {
+    .schedule-item {
+        flex: 0 0 calc(50% - 20px); /* Ancho del 50% menos el margen */
+    }
+}
+
+/* Estilo responsivo para dispositivos móviles */
+@media (max-width: 480px) {
+    .schedule-item {
+        flex: 0 0 calc(100% - 20px); /* Ancho completo menos el margen */
+    }
+    
+    .schedule-number {
+        font-size: 30px; /* Tamaño del número reducido */
+    }
+    
+    .schedule-title {
+        font-size: 20px; /* Tamaño del título reducido */
+    }
+}
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                 TEXTO SEPARADOR                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+/* Reseteo de márgenes y paddings para la sección específica */
+.speakers-section * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Configuración base para el contenedor de la sección */
+.speakers-section {
+    background-color: #f8f9fa;
+    color: #343a40;
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Estilos para la fila y columna */
+.speakers-section .row {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.speakers-section .col-12 {
+    width: 100%;
+    padding: 10px;
+}
+
+/* Estilo de título de la sección */
+.speakers-section .section-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.speakers-section .section-title h3 {
+    font-size: 1.5em;
+    color: #19a38e;
     margin-bottom: 10px;
-    text-transform: uppercase;
-  }
-  
-  /* Estilo para el enlace del título */
-  .inner-box h4 a {
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.3s ease;
-  }
-  
-  /* Efecto hover en el enlace del título */
-  .inner-box h4 a:hover {
-    color: rgb(38, 186, 165); /* Verde */
-  }
-  
-  /* Estilo para la descripción */
-  .inner-box .text {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 0;
-  }
-  
-  /* Estilo responsivo para diferentes tamaños de pantalla */
-  @media (min-width: 1200px) {
-    .feature-block {
-      width: 22%;
-      margin: 1%;
+    animation: speakers-zoomIn 1s forwards;
+    background: none; /* Eliminar fondo */
+    padding: 0; /* Quitar padding en caso de que tenga */
+}
+
+.speakers-section .section-title h2 {
+    font-size: 2.5em;
+    color: rgb(55,95,122);
+    margin-bottom: 15px;
+    animation: speakers-fadeInUp 1s forwards 0.2s;
+}
+
+.speakers-section .section-title p {
+    font-size: 1em;
+    color: #6c757d;
+    animation: speakers-fadeInUp 1s forwards 0.4s;
+}
+
+/* Media queries para diseño responsivo */
+@media (max-width: 768px) {
+    .speakers-section .section-title h2 {
+        font-size: 2em;
     }
-  }
-  
-  @media (min-width: 992px) and (max-width: 1199px) {
-    .feature-block {
-      width: 45%;
-      margin: 2.5%;
+
+    .speakers-section .section-title h3 {
+        font-size: 1.2em;
     }
-  }
-  
-  @media (min-width: 768px) and (max-width: 991px) {
-    .feature-block {
-      width: 45%;
-      margin: 2.5%;
+}
+
+@media (max-width: 480px) {
+    .speakers-section .section-title h2 {
+        font-size: 1.5em;
     }
-  }
-  
-  @media (max-width: 767px) {
-    .feature-block {
-      width: 100%;
-      margin: 5% 0;
+
+    .speakers-section .section-title h3 {
+        font-size: 1em;
     }
-  }
-  
+
+    .speakers-section .section-title p {
+        font-size: 0.9em;
+    }
+}
+
+/* Animaciones CSS */
+@keyframes speakers-zoomIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes speakers-fadeInUp {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                 CARD DIAS A ELEGIR                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+.card {
+    width: 190px;
+    height: 300px; /* Aumenta la altura para incluir el botón */
+    background: #c9c9c9;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 1;
+    flex: 1; /* Ocupa el espacio disponible */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente los elementos */
+}
+
+.card ul li {
+    color: white;
+    font-size: 1.2em;
+    margin: 5px 0;
+    text-align: center;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    background-image: linear-gradient(180deg, rgb(38, 186, 165), rgb(255, 255, 255));
+    height: 130%;
+    animation: rotBGimg 3s linear infinite;
+    transition: all 0.2s linear;
+}
+
+@keyframes rotBGimg {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    background: #07182E;
+    inset: 5px;
+    border-radius: 15px;
+}
+
+.card button {
+    position: absolute; /* Posiciona el botón de manera absoluta dentro de la tarjeta */
+    bottom: 10px; /* Coloca el botón 10px desde la parte inferior */
+    background-color: #187e6e; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Elimina los bordes del botón */
+    padding: 10px 20px; /* Padding para un mejor espacio */
+    border-radius: 10px; /* Bordes redondeados del botón */
+    cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el botón */
+    font-size: 1em; /* Tamaño de la fuente del botón */
+    z-index: 2; /* Asegura que el botón esté por encima de otros elementos */
+    transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+}
+
+.card button:hover {
+    background-color: #26BAA5; /* Cambia el color de fondo cuando se pasa sobre el botón */
+}
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                 TEXTO SEPARADOR                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                 TEXTO SEPARADOR                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                 TEXTO SEPARADOR                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                 TEXTO SEPARADOR                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                 TEXTO SEPARADOR                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                 TEXTO SEPARADOR                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                 TEXTO SEPARADOR                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                 TEXTO SEPARADOR                %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/

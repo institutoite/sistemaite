@@ -352,96 +352,137 @@
 </div>
 <br>
 
+{{-- /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/ --}}
+{{-- /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%            MODALIDAD           %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/ --}}
+{{-- /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/ --}}
 
 
-<section class="featured-section" style="background-image: url(assets/images/background/pattern-10.png)">
-    <div class="auto-container">
-        <div class="row clearfix">
-            <!-- Feature Block -->
-            <div class="feature-block col-lg-3 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-                    <span class="number">01</span>
-                    <span class="icon flaticon-learning-support"></span>
-                    <h4><a href="#">Clases personalizadas</a></h4>
-                    <div class="text">Tú decides el ritmo, nosotros te guiamos.</div>
-                </div>
-            </div>
-            <!-- Feature Block -->
-            <div class="feature-block col-lg-3 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeInLeft" data-wow-delay="150ms" data-wow-duration="1500ms">
-                    <span class="number">02</span>
-                    <span class="icon flaticon-reload"></span>
-                    <h4><a href="#">Horarios Flexibles</a></h4>
-                    <div class="text">Aprender sin límites, en el momento que elijas.</div>
-                </div>
-            </div>
-            <!-- Feature Block -->
-            <div class="feature-block col-lg-3 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
-                    <span class="number">03</span>
-                    <span class="icon flaticon-notebook"></span>
-                    <h4><a href="#">Métodos innovadores</a></h4>
-                    <div class="text">Aprender con creatividad y tecnología.</div>
-                </div>
-            </div>
-            <!-- Feature Block -->
-            <div class="feature-block col-lg-3 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeInLeft" data-wow-delay="450ms" data-wow-duration="1500ms">
-                    <span class="number">04</span>
-                    <span class="icon flaticon-bar-chart"></span>
-                    <h4><a href="#">Inscríbete</a></h4>
-                    <div class="text">Del resto nos encargamos nosotros.</div>
-                </div>
-            </div>
-        </div>
+<section class="custom-image-text-section">
+    <div class="custom-overlay"></div>
+    <div class="custom-content">
+        <h1>Modalidades</h1>
+        <p>Elije la modalidad que se acomode a tu necesidad</p>
+        <a href="#" class="custom-button">Inscríbete ahora</a>
     </div>
 </section>
 
-	
-	<!-- End Featured Section -->
 
-  <!-- About Section Two -->
-	<section class="about-section-two">
-		<table class="table table-bordered table-striped table-hover">
-			<thead class="table-head">
+<section class="about-section-two">
+	<table class="table table-bordered table-striped table-hover">
+		<thead class="table-head">
+			<tr>
+				<th class="text-center">MODALIDAD</th>
+				<th class="text-center">INVERSION</th>
+				{{-- <th class="text-center">HORAS</th> --}}
+				<th class="text-center">ACTION</th>
+			</tr>
+		</thead>
+		<tbody class="table-hover">
+			@foreach ($modalidadesprimaria as $modalidad)
+			<tr>
 				<tr>
-					<th class="text-center">MODALIDAD</th>
-					<th class="text-center">INVERSION</th>
-					{{-- <th class="text-center">HORAS</th> --}}
-					<th class="text-center">ACTION</th>
+					<td class="text-left">
+						<div class="info-container">
+							<h1 class="info-title">{{ $modalidad->modalidad }}</h1>
+							<p class="info-description">{{ $modalidad->descripcion }}</p>
+						</div>
+						{{-- {{ $modalidad->modalidad." ".$modalidad->descripcion  }} --}}
+					</td>
+					<td class="text-center">{{ "Bs. ".$modalidad->costo }}</td>
+					{{-- <td class="text-center"> {{ " (".$modalidad->cargahoraria. " horas)"}}</td> --}}
+					<td class="text-center">
+						<button class="reservar-button">Reservar</button>
+					</td>
 				</tr>
-			</thead>
-			<tbody class="table-hover">
-				@foreach ($modalidadesprimaria as $modalidad)
-				<tr>
-					<tr>
-						<td class="text-left">
-							<div class="info-container">
-								<h1 class="info-title">{{ $modalidad->modalidad }}</h1>
-								<p class="info-description">{{ $modalidad->descripcion }}</p>
+			</tr>
+			
+			@endforeach
+		
+		
+			
+			<!-- Otras filas de datos -->
+		</tbody>
+	</table>
+</section>
+{{-- /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/ --}}
+{{-- /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%            DIAS ASISTENCIA          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/ --}}
+{{-- /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/ --}}
+
+
+<div class="speakers-section">
+	<div class="row">
+		<div class="col-12">
+			<div class="section-title">
+				<h3 class="wow zoomIn" data-wow-delay=".2s">--Flexibilidad-- </h3>
+				<h2 class="wow fadeInUp" data-wow-delay=".4s">Elige Tus Días y Horarios Favoritos</h2>
+				<p class="wow fadeInUp" data-wow-delay=".6s">
+					En nuestra institución, te damos la libertad de personalizar tu experiencia de aprendizaje. Selecciona los días de la semana y los horarios que mejor se adapten a tu agenda para asistir a nuestras clases.
+				</p>
+				<div class="auto-container mt-2">
+					<div class="schedule-list">
+						<div class="schedule-item mt-3">
+							<div class="card">
+								<ul>
+									<li>Lunes</li>
+									<li>Miércoles</li>
+									<li>Viernes</li>
+								</ul>
+								<button>¡Reserva ahora!</button>
 							</div>
-							{{-- {{ $modalidad->modalidad." ".$modalidad->descripcion  }} --}}
-						</td>
-						<td class="text-center">{{ "Bs. ".$modalidad->costo }}</td>
-						{{-- <td class="text-center"> {{ " (".$modalidad->cargahoraria. " horas)"}}</td> --}}
-						<td class="text-center">
-							<button class="reservar-button">Reservar</button>
-						</td>
-					</tr>
-				</tr>
-				
-				@endforeach
-			
-			
-				
-				<!-- Otras filas de datos -->
-			</tbody>
-		</table>
-		
-		
-		
-		
-	</section>
+
+
+						</div>
+						<div class="schedule-item mt-3">
+							<div class="card">
+								<ul>
+									<li>Martes</li>
+									<li>Jueves</li>
+									<li>Sábado</li>
+								</ul>
+								<button>¡Reserva ahora!</button>
+							</div>
+
+
+						</div>
+						<div class="schedule-item mt-3">
+							<div class="card">
+								<ul>
+									<li>Lunes</li>
+									<li>Martes</li>
+									<li>Miércoles</li>
+									<li>Jueves</li>
+									<li>Viernes</li>
+								</ul>
+								<button>¡Reserva ahora!</button>
+							</div>
+						</div>
+						<div class="schedule-item mt-3">
+							<div class="card">
+								<ul>
+									<li>Sólo</li>
+									<li>Sabados</li>
+								</ul>
+								<button>¡Reserva ahora!</button>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+{{-- /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/ --}}
+{{-- /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%            DIAS ASISTENCIA          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/ --}}
+{{-- /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/ --}}
+	
+
+
+
 	<section class="about-section-two">
 		<div class="pattern-layer" style="background-image: url(assets/images/background/pattern-11.png)"></div>
 		<div class="pattern-layer-two" style="background-image: url(assets/images/icons/vector-18.png)"></div>
