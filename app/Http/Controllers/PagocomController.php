@@ -117,4 +117,24 @@ class PagocomController extends Controller
                 ->rawColumns(['foto'])
                 ->toJson();
     }
+    public function pagoMatriculacionesMax(){
+        return view('reportes.pago.pagomatriculacionesmejorado');
+    } 
+    public function pagoModeloMax(Request $request){
+        $pagos=Pago::join('matriculacions','matriculacions.id','pagos.pagable_id')
+            ->join('computacions','computacions.id','matriculacions.computacion_id')
+            ->join('personas','personas.id','computacions.persona_id')
+            ->join('asignaturas','asignaturas.id','matriculacions.asignatura_id')
+            ->join('userables','userables.userable_id','pagos.id')
+            ->join('users','users.id','userables.user_id')
+            ->where('pagos.pagable_type','App\\Models\\'.$request->modelo)
+            ->where('userable_type','App\\Models\\Pago')
+            ->whereDate('pagos.created_at','<=',$request->fechafin)
+            ->whereDate('pagos.created_at','>=',$request->fechaini)
+            ->select('personas.id','personas.nombre','apellidop','apellidom','asignatura','monto','name','pagocon','pagos.created_at')
+            ->orderBy('created_at',"asc")
+            ->get();
+        return DataTables::of($pagos)
+                ->toJson();
+    }
 }

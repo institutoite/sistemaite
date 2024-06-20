@@ -1,268 +1,181 @@
-use App\Models\Estudiante;
-use App\Models\Persona;
-use App\Models\Docente;
-use Carbon\Carbon;
+use App\Models\Departamento;
+use App\Models\Pai;
+use App\Models\Provincia;
+use App\Models\Municipio;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
- $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
-                ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
-                ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
-                ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
-                ->join('docentes', 'clases.docente_id', '=', 'docentes.id')
-                ->join('materias', 'clases.materia_id', '=', 'materias.id')
-                ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
-                ->join('temas', 'clases.tema_id', '=', 'temas.id')
-                ->join('userables','userables.userable_id','clases.id')
-                ->join('users','userables.user_id','users.id')
-                ->where('userables.userable_type',Clase::class)
-                ->where('clases.estado_id',estado('PRESENTE'))
-                ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombrecorto', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto','users.name as user')->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use App\Models\Docente;
-use Carbon\Carbon;
 
- $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
-                ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
-                ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
-                ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
-                ->join('docentes', 'clases.docente_id', '=', 'docentes.id')
-                ->join('materias', 'clases.materia_id', '=', 'materias.id')
-                ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
-                ->join('temas', 'clases.tema_id', '=', 'temas.id')
-                ->join('userables','userables.userable_id','clases.id')
-                ->join('users','userables.user_id','users.id')
-                ->where('userables.userable_type',Clase::class)
-                ->where('clases.estado_id',estado('PRESENTE'))
-                ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombrecorto', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto','users.name as user')->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use App\Models\Docente;
-use Carbon\Carbon;
+ $pagos=Pago::join('matriculacions','matriculacions.id','pagos.pagable_id')
+            ->join('computacions','computacions.id','matriculacions.computacion_id')
+            ->join('personas','personas.id','computacions.persona_id')
+            ->join('asignaturas','asignaturas.id','matriculacions.asignatura_id')
+            ->join('userables','userables.userable_id','pagos.id')
+            ->join('users','users.id','userables.user_id')
+            ->where('pagos.pagable_type','App\\Models\\Matriculacion')
+            ->where('userable_type','App\\Models\\Pago')
+            ->whereDate('pagos.created_at','<=','2024-01-01')
+            ->whereDate('pagos.created_at','>=','2024-05-01')
+            ->select('personas.id','personas.nombre','apellidop','apellidom','asignatura','monto','name','pagocon','pagos.created_at')
+            ->orderBy('created_at',"asc")
+            ->get();
+use App\Models\Maticulacion;
+use App\Models\Pago;
+use App\Models\Provincia;
+use App\Models\Municipio;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
- $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
-                ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
-                ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
-                ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
-                ->join('docentes', 'clases.docente_id', '=', 'docentes.id')
-                ->join('materias', 'clases.materia_id', '=', 'materias.id')
-                ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
-                ->join('temas', 'clases.tema_id', '=', 'temas.id')
-                ->join('userables','userables.userable_id','clases.id')
-                ->join('users','userables.user_id','users.id')
-                ->where('userables.userable_type',Clase::class)
-                ->where('clases.estado_id',estado('PRESENTE'))
-                ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombrecorto', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto','users.name as user')->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use App\Models\Docente;
-use Carbon\Carbon;
 
- $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
-                ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
-                ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
-                ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
-                ->join('docentes', 'clases.docente_id', '=', 'docentes.id')
-                ->join('materias', 'clases.materia_id', '=', 'materias.id')
-                ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
-                ->join('temas', 'clases.tema_id', '=', 'temas.id')
-                ->join('userables','userables.userable_id','clases.id')
-                ->join('users','userables.user_id','users.id')
-                ->where('userables.userable_type',Clase::class)
-                ->where('clases.estado_id',estado('PRESENTE'))
-                ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombrecorto', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto','users.name as user')->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use App\Models\Docente;
-use Carbon\Carbon;
+ $pagos=Pago::join('matriculacions','matriculacions.id','pagos.pagable_id')
+            ->join('computacions','computacions.id','matriculacions.computacion_id')
+            ->join('personas','personas.id','computacions.persona_id')
+            ->join('asignaturas','asignaturas.id','matriculacions.asignatura_id')
+            ->join('userables','userables.userable_id','pagos.id')
+            ->join('users','users.id','userables.user_id')
+            ->where('pagos.pagable_type','App\\Models\\Matriculacion')
+            ->where('userable_type','App\\Models\\Pago')
+            ->whereDate('pagos.created_at','<=','2024-01-01')
+            ->whereDate('pagos.created_at','>=','2024-05-01')
+            ->select('personas.id','personas.nombre','apellidop','apellidom','asignatura','monto','name','pagocon','pagos.created_at')
+            ->orderBy('created_at',"asc")
+            ->get();
+use App\Models\Maticulacion;
+use App\Models\Pago;
+use App\Models\Provincia;
+use App\Models\Municipio;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
- $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
-                ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
-                ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
-                ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
-                ->join('docentes', 'clases.docente_id', '=', 'docentes.id')
-                ->join('materias', 'clases.materia_id', '=', 'materias.id')
-                ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
-                ->join('temas', 'clases.tema_id', '=', 'temas.id')
-                ->join('userables','userables.userable_id','clases.id')
-                ->join('users','userables.user_id','users.id')
-                ->where('userables.userable_type',Clase::class)
-                ->where('clases.estado_id',estado('PRESENTE'))
-                ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombrecorto', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto','users.name as user')->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use App\Models\Docente;
-use Carbon\Carbon;
 
- $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
-                ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
-                ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
-                ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
-                ->join('docentes', 'clases.docente_id', '=', 'docentes.id')
-                ->join('materias', 'clases.materia_id', '=', 'materias.id')
-                ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
-                ->join('temas', 'clases.tema_id', '=', 'temas.id')
-                ->join('userables','userables.userable_id','clases.id')
-                ->join('users','userables.user_id','users.id')
-                ->where('userables.userable_type',Clase::class)
-                ->where('clases.estado_id',estado('PRESENTE'))
-                ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombrecorto', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto','users.name as user')->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use App\Models\Docente;
-use Carbon\Carbon;
+ $pagos=Pago::join('matriculacions','matriculacions.id','pagos.pagable_id')
+            ->join('computacions','computacions.id','matriculacions.computacion_id')
+            ->join('personas','personas.id','computacions.persona_id')
+            ->join('asignaturas','asignaturas.id','matriculacions.asignatura_id')
+            
+            ->where('pagos.pagable_type','App\\Models\\Matriculacion')
+            ->where('userable_type','App\\Models\\Pago')
+            ->whereDate('pagos.created_at','<=','2024-01-01')
+            ->whereDate('pagos.created_at','>=','2024-05-01')
+            ->select('personas.id','personas.nombre','apellidop','apellidom','asignatura','monto','name','pagocon','pagos.created_at')
+            ->orderBy('created_at',"asc")
+            ->get();
+use App\Models\Maticulacion;
+use App\Models\Pago;
+use App\Models\Provincia;
+use App\Models\Municipio;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
- $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
-                ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
-                ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
-                ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
-                ->join('docentes', 'clases.docente_id', '=', 'docentes.id')
-                ->join('materias', 'clases.materia_id', '=', 'materias.id')
-                ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
-                ->join('temas', 'clases.tema_id', '=', 'temas.id')
-                ->join('userables','userables.userable_id','clases.id')
-                ->join('users','userables.user_id','users.id')
-                ->where('userables.userable_type',Clase::class)
-                ->where('clases.estado_id',estado('PRESENTE'))
-                ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombrecorto', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto','users.name as user')->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use App\Models\Docente;
-use Carbon\Carbon;
 
- $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
-                ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
-                ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
-                ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
-                ->join('docentes', 'clases.docente_id', '=', 'docentes.id')
-                ->join('materias', 'clases.materia_id', '=', 'materias.id')
-                ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
-                ->join('temas', 'clases.tema_id', '=', 'temas.id')
-                ->join('userables','userables.userable_id','clases.id')
-                ->join('users','userables.user_id','users.id')
-                ->where('userables.userable_type',Clase::class)
-                ->where('clases.estado_id',estado('PRESENTE'))
-                ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombrecorto', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto','users.name as user')->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use App\Models\Docente;
-use Carbon\Carbon;
+ $pagos=Pago::join('matriculacions','matriculacions.id','pagos.pagable_id')
+            ->join('computacions','computacions.id','matriculacions.computacion_id')
+            ->join('personas','personas.id','computacions.persona_id')
+            ->join('asignaturas','asignaturas.id','matriculacions.asignatura_id')
+            
+            ->where('pagos.pagable_type','App\\Models\\Matriculacion')
+            ->where('userable_type','App\\Models\\Pago')
+            ->whereDate('pagos.created_at','<=','2024-01-01')
+            ->whereDate('pagos.created_at','>=','2024-05-01')
+            ->select('personas.id','personas.nombre','apellidop','apellidom','asignatura','monto','pagocon','pagos.created_at')
+            ->orderBy('created_at',"asc")
+            ->get();
+use App\Models\Maticulacion;
+use App\Models\Pago;
+use App\Models\Provincia;
+use App\Models\Municipio;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
- $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
-                ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
-                ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
-                ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
-                ->join('docentes', 'clases.docente_id', '=', 'docentes.id')
-                ->join('materias', 'clases.materia_id', '=', 'materias.id')
-                ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
-                ->join('temas', 'clases.tema_id', '=', 'temas.id')
-                ->join('userables','userables.userable_id','clases.id')
-                ->join('users','userables.user_id','users.id')
-                ->where('userables.userable_type',Clase::class)
-                ->where('clases.estado_id',estado('PRESENTE'))
-                ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombrecorto', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto','users.name as user')->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use App\Models\Docente;
-use Carbon\Carbon;
 
- $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
-                ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
-                ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
-                ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
-                ->join('docentes', 'clases.docente_id', '=', 'docentes.id')
-                ->join('materias', 'clases.materia_id', '=', 'materias.id')
-                ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
-                ->join('temas', 'clases.tema_id', '=', 'temas.id')
-                ->join('userables','userables.userable_id','clases.id')
-                ->join('users','userables.user_id','users.id')
-                ->where('userables.userable_type',Clase::class)
-                ->where('clases.estado_id',estado('PRESENTE'))
-                ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombrecorto', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto','users.name as user')->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use App\Models\Docente;
-use Carbon\Carbon;
+ $pagos=Pago::join('matriculacions','matriculacions.id','pagos.pagable_id')
+            ->join('computacions','computacions.id','matriculacions.computacion_id')
+            ->join('personas','personas.id','computacions.persona_id')
+            ->join('asignaturas','asignaturas.id','matriculacions.asignatura_id')
+            ->join('userables','userables.userable_id','pagos.id')
+            ->join('users','users.id','userables.user_id')
+            ->where('pagos.pagable_type','App\\Models\\Matriculacion')
+            ->where('userable_type','App\\Models\\Pago')
+            ->whereDate('pagos.created_at','<=','2024-01-01')
+            ->whereDate('pagos.created_at','>=','2024-05-01')
+            ->select('personas.id','personas.nombre','apellidop','apellidom','asignatura','monto','name','pagocon','pagos.created_at')
+            ->orderBy('created_at',"asc")
+            ->get();
+use App\Models\Maticulacion;
+use App\Models\Pago;
+use App\Models\Provincia;
+use App\Models\Municipio;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
- $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
-                ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
-                ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
-                ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
-                ->join('docentes', 'clases.docente_id', '=', 'docentes.id')
-                ->join('materias', 'clases.materia_id', '=', 'materias.id')
-                ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
-                ->join('temas', 'clases.tema_id', '=', 'temas.id')
-                ->join('userables','userables.userable_id','clases.id')
-                ->join('users','userables.user_id','users.id')
-                ->where('userables.userable_type',Clase::class)
-                ->where('clases.estado_id',estado('PRESENTE'))
-                ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombrecorto', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto','users.name as user')->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use App\Models\Docente;
-use Carbon\Carbon;
 
- $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
-                ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
-                ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
-                ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
-                ->join('docentes', 'clases.docente_id', '=', 'docentes.id')
-                ->join('materias', 'clases.materia_id', '=', 'materias.id')
-                ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
-                ->join('temas', 'clases.tema_id', '=', 'temas.id')
-                ->join('userables','userables.userable_id','clases.id')
-                ->join('users','userables.user_id','users.id')
-                ->where('userables.userable_type',Clase::class)
-                ->where('clases.estado_id',estado('PRESENTE'))
-                ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombrecorto', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto','users.name as user')->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use App\Models\Docente;
-use App\Models\Clase;
-use Carbon\Carbon;
+ $pagos=Pago::join('matriculacions','matriculacions.id','pagos.pagable_id')
+            ->join('computacions','computacions.id','matriculacions.computacion_id')
+            ->join('personas','personas.id','computacions.persona_id')
+            ->join('asignaturas','asignaturas.id','matriculacions.asignatura_id')
+            ->join('userables','userables.userable_id','pagos.id')
+            ->join('users','users.id','userables.user_id')
+            ->where('pagos.pagable_type','App\\Models\\Matriculacion')
+            ->where('userable_type','App\\Models\\Pago')
+            ->whereDate('pagos.created_at','<=','2024-05-01')
+            ->whereDate('pagos.created_at','>=','2024-01-01')
+            ->select('personas.id','personas.nombre','apellidop','apellidom','asignatura','monto','name','pagocon','pagos.created_at')
+            ->orderBy('created_at',"asc")
+            ->get();
+use App\Models\Maticulacion;
+use App\Models\Pago;
+use App\Models\Provincia;
+use App\Models\Municipio;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
- $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
-                ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
-                ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
-                ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
-                ->join('docentes', 'clases.docente_id', '=', 'docentes.id')
-                ->join('materias', 'clases.materia_id', '=', 'materias.id')
-                ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
-                ->join('temas', 'clases.tema_id', '=', 'temas.id')
-                ->join('userables','userables.userable_id','clases.id')
-                ->join('users','userables.user_id','users.id')
-                ->where('userables.userable_type',Clase::class)
-                ->where('clases.estado_id',estado('PRESENTE'))
-                ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombrecorto', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto','users.name as user')->get();
-use App\Models\Estudiante;
-use App\Models\Persona;
-use App\Models\Docente;
-use App\Models\Clase;
-use Carbon\Carbon;
 
- $clases =  Clase::join('programacions', 'clases.programacion_id', '=', 'programacions.id')
-                ->join('inscripciones', 'programacions.inscripcione_id', '=', 'inscripciones.id')
-                ->join('estudiantes', 'inscripciones.estudiante_id', '=', 'estudiantes.id')
-                ->join('personas', 'estudiantes.persona_id', '=', 'personas.id')
-                ->join('docentes', 'clases.docente_id', '=', 'docentes.id')
-                ->join('materias', 'clases.materia_id', '=', 'materias.id')
-                ->join('aulas', 'clases.aula_id', '=', 'aulas.id')
-                ->join('temas', 'clases.tema_id', '=', 'temas.id')
-                ->join('userables','userables.userable_id','clases.id')
-                ->join('users','userables.user_id','users.id')
-                ->where('userables.userable_type',Clase::class)
-                ->where('clases.estado_id',estado('PRESENTE'))
-                ->where('clases.fecha',Carbon::now()->isoFormat('Y-M-D'))
-                ->select('clases.id','personas.id as codigo', DB::raw('concat_ws("",personas.nombre) as name'),'clases.horainicio', 'clases.horafin', 'docentes.nombrecorto', 'materias.materia', 'aulas.aula', 'temas.tema', 'personas.foto','users.name as user')->get();
+ $pagos=Pago::join('matriculacions','matriculacions.id','pagos.pagable_id')
+            ->join('computacions','computacions.id','matriculacions.computacion_id')
+            ->join('personas','personas.id','computacions.persona_id')
+            ->join('asignaturas','asignaturas.id','matriculacions.asignatura_id')
+            ->join('userables','userables.userable_id','pagos.id')
+            ->join('users','users.id','userables.user_id')
+            ->where('pagos.pagable_type','App\\Models\\Matriculacion')
+            ->where('userable_type','App\\Models\\Pago')
+            ->whereDate('pagos.created_at','<=','2024-05-01')
+            ->whereDate('pagos.created_at','>=','2024-01-01')
+            ->select('personas.id','personas.nombre','apellidop','apellidom','asignatura','monto','name','pagocon','pagos.created_at')
+            ->orderBy('created_at',"asc")
+            ->get();
+use App\Models\Maticulacion;
+use App\Models\Pago;
+use App\Models\Provincia;
+use App\Models\Municipio;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+
+ $pagos=Pago::join('matriculacions','matriculacions.id','pagos.pagable_id')
+            ->join('computacions','computacions.id','matriculacions.computacion_id')
+            ->join('personas','personas.id','computacions.persona_id')
+            ->join('asignaturas','asignaturas.id','matriculacions.asignatura_id')
+            ->join('userables','userables.userable_id','pagos.id')
+            ->join('users','users.id','userables.user_id')
+            ->where('pagos.pagable_type','App\\Models\\Matriculacion')
+            ->where('userable_type','App\\Models\\Pago')
+            ->whereDate('pagos.created_at','<=','2024-05-01')
+            ->whereDate('pagos.created_at','>=','2024-01-01')
+            ->select('personas.id','personas.nombre','apellidop','apellidom','asignatura','monto','name','pagocon','pagos.created_at')
+            ->orderBy('created_at',"asc")
+            ->get();
+use App\Models\Maticulacion;
+use App\Models\Pago;
+use App\Models\Provincia;
+use App\Models\Municipio;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+
+ $pagos=Pago::join('matriculacions','matriculacions.id','pagos.pagable_id')
+            ->join('computacions','computacions.id','matriculacions.computacion_id')
+            ->join('personas','personas.id','computacions.persona_id')
+            ->join('asignaturas','asignaturas.id','matriculacions.asignatura_id')
+            ->join('userables','userables.userable_id','pagos.id')
+            ->join('users','users.id','userables.user_id')
+            ->where('pagos.pagable_type','App\\Models\\Matriculacion')
+            ->where('userable_type','App\\Models\\Pago')
+            ->whereDate('pagos.created_at','<=','2024-05-01')
+            ->whereDate('pagos.created_at','>=','2024-01-01')
+            ->select('personas.id','personas.nombre','apellidop','apellidom','asignatura','monto','name','pagocon','pagos.created_at')
+            ->orderBy('created_at',"asc")
+            ->get();
+
+$t=DataTables::of($pagos)
+                ->toJson();

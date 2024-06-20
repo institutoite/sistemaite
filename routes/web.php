@@ -428,9 +428,15 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('pagos/mostrar/ajax',[PagoController::class,'pagosMostrarAjax'])->name('pagos.mostrar.ajax');
     Route::get('listar/pagos',[PagoController::class,'listarPagos'])->name('pagos.pagos');
     Route::get('pago/inscripciones/view',[PagoController::class,'pagoInscripcionesView'])->name('pago.inscripciones.view');
+    Route::get('pago/inscripciones/max',[PagoController::class,'pagoInscripcionesMax'])->name('pago.inscripciones.max');
+    Route::get('pagoinscripciones/max',[PagoController::class,'pagoModeloMax'])->name('pago.inscripcionesmax');
     Route::get('pagoinscripciones',[PagoController::class,'pagoModelo'])->name('pago.inscripciones');
+    
     Route::get('pago/matriculaciones/view',[PagocomController::class,'pagoMatriculacionesView'])->name('pago.matriculaciones.view');
     Route::get('pagomatriculaciones',[PagocomController::class,'pagoModelo'])->name('pago.matriculaciones');
+    Route::get('pago/matriculaciones/max',[PagocomController::class,'pagoMatriculacionesMax'])->name('pago.matriculaciones.max');
+    Route::get('pagomatriculaciones/max',[PagocomController::class,'pagoModeloMax'])->name('pago.matriculacionesmax');
+    
     Route::get('grafica/por/pagablestype',[PagoController::class,'graficaPorPagablestype'])->name('grafica.por.pagablestype');
     Route::delete('eliminar/pago/{pago}', [PagoController::class,'destroy'])->name('eliminar.pago');
     Route::delete('eliminar/pago/periodable/{pago}',[PeriodableController::class,'eliminarPagoPeriodo'])->name('eliminar.pago.periodable');

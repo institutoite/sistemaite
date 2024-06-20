@@ -934,9 +934,21 @@ return [
                     'classes'  => 'text-dark',
                 ],
                 [
+                    'text' => 'Ingresos mjrd',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'pago/inscripciones/max',
+                    'classes'  => 'text-dark',
+                ],
+                [
                     'text' => 'Matriculaciones',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'pago/matriculaciones/view',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Matriculaciones mjrd',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'pago/matriculaciones/max',
                     'classes'  => 'text-dark',
                 ],
                 [

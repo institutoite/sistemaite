@@ -280,6 +280,27 @@ class PagoController extends Controller
     }
 
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% REPORTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+    public function pagoInscripcionesMax(){
+        return view('reportes.pago.pagoinscripcionesmejorado');
+    } 
+    public function pagoModeloMax(Request $request){
+        $pagos=Pago::join('inscripciones','inscripciones.id','pagos.pagable_id')
+            ->join('estudiantes','estudiantes.id','inscripciones.estudiante_id')
+            ->join('personas','personas.id','estudiantes.persona_id')
+            ->join('modalidads','inscripciones.modalidad_id','modalidads.id')
+            ->join('userables','userables.userable_id','pagos.id')
+            ->join('users','users.id','userables.user_id')
+            ->where('pagos.pagable_type','App\\Models\\'.$request->modelo)
+            ->where('userable_type','App\\Models\\Pago')
+            ->whereDate('pagos.created_at','<=',$request->fechafin)
+            ->whereDate('pagos.created_at','>=',$request->fechaini)
+            ->select('personas.id','personas.nombre','apellidop','apellidom','monto','pagos.created_at')
+            ->orderBy('created_at',"asc")
+            ->get();
+        return DataTables::of($pagos)
+                ->toJson();
+    }
+    /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% REPORTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     public function pagoInscripcionesView(){
         return view('reportes.pago.pagoinscripciones');
     } 
