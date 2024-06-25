@@ -44,7 +44,6 @@
             <span class="card-title">Pago de Matriculaciones</span>
         </div>
         <div class="card-body">
-            
             <table id="pagos" class="table table-bordered table-hover table-striped">
                 <thead class="bg-primary">
                     <tr>
@@ -94,13 +93,26 @@
                             fechafin:$("#fechafin").val(),
                         },
                         // "success":function(e){
+                        //     console.log(e);
                         // },
                     },
                     "createdRow": function( row, data, dataIndex ) {
-                        $Monto=parseInt(data['monto'])
-
+                        $Monto=parseFloat(data['monto'])
+                        console.log($Monto);
                         switch ($Monto) {
                             case 0:
+                                $Monto=175;
+                                break;
+                            case 1:
+                                $Monto=175;
+                                break;
+                            case 25:
+                                $Monto=175;
+                                break;
+                            case 50:
+                                $Monto=175;
+                                break;
+                            case 75:
                                 $Monto=175;
                                 break;
                             case 140:
@@ -124,16 +136,10 @@
                         $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
                         $('td', row).eq(0).html(data['nombre']+" "+data['apellidop']);
                         $('td', row).eq(1).html(data['asignatura']);
-                        $('td', row).eq(2).html("Bs. "+data['monto']);
+                        $('td', row).eq(2).html($Monto);
                         $('td', row).eq(3).html(moment(data['created_at']).format('DD-MM-Y HH:mm'));
                     },
-                    "columns": [
-                        {data:'nombre'},
-                        {data:'asignatura'},
-                        {data:'monto'},
-                        {data:'created_at'},
-                        
-                    ],
+                   
                     
                     "columnDefs": [
                         { responsivePriority: 1, targets: 0 },  
@@ -177,10 +183,47 @@
                         },
                     },
                     "createdRow": function( row, data, dataIndex ) {
+                        $Monto=parseFloat(data['monto'])
+                        console.log($Monto);
+                        switch ($Monto) {
+                            case 0:
+                                $Monto=175;
+                                break;
+                            case 1:
+                                $Monto=175;
+                                break;
+                            case 25:
+                                $Monto=175;
+                                break;
+                            case 50:
+                                $Monto=175;
+                                break;
+                            case 75:
+                                $Monto=175;
+                                break;
+                            case 140:
+                                $Monto=175;
+                                break;
+                            case 145:
+                                $Monto=175;
+                                break;
+                            case 150:
+                                $Monto=175;
+                                break;
+                            case 175:
+                                $Monto=350;
+                                break;
+                            case 350:
+                                $Monto=420;
+                                break;
+                            default:
+                                break;
+                        }
                         $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
                         $('td', row).eq(0).html(data['nombre']+" "+data['apellidop']);
-                        $('td', row).eq(3).html("Bs. "+data['monto']);
-                        $('td', row).eq(4).html(moment(data['created_at']).format('DD-MM-Y HH:mm'));
+                        $('td', row).eq(1).html(data['asignatura']);
+                        $('td', row).eq(2).html($Monto);
+                        $('td', row).eq(3).html(moment(data['created_at']).format('DD-MM-Y HH:mm'));
                     },
                     "columns": [
                         {data:'nombre'},

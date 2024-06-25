@@ -188,6 +188,9 @@
                             case 165:
                                 $Monto=265;
                                 break;
+                            case 380:
+                                $Monto=550;
+                                break;
                             case 350:
                                 $Monto=420;
                                 break;
@@ -205,7 +208,7 @@
                         }
 
                         $('td', row).eq(0).html(data['nombre']+" "+data['apellidop']);
-                        $('td', row).eq(1).html("Bs. "+$Monto+" "+data['monto']);
+                        $('td', row).eq(1).html($Monto);
                         $('td', row).eq(2).html(moment(data['created_at']).format('DD-MM-Y HH:mm'));
                     },
                     "language":{

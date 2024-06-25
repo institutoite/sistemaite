@@ -112,7 +112,6 @@ class ModalidadController extends Controller
         $modalidad->costo=$request->costo;
         $modalidad->cargahoraria=$request->cargahoraria;
         $modalidad->descripcion=$request->descripcion;
-        $modalidad->vigente=$request->vigente;
         $modalidad->save();
 
     
