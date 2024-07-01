@@ -274,7 +274,7 @@
                     </td>
                 </tr>
                 
-                @if($loop->iteration%38==0){
+                @if($loop->iteration%38==0)
                     <tr> <td colspan="7"> <div style="page-break-before:always;"> </div> </td></tr>
                 @endif
                 @endforeach

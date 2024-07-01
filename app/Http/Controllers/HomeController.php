@@ -20,6 +20,11 @@ use App\Models\Interest;
 use App\Models\Ventaja;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
+use Carbon\Carbon;
+
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -460,4 +465,68 @@ class HomeController extends Controller
     {
         //
     }
+
+    // public function imprimirPrimaria(){
+    //     $modalidades = Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
+    //     ->where("nivels.id",3)
+    //     ->where("vigente",1)
+    //     ->get();
+    //     $dompdf = PDF::loadView('home.fronted.primariareporte', compact('modalidades'));
+    //     /**entrae a la persona al cual corresponde esta inscripcion */
+    //     $fecha_actual = Carbon::now();
+    //     $fecha_actual->isoFormat('DD-MM-YYYY-HH:mm:ss');
+    //     $dompdf->setPaper('letter','portrait');
+    //     // $dompdf->setPaper('A4', 'portrait');
+    //     return $dompdf->download("ITE_PRIMARIA_INFO".'.pdf');
+   
+    // }
+
+
+    public function imprimirPrimaria() {
+        // Obtener las modalidades de primaria vigentes
+        $modalidades = Modalidad::join('nivels', 'modalidads.nivel_id', 'nivels.id')
+                        ->where('nivels.id', 3) // Filtrar por el nivel de primaria (ejemplo: ID 3)
+                        ->where('vigente', 1) // Filtrar solo las modalidades vigentes
+                        ->get();
+    
+        // Configurar las opciones para Dompdf
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isPhpEnabled', true);
+        $options->set('isRemoteEnabled', true);
+    
+        // Crear una instancia de Dompdf con las opciones configuradas
+        $dompdf = new Dompdf($options);
+    
+        // Cargar la vista que contiene el contenido del PDF
+        $view = view('home.fronted.primariareporte', compact('modalidades'))->render();
+    
+        // Dividir el contenido en trozos de 1 MB
+        $chunks = str_split($view, 1024 * 1024);
+    
+        // Configurar el tamaño y orientación del papel
+        $dompdf->setPaper('letter', 'portrait'); // Papel carta en orientación vertical
+    
+        // Crear el PDF para cada trozo de contenido
+        foreach ($chunks as $index => $chunk) {
+            // Cargar HTML en Dompdf con la codificación UTF-8
+            $dompdf->loadHtml(mb_convert_encoding($chunk, 'HTML-ENTITIES', 'UTF-8'));
+    
+            // Renderizar el PDF (capturando cualquier excepción si ocurre)
+            try {
+                $dompdf->render();
+            } catch (\Exception $e) {
+                // Manejar cualquier excepción que ocurra durante el renderizado
+                return response()->json(['error' => 'Error al generar el PDF: ' . $e->getMessage()], 500);
+            }
+    
+            // Guardar el PDF generado en el servidor
+            $pdfOutput = $dompdf->output();
+            file_put_contents(storage_path('app/public/ITE_PRIMARIA_INFO_'.$index.'.pdf'), $pdfOutput); // Guardar el PDF en almacenamiento público
+        }
+    
+        $nombreArchivo = "ITE_PRIMARIA_INFO" . '_' . now()->format('Y-m-d_H-i-s') . '.pdf';
+        return $dompdf->stream($nombreArchivo);
+    }
+
 }

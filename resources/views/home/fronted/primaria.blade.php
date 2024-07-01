@@ -554,6 +554,18 @@
 </section>
 
 
+<section class="corporate-plans">
+		<div class="plans-container">
+			<div class=".contenedor">
+				<h1 class="h1">Descarga de Información</h1>
+				<p class="p">Haz clic en el botón de abajo para descargar el PDF con la información.</p>
+				<a href="{{ route('imprimir.info.primaria') }}" class="custom-button-a">Descargar PDF</a>
+			</div>
+			
+		</div>
+</section>
+
+
 
 	<!-- Contact Page Section -->
     <section class="contact-page-section">

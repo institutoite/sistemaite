@@ -70,7 +70,23 @@ use App\Http\Controllers\CrmController;
 use App\Http\Controllers\VcardController;
 use App\Http\Controllers\ProspectoController;
 use App\Http\Controllers\GContactController;
-//use App\Http\Controllers\RolUsersController;
+use App\Http\Controllers\HomeQuestionController;
+use App\Http\Controllers\HomeScheduleController;
+use App\Http\Controllers\MetaController;
+use App\Http\Controllers\RequisitoController;
+use App\Http\Controllers\CursoController;
+use App\Http\Controllers\RolUsersController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\VentajaController;
+
+
+
+
+
+
+
+
+
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
@@ -1046,3 +1062,11 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('/token-expiration', [GContactController::class, 'getTokenExpiration'])->name('token-expiration');
     Route::get('reset/token-expiration', [GContactController::class, 'resetTokenExpiration'])->name('reset.token-expiration');
     Route::get("informar/estado/general", [EstudianteController::class,'informarEstadoGeneral'])->name("informar.por.estado.General");
+
+    /** botones imprimir en los home */
+
+    Route::get('/imprimir/guarderia', [HomeController::class, 'imprimirGuarderia'])->name('imprimir.guarderia');
+    Route::get('/imprimir/inicial', [HomeController::class, 'imprimirInicial'])->name('imprimir.inicial');
+    Route::get('/imprimir/primaria', [HomeController::class, 'imprimirPrimaria'])->name('imprimir.info.primaria');
+    Route::get('/imprimir/secundaria', [HomeController::class, 'imprimirSecundaria'])->name('imprimir.secundaria');
+    Route::get('/imprimir/preuniversitario', [HomeController::class, 'imprimirPreuniversitario'])->name('imprimir.preuniversitario');

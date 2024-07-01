@@ -1401,11 +1401,9 @@ class PersonaController extends Controller
         return $textoFormateado;
     }
 
-
     public function mostrarArchivos(Request $request) {
         $inicio=$request->inicio;
         $incremento = $request->incremento;
-        
         $this->DescargarTodosContacto($inicio,$incremento);
         $directorio = storage_path("app/contactos/todos");
         $archivos = scandir($directorio);
