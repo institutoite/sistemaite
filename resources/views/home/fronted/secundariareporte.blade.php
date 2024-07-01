@@ -173,7 +173,7 @@
 </head>
 <body>
 	
-        <h1>NIVEL PRIMARIA</h1>
+        <h1>Nivel Secundaria</h1>
         <p class="contact-info">Av. 3 pasos al frente y Che Guevara, Santa Cruz</p>
         <p class="contact-info">Teléfono: +591 71039910 / +591 75553338 / +591 71324941</p>
  

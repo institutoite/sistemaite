@@ -1068,5 +1068,5 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('/imprimir/guarderia', [HomeController::class, 'imprimirGuarderia'])->name('imprimir.guarderia');
     Route::get('/imprimir/inicial', [HomeController::class, 'imprimirInicial'])->name('imprimir.inicial');
     Route::get('/imprimir/primaria', [HomeController::class, 'imprimirPrimaria'])->name('imprimir.info.primaria');
-    Route::get('/imprimir/secundaria', [HomeController::class, 'imprimirSecundaria'])->name('imprimir.secundaria');
+    Route::get('/imprimir/secundaria', [HomeController::class, 'imprimirSecundaria'])->name('imprimir.info.secundaria');
     Route::get('/imprimir/preuniversitario', [HomeController::class, 'imprimirPreuniversitario'])->name('imprimir.preuniversitario');
