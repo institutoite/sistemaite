@@ -12,7 +12,7 @@
   <meta name="description" content="ITE - Conectamos tus redes sociales en un solo lugar" />
   <meta name="author" content="ITE" />
 
-  <title>ITE - Conecta tus Redes Sociales</title>
+  <title>Grupo ite</title>
 
   <!-- Bootstrap core CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="{{ asset('smartEDU/css/prettyPhoto.css')}}" />
     <link rel="stylesheet" href="{{ asset('smartEDU/css/colors.css')}}" />
     <link rel="stylesheet" href="{{ asset('smartEDU/css/flaticon.css')}}" />
+    <link rel="stylesheet" href="{{ asset('smartEDU/secciones.css')}}" />
 
 
     <!-- Modernizer for Portfolio -->
@@ -43,9 +44,7 @@
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container">
           <a class="navbar-brand" href="index.html">
-            <span>
-              ITE
-            </span>
+            <img src="" alt="">
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,6 +84,16 @@
       </div>
     </header>
     <!-- Header section ends -->
+    
+
+
+    {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% seccion encabezado  --}}
+    <div id="info-bar" class="info-bar">
+        <h2 id="info-title"></h2>
+        <p id="info-message"></p>
+        <a id="whatsapp-button" href="#" class="whatsapp-button" target="_blank">Contáctanos en WhatsApp</a>
+    </div>
+    {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% seccion encabezado  --}}
 
     <!-- Hero section -->
     <section class="hero_section">
@@ -178,7 +187,8 @@
 					<div class="col-lg-3 col-md-6 col-12">
 						<div class="our-team">
 							<div class="team-img">
-								<img src="{{  asset('smartEDU/images/team-01.png')}}">
+								{{-- <img src="{{  asset('smartEDU/images/team-01.png')}}"> --}}
+                <img src="{{URL::to('/')}}/storage/{{$docente->persona->foto}}" alt="" />
 								<div class="social">
 									<ul>
 										<li><a href="#" class="fa fa-facebook"></a></li>
@@ -217,6 +227,7 @@
   <script type="text/javascript" src="{{ asset('smartEDU/js/custom.js')}}"></script>
 
   <script src="{{ asset('smartEDU/js/modernizer.js')}}"></script>
+  <script src="{{ asset('smartEDU/js/secction.js')}}"></script>
   
 </body>
 

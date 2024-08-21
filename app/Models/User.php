@@ -62,8 +62,7 @@ class User extends Authenticatable
 
     public function adminlte_image()
     {
-        return URL::to('/').('/storage/'.Auth::user()->foto);// url();
-        // <td><img class='materialboxed' src="{{URL::to('/')}}/storage/{{$user->foto}}" height="50"/></td>
+        return URL::to('/').('/storage/'.Auth::user()->foto);
     }
 
     public function adminlte_desc()
