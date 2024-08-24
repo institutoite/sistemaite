@@ -56,7 +56,7 @@ use App\Http\Controllers\CaracteristicaController;
 use App\Http\Controllers\BilleteController;
 use App\Http\Controllers\BilletecomController;
 use App\Http\Controllers\FeriadoController;
-use App\Http\Controllers\TelefonoController;
+// use App\Http\Controllers\TelefonoController;
 use App\Http\Controllers\ConstanteController;
 use App\Http\Controllers\CiudadController;
 use App\Http\Controllers\ColegioController;
@@ -141,7 +141,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::post('guardar/papeles/{persona}', 'PersonaController@guardarNuevoPapel')->name('guardar.nuevo.papel');
 
     Route::get('persona/select', [PersonaController::class,'select'])->name('persona.select.ajax');
-    Route::get('persona/mostrar', [PersonaController::class,'personaMostrarAjax'])->name('persona.mostrar.ajax');
+    Route::get('persona/mostrar', [PersonaController::class,'personaMostrarAjax'])->name('persona.mostrar'); //duplicado persona.mostrar.ajax
     Route::get('persona/mostrar/ajax', [PersonaController::class,'personaMostrarAjaxInscripcion'])->name('persona.mostrar.ajax');
     Route::get('persona/mostrar/ajax/matriculacion', [PersonaController::class,'personaMostrarAjaxMatriculacion'])->name('persona.mostrar.matriculacion.ajax');
     Route::get('persona/ultimaobservacion', [PersonaController::class,'ultimaObservacion'])->name('persona.ultima.observacion');
@@ -348,7 +348,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('cumpleaneros/view',[EstudianteController::class,'cumplenerosView'])->name('cumpleaneros.view');
     Route::get('finalizando/view',[EstudianteController::class,'finalizandoView'])->name('finalizando.view');
     Route::get('empezando/view',[EstudianteController::class,'empezandoView'])->name('empezando.view');
-    Route::get('iniciando/view',[EstudianteController::class,'cumplenerosView'])->name('cumpleaneros.view');
+    Route::get('iniciando/view',[EstudianteController::class,'cumplenerosView'])->name('iniciando.view'); //duplicado cumpleaneros.view
     // Route::get('yaesta/felicitado/{persona}',[EstudianteController::class,'yaSeFelicito'])->name('yaesta.felicitado');
 
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       COMENTARIO         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -456,7 +456,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('grafica/por/pagablestype',[PagoController::class,'graficaPorPagablestype'])->name('grafica.por.pagablestype');
     Route::delete('eliminar/pago/{pago}', [PagoController::class,'destroy'])->name('eliminar.pago');
     Route::delete('eliminar/pago/periodable/{pago}',[PeriodableController::class,'eliminarPagoPeriodo'])->name('eliminar.pago.periodable');
-    Route::get('pago/actualizar/', [PeriodableController::class,'actualizar'])->name('pago.actualizar');
+    Route::get('pago/actualizar/', [PeriodableController::class,'actualizar'])->name('pago.periodable.actualizar'); //duplicado pago.actualizar
 
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%CHART RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     Route::get('chart/inscripciones/for/modalidades', [ChartController::class,'chartCantidadInscripcionesXModaalidades'])->name('chart.listar.inscripciones.pormodalidades');
@@ -556,9 +556,11 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  ESTADOS   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::get('estados', [EstadoController::class, 'index'])->name('estado.index');
     Route::get('estado/create',[EstadoController::class,'create'])->name('estado.create');
+
     Route::get('estados/show/{estado}', [EstadoController::class, 'show'])->name('estado.show');
+    Route::get('estado/mostrar/{estado}', [EstadoController::class,'show'])->name("estado.mostrar"); // duplicador estado.show 
+    
     Route::post('estado/guardar',[EstadoController::class,'store'])->name('estado.store');
-    Route::get('estado/mostrar/{estado}', [EstadoController::class,'show'])->name("estado.show");
     Route::get('estado/editar/{estado}', [EstadoController::class,'edit'])->name("estado.edit");
     Route::get('estado/actualizar/{estado}', [EstadoController::class,'update'])->name("estado.update");
     Route::delete('eliminar/estado/{estado}', [EstadoController::class,'destroy'])->name('estado.destroy');
@@ -569,7 +571,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('convenio/create',[ConvenioController::class,'create'])->name('convenio.create');
     Route::get('convenios/show/{convenio}', [ConvenioController::class, 'show'])->name('convenio.show');
     Route::post('convenio/guardar',[ConvenioController::class,'store'])->name('convenio.store');
-    Route::get('convenio/mostrar/{convenio}', [ConvenioController::class,'show'])->name("convenio.show");
+    Route::get('convenio/mostrar/{convenio}', [ConvenioController::class,'show'])->name("convenio.mostrar"); // duplicado convenio.show
     Route::get('convenio/editar/{convenio}', [ConvenioController::class,'edit'])->name("convenio.edit");
     Route::put('convenio/actualizar/{convenio}', [ConvenioController::class,'update'])->name("convenio.update");
     Route::delete('eliminar/convenio/{convenio}',[ConvenioController::class,'destroy'])->name('eliminar.convenio');
@@ -581,7 +583,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('plan/create',[PlanController::class,'create'])->name('plan.create');
     Route::get('plans/show/{plan}', [PlanController::class, 'show'])->name('plan.show');
     Route::post('plan/guardar',[PlanController::class,'store'])->name('plan.store');
-    Route::get('plan/mostrar/{plan}', [PlanController::class,'show'])->name("plan.show");
+    Route::get('plan/mostrar/{plan}', [PlanController::class,'show'])->name("plan.mostrar"); // duplicado plan.show
     Route::get('plan/editar/{plan}', [PlanController::class,'edit'])->name("plan.edit");
     Route::put('plan/actualizar/{plan}', [PlanController::class,'update'])->name("plan.update");
     Route::delete('eliminar/plan/{plan}',[PlanController::class,'destroy'])->name('eliminar.plan');
@@ -593,7 +595,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('caracteristica/create',[CaracteristicaController::class,'create'])->name('caracteristica.create');
     Route::get('caracteristicas/show/{caracteristica}', [CaracteristicaController::class, 'show'])->name('caracteristica.show');
     Route::post('caracteristica/guardar',[CaracteristicaController::class,'store'])->name('caracteristica.store');
-    Route::get('caracteristica/mostrar/{caracteristica}', [CaracteristicaController::class,'show'])->name("caracteristica.show");
+    Route::get('caracteristica/mostrar/{caracteristica}', [CaracteristicaController::class,'show'])->name("caracteristica.mostrar");// duplicado caracteristica.show
     Route::get('caracteristica/editar/{caracteristica}', [CaracteristicaController::class,'edit'])->name("caracteristica.edit");
     Route::put('caracteristica/actualizar/{caracteristica}', [CaracteristicaController::class,'update'])->name("caracteristica.update");
     Route::delete('eliminar/caracteristica/{caracteristica}',[CaracteristicaController::class,'destroy'])->name('eliminar.caracteristica');
@@ -604,7 +606,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('constante/create',[ConstanteController::class,'create'])->name('constante.create');
     Route::get('constantes/show/{constante}', [ConstanteController::class, 'show'])->name('constante.show');
     Route::post('constante/guardar',[ConstanteController::class,'store'])->name('constante.store');
-    Route::get('constante/mostrar/{constante}', [ConstanteController::class,'show'])->name("constante.show");
+    Route::get('constante/mostrar/{constante}', [ConstanteController::class,'show'])->name("constante.mostrar"); // duplicado constante.show
     Route::get('constante/editar/{constante}', [ConstanteController::class,'edit'])->name("constante.edit");
     Route::put('constante/actualizar/{constante}', [ConstanteController::class,'update'])->name("constante.update");
     Route::delete('eliminar/constante/{constante}',[ConstanteController::class,'destroy'])->name('eliminar.constante');
@@ -614,7 +616,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('carrera/create',[CarreraController::class,'create'])->name('carrera.create');
     Route::get('carreras/show/{carrera}', [CarreraController::class, 'show'])->name('carrera.show');
     Route::post('carrera/guardar',[CarreraController::class,'store'])->name('carrera.store');
-    Route::get('carrera/mostrar/{carrera}', [CarreraController::class,'show'])->name("carrera.show");
+    Route::get('carrera/mostrar/{carrera}', [CarreraController::class,'show'])->name("carrera.mostrar");//duplicado carrera.show
     Route::get('carrera/editar/{carrera}', [CarreraController::class,'edit'])->name("carrera.edit");
     Route::get('carrera/actualizar/{carrera}', [CarreraController::class,'update'])->name("carrera.update");
     Route::delete('eliminar/carrera/{carrera}', [CarreraController::class,'destroy'])->name('carrera.destroy'); 

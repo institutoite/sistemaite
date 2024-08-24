@@ -137,7 +137,7 @@ Route::get('apoderados', function () {
         ->addColumn('btn', 'persona.actionapoderados')
         ->rawColumns(['btn'])
         ->toJson();
-})->name('personas.todos');
+})->name('apoderados.todos');
 
 Route::get('ciudades',function(){
     $ciudades=Ciudad::select('ciudads.id','ciudad','nombrepais')->join('pais','pais.id','=','ciudads.pais_id')
