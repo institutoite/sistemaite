@@ -88,11 +88,13 @@
 
 
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% seccion encabezado  --}}
-    <div id="info-bar" class="info-bar">
-        <h2 id="info-title"></h2>
-        <p id="info-message"></p>
-        <a id="whatsapp-button" href="#" class="whatsapp-button" target="_blank">Contáctanos en WhatsApp</a>
-    </div>
+    @isset($feriado)
+      <div id="date-banner" class="date-banner">
+        <h2 id="date-title">{{ $feriado->festividad }}</h2>
+        <p id="date-description">Descubre nuestras emocionantes novedades y eventos especiales. ¡No te lo pierdas!</p>
+        <a id="whatsapp-link" class="whatsapp-link" href="https://wa.me/123456789" target="_blank">Contactar</a>
+      </div>
+    @endisset
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% seccion encabezado  --}}
 
     <!-- Hero section -->
@@ -100,11 +102,10 @@
       <div class="hero-container container">
         <div class="hero_detail-box">
           <h1>
-            Todo lo que necesitas
-            en un solo enlace
+            Excelencia Académica
           </h1>
           <p>
-            Con ITE, centraliza todas tus redes sociales y enlaces importantes en un solo lugar. Ideal para Instagram, TikTok, Twitter, YouTube y más.
+            ITE se destaca por su compromiso con una educación de calidad, ofreciendo programas diseñados para potenciar las habilidades de cada estudiante.
           </p>
           <div class="hero_btn-container">
             <a href="sign-up.html" class="call_to-btn btn_white-border">
@@ -135,10 +136,10 @@
           <div class="col-md-6">
             <div class="features_detail-box">
               <h3>
-                Características de ITE
+                Atención Personalizada
               </h3>
               <p>
-                Conecta todas tus redes sociales, agrega tus enlaces favoritos y personaliza tu página de manera fácil y rápida. Diseñado para aumentar tu visibilidad y facilitar la gestión de tus perfiles.
+                En ITE, cada estudiante recibe la atención y el apoyo necesarios para superar sus desafíos y alcanzar sus metas académicas.
               </p>
               <div class="">
                 <a href="features.html" class="call_to-btn btn_white-border">
@@ -159,10 +160,10 @@
           <div class="col-md-6">
             <div class="pricing_detail-box">
               <h3>
-                Planes y Precios
+                Preparación para Exámenes:
               </h3>
               <p>
-                Descubre nuestros planes flexibles para adaptarse a tus necesidades. Ya sea que estés comenzando o busques funcionalidades avanzadas, tenemos una opción para ti.
+                Ofrecemos preparación especializada para exámenes, asegurando que los estudiantes enfrenten sus evaluaciones con confianza y conocimiento.
               </p>
               <div class="">
                 <a href="pricing.html" class="call_to-btn btn_white-border">

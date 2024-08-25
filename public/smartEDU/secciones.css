@@ -1,43 +1,99 @@
 /*barra superior informativa*/
-.info-bar {
-    background-color: rgb(55, 95, 122);
-    color: #000;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.date-banner {
+    background-color: rgb(24, 57, 80);
+    color: #fff; /* Color de texto en blanco para mejor contraste */
     padding: 15px;
     text-align: center;
-    font-size: 18px;
     position: fixed;
-    width: 100%;
+    width: 250px; /* Ajusta el ancho según tus necesidades */
     top: 0;
-    z-index: 1000;
-    display: none; /* Se mostrará cuando haya un mensaje */
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    right: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+    z-index: 1000; /* Asegura que el banner esté por encima de otros elementos */
+    animation: pulse 1.5s infinite; /* Animación pulsante */
 }
 
-.info-bar h2 {
+/* Animación de pulso para el banner */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.date-banner h2 {
     margin: 0;
     font-size: 24px;
-    font-weight: bold;
 }
 
-.info-bar p {
-    margin: 10px 0;
+.date-banner p {
+    margin: 5px 0;
     font-size: 16px;
+    font-weight: bold; /* Hace el texto más destacado */
 }
 
 .whatsapp-button {
     background-color: #25D366;
     color: white;
+    border: none;
     padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
     font-size: 16px;
-    display: inline-block;
-    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-transform: uppercase; /* Hace el texto del botón en mayúsculas */
+    font-weight: bold; /* Hace el texto del botón más destacado */
+    margin-top: 10px; /* Espacio arriba del botón */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transiciones suaves para el cambio de color y transformación */
+}
+#date-title{
+    color: #25D366;
 }
 
 .whatsapp-button:hover {
-    background-color: #20b558;
+    background-color: #1DA851;
+    transform: scale(1.1); /* Agranda el botón al pasar el mouse */
+}
+
+/* Estilos específicos para pantallas más pequeñas (móviles) */
+@media (max-width: 767px) {
+    .date-banner {
+        width: 100%; /* Hace que el banner ocupe todo el ancho en dispositivos móviles */
+        top: 60px; /* Ajusta la distancia desde el top para que esté debajo de la barra de navegación */
+        right: 0;
+        position: relative; /* Cambia la posición a relativa en móviles */
+    }
+}
+
+/*barra superior informativa*/
+
+
+.whatsapp-link {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    color: #fff;
+    background-color: #25D366; /* WhatsApp green */
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.whatsapp-link:hover {
+    background-color: #0dc131; /* Darker green on hover */
 }
 
 
-/*barra superior informativa*/

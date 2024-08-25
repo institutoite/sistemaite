@@ -42,7 +42,8 @@ class HomeController extends Controller
     public function index()
     {
         $docentes = Docente::where('estado_id',estado('HABILITADO'))->get();
-        return view('layouts.home', compact(['docentes']));
+        $feriado = Feriado::where('vigente', 1)->first();
+        return view('layouts.home', compact(['docentes','feriado']));
     }
 
     public function guarderia()

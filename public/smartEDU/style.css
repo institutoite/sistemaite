@@ -3871,6 +3871,31 @@ a.link-style3 {
 }
 
 
+/* Asegura que el botón del menú tenga un fondo visible */
+.navbar-toggler {
+    background-color: transparent; /* Asegura que el fondo del botón sea transparente */
+    border: none; /* Quita el borde por defecto */
+  }
+  
+  /* Asegura que el icono del menú sea visible */
+  .navbar-toggler-icon {
+    background-image: url('ruta/a/tu/icono.svg'); /* Reemplaza con la ruta a tu icono */
+    background-color: #26baa5; /* Cambia el color del icono si es necesario */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 30px; /* Ajusta el tamaño del icono según tus necesidades */
+    height: 30px; /* Ajusta el tamaño del icono según tus necesidades */
+  }
+  
+  /* Opcional: Estilo del menú desplegable en móviles */
+  @media (max-width: 767px) {
+    .navbar-collapse {
+      background-color: #26baa5; /* Cambia el color de fondo del menú desplegable */
+    }
+  }
+  
+
+
 
 
 

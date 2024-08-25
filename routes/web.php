@@ -80,13 +80,6 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\VentajaController;
 
 
-
-
-
-
-
-
-
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
@@ -758,7 +751,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
 
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  VENTAJAS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
-    Route::resource('ventajas', VentajaController::class)->names('ventaja');
+    //Route::resource('ventajas', VentajaController::class)->names('ventaja');
 
     /*ROLES PERMISOS USUARIOS*/
     Route::get('permisos', [PermissionController::class,"index"])->name('permisos.index');
@@ -958,21 +951,72 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
 
     Route::put('home/update/{text}', [HomeController::class, 'update'])->name('home.update');
 
-    Route::resource('schedule', HomeScheduleController::class)->names('homeschedule');
+    //Route::resource('schedule', HomeScheduleController::class)->names('homeschedule');
+    Route::get('schedule', [HomeScheduleController::class, 'index'])->name('homeschedule.index');
+    Route::get('schedule/create', [HomeScheduleController::class, 'create'])->name('homeschedule.create');
+    Route::post('schedule', [HomeScheduleController::class, 'store'])->name('homeschedule.store');
+    Route::get('schedule/{schedule}', [HomeScheduleController::class, 'show'])->name('homeschedule.show');
+    Route::get('schedule/{schedule}/edit', [HomeScheduleController::class, 'edit'])->name('homeschedule.edit');
+    Route::put('schedule/{schedule}', [HomeScheduleController::class, 'update'])->name('homeschedule.update');
+    Route::delete('schedule/{schedule}', [HomeScheduleController::class, 'destroy'])->name('homeschedule.destroy');
 
-    Route::resource('question', HomeQuestionController::class)->names('homequestion');
 
-    Route::resource('meta', MetaController::class)->names('meta');
+    //Route::resource('question', HomeQuestionController::class)->names('homequestion');
+    Route::get('question', [HomeQuestionController::class, 'index'])->name('homequestion.index');
+    Route::get('question/create', [HomeQuestionController::class, 'create'])->name('homequestion.create');
+    Route::post('question', [HomeQuestionController::class, 'store'])->name('homequestion.store');
+    Route::get('question/{question}', [HomeQuestionController::class, 'show'])->name('homequestion.show');
+    Route::get('question/{question}/edit', [HomeQuestionController::class, 'edit'])->name('homequestion.edit');
+    Route::put('question/{question}', [HomeQuestionController::class, 'update'])->name('homequestion.update');
+    Route::delete('question/{question}', [HomeQuestionController::class, 'destroy'])->name('homequestion.destroy');
 
-    Route::resource('curso', CursoController::class)->names('curso');
+    //Route::resource('meta', MetaController::class)->names('meta');
+    Route::get('meta', [MetaController::class, 'index'])->name('meta.index');
+    Route::get('meta/create', [MetaController::class, 'create'])->name('meta.create');
+    Route::post('meta', [MetaController::class, 'store'])->name('meta.store');
+    Route::get('meta/{meta}', [MetaController::class, 'show'])->name('meta.show');
+    Route::get('meta/{meta}/edit', [MetaController::class, 'edit'])->name('meta.edit');
+    Route::put('meta/{meta}', [MetaController::class, 'update'])->name('meta.update');
+    Route::delete('meta/{meta}', [MetaController::class, 'destroy'])->name('meta.destroy');
 
-    Route::resource('requisito', RequisitoController::class)->names('requisito');
+    //Route::resource('curso', CursoController::class)->names('curso');
+    Route::get('curso', [CursoController::class, 'index'])->name('curso.index');
+    Route::get('curso/create', [CursoController::class, 'create'])->name('curso.create');
+    Route::post('curso', [CursoController::class, 'store'])->name('curso.store');
+    Route::get('curso/{curso}', [CursoController::class, 'show'])->name('curso.show');
+    Route::get('curso/{curso}/edit', [CursoController::class, 'edit'])->name('curso.edit');
+    Route::put('curso/{curso}', [CursoController::class, 'update'])->name('curso.update');
+    Route::delete('curso/{curso}', [CursoController::class, 'destroy'])->name('curso.destroy');
 
-    Route::resource('role', RoleController::class)->names('role');
+
+    //Route::resource('requisito', RequisitoController::class)->names('requisito');
+    Route::get('requisito', [RequisitoController::class, 'index'])->name('requisito.index');
+    Route::get('requisito/create', [RequisitoController::class, 'create'])->name('requisito.create');
+    Route::post('requisito', [RequisitoController::class, 'store'])->name('requisito.store');
+    Route::get('requisito/{requisito}', [RequisitoController::class, 'show'])->name('requisito.show');
+    Route::get('requisito/{requisito}/edit', [RequisitoController::class, 'edit'])->name('requisito.edit');
+    Route::put('requisito/{requisito}', [RequisitoController::class, 'update'])->name('requisito.update');
+    Route::delete('requisito/{requisito}', [RequisitoController::class, 'destroy'])->name('requisito.destroy');
+
+
+    //Route::resource('role', RoleController::class)->names('role');
+    Route::get('role', [RoleController::class, 'index'])->name('role.index');
+    Route::get('role/create', [RoleController::class, 'create'])->name('role.create');
+    Route::post('role', [RoleController::class, 'store'])->name('role.store');
+    Route::get('role/{role}', [RoleController::class, 'show'])->name('role.show');
+    Route::get('role/{role}/edit', [RoleController::class, 'edit'])->name('role.edit');
+    Route::put('role/{role}', [RoleController::class, 'update'])->name('role.update');
+    Route::delete('role/{role}', [RoleController::class, 'destroy'])->name('role.destroy');
+
     //Route::resource('permision', RoleController::class)->names('permission');
 
 
-    Route::resource('rolusers', RolUsersController::class)->only(['index', 'edit', 'update','store'])->names('rolusers');
+    //Route::resource('rolusers', RolUsersController::class)->only(['index', 'edit', 'update','store'])->names('rolusers');
+    Route::get('rolusers', [RolUsersController::class, 'index'])->name('rolusers.index');
+    Route::get('rolusers/{roluser}/edit', [RolUsersController::class, 'edit'])->name('rolusers.edit');
+    Route::put('rolusers/{roluser}', [RolUsersController::class, 'update'])->name('rolusers.update');
+    Route::post('rolusers', [RolUsersController::class, 'store'])->name('rolusers.store');
+
 
     Route::get('messages/{id}',[MessageController::class, 'create'])->name('messages.create');
 

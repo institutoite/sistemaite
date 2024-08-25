@@ -1,34 +1,16 @@
-use App\Models\Modalidad;
+use App\Models\Feriado;
 
 
-
-$modalidades = Modalidad::join('nivels','modalidads.nivel_id',2)
-       ->get();
-use App\Models\Modalidad;
+$feriados = Feriado::where('estado_id', estado('HABILITADO'))->first();
+use App\Models\Feriado;
 
 
-
-$modalidades = Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
-                ->get();
-use App\Models\Modalidad;
+$feriados = Feriado::where('estado', estado('HABILITADO'))->first();
+use App\Models\Feriado;
 
 
-
-$modalidades = Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
-  ->where("nivels.id",2)
-                ->get();
-use App\Models\Modalidad;
+$feriados = Feriado::where('vigente', estado('HABILITADO'))->first();
+use App\Models\Feriado;
 
 
-
-$modalidades = Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
-  ->where("nivels.id",3)
-                ->get();
-use App\Models\Modalidad;
-
-
-
-$modalidades = Modalidad::join('nivels','modalidads.nivel_id','nivels.id')
-  ->where("nivels.id",3)
-  ->where("vigente",1)
-  ->get();
+$feriados = Feriado::where('vigente', 1)->first();
