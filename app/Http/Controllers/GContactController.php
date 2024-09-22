@@ -83,8 +83,6 @@ class GContactController extends Controller
                 'contacto' => $contact
             ]);
             if ($response->successful()) {
-                
-                
                 //Guardar en BD user_id
                 $resourceName= $response['data']['resourceName'];
 	            $etag= $response['data']['etag'];

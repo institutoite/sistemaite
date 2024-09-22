@@ -18,6 +18,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <!-- Custom styles for this template -->
   <link href="{{ asset('fanadesh/css/style.css')}}" rel="stylesheet" />
+  <link href="{{ asset('fanadesh/css/menu.css')}}" rel="stylesheet" />
   <link href="{{ asset('fanadesh/css/responsive.css')}}" rel="stylesheet" />
 
   {{-- smartEDU --}}
@@ -38,56 +39,48 @@
 </head>
 
 <body>
-  <div class="top_container">
-    <!-- Header section starts -->
-    <header class="header_section">
-      <div class="container">
-        <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="index.html">
-            <img src="" alt="">
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Inicio <span class="sr-only">(actual)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="about.html">Acerca de</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="features.html">Características</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="pricing.html">Precios</a>
-                </li>
-                <li class="nav-item">
-					<a class="nav-link" href="contact.html">Contacto</a>
-                </li>
-                <li class="nav-item">
-					@auth
-						<a class="nav-link" href="{{ route('home') }}">Sistema</a>
-				  	@else
-						<a class="nav-link" href="{{ route('login') }}">Iniciar Sesión</a>
-				  	@endauth
-					
-                </li>
+  
+<div id="contenedor">
+  <nav>
+      <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Servicios <i class="down"></i></a>
+          <!-- Primer Menu Desplegable -->
+          <ul>
+              <li><a href="#">Diseño Web</a></li>
+              <li><a href="#">Marketing</a></li>
+              <li><a href="#">Wordpress</a></li>
+          </ul>        
+          </li>
+          <li><a href="#">Diseño Gráfico <i class="down"></i></a>
+           <!-- Primer Menu Desplegable -->
+          <ul>
+              <li><a href="#">Diseño</a></li>
+              <li><a href="#">Logos</a></li>
+              <li><a href="#">Videos</a>
+             <!-- Segudo Menu Desplegable -->
+              <ul>
+                  <li><a href="#">WhiteBoards</a></li>
+                  <li><a href="#">Presentaciones</a></li>
+                  <li><a href="#">Otros</a>
+                       <!-- Tercer Menu Desplegable -->
+                      <ul>
+                          <li><a href="#">Stuff</a></li>
+                          <li><a href="#">Things</a></li>
+                          <li><a href="#">Other Stuff</a></li>
+                      </ul>
+                  </li>
               </ul>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </header>
-    <!-- Header section ends -->
-    
+              </li>
+          </ul>
+          </li>
+         
+      </ul>
+  </nav>
 
-
-    {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% seccion encabezado  --}}
+{{-- <p><a target="_blank" href="http://bcndos.com/5-mejores-menus-desplegables-gratis-css/">VER MAS</a></p> --}}
+</div>
+  {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% seccion encabezado  --}}
     @isset($feriado)
       <div id="date-banner" class="date-banner">
         <h2 id="date-title">{{ $feriado->festividad }}</h2>
@@ -101,10 +94,10 @@
     <section class="hero_section">
       <div class="hero-container container">
         <div class="hero_detail-box">
-          <h1>
+          <h1 class="titulo">
             Excelencia Académica
           </h1>
-          <p>
+          <p class="parrafo">
             ITE se destaca por su compromiso con una educación de calidad, ofreciendo programas diseñados para potenciar las habilidades de cada estudiante.
           </p>
           <div class="hero_btn-container">
@@ -115,7 +108,7 @@
         </div>
         <div class="hero_img-container">
           <div>
-            <img src="{{asset('fanadesh/images/hero.jpg')}}" alt="ITE" class="img-fluid">
+            <img src="{{asset('fanadesh/images/hero.png')}}" alt="ITE" class="img-fluid">
           </div>
         </div>
       </div>

@@ -744,9 +744,19 @@ class PersonaController extends Controller
         $persona->ciudad_id = $request->ciudad_id;
         $persona->zona_id = $request->zona_id;
         $persona->save();
+
+        $gcontactController  = app(GContactController::class);
+        if($persona->etag==""){
+            $gcontactController->createContact($persona->nombre,$persona->apellidop,$persona->apellidom,null,$persona->telefono);
+        }else{
+            $gcontactController->updateContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->telefono,$persona->resourseName,$persona->etag);
+        }
+
+
         $persona->interests()->sync(array_keys($request->interests));
         $observacion_actual = Observacion::where('observable_id',$persona->id)
         ->where('observable_type',Persona::class)->get()->first();
+
         if($observacion_actual!=null)
         {
             $observacion_actual->observacion = $request->observacion;
