@@ -12,7 +12,7 @@ body {
     text-align: center;
     position: fixed;
     width: 250px; /* Ajusta el ancho según tus necesidades */
-    top: 0;
+    top: 80px;
     right: 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
     z-index: 1000; /* Asegura que el banner esté por encima de otros elementos */
@@ -97,3 +97,94 @@ body {
 }
 
 
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  seccion titulo parrafo image %%%%%%%%%%%%%%%%%%%%%%% */
+.academic-excellence { 
+    background-color: #f5f5f5; /* Fondo claro */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0; /* Espaciado superior e inferior mínimo */
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Ajuste para pantallas pequeñas */
+    max-width: 1200px; /* Limitar el ancho máximo */
+    margin: 0 auto; /* Centrar el contenedor */
+}
+
+.content-box {
+    flex: 1;
+    max-width: 45%; /* Contenido textual ocupa el 45% */
+    padding: 10px; /* Espaciado interno ajustado */
+}
+
+.section-title {
+    font-size: 28px; /* Tamaño de fuente ajustado */
+    color: #263c53;
+    font-weight: 700;
+    margin-bottom: 10px; /* Margen ajustado */
+}
+
+.section-description {
+    font-size: 14px; /* Tamaño de fuente más pequeño para reducir espacio */
+    color: #26baa5;
+    line-height: 1.4; /* Ajuste de interlineado */
+    margin-bottom: 10px; /* Reducido para ajustar espacio */
+}
+
+.button-container {
+    margin-top: 5px; /* Espacio reducido */
+}
+
+.cta-button {
+    padding: 10px 20px; /* Espaciado interno reducido en el botón */
+    background-color: #26baa5;
+    color: white;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-decoration: none; /* Sin subrayado */
+}
+
+.cta-button:hover {
+    background-color: #218a80;
+    color: white;
+    border-color: #218a80;
+}
+
+.image-box {
+    flex: 1;
+    max-width: 50%; /* Imagen ocupa hasta el 50% */
+    display: flex;
+    justify-content: center;
+}
+
+.hero-image {
+    max-width: 80%; /* Ajuste de imagen */
+    height: auto;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 20px rgba(152, 15, 15, 0.05); /* Sombra suave */
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .academic-excellence {
+        padding: 10px 0; /* Espacio superior reducido en pantallas pequeñas */
+    }
+
+    .container {
+        flex-direction: column; /* Apilar en pantallas pequeñas */
+        text-align: center; /* Centra el contenido */
+    }
+
+    .image-box, .content-box {
+        max-width: 100%; /* Ocupa todo el ancho */
+    }
+
+    .hero-image {
+        width: 80%; /* Tamaño de imagen ajustado */
+    }
+}

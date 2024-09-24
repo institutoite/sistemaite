@@ -43,23 +43,26 @@
 <div id="contenedor">
   <nav>
       <ul>
-          <li><a href="#">Inicio</a></li>
-          <li><a href="#">Servicios <i class="down"></i></a>
+         
           <!-- Primer Menu Desplegable -->
-          <ul>
-              <li><a href="#">Diseño Web</a></li>
-              <li><a href="#">Marketing</a></li>
-              <li><a href="#">Wordpress</a></li>
-          </ul>        
-          </li>
-          <li><a href="#">Diseño Gráfico <i class="down"></i></a>
+          <li><a href="#">Servicios<i class="down"></i></a>
            <!-- Primer Menu Desplegable -->
           <ul>
-              <li><a href="#">Diseño</a></li>
-              <li><a href="#">Logos</a></li>
-              <li><a href="#">Videos</a>
+              <li><a>Apoyo Escolar</a>
+                <ul>
+                  <li><a href="#">Inicial</a></li>
+                  <li><a href="#">Primaria</a></li>
+                  <li><a href="#">Secundaria  </a>
+                </ul>
+              </li>
+              <li><a href="{{ route('preuniversitario') }}">Preuniversitarios</a></li>
+              <li><a href="{{ route('universitario') }}">Universitarios</a>
+              <li><a href="{{ route('programacion') }}">Programación</a>
+              <li><a href="{{ route('computacion') }}">Computación</a>
+              <li><a href="{{ route('robotica') }}">Robótica</a>
+              {{-- <li><a href="{{ route('practicos') }}">Prácticos</a> --}}
              <!-- Segudo Menu Desplegable -->
-              <ul>
+              {{-- <ul>
                   <li><a href="#">WhiteBoards</a></li>
                   <li><a href="#">Presentaciones</a></li>
                   <li><a href="#">Otros</a>
@@ -70,15 +73,20 @@
                           <li><a href="#">Other Stuff</a></li>
                       </ul>
                   </li>
-              </ul>
+              </ul> --}}
               </li>
           </ul>
           </li>
-         
+          @auth
+            <li><a href="{{ route('home') }}"> Sistema </a></li>
+          @endauth
+          @guest
+            <li><a href="{{ route('login') }}">Login </a></li>
+          @endguest
       </ul>
   </nav>
 
-{{-- <p><a target="_blank" href="http://bcndos.com/5-mejores-menus-desplegables-gratis-css/">VER MAS</a></p> --}}
+  {{-- <p><a target="_blank" href="http://bcndos.com/5-mejores-menus-desplegables-gratis-css/">VER MAS</a></p> --}}
 </div>
   {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% seccion encabezado  --}}
     @isset($feriado)
@@ -91,89 +99,45 @@
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% seccion encabezado  --}}
 
     <!-- Hero section -->
-    <section class="hero_section">
-      <div class="hero-container container">
-        <div class="hero_detail-box">
-          <h1 class="titulo">
-            Excelencia Académica
-          </h1>
-          <p class="parrafo">
-            ITE se destaca por su compromiso con una educación de calidad, ofreciendo programas diseñados para potenciar las habilidades de cada estudiante.
-          </p>
-          <div class="hero_btn-container">
-            <a href="sign-up.html" class="call_to-btn btn_white-border">
-              Comienza ahora
-            </a>
-          </div>
+    <div class="container">
+      <section class="academic-excellence">
+        <div class="container">
+            <div class="content-box">
+                <h1 class="section-title">Excelencia Académica</h1>
+                <p class="section-description">
+                    ITE se destaca por su compromiso con una educación de calidad, ofreciendo programas diseñados para potenciar las habilidades de cada estudiante.
+                </p>
+                <div class="button-container">
+                    <a href="sign-up.html" class="cta-button">Comienza ahora</a>
+                </div>
+            </div>
+            <div class="image-box">
+                <img src="{{asset('fanadesh/images/hero.png')}}" alt="ITE" class="hero-image">
+            </div>
         </div>
-        <div class="hero_img-container">
-          <div>
-            <img src="{{asset('fanadesh/images/hero.png')}}" alt="ITE" class="img-fluid">
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+      </section>
+      <section class="academic-excellence">
+        <div class="container">
+            <div class="image-box">
+              <img src="{{asset('fanadesh/images/hero.png')}}" alt="ITE" class="hero-image">
+            </div>
 
-  <div class="common_style">
-
-    <!-- Features section -->
-    <section class="features_section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="features_img-container">
-              <img src="{{asset('fanadesh/images/features.png')}}" alt="Características">
+            <div class="content-box">
+                <h1 class="section-title">Excelencia Académica</h1>
+                <p class="section-description">
+                    ITE se destaca por su compromiso con una educación de calidad, ofreciendo programas diseñados para potenciar las habilidades de cada estudiante.
+                </p>
+                <div class="button-container">
+                    <a href="sign-up.html" class="cta-button">Comienza ahora</a>
+                </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="features_detail-box">
-              <h3>
-                Atención Personalizada
-              </h3>
-              <p>
-                En ITE, cada estudiante recibe la atención y el apoyo necesarios para superar sus desafíos y alcanzar sus metas académicas.
-              </p>
-              <div class="">
-                <a href="features.html" class="call_to-btn btn_white-border">
-                  Aprende más
-                </a>
-              </div>
-            </div>
-          </div>
+            
         </div>
-      </div>
-    </section>
-    <!-- End Features section -->
+      </section>
+    
+    </div>
 
-    <!-- Pricing section -->
-    <section class="pricing_section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="pricing_detail-box">
-              <h3>
-                Preparación para Exámenes:
-              </h3>
-              <p>
-                Ofrecemos preparación especializada para exámenes, asegurando que los estudiantes enfrenten sus evaluaciones con confianza y conocimiento.
-              </p>
-              <div class="">
-                <a href="pricing.html" class="call_to-btn btn_white-border">
-                  Ver precios
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="pricing_img-container">
-              <img src="{{asset('fanadesh/images/pricing.png"')}} alt="Precios">
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-	
+    
 	<div id="teachers" class="section wb">
         <div class="container">
             <div class="row">

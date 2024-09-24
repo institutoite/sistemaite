@@ -1,5 +1,3 @@
-
-
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 @import url(https://fonts.googleapis.com/css?family=Bree+Serif);
 
@@ -10,17 +8,16 @@ h1{
 }
  body {
   background: #26baa5;
-  font-size:16px;
+  font-size:12px;
   line-height: 20px;
   color: #ffffff;
   word-wrap:break-word !important;
   font-family: 'Open Sans', sans-serif;
-  } 
+} 
 
 a {
   color: #FFF;
 }
-
 
 #contenedor {
   margin: 0 auto;
@@ -31,14 +28,14 @@ p {
 }
 
 nav {
-  margin: 30px auto;
+  margin: 40px auto;
   background-color: #26baa5;
-  box-shadow: 0px 3px 20px 3px #26baa5;
+  /* box-shadow: 0px 3px 20px 3px #26baa5; */
 }
 
 nav ul {
     padding: 0;
-    margin: 0 auto;
+    margin: 0;
     list-style: none;
     position: relative;
     text-align: center;
@@ -47,13 +44,14 @@ nav ul {
 nav ul li {
   display:inline-block;
   background-color: #26baa5;
-  }
+  position: relative; /* Necesario para los submenús anidados */
+}
 
 nav a {
   display:block;
-  padding:0 20px; 
+  padding:0 1px; 
   color:#FFF;
-  font-size:16px;
+  font-size:12px;
   line-height: 60px;
   text-decoration:none;
 }
@@ -63,34 +61,50 @@ nav a:hover {
   color: #ffffff;
 }
 
-/* Hide Dropdowns by Default */
+/* Ocultar submenús por defecto */
 nav ul ul {
   display: none;
   position: absolute; 
-  top: 60px; /* the height of the main nav */
+  top: 60px; /* La altura del menú principal */
+  background-color: #26baa5;
 }
-  
-/* Display Dropdowns on Hover */
+
+/* Mostrar submenú en hover */
 nav ul li:hover > ul {
-  display:inherit;
+  display: block;
 }
-  
-/* Fisrt Tier Dropdown */
+
+/* Primer nivel del submenú */
 nav ul ul li {
-  width:170px;
+  width:120px;
   float:none;
   display:list-item;
   position: relative;
+  color: #FFF;
+
 }
 
-/* Second, Third and more Tiers */
-nav ul ul ul li {
-  position: relative;
-  top:-60px; 
-  left:170px;
+/* Segundo nivel (submenú dentro de otro submenú) */
+nav ul ul ul {
+  top: 0; 
+  left: 120px; /* Desplazar hacia la derecha */
 }
 
-  
+/* Estilo para los elementos del menú */
+nav ul ul li a {
+  padding: 0px;
+  line-height: 30px;
+  background-color: #26baa5;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+nav ul ul li a:hover {
+  background-color: rgb(55,95,122);
+}
+
+/* Iconos de flecha para indicar el submenú */
 i {
     border: solid white;
     border-width: 0 3px 3px 0;
@@ -99,29 +113,40 @@ i {
     margin: -7px 0 0px 7px;
     vertical-align: middle;
 }
-.titulo{
-  color: #263c53;
-}
-.parrafo{
-  color: #666;
+
+
+/* Icono de flecha hacia abajo */
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
 }
 
+/* Icono de flecha hacia la derecha */
 .right {
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
 }
 
-.left {
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
+/* Estilo para evitar que los submenús desaparezcan antes de ser clickeados */
+nav ul li:hover > ul, 
+nav ul ul li:hover > ul {
+  display: block;
+}
+nav {
+  margin: 30px auto;
+  background-color: #26baa5;
+  box-shadow: 0px 3px 20px 3px #26baa5;
+  position: relative; /* Necesario para que z-index funcione */
+  z-index: 9999; /* Asegura que el menú esté por encima de otros elementos */
+}
+a{
+  /*margin: 0 10px;*/
+  padding-left: 2px;
 }
 
-.up {
-    transform: rotate(-135deg);
-    -webkit-transform: rotate(-135deg);
-}
-
-.down {
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SEPARADOR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+.separador {
+  
+  height: 100px;
+  background-color: #FFF; /* Color del separador */
 }

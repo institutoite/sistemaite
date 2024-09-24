@@ -51,6 +51,7 @@ body {
   -moz-box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.7);
   box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.7);
   transform: translateY(-7px);
+  color: #25baa5;
 }
 
 .main-heading {
@@ -206,7 +207,7 @@ a:focus {
 
 .hero_detail-box h1 {
   font-size: 50px;
-  color: #fefeff;
+  color: rgb(55,95,122);
   font-weight: 600;
   width: 70%;
 }
@@ -236,7 +237,7 @@ a:focus {
 
 .common_style p {
   font-weight: 600;
-  color: #4e4f50;
+  color: #504e50;
   margin: 30px 0 50px 0;
 }
 
