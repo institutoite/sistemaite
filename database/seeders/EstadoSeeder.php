@@ -27,6 +27,22 @@ class EstadoSeeder extends Seeder
         Estado::create(['estado'=>'HABILITADO']);//11
         Estado::create(['estado'=>'DESHABILITADO']);//12
 
+        Estado::create(['estado'=>'ESPERANUEVO']);//12
+        Estado::create(['estado'=>'ESPERAREINSCRIPCION']);//12
+        Estado::create(['estado'=>'ESPERAREMATRICULACION']);//12
+        Estado::create(['estado'=>'ESPERARETOMA']);//12
+        Estado::create(['estado'=>'PROSPECTO']);//12
+        Estado::create(['estado'=>'SEGUIMIENTO']);//12
+        Estado::create(['estado'=>'CANCELADO']);//12
+        Estado::create(['estado'=>'PERDID']);//12
+
+        
+        
+        
+     
+
+
+        
         Estado::find(1)->usuarios()->attach(1);
         Estado::find(2)->usuarios()->attach(1);
         Estado::find(3)->usuarios()->attach(1);

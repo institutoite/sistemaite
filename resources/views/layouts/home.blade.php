@@ -1,192 +1,73 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="ITE, tecnología, educación" />
-  <meta name="description" content="ITE - Conectamos tus redes sociales en un solo lugar" />
-  <meta name="author" content="ITE" />
-
-  <title>Grupo ite</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <!-- Custom styles for this template -->
-  <link href="{{ asset('fanadesh/css/style.css')}}" rel="stylesheet" />
-  <link href="{{ asset('fanadesh/css/menu.css')}}" rel="stylesheet" />
-  <link href="{{ asset('fanadesh/css/responsive.css')}}" rel="stylesheet" />
-
-  {{-- smartEDU --}}
-    <!-- Bootstrap CSS -->
-    <!-- Site CSS -->
-    <link rel="stylesheet" href="{{ asset('smartEDU/style.css')}}" />
-    <link rel="stylesheet" href="{{ asset('smartEDU/css/versions.css')}}" />
-    <link rel="stylesheet" href="{{ asset('smartEDU/css/responsive.css')}}" />
-    <link rel="stylesheet" href="{{ asset('smartEDU/css/custom.css')}}" />
-    <link rel="stylesheet" href="{{ asset('smartEDU/css/prettyPhoto.css')}}" />
-    <link rel="stylesheet" href="{{ asset('smartEDU/css/colors.css')}}" />
-    <link rel="stylesheet" href="{{ asset('smartEDU/css/flaticon.css')}}" />
-    <link rel="stylesheet" href="{{ asset('smartEDU/secciones.css')}}" />
-
-
-    <!-- Modernizer for Portfolio -->
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ite educabol</title>
 </head>
-
+<link rel="stylesheet" href="{{ asset('welcome/css/encabezado.css')}}">
+<link rel="stylesheet" href="{{ asset('welcome/css/hero.css')}}">
 <body>
-  
-<div id="contenedor">
-  <nav>
-      <ul>
-         
-          <!-- Primer Menu Desplegable -->
-          <li><a href="#">Servicios<i class="down"></i></a>
-           <!-- Primer Menu Desplegable -->
-          <ul>
-              <li><a>Apoyo Escolar</a>
-                <ul>
-                  <li><a href="#">Inicial</a></li>
-                  <li><a href="#">Primaria</a></li>
-                  <li><a href="#">Secundaria  </a>
-                </ul>
-              </li>
-              <li><a href="{{ route('preuniversitario') }}">Preuniversitarios</a></li>
-              <li><a href="{{ route('universitario') }}">Universitarios</a>
-              <li><a href="{{ route('programacion') }}">Programación</a>
-              <li><a href="{{ route('computacion') }}">Computación</a>
-              <li><a href="{{ route('robotica') }}">Robótica</a>
-              {{-- <li><a href="{{ route('practicos') }}">Prácticos</a> --}}
-             <!-- Segudo Menu Desplegable -->
-              {{-- <ul>
-                  <li><a href="#">WhiteBoards</a></li>
-                  <li><a href="#">Presentaciones</a></li>
-                  <li><a href="#">Otros</a>
-                       <!-- Tercer Menu Desplegable -->
-                      <ul>
-                          <li><a href="#">Stuff</a></li>
-                          <li><a href="#">Things</a></li>
-                          <li><a href="#">Other Stuff</a></li>
-                      </ul>
-                  </li>
-              </ul> --}}
-              </li>
-          </ul>
-          </li>
-          @auth
-            <li><a href="{{ route('home') }}"> Sistema </a></li>
-          @endauth
-          @guest
-            <li><a href="{{ route('login') }}">Login </a></li>
-          @endguest
-      </ul>
-  </nav>
-
-  {{-- <p><a target="_blank" href="http://bcndos.com/5-mejores-menus-desplegables-gratis-css/">VER MAS</a></p> --}}
-</div>
-  {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% seccion encabezado  --}}
-    @isset($feriado)
-      <div id="date-banner" class="date-banner">
-        <h2 id="date-title">{{ $feriado->festividad }}</h2>
-        <p id="date-description">Descubre nuestras emocionantes novedades y eventos especiales. ¡No te lo pierdas!</p>
-        <a id="whatsapp-link" class="whatsapp-link" href="https://wa.me/123456789" target="_blank">Contactar</a>
-      </div>
-    @endisset
-    {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% seccion encabezado  --}}
-
-    <!-- Hero section -->
+  {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION ENCABEZADO  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+  <header class="header">
     <div class="container">
-      <section class="academic-excellence">
-        <div class="container">
-            <div class="content-box">
-                <h1 class="section-title">Excelencia Académica</h1>
-                <p class="section-description">
-                    ITE se destaca por su compromiso con una educación de calidad, ofreciendo programas diseñados para potenciar las habilidades de cada estudiante.
-                </p>
-                <div class="button-container">
-                    <a href="sign-up.html" class="cta-button">Comienza ahora</a>
-                </div>
-            </div>
-            <div class="image-box">
-                <img src="{{asset('fanadesh/images/hero.png')}}" alt="ITE" class="hero-image">
-            </div>
-        </div>
-      </section>
-      <section class="academic-excellence">
-        <div class="container">
-            <div class="image-box">
-              <img src="{{asset('fanadesh/images/hero.png')}}" alt="ITE" class="hero-image">
-            </div>
-
-            <div class="content-box">
-                <h1 class="section-title">Excelencia Académica</h1>
-                <p class="section-description">
-                    ITE se destaca por su compromiso con una educación de calidad, ofreciendo programas diseñados para potenciar las habilidades de cada estudiante.
-                </p>
-                <div class="button-container">
-                    <a href="sign-up.html" class="cta-button">Comienza ahora</a>
-                </div>
-            </div>
-            
-        </div>
-      </section>
-    
+      <div class="logo-container">
+        <img src="{{ asset('welcome/images/logo.png') }}" alt="Logo" class="logo">
+      </div>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="#about">Nosotros</a></li>
+          <li><a href="#services">Servicios</a></li>
+        </ul>
+        <a href="#cta" class="cta-button">¡Contáctanos!</a>
+      </nav>
+      <div class="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+      </div>
     </div>
+  </header>
+
+  {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION HERO  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+    
+
+    {{-- <section class="hero" style="background-image: linear-gradient(to right, rgba(38, 186, 165, 0.8), rgba(55, 95, 122, 0.8)), url('{{ asset('welcome/images/hero-bg.jpg') }}');">
+        <div class="hero-content">
+            <h1 class="hero-title">Transforma tus ideas en realidad</h1>
+            <p class="hero-subtitle">Creamos soluciones innovadoras que impulsan tu crecimiento.</p>
+            <a href="#services" class="btn-cta">Descubre Más</a>
+        </div>
+    </section> --}}
+
+    <section class="hero" id="hero-section">
+      <div class="hero-content">
+          <h1 class="hero-title animate-on-scroll">Transforma tus ideas en realidad</h1>
+          <p class="hero-subtitle animate-on-scroll">Creamos soluciones innovadoras que impulsan tu crecimiento.</p>
+          <a href="#services" class="btn-cta animate-on-scroll">Descubre Más</a>
+      </div>
+      {{-- <div class="hero-image animate-on-scroll">
+          <img src="{{ asset('welcome/images/hero-bg.jpg') }}" alt="Hero Image">
+      </div> --}}
+  </section>
+  
+
+  {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+  {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+  {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+  {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+  {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+  {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+  {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+  {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+  {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+  {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+  {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+
+
 
     
-	<div id="teachers" class="section wb">
-        <div class="container">
-            <div class="row">
-				@foreach ($docentes as $docente)
-					<div class="col-lg-3 col-md-6 col-12">
-						<div class="our-team">
-							<div class="team-img">
-								{{-- <img src="{{  asset('smartEDU/images/team-01.png')}}"> --}}
-                <img src="{{URL::to('/')}}/storage/{{$docente->persona->foto}}" alt="" />
-								<div class="social">
-									<ul>
-										<li><a href="#" class="fa fa-facebook"></a></li>
-										<li><a href="#" class="fa fa-twitter"></a></li>
-										<li><a href="#" class="fa fa-linkedin"></a></li>
-										<li><a href="#" class="fa fa-skype"></a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="team-content">
-								<h3 class="title">{{$docente->persona->nombre}} {{$docente->persona->apellidop}}</h3>
-								<span class="post">{{ $docente->perfil}}</span>
-							</div>
-						</div>
-					</div>
-				@endforeach
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end section -->	
-
-  </div>
-
-  <!-- Footer section -->
-  <section class="container-fluid footer_section">
-    <p>
-      Copyright &copy; 2024 Todos los derechos reservados por
-      <a href="https://www.ite.com">ITE</a>
-    </p>
-  </section>
-  <!-- End Footer section -->
-
-  <script type="text/javascript" src="{{ asset('fanadesh/js/jquery-3.4.1.min.js')}}"></script>
-  <script type="text/javascript" src="{{ asset('fanadesh/js/bootstrap.js')}}"></script>
-
-  <script type="text/javascript" src="{{ asset('smartEDU/js/all.js')}}"></script>
-  <script type="text/javascript" src="{{ asset('smartEDU/js/custom.js')}}"></script>
-
-  <script src="{{ asset('smartEDU/js/modernizer.js')}}"></script>
-  <script src="{{ asset('smartEDU/js/secction.js')}}"></script>
-  
+    <script src="{{ asset('welcome/js/encabezado.js') }}"></script>
+    <script src="{{ asset('welcome/js/hero.js') }}"></script>
 </body>
-
 </html>

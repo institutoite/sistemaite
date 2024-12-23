@@ -1,0 +1,134 @@
+/* General Styles */
+.hero {
+    background: linear-gradient(to right, rgba(38, 186, 165, 0.8), rgba(55, 95, 122, 0.8)), 
+                url('hero-bg.jpg') no-repeat center/cover;
+    height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+/* Hero Content */
+.hero-content {
+    max-width: 800px;
+    animation: fade-in 1.5s ease-in-out;
+}
+
+.hero-title {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.2;
+    text-shadow: 3px 2px 3px black,
+    0 0 2em rgb(5, 46, 74),
+    0 0 0.3em rgb(5, 46, 74);
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 2px 3px black,
+    0 0 2em rgb(5, 46, 74),
+    0 0 0.3em rgb(5, 46, 74);
+}
+
+/* Call-to-Action Button */
+.btn-cta {
+    background-color: rgb(19, 97, 86);
+    color: rgb(246, 246, 246);
+    padding: 0.75rem 2rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    text-shadow: 3px 1px 3px black,
+    0 0 2em rgb(5, 46, 74),
+    0 0 0.3em rgb(5, 46, 74);
+}
+
+.btn-cta:hover {
+    background-color: rgb(55, 95, 122);
+    transform: scale(1.4);
+    text-shadow: 1px 2px 3px black,
+    0 0 2em rgb(5, 46, 74),
+    0 0 0.3em rgb(5, 46, 74);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .btn-cta {
+        font-size: 1rem;
+        padding: 0.5rem 1.5rem;
+    }
+}
+
+/* Animations */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animaciones iniciales */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* Animación activada */
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Asegura que la sección hero esté bien diseñada */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background: linear-gradient(to right, rgba(38, 186, 165, 0.3), rgba(55, 95, 122, 0.5)), 
+                url('../images/hero-bg.jpg') no-repeat center/cover;
+}
+
+.hero-content {
+    max-width: 50%;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    animation: zoom-pulse 10s infinite;
+}
+
+/* Animación constante para la imagen */
+@keyframes zoom-pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+}
+
