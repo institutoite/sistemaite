@@ -1,0 +1,52 @@
+.community-highlights {
+    padding: 40px;
+    background-color: rgb(38, 186, 165);
+    color: white;
+    text-align: center;
+  }
+  
+  .community-highlights h2 {
+    font-size: 2rem;
+    color: rgb(55, 95, 122);
+    margin-bottom: 10px;
+  }
+  
+  .community-highlights p {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+  
+  .swiper {
+    width: 100%;
+    max-width: 80%;
+    height: auto;
+    margin: auto;
+  }
+  
+  .card {
+    background-color: white;
+    color: rgb(55, 95, 122);
+    border-radius: 8px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    padding: 10px;
+  }
+  
+  .card img {
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  .card h3 {
+    margin: 10px;
+    color: rgb(38, 186, 165);
+    font-size: 1.5rem;
+  }
+  
+  .card p {
+    margin: 10px;
+    font-size: 1rem;
+  }
+  

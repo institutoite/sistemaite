@@ -1,0 +1,48 @@
+.impact-metrics {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 40px 20px;
+    background-color: rgb(55, 95, 122);
+    color: white;
+  }
+  
+  .impact-metrics h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: rgb(38, 186, 165);
+  }
+  
+  .metrics-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .metric {
+    background: white;
+    color: rgb(55, 95, 122);
+    padding: 20px 15px;
+    border-radius: 10px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .metric:hover {
+    transform: scale(1.1);
+  }
+  
+  .metric h3 {
+    font-size: 40px;
+    margin: 10px 0;
+    color: rgb(38, 186, 165);
+    font-weight: bold;
+  }
+  
+  .metric p {
+    font-size: 18px;
+    margin: 0;
+  }
+  

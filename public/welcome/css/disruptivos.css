@@ -1,0 +1,110 @@
+.innovation-showcase {
+    background-color: rgb(55, 95, 122);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+  }
+  
+  .innovation-showcase h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: rgb(38, 186, 165);
+  }
+  
+  .innovation-showcase p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+  }
+  
+  .innovation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center;
+  }
+  
+  .innovation-card {
+    background-color: white;
+    color: rgb(55, 95, 122);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: left;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .innovation-card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .innovation-card h3 {
+    font-size: 1.5rem;
+    margin: 15px;
+    color: rgb(38, 186, 165);
+  }
+  
+  .innovation-card p {
+    font-size: 1rem;
+    margin: 15px;
+  }
+  
+  .innovation-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+
+  .innovation-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  .innovation-card:hover {
+    transform: scale(1.5) translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+
+
+
+  .innovation-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .innovation-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .innovation-card:hover img {
+    animation: zoom-pan 4s infinite linear;
+  }
+  
+  @keyframes zoom-pan {
+    0% {
+      transform: scale(1.1) translate(0, 0);
+    }
+    25% {
+      transform: scale(1.15) translate(-5%, -5%);
+    }
+    50% {
+      transform: scale(1.1) translate(5%, -5%);
+    }
+    75% {
+      transform: scale(1.15) translate(5%, 5%);
+    }
+    100% {
+      transform: scale(1.1) translate(-5%, 5%);
+    }
+  }
+  
+  
