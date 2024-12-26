@@ -15,6 +15,8 @@ return [
     |
     */
 
+    'paths' => ['api/*', 'comentarios'],
+
     'paths' => ['api/*'],
 
     'allowed_methods' => ['*'],
@@ -30,5 +32,4 @@ return [
     'max_age' => 0,
 
     'supports_credentials' => false,
-
 ];

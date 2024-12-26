@@ -25,11 +25,11 @@ class StoreComentarioRequest extends FormRequest
     {
         
         return [
-            'nombre'=>'required|max:40',
-            'telefono'=>'required|min:8|max:12',
-            'interests'=>'required',
-            'comentario'=>'required|max:400|min:5',
-            'como_id'=>'required',
+            // 'nombre'=>'required|max:40',
+            // 'telefono'=>'required|min:8|max:12',
+            // 'interests'=>'required',
+            // 'comentario'=>'required|max:400|min:5',
+            // 'como_id'=>'required',
         ];
     }
 }

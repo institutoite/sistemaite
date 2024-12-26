@@ -40,8 +40,12 @@ class Kernel extends HttpKernel
             \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
         ],
 
+        // 'api' => [
+        //     'throttle:60,1',
+        //     \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        // ],
         'api' => [
-            'throttle:60,1',
+            'throttle:api', // Usar el middleware predeterminado 'throttle:api'
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
@@ -65,4 +69,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
+
+
 }

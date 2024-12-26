@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ite educabol</title>
-</head>
-<link rel="stylesheet" href="{{ asset('welcome/css/encabezado.css')}}">
-<link rel="stylesheet" href="{{ asset('welcome/css/hero.css')}}">
-<link rel="stylesheet" href="{{ asset('welcome/css/lineatiempo.css')}}">
-<link rel="stylesheet" href="{{ asset('welcome/css/datosimportantes.css')}}">
-<link rel="stylesheet" href="{{ asset('welcome/css/interactive-map.css')}}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-<link rel="stylesheet" href="{{ asset('welcome/css/comunity.css')}}">
-<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('welcome/css/disruptivos.css')}}">
+    <link rel="stylesheet" href="{{ asset('welcome/css/encabezado.css')}}">
+    <link rel="stylesheet" href="{{ asset('welcome/css/hero.css')}}">
+    <link rel="stylesheet" href="{{ asset('welcome/css/lineatiempo.css')}}">
+    <link rel="stylesheet" href="{{ asset('welcome/css/datosimportantes.css')}}">
+    <link rel="stylesheet" href="{{ asset('welcome/css/interactive-map.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="{{ asset('welcome/css/comunity.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('welcome/css/disruptivos.css')}}">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+</head>
 <body>
   {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION ENCABEZADO  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
   <header class="header">
@@ -218,7 +220,29 @@
   </section>
   
   
-  {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+  {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% S E C C I O N   C O  M E N T A R I O S  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+    <form id="feedback-form" method="POST">
+      @csrf
+      <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+      </div>
+      <div class="form-group">
+          <label for="telefono">Teléfono:</label>
+          <input type="text" id="telefono" name="telefono" placeholder="Escribe tu teléfono" required>
+      </div>
+      <div class="form-group">
+          <label for="comentario">Tu Comentario:</label>
+          <textarea id="comentario" name="comentario" rows="4" placeholder="Escribe tu opinión aquí..." required></textarea>
+      </div>
+      <div class="g-recaptcha" data-sitekey="6LeTgu4hAAAAAJap9DHePvq0wM93VXz2HJmLPZIy"></div>
+      <script src="https://www.google.com/recaptcha/api.js"></script>
+
+      <button type="submit" class="btn-submit">Enviar</button>
+  </form>
+
+    
+
   {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
   {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
   {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
@@ -238,6 +262,12 @@
     <script src="{{ asset('welcome/js/comunity.js') }}"></script>
     <script src="{{ asset('welcome/js/disruptivos.js') }}"></script>
     
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="{{ asset('welcome/js/comentario.js') }}"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LeTgu4hAAAAAJap9DHePvq0wM93VXz2HJmLPZIy"></script>
+
+
+    
 </body>
 </html>
 
@@ -251,11 +281,13 @@ Explora Nuestra Comunidad (Community Highlights): Una sección con fotos y breve
 
 Zona de Innovación (Innovation Showcase): Espacio para destacar tecnologías, herramientas o proyectos disruptivos.
 
-Mapa Interactivo (Interactive Map): Un mapa donde los usuarios puedan explorar ubicaciones relacionadas con el proyecto o servicios.
 Detrás de Escena (Behind the Scenes): Mostrar contenido exclusivo sobre cómo trabajan o crean lo que ofrecen.
+Mapa Interactivo (Interactive Map): Un mapa donde los usuarios puedan explorar ubicaciones relacionadas con el proyecto o servicios.
 Historias Inspiradoras (Inspiring Stories): Testimonios o historias contadas en formato de carrusel o video.
 Explora el Futuro (Future Vision): Una sección animada que explique planes a futuro con gráficos llamativos.
+
 Eventos y Talleres (Events & Workshops): Calendario interactivo de próximos eventos o talleres.
+
 Zona de Feedback (Your Voice Matters): Espacio para que los visitantes dejen sus opiniones con encuestas o mensajes.
 Redes Sociales en Vivo (Social Media Live Feed): Panel dinámico mostrando contenido en tiempo real desde redes sociales.
 Zona de Juegos o Retos (Interactive Challenges): Pequeñas dinámicas interactivas, como trivias relacionadas con el proyecto.

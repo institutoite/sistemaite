@@ -15,8 +15,10 @@ use App\Http\Requests\DeleteRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Stevebauman\Purify\Facades\Purify;
-
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Support\Facades\Log;
 
 class ComentarioController extends Controller
 {
@@ -29,6 +31,8 @@ class ComentarioController extends Controller
         $this->middleware('can:Crear Comentarios')->only('guardarComentarioDesdeSistema');
         $this->middleware('can:Editar Comentarios')->only('edit','darbaja','daralta','update','estudiantizarComentario');
         $this->middleware('can:Eliminar Comentarios')->only('destroy');
+
+        $this->middleware('auth')->except('store');
     }
 
     public function index()
@@ -47,6 +51,48 @@ class ComentarioController extends Controller
         $interests=Interest::get();
         return view("comentario.create",compact('comos','interests'));
     }
+
+    /* */
+    public function store(StoreComentarioRequest $request)
+    {
+        Log::info('Datos del comentario:', $request->all());
+
+        
+            
+            // $validatedData = $request->validate([
+            //     'nombre' => 'required|string|max:40',
+            //     'telefono' => 'required|string|max:12',
+            //     'comentario' => 'required|string|max:400',
+            //     'recaptcha_token' => 'required|string',
+            // ]);
+        
+            
+            // $recaptchaResponse = Http::post('https://www.google.com/recaptcha/api/siteverify', [
+            //     'secret' => '6LeTgu4hAAAAAH5VXGnvwn4YSUqYiw5CbtmPoibF', 
+            //     'response' => $validatedData['recaptcha_token'],
+            // ]);
+        
+            // $recaptchaData = $recaptchaResponse->json();
+            // if (!$recaptchaData['success']) {
+            //     return response()->json(['message' => 'Validación de reCAPTCHA fallida'], 422);
+            // }
+        
+            
+            // $comentario = Comentario::create([
+            //     'nombre' => $validatedData['nombre'],
+            //     'telefono' => $validatedData['telefono'],
+            //     'comentario' => $validatedData['comentario'],
+            //     'como_id' => 6,
+                
+            //     'vigente' => true,
+            // ]);
+        
+            // return response()->json([
+            //     'message' => 'Comentario guardado exitosamente',
+            //     'comentario' => $comentario,
+            // ], 201);
+    }
+
 
     /**
      * Store a newly created resource in storage.

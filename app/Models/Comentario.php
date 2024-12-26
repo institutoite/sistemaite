@@ -9,6 +9,8 @@ class Comentario extends Model
 {
     use HasFactory;
     
+    protected $guarded =[];
+
     public function observaciones()
     {
         return $this->morphMany(Observacion::class, 'observable');

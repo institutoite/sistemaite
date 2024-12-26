@@ -1,16 +1,507 @@
-use App\Models\Feriado;
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://localhost/api/guardar-comentario', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '1234567890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
 
 
-$feriados = Feriado::where('estado_id', estado('HABILITADO'))->first();
-use App\Models\Feriado;
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
 
 
-$feriados = Feriado::where('estado', estado('HABILITADO'))->first();
-use App\Models\Feriado;
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    
+]);
 
 
-$feriados = Feriado::where('vigente', estado('HABILITADO'))->first();
-use App\Models\Feriado;
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    
+]);
 
 
-$feriados = Feriado::where('vigente', 1)->first();
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('http://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('https://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('https://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('https://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('https://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('https://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('https://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('https://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('https://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('https://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('https://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('https://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('https://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('https://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    'recaptcha_token' => 'TOKEN_DE_RECAPTCHA',
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('https://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    
+]);
+
+
+dd($response->json());
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\ComentarioController;
+
+$response = Http::post('https://127:0.0.1:8000/comentarios', [
+    'nombre' => 'Juan Pérez',
+    'telefono' => '71257890',
+    'comentario' => 'Este es un comentario de prueba.',
+  	'como_id' => 6,
+    
+]);
+
+
+dd($response->json());

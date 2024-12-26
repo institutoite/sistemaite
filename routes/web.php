@@ -79,7 +79,6 @@ use App\Http\Controllers\RolUsersController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\VentajaController;
 
-
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
@@ -346,6 +345,12 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
 
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%       COMENTARIO         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     
+
+    
+
+    
+
+
     Route::get('comentarios',[ComentarioController::class,'index'])->name("comentario.index");
     Route::get('comentarios/create',[ComentarioController::class,'create'])->name("comentario.create");
     Route::get('comentario/mostrar/{comentario}',[ComentarioController::class,'show'])->name("comentario.show");
@@ -1025,6 +1030,8 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::post('messages', [MessageController::class, 'store'])->name('messages.store');
 
 });
+
+    Route::post('/comentarios', [ComentarioController::class, 'store'])->name('comentarios.store');
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  FRONTED ITE   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
