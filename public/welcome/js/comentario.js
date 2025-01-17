@@ -1,41 +1,52 @@
-document.querySelector('#formulario-comentario').addEventListener('submit', async (e) => {
-    e.preventDefault();
+document.getElementById("contactForm").addEventListener("submit", function (event) {
+    event.preventDefault();
 
-    const nombre = document.querySelector('input[name="nombre"]').value;
-    const telefono = document.querySelector('input[name="telefono"]').value;
-    const comentario = document.querySelector('textarea[name="comentario"]').value;
+    const telefono = document.getElementById("telefono").value;
+    const comentario = document.getElementById("comentario").value;
+    const recaptchaResponse = grecaptcha.getResponse();
 
-    try {
-        // Inicializa reCAPTCHA y genera el token
-        grecaptcha.ready(() => {
-            grecaptcha.execute('6LeTgu4hAAAAAJap9DHePvq0wM93VXz2HJmLPZIy', { action: 'submit' }).then(async (token) => {
-                // Envía el token reCAPTCHA junto con los datos del formulario
-                const response = await fetch('/comentarios', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        nombre: nombre,
-                        telefono: telefono,
-                        comentario: comentario,
-                        como_id: 6,
-                        recaptcha_token: token, // Incluye el token reCAPTCHA
-                    }),
+    if (!recaptchaResponse) {
+        alert("Por favor, completa el reCAPTCHA.");
+        return;
+    }
+
+    fetch("/api/send-message", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value,
+        },
+        body: JSON.stringify({
+            telefono: telefono,
+            comentario: comentario,
+            recaptcha: recaptchaResponse,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            if (data.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Enviado!',
+                    text: 'Formulario enviado con éxito.',
                 });
 
-                if (response.ok) {
-                    const data = await response.json();
-                    alert('Comentario enviado exitosamente: ' + data.message);
-                    document.querySelector('#formulario-comentario').reset();
-                } else {
-                    const error = await response.json();
-                    alert('Error al enviar el comentario: ' + (error.message || 'Error desconocido.'));
-                }
+                // Limpiar los campos del formulario
+                document.getElementById('contactForm').reset();
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: data.message || 'Eres un humano realmente?',
+                });
+            }
+        })
+        .catch((error) => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo conectar con el servidor. Intenta de nuevo más tarde.',
             });
         });
-    } catch (err) {
-        alert('Error al enviar el comentario: ' + err.message);
-    }
 });

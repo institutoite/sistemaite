@@ -283,23 +283,66 @@ class PagoController extends Controller
     public function pagoInscripcionesMax(){
         return view('reportes.pago.pagoinscripcionesmejorado');
     } 
-    public function pagoModeloMax(Request $request){
-        $pagos=Pago::join('inscripciones','inscripciones.id','pagos.pagable_id')
-            ->join('estudiantes','estudiantes.id','inscripciones.estudiante_id')
-            ->join('personas','personas.id','estudiantes.persona_id')
-            ->join('modalidads','inscripciones.modalidad_id','modalidads.id')
-            ->join('userables','userables.userable_id','pagos.id')
-            ->join('users','users.id','userables.user_id')
-            ->where('pagos.pagable_type','App\\Models\\'.$request->modelo)
-            ->where('userable_type','App\\Models\\Pago')
-            ->whereDate('pagos.created_at','<=',$request->fechafin)
-            ->whereDate('pagos.created_at','>=',$request->fechaini)
-            ->select('personas.id','personas.nombre','apellidop','apellidom','monto','pagos.created_at')
-            ->orderBy('created_at',"asc")
+    public function pagoModeloMax(Request $request)
+    {
+        
+        $fechaini = $request->fechaini; // Fecha de inicio
+        $fechafin = $request->fechafin; // Fecha de fin
+        
+        $pagos = DB::table('pagos')
+            ->join('userables', function ($join) {
+                $join->on('pagos.id', '=', 'userables.userable_id')
+                    ->where('userables.userable_type', '=', 'App\\Models\\Pago');
+            })
+            ->join('users', 'userables.user_id', '=', 'users.id')
+            ->leftJoin('inscripciones', function ($join) {
+                $join->on('pagos.pagable_id', '=', 'inscripciones.id')
+                    ->where('pagos.pagable_type', '=', 'App\\Models\\Inscripcione');
+            })
+            ->leftJoin('matriculacions', function ($join) {
+                $join->on('pagos.pagable_id', '=', 'matriculacions.id')
+                    ->where('pagos.pagable_type', '=', 'App\\Models\\Matriculacion');
+            })
+            ->leftJoin('estudiantes as insc_estudiantes', 'inscripciones.estudiante_id', '=', 'insc_estudiantes.id')
+            ->leftJoin('estudiantes as matri_estudiantes', 'matriculacions.computacion_id', '=', 'matri_estudiantes.id')
+            ->leftJoin('personas as insc_personas', 'insc_estudiantes.persona_id', '=', 'insc_personas.id')
+            ->leftJoin('personas as matri_personas', 'matri_estudiantes.persona_id', '=', 'matri_personas.id')
+            ->whereBetween('pagos.created_at', [$fechaini, $fechafin])
+            ->select(
+                'pagos.*',
+                'users.name as usuario',
+                DB::raw("COALESCE(insc_personas.id, matri_personas.id) as estudiante_codigo"),
+                DB::raw("COALESCE(insc_personas.nombre, matri_personas.nombre) as estudiante_nombre"),
+                DB::raw("COALESCE(insc_personas.apellidop, matri_personas.apellidop) as estudiante_apellido_paterno"),
+                DB::raw("COALESCE(insc_personas.apellidom, matri_personas.apellidom) as estudiante_apellido_materno")
+            )
             ->get();
-        return DataTables::of($pagos)
-                ->toJson();
+        
+        
+        // $sumaTotal = Pago::whereBetween('created_at', [$request->fechaini, $request->fechafin])->sum('monto');
+        $sumaTotal = Pago::whereBetween('created_at', [$fechaini, $fechafin])->sum('monto');
+    
+        //dd($pagos);
+
+        return response()->json([
+            'pagos' => $pagos,
+            'suma' => $sumaTotal
+        ]);
     }
+    
+    // $pagos=Pago::join('inscripciones','inscripciones.id','pagos.pagable_id')
+    //     ->join('estudiantes','estudiantes.id','inscripciones.estudiante_id')
+    //     ->join('personas','personas.id','estudiantes.persona_id')
+    //     ->join('modalidads','inscripciones.modalidad_id','modalidads.id')
+    //     ->join('userables','userables.userable_id','pagos.id')
+    //     ->join('users','users.id','userables.user_id')
+    //     ->where('pagos.pagable_type','App\\Models\\'.$request->modelo)
+    //     ->where('userable_type','App\\Models\\Pago')
+    //     ->whereDate('pagos.created_at','<=',$request->fechafin)
+    //     ->whereDate('pagos.created_at','>=',$request->fechaini)
+    //     ->select('personas.id','personas.nombre','apellidop','apellidom','monto','pagos.created_at')
+    //     ->orderBy('created_at',"asc")
+    //     ->get();
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% REPORTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     public function pagoInscripcionesView(){
         return view('reportes.pago.pagoinscripciones');

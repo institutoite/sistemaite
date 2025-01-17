@@ -23,9 +23,7 @@ use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Estado;
 use App\Models\Feriado;
-
 use App\Http\Controllers\ComentarioController;
-
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -270,7 +268,7 @@ Route::get('departamento/{id}/provincias', 'ProvinciaController@provincia_of_dep
 Route::get('departamento/{id}/provincias','ProvinciaController@provincia_of_departamento');
 Route::get('provincia/{id}/municipios', 'MunicipioController@municipio_of_provincia');
 
-
+Route::post('/send-message', [ComentarioController::class, 'sendMessage']);
 
 
 // Route::middleware(['throttle:api'])->post('/guardar-comentario', [ComentarioController::class, 'store']);

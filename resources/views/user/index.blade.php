@@ -7,9 +7,8 @@
 @section('title', 'Usuarios')
 
 @section('plugins.Jquery', true)
-@section('plugins.Datatables', true)
 @section('plugins.Sweetalert2', true)
-
+@section('plugins.Datatables', true)
 
 
 @section('content')
@@ -19,7 +18,7 @@
                 <div class="card">
                     <div class="card-header bg-secondary">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-
+                            <a href="{{ route('user.crear') }}"> <button class="btn btn-primary" type="button">Crear usuario</button> </a> 
                             <span id="card_title">
                                 {{ __('User') }}
                             </span>
@@ -44,13 +43,13 @@
                             })
                         </script>
                     @endif
-
+                         
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="usuarios" class="table table-striped table-hover table-bordered">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                        <th>#</th>
 										<th>Name</th>
 										<th>Email</th>
 										<th>Foto</th>
@@ -65,7 +64,12 @@
         </div>
     </div>
 @endsection
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.all.min.js" integrity="sha512-kW/Di7T8diljfKY9/VU2ybQZSQrbClTiUuk13fK/TIvlEB1XqEdhlUp9D+BHGYuEoS9ZQTd3D8fr9iE74LvCkA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.all.min.js" integrity="sha512-kW/Di7T8diljfKY9/VU2ybQZSQrbClTiUuk13fK/TIvlEB1XqEdhlUp9D+BHGYuEoS9ZQTd3D8fr9iE74LvCkA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
 @section('js')
     
     <script>

@@ -25,15 +25,15 @@ class ComentarioController extends Controller
 
 
 
-    public function __construct()
-    {
-        $this->middleware('can:Listar Comentarios')->only('index','show');
-        $this->middleware('can:Crear Comentarios')->only('guardarComentarioDesdeSistema');
-        $this->middleware('can:Editar Comentarios')->only('edit','darbaja','daralta','update','estudiantizarComentario');
-        $this->middleware('can:Eliminar Comentarios')->only('destroy');
+    // public function __construct()
+    // {
+    //     $this->middleware('can:Listar Comentarios')->only('index','show');
+    //     $this->middleware('can:Crear Comentarios')->only('guardarComentarioDesdeSistema');
+    //     $this->middleware('can:Editar Comentarios')->only('edit','darbaja','daralta','update','estudiantizarComentario');
+    //     $this->middleware('can:Eliminar Comentarios')->only('destroy');
 
-        $this->middleware('auth')->except('store');
-    }
+    //     $this->middleware('auth')->except('store');
+    // }
 
     public function index()
     {
@@ -53,93 +53,178 @@ class ComentarioController extends Controller
     }
 
     /* */
-    public function store(StoreComentarioRequest $request)
+    public function store(Request $request)
     {
-        Log::info('Datos del comentario:', $request->all());
-
-        
-            
-            // $validatedData = $request->validate([
-            //     'nombre' => 'required|string|max:40',
-            //     'telefono' => 'required|string|max:12',
-            //     'comentario' => 'required|string|max:400',
-            //     'recaptcha_token' => 'required|string',
-            // ]);
-        
-            
-            // $recaptchaResponse = Http::post('https://www.google.com/recaptcha/api/siteverify', [
-            //     'secret' => '6LeTgu4hAAAAAH5VXGnvwn4YSUqYiw5CbtmPoibF', 
-            //     'response' => $validatedData['recaptcha_token'],
-            // ]);
-        
-            // $recaptchaData = $recaptchaResponse->json();
-            // if (!$recaptchaData['success']) {
-            //     return response()->json(['message' => 'Validación de reCAPTCHA fallida'], 422);
-            // }
-        
-            
-            // $comentario = Comentario::create([
-            //     'nombre' => $validatedData['nombre'],
-            //     'telefono' => $validatedData['telefono'],
-            //     'comentario' => $validatedData['comentario'],
-            //     'como_id' => 6,
-                
-            //     'vigente' => true,
-            // ]);
-        
-            // return response()->json([
-            //     'message' => 'Comentario guardado exitosamente',
-            //     'comentario' => $comentario,
-            // ], 201);
+        // Validar datos del formulario
+        $validatedData = $request->validate([
+            'nombre' => 'required|string|max:40', // Coincide con el tamaño definido en la migración
+            'telefono' => 'required|string|max:12', // Coincide con el tamaño definido en la migración
+            'comentario' => 'required|string|max:400', // Coincide con el tamaño definido en la migración
+            'recaptcha_token' => 'required|recaptchav3:submit_form', // Validación de reCAPTCHA
+            'como_id' => 'required|exists:comos,id', // Validar que exista el ID en la tabla 'comos'
+            'persona_id' => 'nullable|exists:personas,id', // Validar que exista el ID en la tabla 'personas'
+        ]);
+    
+        // Guardar el comentario en la base de datos
+        $comentario = new Comentario();
+        $comentario->nombre = $validatedData['nombre'];
+        $comentario->telefono = $validatedData['telefono'];
+        $comentario->comentario = $validatedData['comentario'];
+        $comentario->vigente = true; // Marcar como vigente por defecto
+        $comentario->como_id = $validatedData['como_id'];
+        $comentario->persona_id = $validatedData['persona_id'] ?? null; // Puede ser nulo
+        $comentario->save();
+    
+        // Retornar respuesta JSON
+        return response()->json([
+            'message' => 'Comentario enviado exitosamente.',
+            'data' => $comentario
+        ]);
     }
+    
+    // $validatedData = $request->validate([
+    //     'nombre' => 'required|string|max:40',
+    //     'telefono' => 'required|string|max:12',
+    //     'comentario' => 'required|string|max:400',
+    //     'recaptcha_token' => 'required|string',
+    // ]);
 
+    
+    // $recaptchaResponse = Http::post('https://www.google.com/recaptcha/api/siteverify', [
+    //     'secret' => '6LeTgu4hAAAAAH5VXGnvwn4YSUqYiw5CbtmPoibF', 
+    //     'response' => $validatedData['recaptcha_token'],
+    // ]);
+
+    // $recaptchaData = $recaptchaResponse->json();
+    // if (!$recaptchaData['success']) {
+    //     return response()->json(['message' => 'Validación de reCAPTCHA fallida'], 422);
+    // }
+
+    
+    // $comentario = Comentario::create([
+    //     'nombre' => $validatedData['nombre'],
+    //     'telefono' => $validatedData['telefono'],
+    //     'comentario' => $validatedData['comentario'],
+    //     'como_id' => 6,
+        
+    //     'vigente' => true,
+    // ]);
+
+    // return response()->json([
+    //     'message' => 'Comentario guardado exitosamente',
+    //     'comentario' => $comentario,
+    // ], 201);
+
+    public function sendMessage(Request $request)
+    {
+        // try {
+        //     $validator = Validator::make($request->all(), [
+        //         'telefono' => 'required|numeric',
+        //         'comentario' => 'required|max:255',
+        //         'recaptcha' => 'required',
+        //     ]);
+        
+        //     if ($validator->fails()) {
+        //         return response()->json([
+        //             'status' => 'error',
+        //             'errors' => $validator->errors()
+        //         ], 422);
+        //     }
+        
+        //     // Lógica para enviar el mensaje o continuar el proceso
+        //     return response()->json(['status' => 'success']);
+        // } catch (\Exception $e) {
+        //     return response()->json([
+        //         'status' => 'error',
+        //         'message' => $e->getMessage()
+        //     ], 500);
+        // }
+
+        
+        // Validar los datos
+        
+    try {
+        $validator = Validator::make($request->all(), [
+            'telefono' => 'required|numeric',
+            'comentario' => 'required|max:255',
+            'recaptcha' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['success' => false]);
+            return response()->json(['success' => false, 'message' => $validator->errors()->first()]);
+        }
+        
+        // Verificar reCAPTCHA
+        $recaptchaSecret = env('RECAPTCHA_SECRET');
+        $recaptchaResponse = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret' => $recaptchaSecret,
+            'response' => $request->recaptcha,
+        ]);
+
+        if (!$recaptchaResponse->json('success')) {
+            return response()->json(['success' => false, 'message' => 'reCAPTCHA falló.']);
+        }
+
+        $comentario = Comentario::create([
+            'nombre' => "anonymous",
+            'telefono' => $request->telefono,
+            'comentario' => $request->comentario,
+            'como_id' => 6,
+            'persona_id' => null,
+            'vigente' => true,
+        ]);
+
+       
+        // Enviar mensaje de WhatsApp
+        $whatsappURL = "https://api.whatsapp.com/send?phone={$request->telefono}&text=" . urlencode("Gracias por tu mensaje: {$request->comentario}");
+        return response()->json(['success' => true, 'whatsapp_url' => $whatsappURL]);
+    }catch (\Exception $e) {
+        return response()->json([
+                    'status' => 'error',
+                    'message' => $e->getMessage()
+                ], 500);
+    }
+}
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreComentarioRequest  $request
      * @return \Illuminate\Http\Response
+    
      */
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Guarda desde la web %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     // public function guardarComentario()
+
     public function guardarComentario(Request $request)
     {
         
-        $validator = Validator::make($request->all(), [
-            'nombre'=>'required|min:4|max:30',
-            'telefono'=>'required|min:8|max:10',
-            'interests'=>'required',
-            'comentario'=>'required|max:499|min:5',
-            'g-recaptcha-response' => 'required|captcha',
-        ],
-        [
-        'g-recaptcha-response.required' => 'Por favor Marque: No soy un robot',
-        ],
-        );
-        if ($validator->passes()) {
-            // return response()->json($request->all());
-            $comentario = new Comentario();
-            $comentario->nombre = Purify::clean($request->nombre);
-            $comentario->telefono = Purify::clean($request->telefono);
-            $comentario->vigente = 1;
-            $comentario->como_id = 6;
-            $comentario->comentario = Purify::clean($request->comentario);
-            $comentario->save();
-            $comentario->interests()->sync(array_values($request->interests));
-            $vectorIntereses=$comentario->interests;
-            return response()->json(['comentario' => $comentario,'vector_intereses'=>$vectorIntereses]);
-            // return response()->json($validator->errors());
-        }else{
+        // Validar datos del formulario
+        $validatedData = $request->validate([
+            'nombre' => 'required|string|max:40', // Coincide con el tamaño definido en la migración
+            'telefono' => 'required|string|max:12', // Coincide con el tamaño definido en la migración
+            'comentario' => 'required|string|max:400', // Coincide con el tamaño definido en la migración
+        ]);
+        
+        return response()->json(["success" =>$request->all()]);
+                
+
+                // Guardar el comentario en la base de datos
+                $comentario = new Comentario();
+                $comentario->nombre = $validatedData['nombre'];
+                $comentario->telefono = $validatedData['telefono'];
+                $comentario->comentario = $validatedData['comentario'];
+                $comentario->vigente = true; // Marcar como vigente por defecto
+                $comentario->como_id = 6;
+                $comentario->persona_id = $validatedData['persona_id'] ?? null; // Puede ser nulo
+                $comentario->save();
             
-            $errores=[];
-            foreach ($validator->errors()->toArray() as $key => $value) {
-                if($key=="g-recaptcha-response")
-                    $errores['recaptcha']=$value;
-                else
-                    $errores[$key]=$value;
-            }
-            return response()->json(['error' =>$validator->errors(),'error_captcha'=>$errores]);
-        }
+                // Retornar respuesta JSON
+                return response()->json([
+                    'message' => 'Comentario enviado exitosamente.',
+                    'data' => $comentario
+                ]);
     }    
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Guarda desde sistema %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     public function guardarComentarioDesdeSistema(StoreComentarioRequest $request)

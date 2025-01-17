@@ -1,0 +1,87 @@
+/* Estilos de la sección Itenautas */
+.itenautas {
+    background: linear-gradient(135deg, #6c63ff, #5bc0de);
+    color: #fff;
+    padding: 60px 20px;
+    text-align: center;
+  }
+  
+  .itenautas-container {
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .itenautas-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .itenautas-description {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+  }
+  
+  .itenautas-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .itenauta-item {
+    background: #fff;
+    color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .itenauta-item i {
+    font-size: 2.5rem;
+    color: #6c63ff;
+    margin-bottom: 15px;
+  }
+  
+  .itenauta-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .itenauta-item p {
+    font-size: 1rem;
+  }
+  
+  .itenautas-cta {
+    margin-top: 40px;
+  }
+  
+  .btn-action {
+    display: inline-block;
+    background: #28a745;
+    color: #fff;
+    padding: 12px 30px;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  
+  .btn-action:hover {
+    background: #218838;
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .itenautas-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .itenauta-item {
+      width: 90%;
+    }
+  }
+  

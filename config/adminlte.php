@@ -778,7 +778,71 @@ return [
                 ],
             ],
         ],
+
+        [
+            'text'    => 'ACCESO SEGURIDAD',
+            'icon'    => 'fas fa-fw fa-users-cog',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'can' => ['Listar Roles'],
+            'submenu' => [
+                [
+                    'text' => 'Administrar Permisos',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'permisos',
+                    'classes'  => 'text-dark',
+                ],
+
+                [
+                    'text' => 'Administrar Roles',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'role',
+                    'classes'  => 'text-dark',
+                ],
+             
+                // [
+                //     'text' => 'Asignación Rol',
+                //     'icon'    => 'fas fa-angle-right',
+                //     'url'  => 'rolusers',
+                //     'classes'  => 'text-dark',
+                // ],
+                [   
+                    'text' => 'Administrar Usuarios',
+                    'icon'    => 'fas fa-angle-right',
+                    'route' => 'users.index',
+                    'classes'  => 'text-secondary',
+                ],
+              
+            ],
+        ],
         
+        [
+            'text'    => 'TRANSACCIONALES',
+            'icon'    => 'fas fa-fw fa-users-cog',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+         
+            'submenu' => [
+                [
+                    'text' => 'Administrar Inscripciones',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'adminscripciones',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Administrar Pagos ',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'adminpagos',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Administrar Programación',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'adminprogramacion',
+                    'classes'  => 'text-dark',
+                ],
+            ],
+        ],
         
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIN GRUPO USUARIOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         

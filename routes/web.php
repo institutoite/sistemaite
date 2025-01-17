@@ -88,6 +88,11 @@ use UxWeb\SweetAlert\SweetAlert as SweetAlert;
     });
     
 Auth::routes();  
+//Route::post('/comentario/crear', [ComentarioController::class, 'store'])->name('comentarios.store');
+Route::post('/comentario/crear', [ComentarioController::class, 'store'])
+    ->middleware('recaptchav3')
+    ->name('comentarios.store');
+
 Route::get('/',[HomeController::class, 'index']);
 Route::get('interests/get', [InterestController::class,'getParaHome'])->name('interest.para.home');
 Route::get('nivel/mostrar/{nivel}',[NivelController::class,'show'])->name("nivel.mostrar");
@@ -267,9 +272,15 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
 
     Route::resource('telefonos', "TelefonoController");
     Route::resource('users', 'UserController');
-    Route::get('user/create/{persona}',[UserController::class,'crear'])->name('user.crear');
+    
+    
+    Route::get('user/create',[UserController::class,'crear'])->name('user.crear');
     Route::post('user/guardar',[UserController::class,'guardar'])->name('user.guardar');
     Route::get('quien', [UserController::class,'quien'])->name('quien');
+
+    // Route::get('user/create/{persona}',[UserController::class,'crear'])->name('user.crear');
+    // Route::post('user/guardar',[UserController::class,'guardar'])->name('user.guardar');
+    // Route::get('quien', [UserController::class,'quien'])->name('quien');
 
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CIUDAD %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     Route::resource('ciudades', "CiudadController");
@@ -443,7 +454,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('listar/pagos',[PagoController::class,'listarPagos'])->name('pagos.pagos');
     Route::get('pago/inscripciones/view',[PagoController::class,'pagoInscripcionesView'])->name('pago.inscripciones.view');
     Route::get('pago/inscripciones/max',[PagoController::class,'pagoInscripcionesMax'])->name('pago.inscripciones.max');
-    Route::get('pagoinscripciones/max',[PagoController::class,'pagoModeloMax'])->name('pago.inscripcionesmax');
+    Route::post('pagoinscripciones/max',[PagoController::class,'pagoModeloMax'])->name('pago.inscripcionesmax');
     Route::get('pagoinscripciones',[PagoController::class,'pagoModelo'])->name('pago.inscripciones');
     
     Route::get('pago/matriculaciones/view',[PagocomController::class,'pagoMatriculacionesView'])->name('pago.matriculaciones.view');
@@ -1031,8 +1042,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
 
 });
 
-    Route::post('/comentarios', [ComentarioController::class, 'store'])->name('comentarios.store');
-
+    
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  FRONTED ITE   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
     Route::get('/guarderia', [HomeController::class, 'guarderia'])->name('guarderia');
@@ -1089,6 +1099,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
 
 
     Route::any('comentario/guardar',[ComentarioController::class,'guardarComentario'])->name('comentario.guardar');
+    
 
     Route::get('/about', [HomeController::class, 'about'])->name('about');
 
@@ -1123,3 +1134,8 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('/imprimir/primaria', [HomeController::class, 'imprimirPrimaria'])->name('imprimir.info.primaria');
     Route::get('/imprimir/secundaria', [HomeController::class, 'imprimirSecundaria'])->name('imprimir.info.secundaria');
     Route::get('/imprimir/preuniversitario', [HomeController::class, 'imprimirPreuniversitario'])->name('imprimir.preuniversitario');
+
+
+    Route::get('itenautas/beneficios',function(){
+        return view("layouts.itenautas");
+    })->name("itenautas.itecoins");
