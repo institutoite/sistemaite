@@ -42,7 +42,7 @@
       <nav class="nav">
         <ul class="nav-list">
             <li><a href="#about">Nosotros</a></li>
-            <li><a href="#services">Servicios</a></li>
+            <li><a href="https://services.ite.com.bo">Servicios</a></li>
         </ul>
         <div id="auth-options" class="auth-options">
             @auth
@@ -94,7 +94,7 @@
   
 
   {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% S E C C I O N  L I N E A   D E   T I E M P O   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-  <section id= "timeline">
+  {{-- <section id= "timeline">
     <ul class= "line">
       <li>
         <div class="cont">
@@ -145,7 +145,7 @@
       </li>
     </ul>
     
-  </section>
+  </section> --}}
   <!-- End Timeline -->
   
   {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECCION METRICAS DATOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
@@ -153,16 +153,16 @@
     <h2>Cifras Impactantes</h2>
     <div class="metrics-container">
       <div class="metric">
-        <h3 class="number" data-target="1000">0</h3>
-        <p>Proyectos Completados</p>
+        <h3 class="number" data-target="16500">0</h3>
+        <p>Clientes</p>
       </div>
       <div class="metric">
-        <h3 class="number" data-target="500">0</h3>
-        <p>Clientes Satisfechos</p>
+        <h3 class="number" data-target="17">0</h3>
+        <p>Años de experiencia</p>
       </div>
       <div class="metric">
-        <h3 class="number" data-target="300">0</h3>
-        <p>Reconocimientos Obtenidos</p>
+        <h3 class="number" data-target="21700">0</h3>
+        <p>Seguidores en tik tok</p>
       </div>
       <div class="metric">
         <h3 class="number" data-target="150">0</h3>

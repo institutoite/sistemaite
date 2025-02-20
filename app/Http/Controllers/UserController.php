@@ -141,7 +141,7 @@ class UserController extends Controller
         $user->name=$request->name;
         $user->email=$request->email;
         if($request->password != null){
-            $user->password=$request->password;
+            $user->password=Hash::make($request->password);
         }
         if ($request->hasFile('foto')) {
             if (Storage::disk('public')->exists($user->foto)) {
