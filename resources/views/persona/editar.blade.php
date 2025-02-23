@@ -25,9 +25,9 @@
             </div>
         </div>
 
-        @if($tiempoToken==0)
+        {{-- @if($tiempoToken==0)
             @include('include.modalGContact')
-        @endif
+        @endif --}}
 @stop
 
 
@@ -88,7 +88,7 @@
                     "serverSide": true,
                     "responsive":true,
                     "autoWidth":false,
-                    "ajax": "{{ url('api/referencias') }}",
+                    "ajax": "{{ url('listar/referencias') }}",
                     "columns": [
                         {data: 'id'},
                         {data: 'nombre'},
