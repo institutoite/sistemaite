@@ -740,8 +740,8 @@ class PersonaController extends Controller
         $persona->papelinicial = $request->papel;
         $persona->telefono = $request->telefono;
         $persona->persona_id = $request->persona_id;
-        $persona->pais_id = $request->pais_id;
-        $persona->ciudad_id = $request->ciudad_id;
+        // $persona->pais_id = $request->pais_id;
+        // $persona->ciudad_id = $request->ciudad_id;
         $persona->zona_id = $request->zona_id;
         $persona->save();
 
