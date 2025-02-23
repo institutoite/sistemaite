@@ -24,6 +24,7 @@ use App\Models\Carrera;
 use App\Models\Estado;
 use App\Models\Feriado;
 use App\Http\Controllers\ComentarioController;
+use App\Models\Tipomotivo;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -41,14 +42,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('estudiantes',function(){
-    $persona=Persona::join('estudiantes','estudiantes.persona_id','=','personas.id')
-                    ->select('personas.id','nombre','apellidop','apellidom','foto');
-    return datatables()->of($persona)
-        ->addColumn('btn','persona.action')
-        ->rawColumns(['btn','foto'])
-        ->toJson();
-});
+
+/* esta parte hacia salir error al hacer las busquedas */
+
+// Route::get('estudiantes',function(){
+//     $persona=Persona::join('estudiantes','estudiantes.persona_id','=','personas.id')
+//                     ->select('personas.id','nombre','apellidop','apellidom','foto');
+//     return datatables()->of($persona)
+//         ->addColumn('btn','persona.action')
+//         ->rawColumns(['btn','foto'])
+//         ->toJson();
+// });
 
 Route::get('computaciones',function(){
     $computaciones=Persona::join('computacions','computacions.persona_id','=','personas.id')
@@ -104,12 +108,12 @@ Route::get('grados', function () {
         ->toJson();
 });
 
-Route::get('referencias',function(){
-    return datatables()->of(Persona::select('id','nombre','apellidop','apellidom','foto'))
-        ->addColumn('btn', 'persona.actionmodal')
-        ->rawColumns(['foto','btn'])
-        ->toJson();
-});
+// Route::get('referencias',function(){
+//     return datatables()->of(Persona::select('id','nombre','apellidop','apellidom','foto'))
+//         ->addColumn('btn', 'persona.actionmodal')
+//         ->rawColumns(['foto','btn'])
+//         ->toJson();
+// });
 
 // Route::get('paises',function(){
 //     return datatables()->of(Pais::all())

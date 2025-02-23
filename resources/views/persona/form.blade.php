@@ -126,7 +126,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2" >
             @if($errors->has('genero'))
                 <span class="text-danger"> {{ $errors->first('genero')}}</span>
             @endif
@@ -136,16 +136,21 @@
                 <span class="text-danger"> {{ $errors->first('como_id')}}</span>
             @endif
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" >
             @if($errors->has('papel'))
                 <span class="text-danger"> {{ $errors->first('papel')}}</span>
+            @endif
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3">
+            @if($errors->has('zona_id'))
+                <span class="text-danger"> {{ $errors->first('zona_id')}}</span>
             @endif
         </div>
     </div>
     {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO GENERO  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 
     <div class="row"> 
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-2" >
             <div class="form-floating mb-3 text-gray">
                 <select class="form-control @error('genero') is-invalid @enderror" name="genero" id="genero">
                     <option value=""> Elija tu género</option>
@@ -202,7 +207,7 @@
 
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO OCULTO CON QUE PAPEL LLEGA A ITE papel de profesor papel de practico etc ---}}
 
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" >
             <div class="form-floating mb-3 text-gray">
                 <select class="form-control @error('papel') is-invalid @enderror"  name="papel" id="papel">
                     <option value=""> Elija Papel</option>
@@ -231,61 +236,7 @@
                 <label class="text-success" for="papel">PAPEL*</label>
             </div> 
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-            @if($errors->has('pais_id'))
-                <span class="text-danger"> {{ $errors->first('pais_id')}}</span>
-            @endif
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-            @if($errors->has('ciudad_id'))
-                <span class="text-danger"> {{ $errors->first('ciudad_id')}}</span>
-            @endif
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-            @if($errors->has('zona_id'))
-                <span class="text-danger"> {{ $errors->first('zona_id')}}</span>
-            @endif
-        </div>
-    </div>
-
-    {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO PAIS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-    <div class="row"> 
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-            <div class="form-floating mb-3 text-gray">
-                <select class="form-control @error('pais_id') is-invalid @enderror" data-old="{{ old('pais_id') }}" name="pais_id" id="country">
-                    <option value="1" selected> Bolivia</option>
-                    @foreach ($paises as $pais)
-                        @isset($persona)     
-                            <option  value="{{$pais->id}}" {{$pais->id==$persona->pais_id ? 'selected':''}}>{{$pais->nombrepais}}</option>     
-                        @else
-                            <option value="{{ $pais->id }}" {{ old('pais_id') == $pais->id ? 'selected':'' }} >{{ $pais->nombrepais }}</option>
-                        @endisset 
-                    @endforeach
-                </select>
-                <label class="text-success" for="pais">Pais*</label>
-            </div>
-        </div>
-
-        {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO CIUDAD  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-            <div class="form-floating mb-3 text-gray">
-                <select class="form-control @error('ciudad_id') is-invalid @enderror" name="ciudad_id" id="city">
-                    <option value=""> Elija una ciudad</option>
-                        @foreach ($ciudades as $item)
-                            @isset($persona) 
-                                <option value="{{ $item->id }}" {{ $item->id==$persona->ciudad_id ? 'selected':''}} >{{ $item->ciudad }}</option>
-                            @endisset
-                        @endforeach 
-                </select>
-                <label class="text-success" for="pais">Ciudad*</label>
-            </div>
-        </div>
-
-        {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO ZONA  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" >
             <div class="form-floating mb-3 text-gray">
                 <select class="form-control @error('zona_id') is-invalid @enderror" name="zona_id" id="zona">
                     <option value="" > Seleccione una Zona</option>
@@ -300,6 +251,61 @@
                 <label class="text-warning" for="zona_id">ZONA DONDE VIVE*</label>
             </div>
         </div>
+    </div>
+
+    <div class="row">
+        {{-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+            @if($errors->has('pais_id'))
+                <span class="text-danger"> {{ $errors->first('pais_id')}}</span>
+            @endif
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+            @if($errors->has('ciudad_id'))
+                <span class="text-danger"> {{ $errors->first('ciudad_id')}}</span>
+            @endif
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+            @if($errors->has('zona_id'))
+                <span class="text-danger"> {{ $errors->first('zona_id')}}</span>
+            @endif
+        </div> --}}
+    </div>
+
+    {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO PAIS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+    <div class="row"> 
+        {{-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+            <div class="form-floating mb-3 text-gray">
+                <select class="form-control @error('pais_id') is-invalid @enderror" data-old="{{ old('pais_id') }}" name="pais_id" id="country">
+                    <option value="1" selected> Bolivia</option>
+                    @foreach ($paises as $pais)
+                        @isset($persona)     
+                            <option  value="{{$pais->id}}" {{$pais->id==$persona->pais_id ? 'selected':''}}>{{$pais->nombrepais}}</option>     
+                        @else
+                            <option value="{{ $pais->id }}" {{ old('pais_id') == $pais->id ? 'selected':'' }} >{{ $pais->nombrepais }}</option>
+                        @endisset 
+                    @endforeach
+                </select>
+                <label class="text-success" for="pais">Pais*</label>
+            </div>
+        </div> --}}
+
+        {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO CIUDAD  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+        {{-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+            <div class="form-floating mb-3 text-gray">
+                <select class="form-control @error('ciudad_id') is-invalid @enderror" name="ciudad_id" id="city">
+                    <option value=""> Elija una ciudad</option>
+                        @foreach ($ciudades as $item)
+                            @isset($persona) 
+                                <option value="{{ $item->id }}" {{ $item->id==$persona->ciudad_id ? 'selected':''}} >{{ $item->ciudad }}</option>
+                            @endisset
+                        @endforeach 
+                </select>
+                <label class="text-success" for="pais">Ciudad*</label>
+            </div>
+        </div> --}}
+
+        {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO ZONA  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+       
 
     </div>
 

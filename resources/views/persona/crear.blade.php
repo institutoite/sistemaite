@@ -30,9 +30,9 @@
         </div>
     </div>
 
-    @if($tiempoToken==0)
+    {{-- @if($tiempoToken==0)
         @include('include.modalGContact')
-    @endif
+    @endif --}}
 @stop
             
 @section('js')
@@ -49,7 +49,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="{{asset('assets/js/tiempoGcontact.js')}}"></script>
+    {{-- <script src="{{asset('assets/js/tiempoGcontact.js')}}"></script> --}}
     <script>
         CKEDITOR.replace('observacion', {
             height: 120,
@@ -71,7 +71,7 @@
                     "serverSide": true,
                     "responsive":true,
                     "autoWidth":false,
-                    "ajax": "{{ url('api/referencias') }}",
+                    "ajax": "{{ url('listar/referencias') }}",
                     "columns": [
                         {data: 'id'},
                         {data: 'nombre'},
@@ -122,7 +122,7 @@
                 $('#city').html('<option value="6" required selected>Santa Cruz de la Sierra </option>');
                     return;
                 }
-                $.get('../api/pais/'+ country_id +'/ciudades',function (data) {
+                $.get('..//pais/'+ country_id +'/ciudades',function (data) {
                     var html_select='<option value="6" required selected>Santa Cruz de la Sierra </option>';
                     for (var i = 0; i < data.length; i++) {
                         html_select+='<option value="'+ data[i].id +'">' +data[i].ciudad +'</option>';

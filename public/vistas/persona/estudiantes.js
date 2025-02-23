@@ -129,15 +129,19 @@
             }
         });
         /*%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE PERSONAS ESTUDIANTES %%%%%%%%%%%%%%%%%%%%*/
-        $(document).ready(function() {
+        
+       $(document).ready(function() {
             var tabla=$('#personas').DataTable(
                 {
                     "serverSide": true,
                     "responsive":true,
                     "autoWidth":false,
 
-                    "ajax": "api/estudiantes",
+                    "ajax":{
+                        'url':"listar/estudiantes",
+                    },
                     "createdRow": function( row, data, dataIndex ) {
+                        console.log(dataIndex);
                     $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
                 },
                     "columns": [

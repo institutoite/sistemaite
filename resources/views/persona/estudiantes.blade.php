@@ -7,8 +7,13 @@
 @stop
 
 @section('title', 'Estudiantes')
+@section('plugins.Jquery', true)
 @section('plugins.Sweetalert2',true)
 @section('plugins.Datatables',true)
+
+
+
+
 @section('content')
     {{ Breadcrumbs::render('home') }}
     

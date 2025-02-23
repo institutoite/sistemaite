@@ -259,4 +259,24 @@ class EstudianteController extends Controller
         
         return 1;
     }
+
+    public function listar(){
+        $estudiantes=Persona::join('estudiantes','estudiantes.persona_id','=','personas.id')
+        ->select('personas.id','nombre','apellidop','apellidom','foto');
+
+        return datatables()->of($estudiantes)
+        ->addColumn('btn', 'persona.action')
+        ->rawColumns(['btn','foto'])
+        ->toJson();
+    }
+    
+    public function referencia(){
+        $referencias=Persona::select('id','nombre','apellidop','apellidom','foto');
+        return datatables()->of($referencias)
+        ->addColumn('btn', 'persona.actionmodal')
+        ->rawColumns(['btn','foto'])
+        ->toJson();
+    }
+
+
 }

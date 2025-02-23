@@ -112,17 +112,17 @@ class PersonaController extends Controller
         $persona->papelinicial = $request->papel;
         $persona->telefono=$request->telefono;
         $persona->persona_id = $request->persona_id;
-        $persona->pais_id = $request->pais_id;
-        $persona->ciudad_id = $request->ciudad_id;
+        $persona->pais_id = 1;
+        $persona->ciudad_id = 6;
         $persona->zona_id = $request->zona_id;
         $persona->save();
 
         /**%%%%%%%%%%%%%%%%%%%%% google contact inicio %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $gcontacController = app()->make(GContactController::class);
-        $data=$gcontacController->createContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->email,$persona->telefono);
-        $persona->resourseName=$data[0];
-        $persona->etag=$data[1];
-        $persona->save();
+        // $gcontacController = app()->make(GContactController::class);
+        // $data=$gcontacController->createContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->email,$persona->telefono);
+        // $persona->resourseName=$data[0];
+        // $persona->etag=$data[1];
+        // $persona->save();
         /**%%%%%%%%%%%%%%%%%%%%% google contact fin %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         
 
@@ -346,11 +346,11 @@ class PersonaController extends Controller
 
 
         /**%%%%%%%%%%%%%%%%%%%%% google contact inicio %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $gcontacController = app()->make(GContactController::class);
-        $data=$gcontacController->createContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->email,$persona->telefono);
-        $persona->resourseName=$data[0];
-        $persona->etag=$data[1];
-        $persona->save();
+        // $gcontacController = app()->make(GContactController::class);
+        // $data=$gcontacController->createContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->email,$persona->telefono);
+        // $persona->resourseName=$data[0];
+        // $persona->etag=$data[1];
+        // $persona->save();
         /**%%%%%%%%%%%%%%%%%%%%% google contact fin %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
 
@@ -501,11 +501,11 @@ class PersonaController extends Controller
         $persona->save();
 
         /**%%%%%%%%%%%%%%%%%%%%% google contact inicio %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $gcontacController = app()->make(GContactController::class);
-        $data=$gcontacController->createContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->email,$persona->telefono);
-        $persona->resourseName=$data[0];
-        $persona->etag=$data[1];
-        $persona->save();
+        // $gcontacController = app()->make(GContactController::class);
+        // $data=$gcontacController->createContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->email,$persona->telefono);
+        // $persona->resourseName=$data[0];
+        // $persona->etag=$data[1];
+        // $persona->save();
         /**%%%%%%%%%%%%%%%%%%%%% google contact fin %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
         

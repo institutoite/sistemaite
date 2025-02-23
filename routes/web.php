@@ -78,7 +78,7 @@ use App\Http\Controllers\CursoController;
 use App\Http\Controllers\RolUsersController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\VentajaController;
-
+use App\Models\Estudiante;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert as SweetAlert;
 
@@ -731,6 +731,11 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
 
     Route::get('masivo/view', [MensajeController::class,'masivoView'])->name('masivo.index');
     Route::get('estudiantes/masivo/contactar/evento', [MensajeController::class,'MensajeMasivo'])->name('masivo.descente');
+
+
+    /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  estudiantes %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+    Route::get('listar/estudiantes', [EstudianteController::class,'listar'])->name('estudiante.ajax');
+    Route::get('listar/referencias', [EstudianteController::class,'referencia'])->name('referencias.ajax');
 
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  AULAS %%%%%%%%%%%%%%%%%%%%%%%%%%*/
