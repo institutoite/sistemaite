@@ -175,7 +175,11 @@ class InscripcioneController extends Controller
         $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
         $materias = $nivel->materias;
         $aulas = Aula::get();
-        $docentes = $nivel->docentes;
+        $docentes = $nivel->docentes()
+            ->where('docentes.estado_id', '=', estado('HABILITADO'))
+            ->orderBy('nombrecorto', 'asc') // Ordenar por nombre ascendente
+            ->get();
+            //dd($docentes);
         $dias = Dia::get();
         $tipo = 'guardando';    
         $programacion = $inscripcion->programaciones;

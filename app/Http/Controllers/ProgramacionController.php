@@ -618,11 +618,12 @@ class ProgramacionController extends Controller
         
         $inscripcion=Inscripcione::findOrFail($programa->inscripcione_id);
         //$programasAnteriores=
-        $docentes=Docente::join('personas','personas.id','=','docentes.persona_id')
-                        ->join('estados','estados.id','=','docentes.estado_id')
-                        ->where('docentes.estado_id','=',estado('HABILITADO'))
-                        ->select('docentes.id','personas.nombre','personas.apellidop')
-                        ->get();
+        $docentes = Docente::join('personas', 'personas.id', '=', 'docentes.persona_id')
+            ->join('estados', 'estados.id', '=', 'docentes.estado_id')
+            ->where('docentes.estado_id', '=', estado('HABILITADO'))
+            ->select('docentes.id', 'personas.nombre', 'personas.apellidop')
+            ->orderBy('personas.nombre', 'asc') // Ordenar por nombre en orden ascendente
+            ->get();
 
         $nivel=Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
         $materias = $nivel->materias;

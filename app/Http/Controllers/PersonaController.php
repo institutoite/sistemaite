@@ -1430,4 +1430,16 @@ class PersonaController extends Controller
         Storage::delete(storage_path('app/contactos/todos/').$archivo); // Eliminar el archivo utilizando la clase Storage
         return response()->json(['mensaje' => "El archivo $archivo ha sido eliminado"]); // Retornar una respuesta en formato JSON
     }
+
+   
+    public function listar(){
+
+        $persona=Persona::select('id','nombre','apellidop','apellidom','foto');
+            return datatables()->of($persona)
+                ->addColumn('btn', 'persona.actiontodos')
+                ->rawColumns(['btn'])
+                ->toJson();
+      
+    }
+    
 }

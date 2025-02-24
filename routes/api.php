@@ -121,13 +121,13 @@ Route::get('grados', function () {
 //         ->rawColumns(['btn'])
 //         ->toJson();
 // });
-Route::get('personas', function () {
-    $persona=Persona::select('id','nombre','apellidop','apellidom','foto');
-    return datatables()->of($persona)
-        ->addColumn('btn', 'persona.actiontodos')
-        ->rawColumns(['btn'])
-        ->toJson();
-})->name('personas.todos');
+// Route::get('personas', function () {
+//     $persona=Persona::select('id','nombre','apellidop','apellidom','foto');
+//     return datatables()->of($persona)
+//         ->addColumn('btn', 'persona.actiontodos')
+//         ->rawColumns(['btn'])
+//         ->toJson();
+// })->name('personas.todos');
 
 Route::get('usuarios', function () {
     return datatables()->of(User::all())

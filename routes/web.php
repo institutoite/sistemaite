@@ -735,6 +735,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
 
     /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  estudiantes %%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::get('listar/estudiantes', [EstudianteController::class,'listar'])->name('estudiante.ajax');
+    Route::get('listar/personas', [PersonaController::class,'listar'])->name('persona.ajax');
     Route::get('listar/referencias', [EstudianteController::class,'referencia'])->name('referencias.ajax');
 
 
