@@ -239,9 +239,9 @@
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
 
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
 
-    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
     <script src="{{asset('dist/js/starrr.js')}}"></script>
 
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
