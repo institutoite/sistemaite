@@ -174,7 +174,7 @@
                     "responsive":true,
                     "autoWidth":false,
 
-                    "ajax": "{{ url('api/personas') }}",
+                    "ajax": "{{ url('listar/personas') }}",
                     "createdRow": function( row, data, dataIndex ) {
                         $(row).attr('id',data['id']); // agrega dinamiacamente el id del row
                      },

@@ -20,7 +20,7 @@
     <div class="pt-4">
         <div class="card">
             <div class="card-header bg-primary">
-                Lista de Estudiantes <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('personas.create')}}">Crear Estudiante</a>
+                Lista de Estudiantes x<a class="btn btn-secondary text-white btn-sm float-right" href="{{route('personas.create')}}">Crear Estudiante</a>
             </div>
             
             <div class="card-body">
