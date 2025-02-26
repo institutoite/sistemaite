@@ -282,11 +282,11 @@ class PersonaController extends Controller
         $apoderado->save();
 
         /**%%%%%%%%%%%%%%%%%%%%% google contact inicio %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $gcontacController = app()->make(GContactController::class);
-        $data=$gcontacController->createContact($apoderado->nombre,$apoderado->apellidop,$apoderado->apellidom,$apoderado->email,$apoderado->telefono);
-        $apoderado->resourseName=$data[0];
-        $apoderado->etag=$data[1];
-        $apoderado->save();
+        // $gcontacController = app()->make(GContactController::class);
+        // $data=$gcontacController->createContact($apoderado->nombre,$apoderado->apellidop,$apoderado->apellidom,$apoderado->email,$apoderado->telefono);
+        // $apoderado->resourseName=$data[0];
+        // $apoderado->etag=$data[1];
+        // $apoderado->save();
         /**%%%%%%%%%%%%%%%%%%%%% google contact fin %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
         $this->CrearContacto($apoderado->id);
@@ -382,10 +382,10 @@ class PersonaController extends Controller
         $persona->save();
         
          /**%%%%%%%%%%%%%%%%%%%%% google contact editar inicio %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-         $gcontacController = app()->make(GContactController::class);
-         $etag=$gcontacController->updateContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->telefono,$persona->resourseName,$persona->etag);
-         $persona->etag=$etag;
-         $persona->save();
+        //  $gcontacController = app()->make(GContactController::class);
+        //  $etag=$gcontacController->updateContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->telefono,$persona->resourseName,$persona->etag);
+        //  $persona->etag=$etag;
+        //  $persona->save();
          /**%%%%%%%%%%%%%%%%%%%%% google contact editar Fin %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
         //dd($persona);
@@ -529,10 +529,10 @@ class PersonaController extends Controller
         $persona->save();
 
         /**%%%%%%%%%%%%%%%%%%%%% google contact editar inicio %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $gcontacController = app()->make(GContactController::class);
-        $etag=$gcontacController->updateContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->telefono,$persona->resourseName,$persona->etag);
-        $persona->etag=$etag;
-        $persona->save();
+        // $gcontacController = app()->make(GContactController::class);
+        // $etag=$gcontacController->updateContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->telefono,$persona->resourseName,$persona->etag);
+        // $persona->etag=$etag;
+        // $persona->save();
         /**%%%%%%%%%%%%%%%%%%%%% google contact editar Fin %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         
         $this->CrearContacto($persona->id);
@@ -773,10 +773,10 @@ class PersonaController extends Controller
         
         //dd($persona->resourseName);
         /**%%%%%%%%%%%%%%%%%%%%% google contact editar inicio %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $gcontacController = app()->make(GContactController::class);
-        $etag=$gcontacController->updateContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->telefono,$persona->resourseName,$persona->etag);
-        $persona->etag=$etag;
-        $persona->save();
+        // $gcontacController = app()->make(GContactController::class);
+        // $etag=$gcontacController->updateContact($persona->nombre,$persona->apellidop,$persona->apellidom,$persona->telefono,$persona->resourseName,$persona->etag);
+        // $persona->etag=$etag;
+        // $persona->save();
         /**%%%%%%%%%%%%%%%%%%%%% google contact editar Fin %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         return redirect()->Route('personas.show', ['persona' => $persona]);
     }
