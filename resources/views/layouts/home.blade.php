@@ -71,10 +71,11 @@
                 <a href="#" class="nav-link">Cursos</a>
                 <a href="#" class="nav-link">Nosotros</a>
                 <a href="#" class="nav-link">Contacto</a>
-                @guest
-                <!-- Si el usuario NO está autenticado -->
-                  <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
-                @endguest
+                @auth
+                    <a href="{{ route('home') }}" class="btn btn-primary">Sistema</a>
+                @else
+                    <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
+                @endauth
             </nav>
             
             <!-- Botón de menú para móvil -->
