@@ -71,7 +71,10 @@
                 <a href="#" class="nav-link">Cursos</a>
                 <a href="#" class="nav-link">Nosotros</a>
                 <a href="#" class="nav-link">Contacto</a>
-                <a href="#" class="btn btn-primary">Login</a>
+                @guest
+                <!-- Si el usuario NO está autenticado -->
+                  <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
+                @endguest
             </nav>
             
             <!-- Botón de menú para móvil -->
