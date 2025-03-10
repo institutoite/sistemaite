@@ -1,0 +1,227 @@
+/* Sección de Contacto */
+.contact-section {
+    padding: 80px 0;
+    background-color: var(--light-gray);
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.contact-info {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.contact-info h3 {
+    font-family: 'Montserrat-Bold', sans-serif;
+    font-size: 1.5rem;
+    color: var(--secondary-dark);
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.contact-info h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.info-item {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.info-icon {
+    flex: 0 0 40px;
+    height: 40px;
+    background-color: rgba(38, 186, 165, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    margin-right: 15px;
+}
+
+.info-content h4 {
+    font-family: 'Montserrat-Bold', sans-serif;
+    font-size: 1.1rem;
+    color: var(--secondary-dark);
+    margin-bottom: 5px;
+}
+
+.info-content p {
+    font-family: 'Montserrat-Medium', sans-serif;
+    color: var(--secondary-color);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-color);
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-3px);
+}
+
+.contact-form-container {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.contact-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 5px;
+}
+
+.form-group:nth-child(5) {
+    grid-column: span 2;
+}
+
+.form-group label {
+    display: block;
+    font-family: 'Montserrat-Medium', sans-serif;
+    color: var(--secondary-dark);
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--gray);
+    border-radius: 5px;
+    font-family: 'Montserrat-Medium', sans-serif;
+    font-size: 0.95rem;
+    color: var(--secondary-color);
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(38, 186, 165, 0.2);
+}
+
+.contact-form .btn {
+    grid-column: span 2;
+    justify-self: center;
+    min-width: 200px;
+    margin-top: 15px;
+}
+
+.map-container {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/*mensajes*/
+/* Mensaje de éxito del formulario de contacto */
+.success-message {
+    text-align: center;
+    padding: 30px;
+}
+
+.success-icon {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(38, 186, 165, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    margin: 0 auto 20px;
+}
+
+.success-message h3 {
+    font-family: 'Montserrat-Bold', sans-serif;
+    font-size: 1.5rem;
+    color: var(--secondary-dark);
+    margin-bottom: 15px;
+}
+
+.success-message p {
+    font-family: 'Montserrat-Medium', sans-serif;
+    color: var(--secondary-color);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.success-message .btn {
+    min-width: 200px;
+}
+
+/* Media Queries para la sección de Contacto */
+@media (max-width: 992px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-group:nth-child(5) {
+        grid-column: span 1;
+    }
+    
+    .contact-form .btn {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 60px 0;
+    }
+    
+    .contact-info h3 {
+        font-size: 1.3rem;
+    }
+    
+    .info-content h4 {
+        font-size: 1rem;
+    }
+}

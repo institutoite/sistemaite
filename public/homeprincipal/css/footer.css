@@ -1,0 +1,164 @@
+/* Pie de Página (Footer) */
+.footer {
+    background-color: var(--secondary-dark);
+    color: var(--white);
+    padding: 60px 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-logo {
+    margin-bottom: 20px;
+}
+
+.footer-logo .ite-text {
+    font-family: 'GlyphaLTStd-Bold', sans-serif;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.footer-logo p {
+    font-family: 'Montserrat-Light', sans-serif;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.footer-description {
+    font-family: 'Montserrat-Light', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    opacity: 0.8;
+}
+
+.footer-title {
+    font-family: 'Montserrat-SemiBold', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.footer-links,
+.footer-social-links,
+.footer-contact-info {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li,
+.footer-social-links li,
+.footer-contact-info li {
+    margin-bottom: 12px;
+}
+
+.footer-links a,
+.footer-social-links a {
+    font-family: 'Montserrat-Light', sans-serif;
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover,
+.footer-social-links a:hover {
+    opacity: 1;
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.footer-social-links a,
+.footer-contact-info li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-contact-info li {
+    font-family: 'Montserrat-Light', sans-serif;
+    opacity: 0.8;
+    margin-bottom: 15px;
+}
+
+.footer-contact-info svg,
+.footer-social-links svg {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-legal {
+    margin-bottom: 15px;
+}
+
+.footer-legal a {
+    font-family: 'Montserrat-Light', sans-serif;
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.footer-legal a:hover {
+    opacity: 1;
+    color: var(--primary-color);
+}
+
+.separator {
+    margin: 0 10px;
+    opacity: 0.5;
+}
+
+.footer-copyright p {
+    font-family: 'Montserrat-Light', sans-serif;
+    font-size: 0.85rem;
+    opacity: 0.6;
+    margin: 0;
+}
+
+/* Media Queries para el Footer */
+@media (max-width: 992px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer {
+        padding: 40px 0 20px;
+    }
+}

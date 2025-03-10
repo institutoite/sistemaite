@@ -1,0 +1,118 @@
+/* Sección de Servicios */
+.services-section {
+    padding: 80px 0;
+    background-color: var(--light-gray);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-header h2 {
+    font-family: 'Montserrat-Bold', sans-serif;
+    font-size: 2.2rem;
+    color: var(--secondary-dark);
+    margin-bottom: 15px;
+}
+
+.section-header .highlight {
+    color: var(--primary-color);
+}
+
+.section-header p {
+    font-family: 'Montserrat-Light', sans-serif;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--secondary-color);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(38, 186, 165, 0.1);
+    border-radius: 50%;
+    padding: 15px;
+}
+
+.service-icon img {
+    width: 100%;
+    height: auto;
+}
+
+.service-card h3 {
+    font-family: 'Montserrat-SemiBold', sans-serif;
+    font-size: 1.2rem;
+    color: var(--secondary-dark);
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    font-family: 'Montserrat-Light', sans-serif;
+    color: var(--secondary-color);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Animación para los elementos al hacer scroll */
+.fade-in-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Media Queries para la sección de servicios */
+@media (max-width: 768px) {
+    .services-section {
+        padding: 60px 0;
+    }
+    
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .section-header p {
+        font-size: 1rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
