@@ -1004,6 +1004,12 @@ return [
                     'classes'  => 'text-dark',
                 ],
                 [
+                    'text' => 'Ingresos mjrd bnc',
+                    'icon'    => 'fas fa-angle-right',
+                    'url'  => 'pago/inscripciones/max/bnc',
+                    'classes'  => 'text-dark',
+                ],
+                [
                     'text' => 'Matriculaciones',
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'pago/matriculaciones/view',

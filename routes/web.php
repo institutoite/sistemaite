@@ -462,6 +462,9 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('pago/matriculaciones/max',[PagocomController::class,'pagoMatriculacionesMax'])->name('pago.matriculaciones.max');
     Route::get('pagomatriculaciones/max',[PagocomController::class,'pagoModeloMax'])->name('pago.matriculacionesmax');
     
+    Route::get('pago/inscripciones/max/bnc',[PagoController::class,'pagoInscripcionesMaxBnc'])->name('pago.inscripciones.max.bnc');
+    Route::post('pagoinscripciones/max/bnc',[PagoController::class,'pagoModeloMaxBnc'])->name('pago.inscripcionesmax.bnc');
+    
     Route::get('grafica/por/pagablestype',[PagoController::class,'graficaPorPagablestype'])->name('grafica.por.pagablestype');
     Route::delete('eliminar/pago/{pago}', [PagoController::class,'destroy'])->name('eliminar.pago');
     Route::delete('eliminar/pago/periodable/{pago}',[PeriodableController::class,'eliminarPagoPeriodo'])->name('eliminar.pago.periodable');
