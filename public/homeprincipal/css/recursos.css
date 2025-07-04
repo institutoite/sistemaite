@@ -67,9 +67,9 @@
 
 /* Colores para cada tipo de archivo */
 .recurso-icon.pdf { background-color: #ffeded; color: #d93025; }
-.recurso-icon.app { background-color: #e6f4ea; color: #34a853; }
+.recurso-icon.app { background-color: #e6f4ea; color: #26BAA5; }
 .recurso-icon.doc { background-color: #e9f2ff; color: #4285f4; }
-.recurso-icon.zip { background-color: #fff8e1; color: #f9ab00; }
+.recurso-icon.zip { background-color: #fff8e1; color: #375F7A; }
 
 /* --- Información de la Ficha --- */
 .recurso-info h3 {

@@ -1,0 +1,152 @@
+/* ===== SECCIÓN DE CLASE DE CORTESÍA ===== */
+
+.cortesia-section {
+    padding: 100px 0;
+    background: linear-gradient(45deg, var(--primary-color), #2ed4a3);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Partículas de fondo para un look dinámico */
+.cortesia-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    animation: particles-move 20s linear infinite;
+}
+@keyframes particles-move {
+    from { background-position: 0 0; }
+    to { background-position: -400px -400px; }
+}
+
+
+.cortesia-box {
+    background: rgb(55, 95, 122);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 50px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+
+    /* Animación de entrada */
+    opacity: 0;
+    transform: scale(0.9);
+}
+.cortesia-section.is-visible .cortesia-box {
+    animation: zoom-in 0.7s forwards cubic-bezier(0.25, 1, 0.5, 1);
+}
+@keyframes zoom-in {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.cortesia-icon {
+    width: 80px;
+    height: 80px;
+    margin: -90px auto 20px auto;
+    background: #fff;
+    color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.cortesia-box h2 {
+    font-family: 'Montserrat-Bold';
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.cortesia-box p {
+    font-family: 'Montserrat-Regular';
+    font-size: 1.3rem;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Formulario Interactivo --- */
+.cortesia-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.cortesia-form label {
+    font-family: 'Montserrat-SemiBold';
+}
+
+.select-wrapper {
+    position: relative;
+    width: 80%;
+    max-width: 400px;
+}
+
+.select-wrapper::after {
+    content: '\f078'; /* Icono de flecha hacia abajo de Font Awesome */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #333;
+}
+
+#servicio-cortesia-select {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: none;
+    /* font-family: 'Montserrat-Regular'; */
+    font-size: 1rem;
+    background: #f0f0f0;
+    color: #333;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.btn-reservar {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #25d366; /* Color de WhatsApp */
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-family: 'Montserrat-Bold';
+    text-decoration: none;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-reservar:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}

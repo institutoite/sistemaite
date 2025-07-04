@@ -58,6 +58,7 @@
     <link rel="stylesheet" href="{{ asset('homeprincipal/css/styles.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('homeprincipal/css/redes.css') }}">
     <link rel="stylesheet" href="{{ asset('homeprincipal/css/recursos.css') }}">
+    <link rel="stylesheet" href="{{ asset('homeprincipal/css/cortesia.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -310,6 +311,59 @@
             </div>
         </div>
     </section>
+    {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  recursos   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+        <!-- ======================================================= -->
+<!-- ============ SECCIÓN DE CLASE DE CORTESÍA ============ -->
+<!-- ======================================================= -->
+<section id="cortesia" class="cortesia-section">
+    <div class="container">
+        <div class="cortesia-box">
+            <div class="cortesia-icon">
+                <i class="fas fa-gift"></i>
+            </div>
+            <h2>¡Tu Clase de Cortesía te Espera!</h2>
+            <p>
+                Solo por visitar nuestra página, te regalamos una clase de prueba completamente <strong>gratuita</strong>.
+                ¡Es válida para cualquiera de nuestros servicios!
+            </p>
+
+            <div class="cortesia-form">
+                <label for="servicio-cortesia-select">1. Elige el servicio que te interesa:</label>
+                <div class="select-wrapper">
+                    <select id="servicio-cortesia-select" name="servicio">
+                        <option value="Apoyo Escolar">Apoyo Escolar</option>
+                        <option value="Nivel Universitario">Apoyo Nivel Universitario</option>
+                        <option value="Programación">Programación</option>
+                        <option value="Robótica">Robótica</option>
+                        <option value="Ajedrez">Ajedrez</option>
+                        <option value="Cubo Rubik">Cubo Rubik</option>
+                        <option value="Computación">Computación</option>
+                        <option value="Oratoria">Oratoria</option>
+                        <option value="Lectura y Escritura">Lectura y Escritura</option>
+                        <option value="Caligrafía">Caligrafía</option>
+                        <option value="Computación">Computación</option>
+                        <option value="Cursos para Emprendedores">Cursos para Emprendedores</option>
+                        <option value="Curso de Dactilografía">Curso de Dactilografía</option>
+                        <option value="Creacion de aplicaciones">Creacion de aplicaciones</option>
+                        <option value="Inteligencia Artificial">Inteligencia Artificial</option>
+                        <option value="Curso de Geogebra">Curso de Geogebra</option>
+                        <option value="Cubo Rubik">Cubo Rubik</option>
+                        <option value="Robótica">Robótica</option>
+                        <option value="Contabilidad ">Contabilidad</option>
+                        <option value="Curso Súper Memoria">Curso Súper Memoria</option>
+                        <option value="Preparación para Exámenes PSA CUB">Preparación para Exámenes PSA CUB</option>
+                    </select>
+                </div>
+
+                <label>2. ¡Reserva tu clase ahora!</label>
+                {{-- Este enlace será modificado por el JavaScript --}}
+                <a id="btn-reservar-cortesia" href="#" target="_blank" class="btn-reservar">
+                    <i class="fab fa-whatsapp"></i> Reservar por WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  recursos   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
     <section id="recursos" class="recursos-section">
@@ -321,7 +375,7 @@
             
             <div class="recursos-grid">
                 <!-- Ejemplo 1: Un archivo PDF -->
-                <a href="https://formula.ite.com.bo" download class="recurso-card">
+                <a href="https://formula.ite.com.bo" target="_blank" download class="recurso-card">
                     <div class="recurso-icon pdf">
                         <i class="fa-solid fa-superscript fa-beat"></i>
                     </div>
@@ -338,10 +392,10 @@
                 <!-- Ejemplo 2: Una Aplicación -->
                 <a href="https://itesolve2.ite.com.bo" target="_blank" class="recurso-card">
                     <div class="recurso-icon app">
-                        <i class="fas fa-mobile-screen-button"></i>
+                        <i class="fas fa-divide fa-beat"></i>
                     </div>
                     <div class="recurso-info">
-                        <h3>División</h3>
+                        <h3>División 2.0</h3>
                         <p>Explica paso a paso la división</p>
                     </div>
                     <div class="recurso-descargar">
@@ -351,9 +405,9 @@
                 </a>
 
                 <!-- Ejemplo 3: Un Documento de Word -->
-                <a href="https://play.google.com/store/apps/details?id=com.codeway.homework&hl=es_US" download class="recurso-card">
+                <a href="https://play.google.com/store/apps/details?id=com.codeway.homework&hl=es_US0" target="_blank" download class="recurso-card">
                     <div class="recurso-icon doc">
-                        <i class="fa-solid fa-divide fa-beat"></i>
+                        <i class="fa-solid fa-mobile-screen-button fa-beat"></i>
                     </div>
                     <div class="recurso-info">
                         <h3>Socratic App</h3>
@@ -366,7 +420,7 @@
                 </a>
                 
                 <!-- Ejemplo 4: Un Archivo ZIP -->
-                <a href="https://calamar.ite.com.bo" download class="recurso-card">
+                <a href="https://calamar.ite.com.bo" target="_blank" download class="recurso-card">
                     <div class="recurso-icon zip">
                         <i class="fa-solid fa-trophy fa-beat"></i>
                     </div>
@@ -379,8 +433,92 @@
                         <i class="fas fa-download"></i>
                     </div>
                 </a>
+                <!-- Ejemplo 5: Un Archivo ZIP -->
+                <a href="https://propuestos.ite.com.bo" target="_blank" download class="recurso-card">
+                    <div class="recurso-icon zip">
+                        <i class="fa-solid fa-plus-minus fa-beat"></i>
+                    </div>
+                    <div class="recurso-info">
+                        <h3>Propuestos</h3>
+                        <p>Entrena tu Mente: Ejercicios Aleatorios, Resultados Reales</p>
+                    </div>
+                    <div class="recurso-descargar">
+                        <span>Generar</span>
+                        <i class="fas fa-download"></i>
+                    </div>
+                </a>
+                <!-- Ejemplo 6: Notas del primer trimestre -->
+                <a href="https://primert.ite.com.bo" target="_blank" download class="recurso-card">
+                    <div class="recurso-icon zip">
+                        <i class="fa-solid fa-plus-minus fa-beat"></i>
+                    </div>
+                    <div class="recurso-info">
+                        <h3>Notas 1</h3>
+                        <p>No Adivines, Calcula: Tu Éxito Escolar en un Click</p>
+                    </div>
+                    <div class="recurso-descargar">
+                        <span>Calcular</span>
+                        <i class="fas fa-download"></i>
+                    </div>
+                </a>
+                <!-- Ejemplo 6: Notas del primer trimestre -->
+                <a href="https://itesolve.ite.com.bo" target="_blank" download class="recurso-card">
+                    <div class="recurso-icon zip">
+                        <i class="fa-solid fa-divide fa-beat"></i>
+                    </div>
+                    <div class="recurso-info">
+                        <h3>Division 1.0</h3>
+                        <p>¡Divide sin Miedo! Guiado en Tiempo Real</p>
+                    </div>
+                    <div class="recurso-descargar">
+                        <span>Dividir</span>
+                        <i class="fas fa-download"></i>
+                    </div>
+                </a>
+                
+                <a href="https://es.educaplay.com" target="_blank" download class="recurso-card">
+                    <div class="recurso-icon zip">
+                        <i class="fa-solid fa-e fa-beat"></i>
+                    </div>
+                    <div class="recurso-info">
+                        <h3>App Educaplay</h3>
+                        <p>Transforma el Estudio en una Aventura Interactiva</p>
+                    </div>
+                    <div class="recurso-descargar">
+                        <span>Visitar</span>
+                        <i class="fas fa-download"></i>
+                    </div>
+                </a>
+                {{-- wordwall --}}
                 
 
+                <a href="https://wordwall.net/" target="_blank" download class="recurso-card">
+                    <div class="recurso-icon zip">
+                        <i class="fa-solid fa-w fa-beat"></i>
+                    </div>
+                    <div class="recurso-info">
+                        <h3>App Educaplay</h3>
+                        <p>Transforma el Estudio en una Aventura Interactiva</p>
+                    </div>
+                    <div class="recurso-descargar">
+                        <span>Visitar</span>
+                        <i class="fas fa-download"></i>
+                    </div>
+                </a>
+
+                <a href="https://itenauta.ite.com.bo/" target="_blank" download class="recurso-card">
+                    <div class="recurso-icon zip">
+                        <i class="fa-solid fa-brain fa-beat"></i>
+                    </div>
+                    <div class="recurso-info">
+                        <h3>Tabla con Anki</h3>
+                        <p>La App Definitiva para Aprender Tablas (¡y no Olvidarlas!)</p>
+                    </div>
+                    <div class="recurso-descargar">
+                        <span>Descargar</span>
+                        <i class="fas fa-download"></i>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -753,6 +891,7 @@
     <script src="{{ asset('homeprincipal/js/eventos.js') }}"></script>
     <script src="{{ asset('homeprincipal/js/contactos.js') }}"></script>
     <script src="{{ asset('homeprincipal/js/recursos.js') }}"></script>
+    <script src="{{ asset('homeprincipal/js/cortesia.js') }}"></script>
     <script async src="https://www.tiktok.com/embed.js"></script>
    
 </body>
