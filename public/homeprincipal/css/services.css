@@ -1,7 +1,8 @@
 /* Sección de Servicios */
 .services-section {
     padding: 80px 0;
-    background-color: var(--light-gray);
+    background-color: #f9f9f9; /* Un gris un poco más claro */
+    overflow-x: hidden; /* Evitar scroll horizontal por animaciones */
 }
 
 .section-header {
@@ -30,44 +31,48 @@
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Tarjetas un poco más anchas */
+    gap: 35px;
 }
 
 .service-card {
     background-color: var(--white);
-    border-radius: 8px;
-    padding: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px; /* Bordes más redondeados */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
     text-align: center;
-}
-
-.service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
-
-.service-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
+    overflow: hidden;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(38, 186, 165, 0.1);
-    border-radius: 50%;
-    padding: 15px;
+    flex-direction: column;
 }
 
-.service-icon img {
+/* --- Animación de Hover Mejorada --- */
+.service-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.service-card:hover .service-image {
+    transform: scale(1.05); /* Zoom sutil a la imagen */
+}
+
+.service-image {
     width: 100%;
-    height: auto;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.4s ease; /* Transición suave para el zoom */
+}
+
+.service-content {
+    padding: 25px 30px 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .service-card h3 {
     font-family: 'Montserrat-SemiBold', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--secondary-dark);
     margin-bottom: 15px;
 }
@@ -76,19 +81,51 @@
     font-family: 'Montserrat-Light', sans-serif;
     color: var(--secondary-color);
     font-size: 0.95rem;
-    line-height: 1.5;
+    line-height: 1.6;
+    flex-grow: 1;
+    margin-bottom: 25px;
 }
 
-/* Animación para los elementos al hacer scroll */
+.btn-consultar {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--white) !important;
+    padding: 12px 28px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: 'Montserrat-SemiBold', sans-serif;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: auto;
+    align-self: center;
+    border: none;
+}
+
+.btn-consultar:hover {
+    background-color: var(--secondary-dark);
+    color: var(--white) !important;
+    transform: scale(1.05); /* Efecto de crecimiento en el botón */
+}
+
+/* --- Estilos para la Animación de Scroll con JS --- */
 .fade-in-scroll {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    /* La animación ahora vendrá desde los lados, alternando */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-.fade-in-scroll.visible {
+/* Clases que añadirá el JS */
+.fade-in-scroll.is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
+}
+
+/* Posiciones iniciales para el efecto de entrada desde los lados */
+.fade-in-scroll.from-left {
+    transform: translateX(-50px);
+}
+.fade-in-scroll.from-right {
+    transform: translateX(50px);
 }
 
 /* Media Queries para la sección de servicios */

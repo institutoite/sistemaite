@@ -1,0 +1,145 @@
+/* ===== SECCIÓN DE REDES - EFECTO LÍQUIDO MEJORADO Y LIMPIO ===== */
+
+:root {
+    --tiktok-color: #ff0050;
+    --facebook-color: #1877f2;
+    --youtube-color: #ff0000;
+    --whatsapp-color: #25d366;
+    --instagram-color: #e4405f;
+    --website-color: #38bab9;
+}
+
+/* --- Contenedor Principal --- */
+.social-banner {
+    padding: 120px 0;
+    background: #0d0d0d;
+    color: #fff;
+    overflow: hidden;
+}
+
+.social-content {
+    text-align: center;
+}
+
+.social-content h2 {
+    font-size: 2.5rem;
+    font-family: 'Montserrat-Bold', sans-serif;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    margin-bottom: 15px;
+}
+
+.social-content .subtitle {
+    font-size: 1.2rem;
+    color: #b3b3b3;
+    margin-bottom: 80px;
+}
+
+/* --- El "Lienzo" para el Efecto Líquido --- */
+.social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    /* ¡Magia! Aplicamos el filtro a todo el contenedor */
+    filter: url(#liquid-gooey);
+}
+
+/* --- Contenedor Invisible del Icono --- */
+.social-link {
+    width: 150px;
+    height: 150px;
+    display: block;
+    text-decoration: none;
+    position: relative;
+    /* Estado inicial para la animación de entrada */
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.social-banner.is-visible .social-link {
+    animation: pop-in 0.6s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes pop-in {
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* --- Las "Gotas" de Metal Líquido --- */
+.social-link .social-icon,
+.social-link::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: #fff; /* El color que se "derrite" */
+    border-radius: 50%;
+}
+
+.social-link .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5; /* El icono está por encima de la gota que se mueve */
+    transition: transform 0.3s ease;
+}
+
+.social-link::after {
+    z-index: 1; /* La gota que se mueve está detrás */
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+/* --- EFECTO DE HOVER --- */
+.social-link:hover::after {
+    transform: translate(-50%, -125%); /* La gota se dispara hacia arriba */
+}
+
+.social-link i {
+    font-size: 36px;
+    color: #0d0d0d; /* El icono es oscuro para contrastar con el fondo blanco */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-link:hover i {
+    transform: scale(1.1);
+}
+
+/* Coloreamos el icono con el color de la marca en hover */
+.social-link.tiktok:hover i { color: var(--tiktok-color); }
+.social-link.facebook:hover i { color: var(--facebook-color); }
+.social-link.youtube:hover i { color: var(--youtube-color); }
+.social-link.whatsapp:hover i { color: var(--whatsapp-color); }
+.social-link.instagram:hover i { color: var(--instagram-color); }
+.social-link.website:hover i { color: var(--website-color); }
+
+/* --- TOOLTIP DINÁMICO --- */
+.social-link span {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-family: 'Montserrat-Bold', sans-serif;
+    color: #fff;
+    white-space: nowrap;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 20; /* Aseguramos que esté por encima de todo */
+}
+
+.social-link:hover span {
+    opacity: 1;
+    top: -40px;
+}
+
+/* Coloreamos el fondo del tooltip con el color de la marca */
+.social-link.tiktok span { background: var(--tiktok-color); }
+.social-link.facebook span { background: var(--facebook-color); }
+.social-link.youtube span { background: var(--youtube-color); }
+.social-link.whatsapp span { background: var(--whatsapp-color); }
+.social-link.instagram span { background: var(--instagram-color); }
+.social-link.website span { background: var(--website-color); }

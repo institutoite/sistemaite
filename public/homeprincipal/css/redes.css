@@ -1,0 +1,163 @@
+/* ===== SECCIÓN DE REDES - CONCEPTO: ORBES CÓSMICOS (VERSIÓN FINAL) ===== */
+
+:root {
+    --tiktok-color: #ff0050;
+    --facebook-color: #1877f2;
+    --youtube-color: #ff0000;
+    --whatsapp-color: #25d366;
+    --instagram-color: #e4405f;
+    --website-color: #38bab9;
+}
+
+/* --- Contenedor Principal --- */
+.social-banner {
+    padding: 120px 0;
+    background: #000000 url('https://www.transparenttextures.com/patterns/stardust.png');
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+}
+
+.social-content {
+    text-align: center;
+}
+
+.social-content h2, .social-content .subtitle {
+    opacity: 0;
+    animation: text-fade-in 1s forwards 0.5s;
+}
+.social-content .subtitle {
+    animation-delay: 0.7s;
+}
+@keyframes text-fade-in {
+    to { opacity: 1; }
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 80px;
+}
+
+/* --- El Orbe (Contenedor del Icono) --- */
+.social-link {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    opacity: 0;
+}
+.social-banner.is-visible .social-link {
+    animation: drop-in-bounce 1s forwards cubic-bezier(0.5, 1.5, 0.5, 1);
+}
+@keyframes drop-in-bounce {
+    0% { transform: translateY(-200px) scale(0.5); opacity: 0; }
+    70% { transform: translateY(10px) scale(1.1); }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* --- CAPA 1: El Núcleo del Orbe --- */
+.social-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    border: 2px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+    animation: breathe 5s ease-in-out infinite;
+}
+@keyframes breathe {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 10px #000; }
+    50% { transform: scale(1.05); box-shadow: 0 0 30px #000; }
+}
+
+.social-link i {
+    font-size: 40px;
+    transition: all 0.4s ease;
+}
+/* La luz inicial del color de la marca */
+.social-link.tiktok i { color: var(--tiktok-color); }
+.social-link.facebook i { color: var(--facebook-color); }
+.social-link.youtube i { color: var(--youtube-color); }
+.social-link.whatsapp i { color: var(--whatsapp-color); }
+.social-link.instagram i { color: var(--instagram-color); }
+.social-link.website i { color: var(--website-color); }
+
+/* --- CAPA 2: La Onda de Choque y las Partículas (Pseudo-elementos) --- */
+.social-icon::before, .social-icon::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    transition: all 0.6s cubic-bezier(0.2, 1, 0.2, 1);
+}
+.social-icon::before {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 0 0 transparent;
+}
+.social-icon::after {
+    width: 15px;
+    height: 15px;
+    background: transparent;
+    box-shadow: 100px 0 0 transparent;
+    transform-origin: -10px center;
+}
+
+/* --- EFECTO HOVER "POWER-UP" --- */
+.social-link:hover .social-icon {
+    animation-play-state: paused;
+    background: var(--brand-color);
+    border-color: var(--brand-color);
+}
+.social-link:hover i {
+    color: #fff;
+    transform: scale(1.2) rotate(10deg);
+}
+
+.social-link:hover .social-icon::before {
+    box-shadow: 0 0 20px 10px var(--brand-color), 0 0 40px 20px var(--brand-color-transparent);
+}
+.social-link:hover .social-icon::after {
+    background: var(--brand-color);
+    box-shadow: 45px 0 0 var(--brand-color);
+    animation: orbit 2s linear infinite;
+}
+@keyframes orbit {
+    to { transform: rotate(360deg); }
+}
+
+.social-link.tiktok:hover { --brand-color: var(--tiktok-color); --brand-color-transparent: #ff005055; }
+.social-link.facebook:hover { --brand-color: var(--facebook-color); --brand-color-transparent: #1877f255; }
+.social-link.youtube:hover { --brand-color: var(--youtube-color); --brand-color-transparent: #ff000055; }
+.social-link.whatsapp:hover { --brand-color: var(--whatsapp-color); --brand-color-transparent: #25d36655; }
+.social-link.instagram:hover { --brand-color: var(--instagram-color); --brand-color-transparent: #e4405f55; }
+.social-link.website:hover { --brand-color: var(--website-color); --brand-color-transparent: #38bab955; }
+
+/* --- TOOLTIP (el nombre) --- */
+.social-link span {
+    position: absolute;
+    bottom: -10px;
+    color: #fff;
+    font-family: 'Montserrat-Bold', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.4s ease;
+    pointer-events: none;
+}
+.social-link:hover span {
+    opacity: 1;
+    transform: translateY(0);
+    bottom: -40px;
+    text-shadow: 0 0 10px var(--brand-color);
+}
