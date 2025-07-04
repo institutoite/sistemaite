@@ -332,6 +332,7 @@
                 <div class="select-wrapper">
                     <select id="servicio-cortesia-select" name="servicio">
                         <option value="Apoyo Escolar">Apoyo Escolar</option>
+                        <option value="Preparación para Exámenes PSA CUB">Preparación para Exámenes PSA CUB</option>
                         <option value="Nivel Universitario">Apoyo Nivel Universitario</option>
                         <option value="Programación">Programación</option>
                         <option value="Robótica">Robótica</option>
@@ -348,10 +349,8 @@
                         <option value="Inteligencia Artificial">Inteligencia Artificial</option>
                         <option value="Curso de Geogebra">Curso de Geogebra</option>
                         <option value="Cubo Rubik">Cubo Rubik</option>
-                        <option value="Robótica">Robótica</option>
                         <option value="Contabilidad ">Contabilidad</option>
                         <option value="Curso Súper Memoria">Curso Súper Memoria</option>
-                        <option value="Preparación para Exámenes PSA CUB">Preparación para Exámenes PSA CUB</option>
                     </select>
                 </div>
 
