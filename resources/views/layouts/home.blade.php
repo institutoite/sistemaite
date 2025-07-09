@@ -409,7 +409,7 @@
                         <i class="fa-solid fa-mobile-screen-button fa-beat"></i>
                     </div>
                     <div class="recurso-info">
-                        <h3>Socratic App</h3>
+                        <h3>Nerd App</h3>
                         <p>Resuelve dudas al instante con IA</p>
                     </div>
                     <div class="recurso-descargar">
