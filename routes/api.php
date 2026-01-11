@@ -232,7 +232,7 @@ Route::get('colegios', function () {
         ->toJson();
 });
 
-Route::get('modalidades', function () {
+Route::middleware('throttle:300,1')->get('modalidades', function () {
     return datatables()->of(Modalidad::get())
         ->addColumn('btn', 'modalidad.action')
         ->rawColumns(['btn'])

@@ -45,7 +45,7 @@ class Kernel extends HttpKernel
         //     \Illuminate\Routing\Middleware\SubstituteBindings::class,
         // ],
         'api' => [
-            'throttle:api', // Usar el middleware predeterminado 'throttle:api'
+            'throttle:300,1', // Aumentar el límite global de peticiones API
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];

@@ -1,59 +1,6 @@
-use App\Models\User;
-use App\Models\Persona;
-use App\Models\DetalleCuenta;
+use App\Models\Product;
 
- $persona=Persona::join('estudiantes','estudiantes.persona_id','=','personas.id')
-                    ->select('personas.id','nombre','apellidop','apellidom','foto');
-    return datatables()->of($persona)
-        ->addColumn('btn','persona.action')
-        ->rawColumns(['btn','foto'])
-        ->toJson();
-use App\Models\User;
-use App\Models\Persona;
-use App\Models\DetalleCuenta;
+App\Models\Docente::find(1)
+use App\Models\Product;
 
- $persona=Persona::join('estudiantes','estudiantes.persona_id','=','personas.id')
-                    ->select('personas.id','nombre','apellidop','apellidom','foto');
-    return datatables()->of($persona)
-        ->addColumn('btn','persona.action')
-        ->rawColumns(['btn','foto'])
-        ->toJson();
-use App\Models\User;
-use App\Models\Persona;
-use App\Models\DetalleCuenta;
-
- $persona=Persona::join('estudiantes','estudiantes.persona_id','=','personas.id')
-                    ->select('personas.id','nombre','apellidop','apellidom','foto');
-use App\Models\User;
-use App\Models\Persona;
-use App\Models\DetalleCuenta;
-
- $persona=Persona::join('estudiantes','estudiantes.persona_id','=','personas.id')
-                    ->select('personas.id','nombre','apellidop','apellidom','foto');
-    
-
-$r=datatables()->of($persona)
-        ->addColumn('btn','persona.action')
-        ->rawColumns(['btn','foto'])
-        ->toJson();
-use App\Models\User;
-use App\Models\Persona;
-use App\Models\DetalleCuenta;
-
- $persona=Persona::join('estudiantes','estudiantes.persona_id','=','personas.id')
-                    ->select('personas.id','nombre','apellidop','apellidom','foto');
-use App\Models\User;
-use App\Models\Persona;
-
- $persona=Persona::join('estudiantes','estudiantes.persona_id','=','personas.id')
-                    ->select('personas.id','nombre','apellidop','apellidom','foto');
-use App\Models\Estudiante;
-use App\Models\Persona;
-
- $persona=Persona::join('estudiantes','estudiantes.persona_id','=','personas.id')
-                    ->select('personas.id','nombre','apellidop','apellidom','foto');
-use App\Models\Estudiante;
-use App\Models\Persona;
-
- $persona=Persona::join('estudiantes','estudiantes.persona_id','=','personas.id')
-                    ->select('personas.id','nombre','apellidop','apellidom','foto')->get();
+App\Models\Docente::find(1)

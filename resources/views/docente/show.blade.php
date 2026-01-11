@@ -101,15 +101,15 @@
                     </tr>
                     <tr>
                         <td>Pais</td>
-                        <td>{{$pais->nombrepais}} </td>
+                        <td>{{ $pais ? $pais->nombrepais : 'Sin país' }} </td>
                     </tr>
                     <tr>
                         <td>Ciudad</td>
-                        <td>{{$ciudad->ciudad}} </td>
+                        <td>{{ $ciudad ? $ciudad->ciudad : 'Sin ciudad' }} </td>
                     </tr>
                     <tr>
                         <td>Zona</td>
-                        <td>{{$zona->zona}} </td>
+                        <td>{{ $zona ? $zona->zona : 'Sin zona' }} </td>
                     </tr>
                     <tr>
                         <td>Dirección</td>
@@ -287,7 +287,15 @@
                     </tr>
                     <tr>
                         <td>Estado</td>
-                        <td>{{$docente->estado->estado}} </td>
+                        <td>
+                            @if(strtoupper($docente->estado->estado) == 'DESHABILITADO')
+                                <span style="color: #d9534f; font-size: 1.5em; font-weight: bold;">{{$docente->estado->estado}}</span>
+                            @elseif(strtoupper($docente->estado->estado) == 'HABILITADO')
+                                <span style="color: #28a745; font-size: 1.5em; font-weight: bold;">{{$docente->estado->estado}}</span>
+                            @else
+                                <span style="font-size: 1.5em; font-weight: bold;">{{$docente->estado->estado}}</span>
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <td>Actualizado</td>
@@ -331,7 +339,7 @@
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>    
     {{--  para observacion --}}
     <script src="{{asset('dist/js/starrr.js')}}"></script>
-    <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/observacionshow.js') }}"></script> --}}
     <script>
     

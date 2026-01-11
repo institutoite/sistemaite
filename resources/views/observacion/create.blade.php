@@ -37,7 +37,7 @@
     </section>
 @endsection
 @section('js')
-    <script src="https://cdn.ckeditor.com/4.19.0/standard-all/ckeditor.js"></script>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% CKEDITOR --}}
     <script>
         CKEDITOR.replace('observacion', {

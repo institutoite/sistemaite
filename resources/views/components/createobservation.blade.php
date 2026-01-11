@@ -18,8 +18,7 @@
                             <p class="error"id="error"></p>
                         </div>
                         
-                        <textarea cols="80" id="{{$id}}" name="{{$nombre}}" rows="10" data-sample-short>
-                        </textarea>
+                        <textarea cols="80" id="{{$id}}" name="observacion" rows="10" data-sample-short></textarea>
                         <input type="text" hidden class="observable_id" name="observable_id" id="observable_id" value="">
                         <input type="text" hidden class="observable_type" name="observable_type" id="observable_type" value="{{$observabletype}}">
 

@@ -169,32 +169,38 @@ class DocenteController extends Controller
      */
     public function show($id)
     {
-        $docente = Docente::findOrFail($id);
-        $persona=$docente->persona;
-        
-        $user=$persona->usuarios->first();
-        $pais=Pais::findOrFail($persona->pais_id);
-        $ciudad = Ciudad::findOrFail($persona->ciudad_id);
-        $zona = Zona::findOrFail($persona->zona_id);
-        $observacion = Observacion::where('observable_id', $persona->id)
-        ->where('observable_type', Persona::class)->get()->first();
-        //dd($user);
-        $observaciones=$persona->observaciones;
-        $recomendado=Persona::find($persona->persona_id);
-        $apoderados=$persona->apoderados;
+        try {
+            $docente = Docente::findOrFail($id);
+            $persona = $docente->persona;
+            if (!$persona) {
+                return response()->view('errors.custom', ['mensaje' => 'No se encontró la persona asociada al docente.'], 404);
+            }
+            $user = $persona->usuarios->first();
+            $pais = Pais::find($persona->pais_id);
+            $ciudad = Ciudad::find($persona->ciudad_id);
+            $zona = Zona::find($persona->zona_id);
+            $observacion = Observacion::where('observable_id', $persona->id)
+                ->where('observable_type', Persona::class)->get()->first();
+            $observaciones = $persona->observaciones;
+            $recomendado = Persona::find($persona->persona_id);
+            $apoderados = $persona->apoderados;
 
-        $calificaciones=Persona::join('calificacions','personas.id','calificacions.persona_id')
-            ->join('users','users.id','calificacions.user_id')
-            ->where('calificacions.persona_id',$persona->id)
-            ->select('calificacion','users.foto','calificacions.created_at')
-            ->get();
-        $calificado=$persona->calificaciones->where('user_id',Auth::user()->id)->count();
-        $promedio=round($persona->calificaciones->avg('calificacion'),1);
-        if($persona->calificaciones->where('user_id',Auth::user()->id)->first()!=null)
-            $micalificacion=$persona->calificaciones->where('user_id',Auth::user()->id)->first()->calificacion;
-        else 
-            $micalificacion=null;
-        return view('docente.show',compact('docente','persona','pais','ciudad','zona','observacion','recomendado','apoderados','calificado','promedio','calificaciones','micalificacion','user','observaciones'));
+            $calificaciones = Persona::join('calificacions', 'personas.id', 'calificacions.persona_id')
+                ->join('users', 'users.id', 'calificacions.user_id')
+                ->where('calificacions.persona_id', $persona->id)
+                ->select('calificacion', 'users.foto', 'calificacions.created_at')
+                ->get();
+            $calificado = $persona->calificaciones->where('user_id', Auth::user()->id)->count();
+            $promedio = round($persona->calificaciones->avg('calificacion'), 1);
+            if ($persona->calificaciones->where('user_id', Auth::user()->id)->first() != null)
+                $micalificacion = $persona->calificaciones->where('user_id', Auth::user()->id)->first()->calificacion;
+            else
+                $micalificacion = null;
+
+            return view('docente.show', compact('docente', 'persona', 'pais', 'ciudad', 'zona', 'observacion', 'recomendado', 'apoderados', 'calificado', 'promedio', 'calificaciones', 'micalificacion', 'user', 'observaciones'));
+        } catch (\Exception $e) {
+            return response()->view('errors.custom', ['mensaje' => 'Error al mostrar el docente: ' . $e->getMessage()], 404);
+        }
     }
 
     /**
@@ -270,11 +276,11 @@ class DocenteController extends Controller
     public function update(DocenteUpdateRequest $request,Docente $docente)
     {
         /*DESDE */
+        //dd($request->all());
         if(($request->nombrecorto=="")||($request->fecha_inicio=="")||
             ($request->dias_prueba=="")||($request->sueldo=="")||
             ($request->mododocente_id=="")||($request->estado_id=="")||($request->perfil==""))
         {
-            dd($request->all());
             return back()->withInput()->with(['mensaje'=>"Faltan llenar datos"]);
         }
 
@@ -328,7 +334,7 @@ class DocenteController extends Controller
         //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A  O B S E R V A C I O N   %%%%%%%%%%%%%%%%*/
         $observacion->usuarios()->attach(Auth::user()->id);
 
-        return redirect()->Route('docentes.show',$docente);
+        return redirect()->Route('docentes.show',$docente->id);
     }
 
     /**
