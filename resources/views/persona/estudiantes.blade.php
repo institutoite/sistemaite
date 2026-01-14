@@ -161,7 +161,6 @@
                                                 <td>
                                                     <div style="position:relative; display:inline-block;">
                                                         <img class="zoomify" src="{{ route('foto.show', ['filename' => (!empty($matriculacion->foto) ? (Str::startsWith($matriculacion->foto, 'estudiantes/') ? $matriculacion->foto : 'estudiantes/'.$matriculacion->foto) : 'estudiantes/sinfoto.jpg')]) }}" alt="{{$matriculacion->nombre.' '.$matriculacion->apellidop}}" width="50" style="@if(empty($matriculacion->foto)) border:2px solid red; @endif">
-                                                        <span style="position:absolute;top:0;left:0;width:100%;height:100%;color:red;font-size:2em;font-weight:bold;display:flex;align-items:center;justify-content:center;pointer-events:none;">&#10006;</span>
                                                     </div>
                                                 </td>
                                             <td>{{ $matriculacion->horaini }}</td>
