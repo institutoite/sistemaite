@@ -96,7 +96,6 @@
                                                 <td>
                                                         <div style="position:relative; display:inline-block;">
                                                             <img class="zoomify" src="{{ route('foto.show', ['filename' => $itenauta->foto ?: 'sinfoto.jpg']) }}" alt="{{$itenauta->nombre.' '.$itenauta->apellidop}}" width="50">
-                                                            <span style="position:absolute;top:0;left:0;width:100%;height:100%;color:red;font-size:2em;font-weight:bold;display:flex;align-items:center;justify-content:center;pointer-events:none;">&#10006;</span>
                                                         </div>
                                                 </td>
                                             <td>{{ $itenauta->hora_ini }}</td>
@@ -203,7 +202,6 @@
                                                 <td>
                                                     <div style="position:relative; display:inline-block;">
                                                         <img class="" src="{{ route('foto.show', ['filename' => $reinscripcion->foto ?: 'sinfoto.jpg']) }}" alt="{{$reinscripcion->nombre.' '.$reinscripcion->apellidop}}" width="50" style="@if(empty($reinscripcion->foto)) border:2px solid red; @endif">
-                                                        <span style="position:absolute;top:0;left:0;width:100%;height:100%;color:red;font-size:2em;font-weight:bold;display:flex;align-items:center;justify-content:center;pointer-events:none;">&#10006;</span>
                                                     </div>
                                                 </td>
                                             <td>{{ $reinscripcion->vuelvefecha }}</td>
@@ -234,7 +232,6 @@
                                             <td>
                                                 <div style="position:relative; display:inline-block;">
                                                     <img class="" src="{{ route('foto.show', ['filename' => $rematriculacion->foto ?: 'sinfoto.jpg']) }}" alt="{{$rematriculacion->nombre.' '.$rematriculacion->apellidop}}" width="50" style="@if(empty($rematriculacion->foto)) border:2px solid red; @endif">
-                                                    <span style="position:absolute;top:0;left:0;width:100%;height:100%;color:red;font-size:2em;font-weight:bold;display:flex;align-items:center;justify-content:center;pointer-events:none;">&#10006;</span>
                                                 </div>
                                             </td>
                                             <td> <img class="" src="{{ route('foto.show', ['filename' => $rematriculacion->foto ?: 'sinfoto.jpg']) }}" alt="{{$rematriculacion->nombre.' '.$rematriculacion->apellidop}}" width="50">  </td>

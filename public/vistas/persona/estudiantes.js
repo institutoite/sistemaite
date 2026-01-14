@@ -160,7 +160,7 @@
                                 filename = 'estudiantes/' + filename;
                             }
                             img += "<img class='materialboxed zoomify' src='/foto/" + filename + "' height=\"50\"/>";
-                            img += "<span style='position:absolute;top:0;left:0;width:100%;height:100%;color:red;font-size:2em;font-weight:bold;display:flex;align-items:center;justify-content:center;pointer-events:none;'>&#10006;</span></div>";
+                            img += "</div>";
                             return img;
                             },
                             "title": "FOTO",
