@@ -48,7 +48,7 @@
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">RECORDAR QUE VIENEN HOY</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">RECORDAR QUE VIENEN HOYx </h5>
                         <a href="{{ route('informar.por.estado.General') }}" class="btn btn-primary text-white">¡Informar estado! </a>
                         <a href="{{ route('crm.esperanuevo.view') }}" class="btn btn-primary text-white">{{ Auth::user()->name }}, ¡Hazlo ya! </a>
                     </div>
@@ -93,7 +93,12 @@
                                         <tr id="{{ $itenauta->id }}" class="{{ $clase }}">
                                             <td>{{ $itenauta->id }}</td>
                                             <td>{{ $itenauta->nombre.' '.$itenauta->apellidop.' '.$itenauta->apellidom }}</td>
-                                            <td> <img class="zoomify" src="{{URL::to('').Storage::url($itenauta->foto)}}" alt="{{$itenauta->nombre.' '.$itenauta->apellidop}}" width="50">  </td>
+                                                <td>
+                                                        <div style="position:relative; display:inline-block;">
+                                                            <img class="zoomify" src="{{ route('foto.show', ['filename' => $itenauta->foto ?: 'sinfoto.jpg']) }}" alt="{{$itenauta->nombre.' '.$itenauta->apellidop}}" width="50">
+                                                            <span style="position:absolute;top:0;left:0;width:100%;height:100%;color:red;font-size:2em;font-weight:bold;display:flex;align-items:center;justify-content:center;pointer-events:none;">&#10006;</span>
+                                                        </div>
+                                                </td>
                                             <td>{{ $itenauta->hora_ini }}</td>
                                             <td>{{ $itenauta->hora_fin }}</td>
                                             <td >{{ App\Models\Estado::findOrFail($itenauta->estado)->estado}}</td>
@@ -153,7 +158,12 @@
                                         <tr id="{{ $matriculacion->id }}" class="{{ $clase }}">
                                             <td>{{ $matriculacion->id }}</td>
                                             <td>{{ $matriculacion->nombre.' '.$matriculacion->apellidop.' '.$matriculacion->apellidom }}</td>
-                                            <td> <img class="zoomify" src="{{URL::to('').Storage::url($matriculacion->foto)}}" alt="{{$matriculacion->nombre.' '.$matriculacion->apellidop}}" width="50">  </td>
+                                                <td>
+                                                    <div style="position:relative; display:inline-block;">
+                                                        <img class="zoomify" src="{{ route('foto.show', ['filename' => (!empty($matriculacion->foto) ? (Str::startsWith($matriculacion->foto, 'estudiantes/') ? $matriculacion->foto : 'estudiantes/'.$matriculacion->foto) : 'estudiantes/sinfoto.jpg')]) }}" alt="{{$matriculacion->nombre.' '.$matriculacion->apellidop}}" width="50" style="@if(empty($matriculacion->foto)) border:2px solid red; @endif">
+                                                        <span style="position:absolute;top:0;left:0;width:100%;height:100%;color:red;font-size:2em;font-weight:bold;display:flex;align-items:center;justify-content:center;pointer-events:none;">&#10006;</span>
+                                                    </div>
+                                                </td>
                                             <td>{{ $matriculacion->horaini }}</td>
                                             <td>{{ $matriculacion->horafin }}</td>
                                             <td >{{ App\Models\Estado::findOrFail($matriculacion->estado)->estado}}</td>
@@ -191,7 +201,12 @@
                                             <td>{{ $reinscripcion->id }}</td>
                                             <td>{{ $reinscripcion->nombre.' '.$reinscripcion->apellidop.' '.$reinscripcion->apellidom }}</td>
                                             <td></td>
-                                            <td> <img class="" src="{{URL::to('/').Storage::url("$reinscripcion->foto")}}" alt="{{$reinscripcion->nombre.' '.$reinscripcion->apellidop}}" width="50">  </td>
+                                                <td>
+                                                    <div style="position:relative; display:inline-block;">
+                                                        <img class="" src="{{ route('foto.show', ['filename' => $reinscripcion->foto ?: 'sinfoto.jpg']) }}" alt="{{$reinscripcion->nombre.' '.$reinscripcion->apellidop}}" width="50" style="@if(empty($reinscripcion->foto)) border:2px solid red; @endif">
+                                                        <span style="position:absolute;top:0;left:0;width:100%;height:100%;color:red;font-size:2em;font-weight:bold;display:flex;align-items:center;justify-content:center;pointer-events:none;">&#10006;</span>
+                                                    </div>
+                                                </td>
                                             <td>{{ $reinscripcion->vuelvefecha }}</td>
                                         </tr>
                                     @endforeach
@@ -217,7 +232,13 @@
                                             <td>{{ $rematriculacion->id }}</td>
                                             <td>{{ $rematriculacion->nombre.' '.$rematriculacion->apellidop.' '.$rematriculacion->apellidom }}</td>
                                             <td></td>
-                                            <td> <img class="" src="{{URL::to('/').Storage::url("$rematriculacion->foto")}}" alt="{{$rematriculacion->nombre.' '.$rematriculacion->apellidop}}" width="50">  </td>
+                                            <td>
+                                                <div style="position:relative; display:inline-block;">
+                                                    <img class="" src="{{ route('foto.show', ['filename' => $rematriculacion->foto ?: 'sinfoto.jpg']) }}" alt="{{$rematriculacion->nombre.' '.$rematriculacion->apellidop}}" width="50" style="@if(empty($rematriculacion->foto)) border:2px solid red; @endif">
+                                                    <span style="position:absolute;top:0;left:0;width:100%;height:100%;color:red;font-size:2em;font-weight:bold;display:flex;align-items:center;justify-content:center;pointer-events:none;">&#10006;</span>
+                                                </div>
+                                            </td>
+                                            <td> <img class="" src="{{ route('foto.show', ['filename' => $rematriculacion->foto ?: 'sinfoto.jpg']) }}" alt="{{$rematriculacion->nombre.' '.$rematriculacion->apellidop}}" width="50">  </td>
                                             <td>{{ $rematriculacion->vuelvefecha }}</td>
                                         </tr>
                                     @endforeach

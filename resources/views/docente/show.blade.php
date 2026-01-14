@@ -55,7 +55,7 @@
     </div>
 
     <div class="card">
-        <div class="card-body">
+                                <img class="rounded img-thumbnail img-fluid border-primary border-5" src="{{ route('foto.show', ['filename' => $persona->foto]) }}" alt="{{$persona->nombre.' '.$persona->apellidop}}" width="100"> 
             <table class="table table-bordered table-striped"> 
                 <tr class="bg-primary">
                         <th>ATRIBUTO</th>
@@ -64,7 +64,7 @@
                 <tbody>
                     <tr>
                         <td>Codigo</td>
-                        <td>{{$persona->id}}</td>
+                                <img  src="{{ route('foto.show', ['filename' => $user->foto]) }}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5" width="100"> 
                     </tr>
                     <tr>
                         <td>Fotografía
@@ -142,7 +142,7 @@
                         <td>
                             @isset($user)
                                 {{$user->name}}
-                                <img  src="{{URL::to('/').Storage::url("$user->foto")}}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5" width="100"> 
+                                <img  src="{{ Storage::url($user->foto) }}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5" width="100"> 
                             @endisset
                         </td>
                     </tr>

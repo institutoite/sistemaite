@@ -75,12 +75,13 @@ use App\Http\Controllers\HomeScheduleController;
 use App\Http\Controllers\MetaController;
 use App\Http\Controllers\RequisitoController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\FotoController;
 use App\Http\Controllers\RolUsersController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\VentajaController;
 use App\Models\Estudiante;
 use Illuminate\Support\Facades\Auth;
-use UxWeb\SweetAlert\SweetAlert as SweetAlert;
+use UxWeb\SweetAlert\SweetAlert;
 
 
   Route::get('/', function () {
@@ -565,7 +566,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::delete('eliminar/gestion/{gestion}', [GestionController::class, 'destroy'])->name('eliminar.gestion');
 
 
-    /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  ESTADOS   %%%%%%%%%%%%%%%%%%%%%%%%%%*/
+    /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%  R O U T E S  ESTADOS   %%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::get('estados', [EstadoController::class, 'index'])->name('estado.index');
     Route::get('estado/create',[EstadoController::class,'create'])->name('estado.create');
 
@@ -1148,3 +1149,5 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('itenautas/beneficios',function(){
         return view("layouts.itenautas");
     })->name("itenautas.itecoins");
+
+    Route::get('foto/{filename}', [FotoController::class, 'show'])->where('filename', '.*')->name('foto.show');

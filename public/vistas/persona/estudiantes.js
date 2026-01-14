@@ -153,10 +153,15 @@
                             "name": "foto",
                             "data": "foto",
                             "render": function (data, type, full, meta) {
-                            if (data==null)
-                                return "<img class='materialboxed zoomify' src='../../../storage/estudiantes/sinfoto.jpg' height=\"50\"/>";
-                            else
-                                return "<img class='materialboxed zoomify' src='../../../storage/" + data + "' height=\"50\"/>";
+                            var img = "<div style='position:relative; display:inline-block;'>";
+                            var filename = data ? data : 'sinfoto.jpg';
+                            // Siempre anteponer 'estudiantes/' si no está
+                            if(filename.indexOf('estudiantes/') !== 0) {
+                                filename = 'estudiantes/' + filename;
+                            }
+                            img += "<img class='materialboxed zoomify' src='/foto/" + filename + "' height=\"50\"/>";
+                            img += "<span style='position:absolute;top:0;left:0;width:100%;height:100%;color:red;font-size:2em;font-weight:bold;display:flex;align-items:center;justify-content:center;pointer-events:none;'>&#10006;</span></div>";
+                            return img;
                             },
                             "title": "FOTO",
                             "orderable": false,
