@@ -262,16 +262,7 @@ class EstudianteController extends Controller
 
     public function listar(){
         $estudiantes=Persona::join('estudiantes','estudiantes.persona_id','=','personas.id')
-        ->select('personas.id','nombre','apellidop','apellidom','foto')->get();
-
-        // Normalizar el campo foto para DataTables
-        foreach ($estudiantes as $estudiante) {
-            if (empty($estudiante->foto)) {
-                $estudiante->foto = 'estudiantes/sinfoto.jpg';
-            } else if (!str_starts_with($estudiante->foto, 'estudiantes/')) {
-                $estudiante->foto = 'estudiantes/' . $estudiante->foto;
-            }
-        }
+        ->select('personas.id','nombre','apellidop','apellidom','foto');
 
         return datatables()->of($estudiantes)
             ->addColumn('btn', 'persona.action')
