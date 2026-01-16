@@ -155,10 +155,10 @@
                             "render": function (data, type, full, meta) {
                             var img = "<div style='position:relative; display:inline-block;'>";
                             var filename = data ? data : 'sinfoto.jpg';
-                            // Siempre anteponer 'estudiantes/' si no está
-                            if(filename.indexOf('estudiantes/') !== 0) {
-                                filename = 'estudiantes/' + filename;
-                            }
+                            // Si la foto viene con rutas relativas, extraer solo el nombre
+                            filename = filename.replace(/^.*[\\\/]/, '');
+                            // Siempre anteponer 'estudiantes/'
+                            filename = 'estudiantes/' + filename;
                             img += "<img class='materialboxed zoomify' src='/foto/" + filename + "' height=\"50\"/>";
                             img += "</div>";
                             return img;
