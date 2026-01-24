@@ -202,15 +202,24 @@ class InscripcioneController extends Controller
     public function show($inscripciones_id)
     {
         $inscripcione = Inscripcione::findOrFail($inscripciones_id);
-        $programacion = Programacion::join('materias', 'programacions.materia_id', '=', 'materias.id')
-        ->join('aulas', 'programacions.aula_id', '=', 'aulas.id')
-        ->join('docentes', 'programacions.docente_id', '=', 'docentes.id')
-        ->join('personas', 'personas.id', '=', 'docentes.persona_id')
-        ->select('programacions.fecha', 'hora_ini', 'hora_fin', 'horas_por_clase', 'personas.nombre', 'materias.materia', 'aulas.aula', 'programacions.habilitado', 'programacions.inscripcione_id')
-        ->orderBy('fecha', 'asc')
-        ->where('inscripcione_id', '=', $inscripciones_id)->get();
+        $programacion = Programacion::with([
+                'materia',
+                'aula',
+                'docente.persona',
+                'estado',
+                'clases.estado',
+                'clases.docente.persona',
+                'clases.aula',
+                'clases.materia',
+            ])
+            ->where('inscripcione_id', '=', $inscripciones_id)
+            ->orderBy('fecha', 'asc')
+            ->get();
         $user=$inscripcione->usuarios->first();
-        return view('inscripcione.show', compact('inscripcione','programacion','user'));
+        $pagos = $inscripcione->pagos()->orderBy('created_at', 'desc')->get();
+        $acuenta = $pagos->sum('monto');
+        $saldo = $inscripcione->costo - $acuenta;
+        return view('inscripcione.show', compact('inscripcione','programacion','user','pagos','acuenta','saldo'));
     }
 
     public function inscripcionMostrarAjax(Request $request){

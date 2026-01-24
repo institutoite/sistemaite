@@ -27,6 +27,9 @@
 <a class="btn-accion-tabla tooltipsC mr-1 enviarmensaje" title="Cobrar por mensaje">
     &nbsp;<i class="fab fa-whatsapp"></i>
 </a>
+<a class="btn-accion-tabla tooltipsC mr-1 enviarcredenciales" title="Enviar credenciales por WhatsApp">
+    <i class="fas fa-key"></i>
+</a>
 <a href="{{route('tus.inscripciones',App\Models\Persona::findOrFail($id)->estudiante)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ir a Inscripciones">
     &nbsp;<i class="fas fa-table"></i>
 </a>

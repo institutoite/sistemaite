@@ -43,6 +43,8 @@ class LoginController extends Controller
             return redirect('/');
             else if ($user->hasRole(['Estudiante']))
             return redirect('/');
+            else if ($user->hasRole(['Padre']))
+            return redirect()->route('padre.home');
     }
 
     protected $redirectTo = RouteServiceProvider::HOME;

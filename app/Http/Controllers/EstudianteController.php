@@ -9,6 +9,7 @@ use App\Models\Mensajeable;
 use App\Models\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
 use Carbon\Carbon;
@@ -24,6 +25,10 @@ class EstudianteController extends Controller
 
 
     public function home(){
+
+        if (Auth::check() && Auth::user()->hasRole(['Padre'])) {
+            return redirect()->route('padre.home');
+        }
 
         // $nuevos= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
         // ->join('interests','interests.id','interest_persona.interest_id')

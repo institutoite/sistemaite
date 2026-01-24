@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Telefono;
 use App\Models\Persona;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\GuardarApoderadoExistenteRequest;
 use App\Http\Requests\TelefonoUpdateRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\CredencialesPadreNotification;
 
 class TelefonoController extends Controller
 {
@@ -93,6 +100,40 @@ class TelefonoController extends Controller
             $apoderado->save();
             $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
 
+            $existingUser = User::where('persona_id', $apoderado->id)->first();
+            if (!$existingUser) {
+                $correoBase = Str::slug($apoderado->nombre.$apoderado->apellidop, '');
+                $correoGenerado = strtolower($correoBase.$apoderado->id)."@ite.com.bo";
+                $plainPassword = Str::random(10);
+
+                $user = new User();
+                $user->email = $correoGenerado;
+                $user->name = ucfirst(strtolower($apoderado->nombre))." ".ucfirst(strtolower($apoderado->apellidop));
+                $user->persona_id = $apoderado->id;
+                $user->password = Hash::make($plainPassword);
+                $user->foto = "estudiantes/sinperfil.png";
+                $user->save();
+
+                $padreRole = Role::firstOrCreate(['name' => 'Padre']);
+                $padrePermisos = Permission::whereIn('name', [
+                    'Listar Inscripciones',
+                    'Listar Clases',
+                    'Listar Clasescom',
+                    'Listar Pagos',
+                    'Listar Pagoscomputacion',
+                    'Listar Matriculaciones',
+                ])->get();
+                if ($padrePermisos->isNotEmpty()) {
+                    $padreRole->givePermissionTo($padrePermisos);
+                }
+                $user->assignRole($padreRole);
+
+                $notificables = User::role(['Admin','Secretaria'])->get();
+                if ($notificables->isNotEmpty()) {
+                    Notification::send($notificables, new CredencialesPadreNotification($user, $plainPassword, $persona, route('telefonos.persona', ['persona' => $persona])));
+                }
+            }
+
             return redirect()->Route('telefonos.persona', ['persona' => $persona]);
         
     }
@@ -105,6 +146,40 @@ class TelefonoController extends Controller
         $apoderado->telefono=$request->telefono;
         $apoderado->save();
         $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->pariente]);
+
+        $existingUser = User::where('persona_id', $apoderado->id)->first();
+        if (!$existingUser) {
+            $correoBase = Str::slug($apoderado->nombre.$apoderado->apellidop, '');
+            $correoGenerado = strtolower($correoBase.$apoderado->id)."@ite.com.bo";
+            $plainPassword = Str::random(10);
+
+            $user = new User();
+            $user->email = $correoGenerado;
+            $user->name = ucfirst(strtolower($apoderado->nombre))." ".ucfirst(strtolower($apoderado->apellidop));
+            $user->persona_id = $apoderado->id;
+            $user->password = Hash::make($plainPassword);
+            $user->foto = "estudiantes/sinperfil.png";
+            $user->save();
+
+            $padreRole = Role::firstOrCreate(['name' => 'Padre']);
+            $padrePermisos = Permission::whereIn('name', [
+                'Listar Inscripciones',
+                'Listar Clases',
+                'Listar Clasescom',
+                'Listar Pagos',
+                'Listar Pagoscomputacion',
+                'Listar Matriculaciones',
+            ])->get();
+            if ($padrePermisos->isNotEmpty()) {
+                $padreRole->givePermissionTo($padrePermisos);
+            }
+            $user->assignRole($padreRole);
+
+            $notificables = User::role(['Admin','Secretaria'])->get();
+            if ($notificables->isNotEmpty()) {
+                Notification::send($notificables, new CredencialesPadreNotification($user, $plainPassword, $persona, route('telefonos.persona', ['persona' => $persona])));
+            }
+        }
 
         return response()->json(['mensaje' =>'Registro guardardo correctamente']);
         

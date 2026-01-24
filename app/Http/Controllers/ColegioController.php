@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Colegio;
 use App\Models\Municipio;
+// ...existing code...
+
+
 use App\Models\Departamento;
 use App\Models\Provincia;
 use App\Models\Nivel;
@@ -11,13 +14,14 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Http\Requests\ColegioStoreRequest;
 use App\Http\Requests\ColegioUpdateRequest;
-
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-
-
 use Illuminate\Http\Request;
 
+    /**
+     * AJAX: Buscar colegios para Select2
+     */
+    
 /**
  * Class ColegioController
  * @package App\Http\Controllers
@@ -50,6 +54,32 @@ class ColegioController extends Controller
         return response()->json($colegios);
     }
 
+    public function ajaxSearch(Request $request)
+    {
+        $term = $request->input('term');
+        $query = Colegio::query();
+        if ($term) {
+            $query->where('nombre', 'like', "%$term%");
+        }
+        $colegios = $query->limit(30)->get();
+        $results = $colegios->map(function($c) {
+            return [
+                'id' => $c->id,
+                'text' => $c->nombre,
+                'nombre' => $c->nombre,
+                'departamento' => $c->departamento,
+                'provincia' => $c->provincia,
+                'municipio' => $c->municipio,
+                'distrito' => $c->distrito,
+                'direccion' => $c->direccion,
+                'director' => $c->director,
+                'dependencia' => $c->dependencia,
+            ];
+        });
+        return response()->json(['results' => $results]);
+    }
+
+    
     /**
      * Show the form for creating a new resource.
      *

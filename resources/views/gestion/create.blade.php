@@ -5,6 +5,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.1.1/dist/select2-bootstrap-5-theme.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.1.1/dist/select2-bootstrap-5-theme.rtl.min.css" />
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
+    <style>
+        .colegio-option { line-height: 1.2; background: #f7fafd; border-radius: 6px; padding: 2px 6px; }
+        .colegio-option .name { font-weight: 700; font-size: 1.05rem; color: #1a4d7a; }
+        .colegio-option .meta { font-size: 0.82rem; color: #2b7a78; opacity: 0.95; }
+        .colegio-option .sub { font-size: 0.78rem; color: #375F7A; opacity: 0.85; }
+        .colegio-option .badge-dep { font-size: 0.7rem; padding: 0.1rem 0.45rem; border-radius: 999px; background: #2b7a78; color: #fff; }
+        .select2-results__option--highlighted .colegio-option { background: #e0f7fa !important; color: #0d3c61; }
+        .colegio-option .label { font-weight: 600; color: #888; font-size: 0.75em; margin-right: 2px; }
+    </style>
 @stop
 
 @section('title', 'Motivos Create')
@@ -53,13 +62,69 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function(){
+            function formatColegio(state) {
+                if (!state.id) {
+                    return state.text;
+                }
+                // Datos desde AJAX
+                const nombre = state.nombre || state.text;
+                const departamento = state.departamento || '';
+                const provincia = state.provincia || '';
+                const municipio = state.municipio || '';
+                const distrito = state.distrito || '';
+                const direccion = state.direccion || '';
+                const director = state.director || '';
+                const dependencia = state.dependencia || '';
+
+                return $(
+                    `<div class="colegio-option">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="name">${nombre}</div>
+                            ${departamento ? `<span class="badge-dep">${departamento}</span>` : ''}
+                        </div>
+                        <div class="meta">
+                            <span class="label">Dep.</span> ${departamento} &nbsp;
+                            <span class="label">Prov.</span> ${provincia} &nbsp;
+                            <span class="label">Mun.</span> ${municipio} &nbsp;
+                            <span class="label">Dist.</span> ${distrito}
+                        </div>
+                        <div class="sub">
+                            <span class="label">Dir.</span> ${direccion} &nbsp;
+                            <span class="label">Director</span> ${director} &nbsp;
+                            <span class="label">Depen.</span> ${dependencia}
+                        </div>
+                    </div>`
+                );
+            }
+
             $("#colegio_id").select2({
-                //dropdownParent: $("#modal-editar"),
                 placeholder: "Seleccione un colegio",
                 theme: "bootstrap-5",
-                containerCssClass: "select2--large", // For Select2 v4.0
-                selectionCssClass: "select2--large", // For Select2 v4.1
+                containerCssClass: "select2--large",
+                selectionCssClass: "select2--large",
                 dropdownCssClass: "select2--large",
+                ajax: {
+                    url: "{{ route('colegios.ajax') }}",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            term: params.term
+                        };
+                    },
+                    processResults: function (data) {
+                        return data;
+                    },
+                    cache: true
+                },
+                templateResult: formatColegio,
+                templateSelection: function (state) {
+                    if (!state.id) {
+                        return state.text;
+                    }
+                    return state.nombre || state.text;
+                },
+                escapeMarkup: function (m) { return m; }
             });
             
             $("#grado_id").select2({

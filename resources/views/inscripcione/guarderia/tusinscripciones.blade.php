@@ -11,6 +11,20 @@
 
 
 @section('content')
+    @php
+        $esPadre = auth()->check() && auth()->user()->hasRole(['Padre']);
+    @endphp
+    <div class="card mb-3">
+        <div class="card-body d-flex flex-column flex-md-row align-items-md-center justify-content-between">
+            <div>
+                <h4 class="mb-1">Inscripciones de <strong>{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom }}</strong></h4>
+                <div class="text-muted">Consulta rápida del estado de inscripción y horarios.</div>
+            </div>
+            @if($esPadre)
+                <span class="badge badge-info mt-2 mt-md-0"><i class="fas fa-eye mr-1"></i>Vista solo lectura</span>
+            @endif
+        </div>
+    </div>
     <div class="container-fluid pt-4">
         <div class="row">
             <div class="col-sm-12">
@@ -19,14 +33,16 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Inscripciones VIGENTES de: ')}} <strong> {{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom }}</strong>
+                                <i class="fas fa-book-open mr-2"></i>{{ __('Inscripciones VIGENTES') }}
                             </span>
 
-                            <div class="float-right">
-                                <a href="{{ route('inscribir',$persona) }}" class="btn btn-secondary btn-sm float-right"  data-placement="left">
-                                {{ __('Inscribir') }} <i class="fa fa-plus-circle text-white"></i>
-                                </a>
-                            </div>
+                            @if(!$esPadre)
+                                <div class="float-right">
+                                    <a href="{{ route('inscribir',$persona) }}" class="btn btn-secondary btn-sm float-right"  data-placement="left">
+                                    {{ __('Inscribir') }} <i class="fa fa-plus-circle text-white"></i>
+                                    </a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="card-body">
@@ -49,31 +65,37 @@
                                             <td>{{ $inscripcion->acuenta }}</td>
                                             <td>{{ $inscripcion->costo }}</td>
                                             <th>
-                                                <a href="{{route('inscripciones.edit', $inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta inscripcione">
-                                                    <i class="fa fa-fw fa-edit text-primary"></i>
-                                                </a>
-                                                <a href="{{route('pagos.crear',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta inscripcione">
-                                                    <i class="fas fa-hand-holding-usd"></i>
-                                                </a>
+                                                @if(!$esPadre)
+                                                    <a href="{{route('inscripciones.edit', $inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta inscripcione">
+                                                        <i class="fa fa-fw fa-edit text-primary"></i>
+                                                    </a>
+                                                    <a href="{{route('pagos.crear',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta inscripcione">
+                                                        <i class="fas fa-hand-holding-usd"></i>
+                                                    </a>
 
-                                                <a href="{{route('inscripciones.show', $inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
-                                                    <i class="fa fa-fw fa-eye text-secondary mostrar"></i>
-                                                </a>
-                                                <a href="{{route('imprimir.programa',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
-                                                    <i class="fas fa-print"></i>
-                                                </a>
+                                                    <a href="{{route('inscripciones.show', $inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
+                                                        <i class="fa fa-fw fa-eye text-secondary mostrar"></i>
+                                                    </a>
+                                                    <a href="{{route('imprimir.programa',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
+                                                        <i class="fas fa-print"></i>
+                                                    </a>
 
-                                                <form action=""  class="d-inline formulario">
-                                                    @csrf
-                                                    @method("delete")
-                                                    <button name="btn-eliminar" id="" type="submit" class="btn eliminar" title="Eliminar esta inscripcione">
-                                                        <i class="fa fa-fw fa-trash text-danger"></i>   
-                                                    </button>
-                                                </form> 
-                                                
-                                                <a href="{{route('clases.marcado.general',$inscripcion->id)}}" class="" title="Ver esta inscripcione">
-                                                    <i class="far fa-calendar-check"></i>
-                                                </a>
+                                                    <form action=""  class="d-inline formulario">
+                                                        @csrf
+                                                        @method("delete")
+                                                        <button name="btn-eliminar" id="" type="submit" class="btn eliminar" title="Eliminar esta inscripcione">
+                                                            <i class="fa fa-fw fa-trash text-danger"></i>   
+                                                        </button>
+                                                    </form> 
+                                                    
+                                                    <a href="{{route('clases.marcado.general',$inscripcion->id)}}" class="" title="Ver esta inscripcione">
+                                                        <i class="far fa-calendar-check"></i>
+                                                    </a>
+                                                @else
+                                                    <a href="{{route('inscripciones.show', $inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
+                                                        <i class="fa fa-fw fa-eye text-secondary mostrar"></i>
+                                                    </a>
+                                                @endif
 
 
                                             </th>
@@ -117,21 +139,26 @@
                                             <td>{{ $inscripcion->acuenta }}</td>
                                             <td>{{ $inscripcion->costo }}</td>
                                             <th>
-                                                
-                                                <a href="{{route('pagos.crear',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta inscripcione">
-                                                    <i class="fas fa-hand-holding-usd"></i>
-                                                </a>
+                                                @if(!$esPadre)
+                                                    <a href="{{route('pagos.crear',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta inscripcione">
+                                                        <i class="fas fa-hand-holding-usd"></i>
+                                                    </a>
 
-                                                <a href="{{route('inscripciones.show', $inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
-                                                    <i class="fa fa-fw fa-eye text-secondary mostrar"></i>
-                                                </a>
-                                                <a href="{{route('imprimir.programa',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
-                                                    <i class="fas fa-print"></i>
-                                                </a>
+                                                    <a href="{{route('inscripciones.show', $inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
+                                                        <i class="fa fa-fw fa-eye text-secondary mostrar"></i>
+                                                    </a>
+                                                    <a href="{{route('imprimir.programa',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
+                                                        <i class="fas fa-print"></i>
+                                                    </a>
 
-                                                <a href="{{route('clases.marcado.general',$inscripcion->id)}}" class="" title="Ver esta inscripcione">
-                                                    <i class="far fa-calendar-check"></i>
-                                                </a>
+                                                    <a href="{{route('clases.marcado.general',$inscripcion->id)}}" class="" title="Ver esta inscripcione">
+                                                        <i class="far fa-calendar-check"></i>
+                                                    </a>
+                                                @else
+                                                    <a href="{{route('inscripciones.show', $inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
+                                                        <i class="fa fa-fw fa-eye text-secondary mostrar"></i>
+                                                    </a>
+                                                @endif
 
                                             </th>
                                         </tr>
@@ -177,21 +204,26 @@
                                             <td>{{ $inscripcion->acuenta }}</td>
                                             <td>{{ $inscripcion->costo }}</td>
                                             <th>
-                                                
-                                                <a href="{{route('pagos.crear',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta inscripcione">
-                                                    <i class="fas fa-hand-holding-usd"></i>
-                                                </a>
+                                                @if(!$esPadre)
+                                                    <a href="{{route('pagos.crear',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta inscripcione">
+                                                        <i class="fas fa-hand-holding-usd"></i>
+                                                    </a>
 
-                                                <a href="{{route('inscripciones.show', $inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
-                                                    <i class="fa fa-fw fa-eye text-secondary mostrar"></i>
-                                                </a>
-                                                <a href="{{route('imprimir.programa',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
-                                                    <i class="fas fa-print"></i>
-                                                </a>
+                                                    <a href="{{route('inscripciones.show', $inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
+                                                        <i class="fa fa-fw fa-eye text-secondary mostrar"></i>
+                                                    </a>
+                                                    <a href="{{route('imprimir.programa',$inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
+                                                        <i class="fas fa-print"></i>
+                                                    </a>
 
-                                                <a href="{{route('clases.marcado.general',$inscripcion->id)}}" class="" title="Ver esta inscripcione">
-                                                    <i class="far fa-calendar-check"></i>
-                                                </a>
+                                                    <a href="{{route('clases.marcado.general',$inscripcion->id)}}" class="" title="Ver esta inscripcione">
+                                                        <i class="far fa-calendar-check"></i>
+                                                    </a>
+                                                @else
+                                                    <a href="{{route('inscripciones.show', $inscripcion->id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripcione">
+                                                        <i class="fa fa-fw fa-eye text-secondary mostrar"></i>
+                                                    </a>
+                                                @endif
 
                                             </th>
                                         </tr>

@@ -1,5 +1,14 @@
 @inject('navbarItemHelper', 'JeroenNoten\LaravelAdminLte\Helpers\NavbarItemHelper')
 
+@php
+    $mostrarItem = true;
+    if (auth()->check() && auth()->user()->hasRole(['Padre']) && empty($item['padre'])) {
+        $mostrarItem = false;
+    }
+@endphp
+
+@if ($mostrarItem)
+
 @if ($navbarItemHelper->isSearch($item))
 
     {{-- Search form --}}
@@ -34,5 +43,7 @@
 
     {{-- Link --}}
     @include('adminlte::partials.navbar.menu-item-link')
+
+@endif
 
 @endif

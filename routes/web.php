@@ -60,6 +60,9 @@ use App\Http\Controllers\FeriadoController;
 use App\Http\Controllers\ConstanteController;
 use App\Http\Controllers\CiudadController;
 use App\Http\Controllers\ColegioController;
+// ...existing code...
+// Endpoint AJAX para búsqueda de colegios
+Route::get('ajax/colegios', [ColegioController::class, 'ajaxSearch'])->name('colegios.ajax');
 use App\Http\Controllers\MunicipioController;
 use App\Http\Controllers\PaisController;
 use App\Http\Controllers\ZonaController;
@@ -79,6 +82,7 @@ use App\Http\Controllers\FotoController;
 use App\Http\Controllers\RolUsersController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\VentajaController;
+use App\Http\Controllers\PadreController;
 use App\Models\Estudiante;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert;
@@ -103,6 +107,7 @@ Route::get('prueba',[ProspectoController::class,'listar'])->name('prueba');
 Route::middleware(['auth'])->group(function () {
     
 Route::get('/home',[EstudianteController::class,'home'])->name('home');
+    Route::get('padre/home',[PadreController::class,'home'])->name('padre.home');
     //  Route::get('/home',function(){
 
     //     
@@ -153,6 +158,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('persona/enviar/mensaje/cumpleaneros', [PersonaController::class,'enviarMensajeCumpleanero'])->name('persona.enviar.mensaje.cumpleaneros');
     Route::get('persona/enviar/mensaje/faltones', [PersonaController::class,'enviarMensajeFaltones'])->name('persona.enviar.mensaje.faltones');
     Route::get('persona/enviar/mensaje/faltonescom', [PersonaController::class,'enviarMensajeFaltonesComputacion'])->name('persona.enviar.mensaje.faltonescom');
+    Route::get('persona/credenciales/whatsapp/{persona}', [PersonaController::class,'enviarCredencialesWhatsapp'])->name('persona.enviar.credenciales.whatsapp');
     Route::get('persona/descargar/contacto/{persona}', [VcardController::class,'actualizarTarjeta'])->name('descargar.contacto');
     
     Route::post('desgargar/contactos', [VcardController::class,'crearContactos'])->name('crear.archivos.vcard');

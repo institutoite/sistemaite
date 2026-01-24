@@ -14,6 +14,7 @@
         "ckeditor/ckeditor": "^4.16",
         "dgvai/laravel-adminlte-components": "^2.1",
         "diglactic/laravel-breadcrumbs": "^8.0",
+        "doctrine/dbal": "^3.6",
         "felixkiss/uniquewith-validator": "^3.4",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",

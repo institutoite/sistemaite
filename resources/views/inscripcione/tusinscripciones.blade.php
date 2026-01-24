@@ -2,6 +2,16 @@
 @section('css')
     <link rel="stylesheet" href="{{asset('dist/css/bootstrap/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
+    <style>
+        .insc-card { border: 1px solid #e9ecef; border-radius: .65rem; padding: .85rem; background: #fff; }
+        .insc-card + .insc-card { margin-top: .75rem; }
+        .insc-card-title { font-size: 1rem; font-weight: 700; color: #1f2d3d; }
+        .insc-card-meta { font-size: .82rem; color: #6c757d; }
+        .insc-chip { font-size: .75rem; padding: .2rem .5rem; border-radius: 999px; }
+        .insc-card-actions a { font-size: .85rem; }
+        .soft-danger { color: rgba(220, 53, 69, 0.75) !important; }
+        .soft-danger-row { background-color: rgba(220, 53, 69, 0.12) !important; }
+    </style>
 @stop
 @section('title', 'Inscripciones')
 
@@ -10,24 +20,42 @@
 @section('plugins.Datatables',true)
 
 @section('content')
+@php
+    $esPadre = auth()->check() && auth()->user()->hasRole(['Padre']);
+@endphp
 {{ Breadcrumbs::render('inscripciones_estudiante', $persona->estudiante,$persona) }}
+
+    <div class="card mb-3">
+        <div class="card-body d-flex flex-column flex-md-row align-items-md-center justify-content-between">
+            <div>
+                <h4 class="mb-1">Inscripciones de <strong>{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom }}</strong></h4>
+                <div class="text-muted">Resumen de inscripciones vigentes y detalle de pagos.</div>
+            </div>
+            @if($esPadre)
+                <span class="badge badge-info mt-2 mt-md-0"><i class="fas fa-eye mr-1"></i>Vista solo lectura</span>
+            @endif
+        </div>
+    </div>
     <div class="card">
         <div class="card-header bg-primary" >
             <div style="display: flex; justify-content: space-between; align-items: center;">
 
                 <span id="card_title">
-                    {{ __('Inscripciones VIGENTES de: ')}} <strong> {{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom }}</strong>
+                    <i class="fas fa-book-open mr-2"></i>{{ __('Inscripciones VIGENTES') }}
                 </span>
 
-                <div class="float-right">
-                    <a href="{{ route('inscribir',$persona) }}" class="btn btn-secondary btn-sm float-right"  data-placement="left">
-                    {{ __('Inscribir') }} <i class="fa fa-plus-circle text-white"></i>
-                    </a>
-                </div>
+                @if(!$esPadre)
+                    <div class="float-right">
+                        <a href="{{ route('inscribir',$persona) }}" class="btn btn-secondary btn-sm float-right"  data-placement="left">
+                        {{ __('Inscribir') }} <i class="fa fa-plus-circle text-white"></i>
+                        </a>
+                    </div>
+                @endif
             </div>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
+            <div class="d-block d-md-none mb-3" id="inscripciones-cards"></div>
+            <div class="table-responsive d-none d-md-block">
                 <table id="inscripcionesVigentes" class="table table-striped table-hover">
                     <thead class="thead">
                         <tr>
@@ -54,15 +82,18 @@
                         {{ __('MATRICULACIOENS VIGENTES de: ')}} <strong> {{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom }}</strong>
                     </span>
 
-                    <div class="float-right">
-                        <a href="{{route('miscarreras.listar',$persona->computacion)}}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                        {{ __('Matricular') }} <i class="fa fa-plus-circle text-white"></i>
-                        </a>
-                    </div>
+                    @if(!$esPadre)
+                        <div class="float-right">
+                            <a href="{{route('miscarreras.listar',$persona->computacion)}}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                            {{ __('Matricular') }} <i class="fa fa-plus-circle text-white"></i>
+                            </a>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="card-body">
-                <div class="table-responsive">
+                <div class="d-block d-md-none mb-3" id="matriculaciones-cards"></div>
+                <div class="table-responsive d-none d-md-block">
                     <table id="matriculacionesVigentes" class="table table-striped table-hover">
                         <thead class="thead">
                             <tr>
@@ -315,6 +346,119 @@
         } ( jQuery ) );
 
         $(document).ready(function() {
+            function buildEstadoBadge(estado) {
+                let clase = 'badge-secondary';
+                let icono = "<i class='fas fa-info-circle mr-1'></i>";
+                switch (estado) {
+                    case "RESERVADO":
+                        clase = "badge-warning";
+                        icono = "<i class='fas fa-exclamation-triangle mr-1'></i>";
+                        break;
+                    case "CORRIENDO":
+                        clase = "badge-success";
+                        icono = "<i class='fas fa-running mr-1'></i>";
+                        break;
+                    case "CONGELADO":
+                        clase = "badge-secondary";
+                        icono = "<i class='fas fa-stop mr-1'></i>";
+                        break;
+                    case "FINALIZADO":
+                        clase = "badge-success";
+                        icono = "<i class='fas fa-hourglass-end mr-1'></i>";
+                        break;
+                    case "DESVIGENTE":
+                        clase = "badge-danger";
+                        icono = "<i class='fas fa-user-lock mr-1'></i>";
+                        break;
+                }
+                return `<span class="badge ${clase} insc-chip">${icono}${estado || 'SIN ESTADO'}</span>`;
+            }
+
+            function renderInscripcionesCards(rows) {
+                const $container = $('#inscripciones-cards');
+                if (!$container.length) return;
+                if (!rows || !rows.length) {
+                    $container.html('<div class="text-muted">Sin inscripciones vigentes.</div>');
+                    return;
+                }
+
+                const cards = rows.map(item => {
+                    const detalleUrl = `/inscripciones/${item.id}`;
+                    const imprimirUrl = `/imprimir/programa/${item.id}`;
+                    const estadoBadge = buildEstadoBadge(item.estado);
+                    const fechaPago = item.fecha_proximo_pago ? moment(item.fecha_proximo_pago).format('DD-MM-YYYY') : '-';
+                    return `
+                        <div class="insc-card">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="insc-card-title">${item.modalidad || 'Inscripción'} #${item.id}</div>
+                                ${estadoBadge}
+                            </div>
+                            <div class="mt-2">${item.objetivo || ''}</div>
+                            <div class="insc-card-meta mt-2">Próximo pago: ${fechaPago}</div>
+                            <div class="insc-card-meta" id="insc-saldo-${item.id}">Cargando pagos...</div>
+                            <div class="insc-card-actions mt-2">
+                                <a class="btn btn-outline-primary btn-sm" href="${detalleUrl}"><i class="fa fa-eye mr-1"></i>Ver detalle</a>
+                                <a class="btn btn-outline-secondary btn-sm" href="${imprimirUrl}"><i class="fas fa-print mr-1"></i>Imprimir</a>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                $container.html(cards);
+
+                rows.forEach(item => {
+                    $.ajax({
+                        url: "{{url('saldo/inscripcion')}}",
+                        data: { inscripcion_id: item.id },
+                        success: function(json) {
+                            $(`#insc-saldo-${item.id}`).html(`Acuenta: ${json.acuenta} • Costo: ${json.costo} • Saldo: ${json.saldo}`);
+                        }
+                    });
+                });
+            }
+
+            function renderMatriculacionesCards(rows) {
+                const $container = $('#matriculaciones-cards');
+                if (!$container.length) return;
+                if (!rows || !rows.length) {
+                    $container.html('<div class="text-muted">Sin matriculaciones vigentes.</div>');
+                    return;
+                }
+
+                const cards = rows.map(item => {
+                    const detalleUrl = `/matriculacion/${item.id}`;
+                    const imprimirUrl = `/imprimir/programacom/${item.id}`;
+                    const estadoBadge = buildEstadoBadge(item.estado);
+                    const fechaPago = item.fecha_proximo_pago ? moment(item.fecha_proximo_pago).format('DD-MM-YYYY') : '-';
+                    return `
+                        <div class="insc-card">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="insc-card-title">${item.asignatura || 'Matriculación'} #${item.id}</div>
+                                ${estadoBadge}
+                            </div>
+                            <div class="insc-card-meta mt-2">Próximo pago: ${fechaPago}</div>
+                            <div class="insc-card-meta" id="mat-saldo-${item.id}">Cargando pagos...</div>
+                            <div class="insc-card-meta">Nota: ${item.calificacion ?? '-'}</div>
+                            <div class="insc-card-actions mt-2">
+                                <a class="btn btn-outline-primary btn-sm" href="${detalleUrl}"><i class="fa fa-eye mr-1"></i>Ver detalle</a>
+                                <a class="btn btn-outline-secondary btn-sm" href="${imprimirUrl}"><i class="fas fa-print mr-1"></i>Imprimir</a>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                $container.html(cards);
+
+                rows.forEach(item => {
+                    $.ajax({
+                        url: "{{url('saldo/matriculacion')}}",
+                        data: { matriculacion_id: item.id },
+                        success: function(json) {
+                            $(`#mat-saldo-${item.id}`).html(`Acuenta: ${json.acuenta} • Costo: ${json.costo} • Saldo: ${json.saldo}`);
+                        }
+                    });
+                });
+            }
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE INSCRIPCIONES VIGENTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             let tabla=$('#inscripcionesVigentes').DataTable(
                 {
@@ -337,12 +481,12 @@
                             
                         }else{
                             $(row).addClass('text-success')
-                            $('td', row).eq(2).addClass('text-danger');
-                            $('td', row).eq(3).addClass('text-danger');
+                            $('td', row).eq(2).addClass('soft-danger');
+                            $('td', row).eq(3).addClass('soft-danger');
                         }
 
                         if (data['vigente']==0){
-                            $(row).addClass('table-danger text-white')
+                            $(row).addClass('soft-danger-row')
                         }
                         $clase="";
                         switch (data['estado']) {
@@ -405,6 +549,9 @@
                     "paging":   true,
                 }
             );
+            $('#inscripcionesVigentes').on('xhr.dt', function(e, settings, json) {
+                renderInscripcionesCards(json.data || []);
+            });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%% DATATABLE MATRICULACIONES VIGENTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/    
             var tablamatriculaciones=$('#matriculacionesVigentes').dataTable(
                 {
@@ -423,11 +570,11 @@
                             $(row).addClass('text-success')
                         }else{
                             $(row).addClass('text-success')
-                            $('td', row).eq(2).addClass('text-danger');
-                            $('td', row).eq(3).addClass('text-danger');
+                            $('td', row).eq(2).addClass('soft-danger');
+                            $('td', row).eq(3).addClass('soft-danger');
                         }
                         if (data['vigente']==0){
-                            $(row).addClass('table-danger text-white')
+                            $(row).addClass('soft-danger-row')
                         }
                          $clase="";
                         switch (data['estado']) {
@@ -491,6 +638,9 @@
                     "paging":true, 
                 }
             );
+            $('#matriculacionesVigentes').on('xhr.dt', function(e, settings, json) {
+                renderMatriculacionesCards(json.data || []);
+            });
             /*%%%%%%%%%%%%%%%%%%%%%%%%%%%  ELIMINAR INSCRIPCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
             $('table').on('click','.eliminarinscripcion',function (e) {
                 e.preventDefault(); 

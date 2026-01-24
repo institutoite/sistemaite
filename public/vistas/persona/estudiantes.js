@@ -91,6 +91,35 @@
                 $("#modal-listar-contactos-component").modal("show");
         });
 
+        $('table').on('click', '.enviarcredenciales', function(e) {
+            e.preventDefault();
+            let persona_id = $(this).closest('tr').attr('id');
+            if (!persona_id) {
+                return;
+            }
+            $.ajax({
+                url: "/persona/credenciales/whatsapp/" + persona_id,
+                type: "GET",
+                success: function(response) {
+                    if (response && response.whatsapp_url) {
+                        window.open(response.whatsapp_url, "_blank");
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "No se pudo generar el mensaje",
+                        });
+                    }
+                },
+                error: function(xhr) {
+                    const mensaje = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : "Error al generar credenciales";
+                    Swal.fire({
+                        icon: "error",
+                        title: mensaje,
+                    });
+                }
+            });
+        });
+
 
 
 
@@ -155,10 +184,10 @@
                             "render": function (data, type, full, meta) {
                             var img = "<div style='position:relative; display:inline-block;'>";
                             var filename = data ? data : 'sinfoto.jpg';
-                            // Si la foto viene con rutas relativas, extraer solo el nombre
-                            filename = filename.replace(/^.*[\\\/]/, '');
-                            // Siempre anteponer 'estudiantes/'
-                            filename = 'estudiantes/' + filename;
+                            // Siempre anteponer 'estudiantes/' si no está
+                            if(filename.indexOf('estudiantes/') !== 0) {
+                                filename = 'estudiantes/' + filename;
+                            }
                             img += "<img class='materialboxed zoomify' src='/foto/" + filename + "' height=\"50\"/>";
                             img += "</div>";
                             return img;

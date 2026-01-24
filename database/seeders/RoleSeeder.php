@@ -12,6 +12,7 @@ class RoleSeeder extends Seeder
         $secre = Role::create(['name' => 'Secretaria']);
         $teacher = Role::create(['name' => 'Docente']);
         $student= Role::create(['name' => 'Estudiante']);
+        $padre = Role::create(['name' => 'Padre']);
         
         Permission::create(['name' => 'Contactar Administrativos'])->syncRoles([$admin, $secre]);
         Permission::create(['name' => 'Listar Administrativos'])->syncRoles([$admin, $secre]);
@@ -65,11 +66,11 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Editar Ciudades'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Eliminar Ciudades'])->syncRoles([$admin,$secre]);
 
-        Permission::create(['name' => 'Listar Clasescom'])->syncRoles([$admin,$secre]);
+        Permission::create(['name' => 'Listar Clasescom'])->syncRoles([$admin,$secre,$padre]);
         Permission::create(['name' => 'Crear Clasescom'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Editar Clasescom'])->syncRoles([$admin,$secre]);
 
-        Permission::create(['name' => 'Listar Clases'])->syncRoles([$admin,$secre]);
+        Permission::create(['name' => 'Listar Clases'])->syncRoles([$admin,$secre,$padre]);
         Permission::create(['name' => 'Crear Clases'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Editar Clases'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Eliminar Clases'])->syncRoles([$admin,$secre]);
@@ -161,7 +162,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Editar Horarios'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Eliminar Horarios'])->syncRoles([$admin,$secre]);
 
-        Permission::create(['name' => 'Listar Inscripciones'])->syncRoles([$admin,$secre]);
+        Permission::create(['name' => 'Listar Inscripciones'])->syncRoles([$admin,$secre,$padre]);
         Permission::create(['name' => 'Crear Inscripciones'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Editar Inscripciones'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Eliminar Inscripciones'])->syncRoles([$admin]);
@@ -181,7 +182,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Editar Materias'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Eliminar Materias'])->syncRoles([$admin,$secre]);
 
-        Permission::create(['name' => 'Listar Matriculaciones'])->syncRoles([$admin,$secre]);
+        Permission::create(['name' => 'Listar Matriculaciones'])->syncRoles([$admin,$secre,$padre]);
         Permission::create(['name' => 'Crear Matriculaciones'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Editar Matriculaciones'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Eliminar Matriculaciones'])->syncRoles([$admin,$secre]);
@@ -232,11 +233,11 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Opciones Computacion'])->syncRoles([$admin]);
         Permission::create(['name' => 'Opciones Administrativos'])->syncRoles([$admin]);
 
-        Permission::create(['name' => 'Listar Pagoscomputacion'])->syncRoles([$admin,$secre]);
+        Permission::create(['name' => 'Listar Pagoscomputacion'])->syncRoles([$admin,$secre,$padre]);
         Permission::create(['name' => 'Crear Pagoscomputacion'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Editar Pagoscomputacion'])->syncRoles([$admin,$secre]);
 
-        Permission::create(['name' => 'Listar Pagos'])->syncRoles([$admin,$secre]);
+        Permission::create(['name' => 'Listar Pagos'])->syncRoles([$admin,$secre,$padre]);
         Permission::create(['name' => 'Crear Pagos'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Editar Pagos'])->syncRoles([$admin,$secre]);
         Permission::create(['name' => 'Eliminar Pagos'])->syncRoles([$admin,$secre]);

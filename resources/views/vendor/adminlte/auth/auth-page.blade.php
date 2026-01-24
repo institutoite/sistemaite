@@ -18,16 +18,17 @@
 @section('body')
     <div class="{{ $auth_type ?? 'login' }}-box">
 
-        {{-- Logo --}}
-        <div class="{{ $auth_type ?? 'login' }}-logo">
-            <a href="{{ $dashboard_url }}">
-                <img src="{{ asset(config('adminlte.logo_img')) }}" height="50">
-                {!! config('adminlte.logo', '<b>Admin</b>LTE') !!}
-            </a>
-        </div>
+        <div class="auth-white-container">
+            {{-- Logo --}}
+            <div class="{{ $auth_type ?? 'login' }}-logo">
+                <a href="{{ $dashboard_url }}">
+                    <img src="{{ asset(config('adminlte.logo_img')) }}" height="50">
+                    {!! config('adminlte.logo', '<b>Admin</b>LTE') !!}
+                </a>
+            </div>
 
-        {{-- Card Box --}}
-        <div class="card {{ config('adminlte.classes_auth_card', 'card-outline card-primary') }}">
+            {{-- Card Box --}}
+            <div class="card {{ config('adminlte.classes_auth_card', 'card-outline card-primary') }}">
 
             {{-- Card Header --}}
             @hasSection('auth_header')
@@ -50,6 +51,7 @@
                 </div>
             @endif
 
+            </div>
         </div>
 
     </div>

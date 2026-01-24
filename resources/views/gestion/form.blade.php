@@ -33,9 +33,7 @@
         <div class="form-floating mb-3 text-gray">
             <select class="form-control @error('colegio_id') is-invalid @enderror" style="width:100%" name="colegio_id" id="colegio_id">
                 <option value="">Seleccione Colegio</option>
-                @foreach ($colegios as $colegio)
-                <option value="{{$colegio->id}}">{{$colegio->nombre."-".$colegio->rue."-".$colegio->direccion."-".$colegio->nivel}}</option>
-                @endforeach
+                {{-- Las opciones se cargarán por AJAX --}}
             </select>
             {{-- <label for="colegio_id">Colegios</label> --}}
         </div>

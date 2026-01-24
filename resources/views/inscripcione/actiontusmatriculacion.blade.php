@@ -1,3 +1,8 @@
+@php
+    $esPadre = auth()->check() && auth()->user()->hasRole(['Padre']);
+@endphp
+
+@if(!$esPadre)
     <a href="{{route('matriculacion.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta matriculación">
         <i class="fa fa-fw fa-edit text-primary"></i>
     </a>
@@ -43,5 +48,10 @@
     <a href="" class="btn-accion-tabla tooltipsC mr-1 editarnotas" title="Calificar">
         <i class="fas fa-sort-numeric-up"></i>
     </a>
+@else
+    <a href="{{route('matriculacion.show', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripción">
+        <i class="fa fa-fw fa-eye text-secondary mostrar"></i>
+    </a>
+@endif
     
 

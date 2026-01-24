@@ -35447,7 +35447,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   background-color: #fff;
   border-top: 0;
   color: #666;
-  padding: 20px;
+  padding: 1px;
 }
 
 .login-card-body .input-group .form-control,

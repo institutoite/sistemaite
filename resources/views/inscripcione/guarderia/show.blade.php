@@ -4,16 +4,18 @@
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
 @stop
 
-@section('title', 'Inscripcion Configurar')
+@section('title', 'Detalle de Inscripción')
 @section('content')
     <section class="content container-fluid">
         <div class="card">
+        <div class="card-header bg-primary">
+            <div class="d-flex align-items-center justify-content-between">
+                <span class="card-title"><i class="fas fa-id-card mr-2"></i>Detalle de inscripción</span>
+                <span class="badge badge-light">ID #{{$inscripcione->id}}</span>
+            </div>
+        </div>
         <div class="card-body">
-            <table class="table table-bordered table-striped"> 
-                <tr class="bg-primary">
-                        <th>ATRIBUTO</th>
-                        <th>VALOR</th>
-                </tr>
+            <table class="table table-sm table-striped"> 
                 <tbody>
                     <tr>
                         <td>ID</td>
@@ -33,11 +35,23 @@
                     </tr>
                     <tr>
                         <td>VIGENTE</td>
-                        <td>{{($inscripcione->vigente==0) ? 'No':'Si'}}</td>
+                        <td>
+                            @if($inscripcione->vigente==1)
+                                <span class="badge badge-success">Vigente</span>
+                            @else
+                                <span class="badge badge-danger">No vigente</span>
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <td>CONDONADO</td>
-                        <td>{{($inscripcione->condonado==0) ? 'No':'Si'}}</td>
+                        <td>
+                            @if($inscripcione->condonado==1)
+                                <span class="badge badge-warning">Condonado</span>
+                            @else
+                                <span class="badge badge-secondary">No</span>
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <td>OBJETIVO</td>
@@ -73,7 +87,7 @@
                 <div class="card">
                     <div class="card-header bg-secondary">
                         <div class="float-left">
-                            <span class="card-title">Programacion de clases</span>
+                            <span class="card-title"><i class="far fa-calendar-alt mr-2"></i>Programación de clases</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('imprimir.programa',$inscripcione) }}">Imprimir</a>

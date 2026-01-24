@@ -10,8 +10,8 @@
         @isset($notifications)
             @foreach ($notifications as $notification)
                 <div class="dropdown-divider"></div>
-                <a href="{{$notification->data['url']}}" class="dropdown-item">
-                <i class="fas fa-envelope mr-2"></i> {{$notification->data['message']}}
+                <a href="{{ $notification->data['url'] ?? '#' }}" class="dropdown-item">
+                <i class="fas fa-envelope mr-2"></i> {{ $notification->data['message'] ?? ($notification->data['mensaje'] ?? 'Notificación') }}
                 <span class="float-right text-muted text-sm">{{$notification->created_at->diffforHumans()}}</span>
                 </a>
             @endforeach

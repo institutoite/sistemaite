@@ -1,4 +1,9 @@
-   <a href="{{route('inscripciones.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta inscripción">
+@php
+    $esPadre = auth()->check() && auth()->user()->hasRole(['Padre']);
+@endphp
+
+@if(!$esPadre)
+    <a href="{{route('inscripciones.edit', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Editar esta inscripción">
         <i class="fa fa-fw fa-edit text-primary"></i>
     </a>
     <a href="{{route('pagos.crear',$id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Realizar o ver los pagos de esta inscripción">
@@ -31,3 +36,8 @@
     <a href="" class="btn-accion-tabla tooltipsC mr-1 mostrarobservacionesinscripcion" title="Mostrar observaciones">
         <i class="fas fa-comments text-secondary"></i>
     </a>
+@else
+    <a href="{{route('inscripciones.show', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Ver esta inscripción">
+        <i class="fa fa-fw fa-eye text-secondary mostrar"></i>
+    </a>
+@endif

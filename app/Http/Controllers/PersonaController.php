@@ -44,6 +44,10 @@ use Yajra\DataTables\Contracts\DataTable as DataTable;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\CredencialesPadreNotification;
 class PersonaController extends Controller
 {
     public function __construct()
@@ -136,15 +140,21 @@ class PersonaController extends Controller
 
         $this->CrearContacto($persona->id);
         $persona->interests()->sync(array_keys($request->interests));
-        $user = new User();
-        $user->email =strtolower(Str::substr($persona->nombre, 1, 2).$persona->apellidop.$persona->id)."@ite.com.bo" ;
-        $user->name = ucfirst(strtolower($persona->nombre).$persona->id);
-        $user->persona_id = $persona->id;
-        // $user->password = Crypt::encryptString($user->name."*");
-        $user->password = Hash::make($user->name."*");
-        $user->foto = "estudiantes/sinperfil.png";
-        $user->save();
-        $user->assignRole('Estudiante');
+        if (in_array($request->papel, ['estudiante', 'computacion'], true)) {
+            $correoBase = Str::slug($persona->nombre.$persona->apellidop, '');
+            $correoGenerado = strtolower($correoBase.$persona->id)."@ite.com.bo";
+            $plainPassword = Str::random(10);
+
+            $user = new User();
+            $user->email = $correoGenerado;
+            $user->name = ucfirst(strtolower($persona->nombre))." ".ucfirst(strtolower($persona->apellidop));
+            $user->persona_id = $persona->id;
+            $user->password = Hash::make($plainPassword);
+            $user->foto = "estudiantes/sinperfil.png";
+            $user->save();
+
+            $user->assignRole('Estudiante');
+        }
         //**%%%%%%%%%%%%%%%%%%%%  B  I  T  A  C  O  R  A    P E R S O N A   %%%%%%%%%%%%%%%%*/
         $persona->usuarios()->attach(Auth::user()->id);
         //dd($request->papel);
@@ -291,13 +301,39 @@ class PersonaController extends Controller
 
         $this->CrearContacto($apoderado->id);
 
-        $user = new User();
-        $user->email =strtolower(Str::substr($apoderado->nombre, 1, 2).$apoderado->apellidop.$apoderado->id)."@ite.com.bo" ;
-        $user->name = ucfirst(strtolower($apoderado->nombre).$apoderado->id);
-        $user->persona_id = $apoderado->id;
-        $user->password = Hash::make($user->name."*");
-        $user->foto = "estudiantes/sinperfil.png";
-        $user->save();
+        $existingUser = User::where('persona_id', $apoderado->id)->first();
+        if (!$existingUser) {
+            $correoBase = Str::slug($apoderado->nombre.$apoderado->apellidop, '');
+            $correoGenerado = strtolower($correoBase.$apoderado->id)."@ite.com.bo";
+            $plainPassword = Str::random(10);
+
+            $user = new User();
+            $user->email = $correoGenerado;
+            $user->name = ucfirst(strtolower($apoderado->nombre))." ".ucfirst(strtolower($apoderado->apellidop));
+            $user->persona_id = $apoderado->id;
+            $user->password = Hash::make($plainPassword);
+            $user->foto = "estudiantes/sinperfil.png";
+            $user->save();
+
+            $padreRole = Role::firstOrCreate(['name' => 'Padre']);
+            $padrePermisos = Permission::whereIn('name', [
+                'Listar Inscripciones',
+                'Listar Clases',
+                'Listar Clasescom',
+                'Listar Pagos',
+                'Listar Pagoscomputacion',
+                'Listar Matriculaciones',
+            ])->get();
+            if ($padrePermisos->isNotEmpty()) {
+                $padreRole->givePermissionTo($padrePermisos);
+            }
+            $user->assignRole($padreRole);
+
+            $notificables = User::role(['Admin','Secretaria'])->get();
+            if ($notificables->isNotEmpty()) {
+                Notification::send($notificables, new CredencialesPadreNotification($user, $plainPassword, $persona, route('telefonos.persona', ['persona' => $persona])));
+            }
+        }
 
         $apoderado->usuarios()->attach(Auth::user()->id);
         $observacion = new Observacion();
@@ -1063,6 +1099,69 @@ class PersonaController extends Controller
         $mensaje= saludo()."%0A".nombre($request->persona_id,1)."%0A".strip_tags(Mensaje::findOrFail(4)->mensaje);
         $data=['persona'=>$persona,'mensaje'=>$mensaje];
         return response()->json($data);
+    }
+
+    public function enviarCredencialesWhatsapp(Persona $persona)
+    {
+        if (!Auth::user()->hasRole(['Admin','Secretaria'])) {
+            return response()->json(['message' => 'No autorizado'], 403);
+        }
+
+        $userEstudiante = User::where('persona_id', $persona->id)->first();
+        if (!$userEstudiante) {
+            return response()->json(['message' => 'No existe usuario para el estudiante'], 404);
+        }
+
+        $userPadre = null;
+        $personaPadre = null;
+        foreach ($persona->apoderados as $apoderado) {
+            $userPadre = User::where('persona_id', $apoderado->id)->first();
+            if ($userPadre) {
+                $personaPadre = $apoderado;
+                break;
+            }
+        }
+
+        if (!$userPadre || !$personaPadre) {
+            return response()->json(['message' => 'No existe usuario para el padre/tutor'], 404);
+        }
+
+        $telefonoBase = $personaPadre->telefono ?: $persona->telefono;
+        $telefono = preg_replace('/\D+/', '', (string) $telefonoBase);
+        if ($telefono === '') {
+            return response()->json(['message' => 'El estudiante o el padre no tienen teléfono registrado'], 422);
+        }
+
+        if (Str::startsWith($telefono, '591')) {
+            $telefonoWa = $telefono;
+        } elseif (strlen($telefono) === 8) {
+            $telefonoWa = '591'.$telefono;
+        } else {
+            $telefonoWa = $telefono;
+        }
+
+        $plainPasswordEstudiante = Str::random(10);
+        $userEstudiante->password = Hash::make($plainPasswordEstudiante);
+        $userEstudiante->save();
+
+        $plainPasswordPadre = Str::random(10);
+        $userPadre->password = Hash::make($plainPasswordPadre);
+        $userPadre->save();
+
+        $appUrl = URL::to('/');
+        $mensaje = "Hola, se generaron las credenciales para el Portal ITE.%0A%0A".
+            "ESTUDIANTE:%0A".
+            "Usuario: {$userEstudiante->email}%0A".
+            "Contraseña: {$plainPasswordEstudiante}%0A%0A".
+            "PADRE/TUTOR:%0A".
+            "Usuario: {$userPadre->email}%0A".
+            "Contraseña: {$plainPasswordPadre}%0A%0A".
+            "Acceso: {$appUrl}%0A%0A".
+            "Desde la app podrás ver asistencias, pagos, faltas, horarios de entrada/salida y más detalles.";
+
+        $whatsappUrl = "https://wa.me/{$telefonoWa}?text={$mensaje}";
+
+        return response()->json(['whatsapp_url' => $whatsappUrl]);
     }
     
     public function enviarMensajeCumpleanero(Request $request){

@@ -24,6 +24,35 @@
         }
         .login-box, .register-box, .password-reset-box {
             margin-top: 70px !important;
+            width: min(92vw, 520px);
+        }
+        .auth-white-container {
+            background: #ffffff;
+            padding: 24px 10px 15px 10px;
+            border-radius: 14px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+        .auth-white-container .card {
+            margin-bottom: 0;
+        }
+        .login-card-body {
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+        .login-box .input-group .form-control {
+            min-width: 0;
+            flex: 1 1 auto;
+        }
+        @media (max-width: 420px) {
+            .login-box .input-group .form-control {
+                font-size: 0.9rem;
+                padding-left: 0.6rem;
+                padding-right: 0.6rem;
+            }
+            .login-box .input-group-text {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
         }
     </style>
 @stop
@@ -100,18 +129,18 @@
 
     </form>
     <script>
-        // Frases motivadoras para el personal de administración
+        // Frases motivadoras para estudiantes
         const frasesMotivadoras = [
-            "¡Tu trabajo hace la diferencia cada día!",
-            "La excelencia administrativa comienza contigo.",
-            "Gracias por tu dedicación y compromiso.",
-            "El éxito de la institución es gracias a tu esfuerzo.",
-            "¡Sigue adelante, tu labor inspira a todos!",
-            "La organización y pasión son tu sello.",
-            "¡Juntos logramos grandes resultados!",
-            "Tu actitud positiva transforma el ambiente de trabajo.",
-            "Cada tarea que realizas suma al bienestar de todos.",
-            "¡Eres parte fundamental de nuestro equipo!"
+            "Cada día es una nueva oportunidad para aprender.",
+            "Tu esfuerzo de hoy es tu éxito de mañana.",
+            "Confía en tu proceso, vas avanzando.",
+            "La disciplina supera a la motivación.",
+            "Pequeños pasos también construyen grandes logros.",
+            "Si te equivocas, estás aprendiendo.",
+            "Tu futuro se construye con lo que haces hoy.",
+            "Nunca es tarde para mejorar.",
+            "Cree en ti: puedes más de lo que imaginas.",
+            "Estudia con propósito, sueña en grande."
         ];
 
         let fraseIndex = 0;
@@ -125,6 +154,15 @@
         document.addEventListener('DOMContentLoaded', function() {
             mostrarFrase();
             setInterval(mostrarFrase, 5000);
+            const loginForm = document.querySelector('form[action="{{ $login_url }}"]');
+            if (loginForm) {
+                loginForm.addEventListener('keydown', function(event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault();
+                        loginForm.submit();
+                    }
+                });
+            }
         });
 
         function togglePassword() {
@@ -145,20 +183,5 @@
 
 @section('auth_footer')
     {{-- Password reset link --}}
-    @if($password_reset_url)
-        <p class="my-0">
-            <a href="{{ $password_reset_url }}">
-                {{ __('adminlte::adminlte.i_forgot_my_password') }}
-            </a>
-        </p>
-    @endif
-
-    {{-- Register link --}}
-    @if($register_url)
-        <p class="my-0">
-            <a href="{{ $register_url }}">
-                {{ __('adminlte::adminlte.register_a_new_membership') }}
-            </a>
-        </p>
-    @endif
+   
 @stop

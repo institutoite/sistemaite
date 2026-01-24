@@ -228,8 +228,21 @@ return [
 
     'menu' => [
         [
+            'text'    => 'Panel de Padres',
+            'icon'    => 'fas fa-user-friends',
+            'url'     => 'padre/home',
+            'padre'   => true,
+        ],
+        [
+            'text'    => 'Mis Hijos',
+            'icon'    => 'fas fa-users',
+            'url'     => 'padre/home',
+            'padre'   => true,
+        ],
+        [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true, // Or "topnav => true" to place on the left.
+            'padre'        => false,
 
         ],
         [
@@ -281,6 +294,7 @@ return [
             'icon' => 'fas fa-user-graduate',
             'icon_color' => 'white',
             'classes'=>'text-xs text-white',
+            'padre' => false,
         ],
         [
             'text' => "Hoy",

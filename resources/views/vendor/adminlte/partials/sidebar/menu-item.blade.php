@@ -1,5 +1,14 @@
 @inject('sidebarItemHelper', 'JeroenNoten\LaravelAdminLte\Helpers\SidebarItemHelper')
 
+@php
+    $mostrarItem = true;
+    if (auth()->check() && auth()->user()->hasRole(['Padre']) && empty($item['padre'])) {
+        $mostrarItem = false;
+    }
+@endphp
+
+@if ($mostrarItem)
+
 @if ($sidebarItemHelper->isHeader($item))
 
     {{-- Header --}}
@@ -24,5 +33,7 @@
 
     {{-- Link --}}
     @include('adminlte::partials.sidebar.menu-item-link')
+
+@endif
 
 @endif

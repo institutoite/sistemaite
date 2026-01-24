@@ -46,7 +46,27 @@ class Colegio extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre','rue','director','direccion','telefono','celular','dependencia','nivel','turno','departamento_id','provincia_id','municipio_id','distrito','areageografica','coordenadax','coordenaday'];
+    protected $fillable = [
+        'nombre',
+        'rue',
+        'director',
+        'direccion',
+        'telefono',
+        'celular',
+        'dependencia',
+        'nivel',
+        'turno',
+        'departamento',
+        'provincia',
+        'municipio',
+        'departamento_id',
+        'provincia_id',
+        'municipio_id',
+        'distrito',
+        'areageografica',
+        'coordenadax',
+        'coordenaday'
+    ];
     
     public function usuarios()
     {
