@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Str;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -50,6 +51,17 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($exception instanceof \RuntimeException && Str::startsWith($exception->getMessage(), 'Falta el estado:')) {
+            $mensaje = $exception->getMessage();
+            $estado = null;
+            if (preg_match('/Falta el estado:\s*([^\.]+)/', $mensaje, $matches)) {
+                $estado = trim($matches[1]);
+            }
+            return response()->view('errors.missing-estado', [
+                'estado' => $estado,
+                'mensaje' => $mensaje,
+            ], 500);
+        }
         return parent::render($request, $exception);
     }
 }
