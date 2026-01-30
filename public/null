@@ -1,6 +1,9 @@
 use App\Models\Product;
 
-App\Models\Docente::find(1)
+App\Models\Inscripcine::find( 11018)
 use App\Models\Product;
 
-App\Models\Docente::find(1)
+App\Models\Inscripcione::find( 11018)
+use App\Models\Product;
+
+App\Models\Inscripcione::find( 11018)

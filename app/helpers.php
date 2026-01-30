@@ -14,8 +14,13 @@ use Carbon\Carbon;
         return $minutos*60+$carbon->second;
     }
     function estado($estado){
-            // dd($estado);
-            return Estado::where('estado',$estado)->get()->first()->id;
+        //dd($estado);
+        $estado = trim($estado);
+        $estadoModel = Estado::where('estado', $estado)->first();
+        if (!$estadoModel) {
+            throw new \RuntimeException("Falta el estado: {$estado}. Regístrelo en la tabla estados.");
+        }
+        return $estadoModel->id;
     }
     function saludo(){
         $hora=Carbon::now()->hour;
