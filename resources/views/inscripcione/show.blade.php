@@ -291,7 +291,7 @@
                             @foreach ($programacion as $programa)
                                 @php
                                     $claseActual = $programa->clases->sortByDesc('fecha')->first();
-                                    $estadoNombre = optional($claseActual->estado)->estado;
+                                    $estadoNombre = optional(optional($claseActual)->estado)->estado;
                                     $estadoLabel = $estadoNombre ?: 'PROGRAMADO';
                                     $estadoBadge = 'badge-secondary';
                                     $estadoRow = '';
