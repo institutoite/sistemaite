@@ -54,7 +54,7 @@
 
     .table{
     border:1px solid #C1C3D1;
-    position:absolute;
+    position:relative;
     }
     
     th {
@@ -146,38 +146,6 @@
 </head>
 <body>
     
-
-   
-{{-- <div class="divencabezado">
-       
-        {{-- <div class="cuadros" id="direccion">
-            <span class="titulos"> <strong> ENCUENTRANOS </strong> </span>
-            <span>Av. Tres pasos al Frente # 4710</span>
-            <span>Villa 1 Mayo Calle:16 Oeste #9</span>
-            <span>www.ite.com.bo</span>
-            <span>www.educabol.com</span>
-        </div>
-        <div class="cuadros" id="sucursales">
-            <span class="titulos"> <strong>NIVELES</strong> </span><br>
-            <span>Guardería</span>
-            <span>Inicial</span>
-            <span>Primaria</span>
-            <span>Secundaria</span> 
-            <span>Pre Universitario</span> 
-            <span>Unversitario</span> 
-            <span>Profesional</span> 
-        </div>
-        <div class="cuadros" id="contactos">
-            <span class="titulos"> <strong> CONTACTANOS </strong> </span>
-            <span>71039910  75553338 71324941</span><br>
-            <span>3-219050</span><br>
-            <span>info@ite.com.bo</span>
-            
-        </div>  
-</div>
-<hr> --}}
-
-    {{-- <div class="titulos inscripcion" ><h3> CODIGO:{{$persona->id}}<h3></div> --}}
 
 <br>    
 <br>    
@@ -293,6 +261,26 @@
                 este es el pie de pagina
             </tfoot>
         </table>
+    </div>
+    <hr style="height:0.2px;border-width:0;color:rgba(214, 213, 213, 0.1);background-color:gray">
+    <div style="font-size:10px; line-height:1.4; margin-top:6px;">
+        <strong>Normas y condiciones importantes</strong>
+        <ol style="margin:6px 0 0 16px; padding:0;">
+            <li><strong>No reembolsos:</strong> No se realizan devoluciones de dinero. En su lugar, las clases pueden congelarse o transferirse a otro estudiante, con autorización del padre, madre o tutor legal.</li>
+            <li><strong>Puntualidad:</strong> El estudiante debe llegar con 5 minutos de anticipación. Las clases iniciadas se consideran dictadas.</li>
+            <li><strong>Licencias:</strong> Se permiten hasta tres (3) licencias durante el programa. Solo el padre, madre o tutor legal registrado puede solicitarlas.</li>
+            <li><strong>Asistencia:</strong> Las inasistencias sin previo aviso implican la pérdida de la clase correspondiente.</li>
+            <li><strong>Convivencia y cuidado:</strong> El estudiante debe respetar las normas internas y hacer uso adecuado de los materiales e instalaciones.</li>
+            <li><strong>Aceptación de condiciones:</strong> La continuidad en el programa implica la aceptación de estas normas y condiciones.</li>
+        </ol>
+        <div style="margin-top:6px;">
+            <em>acepta estas condiciones.(padre, madre o tutor)</em>
+        </div>
+    </div>
+    <div style="margin-top:18px; font-size:10px; text-align:center;">
+        <div style="width:70%; margin:28px auto 0; border-top:1px solid #444; padding-top:6px;">
+            Firma del padre/madre/tutor legal
+        </div>
     </div>
 </body>
 </html>
