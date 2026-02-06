@@ -138,6 +138,46 @@
     td.text-right {
     text-align: right;
     }
+
+    .pdf-header {
+        width: 100%;
+        margin: 0 0 6px 0;
+        border-collapse: collapse;
+        border: 0;
+    }
+
+    .pdf-header td {
+        border: 0;
+        background: transparent;
+        padding: 0;
+        vertical-align: middle;
+    }
+
+    .pdf-header tr {
+        border: 0;
+    }
+
+    .pdf-header .logo {
+        width: 100px;
+        height: auto;
+    }
+
+    .pdf-header .contact {
+        text-align: right;
+        font-size: 8px;
+        line-height: 1.2;
+        color: #2b2b2b;
+        white-space: nowrap;
+    }
+
+    .pdf-header .contact .line strong {
+        font-weight: bold;
+    }
+
+    .pdf-header .divider {
+        margin-top: 4px;
+    }
+   
     </style>
     
     {{-- <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}"> --}}
@@ -145,12 +185,17 @@
     
 </head>
 <body>
-    
-
-<br>    
-<br>    
-<br>    
-<br>
+<table class="pdf-header">
+    <tr>
+        <td>
+            <img class="logo" src="{{ public_path('assetpublic/images/logo.png') }}" alt="ITE">
+        </td>
+        <td class="contact">
+            <div><strong>Telefonos:</strong> 71039910 - 75553338 - 71324941 | <strong>Web:</strong> ite.com.bo | <strong>Servicios:</strong> servicios.ite.com.bo</div>
+            <div><strong>TikTok:</strong> @ite_educabol | <strong>YouTube:</strong> @ite_educabol | <strong>Instagram:</strong> ite_educabol</div>
+        </td>
+    </tr>
+</table>
 <div class="float-right">
     CÓDIGO:{{$persona->id}}    
 </div>
