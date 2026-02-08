@@ -142,9 +142,60 @@
     td.text-right {
     text-align: right;
     }
+
+    .pdf-header {
+        width: 100%;
+        margin: 0 0 6px 0;
+        border-collapse: collapse;
+        border: 0;
+    }
+
+    .pdf-header td {
+        border: 0;
+        background: transparent;
+        padding: 0;
+        vertical-align: middle;
+    }
+
+    .pdf-header tr {
+        border: 0;
+    }
+
+    .pdf-header .logo {
+        width: 100px;
+        height: auto;
+    }
+
+    .pdf-header .contact {
+        text-align: right;
+        font-size: 8px;
+        line-height: 1.2;
+        color: #2b2b2b;
+        white-space: nowrap;
+    }
+
+    .pdf-header .contact .line strong {
+        font-weight: bold;
+    }
+
+    .pdf-header .divider {
+        margin-top: 4px;
+    }
     </style>
 </head>
 <body>
+
+<table class="pdf-header">
+    <tr>
+        <td>
+            <img class="logo" src="{{ public_path('assetpublic/images/logo.png') }}" alt="ITE">
+        </td>
+        <td class="contact">
+            <div><strong>Telefonos:</strong> 71039910 - 75553338 - 71324941 | <strong>Web:</strong> ite.com.bo | <strong>Servicios:</strong> servicios.ite.com.bo</div>
+            <div><strong>TikTok:</strong> @ite_educabol | <strong>YouTube:</strong> @ite_educabol | <strong>Instagram:</strong> ite_educabol</div>
+        </td>
+    </tr>
+</table>
     
 
 {{--    
@@ -236,7 +287,7 @@
 <hr style="height:0.2px;border-width:0;color:rgba(214, 213, 213, 0.1);background-color:gray">
 
     <div class="divtabla">
-        <table class="table-fill tabla1">
+        <table class="table-fill tabla1" style="position:relative;">
             <thead>
                 <tr>
                     <th>#</th>
@@ -286,6 +337,23 @@
                 este es el pie de pagina
             </tfoot>
         </table>
+    </div>
+    <hr style="height:0.2px;border-width:0;color:rgba(214, 213, 213, 0.1);background-color:gray">
+    <div style="font-size:10px; line-height:1.4; margin-top:6px;">
+        <strong>Normas y condiciones importantes</strong>
+        <ol style="margin:6px 0 0 16px; padding:0;">
+            <li><strong>No reembolsos:</strong> No se realizan devoluciones de dinero. En su lugar, las clases pueden congelarse o transferirse a otro estudiante, con autorización del padre, madre o tutor legal.</li>
+            <li><strong>Puntualidad:</strong> Se solicita llegar con 5 minutos de anticipación. Las clases iniciadas se consideran dictadas.</li>
+            <li><strong>Licencias:</strong> Se permiten hasta tres (3) licencias durante el programa. Solo el padre, madre o tutor legal registrado puede solicitarlas.</li>
+            <li><strong>Asistencia:</strong> Las inasistencias sin previo aviso implican la pérdida de la clase correspondiente.</li>
+            <li><strong>Convivencia y cuidado:</strong> El estudiante debe respetar las normas internas y hacer uso adecuado de los materiales e instalaciones.</li>
+            <li><strong>Aceptación de condiciones:</strong> La continuidad en el programa implica la aceptación de estas normas y condiciones.</li>
+        </ol>
+    </div>
+    <div style="margin-top:18px; font-size:10px; text-align:center;">
+        <div style="width:70%; margin:28px auto 0; border-top:1px solid #444; padding-top:6px;">
+            Firma del padre/madre/tutor legal
+        </div>
     </div>
 </body>
 </html>
