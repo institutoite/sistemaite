@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\DocenteTurno;
 
 
 class Docente extends Model
@@ -89,6 +90,11 @@ class Docente extends Model
     public function periodos()
     {
         return $this->morphMany(Periodable::class,'periodable');
+    }
+
+    public function turnos()
+    {
+        return $this->hasMany(DocenteTurno::class);
     }
    
 }

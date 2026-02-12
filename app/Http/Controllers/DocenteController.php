@@ -17,6 +17,8 @@ use App\Models\Programacion;
 use App\Models\Inscripcione;
 use App\Models\Carrera;
 use App\Models\Computacion;
+use App\Models\Dia;
+use App\Models\DocenteTurno;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -48,6 +50,7 @@ class DocenteController extends Controller
         $this->middleware('can:Listar Docentes')->only('index','show');
         $this->middleware('can:Crear Docentes')->only('create','store','GuardarConfigurarNiveles','configurar_niveles');
         $this->middleware('can:Editar Docentes')->only('edit','update');
+        $this->middleware('can:Editar Docentes')->only('turnos','guardarTurnos');
         $this->middleware('can:Eliminar Docentes')->only('destroy');
         $this->middleware('can:Consultas Docentes de clases')->only("misEstudiatescomActuales","misEstudiatesProgramados","misEstudiatescomProgramados","misEsperados","misEsperadoscom");
     }
@@ -365,6 +368,98 @@ class DocenteController extends Controller
         $docente->niveles()->sync(array_keys($request->niveles));
         return redirect()->route('docentes.gestionar.niveles',$docente->persona->id);
     } 
+
+    public function turnos($docente)
+    {
+        $docente = Docente::with('persona')->findOrFail($docente);
+        $dias = Dia::orderBy('id')->get();
+        $turnos = DocenteTurno::where('docente_id', $docente->id)
+            ->orderBy('dia_id')
+            ->orderBy('hora_inicio')
+            ->get()
+            ->groupBy('dia_id');
+
+        return view('docente.turnos', compact('docente', 'dias', 'turnos'));
+    }
+
+    public function guardarTurnos(Request $request, $docente)
+    {
+        $docente = Docente::findOrFail($docente);
+
+        $turnosInput = $request->input('turnos', []);
+        $normalizedTurnos = [];
+
+        foreach ($turnosInput as $diaId => $items) {
+            foreach ($items as $index => $item) {
+                $normalizedTurnos[$diaId][$index] = [
+                    'hora_inicio' => isset($item['hora_inicio']) && $item['hora_inicio'] !== '' ? $item['hora_inicio'] : null,
+                    'hora_fin' => isset($item['hora_fin']) && $item['hora_fin'] !== '' ? $item['hora_fin'] : null,
+                ];
+            }
+        }
+
+        $request->merge(['turnos' => $normalizedTurnos]);
+
+        $request->validate([
+            'turnos.*.*.hora_inicio' => 'nullable|date_format:H:i',
+            'turnos.*.*.hora_fin' => 'nullable|date_format:H:i',
+        ]);
+
+        $turnosInput = $normalizedTurnos;
+        $errors = [];
+
+        foreach ($turnosInput as $diaId => $items) {
+            foreach ($items as $index => $item) {
+                $inicio = $item['hora_inicio'] ?? null;
+                $fin = $item['hora_fin'] ?? null;
+
+                if (!$inicio && !$fin) {
+                    continue;
+                }
+
+                if (!$inicio || !$fin) {
+                    $errors["turnos.$diaId.$index"] = 'Debe completar hora inicio y fin.';
+                    continue;
+                }
+
+                if ($fin <= $inicio) {
+                    $errors["turnos.$diaId.$index"] = 'La hora fin debe ser mayor que hora inicio.';
+                }
+            }
+        }
+
+        if (!empty($errors)) {
+            return back()->withErrors($errors)->withInput();
+        }
+
+        $removeIds = $request->input('remove_turnos', []);
+        if (!empty($removeIds)) {
+            DocenteTurno::where('docente_id', $docente->id)
+                ->whereIn('id', $removeIds)
+                ->delete();
+        }
+
+        foreach ($turnosInput as $diaId => $items) {
+            foreach ($items as $item) {
+                $inicio = $item['hora_inicio'] ?? null;
+                $fin = $item['hora_fin'] ?? null;
+
+                if (!$inicio || !$fin || $fin <= $inicio) {
+                    continue;
+                }
+
+                DocenteTurno::create([
+                    'docente_id' => $docente->id,
+                    'dia_id' => (int) $diaId,
+                    'hora_inicio' => $inicio,
+                    'hora_fin' => $fin,
+                ]);
+            }
+        }
+
+        return redirect()->route('docentes.turnos', $docente->id)
+            ->with('mensaje', 'Turnos actualizados.');
+    }
 
    
     public function EstudiantesDeUnDocente($estudiante_id){

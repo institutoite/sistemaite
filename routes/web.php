@@ -389,6 +389,8 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('docentes','DocenteController@index')->name('docentes.index');
     Route::get('docentes/niveles/{persona}', 'DocenteController@configurar_niveles')->name('docentes.gestionar.niveles');
     Route::post('docentes/niveles/configurar/{docente}', 'DocenteController@GuardarConfigurarNiveles')->name('docentes.niveles.configurar');
+    Route::get('docentes/{docente}/turnos', [DocenteController::class, 'turnos'])->name('docentes.turnos');
+    Route::post('docentes/{docente}/turnos', [DocenteController::class, 'guardarTurnos'])->name('docentes.turnos.guardar');
     Route::get('opciones/docentes/{persona}',[OpcionController::class,'docentes'])->name('opcion.docentes');
     Route::get('docente/edit/{docente}',[DocenteController::class,'edit'])->name('docente.edit');
     //Route::get('misclases/{persona_id}',[DocenteController::class,'misclases'])->name('misestudiantes.actuales.view');

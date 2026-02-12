@@ -53,6 +53,7 @@ class DatabaseSeeder extends Seeder
             MotivoSeeder::class,
             ModalidadSeeder::class,
             DiaSeeder::class,
+            DocenteTurnoSeeder::class,
             MateriaSeeder::class,
             FeriadoSeeder::class,
             TemaSeeder::class,

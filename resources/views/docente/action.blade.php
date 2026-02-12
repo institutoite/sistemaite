@@ -7,6 +7,10 @@
     <i class="fa fa-fw fa-eye text-primary"></i>
 </a>
 
+<a href="{{route('docentes.turnos', $id)}}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Asignar turnos">
+    <i class="far fa-clock text-success"></i>
+</a>
+
 {{-- <a id="{{$persona_id}}" class='enviarmensaje'><i class='fab fa-whatsapp'></i></a> --}}
 
 
