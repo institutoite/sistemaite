@@ -15,9 +15,12 @@
             <div class="input-group mb-2" >
                 <select class="form-control mb-3" name="docente" id="docente">
                     @foreach ($docentes as $docente)
-                        <option value="{{$docente->id}}">{{$docente->persona->nombre.' '.$docente->persona->apellidop}}</option>
+                        <option value="{{$docente->id}}" data-mododocente="{{ $docente->mododocente->mododocente ?? '' }}">
+                            {{$docente->persona->nombre.' '.$docente->persona->apellidop}}
+                        </option>
                     @endforeach
                 </select>
+                <small id="mododocente-info" class="form-text text-muted"></small>
             </div>    
         </div>
         {{-- %%%%%%%%%%%%%%% CAMPO AULA --}}
@@ -32,12 +35,15 @@
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm" >
             <div class="input-group mb-2" >
-                <input type="time" class="form-control is-invalid hora" name="horainicio" id="horainicio">
-            </div>    
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm" >
-            <div class="input-group mb-2" >
-                <input type="time" class="form-control is-invalid hora" name="horafin" id="horafin"><i class="fas fa-arrow-circle-right text-success fa-2x"></i>
+                <select class="form-control is-invalid hora" name="horario" id="horario">
+                    <option value="">Seleccione horario</option>
+                    <option value="07:30|09:00">07:30 - 09:00</option>
+                    <option value="09:00|10:30">09:00 - 10:30</option>
+                    <option value="10:30|12:00">10:30 - 12:00</option>
+                    <option value="14:00|15:30">14:00 - 15:30</option>
+                    <option value="15:30|17:00">15:30 - 17:00</option>
+                    <option value="17:00|18:30">17:00 - 18:30</option>
+                </select>
             </div>    
         </div>
 

@@ -16,6 +16,7 @@ use App\Models\Matriculacion;
 use App\Models\Programacioncom;
 use App\Models\Estado;
 use App\Models\Estudiante;
+use App\Models\Docente;
 use App\Models\Tipomotivo;
 use App\Models\Motivo;
 use Illuminate\Support\Arr;
@@ -86,7 +87,13 @@ class MatriculacionController extends Controller
         
         $nivel=Nivel::findOrFail(6);
         $aulas = Aula::get();
-        $docentes = $nivel->docentes;
+        $docentes = Docente::with('persona', 'mododocente')
+            ->where('estado_id', estado('HABILITADO'))
+            ->whereHas('mododocente', function ($query) {
+                $query->whereRaw('UPPER(TRIM(mododocente)) LIKE ?', ['%COMPUTACION%']);
+            })
+            ->orderBy('nombrecorto')
+            ->get();
         $dias = Dia::get();
         $computacion=$matriculacion->computacion;
         $matriculacion->usuarios()->attach(Auth::user()->id);
@@ -125,7 +132,13 @@ class MatriculacionController extends Controller
         $matriculacion->save();
         $nivel=Nivel::findOrFail(6);
         $aulas = Aula::get();
-        $docentes = $nivel->docentes;
+        $docentes = Docente::with('persona', 'mododocente')
+            ->where('estado_id', estado('HABILITADO'))
+            ->whereHas('mododocente', function ($query) {
+                $query->whereRaw('UPPER(TRIM(mododocente)) LIKE ?', ['%COMPUTACION%']);
+            })
+            ->orderBy('nombrecorto')
+            ->get();
         $dias = Dia::get();
         $computacion=$matriculacion->computacion;
         $matriculacion->usuarios()->attach(Auth::user()->id);
@@ -195,7 +208,13 @@ class MatriculacionController extends Controller
         $matriculacion->save();
         $nivel=Nivel::findOrFail(6);
         $aulas = Aula::get();
-        $docentes = $nivel->docentes;
+        $docentes = Docente::with('persona', 'mododocente')
+            ->where('estado_id', estado('HABILITADO'))
+            ->whereHas('mododocente', function ($query) {
+                $query->whereRaw('UPPER(TRIM(mododocente)) LIKE ?', ['%COMPUTACION%']);
+            })
+            ->orderBy('nombrecorto')
+            ->get();
         $dias = Dia::get();
         $computacion=$matriculacion->computacion;
         $programacioncoms=$matriculacion->programacionescom;
@@ -267,6 +286,14 @@ class MatriculacionController extends Controller
     }
     public function guardarconfiguracion(Request $request){
         // dd($request->all());
+        $request->validate([
+            'dias.*' => 'required|integer',
+            'docentes.*' => 'required|integer',
+            'aulas.*' => 'required|integer',
+            'horainicio.*' => 'required|date_format:H:i',
+            'horafin.*' => 'required|date_format:H:i',
+        ]);
+
         $matriculacion=$request->matriculacion_id;
         $cuantas_sesiones=count($request->dias);
         $i=0;
@@ -287,6 +314,14 @@ class MatriculacionController extends Controller
 
       public function actualizarConfiguracion(ActualizarConfiguracionMatriculacionRequest $request)
     {
+                $request->validate([
+                        'dias.*' => 'required|integer',
+                        'docentes.*' => 'required|integer',
+                        'aulas.*' => 'required|integer',
+                        'horainicio.*' => 'required|date_format:H:i',
+                        'horafin.*' => 'required|date_format:H:i',
+                ]);
+
         $matriculacion_id=$request->matriculacion_id;
         $cuantas_sesiones = count($request->dias);
         $fecha=$request->fecha;

@@ -26,6 +26,7 @@ use App\Models\Feriado;
 use App\Http\Controllers\ComentarioController;
 use App\Models\Tipomotivo;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\DocenteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -196,6 +197,8 @@ Route::get('estados', function () {
         ->rawColumns(['btn'])
         ->toJson();
 });
+
+Route::get('docentes/turnos', [DocenteController::class, 'docentesPorTurno']);
 
 Route::get('departamentos', function () {
     return datatables()->of(Departamento::get())

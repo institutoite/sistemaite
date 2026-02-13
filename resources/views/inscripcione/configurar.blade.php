@@ -1,5 +1,33 @@
 @extends('adminlte::page')
 @section('css')
+    <style>
+        .sesion-row {
+            position: relative;
+            padding: 0.25rem 2.5rem 0.25rem 0.25rem;
+            border-radius: 4px;
+        }
+        .quitar-sesion {
+            position: absolute;
+            right: 0.5rem;
+            top: 0.5rem;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            padding: 0;
+            line-height: 22px;
+            text-align: center;
+            opacity: 0.4;
+            background-color: rgba(220, 53, 69, 0.1);
+            border: 1px solid rgba(220, 53, 69, 0.6);
+            color: #dc3545;
+        }
+        .quitar-sesion:hover {
+            opacity: 1;
+            background-color: rgba(220, 53, 69, 1);
+            border-color: rgba(220, 53, 69, 1);
+            color: #ffffff;
+        }
+    </style>
 @stop
 
 @section('title', 'Inscripcion Crear')
@@ -29,6 +57,13 @@
             </table>
             @endisset
         </div>
+        <div class="row mb-2">
+            <div class="col-12">
+                <div class="alert alert-info mb-0">
+                    Modalidad: {{ $inscripcion->modalidad->modalidad ?? 'SIN MODALIDAD' }} | Normalizada: {{ $modalidadNormalizada ?? '' }} | Sesiones: {{ $sesionesAuto ?? '' }}
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <a href="{{route('opcion.principal', $inscripcion->estudiante->id)}}" class="btn text-primary btn-outline-primary tooltipsC mr-2" title="No realizar ninguna modificacion en los clases">
@@ -40,13 +75,13 @@
                             Conservar clases sin modificar &nbsp;<i class="fas fa-bars"></i>
                         </a> --}}
                         <div class="card-tools" id="divfuera">
-                           
-                            <button id="botonplus" class="btn btn-primary d-none" type="button">Agregar Sesiones &nbsp;<i class="fas fa-plus-square"></i></button>
+                            <button id="botonplus" class="btn btn-primary" type="button">Agregar Sesion &nbsp;<i class="fas fa-plus-square"></i></button>
                         </div>
                     </div>
                    
+                    
+
                     <div class="card-body">
-                        {{-- @include('inscripcione.guarderia.config') --}}
                         @include('inscripcione.form_configurar')
                         @if ($tipo=='actualizando')
                             <form method="POST" id="formulario" action="{{ route('inscripcion.actualizar.configuracion')}}"  role="form" enctype="multipart/form-data">       
@@ -161,25 +196,24 @@
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
     
-    @if($nivel->nivel == 'GUARDERIA')
-        @php
-            
-        @endphp
-        <script>
-            $('#horainicio').val("<?php echo $datos['horainicio'] ?>");
-            $('#horafin').val("<?php echo $datos['horafin'] ?>");
-            $("#botonplus").removeClass('d-none');
-            $('#horainicio').addClass('is-valid');
-            $('#horafin').addClass('is-valid');
-            $('#horafin').focus();
-            </script>
-    @endif
+    @php
+        $modalidadTexto = strtoupper($inscripcion->modalidad->modalidad ?? '');
+        $modalidadNormalizada = preg_replace('/[^A-Z0-9]/', '', $modalidadTexto);
+        $sesionesAuto = 1;
+        if (\Illuminate\Support\Str::contains($modalidadNormalizada, '3VECES')) {
+            $sesionesAuto = 3;
+        } elseif (\Illuminate\Support\Str::contains($modalidadNormalizada, 'LUVI')) {
+            $sesionesAuto = 5;
+        }
+    @endphp
 
     <script>
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
-        })
+        if (window.bootstrap && bootstrap.Tooltip) {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        }
         $(document).ready(function() {
             
             // let cantida_sesiones=0;
@@ -210,32 +244,25 @@
             //     }    
             // });
 
-            let cantida_sesiones=0;
+            let cantida_sesiones = 0;
+            const sesionesAuto = {{ $sesionesAuto }};
 
-            $("#titulosesion").html("<h4>Tine: "+cantida_sesiones+" sesiones por semana para esta inscripción</h4>");
+            $("#titulosesion").html("<h4>Tine: " + sesionesAuto + " sesiones por semana para esta inscripción</h4>");
 
-            $('#horainicio').blur(function() {
-                if(($('#horainicio').val()=='')||(($('#horafin').val()<=$('#horainicio').val()))){
-                    $('#horainicio').addClass('is-invalid');
-                    $('#botonplus').hide();
-                }else{
-                    $(this).addClass('is-valid');
-                    $(this).removeClass('is-invalid');
-                }    
-            });
-            $('#horafin').blur(function() {
-                if((($('#horainicio').val()=='')&&($('#horafin').val()==''))||($('#horafin').val()<=$('#horainicio').val())){
-                    $('#horafin').addClass('is-invalid');
-                    $('#horainicio').addClass('is-invalid');
-                    $('#botonplus').hide();
-                }else{
-                    $(this).addClass('is-valid');
-                    $('#horainicio').blur();
-                    $("#botonplus").removeClass('d-none');
-                    $(this).removeClass('is-invalid');
-                    $('#botonplus').show(300);
-                    
-                }    
+            $('#horario').on('change', function() {
+                var valor = $(this).val();
+                if (!valor) {
+                    $('#horario').addClass('is-invalid');
+                    $('.sesion-horainicio').val('');
+                    $('.sesion-horafin').val('');
+                } else {
+                    $('#horario').removeClass('is-invalid').addClass('is-valid');
+                }
+                actualizarSesionesDesdeMaestro();
+                cargarDocentesPorTurno();
+                $('.sesion-dia').each(function() {
+                    cargarDocentesPorTurnoFila($(this).closest('.row'));
+                });
             });
             //console.log($('input[type=time]').size);
 
@@ -251,65 +278,291 @@
                 
             });
 
-            $("#botonplus").click(function(){
-                cantida_sesiones=cantida_sesiones+1;
-                $("#dia option[value="+ cantida_sesiones +"]").attr("selected",true);
-                if(cantida_sesiones>0){
-                    $("#boton-aceptar").removeClass('d-none');
-                    console.log(cantida_sesiones);
-                }
-                var $html="<div class='row'><div class='col-xs-12 col-sm-6 col-md-3 col-lg-2 input-group text-sm'>";
-                    $html+="<select class='form-control' name='dias[]' value="+$("#dia").val()+">"+ $("#dia").html() +"</option>  </select></div>";
-                    $html+="<div class='col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm'>"
-                    $html+="<select class='form-control' name='materias[]' value="+$("#materia").val()+">"+ $("#materia").html() +"</select></div>";
-                    $html+="<div class='col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm'>"
-                    $html+="<select class='form-control' name='docentes[]' value="+$("#docente").val()+">"+ $("#docente").html() +"</select></div>";
-                    $html+="<div class='col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm'>"
-                    $html+="<select class='form-control' name='aulas[]' value="+$("#aula").val()+">"+ $("#aula").html() +"</select></div>";
-                    $html+="<div class='col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm'>"
-                    $html+="<input type='time' class='form-control' name='horainicio[]' value="+ $('#horainicio').val() +"></div>";
-                    
-                    $html+="<div class='col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm'>"
-                    $html+="<input type='time' class='form-control' name='horafin[]' value="+ $('#horafin').val() +"></div>";
-                    
-                    $("#sesiones").append("<div class='alert alert-success alert-dismissible fade show' role='alert'> "+$html+"<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span> </button></div>");
+            function refrescarColoresSesiones() {
+                $("#sesiones .sesion-row").each(function(index) {
+                    var color = index % 2 === 0 ? 'rgb(38,186,165)' : 'rgb(55,95,122)';
+                    $(this).css('background-color', color);
+                });
+            }
 
-                    
-                    
-                    $("#sesiones").animate({
-                        opacity: '1',
-                        width: '100%',
-                    }, 1500);
-                    var ultimaAlerta=$("div .alert").last().animate({
-                        
+            function crearSesion() {
+                var $html = "<div class='row mb-2 sesion-row'>";
+                $html += "<div class='col-xs-12 col-sm-6 col-md-3 col-lg-2 input-group text-sm'>";
+                $html += "<select class='form-control sesion-dia' name='dias[]'>" + $("#dia").html() + "</select></div>";
+                $html += "<div class='col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm'>";
+                $html += "<select class='form-control sesion-materia' name='materias[]'>" + $("#materia").html() + "</select></div>";
+                $html += "<div class='col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm'>";
+                $html += "<select class='form-control sesion-docente' name='docentes[]' data-bs-toggle='tooltip' title='Seleccione docente'>" + $("#docente").html() + "</select></div>";
+                $html += "<div class='col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm'>";
+                $html += "<select class='form-control sesion-aula' name='aulas[]'>" + $("#aula").html() + "</select></div>";
+                $html += "<div class='col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm'>";
+                $html += "<input type='time' class='form-control sesion-horainicio' name='horainicio[]'></div>";
+                $html += "<div class='col-xs-12 col-sm-6 col-md-4 col-lg-2 input-group text-sm'>";
+                $html += "<input type='time' class='form-control sesion-horafin' name='horafin[]'></div>";
+                $html += "<button type='button' class='btn btn-sm quitar-sesion' title='Eliminar sesion'>x</button>";
+                $html += "</div>";
+
+                $("#sesiones").append($html);
+                refrescarColoresSesiones();
+                actualizarSesionesDesdeMaestro();
+                syncDiasDesdeMaestro();
+            }
+
+            function actualizarSesionesDesdeMaestro() {
+                $(".sesion-materia").val($("#materia").val());
+                $(".sesion-aula").val($("#aula").val());
+                var valor = $("#horario").val();
+                if (valor) {
+                    var partes = valor.split('|');
+                    $(".sesion-horainicio").val(partes[0]);
+                    $(".sesion-horafin").val(partes[1]);
+                } else {
+                    $(".sesion-horainicio").val('');
+                    $(".sesion-horafin").val('');
+                }
+            }
+
+            function syncDiasDesdeMaestro() {
+                if (sesionesAuto === 1) {
+                    $(".sesion-dia").val($("#dia").val());
+                    cargarDocentesPorTurno();
+                    $('.sesion-dia').each(function() {
+                        cargarDocentesPorTurnoFila($(this).closest('.row'));
                     });
+                    return;
+                }
 
-                    $("#titulosesion").html("<h4>Tine: "+cantida_sesiones+" sesiones por semana para esta inscripción</h4>");
-                     if(cantida_sesiones==0){
+                setDiasPorModalidad();
+                cargarDocentesPorTurno();
+                $('.sesion-dia').each(function() {
+                    cargarDocentesPorTurnoFila($(this).closest('.row'));
+                });
+            }
+
+            function setDiasPorModalidad() {
+                if (sesionesAuto === 3) {
+                    var usarMarJueSab = $('#usarMarJueSab').is(':checked');
+                    var dias = usarMarJueSab ? [2, 4, 6] : [1, 3, 5];
+                    $(".sesion-dia").each(function(index) {
+                        $(this).val(dias[index] || dias[0]);
+                    });
+                }
+
+                if (sesionesAuto === 5) {
+                    var dias = [1, 2, 3, 4, 5];
+                    $(".sesion-dia").each(function(index) {
+                        $(this).val(dias[index] || dias[0]);
+                    });
+                }
+            }
+
+            function obtenerDiasSesion() {
+                var dias = [];
+                $(".sesion-dia").each(function() {
+                    var valor = $(this).val();
+                    if (valor) {
+                        dias.push(valor);
+                    }
+                });
+
+                return Array.from(new Set(dias));
+            }
+
+            function actualizarSelectDocentes(docentes) {
+                var opciones = '';
+                if (docentes.length === 0) {
+                    opciones = "<option value=''>Sin docentes disponibles</option>";
+                } else {
+                    opciones = "<option value=''>Seleccione docente</option>";
+                    docentes.forEach(function(docente) {
+                        opciones += "<option value='" + docente.id + "'>" + docente.nombre + " (" + docente.cantidad + ")</option>";
+                    });
+                }
+
+                var docenteActual = $("#docente").val();
+                $("#docente").html(opciones);
+                if (docenteActual) {
+                    $("#docente").val(docenteActual);
+                }
+                actualizarTooltipSelect($("#docente"));
+            }
+
+            function actualizarSelectDocentesFila($select, docentes) {
+                var opciones = '';
+                if (docentes.length === 0) {
+                    opciones = "<option value=''>Sin docentes disponibles</option>";
+                } else {
+                    opciones = "<option value=''>Seleccione docente</option>";
+                    docentes.forEach(function(docente) {
+                        opciones += "<option value='" + docente.id + "'>" + docente.nombre + " (" + docente.cantidad + ")</option>";
+                    });
+                }
+
+                var actual = $select.val();
+                $select.html(opciones);
+                var docenteMaestro = $("#docente").val();
+                if (docenteMaestro && $select.find("option[value='" + docenteMaestro + "']").length) {
+                    $select.val(docenteMaestro);
+                } else if (actual) {
+                    $select.val(actual);
+                }
+                actualizarTooltipSelect($select);
+            }
+
+            function actualizarTooltipSelect($select) {
+                var texto = $select.find('option:selected').text();
+                $select.attr('title', texto || 'Seleccione docente');
+                if (window.bootstrap && bootstrap.Tooltip) {
+                    if (typeof bootstrap.Tooltip.getInstance === 'function') {
+                        var tooltip = bootstrap.Tooltip.getInstance($select[0]);
+                        if (tooltip) {
+                            tooltip.dispose();
+                        }
+                        new bootstrap.Tooltip($select[0]);
+                        return;
+                    }
+                }
+
+                if (window.jQuery && $.fn.tooltip) {
+                    $select.tooltip('dispose');
+                    $select.tooltip();
+                }
+            }
+
+            function cargarDocentesPorTurno() {
+                var valor = $("#horario").val();
+                if (!valor) {
+                    actualizarSelectDocentes([]);
+                    return;
+                }
+
+                var partes = valor.split('|');
+                var dias = obtenerDiasSesion();
+                if (dias.length === 0) {
+                    actualizarSelectDocentes([]);
+                    return;
+                }
+
+                $.getJSON('/api/docentes/turnos', {
+                    dias: dias.join(','),
+                    hora_inicio: partes[0],
+                    hora_fin: partes[1]
+                }).done(function(response) {
+                    actualizarSelectDocentes(response || []);
+                }).fail(function() {
+                    actualizarSelectDocentes([]);
+                });
+            }
+
+            function cargarDocentesPorTurnoFila($fila) {
+                var $select = $fila.find('.sesion-docente');
+                var dia = $fila.find('.sesion-dia').val();
+                var horaInicio = $fila.find('.sesion-horainicio').val();
+                var horaFin = $fila.find('.sesion-horafin').val();
+
+                if (!dia) {
+                    actualizarSelectDocentesFila($select, []);
+                    return;
+                }
+
+                if (!horaInicio || !horaFin) {
+                    var valor = $("#horario").val();
+                    if (!valor) {
+                        actualizarSelectDocentesFila($select, []);
+                        return;
+                    }
+                    var partes = valor.split('|');
+                    horaInicio = partes[0];
+                    horaFin = partes[1];
+                }
+
+                $.getJSON('/api/docentes/turnos', {
+                    dias: dia,
+                    hora_inicio: horaInicio,
+                    hora_fin: horaFin
+                }).done(function(response) {
+                    actualizarSelectDocentesFila($select, response || []);
+                }).fail(function() {
+                    actualizarSelectDocentesFila($select, []);
+                });
+            }
+
+            for (var i = 0; i < sesionesAuto; i++) {
+                crearSesion();
+            }
+
+            if (sesionesAuto === 3) {
+                $("#titulosesion").append("<div class='form-check mt-2'>" +
+                    "<input class='form-check-input' type='checkbox' id='usarMarJueSab'>" +
+                    "<label class='form-check-label text-white ml-1' for='usarMarJueSab'>Cambiar a Martes, Jueves y Sabado</label>" +
+                    "</div>");
+                syncDiasDesdeMaestro();
+            }
+
+            if (sesionesAuto === 5) {
+                syncDiasDesdeMaestro();
+            }
+
+            if (sesionesAuto > 0) {
+                $("#boton-aceptar").removeClass('d-none');
+                $("#titulosesion").removeClass('bg-warning').addClass('bg-success');
+            }
+
+            $(".sesion-dia").each(function() {
+                cargarDocentesPorTurnoFila($(this).closest('.row'));
+            });
+
+            $('#dia').on('change', function() {
+                syncDiasDesdeMaestro();
+            });
+
+            $('#materia, #docente, #aula, #horario').on('change', function() {
+                actualizarSesionesDesdeMaestro();
+            });
+
+            $(document).on('change', '.sesion-dia', function() {
+                cargarDocentesPorTurnoFila($(this).closest('.row'));
+                cargarDocentesPorTurno();
+            });
+
+            $(document).on('change', '.sesion-horainicio, .sesion-horafin', function() {
+                cargarDocentesPorTurnoFila($(this).closest('.row'));
+            });
+
+            $('#docente').on('change', function() {
+                var docenteMaestro = $(this).val();
+                if (!docenteMaestro) {
+                    return;
+                }
+
+                $(".sesion-docente").each(function() {
+                    if ($(this).find("option[value='" + docenteMaestro + "']").length) {
+                        $(this).val(docenteMaestro);
+                    }
+                });
+            });
+
+            $(document).on('change', '#usarMarJueSab', function() {
+                syncDiasDesdeMaestro();
+            });
+
+            $('#botonplus').on('click', function() {
+                crearSesion();
+                cantida_sesiones += 1;
+                $("#boton-aceptar").removeClass('d-none');
+                $("#titulosesion").removeClass('bg-warning').addClass('bg-success');
+                var $ultima = $("#sesiones .row").last();
+                cargarDocentesPorTurnoFila($ultima);
+            });
+
+            $(document).on('click', '.quitar-sesion', function() {
+                $(this).closest('.row').remove();
+                refrescarColoresSesiones();
+                cantida_sesiones = Math.max(0, cantida_sesiones - 1);
+                if (cantida_sesiones === 0) {
                     $("#boton-aceptar").addClass('d-none');
-                    $("#titulosesion").addClass('bg-warning');
+                    $("#titulosesion").removeClass('bg-success').addClass('bg-warning');
                 }
-                if(cantida_sesiones==1){
-                    $("#boton-aceptar").removeClass('d-none');
-                    $("#titulosesion").removeClass('bg-warning');
-                    $("#titulosesion").addClass('bg-success');
-                }
-                   
-                }); 
-            $("body").on('click','div .alert .close',function() {
-                cantida_sesiones=cantida_sesiones-1;
-                //console.log(cantida_sesiones);
-                if(cantida_sesiones==0){
-                    $("#boton-aceptar").addClass('d-none');
-                    $("#titulosesion").addClass('bg-warning');
-                }
-                if(cantida_sesiones==1){
-                    $("#boton-aceptar").removeClass('d-none');
-                    $("#titulosesion").removeClass('bg-warning');
-                    $("#titulosesion").addClass('bg-success');
-                }
-                console.log(cantida_sesiones);
-                $("#titulosesion").html("<h4>Tine: "+cantida_sesiones+" sesiones por semana para esta inscripción </h4>");
             });
 
                 //** data-table

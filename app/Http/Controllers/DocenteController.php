@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Config;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\PersonaController;
 
 use App\Http\Requests\DocenteUpdateRequest;
@@ -459,6 +460,82 @@ class DocenteController extends Controller
 
         return redirect()->route('docentes.turnos', $docente->id)
             ->with('mensaje', 'Turnos actualizados.');
+    }
+
+    public function docentesPorTurno(Request $request)
+    {
+        $dias = $request->input('dias', '');
+        $horaInicio = $request->input('hora_inicio');
+        $horaFin = $request->input('hora_fin');
+        $modoDocente = strtoupper(trim((string) $request->input('mododocente', '')));
+
+        if ($horaInicio && strlen($horaInicio) === 5) {
+            $horaInicio = $horaInicio . ':00';
+        }
+
+        if ($horaFin && strlen($horaFin) === 5) {
+            $horaFin = $horaFin . ':00';
+        }
+
+        $diasList = collect(explode(',', $dias))
+            ->map(function ($dia) {
+                return (int) trim($dia);
+            })
+            ->filter(function ($dia) {
+                return $dia > 0;
+            })
+            ->values();
+
+        if ($diasList->isEmpty() || !$horaInicio || !$horaFin) {
+            return response()->json([]);
+        }
+
+        $docenteIds = DocenteTurno::select('docente_id')
+            ->whereIn('dia_id', $diasList)
+            ->where('hora_inicio', '<=', $horaInicio)
+            ->where('hora_fin', '>=', $horaFin)
+            ->groupBy('docente_id')
+            ->havingRaw('COUNT(DISTINCT dia_id) = ?', [$diasList->count()])
+            ->pluck('docente_id');
+
+        $docentesQuery = Docente::with('persona', 'mododocente')
+            ->whereIn('id', $docenteIds)
+            ->where('estado_id', estado('HABILITADO'));
+
+        if ($modoDocente !== '') {
+            $docentesQuery->whereHas('mododocente', function ($query) use ($modoDocente) {
+                $query->whereRaw('UPPER(TRIM(mododocente)) LIKE ?', ['%' . $modoDocente . '%']);
+            });
+        }
+
+        $docentes = $docentesQuery
+            ->orderBy('nombrecorto')
+            ->get();
+
+        $conteos = DB::table('sesions')
+            ->select('docente_id', DB::raw('COUNT(*) as cantidad'))
+            ->whereIn('docente_id', $docenteIds)
+            ->whereIn('dia_id', $diasList)
+            ->where('horainicio', $horaInicio)
+            ->where('horafin', $horaFin)
+            ->groupBy('docente_id')
+            ->pluck('cantidad', 'docente_id');
+
+        $respuesta = $docentes->map(function ($docente) use ($conteos) {
+            $persona = $docente->persona;
+            $nombre = $persona ? ($persona->nombre . ' ' . $persona->apellidop) : $docente->nombrecorto;
+            $cantidad = (int) ($conteos[$docente->id] ?? 0);
+            $modo = $docente->mododocente ? $docente->mododocente->mododocente : null;
+
+            return [
+                'id' => $docente->id,
+                'nombre' => $nombre,
+                'cantidad' => $cantidad,
+                'mododocente' => $modo,
+            ];
+        })->values();
+
+        return response()->json($respuesta);
     }
 
    
