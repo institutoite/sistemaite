@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\PersonaController;
+use Barryvdh\DomPDF\Facade as PDF;
 
 use App\Http\Requests\DocenteUpdateRequest;
 use App\Http\Requests\PersonaStoreRequest;
@@ -535,6 +536,22 @@ class DocenteController extends Controller
         return response()->json($respuesta);
     }
 
+    // Reporte PDF de turnos de docentes habilitados
+    public function turnosPdf(Request $request)
+    {
+        $docentes = Docente::whereHas('persona', function($q) {
+            $q->where('estado_id', estado('HABILITADO'));
+        })->with(['persona', 'turnos' => function($q) {
+            $q->with('dia');
+        }])->get();
+
+        if ($request->has('download')) {
+            $pdf = PDF::loadView('docente.turnos_pdf_export', ['docentes' => $docentes, 'pdf' => true]);
+            return $pdf->download('turnos_docentes.pdf');
+        }
+        return view('docente.turnos_pdf', compact('docentes'));
+    }
+
    
     public function EstudiantesDeUnDocente($estudiante_id){
         $estudiantes=Docente::findOrFail($estudiante_id)
@@ -582,9 +599,6 @@ class DocenteController extends Controller
         return view('persona.estudiantesinscritos',compact("carrera"));
 
     }
-
-
-
 
 }
 

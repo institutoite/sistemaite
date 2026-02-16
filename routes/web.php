@@ -60,9 +60,6 @@ use App\Http\Controllers\FeriadoController;
 use App\Http\Controllers\ConstanteController;
 use App\Http\Controllers\CiudadController;
 use App\Http\Controllers\ColegioController;
-// ...existing code...
-// Endpoint AJAX para búsqueda de colegios
-Route::get('ajax/colegios', [ColegioController::class, 'ajaxSearch'])->name('colegios.ajax');
 use App\Http\Controllers\MunicipioController;
 use App\Http\Controllers\PaisController;
 use App\Http\Controllers\ZonaController;
@@ -398,6 +395,8 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('listar/docentes',[DocenteController::class,'listarDocentes'])->name('listar.docentes');
     Route::delete('eliminar/docente/{docente}', 'DocenteController@destroy')->name('eliminar.docente');
     Route::patch('docente/actualizar/{docente}', [DocenteController::class,'update'])->name('docente.update');
+    // Reporte PDF de turnos de docentes habilitados
+    Route::get('docentes/turnos-pdf', [DocenteController::class, 'turnosPdf'])->name('docentes.turnos.pdf');
     Route::resource('docentes', "DocenteController");
     // Route::post('docente/store', [DocenteController::class,'store'])->name('docente.store');
 
@@ -1162,3 +1161,10 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     })->name("itenautas.itecoins");
 
     Route::get('foto/{filename}', [FotoController::class, 'show'])->where('filename', '.*')->name('foto.show');
+
+
+    // Reporte PDF de turnos de docentes habilitados
+    Route::get('docentes/turnos-pdf', [DocenteController::class, 'turnosPdf'])->name('docentes.turnos.pdf');
+    
+    // dasboard principal resumens
+    Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');

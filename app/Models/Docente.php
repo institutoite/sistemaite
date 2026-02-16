@@ -18,6 +18,7 @@ class Docente extends Model
         'nombre',
         'sueldo',
         'estado',
+        'estado_id',
         'persona_id',
     ];
     protected $dates = [

@@ -11,8 +11,14 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header bg-primary">
-            Lista de Docentes <a class="btn btn-secondary text-white btn-sm float-right" href="{{route('docentes.create')}}">Crear Docente</a>
+        <div class="card-header bg-primary d-flex justify-content-between align-items-center">
+            <span>Lista de Docentes</span>
+            <div class="ml-auto d-flex">
+                <a class="btn btn-success text-white btn-sm mr-2" href="{{ route('docentes.turnos.pdf') }}" target="_blank">
+                    <i class="fas fa-file-pdf"></i> Reporte Turnos PDF
+                </a>
+                <a class="btn btn-secondary text-white btn-sm" href="{{route('docentes.create')}}">Crear Docente</a>
+            </div>
         </div>
         <div class="card-body">
             <table id="docentes" class="table table-bordered table-hover table-striped">
