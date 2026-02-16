@@ -55,7 +55,11 @@
     </div>
 
     <div class="card">
-                                <img class="rounded img-thumbnail img-fluid border-primary border-5" src="{{ route('foto.show', ['filename' => $persona->foto]) }}" alt="{{$persona->nombre.' '.$persona->apellidop}}" width="100"> 
+        @if(isset($persona) && $persona->foto)
+            <img class="rounded img-thumbnail img-fluid border-primary border-5" src="{{ route('foto.show', ['filename' => $persona->foto]) }}" alt="{{$persona->nombre.' '.$persona->apellidop}}" width="100"> 
+        @else
+            <img class="rounded img-thumbnail img-fluid border-primary border-5" src="{{ asset('imagenes/sinfoto.jpg') }}" alt="Sin foto" width="100"> 
+        @endif
             <table class="table table-bordered table-striped"> 
                 <tr class="bg-primary">
                         <th>ATRIBUTO</th>
