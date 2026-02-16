@@ -68,14 +68,22 @@
                 <tbody>
                     <tr>
                         <td>Codigo</td>
-                                <img  src="{{ route('foto.show', ['filename' => $user->foto]) }}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5" width="100"> 
+                        @if(isset($user) && $user->foto)
+                            <img src="{{ route('foto.show', ['filename' => $user->foto]) }}" alt="{{$user->name}}" class="rounded img-thumbnail img-fluid border-primary border-5" width="100">
+                        @else
+                            <img src="{{ asset('imagenes/sinfoto.jpg') }}" alt="Sin foto" class="rounded img-thumbnail img-fluid border-primary border-5" width="100">
+                        @endif
                     </tr>
                     <tr>
                         <td>Fotografía
                         </td>
                         <td> 
                             <div class="text-center">
-                                <img class="rounded img-thumbnail img-fluid border-primary border-5" src="{{URL::to('/').Storage::url("$persona->foto")}}" alt="{{$persona->nombre.' '.$persona->apellidop}}" width="100"> 
+                                @if(isset($persona) && $persona->foto)
+                                    <img class="rounded img-thumbnail img-fluid border-primary border-5" src="{{URL::to('/').Storage::url("$persona->foto")}}" alt="{{$persona->nombre.' '.$persona->apellidop}}" width="100"> 
+                                @else
+                                    <img class="rounded img-thumbnail img-fluid border-primary border-5" src="{{ asset('imagenes/sinfoto.jpg') }}" alt="Sin foto" width="100"> 
+                                @endif
                                 <p>
                                     @isset($observacion)
                                         {!!$observacion->observacion!!}</p>
