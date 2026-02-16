@@ -28,6 +28,8 @@ use App\Models\Colegio;
 use App\Models\User;
 use App\Models\Grado;
 use App\Models\Clase;
+use App\Models\Programacioncom;
+use App\Models\Clasecom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
@@ -706,6 +708,207 @@ class ProgramacionController extends Controller
         
         $data['data']=json_encode($data);
         return view('clase.create',compact('docentes','programa','inscripcion','materias','aulas','hora_inicio','hora_fin','temas','historiaclases','historiaprogramas'),$data);
+    }
+
+    public function marcadoNormalModal($programacion_id){
+        $programa = Programacion::findOrFail($programacion_id);
+        $inscripcion = Inscripcione::findOrFail($programa->inscripcione_id);
+        $estudianteId = $inscripcion->estudiante_id;
+        $docentes = Docente::join('personas', 'personas.id', '=', 'docentes.persona_id')
+            ->join('estados', 'estados.id', '=', 'docentes.estado_id')
+            ->where('docentes.estado_id', '=', estado('HABILITADO'))
+            ->select('docentes.id', 'personas.nombre', 'personas.apellidop')
+            ->orderBy('personas.nombre', 'asc')
+            ->get();
+
+        $nivel = Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
+        $materias = $nivel->materias;
+        $aulas = Aula::all();
+        $temas = Tema::all();
+        $hora_inicio = Carbon::now()->format('H:i');
+        $hora_fin = Carbon::now()->addMinutes($programa->hora_ini->floatDiffInMinutes($programa->hora_fin))->format('H:i');
+
+        $clasePresente = Clase::where('programacion_id', $programa->id)
+            ->where('estado_id', estado('PRESENTE'))
+            ->where('fecha', Carbon::now()->toDateString())
+            ->first();
+
+        $totalPagado = $inscripcion->pagos->sum('monto');
+        $saldo = max($inscripcion->costo - $totalPagado, 0);
+        $ultimaProgramacionPagada = Programacion::where('inscripcione_id', $inscripcion->id)
+            ->where('habilitado', 1)
+            ->orderBy('fecha', 'desc')
+            ->first();
+        $programaciones = Programacion::with(['materia','docente','aula','estado'])
+            ->where('inscripcione_id', $inscripcion->id)
+            ->orderBy('fecha', 'asc')
+            ->get();
+
+        $inscripcionesActivas = Inscripcione::where('estudiante_id', $estudianteId)
+            ->where('estado_id', estado('CORRIENDO'))
+            ->where('vigente', 1)
+            ->count();
+        $matriculacionesActivas = \App\Models\Matriculacion::join('computacions', 'computacions.id', '=', 'matriculacions.computacion_id')
+            ->where('computacions.persona_id', $inscripcion->estudiante->persona_id)
+            ->where('matriculacions.estado_id', estado('CORRIENDO'))
+            ->where('matriculacions.vigente', 1)
+            ->count();
+
+        return view('clase.modalmarcado', compact(
+            'docentes',
+            'programa',
+            'inscripcion',
+            'materias',
+            'aulas',
+            'hora_inicio',
+            'hora_fin',
+            'temas',
+            'clasePresente',
+            'inscripcionesActivas',
+            'matriculacionesActivas',
+            'totalPagado',
+            'saldo',
+            'ultimaProgramacionPagada',
+            'programaciones'
+        ));
+    }
+
+    public function marcadoTabs($persona_id){
+        $persona = Persona::findOrFail($persona_id);
+        $estudiante = $persona->estudiante;
+
+        $inscripciones = Inscripcione::where('estudiante_id', $estudiante->id)
+            ->where('estado_id', estado('CORRIENDO'))
+            ->where('vigente', 1)
+            ->get();
+
+        $inscripcionTabs = [];
+        foreach ($inscripciones as $inscripcion) {
+            $programa = Programacion::where('inscripcione_id', $inscripcion->id)
+                ->where('fecha', Carbon::now()->toDateString())
+                ->orderBy('hora_ini', 'asc')
+                ->first();
+
+            $totalPagado = $inscripcion->pagos->sum('monto');
+            $saldo = max($inscripcion->costo - $totalPagado, 0);
+            $ultimaProgramacionPagada = Programacion::where('inscripcione_id', $inscripcion->id)
+                ->where('habilitado', 1)
+                ->orderBy('fecha', 'desc')
+                ->first();
+            $programaciones = Programacion::with(['materia','docente','aula','estado'])
+                ->where('inscripcione_id', $inscripcion->id)
+                ->orderBy('fecha', 'asc')
+                ->get();
+
+            $nivel = Nivel::findOrFail(Modalidad::findOrFail($inscripcion->modalidad_id)->nivel_id);
+            $materias = $nivel->materias;
+            $docentes = Docente::join('personas', 'personas.id', '=', 'docentes.persona_id')
+                ->join('estados', 'estados.id', '=', 'docentes.estado_id')
+                ->where('docentes.estado_id', '=', estado('HABILITADO'))
+                ->select('docentes.id', 'personas.nombre', 'personas.apellidop')
+                ->orderBy('personas.nombre', 'asc')
+                ->get();
+            $aulas = Aula::all();
+            $temas = Tema::all();
+
+            $hora_inicio = $programa
+                ? Carbon::now()->format('H:i')
+                : null;
+            $hora_fin = $programa
+                ? Carbon::now()->addMinutes($programa->hora_ini->floatDiffInMinutes($programa->hora_fin))->format('H:i')
+                : null;
+
+            $clasePresente = $programa
+                ? Clase::where('programacion_id', $programa->id)
+                    ->where('estado_id', estado('PRESENTE'))
+                    ->where('fecha', Carbon::now()->toDateString())
+                    ->first()
+                : null;
+
+            $inscripcionTabs[] = [
+                'inscripcion' => $inscripcion,
+                'programa' => $programa,
+                'docentes' => $docentes,
+                'materias' => $materias,
+                'aulas' => $aulas,
+                'temas' => $temas,
+                'hora_inicio' => $hora_inicio,
+                'hora_fin' => $hora_fin,
+                'clasePresente' => $clasePresente,
+                'totalPagado' => $totalPagado,
+                'saldo' => $saldo,
+                'ultimaProgramacionPagada' => $ultimaProgramacionPagada,
+                'programaciones' => $programaciones,
+            ];
+        }
+
+        $matriculacionTabs = [];
+        if ($persona->computacion) {
+            $matriculaciones = \App\Models\Matriculacion::where('computacion_id', $persona->computacion->id)
+                ->where('estado_id', estado('CORRIENDO'))
+                ->where('vigente', 1)
+                ->get();
+
+            foreach ($matriculaciones as $matriculacion) {
+                $programacioncom = Programacioncom::where('matriculacion_id', $matriculacion->id)
+                    ->where('fecha', Carbon::now()->toDateString())
+                    ->orderBy('horaini', 'asc')
+                    ->first();
+
+                $totalPagado = $matriculacion->pagos->sum('monto');
+                $saldo = max($matriculacion->costo - $totalPagado, 0);
+                $ultimaProgramacionPagada = Programacioncom::where('matriculacion_id', $matriculacion->id)
+                    ->where('habilitado', 1)
+                    ->orderBy('fecha', 'desc')
+                    ->first();
+                $programaciones = Programacioncom::with(['docente','aula','estado'])
+                    ->where('matriculacion_id', $matriculacion->id)
+                    ->orderBy('fecha', 'asc')
+                    ->get();
+
+                $docentes = Docente::join('personas', 'personas.id', '=', 'docentes.persona_id')
+                    ->join('estados', 'estados.id', '=', 'docentes.estado_id')
+                    ->where('docentes.estado_id', '=', estado('HABILITADO'))
+                    ->select('docentes.id', 'personas.nombre', 'personas.apellidop')
+                    ->orderBy('personas.nombre', 'asc')
+                    ->get();
+                $aulas = Aula::all();
+
+                $hora_inicio = $programacioncom
+                    ? Carbon::now()->format('H:i')
+                    : null;
+                $hora_fin = $programacioncom
+                    ? Carbon::now()->addMinutes($programacioncom->horaini->floatDiffInMinutes($programacioncom->horafin))->format('H:i')
+                    : null;
+
+                $clasecomPresente = $programacioncom
+                    ? Clasecom::where('programacioncom_id', $programacioncom->id)
+                        ->where('estado_id', estado('PRESENTE'))
+                        ->where('fecha', Carbon::now()->toDateString())
+                        ->first()
+                    : null;
+
+                $matriculacionTabs[] = [
+                    'matriculacion' => $matriculacion,
+                    'programacioncom' => $programacioncom,
+                    'docentes' => $docentes,
+                    'aulas' => $aulas,
+                    'hora_inicio' => $hora_inicio,
+                    'hora_fin' => $hora_fin,
+                    'clasecomPresente' => $clasecomPresente,
+                    'totalPagado' => $totalPagado,
+                    'saldo' => $saldo,
+                    'ultimaProgramacionPagada' => $ultimaProgramacionPagada,
+                    'programaciones' => $programaciones,
+                ];
+            }
+        }
+
+        return view('clase.modalmarcado_tabs', [
+            'persona' => $persona,
+            'inscripcionTabs' => $inscripcionTabs,
+            'matriculacionTabs' => $matriculacionTabs,
+        ]);
     }
 
     public function estudiantesDeUnProfesor($docente_id){

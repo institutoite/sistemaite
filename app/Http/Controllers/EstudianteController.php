@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Estudiante;
 use App\Models\Felicitado;
 use App\Models\Inscripcione;
+use App\Models\Matriculacion;
+use App\Models\Programacioncom;
+use App\Models\Programacion;
 use App\Models\Mensajeable;
 use App\Models\Persona;
 use Illuminate\Http\Request;
@@ -267,10 +270,69 @@ class EstudianteController extends Controller
 
     public function listar(){
         $estudiantes=Persona::join('estudiantes','estudiantes.persona_id','=','personas.id')
-        ->select('personas.id','nombre','apellidop','apellidom','foto');
+        ->select('personas.id','estudiantes.id as estudiante_id','nombre','apellidop','apellidom','foto');
 
         return datatables()->of($estudiantes)
-            ->addColumn('btn', 'persona.action')
+            ->addColumn('btn', function($row){
+                $asistenciaDisponible = false;
+                $asistenciaMensaje = 'No disponible';
+                $asistenciaProgramacionId = null;
+                $asistenciaUrl = null;
+                $asistenciaTipo = null;
+
+                $inscripciones = Inscripcione::where('estudiante_id', $row->estudiante_id)
+                    ->where('estado_id', estado('CORRIENDO'))
+                    ->where('vigente', 1)
+                    ->get();
+
+                $inscripcionIds = $inscripciones->pluck('id');
+                $programacionesHoy = $inscripcionIds->isNotEmpty()
+                    ? Programacion::whereIn('inscripcione_id', $inscripcionIds)
+                        ->where('fecha', Carbon::now()->toDateString())
+                        ->get()
+                    : collect();
+
+                $matriculaciones = Matriculacion::join('computacions', 'computacions.id', '=', 'matriculacions.computacion_id')
+                    ->where('computacions.persona_id', $row->id)
+                    ->where('matriculacions.estado_id', estado('CORRIENDO'))
+                    ->where('matriculacions.vigente', 1)
+                    ->select('matriculacions.*')
+                    ->get();
+
+                $matriculacionIds = $matriculaciones->pluck('id');
+                $programacionesComHoy = $matriculacionIds->isNotEmpty()
+                    ? Programacioncom::whereIn('matriculacion_id', $matriculacionIds)
+                        ->where('fecha', Carbon::now()->toDateString())
+                        ->get()
+                    : collect();
+
+                $hayProgramacion = $programacionesHoy->isNotEmpty() || $programacionesComHoy->isNotEmpty();
+                $hayIndefinido = $programacionesHoy->contains('estado_id', estado('INDEFINIDO'))
+                    || $programacionesComHoy->contains('estado_id', estado('INDEFINIDO'));
+                $hayPresente = $programacionesHoy->contains('estado_id', estado('PRESENTE'))
+                    || $programacionesComHoy->contains('estado_id', estado('PRESENTE'));
+
+                if ($hayProgramacion && ($hayIndefinido || $hayPresente)) {
+                    $asistenciaDisponible = true;
+                    $asistenciaProgramacionId = null;
+                    $asistenciaTipo = 'tabs';
+                    $asistenciaUrl = route('marcado.presente.tabs', $row->id);
+                    $asistenciaMensaje = $hayPresente ? 'Marcar salida' : 'Marcar asistencia';
+                } elseif (!$hayProgramacion) {
+                    $asistenciaMensaje = 'Sin clase hoy';
+                } else {
+                    $asistenciaMensaje = 'Asistencia ya marcada';
+                }
+
+                return view('persona.action', [
+                    'id' => $row->id,
+                    'asistencia_disponible' => $asistenciaDisponible,
+                    'asistencia_programacion_id' => $asistenciaProgramacionId,
+                    'asistencia_mensaje' => $asistenciaMensaje,
+                    'asistencia_url' => $asistenciaUrl,
+                    'asistencia_tipo' => $asistenciaTipo,
+                ])->render();
+            })
             ->rawColumns(['btn','foto'])
             ->toJson();
     }

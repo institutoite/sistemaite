@@ -21,6 +21,25 @@
 <a href="" class="tooltipsC mr-1 mostrarobservacionespersona" title="Mostrar observaciones">
     <i class="fas fa-comments text-secondary"></i>
 </a>
+@php
+    $asistenciaDisponible = $asistencia_disponible ?? false;
+    $asistenciaProgramacionId = $asistencia_programacion_id ?? null;
+    $asistenciaMensaje = $asistencia_mensaje ?? 'No disponible';
+    $asistenciaUrl = $asistencia_url ?? null;
+    $asistenciaTipo = $asistencia_tipo ?? null;
+@endphp
+@if($asistenciaDisponible && $asistenciaUrl)
+    <a href="#" class="btn-accion-tabla tooltipsC mr-1 marcar-asistencia" title="{{ $asistenciaMensaje }}"
+        data-programacion-id="{{ $asistenciaProgramacionId }}"
+        data-url="{{ $asistenciaUrl }}"
+        data-tipo="{{ $asistenciaTipo }}">
+        <i class="fas fa-clipboard-check"></i>
+    </a>
+@else
+    <span class="btn-accion-tabla text-muted mr-1" title="{{ $asistenciaMensaje }}">
+        <i class="fas fa-clipboard-check"></i>
+    </span>
+@endif
 <a href="{{route('descargar.contacto', $id)}}" class="btn-accion-tabla tooltipsC mr-1" title="Descargar contacto">
     <i class="far fa-address-card"></i>
 </a>

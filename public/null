@@ -1,9 +1,378 @@
-use App\Models\Product;
+$persona=\App\Models\Persona::find(22);
+$est=$persona?->estudiante;
+$ins=\App\Models\Inscripcione::where('estudiante_id',$est?->id ?? 0)
+    ->where('estado_id', estado('CORRIENDO'))
+    ->where('vigente',1)
+    ->get();
+$prog=\App\Models\Programacion::where('inscripcione_id',$ins->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+$mat=\App\Models\Matriculacion::join('computacions','computacions.id','=','matriculacions.computacion_id')
+    ->where('computacions.persona_id',22)
+    ->where('matriculacions.estado_id', estado('CORRIENDO'))
+    ->where('matriculacions.vigente',1)
+    ->select('matriculacions.*')
+    ->get();
+$progcom=\App\Models\Programacioncom::where('matriculacion_id',$mat->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
 
-App\Models\Inscripcine::find( 11018)
-use App\Models\Product;
+[
+  'inscripciones' => $ins->count(),
+  'programaciones_hoy' => $prog->count(),
+  'matriculaciones' => $mat->count(),
+  'programacionescom_hoy' => $progcom->count(),
+  'primera_programacion_id' => $prog->first()?->id,
+  'primera_programacion_estado' => $prog->first()?->estado_id,
+];
+$persona=\App\Models\Persona::find(22);
+$est=$persona?->estudiante;
+$ins=\App\Models\Inscripcione::where('estudiante_id',$est?->id ?? 0)
+    ->where('estado_id', estado('CORRIENDO'))
+    ->where('vigente',1)
+    ->get();
+$prog=\App\Models\Programacion::where('inscripcione_id',$ins->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+$mat=\App\Models\Matriculacion::join('computacions','computacions.id','=','matriculacions.computacion_id')
+    ->where('computacions.persona_id',22)
+    ->where('matriculacions.estado_id', estado('CORRIENDO'))
+    ->where('matriculacions.vigente',1)
+    ->select('matriculacions.*')
+    ->get();
+$progcom=\App\Models\Programacioncom::where('matriculacion_id',$mat->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
 
-App\Models\Inscripcione::find( 11018)
-use App\Models\Product;
+[
+  'inscripciones' => $ins->count(),
+  'programaciones_hoy' => $prog->count(),
+  'matriculaciones' => $mat->count(),
+  'programacionescom_hoy' => $progcom->count(),
+  'primera_programacion_id' => $prog->first()?->id,
+  'primera_programacion_estado' => $prog->first()?->estado_id,
+];
+$persona=\App\Models\Persona::find(22);
+$est=$persona?->estudiante;
+$ins=\App\Models\Inscripcione::where('estudiante_id',$est?->id ?? 0)
+    ->where('estado_id', estado('CORRIENDO'))
+    ->where('vigente',1)
+    ->get();
+$prog=\App\Models\Programacion::where('inscripcione_id',$ins->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+$mat=\App\Models\Matriculacion::join('computacions','computacions.id','=','matriculacions.computacion_id')
+    ->where('computacions.persona_id',22)
+    ->where('matriculacions.estado_id', estado('CORRIENDO'))
+    ->where('matriculacions.vigente',1)
+    ->select('matriculacions.*')
+    ->get();
+$progcom=\App\Models\Programacioncom::where('matriculacion_id',$mat->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
 
-App\Models\Inscripcione::find( 11018)
+[
+  'inscripciones' => $ins->count(),
+  'programaciones_hoy' => $prog->count(),
+  'matriculaciones' => $mat->count(),
+  'programacionescom_hoy' => $progcom->count(),
+  'primera_programacion_id' => $prog->first()?->id,
+  'primera_programacion_estado' => $prog->first()?->estado_id,
+];
+$persona=\App\Models\Persona::find(22);
+$est=$persona?->estudiante;
+$ins=\App\Models\Inscripcione::where('estudiante_id',$est?->id ?? 0)
+    ->where('estado_id', estado('CORRIENDO'))
+    ->where('vigente',1)
+    ->get();
+$prog=\App\Models\Programacion::where('inscripcione_id',$ins->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+$mat=\App\Models\Matriculacion::join('computacions','computacions.id','=','matriculacions.computacion_id')
+    ->where('computacions.persona_id',22)
+    ->where('matriculacions.estado_id', estado('CORRIENDO'))
+    ->where('matriculacions.vigente',1)
+    ->select('matriculacions.*')
+    ->get();
+$progcom=\App\Models\Programacioncom::where('matriculacion_id',$mat->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+
+[
+  'inscripciones' => $ins->count(),
+  'programaciones_hoy' => $prog->count(),
+  'matriculaciones' => $mat->count(),
+  'programacionescom_hoy' => $progcom->count(),
+  'primera_programacion_id' => $prog->first()?->id,
+  'primera_programacion_estado' => $prog->first()?->estado_id,
+];
+$persona=\App\Models\Persona::find(22);
+$est=$persona?->estudiante;
+$ins=\App\Models\Inscripcione::where('estudiante_id',$est?->id ?? 0)
+    ->where('estado_id', estado('CORRIENDO'))
+    ->where('vigente',1)
+    ->get();
+$prog=\App\Models\Programacion::where('inscripcione_id',$ins->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+$mat=\App\Models\Matriculacion::join('computacions','computacions.id','=','matriculacions.computacion_id')
+    ->where('computacions.persona_id',22)
+    ->where('matriculacions.estado_id', estado('CORRIENDO'))
+    ->where('matriculacions.vigente',1)
+    ->select('matriculacions.*')
+    ->get();
+$progcom=\App\Models\Programacioncom::where('matriculacion_id',$mat->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+
+[
+  'inscripciones' => $ins->count(),
+  'programaciones_hoy' => $prog->count(),
+  'matriculaciones' => $mat->count(),
+  'programacionescom_hoy' => $progcom->count(),
+  'primera_programacion_id' => $prog->first()?->id,
+  'primera_programacion_estado' => $prog->first()?->estado_id,
+];
+$persona=\App\Models\Persona::find(22);
+$est=$persona?->estudiante;
+$ins=\App\Models\Inscripcione::where('estudiante_id',$est?->id ?? 0)
+    ->where('estado_id', estado('CORRIENDO'))
+    ->where('vigente',1)
+    ->get();
+$prog=\App\Models\Programacion::where('inscripcione_id',$ins->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+$mat=\App\Models\Matriculacion::join('computacions','computacions.id','=','matriculacions.computacion_id')
+    ->where('computacions.persona_id',22)
+    ->where('matriculacions.estado_id', estado('CORRIENDO'))
+    ->where('matriculacions.vigente',1)
+    ->select('matriculacions.*')
+    ->get();
+$progcom=\App\Models\Programacioncom::where('matriculacion_id',$mat->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+
+[
+  'inscripciones' => $ins->count(),
+  'programaciones_hoy' => $prog->count(),
+  'matriculaciones' => $mat->count(),
+  'programacionescom_hoy' => $progcom->count(),
+  'primera_programacion_id' => $prog->first()?->id,
+  'primera_programacion_estado' => $prog->first()?->estado_id,
+];
+$persona=\App\Models\Persona::find(22);
+$est=$persona?->estudiante;
+$ins=\App\Models\Inscripcione::where('estudiante_id',$est?->id ?? 0)
+    ->where('estado_id', estado('CORRIENDO'))
+    ->where('vigente',1)
+    ->get();
+$prog=\App\Models\Programacion::where('inscripcione_id',$ins->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+$mat=\App\Models\Matriculacion::join('computacions','computacions.id','=','matriculacions.computacion_id')
+    ->where('computacions.persona_id',22)
+    ->where('matriculacions.estado_id', estado('CORRIENDO'))
+    ->where('matriculacions.vigente',1)
+    ->select('matriculacions.*')
+    ->get();
+$progcom=\App\Models\Programacioncom::where('matriculacion_id',$mat->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+
+[
+  'inscripciones' => $ins->count(),
+  'programaciones_hoy' => $prog->count(),
+  'matriculaciones' => $mat->count(),
+  'programacionescom_hoy' => $progcom->count(),
+  'primera_programacion_id' => $prog->first()?->id,
+  'primera_programacion_estado' => $prog->first()?->estado_id,
+];
+$persona=\App\Models\Persona::find(22);
+$est=$persona?->estudiante;
+$ins=\App\Models\Inscripcione::where('estudiante_id',$est?->id ?? 0)
+    ->where('estado_id', estado('CORRIENDO'))
+    ->where('vigente',1)
+    ->get();
+$prog=\App\Models\Programacion::where('inscripcione_id',$ins->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+$mat=\App\Models\Matriculacion::join('computacions','computacions.id','=','matriculacions.computacion_id')
+    ->where('computacions.persona_id',22)
+    ->where('matriculacions.estado_id', estado('CORRIENDO'))
+    ->where('matriculacions.vigente',1)
+    ->select('matriculacions.*')
+    ->get();
+$progcom=\App\Models\Programacioncom::where('matriculacion_id',$mat->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+
+[
+  'inscripciones' => $ins->count(),
+  'programaciones_hoy' => $prog->count(),
+  'matriculaciones' => $mat->count(),
+  'programacionescom_hoy' => $progcom->count(),
+  'primera_programacion_id' => $prog->first()?->id,
+  'primera_programacion_estado' => $prog->first()?->estado_id,
+];
+$persona=\App\Models\Persona::find(22);
+$est=$persona?->estudiante;
+$ins=\App\Models\Inscripcione::where('estudiante_id',$est?->id ?? 0)
+    ->where('estado_id', estado('CORRIENDO'))
+    ->where('vigente',1)
+    ->get();
+$prog=\App\Models\Programacion::where('inscripcione_id',$ins->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+$mat=\App\Models\Matriculacion::join('computacions','computacions.id','=','matriculacions.computacion_id')
+    ->where('computacions.persona_id',22)
+    ->where('matriculacions.estado_id', estado('CORRIENDO'))
+    ->where('matriculacions.vigente',1)
+    ->select('matriculacions.*')
+    ->get();
+$progcom=\App\Models\Programacioncom::where('matriculacion_id',$mat->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+
+[
+  'inscripciones' => $ins->count(),
+  'programaciones_hoy' => $prog->count(),
+  'matriculaciones' => $mat->count(),
+  'programacionescom_hoy' => $progcom->count(),
+  'primera_programacion_id' => $prog->first()?->id,
+  'primera_programacion_estado' => $prog->first()?->estado_id,
+];
+$persona=\App\Models\Persona::find(22);
+$est=$persona?->estudiante;
+$ins=\App\Models\Inscripcione::where('estudiante_id',$est?->id ?? 0)
+    ->where('estado_id', estado('CORRIENDO'))
+    ->where('vigente',1)
+    ->get();
+$prog=\App\Models\Programacion::where('inscripcione_id',$ins->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+$mat=\App\Models\Matriculacion::join('computacions','computacions.id','=','matriculacions.computacion_id')
+    ->where('computacions.persona_id',22)
+    ->where('matriculacions.estado_id', estado('CORRIENDO'))
+    ->where('matriculacions.vigente',1)
+    ->select('matriculacions.*')
+    ->get();
+$progcom=\App\Models\Programacioncom::where('matriculacion_id',$mat->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+
+[
+  'inscripciones' => $ins->count(),
+  'programaciones_hoy' => $prog->count(),
+  'matriculaciones' => $mat->count(),
+  'programacionescom_hoy' => $progcom->count(),
+  'primera_programacion_id' => $prog->first()?->id,
+  'primera_programacion_estado' => $prog->first()?->estado_id,
+];
+$persona=\App\Models\Persona::find(22);
+$est=$persona?->estudiante;
+$ins=\App\Models\Inscripcione::where('estudiante_id',$est?->id ?? 0)
+    ->where('estado_id', estado('CORRIENDO'))
+    ->where('vigente',1)
+    ->get();
+$prog=\App\Models\Programacion::where('inscripcione_id',$ins->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+$mat=\App\Models\Matriculacion::join('computacions','computacions.id','=','matriculacions.computacion_id')
+    ->where('computacions.persona_id',22)
+    ->where('matriculacions.estado_id', estado('CORRIENDO'))
+    ->where('matriculacions.vigente',1)
+    ->select('matriculacions.*')
+    ->get();
+$progcom=\App\Models\Programacioncom::where('matriculacion_id',$mat->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+
+[
+  'inscripciones' => $ins->count(),
+  'programaciones_hoy' => $prog->count(),
+  'matriculaciones' => $mat->count(),
+  'programacionescom_hoy' => $progcom->count(),
+  'primera_programacion_id' => $prog->first()?->id,
+  'primera_programacion_estado' => $prog->first()?->estado_id,
+];
+$persona=\App\Models\Persona::find(22);
+$est=$persona?->estudiante;
+$ins=\App\Models\Inscripcione::where('estudiante_id',$est?->id ?? 0)
+    ->where('estado_id', estado('CORRIENDO'))
+    ->where('vigente',1)
+    ->get();
+$prog=\App\Models\Programacion::where('inscripcione_id',$ins->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+$mat=\App\Models\Matriculacion::join('computacions','computacions.id','=','matriculacions.computacion_id')
+    ->where('computacions.persona_id',22)
+    ->where('matriculacions.estado_id', estado('CORRIENDO'))
+    ->where('matriculacions.vigente',1)
+    ->select('matriculacions.*')
+    ->get();
+$progcom=\App\Models\Programacioncom::where('matriculacion_id',$mat->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+
+[
+  'inscripciones' => $ins->count(),
+  'programaciones_hoy' => $prog->count(),
+  'matriculaciones' => $mat->count(),
+  'programacionescom_hoy' => $progcom->count(),
+  'primera_programacion_id' => $prog->first()?->id,
+  'primera_programacion_estado' => $prog->first()?->estado_id,
+];
+$persona=\App\Models\Persona::find(22);
+$est=$persona?->estudiante;
+$ins=\App\Models\Inscripcione::where('estudiante_id',$est?->id ?? 0)
+    ->where('estado_id', estado('CORRIENDO'))
+    ->where('vigente',1)
+    ->get();
+$prog=\App\Models\Programacion::where('inscripcione_id',$ins->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+$mat=\App\Models\Matriculacion::join('computacions','computacions.id','=','matriculacions.computacion_id')
+    ->where('computacions.persona_id',22)
+    ->where('matriculacions.estado_id', estado('CORRIENDO'))
+    ->where('matriculacions.vigente',1)
+    ->select('matriculacions.*')
+    ->get();
+$progcom=\App\Models\Programacioncom::where('matriculacion_id',$mat->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+
+[
+  'inscripciones' => $ins->count(),
+  'programaciones_hoy' => $prog->count(),
+  'matriculaciones' => $mat->count(),
+  'programacionescom_hoy' => $progcom->count(),
+  'primera_programacion_id' => $prog->first()?->id,
+  'primera_programacion_estado' => $prog->first()?->estado_id,
+];
+$persona=\App\Models\Persona::find(22);
+$est=$persona?->estudiante;
+$ins=\App\Models\Inscripcione::where('estudiante_id',$est?->id ?? 0)
+    ->where('estado_id', estado('CORRIENDO'))
+    ->where('vigente',1)
+    ->get();
+$prog=\App\Models\Programacion::where('inscripcione_id',$ins->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+$mat=\App\Models\Matriculacion::join('computacions','computacions.id','=','matriculacions.computacion_id')
+    ->where('computacions.persona_id',22)
+    ->where('matriculacions.estado_id', estado('CORRIENDO'))
+    ->where('matriculacions.vigente',1)
+    ->select('matriculacions.*')
+    ->get();
+$progcom=\App\Models\Programacioncom::where('matriculacion_id',$mat->first()?->id ?? 0)
+    ->whereDate('fecha', now()->toDateString())
+    ->get();
+
+[
+  'inscripciones' => $ins->count(),
+  'programaciones_hoy' => $prog->count(),
+  'matriculaciones' => $mat->count(),
+  'programacionescom_hoy' => $progcom->count(),
+  'primera_programacion_id' => $prog->first()?->id,
+  'primera_programacion_estado' => $prog->first()?->estado_id,
+];

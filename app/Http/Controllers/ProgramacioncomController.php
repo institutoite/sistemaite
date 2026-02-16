@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Programacioncom;
 use App\Models\Matriculacion;
+use App\Models\Inscripcione;
 use App\Models\Estado;
 use App\Models\Persona;
 use App\Models\Docente;
@@ -333,6 +334,64 @@ class ProgramacioncomController extends Controller
         $hora_inicio=Carbon::now()->isoFormat('HH:mm:ss');
         $hora_fin = Carbon::now()->addMinutes(($programacioncom->horaini->floatDiffInMinutes($programacioncom->horafin)))->isoFormat('HH:mm:ss');
         return view('clasecom.create',compact('docentes','programacioncom','matriculacion','aulas','hora_inicio','hora_fin'));
+    }
+
+    public function marcadoNormalModal($programacioncom_id){
+        $programacioncom = Programacioncom::findOrFail($programacioncom_id);
+        $matriculacion = Matriculacion::findOrFail($programacioncom->matriculacion->id);
+        $personaId = $matriculacion->computacion->persona_id;
+        $docentes = Docente::join('personas', 'personas.id', '=', 'docentes.persona_id')
+            ->join('estados', 'estados.id', '=', 'docentes.estado_id')
+            ->where('docentes.estado_id', '=', estado('HABILITADO'))
+            ->select('docentes.id', 'personas.nombre', 'personas.apellidop')
+            ->orderBy('personas.nombre', 'asc')
+            ->get();
+        $aulas = Aula::all();
+        $hora_inicio = Carbon::now()->format('H:i');
+        $hora_fin = Carbon::now()->addMinutes($programacioncom->horaini->floatDiffInMinutes($programacioncom->horafin))
+            ->format('H:i');
+
+        $clasecomPresente = Clasecom::where('programacioncom_id', $programacioncom->id)
+            ->where('estado_id', estado('PRESENTE'))
+            ->where('fecha', Carbon::now()->toDateString())
+            ->first();
+
+        $totalPagado = $matriculacion->pagos->sum('monto');
+        $saldo = max($matriculacion->costo - $totalPagado, 0);
+        $ultimaProgramacionPagada = Programacioncom::where('matriculacion_id', $matriculacion->id)
+            ->where('habilitado', 1)
+            ->orderBy('fecha', 'desc')
+            ->first();
+        $programaciones = Programacioncom::with(['docente','aula','estado'])
+            ->where('matriculacion_id', $matriculacion->id)
+            ->orderBy('fecha', 'asc')
+            ->get();
+
+        $inscripcionesActivas = Inscripcione::where('estudiante_id', $matriculacion->computacion->persona->estudiante->id ?? null)
+            ->where('estado_id', estado('CORRIENDO'))
+            ->where('vigente', 1)
+            ->count();
+        $matriculacionesActivas = Matriculacion::join('computacions', 'computacions.id', '=', 'matriculacions.computacion_id')
+            ->where('computacions.persona_id', $personaId)
+            ->where('matriculacions.estado_id', estado('CORRIENDO'))
+            ->where('matriculacions.vigente', 1)
+            ->count();
+
+        return view('clasecom.modalmarcado', compact(
+            'docentes',
+            'programacioncom',
+            'matriculacion',
+            'aulas',
+            'hora_inicio',
+            'hora_fin',
+            'clasecomPresente',
+            'inscripcionesActivas',
+            'matriculacionesActivas',
+            'totalPagado',
+            'saldo',
+            'ultimaProgramacionPagada',
+            'programaciones'
+        ));
     }
 
     public function hoycom(){

@@ -126,13 +126,6 @@
                 $("#titulosesion").html("<h4>Tine: " + cantida_sesiones + " sesiones por semana para esta Matriculación</h4>");
             }
 
-            function actualizarInfoMododocente() {
-                var $opt = $("#docente option:selected");
-                var modo = $opt.data('mododocente') || '';
-                var texto = modo ? ('Modo docente: ' + modo) : '';
-                $("#mododocente-info").text(texto);
-            }
-
             function actualizarSesionesDesdeMaestro() {
                 $(".sesion-aula").val($("#aula").val());
                 var valor = $("#horario").val();
@@ -179,8 +172,7 @@
                 } else {
                     opciones = "<option value=''>Seleccione docente</option>";
                     docentes.forEach(function(docente) {
-                        var modo = docente.mododocente || '';
-                        opciones += "<option value='" + docente.id + "' data-mododocente='" + modo + "'>" + docente.nombre + "</option>";
+                        opciones += "<option value='" + docente.id + "'>" + docente.nombre + "</option>";
                     });
                 }
 
@@ -191,7 +183,6 @@
                 } else if (docentes.length > 0) {
                     $("#docente").val(docentes[0].id);
                 }
-                actualizarInfoMododocente();
             }
 
             function actualizarSelectDocentesFila($select, docentes) {
@@ -298,8 +289,6 @@
                 crearSesion();
             }
 
-            actualizarInfoMododocente();
-
             if (cantida_sesiones > 0) {
                 $("#boton-aceptar").removeClass('d-none');
                 $("#titulosesion").removeClass('bg-warning').addClass('bg-success');
@@ -328,7 +317,6 @@
             });
 
             $('#docente').on('change', function() {
-                actualizarInfoMododocente();
                 var docenteMaestro = $(this).val();
                 if (!docenteMaestro) {
                     return;
@@ -347,6 +335,7 @@
                 $("#titulosesion").removeClass('bg-warning').addClass('bg-success');
                 var $ultima = $("#sesiones .row").last();
                 cargarDocentesPorTurnoFila($ultima);
+                cargarDocentesPorTurno();
             });
 
             $(document).on('click', '.quitar-sesion', function() {
@@ -354,6 +343,7 @@
                 cantida_sesiones = Math.max(0, cantida_sesiones - 1);
                 refrescarColoresSesiones();
                 actualizarTitulo();
+                cargarDocentesPorTurno();
                 if (cantida_sesiones === 0) {
                     $("#boton-aceptar").addClass('d-none');
                     $("#titulosesion").removeClass('bg-success').addClass('bg-warning');

@@ -15,12 +15,9 @@
             <div class="input-group mb-2" >
                 <select class="form-control mb-3" name="docente" id="docente">
                     @foreach ($docentes as $docente)
-                        <option value="{{$docente->id}}" data-mododocente="{{ $docente->mododocente->mododocente ?? '' }}">
-                            {{$docente->persona->nombre.' '.$docente->persona->apellidop}}
-                        </option>
+                        <option value="{{$docente->id}}">{{$docente->persona->nombre.' '.$docente->persona->apellidop}}</option>
                     @endforeach
                 </select>
-                <small id="mododocente-info" class="form-text text-muted"></small>
             </div>    
         </div>
         {{-- %%%%%%%%%%%%%%% CAMPO AULA --}}

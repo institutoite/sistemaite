@@ -227,3 +227,134 @@
                 })
             });
         });
+
+        function inicializarMarcadoModal($modal){
+            function agregarMinutos(hora, minutos){
+                var partes = (hora || '').split(':');
+                if (partes.length < 2) {
+                    return hora;
+                }
+                var h = parseInt(partes[0], 10);
+                var m = parseInt(partes[1], 10);
+                if (isNaN(h) || isNaN(m)) {
+                    return hora;
+                }
+                var total = h * 60 + m + minutos;
+                total = (total % 1440 + 1440) % 1440;
+                var hh = Math.floor(total / 60);
+                var mm = total % 60;
+                return (hh < 10 ? '0' : '') + hh + ':' + (mm < 10 ? '0' : '') + mm;
+            }
+
+            $modal.find('.marcado-form').each(function(){
+                var $form = $(this);
+                var $materia = $form.find('[name="materia_id"]');
+                var $tema = $form.find('[name="tema_id"]');
+                var $horaInicio = $form.find('input[name="horainicio"]');
+                var $horaFin = $form.find('input[name="horafin"]');
+                var $pane = $form.closest('.tab-pane');
+                var $usarHorario = $pane.length
+                    ? $pane.find('.usar-horario-programado')
+                    : $form.closest('.modal-body').find('.usar-horario-programado').first();
+
+                function cargarTemas(){
+                    if (!$materia.length || !$tema.length) {
+                        return;
+                    }
+                    var materiaId = $materia.val();
+                    if (!materiaId) {
+                        $tema.html('<option value="">Seleccione un tema</option>');
+                        return;
+                    }
+                    $.get('/api/temas/' + materiaId, function(data) {
+                        var htmlSelect = '<option value="">Seleccione un tema</option>';
+                        for (var i = 0; i < data.length; i++) {
+                            htmlSelect += '<option value="' + data[i].id + '">' + data[i].tema + '</option>';
+                        }
+                        $tema.html(htmlSelect);
+                    });
+                }
+
+                if ($materia.length) {
+                    $materia.off('change.marcado').on('change.marcado', cargarTemas);
+                    cargarTemas();
+                }
+
+                $usarHorario.off('change.marcado').on('change.marcado', function(){
+                    var usar = $(this).is(':checked');
+                    var horaInicioProg = $(this).data('hora-inicio');
+                    var horaFinProg = $(this).data('hora-fin');
+                    var duracionMin = parseInt($(this).data('duracion-min'), 10) || 0;
+                    if (usar) {
+                        if ($horaInicio.length) {
+                            $horaInicio.val(horaInicioProg);
+                        }
+                        if ($horaFin.length) {
+                            $horaFin.val(horaFinProg);
+                        }
+                    } else {
+                        var ahora = new Date();
+                        var hh = (ahora.getHours() < 10 ? '0' : '') + ahora.getHours();
+                        var mm = (ahora.getMinutes() < 10 ? '0' : '') + ahora.getMinutes();
+                        var horaActual = hh + ':' + mm;
+                        if ($horaInicio.length) {
+                            $horaInicio.val(horaActual);
+                        }
+                        if ($horaFin.length) {
+                            $horaFin.val(agregarMinutos(horaActual, duracionMin));
+                        }
+                    }
+                });
+            });
+        }
+
+        $('table').on('click', '.marcar-asistencia', function(e){
+            e.preventDefault();
+            var url = $(this).data('url');
+            if (!url) {
+                return;
+            }
+            var $modal = $('#modal-marcado-normal');
+            $modal.find('.modal-content').html('<div class="modal-body">Cargando...</div>');
+            $.get(url, function(html){
+                $modal.find('.modal-content').html(html);
+                $modal.modal('show');
+                inicializarMarcadoModal($modal);
+            }).fail(function(){
+                $modal.find('.modal-content').html('<div class="modal-body">No se pudo cargar el marcado.</div>');
+                $modal.modal('show');
+            });
+        });
+
+        $(document).on('click', '.marcar-salida', function(e){
+            e.preventDefault();
+            var claseId = $(this).data('clase-id');
+            var finalizarUrl = $(this).data('finalizar-url') || 'clase/finalizar/';
+            if (!claseId) {
+                return;
+            }
+            $.ajax({
+                url: finalizarUrl,
+                data: { id: claseId },
+                success: function(json){
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                    });
+                    Toast.fire({
+                        type: 'success',
+                        title: json.message
+                    });
+                    $('#modal-marcado-normal').modal('hide');
+                },
+                error: function(){
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Ocurrio un Error',
+                        text: 'No se pudo marcar la salida.'
+                    });
+                }
+            });
+        });

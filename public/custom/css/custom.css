@@ -92,6 +92,11 @@ i{
     font-size: 1.5em;
 }
 
+.marcar-asistencia,
+.marcar-asistencia i {
+    cursor: pointer;
+}
+
 .card-items{
     border-radius: 0.8em;
 }

@@ -498,7 +498,7 @@ class DocenteController extends Controller
             ->havingRaw('COUNT(DISTINCT dia_id) = ?', [$diasList->count()])
             ->pluck('docente_id');
 
-        $docentesQuery = Docente::with('persona', 'mododocente')
+        $docentesQuery = Docente::with('persona')
             ->whereIn('id', $docenteIds)
             ->where('estado_id', estado('HABILITADO'));
 
@@ -525,13 +525,10 @@ class DocenteController extends Controller
             $persona = $docente->persona;
             $nombre = $persona ? ($persona->nombre . ' ' . $persona->apellidop) : $docente->nombrecorto;
             $cantidad = (int) ($conteos[$docente->id] ?? 0);
-            $modo = $docente->mododocente ? $docente->mododocente->mododocente : null;
-
             return [
                 'id' => $docente->id,
                 'nombre' => $nombre,
                 'cantidad' => $cantidad,
-                'mododocente' => $modo,
             ];
         })->values();
 
