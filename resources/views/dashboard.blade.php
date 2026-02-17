@@ -118,4 +118,53 @@
         @endforeach
     </div>
 </div>
+<div class="row mt-5">
+    <div class="col-12">
+        <h4 class="mb-3" style="color: rgb(55,95,122); font-weight: bold;">Métricas por Usuario Administrativo</h4>
+        <ul class="nav nav-tabs mb-3" id="adminTabs" role="tablist">
+            @foreach(['dia','semana','mes','anio','historico'] as $periodo)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link {{ $loop->first ? 'active' : '' }}" id="admin-tab-{{ $periodo }}" data-toggle="tab" href="#admin-{{ $periodo }}" role="tab">{{ ucfirst($periodo) }}</a>
+                </li>
+            @endforeach
+        </ul>
+        <div class="tab-content" id="adminTabsContent">
+            @foreach(['dia','semana','mes','anio','historico'] as $periodo)
+            <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="admin-{{ $periodo }}" role="tabpanel">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Inscripciones</th>
+                                <th>Matriculaciones</th>
+                                <th>Clases</th>
+                                <th>Clases Computación</th>
+                                <th>Pagos</th>
+                                <th>Licencias</th>
+                                <th>Dinero Recaudado (Bs)</th>
+                                <th>Licencias</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($usuariosAdministrativos as $usuario)
+                            <tr>
+                                <td><strong>{{ $usuario->name }}</strong></td>
+                                <td>{{ $metricasAdministrativos[$usuario->id][$periodo]['inscripciones'] ?? 0 }}</td>
+                                <td>{{ $metricasAdministrativos[$usuario->id][$periodo]['matriculaciones'] ?? 0 }}</td>
+                                <td>{{ $metricasAdministrativos[$usuario->id][$periodo]['clases'] ?? 0 }}</td>
+                                <td>{{ $metricasAdministrativos[$usuario->id][$periodo]['clasescom'] ?? 0 }}</td>
+                                <td>{{ $metricasAdministrativos[$usuario->id][$periodo]['pagos'] ?? 0 }}</td>
+                                <td>{{ $metricasAdministrativos[$usuario->id][$periodo]['licencias'] ?? 0 }}</td>
+                                <td>Bs {{ number_format($metricasAdministrativos[$usuario->id][$periodo]['dinero'] ?? 0, 2, ',', '.') }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
 @endsection

@@ -79,6 +79,59 @@ class DashboardController extends Controller
             return $docente;
         })->sortByDesc('alumnos_computacion')->take(5);
 
+        // --- MÉTRICAS POR USUARIO ADMINISTRATIVO ---
+        $usuariosAdministrativos = \App\Models\User::role(['Admin', 'Secretaria'])->get();
+        $metricasAdministrativos = [];
+        foreach ($usuariosAdministrativos as $usuario) {
+            foreach ($periodos as $key => [$inicio, $fin]) {
+                // Inscripciones gestionadas por usuario
+                $inscripciones = $key === 'historico'
+                    ? $usuario->inscripciones()->count()
+                    : $usuario->inscripciones()->whereBetween('inscripciones.created_at', [$inicio, $fin])->count();
+
+                // Matriculaciones gestionadas por usuario
+                $matriculaciones = $key === 'historico'
+                    ? $usuario->matriculaciones()->count()
+                    : $usuario->matriculaciones()->whereBetween('matriculacions.created_at', [$inicio, $fin])->count();
+
+                // Licencias gestionadas por usuario
+                $licencias = $key === 'historico'
+                    ? $usuario->licencias()->count()
+                    : $usuario->licencias()->whereBetween('licencias.created_at', [$inicio, $fin])->count();
+
+                // Clases gestionadas por usuario
+                $clases = $key === 'historico'
+                    ? $usuario->clases()->count()
+                    : $usuario->clases()->whereBetween('clases.created_at', [$inicio, $fin])->count();
+
+                // Clasescom gestionadas por usuario
+                $clasescom = $key === 'historico'
+                    ? $usuario->clasecoms()->count()
+                    : $usuario->clasecoms()->whereBetween('clasecoms.created_at', [$inicio, $fin])->count();
+
+                // Pagos gestionados por usuario
+                $pagos = $key === 'historico'
+                    ? $usuario->pagos()->count()
+                    : $usuario->pagos()->whereBetween('pagos.created_at', [$inicio, $fin])->count();
+
+                // Dinero recaudado por usuario
+                $dinero = $key === 'historico'
+                    ? $usuario->pagos()->sum('monto')
+                    : $usuario->pagos()->whereBetween('pagos.created_at', [$inicio, $fin])->sum('monto');
+
+                $metricasAdministrativos[$usuario->id][$key] = [
+                    'usuario' => $usuario,
+                    'inscripciones' => $inscripciones,
+                    'matriculaciones' => $matriculaciones,
+                    'licencias' => $licencias,
+                    'clases' => $clases,
+                    'clasescom' => $clasescom,
+                    'pagos' => $pagos,
+                    'dinero' => $dinero,
+                ];
+            }
+        }
+
         return view('dashboard', compact(
             'clasesPasadas',
             'estudiantesFaltantes',
@@ -89,7 +142,9 @@ class DashboardController extends Controller
             'dineroSecretaria',
             'docentesHabilitados',
             'rankingDocentes',
-            'rankingDocentesComputacion'
+            'rankingDocentesComputacion',
+            'metricasAdministrativos',
+            'usuariosAdministrativos'
         ));
     }
 }
