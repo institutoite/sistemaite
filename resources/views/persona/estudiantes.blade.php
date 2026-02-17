@@ -15,7 +15,17 @@
 
 
 @section('content')
+        {{-- Dropdown de historial de búsquedas --}}
+        @if(isset($ultimasBusquedas) && count($ultimasBusquedas) > 0)
+            <div id="historial-busquedas-dropdown" class="dropdown-menu" style="display:none; position:absolute; z-index:1000; min-width:200px; background:rgba(255,255,255,0.85); box-shadow:0 2px 8px rgba(0,0,0,0.15); border-radius:0.25rem;">
+                @foreach($ultimasBusquedas as $busqueda)
+                    <a class="dropdown-item" href="#" data-busqueda="{{ $busqueda }}">{{ $busqueda }}</a>
+                @endforeach
+            </div>
+        @endif
     {{ Breadcrumbs::render('home') }}
+
+    {{-- El cuadro de búsqueda se elimina. Se debe adaptar la funcionalidad al input type=search existente en la plantilla. --}}
     
     <div class="pt-4">
         <div class="card">
@@ -266,6 +276,192 @@
 @stop
 
 @section('js')
+                
+        <script>
+        // Guardar historial en JS para filtrar (DISTINCT)
+        var historialBusquedas = [
+            @php
+                $busquedasUnicas = array_values(array_unique(is_array($ultimasBusquedas) ? $ultimasBusquedas : $ultimasBusquedas->toArray()));
+            @endphp
+            @foreach($busquedasUnicas as $i => $busqueda)
+                @if($i === count($busquedasUnicas) - 1)
+                    "{{ addslashes($busqueda) }}"
+                @else
+                    "{{ addslashes($busqueda) }}",
+                @endif
+            @endforeach
+        ];
+
+            // Filtrar historial en tiempo real
+            $(document).on('input', "input[type='search'][aria-controls='personas']", function() {
+                var valor = this.value.trim().toLowerCase();
+                var $input = $(this);
+                var dropdown = $('#historial-busquedas-dropdown');
+                if(dropdown.length){
+                    var offset = $input.offset();
+                    dropdown.css({
+                        top: offset.top + $input.outerHeight() - 2,
+                        left: offset.left,
+                        width: $input.outerWidth(),
+                        display: 'block'
+                    });
+                    if(valor === ''){
+                        // Mostrar las 10 últimas búsquedas
+                        var html = '';
+                        for(let i=0; i<historialBusquedas.length; i++){
+                            html += '<a class="dropdown-item" href="#" data-busqueda="'+historialBusquedas[i]+'">'+historialBusquedas[i]+'</a>';
+                        }
+                        dropdown.html(html).show();
+                    }else{
+                        // Filtrar historial
+                        var encontrados = historialBusquedas.filter(function(item){
+                            return item.toLowerCase().includes(valor);
+                        });
+                        if(encontrados.length > 0){
+                            var html = '';
+                            for(let i=0; i<encontrados.length; i++){
+                                html += '<a class="dropdown-item" href="#" data-busqueda="'+encontrados[i]+'">'+encontrados[i]+'</a>';
+                            }
+                            dropdown.html(html).show();
+                        }else{
+                            dropdown.hide();
+                        }
+                    }
+                }
+            });
+
+            // Al hacer click en el input, si está vacío, mostrar las 10 últimas búsquedas
+            $(document).on('focus', "input[type='search'][aria-controls='personas']", function() {
+                var valor = this.value.trim();
+                var $input = $(this);
+                var dropdown = $('#historial-busquedas-dropdown');
+                if(dropdown.length && valor === ''){
+                    var offset = $input.offset();
+                    dropdown.css({
+                        top: offset.top + $input.outerHeight() - 2,
+                        left: offset.left,
+                        width: $input.outerWidth(),
+                        display: 'block'
+                    });
+                    var html = '';
+                    for(let i=0; i<historialBusquedas.length; i++){
+                        html += '<a class="dropdown-item" href="#" data-busqueda="'+historialBusquedas[i]+'">'+historialBusquedas[i]+'</a>';
+                    }
+                    dropdown.html(html).show();
+                }
+            });
+
+            // Al hacer click en un elemento del historial, restaurar las 10 últimas búsquedas
+            $(document).on('click', '#historial-busquedas-dropdown .dropdown-item', function(e){
+                e.preventDefault();
+                var valor = $(this).data('busqueda');
+                var $input = $("input[type='search'][aria-controls='personas']");
+                $input.val(valor).trigger('input');
+                // Restaurar las 10 últimas búsquedas
+                var dropdown = $('#historial-busquedas-dropdown');
+                var offset = $input.offset();
+                dropdown.css({
+                    top: offset.top + $input.outerHeight() - 2,
+                    left: offset.left,
+                    width: $input.outerWidth(),
+                    display: 'block'
+                });
+                var html = '';
+                for(let i=0; i<historialBusquedas.length; i++){
+                    html += '<a class="dropdown-item" href="#" data-busqueda="'+historialBusquedas[i]+'">'+historialBusquedas[i]+'</a>';
+                }
+                dropdown.html(html).show();
+            });
+
+        // Mostrar historial al limpiar el input (X)
+        $(document).on('input', "input[type='search'][aria-controls='personas']", function() {
+            if (this.value === '') {
+                var $input = $(this);
+                var dropdown = $('#historial-busquedas-dropdown');
+                if(dropdown.length){
+                    var offset = $input.offset();
+                    dropdown.css({
+                        top: offset.top + $input.outerHeight() - 2,
+                        left: offset.left,
+                        width: $input.outerWidth(),
+                        display: 'block'
+                    });
+                    dropdown.show();
+                }
+            }
+        });
+        // Al hacer click en un elemento del historial, poner el valor en el input y disparar búsqueda
+        $(document).on('click', '#historial-busquedas-dropdown .dropdown-item', function(e) {
+            e.preventDefault();
+            var valor = $(this).data('busqueda');
+            var $input = $("input[type='search'][aria-controls='personas']");
+            if ($input.length) {
+                $input.val(valor).trigger('input').focus();
+            }
+            $('#historial-busquedas-dropdown').hide();
+        });
+
+        $(document).ready(function(){
+            function bindBusquedaEvents() {
+                const $inputSearch = $("input[type='search'][aria-controls='personas']");
+                if(!$inputSearch.length) return;
+                // Evitar múltiples binds
+                $inputSearch.off('.historialBusqueda');
+                let ignoreNextBlur = false;
+                $inputSearch.on('mousedown.historialBusqueda', function(e) {
+                    let oldValue = this.value;
+                    setTimeout(() => {
+                        if (this.value === '' && oldValue !== '') {
+                            ignoreNextBlur = true;
+                        }
+                    }, 0);
+                });
+                $inputSearch.on('blur.historialBusqueda', function(e) {
+                    console.log('blur input search');
+                    if(ignoreNextBlur) {
+                        console.log('Ignorado por clear X');
+                        ignoreNextBlur = false;
+                        return;
+                    }
+                    let termino = this.value.trim();
+                    if(termino) {
+                        console.log('Enviando búsqueda:', termino);
+                        $.post("{{ route('busqueda.guardar') }}", {
+                            busqueda: termino,
+                            _token: '{{ csrf_token() }}'
+                        }).done(function(resp){
+                            console.log('Guardado OK', resp);
+                        }).fail(function(xhr){
+                            console.log('Error al guardar', xhr);
+                        });
+                    }
+                });
+                $inputSearch.on('focus.historialBusqueda', function(){
+                    let dropdown = $('#historial-busquedas-dropdown');
+                    if(dropdown.length){
+                        var offset = $inputSearch.offset();
+                        dropdown.css({
+                            top: offset.top + $inputSearch.outerHeight() - 2,
+                            left: offset.left,
+                            width: $inputSearch.outerWidth(),
+                            display: 'block'
+                        });
+                        dropdown.show();
+                    }
+                });
+                $inputSearch.on('blur.historialBusqueda', function(){
+                    setTimeout(()=>$('#historial-busquedas-dropdown').hide(),200);
+                });
+            }
+            // Llamar al inicio y tras cada draw de DataTable
+            bindBusquedaEvents();
+            if ($.fn.dataTable) {
+                $('#personas').on('draw.dt', function(){
+                    bindBusquedaEvents();
+                });
+            }
+        });
+        </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
@@ -298,21 +494,16 @@
     <script src="{{asset('assets/js/informar.js')}}"></script>
 
     <script>
-        
-            let  cantidadEsperados= "<?php echo count($rematriculaciones)+count($reinscripciones)+count($nuevos); ?>";
-
+        let cantidadEsperados= "<?php echo count($rematriculaciones)+count($reinscripciones)+count($nuevos); ?>";
         $(document).ready(function(){
-            // let html="<button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#modal_estados'>Launch demox modal </button>";
-            // $("#imaginario").append(html);
+            // Modal
             function cerrarModal() {
-                // Cerrar el modal
                 var modal = document.getElementById("modal_estados");
                 modal.style.display = "none";
                 window.location.href = "espera/nuevo/view";
             }
             if(cantidadEsperados>0)
                 $('#modal_estados').modal('show');
-        
             $("#cerrarmodal").on("click", function(){
                 if($('body').hasClass('modal-open')){
                     $('#modal_estados').modal('hide');
@@ -323,6 +514,55 @@
             $(".modal").on("hidden.bs.modal", function() {
                 $('body').removeClass('modal-open');
                 $('.modal-backdrop').remove();
+            });
+
+            // Guardar búsqueda al perder foco el input, excepto si se hace click en el botón X (clear)
+            let ignoreNextBlur = false;
+            // Selector específico para el input de búsqueda de DataTable
+            const $inputSearch = $("input[type='search'][aria-controls='personas']");
+            $inputSearch.on('mousedown', function(e) {
+                let oldValue = this.value;
+                setTimeout(() => {
+                    if (this.value === '' && oldValue !== '') {
+                        ignoreNextBlur = true;
+                    }
+                }, 0);
+            });
+            $inputSearch.on('blur', function(e) {
+                console.log('blur input search');
+                if(ignoreNextBlur) {
+                    console.log('Ignorado por clear X');
+                    ignoreNextBlur = false;
+                    return;
+                }
+                let termino = this.value.trim();
+                if(termino) {
+                    console.log('Enviando búsqueda:', termino);
+                    $.post("{{ route('busqueda.guardar') }}", {
+                        busqueda: termino,
+                        _token: '{{ csrf_token() }}'
+                    }).done(function(resp){
+                        console.log('Guardado OK', resp);
+                    }).fail(function(xhr){
+                        console.log('Error al guardar', xhr);
+                    });
+                }
+            });
+
+            // Mostrar dropdown de búsquedas recientes al hacer foco en el input
+            $inputSearch.on('focus', function(){
+                let dropdown = $('#historial-busquedas-dropdown');
+                if(dropdown.length){
+                    var offset = $inputSearch.offset();
+                    dropdown.css({
+                        top: offset.top + $inputSearch.outerHeight(),
+                        left: offset.left,
+                        display: 'block'
+                    });
+                }
+            });
+            $inputSearch.on('blur', function(){
+                setTimeout(()=>$('#historial-busquedas-dropdown').hide(),200);
             });
         });
     </script>

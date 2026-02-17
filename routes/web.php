@@ -1,3 +1,4 @@
+
 <?php
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarreraController;
@@ -1168,3 +1169,4 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     
     // dasboard principal resumens
     Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::post('/busqueda/guardar', [App\Http\Controllers\EstudianteController::class, 'guardarBusqueda'])->name('busqueda.guardar');

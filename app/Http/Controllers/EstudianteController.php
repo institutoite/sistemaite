@@ -17,6 +17,8 @@ use Yajra\DataTables\Contracts\DataTable as DataTable;
 use Yajra\DataTables\DataTables;
 use Carbon\Carbon;
 class EstudianteController extends Controller
+    // Endpoint para guardar búsqueda en tiempo real
+    
 {
     public function __construct()
     {
@@ -39,6 +41,15 @@ class EstudianteController extends Controller
         // ->where('vuelvefecha',"<=",Carbon::now()->format('Y-m-d'))
         // ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','personas.foto','vuelvefecha')  
         // ->get();
+            // Guardar historial de búsqueda
+            if (request()->has('busqueda')) {
+                $termino = request('busqueda');
+                \App\Models\HistorialBusqueda::create([
+                    'user_id' => Auth::id(),
+                    'termino' => $termino,
+                    'ip' => request()->ip(),
+                ]);
+            }
         
         $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
         ->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
@@ -69,9 +80,29 @@ class EstudianteController extends Controller
         ->where('vuelvefecha',"<=",Carbon::now()->format('Y-m-d'))
         ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','personas.foto','vuelvefecha')  
         ->get();
-        return view('persona.estudiantes',compact("nuevos","rematriculaciones","reinscripciones",'matriculaciones'));
+
+            // Últimas 10 búsquedas
+            $ultimasBusquedas = \App\Models\HistorialBusqueda::where('user_id', Auth::id())
+                ->orderBy('created_at', 'desc')
+                ->limit(10)
+                ->pluck('termino');
+        return view('persona.estudiantes',compact("nuevos","rematriculaciones","reinscripciones",'matriculaciones','ultimasBusquedas'));
         // return view('persona.estudiantes');
 
+    }
+
+    public function guardarBusqueda(Request $request)
+    {
+        $termino = $request->input('busqueda');
+        if ($termino) {
+            \App\Models\HistorialBusqueda::create([
+                'user_id' => Auth::id(),
+                'termino' => $termino,
+                'ip' => $request->ip(),
+            ]);
+            return response()->json(['success' => true]);
+        }
+        return response()->json(['success' => false], 400);
     }
 
     public function cumplenerosView()
