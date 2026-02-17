@@ -190,7 +190,6 @@
                                 <th>Estudiantes Únicos</th>
                                 <th>Materias Diferentes</th>
                                 <th>Dinero Generado (Bs)</th>
-                                <th>Dinero Mensual (Bs)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -202,7 +201,6 @@
                                 <td>{{ $metricasDocentes[$docente->id][$periodo]['estudiantesUnicos'] ?? 0 }}</td>
                                 <td>{{ $metricasDocentes[$docente->id][$periodo]['materiasDiferentes'] ?? 0 }}</td>
                                 <td>Bs {{ number_format($metricasDocentes[$docente->id][$periodo]['dinero'] ?? 0, 2, ',', '.') }}</td>
-                                <td>Bs {{ number_format($metricasDocentes[$docente->id][$periodo]['dineroMensual'] ?? 0, 2, ',', '.') }}</td>
                             </tr>
                         @endforeach
                         </tbody>
