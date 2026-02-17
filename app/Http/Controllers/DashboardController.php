@@ -40,18 +40,18 @@ class DashboardController extends Controller
                     ? $docente->clases()->get()->pluck('materia_id')->unique()->count()
                     : $docente->clases()->whereBetween('clases.created_at', [$inicio, $fin])->get()->pluck('materia_id')->unique()->count();
 
-                // Dinero generado por docente
+                // Dinero generado por docente: solo clases pasadas
                 $dinero = 0;
-                $dineroMensual = 0;
-                // Buscar todas las programaciones del docente
-                $programaciones = $docente->clases()->with('programacion.inscripcione')->get()->pluck('programacion');
-                foreach ($programaciones as $prog) {
+                $clasesPasadas = $key === 'historico'
+                    ? $docente->clases()->where('fecha', '<', now())->with('programacion.inscripcione')->get()
+                    : $docente->clases()->where('fecha', '<', now())->whereBetween('clases.created_at', [$inicio, $fin])->with('programacion.inscripcione')->get();
+                foreach ($clasesPasadas as $clase) {
+                    $prog = $clase->programacion;
                     if ($prog && $prog->inscripcione) {
                         $insc = $prog->inscripcione;
-                        // Cálculo: costo total / totalhoras * clases pasadas
                         $costoPorHora = $insc->totalhoras > 0 ? ($insc->costo / $insc->totalhoras) : 0;
-                        $horasPasadas = $clases * ($insc->horasxclase ?? 1);
-                        $dinero += $costoPorHora * $horasPasadas;
+                        $horasClase = $insc->horasxclase ?? 1;
+                        $dinero += $costoPorHora * $horasClase;
                     }
                 }
                 // Calcular meses trabajados
