@@ -15,6 +15,66 @@ class DashboardController extends Controller
             'historico' => [null, null],
         ];
 
+        // --- MÉTRICAS POR DOCENTE HABILITADO ---
+        $docentesHabilitadosList = \App\Models\Docente::where('estado_id', estado('HABILITADO'))->with('persona')->get();
+        $metricasDocentes = [];
+        foreach ($docentesHabilitadosList as $docente) {
+            foreach ($periodos as $key => [$inicio, $fin]) {
+                // Clases dictadas por docente
+                $clases = $key === 'historico'
+                    ? $docente->clases()->count()
+                    : $docente->clases()->whereBetween('clases.created_at', [$inicio, $fin])->count();
+
+                // Clasescom dictadas por docente
+                $clasescom = $key === 'historico'
+                    ? $docente->clasescom()->count()
+                    : $docente->clasescom()->whereBetween('clasecoms.created_at', [$inicio, $fin])->count();
+
+                // Cantidad de estudiantes únicos atendidos
+                $estudiantesUnicos = $key === 'historico'
+                    ? $docente->clases()->with('programacion.inscripcione.estudiante')->get()->pluck('programacion.inscripcione.estudiante_id')->unique()->count()
+                    : $docente->clases()->whereBetween('clases.created_at', [$inicio, $fin])->with('programacion.inscripcione.estudiante')->get()->pluck('programacion.inscripcione.estudiante_id')->unique()->count();
+
+                // Cantidad de materias diferentes dictadas
+                $materiasDiferentes = $key === 'historico'
+                    ? $docente->clases()->get()->pluck('materia_id')->unique()->count()
+                    : $docente->clases()->whereBetween('clases.created_at', [$inicio, $fin])->get()->pluck('materia_id')->unique()->count();
+
+                // Dinero generado por docente
+                $dinero = 0;
+                $dineroMensual = 0;
+                // Buscar todas las programaciones del docente
+                $programaciones = $docente->clases()->with('programacion.inscripcione')->get()->pluck('programacion');
+                foreach ($programaciones as $prog) {
+                    if ($prog && $prog->inscripcione) {
+                        $insc = $prog->inscripcione;
+                        // Cálculo: costo total / totalhoras * clases pasadas
+                        $costoPorHora = $insc->totalhoras > 0 ? ($insc->costo / $insc->totalhoras) : 0;
+                        $horasPasadas = $clases * ($insc->horasxclase ?? 1);
+                        $dinero += $costoPorHora * $horasPasadas;
+                    }
+                }
+                // Calcular meses trabajados
+                $primerClase = $docente->clases()->orderBy('fecha', 'asc')->first();
+                $ultimaClase = $docente->clases()->orderBy('fecha', 'desc')->first();
+                $meses = 1;
+                if ($primerClase && $ultimaClase) {
+                    $meses = max(1, $primerClase->fecha->diffInMonths($ultimaClase->fecha) + 1);
+                }
+                $dineroMensual = $meses > 0 ? ($dinero / $meses) : 0;
+
+                $metricasDocentes[$docente->id][$key] = [
+                    'docente' => $docente,
+                    'clases' => $clases,
+                    'clasescom' => $clasescom,
+                    'estudiantesUnicos' => $estudiantesUnicos,
+                    'materiasDiferentes' => $materiasDiferentes,
+                    'dinero' => $dinero,
+                    'dineroMensual' => $dineroMensual,
+                ];
+            }
+        }
+
         $clasesPasadas = $inscripciones = $pagosRealizados = $licencias = $matriculacionesComputacion = $dineroSecretaria = $estudiantesFaltantes = [];
 
         foreach ($periodos as $key => [$inicio, $fin]) {
@@ -144,7 +204,9 @@ class DashboardController extends Controller
             'rankingDocentes',
             'rankingDocentesComputacion',
             'metricasAdministrativos',
-            'usuariosAdministrativos'
+            'usuariosAdministrativos',
+            'docentesHabilitadosList',
+            'metricasDocentes'
         ));
     }
 }

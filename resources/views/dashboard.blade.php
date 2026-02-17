@@ -167,4 +167,50 @@
         </div>
     </div>
 </div>
+<div class="row mt-5">
+    <div class="col-12">
+        <h4 class="mb-3" style="color: rgb(55,95,122); font-weight: bold;">Métricas por Docente Habilitado</h4>
+        <ul class="nav nav-tabs mb-3" id="docenteTabs" role="tablist">
+            @foreach(['dia','semana','mes','anio','historico'] as $periodo)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link {{ $loop->first ? 'active' : '' }}" id="docente-tab-{{ $periodo }}" data-toggle="tab" href="#docente-{{ $periodo }}" role="tab">{{ ucfirst($periodo) }}</a>
+                </li>
+            @endforeach
+        </ul>
+        <div class="tab-content" id="docenteTabsContent">
+            @foreach(['dia','semana','mes','anio','historico'] as $periodo)
+            <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="docente-{{ $periodo }}" role="tabpanel">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Docente</th>
+                                <th>Clases</th>
+                                <th>Clases Computación</th>
+                                <th>Estudiantes Únicos</th>
+                                <th>Materias Diferentes</th>
+                                <th>Dinero Generado (Bs)</th>
+                                <th>Dinero Mensual (Bs)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($docentesHabilitadosList as $docente)
+                            <tr>
+                                <td><strong>{{ $docente->persona->nombre ?? $docente->nombre }}</strong></td>
+                                <td>{{ $metricasDocentes[$docente->id][$periodo]['clases'] ?? 0 }}</td>
+                                <td>{{ $metricasDocentes[$docente->id][$periodo]['clasescom'] ?? 0 }}</td>
+                                <td>{{ $metricasDocentes[$docente->id][$periodo]['estudiantesUnicos'] ?? 0 }}</td>
+                                <td>{{ $metricasDocentes[$docente->id][$periodo]['materiasDiferentes'] ?? 0 }}</td>
+                                <td>Bs {{ number_format($metricasDocentes[$docente->id][$periodo]['dinero'] ?? 0, 2, ',', '.') }}</td>
+                                <td>Bs {{ number_format($metricasDocentes[$docente->id][$periodo]['dineroMensual'] ?? 0, 2, ',', '.') }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
 @endsection
