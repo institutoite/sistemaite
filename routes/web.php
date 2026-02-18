@@ -105,6 +105,7 @@ Route::get('nivel/mostrar/{nivel}',[NivelController::class,'show'])->name("nivel
 Route::get('interes/mostrar/{interest}',[InterestController::class,'show'])->name("interest.show");
 //Route::get('prueba',[CupoController::class,'getDataCupos'])->name('prueba');
 Route::get('prueba',[ProspectoController::class,'listar'])->name('prueba');
+Route::get('colegios/ajax', [App\Http\Controllers\ColegioController::class, 'ajaxSearch'])->name('colegios.ajax');
 Route::middleware(['auth'])->group(function () {
     
 Route::get('/home',[EstudianteController::class,'home'])->name('home');
@@ -315,7 +316,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::delete('eliminar/municipio/{municipio}', [MunicipioController::class,'destroy'])->name('municipio.delete');
     /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% C O L E G I O %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
     Route::resource('colegios', "ColegioController");
-    Route::get('colegios/ajax', [App\Http\Controllers\ColegioController::class, 'ajaxSearch'])->name('colegios.ajax');
+    
     Route::get('colegio/all', 'ColegioController@todos');
     Route::delete('eliminar/colegio/{colegio}', [ColegioController::class,'destroy'])->name('colegio.delete');
 
