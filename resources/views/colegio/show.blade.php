@@ -15,7 +15,9 @@
                 <div class="card">
                     <div class="card-header bg-secondary">
                         <div class="float-left">
-                            <span class="card-title">Colegio: {{$colegio->nombre}}</span>
+                            <span class="card-title">
+                                Colegio: {{ $colegio ? $colegio->nombre : 'No encontrado' }}
+                            </span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('colegios.index') }}"> Listar colegios</a>
@@ -35,73 +37,81 @@
                             <tbody>
                                 <tr>
                                     <td>ID</td>
-                                    <td>{{ $colegio->id }}</td>
+                                    <td>{{ $colegio ? $colegio->id : '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>NOMBRE COLEGIO</td>
-                                    <td>{{ $colegio->nombre }}</td>
+                                    <td>{{ $colegio ? $colegio->nombre : '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>RUE</td>
-                                    <td>{{ $colegio->rue }}</td>
+                                    <td>{{ $colegio ? $colegio->rue : '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>DIRECTOR</td>
-                                    <td>{{ $colegio->director }}</td>
+                                    <td>{{ $colegio ? $colegio->director : '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>DIRECCION</td>
-                                    <td>{{ $colegio->direccion }}</td>
+                                    <td>{{ $colegio ? $colegio->direccion : '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>TELEFONO</td>
-                                    <td>{{ $colegio->telefono }}</td>
+                                    <td>{{ $colegio ? $colegio->telefono : '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>CELULAR</td>
-                                    <td>{{ $colegio->celular }}</td>
+                                    <td>{{ $colegio ? $colegio->celular : '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>DEPENDENCIA</td>
-                                    <td>{{ $colegio->dependencia }}</td>
+                                    <td>{{ $colegio ? $colegio->dependencia : '' }}</td>
                                 </tr>
                                
                                 <tr>
                                     <td>TURNO</td>
-                                    <td>{{ $colegio->turno }}</td>
+                                    <td>{{ $colegio ? $colegio->turno : '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>DEPARTAMENTO</td>
-                                    <td>{{ $colegio->departamento }}</td>
+                                    <td>{{ $colegio ? $colegio->departamento : '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>PROVINCIA</td>
-                                    <td>{{ $colegio->provincia }}</td>
+                                    <td>{{ $colegio ? $colegio->provincia : '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>NUNICIPIO</td>
-                                    <td>{{ $colegio->municipio }}</td>
+                                    <td>{{ $colegio ? $colegio->municipio : '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>DISTRITO</td>
-                                    <td>{{ $colegio->distrito }}</td>
+                                    <td>{{ $colegio ? $colegio->distrito : '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>AREA GEOGRAFICA</td>
-                                    <td>{{ $colegio->areageografica }}</td>
+                                    <td>{{ $colegio ? $colegio->areageografica : '' }}</td>
                                 </tr>
                                 <tr>
                                     <td>NIVELES</td>
                                     <td>
-                                        {{$colegio->nivel}}
+                                        {{ $colegio ? $colegio->nivel : '' }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>CORDENADAS</td>
                                     @php
-                                        $direccion="https://maps.google.com/?q=".$colegio->coordenadax.",".$colegio->coordenaday."&z=5&t=k";
+                                        $direccion = ($colegio && $colegio->coordenadax && $colegio->coordenaday)
+                                            ? "https://maps.google.com/?q=".$colegio->coordenadax.",".$colegio->coordenaday."&z=5&t=k"
+                                            : null;
                                     @endphp
-                                    <td> <a target="_blank" href="{{$direccion}}">Ubicación</a> </td>
+                                    <td>
+                                        @if($direccion)
+                                            <a target="_blank" href="{{$direccion}}">Ubicación</a>
+                                        @else
+                                            
+                                        @endif
+                                    </td>
                                 </tr>
                                  <tr>
                                     <td>Usuario</td>

@@ -152,7 +152,10 @@ class ColegioController extends Controller
     public function show($id)
     {
         $colegio = Colegio::find($id);
-        $user=$colegio->usuarios->first();
+        $user = null;
+        if ($colegio && $colegio->usuarios) {
+            $user = $colegio->usuarios->first();
+        }
         return view('colegio.show', compact('colegio','user'));
     }
 

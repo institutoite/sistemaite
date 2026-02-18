@@ -143,7 +143,6 @@
                                 <th>Pagos</th>
                                 <th>Licencias</th>
                                 <th>Dinero Recaudado (Bs)</th>
-                                <th>Licencias</th>
                             </tr>
                         </thead>
                         <tbody>
