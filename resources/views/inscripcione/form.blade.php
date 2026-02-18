@@ -61,17 +61,23 @@
         
     </div>
 
-    <div class="row"> 
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            @if($currentInscripcion && $currentInscripcion->fechaini)
+                    <div class="alert alert-info mb-2">
+                        Última inscripción: {{ $currentInscripcion->fechaini->diffForHumans() }}
+                    </div>
+            @else
+                <div class="alert alert-secondary mb-2">
+                    Es su primera inscripción
+                </div>
+            @endif
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
             <div class="form-floating mb-3 text-gray">
-                @if($currentInscripcion)
-                    <input  type="date" name="fechaini" class="form-control @error('fechaini') is-invalid @enderror" value="{{ old('fechaini', $currentInscripcion->fechaini->format('Y-m-d') ?? '')}}">    
-                @else
-                    <input  type="date" name="fechaini" class="form-control @error('fechaini') is-invalid @enderror" value="{{ old('fechaini' ?? '')}}">
-                @endif
-                <label for="fechaini">Fecha Inicio</label>  
-
-            </div>    
+                <input  type="date" name="fechaini" class="form-control @error('fechaini') is-invalid @enderror" value="{{ old('fechaini', date('Y-m-d'))}}">
+                <label for="fechaini">Fecha Inicio</label>
+            </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
             <div class="form-floating mb-3 text-gray">

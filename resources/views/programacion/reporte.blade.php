@@ -162,12 +162,14 @@
         height: auto;
     }
 
-    .pdf-header .contact {
+    .pdf-header .contact-info {
         text-align: right;
-        font-size: 8px;
-        line-height: 1.2;
-        color: #2b2b2b;
-        white-space: nowrap;
+        font-size: 12px;
+        line-height: 1.4;
+        color: rgb(55, 95, 122);
+        font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        padding: 6px 0 6px 0;
+        white-space: normal;
     }
 
     .pdf-header .contact .line strong {
@@ -177,6 +179,48 @@
     .pdf-header .divider {
         margin-top: 4px;
     }
+
+        @font-face {
+            font-family: 'GlyphaBold';
+            src: url('{{ public_path('assetpublic/fonts/GlyphaLTStd-Bold.otf') }}') format('opentype');
+        }
+        .codigo-persona {
+            color: rgb(55, 95, 122);
+            font-weight: bold;
+            font-size: 18px;
+            font-family: 'GlyphaBold', Arial, Helvetica, sans-serif !important;
+            background-color: #99dbd1;
+            padding: 6px 18px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+        .fecha-proximo-pago {
+            color: rgb(55, 95, 122);
+            font-weight: bold;
+            font-size: 12px;
+            font-family: 'GlyphaBold', Arial, Helvetica, sans-serif !important;
+            background-color: #99dbd1;
+            padding: 3px 3px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .contact-info strong {
+            font-weight: bold;
+        }
+        .contact-info .dato-contacto {
+            font-family:  Arial, Helvetica, sans-serif !important;
+            font-weight: bold;
+            font-size: 13px;
+            color: rgb(38,186,165);
+        }
+        .estado-activado {
+            color: #26baa5;
+            font-weight: bold;
+        }
+        .estado-inactivo {
+            color: #d11a1a;
+            font-weight: normal;
+        }
    
     </style>
     
@@ -190,15 +234,27 @@
         <td>
             <img class="logo" src="{{ public_path('assetpublic/images/logo.png') }}" alt="ITE">
         </td>
-        <td class="contact">
-            <div><strong>Telefonos:</strong> 71039910 - 75553338 - 71324941 | <strong>Web:</strong> ite.com.bo | <strong>Servicios:</strong> servicios.ite.com.bo</div>
-            <div><strong>TikTok:</strong> @ite_educabol | <strong>YouTube:</strong> @ite_educabol | <strong>Instagram:</strong> ite_educabol</div>
+        <td class="contact-info">
+            <div>
+                <strong>Telefonos:</strong> <span class="dato-contacto">71039910 - 75553338 - 71324941</span> |
+                <strong>Web:</strong> <span class="dato-contacto">ite.com.bo</span> |
+                <strong>Servicios:</strong> <span class="dato-contacto">servicios.ite.com.bo</span>
+            </div>
+            <div>
+                <strong>TikTok:</strong> <span class="dato-contacto">@ite_educabol</span> |
+                <strong>YouTube:</strong> <span class="dato-contacto">@ite_educabol</span> |
+                <strong>Instagram:</strong> <span class="dato-contacto">ite_educabol</span>
+            </div>
         </td>
+       
     </tr>
 </table>
 <div class="float-right">
-    CÓDIGO:{{$persona->id}}    
+    <span class="codigo-persona">CÓDIGO:{{$persona->id}}</span>
 </div>
+    <style>
+    
+    </style>
 <div class="">
    <table class="tabla">
     <tbody>
@@ -228,7 +284,13 @@
             <td class="titulo">Edad</td>
             <td class="dato" colspan="2">{!! $edad !!} años</td>
             <td class="titulo" colspan="2">FechaPago</td>
-            <td class="dato">{{$inscripcion->fecha_proximo_pago->isoFormat('D-M-Y')}}</td>
+            <td class="dato">
+                <span class="fecha-proximo-pago">
+                    {{$inscripcion->fecha_proximo_pago->translatedFormat('d F Y')}}
+                    ({{$inscripcion->fecha_proximo_pago->diffForHumans()}})
+                </span>
+            </td>
+
         </tr>
         <tr>
             <td class="titulo">Objetivo</td>
@@ -257,7 +319,7 @@
         </thead>
         <tbody>
             @foreach ($programacion as $programa)
-            @php
+                @php
                     echo $programa->materia;
                     $hoy=Carbon\Carbon::now();
                     $clase="";
@@ -268,7 +330,7 @@
                             $clase .= ''; 
                         }
                         }
-                        @endphp
+                @endphp
                 <tr class="{{$clase}}">
                     <td>{{$loop->iteration}}</td>
                     <td>{{$programa->fecha->isoFormat('DD/MM/YYYY')}}</td>
@@ -277,29 +339,27 @@
                     <td>{{$programa->horas_por_clase}}</td>
                     <td>{{$programa->nombre.'/'.$programa->materia.'/'.$programa->aula}}</td>
                     <td>
-                        @php
-                            if($programa->habilitado==1){
-                                echo "activado";
-                            }else{
-                                echo "inactivo";
-                            }
-                            @endphp
+                        @if($programa->habilitado==1)
+                            <span class="estado-activado">activado</span>
+                        @else
+                            <span class="estado-inactivo">inactivo</span>
+                        @endif
                     </td>
                 </tr>
                 
                 @if($loop->iteration%38==0)
                     <tr> <td colspan="7"> <div style="page-break-before:always;"> </div> </td></tr>
                 @endif
-                @endforeach
+            @endforeach
 
-                <tfoot>
-                    <tr class={{$clase}}>
-                        <th colspan="3"></th>
-                        <th colspan="2">Total:{{round($inscripcion->totalhoras,1)}} Horas</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </tfoot>
+            <tfoot>
+                <tr class={{$clase}}>
+                    <th colspan="3"></th>
+                    <th colspan="2">Total:{{round($inscripcion->totalhoras,1)}} Horas</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tfoot>
 
             </tbody>
             <tfoot>

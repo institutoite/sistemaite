@@ -59,10 +59,6 @@
     .table{
     border:1px solid #C1C3D1;
     position:absolute;
-    }
-    
-    th {
-    color:#4B4B4B;
     border:1px solid #9ea7af;
     
     font-size:12px;
@@ -166,12 +162,56 @@
         height: auto;
     }
 
-    .pdf-header .contact {
+    .pdf-header .contact-info {
         text-align: right;
-        font-size: 8px;
-        line-height: 1.2;
-        color: #2b2b2b;
-        white-space: nowrap;
+        font-size: 10px;
+        line-height: 1.4;
+        color: #1a4d7a;
+        font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        padding: 6px 0 6px 0;
+        white-space: normal;
+    }
+    .contact-info strong {
+        font-weight: bold;
+    }
+    .contact-info .dato-contacto {
+        font-family:  Arial, Helvetica, sans-serif !important;
+        font-weight: bold;
+        font-size: 13px;
+        color: rgb(38,186,165);
+    }
+    @font-face {
+        font-family: 'GlyphaBold';
+        src: url('{{ public_path('assetpublic/fonts/GlyphaLTStd-Bold.otf') }}') format('opentype');
+    }
+    .codigo-persona {
+        color: rgb(55, 95, 122);
+        font-weight: bold;
+        font-size: 18px;
+        font-family: 'GlyphaBold', Arial, Helvetica, sans-serif !important;
+        background-color: #99dbd1;
+        padding: 6px 18px;
+        border-radius: 6px;
+        display: inline-block;
+    }
+    .fecha-proximo-pago {
+        color: rgb(55, 95, 122);
+        font-weight: bold;
+        font-size: 12px;
+        font-family: 'GlyphaBold', Arial, Helvetica, sans-serif !important;
+        background-color: #99dbd1;
+        padding: 3px 3px;
+        border-radius: 4px;
+        display: inline-block;
+    }
+    .estado-activado {
+        color: #26baa5;
+        font-weight: bold;
+    }
+    .estado-inactivo {
+        color: #d11a1a;
+        font-weight: normal;
     }
 
     .pdf-header .contact .line strong {
@@ -190,84 +230,37 @@
         <td>
             <img class="logo" src="{{ public_path('assetpublic/images/logo.png') }}" alt="ITE">
         </td>
-        <td class="contact">
-            <div><strong>Telefonos:</strong> 71039910 - 75553338 - 71324941 | <strong>Web:</strong> ite.com.bo | <strong>Servicios:</strong> servicios.ite.com.bo</div>
-            <div><strong>TikTok:</strong> @ite_educabol | <strong>YouTube:</strong> @ite_educabol | <strong>Instagram:</strong> ite_educabol</div>
+        <td class="contact-info">
+            <div>
+                <strong>Telefonos:</strong> <span class="dato-contacto">71039910 - 75553338 - 71324941</span> |
+                <strong>Web:</strong> <span class="dato-contacto">ite.com.bo</span> |
+                <strong>Servicios:</strong> <span class="dato-contacto">servicios.ite.com.bo</span>
+            </div>
+            <div>
+                <strong>TikTok:</strong> <span class="dato-contacto">@ite_educabol</span> |
+                <strong>YouTube:</strong> <span class="dato-contacto">@ite_educabol</span> |
+                <strong>Instagram:</strong> <span class="dato-contacto">ite_educabol</span>
+            </div>
         </td>
     </tr>
 </table>
     
 
-{{--    
-<div class="divencabezado">
-    <div class="logo">    
-        <img src="{{asset('imagenes/logo.png')}}" width="130px" alt="Logotipo de ite">    
-    </div>    
-        <div class="cuadros" id="direccion">
-            <span class="titulos"> <strong> ENCUENTRANOS </strong> </span>
-            <span>Av. Tres pasos al Frente # 4710</span>
-            <span>Villa 1 Mayo Calle:16 Oeste #9</span>
-            <span>www.ite.com.bo</span>
-            <span>www.educabol.com</span>
-        </div>
-        <div class="cuadros" id="sucursales">
-            <span class="titulos"> <strong>NIVELES</strong> </span><br>
-            <span>Guardería</span>
-            <span>Inicial</span>
-            <span>Primaria</span>
-            <span>Secundaria</span> 
-            <span>Pre Universitario</span> 
-            <span>Unversitario</span> 
-            <span>Profesional</span> 
-        </div>
-        <div class="cuadros" id="contactos">
-            <span class="titulos"> <strong> CONTACTANOS </strong> </span>
-            <span>71039910  75553338 71324941</span><br>
-            <span>3-219050</span><br>
-            <span>info@ite.com.bo</span>
-            
-        </div> 
-</div>
-<hr>
-
-    <div class="titulos inscripcion" ><h3> CODIGO:{{$persona->id}}<h3></div>
-
+<div style="display: flex; flex-direction: row; width: 100%; margin-bottom: 8px;">
+    <div style="flex:1; min-width:0;">
+        <span class="codigo-persona" style="font-size:18px;">CÓDIGO:{{$persona->id}}</span>
+    </div>
     
-<div class="datos">
-        <div class="personal cuadrosdatos">
-            <span class="titulos"> <strong> DATOS PERSONALES </strong> </span><br>
-            <span>{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</span><br>
-            <span>{{$persona->direccion }}</span><br>
-            <span>{{$persona->carnet}} </span> 
-        </div>
-        <div class="inscripciondata cuadrosdatos " >
-            <span class="titulos"> <strong> INSCRIPCION</strong> </span><br>
-            <span>{{$carrera->carrera}}</span>
-            <span>{{$matriculacion->totalhoras}}</span><br>
-            <span>Usuario:{{$usuario->name}}</span>
-        </div>
-        <div class="academico cuadrosdatos" >
-            <span class="titulos"> <strong> ACADEMICO </strong> </span><br>
-            
-            
-        </div> 
+</div>
 
-</div> --}}
-<br>    
-<br>    
-<br>    
-<br>
-<div class="float-right">
-    CÓDIGO:{{$persona->id}}    
-</div>    
 <div class="">
    <table class="tabla">
     <tbody>
         <tr>
             <td class="titulo">Estudiante</td>
             <td class="dato">{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</td>
-            <td class="titulo">Documento CI</td>
-            <td class="dato">{{$persona->carnet}}</td>
+            <td class="titulo">FechaPago</td>
+            <td class="dato"><span class="fecha-proximo-pago" style="font-size:18px;">{{$matriculacion->fecha_proximo_pago ? $matriculacion->fecha_proximo_pago->translatedFormat('d F Y') : ''}}</span></td>
             <td class="titulo">Usuario</td>
             <td class="dato">{{$usuario->name}}</td>
         </tr>
@@ -315,19 +308,17 @@
                         @endphp
                 <tr class="{{$clase}}">
                     <td>{{$loop->iteration}}</td>
-                    <td>{{$programa->fecha->isoFormat('DD/MM/YYYY')}}</td>
+                    <td><span class="">{{$programa->fecha->isoFormat('DD/MM/YYYY')}}</span></td>
                     <td>{{$programa->fecha->isoFormat('dddd')}}</td>
                     <td>{{$programa->horaini->isoFormat('HH:mm').'-'.$programa->horafin->isoFormat('HH:mm')}}</td>
                     <td>{{$programa->horas_por_clase}}</td>
                     <td>{{$programa->nombre.'/'.$programa->aula}}</td>
                     <td>
-                        @php
-                            if($programa->habilitado==1){
-                                echo "ok";
-                            }else{
-                                echo "impaga";
-                            }
-                            @endphp
+                        @if($programa->habilitado==1)
+                            <span class="estado-activado">activado</span>
+                        @else
+                            <span class="estado-inactivo">inactivo</span>
+                        @endif
                     </td>
                 </tr>
                     
