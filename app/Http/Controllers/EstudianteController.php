@@ -81,11 +81,20 @@ class EstudianteController extends Controller
         ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','personas.foto','vuelvefecha')  
         ->get();
 
-            // Últimas 10 búsquedas
-            $ultimasBusquedas = \App\Models\HistorialBusqueda::where('user_id', Auth::id())
+            // Últimas 10 búsquedas (DISTINCT por término) con nombre de usuario
+            $ultimasBusquedas = \App\Models\HistorialBusqueda::with('user')
                 ->orderBy('created_at', 'desc')
-                ->limit(10)
-                ->pluck('termino');
+                ->get()
+                ->unique('termino')
+                ->take(10)
+                ->map(function($item) {
+                    return [
+                        'termino' => $item->termino,
+                        'usuario' => $item->user ? $item->user->name : '',
+                    ];
+                })
+                ->values()
+                ->toArray();
         return view('persona.estudiantes',compact("nuevos","rematriculaciones","reinscripciones",'matriculaciones','ultimasBusquedas'));
         // return view('persona.estudiantes');
 

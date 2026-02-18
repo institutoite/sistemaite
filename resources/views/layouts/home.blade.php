@@ -95,11 +95,11 @@
         
         <!-- Menú móvil -->
         <div class="mobile-menu" id="mobileMenu">
-            <a href="#" class="nav-link">Inicio</a>
-            <a href="#" class="nav-link">Cursos</a>
-            <a href="#" class="nav-link">Nosotros</a>
-            <a href="#" class="nav-link">Contacto</a>
-            <a href="#" class="btn btn-primary">Login</a>
+            <a href="{{ route('home') }}" class="nav-link">Inicio</a>
+            <a href="{{ route('cursos') }}" class="nav-link">Cursos</a>
+            <a href="{{ route('nosotros') }}" class="nav-link">Nosotros</a>
+            <a href="https://wa.me/59171324941?text=Quiero%20m%C3%A1s%20informaci%C3%B3n%20del%20curso%20de%20Contacto" class="nav-link">Contacto</a>
+            <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
         </div>
     </header>
     

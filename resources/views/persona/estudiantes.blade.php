@@ -18,9 +18,7 @@
         {{-- Dropdown de historial de búsquedas --}}
         @if(isset($ultimasBusquedas) && count($ultimasBusquedas) > 0)
             <div id="historial-busquedas-dropdown" class="dropdown-menu" style="display:none; position:absolute; z-index:1000; min-width:200px; background:rgba(255,255,255,0.85); box-shadow:0 2px 8px rgba(0,0,0,0.15); border-radius:0.25rem;">
-                @foreach($ultimasBusquedas as $busqueda)
-                    <a class="dropdown-item" href="#" data-busqueda="{{ $busqueda }}">{{ $busqueda }}</a>
-                @endforeach
+                {{-- El contenido se renderiza dinámicamente por JS --}}
             </div>
         @endif
     {{ Breadcrumbs::render('home') }}
@@ -279,86 +277,94 @@
                 
         <script>
         // Guardar historial en JS para filtrar (DISTINCT)
+        // Adaptar historialBusquedas para incluir usuario (forzar array de objetos JS)
         var historialBusquedas = [
             @php
-                $busquedasUnicas = array_values(array_unique(is_array($ultimasBusquedas) ? $ultimasBusquedas : $ultimasBusquedas->toArray()));
+                $array = is_array($ultimasBusquedas) ? $ultimasBusquedas : $ultimasBusquedas->toArray();
+                $unicos = [];
+                $vistos = [];
+                foreach($array as $item) {
+                    // Si es objeto/array tipo ['termino'=>..., 'usuario'=>...]
+                    if(is_array($item) && isset($item['termino'])) {
+                        $termino = $item['termino'];
+                        $usuario = $item['usuario'] ?? '';
+                    } elseif(is_object($item) && isset($item->termino)) {
+                        $termino = $item->termino;
+                        $usuario = $item->usuario ?? '';
+                    } else {
+                        $termino = $item;
+                        $usuario = '';
+                    }
+                    if(!in_array($termino, $vistos)) {
+                        $vistos[] = $termino;
+                        $unicos[] = [ 'termino' => $termino, 'usuario' => $usuario ];
+                    }
+                }
             @endphp
-            @foreach($busquedasUnicas as $i => $busqueda)
-                @if($i === count($busquedasUnicas) - 1)
-                    "{{ addslashes($busqueda) }}"
-                @else
-                    "{{ addslashes($busqueda) }}",
-                @endif
+            @foreach($unicos as $i => $item)
+                { termino: "{{ addslashes($item['termino']) }}", usuario: "{{ addslashes($item['usuario']) }}" }@if($i < count($unicos)-1),@endif
             @endforeach
         ];
 
-            // Filtrar historial en tiempo real
-            $(document).on('input', "input[type='search'][aria-controls='personas']", function() {
-                var valor = this.value.trim().toLowerCase();
-                var $input = $(this);
-                var dropdown = $('#historial-busquedas-dropdown');
-                if(dropdown.length){
-                    var offset = $input.offset();
-                    dropdown.css({
-                        top: offset.top + $input.outerHeight() - 2,
-                        left: offset.left,
-                        width: $input.outerWidth(),
-                        display: 'block'
-                    });
-                    if(valor === ''){
-                        // Mostrar las 10 últimas búsquedas
-                        var html = '';
-                        for(let i=0; i<historialBusquedas.length; i++){
-                            html += '<a class="dropdown-item" href="#" data-busqueda="'+historialBusquedas[i]+'">'+historialBusquedas[i]+'</a>';
-                        }
-                        dropdown.html(html).show();
-                    }else{
-                        // Filtrar historial
-                        var encontrados = historialBusquedas.filter(function(item){
-                            return item.toLowerCase().includes(valor);
-                        });
-                        if(encontrados.length > 0){
-                            var html = '';
-                            for(let i=0; i<encontrados.length; i++){
-                                html += '<a class="dropdown-item" href="#" data-busqueda="'+encontrados[i]+'">'+encontrados[i]+'</a>';
-                            }
-                            dropdown.html(html).show();
-                        }else{
-                            dropdown.hide();
-                        }
-                    }
-                }
-            });
+        // Función global para renderizar un elemento del historial
+        function renderItem(item) {
+            if(typeof item === 'string') {
+                return '<a class="dropdown-item d-flex justify-content-between align-items-center" href="#" data-busqueda="'+item+'">'
+                    +'<span>'+item+'</span>'
+                    +'</a>';
+            } else if(item && typeof item === 'object') {
+                var termino = item.termino || '';
+                var usuario = item.usuario || '';
+                return '<a class="dropdown-item d-flex justify-content-between align-items-center" href="#" data-busqueda="'+termino+'">'
+                    +'<span>'+termino+'</span>'
+                    +(usuario ? '<span class="text-muted small" style="margin-left:auto;">'+usuario+'</span>' : '')
+                    +'</a>';
+            }
+            return '';
+        }
 
-            // Al hacer click en el input, si está vacío, mostrar las 10 últimas búsquedas
-            $(document).on('focus', "input[type='search'][aria-controls='personas']", function() {
-                var valor = this.value.trim();
-                var $input = $(this);
-                var dropdown = $('#historial-busquedas-dropdown');
-                if(dropdown.length && valor === ''){
-                    var offset = $input.offset();
-                    dropdown.css({
-                        top: offset.top + $input.outerHeight() - 2,
-                        left: offset.left,
-                        width: $input.outerWidth(),
-                        display: 'block'
-                    });
-                    var html = '';
+        // Filtrar historial en tiempo real
+        $(document).on('input', "input[type='search'][aria-controls='personas']", function() {
+            var valor = this.value.trim().toLowerCase();
+            var $input = $(this);
+            var dropdown = $('#historial-busquedas-dropdown');
+            if(dropdown.length){
+                var offset = $input.offset();
+                dropdown.css({
+                    top: offset.top + $input.outerHeight() - 2,
+                    left: offset.left,
+                    width: $input.outerWidth(),
+                    display: 'block'
+                });
+                var html = '';
+                if(valor === ''){
                     for(let i=0; i<historialBusquedas.length; i++){
-                        html += '<a class="dropdown-item" href="#" data-busqueda="'+historialBusquedas[i]+'">'+historialBusquedas[i]+'</a>';
+                        html += renderItem(historialBusquedas[i]);
                     }
-                    dropdown.html(html).show();
+                }else{
+                    var encontrados = historialBusquedas.filter(function(item){
+                        var termino = (typeof item === 'string') ? item : (item.termino || '');
+                        return termino.toLowerCase().includes(valor);
+                    });
+                    if(encontrados.length > 0){
+                        for(let i=0; i<encontrados.length; i++){
+                            html += renderItem(encontrados[i]);
+                        }
+                    }else{
+                        dropdown.hide();
+                        return;
+                    }
                 }
-            });
+                dropdown.html(html).show();
+            }
+        });
 
-            // Al hacer click en un elemento del historial, restaurar las 10 últimas búsquedas
-            $(document).on('click', '#historial-busquedas-dropdown .dropdown-item', function(e){
-                e.preventDefault();
-                var valor = $(this).data('busqueda');
-                var $input = $("input[type='search'][aria-controls='personas']");
-                $input.val(valor).trigger('input');
-                // Restaurar las 10 últimas búsquedas
-                var dropdown = $('#historial-busquedas-dropdown');
+        // Al hacer click en el input, si está vacío, mostrar las 10 últimas búsquedas
+        $(document).on('focus', "input[type='search'][aria-controls='personas']", function() {
+            var valor = this.value.trim();
+            var $input = $(this);
+            var dropdown = $('#historial-busquedas-dropdown');
+            if(dropdown.length && valor === ''){
                 var offset = $input.offset();
                 dropdown.css({
                     top: offset.top + $input.outerHeight() - 2,
@@ -368,10 +374,33 @@
                 });
                 var html = '';
                 for(let i=0; i<historialBusquedas.length; i++){
-                    html += '<a class="dropdown-item" href="#" data-busqueda="'+historialBusquedas[i]+'">'+historialBusquedas[i]+'</a>';
+                    html += renderItem(historialBusquedas[i]);
                 }
                 dropdown.html(html).show();
+            }
+        });
+
+        // Al hacer click en un elemento del historial, restaurar las 10 últimas búsquedas
+        $(document).on('click', '#historial-busquedas-dropdown .dropdown-item', function(e){
+            e.preventDefault();
+            var valor = $(this).data('busqueda');
+            var $input = $("input[type='search'][aria-controls='personas']");
+            $input.val(valor).trigger('input');
+            // Restaurar las 10 últimas búsquedas
+            var dropdown = $('#historial-busquedas-dropdown');
+            var offset = $input.offset();
+            dropdown.css({
+                top: offset.top + $input.outerHeight() - 2,
+                left: offset.left,
+                width: $input.outerWidth(),
+                display: 'block'
             });
+            var html = '';
+            for(let i=0; i<historialBusquedas.length; i++){
+                html += renderItem(historialBusquedas[i]);
+            }
+            dropdown.html(html).show();
+        });
 
         // Mostrar historial al limpiar el input (X)
         $(document).on('input', "input[type='search'][aria-controls='personas']", function() {
@@ -386,7 +415,11 @@
                         width: $input.outerWidth(),
                         display: 'block'
                     });
-                    dropdown.show();
+                    var html = '';
+                    for(let i=0; i<historialBusquedas.length; i++){
+                        html += renderItem(historialBusquedas[i]);
+                    }
+                    dropdown.html(html).show();
                 }
             }
         });
