@@ -1,4 +1,3 @@
-
 <?php
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarreraController;
@@ -97,6 +96,10 @@ Route::post('/comentario/crear', [ComentarioController::class, 'store'])
     ->name('comentarios.store');
 
 Route::get('/',[HomeController::class, 'index']);
+
+// Rutas agregadas para menú principal
+Route::view('/cursos', 'cursos')->name('cursos');
+Route::view('/nosotros', 'nosotros')->name('nosotros');
 Route::get('interests/get', [InterestController::class,'getParaHome'])->name('interest.para.home');
 Route::get('nivel/mostrar/{nivel}',[NivelController::class,'show'])->name("nivel.mostrar");
 Route::get('interes/mostrar/{interest}',[InterestController::class,'show'])->name("interest.show");

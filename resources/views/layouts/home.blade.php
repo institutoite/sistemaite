@@ -98,7 +98,7 @@
             <a href="{{ route('home') }}" class="nav-link">Inicio</a>
             <a href="{{ route('cursos') }}" class="nav-link">Cursos</a>
             <a href="{{ route('nosotros') }}" class="nav-link">Nosotros</a>
-            <a href="https://wa.me/59171324941?text=Quiero%20m%C3%A1s%20informaci%C3%B3n%20del%20curso%20de%20Contacto" class="nav-link">Contacto</a>
+            <a target="_blank" href="https://wa.me/59171324941?text=Quiero%20m%C3%A1s%20informaci%C3%B3n%20del%20curso%20de%20Contacto" class="nav-link">Contacto</a>
             <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
         </div>
     </header>
@@ -112,8 +112,8 @@
                     <p>Ofrecemos clases de apoyo escolar, cursos de programación, robótica, ajedrez, 
                     cubo rubik, computación, oratoria, inglés, lectura, escritura y caligrafía.</p>
                     <div class="hero-buttons">
-                        <a href="#" class="btn btn-primary">Explorar cursos</a>
-                        <a href="#" class="btn btn-outline">Conocer más</a>
+                        <a href="{{ route('cursos') }}" class="btn btn-primary">Explorar cursos</a>
+                        <a href="{{ route('nosotros') }}" class="btn btn-outline">Conocer más</a>
                     </div>
                 </div>
                 <div class="hero-image fade-in delay">
