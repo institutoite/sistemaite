@@ -1,3 +1,33 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#country").change(function() {
+        var asignaturaId = $(this).val();
+        if(asignaturaId) {
+            $.ajax({
+                url: '/asignatura/datos/' + asignaturaId,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    if(data.costo !== undefined) {
+                        $("#costo").val(data.costo);
+                    }
+                    if(data.totalhoras !== undefined) {
+                        $("#totalhoras").val(data.totalhoras);
+                    }
+                },
+                error: function() {
+                    $("#costo").val('');
+                    $("#totalhoras").val('');
+                }
+            });
+        } else {
+            $("#costo").val('');
+            $("#totalhoras").val('');
+        }
+    });
+});
+</script>
 {{-- %%%%%%%%%%%%%%%%%%%%%%% CAMPO  FECHA NACIMIENTO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
 
     <input  type="text" hidden name="computacion_id" value="{{old('computacion_id',$computacion->id ?? '')}}">

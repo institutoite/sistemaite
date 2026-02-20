@@ -79,7 +79,7 @@
                 <div style="display: flex; justify-content: space-between; align-items: center;">
 
                     <span id="card_title">
-                        {{ __('MATRICULACIOENS VIGENTES de: ')}} <strong> {{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom }}</strong>
+                        {{ __('MATRICULACIONES VIGENTES de: ')}} <strong> {{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom }}</strong>
                     </span>
 
                     @if(!$esPadre)

@@ -49,9 +49,11 @@ class AsignaturaController extends Controller
      */
     public function store(AsignaturaGuardarRequest $request)
     {
-        $asignatura= new Asignatura();
-        $asignatura->asignatura= $request->asignatura;
-        $asignatura->carrera_id= $request->carrera_id;
+        $asignatura = new Asignatura();
+        $asignatura->asignatura = $request->asignatura;
+        $asignatura->carrera_id = $request->carrera_id;
+        $asignatura->costo = $request->costo;
+        $asignatura->totalhoras = $request->totalhoras;
         $asignatura->save();
         $asignatura->usuarios()->attach(Auth::user()->id);
         return redirect()->route('asignatura.index');
@@ -93,8 +95,10 @@ class AsignaturaController extends Controller
      */
     public function update(AsignaturaUpdateRequest $request, Asignatura $asignatura)
     {
-        $asignatura->asignatura=$request->asignatura;
-        $asignatura->carrera_id=$request->carrera_id;
+        $asignatura->asignatura = $request->asignatura;
+        $asignatura->carrera_id = $request->carrera_id;
+        $asignatura->costo = $request->costo;
+        $asignatura->totalhoras = $request->totalhoras;
         $asignatura->save();
         return redirect()->route('asignatura.index');
     }
@@ -109,5 +113,20 @@ class AsignaturaController extends Controller
     {
         $asignatura->delete();
         return response()->json(['message' => 'Registro Eliminado', 'status' => 200]);
+    }
+
+      /**
+     * Retorna costo y totalhoras de una asignatura para AJAX.
+     */
+    public function datosAsignatura($id)
+    {
+        $asignatura = Asignatura::find($id);
+        if (!$asignatura) {
+            return response()->json(['error' => 'Asignatura no encontrada'], 404);
+        }
+        return response()->json([
+            'costo' => $asignatura->costo,
+            'totalhoras' => $asignatura->totalhoras
+        ]);
     }
 }

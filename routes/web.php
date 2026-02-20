@@ -1,4 +1,6 @@
 <?php
+// Ruta para AJAX de datos de asignatura
+Route::get('asignatura/datos/{id}', [App\Http\Controllers\AsignaturaController::class, 'datosAsignatura'])->name('asignatura.datos');
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarreraController;
 use App\Http\Controllers\MatriculacionController;

@@ -40,3 +40,18 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="form-floating mb-3 text-gray">
+            <input type="number" step="any" name="costo" id="costo" class="form-control @error('costo') is-invalid @enderror" value="{{ old('costo', $asignatura->costo ?? '') }}">
+            <label for="costo">Costo</label>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="form-floating mb-3 text-gray">
+            <input type="number" step="any" name="totalhoras" id="totalhoras" class="form-control @error('totalhoras') is-invalid @enderror" value="{{ old('totalhoras', $asignatura->totalhoras ?? '') }}">
+            <label for="totalhoras">Total Horas</label>
+        </div>
+    </div>
+</div>
+

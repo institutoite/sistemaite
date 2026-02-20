@@ -179,7 +179,7 @@ Route::get('menus', function () {
 
 
 Route::get('asignaturas', function () {
-    $asignaturas=Asignatura::select('asignaturas.id','asignatura','carrera')->join('carreras','carreras.id','=','asignaturas.carrera_id')->get();
+    $asignaturas=Asignatura::select('asignaturas.id','asignatura','carrera','costo','totalhoras')->join('carreras','carreras.id','=','asignaturas.carrera_id')->get();
     return datatables()->of($asignaturas)
         ->addColumn('btn', 'asignatura.action')
         ->rawColumns(['btn'])

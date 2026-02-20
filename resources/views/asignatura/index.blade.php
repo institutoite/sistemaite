@@ -21,6 +21,8 @@
                 <th>ID</th>
                 <th>ASIGNATURA</th>
                 <th>CARRERA</th>
+                <th>COSTO</th>
+                <th>TOTAL HORAS</th>
                 <th>ACCIONES</th>
             </tr>
         </thead>
@@ -52,7 +54,9 @@
                     "columns": [
                         {"data": 'id',name:"id"},
                         {"data": 'asignatura',name:"asignatura"},
-                        {"data": "carrera",name:"carrera"},     
+                        {"data": "carrera",name:"carrera"},
+                        {"data": "costo",name:"costo"},
+                        {"data": "totalhoras",name:"totalhoras"},
                         {
                             "name":"btn",
                             "data": 'btn',

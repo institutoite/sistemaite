@@ -27,7 +27,9 @@ class AsignaturaUpdateRequest extends FormRequest
         $asignatura=$this->route('asignatura');
         return [
             'asignatura'=>['required','max:50','min:5',Rule::unique('asignaturas')->ignore($asignatura)],
-            'carrera_id'=>'required'
+            'carrera_id'=>'required',
+            'costo' => 'required|numeric',
+            'totalhoras' => 'required|numeric',
         ];
     }
 }

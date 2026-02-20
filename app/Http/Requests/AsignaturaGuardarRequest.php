@@ -26,7 +26,9 @@ class AsignaturaGuardarRequest extends FormRequest
     {
         return [
             'asignatura'=>'required|max:50|min:5|unique:asignaturas,asignatura',
-            'carrera_id'=>'required'
+            'carrera_id'=>'required',
+            'costo' => 'required|numeric',
+            'totalhoras' => 'required|numeric',
         ];
     }
 }
