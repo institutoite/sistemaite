@@ -42,9 +42,13 @@ class ConstanteController extends Controller
      */
     public function store(StoreConstanteRequest $request)
     {
-        $constante=new Constante();
-        $constante->constante=$request->constante;
-        $constante->valor=$request->valor;
+        $validated = $request->validate([
+            'cuenta' => 'required|string|max:100',
+            'plataforma' => 'required|string|max:100',
+            'clave' => 'required|string|max:100',
+            'descripcion' => 'nullable|string|max:1000',
+        ]);
+        $constante = new Constante($validated);
         $constante->save();
         return redirect()->route('constante.index');
     }
@@ -81,9 +85,13 @@ class ConstanteController extends Controller
      */
     public function update(UpdateConstanteRequest $request, Constante $constante)
     {
-        $constante->constante=$request->constante;
-        $constante->valor=$request->valor;
-        $constante->save();
+        $validated = $request->validate([
+            'cuenta' => 'required|string|max:100',
+            'plataforma' => 'required|string|max:100',
+            'clave' => 'required|string|max:100',
+            'descripcion' => 'nullable|string|max:1000',
+        ]);
+        $constante->update($validated);
         return redirect()->route('constante.index');
     }
 
@@ -99,10 +107,10 @@ class ConstanteController extends Controller
         return response()->json(['mensaje'=>"El registro fue eliminado correctamente"]);
     }
     public function listar(){
-        $constantes=Constante::all();
+        $constantes = Constante::select('id', 'cuenta', 'plataforma', 'clave', 'descripcion', 'created_at')->get();
         return datatables()->of($constantes)
-        ->addColumn('btn', 'constante.action')
-        ->rawColumns(['btn'])
-        ->toJson();
+            ->addColumn('btn', 'constante.action')
+            ->rawColumns(['btn'])
+            ->toJson();
     }
 }

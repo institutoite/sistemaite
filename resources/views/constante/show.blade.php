@@ -24,20 +24,27 @@
                             <td>{{$constante->id}}</td>
                         </tr>
                         <tr>
-                            <td>CONSTANTE</td>
-                            <td>{{$constante->constante}}</td>
+                            <td>Cuenta</td>
+                            <td>{{$constante->cuenta}}</td>
                         </tr>
                         <tr>
-                            <td>VALOR</td>
-                            <td>{!!$constante->valor!!}</td>
+                            <td>Plataforma</td>
+                            <td>{{$constante->plataforma}}</td>
                         </tr>
-                       
                         <tr>
-                            <td>CREADO</td>
+                            <td>Contraseña</td>
+                            <td>{{$constante->clave}}</td>
+                        </tr>
+                        <tr>
+                            <td>Descripción</td>
+                            <td>{{$constante->descripcion}}</td>
+                        </tr>
+                        <tr>
+                            <td>Creado</td>
                             <td>{{$constante->created_at}}</td>
                         </tr>
                         <tr>
-                            <td>ACTUALIZADO</td>
+                            <td>Actualizado</td>
                             <td>{{$constante->updated_at}}</td>
                         </tr>
                     </tbody>

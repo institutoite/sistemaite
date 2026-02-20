@@ -24,8 +24,10 @@
                 <thead class="thead-light">
                     <tr>
                         <th>#</th>
-                        <th>Constantes</th>
-                        <th>Valor</th>
+                        <th>Cuenta</th>
+                        <th>Plataforma</th>
+                        <th>Contraseña</th>
+                        <th>Descripción</th>
                         <th>Option</th>
                     </tr>
                 </thead>
@@ -58,8 +60,10 @@
                         },
                         "columns": [
                             {data:'id'},
-                            {data:'constante'},
-                            {data:'valor'},
+                            {data:'cuenta'},
+                            {data:'plataforma'},
+                            {data:'clave'},
+                            {data:'descripcion'},
                             {
                                 "name":"btn",
                                 "data": 'btn',

@@ -1,30 +1,28 @@
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-        @if($errors->has('constante'))
-            <span class="text-danger"> {{ $errors->first('constante')}}</span>
-        @endif
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
         <div class="form-floating mb-3 text-gray">
-            <input  type="text" name="constante" id="constante"  class="form-control @error('constante') is-invalid @enderror" value="{{old('constante',$constante->constante ?? '')}}" autocomplete="off">
-            <label for="constante">Ingrese constante</label>
+            <input type="text" name="cuenta" id="cuenta" class="form-control @error('cuenta') is-invalid @enderror" value="{{ old('cuenta', $constante->cuenta ?? '') }}" autocomplete="off">
+            <label for="cuenta">Correo o Usuario</label>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="form-floating mb-3 text-gray">
+            <input type="text" name="plataforma" id="plataforma" class="form-control @error('plataforma') is-invalid @enderror" value="{{ old('plataforma', $constante->plataforma ?? '') }}" autocomplete="off">
+            <label for="plataforma">Plataforma</label>
         </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-        @if($errors->has('valor'))
-            <span class="text-danger"> {{ $errors->first('valor')}}</span>
-        @endif
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
         <div class="form-floating mb-3 text-gray">
-            <input  type="text" name="valor" id="valor"  class="form-control @error('valor') is-invalid @enderror" value="{{old('valor',$constante->valor ?? '')}}" autocomplete="off">
-            <label for="valor">Ingrese valor</label>
+            <input type="text" name="clave" id="clave" class="form-control @error('clave') is-invalid @enderror" value="{{ old('clave', $constante->clave ?? '') }}" autocomplete="off">
+            <label for="clave">Contraseña</label>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="form-floating mb-3 text-gray">
+            <textarea name="descripcion" id="descripcion" class="form-control @error('descripcion') is-invalid @enderror" rows="3">{{ old('descripcion', $constante->descripcion ?? '') }}</textarea>
+            <label for="descripcion">Descripción</label>
         </div>
     </div>
 </div>
