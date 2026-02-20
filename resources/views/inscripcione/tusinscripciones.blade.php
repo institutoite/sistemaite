@@ -558,11 +558,11 @@
                     "serverSide":true,
                     "responsive":true,
                     "autoWidth":false,
-                    "ajax":{ 
-                        "url":'../tusmatriculaciones',
-                        "data":{
-                            estudiante_id:"{{$persona->estudiante->id }}",  //mandar computacion
-                        },
+                    "ajax":{
+                        "url": '../tusmatriculaciones',
+                        "data": function(d) {
+                            d.estudiante_id = "{{$persona->estudiante->id}}";
+                        }
                     },
                     "createdRow": function( row, data, dataIndex ) {
                     $(row).attr('id',data['id']); 

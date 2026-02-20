@@ -390,19 +390,19 @@ class MatriculacionController extends Controller
 
     public function tusMatriculacionesVigentes(Request $request){
 
-        $computacion=Estudiante::findOrFail($request->estudiante_id)->persona->computacion;
-        // $computacion=Persona::findOrFail(2)->computacion;
-        if($computacion!==null){
-            $matriculacionesVigentes=Matriculacion::join('asignaturas','asignaturas.id','=','matriculacions.asignatura_id')        
-            ->join('estados','estados.id','matriculacions.estado_id')
-            ->where('computacion_id','=',$computacion->id)
-            ->select('matriculacions.id','vigente','costo','asignatura','fecha_proximo_pago','estado','calificacion')
-            ->get();
+        $computacion = Estudiante::findOrFail($request->estudiante_id)->persona->computacion;
+        $matriculacionesVigentes = collect();
+        if ($computacion !== null) {
+            $matriculacionesVigentes = Matriculacion::join('asignaturas', 'asignaturas.id', '=', 'matriculacions.asignatura_id')
+                ->join('estados', 'estados.id', 'matriculacions.estado_id')
+                ->where('computacion_id', '=', $computacion->id)
+                ->select('matriculacions.id', 'vigente', 'asignaturas.costo', 'asignatura', 'fecha_proximo_pago', 'estado', 'calificacion')
+                ->get();
         }
         return datatables()->of($matriculacionesVigentes)
-                ->addColumn('btn', 'inscripcione.actiontusmatriculacion')
-                ->rawColumns(['btn'])
-                ->toJson();
+            ->addColumn('btn', 'inscripcione.actiontusmatriculacion')
+            ->rawColumns(['btn'])
+            ->toJson();
     }
 
    
