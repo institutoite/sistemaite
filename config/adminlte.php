@@ -247,6 +247,13 @@ return [
             'can' => 'vender-productos',
         ],
         [
+                'text' => 'Mis pagos de hoy',
+                'icon'    => 'fas fa-angle-right',
+                'route'  => 'reportes.pagos.diario.usuario',
+                'classes'  => 'text-dark',
+                'can' => 'Listar Pagos',
+        ],
+        [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true, // Or "topnav => true" to place on the left.
             'padre'        => false,
@@ -1031,13 +1038,7 @@ return [
                     'classes'  => 'text-dark',
                     'can' => 'gestionar-banco',
                 ],
-                [
-                    'text' => 'Mis pagos de hoy',
-                    'icon'    => 'fas fa-angle-right',
-                    'route'  => 'reportes.pagos.diario.usuario',
-                    'classes'  => 'text-dark',
-                    'can' => 'Listar Pagos',
-                ],
+              
                 /*[
                     'text' => 'Mis ventas',
                     'icon'    => 'fas fa-angle-right',
