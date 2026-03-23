@@ -285,6 +285,17 @@
                 });
             }
 
+            function actualizarEstadoSesiones() {
+                cantida_sesiones = $("#sesiones .sesion-row").length;
+                if (cantida_sesiones === 0) {
+                    $("#boton-aceptar").addClass('d-none');
+                    $("#titulosesion").removeClass('bg-success').addClass('bg-warning');
+                } else {
+                    $("#boton-aceptar").removeClass('d-none');
+                    $("#titulosesion").removeClass('bg-warning').addClass('bg-success');
+                }
+            }
+
             function crearSesion() {
                 var $html = "<div class='row mb-2 sesion-row'>";
                 $html += "<div class='col-xs-12 col-sm-6 col-md-3 col-lg-2 input-group text-sm'>";
@@ -306,6 +317,7 @@
                 refrescarColoresSesiones();
                 actualizarSesionesDesdeMaestro();
                 syncDiasDesdeMaestro();
+                actualizarEstadoSesiones();
             }
 
             function actualizarSesionesDesdeMaestro() {
@@ -503,10 +515,7 @@
                 syncDiasDesdeMaestro();
             }
 
-            if (sesionesAuto > 0) {
-                $("#boton-aceptar").removeClass('d-none');
-                $("#titulosesion").removeClass('bg-warning').addClass('bg-success');
-            }
+            actualizarEstadoSesiones();
 
             $(".sesion-dia").each(function() {
                 cargarDocentesPorTurnoFila($(this).closest('.row'));
@@ -548,23 +557,16 @@
 
             $('#botonplus').on('click', function() {
                 crearSesion();
-                cantida_sesiones += 1;
-                $("#boton-aceptar").removeClass('d-none');
-                $("#titulosesion").removeClass('bg-warning').addClass('bg-success');
                 var $ultima = $("#sesiones .row").last();
                 cargarDocentesPorTurnoFila($ultima);
                 cargarDocentesPorTurno();
             });
 
             $(document).on('click', '.quitar-sesion', function() {
-                $(this).closest('.row').remove();
+                $(this).closest('.sesion-row').remove();
                 refrescarColoresSesiones();
-                cantida_sesiones = Math.max(0, cantida_sesiones - 1);
                 cargarDocentesPorTurno();
-                if (cantida_sesiones === 0) {
-                    $("#boton-aceptar").addClass('d-none');
-                    $("#titulosesion").removeClass('bg-success').addClass('bg-warning');
-                }
+                actualizarEstadoSesiones();
             });
 
                 //** data-table

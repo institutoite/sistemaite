@@ -36,6 +36,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ReportePagoVentaController;
 use App\Http\Controllers\AulaController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\NivelController;
@@ -82,6 +83,7 @@ use App\Http\Controllers\RolUsersController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\VentajaController;
 use App\Http\Controllers\PadreController;
+use App\Http\Controllers\VentaRapidaController;
 use App\Models\Estudiante;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert;
@@ -485,6 +487,24 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::delete('eliminar/pago/{pago}', [PagoController::class,'destroy'])->name('eliminar.pago');
     Route::delete('eliminar/pago/periodable/{pago}',[PeriodableController::class,'eliminarPagoPeriodo'])->name('eliminar.pago.periodable');
     Route::get('pago/actualizar/', [PeriodableController::class,'actualizar'])->name('pago.periodable.actualizar'); //duplicado pago.actualizar
+
+    Route::get('reportes/pagos/diario-usuario', [ReportePagoVentaController::class, 'diarioUsuario'])
+        ->name('reportes.pagos.diario.usuario');
+    Route::match(['get', 'post'], 'reportes/pagos/general-admin', [ReportePagoVentaController::class, 'generalAdmin'])
+        ->name('reportes.pagos.general.admin');
+    Route::match(['get', 'post'], 'reportes/ventas/mias', [ReportePagoVentaController::class, 'misVentasUsuario'])
+        ->name('reportes.ventas.mias');
+
+    Route::get('ventas-rapidas', [VentaRapidaController::class, 'create'])->name('ventas.rapidas.create');
+    Route::get('ventas-rapidas/buscar-producto', [VentaRapidaController::class, 'buscarProducto'])->name('ventas.rapidas.buscar-producto');
+    Route::get('ventas-rapidas/buscar-productos', [VentaRapidaController::class, 'buscarProductos'])->name('ventas.rapidas.buscar-productos');
+    Route::post('ventas-rapidas', [VentaRapidaController::class, 'store'])->name('ventas.rapidas.store');
+
+    Route::get('productos', [ProductoController::class, 'index'])->name('productos.index');
+    Route::get('productos/sugerencias', [ProductoController::class, 'sugerencias'])->name('productos.sugerencias');
+    Route::post('productos', [ProductoController::class, 'store'])->name('productos.store');
+    Route::put('productos/{producto}', [ProductoController::class, 'update'])->name('productos.update');
+    Route::delete('productos/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
 
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%CHART RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     Route::get('chart/inscripciones/for/modalidades', [ChartController::class,'chartCantidadInscripcionesXModaalidades'])->name('chart.listar.inscripciones.pormodalidades');

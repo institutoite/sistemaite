@@ -197,6 +197,10 @@ class User extends Authenticatable
         return $this->morphedByMany(Pago::class,'userable');
     } 
 
+    public function ventas(){
+        return $this->morphedByMany(Venta::class,'userable');
+    }
+
     public function paises(){
         return $this->morphedByMany(Pais::class,'userable');
     } 
