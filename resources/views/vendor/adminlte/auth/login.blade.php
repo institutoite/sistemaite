@@ -24,28 +24,63 @@
         }
         .login-box, .register-box, .password-reset-box {
             margin-top: 70px !important;
-            width: min(92vw, 520px);
+            width: min(95vw, 740px) !important;
+            max-width: 740px !important;
         }
         .auth-white-container {
             background: #ffffff;
-            padding: 24px 10px 15px 10px;
+            padding: 34px 22px 24px 22px;
             border-radius: 14px;
             box-shadow: 0 12px 30px rgba(0,0,0,0.15);
         }
         .auth-white-container .card {
             margin-bottom: 0;
+            width: 100% !important;
         }
         .login-card-body {
-            padding-left: 12px;
-            padding-right: 12px;
+            padding-left: 22px;
+            padding-right: 22px;
+            padding-top: 1.25rem;
+            padding-bottom: 1.25rem;
+        }
+        .login-box .card-header,
+        .login-box .login-box-msg {
+            font-size: 1.2rem;
+            font-weight: 700;
         }
         .login-box .input-group .form-control {
             min-width: 0;
             flex: 1 1 auto;
+            min-height: 60px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.35;
+            padding: 0.45rem 1rem;
+        }
+        .login-box .input-group .form-control::placeholder {
+            font-size: 1.1rem;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+        .login-box .input-group-text {
+            min-height: 60px;
+            font-size: 1.5rem;
+            padding: 0.45rem 1rem;
+        }
+        .login-box .icheck-primary label {
+            font-size: 1rem;
+        }
+        .login-box .btn[type=submit] {
+            min-height: 54px;
+            font-size: 1.12rem;
+            font-weight: 700;
         }
         @media (max-width: 420px) {
+            .login-box, .register-box, .password-reset-box {
+                width: min(96vw, 760px);
+            }
             .login-box .input-group .form-control {
-                font-size: 0.9rem;
+                font-size: 1.05rem;
                 padding-left: 0.6rem;
                 padding-right: 0.6rem;
             }

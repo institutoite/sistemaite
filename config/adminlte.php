@@ -240,6 +240,13 @@ return [
             'padre'   => true,
         ],
         [
+            'text' => 'Ventas rapidas',
+            'icon'    => 'fas fa-angle-right',
+            'route'  => 'ventas.rapidas.create',
+            'classes'  => 'text-dark',
+            'can' => 'vender-productos',
+        ],
+        [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true, // Or "topnav => true" to place on the left.
             'padre'        => false,
@@ -1022,6 +1029,7 @@ return [
                     'icon'    => 'fas fa-angle-right',
                     'url'  => 'pago/inscripciones/max/bnc',
                     'classes'  => 'text-dark',
+                    'can' => 'gestionar-banco',
                 ],
                 [
                     'text' => 'Mis pagos de hoy',
@@ -1030,20 +1038,14 @@ return [
                     'classes'  => 'text-dark',
                     'can' => 'Listar Pagos',
                 ],
-                [
+                /*[
                     'text' => 'Mis ventas',
                     'icon'    => 'fas fa-angle-right',
                     'route'  => 'reportes.ventas.mias',
                     'classes'  => 'text-dark',
                     'can' => 'ver-mis-ventas-propios',
-                ],
-                [
-                    'text' => 'Reporte general (Admin)',
-                    'icon'    => 'fas fa-angle-right',
-                    'route'  => 'reportes.pagos.general.admin',
-                    'classes'  => 'text-dark',
-                    'can' => 'gestionar-productos-admin',
-                ],
+                ],*/
+              
                 [
                     'text' => 'Matriculaciones',
                     'icon'    => 'fas fa-angle-right',
@@ -1069,12 +1071,13 @@ return [
                     'classes'  => 'text-dark',
                 ],
                 [
-                    'text' => 'Ventas rapidas',
+                    'text' => 'Reporte general (Admin)',
                     'icon'    => 'fas fa-angle-right',
-                    'route'  => 'ventas.rapidas.create',
+                    'route'  => 'reportes.pagos.general.admin',
                     'classes'  => 'text-dark',
-                    'can' => 'vender-productos',
+                    'can' => 'gestionar-productos-admin',
                 ],
+               
                 [
                     'text' => 'Productos',
                     'icon'    => 'fas fa-angle-right',
