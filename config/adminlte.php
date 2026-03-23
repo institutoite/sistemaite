@@ -251,7 +251,7 @@ return [
                 'icon'    => 'fas fa-angle-right',
                 'route'  => 'reportes.pagos.diario.usuario',
                 'classes'  => 'text-dark',
-                'can' => 'Listar Pagos',
+                'can' => 'Listar Mis Pagos',
         ],
         [
             'type'         => 'fullscreen-widget',
