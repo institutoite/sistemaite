@@ -4,7 +4,11 @@
             Lista de usuarios con roles
         </div>
         <div class="card-header">
-            <input wire:keydown="limpiar_page" wire:model="search" class="form-control w-100" placeholder="Escriba un nombre">
+            <input
+                type="search"
+                wire:model.debounce.300ms="search"
+                class="form-control w-100"
+                placeholder="Buscar por ID, nombre o correo">
         </div>
         @if ($users->count())
 
@@ -55,7 +59,7 @@
                 </table>
             </div>
 
-            <div class="card-footer">
+            <div class="card-footer d-flex justify-content-center">
                 {{$users->links()}}
             </div>
         @else

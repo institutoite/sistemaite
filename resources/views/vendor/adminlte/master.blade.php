@@ -68,7 +68,13 @@
     @endif
     
     {{-- Livewire Styles --}}
-   {{-- @livewireStyles --}}
+    @if(config('adminlte.livewire'))
+        @if(class_exists(\Livewire\Livewire::class))
+            @livewireStyles
+        @else
+            <livewire:styles />
+        @endif
+    @endif
 </head>
 
 <body class="@yield('classes_body')" @yield('body_data')>
@@ -92,11 +98,15 @@
     @endif
 
     {{-- Livewire Script --}}
-    
-    
+    @if(config('adminlte.livewire'))
+        @if(class_exists(\Livewire\Livewire::class))
+            @livewireScripts
+        @else
+            <livewire:scripts />
+        @endif
+    @endif
 
     {{-- Custom Scripts --}}
-    {{-- @livewireScripts --}}
     @yield('adminlte_js')
     @include('sweet::alert')
 </body>

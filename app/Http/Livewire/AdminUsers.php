@@ -10,21 +10,40 @@ class AdminUsers extends Component
 {
     use WithPagination;
 
-    //protected $paginationTheme = "bootstrap";
+    protected $paginationTheme = 'bootstrap';
 
-    public $search;
+    public $search = '';
+    protected $queryString = ['search' => ['except' => '']];
 
     public function render()
     {
-        $users = User::where('name', 'LIKE', '%' . $this->search . '%')
-                    ->orWhere('email', 'LIKE', '%' . $this->search . '%')
-                    ->paginate(8);
+        $search = trim((string) $this->search);
+
+        $users = User::query()
+            ->when($search !== '', function ($query) use ($search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'LIKE', '%' . $search . '%')
+                        ->orWhere('email', 'LIKE', '%' . $search . '%');
+
+                    if (is_numeric($search)) {
+                        $q->orWhere('id', (int) $search);
+                    }
+                });
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(8);
 
         return view('livewire.admin-users', compact('users'));
     }
 
-    public function limpiar_page(){
-        $this->reset('page');
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function limpiar_page()
+    {
+        $this->resetPage();
     }
 
 }
