@@ -7,9 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
 use Spatie\Permission\Traits\HasRoles;
 /**
@@ -62,12 +60,25 @@ class User extends Authenticatable
 
     public function adminlte_image()
     {
-        return URL::to('/').('/storage/'.Auth::user()->foto);
+        $foto = $this->foto ?: optional($this->persona)->foto ?: 'estudiantes/sinperfil.png';
+
+        if (filter_var($foto, FILTER_VALIDATE_URL)) {
+            return $foto;
+        }
+
+        $foto = ltrim($foto, '/');
+
+        if (Str::startsWith($foto, 'storage/')) {
+            $foto = Str::after($foto, 'storage/');
+        }
+
+        return route('foto.show', ['filename' => $foto]);
     }
 
     public function adminlte_desc()
     {
-        return "Administrador";
+        $rol = $this->roles()->pluck('name')->first();
+        return $rol ?: 'Usuario';
     }
 
     public function adminlte_profile_url()
