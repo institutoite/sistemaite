@@ -70,34 +70,6 @@
             <strong>Generado:</strong> {{ now()->format('d/m/Y H:i') }}
         </div>
 
-        <div class="row mb-3">
-            <div class="col-6 col-md-3 mb-2">
-                <div class="kpi-card p-3">
-                    <div class="kpi-label">Asistencias</div>
-                    <div class="kpi-value">{{ $resumenGlobal['asistencias'] ?? 0 }}</div>
-                </div>
-            </div>
-            <div class="col-6 col-md-3 mb-2">
-                <div class="kpi-card p-3">
-                    <div class="kpi-label">Faltas</div>
-                    <div class="kpi-value">{{ $resumenGlobal['faltas'] ?? 0 }}</div>
-                </div>
-            </div>
-            <div class="col-6 col-md-3 mb-2">
-                <div class="kpi-card p-3">
-                    <div class="kpi-label">Licencias</div>
-                    <div class="kpi-value">{{ $resumenGlobal['licencias'] ?? 0 }}</div>
-                </div>
-            </div>
-            <div class="col-6 col-md-3 mb-2">
-                <div class="kpi-card p-3">
-                    <div class="kpi-label">Pagado / Saldo</div>
-                    <div class="kpi-value">Bs {{ number_format($resumenGlobal['total_pagado'] ?? 0, 2) }}</div>
-                    <small class="text-muted">Saldo: Bs {{ number_format($resumenGlobal['total_saldo'] ?? 0, 2) }}</small>
-                </div>
-            </div>
-        </div>
-
         @if($inscripciones->isEmpty() && $matriculaciones->isEmpty())
             <div class="alert alert-warning">No se encontraron inscripciones ni matriculaciones para este estudiante.</div>
         @endif
@@ -196,36 +168,12 @@
                         </div>
                     </div>
 
-                    <h6 class="mb-2">Horario y planificacion de clases</h6>
-                    <div class="table-responsive">
-                        <table class="table table-sm table-bordered table-striped mb-0 compact-table">
-                            <thead>
-                                <tr>
-                                    <th>Dia</th>
-                                    <th>Horario</th>
-                                    <th>Materia</th>
-                                    <th>Docente</th>
-                                    <th>Aula</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($item['planificacion'] as $plan)
-                                    @php
-                                        $horaPlanIni = $plan->horainicio ? \Carbon\Carbon::parse($plan->horainicio)->format('H:i') : 'N/D';
-                                        $horaPlanFin = $plan->horafin ? \Carbon\Carbon::parse($plan->horafin)->format('H:i') : 'N/D';
-                                    @endphp
-                                    <tr>
-                                        <td>{{ $plan->dia ?? 'N/D' }}</td>
-                                        <td>{{ $horaPlanIni }}-{{ $horaPlanFin }}</td>
-                                        <td>{{ $plan->materia ?? 'N/D' }}</td>
-                                        <td>{{ $plan->nombrecorto ?? trim(($plan->docente_nombre ?? '').' '.($plan->docente_apellidop ?? '')) }}</td>
-                                        <td>{{ $plan->aula ?? 'N/D' }}</td>
-                                    </tr>
-                                @empty
-                                    <tr><td colspan="5" class="text-center text-muted">Sin planificacion registrada</td></tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                    @php
+                        $diasAsistenciaIns = collect($item['planificacion'] ?? [])->pluck('dia')->filter()->unique()->values();
+                    @endphp
+                    <h6 class="mb-2">Dias de asistencias</h6>
+                    <div class="alert alert-light border mb-0">
+                        {{ $diasAsistenciaIns->isNotEmpty() ? $diasAsistenciaIns->implode(', ') : 'Sin dias planificados' }}
                     </div>
                 </div>
             </div>
@@ -325,34 +273,12 @@
                         </div>
                     </div>
 
-                    <h6 class="mb-2">Horario y planificacion de clases</h6>
-                    <div class="table-responsive">
-                        <table class="table table-sm table-bordered table-striped mb-0 compact-table">
-                            <thead>
-                                <tr>
-                                    <th>Dia</th>
-                                    <th>Horario</th>
-                                    <th>Docente</th>
-                                    <th>Aula</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($item['planificacion'] as $plan)
-                                    @php
-                                        $horaPlanComIni = $plan->horainicio ? \Carbon\Carbon::parse($plan->horainicio)->format('H:i') : 'N/D';
-                                        $horaPlanComFin = $plan->horafin ? \Carbon\Carbon::parse($plan->horafin)->format('H:i') : 'N/D';
-                                    @endphp
-                                    <tr>
-                                        <td>{{ $plan->dia ?? 'N/D' }}</td>
-                                        <td>{{ $horaPlanComIni }}-{{ $horaPlanComFin }}</td>
-                                        <td>{{ $plan->nombrecorto ?? trim(($plan->docente_nombre ?? '').' '.($plan->docente_apellidop ?? '')) }}</td>
-                                        <td>{{ $plan->aula ?? 'N/D' }}</td>
-                                    </tr>
-                                @empty
-                                    <tr><td colspan="4" class="text-center text-muted">Sin planificacion registrada</td></tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                    @php
+                        $diasAsistenciaMat = collect($item['planificacion'] ?? [])->pluck('dia')->filter()->unique()->values();
+                    @endphp
+                    <h6 class="mb-2">Dias de asistencias</h6>
+                    <div class="alert alert-light border mb-0">
+                        {{ $diasAsistenciaMat->isNotEmpty() ? $diasAsistenciaMat->implode(', ') : 'Sin dias planificados' }}
                     </div>
                 </div>
             </div>

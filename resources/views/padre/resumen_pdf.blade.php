@@ -40,66 +40,18 @@
         </tr>
     </table>
 
-    <table class="kpi">
-        <tr>
-            <td>
-                <div class="kpi-label">Asistencias</div>
-                <div class="kpi-value">{{ $resumenGlobal['asistencias'] ?? 0 }}</div>
-            </td>
-            <td>
-                <div class="kpi-label">Faltas</div>
-                <div class="kpi-value">{{ $resumenGlobal['faltas'] ?? 0 }}</div>
-            </td>
-            <td>
-                <div class="kpi-label">Licencias</div>
-                <div class="kpi-value">{{ $resumenGlobal['licencias'] ?? 0 }}</div>
-            </td>
-            <td>
-                <div class="kpi-label">Pagado / Saldo</div>
-                <div class="kpi-value">Bs {{ number_format($resumenGlobal['total_pagado'] ?? 0, 2) }}</div>
-                <div class="muted">Saldo: Bs {{ number_format($resumenGlobal['total_saldo'] ?? 0, 2) }}</div>
-            </td>
-        </tr>
-    </table>
-
-    <div class="section">Inscripciones</div>
-    <table class="grid">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Modalidad</th>
-                <th>Estado</th>
-                <th>Asistencias</th>
-                <th>Faltas</th>
-                <th>Licencias</th>
-                <th>Programadas</th>
-                <th>Pasadas</th>
-                <th>Total pagado</th>
-                <th>Saldo</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($inscripciones as $item)
-                <tr>
-                    <td>{{ $item['id'] }}</td>
-                    <td>{{ $item['modalidad'] ?? 'N/D' }}</td>
-                    <td>{{ $item['estado'] ?? 'N/D' }}</td>
-                    <td>{{ $item['asistencias'] }}</td>
-                    <td>{{ $item['faltas'] }}</td>
-                    <td>{{ $item['licencias'] }}</td>
-                    <td>{{ $item['clases_programadas'] }}</td>
-                    <td>{{ $item['clases_pasadas'] }}</td>
-                    <td>Bs {{ number_format($item['total_pagado'], 2) }}</td>
-                    <td>Bs {{ number_format($item['saldo'], 2) }}</td>
-                </tr>
-            @empty
-                <tr><td colspan="10" class="muted">Sin inscripciones registradas.</td></tr>
-            @endforelse
-        </tbody>
-    </table>
-
     @foreach($inscripciones as $item)
         <div class="section">Detalle Inscripcion #{{ $item['id'] }} {{ $item['modalidad'] ? '- '.$item['modalidad'] : '' }}</div>
+        <table class="grid">
+            <tr>
+                <th>Estado</th>
+                <td>{{ $item['estado'] ?? 'N/D' }}</td>
+                <th>Asistencias/Faltas/Licencias</th>
+                <td>{{ $item['asistencias'] }}/{{ $item['faltas'] }}/{{ $item['licencias'] }}</td>
+                <th>Pagado/Saldo</th>
+                <td>Bs {{ number_format($item['total_pagado'], 2) }} / Bs {{ number_format($item['saldo'], 2) }}</td>
+            </tr>
+        </table>
         <table class="grid">
             <thead>
                 <tr>
@@ -131,72 +83,29 @@
             </tbody>
         </table>
 
+        @php
+            $diasAsistenciaIns = collect($item['planificacion'] ?? [])->pluck('dia')->filter()->unique()->values();
+        @endphp
         <table class="grid">
-            <thead>
-                <tr>
-                    <th>Dia</th>
-                    <th>Horario</th>
-                    <th>Materia</th>
-                    <th>Docente/Aula</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($item['planificacion'] as $plan)
-                    @php
-                        $horaPlanIni = $plan->horainicio ? \Carbon\Carbon::parse($plan->horainicio)->format('H:i') : 'N/D';
-                        $horaPlanFin = $plan->horafin ? \Carbon\Carbon::parse($plan->horafin)->format('H:i') : 'N/D';
-                    @endphp
-                    <tr>
-                        <td>{{ $plan->dia ?? 'N/D' }}</td>
-                        <td>{{ $horaPlanIni }}-{{ $horaPlanFin }}</td>
-                        <td>{{ $plan->materia ?? 'N/D' }}</td>
-                        <td>{{ $plan->nombrecorto ?? trim(($plan->docente_nombre ?? '').' '.($plan->docente_apellidop ?? '')) }}/{{ $plan->aula ?? 'N/D' }}</td>
-                    </tr>
-                @empty
-                    <tr><td colspan="4" class="muted">Sin sesiones u horario planificado.</td></tr>
-                @endforelse
-            </tbody>
+            <tr>
+                <th style="width: 25%;">Dias de asistencias</th>
+                <td>{{ $diasAsistenciaIns->isNotEmpty() ? $diasAsistenciaIns->implode(', ') : 'Sin dias planificados' }}</td>
+            </tr>
         </table>
     @endforeach
 
-    <div class="section">Matriculaciones</div>
-    <table class="grid">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Asignatura</th>
-                <th>Estado</th>
-                <th>Asistencias</th>
-                <th>Faltas</th>
-                <th>Licencias</th>
-                <th>Programadas</th>
-                <th>Pasadas</th>
-                <th>Total pagado</th>
-                <th>Saldo</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($matriculaciones as $item)
-                <tr>
-                    <td>{{ $item['id'] }}</td>
-                    <td>{{ $item['asignatura'] ?? 'N/D' }}</td>
-                    <td>{{ $item['estado'] ?? 'N/D' }}</td>
-                    <td>{{ $item['asistencias'] }}</td>
-                    <td>{{ $item['faltas'] }}</td>
-                    <td>{{ $item['licencias'] }}</td>
-                    <td>{{ $item['clases_programadas'] }}</td>
-                    <td>{{ $item['clases_pasadas'] }}</td>
-                    <td>Bs {{ number_format($item['total_pagado'], 2) }}</td>
-                    <td>Bs {{ number_format($item['saldo'], 2) }}</td>
-                </tr>
-            @empty
-                <tr><td colspan="10" class="muted">Sin matriculaciones registradas.</td></tr>
-            @endforelse
-        </tbody>
-    </table>
-
     @foreach($matriculaciones as $item)
         <div class="section">Detalle Matriculacion #{{ $item['id'] }} {{ $item['asignatura'] ? '- '.$item['asignatura'] : '' }}</div>
+        <table class="grid">
+            <tr>
+                <th>Estado</th>
+                <td>{{ $item['estado'] ?? 'N/D' }}</td>
+                <th>Asistencias/Faltas/Licencias</th>
+                <td>{{ $item['asistencias'] }}/{{ $item['faltas'] }}/{{ $item['licencias'] }}</td>
+                <th>Pagado/Saldo</th>
+                <td>Bs {{ number_format($item['total_pagado'], 2) }} / Bs {{ number_format($item['saldo'], 2) }}</td>
+            </tr>
+        </table>
         <table class="grid">
             <thead>
                 <tr>
@@ -228,29 +137,14 @@
             </tbody>
         </table>
 
+        @php
+            $diasAsistenciaMat = collect($item['planificacion'] ?? [])->pluck('dia')->filter()->unique()->values();
+        @endphp
         <table class="grid">
-            <thead>
-                <tr>
-                    <th>Dia</th>
-                    <th>Horario</th>
-                    <th>Docente/Aula</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($item['planificacion'] as $plan)
-                    @php
-                        $horaPlanComIni = $plan->horainicio ? \Carbon\Carbon::parse($plan->horainicio)->format('H:i') : 'N/D';
-                        $horaPlanComFin = $plan->horafin ? \Carbon\Carbon::parse($plan->horafin)->format('H:i') : 'N/D';
-                    @endphp
-                    <tr>
-                        <td>{{ $plan->dia ?? 'N/D' }}</td>
-                        <td>{{ $horaPlanComIni }}-{{ $horaPlanComFin }}</td>
-                        <td>{{ $plan->nombrecorto ?? trim(($plan->docente_nombre ?? '').' '.($plan->docente_apellidop ?? '')) }}/{{ $plan->aula ?? 'N/D' }}</td>
-                    </tr>
-                @empty
-                    <tr><td colspan="3" class="muted">Sin sesiones u horario planificado.</td></tr>
-                @endforelse
-            </tbody>
+            <tr>
+                <th style="width: 25%;">Dias de asistencias</th>
+                <td>{{ $diasAsistenciaMat->isNotEmpty() ? $diasAsistenciaMat->implode(', ') : 'Sin dias planificados' }}</td>
+            </tr>
         </table>
     @endforeach
 
