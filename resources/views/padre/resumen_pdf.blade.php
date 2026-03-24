@@ -98,6 +98,67 @@
         </tbody>
     </table>
 
+    @foreach($inscripciones as $item)
+        <div class="section">Detalle Inscripcion #{{ $item['id'] }} {{ $item['modalidad'] ? '- '.$item['modalidad'] : '' }}</div>
+        <table class="grid">
+            <thead>
+                <tr>
+                    <th>Fecha-Dia</th>
+                    <th>Horario</th>
+                    <th>Docente/Aula</th>
+                    <th>Estado</th>
+                    <th>Materia</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($item['historial'] as $h)
+                    @php
+                        $fechaHist = $h['fecha'] ? \Carbon\Carbon::parse($h['fecha']) : null;
+                        $fechaDia = $fechaHist ? ucfirst($fechaHist->locale('es')->isoFormat('D-M-YYYY-dddd')) : 'N/D';
+                        $horaIni = $h['hora_inicio'] ? \Carbon\Carbon::parse($h['hora_inicio'])->format('H:i') : 'N/D';
+                        $horaFin = $h['hora_fin'] ? \Carbon\Carbon::parse($h['hora_fin'])->format('H:i') : 'N/D';
+                    @endphp
+                    <tr>
+                        <td>{{ $fechaDia }}</td>
+                        <td>{{ $horaIni }}-{{ $horaFin }}</td>
+                        <td>{{ $h['docente'] ?? 'N/D' }}/{{ $h['aula'] ?? 'N/D' }}</td>
+                        <td>{{ $h['estado'] ?? 'N/D' }}</td>
+                        <td>{{ $h['materia'] ?? 'N/D' }}</td>
+                    </tr>
+                @empty
+                    <tr><td colspan="5" class="muted">Sin historial.</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+
+        <table class="grid">
+            <thead>
+                <tr>
+                    <th>Dia</th>
+                    <th>Horario</th>
+                    <th>Materia</th>
+                    <th>Docente/Aula</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($item['planificacion'] as $plan)
+                    @php
+                        $horaPlanIni = $plan->horainicio ? \Carbon\Carbon::parse($plan->horainicio)->format('H:i') : 'N/D';
+                        $horaPlanFin = $plan->horafin ? \Carbon\Carbon::parse($plan->horafin)->format('H:i') : 'N/D';
+                    @endphp
+                    <tr>
+                        <td>{{ $plan->dia ?? 'N/D' }}</td>
+                        <td>{{ $horaPlanIni }}-{{ $horaPlanFin }}</td>
+                        <td>{{ $plan->materia ?? 'N/D' }}</td>
+                        <td>{{ $plan->nombrecorto ?? trim(($plan->docente_nombre ?? '').' '.($plan->docente_apellidop ?? '')) }}/{{ $plan->aula ?? 'N/D' }}</td>
+                    </tr>
+                @empty
+                    <tr><td colspan="4" class="muted">Sin sesiones u horario planificado.</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+    @endforeach
+
     <div class="section">Matriculaciones</div>
     <table class="grid">
         <thead>
@@ -133,6 +194,65 @@
             @endforelse
         </tbody>
     </table>
+
+    @foreach($matriculaciones as $item)
+        <div class="section">Detalle Matriculacion #{{ $item['id'] }} {{ $item['asignatura'] ? '- '.$item['asignatura'] : '' }}</div>
+        <table class="grid">
+            <thead>
+                <tr>
+                    <th>Fecha-Dia</th>
+                    <th>Horario</th>
+                    <th>Docente/Aula</th>
+                    <th>Estado</th>
+                    <th>Asignatura</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($item['historial'] as $h)
+                    @php
+                        $fechaHistCom = $h['fecha'] ? \Carbon\Carbon::parse($h['fecha']) : null;
+                        $fechaDiaCom = $fechaHistCom ? ucfirst($fechaHistCom->locale('es')->isoFormat('D-M-YYYY-dddd')) : 'N/D';
+                        $horaIniCom = $h['hora_inicio'] ? \Carbon\Carbon::parse($h['hora_inicio'])->format('H:i') : 'N/D';
+                        $horaFinCom = $h['hora_fin'] ? \Carbon\Carbon::parse($h['hora_fin'])->format('H:i') : 'N/D';
+                    @endphp
+                    <tr>
+                        <td>{{ $fechaDiaCom }}</td>
+                        <td>{{ $horaIniCom }}-{{ $horaFinCom }}</td>
+                        <td>{{ $h['docente'] ?? 'N/D' }}/{{ $h['aula'] ?? 'N/D' }}</td>
+                        <td>{{ $h['estado'] ?? 'N/D' }}</td>
+                        <td>{{ $item['asignatura'] ?? 'N/D' }}</td>
+                    </tr>
+                @empty
+                    <tr><td colspan="5" class="muted">Sin historial.</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+
+        <table class="grid">
+            <thead>
+                <tr>
+                    <th>Dia</th>
+                    <th>Horario</th>
+                    <th>Docente/Aula</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($item['planificacion'] as $plan)
+                    @php
+                        $horaPlanComIni = $plan->horainicio ? \Carbon\Carbon::parse($plan->horainicio)->format('H:i') : 'N/D';
+                        $horaPlanComFin = $plan->horafin ? \Carbon\Carbon::parse($plan->horafin)->format('H:i') : 'N/D';
+                    @endphp
+                    <tr>
+                        <td>{{ $plan->dia ?? 'N/D' }}</td>
+                        <td>{{ $horaPlanComIni }}-{{ $horaPlanComFin }}</td>
+                        <td>{{ $plan->nombrecorto ?? trim(($plan->docente_nombre ?? '').' '.($plan->docente_apellidop ?? '')) }}/{{ $plan->aula ?? 'N/D' }}</td>
+                    </tr>
+                @empty
+                    <tr><td colspan="3" class="muted">Sin sesiones u horario planificado.</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+    @endforeach
 
     <p class="muted">Documento generado desde el panel privado de padres con validacion backend de la relacion padre-hijo.</p>
 </body>

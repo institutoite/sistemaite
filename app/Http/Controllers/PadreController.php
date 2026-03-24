@@ -121,11 +121,13 @@ class PadreController extends Controller
             'estudiante.inscripciones.programaciones.estado',
             'estudiante.inscripciones.programaciones.materia',
             'estudiante.inscripciones.programaciones.docente.persona',
+            'estudiante.inscripciones.programaciones.aula',
             'estudiante.inscripciones.pagos',
             'computacion.matriculaciones.estado',
             'computacion.matriculaciones.asignatura',
             'computacion.matriculaciones.programacionescom.estado',
             'computacion.matriculaciones.programacionescom.docente.persona',
+            'computacion.matriculaciones.programacionescom.aula',
             'computacion.matriculaciones.pagos',
         ]);
 
@@ -248,6 +250,7 @@ class PadreController extends Controller
                                 'hora_fin' => $p->hora_fin,
                                 'materia' => optional($p->materia)->materia,
                                 'docente' => $p->docente->nombrecorto ?? null,
+                                'aula' => optional($p->aula)->aula,
                             ];
                         })->sortByDesc('fecha')->values(),
                         'detalle_programacion' => $programaciones,
@@ -367,6 +370,7 @@ class PadreController extends Controller
                                 'hora_inicio' => $p->horaini,
                                 'hora_fin' => $p->horafin,
                                 'docente' => $p->docente->nombrecorto ?? null,
+                                'aula' => optional($p->aula)->aula,
                             ];
                         })->sortByDesc('fecha')->values(),
                         'detalle_programacion' => $programaciones,

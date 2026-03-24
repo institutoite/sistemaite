@@ -38,6 +38,7 @@
         .status-warn { background: #fef3c7; color: #92400e; }
         .status-danger { background: #fee2e2; color: #991b1b; }
         .status-neutral { background: #e5e7eb; color: #374151; }
+        .compact-table th, .compact-table td { white-space: nowrap; font-size: .82rem; }
         .print-only { display: none; }
         @media print {
             .no-print { display: none !important; }
@@ -129,24 +130,30 @@
                         <div class="col-12 col-xl-6 mb-3">
                             <h6 class="mb-2">Historial de asistencias por fecha</h6>
                             <div class="table-responsive">
-                                <table class="table table-sm table-bordered table-striped mb-0">
+                                <table class="table table-sm table-bordered table-striped mb-0 compact-table">
                                     <thead>
                                         <tr>
-                                            <th>Fecha</th>
+                                            <th>Fecha-Dia</th>
+                                            <th>Horario</th>
+                                            <th>Docente/Aula</th>
                                             <th>Estado</th>
                                             <th>Materia</th>
-                                            <th>Docente</th>
-                                            <th>Horario</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse($item['historial'] as $h)
+                                            @php
+                                                $fechaHist = $h['fecha'] ? \Carbon\Carbon::parse($h['fecha']) : null;
+                                                $fechaDia = $fechaHist ? ucfirst($fechaHist->locale('es')->isoFormat('D-M-YYYY-dddd')) : 'N/D';
+                                                $horaIni = $h['hora_inicio'] ? \Carbon\Carbon::parse($h['hora_inicio'])->format('H:i') : 'N/D';
+                                                $horaFin = $h['hora_fin'] ? \Carbon\Carbon::parse($h['hora_fin'])->format('H:i') : 'N/D';
+                                            @endphp
                                             <tr>
-                                                <td>{{ optional($h['fecha'])->format('d/m/Y') }}</td>
+                                                <td>{{ $fechaDia }}</td>
+                                                <td>{{ $horaIni }}-{{ $horaFin }}</td>
+                                                <td>{{ $h['docente'] ?? 'N/D' }}/{{ $h['aula'] ?? 'N/D' }}</td>
                                                 <td>{{ $h['estado'] ?? 'N/D' }}</td>
                                                 <td>{{ $h['materia'] ?? 'N/D' }}</td>
-                                                <td>{{ $h['docente'] ?? 'N/D' }}</td>
-                                                <td>{{ $h['hora_inicio'] }} - {{ $h['hora_fin'] }}</td>
                                             </tr>
                                         @empty
                                             <tr><td colspan="5" class="text-center text-muted">Sin historial</td></tr>
@@ -191,7 +198,7 @@
 
                     <h6 class="mb-2">Horario y planificacion de clases</h6>
                     <div class="table-responsive">
-                        <table class="table table-sm table-bordered table-striped mb-0">
+                        <table class="table table-sm table-bordered table-striped mb-0 compact-table">
                             <thead>
                                 <tr>
                                     <th>Dia</th>
@@ -203,9 +210,13 @@
                             </thead>
                             <tbody>
                                 @forelse($item['planificacion'] as $plan)
+                                    @php
+                                        $horaPlanIni = $plan->horainicio ? \Carbon\Carbon::parse($plan->horainicio)->format('H:i') : 'N/D';
+                                        $horaPlanFin = $plan->horafin ? \Carbon\Carbon::parse($plan->horafin)->format('H:i') : 'N/D';
+                                    @endphp
                                     <tr>
                                         <td>{{ $plan->dia ?? 'N/D' }}</td>
-                                        <td>{{ $plan->horainicio }} - {{ $plan->horafin }}</td>
+                                        <td>{{ $horaPlanIni }}-{{ $horaPlanFin }}</td>
                                         <td>{{ $plan->materia ?? 'N/D' }}</td>
                                         <td>{{ $plan->nombrecorto ?? trim(($plan->docente_nombre ?? '').' '.($plan->docente_apellidop ?? '')) }}</td>
                                         <td>{{ $plan->aula ?? 'N/D' }}</td>
@@ -248,25 +259,33 @@
                         <div class="col-12 col-xl-6 mb-3">
                             <h6 class="mb-2">Historial de asistencias por fecha</h6>
                             <div class="table-responsive">
-                                <table class="table table-sm table-bordered table-striped mb-0">
+                                <table class="table table-sm table-bordered table-striped mb-0 compact-table">
                                     <thead>
                                         <tr>
-                                            <th>Fecha</th>
-                                            <th>Estado</th>
-                                            <th>Docente</th>
+                                            <th>Fecha-Dia</th>
                                             <th>Horario</th>
+                                            <th>Docente/Aula</th>
+                                            <th>Estado</th>
+                                            <th>Materia</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse($item['historial'] as $h)
+                                            @php
+                                                $fechaHistCom = $h['fecha'] ? \Carbon\Carbon::parse($h['fecha']) : null;
+                                                $fechaDiaCom = $fechaHistCom ? ucfirst($fechaHistCom->locale('es')->isoFormat('D-M-YYYY-dddd')) : 'N/D';
+                                                $horaIniCom = $h['hora_inicio'] ? \Carbon\Carbon::parse($h['hora_inicio'])->format('H:i') : 'N/D';
+                                                $horaFinCom = $h['hora_fin'] ? \Carbon\Carbon::parse($h['hora_fin'])->format('H:i') : 'N/D';
+                                            @endphp
                                             <tr>
-                                                <td>{{ optional($h['fecha'])->format('d/m/Y') }}</td>
+                                                <td>{{ $fechaDiaCom }}</td>
+                                                <td>{{ $horaIniCom }}-{{ $horaFinCom }}</td>
+                                                <td>{{ $h['docente'] ?? 'N/D' }}/{{ $h['aula'] ?? 'N/D' }}</td>
                                                 <td>{{ $h['estado'] ?? 'N/D' }}</td>
-                                                <td>{{ $h['docente'] ?? 'N/D' }}</td>
-                                                <td>{{ $h['hora_inicio'] }} - {{ $h['hora_fin'] }}</td>
+                                                <td>{{ $item['asignatura'] ?? 'N/D' }}</td>
                                             </tr>
                                         @empty
-                                            <tr><td colspan="4" class="text-center text-muted">Sin historial</td></tr>
+                                            <tr><td colspan="5" class="text-center text-muted">Sin historial</td></tr>
                                         @endforelse
                                     </tbody>
                                 </table>
@@ -308,7 +327,7 @@
 
                     <h6 class="mb-2">Horario y planificacion de clases</h6>
                     <div class="table-responsive">
-                        <table class="table table-sm table-bordered table-striped mb-0">
+                        <table class="table table-sm table-bordered table-striped mb-0 compact-table">
                             <thead>
                                 <tr>
                                     <th>Dia</th>
@@ -319,9 +338,13 @@
                             </thead>
                             <tbody>
                                 @forelse($item['planificacion'] as $plan)
+                                    @php
+                                        $horaPlanComIni = $plan->horainicio ? \Carbon\Carbon::parse($plan->horainicio)->format('H:i') : 'N/D';
+                                        $horaPlanComFin = $plan->horafin ? \Carbon\Carbon::parse($plan->horafin)->format('H:i') : 'N/D';
+                                    @endphp
                                     <tr>
                                         <td>{{ $plan->dia ?? 'N/D' }}</td>
-                                        <td>{{ $plan->horainicio }} - {{ $plan->horafin }}</td>
+                                        <td>{{ $horaPlanComIni }}-{{ $horaPlanComFin }}</td>
                                         <td>{{ $plan->nombrecorto ?? trim(($plan->docente_nombre ?? '').' '.($plan->docente_apellidop ?? '')) }}</td>
                                         <td>{{ $plan->aula ?? 'N/D' }}</td>
                                     </tr>
