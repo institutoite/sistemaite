@@ -115,17 +115,9 @@ class TelefonoController extends Controller
                 $user->save();
 
                 $padreRole = Role::firstOrCreate(['name' => 'Padre']);
-                $padrePermisos = Permission::whereIn('name', [
-                    'Listar Inscripciones',
-                    'Listar Clases',
-                    'Listar Clasescom',
-                    'Listar Pagos',
-                    'Listar Pagoscomputacion',
-                    'Listar Matriculaciones',
-                ])->get();
-                if ($padrePermisos->isNotEmpty()) {
-                    $padreRole->givePermissionTo($padrePermisos);
-                }
+                // Seguridad: el acceso del padre se gestiona por validacion padre-hijo en backend.
+                // No otorgamos permisos globales de listado para evitar acceso horizontal.
+                $padreRole->syncPermissions([]);
                 $user->assignRole($padreRole);
 
                 $notificables = User::role(['Admin','Secretaria'])->get();
@@ -162,17 +154,9 @@ class TelefonoController extends Controller
             $user->save();
 
             $padreRole = Role::firstOrCreate(['name' => 'Padre']);
-            $padrePermisos = Permission::whereIn('name', [
-                'Listar Inscripciones',
-                'Listar Clases',
-                'Listar Clasescom',
-                'Listar Pagos',
-                'Listar Pagoscomputacion',
-                'Listar Matriculaciones',
-            ])->get();
-            if ($padrePermisos->isNotEmpty()) {
-                $padreRole->givePermissionTo($padrePermisos);
-            }
+            // Seguridad: el acceso del padre se gestiona por validacion padre-hijo en backend.
+            // No otorgamos permisos globales de listado para evitar acceso horizontal.
+            $padreRole->syncPermissions([]);
             $user->assignRole($padreRole);
 
             $notificables = User::role(['Admin','Secretaria'])->get();

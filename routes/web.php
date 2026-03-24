@@ -114,6 +114,8 @@ Route::middleware(['auth'])->group(function () {
     
 Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::get('padre/home',[PadreController::class,'home'])->name('padre.home');
+    Route::get('padre/hijos/{hijo}', [PadreController::class, 'show'])->name('padre.hijos.show');
+    Route::get('padre/hijos/{hijo}/resumen-pdf', [PadreController::class, 'downloadResumenPdf'])->name('padre.hijos.pdf');
     //  Route::get('/home',function(){
 
     //     
