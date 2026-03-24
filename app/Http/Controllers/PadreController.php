@@ -252,7 +252,7 @@ class PadreController extends Controller
                                 'docente' => $p->docente->nombrecorto ?? null,
                                 'aula' => optional($p->aula)->aula,
                             ];
-                        })->sortByDesc('fecha')->values(),
+                        })->sortBy('fecha')->values(),
                         'detalle_programacion' => $programaciones,
                         'pagos' => $pagos,
                         'total_pagado' => $totalPagado,
@@ -372,7 +372,7 @@ class PadreController extends Controller
                                 'docente' => $p->docente->nombrecorto ?? null,
                                 'aula' => optional($p->aula)->aula,
                             ];
-                        })->sortByDesc('fecha')->values(),
+                        })->sortBy('fecha')->values(),
                         'detalle_programacion' => $programaciones,
                         'pagos' => $pagos,
                         'total_pagado' => $totalPagado,

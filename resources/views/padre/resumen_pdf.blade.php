@@ -148,6 +148,6 @@
         </table>
     @endforeach
 
-    <p class="muted">Documento generado desde el panel privado de padres con validacion backend de la relacion padre-hijo.</p>
+    <p class="muted">Documento generado desde el panel ite.com.bo</p>
 </body>
 </html>
