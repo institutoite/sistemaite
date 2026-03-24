@@ -287,6 +287,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
 
     Route::resource('telefonos', "TelefonoController");
     Route::resource('users', 'UserController');
+    Route::put('users/{user}/password', [UserController::class, 'updatePassword'])->name('users.password.update');
     
     
     Route::get('user/create',[UserController::class,'crear'])->name('user.crear');

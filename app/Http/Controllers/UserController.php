@@ -29,7 +29,7 @@ class UserController extends Controller
     {
         $this->middleware('can:Listar Usuarios')->only("index","show","share");
         $this->middleware('can:Crear Usuarios')->only("create","crear","store","guardar");
-        $this->middleware('can:Editar Usuarios')->only("edit","update");
+        $this->middleware('can:Editar Usuarios')->only("edit","update","updatePassword");
         $this->middleware('can:Eliminar Usuarios')->only("destroy");
     }
     
@@ -159,6 +159,45 @@ class UserController extends Controller
         $user->save();
         return redirect()->route('users.index')
             ->with('success', 'Usuario actualizado correctamente');
+    }
+
+    public function updatePassword(Request $request, User $user)
+    {
+        $validated = $request->validate(
+            [
+                'password' => [
+                    'required',
+                    'string',
+                    'min:8',
+                    'max:64',
+                    'confirmed',
+                    'regex:/[a-z]/',
+                    'regex:/[A-Z]/',
+                    'regex:/[0-9]/',
+                    'regex:/[@$!%*#?&\-_.,;:]/',
+                ],
+            ],
+            [
+                'password.required' => 'La nueva contraseña es obligatoria.',
+                'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+                'password.max' => 'La contraseña no puede exceder 64 caracteres.',
+                'password.confirmed' => 'La confirmación de contraseña no coincide.',
+                'password.regex' => 'La contraseña debe incluir mayúscula, minúscula, número y símbolo.',
+            ]
+        );
+
+        $user->password = Hash::make($validated['password']);
+        $user->save();
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'status' => 200,
+                'message' => 'Contraseña actualizada correctamente.',
+            ]);
+        }
+
+        return redirect()->route('users.index')
+            ->with('success', 'Contraseña actualizada correctamente.');
     }
     public function destroy($id)
     {

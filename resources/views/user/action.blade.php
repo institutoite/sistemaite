@@ -9,6 +9,17 @@
     Asignar roles
 </a>
 
+<button
+    type="button"
+    class="btn-accion-tabla tooltipsC mr-1 btn-cambiar-password"
+    data-user-id="{{ $id }}"
+    data-user-name="{{ $name ?? '' }}"
+    data-toggle="modal"
+    data-target="#modal-cambiar-password"
+    title="Cambiar contraseña">
+    <i class="fa fa-fw fa-key text-warning"></i>
+</button>
+
 <form action=""  class="d-inline formulario">
     @csrf
     @method("delete")

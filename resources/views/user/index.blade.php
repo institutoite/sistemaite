@@ -62,18 +62,67 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="modal-cambiar-password" tabindex="-1" role="dialog" aria-labelledby="modalCambiarPasswordLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form id="form-cambiar-password">
+                        @csrf
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalCambiarPasswordLabel">Cambiar contraseña</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" id="password_user_id" name="user_id">
+                            <div class="alert alert-info mb-3">
+                                Usuario: <strong id="password_user_name">-</strong>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Nueva contraseña</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password" name="password" autocomplete="new-password" required>
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-secondary toggle-password" data-target="#password" title="Mostrar/Ocultar contraseña">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <small class="form-text text-muted">Mínimo 8 caracteres, con mayúscula, minúscula, número y símbolo.</small>
+                                <div class="invalid-feedback d-block" id="password_error"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password_confirmation">Confirmar contraseña</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" autocomplete="new-password" required>
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-outline-secondary toggle-password" data-target="#password_confirmation" title="Mostrar/Ocultar contraseña">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback d-block" id="password_confirmation_error"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Guardar contraseña</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.0.18/sweetalert2.all.min.js" integrity="sha512-kW/Di7T8diljfKY9/VU2ybQZSQrbClTiUuk13fK/TIvlEB1XqEdhlUp9D+BHGYuEoS9ZQTd3D8fr9iE74LvCkA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script> 
 @section('js')
     
     <script>
     $(document).ready(function() {
+        const updatePasswordRoute = "{{ route('users.password.update', ['user' => '__USER__']) }}";
+
         var tabla=$('#usuarios').DataTable(
                 {
                     "serverSide": true,
@@ -192,7 +241,165 @@
                     }
                 })
             });
-       
+
+            function getRowDataFromButton(button) {
+                let tr = button.closest('tr');
+                if (tr.hasClass('child')) {
+                    tr = tr.prev();
+                }
+                return tabla.row(tr).data() || null;
+            }
+
+            function openPasswordModal(userId, userName) {
+                $('#password_user_id').val(userId || '');
+                $('#password_user_name').text(userName || (userId ? ('ID ' + userId) : 'Sin usuario'));
+                $('#password').val('');
+                $('#password_confirmation').val('');
+                $('#password').attr('type', 'password');
+                $('#password_confirmation').attr('type', 'password');
+                $('#form-cambiar-password .toggle-password i').removeClass('fa-eye-slash').addClass('fa-eye');
+                $('#password_error').text('');
+                $('#password_confirmation_error').text('');
+                $('#modal-cambiar-password').modal('show');
+            }
+
+            $('#modal-cambiar-password').on('show.bs.modal', function (event) {
+                const button = $(event.relatedTarget);
+                if (!button || !button.length) {
+                    return;
+                }
+                const rowData = getRowDataFromButton(button);
+                const userId = (rowData && rowData.id) ? rowData.id : button.data('user-id');
+                const userName = (rowData && rowData.name) ? rowData.name : button.data('user-name');
+                $('#password_user_id').val(userId || '');
+                $('#password_user_name').text(userName || (userId ? ('ID ' + userId) : 'Sin usuario'));
+            });
+
+            $(document).on('click', '.btn-cambiar-password', function (e) {
+                e.preventDefault();
+                const button = $(this);
+                const rowData = getRowDataFromButton(button);
+                const userId = (rowData && rowData.id) ? rowData.id : button.data('user-id');
+                const userName = (rowData && rowData.name) ? rowData.name : button.data('user-name');
+
+                if (!userId) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Usuario no detectado',
+                        text: 'No se pudo identificar la fila seleccionada. Recarga la pagina e intenta nuevamente.'
+                    });
+                    return;
+                }
+
+                openPasswordModal(userId, userName);
+            });
+
+            $(document).on('click', '.toggle-password', function () {
+                const target = $(this).data('target');
+                const $input = $(target);
+                const $icon = $(this).find('i');
+
+                if ($input.attr('type') === 'password') {
+                    $input.attr('type', 'text');
+                    $icon.removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    $input.attr('type', 'password');
+                    $icon.removeClass('fa-eye-slash').addClass('fa-eye');
+                }
+            });
+
+            $('#form-cambiar-password').on('submit', function (e) {
+                e.preventDefault();
+
+                const userId = $('#password_user_id').val();
+                const password = $('#password').val();
+                const confirmation = $('#password_confirmation').val();
+
+                if (!userId) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Usuario no detectado',
+                        text: 'Cierra el modal y vuelve a abrirlo desde el boton de la fila del usuario.'
+                    });
+                    return;
+                }
+
+                const url = updatePasswordRoute.replace('__USER__', userId);
+
+                $('#password_error').text('');
+                $('#password_confirmation_error').text('');
+
+                if (password !== confirmation) {
+                    $('#password_confirmation_error').text('La confirmación de contraseña no coincide.');
+                    return;
+                }
+
+                Swal.fire({
+                    title: 'Confirmar cambio de contraseña',
+                    text: 'Esta acción actualizará la contraseña del usuario seleccionado.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí, cambiar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (!result.isConfirmed) {
+                        return;
+                    }
+
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        dataType: 'json',
+                        headers: {
+                            'Accept': 'application/json'
+                        },
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            _method: 'PUT',
+                            password: password,
+                            password_confirmation: confirmation
+                        },
+                        success: function (response) {
+                            $('#modal-cambiar-password').modal('hide');
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Contraseña actualizada',
+                                text: response.message || 'La contraseña se actualizó correctamente.',
+                                timer: 1800,
+                                showConfirmButton: false
+                            });
+                            tabla.ajax.reload(null, false);
+                        },
+                        error: function (xhr) {
+                            const errors = (xhr.responseJSON && xhr.responseJSON.errors) ? xhr.responseJSON.errors : {};
+                            if (errors.password && errors.password.length) {
+                                $('#password_error').text(errors.password[0]);
+                            }
+                            if (errors.password_confirmation && errors.password_confirmation.length) {
+                                $('#password_confirmation_error').text(errors.password_confirmation[0]);
+                            }
+
+                            let errorMessage = 'Verifica los datos e intentalo de nuevo.';
+                            if (xhr.status === 403) {
+                                errorMessage = 'No autorizado para cambiar contrasenas. Verifica el permiso Editar Usuarios.';
+                            } else if (xhr.status === 419) {
+                                errorMessage = 'La sesion expiro. Recarga la pagina e intentalo otra vez.';
+                            } else if (xhr.status === 422 && errors.password && errors.password.length) {
+                                errorMessage = errors.password[0];
+                            } else if (xhr.responseJSON && xhr.responseJSON.message) {
+                                errorMessage = xhr.responseJSON.message;
+                            }
+
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'No se pudo actualizar',
+                                text: errorMessage
+                            });
+                        }
+                    });
+                });
+            });
+        
     } );
     </script>
 @stop
