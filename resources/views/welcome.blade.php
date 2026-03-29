@@ -28,7 +28,7 @@
         <div class="section-header">
             <h2>Nuestros <span class="highlight">Servicios</span></h2>
             <p>Ofrecemos una amplia variedad de cursos y actividades educativas para desarrollar habilidades del siglo XXI</p>
-            <a href="{{ asset('calculadora.rar') }}" class="btn-consultar" download="calculadora.rar">Calculadora</a>
+            <a href="{{ asset('Calculadora.zip') }}" class="btn-consultar" download="Calculadora.zip">Calculadora</a>
         </div>
         <div class="services-grid">
             <!-- Servicio 1 -->

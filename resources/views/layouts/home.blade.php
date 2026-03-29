@@ -270,7 +270,7 @@
             <div class="section-header">
                 <h2>Descargar <span class="highlight">emulador de Calculadora</span></h2>
                 <p>Descarga directa del emulador de calculadora en formato .7z</p>
-                <a href="{{ asset('calculadora.rar') }}" class="btn-consultar" download="calculadora.rar">Descargar emulador</a>
+                <a href="{{ asset('Calculadora.zip') }}" class="btn-consultar" download="Calculadora.zip">Descargar emulador</a>
             </div>
         </div>
     </section>
