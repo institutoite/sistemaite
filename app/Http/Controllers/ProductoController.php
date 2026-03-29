@@ -14,9 +14,32 @@ class ProductoController extends Controller
         $this->middleware('can:gestionar-productos-admin')->only('index', 'sugerencias', 'store', 'update', 'destroy');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $productos = Producto::orderByDesc('id')->paginate(20);
+        $termino = trim((string) $request->query('q', ''));
+
+        $productosQuery = Producto::query();
+
+        if ($termino !== '') {
+            $terminoNormalizado = $this->normalizarNombre($termino);
+            $partes = collect(explode(' ', $terminoNormalizado))->filter()->values();
+
+            $productosQuery->where(function ($query) use ($termino, $partes) {
+                $query->where('nombre', 'like', '%' . $termino . '%')
+                    ->orWhere('codigo', 'like', '%' . $termino . '%')
+                    ->orWhere('codigo_qr', 'like', '%' . $termino . '%')
+                    ->orWhere('codigo_barras', 'like', '%' . $termino . '%');
+
+                foreach ($partes as $parte) {
+                    $query->orWhere('nombre', 'like', '%' . $parte . '%');
+                }
+            });
+        }
+
+        $productos = $productosQuery
+            ->orderByDesc('id')
+            ->paginate(20)
+            ->appends($request->query());
 
         $resumen = [
             'total' => Producto::count(),
@@ -25,7 +48,9 @@ class ProductoController extends Controller
             'agotados' => Producto::where('stock', '<=', 0)->count(),
         ];
 
-        return view('producto.index', compact('productos', 'resumen'));
+        $sinResultadosBusqueda = $termino !== '' && $productos->isEmpty();
+
+        return view('producto.index', compact('productos', 'resumen', 'termino', 'sinResultadosBusqueda'));
     }
 
     public function sugerencias(Request $request)

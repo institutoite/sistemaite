@@ -154,9 +154,26 @@
                 <div class="card">
                     <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
                         <strong>Listado de productos</strong>
-                        <input type="text" id="buscadorProductos" class="form-control form-control-sm" style="max-width: 260px;" placeholder="Buscar producto...">
+                        <form method="GET" action="{{ route('productos.index') }}" class="d-flex" style="gap:6px;">
+                            <input type="text"
+                                   name="q"
+                                   id="buscadorProductos"
+                                   value="{{ $termino ?? '' }}"
+                                   class="form-control form-control-sm"
+                                   style="max-width: 260px;"
+                                   placeholder="Buscar en todos los productos...">
+                            <button class="btn btn-sm btn-light" type="submit">Buscar</button>
+                            @if(!empty($termino))
+                                <a href="{{ route('productos.index') }}" class="btn btn-sm btn-outline-light">Limpiar</a>
+                            @endif
+                        </form>
                     </div>
                     <div class="card-body p-0">
+                        @if(!empty($sinResultadosBusqueda))
+                            <div class="alert alert-warning m-3 mb-0">
+                                El producto <strong>{{ $termino }}</strong> no existe en el sistema.
+                            </div>
+                        @endif
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered mb-0" id="tablaProductos">
                                 <thead class="thead-light">
@@ -293,7 +310,6 @@
             var btnGuardar = document.getElementById('btnGuardarProducto');
             var alertSuccess = document.getElementById('producto-success');
             var tablaBody = document.getElementById('tablaProductosBody');
-            var buscador = document.getElementById('buscadorProductos');
             var esAdmin = @json($esAdmin);
 
             var inputNombre = document.getElementById('nombre_producto_nuevo');
@@ -402,25 +418,6 @@
                 return mainRow + editRow;
             }
 
-            function applyTableFilter() {
-                var term = (buscador.value || '').trim().toLowerCase();
-                var rows = tablaBody.querySelectorAll('.product-main');
-
-                rows.forEach(function (row) {
-                    var text = row.textContent.toLowerCase();
-                    var productId = row.getAttribute('data-product-id');
-                    var editRow = tablaBody.querySelector('.product-edit[data-product-id="' + productId + '"]');
-                    var show = term === '' || text.indexOf(term) !== -1;
-
-                    row.style.display = show ? '' : 'none';
-                    if (!show && editRow) {
-                        editRow.style.display = 'none';
-                    } else if (show && editRow) {
-                        editRow.style.display = '';
-                    }
-                });
-            }
-
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
                 clearErrors();
@@ -466,8 +463,6 @@
 
                     alertSuccess.textContent = json.message || 'Producto creado correctamente.';
                     alertSuccess.style.display = 'block';
-
-                    applyTableFilter();
                 })
                 .catch(function (err) {
                     if (err.type === 'validation') {
@@ -480,10 +475,6 @@
                     btnGuardar.disabled = false;
                 });
             });
-
-            if (buscador) {
-                buscador.addEventListener('input', applyTableFilter);
-            }
 
             function renderSugerencias(items) {
                 listaSugerencias.innerHTML = '';
