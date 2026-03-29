@@ -154,25 +154,20 @@
                 <div class="card">
                     <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
                         <strong>Listado de productos</strong>
-                        <form method="GET" action="{{ route('productos.index') }}" class="d-flex" style="gap:6px;">
+                        <div class="d-flex" style="gap:6px;">
                             <input type="text"
-                                   name="q"
                                    id="buscadorProductos"
                                    value="{{ $termino ?? '' }}"
                                    class="form-control form-control-sm"
                                    style="max-width: 260px;"
-                                   placeholder="Buscar en todos los productos...">
-                            <button class="btn btn-sm btn-light" type="submit">Buscar</button>
-                            @if(!empty($termino))
-                                <a href="{{ route('productos.index') }}" class="btn btn-sm btn-outline-light">Limpiar</a>
-                            @endif
-                        </form>
+                                   placeholder="Buscar en tiempo real...">
+                            <button type="button" id="limpiarBuscadorProductos" class="btn btn-sm btn-outline-light">Limpiar</button>
+                        </div>
                     </div>
                     <div class="card-body p-0">
+                        <div id="producto-no-encontrado" class="alert alert-warning m-3 mb-0" style="display:none;"></div>
                         @if(!empty($sinResultadosBusqueda))
-                            <div class="alert alert-warning m-3 mb-0">
-                                El producto <strong>{{ $termino }}</strong> no existe en el sistema.
-                            </div>
+                            <div class="alert alert-warning m-3 mb-0">El producto <strong>{{ $termino }}</strong> no existe en el sistema.</div>
                         @endif
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered mb-0" id="tablaProductos">
@@ -294,7 +289,7 @@
                             </table>
                         </div>
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer" id="tablaProductosFooter">
                         {{ $productos->links() }}
                     </div>
                 </div>
@@ -310,12 +305,19 @@
             var btnGuardar = document.getElementById('btnGuardarProducto');
             var alertSuccess = document.getElementById('producto-success');
             var tablaBody = document.getElementById('tablaProductosBody');
+            var tablaFooter = document.getElementById('tablaProductosFooter');
             var esAdmin = @json($esAdmin);
+            var buscarUrl = @json(route('productos.index'));
+            var buscadorProductos = document.getElementById('buscadorProductos');
+            var limpiarBuscador = document.getElementById('limpiarBuscadorProductos');
+            var noEncontradoBox = document.getElementById('producto-no-encontrado');
+            var htmlInicialTabla = tablaBody ? tablaBody.innerHTML : '';
+            var timerBusqueda = null;
 
             var inputNombre = document.getElementById('nombre_producto_nuevo');
             var boxSugerencias = document.getElementById('sugerencias-duplicados');
             var listaSugerencias = document.getElementById('lista-sugerencias-duplicados');
-            var timer = null;
+            var timerNombre = null;
 
             function escapeHtml(text) {
                 return String(text || '')
@@ -418,6 +420,54 @@
                 return mainRow + editRow;
             }
 
+            function showNoEncontrado(termino) {
+                if (!noEncontradoBox) {
+                    return;
+                }
+                if (!termino) {
+                    noEncontradoBox.style.display = 'none';
+                    noEncontradoBox.textContent = '';
+                    return;
+                }
+                noEncontradoBox.innerHTML = 'El producto <strong>' + escapeHtml(termino) + '</strong> no existe en el sistema.';
+                noEncontradoBox.style.display = '';
+            }
+
+            function renderBusqueda(productos, termino) {
+                if (!tablaBody) {
+                    return;
+                }
+
+                tablaBody.innerHTML = '';
+
+                if (!productos || !productos.length) {
+                    showNoEncontrado(termino);
+                    var colspan = esAdmin ? 7 : 6;
+                    tablaBody.innerHTML = '<tr id="empty-products-row"><td colspan="' + colspan + '" class="text-center text-muted">No hay productos registrados.</td></tr>';
+                } else {
+                    showNoEncontrado('');
+                    productos.forEach(function (producto) {
+                        tablaBody.insertAdjacentHTML('beforeend', productRowsHtml(producto));
+                    });
+                }
+            }
+
+            function buscarProductosTiempoReal(termino) {
+                fetch(buscarUrl + '?q=' + encodeURIComponent(termino), {
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(function (res) { return res.json(); })
+                .then(function (json) {
+                    renderBusqueda(json.productos || [], json.termino || termino);
+                })
+                .catch(function () {
+                    // Si hay error, mantenemos lo visible para no romper experiencia.
+                });
+            }
+
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
                 clearErrors();
@@ -463,6 +513,10 @@
 
                     alertSuccess.textContent = json.message || 'Producto creado correctamente.';
                     alertSuccess.style.display = 'block';
+
+                    if (buscadorProductos && (buscadorProductos.value || '').trim() !== '') {
+                        buscarProductosTiempoReal((buscadorProductos.value || '').trim());
+                    }
                 })
                 .catch(function (err) {
                     if (err.type === 'validation') {
@@ -508,16 +562,58 @@
             if (inputNombre) {
                 inputNombre.addEventListener('input', function () {
                     var nombre = (inputNombre.value || '').trim();
-                    clearTimeout(timer);
+                    clearTimeout(timerNombre);
 
                     if (nombre.length < 2) {
                         boxSugerencias.style.display = 'none';
                         return;
                     }
 
-                    timer = setTimeout(function () {
+                    timerNombre = setTimeout(function () {
                         buscarSugerencias(nombre);
                     }, 220);
+                });
+            }
+
+            if (buscadorProductos) {
+                buscadorProductos.addEventListener('input', function () {
+                    var termino = (buscadorProductos.value || '').trim();
+                    clearTimeout(timerBusqueda);
+
+                    if (termino === '') {
+                        if (tablaFooter) {
+                            tablaFooter.style.display = '';
+                        }
+                        showNoEncontrado('');
+                        if (tablaBody) {
+                            tablaBody.innerHTML = htmlInicialTabla;
+                        }
+                        return;
+                    }
+
+                    if (tablaFooter) {
+                        tablaFooter.style.display = 'none';
+                    }
+
+                    timerBusqueda = setTimeout(function () {
+                        buscarProductosTiempoReal(termino);
+                    }, 220);
+                });
+            }
+
+            if (limpiarBuscador) {
+                limpiarBuscador.addEventListener('click', function () {
+                    if (!buscadorProductos) {
+                        return;
+                    }
+                    buscadorProductos.value = '';
+                    showNoEncontrado('');
+                    if (tablaFooter) {
+                        tablaFooter.style.display = '';
+                    }
+                    if (tablaBody) {
+                        tablaBody.innerHTML = htmlInicialTabla;
+                    }
                 });
             }
         })();

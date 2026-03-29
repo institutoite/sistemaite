@@ -38,6 +38,8 @@ class ProductosMasVendidosExport implements FromCollection, WithHeadings, Should
 
     public function collection()
     {
+        $costoExpr = "(CASE WHEN dv.costo_unitario IS NOT NULL AND dv.costo_unitario > 0 THEN dv.costo_unitario ELSE COALESCE(p.costo, 0) END)";
+
         $query = DB::table('detalle_ventas as dv')
             ->join('ventas as v', 'v.id', '=', 'dv.venta_id')
             ->join('productos as p', 'p.id', '=', 'dv.producto_id')
@@ -49,9 +51,9 @@ class ProductosMasVendidosExport implements FromCollection, WithHeadings, Should
                 'p.activo',
                 DB::raw('SUM(dv.cantidad) as cantidad_total'),
                 DB::raw('SUM(dv.subtotal) as ingreso_total'),
-                DB::raw('SUM(dv.cantidad * dv.costo_unitario) as costo_total'),
-                DB::raw('SUM(dv.subtotal) - SUM(dv.cantidad * dv.costo_unitario) as utilidad_total'),
-                DB::raw('CASE WHEN SUM(dv.subtotal) > 0 THEN ((SUM(dv.subtotal) - SUM(dv.cantidad * dv.costo_unitario)) / SUM(dv.subtotal)) * 100 ELSE 0 END as margen_porcentual'),
+                DB::raw("SUM(dv.cantidad * {$costoExpr}) as costo_total"),
+                DB::raw("SUM(dv.subtotal) - SUM(dv.cantidad * {$costoExpr}) as utilidad_total"),
+                DB::raw("CASE WHEN SUM(dv.subtotal) > 0 THEN ((SUM(dv.subtotal) - SUM(dv.cantidad * {$costoExpr})) / SUM(dv.subtotal)) * 100 ELSE 0 END as margen_porcentual"),
             ])
             ->when($this->estado === 'activos', function ($q) {
                 $q->where('p.activo', true);

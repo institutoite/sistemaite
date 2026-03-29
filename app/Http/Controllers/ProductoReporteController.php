@@ -208,6 +208,7 @@ class ProductoReporteController extends Controller
     public function usuariosVentas(Request $request)
     {
         [$fechaInicio, $fechaFin] = $this->resolveRangoFechas($request);
+        $costoExpr = $this->costoUnitarioAplicadoExpr('dv', 'p');
 
         $base = DB::table('ventas as v')
             ->join('userables as uv', function ($join) {
@@ -216,6 +217,7 @@ class ProductoReporteController extends Controller
             })
             ->join('users as u', 'u.id', '=', 'uv.user_id')
             ->join('detalle_ventas as dv', 'dv.venta_id', '=', 'v.id')
+            ->join('productos as p', 'p.id', '=', 'dv.producto_id')
             ->whereBetween('v.created_at', [$fechaInicio, $fechaFin]);
 
         $ventasPorUsuario = (clone $base)
@@ -226,16 +228,15 @@ class ProductoReporteController extends Controller
                 DB::raw('COUNT(DISTINCT v.id) as cantidad_ventas'),
                 DB::raw('SUM(dv.cantidad) as productos_vendidos'),
                 DB::raw('SUM(dv.subtotal) as total_vendido'),
-                DB::raw('SUM(dv.cantidad * dv.costo_unitario) as costo_total'),
-                DB::raw('SUM(dv.subtotal) - SUM(dv.cantidad * dv.costo_unitario) as utilidad_total'),
+                DB::raw("SUM(dv.cantidad * {$costoExpr}) as costo_total"),
+                DB::raw("SUM(dv.subtotal) - SUM(dv.cantidad * {$costoExpr}) as utilidad_total"),
                 DB::raw('CASE WHEN COUNT(DISTINCT v.id) > 0 THEN SUM(dv.subtotal) / COUNT(DISTINCT v.id) ELSE 0 END as ticket_promedio'),
-                DB::raw('CASE WHEN COUNT(DISTINCT v.id) > 0 THEN (SUM(dv.subtotal) - SUM(dv.cantidad * dv.costo_unitario)) / COUNT(DISTINCT v.id) ELSE 0 END as utilidad_promedio_venta'),
+                DB::raw("CASE WHEN COUNT(DISTINCT v.id) > 0 THEN (SUM(dv.subtotal) - SUM(dv.cantidad * {$costoExpr})) / COUNT(DISTINCT v.id) ELSE 0 END as utilidad_promedio_venta"),
             ])
             ->orderByDesc('utilidad_total')
             ->get();
 
         $productosUsuario = (clone $base)
-            ->join('productos as p', 'p.id', '=', 'dv.producto_id')
             ->groupBy('u.id', 'p.id', 'p.nombre')
             ->select([
                 'u.id as user_id',
@@ -259,6 +260,8 @@ class ProductoReporteController extends Controller
 
     private function baseProductoMetricas(Carbon $fechaInicio, Carbon $fechaFin)
     {
+        $costoExpr = $this->costoUnitarioAplicadoExpr('dv', 'p');
+
         return DB::table('detalle_ventas as dv')
             ->join('ventas as v', 'v.id', '=', 'dv.venta_id')
             ->join('productos as p', 'p.id', '=', 'dv.producto_id')
@@ -275,11 +278,16 @@ class ProductoReporteController extends Controller
                 'p.precio',
                 DB::raw('SUM(dv.cantidad) as cantidad_total'),
                 DB::raw('SUM(dv.subtotal) as ingreso_total'),
-                DB::raw('SUM(dv.cantidad * dv.costo_unitario) as costo_total'),
-                DB::raw('SUM(dv.subtotal) - SUM(dv.cantidad * dv.costo_unitario) as utilidad_total'),
-                DB::raw('AVG(dv.precio_unitario - dv.costo_unitario) as ganancia_unitaria'),
-                DB::raw('CASE WHEN SUM(dv.subtotal) > 0 THEN ((SUM(dv.subtotal) - SUM(dv.cantidad * dv.costo_unitario)) / SUM(dv.subtotal)) * 100 ELSE 0 END as margen_porcentual'),
+                DB::raw("SUM(dv.cantidad * {$costoExpr}) as costo_total"),
+                DB::raw("SUM(dv.subtotal) - SUM(dv.cantidad * {$costoExpr}) as utilidad_total"),
+                DB::raw("AVG(dv.precio_unitario - {$costoExpr}) as ganancia_unitaria"),
+                DB::raw("CASE WHEN SUM(dv.subtotal) > 0 THEN ((SUM(dv.subtotal) - SUM(dv.cantidad * {$costoExpr})) / SUM(dv.subtotal)) * 100 ELSE 0 END as margen_porcentual"),
             ]);
+    }
+
+    private function costoUnitarioAplicadoExpr(string $detalleAlias = 'dv', string $productoAlias = 'p'): string
+    {
+        return "(CASE WHEN {$detalleAlias}.costo_unitario IS NOT NULL AND {$detalleAlias}.costo_unitario > 0 THEN {$detalleAlias}.costo_unitario ELSE COALESCE({$productoAlias}.costo, 0) END)";
     }
 
     private function resolveRangoFechas(Request $request)

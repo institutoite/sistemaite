@@ -36,6 +36,32 @@ class ProductoController extends Controller
             });
         }
 
+        if ($request->expectsJson() || $request->ajax()) {
+            $productos = $productosQuery
+                ->orderByDesc('id')
+                ->limit(150)
+                ->get();
+
+            return response()->json([
+                'termino' => $termino,
+                'total' => $productos->count(),
+                'productos' => $productos->map(function ($producto) {
+                    return [
+                        'id' => $producto->id,
+                        'nombre' => $producto->nombre,
+                        'codigo' => $producto->codigo,
+                        'codigo_qr' => $producto->codigo_qr,
+                        'codigo_barras' => $producto->codigo_barras,
+                        'costo' => (float) $producto->costo,
+                        'precio' => (float) $producto->precio,
+                        'stock' => (int) $producto->stock,
+                        'stock_minimo' => (int) $producto->stock_minimo,
+                        'activo' => (bool) $producto->activo,
+                    ];
+                })->values(),
+            ]);
+        }
+
         $productos = $productosQuery
             ->orderByDesc('id')
             ->paginate(20)
