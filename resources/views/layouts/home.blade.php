@@ -264,6 +264,17 @@
     </div>
 </section>
 
+    {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DESCARGA CALCULADORA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
+    <section class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Descargar <span class="highlight">emulador de Calculadora</span></h2>
+                <p>Descarga directa del emulador de calculadora en formato .7z</p>
+                <a href="{{ asset('calculadora.rar') }}" class="btn-consultar" download="calculadora.rar">Descargar emulador</a>
+            </div>
+        </div>
+    </section>
+
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Redes Sociales  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% --}}
     <section id="redes" class="social-banner">
         <div class="container">
