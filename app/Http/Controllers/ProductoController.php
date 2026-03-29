@@ -18,12 +18,19 @@ class ProductoController extends Controller
     {
         $productos = Producto::orderByDesc('id')->paginate(20);
 
-        return view('producto.index', compact('productos'));
+        $resumen = [
+            'total' => Producto::count(),
+            'activos' => Producto::where('activo', true)->count(),
+            'escasos' => Producto::whereColumn('stock', '<=', 'stock_minimo')->count(),
+            'agotados' => Producto::where('stock', '<=', 0)->count(),
+        ];
+
+        return view('producto.index', compact('productos', 'resumen'));
     }
 
     public function sugerencias(Request $request)
     {
-        $nombre = trim((string)$request->query('nombre', ''));
+        $nombre = trim((string) $request->query('nombre', ''));
 
         if ($nombre === '') {
             return response()->json([]);
@@ -49,8 +56,13 @@ class ProductoController extends Controller
     {
         $data = $request->validated();
 
-        $data['activo'] = (bool)($data['activo'] ?? true);
-        $data['nombre'] = preg_replace('/\s+/', ' ', trim((string)$data['nombre']));
+        $data['activo'] = (bool) ($data['activo'] ?? true);
+        $data['nombre'] = preg_replace('/\s+/', ' ', trim((string) $data['nombre']));
+        $data['stock_minimo'] = (int) ($data['stock_minimo'] ?? 5);
+
+        if (!$request->user() || !$request->user()->hasRole(['Admin'])) {
+            unset($data['costo']);
+        }
 
         $producto = Producto::create($data);
 
@@ -68,8 +80,13 @@ class ProductoController extends Controller
     {
         $data = $request->validated();
 
-        $data['activo'] = (bool)($data['activo'] ?? false);
-        $data['nombre'] = preg_replace('/\s+/', ' ', trim((string)$data['nombre']));
+        $data['activo'] = (bool) ($data['activo'] ?? false);
+        $data['nombre'] = preg_replace('/\s+/', ' ', trim((string) $data['nombre']));
+        $data['stock_minimo'] = (int) ($data['stock_minimo'] ?? 5);
+
+        if (!$request->user() || !$request->user()->hasRole(['Admin'])) {
+            unset($data['costo']);
+        }
 
         $producto->update($data);
 
@@ -78,6 +95,16 @@ class ProductoController extends Controller
 
     public function destroy(Producto $producto)
     {
+        $tieneVentas = $producto->detallesVenta()->exists();
+
+        if ($tieneVentas) {
+            if ($producto->activo) {
+                $producto->update(['activo' => false]);
+            }
+
+            return redirect()->route('productos.index')->with('warning', 'El producto tiene ventas historicas, no se elimino. Fue desactivado para proteger la integridad del historial.');
+        }
+
         $producto->delete();
 
         return redirect()->route('productos.index')->with('success', 'Producto eliminado correctamente.');
@@ -85,7 +112,7 @@ class ProductoController extends Controller
 
     private function normalizarNombre($nombre)
     {
-        $nombre = trim((string)$nombre);
+        $nombre = trim((string) $nombre);
         $nombre = preg_replace('/\s+/', ' ', $nombre);
         return mb_strtolower($nombre, 'UTF-8');
     }

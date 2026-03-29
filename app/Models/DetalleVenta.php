@@ -13,11 +13,13 @@ class DetalleVenta extends Model
         'producto_id',
         'cantidad',
         'precio_unitario',
+        'costo_unitario',
         'subtotal',
     ];
 
     protected $casts = [
         'precio_unitario' => 'decimal:2',
+        'costo_unitario' => 'decimal:2',
         'subtotal' => 'decimal:2',
     ];
 
@@ -31,4 +33,3 @@ class DetalleVenta extends Model
         return $this->belongsTo(Producto::class);
     }
 }
-

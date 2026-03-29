@@ -26,14 +26,17 @@ class ProductoUpdateRequest extends FormRequest
     {
         $producto = $this->route('producto');
         $id = $producto ? $producto->id : null;
+        $isAdmin = $this->user() && $this->user()->hasRole(['Admin']);
 
         return [
             'nombre' => 'required|string|max:255',
             'codigo' => 'required|string|max:255|unique:productos,codigo,' . $id,
             'codigo_qr' => 'nullable|string|max:255|required_without:codigo_barras|unique:productos,codigo_qr,' . $id,
             'codigo_barras' => 'nullable|string|max:255|required_without:codigo_qr|unique:productos,codigo_barras,' . $id,
+            'costo' => [$isAdmin ? 'required' : 'nullable', 'numeric', 'min:0'],
             'precio' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
+            'stock_minimo' => 'nullable|integer|min:0',
             'activo' => 'nullable|boolean',
         ];
     }
@@ -42,12 +45,13 @@ class ProductoUpdateRequest extends FormRequest
     {
         return [
             'nombre.required' => 'El nombre es obligatorio.',
-            'codigo.required' => 'El código interno es obligatorio.',
-            'codigo.unique' => 'El código interno ya existe.',
-            'codigo_qr.required_without' => 'Debes llenar al menos Código QR o Código de barras.',
-            'codigo_qr.unique' => 'El código QR ya existe.',
-            'codigo_barras.required_without' => 'Debes llenar al menos Código de barras o Código QR.',
-            'codigo_barras.unique' => 'El código de barras ya existe.',
+            'codigo.required' => 'El codigo interno es obligatorio.',
+            'codigo.unique' => 'El codigo interno ya existe.',
+            'codigo_qr.required_without' => 'Debes llenar al menos Codigo QR o Codigo de barras.',
+            'codigo_qr.unique' => 'El codigo QR ya existe.',
+            'codigo_barras.required_without' => 'Debes llenar al menos Codigo de barras o Codigo QR.',
+            'codigo_barras.unique' => 'El codigo de barras ya existe.',
+            'costo.required' => 'El costo es obligatorio para administradores.',
             'precio.required' => 'El precio es obligatorio.',
             'stock.required' => 'El stock es obligatorio.',
         ];
@@ -76,7 +80,7 @@ class ProductoUpdateRequest extends FormRequest
 
             if ($duplicado) {
                 $similares = $this->buscarSimilares($nombre, $exceptId);
-                $mensaje = 'Ya existe otro producto con ese nombre (considerando mayúsculas/espacios).';
+                $mensaje = 'Ya existe otro producto con ese nombre (considerando mayusculas/espacios).';
                 if ($similares->isNotEmpty()) {
                     $mensaje .= ' Similares: ' . $similares->implode(', ') . '.';
                 }

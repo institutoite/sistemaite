@@ -11,13 +11,17 @@ class Producto extends Model
         'codigo',
         'codigo_qr',
         'codigo_barras',
+        'costo',
         'precio',
         'stock',
+        'stock_minimo',
         'activo',
     ];
 
     protected $casts = [
+        'costo' => 'decimal:2',
         'precio' => 'decimal:2',
+        'stock_minimo' => 'integer',
         'activo' => 'boolean',
     ];
 

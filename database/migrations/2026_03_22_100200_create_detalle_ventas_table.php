@@ -19,6 +19,7 @@ class CreateDetalleVentasTable extends Migration
             $table->foreignId('producto_id')->constrained('productos');
             $table->unsignedInteger('cantidad');
             $table->decimal('precio_unitario', 10, 2);
+            $table->decimal('costo_unitario', 10, 2)->default(0);
             $table->decimal('subtotal', 10, 2);
             $table->timestamps();
         });
@@ -34,4 +35,3 @@ class CreateDetalleVentasTable extends Migration
         Schema::dropIfExists('detalle_ventas');
     }
 }
-

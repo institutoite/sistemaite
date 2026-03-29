@@ -19,8 +19,10 @@ class CreateProductosTable extends Migration
             $table->string('codigo')->unique();
             $table->string('codigo_qr')->nullable()->unique();
             $table->string('codigo_barras')->nullable()->unique();
+            $table->decimal('costo', 10, 2)->default(0);
             $table->decimal('precio', 10, 2);
             $table->unsignedInteger('stock')->default(0);
+            $table->unsignedInteger('stock_minimo')->default(5);
             $table->boolean('activo')->default(true);
             $table->timestamps();
         });
@@ -36,4 +38,3 @@ class CreateProductosTable extends Migration
         Schema::dropIfExists('productos');
     }
 }
-

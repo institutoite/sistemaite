@@ -170,6 +170,7 @@ class VentaRapidaController extends Controller
                     'producto_id' => $producto->id,
                     'cantidad' => $item['cantidad'],
                     'precio_unitario' => $producto->precio,
+                    'costo_unitario' => $producto->costo ?? 0,
                     'subtotal' => $subtotal,
                 ]);
 

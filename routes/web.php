@@ -36,6 +36,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ProductoReporteController;
 use App\Http\Controllers\ReportePagoVentaController;
 use App\Http\Controllers\AulaController;
 use App\Http\Controllers\MateriaController;
@@ -508,6 +509,13 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     Route::post('productos', [ProductoController::class, 'store'])->name('productos.store');
     Route::put('productos/{producto}', [ProductoController::class, 'update'])->name('productos.update');
     Route::delete('productos/{producto}', [ProductoController::class, 'destroy'])->name('productos.destroy');
+    Route::get('productos/escasos', [ProductoReporteController::class, 'escasos'])->name('productos.escasos');
+    Route::get('productos/mas-vendidos', [ProductoReporteController::class, 'masVendidos'])->name('productos.mas_vendidos');
+    Route::get('productos/mas-rentables', [ProductoReporteController::class, 'masRentables'])->name('productos.mas_rentables');
+    Route::get('productos/graficos', [ProductoReporteController::class, 'graficos'])->name('productos.graficos');
+    Route::get('productos/usuarios-ventas', [ProductoReporteController::class, 'usuariosVentas'])->name('productos.usuarios_ventas');
+    Route::get('productos/mas-vendidos/export/excel', [ProductoReporteController::class, 'exportMasVendidosExcel'])->name('productos.mas_vendidos.export_excel');
+    Route::get('productos/mas-rentables/export/pdf', [ProductoReporteController::class, 'exportMasRentablesPdf'])->name('productos.mas_rentables.export_pdf');
 
     /**%%%%%%%%%%%%%%%%%%%%%%%%%%%CHART RUTAS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
     Route::get('chart/inscripciones/for/modalidades', [ChartController::class,'chartCantidadInscripcionesXModaalidades'])->name('chart.listar.inscripciones.pormodalidades');

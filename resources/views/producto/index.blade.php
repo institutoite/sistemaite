@@ -3,7 +3,50 @@
 @section('title', 'Productos')
 
 @section('content')
+    @php
+        $esAdmin = auth()->check() && auth()->user()->hasRole(['Admin']);
+    @endphp
+
     <section class="content pt-3">
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>{{ $resumen['total'] ?? 0 }}</h3>
+                        <p>Total productos</p>
+                    </div>
+                    <div class="icon"><i class="fas fa-boxes"></i></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>{{ $resumen['activos'] ?? 0 }}</h3>
+                        <p>Activos</p>
+                    </div>
+                    <div class="icon"><i class="fas fa-check-circle"></i></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>{{ $resumen['escasos'] ?? 0 }}</h3>
+                        <p>Escasos</p>
+                    </div>
+                    <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>{{ $resumen['agotados'] ?? 0 }}</h3>
+                        <p>Agotados</p>
+                    </div>
+                    <div class="icon"><i class="fas fa-times-circle"></i></div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
@@ -15,6 +58,9 @@
 
                         @if(session('success'))
                             <div class="alert alert-success">{{ session('success') }}</div>
+                        @endif
+                        @if(session('warning'))
+                            <div class="alert alert-warning">{{ session('warning') }}</div>
                         @endif
 
                         <form method="POST" action="{{ route('productos.store') }}" id="formNuevoProducto">
@@ -58,19 +104,38 @@
                             </div>
 
                             <div class="form-row">
-                                <div class="col">
+                                @if($esAdmin)
+                                    <div class="col-md-4">
+                                        <label>Costo</label>
+                                        <input type="number" min="0" step="0.01" name="costo"
+                                               class="form-control @error('costo') is-invalid @enderror"
+                                               value="{{ old('costo', 0) }}" required>
+                                        <small class="text-danger d-block js-error" data-error-for="costo">@error('costo') {{ $message }} @enderror</small>
+                                    </div>
+                                @endif
+                                <div class="col-md-{{ $esAdmin ? '4' : '6' }}">
                                     <label>Precio</label>
                                     <input type="number" min="0" step="0.01" name="precio"
                                            class="form-control @error('precio') is-invalid @enderror"
                                            value="{{ old('precio') }}" required>
                                     <small class="text-danger d-block js-error" data-error-for="precio">@error('precio') {{ $message }} @enderror</small>
                                 </div>
-                                <div class="col">
+                                <div class="col-md-{{ $esAdmin ? '4' : '6' }}">
                                     <label>Stock</label>
                                     <input type="number" min="0" step="1" name="stock"
                                            class="form-control @error('stock') is-invalid @enderror"
                                            value="{{ old('stock') }}" required>
                                     <small class="text-danger d-block js-error" data-error-for="stock">@error('stock') {{ $message }} @enderror</small>
+                                </div>
+                            </div>
+
+                            <div class="form-row mt-2">
+                                <div class="col-md-6">
+                                    <label>Stock minimo</label>
+                                    <input type="number" min="0" step="1" name="stock_minimo"
+                                           class="form-control @error('stock_minimo') is-invalid @enderror"
+                                           value="{{ old('stock_minimo', 5) }}" required>
+                                    <small class="text-danger d-block js-error" data-error-for="stock_minimo">@error('stock_minimo') {{ $message }} @enderror</small>
                                 </div>
                             </div>
 
@@ -98,25 +163,49 @@
                                     <tr>
                                         <th>Nombre</th>
                                         <th>Codigo</th>
+                                        @if($esAdmin)<th>Costo</th>@endif
                                         <th>Precio</th>
                                         <th>Stock</th>
-                                        <th>Activo</th>
+                                        <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tablaProductosBody">
                                     @forelse($productos as $producto)
-                                        <tr class="product-main" data-product-id="{{ $producto->id }}">
+                                        @php
+                                            $agotado = (int) $producto->stock <= 0;
+                                            $escaso = !$agotado && (int) $producto->stock <= (int) $producto->stock_minimo;
+                                            $sinCosto = (float) $producto->costo <= 0;
+                                        @endphp
+                                        <tr class="product-main {{ $agotado ? 'table-danger' : ($escaso ? 'table-warning' : '') }}" data-product-id="{{ $producto->id }}">
                                             <td>{{ $producto->nombre }}</td>
                                             <td>{{ $producto->codigo }}</td>
+                                            @if($esAdmin)
+                                                <td>
+                                                    {{ number_format((float)$producto->costo, 2) }}
+                                                    @if($sinCosto)
+                                                        <span class="badge badge-warning">Costo 0</span>
+                                                    @endif
+                                                </td>
+                                            @endif
                                             <td>{{ number_format((float)$producto->precio, 2) }}</td>
-                                            <td>{{ $producto->stock }}</td>
-                                            <td>{{ $producto->activo ? 'Si' : 'No' }}</td>
+                                            <td>
+                                                {{ $producto->stock }}
+                                                <small class="text-muted d-block">Min: {{ $producto->stock_minimo }}</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-{{ $producto->activo ? 'success' : 'secondary' }}">{{ $producto->activo ? 'Activo' : 'Inactivo' }}</span>
+                                                @if($agotado)
+                                                    <span class="badge badge-danger">Agotado</span>
+                                                @elseif($escaso)
+                                                    <span class="badge badge-warning">Escaso</span>
+                                                @endif
+                                            </td>
                                             <td>
                                                 <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="collapse" data-target="#editarProducto{{ $producto->id }}">
                                                     Editar
                                                 </button>
-                                                <form method="POST" action="{{ route('productos.destroy', $producto) }}" class="d-inline">
+                                                <form method="POST" action="{{ route('productos.destroy', $producto) }}" class="d-inline" onsubmit="return confirm('Si el producto tiene ventas, se desactivara en lugar de eliminarse. Continuar?');">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
@@ -124,7 +213,7 @@
                                             </td>
                                         </tr>
                                         <tr class="collapse product-edit" id="editarProducto{{ $producto->id }}" data-product-id="{{ $producto->id }}">
-                                            <td colspan="6">
+                                            <td colspan="{{ $esAdmin ? 7 : 6 }}">
                                                 <form method="POST" action="{{ route('productos.update', $producto) }}">
                                                     @csrf
                                                     @method('PUT')
@@ -145,6 +234,12 @@
                                                             <label>Barras</label>
                                                             <input type="text" name="codigo_barras" class="form-control form-control-sm" value="{{ $producto->codigo_barras }}">
                                                         </div>
+                                                        @if($esAdmin)
+                                                            <div class="col-md-1">
+                                                                <label>Costo</label>
+                                                                <input type="number" min="0" step="0.01" name="costo" class="form-control form-control-sm" value="{{ $producto->costo }}">
+                                                            </div>
+                                                        @endif
                                                         <div class="col-md-1">
                                                             <label>Precio</label>
                                                             <input type="number" min="0" step="0.01" name="precio" class="form-control form-control-sm" value="{{ $producto->precio }}">
@@ -153,7 +248,13 @@
                                                             <label>Stock</label>
                                                             <input type="number" min="0" step="1" name="stock" class="form-control form-control-sm" value="{{ $producto->stock }}">
                                                         </div>
-                                                        <div class="col-md-1">
+                                                    </div>
+                                                    <div class="form-row mt-2">
+                                                        <div class="col-md-2">
+                                                            <label>Stock min.</label>
+                                                            <input type="number" min="0" step="1" name="stock_minimo" class="form-control form-control-sm" value="{{ $producto->stock_minimo }}">
+                                                        </div>
+                                                        <div class="col-md-2">
                                                             <label>Activo</label>
                                                             <select name="activo" class="form-control form-control-sm">
                                                                 <option value="1" @if($producto->activo) selected @endif>Si</option>
@@ -169,7 +270,7 @@
                                         </tr>
                                     @empty
                                         <tr id="empty-products-row">
-                                            <td colspan="6" class="text-center text-muted">No hay productos registrados.</td>
+                                            <td colspan="{{ $esAdmin ? 7 : 6 }}" class="text-center text-muted">No hay productos registrados.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
@@ -193,6 +294,7 @@
             var alertSuccess = document.getElementById('producto-success');
             var tablaBody = document.getElementById('tablaProductosBody');
             var buscador = document.getElementById('buscadorProductos');
+            var esAdmin = @json($esAdmin);
 
             var inputNombre = document.getElementById('nombre_producto_nuevo');
             var boxSugerencias = document.getElementById('sugerencias-duplicados');
@@ -239,21 +341,30 @@
                 var codigo = escapeHtml(producto.codigo);
                 var codigoQr = escapeHtml(producto.codigo_qr || '');
                 var codigoBarras = escapeHtml(producto.codigo_barras || '');
+                var costo = Number(producto.costo || 0).toFixed(2);
                 var precio = Number(producto.precio || 0).toFixed(2);
                 var stock = Number(producto.stock || 0);
-                var activo = Number(producto.activo) === 1 ? 'Si' : 'No';
-                var activoSelected = Number(producto.activo) === 1;
+                var stockMinimo = Number(producto.stock_minimo || 5);
+                var activo = Number(producto.activo) === 1;
+                var badgeEstado = activo ? 'Activo' : 'Inactivo';
+                var badgeClass = activo ? 'success' : 'secondary';
+                var stockBadge = stock <= 0 ? '<span class="badge badge-danger">Agotado</span>' : (stock <= stockMinimo ? '<span class="badge badge-warning">Escaso</span>' : '');
+
+                var cCosto = esAdmin ? '<td>' + costo + (Number(costo) <= 0 ? ' <span class="badge badge-warning">Costo 0</span>' : '') + '</td>' : '';
+                var cCostoInput = esAdmin ? '<div class="col-md-1"><label>Costo</label><input type="number" min="0" step="0.01" name="costo" class="form-control form-control-sm" value="' + costo + '"></div>' : '';
+                var colspan = esAdmin ? 7 : 6;
 
                 var mainRow = '' +
                     '<tr class="product-main" data-product-id="' + id + '">' +
                         '<td>' + nombre + '</td>' +
                         '<td>' + codigo + '</td>' +
+                        cCosto +
                         '<td>' + precio + '</td>' +
-                        '<td>' + stock + '</td>' +
-                        '<td>' + activo + '</td>' +
+                        '<td>' + stock + '<small class="text-muted d-block">Min: ' + stockMinimo + '</small></td>' +
+                        '<td><span class="badge badge-' + badgeClass + '">' + badgeEstado + '</span> ' + stockBadge + '</td>' +
                         '<td>' +
                             '<button type="button" class="btn btn-sm btn-outline-primary" data-toggle="collapse" data-target="#editarProducto' + id + '">Editar</button> ' +
-                            '<form method="POST" action="/productos/' + id + '" class="d-inline">' +
+                            '<form method="POST" action="/productos/' + id + '" class="d-inline" onsubmit="return confirm(\'Si el producto tiene ventas, se desactivara en lugar de eliminarse. Continuar?\');">' +
                                 '<input type="hidden" name="_token" value="{{ csrf_token() }}">' +
                                 '<input type="hidden" name="_method" value="DELETE">' +
                                 '<button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>' +
@@ -263,7 +374,7 @@
 
                 var editRow = '' +
                     '<tr class="collapse product-edit" id="editarProducto' + id + '" data-product-id="' + id + '">' +
-                        '<td colspan="6">' +
+                        '<td colspan="' + colspan + '">' +
                             '<form method="POST" action="/productos/' + id + '">' +
                                 '<input type="hidden" name="_token" value="{{ csrf_token() }}">' +
                                 '<input type="hidden" name="_method" value="PUT">' +
@@ -272,11 +383,15 @@
                                     '<div class="col-md-2"><label>Codigo</label><input type="text" name="codigo" class="form-control form-control-sm" value="' + codigo + '"></div>' +
                                     '<div class="col-md-2"><label>QR</label><input type="text" name="codigo_qr" class="form-control form-control-sm" value="' + codigoQr + '"></div>' +
                                     '<div class="col-md-2"><label>Barras</label><input type="text" name="codigo_barras" class="form-control form-control-sm" value="' + codigoBarras + '"></div>' +
+                                    cCostoInput +
                                     '<div class="col-md-1"><label>Precio</label><input type="number" min="0" step="0.01" name="precio" class="form-control form-control-sm" value="' + precio + '"></div>' +
                                     '<div class="col-md-1"><label>Stock</label><input type="number" min="0" step="1" name="stock" class="form-control form-control-sm" value="' + stock + '"></div>' +
-                                    '<div class="col-md-1"><label>Activo</label><select name="activo" class="form-control form-control-sm">' +
-                                        '<option value="1" ' + (activoSelected ? 'selected' : '') + '>Si</option>' +
-                                        '<option value="0" ' + (!activoSelected ? 'selected' : '') + '>No</option>' +
+                                '</div>' +
+                                '<div class="form-row mt-2">' +
+                                    '<div class="col-md-2"><label>Stock min.</label><input type="number" min="0" step="1" name="stock_minimo" class="form-control form-control-sm" value="' + stockMinimo + '"></div>' +
+                                    '<div class="col-md-2"><label>Activo</label><select name="activo" class="form-control form-control-sm">' +
+                                        '<option value="1" ' + (activo ? 'selected' : '') + '>Si</option>' +
+                                        '<option value="0" ' + (!activo ? 'selected' : '') + '>No</option>' +
                                     '</select></div>' +
                                 '</div>' +
                                 '<div class="mt-2 text-right"><button class="btn btn-sm btn-primary" type="submit">Guardar cambios</button></div>' +

@@ -1078,13 +1078,55 @@ return [
                     'classes'  => 'text-dark',
                     'can' => 'gestionar-productos-admin',
                 ],
-               
+            ],
+        ],
+        [
+            'header' => 'PRODUCTOS',
+            'classes'  => 'text-white bg-secondary',
+            'can' => 'gestionar-productos-admin',
+        ],
+        [
+            'text'    => 'Productos',
+            'icon'    => 'fas fa-boxes',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'gestionar-productos-admin',
+            'submenu' => [
                 [
-                    'text' => 'Productos',
+                    'text' => 'Listar',
                     'icon'    => 'fas fa-angle-right',
                     'route'  => 'productos.index',
                     'classes'  => 'text-dark',
-                    'can' => 'gestionar-productos-admin',
+                ],
+                [
+                    'text' => 'Productos escasos',
+                    'icon'    => 'fas fa-angle-right',
+                    'route'  => 'productos.escasos',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Productos mas vendidos',
+                    'icon'    => 'fas fa-angle-right',
+                    'route'  => 'productos.mas_vendidos',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Productos mas rentables',
+                    'icon'    => 'fas fa-angle-right',
+                    'route'  => 'productos.mas_rentables',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Graficos',
+                    'icon'    => 'fas fa-angle-right',
+                    'route'  => 'productos.graficos',
+                    'classes'  => 'text-dark',
+                ],
+                [
+                    'text' => 'Usuarios ventas',
+                    'icon'    => 'fas fa-angle-right',
+                    'route'  => 'productos.usuarios_ventas',
+                    'classes'  => 'text-dark',
                 ],
             ],
         ],
