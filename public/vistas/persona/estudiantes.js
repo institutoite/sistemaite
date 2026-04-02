@@ -1,3 +1,80 @@
+//%%%%%%%%%%%%%%%%%%%%%%% HELPERS DE MODAL (BS4/BS5) %%%%%%%%%%%%%%%%%%%%%%%%%%%
+function ensureModalCompatBindings(el){
+    if (!el || el.__modalCompatBound) {
+        return;
+    }
+    el.__modalCompatBound = true;
+
+    el.addEventListener('click', function(e){
+        var dismissTarget = e.target.closest('[data-bs-dismiss="modal"], [data-dismiss="modal"], .btn-close, .close');
+        if (dismissTarget && el.contains(dismissTarget)) {
+            e.preventDefault();
+            hideModalCompat(el);
+            return;
+        }
+        if (e.target === el) {
+            hideModalCompat(el);
+        }
+    });
+
+    document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && el.classList.contains('show')) {
+            hideModalCompat(el);
+        }
+    });
+}
+
+function showModalCompat(selector){
+    var el = (typeof selector === 'string') ? document.querySelector(selector) : selector;
+    if (!el) {
+        return;
+    }
+    ensureModalCompatBindings(el);
+    if (window.bootstrap && window.bootstrap.Modal) {
+        try {
+            if (!el.__bsModalInstance) {
+                el.__bsModalInstance = new window.bootstrap.Modal(el);
+            }
+            el.__bsModalInstance.show();
+            return;
+        } catch (e) {}
+    }
+    if (window.jQuery && typeof window.jQuery(el).modal === 'function') {
+        window.jQuery(el).modal('show');
+        return;
+    }
+    el.style.display = 'block';
+    el.classList.add('show');
+    document.body.classList.add('modal-open');
+}
+
+function hideModalCompat(selector){
+    var el = (typeof selector === 'string') ? document.querySelector(selector) : selector;
+    if (!el) {
+        return;
+    }
+    ensureModalCompatBindings(el);
+    if (window.bootstrap && window.bootstrap.Modal) {
+        try {
+            if (!el.__bsModalInstance) {
+                el.__bsModalInstance = new window.bootstrap.Modal(el);
+            }
+            el.__bsModalInstance.hide();
+            return;
+        } catch (e) {}
+    }
+    if (window.jQuery && typeof window.jQuery(el).modal === 'function') {
+        window.jQuery(el).modal('hide');
+        return;
+    }
+    el.classList.remove('show');
+    el.style.display = 'none';
+    document.body.classList.remove('modal-open');
+    if (window.jQuery) {
+        window.jQuery('.modal-backdrop').remove();
+    }
+}
+
  //%%%%%%%%%%%%%%%%%%%%%%% INICIALIZA EL CKEDITOR %%%%%%%%%%%%%%%%%%%%%%%%%%%
         CKEDITOR.replace('editorguardar', {
             height: 120,
@@ -19,7 +96,7 @@
             $("#observable_type").val($(this).attr('id'));
             CKEDITOR.instances.editorguardar.setData("");
             console.log("Click en Observacion crear");
-            $("#modal-agregar-observacion").modal("show");
+            showModalCompat('#modal-agregar-observacion');
         });
         /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CLICK BOTON GUARDAR OBSERVACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
         $('#guardar-observacion').on('click', function (e) {
@@ -42,7 +119,7 @@
                 observable_type ="Persona";
                 url="observaciones/" + observable_id + "/" + observable_type,
                 mostrarCrudObservaciones(url);
-                $("#modal-mostrar-observaciones").modal("show");
+                showModalCompat('#modal-mostrar-observaciones');
         });
 
 
@@ -72,8 +149,8 @@
             observacion_id =$(this).closest('tr').attr('id');
             url="observacion/editar";
             editarObservacion(observacion_id,url);
-            $("#modal-mostrar-observaciones").modal("hide");
-            $("#modal-editar-observacion").modal("show");
+            hideModalCompat('#modal-mostrar-observaciones');
+            showModalCompat('#modal-editar-observacion');
         });
         $('#actualizar-observacion').on('click', function (e){ 
             e.preventDefault();
@@ -88,7 +165,7 @@
                 url="../persona/enviar/mensaje/componente",
                 mensaje_id=5;
                 mostrarContactos(url,persona_id,mensaje_id);
-                $("#modal-listar-contactos-component").modal("show");
+                showModalCompat('#modal-listar-contactos-component');
         });
 
         $('table').on('click', '.enviarcredenciales', function(e) {
@@ -228,7 +305,69 @@
             });
         });
 
-        function inicializarMarcadoModal($modal){
+function inicializarMarcadoModal($modal){
+            // Soporte para fichas (tabs) en contenido cargado por AJAX.
+            $modal.off('click.marcadoTabs').on('click.marcadoTabs', '[data-bs-toggle="tab"], [data-toggle="tab"]', function(e){
+                e.preventDefault();
+                var $trigger = $(this);
+                var targetSelector = $trigger.attr('data-bs-target') || $trigger.attr('href') || $trigger.attr('data-target');
+                if (!targetSelector || targetSelector.charAt(0) !== '#') {
+                    return;
+                }
+
+                var $targetPane = $modal.find(targetSelector).first();
+                if (!$targetPane.length) {
+                    return;
+                }
+
+                var $tabList = $trigger.closest('.nav');
+                if ($tabList.length) {
+                    $tabList.find('[data-bs-toggle="tab"], [data-toggle="tab"], .nav-link')
+                        .removeClass('active')
+                        .attr('aria-selected', 'false');
+                }
+                $trigger.addClass('active').attr('aria-selected', 'true');
+
+                var $tabContent = $targetPane.closest('.tab-content');
+                if ($tabContent.length) {
+                    $tabContent.find('.tab-pane').removeClass('active show');
+                }
+                $targetPane.addClass('active show');
+            });
+
+            // Soporte para acordeones collapse si Bootstrap JS no los engancha.
+            $modal.off('click.marcadoCollapse').on('click.marcadoCollapse', '[data-bs-toggle="collapse"], [data-toggle="collapse"]', function(e){
+                e.preventDefault();
+                var $trigger = $(this);
+                var targetSelector = $trigger.attr('data-bs-target') || $trigger.attr('href') || $trigger.attr('data-target');
+                if (!targetSelector || targetSelector.charAt(0) !== '#') {
+                    return;
+                }
+
+                var $target = $modal.find(targetSelector).first();
+                if (!$target.length) {
+                    return;
+                }
+
+                var parentSelector = $target.attr('data-bs-parent') || $target.attr('data-parent');
+                if (parentSelector) {
+                    var $parent = $modal.find(parentSelector).first();
+                    if ($parent.length) {
+                        $parent.find('.accordion-collapse.show, .collapse.show').not($target).removeClass('show');
+                        $parent.find('[data-bs-toggle="collapse"], [data-toggle="collapse"]').not($trigger).addClass('collapsed').attr('aria-expanded', 'false');
+                    }
+                }
+
+                var isOpen = $target.hasClass('show');
+                if (isOpen) {
+                    $target.removeClass('show');
+                    $trigger.addClass('collapsed').attr('aria-expanded', 'false');
+                } else {
+                    $target.addClass('show');
+                    $trigger.removeClass('collapsed').attr('aria-expanded', 'true');
+                }
+            });
+
             function agregarMinutos(hora, minutos){
                 var partes = (hora || '').split(':');
                 if (partes.length < 2) {
@@ -318,11 +457,11 @@
             $modal.find('.modal-content').html('<div class="modal-body">Cargando...</div>');
             $.get(url, function(html){
                 $modal.find('.modal-content').html(html);
-                $modal.modal('show');
+                showModalCompat($modal[0]);
                 inicializarMarcadoModal($modal);
             }).fail(function(){
                 $modal.find('.modal-content').html('<div class="modal-body">No se pudo cargar el marcado.</div>');
-                $modal.modal('show');
+                showModalCompat($modal[0]);
             });
         });
 
@@ -347,7 +486,7 @@
                         type: 'success',
                         title: json.message
                     });
-                    $('#modal-marcado-normal').modal('hide');
+                    hideModalCompat('#modal-marcado-normal');
                 },
                 error: function(){
                     Swal.fire({

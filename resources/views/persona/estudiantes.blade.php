@@ -260,9 +260,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalMarcadoNormalLabel">Marcar asistencia</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" class="btn-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         Cargando...
@@ -276,37 +274,40 @@
 @stop
 
 @section('js')
-                
+        @php
+            $arrayHistorial = is_array($ultimasBusquedas ?? []) ? ($ultimasBusquedas ?? []) : (($ultimasBusquedas ?? collect())->toArray());
+            $historialUnicos = [];
+            $vistosHistorial = [];
+            foreach($arrayHistorial as $item) {
+                if(is_array($item) && isset($item['termino'])) {
+                    $termino = $item['termino'];
+                    $usuario = $item['usuario'] ?? '';
+                } elseif(is_object($item) && isset($item->termino)) {
+                    $termino = $item->termino;
+                    $usuario = $item->usuario ?? '';
+                } else {
+                    $termino = $item;
+                    $usuario = '';
+                }
+                if(!in_array($termino, $vistosHistorial, true)) {
+                    $vistosHistorial[] = $termino;
+                    $historialUnicos[] = ['termino' => $termino, 'usuario' => $usuario];
+                }
+            }
+        @endphp
+        <script id="historial-busquedas-json" type="application/json">@json($historialUnicos, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT)</script>
+                 
         <script>
         // Guardar historial en JS para filtrar (DISTINCT)
-        // Adaptar historialBusquedas para incluir usuario (forzar array de objetos JS)
-        var historialBusquedas = [
-            @php
-                $array = is_array($ultimasBusquedas) ? $ultimasBusquedas : $ultimasBusquedas->toArray();
-                $unicos = [];
-                $vistos = [];
-                foreach($array as $item) {
-                    // Si es objeto/array tipo ['termino'=>..., 'usuario'=>...]
-                    if(is_array($item) && isset($item['termino'])) {
-                        $termino = $item['termino'];
-                        $usuario = $item['usuario'] ?? '';
-                    } elseif(is_object($item) && isset($item->termino)) {
-                        $termino = $item->termino;
-                        $usuario = $item->usuario ?? '';
-                    } else {
-                        $termino = $item;
-                        $usuario = '';
-                    }
-                    if(!in_array($termino, $vistos)) {
-                        $vistos[] = $termino;
-                        $unicos[] = [ 'termino' => $termino, 'usuario' => $usuario ];
-                    }
-                }
-            @endphp
-            @foreach($unicos as $i => $item)
-                { termino: "{{ addslashes($item['termino']) }}", usuario: "{{ addslashes($item['usuario']) }}" }@if($i < count($unicos)-1),@endif
-            @endforeach
-        ];
+        var historialBusquedas = [];
+        try {
+            var historialRaw = document.getElementById('historial-busquedas-json');
+            if (historialRaw) {
+                historialBusquedas = JSON.parse(historialRaw.textContent || '[]');
+            }
+        } catch (e) {
+            historialBusquedas = [];
+        }
 
         // Función global para renderizar un elemento del historial
         function renderItem(item) {
@@ -516,6 +517,77 @@
 
     <script>
         let cantidadEsperados= "<?php echo count($rematriculaciones)+count($reinscripciones)+count($nuevos); ?>";
+        function ensureModalCompatBindingsHome(el){
+            if (!el || el.__modalCompatBoundHome) {
+                return;
+            }
+            el.__modalCompatBoundHome = true;
+
+            el.addEventListener('click', function(e){
+                var dismissTarget = e.target.closest('[data-bs-dismiss="modal"], [data-dismiss="modal"], .btn-close, .close');
+                if (dismissTarget && el.contains(dismissTarget)) {
+                    e.preventDefault();
+                    hideModalCompatHome(el);
+                    return;
+                }
+                if (e.target === el) {
+                    hideModalCompatHome(el);
+                }
+            });
+
+            document.addEventListener('keydown', function(e){
+                if (e.key === 'Escape' && el.classList.contains('show')) {
+                    hideModalCompatHome(el);
+                }
+            });
+        }
+        function showModalCompatHome(selector){
+            var el = (typeof selector === 'string') ? document.querySelector(selector) : selector;
+            if (!el) {
+                return;
+            }
+            ensureModalCompatBindingsHome(el);
+            if (window.bootstrap && window.bootstrap.Modal) {
+                try {
+                    if (!el.__bsModalInstance) {
+                        el.__bsModalInstance = new window.bootstrap.Modal(el);
+                    }
+                    el.__bsModalInstance.show();
+                    return;
+                } catch (e) {}
+            }
+            if (window.jQuery && typeof window.jQuery(el).modal === 'function') {
+                window.jQuery(el).modal('show');
+                return;
+            }
+            el.style.display = 'block';
+            el.classList.add('show');
+            document.body.classList.add('modal-open');
+        }
+        function hideModalCompatHome(selector){
+            var el = (typeof selector === 'string') ? document.querySelector(selector) : selector;
+            if (!el) {
+                return;
+            }
+            ensureModalCompatBindingsHome(el);
+            if (window.bootstrap && window.bootstrap.Modal) {
+                try {
+                    if (!el.__bsModalInstance) {
+                        el.__bsModalInstance = new window.bootstrap.Modal(el);
+                    }
+                    el.__bsModalInstance.hide();
+                    return;
+                } catch (e) {}
+            }
+            if (window.jQuery && typeof window.jQuery(el).modal === 'function') {
+                window.jQuery(el).modal('hide');
+                return;
+            }
+            el.classList.remove('show');
+            el.style.display = 'none';
+            document.body.classList.remove('modal-open');
+            $('.modal-backdrop').remove();
+        }
         $(document).ready(function(){
             // Modal
             function cerrarModal() {
@@ -524,10 +596,10 @@
                 window.location.href = "espera/nuevo/view";
             }
             if(cantidadEsperados>0)
-                $('#modal_estados').modal('show');
+                showModalCompatHome('#modal_estados');
             $("#cerrarmodal").on("click", function(){
                 if($('body').hasClass('modal-open')){
-                    $('#modal_estados').modal('hide');
+                    hideModalCompatHome('#modal_estados');
                     $('body').removeClass('modal-open');
                     $('.modal-backdrop').remove();
                 }

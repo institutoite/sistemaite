@@ -1,4 +1,29 @@
 let tablaobservaciones;
+function modalHideCompatObservacion(selector) {
+    var el = (typeof selector === 'string') ? document.querySelector(selector) : selector;
+    if (!el) {
+        return;
+    }
+    if (window.bootstrap && window.bootstrap.Modal) {
+        try {
+            if (!el.__bsModalInstance) {
+                el.__bsModalInstance = new window.bootstrap.Modal(el);
+            }
+            el.__bsModalInstance.hide();
+            return;
+        } catch (e) {}
+    }
+    if (window.jQuery && typeof window.jQuery(el).modal === 'function') {
+        window.jQuery(el).modal('hide');
+        return;
+    }
+    el.classList.remove('show');
+    el.style.display = 'none';
+    document.body.classList.remove('modal-open');
+    if (window.jQuery) {
+        window.jQuery('.modal-backdrop').remove();
+    }
+}
 /**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DATATABLE DE OBSERVACIONES DENTRO DE UNA FUNCION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 function mostrarCrudObservaciones(url) {
     $("#observaciones").dataTable().fnDestroy();
@@ -143,7 +168,7 @@ function actualizarObservacion(observacion_id,observacion,url){
                     icon: 'success',
                     title: "Guardado corectamente: " + json.mensaje,
                 })
-                $("#modal-editar-observacion").modal("hide"); 
+                modalHideCompatObservacion('#modal-editar-observacion');
             }
         },
     });
@@ -175,7 +200,7 @@ function actualizarObservacion(observacion_id,observacion,url){
                         icon: 'success',
                         title: "Guardado corectamente: " + json.mensaje,
                     })
-                    $("#modal-agregar-observacion").modal("hide");
+                    modalHideCompatObservacion('#modal-agregar-observacion');
                 }
             },
             error: function (xhr, status) {
@@ -207,7 +232,7 @@ function eliminarObservacion(observacion_id,url){
                 },
                 success: function (result) {
                     tablaobservaciones.ajax.reload();
-                    $("#modal-mostrar").modal("hide");
+                    modalHideCompatObservacion('#modal-mostrar');
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
