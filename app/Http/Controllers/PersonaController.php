@@ -351,10 +351,10 @@ class PersonaController extends Controller
         $comos=Como::get();
         $estados=Estado::orderBy('id','desc')->get();
 
-        $gcontactController  = app(GContactController::class);
-        $tiempoToken = tiempoEnSegundos($gcontactController->getTokenExpiration());  // metodo esta en Helper.php
+        //$gcontactController  = app(GContactController::class);
+        //$tiempoToken = tiempoEnSegundos($gcontactController->getTokenExpiration());  // metodo esta en Helper.php
 
-        return view('persona.rapidingo.crearrapido',compact('tiempoToken','interests','comos','estados'));
+        return view('persona.rapidingo.crearrapido',compact('interests','comos','estados'));
     }
     
     public function guardarRapidingo(PersonaRapidingoGuardarRequest $request){

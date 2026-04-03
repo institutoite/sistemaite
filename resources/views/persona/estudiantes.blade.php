@@ -4,6 +4,33 @@
     <link rel="stylesheet" href="{{asset('custom/css/custom.css')}}">
     <link rel="stylesheet" href="{{asset('dist/css/starrr.css')}}">
     <link href="{{asset('dist/css/zoomify.css')}}" rel="stylesheet" type="text/css">
+    <style>
+        #modal_estados .modal-header {
+            background: linear-gradient(135deg, rgb(38, 186, 165), rgb(55, 95, 122));
+            border-bottom: 0;
+        }
+        #modal_estados .nav-tabs .nav-link {
+            color: rgb(55, 95, 122);
+            border: 1px solid rgba(55, 95, 122, 0.2);
+            margin-right: 6px;
+            border-radius: 8px 8px 0 0;
+            font-weight: 600;
+            opacity: 0.7;
+        }
+        #modal_estados .nav-tabs .nav-link.active {
+            background: linear-gradient(135deg, rgb(38, 186, 165), rgb(55, 95, 122));
+            color: #fff;
+            border-color: transparent;
+            opacity: 1;
+            box-shadow: 0 4px 12px rgba(55, 95, 122, 0.25);
+        }
+        #modal_estados .tab-pane {
+            border: 1px solid rgba(55, 95, 122, 0.15);
+            border-top: 0;
+            border-radius: 0 0 8px 8px;
+            padding: 12px;
+        }
+    </style>
 @stop
 
 @section('title', 'Estudiantes')
@@ -52,205 +79,112 @@
         </div>
         
         
-        <div class="modal fade" id="modal_estados" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="modal_estados" tabindex="-1" aria-labelledby="panelComercialLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">RECORDAR QUE VIENEN HOYx </h5>
-                        <a href="{{ route('informar.por.estado.General') }}" class="btn btn-primary text-white">¡Informar estado! </a>
-                        <a href="{{ route('crm.esperanuevo.view') }}" class="btn btn-primary text-white">{{ Auth::user()->name }}, ¡Hazlo ya! </a>
+                    <div class="modal-header bg-dark text-white">
+                        <h5 class="modal-title" id="panelComercialLabel">Panel Comercial Operativo</h5>
+                        <span class="badge badge-warning">Pendientes: {{ $totalPendientesHome ?? 0 }}</span>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        @if(count($nuevos)>0)
-                            <table class="table table-bordered table-hover table-striped">
-                                <thead class="">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>NOMBRE COMPLETO</th>
-                                        <th>INTERES</th>
-                                        <th>FOTO</th>
-                                        <th>HORAINI</th>
-                                        <th>FIN</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($nuevos as $itenauta)
-                                        @php
-                                        switch ($itenauta->estado) {
-                                            case estado("PRESENTE"):
-                                                $clase="table-success text-success";
-                                                break;
-                                            case estado("FINALIZADO"):
-                                                $clase="bg-success text-white";
-                                                break;
-                                            case estado("INDEFINIDO"):
-                                                $clase="bg-warning text-white";
-                                                break;
-                                            case estado("LICENCIA"):
-                                                $clase="bg-info text-white";
-                                                break;
-                                            case estado("FALTA"):
-                                                $clase="bg-danger text-white";
-                                                break;
-                                            
-                                            default:
-                                                $clase="";
-                                                break;
-                                        }
-                                        @endphp
-                                        <tr id="{{ $itenauta->id }}" class="{{ $clase }}">
-                                            <td>{{ $itenauta->id }}</td>
-                                            <td>{{ $itenauta->nombre.' '.$itenauta->apellidop.' '.$itenauta->apellidom }}</td>
-                                                <td>
-                                                        <div style="position:relative; display:inline-block;">
-                                                            <img class="zoomify" src="{{ route('foto.show', ['filename' => $itenauta->foto ?: 'sinfoto.jpg']) }}" alt="{{$itenauta->nombre.' '.$itenauta->apellidop}}" width="50">
-                                                        </div>
-                                                </td>
-                                            <td>{{ $itenauta->hora_ini }}</td>
-                                            <td>{{ $itenauta->hora_fin }}</td>
-                                            <td >{{ App\Models\Estado::findOrFail($itenauta->estado)->estado}}</td>
-                                            <td> 
-                                                @if($itenauta->estado==estado("INDEFINIDO"))
-                                                    <a href="{{route('clases.marcado.general',$itenauta->inscripcion_id)}}"><i class="fas fa-calendar-check fa-spin"></i></a>
-                                                    <a class="btn-accion-tabla tooltipsC mr-1 enviarmensaje" title="Cobrar por mensaje">
-                                                        &nbsp;<i class="fab fa-whatsapp"></i>
-                                                    </a>
-                                                @else
-                                                    <i class="fas fa-check-double"></i>
-                                                @endif
-                                            </td>     
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        @endif
-                        <hr>
-                        @if(count($matriculaciones)>0)
-                            <table class="table table-bordered table-hover table-striped">
-                                <thead class="">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>NOMBRE COMPLETO</th>
-                                        <th>MATERIA</th>
-                                        <th>FOTO</th>
-                                        <th>HORAINI</th>
-                                        <th>HORAFIN</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($matriculaciones as $matriculacion)
-                                        @php
-                                        switch ($matriculacion->estado) {
-                                            case estado("PRESENTE"):
-                                                $clase="table-success text-success";
-                                                break;
-                                            case estado("FINALIZADO"):
-                                                $clase="bg-success text-white";
-                                                break;
-                                            case estado("INDEFINIDO"):
-                                                $clase="bg-warning text-white";
-                                                break;
-                                            case estado("LICENCIA"):
-                                                $clase="bg-info text-white";
-                                                break;
-                                            case estado("FALTA"):
-                                                $clase="bg-danger text-white";
-                                                break;
-                                            
-                                            default:
-                                                $clase="";
-                                                break;
-                                        }
-                                        @endphp
-                                        <tr id="{{ $matriculacion->id }}" class="{{ $clase }}">
-                                            <td>{{ $matriculacion->id }}</td>
-                                            <td>{{ $matriculacion->nombre.' '.$matriculacion->apellidop.' '.$matriculacion->apellidom }}</td>
-                                                <td>
-                                                    <div style="position:relative; display:inline-block;">
-                                                        <img class="zoomify" src="{{ route('foto.show', ['filename' => (!empty($matriculacion->foto) ? (Str::startsWith($matriculacion->foto, 'estudiantes/') ? $matriculacion->foto : 'estudiantes/'.$matriculacion->foto) : 'estudiantes/sinfoto.jpg')]) }}" alt="{{$matriculacion->nombre.' '.$matriculacion->apellidop}}" width="50" style="@if(empty($matriculacion->foto)) border:2px solid red; @endif">
-                                                    </div>
-                                                </td>
-                                            <td>{{ $matriculacion->horaini }}</td>
-                                            <td>{{ $matriculacion->horafin }}</td>
-                                            <td >{{ App\Models\Estado::findOrFail($matriculacion->estado)->estado}}</td>
-                                            <td>
-                                                @if($matriculacion->estado==estado("INDEFINIDO"))
-                                                    <a href="{{route('clases.marcadocom.general',$matriculacion->matriculacion_id)}}"><i class="fas fa-laptop fa-pulse"></i></a>
-                                                    <a class="btn-accion-tabla tooltipsC mr-1 enviarmensaje" title="Cobrar por mensaje">
-                                                        &nbsp;<i class="fab fa-whatsapp"></i>
-                                                    </a>
-                                                @else
-                                                    <i class="fa-solid fa-computer-mouse fa-spin"></i>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        @endif
-                        <hr>
-                        <h3>Reinscripciones para hoy</h3>
-                        @if(count($reinscripciones)>0)
-                            <table class="table table-bordered table-hover table-striped">
-                                <thead class="">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>NOMBRE COMPLETO</th>
-                                        <th>INTERES</th>
-                                        <th>FOTO</th>
-                                        <th>VIENE</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($reinscripciones as $reinscripcion)
-                                        <tr>
-                                            <td>{{ $reinscripcion->id }}</td>
-                                            <td>{{ $reinscripcion->nombre.' '.$reinscripcion->apellidop.' '.$reinscripcion->apellidom }}</td>
-                                            <td></td>
-                                                <td>
-                                                    <div style="position:relative; display:inline-block;">
-                                                        <img class="" src="{{ route('foto.show', ['filename' => $reinscripcion->foto ?: 'sinfoto.jpg']) }}" alt="{{$reinscripcion->nombre.' '.$reinscripcion->apellidop}}" width="50" style="@if(empty($reinscripcion->foto)) border:2px solid red; @endif">
-                                                    </div>
-                                                </td>
-                                            <td>{{ $reinscripcion->vuelvefecha }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        @endif
-                        <hr>
-                        @if(count($rematriculaciones)>0)
-                            <h3>Rematriculaciones para hoy</h3>
-                            <table class="table table-bordered table-hover table-striped">
-                                <thead class="">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>NOMBRE COMPLETO</th>
-                                        <th>INTERES</th>
-                                        <th>FOTO</th>
-                                        <th>VIENE</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($rematriculaciones as $rematriculacion)
-                                        <tr>
-                                            <td>{{ $rematriculacion->id }}</td>
-                                            <td>{{ $rematriculacion->nombre.' '.$rematriculacion->apellidop.' '.$rematriculacion->apellidom }}</td>
-                                            <td></td>
-                                            <td>
-                                                <div style="position:relative; display:inline-block;">
-                                                    <img class="" src="{{ route('foto.show', ['filename' => $rematriculacion->foto ?: 'sinfoto.jpg']) }}" alt="{{$rematriculacion->nombre.' '.$rematriculacion->apellidop}}" width="50" style="@if(empty($rematriculacion->foto)) border:2px solid red; @endif">
-                                                </div>
-                                            </td>
-                                            <td> <img class="" src="{{ route('foto.show', ['filename' => $rematriculacion->foto ?: 'sinfoto.jpg']) }}" alt="{{$rematriculacion->nombre.' '.$rematriculacion->apellidop}}" width="50">  </td>
-                                            <td>{{ $rematriculacion->vuelvefecha }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        @endif
-                    </div>
+                        @php
+                            $tabsMeta = [
+                                'cumpleaneros' => ['label' => 'Cumpleaneros', 'color' => 'success'],
+                                'clases_hoy' => ['label' => 'Vienen Hoy', 'color' => 'primary'],
+                                'pago_hoy' => ['label' => 'Toca Pagar', 'color' => 'danger'],
+                                'terminan' => ['label' => 'Terminan', 'color' => 'warning'],
+                                'prospectos' => ['label' => 'Prospectos', 'color' => 'info'],
+                                'faltones' => ['label' => 'Faltones', 'color' => 'secondary'],
+                            ];
+                        @endphp
 
+                        <ul class="nav nav-tabs" role="tablist">
+                            @foreach($tabsMeta as $slug => $meta)
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link {{ ($activeHomeTab ?? '') === $slug ? 'active' : '' }}" id="tab-{{ $slug }}" data-toggle="tab" href="#pane-{{ $slug }}" role="tab" aria-controls="pane-{{ $slug }}" aria-selected="{{ ($activeHomeTab ?? '') === $slug ? 'true' : 'false' }}">
+                                        {{ $meta['label'] }}
+                                        <span class="badge badge-{{ $meta['color'] }} ml-1">{{ $homeTabCounts[$slug] ?? 0 }}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+
+                        <div class="tab-content pt-3">
+                            @foreach($tabsMeta as $slug => $meta)
+                                @php $items = $homeAlerts[$slug] ?? collect(); @endphp
+                                <div class="tab-pane fade {{ ($activeHomeTab ?? '') === $slug ? 'show active' : '' }}" id="pane-{{ $slug }}" role="tabpanel" aria-labelledby="tab-{{ $slug }}">
+                                    @if(count($items) > 0)
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover table-sm">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th>Nombre</th>
+                                                        <th>Telefono</th>
+                                                        <th>Motivo</th>
+                                                        <th>Fecha</th>
+                                                        <th>Prioridad</th>
+                                                        <th>Mensaje Sugerido</th>
+                                                        <th>Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($items as $item)
+                                                        @php
+                                                            $priority = (int)($item['prioridad'] ?? 3);
+                                                            $priorityClass = $priority >= 4 ? 'danger' : ($priority === 3 ? 'warning' : 'success');
+                                                            $isManaged = !empty($item['managed']);
+                                                        @endphp
+                                                        <tr class="{{ $isManaged ? 'table-success' : '' }}">
+                                                            <td>{{ $item['nombre'] ?? 'Sin nombre' }}</td>
+                                                            <td>{{ $item['telefono'] ?? '-' }}</td>
+                                                            <td>{{ $item['motivo'] ?? '-' }}</td>
+                                                            <td>{{ $item['fecha'] ?? '-' }}</td>
+                                                            <td><span class="badge badge-{{ $priorityClass }}">P{{ $priority }}</span></td>
+                                                            <td style="min-width:280px; white-space:normal;">{{ $item['mensaje'] ?? '' }}</td>
+                                                            <td>
+                                                                <div class="d-flex" style="gap:8px;">
+                                                                    <button type="button" class="btn btn-sm btn-outline-secondary btn-copy-msg" title="Copiar mensaje" data-message="{{ $item['mensaje'] ?? '' }}">
+                                                                        <i class="far fa-copy"></i>
+                                                                    </button>
+                                                                    @if(!empty($item['whatsapp']))
+                                                                        <a class="btn btn-sm btn-outline-success" title="Abrir WhatsApp" target="_blank" href="{{ $item['whatsapp'] }}">
+                                                                            <i class="fab fa-whatsapp"></i>
+                                                                        </a>
+                                                                    @endif
+                                                                    @if(!empty($item['telefono']))
+                                                                        <a class="btn btn-sm btn-outline-primary" title="Llamar" href="tel:{{ preg_replace('/\D+/', '', $item['telefono']) }}">
+                                                                            <i class="fas fa-phone"></i>
+                                                                        </a>
+                                                                    @endif
+                                                                    <button type="button" class="btn btn-sm {{ $isManaged ? 'btn-success' : 'btn-outline-dark' }} btn-mark-managed {{ $isManaged ? 'disabled' : '' }}" title="Marcar gestionado" data-persona-id="{{ $item['id'] ?? '' }}" data-message="{{ $item['mensaje'] ?? '' }}" data-motivo="{{ $item['motivo'] ?? '' }}" {{ $isManaged ? 'disabled' : '' }}>
+                                                                        <i class="fas fa-check"></i>
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-sm btn-outline-warning btn-posponer" title="Posponer" data-persona-id="{{ $item['id'] ?? '' }}" data-message="{{ $item['mensaje'] ?? '' }}" data-motivo="{{ $item['motivo'] ?? '' }}">
+                                                                        <i class="far fa-calendar-alt"></i>
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-sm btn-outline-info btn-cambiar-estado" title="Cambiar estado" data-persona-id="{{ $item['id'] ?? '' }}" data-message="{{ $item['mensaje'] ?? '' }}" data-motivo="{{ $item['motivo'] ?? '' }}">
+                                                                        <i class="fas fa-random"></i>
+                                                                    </button>
+                                                                    @if($isManaged)
+                                                                        <span class="badge badge-success managed-state">{{ $item['managed_by'] ?? 'usuario' }} {{ !empty($item['managed_at']) ? '(' . $item['managed_at'] . ')' : '' }}</span>
+                                                                    @else
+                                                                        <span class="badge badge-light managed-state d-none">Gestionado</span>
+                                                                    @endif
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    @else
+                                        <div class="alert alert-light border">No hay pendientes en esta pestana.</div>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -307,6 +241,29 @@
             }
         } catch (e) {
             historialBusquedas = [];
+        }
+        const homeCrmEstados = @json($homeCrmEstados ?? []);
+        const homeGestionUrl = "{{ route('home.alertas.gestionar') }}";
+
+        function showMiniFeedback(icon, title) {
+            if (window.toastr) {
+                if (icon === 'success') toastr.success(title);
+                if (icon === 'warning') toastr.warning(title);
+                if (icon === 'error') toastr.error(title);
+                return;
+            }
+            if (window.Swal) {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    timer: 1800,
+                    showConfirmButton: false,
+                    icon: icon,
+                    title: title
+                });
+                return;
+            }
+            alert(title);
         }
 
         // Función global para renderizar un elemento del historial
@@ -516,7 +473,7 @@
     <script src="{{asset('assets/js/informar.js')}}"></script>
 
     <script>
-        let cantidadEsperados= "<?php echo count($rematriculaciones)+count($reinscripciones)+count($nuevos); ?>";
+        let cantidadEsperados= "{{ $totalPendientesHome ?? 0 }}";
         function ensureModalCompatBindingsHome(el){
             if (!el || el.__modalCompatBoundHome) {
                 return;
@@ -657,6 +614,114 @@
             $inputSearch.on('blur', function(){
                 setTimeout(()=>$('#historial-busquedas-dropdown').hide(),200);
             });
+
+            $(document).on('click', '.btn-copy-msg', function() {
+                const mensaje = $(this).data('message') || '';
+                if (!mensaje) {
+                    return;
+                }
+                navigator.clipboard.writeText(mensaje).then(function() {
+                    showMiniFeedback('success', 'Mensaje copiado');
+                }).catch(function() {
+                    showMiniFeedback('warning', 'No se pudo copiar automaticamente');
+                });
+            });
+
+            $(document).on('click', '.btn-mark-managed', function() {
+                const $btn = $(this);
+                if ($btn.prop('disabled') || $btn.hasClass('disabled')) {
+                    return;
+                }
+                const payload = {
+                    persona_id: $btn.data('persona-id'),
+                    accion: 'gestionado',
+                    canal: 'whatsapp',
+                    motivo: $btn.data('motivo') || null,
+                    mensaje: $btn.data('message') || null,
+                    _token: '{{ csrf_token() }}'
+                };
+                $.post(homeGestionUrl, payload).done(function() {
+                    const $row = $btn.closest('tr');
+                    $row.addClass('table-success');
+                    $btn.removeClass('btn-outline-dark').addClass('btn-success');
+                    $btn.prop('disabled', true).addClass('disabled');
+                    const $state = $row.find('.managed-state').first();
+                    $state.removeClass('d-none badge-light').addClass('badge-success').text('Gestionado');
+                    showMiniFeedback('success', 'Gestion registrada');
+                }).fail(function(xhr) {
+                    showMiniFeedback('error', (xhr.responseJSON && xhr.responseJSON.mensaje) ? xhr.responseJSON.mensaje : 'No se pudo registrar la gestion');
+                });
+            });
+
+            $(document).on('click', '.btn-posponer', function() {
+                const $btn = $(this);
+                const personaId = $btn.data('persona-id');
+                if (!personaId) {
+                    return;
+                }
+
+                Swal.fire({
+                    title: 'Posponer contacto',
+                    input: 'date',
+                    inputLabel: 'Nueva fecha de contacto',
+                    showCancelButton: true,
+                    confirmButtonText: 'Guardar'
+                }).then(function(result) {
+                    if (!result.isConfirmed || !result.value) {
+                        return;
+                    }
+                    $.post(homeGestionUrl, {
+                        persona_id: personaId,
+                        accion: 'posponer',
+                        canal: 'interno',
+                        motivo: $btn.data('motivo') || null,
+                        mensaje: $btn.data('message') || null,
+                        vuelvefecha: result.value,
+                        _token: '{{ csrf_token() }}'
+                    }).done(function() {
+                        showMiniFeedback('success', 'Fecha de seguimiento actualizada');
+                    }).fail(function(xhr) {
+                        showMiniFeedback('error', (xhr.responseJSON && xhr.responseJSON.mensaje) ? xhr.responseJSON.mensaje : 'No se pudo posponer');
+                    });
+                });
+            });
+
+            $(document).on('click', '.btn-cambiar-estado', function() {
+                const $btn = $(this);
+                const personaId = $btn.data('persona-id');
+                if (!personaId || !homeCrmEstados.length) {
+                    return;
+                }
+                const options = {};
+                homeCrmEstados.forEach(function(e) {
+                    options[e.id] = e.estado;
+                });
+                Swal.fire({
+                    title: 'Cambiar estado comercial',
+                    input: 'select',
+                    inputOptions: options,
+                    inputPlaceholder: 'Seleccione estado',
+                    showCancelButton: true,
+                    confirmButtonText: 'Actualizar'
+                }).then(function(result) {
+                    if (!result.isConfirmed || !result.value) {
+                        return;
+                    }
+                    $.post(homeGestionUrl, {
+                        persona_id: personaId,
+                        accion: 'cambiar_estado',
+                        estado_id: result.value,
+                        canal: 'interno',
+                        motivo: $btn.data('motivo') || null,
+                        mensaje: $btn.data('message') || null,
+                        _token: '{{ csrf_token() }}'
+                    }).done(function() {
+                        showMiniFeedback('success', 'Estado actualizado');
+                    }).fail(function(xhr) {
+                        showMiniFeedback('error', (xhr.responseJSON && xhr.responseJSON.mensaje) ? xhr.responseJSON.mensaje : 'No se pudo cambiar el estado');
+                    });
+                });
+            });
         });
     </script>
     
@@ -668,3 +733,5 @@
     <script src="{{asset('assets/js/enviarmensaje/mostrarcontactos.js')}}"></script>
     <script src="{{asset('vistas/persona/estudiantes.js')}}"></script>
 @stop
+
+

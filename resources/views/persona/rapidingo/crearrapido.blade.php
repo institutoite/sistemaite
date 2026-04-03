@@ -21,9 +21,7 @@
                 </form>
             </div>
         </div>
-        @if($tiempoToken==0)
-            @include('include.modalGContact')
-        @endif
+    
 @stop
 
 @section('js')
@@ -36,7 +34,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="{{asset('assets/js/tiempoGcontact.js')}}"></script>
     
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% CKEDITOR --}}
     <script>
@@ -47,77 +44,59 @@
         });
     </script>
     {{-- %%%%%%%%%%%%%%%%%%%%%%%%%% FIN CKEDITOR --}}
+    
     <script>
-        $(document).ready(function() {
-            var intervalId;
-            $('#modalGcontact').modal('show');
-            function actualizarTokenExpiration() {
-                $.ajax({
-                    url: "{{ route('token-expiration') }}",
-                    type: "GET",
-                    success: function(response) {
+        let tablaReferencias = null;
 
-                        console.log(response);
-                        $('#tokenExpiration').text('Tiempo Restante: ' + response);
-                        $('#tokenExpirationform').text('Tiempo Restante: ' + response);
-                        $('#signIn').show();
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
+        function inicializarTablaReferencias() {
+            if (tablaReferencias) {
+                return;
             }
-            intervalId = setInterval(actualizarTokenExpiration, 1000);
-        });
-    </script>
 
-    <script>
-        $(document).ready(function(){
-             $('#personas').DataTable(
-                {
-                    "serverSide": true,
-                    "responsive":true,
-                    "autoWidth":false,
-                    "ajax": "{{ url('api/referencias') }}",
-                    "columns": [
-                        {data: 'id'},
-                        {data: 'nombre'},
-                        {data: 'apellidop'},
-                        {data: 'apellidom'},
-                        {
-                            "name": "foto",
-                            "data": "foto",
-                            "render": function (data, type, full, meta) {
-                                return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
-                            },
-                            "title": "Image",
-                            "orderable": true,
-            
-                        }, 
-                        {
-                            data: 'btn'
-                        },  
-                    ],
-                    "language":{
-                        "url":"https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
-                    },  
-                });
-                $('table').on('click','#ok',selecciona);
-                function selecciona() {
-                    console.log("clickeaste");
-                    $("#persona_id").val($(this).closest('tr').children(0).html());
-                    $("#persona_id").addClass('bg-primary');
-                    $('#modal-ite').modal('toggle');
-                    $('#modal-ite .close').remove();
-                }
+            tablaReferencias = $('#personas').DataTable({
+                "serverSide": true,
+                "responsive": true,
+                "autoWidth": false,
+                "ajax": "{{ url('listar/referencias') }}",
+                "columns": [
+                    { data: 'id' },
+                    { data: 'nombre' },
+                    { data: 'apellidop' },
+                    { data: 'apellidom' },
+                    {
+                        "name": "foto",
+                        "data": "foto",
+                        "render": function (data, type, full, meta) {
+                            return "<img class='materialboxed' src=\"{{URL::to('/')}}/storage/" + data + "\" height=\"50\"/>";
+                        },
+                        "title": "Image",
+                        "orderable": true,
+                    },
+                    { data: 'btn' },
+                ],
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
+                },
             });
-        function  mostrarModal(){
-            var ElementoSeleccionado=$('#como_id option:selected').val();
-                if(ElementoSeleccionado==2){
-                    $("#modal-ite").modal("show");
-                }else{
-                    $("#persona_id").val('');  
-                }
+        }
+
+        $(document).ready(function () {
+            $('table').on('click', '#ok', function () {
+                $("#persona_id").val($(this).closest('tr').children(0).html());
+                $("#persona_id").addClass('bg-primary');
+                $('#modal-ite').modal('toggle');
+                $('#modal-ite .close').remove();
+            });
+        });
+
+        function mostrarModal() {
+            var ElementoSeleccionado = $('#como_id option:selected').val();
+            if (ElementoSeleccionado == 2) {
+                inicializarTablaReferencias();
+                $("#modal-ite").modal("show");
+            } else {
+                $("#persona_id").val('');
+            }
         }
     </script>
     

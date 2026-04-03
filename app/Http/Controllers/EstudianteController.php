@@ -10,9 +10,12 @@ use App\Models\Programacioncom;
 use App\Models\Programacion;
 use App\Models\Mensajeable;
 use App\Models\Persona;
+use App\Models\Estado;
+use App\Models\CrmSeguimiento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Yajra\DataTables\Contracts\DataTable as DataTable; 
 use Yajra\DataTables\DataTables;
 use Carbon\Carbon;
@@ -29,75 +32,469 @@ class EstudianteController extends Controller
     }
 
 
-    public function home(){
+        public function home(){
 
         if (Auth::check() && Auth::user()->hasRole(['Padre'])) {
             return redirect()->route('padre.home');
         }
 
-        // $nuevos= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        // ->join('interests','interests.id','interest_persona.interest_id')
-        // ->where('habilitado',estado("ESPERANUEVO"))
-        // ->where('vuelvefecha',"<=",Carbon::now()->format('Y-m-d'))
-        // ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','personas.foto','vuelvefecha')  
-        // ->get();
-            // Guardar historial de búsqueda
-            if (request()->has('busqueda')) {
-                $termino = request('busqueda');
-                \App\Models\HistorialBusqueda::create([
-                    'user_id' => Auth::id(),
-                    'termino' => $termino,
-                    'ip' => request()->ip(),
+        $nowBo = Carbon::now('America/La_Paz');
+        $today = $nowBo->toDateString();
+        $yesterday = $nowBo->copy()->subDay()->toDateString();
+        $cutoffDate = $nowBo->copy()->subDays(60)->toDateString();
+
+        if (request()->has('busqueda')) {
+            $termino = request('busqueda');
+            \App\Models\HistorialBusqueda::create([
+                'user_id' => Auth::id(),
+                'termino' => $termino,
+                'ip' => request()->ip(),
+            ]);
+        }
+
+        $saludo = $nowBo->hour < 12 ? 'Buenos dias' : ($nowBo->hour < 19 ? 'Buenas tardes' : 'Buenas noches');
+        $cleanPhone = static function ($raw) {
+            if ($raw === null) {
+                return null;
+            }
+            $digits = preg_replace('/\D+/', '', (string) $raw);
+            if ($digits === '') {
+                return null;
+            }
+            if (strlen($digits) > 8 && substr($digits, 0, 3) === '591') {
+                $digits = substr($digits, 3);
+            }
+            return $digits;
+        };
+        $waLink = static function ($phone, $message) use ($cleanPhone) {
+            $phoneDigits = $cleanPhone($phone);
+            if (!$phoneDigits) {
+                return null;
+            }
+            return 'https://wa.me/591'.$phoneDigits.'?text='.rawurlencode($message);
+        };
+        $fullName = static function ($nombre, $apellidop = null, $apellidom = null) {
+            return trim(collect([$nombre, $apellidop, $apellidom])->filter()->implode(' '));
+        };
+
+        $nuevos = Persona::join('estudiantes', 'estudiantes.persona_id', 'personas.id')
+            ->join('inscripciones', 'inscripciones.estudiante_id', 'estudiantes.id')
+            ->join('programacions', 'programacions.inscripcione_id', 'inscripciones.id')
+            ->where('programacions.fecha', '=', $today)
+            ->select(
+                'personas.id',
+                'inscripciones.id as inscripcion_id',
+                'programacions.estado_id as estado',
+                'nombre',
+                'apellidop',
+                'apellidom',
+                'telefono',
+                'programacions.hora_ini',
+                'programacions.hora_fin',
+                'personas.foto'
+            )
+            ->orderBy('programacions.hora_ini', 'asc')
+            ->get();
+
+        $matriculaciones = Persona::join('computacions', 'computacions.persona_id', 'personas.id')
+            ->join('matriculacions', 'matriculacions.computacion_id', 'computacions.id')
+            ->join('programacioncoms', 'programacioncoms.matriculacion_id', 'matriculacions.id')
+            ->where('programacioncoms.fecha', '=', $today)
+            ->select(
+                'personas.id',
+                'matriculacions.id as matriculacion_id',
+                'nombre',
+                'apellidop',
+                'apellidom',
+                'telefono',
+                'programacioncoms.horaini',
+                'programacioncoms.horafin',
+                'programacioncoms.estado_id as estado'
+            )
+            ->orderBy('programacioncoms.horaini', 'asc')
+            ->get();
+
+        $reinscripciones = Persona::join('interest_persona', 'interest_persona.persona_id', 'personas.id')
+            ->join('interests', 'interests.id', 'interest_persona.interest_id')
+            ->where('habilitado', estado('ESPERAREINSCRIPCION'))
+            ->where('vuelvefecha', '<=', $today)
+            ->select('personas.id', 'personas.nombre', 'personas.apellidop', 'apellidom', 'interests.interest', 'personas.foto', 'vuelvefecha')
+            ->get();
+
+        $rematriculaciones = Persona::join('interest_persona', 'interest_persona.persona_id', 'personas.id')
+            ->join('interests', 'interests.id', 'interest_persona.interest_id')
+            ->where('habilitado', estado('ESPERAREMATRICULACION'))
+            ->where('vuelvefecha', '<=', $today)
+            ->select('personas.id', 'personas.nombre', 'personas.apellidop', 'apellidom', 'interests.interest', 'personas.foto', 'vuelvefecha')
+            ->get();
+
+        $cumpleaneros = Persona::whereMonth('fechanacimiento', $nowBo->month)
+            ->whereDay('fechanacimiento', $nowBo->day)
+            ->whereNotNull('telefono')
+            ->where('telefono', '<>', '')
+            ->select('id', 'nombre', 'apellidop', 'apellidom', 'telefono', 'fechanacimiento', 'volvera')
+            ->get()
+            ->map(function ($item) use ($fullName, $waLink, $saludo) {
+                $msg = $saludo.', '.$fullName($item->nombre, $item->apellidop, $item->apellidom).'. Le deseamos un feliz cumpleanos y muchas bendiciones. Un abrazo de parte del equipo ITE.';
+                return [
+                    'id' => $item->id,
+                    'nombre' => $fullName($item->nombre, $item->apellidop, $item->apellidom),
+                    'telefono' => $item->telefono,
+                    'motivo' => 'Cumpleanos hoy',
+                    'fecha' => $item->fechanacimiento ? Carbon::parse($item->fechanacimiento)->format('d/m') : $today,
+                    'mensaje' => $msg,
+                    'whatsapp' => $waLink($item->telefono, $msg),
+                    'prioridad' => (int) ($item->volvera ?? 3),
+                    'color' => 'success',
+                ];
+            })
+            ->unique('telefono')
+            ->values();
+
+        $clasesHoy = collect();
+        foreach ($nuevos as $item) {
+            $msg = $saludo.', '.$fullName($item->nombre, $item->apellidop, $item->apellidom).'. Le recordamos su clase de hoy de '.$item->hora_ini.' a '.$item->hora_fin.'. Lo esperamos puntualmente.';
+            $clasesHoy->push([
+                'id' => $item->id,
+                'nombre' => $fullName($item->nombre, $item->apellidop, $item->apellidom),
+                'telefono' => $item->telefono,
+                'motivo' => 'Clase hoy (academico)',
+                'fecha' => $today.' '.$item->hora_ini,
+                'mensaje' => $msg,
+                'whatsapp' => $waLink($item->telefono, $msg),
+                'prioridad' => 3,
+                'color' => 'primary',
+            ]);
+        }
+        foreach ($matriculaciones as $item) {
+            $msg = $saludo.', '.$fullName($item->nombre, $item->apellidop, $item->apellidom).'. Le recordamos su clase de hoy de '.$item->horaini.' a '.$item->horafin.'. Lo esperamos puntualmente.';
+            $clasesHoy->push([
+                'id' => $item->id,
+                'nombre' => $fullName($item->nombre, $item->apellidop, $item->apellidom),
+                'telefono' => $item->telefono,
+                'motivo' => 'Clase hoy (computacion)',
+                'fecha' => $today.' '.$item->horaini,
+                'mensaje' => $msg,
+                'whatsapp' => $waLink($item->telefono, $msg),
+                'prioridad' => 3,
+                'color' => 'primary',
+            ]);
+        }
+
+        $pagosIns = Persona::join('estudiantes', 'estudiantes.persona_id', 'personas.id')
+            ->join('inscripciones', 'inscripciones.estudiante_id', 'estudiantes.id')
+            ->where('inscripciones.vigente', 1)
+            ->where('inscripciones.condonado', 0)
+            ->whereNotNull('inscripciones.fecha_proximo_pago')
+            ->whereDate('inscripciones.fecha_proximo_pago', '>=', $cutoffDate)
+            ->whereDate('inscripciones.fecha_proximo_pago', '<=', $today)
+            ->select('personas.id', 'personas.nombre', 'personas.apellidop', 'personas.apellidom', 'personas.telefono', 'inscripciones.fecha_proximo_pago', 'personas.volvera')
+            ->get();
+        $pagosMat = Persona::join('computacions', 'computacions.persona_id', 'personas.id')
+            ->join('matriculacions', 'matriculacions.computacion_id', 'computacions.id')
+            ->where('matriculacions.vigente', 1)
+            ->where('matriculacions.condonado', 0)
+            ->whereNotNull('matriculacions.fecha_proximo_pago')
+            ->whereDate('matriculacions.fecha_proximo_pago', '>=', $cutoffDate)
+            ->whereDate('matriculacions.fecha_proximo_pago', '<=', $today)
+            ->select('personas.id', 'personas.nombre', 'personas.apellidop', 'personas.apellidom', 'personas.telefono', 'matriculacions.fecha_proximo_pago', 'personas.volvera')
+            ->get();
+        $tocaPagar = collect();
+        foreach ($pagosIns->merge($pagosMat) as $item) {
+            $fechaPago = Carbon::parse($item->fecha_proximo_pago)->format('d/m/Y');
+            $msg = $saludo.', '.$fullName($item->nombre, $item->apellidop, $item->apellidom).'. Le escribimos para recordarle su pago pendiente con fecha '.$fechaPago.'. Si desea, le ayudamos a regularizar hoy mismo.';
+            $tocaPagar->push([
+                'id' => $item->id,
+                'nombre' => $fullName($item->nombre, $item->apellidop, $item->apellidom),
+                'telefono' => $item->telefono,
+                'motivo' => 'Pago pendiente',
+                'fecha' => $fechaPago,
+                'mensaje' => $msg,
+                'whatsapp' => $waLink($item->telefono, $msg),
+                'prioridad' => max(4, (int) ($item->volvera ?? 4)),
+                'color' => 'danger',
+            ]);
+        }
+
+        $estadoIndefinidoId = Estado::where('estado', 'INDEFINIDO')->value('id');
+        $inscripcionesConPocasClases = Programacion::where('fecha', '>=', $today)
+            ->where('estado_id', $estadoIndefinidoId)
+            ->select('inscripcione_id', DB::raw('COUNT(*) as pendientes'))
+            ->groupBy('inscripcione_id')
+            ->havingRaw('COUNT(*) <= 3')
+            ->pluck('inscripcione_id');
+        $matriculacionesConPocasClases = Programacioncom::where('fecha', '>=', $today)
+            ->where('estado_id', $estadoIndefinidoId)
+            ->select('matriculacion_id', DB::raw('COUNT(*) as pendientes'))
+            ->groupBy('matriculacion_id')
+            ->havingRaw('COUNT(*) <= 3')
+            ->pluck('matriculacion_id');
+
+        $terminanIns = Persona::join('estudiantes', 'estudiantes.persona_id', 'personas.id')
+            ->join('inscripciones', 'inscripciones.estudiante_id', 'estudiantes.id')
+            ->whereIn('inscripciones.id', $inscripcionesConPocasClases)
+            ->whereDate('inscripciones.fechafin', '>=', $cutoffDate)
+            ->select('personas.id', 'personas.nombre', 'personas.apellidop', 'personas.apellidom', 'personas.telefono', 'inscripciones.fechafin', 'personas.volvera')
+            ->get();
+        $terminanMat = Persona::join('computacions', 'computacions.persona_id', 'personas.id')
+            ->join('matriculacions', 'matriculacions.computacion_id', 'computacions.id')
+            ->whereIn('matriculacions.id', $matriculacionesConPocasClases)
+            ->whereDate('matriculacions.fechafin', '>=', $cutoffDate)
+            ->select('personas.id', 'personas.nombre', 'personas.apellidop', 'personas.apellidom', 'personas.telefono', 'matriculacions.fechafin', 'personas.volvera')
+            ->get();
+        $terminan = collect();
+        foreach ($terminanIns->merge($terminanMat) as $item) {
+            $fechaFin = Carbon::parse($item->fechafin)->format('d/m/Y');
+            $msg = $saludo.', '.$fullName($item->nombre, $item->apellidop, $item->apellidom).'. Le avisamos que su proceso esta por finalizar. Podemos ayudarle a renovar su inscripcion y reservar horario.';
+            $terminan->push([
+                'id' => $item->id,
+                'nombre' => $fullName($item->nombre, $item->apellidop, $item->apellidom),
+                'telefono' => $item->telefono,
+                'motivo' => 'Termina en pocas clases',
+                'fecha' => $fechaFin,
+                'mensaje' => $msg,
+                'whatsapp' => $waLink($item->telefono, $msg),
+                'prioridad' => max(4, (int) ($item->volvera ?? 4)),
+                'color' => 'warning',
+            ]);
+        }
+
+        $estadoProspectoIds = Estado::whereIn('estado', ['ESPERANUEVO', 'SEGUIMIENTO', 'PROSPECTO', 'ESPERAREINSCRIPCION', 'ESPERAREMATRICULACION', 'ESPERARETOMA'])
+            ->pluck('id')
+            ->toArray();
+        $prospectosRaw = Persona::with(['interests:id,interest', 'observaciones' => function ($q) {
+            $q->latest('id')->limit(1);
+        }])
+            ->whereIn('habilitado', $estadoProspectoIds)
+            ->where('votos', 1)
+            ->whereDate('vuelvefecha', '<=', $today)
+            ->get();
+        $prospectos = $prospectosRaw->map(function ($persona) use ($fullName, $waLink, $saludo, $nowBo, $today) {
+            $interes = optional($persona->interests->first())->interest ?: 'el apoyo academico';
+            $obs = optional($persona->observaciones->first())->observacion;
+            $requerimiento = trim(strip_tags((string) $obs));
+            if ($requerimiento === '') {
+                $requerimiento = 'la necesidad que nos comento';
+            }
+            $horas = $persona->created_at ? $persona->created_at->diffInHours($nowBo) : 2;
+            if ($horas <= 2) {
+                $msg = $saludo.', '.$fullName($persona->nombre, $persona->apellidop, $persona->apellidom).'. Queria asegurarme de que recibio la informacion sobre '.$interes.' para '.$requerimiento.'.';
+            } elseif ($horas <= 24) {
+                $msg = $saludo.', '.$fullName($persona->nombre, $persona->apellidop, $persona->apellidom).'. Si tiene dudas sobre '.$interes.' para '.$requerimiento.', avisenos y con gusto le ayudamos.';
+            } elseif ($horas <= 48) {
+                $msg = $saludo.', '.$fullName($persona->nombre, $persona->apellidop, $persona->apellidom).'. Entendemos que puede estar ocupado/a. Aun le interesa avanzar con '.$interes.' para '.$requerimiento.'?';
+            } else {
+                $msg = $saludo.', '.$fullName($persona->nombre, $persona->apellidop, $persona->apellidom).'. Estamos cerrando cupos para '.$interes.'. Si desea, le ayudo a reservar hoy mismo.';
+            }
+
+            return [
+                'id' => $persona->id,
+                'nombre' => $fullName($persona->nombre, $persona->apellidop, $persona->apellidom),
+                'telefono' => $persona->telefono,
+                'motivo' => 'Prospecto con seguimiento pendiente',
+                'fecha' => $persona->vuelvefecha ? Carbon::parse($persona->vuelvefecha)->format('d/m/Y') : $today,
+                'mensaje' => $msg,
+                'whatsapp' => $waLink($persona->telefono, $msg),
+                'prioridad' => max(1, (int) ($persona->volvera ?? 3)),
+                'color' => 'info',
+            ];
+        })->values();
+
+        $estadoFaltaIds = Estado::whereIn('estado', ['FALTA', 'FALTANOTIFICADA'])->pluck('id');
+        $faltonesIns = Persona::join('estudiantes', 'estudiantes.persona_id', 'personas.id')
+            ->join('inscripciones', 'inscripciones.estudiante_id', 'estudiantes.id')
+            ->join('programacions', 'programacions.inscripcione_id', 'inscripciones.id')
+            ->whereDate('programacions.fecha', '>=', $cutoffDate)
+            ->whereDate('programacions.fecha', $yesterday)
+            ->whereIn('programacions.estado_id', $estadoFaltaIds)
+            ->select('personas.id', 'personas.nombre', 'personas.apellidop', 'personas.apellidom', 'personas.telefono', 'personas.volvera')
+            ->get();
+        $faltonesMat = Persona::join('computacions', 'computacions.persona_id', 'personas.id')
+            ->join('matriculacions', 'matriculacions.computacion_id', 'computacions.id')
+            ->join('programacioncoms', 'programacioncoms.matriculacion_id', 'matriculacions.id')
+            ->whereDate('programacioncoms.fecha', '>=', $cutoffDate)
+            ->whereDate('programacioncoms.fecha', $yesterday)
+            ->whereIn('programacioncoms.estado_id', $estadoFaltaIds)
+            ->select('personas.id', 'personas.nombre', 'personas.apellidop', 'personas.apellidom', 'personas.telefono', 'personas.volvera')
+            ->get();
+        $faltones = collect();
+        foreach ($faltonesIns->merge($faltonesMat) as $item) {
+            $msg = $saludo.', '.$fullName($item->nombre, $item->apellidop, $item->apellidom).'. Notamos que no pudo asistir a su clase anterior. Si desea, le ayudamos a reprogramar.';
+            $faltones->push([
+                'id' => $item->id,
+                'nombre' => $fullName($item->nombre, $item->apellidop, $item->apellidom),
+                'telefono' => $item->telefono,
+                'motivo' => 'Falto a la clase anterior',
+                'fecha' => Carbon::parse($yesterday)->format('d/m/Y'),
+                'mensaje' => $msg,
+                'whatsapp' => $waLink($item->telefono, $msg),
+                'prioridad' => max(4, (int) ($item->volvera ?? 4)),
+                'color' => 'danger',
+            ]);
+        }
+
+        $homeAlerts = [
+            'cumpleaneros' => $cumpleaneros,
+            'clases_hoy' => $clasesHoy->values(),
+            'pago_hoy' => $tocaPagar->values(),
+            'terminan' => $terminan->values(),
+            'prospectos' => $prospectos,
+            'faltones' => $faltones->values(),
+        ];
+        $normalizeMotivo = static function ($motivo) {
+            return mb_strtolower(trim((string) $motivo));
+        };
+        $gestionadosHoy = CrmSeguimiento::with('user:id,name')
+            ->whereDate('created_at', $today)
+            ->where('accion', 'gestionado')
+            ->orderBy('created_at', 'desc')
+            ->get(['id', 'persona_id', 'motivo', 'user_id', 'created_at']);
+        $gestionadosMap = [];
+        foreach ($gestionadosHoy as $row) {
+            $key = $row->persona_id.'|'.$normalizeMotivo($row->motivo);
+            if (!isset($gestionadosMap[$key])) {
+                $gestionadosMap[$key] = [
+                    'user' => optional($row->user)->name ?: 'Usuario',
+                    'at' => optional($row->created_at)->format('H:i'),
+                ];
+            }
+        }
+        foreach ($homeAlerts as $tab => $items) {
+            $homeAlerts[$tab] = collect($items)->map(function ($item) use ($gestionadosMap, $normalizeMotivo) {
+                $key = ($item['id'] ?? '').'|'.$normalizeMotivo($item['motivo'] ?? '');
+                if (isset($gestionadosMap[$key])) {
+                    $item['managed'] = true;
+                    $item['managed_by'] = $gestionadosMap[$key]['user'];
+                    $item['managed_at'] = $gestionadosMap[$key]['at'];
+                } else {
+                    $item['managed'] = false;
+                }
+                return $item;
+            })->values();
+        }
+        $homeTabCounts = collect($homeAlerts)->map(function ($items) {
+            return is_countable($items) ? count($items) : 0;
+        })->toArray();
+        $homeTabOrder = ['cumpleaneros', 'clases_hoy', 'pago_hoy', 'terminan', 'prospectos', 'faltones'];
+        $totalPendientesHome = array_sum($homeTabCounts);
+
+        $rotationKey = 'home_alert_rotation_'.$nowBo->format('Ymd');
+        Cache::add($rotationKey, -1, $nowBo->copy()->endOfDay());
+        $rotationIndex = (int) Cache::increment($rotationKey);
+        $activeHomeTab = $homeTabOrder[$rotationIndex % count($homeTabOrder)];
+        if (($homeTabCounts[$activeHomeTab] ?? 0) === 0 && $totalPendientesHome > 0) {
+            $start = array_search($activeHomeTab, $homeTabOrder, true);
+            for ($step = 1; $step < count($homeTabOrder); $step++) {
+                $candidate = $homeTabOrder[($start + $step) % count($homeTabOrder)];
+                if (($homeTabCounts[$candidate] ?? 0) > 0) {
+                    $activeHomeTab = $candidate;
+                    break;
+                }
+            }
+        }
+
+        $ultimasBusquedas = \App\Models\HistorialBusqueda::with('user')
+            ->orderBy('created_at', 'desc')
+            ->get()
+            ->unique('termino')
+            ->take(10)
+            ->map(function ($item) {
+                return [
+                    'termino' => $item->termino,
+                    'usuario' => $item->user ? $item->user->name : '',
+                ];
+            })
+            ->values()
+            ->toArray();
+        $homeCrmEstados = Estado::orderBy('estado', 'asc')->get(['id', 'estado']);
+
+        return view('persona.estudiantes', compact(
+            'nuevos',
+            'rematriculaciones',
+            'reinscripciones',
+            'matriculaciones',
+            'ultimasBusquedas',
+            'homeAlerts',
+            'homeTabCounts',
+            'activeHomeTab',
+            'totalPendientesHome',
+            'homeCrmEstados'
+        ));
+
+    }
+
+    public function gestionarAlertaHome(Request $request)
+    {
+        $request->validate([
+            'persona_id' => 'required|exists:personas,id',
+            'accion' => 'required|in:gestionado,posponer,cambiar_estado',
+            'canal' => 'nullable|string|max:20',
+            'motivo' => 'nullable|string|max:160',
+            'mensaje' => 'nullable|string|max:600',
+            'vuelvefecha' => 'nullable|date',
+            'estado_id' => 'nullable|exists:estados,id',
+        ]);
+
+        $persona = Persona::findOrFail($request->persona_id);
+        $accion = $request->accion;
+        $estadoId = null;
+        $proximoContacto = null;
+        $today = Carbon::now('America/La_Paz')->toDateString();
+
+        if ($accion === 'gestionado') {
+            $gestionExistente = CrmSeguimiento::where('persona_id', $persona->id)
+                ->where('accion', 'gestionado')
+                ->whereDate('created_at', $today)
+                ->where('motivo', $request->motivo)
+                ->first();
+
+            if ($gestionExistente) {
+                return response()->json([
+                    'ok' => true,
+                    'already' => true,
+                    'mensaje' => 'Este registro ya fue gestionado hoy',
                 ]);
             }
-        
-        $nuevos=Persona::join("estudiantes",'estudiantes.persona_id','personas.id')
-        ->join("inscripciones",'inscripciones.estudiante_id','estudiantes.id')
-        ->join("programacions",'programacions.inscripcione_id','inscripciones.id')
-        //->join('clases','clases.programacion_id','programacions.id')
-        ->where("programacions.fecha",'=',Carbon::now()->toDateString())
-        ->select('personas.id','inscripciones.id as inscripcion_id','programacions.estado_id as estado',"nombre",'apellidop','programacions.hora_ini','programacions.hora_fin','personas.foto')
-        ->orderBy('programacions.hora_ini','asc')
-        ->get();
+        }
 
-        $matriculaciones=Persona::join("computacions",'computacions.persona_id','personas.id')
-            ->join("matriculacions",'matriculacions.computacion_id','computacions.id')
-            ->join("programacioncoms",'programacioncoms.matriculacion_id','matriculacions.id')
-            ->where("programacioncoms.fecha",'=',Carbon::now()->toDateString())
-            ->select('personas.id',"matriculacions.id as matriculacion_id","nombre",'apellidop','apellidom','programacioncoms.horaini','programacioncoms.horafin','programacioncoms.estado_id as estado')
-        ->orderBy('programacioncoms.horaini','asc')
-            ->get();
-            
-        $reinscripciones= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado',estado("ESPERAREINSCRIPCION"))
-        ->where('vuelvefecha',"<=",Carbon::now()->format('Y-m-d'))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','personas.foto','vuelvefecha')  
-        ->get();
-        $rematriculaciones= Persona::join('interest_persona','interest_persona.persona_id','personas.id')
-        ->join('interests','interests.id','interest_persona.interest_id')
-        ->where('habilitado',estado("ESPERAREMATRICULACION"))
-        ->where('vuelvefecha',"<=",Carbon::now()->format('Y-m-d'))
-        ->select('personas.id','personas.nombre','personas.apellidop','apellidom','interests.interest','personas.foto','vuelvefecha')  
-        ->get();
+        if ($accion === 'posponer') {
+            if (!$request->filled('vuelvefecha')) {
+                return response()->json(['ok' => false, 'mensaje' => 'La fecha para posponer es obligatoria'], 422);
+            }
+            $persona->vuelvefecha = Carbon::parse($request->vuelvefecha)->format('Y-m-d');
+            $persona->save();
+            $proximoContacto = $persona->vuelvefecha;
+        }
 
-            // Últimas 10 búsquedas (DISTINCT por término) con nombre de usuario
-            $ultimasBusquedas = \App\Models\HistorialBusqueda::with('user')
-                ->orderBy('created_at', 'desc')
-                ->get()
-                ->unique('termino')
-                ->take(10)
-                ->map(function($item) {
-                    return [
-                        'termino' => $item->termino,
-                        'usuario' => $item->user ? $item->user->name : '',
-                    ];
-                })
-                ->values()
-                ->toArray();
-        return view('persona.estudiantes',compact("nuevos","rematriculaciones","reinscripciones",'matriculaciones','ultimasBusquedas'));
-        // return view('persona.estudiantes');
+        if ($accion === 'cambiar_estado') {
+            if (!$request->filled('estado_id')) {
+                return response()->json(['ok' => false, 'mensaje' => 'Debe seleccionar un estado'], 422);
+            }
+            $persona->habilitado = (int) $request->estado_id;
+            $persona->save();
+            $estadoId = $persona->habilitado;
+        }
 
+        CrmSeguimiento::create([
+            'persona_id' => $persona->id,
+            'user_id' => Auth::id(),
+            'estado_id' => $estadoId,
+            'accion' => $accion,
+            'canal' => $request->canal ?: 'whatsapp',
+            'motivo' => $request->motivo,
+            'mensaje_sugerido' => $request->mensaje,
+            'proximo_contacto' => $proximoContacto,
+        ]);
+
+        return response()->json([
+            'ok' => true,
+            'mensaje' => 'Gestion registrada',
+            'persona' => [
+                'id' => $persona->id,
+                'habilitado' => $persona->habilitado,
+                'vuelvefecha' => $persona->vuelvefecha,
+            ],
+        ]);
     }
 
     public function guardarBusqueda(Request $request)
@@ -387,3 +784,9 @@ class EstudianteController extends Controller
 
 
 }
+
+
+
+
+
+

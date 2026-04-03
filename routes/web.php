@@ -114,6 +114,7 @@ Route::get('colegios/ajax', [App\Http\Controllers\ColegioController::class, 'aja
 Route::middleware(['auth'])->group(function () {
     
 Route::get('/home',[EstudianteController::class,'home'])->name('home');
+    Route::post('home/alertas/gestionar', [EstudianteController::class,'gestionarAlertaHome'])->name('home.alertas.gestionar');
     Route::get('padre/home',[PadreController::class,'home'])->name('padre.home');
     Route::get('padre/hijos/{hijo}', [PadreController::class, 'show'])->name('padre.hijos.show');
     Route::get('padre/hijos/{hijo}/resumen-pdf', [PadreController::class, 'downloadResumenPdf'])->name('padre.hijos.pdf');
