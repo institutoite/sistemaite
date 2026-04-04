@@ -147,10 +147,16 @@
                                                                     <button type="button" class="btn btn-sm btn-outline-secondary btn-copy-msg" title="Copiar mensaje" data-message="{{ $item['mensaje'] ?? '' }}">
                                                                         <i class="far fa-copy"></i>
                                                                     </button>
-                                                                    @if(!empty($item['whatsapp']))
-                                                                        <a class="btn btn-sm btn-outline-success" title="Abrir WhatsApp" target="_blank" href="{{ $item['whatsapp'] }}">
+                                                                    @if(!empty($item['id']))
+                                                                        <button
+                                                                            type="button"
+                                                                            class="btn btn-sm btn-outline-success btn-open-contactos-whatsapp"
+                                                                            title="Abrir contactos para WhatsApp"
+                                                                            data-persona-id="{{ $item['id'] }}"
+                                                                            data-mensaje-id="5"
+                                                                            data-message="{{ $item['mensaje'] ?? '' }}">
                                                                             <i class="fab fa-whatsapp"></i>
-                                                                        </a>
+                                                                        </button>
                                                                     @endif
                                                                     @if(!empty($item['telefono']))
                                                                         <a class="btn btn-sm btn-outline-primary" title="Llamar" href="tel:{{ preg_replace('/\D+/', '', $item['telefono']) }}">
@@ -722,6 +728,24 @@
                     });
                 });
             });
+
+            $(document).on('click', '.btn-open-contactos-whatsapp', function() {
+                const $btn = $(this);
+                const personaId = $btn.data('persona-id');
+                const mensajeId = $btn.data('mensaje-id') || 5;
+                const mensajeSugerido = $btn.data('message') || '';
+                if (!personaId) {
+                    showMiniFeedback('warning', 'No se encontro el cliente para cargar contactos');
+                    return;
+                }
+                const urlContactos = "../persona/enviar/mensaje/componente";
+                mostrarContactos(urlContactos, personaId, mensajeId, mensajeSugerido);
+                if (typeof showModalCompatHome === 'function') {
+                    showModalCompatHome('#modal-listar-contactos-component');
+                } else {
+                    $('#modal-listar-contactos-component').modal('show');
+                }
+            });
         });
     </script>
     
@@ -733,5 +757,3 @@
     <script src="{{asset('assets/js/enviarmensaje/mostrarcontactos.js')}}"></script>
     <script src="{{asset('vistas/persona/estudiantes.js')}}"></script>
 @stop
-
-

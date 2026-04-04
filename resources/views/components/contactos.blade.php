@@ -24,6 +24,7 @@
                                     <th>NOMBRE</th>
                                     <th>APELLIDOP</th>
                                     <th>PARENTESCO</th>
+                                    <th>TELEFONO</th>
                                     <th>ACTUALIZADO</th>
                                     <th>OPCIONES </th>
                                 </tr>

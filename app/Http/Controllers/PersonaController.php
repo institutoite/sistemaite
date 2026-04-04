@@ -1065,11 +1065,66 @@ class PersonaController extends Controller
         $persona=Persona::findOrFail($persona_id);
         $apoderados= $persona->apoderados;
         $mensaje= saludo()."%0A".nombre($persona_id,1)."%0A".strip_tags(Mensaje::findOrFail(4)->mensaje);
-          return DataTables::of($apoderados)
-                ->addColumn('btn','persona.deudores.actionwhatsapp')
-                ->rawColumns(['btn'])
-                ->toJson();
-        return response()->json($apoderados);
+
+        $normalizarTelefono = function ($telefono) {
+            $digits = preg_replace('/\D+/', '', (string) $telefono);
+            if ($digits === '') {
+                return null;
+            }
+            if (Str::startsWith($digits, '591')) {
+                return $digits;
+            }
+            if (strlen($digits) === 8) {
+                return '591'.$digits;
+            }
+            return $digits;
+        };
+
+        $contactos = collect();
+        $numerosYaAgregados = [];
+
+        $telefonoPersonaWa = $normalizarTelefono($persona->telefono);
+        if ($telefonoPersonaWa) {
+            $numerosYaAgregados[] = $telefonoPersonaWa;
+            $contactos->push([
+                'id' => 'persona-'.$persona->id,
+                'nombre' => $persona->nombre,
+                'apellidop' => $persona->apellidop,
+                'parentesco' => 'ESTUDIANTE',
+                'telefono' => $telefonoPersonaWa,
+                'telefono_wa' => $telefonoPersonaWa,
+                'updated_at' => optional($persona->updated_at)->format('Y-m-d H:i:s'),
+            ]);
+        }
+
+        foreach ($apoderados as $apoderado) {
+            $telefonosCandidatos = [
+                optional($apoderado->pivot)->telefono,
+                $apoderado->telefono,
+            ];
+
+            foreach ($telefonosCandidatos as $telefonoCandidato) {
+                $telefonoWa = $normalizarTelefono($telefonoCandidato);
+                if (!$telefonoWa || in_array($telefonoWa, $numerosYaAgregados, true)) {
+                    continue;
+                }
+                $numerosYaAgregados[] = $telefonoWa;
+                $contactos->push([
+                    'id' => 'apoderado-'.$apoderado->id.'-'.$telefonoWa,
+                    'nombre' => $apoderado->nombre,
+                    'apellidop' => $apoderado->apellidop,
+                    'parentesco' => optional($apoderado->pivot)->parentesco ?: 'APODERADO',
+                    'telefono' => $telefonoWa,
+                    'telefono_wa' => $telefonoWa,
+                    'updated_at' => optional($apoderado->updated_at)->format('Y-m-d H:i:s'),
+                ]);
+            }
+        }
+
+        return DataTables::of($contactos)
+            ->addColumn('btn','persona.deudores.actionwhatsapp')
+            ->rawColumns(['btn'])
+            ->toJson();
     }
 
     public function Saludar(Request $request){
