@@ -42,6 +42,7 @@ class EstudianteController extends Controller
         $today = $nowBo->toDateString();
         $yesterday = $nowBo->copy()->subDay()->toDateString();
         $cutoffDate = $nowBo->copy()->subDays(60)->toDateString();
+        $faltasStartDate = $nowBo->copy()->subDays(30)->toDateString();
 
         if (request()->has('busqueda')) {
             $termino = request('busqueda');
@@ -304,28 +305,83 @@ class EstudianteController extends Controller
         $faltonesIns = Persona::join('estudiantes', 'estudiantes.persona_id', 'personas.id')
             ->join('inscripciones', 'inscripciones.estudiante_id', 'estudiantes.id')
             ->join('programacions', 'programacions.inscripcione_id', 'inscripciones.id')
-            ->whereDate('programacions.fecha', '>=', $cutoffDate)
-            ->whereDate('programacions.fecha', $yesterday)
+            ->whereDate('programacions.fecha', '>=', $faltasStartDate)
+            ->whereDate('programacions.fecha', '<=', $today)
             ->whereIn('programacions.estado_id', $estadoFaltaIds)
-            ->select('personas.id', 'personas.nombre', 'personas.apellidop', 'personas.apellidom', 'personas.telefono', 'personas.volvera')
+            ->select(
+                'personas.id',
+                'personas.nombre',
+                'personas.apellidop',
+                'personas.apellidom',
+                'personas.telefono',
+                'personas.volvera',
+                'inscripciones.id as referencia_id',
+                DB::raw("'inscripcion' as referencia_tipo"),
+                DB::raw('COUNT(*) as faltas_count'),
+                DB::raw('MAX(programacions.fecha) as falta_fecha')
+            )
+            ->groupBy(
+                'personas.id',
+                'personas.nombre',
+                'personas.apellidop',
+                'personas.apellidom',
+                'personas.telefono',
+                'personas.volvera',
+                'inscripciones.id'
+            )
             ->get();
         $faltonesMat = Persona::join('computacions', 'computacions.persona_id', 'personas.id')
             ->join('matriculacions', 'matriculacions.computacion_id', 'computacions.id')
             ->join('programacioncoms', 'programacioncoms.matriculacion_id', 'matriculacions.id')
-            ->whereDate('programacioncoms.fecha', '>=', $cutoffDate)
-            ->whereDate('programacioncoms.fecha', $yesterday)
+            ->whereDate('programacioncoms.fecha', '>=', $faltasStartDate)
+            ->whereDate('programacioncoms.fecha', '<=', $today)
             ->whereIn('programacioncoms.estado_id', $estadoFaltaIds)
-            ->select('personas.id', 'personas.nombre', 'personas.apellidop', 'personas.apellidom', 'personas.telefono', 'personas.volvera')
+            ->select(
+                'personas.id',
+                'personas.nombre',
+                'personas.apellidop',
+                'personas.apellidom',
+                'personas.telefono',
+                'personas.volvera',
+                'matriculacions.id as referencia_id',
+                DB::raw("'matriculacion' as referencia_tipo"),
+                DB::raw('COUNT(*) as faltas_count'),
+                DB::raw('MAX(programacioncoms.fecha) as falta_fecha')
+            )
+            ->groupBy(
+                'personas.id',
+                'personas.nombre',
+                'personas.apellidop',
+                'personas.apellidom',
+                'personas.telefono',
+                'personas.volvera',
+                'matriculacions.id'
+            )
             ->get();
         $faltones = collect();
-        foreach ($faltonesIns->merge($faltonesMat) as $item) {
+        $faltonesBase = $faltonesIns
+            ->merge($faltonesMat)
+            ->sortByDesc(function ($item) {
+                return (string) ($item->falta_fecha ?? '');
+            })
+            ->unique(function ($item) {
+                return ($item->id ?? '').'|'.($item->referencia_tipo ?? '').'|'.($item->referencia_id ?? '');
+            })
+            ->values();
+
+        foreach ($faltonesBase as $item) {
+            $fechaFalta = !empty($item->falta_fecha)
+                ? Carbon::parse($item->falta_fecha)->format('d/m/Y')
+                : Carbon::parse($yesterday)->format('d/m/Y');
+            $faltasCount = (int) ($item->faltas_count ?? 0);
+            $referenciaTexto = ($item->referencia_tipo ?? '') === 'matriculacion' ? 'matriculacion' : 'inscripcion';
             $msg = $saludo.', '.$fullName($item->nombre, $item->apellidop, $item->apellidom).'. Notamos que no pudo asistir a su clase anterior. Si desea, le ayudamos a reprogramar.';
             $faltones->push([
                 'id' => $item->id,
                 'nombre' => $fullName($item->nombre, $item->apellidop, $item->apellidom),
                 'telefono' => $item->telefono,
-                'motivo' => 'Falto a la clase anterior',
-                'fecha' => Carbon::parse($yesterday)->format('d/m/Y'),
+                'motivo' => 'Falto a la clase anterior ('.$faltasCount.' faltas en esta '.$referenciaTexto.')',
+                'fecha' => $fechaFalta,
                 'mensaje' => $msg,
                 'whatsapp' => $waLink($item->telefono, $msg),
                 'prioridad' => max(4, (int) ($item->volvera ?? 4)),
