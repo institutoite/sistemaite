@@ -30,14 +30,9 @@
                                     <div class="list-group" id="sugerenciasProductosList"></div>
                                 </div>
                             </div>
-                            <small class="text-muted">Compatible con lector USB de QR/codigo de barras (modo teclado).</small>
                         </div>
 
-                        <div class="mb-3">
-                            <button type="button" class="btn btn-outline-primary btn-sm" id="btnIniciarCamara">Iniciar camara QR</button>
-                            <button type="button" class="btn btn-outline-danger btn-sm" id="btnDetenerCamara" disabled>Detener camara</button>
-                        </div>
-
+                
                         <div id="lector-qr" class="mb-3" style="max-width:420px;"></div>
 
                         <form method="POST" action="{{ route('ventas.rapidas.store') }}" id="formVentaRapida">

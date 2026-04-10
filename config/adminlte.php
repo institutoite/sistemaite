@@ -232,20 +232,16 @@ return [
             'icon'    => 'fas fa-user-friends',
             'url'     => 'padre/home',
             'padre'   => true,
+            'can'     => 'menu-padres-estudiantes',
         ],
         [
             'text'    => 'Mis Hijos',
             'icon'    => 'fas fa-users',
             'url'     => 'padre/home',
             'padre'   => true,
+            'can'     => 'menu-padres-estudiantes',
         ],
-        [
-            'text' => 'Ventas rapidas',
-            'icon'    => 'fas fa-angle-right',
-            'route'  => 'ventas.rapidas.create',
-            'classes'  => 'text-dark',
-            'can' => 'vender-productos',
-        ],
+       
         [
                 'text' => 'Mis pagos de hoy',
                 'icon'    => 'fas fa-angle-right',
@@ -258,6 +254,16 @@ return [
             'topnav_right' => true, // Or "topnav => true" to place on the left.
             'padre'        => false,
 
+        ],
+
+         
+        [
+            'text'    => 'Ventas Rapidas',
+            'icon'    => 'fas fa-record-vinyl',
+            'route'  => 'ventas.rapidas.create',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'vender-productos',
         ],
         [
             'text'    => 'Opciones Rápidas',
@@ -763,13 +769,14 @@ return [
         [
             'header' => 'USUARIOS ROLES Y PERMISOS',
             'classes'  => 'text-white bg-secondary',
+            'can' => 'solo-admin-menu',
         ],
         [
             'text'    => 'Roles',
             'icon'    => 'fas fa-fw fa-users-cog',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
-            'can' => ['Listar Roles'],
+            'can' => 'solo-admin-menu',
             'submenu' => [
                 [
                     'text' => 'Listar Roles',
@@ -796,7 +803,7 @@ return [
             'icon'    => 'fas fa-user',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
-            'can' => ['Listar Roles'],
+            'can' => 'solo-admin-menu',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -812,7 +819,7 @@ return [
             'icon'    => 'fas fa-fw fa-users-cog',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
-            'can' => ['Listar Roles'],
+            'can' => 'solo-admin-menu',
             'submenu' => [
                 [
                     'text' => 'Administrar Permisos',
@@ -849,6 +856,7 @@ return [
             'icon'    => 'fas fa-fw fa-users-cog',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'solo-admin-menu',
          
             'submenu' => [
                 [
@@ -878,12 +886,14 @@ return [
         [
             'header' => 'REPORTES Y CONSULTAS',
             'classes'  => 'text-white bg-secondary',
+            'can' => 'solo-admin-menu',
         ],
         [
             'text'    => 'Gráficos',
             'icon'    => 'fas fa-address-book',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'solo-admin-menu',
             'submenu' => [
                 [
                     'text' => 'Inscripciones',
@@ -970,7 +980,7 @@ return [
             'icon'    => 'fas fa-user',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
-            'can' => ['Listar mis estudiantes'],
+            'can' => 'solo-admin-menu',
             'submenu' => [
                 [
                     'text' => 'Listar',
@@ -985,7 +995,8 @@ return [
             'icon'    => 'fas fa-user',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
-            
+            'can' => 'solo-admin-menu',
+             
             'submenu' => [
                 [
                     'text' => 'Mis estudiantes',
@@ -1006,12 +1017,14 @@ return [
         [
             'header' => 'CAJA Y DINERO',
             'classes'  => 'text-white bg-secondary',
+            'can' => 'solo-admin-menu',
         ],
            [
             'text'    => 'Pagos y caja',
             'icon'    => 'fas fa-donate',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'solo-admin-menu',
             'submenu' => [
                 [
                     'text' => 'Ingresos',
@@ -1083,14 +1096,14 @@ return [
         [
             'header' => 'PRODUCTOS',
             'classes'  => 'text-white bg-secondary',
-            'can' => 'gestionar-productos-admin',
+            'can' => 'solo-admin-menu',
         ],
         [
             'text'    => 'Productos',
             'icon'    => 'fas fa-boxes',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
-            'can' => 'gestionar-productos-admin',
+            'can' => 'solo-admin-menu',
             'submenu' => [
                 [
                     'text' => 'Listar',
