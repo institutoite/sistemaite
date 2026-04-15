@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use JeroenDesloovere\VCard\VCard;
 use App\Models\Persona;
-use Illuminate\Support\Str;
 
 class VcardController extends Controller
 {
@@ -154,26 +153,10 @@ class VcardController extends Controller
     public function actualizarTarjeta($persona_id){
         $vcard = new VCard();
         $persona = Persona::findOrFail($persona_id);
-        $contenidoVcf = $this->createVcard($persona, $vcard);
-
-        if (empty($contenidoVcf)) {
-            $contenidoVcf = $vcard->getOutput();
-        }
-
-        $nombreBase = trim($persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom);
-        if ($nombreBase === '') {
-            $nombreBase = 'contacto-'.$persona->id;
-        }
-        $nombreArchivo = Str::slug($nombreBase, '_');
-        if ($nombreArchivo === '') {
-            $nombreArchivo = 'contacto_'.$persona->id;
-        }
-
-        return response($contenidoVcf, 200, [
-            'Content-Type' => 'text/vcard; charset=utf-8',
-            'Content-Disposition' => 'attachment; filename="'.$nombreArchivo.'.vcf"',
-            'Cache-Control' => 'no-store, no-cache, must-revalidate',
-        ]);
+        $this->createVcard($persona, $vcard);
+        $vcard->setFilename('contacto_'.$persona->id);
+        
+        return $vcard->download();
     }
 
     public function crearContactos(Request $request,$inicio=1, $incremento=100){
