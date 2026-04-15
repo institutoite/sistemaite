@@ -12,7 +12,9 @@
     
         <div class="card">
             <div class="card-header bg-primary text-white">
-                EDITAR PERSONA <h3 class="text-white float-right" id="tokenExpirationform"></h3>
+                EDITAR PERSONA
+                <a href="{{ route('signIn') }}" class="btn btn-sm btn-light float-right ml-2">Conectar Google Contactos</a>
+                <h3 class="text-white float-right" id="tokenExpirationform"></h3>
             </div>
             <div class="card-body">
                 <form action="{{route('personas.update',$persona)}}" id="formulario" method="POST"  enctype="multipart/form-data" class="form-horizontal" autocomplete="off">

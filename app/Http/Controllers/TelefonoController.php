@@ -25,6 +25,57 @@ class TelefonoController extends Controller
         $this->middleware('can:Editar Telefonos')->only("editar","actualizar");
         $this->middleware('can:Eliminar Telefonos')->only("eliminarTelefono");
     }
+
+    private function canSyncGoogleContacts(): bool
+    {
+        return !empty(session('GContactToken'));
+    }
+
+    private function syncPersonaWithGoogle(Persona $persona): void
+    {
+        if (!$this->canSyncGoogleContacts()) {
+            return;
+        }
+
+        try {
+            $gcontactController = app(GContactController::class);
+            $sincronizado = false;
+
+            if (empty($persona->resourseName) || empty($persona->etag)) {
+                $data = $gcontactController->createContact(
+                    $persona->nombre,
+                    $persona->apellidop,
+                    $persona->apellidom,
+                    null,
+                    $persona->telefono
+                );
+                if (is_array($data) && count($data) >= 2) {
+                    $persona->resourseName = $data[0];
+                    $persona->etag = $data[1];
+                    $sincronizado = true;
+                }
+            } else {
+                $nuevoEtag = $gcontactController->updateContact(
+                    $persona->nombre,
+                    $persona->apellidop,
+                    $persona->apellidom,
+                    $persona->telefono,
+                    $persona->resourseName,
+                    $persona->etag
+                );
+                if (is_string($nuevoEtag) && $nuevoEtag !== '') {
+                    $persona->etag = $nuevoEtag;
+                    $sincronizado = true;
+                }
+            }
+
+            if ($sincronizado) {
+                $persona->saveQuietly();
+            }
+        } catch (\Throwable $e) {
+            report($e);
+        }
+    }
     
     public function index(Persona $persona)
     {
@@ -98,6 +149,7 @@ class TelefonoController extends Controller
             $persona=Persona::findOrFail($estudiante_id);
             $apoderado->telefono=$request->telefono;
             $apoderado->save();
+            $this->syncPersonaWithGoogle($apoderado);
             $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->parentesco]);
 
             $existingUser = User::where('persona_id', $apoderado->id)->first();
@@ -137,6 +189,7 @@ class TelefonoController extends Controller
         $persona=Persona::findOrFail($estudiante_id);
         $apoderado->telefono=$request->telefono;
         $apoderado->save();
+        $this->syncPersonaWithGoogle($apoderado);
         $persona->apoderados()->attach($apoderado->id, ['telefono' => $request->telefono, 'parentesco' => $request->pariente]);
 
         $existingUser = User::where('persona_id', $apoderado->id)->first();
@@ -199,12 +252,7 @@ class TelefonoController extends Controller
         $apoderado->telefono = $request->telefono;
         $apoderado->save();
 
-        /**%%%%%%%%%%%%%%%%%%%%% google contact editar inicio %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
-        $gcontacController = app()->make(GContactController::class);
-        $etag=$gcontacController->updateContact($apoderado->nombre,$apoderado->apellidop,$apoderado->apellidom,$apoderado->telefono,$apoderado->resourseName,$apoderado->etag);
-        $apoderado->etag=$etag;
-        $apoderado->save();
-        /**%%%%%%%%%%%%%%%%%%%%% google contact editar Fin %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+        $this->syncPersonaWithGoogle($apoderado);
 
 
         $persona->apoderados()->updateExistingPivot($registro_pivot[0]->persona_id_apoderado,['telefono'=>$request->telefono,'parentesco'=>$request->parentesco],false);

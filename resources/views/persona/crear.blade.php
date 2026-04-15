@@ -14,7 +14,9 @@
         <div class="card">
             <div class="card-header bg-secondary">
                 {{-- FORMULARIO CREAR PERSONAS <div class="text-white float-right" id="tokenExpirationform">x</div> --}}
-                FORMULARIO CREAR PERSONAS <h3 class="text-white float-right" id="tokenExpirationform"></h3>
+                FORMULARIO CREAR PERSONAS
+                <a href="{{ route('signIn') }}" class="btn btn-sm btn-light float-right ml-2">Conectar Google Contactos</a>
+                <h3 class="text-white float-right" id="tokenExpirationform"></h3>
             </div>
             <div class="card-body">
                 <div class="tab-content">

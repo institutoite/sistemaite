@@ -14,7 +14,9 @@
     
     <div class="card">
         <div class="card-header bg-primary">
-            <span class="text-center">{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</span> <h3 class="text-white float-right" id="tokenExpirationform"></h3>
+            <span class="text-center">{{$persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom}}</span>
+            <a href="{{ route('signIn') }}" class="btn btn-sm btn-light float-right ml-2">Conectar Google Contactos</a>
+            <h3 class="text-white float-right" id="tokenExpirationform"></h3>
            
             <div class="float-right">
                 
