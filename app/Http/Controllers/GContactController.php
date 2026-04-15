@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
-use Exception;
 use Illuminate\Http\Request;
 
 class GContactController extends Controller
@@ -55,7 +55,10 @@ class GContactController extends Controller
     
     public function createContact($nombre,$apellidop,$apellidom,$email,$telefono)
     {
-    
+        if (!$this->getToken()) {
+            return null;
+        }
+
         $contact = [
             'names' => [
                 [
@@ -63,41 +66,58 @@ class GContactController extends Controller
                     'familyName' => $apellidop." ". $apellidom,
                 ]
             ],
-            'phoneNumbers' => [
+        ];
+
+        if (!empty($telefono)) {
+            $contact['phoneNumbers'] = [
                 [
                     'value' => $telefono,
                     'type' => 'mobile'
                 ]
-            ],
-            'emailAddresses' => [
+            ];
+        }
+        if (!empty($email)) {
+            $contact['emailAddresses'] = [
                 [
                     'value' => $email,
                     'type' => 'home'
                 ]
-            ],
-        ];
+            ];
+        }
     
         try {
-            $response = Http::post('https://gcontact.ite.com.bo/api/contact/create-contact', [
+            $response = Http::timeout(20)->post('https://gcontact.ite.com.bo/api/contact/create-contact', [
                 'token' => $this->getToken(),
                 'contacto' => $contact
             ]);
             if ($response->successful()) {
                 //Guardar en BD user_id
-                $resourceName= $response['data']['resourceName'];
-	            $etag= $response['data']['etag'];
+                $resourceName= data_get($response->json(), 'data.resourceName');
+                $etag= data_get($response->json(), 'data.etag');
+                if (!$resourceName || !$etag) {
+                    return null;
+                }
                 $data=[$resourceName,$etag];
                 return $data;
             } else {
-                return response()->json(['message' => 'Error al crear el contacto.'], $response->status());
+                Log::warning('No se pudo crear contacto en Google', [
+                    'status' => $response->status(),
+                    'body' => $response->body(),
+                ]);
+                return null;
             }
-        } catch (Exception $e) {
-            return response()->json(['message' => 'Error al procesar la solicitud.'], 500);
+        } catch (\Throwable $e) {
+            Log::error('Error al crear contacto en Google', ['error' => $e->getMessage()]);
+            return null;
         }
     }
 
-    public function updateContact($nombre,$apellidop,$apellidom,$telefono,$resourseName,$etag)
+    public function updateContact($nombre,$apellidop,$apellidom,$telefono,$resourseName,$etag,$email = null)
     {
+        if (!$this->getToken() || empty($resourseName) || empty($etag)) {
+            return null;
+        }
+
         $contact = [
             'names' => [
                 [
@@ -105,22 +125,26 @@ class GContactController extends Controller
                     'familyName' => $apellidop." ".$apellidom,
                 ]
             ],
-            'phoneNumbers' => [
+        ];
+        if (!empty($telefono)) {
+            $contact['phoneNumbers'] = [
                 [
                     'value' => $telefono,
                     'type' => 'mobile'
                 ],
-            ],
-            'emailAddresses' => [
+            ];
+        }
+        if (!empty($email)) {
+            $contact['emailAddresses'] = [
                 [
-                    'value' => "main@gmail.com",
+                    'value' => $email,
                     'type' => 'home'
                 ]
-            ]
-        ];
+            ];
+        }
 
     try {
-        $response = Http::post('https://gcontact.ite.com.bo/api/contact/update-contact', [
+        $response = Http::timeout(20)->post('https://gcontact.ite.com.bo/api/contact/update-contact', [
             'token' => $this->getToken(),
             'resourceName'=>$resourseName,
             'etag'=>$etag,
@@ -128,14 +152,22 @@ class GContactController extends Controller
         ]);
         if ($response->successful()) {
             //Guardar el nuevo $etag=en la BD para la persona
-	        $etag= $response['data']['etag'];
-            
+            $etag= data_get($response->json(), 'data.etag');
+            if (!$etag) {
+                return null;
+            }
+             
             return $etag;
         } else {
-            return response()->json(['message' => 'Error al actualizar el contacto.'], $response->status());
+            Log::warning('No se pudo actualizar contacto en Google', [
+                'status' => $response->status(),
+                'body' => $response->body(),
+            ]);
+            return null;
         }
-    } catch (Exception $e) {
-        return response()->json(['message' => 'Error al procesar la solicitud.'], 500);
+    } catch (\Throwable $e) {
+        Log::error('Error al actualizar contacto en Google', ['error' => $e->getMessage()]);
+        return null;
     }
 }
 }

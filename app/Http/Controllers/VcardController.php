@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use JeroenDesloovere\VCard\VCard;
 use App\Models\Persona;
+use Illuminate\Support\Str;
 
 class VcardController extends Controller
 {
@@ -152,10 +153,27 @@ class VcardController extends Controller
 
     public function actualizarTarjeta($persona_id){
         $vcard = new VCard();
-        $persona=Persona::find($persona_id);
-        $this->createVcard($persona,$vcard);
-        
-        return $vcard->download();
+        $persona = Persona::findOrFail($persona_id);
+        $contenidoVcf = $this->createVcard($persona, $vcard);
+
+        if (empty($contenidoVcf)) {
+            $contenidoVcf = $vcard->getOutput();
+        }
+
+        $nombreBase = trim($persona->nombre.' '.$persona->apellidop.' '.$persona->apellidom);
+        if ($nombreBase === '') {
+            $nombreBase = 'contacto-'.$persona->id;
+        }
+        $nombreArchivo = Str::slug($nombreBase, '_');
+        if ($nombreArchivo === '') {
+            $nombreArchivo = 'contacto_'.$persona->id;
+        }
+
+        return response($contenidoVcf, 200, [
+            'Content-Type' => 'text/vcard; charset=utf-8',
+            'Content-Disposition' => 'attachment; filename="'.$nombreArchivo.'.vcf"',
+            'Cache-Control' => 'no-store, no-cache, must-revalidate',
+        ]);
     }
 
     public function crearContactos(Request $request,$inicio=1, $incremento=100){
@@ -169,11 +187,15 @@ class VcardController extends Controller
                 $vcard = new VCard();
                 $vcardGrupal.=$this->createVcard($persona,$vcard);
             }
-            $pathcontactos = storage_path('app/contactos/todos/'.$inicio."_".$inicio+$incremento.".vcf");
+            $fin = $inicio + $incremento;
+            $directorio = storage_path("app/contactos/todos");
+            if (!is_dir($directorio)) {
+                mkdir($directorio, 0775, true);
+            }
+            $pathcontactos = storage_path('app/contactos/todos/'.$inicio.'_'.$fin.'.vcf');
             $file = fopen($pathcontactos, 'w');
             fwrite($file, $vcardGrupal);
             fclose($file);
-            $directorio = storage_path("app/contactos/todos");
 
             $archivos = scandir($directorio);
             return view("persona.contacto.archivos", ['archivos' => $archivos]);

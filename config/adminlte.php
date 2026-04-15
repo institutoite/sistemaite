@@ -1244,6 +1244,7 @@ return [
             'icon'    => 'fas fa-house-user',
             'icon_color' => 'secondary',
             'classes'  => 'text-white text-bold bg-primary',
+            'can' => 'solo-admin-menu',
             'submenu' => [
                 [
                     'text' => 'Listar',
