@@ -8,6 +8,24 @@ use App\Models\Persona;
 
 class VcardController extends Controller
 {
+    private function resolvePhotoPath(?string $foto): ?string
+    {
+        $candidatos = [];
+        if (!empty($foto)) {
+            $candidatos[] = storage_path('app/public/'.$foto);
+        }
+        $candidatos[] = storage_path('app/public/estudiantes/foto.jpg');
+        $candidatos[] = storage_path('app/public/estudiantes/sinfoto.jpg');
+
+        foreach ($candidatos as $path) {
+            if (is_string($path) && file_exists($path) && is_file($path)) {
+                return str_replace('\\', '/', $path);
+            }
+        }
+
+        return null;
+    }
+
     // public function createVcard(Persona $persona){
     public function createVcard($persona,$vcard){
        
@@ -31,20 +49,9 @@ class VcardController extends Controller
         $vcard->addUrl("https://www.ite.com.bo");
         
 
-        if($persona->foto!=null){
-            $path = storage_path('app/public/'.$persona->foto);
-            $url=$path = str_replace('\\', '/', $path);
-            if (file_exists($path)) {
-                $vcard->addPhoto($url);    
-            }else{
-                $path = storage_path('app/public/estudiantes/foto.jpg');
-                $url=$path = str_replace('\\', '/', $path);
-                $vcard->addPhoto($url);
-            }
-        }else{
-            $path = storage_path('app/public/estudiantes/foto.jpg');
-            $url=$path = str_replace('\\', '/', $path);
-            $vcard->addPhoto($url);
+        $photoPath = $this->resolvePhotoPath($persona->foto);
+        if ($photoPath !== null) {
+            $vcard->addPhoto($photoPath);
         }
         
         $observaciones=$persona->observaciones;
