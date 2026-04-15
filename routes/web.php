@@ -1185,6 +1185,15 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
 
     Route::get('/token-expiration', [GContactController::class, 'getTokenExpiration'])->name('token-expiration');
     Route::get('reset/token-expiration', [GContactController::class, 'resetTokenExpiration'])->name('reset.token-expiration');
+    // TEMPORAL: usar solo para obtener token de sesion durante sincronizacion masiva.
+    Route::get('/debug/gcontact-token', function () {
+        abort_unless(auth()->check() && auth()->user()->hasRole(['Admin']), 403);
+
+        return response()->json([
+            'token' => session('GContactToken'),
+            'expires_at' => session('GContactTokenExpiration'),
+        ]);
+    })->name('debug.gcontact-token');
     Route::get("informar/estado/general", [EstudianteController::class,'informarEstadoGeneral'])->name("informar.por.estado.General");
 
     /** botones imprimir en los home */
