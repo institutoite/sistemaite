@@ -10,11 +10,63 @@ use Illuminate\Http\Request;
 
 class GContactController extends Controller
 {
+    private function buildGooglePersonPayload($nombre, $apellidop, $apellidom, $telefono, $email = null): array
+    {
+        $payload = [
+            'names' => [
+                [
+                    'givenName' => (string) $nombre,
+                    'familyName' => trim((string) $apellidop.' '.(string) $apellidom),
+                ]
+            ],
+        ];
+
+        if (!empty($telefono)) {
+            $payload['phoneNumbers'] = [
+                [
+                    'value' => (string) $telefono,
+                    'type' => 'mobile'
+                ]
+            ];
+        }
+
+        if (!empty($email)) {
+            $payload['emailAddresses'] = [
+                [
+                    'value' => (string) $email,
+                    'type' => 'home'
+                ]
+            ];
+        }
+
+        return $payload;
+    }
+
+    private function extractResourceAndEtag(array $person): ?array
+    {
+        $resourceName = data_get($person, 'resourceName');
+        $etag = data_get($person, 'etag');
+
+        if (empty($etag)) {
+            $etag = data_get($person, 'metadata.sources.0.etag');
+        }
+
+        if (empty($resourceName) || empty($etag)) {
+            return null;
+        }
+
+        return [$resourceName, $etag];
+    }
+
     public function signIn(Request $request)
     {
         Session::put('previous_url', url()->previous());
         return Socialite::driver('google')
                         ->scopes(['https://www.googleapis.com/auth/contacts'])
+                        ->with([
+                            'access_type' => 'offline',
+                            'prompt' => 'consent',
+                        ])
                         ->redirect();
     }
 
@@ -59,55 +111,28 @@ class GContactController extends Controller
             return null;
         }
 
-        $contact = [
-            'names' => [
-                [
-                    'givenName' => $nombre,
-                    'familyName' => $apellidop." ". $apellidom,
-                ]
-            ],
-        ];
-
-        if (!empty($telefono)) {
-            $contact['phoneNumbers'] = [
-                [
-                    'value' => $telefono,
-                    'type' => 'mobile'
-                ]
-            ];
-        }
-        if (!empty($email)) {
-            $contact['emailAddresses'] = [
-                [
-                    'value' => $email,
-                    'type' => 'home'
-                ]
-            ];
-        }
+        $contact = $this->buildGooglePersonPayload($nombre, $apellidop, $apellidom, $telefono, $email);
     
         try {
-            $response = Http::timeout(20)->post('https://gcontact.ite.com.bo/api/contact/create-contact', [
-                'token' => $this->getToken(),
-                'contacto' => $contact
-            ]);
+            $response = Http::withToken($this->getToken())
+                ->timeout(20)
+                ->post('https://people.googleapis.com/v1/people:createContact', $contact);
+
             if ($response->successful()) {
-                //Guardar en BD user_id
-                $resourceName= data_get($response->json(), 'data.resourceName');
-                $etag= data_get($response->json(), 'data.etag');
-                if (!$resourceName || !$etag) {
+                $data = $this->extractResourceAndEtag($response->json());
+                if (!$data) {
                     return null;
                 }
-                $data=[$resourceName,$etag];
                 return $data;
             } else {
-                Log::warning('No se pudo crear contacto en Google', [
+                Log::warning('No se pudo crear contacto en Google People API', [
                     'status' => $response->status(),
                     'body' => $response->body(),
                 ]);
                 return null;
             }
         } catch (\Throwable $e) {
-            Log::error('Error al crear contacto en Google', ['error' => $e->getMessage()]);
+            Log::error('Error al crear contacto en Google People API', ['error' => $e->getMessage()]);
             return null;
         }
     }
@@ -118,55 +143,38 @@ class GContactController extends Controller
             return null;
         }
 
-        $contact = [
-            'names' => [
-                [
-                    'givenName' => $nombre,
-                    'familyName' => $apellidop." ".$apellidom,
-                ]
-            ],
-        ];
-        if (!empty($telefono)) {
-            $contact['phoneNumbers'] = [
-                [
-                    'value' => $telefono,
-                    'type' => 'mobile'
-                ],
-            ];
-        }
-        if (!empty($email)) {
-            $contact['emailAddresses'] = [
-                [
-                    'value' => $email,
-                    'type' => 'home'
-                ]
-            ];
-        }
+        $contact = $this->buildGooglePersonPayload($nombre, $apellidop, $apellidom, $telefono, $email);
+        $contact['resourceName'] = $resourseName;
+        $contact['etag'] = $etag;
 
     try {
-        $response = Http::timeout(20)->post('https://gcontact.ite.com.bo/api/contact/update-contact', [
-            'token' => $this->getToken(),
-            'resourceName'=>$resourseName,
-            'etag'=>$etag,
-            'contacto' => $contact
-        ]);
+        $updateFields = 'names,phoneNumbers,emailAddresses';
+        $url = 'https://people.googleapis.com/v1/'.$resourseName.':updateContact?updatePersonFields='.$updateFields;
+
+        $response = Http::withToken($this->getToken())
+            ->timeout(20)
+            ->patch($url, $contact);
+
         if ($response->successful()) {
-            //Guardar el nuevo $etag=en la BD para la persona
-            $etag= data_get($response->json(), 'data.etag');
+            $etag = data_get($response->json(), 'etag');
+            if (!$etag) {
+                $etag = data_get($response->json(), 'metadata.sources.0.etag');
+            }
+
             if (!$etag) {
                 return null;
             }
-             
+
             return $etag;
         } else {
-            Log::warning('No se pudo actualizar contacto en Google', [
+            Log::warning('No se pudo actualizar contacto en Google People API', [
                 'status' => $response->status(),
                 'body' => $response->body(),
             ]);
             return null;
         }
     } catch (\Throwable $e) {
-        Log::error('Error al actualizar contacto en Google', ['error' => $e->getMessage()]);
+        Log::error('Error al actualizar contacto en Google People API', ['error' => $e->getMessage()]);
         return null;
     }
 }
