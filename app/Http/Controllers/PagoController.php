@@ -94,6 +94,7 @@ class PagoController extends Controller
         $pago->monto=$request->monto;
         $pago->pagocon=$request->pagocon;
         $pago->cambio=$request->cambio;
+        $pago->forma_pago=$request->forma_pago;
         $pago->pagable_id=$inscripcion->id;
         $pago->pagable_type='App\Models\Inscripcione';
         $pago->save();
@@ -271,7 +272,7 @@ class PagoController extends Controller
         $pagos = Pago::join('userables','userables.userable_id','pagos.id')
                 ->join('users','users.id','userables.user_id')
                 ->where('userables.userable_type', "App\\Models\\Pago")
-                ->select('pagos.id','monto','pagocon','cambio','pagos.created_at','name as user','pagos.pagable_type')
+                ->select('pagos.id','monto','pagocon','cambio','forma_pago','pagos.created_at','name as user','pagos.pagable_type')
                 ->get();
         return DataTables::of($pagos)
                 ->addColumn('btn','pago.reportes.actionpagos')
@@ -326,7 +327,9 @@ class PagoController extends Controller
 
         return response()->json([
             'pagos' => $pagos,
-            'suma' => $sumaTotal
+            'suma' => $sumaTotal,
+            'subtotal_qr' => (float) $pagos->where('forma_pago', 'QR')->sum('monto'),
+            'subtotal_efectivo' => (float) $pagos->where('forma_pago', 'EFECTIVO')->sum('monto')
         ]);
     }
     public function pagoInscripcionesMaxBnc(){
@@ -375,7 +378,9 @@ class PagoController extends Controller
 
         return response()->json([
             'pagos' => $pagos,
-            'suma' => $sumaTotal
+            'suma' => $sumaTotal,
+            'subtotal_qr' => (float) $pagos->where('forma_pago', 'QR')->sum('monto'),
+            'subtotal_efectivo' => (float) $pagos->where('forma_pago', 'EFECTIVO')->sum('monto')
         ]);
     }
     
@@ -408,7 +413,7 @@ class PagoController extends Controller
             ->where('userable_type','App\\Models\\Pago')
             ->whereDate('pagos.created_at','<=',$request->fechafin)
             ->whereDate('pagos.created_at','>=',$request->fechaini)
-            ->select('personas.id','personas.nombre','apellidop','apellidom','modalidad','monto','users.foto','name','pagocon','pagos.created_at','personas.foto as personafoto')
+            ->select('personas.id','personas.nombre','apellidop','apellidom','modalidad','monto','users.foto','name','pagocon','cambio','forma_pago','pagos.created_at','personas.foto as personafoto')
             ->orderBy('created_at',"asc")
             ->get();
         return DataTables::of($pagos)

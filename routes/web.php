@@ -495,8 +495,14 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
 
     Route::get('reportes/pagos/diario-usuario', [ReportePagoVentaController::class, 'diarioUsuario'])
         ->name('reportes.pagos.diario.usuario');
+    Route::get('reportes/pagos/diario-usuario/pdf', [ReportePagoVentaController::class, 'diarioUsuarioPdf'])
+        ->name('reportes.pagos.diario.usuario.pdf');
     Route::match(['get', 'post'], 'reportes/pagos/general-admin', [ReportePagoVentaController::class, 'generalAdmin'])
         ->name('reportes.pagos.general.admin');
+    Route::get('reportes/pagos/general-admin/pdf', [ReportePagoVentaController::class, 'generalAdminPdf'])
+        ->name('reportes.pagos.general.admin.pdf');
+    Route::get('reportes/pagos/general-admin/usuario/{usuario}/pdf', [ReportePagoVentaController::class, 'usuarioAdminPdf'])
+        ->name('reportes.pagos.general.admin.usuario.pdf');
     Route::match(['get', 'post'], 'reportes/ventas/mias', [ReportePagoVentaController::class, 'misVentasUsuario'])
         ->name('reportes.ventas.mias');
 

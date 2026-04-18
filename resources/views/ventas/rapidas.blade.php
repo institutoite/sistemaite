@@ -69,6 +69,22 @@
                                     <input type="number" min="0" step="0.01" class="form-control" id="pagocon" name="pagocon" value="{{ old('pagocon') }}" required>
                                 </div>
                             </div>
+                            <div class="form-row mt-2">
+                                <div class="col-md-12">
+                                    @php
+                                        $formaPagoActual = old('forma_pago');
+                                    @endphp
+                                    <label class="d-block mb-1">Forma de pago (obligatorio)</label>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="venta_forma_pago_efectivo" name="forma_pago" value="EFECTIVO" class="custom-control-input" {{ $formaPagoActual === 'EFECTIVO' ? 'checked' : '' }} required>
+                                        <label class="custom-control-label" for="venta_forma_pago_efectivo">Efectivo</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="venta_forma_pago_qr" name="forma_pago" value="QR" class="custom-control-input" {{ $formaPagoActual === 'QR' ? 'checked' : '' }} required>
+                                        <label class="custom-control-label" for="venta_forma_pago_qr">QR</label>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="mt-3 text-right">
                                 <button type="submit" class="btn btn-success">Registrar venta y pago</button>
@@ -96,6 +112,7 @@
                                             <th>Usuario</th>
                                         @endif
                                         <th>Hora</th>
+                                        <th>Forma</th>
                                         <th>Detalle</th>
                                         <th>Total</th>
                                     </tr>
@@ -108,6 +125,7 @@
                                                 <td>{{ optional($venta->usuarios->first())->name ?? '-' }}</td>
                                             @endif
                                             <td>{{ optional($venta->created_at)->format('H:i') }}</td>
+                                            <td>{{ optional($venta->pagos->first())->forma_pago ?? 'EFECTIVO' }}</td>
                                             <td>
                                                 @foreach($venta->detalles as $detalle)
                                                     <div>{{ optional($detalle->producto)->nombre }} x{{ $detalle->cantidad }}</div>
@@ -117,7 +135,7 @@
                                         </tr>
                                     @empty
                                         <tr id="ventasHoyEmptyRow">
-                                            <td colspan="{{ $esAdmin ? 5 : 4 }}" class="text-center text-muted">Aun no hay ventas hoy.</td>
+                                            <td colspan="{{ $esAdmin ? 6 : 5 }}" class="text-center text-muted">Aun no hay ventas hoy.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
@@ -154,6 +172,8 @@
             var ventasHoyBody = document.getElementById('ventasHoyBody');
             var ventasHoyTotal = document.getElementById('ventasHoyTotal');
             var esAdmin = @json($esAdmin);
+            var btnIniciarCamara = document.getElementById('btnIniciarCamara');
+            var btnDetenerCamara = document.getElementById('btnDetenerCamara');
 
             function showToast(message) {
                 if (!toast) {
@@ -194,6 +214,7 @@
                     '<td>' + venta.id + '</td>' +
                     (esAdmin ? '<td>' + (venta.usuario || '-') + '</td>' : '') +
                     '<td>' + (venta.created_at_hora || '-') + '</td>' +
+                    '<td>' + (venta.forma_pago || 'EFECTIVO') + '</td>' +
                     '<td>' + detalleHtml + '</td>' +
                     '<td>' + money(venta.total) + '</td>';
 
@@ -410,6 +431,11 @@
                     alert('El valor "Pago con" no puede ser menor al total.');
                     return;
                 }
+                var formaPagoInput = form.querySelector('input[name="forma_pago"]:checked');
+                if (!formaPagoInput) {
+                    alert('Debes seleccionar la forma de pago (QR o Efectivo).');
+                    return;
+                }
 
                 var submitBtn = form.querySelector('button[type=\"submit\"]');
                 if (submitBtn) {
@@ -475,35 +501,47 @@
                 buscarPorCodigo();
             }
 
-            document.getElementById('btnIniciarCamara').addEventListener('click', function () {
-                if (scanning) {
-                    return;
-                }
-                scanner = new Html5Qrcode('lector-qr');
-                scanner.start(
-                    { facingMode: 'environment' },
-                    { fps: 10, qrbox: { width: 220, height: 220 } },
-                    onScanSuccess
-                ).then(function () {
-                    scanning = true;
-                    document.getElementById('btnIniciarCamara').disabled = true;
-                    document.getElementById('btnDetenerCamara').disabled = false;
-                }).catch(function (err) {
-                    alert('No se pudo iniciar la camara: ' + err);
+            if (btnIniciarCamara) {
+                btnIniciarCamara.addEventListener('click', function () {
+                    if (scanning) {
+                        return;
+                    }
+                    scanner = new Html5Qrcode('lector-qr');
+                    scanner.start(
+                        { facingMode: 'environment' },
+                        { fps: 10, qrbox: { width: 220, height: 220 } },
+                        onScanSuccess
+                    ).then(function () {
+                        scanning = true;
+                        if (btnIniciarCamara) {
+                            btnIniciarCamara.disabled = true;
+                        }
+                        if (btnDetenerCamara) {
+                            btnDetenerCamara.disabled = false;
+                        }
+                    }).catch(function (err) {
+                        alert('No se pudo iniciar la camara: ' + err);
+                    });
                 });
-            });
+            }
 
-            document.getElementById('btnDetenerCamara').addEventListener('click', function () {
-                if (!scanner || !scanning) {
-                    return;
-                }
-                scanner.stop().then(function () {
-                    scanner.clear();
-                    scanning = false;
-                    document.getElementById('btnIniciarCamara').disabled = false;
-                    document.getElementById('btnDetenerCamara').disabled = true;
+            if (btnDetenerCamara) {
+                btnDetenerCamara.addEventListener('click', function () {
+                    if (!scanner || !scanning) {
+                        return;
+                    }
+                    scanner.stop().then(function () {
+                        scanner.clear();
+                        scanning = false;
+                        if (btnIniciarCamara) {
+                            btnIniciarCamara.disabled = false;
+                        }
+                        if (btnDetenerCamara) {
+                            btnDetenerCamara.disabled = true;
+                        }
+                    });
                 });
-            });
+            }
         })();
     </script>
 @endsection

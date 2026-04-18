@@ -52,3 +52,23 @@
                 </div>
             </div>
     </div> 
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            @if($errors->has('forma_pago'))
+                <span class="text-danger">{{ $errors->first('forma_pago') }}</span>
+            @endif
+            @php
+                $formaPagoActual = old('forma_pago', $pago->forma_pago ?? null);
+            @endphp
+            <label class="mb-2 d-block"><strong>Forma de pago (obligatorio)</strong></label>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="edit_forma_pago_efectivo" name="forma_pago" value="EFECTIVO" class="custom-control-input" {{ $formaPagoActual === 'EFECTIVO' ? 'checked' : '' }} required>
+                <label class="custom-control-label" for="edit_forma_pago_efectivo">Efectivo</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="edit_forma_pago_qr" name="forma_pago" value="QR" class="custom-control-input" {{ $formaPagoActual === 'QR' ? 'checked' : '' }} required>
+                <label class="custom-control-label" for="edit_forma_pago_qr">QR</label>
+            </div>
+        </div>
+    </div>

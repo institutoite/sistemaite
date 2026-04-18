@@ -37,6 +37,7 @@ class PagocomController extends Controller
         $pago->monto=$request->monto;
         $pago->pagocon=$request->pagocon;
         $pago->cambio=$request->cambio;
+        $pago->forma_pago=$request->forma_pago;
         $pago->pagable_id=$matriculacion_id;
         $pago->pagable_type=Matriculacion::class;
         $pago->save();
@@ -82,6 +83,7 @@ class PagocomController extends Controller
         $pago->monto=$request->monto;
         $pago->pagocon=$request->pagocon;
         $pago->cambio=$request->cambio;
+        $pago->forma_pago=$request->forma_pago;
         $pago->save();
 
         return redirect()->route('billetecom.crear', ['pago'=>$pago]); 
@@ -110,7 +112,7 @@ class PagocomController extends Controller
             ->where('userable_type','App\\Models\\Pago')
             ->whereDate('pagos.created_at','<=',$request->fechafin)
             ->whereDate('pagos.created_at','>=',$request->fechaini)
-            ->select('personas.id','personas.nombre','apellidop','apellidom','asignatura','monto','users.foto','name','pagocon','pagos.created_at','personas.foto as personafoto')
+            ->select('personas.id','personas.nombre','apellidop','apellidom','asignatura','monto','users.foto','name','pagocon','cambio','forma_pago','pagos.created_at','personas.foto as personafoto')
             ->orderBy('created_at',"asc")
             ->get();
         return DataTables::of($pagos)
@@ -131,7 +133,7 @@ class PagocomController extends Controller
             ->where('userable_type','App\\Models\\Pago')
             ->whereDate('pagos.created_at','<=',$request->fechafin)
             ->whereDate('pagos.created_at','>=',$request->fechaini)
-            ->select('personas.id','personas.nombre','apellidop','apellidom','asignatura','monto','name','pagocon','pagos.created_at')
+            ->select('personas.id','personas.nombre','apellidop','apellidom','asignatura','monto','name','pagocon','cambio','forma_pago','pagos.created_at')
             ->orderBy('created_at',"asc")
             ->get();
         return DataTables::of($pagos)

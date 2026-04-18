@@ -106,7 +106,8 @@ class VentaRapidaController extends Controller
             'items' => 'required|array|min:1',
             'items.*.producto_id' => 'required|integer|exists:productos,id',
             'items.*.cantidad' => 'required|integer|min:1',
-            'pagocon' => 'required|numeric|min:0',
+            'pagocon' => 'required|numeric|gt:0',
+            'forma_pago' => 'required|in:QR,EFECTIVO',
             'observacion' => 'nullable|string|max:1500',
         ]);
 
@@ -147,9 +148,17 @@ class VentaRapidaController extends Controller
             $total += ((float)$producto->precio) * $item['cantidad'];
         }
 
+        if ($total <= 0) {
+            return $this->responseError($request, 'El monto total de la venta debe ser mayor a cero.');
+        }
+
         $pagocon = (float)$data['pagocon'];
         if ($pagocon < $total) {
             return $this->responseError($request, 'El monto con el que paga no puede ser menor al total.');
+        }
+
+        if ($data['forma_pago'] === 'QR' && abs(round($pagocon - $total, 2)) > 0.01) {
+            return $this->responseError($request, 'Para pagos QR, "Pago con" debe ser igual al total y el cambio debe ser 0.');
         }
 
         $venta = DB::transaction(function () use ($items, $productos, $total, $pagocon, $data) {
@@ -181,6 +190,7 @@ class VentaRapidaController extends Controller
                 'monto' => $total,
                 'pagocon' => $pagocon,
                 'cambio' => $pagocon - $total,
+                'forma_pago' => $data['forma_pago'],
             ]);
 
             $pago->usuarios()->attach(Auth::id());
@@ -189,7 +199,7 @@ class VentaRapidaController extends Controller
         });
 
         if ($request->expectsJson() || $request->ajax()) {
-            $venta->load(['detalles.producto', 'usuarios']);
+            $venta->load(['detalles.producto', 'usuarios', 'pagos']);
             $esAdmin = Auth::user()->hasRole(['Admin']);
 
             $totalHoy = Venta::query()
@@ -208,6 +218,7 @@ class VentaRapidaController extends Controller
                     'created_at_hora' => optional($venta->created_at)->format('H:i'),
                     'total' => (float)$venta->total,
                     'usuario' => optional($venta->usuarios->first())->name,
+                    'forma_pago' => optional($venta->pagos->first())->forma_pago,
                     'detalles' => $venta->detalles->map(function ($detalle) {
                         return [
                             'producto' => optional($detalle->producto)->nombre,

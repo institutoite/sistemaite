@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $monto
  * @property $pagocon
  * @property $cambio
+ * @property $forma_pago
  * @property $pagable_id
  * @property $pagable_type
  * @property $created_at
@@ -22,9 +23,10 @@ use Illuminate\Database\Eloquent\Model;
 class Pago extends Model
 {
     static $rules = [
-		'monto' => 'required',
-		'pagocon' => 'required',
-		'cambio' => 'required',
+		'monto' => 'required|numeric|gt:0',
+		'pagocon' => 'required|numeric|gt:0',
+		'cambio' => 'required|numeric|min:0',
+		'forma_pago' => 'required|in:QR,EFECTIVO',
 		'pagable_id' => 'required',
 		'pagable_type' => 'required',
     ];
@@ -35,7 +37,7 @@ class Pago extends Model
      *
      * @var array
      */
-    protected $fillable = ['monto','pagocon','cambio','pagable_id','pagable_type'];
+    protected $fillable = ['monto','pagocon','cambio','forma_pago','pagable_id','pagable_type'];
 
 
   public function billetes()

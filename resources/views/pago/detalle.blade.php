@@ -32,6 +32,7 @@
                                         <th>Monto</th>
                                         <th>PagoCon</th>
                                         <th>Cambio</th>
+                                        <th>Forma</th>
                                         <th>Usuario</th>
                                         <th>Fecha</th>
                                         <th>Opciones</th>
@@ -44,6 +45,7 @@
                                             <td>{{ $pago->monto }}</td>
                                             <td>{{ $pago->pagocon }}</td>
                                             <td>{{ $pago->cambio }}</td>
+                                            <td>{{ $pago->forma_pago ?? 'EFECTIVO' }}</td>
                                             <td>
                                                 {{ $pago->usuarios->first()->name}}
                                             </td>
@@ -130,6 +132,7 @@
                         $html+="<tr><td>Monto</td>"+"<td>Bs. "+json.pago.monto+"</td></tr>";
                         $html+="<tr><td>Pago Con</td>"+"<td>Bs. "+json.pago.pagocon+"</td></tr>";
                         $html+="<tr><td>Cambio</td>"+"<td>Bs. "+json.pago.cambio+"</td></tr>";
+                        $html+="<tr><td>Forma</td>"+"<td>"+(json.pago.forma_pago || 'EFECTIVO')+"</td></tr>";
                         $html+="<tr><td>Usuario</td>"+"<td>"+json.user.name+"</td></tr>";
                         $html+="<tr><td>Fecha y hora Pago</td>"+"<td>"+moment(json.pago.created_at).format('LLLL')+"</td></tr>";
                         $html+="<tr><td>Ultima Actualizacion</td>"+"<td>"+moment(json.pago.updated_at).format('LLLL')+"</td></tr>";
