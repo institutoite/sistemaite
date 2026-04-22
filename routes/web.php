@@ -408,6 +408,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
     //Route::get('misclases/{persona_id}',[DocenteController::class,'misclases'])->name('misestudiantes.actuales.view');
     Route::get('misclases/actuales',[DocenteController::class,'ClasesDeUnDocente'])->name('misestudiantes.actuales.ajax');
     Route::get('listar/docentes',[DocenteController::class,'listarDocentes'])->name('listar.docentes');
+    Route::post('docentes/{docente}/crear-usuario', [DocenteController::class, 'crearUsuarioDesdeDocente'])->name('docentes.crear.usuario');
     Route::delete('eliminar/docente/{docente}', 'DocenteController@destroy')->name('eliminar.docente');
     Route::patch('docente/actualizar/{docente}', [DocenteController::class,'update'])->name('docente.update');
     // Reporte PDF de turnos de docentes habilitados
@@ -1183,6 +1184,7 @@ Route::get('/home',[EstudianteController::class,'home'])->name('home');
 
 
     Route::get('/misestudiantes', [DocenteController::class, 'misestudiantes'])->name('misestudiantes');
+    Route::get('/misalumnos/hoy', [DocenteController::class, 'alumnosDeHoy'])->name('misalumnos.hoy');
     Route::get('/estudiantesinscritos', [DocenteController::class, 'estudiantesinscritos'])->name('estudiantesinscritos');
 
     /** google contact */

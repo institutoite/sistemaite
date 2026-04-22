@@ -241,6 +241,32 @@ return [
             'padre'   => true,
             'can'     => 'menu-padres-estudiantes',
         ],
+        [
+            'text'    => 'Mis alumnos',
+            'icon'    => 'fas fa-user-graduate',
+            'icon_color' => 'secondary',
+            'classes'  => 'text-white text-bold bg-primary',
+            'docente' => true,
+            'can' => 'solo-docente-menu',
+            'submenu' => [
+                [
+                    'text' => 'Presentes ahora',
+                    'icon' => 'fas fa-angle-right',
+                    'route' => 'misestudiantes',
+                    'classes' => 'text-dark',
+                    'docente' => true,
+                    'can' => 'solo-docente-menu',
+                ],
+                [
+                    'text' => 'Alumnos de hoy',
+                    'icon' => 'fas fa-angle-right',
+                    'route' => 'misalumnos.hoy',
+                    'classes' => 'text-dark',
+                    'docente' => true,
+                    'can' => 'solo-docente-menu',
+                ],
+            ],
+        ],
        
         [
                 'text' => 'Mis pagos de hoy',

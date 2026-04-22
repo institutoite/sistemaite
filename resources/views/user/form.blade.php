@@ -59,7 +59,7 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
         <div class="input-group mb-3">
-            <input type="password" name="password"
+            <input type="password" name="password" id="password"
             class="form-control @error('password') is-invalid @enderror"
             placeholder="Introduzca la contraseña"
             @isset($persona)
@@ -70,6 +70,11 @@
                 <div class="input-group-text">
                     <span class="fas fa-lock"></span>
                 </div>
+            </div>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary js-toggle-password" type="button" data-target="#password" title="Mostrar u ocultar contrasena">
+                    <i class="fas fa-eye"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -87,7 +92,7 @@
 <div class="row">
      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group" >
         <div class="input-group mb-3">
-            <input type="password" name="password_confirmation"
+            <input type="password" name="password_confirmation" id="password_confirmation"
                 class="form-control @error('password_confirmation') is-invalid @enderror"
                 placeholder="Vuelva a escribir la contraseña para confirmar"
                 @isset($persona)
@@ -98,6 +103,11 @@
                 <div class="input-group-text">
                     <span class="fas fa-lock"></span>
                 </div>
+            </div>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary js-toggle-password" type="button" data-target="#password_confirmation" title="Mostrar u ocultar contrasena">
+                    <i class="fas fa-eye"></i>
+                </button>
             </div>
             @if($errors->has('password_confirmation'))
                 <span class="text-danger"> {{ $errors->first('password_confirmation')}}</span>
@@ -161,5 +171,28 @@
                 <span class="fas fa-user-plus text-white"></span> Guardar
             </button>
         </div>
+@once
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var botones = document.querySelectorAll('.js-toggle-password');
+    botones.forEach(function (boton) {
+        boton.addEventListener('click', function () {
+            var selector = this.getAttribute('data-target');
+            var input = document.querySelector(selector);
+            if (!input) {
+                return;
+            }
+            var icono = this.querySelector('i');
+            var esTexto = input.type === 'text';
+            input.type = esTexto ? 'password' : 'text';
+            if (icono) {
+                icono.classList.toggle('fa-eye', esTexto);
+                icono.classList.toggle('fa-eye-slash', !esTexto);
+            }
+        });
+    });
+});
+</script>
+@endonce
         
 

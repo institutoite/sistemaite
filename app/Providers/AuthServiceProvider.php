@@ -44,5 +44,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('ver-mis-ventas-propios', function ($user) {
             return $user->hasRole(['Admin', 'Secretaria']);
         });
+
+        Gate::define('solo-docente-menu', function ($user) {
+            return $user->hasRole(['Docente']);
+        });
     }
 }

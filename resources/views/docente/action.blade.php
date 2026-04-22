@@ -11,6 +11,24 @@
     <i class="far fa-clock text-success"></i>
 </a>
 
+@if(auth()->check() && auth()->user()->hasRole(['Admin']))
+    @if(!empty($user_id))
+        <a href="{{ route('users.edit', $user_id) }}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Editar usuario del docente">
+            <i class="fas fa-user-check text-success"></i>
+        </a>
+        <a href="{{ route('share.credentials', $user_id) }}" class="btn-accion-tabla tooltipsC btn-sm mr-2" title="Ver credenciales para compartir">
+            <i class="fas fa-key text-warning"></i>
+        </a>
+    @else
+        <form action="{{ route('docentes.crear.usuario', $id) }}" method="POST" class="d-inline">
+            @csrf
+            <button type="submit" class="btn-accion-tabla tooltipsC btn-sm mr-2 border-0 bg-transparent p-0" title="Crear usuario para este docente">
+                <i class="fas fa-user-plus text-primary"></i>
+            </button>
+        </form>
+    @endif
+@endif
+
 {{-- <a id="{{$persona_id}}" class='enviarmensaje'><i class='fab fa-whatsapp'></i></a> --}}
 
 

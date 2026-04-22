@@ -40,7 +40,7 @@ class LoginController extends Controller
         else if ($user->hasRole(['Secretaria']))
             return redirect('/home');
         else if ($user->hasRole(['Docente']))
-            return redirect('/');
+            return redirect('/misestudiantes');
             else if ($user->hasRole(['Estudiante']))
             return redirect('/');
             else if ($user->hasRole(['Padre']))

@@ -22,6 +22,15 @@
                             </a>
                 </div>
                 <div class="card-body">
+                    @if(session('generated_credentials') && auth()->check() && auth()->user()->hasRole(['Admin']))
+                        @php($cred = session('generated_credentials'))
+                        <div class="alert alert-warning">
+                            <strong>Credenciales generadas para entregar al docente</strong><br>
+                            Usuario: <code>{{ $cred['name'] ?? '-' }}</code><br>
+                            Correo: <code>{{ $cred['email'] ?? '-' }}</code><br>
+                            Contraseña temporal: <code>{{ $cred['password'] ?? '-' }}</code>
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('users.update', $user) }}"  role="form" enctype="multipart/form-data">
                         {{ method_field('PATCH') }}
                         @csrf

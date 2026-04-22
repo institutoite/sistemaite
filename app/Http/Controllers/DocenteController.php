@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Models\Mododocente;
 use App\Models\Estudiante;
 use App\Models\Programacion;
+use App\Models\Programacioncom;
 use App\Models\Inscripcione;
 use App\Models\Carrera;
 use App\Models\Computacion;
@@ -32,6 +33,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\PersonaController;
 use Barryvdh\DomPDF\Facade as PDF;
+use Spatie\Permission\Models\Role;
 
 use App\Http\Requests\DocenteUpdateRequest;
 use App\Http\Requests\PersonaStoreRequest;
@@ -53,6 +55,7 @@ class DocenteController extends Controller
         $this->middleware('can:Crear Docentes')->only('create','store','GuardarConfigurarNiveles','configurar_niveles');
         $this->middleware('can:Editar Docentes')->only('edit','update');
         $this->middleware('can:Editar Docentes')->only('turnos','guardarTurnos');
+        $this->middleware('can:Crear Usuarios')->only('crearUsuarioDesdeDocente');
         $this->middleware('can:Eliminar Docentes')->only('destroy');
         $this->middleware('can:Consultas Docentes de clases')->only("misEstudiatescomActuales","misEstudiatesProgramados","misEstudiatescomProgramados","misEsperados","misEsperadoscom");
     }
@@ -566,13 +569,109 @@ class DocenteController extends Controller
     }
     public function listarDocentes(){
         $docentes=Persona::join('docentes','docentes.persona_id','=','personas.id')
+        ->leftJoin('users','users.persona_id','=','personas.id')
         ->join('mododocentes','mododocentes.id','docentes.mododocente_id')
-        ->select('docentes.id','personas.id as persona_id','personas.nombre','personas.apellidop','personas.apellidom','foto','docentes.perfil','mododocente','personas.telefono')->get();
+        ->select(
+            'docentes.id',
+            'personas.id as persona_id',
+            'personas.nombre',
+            'personas.apellidop',
+            'personas.apellidom',
+            'personas.foto as foto',
+            'docentes.perfil',
+            'mododocente',
+            'personas.telefono as telefono',
+            'users.id as user_id',
+            'users.email as user_email'
+        )->get();
 
         return datatables()->of($docentes)
             ->addColumn('btn','docente.action')
             ->rawColumns(['btn','perfil'])
             ->toJson();    
+    }
+
+    public function crearUsuarioDesdeDocente(Docente $docente)
+    {
+        $persona = $docente->persona;
+        if (!$persona) {
+            return redirect()->route('docentes.index')
+                ->with('warning', 'No se pudo crear el usuario porque el docente no tiene persona relacionada.');
+        }
+
+        $usuarioExistente = User::where('persona_id', $persona->id)->first();
+        if ($usuarioExistente) {
+            return redirect()->route('users.edit', $usuarioExistente->id)
+                ->with('warning', 'Este docente ya tiene usuario. Se abrió la edición del usuario existente.');
+        }
+
+        $baseUsuario = Str::ascii(trim(($persona->nombre ?? '') . ($persona->apellidop ?? '') . ($persona->apellidom ?? '')));
+        $baseUsuario = Str::lower(preg_replace('/[^a-z0-9]/', '', $baseUsuario));
+        if ($baseUsuario === '') {
+            $baseUsuario = 'docente';
+        }
+        $username = $this->generarUsernameUnico($baseUsuario, $persona->id);
+        $email = $this->generarEmailUnico($username, $persona->id);
+        $passwordPlano = $this->generarPasswordTemporal();
+
+        $usuario = new User();
+        $usuario->persona_id = $persona->id;
+        $usuario->name = $username;
+        $usuario->email = $email;
+        $usuario->password = Hash::make($passwordPlano);
+        if (!empty($persona->foto)) {
+            $usuario->foto = $persona->foto;
+        }
+        $usuario->save();
+
+        $guard = config('auth.defaults.guard', 'web');
+        Role::firstOrCreate(['name' => 'Docente', 'guard_name' => $guard]);
+        $usuario->assignRole('Docente');
+
+        return redirect()->route('users.edit', $usuario->id)
+            ->with('success', 'Usuario docente creado correctamente.')
+            ->with('generated_credentials', [
+                'name' => $usuario->name,
+                'email' => $usuario->email,
+                'password' => $passwordPlano,
+            ]);
+    }
+
+    private function generarUsernameUnico(string $base, int $personaId): string
+    {
+        $candidato = substr($base, 0, 40) . $personaId;
+        $candidato = substr($candidato, 0, 64);
+        $i = 1;
+        while (User::where('name', $candidato)->exists()) {
+            $sufijo = (string) $i;
+            $candidato = substr(substr($base, 0, 40) . $personaId, 0, 64 - strlen($sufijo)) . $sufijo;
+            $i++;
+        }
+
+        return $candidato;
+    }
+
+    private function generarEmailUnico(string $username, int $personaId): string
+    {
+        $dominio = '@ite.com.bo';
+        $maxLocal = 64 - strlen($dominio);
+        $local = substr(Str::lower($username), 0, max(1, $maxLocal));
+        $base = $local . $dominio;
+        $email = $base;
+        $i = 1;
+        while (User::where('email', $email)->exists()) {
+            $sufijo = '.' . $personaId . '.' . $i;
+            $localConSufijo = substr($local, 0, max(1, $maxLocal - strlen($sufijo))) . $sufijo;
+            $email = $localConSufijo . $dominio;
+            $i++;
+        }
+
+        return $email;
+    }
+
+    private function generarPasswordTemporal(): string
+    {
+        return Str::upper(Str::random(3)) . '-' . Str::lower(Str::random(3)) . '-' . rand(100, 999) . '!';
     }
 
 
@@ -583,12 +682,169 @@ class DocenteController extends Controller
         return $docenteshabilitados;
     }
    
-    public function misestudiantes() 
+    public function misestudiantes(Request $request)
     {
-        $programacion = Programacion::where('docente_id',Auth::user()->persona->docente->id)->where('fecha',Carbon::now()->format('Y-m-d'))->get();
+        $user = Auth::user();
+        $esDocente = $user->hasRole(['Docente']);
+        $esSupervisor = $user->hasRole(['Admin', 'Secretaria']);
 
-        return view('persona.misestudiantes',compact("programacion"));
- 
+        abort_unless($esDocente || $esSupervisor, 403);
+
+        $docentes = collect();
+        $docenteSeleccionadoId = null;
+
+        if ($esDocente) {
+            $docenteSeleccionadoId = optional(optional($user->persona)->docente)->id;
+            abort_unless($docenteSeleccionadoId, 403, 'El usuario no tiene perfil docente asociado.');
+        } else {
+            $docentes = Docente::with('persona:id,nombre,apellidop,apellidom')
+                ->orderBy('nombrecorto')
+                ->get();
+
+            if ($docentes->isEmpty()) {
+                $docenteSeleccionadoId = null;
+            } else {
+                $docenteSeleccionadoId = (int) $request->get('docente_id', 0);
+                if ($docenteSeleccionadoId <= 0) {
+                    $docenteSeleccionadoId = $docentes->first()->id;
+                }
+            }
+
+            abort_unless(
+                $docenteSeleccionadoId === null || $docentes->contains('id', $docenteSeleccionadoId),
+                403
+            );
+        }
+
+        $hoy = Carbon::now()->format('Y-m-d');
+        $ahora = Carbon::now();
+
+        $programacion = collect();
+        if ($docenteSeleccionadoId) {
+            $programacion = Programacion::with([
+                'docente:id,nombrecorto',
+                'materia:id,materia',
+                'aula:id,aula',
+                'inscripcione:id,estudiante_id,objetivo,vigente',
+                'inscripcione.estudiante:id,persona_id',
+                'inscripcione.estudiante.persona:id,nombre,apellidop,apellidom,foto',
+                'observaciones' => function ($query) {
+                    $query->where('activo', 1)->latest();
+                },
+                'clases' => function ($query) use ($hoy) {
+                    $query->whereDate('fecha', $hoy)->orderByDesc('id');
+                },
+            ])
+                ->whereDate('fecha', $hoy)
+                ->where('docente_id', $docenteSeleccionadoId)
+                ->whereHas('inscripcione', function ($query) {
+                    $query->where('vigente', 1);
+                })
+                ->orderBy('hora_ini')
+                ->get();
+        }
+
+        $cantidadEnHorario = $programacion->filter(function ($item) use ($ahora) {
+            $inicio = Carbon::parse($item->hora_ini);
+            $fin = Carbon::parse($item->hora_fin);
+            return $ahora->between($inicio, $fin, true);
+        })->count();
+
+        return view('persona.misestudiantes', [
+            'programacion' => $programacion,
+            'docentes' => $docentes,
+            'docenteSeleccionadoId' => $docenteSeleccionadoId,
+            'esSupervisor' => $esSupervisor,
+            'cantidadEnHorario' => $cantidadEnHorario,
+            'hoy' => $hoy,
+        ]);
+    }
+
+    public function alumnosDeHoy()
+    {
+        $user = Auth::user();
+        abort_unless($user && $user->hasRole(['Docente']), 403);
+
+        $docenteId = optional(optional($user->persona)->docente)->id;
+        abort_unless($docenteId, 403, 'El usuario no tiene docente asociado.');
+
+        $hoy = Carbon::now()->format('Y-m-d');
+
+        $programaciones = Programacion::with([
+            'materia:id,materia',
+            'aula:id,aula',
+            'estado:id,estado',
+            'inscripcione:id,estudiante_id',
+            'inscripcione.estudiante:id,persona_id',
+            'inscripcione.estudiante.persona:id,nombre,apellidop,apellidom,foto',
+            'clases' => function ($query) use ($hoy) {
+                $query->whereDate('fecha', $hoy);
+            },
+        ])
+            ->whereDate('fecha', $hoy)
+            ->where('docente_id', $docenteId)
+            ->orderBy('hora_ini')
+            ->get()
+            ->map(function ($item) {
+                $persona = optional(optional(optional($item->inscripcione)->estudiante)->persona);
+                $tieneClasePresente = $item->clases->contains(function ($clase) {
+                    return (int) $clase->estado_id === (int) estado('PRESENTE');
+                });
+
+                return [
+                    'tipo' => 'Nivelacion',
+                    'nombre' => trim(($persona->nombre ?? '') . ' ' . ($persona->apellidop ?? '') . ' ' . ($persona->apellidom ?? '')),
+                    'hora_inicio' => Carbon::parse($item->hora_ini)->format('H:i'),
+                    'hora_fin' => Carbon::parse($item->hora_fin)->format('H:i'),
+                    'aula' => optional($item->aula)->aula ?? '-',
+                    'detalle' => optional($item->materia)->materia ?? '-',
+                    'estado_programacion' => optional($item->estado)->estado ?? '-',
+                    'presente' => $tieneClasePresente,
+                ];
+            });
+
+        $programacionesCom = Programacioncom::with([
+            'aula:id,aula',
+            'estado:id,estado',
+            'matriculacion:id,computacion_id,asignatura_id',
+            'matriculacion.asignatura:id,asignatura',
+            'matriculacion.computacion:id,persona_id',
+            'matriculacion.computacion.persona:id,nombre,apellidop,apellidom,foto',
+            'clasescom' => function ($query) use ($hoy) {
+                $query->whereDate('fecha', $hoy);
+            },
+        ])
+            ->whereDate('fecha', $hoy)
+            ->where('docente_id', $docenteId)
+            ->orderBy('horaini')
+            ->get()
+            ->map(function ($item) {
+                $persona = optional(optional(optional($item->matriculacion)->computacion)->persona);
+                $tieneClasePresente = $item->clasescom->contains(function ($clase) {
+                    return (int) $clase->estado_id === (int) estado('PRESENTE');
+                });
+
+                return [
+                    'tipo' => 'Computacion',
+                    'nombre' => trim(($persona->nombre ?? '') . ' ' . ($persona->apellidop ?? '') . ' ' . ($persona->apellidom ?? '')),
+                    'hora_inicio' => Carbon::parse($item->horaini)->format('H:i'),
+                    'hora_fin' => Carbon::parse($item->horafin)->format('H:i'),
+                    'aula' => optional($item->aula)->aula ?? '-',
+                    'detalle' => optional(optional($item->matriculacion)->asignatura)->asignatura ?? 'Computacion',
+                    'estado_programacion' => optional($item->estado)->estado ?? '-',
+                    'presente' => $tieneClasePresente,
+                ];
+            });
+
+        $alumnos = $programaciones
+            ->concat($programacionesCom)
+            ->sortBy('hora_inicio')
+            ->values();
+
+        return view('persona.alumnos_hoy', [
+            'hoy' => $hoy,
+            'alumnos' => $alumnos,
+        ]);
     }
 
     public function estudiantesinscritos() 

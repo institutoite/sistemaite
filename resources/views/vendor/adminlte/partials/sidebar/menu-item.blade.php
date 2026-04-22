@@ -5,6 +5,9 @@
     if (auth()->check() && auth()->user()->hasRole(['Padre']) && empty($item['padre'])) {
         $mostrarItem = false;
     }
+    if (auth()->check() && auth()->user()->hasRole(['Docente']) && empty($item['docente'])) {
+        $mostrarItem = false;
+    }
 @endphp
 
 @if ($mostrarItem)
