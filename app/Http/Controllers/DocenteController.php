@@ -17,6 +17,8 @@ use App\Models\Programacion;
 use App\Models\Programacioncom;
 use App\Models\Inscripcione;
 use App\Models\Carrera;
+use App\Models\Clase;
+use App\Models\Clasecom;
 use App\Models\Computacion;
 use App\Models\Dia;
 use App\Models\DocenteTurno;
@@ -685,6 +687,8 @@ class DocenteController extends Controller
     public function misestudiantes(Request $request)
     {
         $user = Auth::user();
+        abort_unless($user, 401);
+
         $esDocente = $user->hasRole(['Docente']);
         $esSupervisor = $user->hasRole(['Admin', 'Secretaria']);
 
@@ -719,43 +723,72 @@ class DocenteController extends Controller
         $hoy = Carbon::now()->format('Y-m-d');
         $ahora = Carbon::now();
 
-        $programacion = collect();
+        $clases = collect();
+        $clasescom = collect();
         if ($docenteSeleccionadoId) {
-            $programacion = Programacion::with([
+            $clases = Clase::with([
                 'docente:id,nombrecorto',
                 'materia:id,materia',
                 'aula:id,aula',
-                'inscripcione:id,estudiante_id,objetivo,vigente',
-                'inscripcione.estudiante:id,persona_id',
-                'inscripcione.estudiante.persona:id,nombre,apellidop,apellidom,foto',
-                'observaciones' => function ($query) {
+                'programacion:id,inscripcione_id,docente_id,materia_id,aula_id,fecha,hora_ini,hora_fin',
+                'programacion.inscripcione:id,estudiante_id,objetivo,vigente',
+                'programacion.inscripcione.estudiante:id,persona_id',
+                'programacion.inscripcione.estudiante.persona:id,nombre,apellidop,apellidom,foto',
+                'programacion.observaciones' => function ($query) {
                     $query->where('activo', 1)->latest();
-                },
-                'clases' => function ($query) use ($hoy) {
-                    $query->whereDate('fecha', $hoy)->orderByDesc('id');
                 },
             ])
                 ->whereDate('fecha', $hoy)
                 ->where('docente_id', $docenteSeleccionadoId)
-                ->whereHas('inscripcione', function ($query) {
+                ->where('estado_id', estado('PRESENTE'))
+                ->whereHas('programacion.inscripcione', function ($query) {
                     $query->where('vigente', 1);
                 })
-                ->orderBy('hora_ini')
+                ->orderBy('horainicio')
+                ->get();
+
+            $clasescom = Clasecom::with([
+                'docente:id,nombrecorto',
+                'aula:id,aula',
+                'programacioncom:id,matriculacion_id,docente_id,aula_id,fecha,horaini,horafin',
+                'programacioncom.matriculacion:id,computacion_id,asignatura_id',
+                'programacioncom.matriculacion.computacion:id,persona_id',
+                'programacioncom.matriculacion.computacion.persona:id,nombre,apellidop,apellidom,foto',
+                'programacioncom.matriculacion.asignatura:id,asignatura',
+                'programacioncom.observaciones' => function ($query) {
+                    $query->where('activo', 1)->latest();
+                },
+            ])
+                ->whereDate('fecha', $hoy)
+                ->where('docente_id', $docenteSeleccionadoId)
+                ->where('estado_id', estado('PRESENTE'))
+                ->orderBy('horainicio')
                 ->get();
         }
 
-        $cantidadEnHorario = $programacion->filter(function ($item) use ($ahora) {
-            $inicio = Carbon::parse($item->hora_ini);
-            $fin = Carbon::parse($item->hora_fin);
+        $cantidadEnHorarioProgramacion = $clases->filter(function ($item) use ($ahora) {
+            $inicio = Carbon::parse($item->horainicio);
+            $fin = Carbon::parse($item->horafin);
             return $ahora->between($inicio, $fin, true);
         })->count();
 
+        $cantidadEnHorarioProgramacioncom = $clasescom->filter(function ($item) use ($ahora) {
+            $inicio = Carbon::parse($item->horainicio);
+            $fin = Carbon::parse($item->horafin);
+            return $ahora->between($inicio, $fin, true);
+        })->count();
+
+        $cantidadEnHorario = $cantidadEnHorarioProgramacion + $cantidadEnHorarioProgramacioncom;
+        $totalAsignados = $clases->count() + $clasescom->count();
+
         return view('persona.misestudiantes', [
-            'programacion' => $programacion,
+            'clases' => $clases,
+            'clasescom' => $clasescom,
             'docentes' => $docentes,
             'docenteSeleccionadoId' => $docenteSeleccionadoId,
             'esSupervisor' => $esSupervisor,
             'cantidadEnHorario' => $cantidadEnHorario,
+            'totalAsignados' => $totalAsignados,
             'hoy' => $hoy,
         ]);
     }
@@ -769,6 +802,9 @@ class DocenteController extends Controller
         abort_unless($docenteId, 403, 'El usuario no tiene docente asociado.');
 
         $hoy = Carbon::now()->format('Y-m-d');
+        $estadoPresenteId = (int) estado('PRESENTE');
+        $estadoFinalizadoId = (int) estado('FINALIZADO');
+        $estadoIndefinidoId = (int) estado('INDEFINIDO');
 
         $programaciones = Programacion::with([
             'materia:id,materia',
@@ -785,11 +821,24 @@ class DocenteController extends Controller
             ->where('docente_id', $docenteId)
             ->orderBy('hora_ini')
             ->get()
-            ->map(function ($item) {
+            ->map(function ($item) use ($estadoPresenteId, $estadoFinalizadoId, $estadoIndefinidoId) {
                 $persona = optional(optional(optional($item->inscripcione)->estudiante)->persona);
-                $tieneClasePresente = $item->clases->contains(function ($clase) {
-                    return (int) $clase->estado_id === (int) estado('PRESENTE');
+                $estadosClase = $item->clases->pluck('estado_id')->map(function ($id) {
+                    return (int) $id;
                 });
+                $estadoLabel = 'Indefinido';
+                $estadoBadge = 'warning';
+
+                if ($estadosClase->contains($estadoPresenteId) || (int) $item->estado_id === $estadoPresenteId) {
+                    $estadoLabel = 'Presentes';
+                    $estadoBadge = 'success';
+                } elseif ($estadosClase->contains($estadoFinalizadoId) || (int) $item->estado_id === $estadoFinalizadoId) {
+                    $estadoLabel = 'Finalizado';
+                    $estadoBadge = 'secondary';
+                } elseif ($estadosClase->contains($estadoIndefinidoId) || (int) $item->estado_id === $estadoIndefinidoId) {
+                    $estadoLabel = 'Indefinido';
+                    $estadoBadge = 'warning';
+                }
 
                 return [
                     'tipo' => 'Nivelacion',
@@ -798,8 +847,8 @@ class DocenteController extends Controller
                     'hora_fin' => Carbon::parse($item->hora_fin)->format('H:i'),
                     'aula' => optional($item->aula)->aula ?? '-',
                     'detalle' => optional($item->materia)->materia ?? '-',
-                    'estado_programacion' => optional($item->estado)->estado ?? '-',
-                    'presente' => $tieneClasePresente,
+                    'estado_label' => $estadoLabel,
+                    'estado_badge' => $estadoBadge,
                 ];
             });
 
@@ -818,11 +867,24 @@ class DocenteController extends Controller
             ->where('docente_id', $docenteId)
             ->orderBy('horaini')
             ->get()
-            ->map(function ($item) {
+            ->map(function ($item) use ($estadoPresenteId, $estadoFinalizadoId, $estadoIndefinidoId) {
                 $persona = optional(optional(optional($item->matriculacion)->computacion)->persona);
-                $tieneClasePresente = $item->clasescom->contains(function ($clase) {
-                    return (int) $clase->estado_id === (int) estado('PRESENTE');
+                $estadosClase = $item->clasescom->pluck('estado_id')->map(function ($id) {
+                    return (int) $id;
                 });
+                $estadoLabel = 'Indefinido';
+                $estadoBadge = 'warning';
+
+                if ($estadosClase->contains($estadoPresenteId) || (int) $item->estado_id === $estadoPresenteId) {
+                    $estadoLabel = 'Presentes';
+                    $estadoBadge = 'success';
+                } elseif ($estadosClase->contains($estadoFinalizadoId) || (int) $item->estado_id === $estadoFinalizadoId) {
+                    $estadoLabel = 'Finalizado';
+                    $estadoBadge = 'secondary';
+                } elseif ($estadosClase->contains($estadoIndefinidoId) || (int) $item->estado_id === $estadoIndefinidoId) {
+                    $estadoLabel = 'Indefinido';
+                    $estadoBadge = 'warning';
+                }
 
                 return [
                     'tipo' => 'Computacion',
@@ -831,8 +893,8 @@ class DocenteController extends Controller
                     'hora_fin' => Carbon::parse($item->horafin)->format('H:i'),
                     'aula' => optional($item->aula)->aula ?? '-',
                     'detalle' => optional(optional($item->matriculacion)->asignatura)->asignatura ?? 'Computacion',
-                    'estado_programacion' => optional($item->estado)->estado ?? '-',
-                    'presente' => $tieneClasePresente,
+                    'estado_label' => $estadoLabel,
+                    'estado_badge' => $estadoBadge,
                 ];
             });
 
@@ -843,6 +905,8 @@ class DocenteController extends Controller
 
         return view('persona.alumnos_hoy', [
             'hoy' => $hoy,
+            'programaciones' => $programaciones,
+            'programacionesCom' => $programacionesCom,
             'alumnos' => $alumnos,
         ]);
     }

@@ -29,7 +29,7 @@ class ClasecomController extends Controller
     {
         $this->middleware('can:Listar Clasescom')->only('clasesPresentes','mostrarcom');
         $this->middleware('can:Crear Clasescom')->only('guardar');
-        $this->middleware('can:Editar Clasescom')->only('edit','actualizar','editar','marcadoGeneral','marcadoRapido','finalizarClasecom');
+        $this->middleware('can:Editar Clasescom')->only('edit','actualizar','editar','marcadoGeneral','marcadoRapido');
     }
 
 
@@ -246,14 +246,37 @@ class ClasecomController extends Controller
     }
     public function finalizarClasecom(Request $request)
     {
-       // return response()->json(['d'=>$request->id]);
+        $request->validate([
+            'id' => 'required|integer',
+        ]);
+
         $clasecom = Clasecom::findOrFail($request->id);
+        $user = Auth::user();
+        abort_unless($user, 401);
+
+        $docenteUsuarioId = optional(optional($user->persona)->docente)->id;
+        $puedeFinalizar = $user->hasRole(['Admin', 'Secretaria'])
+            || ($user->hasRole(['Docente']) && (int) $docenteUsuarioId === (int) $clasecom->docente_id);
+
+        abort_unless($puedeFinalizar, 403);
+
+        if ((int) $clasecom->estado_id !== (int) estado('PRESENTE')) {
+            return response()->json([
+                'message' => 'La clase ya no esta en estado PRESENTE.',
+                'status' => 409,
+            ], 409);
+        }
+
         $programa = $clasecom->programacioncom;
-        $programa->estado_id = estado('FINALIZADO');
-        $programa->save();
+        if ($programa && (int) $programa->estado_id === (int) estado('PRESENTE')) {
+            $programa->estado_id = estado('FINALIZADO');
+            $programa->save();
+        }
+
         $clasecom->estado_id = estado('FINALIZADO');
-        $clasecom->horafin=Carbon::now()->isoFormat('HH:mm:ss');
+        $clasecom->horafin = Carbon::now()->format('H:i:s');
         $clasecom->save();
+
         return response()->json(['message' => 'Despidete deseale el bien', 'status' => 200]);
     }
     

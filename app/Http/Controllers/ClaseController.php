@@ -39,7 +39,7 @@ class ClaseController extends Controller
     {
         $this->middleware('can:Listar Clases')->only('index','clasesPresentes','mostrar','show');
         $this->middleware('can:Crear Clases')->only('create','crear','guardar');
-        $this->middleware('can:Editar Clases')->only('edit','update','actualizar','editar','marcadoGeneral','marcadoRapido','finalizarClase');
+        $this->middleware('can:Editar Clases')->only('edit','update','actualizar','editar','marcadoGeneral','marcadoRapido');
         $this->middleware('can:Eliminar Clases')->only('destroy');
     }
     public function index()
@@ -323,13 +323,37 @@ class ClaseController extends Controller
 
     public function finalizarClase(Request $request)
     {
+        $request->validate([
+            'id' => 'required|integer',
+        ]);
+
         $clase = Clase::findOrFail($request->id);
+        $user = Auth::user();
+        abort_unless($user, 401);
+
+        $docenteUsuarioId = optional(optional($user->persona)->docente)->id;
+        $puedeFinalizar = $user->hasRole(['Admin', 'Secretaria'])
+            || ($user->hasRole(['Docente']) && (int) $docenteUsuarioId === (int) $clase->docente_id);
+
+        abort_unless($puedeFinalizar, 403);
+
+        if ((int) $clase->estado_id !== (int) estado('PRESENTE')) {
+            return response()->json([
+                'message' => 'La clase ya no esta en estado PRESENTE.',
+                'status' => 409,
+            ], 409);
+        }
+
         $programa = $clase->programacion;
-        $programa->estado_id = estado('FINALIZADO');
-        $programa->save();
+        if ($programa && (int) $programa->estado_id === (int) estado('PRESENTE')) {
+            $programa->estado_id = estado('FINALIZADO');
+            $programa->save();
+        }
+
         $clase->estado_id = estado('FINALIZADO');
-        $clase->horafin=Carbon::now()->isoFormat('HH:mm:ss');
+        $clase->horafin = Carbon::now()->format('H:i:s');
         $clase->save();
+
         return response()->json(['message' => 'Despidete deseale el bien', 'status' => 200]);
     }
     

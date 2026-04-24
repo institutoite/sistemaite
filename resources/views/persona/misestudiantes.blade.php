@@ -18,6 +18,7 @@
             border-bottom: 1px solid rgba(0, 0, 0, .06);
             background: #f8fafc;
             cursor: pointer;
+            transition: background .2s ease-in-out, color .2s ease-in-out, border-color .2s ease-in-out;
         }
         .schedule-item .student-photo {
             width: 56px;
@@ -43,6 +44,10 @@
             background: #dcfce7;
             border-color: #bbf7d0;
         }
+        .schedule-item.state-ok .card-header {
+            background: #bbf7d0;
+            border-bottom-color: #86efac;
+        }
         .state-ok .status-pill {
             background: #15803d;
             color: #fff;
@@ -51,6 +56,10 @@
             background: #fff7ed;
             border-color: #fed7aa;
         }
+        .schedule-item.state-warning .card-header {
+            background: #fed7aa;
+            border-bottom-color: #fdba74;
+        }
         .state-warning .status-pill {
             background: #c2410c;
             color: #fff;
@@ -58,6 +67,10 @@
         .state-finished {
             background: #fee2e2;
             border-color: #fecaca;
+        }
+        .schedule-item.state-finished .card-header {
+            background: #fecaca;
+            border-bottom-color: #fca5a5;
         }
         .state-finished .status-pill {
             background: #dc2626;
@@ -74,9 +87,25 @@
         .state-overdue .text-secondary {
             color: #fff !important;
         }
+        .schedule-item.state-overdue .card-header {
+            background: #7f1d1d;
+            border-bottom-color: #7f1d1d;
+            color: #fff;
+        }
+        .schedule-item.state-overdue .card-header .btn-link {
+            color: #fff !important;
+        }
         .state-overdue .status-pill {
             background: #ffffff;
             color: #7f1d1d;
+        }
+        .badge-info {
+            background-color: rgb(55,95,122) !important;
+            border-color: rgb(55,95,122) !important;
+            color: #fff !important;
+        }
+        .text-info {
+            color: rgb(55,95,122) !important;
         }
         .metric-card {
             border-radius: .75rem;
@@ -99,7 +128,7 @@
         @if($esSupervisor)
             <div class="card mb-3">
                 <div class="card-header bg-light">
-                    <strong>Supervisión por docente</strong>
+                    <strong>Supervisi&oacute;n por docente</strong>
                 </div>
                 <div class="card-body">
                     <form method="GET" action="{{ route('misestudiantes') }}" class="row align-items-end">
@@ -128,7 +157,7 @@
                 <div class="card metric-card">
                     <div class="card-body">
                         <div class="text-muted">Total asignados hoy</div>
-                        <h3 class="mb-0" id="metric-total">{{ $programacion->count() }}</h3>
+                        <h3 class="mb-0" id="metric-total">{{ $totalAsignados }}</h3>
                     </div>
                 </div>
             </div>
@@ -150,32 +179,33 @@
             </div>
         </div>
 
-        @if($programacion->isEmpty())
+        @if($clases->isEmpty() && $clasescom->isEmpty())
             <div class="alert alert-info">
-                No hay estudiantes programados para este docente en la fecha actual.
+                No hay estudiantes presentes para este docente en la fecha actual.
             </div>
         @else
             <div id="accordion-programaciones">
-                @foreach ($programacion as $index => $progra)
+                @foreach ($clases as $index => $clase)
                     @php
-                        $persona = optional(optional(optional($progra->inscripcione)->estudiante)->persona);
-                        $horaInicio = \Carbon\Carbon::parse($progra->hora_ini)->format('H:i');
-                        $horaFin = \Carbon\Carbon::parse($progra->hora_fin)->format('H:i');
-                        $requerimiento = strip_tags(optional($progra->observaciones->first())->observacion ?? '');
-                        $objetivoGeneral = strip_tags(optional($progra->inscripcione)->objetivo ?? '');
-                        $claseActual = $progra->clases->firstWhere('estado_id', estado('PRESENTE'));
+                        $programa = $clase->programacion;
+                        $observacionesPrograma = optional($programa)->observaciones ?? collect();
+                        $persona = optional(optional(optional($programa)->inscripcione)->estudiante)->persona;
+                        $horaInicio = optional($clase->horainicio)->format('H:i');
+                        $horaFin = optional($clase->horafin)->format('H:i');
+                        $requerimiento = strip_tags(optional($observacionesPrograma->first())->observacion ?? '');
+                        $objetivoGeneral = strip_tags(optional(optional($programa)->inscripcione)->objetivo ?? '');
                         $foto = $persona && $persona->foto ? route('foto.show', ['filename' => $persona->foto]) : asset('dist/img/user2-160x160.jpg');
                     @endphp
                     <div class="card schedule-item"
-                         id="programacion-{{ $progra->id }}"
+                         id="clase-{{ $clase->id }}"
                          data-hora-inicio="{{ $horaInicio }}"
                          data-hora-fin="{{ $horaFin }}">
-                        <div class="card-header" id="heading-{{ $progra->id }}">
+                        <div class="card-header" id="heading-clase-{{ $clase->id }}">
                             <button class="btn btn-link text-left text-dark w-100 p-0 d-flex align-items-center justify-content-between"
                                     data-toggle="collapse"
-                                    data-target="#collapse-{{ $progra->id }}"
+                                    data-target="#collapse-clase-{{ $clase->id }}"
                                     aria-expanded="{{ $index === 0 ? 'true' : 'false' }}"
-                                    aria-controls="collapse-{{ $progra->id }}">
+                                    aria-controls="collapse-clase-{{ $clase->id }}">
                                 <div class="d-flex align-items-center">
                                     <div class="mr-3">
                                         <img src="{{ $foto }}" alt="Foto de {{ $persona->nombre ?? 'estudiante' }}" class="student-photo">
@@ -183,14 +213,15 @@
                                     <div>
                                         <div class="font-weight-bold">
                                             #{{ $index + 1 }} - {{ $persona->nombre ?? '-' }} {{ $persona->apellidop ?? '' }} {{ $persona->apellidom ?? '' }}
+                                            <span class="badge badge-primary ml-2">Nivelaci&oacute;n</span>
                                         </div>
                                         <div class="small">
                                             <span class="mr-2"><strong>Horario:</strong> {{ $horaInicio }} - {{ $horaFin }}</span>
-                                            <span><strong>Materia:</strong> {{ optional($progra->materia)->materia ?? '-' }}</span>
+                                            <span><strong>Materia:</strong> {{ optional($clase->materia)->materia ?? optional(optional($programa)->materia)->materia ?? '-' }}</span>
                                         </div>
                                         <div class="compact-requirement mt-1">
-                                            <strong>Requerimiento del día:</strong>
-                                            <span class="requirement-text">{{ $requerimiento !== '' ? $requerimiento : 'Sin observación registrada aún.' }}</span>
+                                            <strong>Requerimiento del d&iacute;a:</strong>
+                                            <span class="requirement-text">{{ $requerimiento !== '' ? $requerimiento : 'Sin observaci&oacute;n registrada a&uacute;n.' }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -201,7 +232,7 @@
                             </button>
                         </div>
 
-                        <div id="collapse-{{ $progra->id }}" class="collapse {{ $index === 0 ? 'show' : '' }}" aria-labelledby="heading-{{ $progra->id }}" data-parent="#accordion-programaciones">
+                        <div id="collapse-clase-{{ $clase->id }}" class="collapse {{ $index === 0 ? 'show' : '' }}" aria-labelledby="heading-clase-{{ $clase->id }}" data-parent="#accordion-programaciones">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-lg-8">
@@ -213,38 +244,48 @@
                                                 <strong>Hora fin:</strong> {{ $horaFin }}
                                             </div>
                                             <div class="col-md-6 mb-2">
-                                                <strong>Aula:</strong> {{ optional($progra->aula)->aula ?? '-' }}
+                                                <strong>Aula:</strong> {{ optional($clase->aula)->aula ?? optional(optional($programa)->aula)->aula ?? '-' }}
                                             </div>
                                             <div class="col-md-6 mb-2">
-                                                <strong>Docente:</strong> {{ optional($progra->docente)->nombrecorto ?? '-' }}
+                                                <strong>Docente:</strong> {{ optional($clase->docente)->nombrecorto ?? optional(optional($programa)->docente)->nombrecorto ?? '-' }}
                                             </div>
                                         </div>
 
                                         <div class="mb-3 p-2 border rounded bg-light">
-                                            <strong>Requerimiento o necesidad del día</strong>
-                                            <div class="mt-1 requirement-text">
-                                                {{ $requerimiento !== '' ? $requerimiento : 'Sin observación registrada.' }}
-                                            </div>
+                                            <strong>Requerimiento o necesidad del d&iacute;a</strong>
+                                            @if($observacionesPrograma->isNotEmpty())
+                                                <ul class="mt-1 mb-0 pl-3 requirement-list">
+                                                    @foreach($observacionesPrograma as $observacionItem)
+                                                        <li class="requirement-text">{{ strip_tags($observacionItem->observacion) }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            @else
+                                                <div class="mt-1 text-muted requirement-empty">Sin observaci&oacute;n registrada.</div>
+                                            @endif
                                         </div>
 
                                         <div class="mb-0 p-2 border rounded">
-                                            <strong>Objetivo general de la inscripción actual</strong>
+                                            <strong>Objetivo general de la inscripci&oacute;n actual</strong>
                                             <div class="mt-1 text-muted">
                                                 {{ $objetivoGeneral !== '' ? $objetivoGeneral : 'Sin objetivo definido.' }}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 mt-3 mt-lg-0">
-                                        <button type="button"
-                                                class="btn btn-primary btn-block mb-2 btn-observacion"
-                                                data-programacion-id="{{ $progra->id }}">
-                                            Agregar observación de esta clase
-                                        </button>
+                                        <a href=""
+                                           class="btn btn-primary btn-block mb-2 tooltipsC observacion"
+                                           id="Programacion"
+                                           title="Agregar Observacion"
+                                           data-observable-id="{{ optional($programa)->id }}"
+                                           data-item-target="#clase-{{ $clase->id }}">
+                                            <i class="fas fa-comment-alt mr-1"></i>
+                                            Agregar observaci&oacute;n de esta clase
+                                        </a>
 
-                                        @if($claseActual)
+                                        @if($clase)
                                             <button type="button"
                                                     class="btn btn-success btn-block mb-2 btn-finalizar"
-                                                    data-clase-id="{{ $claseActual->id }}">
+                                                    data-clase-id="{{ $clase->id }}">
                                                 Marcar salida
                                             </button>
                                         @else
@@ -264,6 +305,113 @@
                     </div>
                 @endforeach
             </div>
+
+            @if($clasescom->isNotEmpty())
+                <h5 class="mt-4 mb-3">Computaci&oacute;n presentes</h5>
+                <div id="accordion-programacionescom">
+                    @foreach ($clasescom as $indexCom => $claseCom)
+                        @php
+                            $programaCom = $claseCom->programacioncom;
+                            $observacionesProgramaCom = optional($programaCom)->observaciones ?? collect();
+                            $personaCom = optional(optional(optional($programaCom)->matriculacion)->computacion)->persona;
+                            $horaInicioCom = optional($claseCom->horainicio)->format('H:i');
+                            $horaFinCom = optional($claseCom->horafin)->format('H:i');
+                            $requerimientoCom = strip_tags(optional($observacionesProgramaCom->first())->observacion ?? '');
+                            $detalleCom = optional(optional(optional($programaCom)->matriculacion)->asignatura)->asignatura ?? 'Computaci&oacute;n';
+                            
+                            $fotoCom = $personaCom && $personaCom->foto ? route('foto.show', ['filename' => $personaCom->foto]) : asset('dist/img/user2-160x160.jpg');
+                        @endphp
+                        <div class="card schedule-item"
+                             id="clasecom-{{ $claseCom->id }}"
+                             data-hora-inicio="{{ $horaInicioCom }}"
+                             data-hora-fin="{{ $horaFinCom }}">
+                            <div class="card-header" id="heading-com-{{ $claseCom->id }}">
+                                <button class="btn btn-link text-left text-dark w-100 p-0 d-flex align-items-center justify-content-between"
+                                        data-toggle="collapse"
+                                        data-target="#collapse-com-{{ $claseCom->id }}"
+                                        aria-expanded="{{ $indexCom === 0 ? 'true' : 'false' }}"
+                                        aria-controls="collapse-com-{{ $claseCom->id }}">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mr-3">
+                                            <img src="{{ $fotoCom }}" alt="Foto de {{ $personaCom->nombre ?? 'estudiante' }}" class="student-photo">
+                                        </div>
+                                        <div>
+                                            <div class="font-weight-bold">
+                                                #{{ $indexCom + 1 }} - {{ $personaCom->nombre ?? '-' }} {{ $personaCom->apellidop ?? '' }} {{ $personaCom->apellidom ?? '' }}
+                                                <span class="badge badge-info ml-2">Computaci&oacute;n</span>
+                                            </div>
+                                            <div class="small">
+                                                <span class="mr-2"><strong>Horario:</strong> {{ $horaInicioCom }} - {{ $horaFinCom }}</span>
+                                                <span><strong>Asignatura:</strong> {{ $detalleCom }}</span>
+                                            </div>
+                                            <div class="compact-requirement mt-1">
+                                            <strong>Requerimiento del d&iacute;a:</strong>
+                                                <span class="requirement-text">{{ $requerimientoCom !== '' ? $requerimientoCom : 'Sin observaci&oacute;n registrada a&uacute;n.' }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right ml-3">
+                                        <span class="status-pill status-text">En horario</span>
+                                        <div class="small mt-1 time-text"></div>
+                                    </div>
+                                </button>
+                            </div>
+                            <div id="collapse-com-{{ $claseCom->id }}" class="collapse {{ $indexCom === 0 ? 'show' : '' }}" aria-labelledby="heading-com-{{ $claseCom->id }}" data-parent="#accordion-programacionescom">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-2"><strong>Hora inicio:</strong> {{ $horaInicioCom }}</div>
+                                                <div class="col-md-6 mb-2"><strong>Hora fin:</strong> {{ $horaFinCom }}</div>
+                                                <div class="col-md-6 mb-2"><strong>Aula:</strong> {{ optional($claseCom->aula)->aula ?? optional(optional($programaCom)->aula)->aula ?? '-' }}</div>
+                                                <div class="col-md-6 mb-2"><strong>Docente:</strong> {{ optional($claseCom->docente)->nombrecorto ?? optional(optional($programaCom)->docente)->nombrecorto ?? '-' }}</div>
+                                            </div>
+                                            <div class="mb-0 p-2 border rounded bg-light">
+                                                <strong>Requerimiento o necesidad del d&iacute;a</strong>
+                                                @if($observacionesProgramaCom->isNotEmpty())
+                                                    <ul class="mt-1 mb-0 pl-3 requirement-list">
+                                                        @foreach($observacionesProgramaCom as $observacionItemCom)
+                                                            <li class="requirement-text">{{ strip_tags($observacionItemCom->observacion) }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                @else
+                                                    <div class="mt-1 text-muted requirement-empty">Sin observaci&oacute;n registrada.</div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 mt-3 mt-lg-0">
+                                            <a href=""
+                                               class="btn btn-primary btn-block mb-2 tooltipsC observacion"
+                                               id="Programacioncom"
+                                               title="Agregar Observacion"
+                                               data-observable-id="{{ optional($programaCom)->id }}"
+                                               data-item-target="#clasecom-{{ $claseCom->id }}">
+                                                <i class="fas fa-comment-alt mr-1"></i>
+                                                Agregar observaci&oacute;n de esta clase
+                                            </a>
+                                            @if($claseCom)
+                                                <button type="button"
+                                                        class="btn btn-success btn-block mb-2 btn-finalizar-com"
+                                                        data-clase-id="{{ $claseCom->id }}">
+                                                    Marcar salida
+                                                </button>
+                                            @else
+                                                <button type="button" class="btn btn-secondary btn-block mb-2" disabled>
+                                                    Sin clase marcada como presente
+                                                </button>
+                                            @endif
+                                            <div class="small border rounded p-2">
+                                                <strong>Tiempo de clase:</strong>
+                                                <div class="time-text"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         @endif
     </div>
 
@@ -289,16 +437,69 @@
             };
         }(jQuery));
 
-        CKEDITOR.replace('editorguardar', {
-            height: 120,
-            width: '100%',
-            removeButtons: 'PasteFromWord'
-        });
-        CKEDITOR.replace('editoreditar', {
-            height: 120,
-            width: '100%',
-            removeButtons: 'PasteFromWord'
-        });
+        function showModalCompat(selector) {
+            const el = document.querySelector(selector);
+            if (!el) return;
+            if (window.bootstrap && window.bootstrap.Modal) {
+                const Modal = window.bootstrap.Modal;
+                let instance = null;
+                if (typeof Modal.getOrCreateInstance === 'function') {
+                    instance = Modal.getOrCreateInstance(el);
+                } else if (typeof Modal.getInstance === 'function') {
+                    instance = Modal.getInstance(el) || new Modal(el);
+                } else {
+                    instance = new Modal(el);
+                }
+                instance.show();
+                return;
+            }
+            if (window.jQuery && typeof $(el).modal === 'function') {
+                $(el).modal('show');
+                return;
+            }
+            el.style.display = 'block';
+            el.classList.add('show');
+            document.body.classList.add('modal-open');
+        }
+
+        function hideModalCompat(selector) {
+            const el = document.querySelector(selector);
+            if (!el) return;
+            if (window.bootstrap && window.bootstrap.Modal) {
+                const Modal = window.bootstrap.Modal;
+                let instance = null;
+                if (typeof Modal.getOrCreateInstance === 'function') {
+                    instance = Modal.getOrCreateInstance(el);
+                } else if (typeof Modal.getInstance === 'function') {
+                    instance = Modal.getInstance(el) || new Modal(el);
+                } else {
+                    instance = new Modal(el);
+                }
+                instance.hide();
+                return;
+            }
+            if (window.jQuery && typeof $(el).modal === 'function') {
+                $(el).modal('hide');
+                return;
+            }
+            el.classList.remove('show');
+            el.style.display = 'none';
+            document.body.classList.remove('modal-open');
+            $('.modal-backdrop').remove();
+        }
+
+        if (window.CKEDITOR && typeof CKEDITOR.replace === 'function') {
+            CKEDITOR.replace('editorguardar', {
+                height: 120,
+                width: '100%',
+                removeButtons: 'PasteFromWord'
+            });
+            CKEDITOR.replace('editoreditar', {
+                height: 120,
+                width: '100%',
+                removeButtons: 'PasteFromWord'
+            });
+        }
 
         function actualizarEstadosTiempo() {
             let enHorario = 0;
@@ -333,7 +534,7 @@
                 } else if (minutosRestantes >= -10) {
                     claseEstado = 'state-finished';
                     textoEstado = 'Hora final';
-                    textoTiempo = 'Finalizó hace ' + Math.abs(minutosRestantes) + ' min';
+                    textoTiempo = 'Finalizo hace ' + Math.abs(minutosRestantes) + ' min';
                 } else {
                     claseEstado = 'state-overdue';
                     textoEstado = 'Excedido';
@@ -357,30 +558,58 @@
         $(function() {
             actualizarEstadosTiempo();
             setInterval(actualizarEstadosTiempo, 30000);
+            let observacionItemTarget = null;
 
-            $('.btn-observacion').on('click', function() {
-                const programacionId = $(this).data('programacion-id');
-                $('#observable_id').val(programacionId);
-                $('#observable_type').val('Programacion');
-                CKEDITOR.instances.editorguardar.setData('');
-                $('#modal-agregar-observacion').modal('show');
+            $(document).on('click', '.observacion', function(e) {
+                e.preventDefault();
+                console.log('misestudiantes observacion click');
+                const observableId = $(this).data('observable-id');
+                const observableType = $(this).attr('id');
+                observacionItemTarget = $(this).data('item-target');
+                $('#observable_id').val(observableId);
+                $('#observable_type').val(observableType);
+                if (window.CKEDITOR && CKEDITOR.instances && CKEDITOR.instances.editorguardar) {
+                    CKEDITOR.instances.editorguardar.setData('');
+                } else {
+                    $('#editorguardar').val('');
+                }
+                showModalCompat('#modal-agregar-observacion');
             });
 
             $('#guardar-observacion').on('click', function(e) {
                 e.preventDefault();
-                for (let instance in CKEDITOR.instances) {
-                    CKEDITOR.instances[instance].updateElement();
+                if (window.CKEDITOR && CKEDITOR.instances) {
+                    for (let instance in CKEDITOR.instances) {
+                        CKEDITOR.instances[instance].updateElement();
+                    }
                 }
                 const observableId = $('#observable_id').val();
+                const observableType = $('#observable_type').val();
                 const observacion = $('#editorguardar').val();
+                let guardarUrl = "{{ url('guardar/observacion') }}";
+                let payload = {
+                    observacion: observacion,
+                    observable_id: observableId,
+                    observable_type: observableType
+                };
+
+                if (observableType === 'Programacion') {
+                    guardarUrl = "{{ route('guardar.observacion.programacion') }}";
+                    payload = {
+                        observacion: observacion,
+                        id_programacion: observableId
+                    };
+                } else if (observableType === 'Programacioncom') {
+                    guardarUrl = "{{ route('guardar.observacion.programacioncom') }}";
+                    payload = {
+                        observacion: observacion,
+                        id_programacioncom: observableId
+                    };
+                }
 
                 $.ajax({
-                    url: "{{ url('guardar/observacion') }}",
-                    data: {
-                        observacion: observacion,
-                        observable_id: observableId,
-                        observable_type: 'Programacion'
-                    },
+                    url: guardarUrl,
+                    data: payload,
                     success: function(json) {
                         if (json.errores) {
                             $('.error').html(json.errores.observacion);
@@ -389,21 +618,35 @@
                         }
 
                         const textoPlano = $('<div>').html(observacion).text().trim();
-                        const textoFinal = textoPlano.length ? textoPlano : 'Observación actualizada.';
-                        $('#programacion-' + observableId).find('.requirement-text').text(textoFinal);
-                        $('#programacion-' + observableId).addTempClass('border border-success', 1600);
-                        $('#modal-agregar-observacion').modal('hide');
+                        const textoFinal = textoPlano.length ? textoPlano : 'Observacion actualizada.';
+                        if (observacionItemTarget) {
+                            const item = $(observacionItemTarget);
+                            item.find('.compact-requirement .requirement-text').first().text(textoFinal);
+
+                            const listas = item.find('.requirement-list');
+                            if (listas.length) {
+                                listas.each(function() {
+                                    $(this).prepend($('<li/>', { class: 'requirement-text', text: textoFinal }));
+                                });
+                                item.find('.requirement-empty').remove();
+                            } else {
+                                item.find('.requirement-text').text(textoFinal);
+                            }
+
+                            item.addTempClass('border border-success', 1600);
+                        }
+                        hideModalCompat('#modal-agregar-observacion');
                         $('.diverror').addClass('d-none');
 
                         Swal.fire({
                             icon: 'success',
-                            title: 'Observación registrada',
+                            title: 'Observacion registrada',
                             timer: 1600,
                             showConfirmButton: false
                         });
                     },
                     error: function() {
-                        Swal.fire('Error', 'No se pudo guardar la observación.', 'error');
+                        Swal.fire('Error', 'No se pudo guardar la observacion.', 'error');
                     }
                 });
             });
@@ -414,7 +657,47 @@
 
                 $.ajax({
                     url: "{{ route('clases.finalizar') }}",
-                    data: { id: claseId },
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    data: {
+                        id: claseId,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(json) {
+                        boton.prop('disabled', true)
+                            .removeClass('btn-success')
+                            .addClass('btn-secondary')
+                            .text('Salida registrada');
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: json.message || 'Salida marcada correctamente',
+                            timer: 1500,
+                            showConfirmButton: false
+                        });
+                    },
+                    error: function() {
+                        Swal.fire('Error', 'No se pudo marcar la salida.', 'error');
+                    }
+                });
+            });
+
+            $('.btn-finalizar-com').on('click', function() {
+                const claseId = $(this).data('clase-id');
+                const boton = $(this);
+
+                $.ajax({
+                    url: "{{ route('clasecom.finalizar') }}",
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    data: {
+                        id: claseId,
+                        _token: "{{ csrf_token() }}"
+                    },
                     success: function(json) {
                         boton.prop('disabled', true)
                             .removeClass('btn-success')
@@ -440,3 +723,4 @@
         });
     </script>
 @stop
+
