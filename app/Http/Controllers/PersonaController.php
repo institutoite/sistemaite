@@ -249,7 +249,7 @@ class PersonaController extends Controller
         $persona->interests()->sync(array_keys($request->interests));
         if (in_array($request->papel, ['estudiante', 'computacion'], true)) {
             $correoBase = Str::slug($persona->nombre.$persona->apellidop, '');
-            $correoGenerado = strtolower($correoBase.$persona->id)."@ite.com.bo";
+            $correoGenerado = strtolower($correoBase.$persona->id)."@ife.bo";
             $plainPassword = Str::random(10);
 
             $user = new User();
@@ -405,7 +405,7 @@ class PersonaController extends Controller
         $existingUser = User::where('persona_id', $apoderado->id)->first();
         if (!$existingUser) {
             $correoBase = Str::slug($apoderado->nombre.$apoderado->apellidop, '');
-            $correoGenerado = strtolower($correoBase.$apoderado->id)."@ite.com.bo";
+            $correoGenerado = strtolower($correoBase.$apoderado->id)."@ife.bo";
             $plainPassword = Str::random(10);
 
             $user = new User();
@@ -797,7 +797,7 @@ class PersonaController extends Controller
                 $proveedor = $persona->proveedor;
                 break;
             default:
-                # code...ite.com.bo
+                # code...ife.bo
                 break;
         }
         $estados=Estado::get();
@@ -1270,7 +1270,7 @@ class PersonaController extends Controller
         $userPadre->save();
 
         $appUrl = URL::to('/');
-        $mensaje = "Hola, se generaron las credenciales para el Portal ITE.%0A%0A".
+        $mensaje = "Hola, se generaron las credenciales para el Portal IFE.%0A%0A".
             "ESTUDIANTE:%0A".
             "Usuario: {$userEstudiante->email}%0A".
             "Contraseña: {$plainPasswordEstudiante}%0A%0A".
@@ -1287,7 +1287,7 @@ class PersonaController extends Controller
     
     public function enviarMensajeCumpleanero(Request $request){
         // $mensaje=saludo()."%0A".nombre($request->persona_id,2)."%0A".strip_tags(Mensaje::findOrFail(1)->mensaje);
-        $mensaje=saludo()."%0AEstimado(a) ".nombre($request->persona_id,2)."%0A".strip_tags(Mensaje::findOrFail(1)->mensaje)."%0A"."*Tus amigos de ite*";
+        $mensaje=saludo()."%0AEstimado(a) ".nombre($request->persona_id,2)."%0A".strip_tags(Mensaje::findOrFail(1)->mensaje)."%0A"."*Tus amigos de IFE*";
         $persona=Persona::findOrFail($request->persona_id);
         $apoderados= $persona->apoderados;
         $data=['persona'=>$persona,'apoderados'=>$apoderados,'mensaje'=>$mensaje];

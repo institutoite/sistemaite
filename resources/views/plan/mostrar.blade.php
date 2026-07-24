@@ -448,7 +448,7 @@
   <!-- Start Category -->
   {{-- <section>
     <div class="container">
-      <h2 class="cs-section_heading cs-style1 text-center">Lo más nuevo de Ite</h2>
+      <h2 class="cs-section_heading cs-style1 text-center">Lo más nuevo de IFE</h2>
       <div class="cs-height_45 cs-height_lg_45"></div>
       <div class="cs-slider cs-style1 cs-gap-30">
         <div class="cs-slider_container" data-autoplay="0" data-loop="1" data-speed="600" data-center="0" data-slides-per-view="responsive" data-xs-slides="2" data-sm-slides="3" data-md-slides="4" data-lg-slides="5" data-add-slides="6">
@@ -557,7 +557,7 @@
   </div>
   <!-- End Video Seciton -->
 
-  <!-- Start Membresias Ite-->
+  <!-- Start Membresias IFE-->
   <div class="cs-height_100 cs-height_lg_70"></div>
   <div class="container">
     <div class="cs-section_heading cs-style4">
@@ -585,14 +585,14 @@
     </div>
   </div>
   <div class="cs-height_70 cs-height_lg_40"></div>
-  <!-- End Membresias Ite -->
+  <!-- End Membresias IFE -->
 
   <div class="cs-height_95 cs-height_lg_70"></div>
 
 <!-- Start Logo Carousel -->
   <section>
     <div class="container">
-      <h2 class="cs-section_heading cs-style1 text-center">Colegios y Universidades que confían en educabol ite</h2>
+      <h2 class="cs-section_heading cs-style1 text-center">Colegios y Universidades que confían en Instituto IFE</h2>
       <div class="cs-height_45 cs-height_lg_45"></div>
     </div>
     <div class="cs-moving_carousel_1">
@@ -699,7 +699,7 @@
                   <li><a href="how-it-works.html">+591 71324941</a></li>
                   <li><a href="about.html">+591 75553338</a></li>
                   <li><a href="contact.html">3-219050</a></li>
-                  <li><a href="faq.html">info@ite.com.bo</a></li>
+                  <li><a href="faq.html">info@ife.bo</a></li>
                 </ul>
               </div>
             </div><!-- .col -->
@@ -731,7 +731,7 @@
       <div class="container">
         <div class="cs-footer_separetor"></div>
         <div class="cs-footer_bottom_in">
-          <div class="cs-copyright">Copyright 2022. Desarrollado por Instituto Educabol Ite.</div>
+          <div class="cs-copyright">Copyright 2022. Desarrollado por Instituto IFE.</div>
           <ul class="cs-footer_menu">
             <li><a href="{{ route('privacy') }}">Privacidad</a></li>
             <li><a href="{{ route('termscondition') }}">Términos y Condiciones</a></li>

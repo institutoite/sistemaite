@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
     {
         $user = new User();
         $user->name = 'David';
-        $user->email = 'informaciones.ite@gmail.com';
+        $user->email = 'informaciones.ife@gmail.com';
         $user->persona_id = 1;
         $user->password = Hash::make('*Lobacude1326*');
         $user->foto = "estudiantes/david.jpg";
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
         
         $user = new User();
         $user->name = 'Lidia';
-        $user->email = 'guarderia.ite@gmail.com';
+        $user->email = 'guarderia.ife@gmail.com';
         $user->persona_id = 2;
         $user->password = Hash::make('*Educabol1326*');
         $user->foto = "estudiantes/lidia.jpg";
@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
         
         $user = new User();
         $user->name = 'susana';
-        $user->email = 'susana@ite.com.bo';
+        $user->email = 'susana@ife.bo';
         $user->persona_id = 11;
         $user->password = Hash::make('*Susana25*');
         $user->foto = "estudiantes/susana.jpg";

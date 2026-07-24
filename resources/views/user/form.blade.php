@@ -38,7 +38,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 input-group" >
         <div class="input-group mb-3">
             <input type="text" name="email" class="form-control @error('email') is-invalid @enderror"
-                value="{{old('email',$user->email ?? strtolower(str_replace(' ','',$persona->nombre).($persona->id).'@ite.com.bo'))}}" placeholder="Escriba correo eletronico">
+                value="{{old('email',$user->email ?? strtolower(str_replace(' ','',$persona->nombre).($persona->id).'@ife.bo'))}}" placeholder="Escriba correo eletronico">
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-envelope"></span>

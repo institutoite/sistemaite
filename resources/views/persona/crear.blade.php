@@ -156,15 +156,15 @@
             console.log("clickeaste");
             $("#persona_id").val($(this).closest('tr').children(0).html());
             $("#persona_id").addClass('bg-primary');
-            $('#modal-ite').modal('toggle');
-            $('#modal-ite .close').remove();
+            $('#modal-ife').modal('toggle');
+            $('#modal-ife .close').remove();
         }
         
     });	
     function  mostrarModal(){
         var ElementoSeleccionado=$('#como_id option:selected').val();
             if(ElementoSeleccionado==2){
-                $("#modal-ite").modal("show");
+                $("#modal-ife").modal("show");
             }else{
                 $("#persona_id").val('');  
             }

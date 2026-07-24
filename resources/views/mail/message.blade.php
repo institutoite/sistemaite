@@ -201,7 +201,7 @@ u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:in
             <td align="center" height="60" style="height:60px;">
             <![endif]-->
               <singleline>
-                <a href="https://www.ite.com.bo/" mc:edit data-button data-text-style="Intro Button" style="font-family:'Roboto Slab',Arial,Helvetica,sans-serif;font-size:18px;line-height:28px;font-weight:700;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;padding: 16px 38px 16px 38px;display: inline-block;"><span>Visitanos</span></a>
+                <a href="https://ife.bo/" mc:edit data-button data-text-style="Intro Button" style="font-family:'Roboto Slab',Arial,Helvetica,sans-serif;font-size:18px;line-height:28px;font-weight:700;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;padding: 16px 38px 16px 38px;display: inline-block;"><span>Visitanos</span></a>
               </singleline>
             <!--[if (gte mso 9)|(IE)]>
             </td>
@@ -474,7 +474,7 @@ u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:in
           <td data-element="black-footer-1st-link" data-label="1st Link" data-text-style="Footer Links" class="rwd-on-mobile center-text" align="center" style="font-family:'Roboto',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:400;font-style:normal;color:#999999;text-decoration:none;letter-spacing:0px;">
             <!-- Links -->
               <singleline>
-                <a href="https://www.ite.com.bo/about" mc:edit data-button data-text-style="Footer Links" style="font-family:'Roboto',Arial,Helvetica,sans-serif;font-size:14px;line-height:28px;font-weight:400;font-style:normal;color:#999999;text-decoration:none;letter-spacing:0px;display:inline-block;vertical-align:middle;"><span>Acerca de nosotros</span></a> 
+                <a href="https://ife.bo/about" mc:edit data-button data-text-style="Footer Links" style="font-family:'Roboto',Arial,Helvetica,sans-serif;font-size:14px;line-height:28px;font-weight:400;font-style:normal;color:#999999;text-decoration:none;letter-spacing:0px;display:inline-block;vertical-align:middle;"><span>Acerca de nosotros</span></a>
               </singleline>
             <!-- Links -->
           </td>
@@ -559,7 +559,7 @@ u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:in
           <td class="center-text" data-text-style="Paragraphs" align="center" style="font-family:'Roboto',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:400;font-style:normal;color:#999999;text-decoration:none;letter-spacing:0px;">
             <multiline>
               <div mc:edit data-text-edit>
-                2022 - Desarrollado por ite.<br>
+                2022 - Desarrollado por IFE.<br>
                 Villa 1 de mayo avenida tres pasos al frente esquina Che Guevara 4710
               </div>
             </multiline>

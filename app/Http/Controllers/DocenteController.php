@@ -135,7 +135,7 @@ class DocenteController extends Controller
         $persona->interests()->sync(array_keys($request->interests));
 
         $user = new User();
-        $user->email =strtolower(Str::substr($persona->nombre, 1, 2).$persona->apellidop.$persona->id)."@ite.com.bo" ;
+        $user->email =strtolower(Str::substr($persona->nombre, 1, 2).$persona->apellidop.$persona->id)."@ife.bo" ;
         $user->name = ucfirst(strtolower($persona->nombre).$persona->id);
         $user->persona_id = $persona->id;
         // $user->password = Crypt::encryptString($user->name."*");
@@ -267,7 +267,7 @@ class DocenteController extends Controller
                 $proveedor = $persona->proveedor;
                 break;
             default:
-                # code...ite.com.bo
+                # code...ife.bo
                 break;
         }
         // dd($comos);
@@ -655,7 +655,7 @@ class DocenteController extends Controller
 
     private function generarEmailUnico(string $username, int $personaId): string
     {
-        $dominio = '@ite.com.bo';
+        $dominio = '@ife.bo';
         $maxLocal = 64 - strlen($dominio);
         $local = substr(Str::lower($username), 0, max(1, $maxLocal));
         $base = $local . $dominio;

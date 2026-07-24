@@ -148,6 +148,6 @@
         </table>
     @endforeach
 
-    <p class="muted">Documento generado desde el panel ite.com.bo</p>
+    <p class="muted">Documento generado desde el panel ife.bo</p>
 </body>
 </html>

@@ -107,7 +107,7 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text fade-in">
-                    <h1>Educación innovadora con <span class="ite-text">IFE</span></h1>
+                    <h1>Educación innovadora con <span class="ife-text">IFE</span></h1>
                     <p>Ofrecemos clases de apoyo escolar, cursos de programación, robótica, ajedrez, 
                     cubo rubik, computación, oratoria, inglés, lectura, escritura y caligrafía.</p>
                     <div class="hero-buttons">
@@ -807,7 +807,7 @@
           <div class="footer-content">
               <div class="footer-column">
                   <div class="footer-logo">
-                      <span class="ite-text">IFE</span>
+                      <span class="ife-text">IFE</span>
                       <p>Instituto de Formación Educativa</p>
                   </div>
                   <p class="footer-description">

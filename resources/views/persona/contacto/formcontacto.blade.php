@@ -75,7 +75,7 @@
                 </div>
 
 {{-- %%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO NOMBRE %%%%%%%%%%%%%%%%%%%%%% --}}
-<div class="modal" tabindex="-1" id="modal-ite">
+<div class="modal" tabindex="-1" id="modal-ife">
     <div class="modal-dialog modal-lg modalito">
         <div class="modal-content">
             <div class="modal-header">

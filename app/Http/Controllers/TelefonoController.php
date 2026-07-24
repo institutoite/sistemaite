@@ -217,7 +217,7 @@ class TelefonoController extends Controller
             $existingUser = User::where('persona_id', $apoderado->id)->first();
             if (!$existingUser) {
                 $correoBase = Str::slug($apoderado->nombre.$apoderado->apellidop, '');
-                $correoGenerado = strtolower($correoBase.$apoderado->id)."@ite.com.bo";
+                $correoGenerado = strtolower($correoBase.$apoderado->id)."@ife.bo";
                 $plainPassword = Str::random(10);
 
                 $user = new User();
@@ -257,7 +257,7 @@ class TelefonoController extends Controller
         $existingUser = User::where('persona_id', $apoderado->id)->first();
         if (!$existingUser) {
             $correoBase = Str::slug($apoderado->nombre.$apoderado->apellidop, '');
-            $correoGenerado = strtolower($correoBase.$apoderado->id)."@ite.com.bo";
+            $correoGenerado = strtolower($correoBase.$apoderado->id)."@ife.bo";
             $plainPassword = Str::random(10);
 
             $user = new User();

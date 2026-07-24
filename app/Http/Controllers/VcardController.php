@@ -43,10 +43,10 @@ class VcardController extends Controller
         $vcard->addAddress(null, $persona->zona ==null ? 'Zona sin definir' : $persona->zona->zona , $persona->direccion,$persona->ciudad ==null ? 'Ciudad sin definir' : $persona->ciudad->ciudad ,'', '', $persona->pais ==null ? 'Pais sin definir' : $persona->pais->nombrepais);
         // $vcard->addLabel('street, worktown, workpostcode Belgium');
         $vcard->addURL('https://wa.me/591'.$persona->telefono);
-        $vcard->addURL('https://www.ite.com.bo/actualizar/contacto/'.$persona->id);
+        $vcard->addURL('https://ife.bo/actualizar/contacto/'.$persona->id);
         
         $vcard->addBirthday( $persona->fechanacimiento==null ? "":$persona->fechanacimiento->isoFormat("Y-m-d"));
-        $vcard->addUrl("https://www.ite.com.bo");
+        $vcard->addUrl("https://ife.bo");
         
 
         $photoPath = $this->resolvePhotoPath($persona->foto);

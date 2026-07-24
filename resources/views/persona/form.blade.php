@@ -205,7 +205,7 @@
             
         </div>
 
-{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO OCULTO CON QUE PAPEL LLEGA A ITE papel de profesor papel de practico etc ---}}
+{{-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAMPO OCULTO CON QUE PAPEL LLEGA A IFE papel de profesor papel de practico etc ---}}
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3" >
             <div class="form-floating mb-3 text-gray">
@@ -500,7 +500,7 @@
 
     {{-- <input id="input-b1" name="input-b1" type="file" class="file" data-browse-on-zone-click="true"> --}}
     
-<div class="modal" tabindex="-1" id="modal-ite">
+<div class="modal" tabindex="-1" id="modal-ife">
     <div class="modal-dialog modal-lg modalito">
         <div class="modal-content">
             <div class="modal-header">

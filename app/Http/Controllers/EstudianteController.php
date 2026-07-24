@@ -136,7 +136,7 @@ class EstudianteController extends Controller
             ->select('id', 'nombre', 'apellidop', 'apellidom', 'telefono', 'fechanacimiento', 'volvera')
             ->get()
             ->map(function ($item) use ($fullName, $waLink, $saludo) {
-                $msg = $saludo.', '.$fullName($item->nombre, $item->apellidop, $item->apellidom).'. Le deseamos un feliz cumpleanos y muchas bendiciones. Un abrazo de parte del equipo ITE.';
+                $msg = $saludo.', '.$fullName($item->nombre, $item->apellidop, $item->apellidom).'. Le deseamos un feliz cumpleanos y muchas bendiciones. Un abrazo de parte del equipo IFE.';
                 return [
                     'id' => $item->id,
                     'nombre' => $fullName($item->nombre, $item->apellidop, $item->apellidom),
